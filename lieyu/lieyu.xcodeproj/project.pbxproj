@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A21A376D1B9DCC57001E8084 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A21A376C1B9DCC57001E8084 /* UIViewExt.m */; };
+		A21A37801B9DCC85001E8084 /* MJConst.m in Sources */ = {isa = PBXBuildFile; fileRef = A21A37701B9DCC85001E8084 /* MJConst.m */; };
+		A21A37811B9DCC85001E8084 /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = A21A37731B9DCC85001E8084 /* MJFoundation.m */; };
+		A21A37821B9DCC85001E8084 /* MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = A21A37751B9DCC85001E8084 /* MJProperty.m */; };
+		A21A37831B9DCC85001E8084 /* MJType.m in Sources */ = {isa = PBXBuildFile; fileRef = A21A37771B9DCC85001E8084 /* MJType.m */; };
+		A21A37841B9DCC85001E8084 /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = A21A37791B9DCC85001E8084 /* NSObject+MJCoding.m */; };
+		A21A37851B9DCC85001E8084 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = A21A377B1B9DCC85001E8084 /* NSObject+MJKeyValue.m */; };
+		A21A37861B9DCC85001E8084 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = A21A377D1B9DCC85001E8084 /* NSObject+MJProperty.m */; };
+		A21A37871B9DCC85001E8084 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = A21A377F1B9DCC85001E8084 /* NSString+MJExtension.m */; };
 		AD8899BC1B9AFE61007BCC7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BB1B9AFE61007BCC7C /* main.m */; };
 		AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BE1B9AFE61007BCC7C /* AppDelegate.m */; };
 		AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */; };
@@ -28,6 +37,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A21A376B1B9DCC57001E8084 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		A21A376C1B9DCC57001E8084 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
+		A21A376F1B9DCC85001E8084 /* MJConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJConst.h; sourceTree = "<group>"; };
+		A21A37701B9DCC85001E8084 /* MJConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJConst.m; sourceTree = "<group>"; };
+		A21A37711B9DCC85001E8084 /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
+		A21A37721B9DCC85001E8084 /* MJFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFoundation.h; sourceTree = "<group>"; };
+		A21A37731B9DCC85001E8084 /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
+		A21A37741B9DCC85001E8084 /* MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJProperty.h; sourceTree = "<group>"; };
+		A21A37751B9DCC85001E8084 /* MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJProperty.m; sourceTree = "<group>"; };
+		A21A37761B9DCC85001E8084 /* MJType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJType.h; sourceTree = "<group>"; };
+		A21A37771B9DCC85001E8084 /* MJType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJType.m; sourceTree = "<group>"; };
+		A21A37781B9DCC85001E8084 /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
+		A21A37791B9DCC85001E8084 /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
+		A21A377A1B9DCC85001E8084 /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
+		A21A377B1B9DCC85001E8084 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		A21A377C1B9DCC85001E8084 /* NSObject+MJProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJProperty.h"; sourceTree = "<group>"; };
+		A21A377D1B9DCC85001E8084 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
+		A21A377E1B9DCC85001E8084 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
+		A21A377F1B9DCC85001E8084 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
 		AD8899B61B9AFE61007BCC7C /* lieyu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lieyu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899BA1B9AFE61007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8899BB1B9AFE61007BCC7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,6 +90,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A21A376A1B9DCC1F001E8084 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A21A376B1B9DCC57001E8084 /* UIViewExt.h */,
+				A21A376C1B9DCC57001E8084 /* UIViewExt.m */,
+				A21A376E1B9DCC85001E8084 /* MJExtension */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		A21A376E1B9DCC85001E8084 /* MJExtension */ = {
+			isa = PBXGroup;
+			children = (
+				A21A376F1B9DCC85001E8084 /* MJConst.h */,
+				A21A37701B9DCC85001E8084 /* MJConst.m */,
+				A21A37711B9DCC85001E8084 /* MJExtension.h */,
+				A21A37721B9DCC85001E8084 /* MJFoundation.h */,
+				A21A37731B9DCC85001E8084 /* MJFoundation.m */,
+				A21A37741B9DCC85001E8084 /* MJProperty.h */,
+				A21A37751B9DCC85001E8084 /* MJProperty.m */,
+				A21A37761B9DCC85001E8084 /* MJType.h */,
+				A21A37771B9DCC85001E8084 /* MJType.m */,
+				A21A37781B9DCC85001E8084 /* NSObject+MJCoding.h */,
+				A21A37791B9DCC85001E8084 /* NSObject+MJCoding.m */,
+				A21A377A1B9DCC85001E8084 /* NSObject+MJKeyValue.h */,
+				A21A377B1B9DCC85001E8084 /* NSObject+MJKeyValue.m */,
+				A21A377C1B9DCC85001E8084 /* NSObject+MJProperty.h */,
+				A21A377D1B9DCC85001E8084 /* NSObject+MJProperty.m */,
+				A21A377E1B9DCC85001E8084 /* NSString+MJExtension.h */,
+				A21A377F1B9DCC85001E8084 /* NSString+MJExtension.m */,
+			);
+			path = MJExtension;
+			sourceTree = "<group>";
+		};
 		AD8899AD1B9AFE61007BCC7C = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +145,7 @@
 		AD8899B81B9AFE61007BCC7C /* lieyu */ = {
 			isa = PBXGroup;
 			children = (
+				A21A376A1B9DCC1F001E8084 /* Utils */,
 				AD8899BD1B9AFE61007BCC7C /* AppDelegate.h */,
 				AD8899BE1B9AFE61007BCC7C /* AppDelegate.m */,
 				AD8899C31B9AFE61007BCC7C /* ViewController.h */,
@@ -223,8 +286,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
+				A21A37831B9DCC85001E8084 /* MJType.m in Sources */,
+				A21A37811B9DCC85001E8084 /* MJFoundation.m in Sources */,
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,
+				A21A37851B9DCC85001E8084 /* NSObject+MJKeyValue.m in Sources */,
+				A21A37841B9DCC85001E8084 /* NSObject+MJCoding.m in Sources */,
+				A21A37871B9DCC85001E8084 /* NSString+MJExtension.m in Sources */,
+				A21A37821B9DCC85001E8084 /* MJProperty.m in Sources */,
+				A21A37861B9DCC85001E8084 /* NSObject+MJProperty.m in Sources */,
+				A21A376D1B9DCC57001E8084 /* UIViewExt.m in Sources */,
 				AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */,
+				A21A37801B9DCC85001E8084 /* MJConst.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +492,7 @@
 				AD8899DE1B9AFE62007BCC7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD8899DF1B9AFE62007BCC7C /* Build configuration list for PBXNativeTarget "lieyuTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +501,7 @@
 				AD8899E11B9AFE62007BCC7C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
