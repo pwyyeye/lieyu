@@ -10,13 +10,13 @@
 #import "NetPublic.h"
 #import "NSDictionary+Json.h"
 @implementation HttpResponseParse
-+(void)praseData:( NSDictionary *)json erMsg:(ZKErrorMessage **)erMsg data:(NSDictionary **)data
++(void)praseData:( NSDictionary *)json erMsg:(LYErrorMessage **)erMsg data:(NSDictionary **)data
 {
     NSError * error = nil;
     NSDictionary *tInfoDic = json;
     
-    *erMsg = [[ZKErrorMessage alloc] init];
-    ZKErrorMessage *eg = *erMsg;
+    *erMsg = [[LYErrorMessage alloc] init];
+    LYErrorMessage *eg = *erMsg;
     if (!error)
     {
         /*********---------

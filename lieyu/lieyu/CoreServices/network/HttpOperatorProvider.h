@@ -27,7 +27,7 @@ typedef void(^init)(RKObjectManager *obj);
 - (NSString *)postDataWithApi:(NSString *)urlPrefix  api:(NSString *)api jsonParams:(NSDictionary *)jsonParams retHandle:(bNetReqResponse)handle;
 
 //----部分接口没有经过映射通过 这个接口调用获得返回内容
-- (ZKRestfulResponse *)getShortResponse:(NSDictionary *)dic;
+- (LYRestfulResponse *)getShortResponse:(NSDictionary *)dic;
 - (NSString *)hashRequestApi:(NSString *)api jsonParams:(NSDictionary *)jsonParams;
 /**
  *  上传文件

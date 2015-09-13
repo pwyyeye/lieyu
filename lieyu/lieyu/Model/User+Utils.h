@@ -1,6 +1,6 @@
 //
 //  User+Utils.h
-//  timecube
+//  LYApp
 //
 //  Created by jolly on 15/8/3.
 //  Copyright (c) 2015年 Steven Mai. All rights reserved.

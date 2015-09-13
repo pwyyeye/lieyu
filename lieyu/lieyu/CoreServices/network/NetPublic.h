@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, ReqState)
     Req_Success = 1
 };
 
-@interface ZKErrorMessage : NSObject
+@interface LYErrorMessage : NSObject
 
 //错误信息
 @property(nonatomic,retain)NSString *mErrorMessage;
@@ -58,7 +58,7 @@ typedef NS_ENUM(NSUInteger, ReqState)
 
 @end
 
-@interface ZKRestfulResponseBase:NSObject<RestKitMapping>
+@interface LYRestfulResponseBase:NSObject<RestKitMapping>
 
 @property(nonatomic,copy)NSString *code;
 @property(nonatomic,copy)NSString *message;
@@ -66,7 +66,7 @@ typedef NS_ENUM(NSUInteger, ReqState)
 
 @end
 
-@interface ZKRestfulResponse : ZKRestfulResponseBase <RestKitMapping>
+@interface LYRestfulResponse : LYRestfulResponseBase <RestKitMapping>
 
 @property(nonatomic,copy)NSDictionary *payload;
 
@@ -87,7 +87,7 @@ typedef NS_ENUM(NSUInteger, ReqState)
 
 ************************/
 
-typedef void(^bNetReqResponse)(ZKErrorMessage *erMsg,id data);
+typedef void(^bNetReqResponse)(LYErrorMessage *erMsg,id data);
 
 #define String_JsonDataPrase_Error  @"json数据解析失败了"
 

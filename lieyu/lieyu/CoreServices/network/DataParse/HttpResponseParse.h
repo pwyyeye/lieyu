@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class ZKErrorMessage;
+@class LYErrorMessage;
 
 @interface HttpResponseParse : NSObject
 
-+(void)praseData:(NSDictionary *)json erMsg:(ZKErrorMessage **)erMsg data:(NSDictionary **)data;
++(void)praseData:(NSDictionary *)json erMsg:(LYErrorMessage **)erMsg data:(NSDictionary **)data;
 
 @end

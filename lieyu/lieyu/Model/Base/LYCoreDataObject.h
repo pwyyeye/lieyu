@@ -1,6 +1,6 @@
 //
 //  IdentifiedObject.h
-//  timecube
+//  LYApp
 //
 //  Created by ZKTeco on 4/17/15.
 //  Copyright (c) 2015 ZKTeco. All rights reserved.
@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface IdentifiedObject : NSManagedObject
+@interface LYCoreDataObject : NSManagedObject
 
 @property (nonatomic, retain) NSString * recordId;
 +(NSString*)entityName;

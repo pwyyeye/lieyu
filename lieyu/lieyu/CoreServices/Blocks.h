@@ -1,13 +1,13 @@
 //
 //  Blocks.h
-//  timecube
+//  LYApp
 //
 //  Created by ZKTeco on 4/8/15.
 //  Copyright (c) 2015 ZKTeco. All rights reserved.
 //
 
-#ifndef timecube_Blocks_h
-#define timecube_Blocks_h
+#ifndef LYApp_Blocks_h
+#define LYApp_Blocks_h
 
 typedef void (^SetIdBlock) (id);
 typedef id (^GetIdBlock) ();

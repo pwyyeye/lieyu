@@ -1,26 +1,26 @@
 //
-//  DataStore.m
-//  timecube
+//  LYDataStore.m
+//  lieyu
 //
 //  Created by ZKTeco on 4/25/15.
 //  Copyright (c) 2015 ZKTeco. All rights reserved.
 //
 
-#import "DataStore.h"
+#import "LYDataStore.h"
 
 
-static DataStore* currentInstance = nil;
+static LYDataStore* currentInstance = nil;
 static BOOL suppressServerCommunication = NO;
 
-@implementation DataStore
+@implementation LYDataStore
 
-+ (DataStore*) currentInstance
++ (LYDataStore*) currentInstance
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (currentInstance == nil)
         {
-            currentInstance = [[DataStore alloc] initWithTestMode:NO];
+            currentInstance = [[LYDataStore alloc] initWithTestMode:NO];
         }
 
     });
@@ -57,7 +57,7 @@ static BOOL suppressServerCommunication = NO;
 
 + (NSURL *)applicationDocumentsDirectory
 {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "zkteco.timecube" in the application's documents directory.
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "zkteco.lieyu" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
@@ -106,7 +106,7 @@ static BOOL suppressServerCommunication = NO;
 - (void)setupManagedObjectModel
 {
     // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"timecube" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"lieyu" withExtension:@"momd"];
     self.managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 }
 
@@ -115,12 +115,12 @@ static BOOL suppressServerCommunication = NO;
     
     self.managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:self.managedObjectModel];
     
-    NSString *dbFileName = @"timecube";
+    NSString *dbFileName = @"lieyu";
     if (self.testMode) {
         dbFileName = @"Test";
-        [DataStore destroyAllWithName:dbFileName];
+        [LYDataStore destroyAllWithName:dbFileName];
     }
-    NSURL *storeURL = [DataStore storeURL];
+    NSURL *storeURL = [LYDataStore storeURL];
     NSString* pathComponent = [NSString stringWithFormat:@"%@.sqlite", dbFileName];
     storeURL = [storeURL URLByAppendingPathComponent:pathComponent];
     NSLog(@"Create store at path %@", storeURL.path);

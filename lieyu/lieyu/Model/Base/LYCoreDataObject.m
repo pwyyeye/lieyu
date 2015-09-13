@@ -1,15 +1,15 @@
 //
 //  IdentifiedObject.m
-//  timecube
+//  LYApp
 //
 //  Created by ZKTeco on 4/17/15.
 //  Copyright (c) 2015 ZKTeco. All rights reserved.
 //
 
-#import "IdentifiedObject.h"
-#import "DataStore.h"
+#import "LYCoreDataObject.h"
+#import "LYDataStore.h"
 
-@implementation IdentifiedObject
+@implementation LYCoreDataObject
 
 @dynamic recordId;
 
@@ -20,8 +20,8 @@
 
 +(instancetype)createObject
 {
-    DataStore *store = [DataStore currentInstance];
-    IdentifiedObject *iObj = (IdentifiedObject*)[store createObjectOfEntity:[self entityName]];
+    LYDataStore *store = [LYDataStore currentInstance];
+    LYCoreDataObject *iObj = (LYCoreDataObject*)[store createObjectOfEntity:[self entityName]];
     iObj.recordId = [[[NSUUID UUID] UUIDString] lowercaseString];
     return iObj;
 }

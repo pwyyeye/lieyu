@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "WeathGetManager.h"
 
 @interface lieyuTests : XCTestCase
 
@@ -17,6 +18,11 @@
 
 - (void)setUp {
     [super setUp];
+    WeathGetManager *weath  = [[WeathGetManager alloc ] init];
+    [weath getWeath:^(LYErrorMessage *erMsg, id data) {
+        
+    }];
+    CFRunLoopRun();
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 

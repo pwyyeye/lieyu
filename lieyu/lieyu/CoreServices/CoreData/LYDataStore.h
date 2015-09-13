@@ -1,6 +1,6 @@
 //
-//  DataStore.h
-//  timecube
+//  LYDataStore.h
+//  LYApp
 //
 //  Created by ZKTeco on 4/25/15.
 //  Copyright (c) 2015 ZKTeco. All rights reserved.
@@ -12,7 +12,7 @@
 #import "RestKit.h"
 
 @class RKObjectManager;
-@interface DataStore : NSObject
+@interface LYDataStore : NSObject
 
 @property(nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property(nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -23,7 +23,7 @@
 
 @property(nonatomic, readwrite) BOOL testMode;
 
-+ (DataStore*) currentInstance;
++ (LYDataStore*) currentInstance;
 
 - (id)createObjectOfEntity:(NSString *)entityName;
 
@@ -36,3 +36,10 @@
 - (void)deleteObject:(NSManagedObject *)obj;
 
 @end
+
+
+
+
+
+
+

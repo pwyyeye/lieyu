@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "IdentifiedObject.h"
+#import "LYCoreDataObject.h"
 
-@interface User : IdentifiedObject
+@interface User : LYCoreDataObject
 
 @property (nonatomic, retain) NSString * account;
 @property (nonatomic, retain) NSString * avatar;

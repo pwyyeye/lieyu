@@ -4,7 +4,7 @@
 ////  Created by apple on 14/12/10.
 //
 //
-#import "DataStore.h"
+#import "LYDataStore.h"
 
 #import "HttpOperatorProvider.h"
 #import "HttpResponseParse.h"
@@ -38,7 +38,7 @@
     if (self = [super init])
     {
         _client = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:url]];
-        [_client setRequestSerializationMIMEType:RKMIMETypeJSON];
+        [_client setRequestSerializationMIMEType:@"application/json"];
         [self setupCoreData];
         handle(_client);
     }
@@ -57,12 +57,12 @@
 
 - (void)setupCoreData
 {
-    _client.managedObjectStore = [DataStore currentInstance].managedObjectStore;
+    _client.managedObjectStore = [LYDataStore currentInstance].managedObjectStore;
 }
 
 -(NSString *)getDataWithApi:(NSString *)urlPrefix api:(NSString *)api jsonParams:(NSDictionary *)jsonParams retHandle:(bNetReqResponse)handle
 {
-    ZKErrorMessage *erMsg = [[ZKErrorMessage alloc] init];
+    LYErrorMessage *erMsg = [[LYErrorMessage alloc] init];
     erMsg.mErrorCode = kErrorMessageUnknow;
     erMsg.mErrorMessage = nil;
     erMsg.mErrorType = ErrorMessageNoError;
@@ -73,8 +73,8 @@
     [_client getObjectsAtPath:api parameters:jsonParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
     {
         NSDictionary *dic = mappingResult.dictionary;
-        ZKRestfulResponse *resHead = [dic valueForKey:@""];
-        ZKErrorMessage *erMsg = [[ZKErrorMessage alloc] init];
+        LYRestfulResponse *resHead = [dic valueForKey:@""];
+        LYErrorMessage *erMsg = [[LYErrorMessage alloc] init];
         erMsg.state = Req_Success;
 
         NSObject *data = nil;
@@ -100,7 +100,7 @@
     }
     failure:^(RKObjectRequestOperation *operation, NSError *error)
     {
-        ZKErrorMessage *erMsg = [[ZKErrorMessage alloc] init];
+        LYErrorMessage *erMsg = [[LYErrorMessage alloc] init];
         if (error.code == -1001)
         {
             erMsg.mErrorCode = kErrorMessageNetwork;
@@ -112,7 +112,7 @@
     }];
     return [self hashRequestApi:api jsonParams:jsonParams];
 }
-- (ZKRestfulResponse *)getShortResponse:(NSDictionary *)dic
+- (LYRestfulResponse *)getShortResponse:(NSDictionary *)dic
 {
     return [dic valueForKey:@""];
 }
@@ -129,7 +129,7 @@
 
 -(NSString *)postDataWithApi:(NSString *)urlPrefix  api:(NSString *)api jsonParams:(NSDictionary *)jsonParams retHandle:(bNetReqResponse)handle
 {
-    ZKErrorMessage *erMsg = [[ZKErrorMessage alloc] init];
+    LYErrorMessage *erMsg = [[LYErrorMessage alloc] init];
     erMsg.mErrorCode = kErrorMessageUnknow;
     erMsg.mErrorMessage = nil;
     erMsg.mErrorType = ErrorMessageNoError;
@@ -140,8 +140,8 @@
     [_client postObject:nil path:api parameters:jsonParams success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult)
     {
         NSDictionary *dic = mappingResult.dictionary;
-        ZKRestfulResponse *resHead = [dic valueForKey:@""];
-        ZKErrorMessage *erMsg = [[ZKErrorMessage alloc] init];
+        LYRestfulResponse *resHead = [dic valueForKey:@""];
+        LYErrorMessage *erMsg = [[LYErrorMessage alloc] init];
         erMsg.state = Req_Success;
         NSObject *data = nil;
         [HttpResponseParse praseData:[resHead keyValues] erMsg:&erMsg data:&data];
@@ -166,7 +166,7 @@
     }
     failure:^(RKObjectRequestOperation *operation, NSError *error)
     {
-        ZKErrorMessage *erMsg = [[ZKErrorMessage alloc] init];
+        LYErrorMessage *erMsg = [[LYErrorMessage alloc] init];
         if (error.code == -1001)
         {
             erMsg.mErrorCode = kErrorMessageNetwork;

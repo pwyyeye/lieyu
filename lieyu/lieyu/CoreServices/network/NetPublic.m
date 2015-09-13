@@ -1,5 +1,5 @@
 //
-//  @implementation ZKErrorMessage   @end ZKNetPublic.m
+//  @implementation LYErrorMessage   @end ZKNetPublic.m
 //  ZKPublic
 //
 //  Created by apple on 14/12/11.
@@ -11,10 +11,10 @@
 #import "RestKit.h"
 NSString *gSessionId = nil;
 
-@implementation ZKRestfulResponseBase
+@implementation LYRestfulResponseBase
 +(RKObjectMapping *)mapping
 {
-    return RestKitMapWithDic([ZKRestfulResponseBase class],
+    return RestKitMapWithDic([LYRestfulResponseBase class],
                                 @{
                                   @"code" : @"code",
                                   @"message" : @"message",
@@ -24,10 +24,10 @@ NSString *gSessionId = nil;
 
 @end
 
-@implementation ZKRestfulResponse
+@implementation LYRestfulResponse
 +(RKObjectMapping *)mapping
 {
-    RKObjectMapping *statusMapping = [RKObjectMapping mappingForClass:[ZKRestfulResponse class]];
+    RKObjectMapping *statusMapping = [RKObjectMapping mappingForClass:[LYRestfulResponse class]];
     [statusMapping addAttributeMappingsFromDictionary:@{
                                                             @"code" : @"code",
                                                             @"message" : @"message",
@@ -43,7 +43,7 @@ NSString *getSysLang()
     return [[NSLocale preferredLanguages] objectAtIndex:0];
 }
 
-@implementation ZKErrorMessage
+@implementation LYErrorMessage
 
 
 @end
