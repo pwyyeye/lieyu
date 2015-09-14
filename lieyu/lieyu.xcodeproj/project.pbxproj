@@ -27,6 +27,8 @@
 		15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE515F1BA708FF00464B74 /* ZSRefundViewController.xib */; };
 		15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51681BA7096C00464B74 /* ZSPrepareRefundViewController.m */; };
 		15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51691BA7096C00464B74 /* ZSPrepareRefundViewController.xib */; };
+		15EE51701BA70A1400464B74 /* ZSCustomerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE516E1BA70A1400464B74 /* ZSCustomerDetailsViewController.m */; };
+		15EE51711BA70A1400464B74 /* ZSCustomerDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE516F1BA70A1400464B74 /* ZSCustomerDetailsViewController.xib */; };
 		A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2020D441BA660B50090B92A /* LYBaseViewController.m */; };
 		A2020D491BA661260090B92A /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2020D471BA661260090B92A /* MyInfoViewController.m */; };
 		A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2020D481BA661260090B92A /* MyInfoViewController.xib */; };
@@ -154,6 +156,9 @@
 		15EE51671BA7096C00464B74 /* ZSPrepareRefundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPrepareRefundViewController.h; sourceTree = "<group>"; };
 		15EE51681BA7096C00464B74 /* ZSPrepareRefundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPrepareRefundViewController.m; sourceTree = "<group>"; };
 		15EE51691BA7096C00464B74 /* ZSPrepareRefundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSPrepareRefundViewController.xib; sourceTree = "<group>"; };
+		15EE516D1BA70A1400464B74 /* ZSCustomerDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCustomerDetailsViewController.h; sourceTree = "<group>"; };
+		15EE516E1BA70A1400464B74 /* ZSCustomerDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCustomerDetailsViewController.m; sourceTree = "<group>"; };
+		15EE516F1BA70A1400464B74 /* ZSCustomerDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCustomerDetailsViewController.xib; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A2020D431BA660B50090B92A /* LYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBaseViewController.h; sourceTree = "<group>"; };
@@ -453,6 +458,7 @@
 		15EE51391BA6E21E00464B74 /* 我的客户 */ = {
 			isa = PBXGroup;
 			children = (
+				15EE516C1BA709DE00464B74 /* 客户详情 */,
 				15EE513A1BA6E2D900464B74 /* ZSMyClientViewController.h */,
 				15EE513B1BA6E2D900464B74 /* ZSMyClientViewController.m */,
 				15EE513C1BA6E2D900464B74 /* ZSMyClientViewController.xib */,
@@ -511,6 +517,16 @@
 				15EE51691BA7096C00464B74 /* ZSPrepareRefundViewController.xib */,
 			);
 			name = "退款";
+			sourceTree = "<group>";
+		};
+		15EE516C1BA709DE00464B74 /* 客户详情 */ = {
+			isa = PBXGroup;
+			children = (
+				15EE516D1BA70A1400464B74 /* ZSCustomerDetailsViewController.h */,
+				15EE516E1BA70A1400464B74 /* ZSCustomerDetailsViewController.m */,
+				15EE516F1BA70A1400464B74 /* ZSCustomerDetailsViewController.xib */,
+			);
+			name = "客户详情";
 			sourceTree = "<group>";
 		};
 		9D0793CADE18DD09E4226921 /* Pods */ = {
@@ -1349,6 +1365,7 @@
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
 				D761F01F1BA5AED3000757B0 /* MJRefresh.bundle in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
+				15EE51711BA70A1400464B74 /* ZSCustomerDetailsViewController.xib in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
 				15EE515B1BA7085C00464B74 /* ZSAlreadyPayedViewController.xib in Resources */,
 				A2020D901BA6BEB40090B92A /* ZSNoticeViewController.xib in Resources */,
@@ -1448,6 +1465,7 @@
 				D761F0221BA5AED3000757B0 /* UIScrollView+MJRefresh.m in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				15EE51361BA6E20400464B74 /* ZSOrderManageViewController.m in Sources */,
+				15EE51701BA70A1400464B74 /* ZSCustomerDetailsViewController.m in Sources */,
 				D761F0351BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
 				D761F0161BA5AED3000757B0 /* MJRefreshAutoGifFooter.m in Sources */,
