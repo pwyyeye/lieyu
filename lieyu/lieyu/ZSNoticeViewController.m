@@ -16,6 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
+ 
+    self.title=@"通知中心";
+
     // Do any additional setup after loading the view from its nib.
 }
 

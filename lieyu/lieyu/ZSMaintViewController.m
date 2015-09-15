@@ -8,6 +8,11 @@
 
 #import "ZSMaintViewController.h"
 #import "FunctionListCell.h"
+#import "ZSSeatControlView.h"
+#import "ZSOrderManageViewController.h"
+#import "ZSMyClientViewController.h"
+#import "ZSMyShopManageViewController.h"
+#import "ZSNoticeViewController.h"
 @interface ZSMaintViewController ()
 
 @end
@@ -18,12 +23,13 @@
     [super viewDidLoad];
     
     listArr =[[NSMutableArray alloc]init];
-    
+//    self.automaticallyAdjustsScrollViewInsets=0;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self getDataForShowList];
     // Do any additional setup after loading the view from its nib.
 }
+
 #pragma mark 初始化数据
 -(void)getDataForShowList{
     [listArr removeAllObjects];
@@ -130,9 +136,47 @@
 {
     [_tableView deselectRowAtIndexPath:indexPath animated:false];
     
-    //    TMThirdClassViewController *goods=[[TMThirdClassViewController alloc]init];
-    //
-    //    [delegate.navigationController pushViewController:goods animated:YES];
+    switch (indexPath.row) {
+            
+        case 0://卡座
+        {
+            ZSSeatControlView *seatControlView=[[ZSSeatControlView alloc]initWithNibName:@"ZSSeatControlView" bundle:nil];
+            [self.navigationController pushViewController:seatControlView animated:YES];
+            break;
+        }
+            
+        case 1:// 通知中心
+        {
+            ZSNoticeViewController *noticeViewController=[[ZSNoticeViewController alloc]initWithNibName:@"ZSNoticeViewController" bundle:nil];
+            [self.navigationController pushViewController:noticeViewController animated:YES];
+            break;
+        }
+            
+        case 2:// 订单管理
+        {
+            ZSOrderManageViewController *orderManageViewController=[[ZSOrderManageViewController alloc]initWithNibName:@"ZSOrderManageViewController" bundle:nil];
+            [self.navigationController pushViewController:orderManageViewController animated:YES];
+            break;
+        }
+            
+        case 3:// 我的客户
+        {
+            ZSMyClientViewController *myClientViewController=[[ZSMyClientViewController alloc]initWithNibName:@"ZSMyClientViewController" bundle:nil];
+            
+            [self.navigationController pushViewController:myClientViewController animated:YES];
+            break;
+        }
+            
+        default:
+        {
+            ZSMyShopManageViewController *myShopManageViewController=[[ZSMyShopManageViewController alloc]initWithNibName:@"ZSMyShopManageViewController" bundle:nil];
+            [self.navigationController pushViewController:myShopManageViewController animated:YES];
+            break;
+        }
+        
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

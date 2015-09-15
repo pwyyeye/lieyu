@@ -1,18 +1,19 @@
 //
-//  ZSSeatControlViewController.m
+//  ZSSeatControlView.m
 //  lieyu
 //
-//  Created by 薛斯岐 on 15/9/14.
+//  Created by SEM on 15/9/15.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSSeatControlViewController.h"
+#import "ZSSeatControlView.h"
 #import "KaZuoCell.h"
-@interface ZSSeatControlViewController ()
+@interface ZSSeatControlView ()
 
 @end
 
-@implementation ZSSeatControlViewController
+@implementation ZSSeatControlView
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -23,7 +24,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     
     listArr =[[NSMutableArray alloc]init];
     
@@ -65,11 +66,12 @@
         
         
     }
-   
     
+    cell.isQuanManSwitch.tag=indexPath.row;
+    [cell.isQuanManSwitch addTarget:self action:@selector(kazuoChoose:) forControlEvents:UIControlEventValueChanged];
     //    @{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""}
     cell.timeLal.text=@"今天";
-    cell.timeLal.text=@"周三";
+    cell.zhouLal.text=@"周三";
     //    cell.disImageView;
     
     
@@ -79,21 +81,13 @@
     
     
 }
-
+-(void)kazuoChoose:(UISwitch *)sender{
+    NSLog(@"*****%ld",sender.tag);
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     return 43;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

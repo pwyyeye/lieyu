@@ -16,6 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
+    
+    self.title=@"我的客户";
     // Do any additional setup after loading the view from its nib.
 }
 

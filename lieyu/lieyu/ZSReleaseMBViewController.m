@@ -1,24 +1,21 @@
 //
-//  ZSOrderManageViewController.m
+//  ZSReleaseMBViewController.m
 //  lieyu
 //
-//  Created by 薛斯岐 on 15/9/14.
+//  Created by SEM on 15/9/15.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSOrderManageViewController.h"
+#import "ZSReleaseMBViewController.h"
 
-@interface ZSOrderManageViewController ()
+@interface ZSReleaseMBViewController ()
 
 @end
 
-@implementation ZSOrderManageViewController
+@implementation ZSReleaseMBViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
-    
-    self.title=@"订单管理";
     // Do any additional setup after loading the view from its nib.
 }
 
