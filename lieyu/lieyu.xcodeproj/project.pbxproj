@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15EE51301BA6E0E100464B74 /* ZSSeatControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE512E1BA6E0E100464B74 /* ZSSeatControlViewController.m */; };
+		15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE633E1BA84FD500FFAD1A /* NoticeCell.m */; };
+		15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE633F1BA84FD500FFAD1A /* NoticeCell.xib */; };
+		15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE63431BA854AB00FFAD1A /* ZSNoticeCenterViewController.m */; };
+		15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63441BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib */; };
 		15EE51361BA6E20400464B74 /* ZSOrderManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51341BA6E20400464B74 /* ZSOrderManageViewController.m */; };
 		15EE51371BA6E20400464B74 /* ZSOrderManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51351BA6E20400464B74 /* ZSOrderManageViewController.xib */; };
 		15EE513D1BA6E2D900464B74 /* ZSMyClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE513B1BA6E2D900464B74 /* ZSMyClientViewController.m */; };
@@ -42,7 +45,6 @@
 		A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100871BA7AFDD009283D1 /* LYProductsTagViewController.xib */; };
 		A201008E1BA7B087009283D1 /* ZSAddStockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A201008C1BA7B087009283D1 /* ZSAddStockViewController.m */; };
 		A201008F1BA7B087009283D1 /* ZSAddStockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201008D1BA7B087009283D1 /* ZSAddStockViewController.xib */; };
-		A201009F1BA7CF0C009283D1 /* ZSSeatControlViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201009E1BA7CF0C009283D1 /* ZSSeatControlViewController.xib */; };
 		A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100B01BA7FDE6009283D1 /* ZSSeatControlView.m */; };
 		A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100B11BA7FDE6009283D1 /* ZSSeatControlView.xib */; };
 		A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2020D441BA660B50090B92A /* LYBaseViewController.m */; };
@@ -72,8 +74,6 @@
 		A2020D801BA67FA40090B92A /* Fill20219@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A2020D711BA67FA40090B92A /* Fill20219@3x.png */; };
 		A2020D891BA6A5AA0090B92A /* KaZuoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A2020D871BA6A5AA0090B92A /* KaZuoCell.m */; };
 		A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2020D881BA6A5AA0090B92A /* KaZuoCell.xib */; };
-		A2020D8F1BA6BEB40090B92A /* ZSNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2020D8D1BA6BEB40090B92A /* ZSNoticeViewController.m */; };
-		A2020D901BA6BEB40090B92A /* ZSNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2020D8E1BA6BEB40090B92A /* ZSNoticeViewController.xib */; };
 		AD8899BC1B9AFE61007BCC7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BB1B9AFE61007BCC7C /* main.m */; };
 		AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BE1B9AFE61007BCC7C /* AppDelegate.m */; };
 		AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */; };
@@ -148,8 +148,12 @@
 
 /* Begin PBXFileReference section */
 		027BA8A5A1F96680E58FC951 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		15EE512D1BA6E0E100464B74 /* ZSSeatControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSeatControlViewController.h; sourceTree = "<group>"; };
-		15EE512E1BA6E0E100464B74 /* ZSSeatControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSeatControlViewController.m; sourceTree = "<group>"; };
+		15AE633D1BA84FD500FFAD1A /* NoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeCell.h; sourceTree = "<group>"; };
+		15AE633E1BA84FD500FFAD1A /* NoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeCell.m; sourceTree = "<group>"; };
+		15AE633F1BA84FD500FFAD1A /* NoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
+		15AE63421BA854AB00FFAD1A /* ZSNoticeCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNoticeCenterViewController.h; sourceTree = "<group>"; };
+		15AE63431BA854AB00FFAD1A /* ZSNoticeCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNoticeCenterViewController.m; sourceTree = "<group>"; };
+		15AE63441BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSNoticeCenterViewController.xib; sourceTree = "<group>"; };
 		15EE51331BA6E20400464B74 /* ZSOrderManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSOrderManageViewController.h; sourceTree = "<group>"; };
 		15EE51341BA6E20400464B74 /* ZSOrderManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSOrderManageViewController.m; sourceTree = "<group>"; };
 		15EE51351BA6E20400464B74 /* ZSOrderManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSOrderManageViewController.xib; sourceTree = "<group>"; };
@@ -203,7 +207,6 @@
 		A201008B1BA7B087009283D1 /* ZSAddStockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAddStockViewController.h; sourceTree = "<group>"; };
 		A201008C1BA7B087009283D1 /* ZSAddStockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAddStockViewController.m; sourceTree = "<group>"; };
 		A201008D1BA7B087009283D1 /* ZSAddStockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSAddStockViewController.xib; sourceTree = "<group>"; };
-		A201009E1BA7CF0C009283D1 /* ZSSeatControlViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSSeatControlViewController.xib; sourceTree = "<group>"; };
 		A20100AF1BA7FDE6009283D1 /* ZSSeatControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSeatControlView.h; sourceTree = "<group>"; };
 		A20100B01BA7FDE6009283D1 /* ZSSeatControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSeatControlView.m; sourceTree = "<group>"; };
 		A20100B11BA7FDE6009283D1 /* ZSSeatControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSSeatControlView.xib; sourceTree = "<group>"; };
@@ -241,9 +244,6 @@
 		A2020D861BA6A5AA0090B92A /* KaZuoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaZuoCell.h; sourceTree = "<group>"; };
 		A2020D871BA6A5AA0090B92A /* KaZuoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaZuoCell.m; sourceTree = "<group>"; };
 		A2020D881BA6A5AA0090B92A /* KaZuoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KaZuoCell.xib; sourceTree = "<group>"; };
-		A2020D8C1BA6BEB40090B92A /* ZSNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNoticeViewController.h; sourceTree = "<group>"; };
-		A2020D8D1BA6BEB40090B92A /* ZSNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNoticeViewController.m; sourceTree = "<group>"; };
-		A2020D8E1BA6BEB40090B92A /* ZSNoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSNoticeViewController.xib; sourceTree = "<group>"; };
 		AD8899B61B9AFE61007BCC7C /* lieyu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lieyu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899BA1B9AFE61007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8899BB1B9AFE61007BCC7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -755,9 +755,6 @@
 		A2020D811BA6A51A0090B92A /* 卡座满控制 */ = {
 			isa = PBXGroup;
 			children = (
-				15EE512D1BA6E0E100464B74 /* ZSSeatControlViewController.h */,
-				15EE512E1BA6E0E100464B74 /* ZSSeatControlViewController.m */,
-				A201009E1BA7CF0C009283D1 /* ZSSeatControlViewController.xib */,
 				A20100AF1BA7FDE6009283D1 /* ZSSeatControlView.h */,
 				A20100B01BA7FDE6009283D1 /* ZSSeatControlView.m */,
 				A20100B11BA7FDE6009283D1 /* ZSSeatControlView.xib */,
@@ -799,6 +796,9 @@
 				A2020D861BA6A5AA0090B92A /* KaZuoCell.h */,
 				A2020D871BA6A5AA0090B92A /* KaZuoCell.m */,
 				A2020D881BA6A5AA0090B92A /* KaZuoCell.xib */,
+				15AE633D1BA84FD500FFAD1A /* NoticeCell.h */,
+				15AE633E1BA84FD500FFAD1A /* NoticeCell.m */,
+				15AE633F1BA84FD500FFAD1A /* NoticeCell.xib */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -806,9 +806,9 @@
 		A2020D8B1BA6A8740090B92A /* 通知中心 */ = {
 			isa = PBXGroup;
 			children = (
-				A2020D8C1BA6BEB40090B92A /* ZSNoticeViewController.h */,
-				A2020D8D1BA6BEB40090B92A /* ZSNoticeViewController.m */,
-				A2020D8E1BA6BEB40090B92A /* ZSNoticeViewController.xib */,
+				15AE63421BA854AB00FFAD1A /* ZSNoticeCenterViewController.h */,
+				15AE63431BA854AB00FFAD1A /* ZSNoticeCenterViewController.m */,
+				15AE63441BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib */,
 			);
 			name = "通知中心";
 			sourceTree = "<group>";
@@ -1504,6 +1504,7 @@
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
 				A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
+				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
@@ -1522,7 +1523,6 @@
 				A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */,
 				A2020D761BA67FA40090B92A /* Fill2097@2x.png in Resources */,
 				A20100721BA7AAB2009283D1 /* TimeChooseViewController.xib in Resources */,
-				A201009F1BA7CF0C009283D1 /* ZSSeatControlViewController.xib in Resources */,
 				A201007E1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.xib in Resources */,
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
 				D761F01F1BA5AED3000757B0 /* MJRefresh.bundle in Resources */,
@@ -1532,9 +1532,9 @@
 				15EE51711BA70A1400464B74 /* ZSCustomerDetailsViewController.xib in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
 				15EE515B1BA7085C00464B74 /* ZSAlreadyPayedViewController.xib in Resources */,
-				A2020D901BA6BEB40090B92A /* ZSNoticeViewController.xib in Resources */,
 				AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */,
 				15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */,
+				15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,6 +1590,7 @@
 				D761F01E1BA5AED3000757B0 /* MJRefreshStateHeader.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
+				15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
 				D761F01C1BA5AED3000757B0 /* MJRefreshGifHeader.m in Sources */,
@@ -1598,8 +1599,6 @@
 				D761F0151BA5AED3000757B0 /* MJRefreshHeader.m in Sources */,
 				D748BC6D1BA1C856005AA996 /* MJFoundation.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
-				15EE51301BA6E0E100464B74 /* ZSSeatControlViewController.m in Sources */,
-				A2020D8F1BA6BEB40090B92A /* ZSNoticeViewController.m in Sources */,
 				D761F0361BA5C703000757B0 /* RKISO8601DateFormatter.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
 				A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */,
@@ -1618,6 +1617,7 @@
 				D748BC731BA1C856005AA996 /* NSString+MJExtension.m in Sources */,
 				D761F0191BA5AED3000757B0 /* MJRefreshBackGifFooter.m in Sources */,
 				D761F01D1BA5AED3000757B0 /* MJRefreshNormalHeader.m in Sources */,
+				15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */,
 				A2020D491BA661260090B92A /* MyInfoViewController.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,

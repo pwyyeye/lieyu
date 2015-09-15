@@ -12,7 +12,7 @@
 #import "ZSOrderManageViewController.h"
 #import "ZSMyClientViewController.h"
 #import "ZSMyShopManageViewController.h"
-#import "ZSNoticeViewController.h"
+#import "ZSNoticeCenterViewController.h"
 @interface ZSMaintViewController ()
 
 @end
@@ -147,7 +147,7 @@
             
         case 1:// 通知中心
         {
-            ZSNoticeViewController *noticeViewController=[[ZSNoticeViewController alloc]initWithNibName:@"ZSNoticeViewController" bundle:nil];
+            ZSNoticeCenterViewController *noticeViewController=[[ZSNoticeCenterViewController alloc]initWithNibName:@"ZSNoticeCenterViewController" bundle:nil];
             [self.navigationController pushViewController:noticeViewController animated:YES];
             break;
         }
