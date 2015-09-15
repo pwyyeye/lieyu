@@ -11,8 +11,8 @@
 		15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE633F1BA84FD500FFAD1A /* NoticeCell.xib */; };
 		15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE63431BA854AB00FFAD1A /* ZSNoticeCenterViewController.m */; };
 		15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63441BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib */; };
-		15EE51361BA6E20400464B74 /* ZSOrderManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51341BA6E20400464B74 /* ZSOrderManageViewController.m */; };
-		15EE51371BA6E20400464B74 /* ZSOrderManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51351BA6E20400464B74 /* ZSOrderManageViewController.xib */; };
+		15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */; };
+		15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */; };
 		15EE513D1BA6E2D900464B74 /* ZSMyClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE513B1BA6E2D900464B74 /* ZSMyClientViewController.m */; };
 		15EE513E1BA6E2D900464B74 /* ZSMyClientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE513C1BA6E2D900464B74 /* ZSMyClientViewController.xib */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopManageViewController.m */; };
@@ -154,9 +154,9 @@
 		15AE63421BA854AB00FFAD1A /* ZSNoticeCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSNoticeCenterViewController.h; sourceTree = "<group>"; };
 		15AE63431BA854AB00FFAD1A /* ZSNoticeCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSNoticeCenterViewController.m; sourceTree = "<group>"; };
 		15AE63441BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSNoticeCenterViewController.xib; sourceTree = "<group>"; };
-		15EE51331BA6E20400464B74 /* ZSOrderManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSOrderManageViewController.h; sourceTree = "<group>"; };
-		15EE51341BA6E20400464B74 /* ZSOrderManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSOrderManageViewController.m; sourceTree = "<group>"; };
-		15EE51351BA6E20400464B74 /* ZSOrderManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSOrderManageViewController.xib; sourceTree = "<group>"; };
+		15AE63471BA8576500FFAD1A /* ZSOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSOrderViewController.h; sourceTree = "<group>"; };
+		15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSOrderViewController.m; sourceTree = "<group>"; };
+		15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSOrderViewController.xib; sourceTree = "<group>"; };
 		15EE513A1BA6E2D900464B74 /* ZSMyClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyClientViewController.h; sourceTree = "<group>"; };
 		15EE513B1BA6E2D900464B74 /* ZSMyClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyClientViewController.m; sourceTree = "<group>"; };
 		15EE513C1BA6E2D900464B74 /* ZSMyClientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyClientViewController.xib; sourceTree = "<group>"; };
@@ -493,9 +493,9 @@
 				15EE51501BA706FD00464B74 /* 催促消费 */,
 				15EE51561BA707EB00464B74 /* 已消费 */,
 				15EE515C1BA7089800464B74 /* 退款 */,
-				15EE51331BA6E20400464B74 /* ZSOrderManageViewController.h */,
-				15EE51341BA6E20400464B74 /* ZSOrderManageViewController.m */,
-				15EE51351BA6E20400464B74 /* ZSOrderManageViewController.xib */,
+				15AE63471BA8576500FFAD1A /* ZSOrderViewController.h */,
+				15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */,
+				15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */,
 			);
 			name = "订单管理";
 			sourceTree = "<group>";
@@ -1490,12 +1490,12 @@
 				A2020D621BA67E9E0090B92A /* disClosure@3x.png in Resources */,
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
 				A2020D611BA67E9E0090B92A /* disClosure@2x.png in Resources */,
-				15EE51371BA6E20400464B74 /* ZSOrderManageViewController.xib in Resources */,
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
 				A201008F1BA7B087009283D1 /* ZSAddStockViewController.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				A201006C1BA7A911009283D1 /* ZSReleasePackageViewController.xib in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopManageViewController.xib in Resources */,
+				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
 				A2020D801BA67FA40090B92A /* Fill20219@3x.png in Resources */,
@@ -1619,6 +1619,7 @@
 				D761F01D1BA5AED3000757B0 /* MJRefreshNormalHeader.m in Sources */,
 				15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */,
 				A2020D491BA661260090B92A /* MyInfoViewController.m in Sources */,
+				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
 				A201008E1BA7B087009283D1 /* ZSAddStockViewController.m in Sources */,
@@ -1635,7 +1636,6 @@
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
 				D761F0221BA5AED3000757B0 /* UIScrollView+MJRefresh.m in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
-				15EE51361BA6E20400464B74 /* ZSOrderManageViewController.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
 				15EE51701BA70A1400464B74 /* ZSCustomerDetailsViewController.m in Sources */,
 				D761F0351BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m in Sources */,

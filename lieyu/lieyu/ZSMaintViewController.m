@@ -9,7 +9,7 @@
 #import "ZSMaintViewController.h"
 #import "FunctionListCell.h"
 #import "ZSSeatControlView.h"
-#import "ZSOrderManageViewController.h"
+#import "ZSOrderViewController.h"
 #import "ZSMyClientViewController.h"
 #import "ZSMyShopManageViewController.h"
 #import "ZSNoticeCenterViewController.h"
@@ -154,7 +154,7 @@
             
         case 2:// 订单管理
         {
-            ZSOrderManageViewController *orderManageViewController=[[ZSOrderManageViewController alloc]initWithNibName:@"ZSOrderManageViewController" bundle:nil];
+            ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
             [self.navigationController pushViewController:orderManageViewController animated:YES];
             break;
         }

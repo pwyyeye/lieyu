@@ -1,27 +1,28 @@
 //
-//  ZSOrderManageViewController.m
+//  ZSOrderViewController.m
 //  lieyu
 //
-//  Created by 薛斯岐 on 15/9/14.
+//  Created by 薛斯岐 on 15/9/15.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSOrderManageViewController.h"
+#import "ZSOrderViewController.h"
 
-@interface ZSOrderManageViewController ()
+@interface ZSOrderViewController ()
 
 @end
 
-@implementation ZSOrderManageViewController
+@implementation ZSOrderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
-    
-    self.title=@"订单管理";
     // Do any additional setup after loading the view from its nib.
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -37,4 +38,10 @@
 }
 */
 
+- (IBAction)backAct:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)timeChooseAct:(UIButton *)sender {
+}
 @end
