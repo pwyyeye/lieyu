@@ -55,7 +55,7 @@
     
     [self.view addSubview:_bgView];
 
-    self.calendarView = [[WQDraggableCalendarView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT+50, SCREEN_WIDTH, 272+45)];
+    self.calendarView = [[WQDraggableCalendarView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT+50, SCREEN_WIDTH, 266+45)];
     self.calendarView.draggble = YES;
     
     
@@ -81,7 +81,7 @@
     self.calendarView.backgroundColor = [UIColor lightGrayColor];
     [self.calendarLogic reloadCalendarView:self.calendarView];
     surebutton=[UIButton buttonWithType:UIButtonTypeCustom];
-    surebutton.frame=CGRectMake(0 ,SCREEN_HEIGHT+50+272+45, SCREEN_WIDTH,45 );
+    surebutton.frame=CGRectMake(0 ,SCREEN_HEIGHT+50+266+45, SCREEN_WIDTH,45 );
     [surebutton setBackgroundColor:RGB(35, 166, 116)];
     [surebutton setTitle:@"确定" forState:0];
     [surebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -117,13 +117,13 @@
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.calendarView cache:NO];
-    monView.frame=CGRectMake(0, SCREEN_HEIGHT-272-45-50, SCREEN_WIDTH, 50);
-    self.calendarView.frame= CGRectMake(0, SCREEN_HEIGHT-272-45, SCREEN_WIDTH, 272+45);
+    monView.frame=CGRectMake(0, SCREEN_HEIGHT-266-45-50, SCREEN_WIDTH, 50);
+    self.calendarView.frame= CGRectMake(0, SCREEN_HEIGHT-266-45, SCREEN_WIDTH, 266+45);
     surebutton.frame=CGRectMake(0 ,SCREEN_HEIGHT-45, SCREEN_WIDTH,45 );
     [UIView commitAnimations];
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame=CGRectMake(0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT-272-45-50);
+    button.frame=CGRectMake(0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT-266-45-50);
     [button setBackgroundColor:[UIColor clearColor]];
     [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
     [_bgView insertSubview:button aboveSubview:_bgView];

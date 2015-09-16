@@ -27,6 +27,8 @@
 		15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE515F1BA708FF00464B74 /* ZSRefundViewController.xib */; };
 		15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51681BA7096C00464B74 /* ZSPrepareRefundViewController.m */; };
 		15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51691BA7096C00464B74 /* ZSPrepareRefundViewController.xib */; };
+		15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EFEF831BA99CD5004739A2 /* MenuHrizontal.m */; };
+		15EFEF871BA99CD5004739A2 /* ZRScrollableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EFEF851BA99CD5004739A2 /* ZRScrollableTabBar.m */; };
 		A201006B1BA7A911009283D1 /* ZSReleasePackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100691BA7A911009283D1 /* ZSReleasePackageViewController.m */; };
 		A201006C1BA7A911009283D1 /* ZSReleasePackageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201006A1BA7A911009283D1 /* ZSReleasePackageViewController.xib */; };
 		A20100711BA7AAB2009283D1 /* TimeChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A201006F1BA7AAB2009283D1 /* TimeChooseViewController.m */; };
@@ -191,6 +193,10 @@
 		15EE51671BA7096C00464B74 /* ZSPrepareRefundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPrepareRefundViewController.h; sourceTree = "<group>"; };
 		15EE51681BA7096C00464B74 /* ZSPrepareRefundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPrepareRefundViewController.m; sourceTree = "<group>"; };
 		15EE51691BA7096C00464B74 /* ZSPrepareRefundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSPrepareRefundViewController.xib; sourceTree = "<group>"; };
+		15EFEF821BA99CD5004739A2 /* MenuHrizontal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuHrizontal.h; sourceTree = "<group>"; };
+		15EFEF831BA99CD5004739A2 /* MenuHrizontal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuHrizontal.m; sourceTree = "<group>"; };
+		15EFEF841BA99CD5004739A2 /* ZRScrollableTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRScrollableTabBar.h; sourceTree = "<group>"; };
+		15EFEF851BA99CD5004739A2 /* ZRScrollableTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRScrollableTabBar.m; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A20100681BA7A911009283D1 /* ZSReleasePackageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleasePackageViewController.h; sourceTree = "<group>"; };
@@ -623,6 +629,17 @@
 				A20100C91BA9212A009283D1 /* ZSCustomerDetailViewController.xib */,
 			);
 			name = "客户详情";
+			sourceTree = "<group>";
+		};
+		15EFEF811BA99CD5004739A2 /* 水平菜单 */ = {
+			isa = PBXGroup;
+			children = (
+				15EFEF821BA99CD5004739A2 /* MenuHrizontal.h */,
+				15EFEF831BA99CD5004739A2 /* MenuHrizontal.m */,
+				15EFEF841BA99CD5004739A2 /* ZRScrollableTabBar.h */,
+				15EFEF851BA99CD5004739A2 /* ZRScrollableTabBar.m */,
+			);
+			path = "水平菜单";
 			sourceTree = "<group>";
 		};
 		9D0793CADE18DD09E4226921 /* Pods */ = {
@@ -1447,6 +1464,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				15EFEF811BA99CD5004739A2 /* 水平菜单 */,
 				A20100CC1BA943D5009283D1 /* 日历 */,
 				D761EFE41BA5AED3000757B0 /* MJRefresh */,
 				D748BC5A1BA1C856005AA996 /* MJExtension */,
@@ -1663,11 +1681,13 @@
 				D761F01E1BA5AED3000757B0 /* MJRefreshStateHeader.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
+				15EFEF871BA99CD5004739A2 /* ZRScrollableTabBar.m in Sources */,
 				15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */,
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
 				D761F01C1BA5AED3000757B0 /* MJRefreshGifHeader.m in Sources */,
+				15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */,
 				15EE515A1BA7085C00464B74 /* ZSAlreadyPayedViewController.m in Sources */,
 				D761F01A1BA5AED3000757B0 /* MJRefreshBackNormalFooter.m in Sources */,
 				A20100C21BA90E4E009283D1 /* CustomerCell.m in Sources */,
