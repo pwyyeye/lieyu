@@ -7,7 +7,8 @@
 //
 
 #import "MenuHrizontal.h"
-
+#import "MacroDefinition.h"
+#import "UIViewExt.h"
 #define BUTTONITEMWIDTH   70
 
 @implementation MenuHrizontal
@@ -38,26 +39,15 @@
     float menuWidth = 0.0;
     //
     for (NSDictionary *lDic in aItemsArray) {
-        NSDictionary *lDic=aItemsArray[i];
-        NSString *vNormalImageStr = [lDic objectForKey:NOMALKEY];
-        NSString *vHeligtImageStr = [lDic objectForKey:HEIGHTKEY];
+        
+        UIImage *normalImg = [lDic objectForKey:NOMALKEY];
+        UIImage *secImg = [lDic objectForKey:HEIGHTKEY];
         NSString *vTitleStr = [lDic objectForKey:TITLEKEY];
         float vButtonWidth = [[lDic objectForKey:TITLEWIDTH] floatValue];
+        NSString *countSumStr=[lDic objectForKey:COUNTORDER];
         UIButton *vButton = [UIButton buttonWithType:UIButtonTypeCustom];
         vButton.userInteractionEnabled=YES;
-        CGSize imageSize = CGSizeMake(vButtonWidth, self.frame.size.height);
-        UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-        [RGB(255, 13, 94) set];
-        UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
-        UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
         
-
-        UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-        [hexColor(@"#e30d55") set];
-        UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
-        UIImage *secImg = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
 
         [vButton setBackgroundImage:normalImg forState:UIControlStateNormal];
         [vButton setBackgroundImage:secImg forState:UIControlStateSelected];
@@ -70,40 +60,25 @@
         if(i==0){
             [vButton setSelected:true];
         }
-        //添加图片和title；
-        UrlImageView *icomImg=[[UrlImageView alloc]initWithFrame:CGRectMake(vButton.width/2-27/2, 3, 27, 27)];
         
-        NSRange range = [vNormalImageStr rangeOfString:@"http"];//判断字符串是否包含
-        [icomImg setBackgroundColor:[UIColor clearColor]];
-        //包含
-        if (range.length >0){
-            [icomImg setImageWithURL:[NSURL URLWithString:vNormalImageStr]];
-        }else{
-            if([vNormalImageStr isEqualToString:@""]){
-                switch (i) {
-                    case 1:
-                        [icomImg setImage:[UIImage imageNamed:@"Nav_icon_meizhuang"]];
-
-                        break;
-                    default:
-                        [icomImg setImage:[UIImage imageNamed:@"NavBar_icon_SheChiPin"]];
-                        break;
-                }
-            }else{
-                [icomImg setImage:[UIImage imageNamed:vNormalImageStr]];
-            }
-            
-        }
-        [vButton addSubview:icomImg];
+        
         //title
-        UILabel *titlelbl=[[UILabel alloc]initWithFrame:CGRectMake(0, icomImg.top+icomImg.height+3,vButton.width, 10)];
+        UILabel *titlelbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 10,vButton.width, 13)];
         titlelbl.text=vTitleStr;
-        titlelbl.font=[UIFont systemFontOfSize:12];
+        titlelbl.font=[UIFont systemFontOfSize:13];
         titlelbl.backgroundColor=[UIColor clearColor];
-        titlelbl.textColor =[UIColor whiteColor];
+        titlelbl.textColor =RGB(102, 102, 102);
         titlelbl.textAlignment=1;
         [vButton addSubview:titlelbl];
         
+        
+        UILabel *countbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 28,vButton.width, 9)];
+        countbl.text=countSumStr;
+        countbl.font=[UIFont systemFontOfSize:7];
+        countbl.backgroundColor=[UIColor clearColor];
+        countbl.textColor =RGB(255, 0, 0);
+        countbl.textAlignment=1;
+        [vButton addSubview:countbl];
         //
         [mScrollView addSubview:vButton];
         [mButtonArray addObject:vButton];

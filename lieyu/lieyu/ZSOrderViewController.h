@@ -10,14 +10,17 @@
 #import "WQCalendarLogic.h"
 #import "WQDraggableCalendarView.h"
 #import "WQScrollCalendarWrapperView.h"
-#import "ZRScrollableTabBar.h"
 #import "MenuHrizontal.h"
-@interface ZSOrderViewController : LYBaseViewController{
+@interface ZSOrderViewController : LYBaseViewController<MenuHrizontalDelegate>{
     UIView  *_bgView;
     UIView  *monView;
     NSDateFormatter * dateFormatter;
     UIButton *surebutton;
+    MenuHrizontal *mMenuHriZontal;
+
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (nonatomic, strong) WQDraggableCalendarView *calendarView;
 @property (nonatomic, strong) WQCalendarLogic *calendarLogic;
 

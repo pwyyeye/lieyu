@@ -13,7 +13,7 @@
 #define TITLEKEY   @"titleKey"
 #define TITLEWIDTH @"titleWidth"
 #define TOTALWIDTH @"totalWidth"
-
+#define COUNTORDER @"countOrder"
 @protocol MenuHrizontalDelegate <NSObject>
 
 @optional

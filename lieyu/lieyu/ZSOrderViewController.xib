@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSOrderViewController">
             <connections>
+                <outlet property="menuView" destination="CjD-Q8-T3P" id="EFq-x4-bWZ"/>
+                <outlet property="tableView" destination="1ts-f7-5YV" id="Svb-zl-c9a"/>
                 <outlet property="timeLal" destination="Xbb-IL-CXy" id="e73-id-Uu5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="xialaBtn" destination="eDc-Wd-5u3" id="fwk-zA-EXp"/>
@@ -50,6 +52,18 @@
                     </subviews>
                     <color key="backgroundColor" red="0.13725490196078433" green="0.65098039215686276" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CjD-Q8-T3P">
+                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1ts-f7-5YV">
+                    <rect key="frame" x="0.0" y="108" width="320" height="458"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="LXH-oh-ZGL"/>
+                        <outlet property="delegate" destination="-1" id="zCh-1o-E7s"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <point key="canvasLocation" x="309" y="83"/>

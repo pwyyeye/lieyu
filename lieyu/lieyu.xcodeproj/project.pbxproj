@@ -28,7 +28,7 @@
 		15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51681BA7096C00464B74 /* ZSPrepareRefundViewController.m */; };
 		15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51691BA7096C00464B74 /* ZSPrepareRefundViewController.xib */; };
 		15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EFEF831BA99CD5004739A2 /* MenuHrizontal.m */; };
-		15EFEF871BA99CD5004739A2 /* ZRScrollableTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EFEF851BA99CD5004739A2 /* ZRScrollableTabBar.m */; };
+		15EFEF891BA9A80C004739A2 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EFEF881BA9A80C004739A2 /* UIViewExt.m */; };
 		A201006B1BA7A911009283D1 /* ZSReleasePackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100691BA7A911009283D1 /* ZSReleasePackageViewController.m */; };
 		A201006C1BA7A911009283D1 /* ZSReleasePackageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201006A1BA7A911009283D1 /* ZSReleasePackageViewController.xib */; };
 		A20100711BA7AAB2009283D1 /* TimeChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A201006F1BA7AAB2009283D1 /* TimeChooseViewController.m */; };
@@ -195,8 +195,7 @@
 		15EE51691BA7096C00464B74 /* ZSPrepareRefundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSPrepareRefundViewController.xib; sourceTree = "<group>"; };
 		15EFEF821BA99CD5004739A2 /* MenuHrizontal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuHrizontal.h; sourceTree = "<group>"; };
 		15EFEF831BA99CD5004739A2 /* MenuHrizontal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuHrizontal.m; sourceTree = "<group>"; };
-		15EFEF841BA99CD5004739A2 /* ZRScrollableTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZRScrollableTabBar.h; sourceTree = "<group>"; };
-		15EFEF851BA99CD5004739A2 /* ZRScrollableTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZRScrollableTabBar.m; sourceTree = "<group>"; };
+		15EFEF881BA9A80C004739A2 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A20100681BA7A911009283D1 /* ZSReleasePackageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleasePackageViewController.h; sourceTree = "<group>"; };
@@ -636,8 +635,6 @@
 			children = (
 				15EFEF821BA99CD5004739A2 /* MenuHrizontal.h */,
 				15EFEF831BA99CD5004739A2 /* MenuHrizontal.m */,
-				15EFEF841BA99CD5004739A2 /* ZRScrollableTabBar.h */,
-				15EFEF851BA99CD5004739A2 /* ZRScrollableTabBar.m */,
 			);
 			path = "水平菜单";
 			sourceTree = "<group>";
@@ -1190,6 +1187,7 @@
 				D748BC4F1BA1C52E005AA996 /* NSDictionary+Json.m */,
 				A2020D521BA66A050090B92A /* MacroDefinition.h */,
 				A2020D531BA670AA0090B92A /* UIViewExt.h */,
+				15EFEF881BA9A80C004739A2 /* UIViewExt.m */,
 			);
 			path = Apple;
 			sourceTree = "<group>";
@@ -1681,7 +1679,6 @@
 				D761F01E1BA5AED3000757B0 /* MJRefreshStateHeader.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
-				15EFEF871BA99CD5004739A2 /* ZRScrollableTabBar.m in Sources */,
 				15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */,
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
@@ -1704,6 +1701,7 @@
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				D761F0231BA5AED3000757B0 /* UIView+MJExtension.m in Sources */,
 				D761F0131BA5AED3000757B0 /* MJRefreshComponent.m in Sources */,
+				15EFEF891BA9A80C004739A2 /* UIViewExt.m in Sources */,
 				D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */,
 				D761F0171BA5AED3000757B0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */,
