@@ -10,7 +10,7 @@
 #import "FunctionListCell.h"
 #import "ZSSeatControlView.h"
 #import "ZSOrderViewController.h"
-#import "ZSMyClientViewController.h"
+#import "ZSMyClientsViewController.h"
 #import "ZSMyShopManageViewController.h"
 #import "ZSNoticeCenterViewController.h"
 @interface ZSMaintViewController ()
@@ -161,7 +161,7 @@
             
         case 3:// 我的客户
         {
-            ZSMyClientViewController *myClientViewController=[[ZSMyClientViewController alloc]initWithNibName:@"ZSMyClientViewController" bundle:nil];
+            ZSMyClientsViewController *myClientViewController=[[ZSMyClientsViewController alloc]initWithNibName:@"ZSMyClientsViewController" bundle:nil];
             
             [self.navigationController pushViewController:myClientViewController animated:YES];
             break;

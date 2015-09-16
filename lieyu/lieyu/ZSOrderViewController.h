@@ -7,11 +7,24 @@
 //
 
 #import "LYBaseViewController.h"
+#import "WQCalendarLogic.h"
+#import "WQDraggableCalendarView.h"
+#import "WQScrollCalendarWrapperView.h"
 
-@interface ZSOrderViewController : LYBaseViewController
+@interface ZSOrderViewController : LYBaseViewController{
+    UIView  *_bgView;
+    UIView  *monView;
+    NSDateFormatter * dateFormatter;
+    UIButton *surebutton;
+}
+@property (nonatomic, strong) WQDraggableCalendarView *calendarView;
+@property (nonatomic, strong) WQCalendarLogic *calendarLogic;
+
+@property (nonatomic, strong) WQScrollCalendarWrapperView *scrollCalendarView;
 - (IBAction)backAct:(UIButton *)sender;
 - (IBAction)timeChooseAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *timeLal;
 @property (weak, nonatomic) IBOutlet UIButton *xialaBtn;
+@property (nonatomic, strong) UILabel *monthLabel;
 
 @end

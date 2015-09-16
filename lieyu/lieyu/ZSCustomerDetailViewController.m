@@ -1,21 +1,27 @@
 //
-//  ZSCustomerDetailsViewController.m
+//  ZSCustomerDetailViewController.m
 //  lieyu
 //
-//  Created by 薛斯岐 on 15/9/14.
+//  Created by SEM on 15/9/16.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSCustomerDetailsViewController.h"
+#import "ZSCustomerDetailViewController.h"
 
-@interface ZSCustomerDetailsViewController ()
+@interface ZSCustomerDetailViewController ()
 
 @end
 
-@implementation ZSCustomerDetailsViewController
+@implementation ZSCustomerDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO];
+    
+    self.title=@"客户详情";
+    self.customerImageView.layer.masksToBounds =YES;
+    
+    self.customerImageView.layer.cornerRadius =self.customerImageView.frame.size.width/2;
     // Do any additional setup after loading the view from its nib.
 }
 

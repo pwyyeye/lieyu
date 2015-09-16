@@ -13,8 +13,6 @@
 		15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63441BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib */; };
 		15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */; };
 		15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */; };
-		15EE513D1BA6E2D900464B74 /* ZSMyClientViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE513B1BA6E2D900464B74 /* ZSMyClientViewController.m */; };
-		15EE513E1BA6E2D900464B74 /* ZSMyClientViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE513C1BA6E2D900464B74 /* ZSMyClientViewController.xib */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopManageViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
@@ -29,8 +27,6 @@
 		15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE515F1BA708FF00464B74 /* ZSRefundViewController.xib */; };
 		15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51681BA7096C00464B74 /* ZSPrepareRefundViewController.m */; };
 		15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51691BA7096C00464B74 /* ZSPrepareRefundViewController.xib */; };
-		15EE51701BA70A1400464B74 /* ZSCustomerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE516E1BA70A1400464B74 /* ZSCustomerDetailsViewController.m */; };
-		15EE51711BA70A1400464B74 /* ZSCustomerDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE516F1BA70A1400464B74 /* ZSCustomerDetailsViewController.xib */; };
 		A201006B1BA7A911009283D1 /* ZSReleasePackageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100691BA7A911009283D1 /* ZSReleasePackageViewController.m */; };
 		A201006C1BA7A911009283D1 /* ZSReleasePackageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201006A1BA7A911009283D1 /* ZSReleasePackageViewController.xib */; };
 		A20100711BA7AAB2009283D1 /* TimeChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A201006F1BA7AAB2009283D1 /* TimeChooseViewController.m */; };
@@ -47,6 +43,23 @@
 		A201008F1BA7B087009283D1 /* ZSAddStockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201008D1BA7B087009283D1 /* ZSAddStockViewController.xib */; };
 		A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100B01BA7FDE6009283D1 /* ZSSeatControlView.m */; };
 		A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100B11BA7FDE6009283D1 /* ZSSeatControlView.xib */; };
+		A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100BB1BA901EA009283D1 /* ZSMyClientsViewController.m */; };
+		A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100BC1BA901EA009283D1 /* ZSMyClientsViewController.xib */; };
+		A20100C21BA90E4E009283D1 /* CustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100C01BA90E4E009283D1 /* CustomerCell.m */; };
+		A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100C11BA90E4E009283D1 /* CustomerCell.xib */; };
+		A20100C61BA91288009283D1 /* CustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100C51BA91288009283D1 /* CustomerModel.m */; };
+		A20100CA1BA9212A009283D1 /* ZSCustomerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100C81BA9212A009283D1 /* ZSCustomerDetailViewController.m */; };
+		A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100C91BA9212A009283D1 /* ZSCustomerDetailViewController.xib */; };
+		A20100DF1BA94404009283D1 /* NSDate+WQCalendarLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100CE1BA94404009283D1 /* NSDate+WQCalendarLogic.m */; };
+		A20100E01BA94404009283D1 /* WQCalendarDay.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100D01BA94404009283D1 /* WQCalendarDay.m */; };
+		A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100D21BA94404009283D1 /* WQCalendarGridView.m */; };
+		A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100D41BA94404009283D1 /* WQCalendarLogic.m */; };
+		A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100D61BA94404009283D1 /* WQCalendarTileView.m */; };
+		A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100D81BA94404009283D1 /* WQCalendarView.m */; };
+		A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100DA1BA94404009283D1 /* WQDraggableCalendarView.m */; };
+		A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100DC1BA94404009283D1 /* WQScrollCalendarView.m */; };
+		A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100DE1BA94404009283D1 /* WQScrollCalendarWrapperView.m */; };
+		A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A20100E81BA94423009283D1 /* weeklyTitle@2x.png */; };
 		A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2020D441BA660B50090B92A /* LYBaseViewController.m */; };
 		A2020D491BA661260090B92A /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2020D471BA661260090B92A /* MyInfoViewController.m */; };
 		A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2020D481BA661260090B92A /* MyInfoViewController.xib */; };
@@ -157,9 +170,6 @@
 		15AE63471BA8576500FFAD1A /* ZSOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSOrderViewController.h; sourceTree = "<group>"; };
 		15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSOrderViewController.m; sourceTree = "<group>"; };
 		15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSOrderViewController.xib; sourceTree = "<group>"; };
-		15EE513A1BA6E2D900464B74 /* ZSMyClientViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyClientViewController.h; sourceTree = "<group>"; };
-		15EE513B1BA6E2D900464B74 /* ZSMyClientViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyClientViewController.m; sourceTree = "<group>"; };
-		15EE513C1BA6E2D900464B74 /* ZSMyClientViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyClientViewController.xib; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopManageViewController.h; sourceTree = "<group>"; };
 		15EE51401BA6E32E00464B74 /* ZSMyShopManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopManageViewController.m; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopManageViewController.xib; sourceTree = "<group>"; };
@@ -181,9 +191,6 @@
 		15EE51671BA7096C00464B74 /* ZSPrepareRefundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSPrepareRefundViewController.h; sourceTree = "<group>"; };
 		15EE51681BA7096C00464B74 /* ZSPrepareRefundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSPrepareRefundViewController.m; sourceTree = "<group>"; };
 		15EE51691BA7096C00464B74 /* ZSPrepareRefundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSPrepareRefundViewController.xib; sourceTree = "<group>"; };
-		15EE516D1BA70A1400464B74 /* ZSCustomerDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCustomerDetailsViewController.h; sourceTree = "<group>"; };
-		15EE516E1BA70A1400464B74 /* ZSCustomerDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCustomerDetailsViewController.m; sourceTree = "<group>"; };
-		15EE516F1BA70A1400464B74 /* ZSCustomerDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCustomerDetailsViewController.xib; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A20100681BA7A911009283D1 /* ZSReleasePackageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleasePackageViewController.h; sourceTree = "<group>"; };
@@ -210,6 +217,36 @@
 		A20100AF1BA7FDE6009283D1 /* ZSSeatControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSeatControlView.h; sourceTree = "<group>"; };
 		A20100B01BA7FDE6009283D1 /* ZSSeatControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSeatControlView.m; sourceTree = "<group>"; };
 		A20100B11BA7FDE6009283D1 /* ZSSeatControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSSeatControlView.xib; sourceTree = "<group>"; };
+		A20100BA1BA901EA009283D1 /* ZSMyClientsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyClientsViewController.h; sourceTree = "<group>"; };
+		A20100BB1BA901EA009283D1 /* ZSMyClientsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyClientsViewController.m; sourceTree = "<group>"; };
+		A20100BC1BA901EA009283D1 /* ZSMyClientsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyClientsViewController.xib; sourceTree = "<group>"; };
+		A20100BF1BA90E4E009283D1 /* CustomerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCell.h; sourceTree = "<group>"; };
+		A20100C01BA90E4E009283D1 /* CustomerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCell.m; sourceTree = "<group>"; };
+		A20100C11BA90E4E009283D1 /* CustomerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerCell.xib; sourceTree = "<group>"; };
+		A20100C41BA91288009283D1 /* CustomerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerModel.h; sourceTree = "<group>"; };
+		A20100C51BA91288009283D1 /* CustomerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerModel.m; sourceTree = "<group>"; };
+		A20100C71BA9212A009283D1 /* ZSCustomerDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSCustomerDetailViewController.h; sourceTree = "<group>"; };
+		A20100C81BA9212A009283D1 /* ZSCustomerDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSCustomerDetailViewController.m; sourceTree = "<group>"; };
+		A20100C91BA9212A009283D1 /* ZSCustomerDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSCustomerDetailViewController.xib; sourceTree = "<group>"; };
+		A20100CD1BA94404009283D1 /* NSDate+WQCalendarLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WQCalendarLogic.h"; sourceTree = "<group>"; };
+		A20100CE1BA94404009283D1 /* NSDate+WQCalendarLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WQCalendarLogic.m"; sourceTree = "<group>"; };
+		A20100CF1BA94404009283D1 /* WQCalendarDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQCalendarDay.h; sourceTree = "<group>"; };
+		A20100D01BA94404009283D1 /* WQCalendarDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQCalendarDay.m; sourceTree = "<group>"; };
+		A20100D11BA94404009283D1 /* WQCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQCalendarGridView.h; sourceTree = "<group>"; };
+		A20100D21BA94404009283D1 /* WQCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQCalendarGridView.m; sourceTree = "<group>"; };
+		A20100D31BA94404009283D1 /* WQCalendarLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQCalendarLogic.h; sourceTree = "<group>"; };
+		A20100D41BA94404009283D1 /* WQCalendarLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQCalendarLogic.m; sourceTree = "<group>"; };
+		A20100D51BA94404009283D1 /* WQCalendarTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQCalendarTileView.h; sourceTree = "<group>"; };
+		A20100D61BA94404009283D1 /* WQCalendarTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQCalendarTileView.m; sourceTree = "<group>"; };
+		A20100D71BA94404009283D1 /* WQCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQCalendarView.h; sourceTree = "<group>"; };
+		A20100D81BA94404009283D1 /* WQCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQCalendarView.m; sourceTree = "<group>"; };
+		A20100D91BA94404009283D1 /* WQDraggableCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQDraggableCalendarView.h; sourceTree = "<group>"; };
+		A20100DA1BA94404009283D1 /* WQDraggableCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQDraggableCalendarView.m; sourceTree = "<group>"; };
+		A20100DB1BA94404009283D1 /* WQScrollCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQScrollCalendarView.h; sourceTree = "<group>"; };
+		A20100DC1BA94404009283D1 /* WQScrollCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQScrollCalendarView.m; sourceTree = "<group>"; };
+		A20100DD1BA94404009283D1 /* WQScrollCalendarWrapperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQScrollCalendarWrapperView.h; sourceTree = "<group>"; };
+		A20100DE1BA94404009283D1 /* WQScrollCalendarWrapperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQScrollCalendarWrapperView.m; sourceTree = "<group>"; };
+		A20100E81BA94423009283D1 /* weeklyTitle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weeklyTitle@2x.png"; sourceTree = "<group>"; };
 		A2020D431BA660B50090B92A /* LYBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBaseViewController.h; sourceTree = "<group>"; };
 		A2020D441BA660B50090B92A /* LYBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBaseViewController.m; sourceTree = "<group>"; };
 		A2020D461BA661250090B92A /* MyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoViewController.h; sourceTree = "<group>"; };
@@ -518,9 +555,9 @@
 			isa = PBXGroup;
 			children = (
 				15EE516C1BA709DE00464B74 /* 客户详情 */,
-				15EE513A1BA6E2D900464B74 /* ZSMyClientViewController.h */,
-				15EE513B1BA6E2D900464B74 /* ZSMyClientViewController.m */,
-				15EE513C1BA6E2D900464B74 /* ZSMyClientViewController.xib */,
+				A20100BA1BA901EA009283D1 /* ZSMyClientsViewController.h */,
+				A20100BB1BA901EA009283D1 /* ZSMyClientsViewController.m */,
+				A20100BC1BA901EA009283D1 /* ZSMyClientsViewController.xib */,
 			);
 			name = "我的客户";
 			sourceTree = "<group>";
@@ -581,9 +618,9 @@
 		15EE516C1BA709DE00464B74 /* 客户详情 */ = {
 			isa = PBXGroup;
 			children = (
-				15EE516D1BA70A1400464B74 /* ZSCustomerDetailsViewController.h */,
-				15EE516E1BA70A1400464B74 /* ZSCustomerDetailsViewController.m */,
-				15EE516F1BA70A1400464B74 /* ZSCustomerDetailsViewController.xib */,
+				A20100C71BA9212A009283D1 /* ZSCustomerDetailViewController.h */,
+				A20100C81BA9212A009283D1 /* ZSCustomerDetailViewController.m */,
+				A20100C91BA9212A009283D1 /* ZSCustomerDetailViewController.xib */,
 			);
 			name = "客户详情";
 			sourceTree = "<group>";
@@ -665,6 +702,33 @@
 			children = (
 			);
 			name = "信息中心";
+			sourceTree = "<group>";
+		};
+		A20100CC1BA943D5009283D1 /* 日历 */ = {
+			isa = PBXGroup;
+			children = (
+				A20100E81BA94423009283D1 /* weeklyTitle@2x.png */,
+				A20100CD1BA94404009283D1 /* NSDate+WQCalendarLogic.h */,
+				A20100CE1BA94404009283D1 /* NSDate+WQCalendarLogic.m */,
+				A20100CF1BA94404009283D1 /* WQCalendarDay.h */,
+				A20100D01BA94404009283D1 /* WQCalendarDay.m */,
+				A20100D11BA94404009283D1 /* WQCalendarGridView.h */,
+				A20100D21BA94404009283D1 /* WQCalendarGridView.m */,
+				A20100D31BA94404009283D1 /* WQCalendarLogic.h */,
+				A20100D41BA94404009283D1 /* WQCalendarLogic.m */,
+				A20100D51BA94404009283D1 /* WQCalendarTileView.h */,
+				A20100D61BA94404009283D1 /* WQCalendarTileView.m */,
+				A20100D71BA94404009283D1 /* WQCalendarView.h */,
+				A20100D81BA94404009283D1 /* WQCalendarView.m */,
+				A20100D91BA94404009283D1 /* WQDraggableCalendarView.h */,
+				A20100DA1BA94404009283D1 /* WQDraggableCalendarView.m */,
+				A20100DB1BA94404009283D1 /* WQScrollCalendarView.h */,
+				A20100DC1BA94404009283D1 /* WQScrollCalendarView.m */,
+				A20100DD1BA94404009283D1 /* WQScrollCalendarWrapperView.h */,
+				A20100DE1BA94404009283D1 /* WQScrollCalendarWrapperView.m */,
+			);
+			name = "日历";
+			path = "../Classes/CommonUI/日历";
 			sourceTree = "<group>";
 		};
 		A2020D421BA660640090B92A /* base */ = {
@@ -765,6 +829,8 @@
 		A2020D821BA6A53A0090B92A /* modles */ = {
 			isa = PBXGroup;
 			children = (
+				A20100C41BA91288009283D1 /* CustomerModel.h */,
+				A20100C51BA91288009283D1 /* CustomerModel.m */,
 			);
 			name = modles;
 			sourceTree = "<group>";
@@ -799,6 +865,9 @@
 				15AE633D1BA84FD500FFAD1A /* NoticeCell.h */,
 				15AE633E1BA84FD500FFAD1A /* NoticeCell.m */,
 				15AE633F1BA84FD500FFAD1A /* NoticeCell.xib */,
+				A20100BF1BA90E4E009283D1 /* CustomerCell.h */,
+				A20100C01BA90E4E009283D1 /* CustomerCell.m */,
+				A20100C11BA90E4E009283D1 /* CustomerCell.xib */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -1378,6 +1447,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				A20100CC1BA943D5009283D1 /* 日历 */,
 				D761EFE41BA5AED3000757B0 /* MJRefresh */,
 				D748BC5A1BA1C856005AA996 /* MJExtension */,
 				D748BBBE1BA1BEC2005AA996 /* RestKit */,
@@ -1486,7 +1556,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15EE513E1BA6E2D900464B74 /* ZSMyClientViewController.xib in Resources */,
+				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
 				A2020D621BA67E9E0090B92A /* disClosure@3x.png in Resources */,
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
 				A2020D611BA67E9E0090B92A /* disClosure@2x.png in Resources */,
@@ -1508,9 +1578,12 @@
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
+				A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */,
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
+				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
+				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
 				D7A230C91BA711D200E8B51B /* HomePageINeedPlayViewController.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
@@ -1529,7 +1602,6 @@
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
 				D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
-				15EE51711BA70A1400464B74 /* ZSCustomerDetailsViewController.xib in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
 				15EE515B1BA7085C00464B74 /* ZSAlreadyPayedViewController.xib in Resources */,
 				AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */,
@@ -1585,22 +1657,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A20100CA1BA9212A009283D1 /* ZSCustomerDetailViewController.m in Sources */,
 				A2020D891BA6A5AA0090B92A /* KaZuoCell.m in Sources */,
 				D748BC701BA1C856005AA996 /* NSObject+MJCoding.m in Sources */,
 				D761F01E1BA5AED3000757B0 /* MJRefreshStateHeader.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
 				15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */,
+				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
 				D761F01C1BA5AED3000757B0 /* MJRefreshGifHeader.m in Sources */,
 				15EE515A1BA7085C00464B74 /* ZSAlreadyPayedViewController.m in Sources */,
 				D761F01A1BA5AED3000757B0 /* MJRefreshBackNormalFooter.m in Sources */,
+				A20100C21BA90E4E009283D1 /* CustomerCell.m in Sources */,
 				D761F0151BA5AED3000757B0 /* MJRefreshHeader.m in Sources */,
 				D748BC6D1BA1C856005AA996 /* MJFoundation.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
 				D761F0361BA5C703000757B0 /* RKISO8601DateFormatter.m in Sources */,
+				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
+				A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */,
 				A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */,
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,
 				D748BC711BA1C856005AA996 /* NSObject+MJKeyValue.m in Sources */,
@@ -1613,31 +1690,36 @@
 				15EE51421BA6E32E00464B74 /* ZSMyShopManageViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
 				A20100711BA7AAB2009283D1 /* TimeChooseViewController.m in Sources */,
+				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
+				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
 				D748BC7A1BA1CB0E005AA996 /* User.m in Sources */,
+				A20100E01BA94404009283D1 /* WQCalendarDay.m in Sources */,
 				D748BC731BA1C856005AA996 /* NSString+MJExtension.m in Sources */,
 				D761F0191BA5AED3000757B0 /* MJRefreshBackGifFooter.m in Sources */,
 				D761F01D1BA5AED3000757B0 /* MJRefreshNormalHeader.m in Sources */,
 				15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */,
 				A2020D491BA661260090B92A /* MyInfoViewController.m in Sources */,
+				A20100DF1BA94404009283D1 /* NSDate+WQCalendarLogic.m in Sources */,
 				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
 				A201008E1BA7B087009283D1 /* ZSAddStockViewController.m in Sources */,
 				D761F0201BA5AED3000757B0 /* MJRefreshConst.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
-				15EE513D1BA6E2D900464B74 /* ZSMyClientViewController.m in Sources */,
 				D761F01B1BA5AED3000757B0 /* MJRefreshBackStateFooter.m in Sources */,
+				A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */,
 				D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */,
 				D748BC411BA1C24B005AA996 /* RestKitMapping.m in Sources */,
+				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
 				A201006B1BA7A911009283D1 /* ZSReleasePackageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
+				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
 				D761F0221BA5AED3000757B0 /* UIScrollView+MJRefresh.m in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
-				15EE51701BA70A1400464B74 /* ZSCustomerDetailsViewController.m in Sources */,
 				D761F0351BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m in Sources */,
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
@@ -1650,6 +1732,7 @@
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
 				A2020D591BA6781B0090B92A /* FunctionListCell.m in Sources */,
 				D761F0141BA5AED3000757B0 /* MJRefreshFooter.m in Sources */,
+				A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */,
 				D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */,
 				D748BC6E1BA1C856005AA996 /* MJProperty.m in Sources */,
 				D761F0111BA5AED3000757B0 /* MJRefreshAutoFooter.m in Sources */,
