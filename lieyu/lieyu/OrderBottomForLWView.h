@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrderHandleButton.h"
 @interface OrderBottomForLWView : UIView
-
+@property (weak, nonatomic) IBOutlet OrderHandleButton *kazuoBtn;
+@property (weak, nonatomic) IBOutlet OrderHandleButton *siliaoBtn;
+@property (weak, nonatomic) IBOutlet OrderHandleButton *dianhuaBtn;
+@property (weak, nonatomic) IBOutlet UILabel *moneyLal;
 @end

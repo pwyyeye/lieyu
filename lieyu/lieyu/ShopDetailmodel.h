@@ -14,4 +14,5 @@
 @property(nonatomic,copy)NSString * youfeiPrice;
 @property(nonatomic,copy)NSString * money;
 @property(nonatomic,copy)NSString * count;
+@property(nonatomic,copy)NSString * detile;
 @end
