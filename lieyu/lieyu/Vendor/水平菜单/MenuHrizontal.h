@@ -31,7 +31,7 @@
 
 #pragma mark 初始化菜单
 - (id)initWithFrame:(CGRect)frame ButtonItems:(NSArray *)aItemsArray;
-
+@property (nonatomic,assign) NSInteger selectIndex;
 #pragma mark 选中某个button
 -(void)clickButtonAtIndex:(NSInteger)aIndex;
 

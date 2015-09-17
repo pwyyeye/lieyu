@@ -11,13 +11,16 @@
 #import "WQDraggableCalendarView.h"
 #import "WQScrollCalendarWrapperView.h"
 #import "MenuHrizontal.h"
-@interface ZSOrderViewController : LYBaseViewController<MenuHrizontalDelegate>{
+#import "XiaoFeiMaUiew.h"
+@interface ZSOrderViewController : LYBaseViewController<MenuHrizontalDelegate,UITextFieldDelegate>{
     UIView  *_bgView;
     UIView  *monView;
     NSDateFormatter * dateFormatter;
     UIButton *surebutton;
     MenuHrizontal *mMenuHriZontal;
-
+    NSMutableArray *daiXiaoFei;
+    NSMutableArray *serchDaiXiaoFei;
+    XiaoFeiMaUiew *xiaoFeiMaUiew;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *menuView;

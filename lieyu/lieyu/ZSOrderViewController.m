@@ -7,7 +7,14 @@
 //
 
 #import "ZSOrderViewController.h"
-
+#import "OrderBottomView.h"
+#import "OrderHeadView.h"
+#import "OrderHandleButton.h"
+#import "DetailCell.h"
+#import "ShopDetailmodel.h"
+#import "OrderInfoModel.h"
+#import "SerchHeadView.h"
+#import "OrderBottomForLWView.h"
 @interface ZSOrderViewController ()
 
 @end
@@ -16,6 +23,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _tableView.showsHorizontalScrollIndicator=NO;
+    _tableView.showsVerticalScrollIndicator=NO;
+    _tableView.separatorColor=[UIColor clearColor];
+    self.view.backgroundColor=RGB(237, 237, 237 );
+    daiXiaoFei=[[NSMutableArray alloc]init];
+    serchDaiXiaoFei=[[NSMutableArray alloc]init];
     self.menuView.backgroundColor=[UIColor clearColor];
     dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
@@ -23,8 +36,251 @@
     self.timeLal.text=dateStr;
     self.calendarLogic = [[WQCalendarLogic alloc] init];
     [self getMenuHrizontal];
+    [self getDaiXiaoFei];
     // Do any additional setup after loading the view from its nib.
 }
+#pragma mark 获取待消费数据
+-(void)getDaiXiaoFei{
+
+    [daiXiaoFei removeAllObjects];
+    [serchDaiXiaoFei removeAllObjects];
+    OrderInfoModel *order1=[[OrderInfoModel alloc]init];
+    order1.name=@"小腻腻";
+    order1.orderType=@"1";
+    order1.orderStu=@"1";
+    order1.money=@"1200";
+    ShopDetailmodel *shopD11=[[ShopDetailmodel alloc]init];
+    shopD11.name=@"散台特惠轩尼诗";
+    shopD11.youfeiPrice=@"¥1200";
+    shopD11.money=@"¥1550";
+    shopD11.count=@"x1";
+    NSArray *arr1=@[shopD11];
+    order1.detailModel=arr1;
+    [daiXiaoFei addObject:order1];
+    OrderInfoModel *order2=[[OrderInfoModel alloc]init];
+    order2.name=@"小腻腻";
+    order2.orderType=@"1";
+    order2.orderStu=@"1";
+    order2.money=@"500";
+    ShopDetailmodel *shopD21=[[ShopDetailmodel alloc]init];
+    shopD21.name=@"散台特惠轩尼诗";
+    shopD21.youfeiPrice=@"¥250";
+    shopD21.money=@"¥1550";
+    shopD21.count=@"x1";
+    ShopDetailmodel *shopD22=[[ShopDetailmodel alloc]init];
+    shopD22.name=@"散台特惠轩尼诗";
+    shopD22.youfeiPrice=@"¥250";
+    shopD22.money=@"¥1550";
+    shopD22.count=@"x1";
+    NSArray *arr2=@[shopD11,shopD22];
+    order2.detailModel=arr2;
+    [daiXiaoFei addObject:order2];
+    serchDaiXiaoFei=[daiXiaoFei mutableCopy];
+    
+    
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"SerchHeadView" owner:nil options:nil];
+    SerchHeadView *serchHeadView= (SerchHeadView *)[nibView objectAtIndex:0];
+    [serchHeadView.serchText addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [serchHeadView.serchText addTarget:self action:@selector(serchTextValChange:) forControlEvents:UIControlEventEditingChanged];
+    _tableView.tableHeaderView=serchHeadView;
+    [self.tableView reloadData];
+}
+-(void)getDaiLiuWei{
+    [daiXiaoFei removeAllObjects];
+    [serchDaiXiaoFei removeAllObjects];
+    OrderInfoModel *order1=[[OrderInfoModel alloc]init];
+    order1.name=@"小腻腻";
+    order1.orderType=@"1";
+    order1.orderStu=@"1";
+    order1.money=@"1200";
+    order1.paytime=@"10:00消费";
+    ShopDetailmodel *shopD11=[[ShopDetailmodel alloc]init];
+    shopD11.name=@"散台特惠轩尼诗";
+    shopD11.youfeiPrice=@"¥1200";
+    shopD11.money=@"¥1550";
+    shopD11.count=@"7人已购买［适合2-4人］";
+    NSArray *arr1=@[shopD11];
+    order1.detailModel=arr1;
+    [daiXiaoFei addObject:order1];
+    OrderInfoModel *order2=[[OrderInfoModel alloc]init];
+    order2.name=@"小腻腻";
+    order2.orderType=@"1";
+    order2.orderStu=@"1";
+    order2.money=@"500";
+    order2.paytime=@"11:00消费";
+    ShopDetailmodel *shopD21=[[ShopDetailmodel alloc]init];
+    shopD21.name=@"散台特惠轩尼诗";
+    shopD21.youfeiPrice=@"¥250";
+    shopD21.money=@"¥1550";
+    shopD21.count=@"7人已购买［适合2-4人］";
+    ShopDetailmodel *shopD22=[[ShopDetailmodel alloc]init];
+    shopD22.name=@"散台特惠轩尼诗";
+    shopD22.youfeiPrice=@"¥250";
+    shopD22.money=@"¥1550";
+    shopD22.count=@"拼客人数7（7人参与）";
+    NSArray *arr2=@[shopD11,shopD22];
+    order2.detailModel=arr2;
+    [daiXiaoFei addObject:order2];
+    
+    _tableView.tableHeaderView=nil;
+    [self.tableView reloadData];
+
+}
+-(void)serchTextValChange:(UITextField *)sender{
+    NSString *ss=sender.text;
+    NSLog(@"*****%@",ss);
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    switch (mMenuHriZontal.selectIndex) {
+            
+        case 0://待消费
+        {
+            OrderInfoModel *orderInfoModel=serchDaiXiaoFei[section];
+            return orderInfoModel.detailModel.count;
+            break;
+        }
+            
+        case 1:// 待留位
+        {
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            return orderInfoModel.detailModel.count;
+            break;
+            break;
+        }
+            
+        case 2:// 待催促
+        {
+            
+            break;
+        }
+            
+        case 3:// 已消费
+        {
+            
+            break;
+        }
+        default://退单
+        {
+            
+            break;
+        }
+            
+    }
+    return 0;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    switch (mMenuHriZontal.selectIndex) {
+            
+        case 0://待消费
+        {
+            return serchDaiXiaoFei.count;
+            break;
+        }
+            
+        case 1:// 待留位
+        {
+            return daiXiaoFei.count;
+            break;
+        }
+            
+        case 2:// 待催促
+        {
+            
+            break;
+        }
+            
+        case 3:// 已消费
+        {
+            
+            break;
+        }
+        default://退单
+        {
+            
+            break;
+        }
+            
+    }
+    return 0;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 45;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    
+    return 96;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    OrderInfoModel *orderInfoModel=serchDaiXiaoFei[section];
+
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomView" owner:nil options:nil];
+    OrderBottomView *orderBottomView= (OrderBottomView *)[nibView objectAtIndex:0];
+    orderBottomView.moneyLal.text=orderInfoModel.money;
+    [orderBottomView.duimaBtn addTarget:self action:@selector(duimaAct:) forControlEvents:UIControlEventTouchUpInside];
+    [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
+    [orderBottomView.dianhuaBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+    //    view.backgroundColor=[UIColor yellowColor];
+    return orderBottomView;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    OrderInfoModel *orderInfoModel=serchDaiXiaoFei[section];
+    
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
+    OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+    orderHeadView.nameLal.text=orderInfoModel.name;
+    
+    //    view.backgroundColor=[UIColor yellowColor];
+    return orderHeadView;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    static NSString *CellIdentifier = @"DetailCell";
+    
+    DetailCell *cell = (DetailCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+        cell = (DetailCell *)[nibArray objectAtIndex:0];
+        cell.backgroundColor=[UIColor whiteColor];
+        
+        
+    }
+    OrderInfoModel *orderInfoModel=serchDaiXiaoFei[indexPath.section];
+    NSArray *arr=orderInfoModel.detailModel;
+    ShopDetailmodel *shopDetailmodel=arr[indexPath.row];
+    cell.nameLal.text=shopDetailmodel.name;
+    cell.countLal.text=shopDetailmodel.count;
+    cell.zhekouLal.text=shopDetailmodel.youfeiPrice;
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:shopDetailmodel.money attributes:attribtDic];
+    cell.moneylal.attributedText=attribtStr;
+//    @property (weak, nonatomic) IBOutlet UIImageView *detImageView;
+    
+    
+    return cell;
+    
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 89;
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
+}
+
+#pragma mark 获取顶部菜单
 -(void)getMenuHrizontal{
     NSArray *menuArrNew=@[@"待消费",@"待留位",@"待催促",@"已消费",@"退单"];
     NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:5];
@@ -81,6 +337,85 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark MenuHrizontalDelegate
+-(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
+    switch (aIndex) {
+            
+        case 0://待消费
+        {
+            [self getDaiXiaoFei];
+            break;
+        }
+            
+        case 1:// 待留位
+        {
+            [self getDaiLiuWei];
+            break;
+        }
+            
+        case 2:// 待催促
+        {
+            
+            break;
+        }
+            
+        case 3:// 已消费
+        {
+            
+            break;
+        }
+        default://退单
+        {
+            
+            break;
+        }
+            
+    }
+    
+}
+#pragma mark 对码
+-(void)duimaAct:(OrderHandleButton *)sender{
+    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
+    [_bgView setTag:99999];
+    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
+    [_bgView setAlpha:1.0];
+    [self.view addSubview:_bgView];
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"XiaoFeiMaUiew" owner:nil options:nil];
+    xiaoFeiMaUiew= (XiaoFeiMaUiew *)[nibView objectAtIndex:0];
+    xiaoFeiMaUiew.top=-xiaoFeiMaUiew.height;
+    [xiaoFeiMaUiew.xiaofeiMaTextField addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    xiaoFeiMaUiew.xiaofeiMaTextField.returnKeyType=UIReturnKeyDone;
+    xiaoFeiMaUiew.xiaofeiMaTextField.delegate=self;
+    [_bgView addSubview:xiaoFeiMaUiew];
+    [UIView beginAnimations:@"animationID" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:xiaoFeiMaUiew cache:NO];
+    xiaoFeiMaUiew.top=20;
+    [UIView commitAnimations];
+    
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame=CGRectMake(0 ,xiaoFeiMaUiew.top+xiaoFeiMaUiew.height, SCREEN_WIDTH, SCREEN_HEIGHT-xiaoFeiMaUiew.top);
+    [button setBackgroundColor:[UIColor clearColor]];
+    [button addTarget:self action:@selector(SetViewDisappearForDuiMa:) forControlEvents:UIControlEventTouchDown];
+    [_bgView insertSubview:button aboveSubview:_bgView];
+    button.backgroundColor=[UIColor clearColor];
+
+}
+#pragma mark return事件
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self SetViewDisappearForDuiMa:nil];
+    return YES;
+}
+
+#pragma mark 私聊
+-(void)siliaoAct:(OrderHandleButton *)sender{
+    
+}
+#pragma mark 电话
+-(void)dianhuaAct:(OrderHandleButton *)sender{
+    
+}
 
 - (IBAction)backAct:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
@@ -171,7 +506,7 @@
     
 //    button.backgroundColor=[UIColor clearColor];
 }
-//立即购买消失按钮
+//
 -(void)SetViewDisappear:(id)sender
 {
     if (_bgView)
@@ -180,7 +515,7 @@
         [UIView animateWithDuration:.5
                          animations:^{
                              
-                             self.calendarView = [[WQDraggableCalendarView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300)];
+                             self.calendarView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300);
                              _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
                              _bgView.alpha=0.0;
                          }];
@@ -188,39 +523,49 @@
                       withObject:nil
                       afterDelay:2];
         
-        
+        _bgView=nil;
     }
-    //    if (btn.selected==NO)
-    //    {
-    //        [btn setImage:BundleImage(@"bt_close_n.png") forState:0];
-    //        btn.selected=YES;
-    //    }else{
-    //        [btn setImage:BundleImage(@"bt_close_s.png") forState:0];
-    //        btn.selected=NO;
-    //    }
     
 }
 -(void)SetViewDisappearForSure:(id)sender{
     
     self.timeLal.text=[dateFormatter stringFromDate:[self.calendarLogic.selectedCalendarDay date]];
+    [self SetViewDisappearForSure:sender];
+//    if (_bgView)
+//    {
+//        _bgView.backgroundColor=[UIColor clearColor];
+//        [UIView animateWithDuration:.5
+//                         animations:^{
+//                             
+//                             self.calendarView = [[WQDraggableCalendarView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300)];
+//                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+//                             _bgView.alpha=0.0;
+//                         }];
+//        [_bgView performSelector:@selector(removeFromSuperview)
+//                      withObject:nil
+//                      afterDelay:2];
+//        
+//        
+//    }
+}
+-(void)SetViewDisappearForDuiMa:(id)sender{
     if (_bgView)
     {
         _bgView.backgroundColor=[UIColor clearColor];
         [UIView animateWithDuration:.5
                          animations:^{
                              
-                             self.calendarView = [[WQDraggableCalendarView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300)];
-                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+                             xiaoFeiMaUiew.top=-xiaoFeiMaUiew.height;
+                             _bgView.frame=CGRectMake(0, -SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
                              _bgView.alpha=0.0;
                          }];
         [_bgView performSelector:@selector(removeFromSuperview)
                       withObject:nil
                       afterDelay:2];
         
-        
+        _bgView=nil;
     }
 }
-
 #pragma mark -
 
 - (void)goToNextMonth:(id)sender
@@ -238,4 +583,8 @@
     
 
 }
+-(void)endEdit:(id)sender{
+    [sender resignFirstResponder];
+}
+
 @end

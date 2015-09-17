@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface CustomerModel : NSObject
-@property(nonatomic,retain)NSString * name;
-@property(nonatomic,retain)NSString * name_en;
-@property(nonatomic,retain)NSString * phone;
+@property(nonatomic,copy)NSString * name;
+@property(nonatomic,copy)NSString * name_en;
+@property(nonatomic,copy)NSString * phone;
 @property NSInteger sectionNumber;
 @property BOOL rowSelected;
 @end

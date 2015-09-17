@@ -108,12 +108,14 @@
 
 #pragma mark 模拟选中第几个button
 -(void)clickButtonAtIndex:(NSInteger)aIndex{
+    self.selectIndex=aIndex;
     UIButton *vButton = [mButtonArray objectAtIndex:aIndex];
     [self menuButtonClicked:vButton];
 }
 
 #pragma mark 改变第几个button为选中状态，不发送delegate
 -(void)changeButtonStateAtIndex:(NSInteger)aIndex{
+    self.selectIndex=aIndex;
     UIButton *vButton = [mButtonArray objectAtIndex:aIndex];
     [self changeButtonsToNormalState];
     vButton.selected = YES;
