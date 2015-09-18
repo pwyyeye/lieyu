@@ -15,6 +15,8 @@
 #import "OrderInfoModel.h"
 #import "SerchHeadView.h"
 #import "OrderBottomForLWView.h"
+#import "OrderBottomForCCView.h"
+#import "OrderBottomForXFView.h"
 @interface ZSOrderViewController ()
 
 @end
@@ -85,6 +87,7 @@
     _tableView.tableHeaderView=serchHeadView;
     [self.tableView reloadData];
 }
+#pragma mark 获取待留位数据
 -(void)getDaiLiuWei{
     [daiXiaoFei removeAllObjects];
     [serchDaiXiaoFei removeAllObjects];
@@ -127,6 +130,143 @@
     [self.tableView reloadData];
 
 }
+#pragma mark 获取待催促数据
+-(void)getDaiCuiCu{
+    [daiXiaoFei removeAllObjects];
+    [serchDaiXiaoFei removeAllObjects];
+    OrderInfoModel *order1=[[OrderInfoModel alloc]init];
+    order1.name=@"小腻腻";
+    order1.orderType=@"1";
+    order1.orderStu=@"1";
+    order1.money=@"1200";
+//    order1.paytime=@"10:00消费";
+    ShopDetailmodel *shopD11=[[ShopDetailmodel alloc]init];
+    shopD11.name=@"散台特惠轩尼诗";
+    shopD11.youfeiPrice=@"¥1200";
+    shopD11.money=@"¥1550";
+    shopD11.count=@"7人已购买［适合2-4人］";
+    NSArray *arr1=@[shopD11];
+    order1.detailModel=arr1;
+    [daiXiaoFei addObject:order1];
+    OrderInfoModel *order2=[[OrderInfoModel alloc]init];
+    order2.name=@"小腻腻";
+    order2.orderType=@"1";
+    order2.orderStu=@"1";
+    order2.money=@"500";
+//    order2.paytime=@"11:00消费";
+    ShopDetailmodel *shopD21=[[ShopDetailmodel alloc]init];
+    shopD21.name=@"散台特惠轩尼诗";
+    shopD21.youfeiPrice=@"¥250";
+    shopD21.money=@"¥1550";
+    shopD21.count=@"7人已购买［适合2-4人］";
+    ShopDetailmodel *shopD22=[[ShopDetailmodel alloc]init];
+    shopD22.name=@"散台特惠轩尼诗";
+    shopD22.youfeiPrice=@"¥250";
+    shopD22.money=@"¥1550";
+    shopD22.count=@"拼客人数7（7人参与）";
+    NSArray *arr2=@[shopD11,shopD22];
+    order2.detailModel=arr2;
+    [daiXiaoFei addObject:order2];
+    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+    view1.backgroundColor=[UIColor whiteColor];
+    _tableView.tableHeaderView=view1;
+    [self.tableView reloadData];
+    
+}
+#pragma mark 搜索已消费
+-(void) getYiXiaoFei{
+    [daiXiaoFei removeAllObjects];
+    [serchDaiXiaoFei removeAllObjects];
+    OrderInfoModel *order1=[[OrderInfoModel alloc]init];
+    order1.name=@"小腻腻";
+    order1.orderType=@"1";
+    order1.orderStu=@"1";
+    order1.money=@"1200";
+    order1.jiesuanmoney=@"¥840";
+    order1.paytime=@"消费码：129382891";
+    ShopDetailmodel *shopD11=[[ShopDetailmodel alloc]init];
+    shopD11.name=@"散台特惠轩尼诗";
+    shopD11.youfeiPrice=@"¥1200";
+    shopD11.money=@"¥1550";
+    shopD11.count=@"7人已购买［适合2-4人］";
+    NSArray *arr1=@[shopD11];
+    order1.detailModel=arr1;
+    [daiXiaoFei addObject:order1];
+    OrderInfoModel *order2=[[OrderInfoModel alloc]init];
+    order2.name=@"小腻腻";
+    order2.orderType=@"1";
+    order2.orderStu=@"1";
+    order2.money=@"500";
+    order2.jiesuanmoney=@"¥840";
+    order2.paytime=@"消费码：129382891";
+    ShopDetailmodel *shopD21=[[ShopDetailmodel alloc]init];
+    shopD21.name=@"散台特惠轩尼诗";
+    shopD21.youfeiPrice=@"¥250";
+    shopD21.money=@"¥1550";
+    shopD21.count=@"7人拼客";
+    ShopDetailmodel *shopD22=[[ShopDetailmodel alloc]init];
+    shopD22.name=@"散台特惠轩尼诗";
+    shopD22.youfeiPrice=@"¥250";
+    shopD22.money=@"¥1550";
+    shopD22.count=@"x1";
+    NSArray *arr2=@[shopD11,shopD22];
+    order2.detailModel=arr2;
+    [daiXiaoFei addObject:order2];
+    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+    view1.backgroundColor=[UIColor whiteColor];
+    _tableView.tableHeaderView=view1;
+    [self.tableView reloadData];
+}
+
+
+
+#pragma mark 退款
+-(void) getTuiDan{
+    [daiXiaoFei removeAllObjects];
+    [serchDaiXiaoFei removeAllObjects];
+    OrderInfoModel *order1=[[OrderInfoModel alloc]init];
+    order1.name=@"smilepeople";
+    order1.orderType=@"1";
+    order1.orderStu=@"1";
+    order1.money=@"1200";
+    order1.jiesuanmoney=@"¥100";
+    order1.isWeiYue=true;
+    order1.paytime=@"消费码：129382891";
+    ShopDetailmodel *shopD11=[[ShopDetailmodel alloc]init];
+    shopD11.name=@"散台特惠轩尼诗";
+    shopD11.youfeiPrice=@"¥1200";
+    shopD11.money=@"¥1550";
+    shopD11.count=@"［适合2-4人］";
+    NSArray *arr1=@[shopD11];
+    order1.detailModel=arr1;
+    [daiXiaoFei addObject:order1];
+    OrderInfoModel *order2=[[OrderInfoModel alloc]init];
+    order2.name=@"StefanieSun";
+    order2.orderType=@"1";
+    order2.orderStu=@"1";
+    order2.money=@"500";
+    order2.jiesuanmoney=@"¥840";
+    order2.isWeiYue=false;
+    order2.paytime=@"消费码：129382891";
+    ShopDetailmodel *shopD21=[[ShopDetailmodel alloc]init];
+    shopD21.name=@"散台特惠轩尼诗";
+    shopD21.youfeiPrice=@"¥250";
+    shopD21.money=@"¥1550";
+    shopD21.count=@"7人拼客";
+    ShopDetailmodel *shopD22=[[ShopDetailmodel alloc]init];
+    shopD22.name=@"散台特惠轩尼诗";
+    shopD22.youfeiPrice=@"¥250";
+    shopD22.money=@"¥1550";
+    shopD22.count=@"x1";
+    NSArray *arr2=@[shopD11,shopD22];
+    order2.detailModel=arr2;
+    [daiXiaoFei addObject:order2];
+    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+    view1.backgroundColor=[UIColor whiteColor];
+    _tableView.tableHeaderView=view1;
+    [self.tableView reloadData];
+}
+
 -(void)serchTextValChange:(UITextField *)sender{
     NSString *ss=sender.text;
     NSLog(@"*****%@",ss);
@@ -152,18 +292,21 @@
             
         case 2:// 待催促
         {
-            
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            return orderInfoModel.detailModel.count;
             break;
         }
             
         case 3:// 已消费
         {
-            
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            return orderInfoModel.detailModel.count;
             break;
         }
         default://退单
         {
-            
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            return orderInfoModel.detailModel.count;
             break;
         }
             
@@ -188,18 +331,18 @@
             
         case 2:// 待催促
         {
-            
+            return daiXiaoFei.count;
             break;
         }
             
         case 3:// 已消费
         {
-            
+            return daiXiaoFei.count;
             break;
         }
         default://退单
         {
-            
+            return daiXiaoFei.count;
             break;
         }
             
@@ -211,7 +354,12 @@
     return 45;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    
+    if(mMenuHriZontal.selectIndex==3){
+        return 68;
+    }
+    if(mMenuHriZontal.selectIndex==4){
+        return 68;
+    }
     return 96;
 }
 
@@ -250,18 +398,51 @@
             
         case 2:// 待催促
         {
-            return nil;
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomForCCView" owner:nil options:nil];
+            OrderBottomForCCView *orderBottomView= (OrderBottomForCCView *)[nibView objectAtIndex:0];
+            orderBottomView.moneyLal.text=orderInfoModel.money;
+            [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
+            [orderBottomView.dianhuaBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+            //    view.backgroundColor=[UIColor yellowColor];
+            return orderBottomView;
             break;
         }
             
         case 3:// 已消费
         {
-            return nil;
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomForXFView" owner:nil options:nil];
+            OrderBottomForXFView *orderBottomView= (OrderBottomForXFView *)[nibView objectAtIndex:0];
+            orderBottomView.fukuanLal.text=orderInfoModel.money;
+            orderBottomView.jiesuanLal.text=orderInfoModel.jiesuanmoney;
+            orderBottomView.yjLal.text=@"（佣金30%）";
+            //    view.backgroundColor=[UIColor yellowColor];
+            return orderBottomView;
             break;
         }
         default://退单
         {
-            return nil;
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomForXFView" owner:nil options:nil];
+            OrderBottomForXFView *orderBottomView= (OrderBottomForXFView *)[nibView objectAtIndex:0];
+            orderBottomView.titleOneLal.text=@"实际退款";
+            orderBottomView.titleTwoLal.textColor=RGB(234, 79, 79);
+            if(orderInfoModel.isWeiYue){
+                orderBottomView.titleTwoLal.text=@"已违约（违约金）";
+                orderBottomView.jiesuanLal.text=orderInfoModel.jiesuanmoney;
+            }else{
+                orderBottomView.titleTwoLal.text=@"未违约";
+                
+            }
+            
+            orderBottomView.fukuanLal.text=orderInfoModel.money;
+            
+            //    view.backgroundColor=[UIColor yellowColor];
+            return orderBottomView;
             break;
         }
             
@@ -303,18 +484,42 @@
             
         case 2:// 待催促
         {
-            return nil;
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
+            OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+            orderHeadView.nameLal.text=orderInfoModel.name;
+            
+            //            orderHeadView.detLal.text=orderInfoModel.paytime;
+            //    view.backgroundColor=[UIColor yellowColor];
+            return orderHeadView;
             break;
         }
             
         case 3:// 已消费
         {
-            return nil;
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
+            OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+            orderHeadView.nameLal.text=orderInfoModel.name;
+            orderHeadView.detLal.text=orderInfoModel.paytime;
+            //            orderHeadView.detLal.text=orderInfoModel.paytime;
+            //    view.backgroundColor=[UIColor yellowColor];
+            return orderHeadView;
             break;
         }
         default://退单
         {
-            return nil;
+            OrderInfoModel *orderInfoModel=daiXiaoFei[section];
+            
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
+            OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+            orderHeadView.nameLal.text=orderInfoModel.name;
+            orderHeadView.detLal.text=orderInfoModel.paytime;
+            //            orderHeadView.detLal.text=orderInfoModel.paytime;
+            //    view.backgroundColor=[UIColor yellowColor];
+            return orderHeadView;
             break;
         }
             
@@ -363,7 +568,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [_tableView deselectRowAtIndexPath:indexPath animated:false];
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -450,18 +655,18 @@
             
         case 2:// 待催促
         {
-            
+            [self getDaiCuiCu];
             break;
         }
             
         case 3:// 已消费
         {
-            
+            [self getYiXiaoFei];
             break;
         }
         default://退单
         {
-            
+            [self getTuiDan];
             break;
         }
             
@@ -513,7 +718,30 @@
 }
 #pragma mark 卡座
 -(void)kazuoAct:(OrderHandleButton *)sender{
+    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
+    [_bgView setTag:99999];
+    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
+    [_bgView setAlpha:1.0];
+    [self.view addSubview:_bgView];
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"KaZuoView" owner:nil options:nil];
+    kaZuoView= (KaZuoView *)[nibView objectAtIndex:0];
+    kaZuoView.top=SCREEN_HEIGHT;
+    [kaZuoView.SureBtn addTarget:self action:@selector(SetViewDisappearForKaZuoSure:) forControlEvents:UIControlEventTouchDown];
     
+    [_bgView addSubview:kaZuoView];
+    [UIView beginAnimations:@"animationID" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:kaZuoView cache:NO];
+    kaZuoView.top=SCREEN_HEIGHT-kaZuoView.height;
+    [UIView commitAnimations];
+    
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame=CGRectMake(0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT-kaZuoView.height);
+    [button setBackgroundColor:[UIColor clearColor]];
+    [button addTarget:self action:@selector(SetViewDisappearForKaZuo:) forControlEvents:UIControlEventTouchDown];
+    [_bgView insertSubview:button aboveSubview:_bgView];
+    button.backgroundColor=[UIColor clearColor];
 }
 
 - (IBAction)backAct:(UIButton *)sender {
@@ -665,6 +893,27 @@
         _bgView=nil;
     }
 }
+-(void)SetViewDisappearForKaZuoSure:(id)sender{
+    [self SetViewDisappearForKaZuo:sender];
+}
+-(void)SetViewDisappearForKaZuo:(id)sender{
+    if (_bgView)
+    {
+        _bgView.backgroundColor=[UIColor clearColor];
+        [UIView animateWithDuration:.5
+                         animations:^{
+                             
+                             kaZuoView.top=SCREEN_HEIGHT;
+                             _bgView.frame=CGRectMake(0,SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+                             _bgView.alpha=0.0;
+                         }];
+        [_bgView performSelector:@selector(removeFromSuperview)
+                      withObject:nil
+                      afterDelay:2];
+        
+        _bgView=nil;
+    }
+}
 #pragma mark -
 
 - (void)goToNextMonth:(id)sender
@@ -685,5 +934,15 @@
 -(void)endEdit:(id)sender{
     [sender resignFirstResponder];
 }
-
+-(void)dealloc{
+    _bgView=nil;
+    monView=nil;
+    dateFormatter=nil;
+    surebutton=nil;
+    mMenuHriZontal=nil;
+    daiXiaoFei=nil;
+    serchDaiXiaoFei=nil;
+    xiaoFeiMaUiew=nil;
+    kaZuoView=nil;
+}
 @end

@@ -14,6 +14,8 @@
 @property(nonatomic,copy)NSString * orderType;
 @property(nonatomic,copy)NSString * orderStu;
 @property(nonatomic,copy)NSString * money;
+@property(nonatomic,copy)NSString * jiesuanmoney;
 @property(nonatomic,copy)NSString * paytime;
+@property(nonatomic,assign)BOOL isWeiYue;
 @property(nonatomic,retain)NSArray * detailModel;
 @end

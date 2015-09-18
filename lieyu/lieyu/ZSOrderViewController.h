@@ -12,6 +12,7 @@
 #import "WQScrollCalendarWrapperView.h"
 #import "MenuHrizontal.h"
 #import "XiaoFeiMaUiew.h"
+#import "KaZuoView.h"
 @interface ZSOrderViewController : LYBaseViewController<MenuHrizontalDelegate,UITextFieldDelegate>{
     UIView  *_bgView;
     UIView  *monView;
@@ -21,6 +22,7 @@
     NSMutableArray *daiXiaoFei;
     NSMutableArray *serchDaiXiaoFei;
     XiaoFeiMaUiew *xiaoFeiMaUiew;
+    KaZuoView *kaZuoView;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *menuView;

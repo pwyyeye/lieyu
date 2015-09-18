@@ -104,6 +104,12 @@
 		A2F9DA841BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2F9DA831BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib */; };
 		A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F9DA861BAAAEFB009DEAF3 /* OrderBottomForLWView.m */; };
 		A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2F9DA881BAAAF1A009DEAF3 /* OrderBottomForLWView.xib */; };
+		A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F9DA8B1BAB96AB009DEAF3 /* KaZuoView.m */; };
+		A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2F9DA8D1BAB96C8009DEAF3 /* KaZuoView.xib */; };
+		A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F9DA901BABD611009DEAF3 /* OrderBottomForCCView.m */; };
+		A2F9DA931BABD62F009DEAF3 /* OrderBottomForCCView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2F9DA921BABD62F009DEAF3 /* OrderBottomForCCView.xib */; };
+		A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */ = {isa = PBXBuildFile; fileRef = A2F9DA951BABDF66009DEAF3 /* OrderBottomForXFView.m */; };
+		A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2F9DA971BABDF7C009DEAF3 /* OrderBottomForXFView.xib */; };
 		AD8899BC1B9AFE61007BCC7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BB1B9AFE61007BCC7C /* main.m */; };
 		AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BE1B9AFE61007BCC7C /* AppDelegate.m */; };
 		AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */; };
@@ -325,6 +331,15 @@
 		A2F9DA851BAAAEFB009DEAF3 /* OrderBottomForLWView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderBottomForLWView.h; sourceTree = "<group>"; };
 		A2F9DA861BAAAEFB009DEAF3 /* OrderBottomForLWView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderBottomForLWView.m; sourceTree = "<group>"; };
 		A2F9DA881BAAAF1A009DEAF3 /* OrderBottomForLWView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderBottomForLWView.xib; sourceTree = "<group>"; };
+		A2F9DA8A1BAB96AB009DEAF3 /* KaZuoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaZuoView.h; sourceTree = "<group>"; };
+		A2F9DA8B1BAB96AB009DEAF3 /* KaZuoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaZuoView.m; sourceTree = "<group>"; };
+		A2F9DA8D1BAB96C8009DEAF3 /* KaZuoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KaZuoView.xib; sourceTree = "<group>"; };
+		A2F9DA8F1BABD611009DEAF3 /* OrderBottomForCCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderBottomForCCView.h; sourceTree = "<group>"; };
+		A2F9DA901BABD611009DEAF3 /* OrderBottomForCCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderBottomForCCView.m; sourceTree = "<group>"; };
+		A2F9DA921BABD62F009DEAF3 /* OrderBottomForCCView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderBottomForCCView.xib; sourceTree = "<group>"; };
+		A2F9DA941BABDF66009DEAF3 /* OrderBottomForXFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderBottomForXFView.h; sourceTree = "<group>"; };
+		A2F9DA951BABDF66009DEAF3 /* OrderBottomForXFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderBottomForXFView.m; sourceTree = "<group>"; };
+		A2F9DA971BABDF7C009DEAF3 /* OrderBottomForXFView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderBottomForXFView.xib; sourceTree = "<group>"; };
 		AD8899B61B9AFE61007BCC7C /* lieyu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lieyu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899BA1B9AFE61007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8899BB1B9AFE61007BCC7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -963,6 +978,15 @@
 				A2F9DA851BAAAEFB009DEAF3 /* OrderBottomForLWView.h */,
 				A2F9DA861BAAAEFB009DEAF3 /* OrderBottomForLWView.m */,
 				A2F9DA881BAAAF1A009DEAF3 /* OrderBottomForLWView.xib */,
+				A2F9DA8A1BAB96AB009DEAF3 /* KaZuoView.h */,
+				A2F9DA8B1BAB96AB009DEAF3 /* KaZuoView.m */,
+				A2F9DA8D1BAB96C8009DEAF3 /* KaZuoView.xib */,
+				A2F9DA8F1BABD611009DEAF3 /* OrderBottomForCCView.h */,
+				A2F9DA901BABD611009DEAF3 /* OrderBottomForCCView.m */,
+				A2F9DA921BABD62F009DEAF3 /* OrderBottomForCCView.xib */,
+				A2F9DA941BABDF66009DEAF3 /* OrderBottomForXFView.h */,
+				A2F9DA951BABDF66009DEAF3 /* OrderBottomForXFView.m */,
+				A2F9DA971BABDF7C009DEAF3 /* OrderBottomForXFView.xib */,
 			);
 			name = "订单";
 			sourceTree = "<group>";
@@ -1662,6 +1686,7 @@
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
 				A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */,
+				A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
@@ -1676,6 +1701,7 @@
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
+				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
 				D7A230C91BA711D200E8B51B /* HomePageINeedPlayViewController.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
@@ -1700,6 +1726,7 @@
 				AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */,
 				15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */,
 				15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */,
+				A2F9DA931BABD62F009DEAF3 /* OrderBottomForCCView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1779,6 +1806,7 @@
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,
 				D748BC711BA1C856005AA996 /* NSObject+MJKeyValue.m in Sources */,
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
+				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
 				D761F0231BA5AED3000757B0 /* UIView+MJExtension.m in Sources */,
 				D761F0131BA5AED3000757B0 /* MJRefreshComponent.m in Sources */,
 				15EFEF891BA9A80C004739A2 /* UIViewExt.m in Sources */,
@@ -1788,6 +1816,7 @@
 				AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */,
 				15EE51421BA6E32E00464B74 /* ZSMyShopManageViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
+				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
 				A20100711BA7AAB2009283D1 /* TimeChooseViewController.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
@@ -1814,6 +1843,7 @@
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
 				A201006B1BA7A911009283D1 /* ZSReleasePackageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
+				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
