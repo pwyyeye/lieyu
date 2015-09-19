@@ -1,24 +1,23 @@
 //
-//  ZSMyShopManageViewController.m
+//  ZSMyShopsManageViewController.m
 //  lieyu
 //
-//  Created by 薛斯岐 on 15/9/14.
+//  Created by 薛斯岐 on 15/9/19.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSMyShopManageViewController.h"
+#import "ZSMyShopsManageViewController.h"
 
-@interface ZSMyShopManageViewController ()
+@interface ZSMyShopsManageViewController ()
 
 @end
 
-@implementation ZSMyShopManageViewController
+@implementation ZSMyShopsManageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
-    
-    self.title=@"我的客户";
+    self.view.backgroundColor=RGB(237, 237, 237 );
+    [self.navigationController setNavigationBarHidden:YES];
     // Do any additional setup after loading the view from its nib.
 }
 

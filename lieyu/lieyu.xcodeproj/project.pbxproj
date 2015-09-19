@@ -15,8 +15,8 @@
 		15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
-		15EE51421BA6E32E00464B74 /* ZSMyShopManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopManageViewController.m */; };
-		15EE51431BA6E32E00464B74 /* ZSMyShopManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopManageViewController.xib */; };
+		15EB3FE11BAD955600F07A29 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDF1BAD955600F07A29 /* ZSMyShopsManageViewController.m */; };
+		15EB3FE21BAD955600F07A29 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FE01BAD955600F07A29 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
 		15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51471BA7063000464B74 /* ZSWaitPayViewController.xib */; };
 		15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE514C1BA7069F00464B74 /* ZSReservedSeatViewController.m */; };
@@ -202,9 +202,9 @@
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
-		15EE513F1BA6E32E00464B74 /* ZSMyShopManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopManageViewController.h; sourceTree = "<group>"; };
-		15EE51401BA6E32E00464B74 /* ZSMyShopManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopManageViewController.m; sourceTree = "<group>"; };
-		15EE51411BA6E32E00464B74 /* ZSMyShopManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopManageViewController.xib; sourceTree = "<group>"; };
+		15EB3FDE1BAD955600F07A29 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
+		15EB3FDF1BAD955600F07A29 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
+		15EB3FE01BAD955600F07A29 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
 		15EE51451BA7063000464B74 /* ZSWaitPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWaitPayViewController.h; sourceTree = "<group>"; };
 		15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWaitPayViewController.m; sourceTree = "<group>"; };
 		15EE51471BA7063000464B74 /* ZSWaitPayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSWaitPayViewController.xib; sourceTree = "<group>"; };
@@ -620,9 +620,9 @@
 				A20100731BA7AD7A009283D1 /* 发布拼客 */,
 				A20100791BA7ADD6009283D1 /* 发布单品 */,
 				A201008A1BA7B030009283D1 /* 添加库存 */,
-				15EE513F1BA6E32E00464B74 /* ZSMyShopManageViewController.h */,
-				15EE51401BA6E32E00464B74 /* ZSMyShopManageViewController.m */,
-				15EE51411BA6E32E00464B74 /* ZSMyShopManageViewController.xib */,
+				15EB3FDE1BAD955600F07A29 /* ZSMyShopsManageViewController.h */,
+				15EB3FDF1BAD955600F07A29 /* ZSMyShopsManageViewController.m */,
+				15EB3FE01BAD955600F07A29 /* ZSMyShopsManageViewController.xib */,
 			);
 			name = "商铺管理";
 			sourceTree = "<group>";
@@ -1714,7 +1714,6 @@
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				A201006C1BA7A911009283D1 /* ZSReleasePackageViewController.xib in Resources */,
-				15EE51431BA6E32E00464B74 /* ZSMyShopManageViewController.xib in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
@@ -1743,6 +1742,7 @@
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
+				15EB3FE21BAD955600F07A29 /* ZSMyShopsManageViewController.xib in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
 				A2F9DA7F1BAA8CC3009DEAF3 /* SerchHeadView.xib in Resources */,
@@ -1854,7 +1854,6 @@
 				D761F0171BA5AED3000757B0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
 				AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */,
-				15EE51421BA6E32E00464B74 /* ZSMyShopManageViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
 				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
 				A20100711BA7AAB2009283D1 /* TimeChooseViewController.m in Sources */,
@@ -1906,6 +1905,7 @@
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
 				A2020D591BA6781B0090B92A /* FunctionListCell.m in Sources */,
 				D761F0141BA5AED3000757B0 /* MJRefreshFooter.m in Sources */,
+				15EB3FE11BAD955600F07A29 /* ZSMyShopsManageViewController.m in Sources */,
 				A2F9DA7D1BAA8C83009DEAF3 /* SerchHeadView.m in Sources */,
 				A2F9DA7A1BAA6F68009DEAF3 /* OrderHandleButton.m in Sources */,
 				A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */,
