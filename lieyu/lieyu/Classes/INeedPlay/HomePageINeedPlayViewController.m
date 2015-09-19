@@ -23,7 +23,7 @@
 @property(nonatomic,weak) IBOutlet UIButton * myFllowButton;
 @property(nonatomic,weak) IBOutlet UITableView * tableView;
 @property(nonatomic,weak) IBOutlet UITextField * searchTextField;
-@property(nonatomic,weak) IBOutlet UITabBarItem * tabBarItem;
+//@property(nonatomic,weak) IBOutlet UITabBarItem * tabBarItem;
 
 @end
 

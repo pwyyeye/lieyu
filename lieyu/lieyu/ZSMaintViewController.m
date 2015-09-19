@@ -14,6 +14,7 @@
 #import "ZSMyShopManageViewController.h"
 #import "ZSNoticeCenterViewController.h"
 #import "XiaoFeiMaUiew.h"
+#import "ZSListCell.h"
 @interface ZSMaintViewController ()
 
 @end
@@ -44,28 +45,28 @@
     [listArr addObject:dic2];
     [listArr addObject:dic3];
     [listArr addObject:dic4];
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 262)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 228)];
     view.backgroundColor=RGB(35, 166, 116);
     //外部圆
-    cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(108, 79, 104, 104)];
+    cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(130, 82, 60, 60)];
     [view addSubview:cImageView];
-    myPhotoImageView=[[UIImageView alloc]initWithFrame:CGRectMake(131, 102, 58, 58)];
+    myPhotoImageView=[[UIImageView alloc]initWithFrame:CGRectMake(130, 82, 60, 60)];
     //照片圆形
     myPhotoImageView.layer.masksToBounds =YES;
     
     myPhotoImageView.layer.cornerRadius =myPhotoImageView.frame.size.width/2;
     myPhotoImageView.backgroundColor=[UIColor whiteColor];
     [view addSubview:myPhotoImageView];
-    namelal=[[UILabel alloc]initWithFrame:CGRectMake(77,196,166,21)];
+    namelal=[[UILabel alloc]initWithFrame:CGRectMake(114,167,166,18)];
     [namelal setTextColor:RGB(255,255,255)];
-    namelal.font=[UIFont boldSystemFontOfSize:14];
+    namelal.font=[UIFont boldSystemFontOfSize:12];
     namelal.backgroundColor=[UIColor clearColor];
     namelal.text=@"我是VIP专属经理";
     namelal.textAlignment=NSTextAlignmentLeft;
     [view addSubview:namelal];
-    orderInfoLal=[[UILabel alloc]initWithFrame:CGRectMake(33,234,266,18)];
+    orderInfoLal=[[UILabel alloc]initWithFrame:CGRectMake(28,200,266,16)];
     [orderInfoLal setTextColor:RGB(255,255,255)];
-    orderInfoLal.font=[UIFont boldSystemFontOfSize:12];
+    orderInfoLal.font=[UIFont boldSystemFontOfSize:10];
     orderInfoLal.backgroundColor=[UIColor clearColor];
     orderInfoLal.text=@"您有30个订单要处理，请即时处理！";
     orderInfoLal.textAlignment=NSTextAlignmentLeft;
@@ -98,12 +99,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FunctionListCell";
+    static NSString *CellIdentifier = @"ZSListCell";
     
-    FunctionListCell *cell = (FunctionListCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ZSListCell *cell = (ZSListCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-        cell = (FunctionListCell *)[nibArray objectAtIndex:0];
+        cell = (ZSListCell *)[nibArray objectAtIndex:0];
         cell.backgroundColor=[UIColor whiteColor];
         
         
@@ -131,7 +132,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 81;
+    return 68;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

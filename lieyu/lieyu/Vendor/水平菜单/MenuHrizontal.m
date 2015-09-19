@@ -63,18 +63,18 @@
         
         
         //title
-        UILabel *titlelbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 10,vButton.width, 13)];
+        UILabel *titlelbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 8.5,vButton.width, 11)];
         titlelbl.text=vTitleStr;
-        titlelbl.font=[UIFont systemFontOfSize:13];
+        titlelbl.font=[UIFont systemFontOfSize:11];
         titlelbl.backgroundColor=[UIColor clearColor];
         titlelbl.textColor =RGB(102, 102, 102);
         titlelbl.textAlignment=1;
         [vButton addSubview:titlelbl];
         
         
-        UILabel *countbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 28,vButton.width, 9)];
+        UILabel *countbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 27,vButton.width, 8)];
         countbl.text=countSumStr;
-        countbl.font=[UIFont systemFontOfSize:7];
+        countbl.font=[UIFont systemFontOfSize:6];
         countbl.backgroundColor=[UIColor clearColor];
         countbl.textColor =RGB(255, 0, 0);
         countbl.textAlignment=1;

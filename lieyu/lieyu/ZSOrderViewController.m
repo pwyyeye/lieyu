@@ -351,16 +351,16 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 45;
+    return 68;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if(mMenuHriZontal.selectIndex==3){
-        return 68;
+        return 48;
     }
     if(mMenuHriZontal.selectIndex==4){
-        return 68;
+        return 48;
     }
-    return 96;
+    return 84;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -573,7 +573,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 89;
+    return 76;
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -688,7 +688,7 @@
     xiaoFeiMaUiew.xiaofeiMaTextField.delegate=self;
     [_bgView addSubview:xiaoFeiMaUiew];
     [UIView beginAnimations:@"animationID" context:nil];
-    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDuration:0.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:xiaoFeiMaUiew cache:NO];
     xiaoFeiMaUiew.top=20;
@@ -730,7 +730,7 @@
     
     [_bgView addSubview:kaZuoView];
     [UIView beginAnimations:@"animationID" context:nil];
-    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDuration:0.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:kaZuoView cache:NO];
     kaZuoView.top=SCREEN_HEIGHT-kaZuoView.height;
@@ -815,7 +815,7 @@
     
     
     [UIView beginAnimations:@"animationID" context:nil];
-    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDuration:0.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.calendarView cache:NO];
     monView.frame=CGRectMake(0, SCREEN_HEIGHT-266-45-50, SCREEN_WIDTH, 50);
@@ -857,7 +857,7 @@
 -(void)SetViewDisappearForSure:(id)sender{
     
     self.timeLal.text=[dateFormatter stringFromDate:[self.calendarLogic.selectedCalendarDay date]];
-    [self SetViewDisappearForSure:sender];
+    [self SetViewDisappear:sender];
 //    if (_bgView)
 //    {
 //        _bgView.backgroundColor=[UIColor clearColor];
