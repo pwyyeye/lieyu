@@ -120,6 +120,8 @@
 		AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD8899C91B9AFE61007BCC7C /* Images.xcassets */; };
 		AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */; };
 		AD8899D91B9AFE62007BCC7C /* lieyuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899D81B9AFE62007BCC7C /* lieyuTests.m */; };
+		D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */; };
+		D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */; };
 		D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D747142A1BAD151400611579 /* MainTabbarViewController.m */; };
 		D748BC2B1BA1BEC2005AA996 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D748BC2A1BA1BEC2005AA996 /* libRestKit.a */; };
 		D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC361BA1C24B005AA996 /* HttpOperatorProvider+backend.m */; };
@@ -363,6 +365,9 @@
 		AD8899D21B9AFE62007BCC7C /* lieyuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lieyuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899D71B9AFE62007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8899D81B9AFE62007BCC7C /* lieyuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lieyuTests.m; sourceTree = "<group>"; };
+		D729DB5E1BADB8D3005A9E60 /* BeerBarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarDetailViewController.h; sourceTree = "<group>"; };
+		D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarDetailViewController.m; sourceTree = "<group>"; };
+		D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeerBarDetailViewController.xib; sourceTree = "<group>"; };
 		D74714291BAD151400611579 /* MainTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabbarViewController.h; path = Classes/MainTabbarViewController.h; sourceTree = "<group>"; };
 		D747142A1BAD151400611579 /* MainTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabbarViewController.m; path = Classes/MainTabbarViewController.m; sourceTree = "<group>"; };
 		D748BBC11BA1BEC2005AA996 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -1094,6 +1099,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D729DB5C1BADB8AB005A9E60 /* BeerBar */ = {
+			isa = PBXGroup;
+			children = (
+				D729DB5D1BADB8AB005A9E60 /* BeerBarDetail */,
+			);
+			name = BeerBar;
+			path = Classes/INeedPlay/BeerBar;
+			sourceTree = "<group>";
+		};
+		D729DB5D1BADB8AB005A9E60 /* BeerBarDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D729DB5E1BADB8D3005A9E60 /* BeerBarDetailViewController.h */,
+				D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */,
+				D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */,
+			);
+			path = BeerBarDetail;
+			sourceTree = "<group>";
+		};
 		D748BBBE1BA1BEC2005AA996 /* RestKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1510,6 +1534,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				D729DB5C1BADB8AB005A9E60 /* BeerBar */,
 				D7A230CA1BA7152000E8B51B /* Cell */,
 				D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */,
 				D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */,
@@ -1762,6 +1787,7 @@
 				15EE515B1BA7085C00464B74 /* ZSAlreadyPayedViewController.xib in Resources */,
 				AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */,
 				15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */,
+				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
 				15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */,
 				A2F9DA931BABD62F009DEAF3 /* OrderBottomForCCView.xib in Resources */,
 			);
@@ -1861,6 +1887,7 @@
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
 				D748BC7A1BA1CB0E005AA996 /* User.m in Sources */,
+				D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */,
 				A20100E01BA94404009283D1 /* WQCalendarDay.m in Sources */,
 				D748BC731BA1C856005AA996 /* NSString+MJExtension.m in Sources */,
 				D761F0191BA5AED3000757B0 /* MJRefreshBackGifFooter.m in Sources */,
