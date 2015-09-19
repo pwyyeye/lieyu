@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYBaseViewController.h"
+@interface HomePageINeedPlayViewController : LYBaseViewController
 
-@interface HomePageINeedPlayViewController : UIViewController
+
 
 @end

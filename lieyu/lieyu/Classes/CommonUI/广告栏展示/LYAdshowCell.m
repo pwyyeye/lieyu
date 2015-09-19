@@ -1,21 +1,20 @@
 //
-//  LYWineBarInfoCell.m
+//  LYAdshowCell.m
 //  lieyu
 //
-//  Created by newfly on 9/14/15.
+//  Created by newfly on 9/18/15.
 //  Copyright (c) 2015 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "LYWineBarInfoCell.h"
+#import "LYAdshowCell.h"
 #import "MacroDefinition.h"
 
-@implementation LYWineBarInfoCell
+@implementation LYAdshowCell
 
 - (void)awakeFromNib {
     // Initialization code
-    _barNameLabel.textColor = UIColorFromRGB(0x333333);
-    _barDescLabel.textColor = UIColorFromRGB(0x666666);
-    _barAddrLabel.textColor = UIColorFromRGB(0x666666);
+    _pageCtrl.numberOfPages = 4;
+    _bannerScrollview.delegate = self;
 
 }
 
@@ -23,6 +22,16 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)scrollViewWillBeginDragging:(nonnull UIScrollView *)scrollView
+{
+
+}
+
+- (void)scrollViewDidScroll:(nonnull UIScrollView *)scrollView
+{
+
 }
 
 @end

@@ -118,6 +118,7 @@
 		AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD8899C91B9AFE61007BCC7C /* Images.xcassets */; };
 		AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */; };
 		AD8899D91B9AFE62007BCC7C /* lieyuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899D81B9AFE62007BCC7C /* lieyuTests.m */; };
+		D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D747142A1BAD151400611579 /* MainTabbarViewController.m */; };
 		D748BC2B1BA1BEC2005AA996 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D748BC2A1BA1BEC2005AA996 /* libRestKit.a */; };
 		D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC361BA1C24B005AA996 /* HttpOperatorProvider+backend.m */; };
 		D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC381BA1C24B005AA996 /* HttpOperatorProvider.m */; };
@@ -165,11 +166,14 @@
 		D761F0351BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F0321BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m */; };
 		D761F0361BA5C703000757B0 /* RKISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F0341BA5C703000757B0 /* RKISO8601DateFormatter.m */; };
 		D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */; };
-		D7A230C91BA711D200E8B51B /* HomePageINeedPlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230C71BA711D200E8B51B /* HomePageINeedPlayViewController.xib */; };
 		D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */; };
 		D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */; };
 		D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230D11BA7259100E8B51B /* LYAdBannerCell.m */; };
 		D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230D21BA7259100E8B51B /* LYAdBannerCell.xib */; };
+		D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A600571BAC654D0006A768 /* LYAdshowCell.m */; };
+		D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A600581BAC654D0006A768 /* LYAdshowCell.xib */; };
+		D7A6005D1BAC6CF50006A768 /* PlayTogetherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A6005C1BAC6CF50006A768 /* PlayTogetherViewController.m */; };
+		D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A6005F1BAC6E0B0006A768 /* FindViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,6 +358,8 @@
 		AD8899D21B9AFE62007BCC7C /* lieyuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lieyuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899D71B9AFE62007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8899D81B9AFE62007BCC7C /* lieyuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lieyuTests.m; sourceTree = "<group>"; };
+		D74714291BAD151400611579 /* MainTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabbarViewController.h; path = Classes/MainTabbarViewController.h; sourceTree = "<group>"; };
+		D747142A1BAD151400611579 /* MainTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabbarViewController.m; path = Classes/MainTabbarViewController.m; sourceTree = "<group>"; };
 		D748BBC11BA1BEC2005AA996 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		D748BBC21BA1BEC2005AA996 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		D748BBC31BA1BEC2005AA996 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
@@ -550,13 +556,19 @@
 		D761F0341BA5C703000757B0 /* RKISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKISO8601DateFormatter.m; sourceTree = "<group>"; };
 		D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageINeedPlayViewController.h; path = Classes/INeedPlay/HomePageINeedPlayViewController.h; sourceTree = "<group>"; };
 		D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageINeedPlayViewController.m; path = Classes/INeedPlay/HomePageINeedPlayViewController.m; sourceTree = "<group>"; };
-		D7A230C71BA711D200E8B51B /* HomePageINeedPlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomePageINeedPlayViewController.xib; path = Classes/INeedPlay/HomePageINeedPlayViewController.xib; sourceTree = "<group>"; };
 		D7A230CB1BA7160B00E8B51B /* LYWineBarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWineBarInfoCell.h; sourceTree = "<group>"; };
 		D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWineBarInfoCell.m; sourceTree = "<group>"; };
 		D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWineBarInfoCell.xib; sourceTree = "<group>"; };
 		D7A230D01BA7259100E8B51B /* LYAdBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAdBannerCell.h; sourceTree = "<group>"; };
 		D7A230D11BA7259100E8B51B /* LYAdBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAdBannerCell.m; sourceTree = "<group>"; };
 		D7A230D21BA7259100E8B51B /* LYAdBannerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYAdBannerCell.xib; sourceTree = "<group>"; };
+		D7A600561BAC654D0006A768 /* LYAdshowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAdshowCell.h; sourceTree = "<group>"; };
+		D7A600571BAC654D0006A768 /* LYAdshowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAdshowCell.m; sourceTree = "<group>"; };
+		D7A600581BAC654D0006A768 /* LYAdshowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYAdshowCell.xib; sourceTree = "<group>"; };
+		D7A6005B1BAC6CF50006A768 /* PlayTogetherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayTogetherViewController.h; path = Classes/PlayTogether/PlayTogetherViewController.h; sourceTree = "<group>"; };
+		D7A6005C1BAC6CF50006A768 /* PlayTogetherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayTogetherViewController.m; path = Classes/PlayTogether/PlayTogetherViewController.m; sourceTree = "<group>"; };
+		D7A6005E1BAC6E0B0006A768 /* FindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FindViewController.h; path = Classes/Find/FindViewController.h; sourceTree = "<group>"; };
+		D7A6005F1BAC6E0B0006A768 /* FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FindViewController.m; path = Classes/Find/FindViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1384,6 +1396,7 @@
 		D761EFE31BA5AE82000757B0 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				D7A600521BAC64F80006A768 /* 广告栏展示 */,
 				A20100B41BA80E12009283D1 /* 信息中心 */,
 				A201007F1BA7AF72009283D1 /* 产品 */,
 				A201006D1BA7AA8F009283D1 /* 时间选择 */,
@@ -1492,7 +1505,6 @@
 				D7A230CA1BA7152000E8B51B /* Cell */,
 				D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */,
 				D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */,
-				D7A230C71BA711D200E8B51B /* HomePageINeedPlayViewController.xib */,
 			);
 			name = iNeedPaly;
 			sourceTree = "<group>";
@@ -1500,6 +1512,8 @@
 		D761F0251BA5B8A5000757B0 /* PlayTogether */ = {
 			isa = PBXGroup;
 			children = (
+				D7A6005B1BAC6CF50006A768 /* PlayTogetherViewController.h */,
+				D7A6005C1BAC6CF50006A768 /* PlayTogetherViewController.m */,
 			);
 			name = PlayTogether;
 			sourceTree = "<group>";
@@ -1514,6 +1528,8 @@
 		D761F0271BA5B8D5000757B0 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				D7A6005E1BAC6E0B0006A768 /* FindViewController.h */,
+				D7A6005F1BAC6E0B0006A768 /* FindViewController.m */,
 			);
 			name = Find;
 			sourceTree = "<group>";
@@ -1538,6 +1554,8 @@
 				D761F0241BA5B847000757B0 /* iNeedPaly */,
 				D748BC831BA1CD35005AA996 /* Login */,
 				D748BC841BA1CD35005AA996 /* Register */,
+				D74714291BAD151400611579 /* MainTabbarViewController.h */,
+				D747142A1BAD151400611579 /* MainTabbarViewController.m */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -1583,6 +1601,16 @@
 			);
 			name = Cell;
 			path = Classes/INeedPlay/Cell;
+			sourceTree = "<group>";
+		};
+		D7A600521BAC64F80006A768 /* 广告栏展示 */ = {
+			isa = PBXGroup;
+			children = (
+				D7A600561BAC654D0006A768 /* LYAdshowCell.h */,
+				D7A600571BAC654D0006A768 /* LYAdshowCell.m */,
+				D7A600581BAC654D0006A768 /* LYAdshowCell.xib */,
+			);
+			path = "广告栏展示";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1702,7 +1730,6 @@
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
-				D7A230C91BA711D200E8B51B /* HomePageINeedPlayViewController.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
@@ -1710,6 +1737,7 @@
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
 				A2F9DA7F1BAA8CC3009DEAF3 /* SerchHeadView.xib in Resources */,
+				D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */,
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
 				A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */,
@@ -1810,9 +1838,11 @@
 				D761F0231BA5AED3000757B0 /* UIView+MJExtension.m in Sources */,
 				D761F0131BA5AED3000757B0 /* MJRefreshComponent.m in Sources */,
 				15EFEF891BA9A80C004739A2 /* UIViewExt.m in Sources */,
+				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
 				D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */,
 				D761F0171BA5AED3000757B0 /* MJRefreshAutoNormalFooter.m in Sources */,
+				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
 				AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */,
 				15EE51421BA6E32E00464B74 /* ZSMyShopManageViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
@@ -1833,6 +1863,7 @@
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
 				A201008E1BA7B087009283D1 /* ZSAddStockViewController.m in Sources */,
+				D7A6005D1BAC6CF50006A768 /* PlayTogetherViewController.m in Sources */,
 				D761F0201BA5AED3000757B0 /* MJRefreshConst.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
 				D761F01B1BA5AED3000757B0 /* MJRefreshBackStateFooter.m in Sources */,
@@ -1840,6 +1871,7 @@
 				D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */,
 				D748BC411BA1C24B005AA996 /* RestKitMapping.m in Sources */,
 				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
+				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
 				A201006B1BA7A911009283D1 /* ZSReleasePackageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
