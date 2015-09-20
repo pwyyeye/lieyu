@@ -8,6 +8,8 @@
 
 #import "LYBaseViewController.h"
 
-@interface ZSReleasePackageViewController : LYBaseViewController
-
+@interface ZSReleasePackageViewController : LYBaseViewController{
+    NSMutableArray *taocanDelList;
+}
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end

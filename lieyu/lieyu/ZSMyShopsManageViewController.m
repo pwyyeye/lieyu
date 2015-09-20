@@ -16,6 +16,7 @@
 #import "CheHeModel.h"
 #import "KuCunModel.h"
 #import "SerchHeadView.h"
+#import "ZSReleasePackageViewController.h"
 @interface ZSMyShopsManageViewController ()
 
 @end
@@ -263,6 +264,9 @@
                 
                 
             }
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 81, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
             TaoCanModel *taoCanModel=dataList[indexPath.row];
             cell.nameLal.text=taoCanModel.name;
             cell.delLal.text=taoCanModel.del;
@@ -285,6 +289,10 @@
                 
                 
             }
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 88, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
+
             PinKeModel *pinKeModel=dataList[indexPath.row];
             cell.nameLal.text=pinKeModel.name;
             cell.didianLal.text=pinKeModel.dizhi;
@@ -307,6 +315,9 @@
                 
                 
             }
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 81, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
             CheHeModel *cheHeModel=dataList[indexPath.row];
             cell.nameLal.text=cheHeModel.name;
             cell.countLal.text=cheHeModel.kucun;
@@ -376,9 +387,42 @@
     }
     
 }
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleNone;
+}
+#pragma mark 添加
+- (IBAction)addSomeAct:(UIButton *)sender {
+    switch (self.titleSeq.selectedSegmentIndex) {
+            
+        case 0://套餐
+        {
+            ZSReleasePackageViewController *releasePackageViewController=[[ZSReleasePackageViewController alloc]initWithNibName:@"ZSReleasePackageViewController" bundle:nil];
+            [self.navigationController pushViewController:releasePackageViewController animated:YES];
+            break;
+        }
+            
+        case 1:// 拼客
+        {
+            
+            break;
+            
+        }
+            
+        case 2:// 吃喝
+        {
+            
+            break;
+        }
+            
+        default:// 库存
+        {
+            
+            break;
+        }
+            
+    }
 }
 
 #pragma mark 选择时间
@@ -551,5 +595,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

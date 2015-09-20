@@ -22,6 +22,7 @@
 - (IBAction)titelChangeAct:(UISegmentedControl *)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *titleSeq;
+- (IBAction)addSomeAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *timeLal;
 @property (nonatomic, strong) WQDraggableCalendarView *calendarView;
 @property (nonatomic, strong) WQCalendarLogic *calendarLogic;

@@ -25,6 +25,14 @@
 		15EA20DD1BAE5F1900353785 /* PinKeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20DC1BAE5F1900353785 /* PinKeModel.m */; };
 		15EA20E31BAE5F5000353785 /* CheHeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20E21BAE5F5000353785 /* CheHeModel.m */; };
 		15EA20E61BAE5F6000353785 /* KuCunModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20E51BAE5F6000353785 /* KuCunModel.m */; };
+		15EA20E91BAE917200353785 /* FBTaoCanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20E81BAE917200353785 /* FBTaoCanView.m */; };
+		15EA20EB1BAE918A00353785 /* FBTaoCanView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EA20EA1BAE918A00353785 /* FBTaoCanView.xib */; };
+		15EA20EF1BAE9CE800353785 /* TaoCanMCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20ED1BAE9CE800353785 /* TaoCanMCell.m */; };
+		15EA20F01BAE9CE800353785 /* TaoCanMCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EA20EE1BAE9CE800353785 /* TaoCanMCell.xib */; };
+		15EA20F61BAEA22300353785 /* FBTaoCanSectionHead.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20F51BAEA22300353785 /* FBTaoCanSectionHead.m */; };
+		15EA20F91BAEA23500353785 /* FBTaoCanSectionBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20F81BAEA23500353785 /* FBTaoCanSectionBottom.m */; };
+		15EA20FB1BAEA24D00353785 /* FBTaoCanSectionHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EA20FA1BAEA24D00353785 /* FBTaoCanSectionHead.xib */; };
+		15EA20FD1BAEA25900353785 /* FBTaoCanSectionBottom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EA20FC1BAEA25900353785 /* FBTaoCanSectionBottom.xib */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
 		15EB3FE11BAD955600F07A29 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDF1BAD955600F07A29 /* ZSMyShopsManageViewController.m */; };
@@ -233,6 +241,18 @@
 		15EA20E21BAE5F5000353785 /* CheHeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheHeModel.m; sourceTree = "<group>"; };
 		15EA20E41BAE5F6000353785 /* KuCunModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KuCunModel.h; sourceTree = "<group>"; };
 		15EA20E51BAE5F6000353785 /* KuCunModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KuCunModel.m; sourceTree = "<group>"; };
+		15EA20E71BAE917200353785 /* FBTaoCanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBTaoCanView.h; sourceTree = "<group>"; };
+		15EA20E81BAE917200353785 /* FBTaoCanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTaoCanView.m; sourceTree = "<group>"; };
+		15EA20EA1BAE918A00353785 /* FBTaoCanView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBTaoCanView.xib; sourceTree = "<group>"; };
+		15EA20EC1BAE9CE800353785 /* TaoCanMCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoCanMCell.h; sourceTree = "<group>"; };
+		15EA20ED1BAE9CE800353785 /* TaoCanMCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoCanMCell.m; sourceTree = "<group>"; };
+		15EA20EE1BAE9CE800353785 /* TaoCanMCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoCanMCell.xib; sourceTree = "<group>"; };
+		15EA20F41BAEA22300353785 /* FBTaoCanSectionHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBTaoCanSectionHead.h; sourceTree = "<group>"; };
+		15EA20F51BAEA22300353785 /* FBTaoCanSectionHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTaoCanSectionHead.m; sourceTree = "<group>"; };
+		15EA20F71BAEA23500353785 /* FBTaoCanSectionBottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBTaoCanSectionBottom.h; sourceTree = "<group>"; };
+		15EA20F81BAEA23500353785 /* FBTaoCanSectionBottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBTaoCanSectionBottom.m; sourceTree = "<group>"; };
+		15EA20FA1BAEA24D00353785 /* FBTaoCanSectionHead.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBTaoCanSectionHead.xib; sourceTree = "<group>"; };
+		15EA20FC1BAEA25900353785 /* FBTaoCanSectionBottom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBTaoCanSectionBottom.xib; sourceTree = "<group>"; };
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
@@ -762,6 +782,15 @@
 				A20100681BA7A911009283D1 /* ZSReleasePackageViewController.h */,
 				A20100691BA7A911009283D1 /* ZSReleasePackageViewController.m */,
 				A201006A1BA7A911009283D1 /* ZSReleasePackageViewController.xib */,
+				15EA20E71BAE917200353785 /* FBTaoCanView.h */,
+				15EA20E81BAE917200353785 /* FBTaoCanView.m */,
+				15EA20EA1BAE918A00353785 /* FBTaoCanView.xib */,
+				15EA20F41BAEA22300353785 /* FBTaoCanSectionHead.h */,
+				15EA20F51BAEA22300353785 /* FBTaoCanSectionHead.m */,
+				15EA20FA1BAEA24D00353785 /* FBTaoCanSectionHead.xib */,
+				15EA20F71BAEA23500353785 /* FBTaoCanSectionBottom.h */,
+				15EA20F81BAEA23500353785 /* FBTaoCanSectionBottom.m */,
+				15EA20FC1BAEA25900353785 /* FBTaoCanSectionBottom.xib */,
 			);
 			name = "发布套餐";
 			sourceTree = "<group>";
@@ -1021,6 +1050,9 @@
 				15EA20D61BAE5B5100353785 /* KuCunCell.h */,
 				15EA20D71BAE5B5100353785 /* KuCunCell.m */,
 				15EA20D81BAE5B5100353785 /* KuCunCell.xib */,
+				15EA20EC1BAE9CE800353785 /* TaoCanMCell.h */,
+				15EA20ED1BAE9CE800353785 /* TaoCanMCell.m */,
+				15EA20EE1BAE9CE800353785 /* TaoCanMCell.xib */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -1787,6 +1819,7 @@
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
 				A2020D611BA67E9E0090B92A /* disClosure@2x.png in Resources */,
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
+				15EA20F01BAE9CE800353785 /* TaoCanMCell.xib in Resources */,
 				A201008F1BA7B087009283D1 /* ZSAddStockViewController.xib in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
@@ -1796,6 +1829,7 @@
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
 				A2020D801BA67FA40090B92A /* Fill20219@3x.png in Resources */,
 				A20100841BA7AFAB009283D1 /* LYProductslistViewController.xib in Resources */,
+				15EA20FB1BAEA24D00353785 /* FBTaoCanSectionHead.xib in Resources */,
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
 				A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */,
@@ -1818,6 +1852,7 @@
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
+				15EA20FD1BAEA25900353785 /* FBTaoCanSectionBottom.xib in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
@@ -1837,6 +1872,7 @@
 				D761F01F1BA5AED3000757B0 /* MJRefresh.bundle in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
 				15EA20CB1BAE4F2C00353785 /* CaoCanCell.xib in Resources */,
+				15EA20EB1BAE918A00353785 /* FBTaoCanView.xib in Resources */,
 				D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
@@ -1926,6 +1962,7 @@
 				A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */,
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,
 				D748BC711BA1C856005AA996 /* NSObject+MJKeyValue.m in Sources */,
+				15EA20F61BAEA22300353785 /* FBTaoCanSectionHead.m in Sources */,
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
 				D761F0231BA5AED3000757B0 /* UIView+MJExtension.m in Sources */,
@@ -1991,6 +2028,7 @@
 				D748BC721BA1C856005AA996 /* NSObject+MJProperty.m in Sources */,
 				D761F0121BA5AED3000757B0 /* MJRefreshBackFooter.m in Sources */,
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
+				15EA20F91BAEA23500353785 /* FBTaoCanSectionBottom.m in Sources */,
 				D748BC461BA1C280005AA996 /* LYDataStore.m in Sources */,
 				D748BC6F1BA1C856005AA996 /* MJType.m in Sources */,
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
@@ -1998,10 +2036,12 @@
 				D761F0141BA5AED3000757B0 /* MJRefreshFooter.m in Sources */,
 				15EB3FE11BAD955600F07A29 /* ZSMyShopsManageViewController.m in Sources */,
 				A2F9DA7D1BAA8C83009DEAF3 /* SerchHeadView.m in Sources */,
+				15EA20E91BAE917200353785 /* FBTaoCanView.m in Sources */,
 				A2F9DA7A1BAA6F68009DEAF3 /* OrderHandleButton.m in Sources */,
 				A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */,
 				D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */,
 				D748BC6E1BA1C856005AA996 /* MJProperty.m in Sources */,
+				15EA20EF1BAE9CE800353785 /* TaoCanMCell.m in Sources */,
 				D761F0111BA5AED3000757B0 /* MJRefreshAutoFooter.m in Sources */,
 				D748BC6C1BA1C856005AA996 /* MJConst.m in Sources */,
 				A201007D1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.m in Sources */,
