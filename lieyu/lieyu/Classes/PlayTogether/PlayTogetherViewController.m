@@ -13,6 +13,7 @@
 @property(nonatomic,weak) IBOutlet UIButton * allListButton;
 @property(nonatomic,weak) IBOutlet UIButton * nearDistanceButton;
 @property(nonatomic,strong) IBOutlet UIButton * fillterButton;
+@property(nonatomic,strong) NSArray *oriNavItems;
 
 
 @end
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setupViewStyles];
     // Do any additional setup after loading the view.
 }
@@ -30,8 +32,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.oriNavItems = [self.navigationController.navigationBar.items copy];
+    [self setCustomTitle:@"一起玩"];
     [self.navigationController.navigationBar addSubview:_fillterButton];
     CGRect rc = _fillterButton.frame;
     rc.origin.x = 10;
@@ -41,6 +46,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [self setCustomTitle:nil];
     [_fillterButton removeFromSuperview];
 }
 
@@ -52,7 +58,6 @@
 
 - (void)setupViewStyles
 {
-    self.title = @"一起玩";
 //    [self.nearDistanceButton setBackgroundImage:<#(nullable UIImage *)#> forState:<#(UIControlState)#>]
 }
 

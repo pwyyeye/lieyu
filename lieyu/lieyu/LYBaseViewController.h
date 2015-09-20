@@ -11,4 +11,6 @@
 #import "UIViewExt.h"
 @interface LYBaseViewController : UIViewController
 
+- (void)setCustomTitle:(NSString *)title;
+
 @end

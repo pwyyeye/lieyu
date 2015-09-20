@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYBaseViewController.h"
 
-@interface PlayTogetherViewController : UIViewController
+@interface PlayTogetherViewController : LYBaseViewController
 
 @end

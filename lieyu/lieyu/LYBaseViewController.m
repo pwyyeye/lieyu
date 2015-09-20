@@ -55,6 +55,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)setCustomTitle:(NSString *)title
+{
+    int titleTag = 1000000;
+    self.title = nil;
+    UINavigationBar *navBar = self.navigationController.navigationBar;
+    UILabel *label = (UILabel *)[self.navigationController.navigationBar viewWithTag:titleTag];
+    if (label)
+    {
+        [label removeFromSuperview];
+    }
+    
+    if (title == nil)
+    {
+        return ;
+    }
+    
+    UIFont * font = navBar.titleTextAttributes[NSFontAttributeName];
+    UIColor * textColor = navBar.titleTextAttributes[NSForegroundColorAttributeName];
+    
+    UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBar.frame.size.width, 44)];
+    labelTitle.font = font;
+    labelTitle.textColor = textColor;
+    labelTitle.tag = titleTag;
+    labelTitle.text = title;
+    labelTitle.textAlignment = NSTextAlignmentCenter;
+    
+    [self.navigationController.navigationBar addSubview:labelTitle];
+}
+
 /*
 #pragma mark - Navigation
 

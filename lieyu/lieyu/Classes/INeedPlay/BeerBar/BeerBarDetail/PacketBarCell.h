@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PacketBarCell : UITableViewCell
+@interface PacketBarCell : UITableViewCell<LYTableViewCellLayout>
 
 @property(nonatomic,weak)IBOutlet UILabel * labFanli;
 

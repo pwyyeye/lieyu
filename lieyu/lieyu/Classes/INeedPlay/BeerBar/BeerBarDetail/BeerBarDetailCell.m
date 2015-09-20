@@ -29,6 +29,13 @@
     return 220;
 }
 
+- (void)configureCell:(id)model
+{
+//--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
+    
+    
+}
+
 @end
 
 

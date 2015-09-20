@@ -45,6 +45,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 - (void)setupViewStyles
 {    
     [_tableView registerNib:[UINib nibWithNibName:@"PacketBarCell" bundle:nil] forCellReuseIdentifier:@"PacketBarCell"];
@@ -100,6 +101,7 @@
             {
                 cell = _barDetailCell;
             }
+            [_barDetailCell configureCell:nil];
 
         }
             break;
@@ -113,8 +115,9 @@
                 cell = [tableView dequeueReusableCellWithIdentifier:@"PacketBarCell" forIndexPath:indexPath];
                 PacketBarCell * tCell = cell;
                 {
-                    
+                    [tCell configureCell:nil];
                 }
+                
             }
         }
             break;

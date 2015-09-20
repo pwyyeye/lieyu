@@ -49,6 +49,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setSelectedIndex:(NSUInteger)selectedIndex
+{
+    
+}
+
 /*
 #pragma mark - Navigation
 

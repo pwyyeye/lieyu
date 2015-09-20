@@ -131,6 +131,10 @@
 		D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */; };
 		D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */; };
 		D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D736523B1BAEBB45002541CE /* CheHeModel.m */; settings = {ASSET_TAGS = (); }; };
+		D73652411BAEBF44002541CE /* KuCunCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D736523E1BAEBF44002541CE /* KuCunCell.m */; settings = {ASSET_TAGS = (); }; };
+		D73652421BAEBF44002541CE /* KuCunModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652401BAEBF44002541CE /* KuCunModel.m */; settings = {ASSET_TAGS = (); }; };
+		D73652471BAEBF60002541CE /* PinKeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652441BAEBF60002541CE /* PinKeModel.m */; settings = {ASSET_TAGS = (); }; };
+		D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652461BAEBF60002541CE /* TaoCanModel.m */; settings = {ASSET_TAGS = (); }; };
 		D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D747142A1BAD151400611579 /* MainTabbarViewController.m */; };
 		D748BC2B1BA1BEC2005AA996 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D748BC2A1BA1BEC2005AA996 /* libRestKit.a */; };
 		D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC361BA1C24B005AA996 /* HttpOperatorProvider+backend.m */; };
@@ -395,6 +399,14 @@
 		D73652391BAEB314002541CE /* lieyu.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lieyu.pch; sourceTree = "<group>"; };
 		D736523A1BAEBB45002541CE /* CheHeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheHeModel.h; sourceTree = "<group>"; };
 		D736523B1BAEBB45002541CE /* CheHeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheHeModel.m; sourceTree = "<group>"; };
+		D736523D1BAEBF44002541CE /* KuCunCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KuCunCell.h; sourceTree = "<group>"; };
+		D736523E1BAEBF44002541CE /* KuCunCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KuCunCell.m; sourceTree = "<group>"; };
+		D736523F1BAEBF44002541CE /* KuCunModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KuCunModel.h; sourceTree = "<group>"; };
+		D73652401BAEBF44002541CE /* KuCunModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KuCunModel.m; sourceTree = "<group>"; };
+		D73652431BAEBF60002541CE /* PinKeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinKeModel.h; sourceTree = "<group>"; };
+		D73652441BAEBF60002541CE /* PinKeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinKeModel.m; sourceTree = "<group>"; };
+		D73652451BAEBF60002541CE /* TaoCanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoCanModel.h; sourceTree = "<group>"; };
+		D73652461BAEBF60002541CE /* TaoCanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoCanModel.m; sourceTree = "<group>"; };
 		D74714291BAD151400611579 /* MainTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabbarViewController.h; path = Classes/MainTabbarViewController.h; sourceTree = "<group>"; };
 		D747142A1BAD151400611579 /* MainTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabbarViewController.m; path = Classes/MainTabbarViewController.m; sourceTree = "<group>"; };
 		D748BBC11BA1BEC2005AA996 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -946,6 +958,14 @@
 		A2020D821BA6A53A0090B92A /* modles */ = {
 			isa = PBXGroup;
 			children = (
+				D73652431BAEBF60002541CE /* PinKeModel.h */,
+				D73652441BAEBF60002541CE /* PinKeModel.m */,
+				D73652451BAEBF60002541CE /* TaoCanModel.h */,
+				D73652461BAEBF60002541CE /* TaoCanModel.m */,
+				D736523D1BAEBF44002541CE /* KuCunCell.h */,
+				D736523E1BAEBF44002541CE /* KuCunCell.m */,
+				D736523F1BAEBF44002541CE /* KuCunModel.h */,
+				D73652401BAEBF44002541CE /* KuCunModel.m */,
 				D736523A1BAEBB45002541CE /* CheHeModel.h */,
 				D736523B1BAEBB45002541CE /* CheHeModel.m */,
 				A20100C41BA91288009283D1 /* CustomerModel.h */,
@@ -1913,6 +1933,7 @@
 				15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */,
 				D761F0361BA5C703000757B0 /* RKISO8601DateFormatter.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
+				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
@@ -1967,6 +1988,7 @@
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
+				D73652421BAEBF44002541CE /* KuCunModel.m in Sources */,
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
@@ -1979,6 +2001,7 @@
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
 				D761F0161BA5AED3000757B0 /* MJRefreshAutoGifFooter.m in Sources */,
+				D73652471BAEBF60002541CE /* PinKeModel.m in Sources */,
 				D748BC721BA1C856005AA996 /* NSObject+MJProperty.m in Sources */,
 				D761F0121BA5AED3000757B0 /* MJRefreshBackFooter.m in Sources */,
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
@@ -1996,6 +2019,7 @@
 				D748BC6C1BA1C856005AA996 /* MJConst.m in Sources */,
 				A201007D1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.m in Sources */,
 				15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */,
+				D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

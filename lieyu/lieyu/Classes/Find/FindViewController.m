@@ -28,7 +28,12 @@
 
 - (void)setupViewStyles
 {
+    self.title = @"发现";
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    
 }
 /*
 #pragma mark - Navigation

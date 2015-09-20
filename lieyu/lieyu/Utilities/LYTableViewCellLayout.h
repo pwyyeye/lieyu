@@ -12,4 +12,7 @@
 
 + (CGFloat )adjustCellHeight:(id)model;
 
+- (void )configureCell:(id)model;
+
+
 @end
