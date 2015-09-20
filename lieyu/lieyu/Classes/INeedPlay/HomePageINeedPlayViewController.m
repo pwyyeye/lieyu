@@ -9,6 +9,7 @@
 #import "LYWineBarInfoCell.h"
 #import "HomePageINeedPlayViewController.h"
 #import "MJRefresh.h"
+#import "BeerBarDetailViewController.h"
 
 @interface HomePageINeedPlayViewController ()
 <
@@ -175,8 +176,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-
+    if (indexPath.row >= 3) {
+        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 #pragma textfield delegate

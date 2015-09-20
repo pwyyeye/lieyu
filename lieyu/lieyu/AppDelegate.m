@@ -8,9 +8,12 @@
 
 #import "AppDelegate.h"
 #import "LYDataStore.h"
+#import "NeedHideNavigationBar.h"
 
 @interface AppDelegate ()
-
+<
+    UINavigationControllerDelegate
+>
 @end
 
 @implementation AppDelegate
@@ -19,6 +22,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self setupDataStore];
+    UINavigationController * nav = (UINavigationController *)self.window.rootViewController;
+    nav.delegate = self;
     return YES;
 }
 
@@ -26,6 +31,20 @@
 {
     [LYDataStore currentInstance];
 }
+
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if ([viewController conformsToProtocol:@protocol(NeedHideNavigationBar)])
+    {
+        [viewController.navigationController setNavigationBarHidden:YES];
+    }
+    else
+    {
+        [viewController.navigationController setNavigationBarHidden:NO];
+    }
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

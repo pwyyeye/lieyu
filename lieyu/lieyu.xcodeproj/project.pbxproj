@@ -120,6 +120,14 @@
 		AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD8899C91B9AFE61007BCC7C /* Images.xcassets */; };
 		AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */; };
 		AD8899D91B9AFE62007BCC7C /* lieyuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899D81B9AFE62007BCC7C /* lieyuTests.m */; };
+		D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */; settings = {ASSET_TAGS = (); }; };
+		D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D8A1BAE8C3300915F37 /* PacketBarCell.m */; settings = {ASSET_TAGS = (); }; };
+		D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71E1D8B1BAE8C3300915F37 /* PacketBarCell.xib */; settings = {ASSET_TAGS = (); }; };
+		D71E1D911BAE8F3100915F37 /* BusinessPublicNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D8F1BAE8F3100915F37 /* BusinessPublicNoteCell.m */; settings = {ASSET_TAGS = (); }; };
+		D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71E1D901BAE8F3100915F37 /* BusinessPublicNoteCell.xib */; settings = {ASSET_TAGS = (); }; };
+		D71E1D951BAE963900915F37 /* LYShareSnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D941BAE963900915F37 /* LYShareSnsView.m */; settings = {ASSET_TAGS = (); }; };
+		D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71E1D961BAE965600915F37 /* LYShareSnsView.xib */; settings = {ASSET_TAGS = (); }; };
+		D71E1D9A1BAE9C1100915F37 /* LYColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D991BAE9C1100915F37 /* LYColors.m */; settings = {ASSET_TAGS = (); }; };
 		D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */; };
 		D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */; };
 		D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D747142A1BAD151400611579 /* MainTabbarViewController.m */; };
@@ -365,9 +373,25 @@
 		AD8899D21B9AFE62007BCC7C /* lieyuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lieyuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899D71B9AFE62007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8899D81B9AFE62007BCC7C /* lieyuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lieyuTests.m; sourceTree = "<group>"; };
+		D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarDetailCell.h; sourceTree = "<group>"; };
+		D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarDetailCell.m; sourceTree = "<group>"; };
+		D71E1D891BAE8C3300915F37 /* PacketBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketBarCell.h; sourceTree = "<group>"; };
+		D71E1D8A1BAE8C3300915F37 /* PacketBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketBarCell.m; sourceTree = "<group>"; };
+		D71E1D8B1BAE8C3300915F37 /* PacketBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PacketBarCell.xib; sourceTree = "<group>"; };
+		D71E1D8E1BAE8F3100915F37 /* BusinessPublicNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessPublicNoteCell.h; sourceTree = "<group>"; };
+		D71E1D8F1BAE8F3100915F37 /* BusinessPublicNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessPublicNoteCell.m; sourceTree = "<group>"; };
+		D71E1D901BAE8F3100915F37 /* BusinessPublicNoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessPublicNoteCell.xib; sourceTree = "<group>"; };
+		D71E1D931BAE963900915F37 /* LYShareSnsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYShareSnsView.h; sourceTree = "<group>"; };
+		D71E1D941BAE963900915F37 /* LYShareSnsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYShareSnsView.m; sourceTree = "<group>"; };
+		D71E1D961BAE965600915F37 /* LYShareSnsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYShareSnsView.xib; sourceTree = "<group>"; };
+		D71E1D981BAE9C1100915F37 /* LYColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYColors.h; sourceTree = "<group>"; };
+		D71E1D991BAE9C1100915F37 /* LYColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYColors.m; sourceTree = "<group>"; };
 		D729DB5E1BADB8D3005A9E60 /* BeerBarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarDetailViewController.h; sourceTree = "<group>"; };
 		D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarDetailViewController.m; sourceTree = "<group>"; };
 		D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeerBarDetailViewController.xib; sourceTree = "<group>"; };
+		D73652371BAEAC4F002541CE /* NeedHideNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedHideNavigationBar.h; sourceTree = "<group>"; };
+		D73652381BAEB2BF002541CE /* LYTableViewCellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTableViewCellLayout.h; sourceTree = "<group>"; };
+		D73652391BAEB314002541CE /* lieyu.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lieyu.pch; sourceTree = "<group>"; };
 		D74714291BAD151400611579 /* MainTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabbarViewController.h; path = Classes/MainTabbarViewController.h; sourceTree = "<group>"; };
 		D747142A1BAD151400611579 /* MainTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabbarViewController.m; path = Classes/MainTabbarViewController.m; sourceTree = "<group>"; };
 		D748BBC11BA1BEC2005AA996 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -1064,6 +1088,7 @@
 				AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */,
 				AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */,
 				AD8899B91B9AFE61007BCC7C /* Supporting Files */,
+				D73652391BAEB314002541CE /* lieyu.pch */,
 			);
 			path = lieyu;
 			sourceTree = "<group>";
@@ -1114,6 +1139,17 @@
 				D729DB5E1BADB8D3005A9E60 /* BeerBarDetailViewController.h */,
 				D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */,
 				D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */,
+				D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */,
+				D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */,
+				D71E1D891BAE8C3300915F37 /* PacketBarCell.h */,
+				D71E1D8A1BAE8C3300915F37 /* PacketBarCell.m */,
+				D71E1D8B1BAE8C3300915F37 /* PacketBarCell.xib */,
+				D71E1D8E1BAE8F3100915F37 /* BusinessPublicNoteCell.h */,
+				D71E1D8F1BAE8F3100915F37 /* BusinessPublicNoteCell.m */,
+				D71E1D901BAE8F3100915F37 /* BusinessPublicNoteCell.xib */,
+				D71E1D931BAE963900915F37 /* LYShareSnsView.h */,
+				D71E1D941BAE963900915F37 /* LYShareSnsView.m */,
+				D71E1D961BAE965600915F37 /* LYShareSnsView.xib */,
 			);
 			path = BeerBarDetail;
 			sourceTree = "<group>";
@@ -1621,6 +1657,10 @@
 			isa = PBXGroup;
 			children = (
 				D748BC4D1BA1C52E005AA996 /* Apple */,
+				D71E1D981BAE9C1100915F37 /* LYColors.h */,
+				D71E1D991BAE9C1100915F37 /* LYColors.m */,
+				D73652371BAEAC4F002541CE /* NeedHideNavigationBar.h */,
+				D73652381BAEB2BF002541CE /* LYTableViewCellLayout.h */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1740,6 +1780,7 @@
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				A201006C1BA7A911009283D1 /* ZSReleasePackageViewController.xib in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopManageViewController.xib in Resources */,
+				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
@@ -1758,6 +1799,7 @@
 				A2F9DA761BAA6AE2009DEAF3 /* OrderBottomView.xib in Resources */,
 				A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */,
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
+				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
@@ -1774,6 +1816,7 @@
 				D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */,
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
+				D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */,
 				A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */,
 				A2020D761BA67FA40090B92A /* Fill2097@2x.png in Resources */,
 				A20100721BA7AAB2009283D1 /* TimeChooseViewController.xib in Resources */,
@@ -1844,6 +1887,7 @@
 				A2020D891BA6A5AA0090B92A /* KaZuoCell.m in Sources */,
 				D748BC701BA1C856005AA996 /* NSObject+MJCoding.m in Sources */,
 				D761F01E1BA5AED3000757B0 /* MJRefreshStateHeader.m in Sources */,
+				D71E1D911BAE8F3100915F37 /* BusinessPublicNoteCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
 				15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */,
@@ -1856,12 +1900,14 @@
 				15EE515A1BA7085C00464B74 /* ZSAlreadyPayedViewController.m in Sources */,
 				D761F01A1BA5AED3000757B0 /* MJRefreshBackNormalFooter.m in Sources */,
 				A20100C21BA90E4E009283D1 /* CustomerCell.m in Sources */,
+				D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */,
 				D761F0151BA5AED3000757B0 /* MJRefreshHeader.m in Sources */,
 				D748BC6D1BA1C856005AA996 /* MJFoundation.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
 				A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */,
 				15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */,
 				D761F0361BA5C703000757B0 /* RKISO8601DateFormatter.m in Sources */,
+				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
@@ -1888,6 +1934,7 @@
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
 				D748BC7A1BA1CB0E005AA996 /* User.m in Sources */,
 				D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */,
+				D71E1D9A1BAE9C1100915F37 /* LYColors.m in Sources */,
 				A20100E01BA94404009283D1 /* WQCalendarDay.m in Sources */,
 				D748BC731BA1C856005AA996 /* NSString+MJExtension.m in Sources */,
 				D761F0191BA5AED3000757B0 /* MJRefreshBackGifFooter.m in Sources */,
@@ -1921,6 +1968,7 @@
 				A2F9DA6A1BAA58B1009DEAF3 /* DetailCell.m in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
+				D71E1D951BAE963900915F37 /* LYShareSnsView.m in Sources */,
 				D761F0351BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m in Sources */,
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
@@ -2071,6 +2119,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				INFOPLIST_FILE = lieyu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2088,6 +2138,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				INFOPLIST_FILE = lieyu/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

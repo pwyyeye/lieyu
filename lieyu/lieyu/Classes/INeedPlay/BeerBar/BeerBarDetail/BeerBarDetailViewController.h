@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "NeedHideNavigationBar.h"
 @interface BeerBarDetailViewController : UIViewController
+<
+    UITableViewDelegate,
+    UITableViewDataSource,
+    NeedHideNavigationBar
+>
 
 @end
