@@ -10,5 +10,6 @@
 
 @interface SerchHeadView : UIView
 @property (weak, nonatomic) IBOutlet UITextField *serchText;
+@property (weak, nonatomic) IBOutlet UILabel *lineLal;
 
 @end

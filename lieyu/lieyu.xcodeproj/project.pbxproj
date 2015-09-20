@@ -13,6 +13,18 @@
 		15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63441BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib */; };
 		15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */; };
 		15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */; };
+		15EA20C61BAE4E4D00353785 /* TaoCanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20C51BAE4E4D00353785 /* TaoCanModel.m */; };
+		15EA20CA1BAE4F2C00353785 /* CaoCanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20C81BAE4F2C00353785 /* CaoCanCell.m */; };
+		15EA20CB1BAE4F2C00353785 /* CaoCanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EA20C91BAE4F2C00353785 /* CaoCanCell.xib */; };
+		15EA20CF1BAE559C00353785 /* PinKeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20CD1BAE559C00353785 /* PinKeCell.m */; };
+		15EA20D01BAE559C00353785 /* PinKeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EA20CE1BAE559C00353785 /* PinKeCell.xib */; };
+		15EA20D41BAE57C800353785 /* CheHeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20D21BAE57C800353785 /* CheHeCell.m */; };
+		15EA20D51BAE57C800353785 /* CheHeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EA20D31BAE57C800353785 /* CheHeCell.xib */; };
+		15EA20D91BAE5B5100353785 /* KuCunCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20D71BAE5B5100353785 /* KuCunCell.m */; };
+		15EA20DA1BAE5B5100353785 /* KuCunCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EA20D81BAE5B5100353785 /* KuCunCell.xib */; };
+		15EA20DD1BAE5F1900353785 /* PinKeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20DC1BAE5F1900353785 /* PinKeModel.m */; };
+		15EA20E31BAE5F5000353785 /* CheHeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20E21BAE5F5000353785 /* CheHeModel.m */; };
+		15EA20E61BAE5F6000353785 /* KuCunModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA20E51BAE5F6000353785 /* KuCunModel.m */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
 		15EB3FE11BAD955600F07A29 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDF1BAD955600F07A29 /* ZSMyShopsManageViewController.m */; };
@@ -201,6 +213,26 @@
 		15AE63471BA8576500FFAD1A /* ZSOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSOrderViewController.h; sourceTree = "<group>"; };
 		15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSOrderViewController.m; sourceTree = "<group>"; };
 		15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSOrderViewController.xib; sourceTree = "<group>"; };
+		15EA20C41BAE4E4D00353785 /* TaoCanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoCanModel.h; sourceTree = "<group>"; };
+		15EA20C51BAE4E4D00353785 /* TaoCanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoCanModel.m; sourceTree = "<group>"; };
+		15EA20C71BAE4F2C00353785 /* CaoCanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaoCanCell.h; sourceTree = "<group>"; };
+		15EA20C81BAE4F2C00353785 /* CaoCanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaoCanCell.m; sourceTree = "<group>"; };
+		15EA20C91BAE4F2C00353785 /* CaoCanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaoCanCell.xib; sourceTree = "<group>"; };
+		15EA20CC1BAE559C00353785 /* PinKeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinKeCell.h; sourceTree = "<group>"; };
+		15EA20CD1BAE559C00353785 /* PinKeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinKeCell.m; sourceTree = "<group>"; };
+		15EA20CE1BAE559C00353785 /* PinKeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinKeCell.xib; sourceTree = "<group>"; };
+		15EA20D11BAE57C800353785 /* CheHeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheHeCell.h; sourceTree = "<group>"; };
+		15EA20D21BAE57C800353785 /* CheHeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheHeCell.m; sourceTree = "<group>"; };
+		15EA20D31BAE57C800353785 /* CheHeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheHeCell.xib; sourceTree = "<group>"; };
+		15EA20D61BAE5B5100353785 /* KuCunCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KuCunCell.h; sourceTree = "<group>"; };
+		15EA20D71BAE5B5100353785 /* KuCunCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KuCunCell.m; sourceTree = "<group>"; };
+		15EA20D81BAE5B5100353785 /* KuCunCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KuCunCell.xib; sourceTree = "<group>"; };
+		15EA20DB1BAE5F1900353785 /* PinKeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinKeModel.h; sourceTree = "<group>"; };
+		15EA20DC1BAE5F1900353785 /* PinKeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinKeModel.m; sourceTree = "<group>"; };
+		15EA20E11BAE5F5000353785 /* CheHeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheHeModel.h; sourceTree = "<group>"; };
+		15EA20E21BAE5F5000353785 /* CheHeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheHeModel.m; sourceTree = "<group>"; };
+		15EA20E41BAE5F6000353785 /* KuCunModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KuCunModel.h; sourceTree = "<group>"; };
+		15EA20E51BAE5F6000353785 /* KuCunModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KuCunModel.m; sourceTree = "<group>"; };
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
@@ -925,6 +957,14 @@
 				A2F9DA621BAA5621009DEAF3 /* OrderInfoModel.m */,
 				A2F9DA641BAA5666009DEAF3 /* ShopDetailmodel.h */,
 				A2F9DA651BAA5666009DEAF3 /* ShopDetailmodel.m */,
+				15EA20C41BAE4E4D00353785 /* TaoCanModel.h */,
+				15EA20C51BAE4E4D00353785 /* TaoCanModel.m */,
+				15EA20DB1BAE5F1900353785 /* PinKeModel.h */,
+				15EA20DC1BAE5F1900353785 /* PinKeModel.m */,
+				15EA20E11BAE5F5000353785 /* CheHeModel.h */,
+				15EA20E21BAE5F5000353785 /* CheHeModel.m */,
+				15EA20E41BAE5F6000353785 /* KuCunModel.h */,
+				15EA20E51BAE5F6000353785 /* KuCunModel.m */,
 			);
 			name = modles;
 			sourceTree = "<group>";
@@ -969,6 +1009,18 @@
 				15EB3FD91BAD472A00F07A29 /* ZSListCell.h */,
 				15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */,
 				15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */,
+				15EA20C71BAE4F2C00353785 /* CaoCanCell.h */,
+				15EA20C81BAE4F2C00353785 /* CaoCanCell.m */,
+				15EA20C91BAE4F2C00353785 /* CaoCanCell.xib */,
+				15EA20CC1BAE559C00353785 /* PinKeCell.h */,
+				15EA20CD1BAE559C00353785 /* PinKeCell.m */,
+				15EA20CE1BAE559C00353785 /* PinKeCell.xib */,
+				15EA20D11BAE57C800353785 /* CheHeCell.h */,
+				15EA20D21BAE57C800353785 /* CheHeCell.m */,
+				15EA20D31BAE57C800353785 /* CheHeCell.xib */,
+				15EA20D61BAE5B5100353785 /* KuCunCell.h */,
+				15EA20D71BAE5B5100353785 /* KuCunCell.m */,
+				15EA20D81BAE5B5100353785 /* KuCunCell.xib */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -1749,6 +1801,7 @@
 				A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */,
 				A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
+				15EA20D01BAE559C00353785 /* PinKeCell.xib in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
@@ -1759,6 +1812,7 @@
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
+				15EA20DA1BAE5B5100353785 /* KuCunCell.xib in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
@@ -1775,12 +1829,14 @@
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
 				A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */,
+				15EA20D51BAE57C800353785 /* CheHeCell.xib in Resources */,
 				A2020D761BA67FA40090B92A /* Fill2097@2x.png in Resources */,
 				A20100721BA7AAB2009283D1 /* TimeChooseViewController.xib in Resources */,
 				A201007E1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.xib in Resources */,
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
 				D761F01F1BA5AED3000757B0 /* MJRefresh.bundle in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
+				15EA20CB1BAE4F2C00353785 /* CaoCanCell.xib in Resources */,
 				D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
@@ -1859,6 +1915,7 @@
 				D761F0151BA5AED3000757B0 /* MJRefreshHeader.m in Sources */,
 				D748BC6D1BA1C856005AA996 /* MJFoundation.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
+				15EA20D41BAE57C800353785 /* CheHeCell.m in Sources */,
 				A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */,
 				15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */,
 				D761F0361BA5C703000757B0 /* RKISO8601DateFormatter.m in Sources */,
@@ -1878,6 +1935,7 @@
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
 				D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */,
 				D761F0171BA5AED3000757B0 /* MJRefreshAutoNormalFooter.m in Sources */,
+				15EA20CF1BAE559C00353785 /* PinKeCell.m in Sources */,
 				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
 				AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
@@ -1908,18 +1966,24 @@
 				D748BC411BA1C24B005AA996 /* RestKitMapping.m in Sources */,
 				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
 				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
+				15EA20CA1BAE4F2C00353785 /* CaoCanCell.m in Sources */,
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
+				15EA20D91BAE5B5100353785 /* KuCunCell.m in Sources */,
 				A201006B1BA7A911009283D1 /* ZSReleasePackageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
+				15EA20DD1BAE5F1900353785 /* PinKeModel.m in Sources */,
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
+				15EA20E31BAE5F5000353785 /* CheHeModel.m in Sources */,
+				15EA20E61BAE5F6000353785 /* KuCunModel.m in Sources */,
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
 				D761F0221BA5AED3000757B0 /* UIScrollView+MJRefresh.m in Sources */,
 				A2F9DA6A1BAA58B1009DEAF3 /* DetailCell.m in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
+				15EA20C61BAE4E4D00353785 /* TaoCanModel.m in Sources */,
 				D761F0351BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m in Sources */,
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,

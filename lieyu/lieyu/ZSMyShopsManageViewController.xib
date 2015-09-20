@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSMyShopsManageViewController">
             <connections>
+                <outlet property="tableView" destination="I75-rT-7rT" id="nTM-P3-Hk1"/>
+                <outlet property="timeLal" destination="ycF-FP-Ivp" id="Lcv-kU-4lc"/>
+                <outlet property="titleSeq" destination="WEl-kj-kSI" id="1Jg-M7-X5Q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,6 +26,9 @@
                             <state key="normal" image="btn_back">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="backAct:" destination="-1" eventType="touchUpInside" id="ksi-xM-f1O"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycF-FP-Ivp">
                             <rect key="frame" x="99" y="34" width="122" height="15"/>
@@ -38,6 +44,9 @@
                             <state key="normal">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="timeChooseAct:" destination="-1" eventType="touchUpInside" id="fay-3g-UrZ"/>
+                            </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WEl-kj-kSI">
                             <rect key="frame" x="30" y="61" width="261" height="29"/>
@@ -48,10 +57,21 @@
                                 <segment title="库存中心"/>
                             </segments>
                             <color key="tintColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="titelChangeAct:" destination="-1" eventType="valueChanged" id="c4a-t1-9GX"/>
+                            </connections>
                         </segmentedControl>
                     </subviews>
                     <color key="backgroundColor" red="0.13725490200000001" green="0.65098039220000004" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="I75-rT-7rT">
+                    <rect key="frame" x="0.0" y="97" width="320" height="471"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="jiw-gl-U8A"/>
+                        <outlet property="delegate" destination="-1" id="3eI-Ye-YXA"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="279" y="310"/>

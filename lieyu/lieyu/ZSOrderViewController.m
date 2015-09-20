@@ -266,7 +266,7 @@
     _tableView.tableHeaderView=view1;
     [self.tableView reloadData];
 }
-
+#pragma mark 搜索
 -(void)serchTextValChange:(UITextField *)sender{
     NSString *ss=sender.text;
     NSLog(@"*****%@",ss);

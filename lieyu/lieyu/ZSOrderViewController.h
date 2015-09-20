@@ -29,7 +29,6 @@
 @property (nonatomic, strong) WQDraggableCalendarView *calendarView;
 @property (nonatomic, strong) WQCalendarLogic *calendarLogic;
 
-@property (nonatomic, strong) WQScrollCalendarWrapperView *scrollCalendarView;
 - (IBAction)backAct:(UIButton *)sender;
 - (IBAction)timeChooseAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *timeLal;

@@ -7,7 +7,24 @@
 //
 
 #import "LYBaseViewController.h"
-
-@interface ZSMyShopsManageViewController : LYBaseViewController
-
+#import "WQCalendarLogic.h"
+#import "WQDraggableCalendarView.h"
+#import "WQScrollCalendarWrapperView.h"
+@interface ZSMyShopsManageViewController : LYBaseViewController{
+    UIView  *_bgView;
+    UIView  *monView;
+    NSDateFormatter * dateFormatter;
+    UIButton *surebutton;
+    NSMutableArray *dataList;
+    NSMutableArray *serchDataList;
+}
+- (IBAction)backAct:(UIButton *)sender;
+- (IBAction)titelChangeAct:(UISegmentedControl *)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *titleSeq;
+@property (weak, nonatomic) IBOutlet UILabel *timeLal;
+@property (nonatomic, strong) WQDraggableCalendarView *calendarView;
+@property (nonatomic, strong) WQCalendarLogic *calendarLogic;
+- (IBAction)timeChooseAct:(UIButton *)sender;
+@property (nonatomic, strong) UILabel *monthLabel;
 @end

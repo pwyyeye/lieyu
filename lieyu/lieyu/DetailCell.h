@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UIViewExt.h"
 @interface DetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *detImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLal;
 @property (weak, nonatomic) IBOutlet UILabel *countLal;
 @property (weak, nonatomic) IBOutlet UILabel *zhekouLal;
 @property (weak, nonatomic) IBOutlet UILabel *moneylal;
+@property (weak, nonatomic) IBOutlet UILabel *lineLal;
 
 @end

@@ -31,7 +31,7 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fX8-OI-ctU">
-                        <rect key="frame" x="15" y="0.0" width="290" height="1"/>
+                        <rect key="frame" x="15" y="0.0" width="290" height="0.5"/>
                         <color key="backgroundColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.7803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,6 +54,7 @@
             <connections>
                 <outlet property="countLal" destination="G1S-p8-pwh" id="VdN-sj-59z"/>
                 <outlet property="detImageView" destination="sKb-G1-ZL3" id="Wql-x6-Crq"/>
+                <outlet property="lineLal" destination="fX8-OI-ctU" id="5C0-ib-JV6"/>
                 <outlet property="moneylal" destination="sDu-N9-u0P" id="fd8-Bf-3F4"/>
                 <outlet property="nameLal" destination="98o-uH-ktC" id="WZg-xe-6CS"/>
                 <outlet property="zhekouLal" destination="JaB-2l-eHj" id="Aq9-5y-XXH"/>
