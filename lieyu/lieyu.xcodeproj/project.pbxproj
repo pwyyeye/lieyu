@@ -15,8 +15,8 @@
 		15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
-		15EE51421BA6E32E00464B74 /* ZSMyShopManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopManageViewController.m */; };
-		15EE51431BA6E32E00464B74 /* ZSMyShopManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopManageViewController.xib */; };
+		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
+		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
 		15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51471BA7063000464B74 /* ZSWaitPayViewController.xib */; };
 		15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE514C1BA7069F00464B74 /* ZSReservedSeatViewController.m */; };
@@ -130,6 +130,7 @@
 		D71E1D9A1BAE9C1100915F37 /* LYColors.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D991BAE9C1100915F37 /* LYColors.m */; settings = {ASSET_TAGS = (); }; };
 		D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */; };
 		D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */; };
+		D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D736523B1BAEBB45002541CE /* CheHeModel.m */; settings = {ASSET_TAGS = (); }; };
 		D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D747142A1BAD151400611579 /* MainTabbarViewController.m */; };
 		D748BC2B1BA1BEC2005AA996 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D748BC2A1BA1BEC2005AA996 /* libRestKit.a */; };
 		D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC361BA1C24B005AA996 /* HttpOperatorProvider+backend.m */; };
@@ -212,9 +213,9 @@
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
-		15EE513F1BA6E32E00464B74 /* ZSMyShopManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopManageViewController.h; sourceTree = "<group>"; };
-		15EE51401BA6E32E00464B74 /* ZSMyShopManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopManageViewController.m; sourceTree = "<group>"; };
-		15EE51411BA6E32E00464B74 /* ZSMyShopManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopManageViewController.xib; sourceTree = "<group>"; };
+		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
+		15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
+		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
 		15EE51451BA7063000464B74 /* ZSWaitPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWaitPayViewController.h; sourceTree = "<group>"; };
 		15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWaitPayViewController.m; sourceTree = "<group>"; };
 		15EE51471BA7063000464B74 /* ZSWaitPayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSWaitPayViewController.xib; sourceTree = "<group>"; };
@@ -392,6 +393,8 @@
 		D73652371BAEAC4F002541CE /* NeedHideNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeedHideNavigationBar.h; sourceTree = "<group>"; };
 		D73652381BAEB2BF002541CE /* LYTableViewCellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTableViewCellLayout.h; sourceTree = "<group>"; };
 		D73652391BAEB314002541CE /* lieyu.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lieyu.pch; sourceTree = "<group>"; };
+		D736523A1BAEBB45002541CE /* CheHeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheHeModel.h; sourceTree = "<group>"; };
+		D736523B1BAEBB45002541CE /* CheHeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheHeModel.m; sourceTree = "<group>"; };
 		D74714291BAD151400611579 /* MainTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabbarViewController.h; path = Classes/MainTabbarViewController.h; sourceTree = "<group>"; };
 		D747142A1BAD151400611579 /* MainTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabbarViewController.m; path = Classes/MainTabbarViewController.m; sourceTree = "<group>"; };
 		D748BBC11BA1BEC2005AA996 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -649,9 +652,9 @@
 				A20100731BA7AD7A009283D1 /* 发布拼客 */,
 				A20100791BA7ADD6009283D1 /* 发布单品 */,
 				A201008A1BA7B030009283D1 /* 添加库存 */,
-				15EE513F1BA6E32E00464B74 /* ZSMyShopManageViewController.h */,
-				15EE51401BA6E32E00464B74 /* ZSMyShopManageViewController.m */,
-				15EE51411BA6E32E00464B74 /* ZSMyShopManageViewController.xib */,
+				15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */,
+				15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */,
+				15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */,
 			);
 			name = "商铺管理";
 			sourceTree = "<group>";
@@ -943,6 +946,8 @@
 		A2020D821BA6A53A0090B92A /* modles */ = {
 			isa = PBXGroup;
 			children = (
+				D736523A1BAEBB45002541CE /* CheHeModel.h */,
+				D736523B1BAEBB45002541CE /* CheHeModel.m */,
 				A20100C41BA91288009283D1 /* CustomerModel.h */,
 				A20100C51BA91288009283D1 /* CustomerModel.m */,
 				A2F9DA611BAA5621009DEAF3 /* OrderInfoModel.h */,
@@ -1779,7 +1784,7 @@
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				A201006C1BA7A911009283D1 /* ZSReleasePackageViewController.xib in Resources */,
-				15EE51431BA6E32E00464B74 /* ZSMyShopManageViewController.xib in Resources */,
+				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
@@ -1926,7 +1931,7 @@
 				D761F0171BA5AED3000757B0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
 				AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */,
-				15EE51421BA6E32E00464B74 /* ZSMyShopManageViewController.m in Sources */,
+				15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
 				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
 				A20100711BA7AAB2009283D1 /* TimeChooseViewController.m in Sources */,
@@ -1956,6 +1961,7 @@
 				D748BC411BA1C24B005AA996 /* RestKitMapping.m in Sources */,
 				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
 				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
+				D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */,
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
 				A201006B1BA7A911009283D1 /* ZSReleasePackageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
