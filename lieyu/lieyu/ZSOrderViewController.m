@@ -266,7 +266,7 @@
     _tableView.tableHeaderView=view1;
     [self.tableView reloadData];
 }
-
+#pragma mark 搜索
 -(void)serchTextValChange:(UITextField *)sender{
     NSString *ss=sender.text;
     NSLog(@"*****%@",ss);
@@ -555,7 +555,9 @@
     }else if(mMenuHriZontal.selectIndex==1){
         cell.countLal.text=shopDetailmodel.count;
     }
-    
+    UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, 290, 0.5)];
+    lineLal.backgroundColor=RGB(199, 199, 199);
+    [cell addSubview:lineLal];
     cell.zhekouLal.text=shopDetailmodel.youfeiPrice;
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:shopDetailmodel.money attributes:attribtDic];

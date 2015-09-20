@@ -11,7 +11,7 @@
 #import "ZSSeatControlView.h"
 #import "ZSOrderViewController.h"
 #import "ZSMyClientsViewController.h"
-#import "ZSMyShopManageViewController.h"
+#import "ZSMyShopsManageViewController.h"
 #import "ZSNoticeCenterViewController.h"
 #import "XiaoFeiMaUiew.h"
 #import "ZSListCell.h"
@@ -171,7 +171,7 @@
             
         default:
         {
-            ZSMyShopManageViewController *myShopManageViewController=[[ZSMyShopManageViewController alloc]initWithNibName:@"ZSMyShopManageViewController" bundle:nil];
+            ZSMyShopsManageViewController *myShopManageViewController=[[ZSMyShopsManageViewController alloc]initWithNibName:@"ZSMyShopsManageViewController" bundle:nil];
             [self.navigationController pushViewController:myShopManageViewController animated:YES];
             break;
         }
