@@ -11,23 +11,37 @@
 #import "FBTaoCanSectionHead.h"
 #import "TaoCanMCell.h"
 #import "FBTaoCanView.h"
-@interface ZSReleasePackagesViewController ()
-
+#import "TimeChooseTwoViewController.h"
+#import "ChanPinListViewController.h"
+@interface ZSReleasePackagesViewController ()<TimeChooseDelegate>
+{
+    FBTaoCanView *taoCanView;
+}
 @end
 
 @implementation ZSReleasePackagesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     taocanDelList=[[NSMutableArray alloc]init];
     [self.navigationController setNavigationBarHidden:NO];
     self.title=@"发布套餐";
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"FBTaoCanView" owner:nil options:nil];
-    FBTaoCanView *taoCanView= (FBTaoCanView *)[nibView objectAtIndex:0];
+    taoCanView= (FBTaoCanView *)[nibView objectAtIndex:0];
     taoCanView.timeChooseBtn.backgroundColor=[UIColor clearColor];
+    [taoCanView.timeChooseBtn addTarget:self action:@selector(timeChoose:) forControlEvents:UIControlEventTouchDown] ;
     self.tableView.tableHeaderView=taoCanView;
     // Do any additional setup after loading the view from its nib.
 }
+#pragma mark 时间选择
+-(void)timeChoose:(id)sender{
+     TimeChooseTwoViewController *timeChooseViewController=[[TimeChooseTwoViewController alloc]initWithNibName:@"TimeChooseTwoViewController" bundle:nil];
+    timeChooseViewController.title=@"选择时间";
+    timeChooseViewController.delegate=self;
+    [self.navigationController pushViewController:timeChooseViewController animated:YES];
+}
+
 #pragma mark table代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -46,12 +60,17 @@
 {
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"FBTaoCanSectionHead" owner:nil options:nil];
     FBTaoCanSectionHead *taoCanSectionHead= (FBTaoCanSectionHead *)[nibView objectAtIndex:0];
-    
+    [taoCanSectionHead.addTaoCanBtn addTarget:self action:@selector(taoCanChoose:) forControlEvents:UIControlEventTouchDown] ;
     
     //            orderHeadView.detLal.text=orderInfoModel.paytime;
     //    view.backgroundColor=[UIColor yellowColor];
     return taoCanSectionHead;
     
+}
+#pragma mark选择套餐明细
+-(void)taoCanChoose:(id)sender{
+    ChanPinListViewController *chanPinListViewController=[[ChanPinListViewController alloc]initWithNibName:@"ChanPinListViewController" bundle:nil];
+    [self.navigationController pushViewController:chanPinListViewController animated:YES];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"FBTaoCanSectionBottom" owner:nil options:nil];
@@ -102,6 +121,12 @@
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleNone;
+}
+#pragma mark - 时间选择代理
+-(void)changetime:(NSDictionary *)timeDic{
+    fromTime=[timeDic objectForKey:@"fromTime"];
+    toTime=[timeDic objectForKey:@"toTime"];
+    taoCanView.timeLal.text=[NSString stringWithFormat:@"%@ 至 %@",fromTime,toTime];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

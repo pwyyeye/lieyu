@@ -11,6 +11,8 @@
 @interface ZSReleasePackagesViewController : LYBaseViewController
 {
     NSMutableArray *taocanDelList;
+    NSString *fromTime;
+    NSString *toTime;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

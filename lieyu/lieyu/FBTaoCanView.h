@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *timeChooseBtn;
 @property (weak, nonatomic) IBOutlet UITextField *fromPopulationTex;
 @property (weak, nonatomic) IBOutlet UITextField *toPopulationTex;
+@property (weak, nonatomic) IBOutlet UILabel *timeLal;
 
 @end

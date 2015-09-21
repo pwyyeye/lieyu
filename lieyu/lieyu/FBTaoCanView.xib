@@ -50,7 +50,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请正确选择你的套餐时间" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XsB-BP-uGe">
-                            <rect key="frame" x="80" y="12" width="200" height="11"/>
+                            <rect key="frame" x="80" y="12" width="200" height="9"/>
                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -144,6 +144,7 @@
                 <outlet property="fromPriceTex" destination="zql-Zm-aWI" id="ec3-FH-vSh"/>
                 <outlet property="taocanTitleTex" destination="g6x-lz-mdv" id="l5r-Fe-W9l"/>
                 <outlet property="timeChooseBtn" destination="2ss-S2-xAs" id="Kp5-ir-wEB"/>
+                <outlet property="timeLal" destination="XsB-BP-uGe" id="o4e-N2-pXo"/>
                 <outlet property="toPopulationTex" destination="Tdb-6k-6l3" id="TMq-hk-OrY"/>
                 <outlet property="toPriceTex" destination="thL-2g-vI2" id="tjx-xJ-Z2F"/>
             </connections>
