@@ -16,7 +16,7 @@
 #import "CheHeModel.h"
 #import "KuCunModel.h"
 #import "SerchHeadView.h"
-#import "ZSReleasePackageViewController.h"
+#import "ZSReleasePackagesViewController.h"
 @interface ZSMyShopsManageViewController ()
 
 @end
@@ -398,7 +398,7 @@
             
         case 0://套餐
         {
-            ZSReleasePackageViewController *releasePackageViewController=[[ZSReleasePackageViewController alloc]initWithNibName:@"ZSReleasePackageViewController" bundle:nil];
+            ZSReleasePackagesViewController *releasePackageViewController=[[ZSReleasePackagesViewController alloc]initWithNibName:@"ZSReleasePackagesViewController" bundle:nil];
             [self.navigationController pushViewController:releasePackageViewController animated:YES];
             break;
         }

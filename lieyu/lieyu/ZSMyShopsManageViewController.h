@@ -10,7 +10,8 @@
 #import "WQCalendarLogic.h"
 #import "WQDraggableCalendarView.h"
 #import "WQScrollCalendarWrapperView.h"
-@interface ZSMyShopsManageViewController : LYBaseViewController{
+#import "NeedHideNavigationBar.h"
+@interface ZSMyShopsManageViewController : LYBaseViewController<NeedHideNavigationBar>{
     UIView  *_bgView;
     UIView  *monView;
     NSDateFormatter * dateFormatter;

@@ -25,7 +25,7 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9P-uC-fbS">
-                        <rect key="frame" x="280" y="8" width="26" height="26.5"/>
+                        <rect key="frame" x="280" y="8" width="26" height="27"/>
                         <state key="normal" image="jian">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>

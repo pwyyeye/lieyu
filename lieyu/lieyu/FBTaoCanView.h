@@ -10,4 +10,11 @@
 
 @interface FBTaoCanView : UIView
 
+@property (weak, nonatomic) IBOutlet UITextField *taocanTitleTex;
+@property (weak, nonatomic) IBOutlet UITextField *fromPriceTex;
+@property (weak, nonatomic) IBOutlet UITextField *toPriceTex;
+@property (weak, nonatomic) IBOutlet UIButton *timeChooseBtn;
+@property (weak, nonatomic) IBOutlet UITextField *fromPopulationTex;
+@property (weak, nonatomic) IBOutlet UITextField *toPopulationTex;
+
 @end

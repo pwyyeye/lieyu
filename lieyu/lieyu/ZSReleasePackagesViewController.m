@@ -1,21 +1,21 @@
 //
-//  ZSReleasePackageViewController.m
+//  ZSReleasePackagesViewController.m
 //  lieyu
 //
-//  Created by SEM on 15/9/15.
+//  Created by SEM on 15/9/21.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSReleasePackageViewController.h"
+#import "ZSReleasePackagesViewController.h"
 #import "FBTaoCanSectionBottom.h"
 #import "FBTaoCanSectionHead.h"
 #import "TaoCanMCell.h"
 #import "FBTaoCanView.h"
-@interface ZSReleasePackageViewController ()
+@interface ZSReleasePackagesViewController ()
 
 @end
 
-@implementation ZSReleasePackageViewController
+@implementation ZSReleasePackagesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,6 +24,7 @@
     self.title=@"发布套餐";
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"FBTaoCanView" owner:nil options:nil];
     FBTaoCanView *taoCanView= (FBTaoCanView *)[nibView objectAtIndex:0];
+    taoCanView.timeChooseBtn.backgroundColor=[UIColor clearColor];
     self.tableView.tableHeaderView=taoCanView;
     // Do any additional setup after loading the view from its nib.
 }
@@ -50,7 +51,7 @@
     //            orderHeadView.detLal.text=orderInfoModel.paytime;
     //    view.backgroundColor=[UIColor yellowColor];
     return taoCanSectionHead;
-
+    
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"FBTaoCanSectionBottom" owner:nil options:nil];
@@ -70,21 +71,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-            static NSString *taoCanCellIdentifier = @"TaoCanMCell";
-            
-            TaoCanMCell *cell = (TaoCanMCell *)[_tableView dequeueReusableCellWithIdentifier:taoCanCellIdentifier];
-            if (cell == nil) {
-                NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:taoCanCellIdentifier owner:self options:nil];
-                cell = (TaoCanMCell *)[nibArray objectAtIndex:0];
-                cell.backgroundColor=[UIColor whiteColor];
-                
-                
-            }
+    static NSString *taoCanCellIdentifier = @"TaoCanMCell";
     
-            return cell;
+    TaoCanMCell *cell = (TaoCanMCell *)[_tableView dequeueReusableCellWithIdentifier:taoCanCellIdentifier];
+    if (cell == nil) {
+        NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:taoCanCellIdentifier owner:self options:nil];
+        cell = (TaoCanMCell *)[nibArray objectAtIndex:0];
+        cell.backgroundColor=[UIColor whiteColor];
         
-            
         
+    }
+    
+    return cell;
+    
+    
+    
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
