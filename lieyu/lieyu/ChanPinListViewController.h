@@ -8,7 +8,11 @@
 
 #import "LYBaseViewController.h"
 
-@interface ChanPinListViewController : LYBaseViewController
+@interface ChanPinListViewController : LYBaseViewController{
+    NSMutableArray *_listContent;
+    NSMutableArray *_filteredListContent;
+}
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 

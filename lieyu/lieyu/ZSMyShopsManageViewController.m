@@ -380,7 +380,7 @@
             
         default:// 已消费
         {
-            return 60;
+            return 64;
             break;
         }
             

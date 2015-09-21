@@ -18,8 +18,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="syO-1D-rKx">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="syO-1D-rKx">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="525"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <searchBar key="tableHeaderView" contentMode="redraw" id="ICw-kh-iRg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -34,8 +34,28 @@
                         <outlet property="delegate" destination="-1" id="iaS-dZ-KD8"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3k-nI-fAn">
+                    <rect key="frame" x="0.0" y="527" width="320" height="41"/>
+                    <color key="backgroundColor" red="0.13725490200000001" green="0.65098039220000004" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="AYE-ki-1bZ"/>
+                    </constraints>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="syO-1D-rKx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="HWG-w9-Tup"/>
+                <constraint firstItem="g3k-nI-fAn" firstAttribute="top" secondItem="syO-1D-rKx" secondAttribute="bottom" constant="2" id="K74-qb-Sjb"/>
+                <constraint firstAttribute="trailing" secondItem="syO-1D-rKx" secondAttribute="trailing" id="hfd-Hs-KcZ"/>
+                <constraint firstAttribute="bottom" secondItem="g3k-nI-fAn" secondAttribute="bottom" id="i1n-PW-rvu"/>
+                <constraint firstItem="syO-1D-rKx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="siY-Gy-TLO"/>
+                <constraint firstAttribute="trailing" secondItem="g3k-nI-fAn" secondAttribute="trailing" id="vLy-yJ-BME"/>
+                <constraint firstItem="g3k-nI-fAn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yVY-pY-xJk"/>
+            </constraints>
             <point key="canvasLocation" x="312" y="224"/>
         </view>
         <searchDisplayController id="0vI-md-EVy">
