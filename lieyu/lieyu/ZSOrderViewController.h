@@ -13,7 +13,8 @@
 #import "MenuHrizontal.h"
 #import "XiaoFeiMaUiew.h"
 #import "KaZuoView.h"
-@interface ZSOrderViewController : LYBaseViewController<MenuHrizontalDelegate,UITextFieldDelegate>{
+#import "NeedHideNavigationBar.h"
+@interface ZSOrderViewController : LYBaseViewController<MenuHrizontalDelegate,UITextFieldDelegate,NeedHideNavigationBar>{
     UIView  *_bgView;
     UIView  *monView;
     NSDateFormatter * dateFormatter;

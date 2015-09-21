@@ -7,8 +7,8 @@
 //
 
 #import "LYBaseViewController.h"
-
-@interface ZSMaintViewController : LYBaseViewController
+#import "NeedHideNavigationBar.h"
+@interface ZSMaintViewController : LYBaseViewController<NeedHideNavigationBar>
 {
     NSMutableArray *listArr;
     UILabel *namelal;
