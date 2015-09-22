@@ -10,5 +10,6 @@
 
 @interface FBTaoCanSectionHead : UIView
 @property (weak, nonatomic) IBOutlet UIButton *addTaoCanBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLal;
 
 @end

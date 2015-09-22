@@ -10,6 +10,7 @@
 
 @interface FBTaoCanView : UIView
 
+@property (weak, nonatomic) IBOutlet UIButton *addPhotoBtn;
 @property (weak, nonatomic) IBOutlet UITextField *taocanTitleTex;
 @property (weak, nonatomic) IBOutlet UITextField *fromPriceTex;
 @property (weak, nonatomic) IBOutlet UITextField *toPriceTex;

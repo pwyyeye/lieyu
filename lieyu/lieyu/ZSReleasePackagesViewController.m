@@ -13,7 +13,7 @@
 #import "FBTaoCanView.h"
 #import "TimeChooseTwoViewController.h"
 #import "ChanPinListViewController.h"
-@interface ZSReleasePackagesViewController ()<TimeChooseDelegate>
+@interface ZSReleasePackagesViewController ()<TimeChooseDelegate,UITextFieldDelegate,UITextViewDelegate>
 {
     FBTaoCanView *taoCanView;
 }
@@ -25,12 +25,22 @@
     [super viewDidLoad];
     
     taocanDelList=[[NSMutableArray alloc]init];
-    [self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
     self.title=@"发布套餐";
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"FBTaoCanView" owner:nil options:nil];
     taoCanView= (FBTaoCanView *)[nibView objectAtIndex:0];
     taoCanView.timeChooseBtn.backgroundColor=[UIColor clearColor];
     [taoCanView.timeChooseBtn addTarget:self action:@selector(timeChoose:) forControlEvents:UIControlEventTouchDown] ;
+    [taoCanView.taocanTitleTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    taoCanView.taocanTitleTex.delegate=self;
+    [taoCanView.fromPriceTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    taoCanView.fromPriceTex.delegate=self;
+    [taoCanView.toPriceTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    taoCanView.toPriceTex.delegate=self;
+    [taoCanView.fromPopulationTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    taoCanView.fromPopulationTex.delegate=self;
+    [taoCanView.toPopulationTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    taoCanView.toPopulationTex.delegate=self;
     self.tableView.tableHeaderView=taoCanView;
     // Do any additional setup after loading the view from its nib.
 }
@@ -128,11 +138,16 @@
     toTime=[timeDic objectForKey:@"toTime"];
     taoCanView.timeLal.text=[NSString stringWithFormat:@"%@ 至 %@",fromTime,toTime];
 }
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)endEdit:(id)sender{
+    [sender resignFirstResponder];
+}
 /*
 #pragma mark - Navigation
 

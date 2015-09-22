@@ -17,6 +17,8 @@
 #import "KuCunModel.h"
 #import "SerchHeadView.h"
 #import "ZSReleasePackagesViewController.h"
+#import "ZSReleaseGoodViewController.h"
+#import "ZSAddStocksViewController.h"
 @interface ZSMyShopsManageViewController ()
 
 @end
@@ -30,7 +32,7 @@
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
-    self.view.backgroundColor=RGB(237, 237, 237 );
+//    _tableView.backgroundColor=RGB(237, 237, 237 );
     self.view.backgroundColor=RGB(237, 237, 237 );
     [self.navigationController setNavigationBarHidden:YES];
     dateFormatter = [[NSDateFormatter alloc]init];
@@ -412,13 +414,17 @@
             
         case 2:// 吃喝
         {
-            
+            ZSReleaseGoodViewController *releaseGoodViewController=[[ZSReleaseGoodViewController alloc]initWithNibName:@"ZSReleaseGoodViewController" bundle:nil];
+            releaseGoodViewController.title=@"发布单品";
+            [self.navigationController pushViewController:releaseGoodViewController animated:YES];
             break;
         }
             
         default:// 库存
         {
-            
+            ZSAddStocksViewController *addStocksViewController=[[ZSAddStocksViewController alloc]initWithNibName:@"ZSAddStocksViewController" bundle:nil];
+            addStocksViewController.title=@"添加库存";
+            [self.navigationController pushViewController:addStocksViewController animated:YES];
             break;
         }
             

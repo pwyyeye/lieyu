@@ -13,6 +13,8 @@
     NSMutableArray *taocanDelList;
     NSString *fromTime;
     NSString *toTime;
+    int keyboardHeight;
+    BOOL keyboardIsShowing;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

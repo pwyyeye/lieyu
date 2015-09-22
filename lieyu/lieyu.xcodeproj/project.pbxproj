@@ -13,6 +13,27 @@
 		15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63441BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib */; };
 		15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */; };
 		15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */; };
+		15E240461BB0F3540090D240 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15E240301BB0F3540090D240 /* IQKeyboardManager.bundle */; };
+		15E240471BB0F3540090D240 /* IQKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240321BB0F3540090D240 /* IQKeyboardManager.m */; };
+		15E240481BB0F3540090D240 /* IQSegmentedNextPrevious.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240361BB0F3540090D240 /* IQSegmentedNextPrevious.m */; };
+		15E240491BB0F3540090D240 /* IQTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240381BB0F3540090D240 /* IQTextView.m */; };
+		15E2404A1BB0F3540090D240 /* IQTitleBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E2403A1BB0F3540090D240 /* IQTitleBarButtonItem.m */; };
+		15E2404B1BB0F3540090D240 /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E2403C1BB0F3540090D240 /* IQToolbar.m */; };
+		15E2404C1BB0F3540090D240 /* NSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E2403F1BB0F3540090D240 /* NSArray+Sort.m */; };
+		15E2404D1BB0F3540090D240 /* UIView+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240411BB0F3540090D240 /* UIView+Hierarchy.m */; };
+		15E2404E1BB0F3540090D240 /* UIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240431BB0F3540090D240 /* UIView+IQKeyboardToolbar.m */; };
+		15E2404F1BB0F3540090D240 /* UIWindow+Hierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240451BB0F3540090D240 /* UIWindow+Hierarchy.m */; };
+		15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240511BB0FF1D0090D240 /* ZSReleaseGoodViewController.m */; };
+		15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240521BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib */; };
+		15E240581BB101340090D240 /* ZSAddStocksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240561BB101340090D240 /* ZSAddStocksViewController.m */; };
+		15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240571BB101340090D240 /* ZSAddStocksViewController.xib */; };
+		15E2405C1BB1029C0090D240 /* FBDanPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E2405B1BB1029C0090D240 /* FBDanPinView.m */; };
+		15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E2405D1BB102A70090D240 /* FBDanPinView.xib */; };
+		15E240621BB1237E0090D240 /* BiaoQianChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240601BB1237E0090D240 /* BiaoQianChooseViewController.m */; };
+		15E240631BB1237E0090D240 /* BiaoQianChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240611BB1237E0090D240 /* BiaoQianChooseViewController.xib */; };
+		15E240671BB1243A0090D240 /* TypeChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240651BB1243A0090D240 /* TypeChooseCell.m */; };
+		15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240661BB1243A0090D240 /* TypeChooseCell.xib */; };
+		15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E2406B1BB127B30090D240 /* BiaoQianBtn.m */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
@@ -37,14 +58,10 @@
 		15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F54A941BB0393C0020EB4C /* TimeChooseTwoViewController.xib */; };
 		A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */; };
 		A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */; };
-		A201007D1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A201007B1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.m */; };
-		A201007E1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201007C1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.xib */; };
 		A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100811BA7AFAB009283D1 /* LYProductslistViewController.m */; };
 		A20100841BA7AFAB009283D1 /* LYProductslistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100821BA7AFAB009283D1 /* LYProductslistViewController.xib */; };
 		A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100861BA7AFDD009283D1 /* LYProductsTagViewController.m */; };
 		A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100871BA7AFDD009283D1 /* LYProductsTagViewController.xib */; };
-		A201008E1BA7B087009283D1 /* ZSAddStockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A201008C1BA7B087009283D1 /* ZSAddStockViewController.m */; };
-		A201008F1BA7B087009283D1 /* ZSAddStockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A201008D1BA7B087009283D1 /* ZSAddStockViewController.xib */; };
 		A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100B01BA7FDE6009283D1 /* ZSSeatControlView.m */; };
 		A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100B11BA7FDE6009283D1 /* ZSSeatControlView.xib */; };
 		A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100BB1BA901EA009283D1 /* ZSMyClientsViewController.m */; };
@@ -231,6 +248,45 @@
 		15AE63471BA8576500FFAD1A /* ZSOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSOrderViewController.h; sourceTree = "<group>"; };
 		15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSOrderViewController.m; sourceTree = "<group>"; };
 		15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSOrderViewController.xib; sourceTree = "<group>"; };
+		15E240301BB0F3540090D240 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		15E240311BB0F3540090D240 /* IQKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQKeyboardManager.h; sourceTree = "<group>"; };
+		15E240321BB0F3540090D240 /* IQKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQKeyboardManager.m; sourceTree = "<group>"; };
+		15E240331BB0F3540090D240 /* IQKeyboardManagerConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQKeyboardManagerConstants.h; sourceTree = "<group>"; };
+		15E240341BB0F3540090D240 /* IQKeyboardManagerConstantsInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQKeyboardManagerConstantsInternal.h; sourceTree = "<group>"; };
+		15E240351BB0F3540090D240 /* IQSegmentedNextPrevious.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQSegmentedNextPrevious.h; sourceTree = "<group>"; };
+		15E240361BB0F3540090D240 /* IQSegmentedNextPrevious.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQSegmentedNextPrevious.m; sourceTree = "<group>"; };
+		15E240371BB0F3540090D240 /* IQTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQTextView.h; sourceTree = "<group>"; };
+		15E240381BB0F3540090D240 /* IQTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQTextView.m; sourceTree = "<group>"; };
+		15E240391BB0F3540090D240 /* IQTitleBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQTitleBarButtonItem.h; sourceTree = "<group>"; };
+		15E2403A1BB0F3540090D240 /* IQTitleBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQTitleBarButtonItem.m; sourceTree = "<group>"; };
+		15E2403B1BB0F3540090D240 /* IQToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQToolbar.h; sourceTree = "<group>"; };
+		15E2403C1BB0F3540090D240 /* IQToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQToolbar.m; sourceTree = "<group>"; };
+		15E2403D1BB0F3540090D240 /* KeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardManager.h; sourceTree = "<group>"; };
+		15E2403E1BB0F3540090D240 /* NSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Sort.h"; sourceTree = "<group>"; };
+		15E2403F1BB0F3540090D240 /* NSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Sort.m"; sourceTree = "<group>"; };
+		15E240401BB0F3540090D240 /* UIView+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Hierarchy.h"; sourceTree = "<group>"; };
+		15E240411BB0F3540090D240 /* UIView+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Hierarchy.m"; sourceTree = "<group>"; };
+		15E240421BB0F3540090D240 /* UIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
+		15E240431BB0F3540090D240 /* UIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
+		15E240441BB0F3540090D240 /* UIWindow+Hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Hierarchy.h"; sourceTree = "<group>"; };
+		15E240451BB0F3540090D240 /* UIWindow+Hierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Hierarchy.m"; sourceTree = "<group>"; };
+		15E240501BB0FF1D0090D240 /* ZSReleaseGoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseGoodViewController.h; sourceTree = "<group>"; };
+		15E240511BB0FF1D0090D240 /* ZSReleaseGoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleaseGoodViewController.m; sourceTree = "<group>"; };
+		15E240521BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleaseGoodViewController.xib; sourceTree = "<group>"; };
+		15E240551BB101340090D240 /* ZSAddStocksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAddStocksViewController.h; sourceTree = "<group>"; };
+		15E240561BB101340090D240 /* ZSAddStocksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAddStocksViewController.m; sourceTree = "<group>"; };
+		15E240571BB101340090D240 /* ZSAddStocksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSAddStocksViewController.xib; sourceTree = "<group>"; };
+		15E2405A1BB1029C0090D240 /* FBDanPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDanPinView.h; sourceTree = "<group>"; };
+		15E2405B1BB1029C0090D240 /* FBDanPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBDanPinView.m; sourceTree = "<group>"; };
+		15E2405D1BB102A70090D240 /* FBDanPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBDanPinView.xib; sourceTree = "<group>"; };
+		15E2405F1BB1237E0090D240 /* BiaoQianChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiaoQianChooseViewController.h; sourceTree = "<group>"; };
+		15E240601BB1237E0090D240 /* BiaoQianChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiaoQianChooseViewController.m; sourceTree = "<group>"; };
+		15E240611BB1237E0090D240 /* BiaoQianChooseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BiaoQianChooseViewController.xib; sourceTree = "<group>"; };
+		15E240641BB1243A0090D240 /* TypeChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeChooseCell.h; sourceTree = "<group>"; };
+		15E240651BB1243A0090D240 /* TypeChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypeChooseCell.m; sourceTree = "<group>"; };
+		15E240661BB1243A0090D240 /* TypeChooseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeChooseCell.xib; sourceTree = "<group>"; };
+		15E2406A1BB127B30090D240 /* BiaoQianBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiaoQianBtn.h; sourceTree = "<group>"; };
+		15E2406B1BB127B30090D240 /* BiaoQianBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiaoQianBtn.m; sourceTree = "<group>"; };
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
@@ -269,18 +325,12 @@
 		A20100741BA7ADCB009283D1 /* ZSReleaseMBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseMBViewController.h; sourceTree = "<group>"; };
 		A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleaseMBViewController.m; sourceTree = "<group>"; };
 		A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleaseMBViewController.xib; sourceTree = "<group>"; };
-		A201007A1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseGoodsViewController.h; sourceTree = "<group>"; };
-		A201007B1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleaseGoodsViewController.m; sourceTree = "<group>"; };
-		A201007C1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleaseGoodsViewController.xib; sourceTree = "<group>"; };
 		A20100801BA7AFAB009283D1 /* LYProductslistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYProductslistViewController.h; sourceTree = "<group>"; };
 		A20100811BA7AFAB009283D1 /* LYProductslistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYProductslistViewController.m; sourceTree = "<group>"; };
 		A20100821BA7AFAB009283D1 /* LYProductslistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYProductslistViewController.xib; sourceTree = "<group>"; };
 		A20100851BA7AFDD009283D1 /* LYProductsTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYProductsTagViewController.h; sourceTree = "<group>"; };
 		A20100861BA7AFDD009283D1 /* LYProductsTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYProductsTagViewController.m; sourceTree = "<group>"; };
 		A20100871BA7AFDD009283D1 /* LYProductsTagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYProductsTagViewController.xib; sourceTree = "<group>"; };
-		A201008B1BA7B087009283D1 /* ZSAddStockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSAddStockViewController.h; sourceTree = "<group>"; };
-		A201008C1BA7B087009283D1 /* ZSAddStockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSAddStockViewController.m; sourceTree = "<group>"; };
-		A201008D1BA7B087009283D1 /* ZSAddStockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSAddStockViewController.xib; sourceTree = "<group>"; };
 		A20100AF1BA7FDE6009283D1 /* ZSSeatControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSeatControlView.h; sourceTree = "<group>"; };
 		A20100B01BA7FDE6009283D1 /* ZSSeatControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSeatControlView.m; sourceTree = "<group>"; };
 		A20100B11BA7FDE6009283D1 /* ZSSeatControlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSSeatControlView.xib; sourceTree = "<group>"; };
@@ -684,6 +734,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15E2402F1BB0F3540090D240 /* IQKeyBoardManager */ = {
+			isa = PBXGroup;
+			children = (
+				15E240301BB0F3540090D240 /* IQKeyboardManager.bundle */,
+				15E240311BB0F3540090D240 /* IQKeyboardManager.h */,
+				15E240321BB0F3540090D240 /* IQKeyboardManager.m */,
+				15E240331BB0F3540090D240 /* IQKeyboardManagerConstants.h */,
+				15E240341BB0F3540090D240 /* IQKeyboardManagerConstantsInternal.h */,
+				15E240351BB0F3540090D240 /* IQSegmentedNextPrevious.h */,
+				15E240361BB0F3540090D240 /* IQSegmentedNextPrevious.m */,
+				15E240371BB0F3540090D240 /* IQTextView.h */,
+				15E240381BB0F3540090D240 /* IQTextView.m */,
+				15E240391BB0F3540090D240 /* IQTitleBarButtonItem.h */,
+				15E2403A1BB0F3540090D240 /* IQTitleBarButtonItem.m */,
+				15E2403B1BB0F3540090D240 /* IQToolbar.h */,
+				15E2403C1BB0F3540090D240 /* IQToolbar.m */,
+				15E2403D1BB0F3540090D240 /* KeyboardManager.h */,
+				15E2403E1BB0F3540090D240 /* NSArray+Sort.h */,
+				15E2403F1BB0F3540090D240 /* NSArray+Sort.m */,
+				15E240401BB0F3540090D240 /* UIView+Hierarchy.h */,
+				15E240411BB0F3540090D240 /* UIView+Hierarchy.m */,
+				15E240421BB0F3540090D240 /* UIView+IQKeyboardToolbar.h */,
+				15E240431BB0F3540090D240 /* UIView+IQKeyboardToolbar.m */,
+				15E240441BB0F3540090D240 /* UIWindow+Hierarchy.h */,
+				15E240451BB0F3540090D240 /* UIWindow+Hierarchy.m */,
+			);
+			path = IQKeyBoardManager;
+			sourceTree = "<group>";
+		};
+		15E240691BB127860090D240 /* button */ = {
+			isa = PBXGroup;
+			children = (
+				15E2406A1BB127B30090D240 /* BiaoQianBtn.h */,
+				15E2406B1BB127B30090D240 /* BiaoQianBtn.m */,
+			);
+			name = button;
+			sourceTree = "<group>";
+		};
 		15EE51321BA6E1AB00464B74 /* 订单管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -853,9 +941,15 @@
 		A20100791BA7ADD6009283D1 /* 发布单品 */ = {
 			isa = PBXGroup;
 			children = (
-				A201007A1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.h */,
-				A201007B1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.m */,
-				A201007C1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.xib */,
+				15E240501BB0FF1D0090D240 /* ZSReleaseGoodViewController.h */,
+				15E240511BB0FF1D0090D240 /* ZSReleaseGoodViewController.m */,
+				15E240521BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib */,
+				15E2405A1BB1029C0090D240 /* FBDanPinView.h */,
+				15E2405B1BB1029C0090D240 /* FBDanPinView.m */,
+				15E2405D1BB102A70090D240 /* FBDanPinView.xib */,
+				15E2405F1BB1237E0090D240 /* BiaoQianChooseViewController.h */,
+				15E240601BB1237E0090D240 /* BiaoQianChooseViewController.m */,
+				15E240611BB1237E0090D240 /* BiaoQianChooseViewController.xib */,
 			);
 			name = "发布单品";
 			sourceTree = "<group>";
@@ -876,9 +970,9 @@
 		A201008A1BA7B030009283D1 /* 添加库存 */ = {
 			isa = PBXGroup;
 			children = (
-				A201008B1BA7B087009283D1 /* ZSAddStockViewController.h */,
-				A201008C1BA7B087009283D1 /* ZSAddStockViewController.m */,
-				A201008D1BA7B087009283D1 /* ZSAddStockViewController.xib */,
+				15E240551BB101340090D240 /* ZSAddStocksViewController.h */,
+				15E240561BB101340090D240 /* ZSAddStocksViewController.m */,
+				15E240571BB101340090D240 /* ZSAddStocksViewController.xib */,
 			);
 			name = "添加库存";
 			sourceTree = "<group>";
@@ -1036,6 +1130,7 @@
 		A2020D831BA6A5420090B92A /* views */ = {
 			isa = PBXGroup;
 			children = (
+				15E240691BB127860090D240 /* button */,
 				A2F9DA6C1BAA6616009DEAF3 /* 订单 */,
 				A2020D851BA6A5810090B92A /* cells */,
 			);
@@ -1085,6 +1180,9 @@
 				A2FD57681BAFE85900CFFF92 /* PinKeCell.h */,
 				A2FD57691BAFE85900CFFF92 /* PinKeCell.m */,
 				A2FD576A1BAFE85900CFFF92 /* PinKeCell.xib */,
+				15E240641BB1243A0090D240 /* TypeChooseCell.h */,
+				15E240651BB1243A0090D240 /* TypeChooseCell.m */,
+				15E240661BB1243A0090D240 /* TypeChooseCell.xib */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -1736,6 +1834,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				15E2402F1BB0F3540090D240 /* IQKeyBoardManager */,
 				15EFEF811BA99CD5004739A2 /* 水平菜单 */,
 				A20100CC1BA943D5009283D1 /* 日历 */,
 				D761EFE41BA5AED3000757B0 /* MJRefresh */,
@@ -1865,11 +1964,11 @@
 				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
 				A2020D621BA67E9E0090B92A /* disClosure@3x.png in Resources */,
 				A2FD57671BAFE6E500CFFF92 /* KuCunCell.xib in Resources */,
+				15E240461BB0F3540090D240 /* IQKeyboardManager.bundle in Resources */,
 				15F54A911BB030420020EB4C /* ChanPinListViewController.xib in Resources */,
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
 				A2020D611BA67E9E0090B92A /* disClosure@2x.png in Resources */,
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
-				A201008F1BA7B087009283D1 /* ZSAddStockViewController.xib in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
@@ -1880,15 +1979,19 @@
 				A2020D801BA67FA40090B92A /* Fill20219@3x.png in Resources */,
 				A20100841BA7AFAB009283D1 /* LYProductslistViewController.xib in Resources */,
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
+				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,
+				15E240631BB1237E0090D240 /* BiaoQianChooseViewController.xib in Resources */,
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
 				A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */,
 				A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
+				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
 				A2FD57801BAFE97000CFFF92 /* FBTaoCanSectionHead.xib in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
+				15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */,
 				A2F9DA841BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib in Resources */,
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
@@ -1916,8 +2019,8 @@
 				D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */,
 				A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */,
 				A2FD57631BAFE6C000CFFF92 /* CaoCanCell.xib in Resources */,
+				15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */,
 				A2020D761BA67FA40090B92A /* Fill2097@2x.png in Resources */,
-				A201007E1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.xib in Resources */,
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
 				D761F01F1BA5AED3000757B0 /* MJRefresh.bundle in Resources */,
 				A2FD576C1BAFE85900CFFF92 /* PinKeCell.xib in Resources */,
@@ -1994,6 +2097,7 @@
 				A2FD577D1BAFE97000CFFF92 /* FBTaoCanSectionBottom.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
 				15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */,
+				15E240481BB0F3540090D240 /* IQSegmentedNextPrevious.m in Sources */,
 				A2F9DA741BAA6AB7009DEAF3 /* OrderBottomView.m in Sources */,
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
@@ -2018,12 +2122,15 @@
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
 				A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */,
+				15E2404B1BB0F3540090D240 /* IQToolbar.m in Sources */,
 				A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */,
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,
+				15E240671BB1243A0090D240 /* TypeChooseCell.m in Sources */,
 				D748BC711BA1C856005AA996 /* NSObject+MJKeyValue.m in Sources */,
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
 				D761F0231BA5AED3000757B0 /* UIView+MJExtension.m in Sources */,
+				15E240581BB101340090D240 /* ZSAddStocksViewController.m in Sources */,
 				D761F0131BA5AED3000757B0 /* MJRefreshComponent.m in Sources */,
 				15EFEF891BA9A80C004739A2 /* UIViewExt.m in Sources */,
 				A2FD576B1BAFE85900CFFF92 /* PinKeCell.m in Sources */,
@@ -2037,13 +2144,17 @@
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
 				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
+				15E2404E1BB0F3540090D240 /* UIView+IQKeyboardToolbar.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
 				D748BC7A1BA1CB0E005AA996 /* User.m in Sources */,
 				D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */,
+				15E2405C1BB1029C0090D240 /* FBDanPinView.m in Sources */,
 				D71E1D9A1BAE9C1100915F37 /* LYColors.m in Sources */,
 				A20100E01BA94404009283D1 /* WQCalendarDay.m in Sources */,
 				D748BC731BA1C856005AA996 /* NSString+MJExtension.m in Sources */,
+				15E2404F1BB0F3540090D240 /* UIWindow+Hierarchy.m in Sources */,
 				D761F0191BA5AED3000757B0 /* MJRefreshBackGifFooter.m in Sources */,
+				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D761F01D1BA5AED3000757B0 /* MJRefreshNormalHeader.m in Sources */,
 				15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */,
 				A2020D491BA661260090B92A /* MyInfoViewController.m in Sources */,
@@ -2052,7 +2163,6 @@
 				A2F9DA631BAA5621009DEAF3 /* OrderInfoModel.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
-				A201008E1BA7B087009283D1 /* ZSAddStockViewController.m in Sources */,
 				15F54A901BB030420020EB4C /* ChanPinListViewController.m in Sources */,
 				A2FD57701BAFE91F00CFFF92 /* FBTaoCanView.m in Sources */,
 				D7A6005D1BAC6CF50006A768 /* PlayTogetherViewController.m in Sources */,
@@ -2068,6 +2178,7 @@
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
+				15E2404A1BB0F3540090D240 /* IQTitleBarButtonItem.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				D73652421BAEBF44002541CE /* KuCunModel.m in Sources */,
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
@@ -2079,6 +2190,7 @@
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
 				D71E1D951BAE963900915F37 /* LYShareSnsView.m in Sources */,
+				15E2404D1BB0F3540090D240 /* UIView+Hierarchy.m in Sources */,
 				D761F0351BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m in Sources */,
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
@@ -2089,21 +2201,25 @@
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
 				D748BC461BA1C280005AA996 /* LYDataStore.m in Sources */,
 				D748BC6F1BA1C856005AA996 /* MJType.m in Sources */,
+				15E2404C1BB0F3540090D240 /* NSArray+Sort.m in Sources */,
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
 				A2020D591BA6781B0090B92A /* FunctionListCell.m in Sources */,
 				D761F0141BA5AED3000757B0 /* MJRefreshFooter.m in Sources */,
+				15E240491BB0F3540090D240 /* IQTextView.m in Sources */,
 				A2F9DA7D1BAA8C83009DEAF3 /* SerchHeadView.m in Sources */,
 				A2F9DA7A1BAA6F68009DEAF3 /* OrderHandleButton.m in Sources */,
 				A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */,
+				15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */,
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
 				D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */,
 				D748BC6E1BA1C856005AA996 /* MJProperty.m in Sources */,
+				15E240471BB0F3540090D240 /* IQKeyboardManager.m in Sources */,
 				D761F0111BA5AED3000757B0 /* MJRefreshAutoFooter.m in Sources */,
 				D748BC6C1BA1C856005AA996 /* MJConst.m in Sources */,
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
-				A201007D1BA7AE5A009283D1 /* ZSReleaseGoodsViewController.m in Sources */,
 				15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */,
 				D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */,
+				15E240621BB1237E0090D240 /* BiaoQianChooseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

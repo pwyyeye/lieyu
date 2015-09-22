@@ -140,6 +140,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="addPhotoBtn" destination="cjQ-E0-v4n" id="F9f-cW-RGN"/>
                 <outlet property="fromPopulationTex" destination="CRC-Gr-6ou" id="MnM-iD-B4P"/>
                 <outlet property="fromPriceTex" destination="zql-Zm-aWI" id="ec3-FH-vSh"/>
                 <outlet property="taocanTitleTex" destination="g6x-lz-mdv" id="l5r-Fe-W9l"/>

@@ -1,18 +1,18 @@
 //
-//  ZSReleaseGoodsViewController.m
+//  ZSAddStocksViewController.m
 //  lieyu
 //
-//  Created by SEM on 15/9/15.
+//  Created by 薛斯岐 on 15/9/22.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSReleaseGoodsViewController.h"
+#import "ZSAddStocksViewController.h"
 
-@interface ZSReleaseGoodsViewController ()
+@interface ZSAddStocksViewController ()
 
 @end
 
-@implementation ZSReleaseGoodsViewController
+@implementation ZSAddStocksViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,4 +34,6 @@
 }
 */
 
+- (IBAction)sureAct:(UIButton *)sender {
+}
 @end

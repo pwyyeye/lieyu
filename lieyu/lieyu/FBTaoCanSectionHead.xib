@@ -29,6 +29,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="addTaoCanBtn" destination="6sw-xt-ASN" id="W9O-dH-BhR"/>
+                <outlet property="titleLal" destination="TWA-Wo-Sty" id="yow-Au-nHb"/>
             </connections>
             <point key="canvasLocation" x="313" y="224"/>
         </view>
