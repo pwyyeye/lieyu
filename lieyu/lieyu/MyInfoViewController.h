@@ -9,6 +9,13 @@
 #import "LYBaseViewController.h"
 
 @interface MyInfoViewController : LYBaseViewController
-
+{
+    NSMutableArray *listArr;
+    UILabel *namelal;
+    UILabel *orderInfoLal;
+    UIImageView *cImageView;
+    UIImageView *myPhotoImageView;
+}
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)queryZSInfo:(id)sender;
 @end
