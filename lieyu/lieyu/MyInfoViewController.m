@@ -8,7 +8,7 @@
 
 #import "MyInfoViewController.h"
 #import "ZSMaintViewController.h"
-
+#import "ZSListCell.h"
 @interface MyInfoViewController ()
 
 @end
@@ -29,16 +29,20 @@
 #pragma mark 初始化数据
 -(void)getDataForShowList{
     [listArr removeAllObjects];
-    NSDictionary *dic=@{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""};
-    NSDictionary *dic1=@{@"colorRGB":RGB(136, 223, 121),@"imageContent":@"Fill20179",@"title":@"通知中心",@"delInfo":@"您有客户留言请及时查收"};
-    NSDictionary *dic2=@{@"colorRGB":RGB(254, 147, 87),@"imageContent":@"Fill20219",@"title":@"订单管理",@"delInfo":@"您有订单要确认请及时确定"};
-    NSDictionary *dic3=@{@"colorRGB":RGB(65, 241, 221),@"imageContent":@"Fill20176",@"title":@"我的客户",@"delInfo":@""};
-    NSDictionary *dic4=@{@"colorRGB":RGB(84, 225, 255),@"imageContent":@"Fill2097",@"title":@"商铺管理",@"delInfo":@""};
+    NSDictionary *dic=@{@"colorRGB":RGB(255, 114, 130),@"imageContent":@"hat L",@"title":@"我是专属经理",@"delInfo":@""};
+    NSDictionary *dic1=@{@"colorRGB":RGB(255, 200, 101),@"imageContent":@"todos L",@"title":@"订单",@"delInfo":@"12"};
+    NSDictionary *dic2=@{@"colorRGB":RGB(149, 236, 135),@"imageContent":@"icon_star2_normal",@"title":@"收藏",@"delInfo":@"8"};
+    NSDictionary *dic3=@{@"colorRGB":RGB(255, 149, 90),@"imageContent":@"shoe L",@"title":@"专属经理",@"delInfo":@"8"};
+    NSDictionary *dic4=@{@"colorRGB":RGB(54, 234, 213),@"imageContent":@"ShoppingCart",@"title":@"购物车",@"delInfo":@"8"};
+    NSDictionary *dic5=@{@"colorRGB":RGB(64, 222, 255),@"imageContent":@"bell L",@"title":@"信息中心",@"delInfo":@"9"};
+    NSDictionary *dic6=@{@"colorRGB":RGB(129, 168, 255),@"imageContent":@"crown L",@"title":@"推荐商户",@"delInfo":@""};
     [listArr addObject:dic];
     [listArr addObject:dic1];
     [listArr addObject:dic2];
     [listArr addObject:dic3];
     [listArr addObject:dic4];
+    [listArr addObject:dic5];
+    [listArr addObject:dic6];
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 228)];
     view.backgroundColor=RGB(35, 166, 116);
     //外部圆
@@ -69,13 +73,125 @@
     [self.tableView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:YES];
+//    [self.navigationController setNavigationBarHidden:YES];
     NSLog(@"111");
 }
 -(void)viewDidDisappear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:NO];
+    //[self.navigationController setNavigationBarHidden:NO];
     NSLog(@"222");
 }
+
+#pragma mark tableview代理方法
+#pragma mark tableView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return listArr.count;
+    
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"ZSListCell";
+    
+    ZSListCell *cell = (ZSListCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+        cell = (ZSListCell *)[nibArray objectAtIndex:0];
+        cell.backgroundColor=[UIColor whiteColor];
+        
+        
+    }
+    NSDictionary *dic=[listArr objectAtIndex:indexPath.row];
+    UIColor *bColor=[dic objectForKey:@"colorRGB"];
+    UIImage *imge=[UIImage imageNamed:[dic objectForKey:@"imageContent"]];
+    NSString *title=[dic objectForKey:@"title"];
+    NSString *delInfo=[dic objectForKey:@"delInfo"];
+    //    @{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""}
+    cell.backImageView.backgroundColor=bColor;
+    cell.CoutentImageView.image=imge;
+    cell.titleLbl.text=title;
+    cell.delLal.text=delInfo;
+    cell.delLal.textAlignment=NSTextAlignmentRight;
+    cell.titleLbl.width=200;
+    //    cell.disImageView;
+    
+    
+    
+    
+    return cell;
+    
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return 68;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_tableView deselectRowAtIndexPath:indexPath animated:false];
+    
+    switch (indexPath.row) {
+            
+        case 0://我是专属经理
+        {
+            ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
+            [self.navigationController pushViewController:maintViewController animated:YES];
+            break;
+        }
+            
+        case 1:// 订单
+        {
+            
+            break;
+        }
+            
+        case 2:// 收藏
+        {
+            
+            break;
+        }
+            
+        case 3:// 专属经理
+        {
+            
+            
+            break;
+        }
+        case 4:// 购物车
+        {
+            
+            
+            break;
+        }
+        case 5:// 信息中心
+        {
+            
+            
+            break;
+        }
+        
+        default://推荐商户
+        {
+            
+            break;
+        }
+            
+    }
+    
+    
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

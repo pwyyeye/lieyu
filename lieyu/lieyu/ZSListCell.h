@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface ZSListCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *disClosureImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *backImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *CoutentImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *mesImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
+@property (weak, nonatomic) IBOutlet UILabel *shenHeLal;
 @property (weak, nonatomic) IBOutlet UILabel *delLal;
-@property (weak, nonatomic) IBOutlet UIImageView *disImageView;
+//@property (weak, nonatomic) IBOutlet UIImageView *disImageView;
 @end

@@ -7,8 +7,8 @@
 //
 
 #import "LYBaseViewController.h"
-
-@interface MyInfoViewController : LYBaseViewController
+#import "NeedHideNavigationBar.h"
+@interface MyInfoViewController : LYBaseViewController<NeedHideNavigationBar>
 {
     NSMutableArray *listArr;
     UILabel *namelal;
