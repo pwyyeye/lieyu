@@ -9,6 +9,9 @@
 #import "MyInfoViewController.h"
 #import "ZSMaintViewController.h"
 #import "ZSListCell.h"
+#import "TuiJianShangJiaViewController.h"
+#import "MyCollectionViewController.h"
+#import "LYMyOrderManageViewController.h"
 @interface MyInfoViewController ()
 
 @end
@@ -17,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
     listArr =[[NSMutableArray alloc]init];
     //    self.automaticallyAdjustsScrollViewInsets=0;
     
@@ -73,11 +77,11 @@
     [self.tableView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated{
-//    [self.navigationController setNavigationBarHidden:YES];
+    
     NSLog(@"111");
 }
 -(void)viewDidDisappear:(BOOL)animated{
-    //[self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
     NSLog(@"222");
 }
 
@@ -151,13 +155,17 @@
             
         case 1:// 订单
         {
-            
+            LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            myOrderManageViewController.title=@"我的订单";
+            [self.navigationController pushViewController:myOrderManageViewController animated:YES];
             break;
         }
             
         case 2:// 收藏
         {
-            
+            MyCollectionViewController *maintViewController=[[MyCollectionViewController alloc]initWithNibName:@"MyCollectionViewController" bundle:nil];
+            maintViewController.title=@"我的收藏";
+            [self.navigationController pushViewController:maintViewController animated:YES];
             break;
         }
             
@@ -182,6 +190,9 @@
         
         default://推荐商户
         {
+            TuiJianShangJiaViewController *tuiJianShangJiaViewController=[[TuiJianShangJiaViewController alloc]initWithNibName:@"TuiJianShangJiaViewController" bundle:nil];
+            tuiJianShangJiaViewController.title=@"推荐商家";
+            [self.navigationController pushViewController:tuiJianShangJiaViewController animated:YES];
             
             break;
         }
@@ -207,10 +218,4 @@
 }
 */
 
-- (IBAction)queryZSInfo:(id)sender {
-    ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
-    [self.navigationController pushViewController:maintViewController animated:YES];
- 
-//HomePageINeedPlayViewController.
-}
 @end

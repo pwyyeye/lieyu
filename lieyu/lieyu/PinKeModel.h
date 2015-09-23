@@ -14,4 +14,5 @@
 @property(nonatomic,copy)NSString * img;
 @property(nonatomic,copy)NSString * time;
 @property(nonatomic,copy)NSString * dizhi;
+@property(nonatomic,copy)NSString * money;
 @end

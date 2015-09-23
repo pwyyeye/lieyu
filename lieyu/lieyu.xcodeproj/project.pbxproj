@@ -34,6 +34,22 @@
 		15E240671BB1243A0090D240 /* TypeChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240651BB1243A0090D240 /* TypeChooseCell.m */; };
 		15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240661BB1243A0090D240 /* TypeChooseCell.xib */; };
 		15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E2406B1BB127B30090D240 /* BiaoQianBtn.m */; };
+		15E240711BB2478B0090D240 /* TuiJianShangJiaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E2406F1BB2478B0090D240 /* TuiJianShangJiaViewController.m */; };
+		15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240701BB2478B0090D240 /* TuiJianShangJiaViewController.xib */; };
+		15E240771BB24F510090D240 /* MyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240751BB24F510090D240 /* MyCollectionViewController.m */; };
+		15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240761BB24F510090D240 /* MyCollectionViewController.xib */; };
+		15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E2407A1BB2521C0090D240 /* CollectionCell.m */; };
+		15E2407D1BB2521C0090D240 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E2407B1BB2521C0090D240 /* CollectionCell.xib */; };
+		15E240821BB279CB0090D240 /* LYMyOrderManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240801BB279CB0090D240 /* LYMyOrderManageViewController.m */; };
+		15E240831BB279CB0090D240 /* LYMyOrderManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240811BB279CB0090D240 /* LYMyOrderManageViewController.xib */; };
+		15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240861BB280DC0090D240 /* LYOrderHeadForWaitView.m */; };
+		15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E2408A1BB281080090D240 /* LYOrderHeadForWaitView.xib */; };
+		15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E2408D1BB283BA0090D240 /* LYOrderBottomView.m */; };
+		15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E2408F1BB283C70090D240 /* LYOrderBottomView.xib */; };
+		15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240931BB294F10090D240 /* LYOrderBottomForFinishView.m */; };
+		15E240961BB295090090D240 /* LYOrderBottomForFinishView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240951BB295090090D240 /* LYOrderBottomForFinishView.xib */; };
+		15E2409A1BB296CF0090D240 /* OrderDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240981BB296CF0090D240 /* OrderDetailCell.m */; };
+		15E2409B1BB296CF0090D240 /* OrderDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240991BB296CF0090D240 /* OrderDetailCell.xib */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
@@ -287,6 +303,30 @@
 		15E240661BB1243A0090D240 /* TypeChooseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeChooseCell.xib; sourceTree = "<group>"; };
 		15E2406A1BB127B30090D240 /* BiaoQianBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiaoQianBtn.h; sourceTree = "<group>"; };
 		15E2406B1BB127B30090D240 /* BiaoQianBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiaoQianBtn.m; sourceTree = "<group>"; };
+		15E2406E1BB2478B0090D240 /* TuiJianShangJiaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuiJianShangJiaViewController.h; sourceTree = "<group>"; };
+		15E2406F1BB2478B0090D240 /* TuiJianShangJiaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuiJianShangJiaViewController.m; sourceTree = "<group>"; };
+		15E240701BB2478B0090D240 /* TuiJianShangJiaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TuiJianShangJiaViewController.xib; sourceTree = "<group>"; };
+		15E240741BB24F510090D240 /* MyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewController.h; sourceTree = "<group>"; };
+		15E240751BB24F510090D240 /* MyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewController.m; sourceTree = "<group>"; };
+		15E240761BB24F510090D240 /* MyCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectionViewController.xib; sourceTree = "<group>"; };
+		15E240791BB2521C0090D240 /* CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCell.h; sourceTree = "<group>"; };
+		15E2407A1BB2521C0090D240 /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
+		15E2407B1BB2521C0090D240 /* CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
+		15E2407F1BB279CB0090D240 /* LYMyOrderManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYMyOrderManageViewController.h; sourceTree = "<group>"; };
+		15E240801BB279CB0090D240 /* LYMyOrderManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYMyOrderManageViewController.m; sourceTree = "<group>"; };
+		15E240811BB279CB0090D240 /* LYMyOrderManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYMyOrderManageViewController.xib; sourceTree = "<group>"; };
+		15E240851BB280DC0090D240 /* LYOrderHeadForWaitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYOrderHeadForWaitView.h; sourceTree = "<group>"; };
+		15E240861BB280DC0090D240 /* LYOrderHeadForWaitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYOrderHeadForWaitView.m; sourceTree = "<group>"; };
+		15E2408A1BB281080090D240 /* LYOrderHeadForWaitView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYOrderHeadForWaitView.xib; sourceTree = "<group>"; };
+		15E2408C1BB283BA0090D240 /* LYOrderBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYOrderBottomView.h; sourceTree = "<group>"; };
+		15E2408D1BB283BA0090D240 /* LYOrderBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYOrderBottomView.m; sourceTree = "<group>"; };
+		15E2408F1BB283C70090D240 /* LYOrderBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYOrderBottomView.xib; sourceTree = "<group>"; };
+		15E240921BB294F10090D240 /* LYOrderBottomForFinishView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYOrderBottomForFinishView.h; sourceTree = "<group>"; };
+		15E240931BB294F10090D240 /* LYOrderBottomForFinishView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYOrderBottomForFinishView.m; sourceTree = "<group>"; };
+		15E240951BB295090090D240 /* LYOrderBottomForFinishView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYOrderBottomForFinishView.xib; sourceTree = "<group>"; };
+		15E240971BB296CF0090D240 /* OrderDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailCell.h; sourceTree = "<group>"; };
+		15E240981BB296CF0090D240 /* OrderDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailCell.m; sourceTree = "<group>"; };
+		15E240991BB296CF0090D240 /* OrderDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailCell.xib; sourceTree = "<group>"; };
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
@@ -772,6 +812,83 @@
 			name = button;
 			sourceTree = "<group>";
 		};
+		15E2406D1BB247180090D240 /* 推荐商家 */ = {
+			isa = PBXGroup;
+			children = (
+				15E2406E1BB2478B0090D240 /* TuiJianShangJiaViewController.h */,
+				15E2406F1BB2478B0090D240 /* TuiJianShangJiaViewController.m */,
+				15E240701BB2478B0090D240 /* TuiJianShangJiaViewController.xib */,
+			);
+			name = "推荐商家";
+			sourceTree = "<group>";
+		};
+		15E240731BB24E4E0090D240 /* 我的收藏 */ = {
+			isa = PBXGroup;
+			children = (
+				15E240741BB24F510090D240 /* MyCollectionViewController.h */,
+				15E240751BB24F510090D240 /* MyCollectionViewController.m */,
+				15E240761BB24F510090D240 /* MyCollectionViewController.xib */,
+				15E240791BB2521C0090D240 /* CollectionCell.h */,
+				15E2407A1BB2521C0090D240 /* CollectionCell.m */,
+				15E2407B1BB2521C0090D240 /* CollectionCell.xib */,
+			);
+			name = "我的收藏";
+			sourceTree = "<group>";
+		};
+		15E2407E1BB2795E0090D240 /* 我的订单 */ = {
+			isa = PBXGroup;
+			children = (
+				15E240881BB280F60090D240 /* view */,
+				15E240841BB27F060090D240 /* cell */,
+				15E2407F1BB279CB0090D240 /* LYMyOrderManageViewController.h */,
+				15E240801BB279CB0090D240 /* LYMyOrderManageViewController.m */,
+				15E240811BB279CB0090D240 /* LYMyOrderManageViewController.xib */,
+			);
+			name = "我的订单";
+			sourceTree = "<group>";
+		};
+		15E240841BB27F060090D240 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				15E240971BB296CF0090D240 /* OrderDetailCell.h */,
+				15E240981BB296CF0090D240 /* OrderDetailCell.m */,
+				15E240991BB296CF0090D240 /* OrderDetailCell.xib */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		15E240881BB280F60090D240 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				15E2409D1BB29D710090D240 /* 订单明细 */,
+				15E2409C1BB29D580090D240 /* 列表 */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		15E2409C1BB29D580090D240 /* 列表 */ = {
+			isa = PBXGroup;
+			children = (
+				15E240851BB280DC0090D240 /* LYOrderHeadForWaitView.h */,
+				15E240861BB280DC0090D240 /* LYOrderHeadForWaitView.m */,
+				15E2408A1BB281080090D240 /* LYOrderHeadForWaitView.xib */,
+				15E2408C1BB283BA0090D240 /* LYOrderBottomView.h */,
+				15E2408D1BB283BA0090D240 /* LYOrderBottomView.m */,
+				15E2408F1BB283C70090D240 /* LYOrderBottomView.xib */,
+				15E240921BB294F10090D240 /* LYOrderBottomForFinishView.h */,
+				15E240931BB294F10090D240 /* LYOrderBottomForFinishView.m */,
+				15E240951BB295090090D240 /* LYOrderBottomForFinishView.xib */,
+			);
+			name = "列表";
+			sourceTree = "<group>";
+		};
+		15E2409D1BB29D710090D240 /* 订单明细 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "订单明细";
+			sourceTree = "<group>";
+		};
 		15EE51321BA6E1AB00464B74 /* 订单管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1023,6 +1140,9 @@
 		A2020D4B1BA6612C0090B92A /* 个人信息 */ = {
 			isa = PBXGroup;
 			children = (
+				15E2407E1BB2795E0090D240 /* 我的订单 */,
+				15E240731BB24E4E0090D240 /* 我的收藏 */,
+				15E2406D1BB247180090D240 /* 推荐商家 */,
 				A2020D461BA661250090B92A /* MyInfoViewController.h */,
 				A2020D471BA661260090B92A /* MyInfoViewController.m */,
 				A2020D481BA661260090B92A /* MyInfoViewController.xib */,
@@ -1970,6 +2090,7 @@
 				A2020D611BA67E9E0090B92A /* disClosure@2x.png in Resources */,
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
+				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
@@ -1978,6 +2099,7 @@
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
 				A2020D801BA67FA40090B92A /* Fill20219@3x.png in Resources */,
 				A20100841BA7AFAB009283D1 /* LYProductslistViewController.xib in Resources */,
+				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
 				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,
@@ -1997,6 +2119,7 @@
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
 				A2F9DA761BAA6AE2009DEAF3 /* OrderBottomView.xib in Resources */,
 				A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */,
+				15E240831BB279CB0090D240 /* LYMyOrderManageViewController.xib in Resources */,
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
@@ -2015,16 +2138,21 @@
 				A2F9DA7F1BAA8CC3009DEAF3 /* SerchHeadView.xib in Resources */,
 				D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */,
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
+				15E2407D1BB2521C0090D240 /* CollectionCell.xib in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
+				15E2409B1BB296CF0090D240 /* OrderDetailCell.xib in Resources */,
 				D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */,
 				A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */,
 				A2FD57631BAFE6C000CFFF92 /* CaoCanCell.xib in Resources */,
 				15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */,
+				15E240961BB295090090D240 /* LYOrderBottomForFinishView.xib in Resources */,
 				A2020D761BA67FA40090B92A /* Fill2097@2x.png in Resources */,
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
+				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
 				D761F01F1BA5AED3000757B0 /* MJRefresh.bundle in Resources */,
 				A2FD576C1BAFE85900CFFF92 /* PinKeCell.xib in Resources */,
 				A2FD57651BAFE6C000CFFF92 /* CheHeCell.xib in Resources */,
+				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
 				D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
@@ -2112,10 +2240,12 @@
 				A2FD57751BAFE94400CFFF92 /* TaoCanMCell.m in Sources */,
 				D761F0151BA5AED3000757B0 /* MJRefreshHeader.m in Sources */,
 				D748BC6D1BA1C856005AA996 /* MJFoundation.m in Sources */,
+				15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
 				A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */,
 				15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */,
 				D761F0361BA5C703000757B0 /* RKISO8601DateFormatter.m in Sources */,
+				15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
@@ -2143,6 +2273,7 @@
 				15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
 				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
+				15E240771BB24F510090D240 /* MyCollectionViewController.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				15E2404E1BB0F3540090D240 /* UIView+IQKeyboardToolbar.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
@@ -2159,8 +2290,10 @@
 				15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */,
 				A2020D491BA661260090B92A /* MyInfoViewController.m in Sources */,
 				A20100DF1BA94404009283D1 /* NSDate+WQCalendarLogic.m in Sources */,
+				15E240821BB279CB0090D240 /* LYMyOrderManageViewController.m in Sources */,
 				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,
 				A2F9DA631BAA5621009DEAF3 /* OrderInfoModel.m in Sources */,
+				15E240711BB2478B0090D240 /* TuiJianShangJiaViewController.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
 				15F54A901BB030420020EB4C /* ChanPinListViewController.m in Sources */,
@@ -2180,6 +2313,8 @@
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
 				15E2404A1BB0F3540090D240 /* IQTitleBarButtonItem.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
+				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,
+				15E2409A1BB296CF0090D240 /* OrderDetailCell.m in Sources */,
 				D73652421BAEBF44002541CE /* KuCunModel.m in Sources */,
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
@@ -2217,6 +2352,7 @@
 				D761F0111BA5AED3000757B0 /* MJRefreshAutoFooter.m in Sources */,
 				D748BC6C1BA1C856005AA996 /* MJConst.m in Sources */,
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
+				15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */,
 				15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */,
 				D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */,
 				15E240621BB1237E0090D240 /* BiaoQianChooseViewController.m in Sources */,

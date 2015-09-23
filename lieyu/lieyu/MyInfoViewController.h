@@ -17,5 +17,5 @@
     UIImageView *myPhotoImageView;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-- (IBAction)queryZSInfo:(id)sender;
+
 @end
