@@ -7,8 +7,8 @@
 //
 
 #import "LYBaseViewController.h"
-
-@interface MyInfoViewController : LYBaseViewController
+#import "NeedHideNavigationBar.h"
+@interface MyInfoViewController : LYBaseViewController<NeedHideNavigationBar>
 {
     NSMutableArray *listArr;
     UILabel *namelal;
@@ -17,5 +17,5 @@
     UIImageView *myPhotoImageView;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-- (IBAction)queryZSInfo:(id)sender;
+
 @end

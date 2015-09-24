@@ -77,7 +77,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+//    [self.navigationController setNavigationBarHidden:YES];
     
     //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
 }

@@ -21,33 +21,40 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="disClosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-4N-PkM">
                         <rect key="frame" x="306" y="30" width="6" height="9"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DzH-bZ-28j">
-                        <rect key="frame" x="26" y="25" width="17" height="19"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="卡座已满" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEV-oR-a5L">
-                        <rect key="frame" x="82" y="23" width="66" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEV-oR-a5L">
+                        <rect key="frame" x="82" y="23" width="141" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="审核中" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLm-3M-sFE">
+                        <rect key="frame" x="278" y="28" width="43" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="1" green="0.29411764705882354" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJG-X6-sQg">
                         <rect key="frame" x="51" y="16" width="4" height="4"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="您有订单要确认请及时确定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqc-PH-5BZ">
-                        <rect key="frame" x="141" y="23" width="150" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqc-PH-5BZ">
+                        <rect key="frame" x="141" y="23" width="157" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DzH-bZ-28j">
+                        <rect key="frame" x="26" y="25" width="17" height="19"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="CoutentImageView" destination="DzH-bZ-28j" id="9vc-ka-gU1"/>
                 <outlet property="backImageView" destination="o57-fa-1lc" id="oae-tv-uDL"/>
                 <outlet property="delLal" destination="Lqc-PH-5BZ" id="Wke-Bs-Ngt"/>
-                <outlet property="disImageView" destination="hJG-X6-sQg" id="3Ad-yd-pdM"/>
+                <outlet property="disClosureImageView" destination="b3g-4N-PkM" id="McI-nk-hEo"/>
                 <outlet property="mesImageView" destination="hJG-X6-sQg" id="miw-g1-yjb"/>
+                <outlet property="shenHeLal" destination="bLm-3M-sFE" id="qTM-pW-ZI2"/>
                 <outlet property="titleLbl" destination="PEV-oR-a5L" id="yNt-pQ-Mfr"/>
             </connections>
             <point key="canvasLocation" x="299.5" y="249"/>
