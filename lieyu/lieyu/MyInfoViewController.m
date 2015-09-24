@@ -12,6 +12,7 @@
 #import "TuiJianShangJiaViewController.h"
 #import "MyCollectionViewController.h"
 #import "LYMyOrderManageViewController.h"
+#import "LYUserLoginViewController.h"
 @interface MyInfoViewController ()
 
 @end
@@ -200,6 +201,12 @@
     
 }
 
+#pragma mark 设置
+- (IBAction)settingQct:(UIButton *)sender {
+    LYUserLoginViewController *userLoginViewController=[[LYUserLoginViewController alloc]initWithNibName:@"LYUserLoginViewController" bundle:nil];
+    userLoginViewController.title=@"登录";
+    [self.navigationController pushViewController:userLoginViewController animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

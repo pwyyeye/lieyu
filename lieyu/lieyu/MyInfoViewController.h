@@ -17,5 +17,6 @@
     UIImageView *myPhotoImageView;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)settingQct:(UIButton *)sender;
 
 @end
