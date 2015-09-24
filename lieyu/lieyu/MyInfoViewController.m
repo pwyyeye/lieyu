@@ -20,14 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES];
     listArr =[[NSMutableArray alloc]init];
     //    self.automaticallyAdjustsScrollViewInsets=0;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self getDataForShowList];
 
-//    [self.navigationController setNavigationBarHidden:YES];
     // Do any additional setup after loading the view from its nib.
 }
 #pragma mark 初始化数据
@@ -76,13 +74,13 @@
     self.tableView.tableHeaderView=view;
     [self.tableView reloadData];
 }
--(void)viewWillAppear:(BOOL)animated{
-    
-    NSLog(@"111");
-}
--(void)viewDidDisappear:(BOOL)animated{
-//    [self.navigationController setNavigationBarHidden:NO];
-    NSLog(@"222");
+
+- (void)viewWillLayoutSubviews
+{
+    if (self.navigationController.navigationBarHidden != YES) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
+
 }
 
 #pragma mark tableview代理方法

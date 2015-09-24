@@ -42,11 +42,18 @@
     rc.origin.x = 10;
     rc.origin.y = 8;
     _fillterButton.frame = rc;
+
+}
+- (void)viewWillLayoutSubviews
+{
+    if (self.navigationController.navigationBarHidden != NO) {
+        [self.navigationController setNavigationBarHidden:NO];
+    }
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-    [self setCustomTitle:nil];
+//    [self setCustomTitle:nil];
     [_fillterButton removeFromSuperview];
 }
 

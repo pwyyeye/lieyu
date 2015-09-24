@@ -33,7 +33,20 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
+    [super viewWillAppear:animated];
+    [self setCustomTitle:@"发现"];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    if (self.navigationController.navigationBarHidden != NO) {
+        [self.navigationController setNavigationBarHidden:NO];
+    }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+//    [self setCustomTitle:nil];
 }
 /*
 #pragma mark - Navigation

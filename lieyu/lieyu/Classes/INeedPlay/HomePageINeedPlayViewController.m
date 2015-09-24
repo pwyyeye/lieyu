@@ -48,6 +48,12 @@
     _topView.frame = rc;
     [self.navigationController.navigationBar addSubview:_topView];
 }
+- (void)viewWillLayoutSubviews
+{
+    if (self.navigationController.navigationBarHidden != NO) {
+        [self.navigationController setNavigationBarHidden:NO];
+    }
+}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
