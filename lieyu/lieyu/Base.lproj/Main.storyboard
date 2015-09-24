@@ -22,6 +22,16 @@
                                     <outlet property="delegate" destination="cXU-VC-UQZ" id="9Yx-D9-wHN"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hdH-sG-Uxx">
+                                <rect key="frame" x="280" y="31" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="icon_setting_normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="settingQct:" destination="cXU-VC-UQZ" eventType="touchUpInside" id="bm3-3D-Xrk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -305,6 +315,7 @@
         <image name="icon_locatecity" width="13" height="15"/>
         <image name="icon_myfllow" width="65" height="28"/>
         <image name="icon_palytogether" width="30" height="31"/>
+        <image name="icon_setting_normal" width="22" height="22"/>
         <image name="icon_yzh" width="85" height="26"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
