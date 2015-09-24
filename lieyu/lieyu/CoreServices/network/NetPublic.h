@@ -73,9 +73,9 @@ typedef NS_ENUM(NSUInteger, ReqState)
 @end
 
 
-#define keyCode     @"code"
+#define keyCode     @"errorcode"
 #define keyMessage  @"message"
-#define keyData     @"payload"
+#define keyData     @"data"
 
 #define keySessionId @"sessionId"
 

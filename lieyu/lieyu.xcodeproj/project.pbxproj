@@ -212,10 +212,9 @@
 		D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F00C1BA5AED3000757B0 /* UIScrollView+MJExtension.m */; };
 		D761F0221BA5AED3000757B0 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F00E1BA5AED3000757B0 /* UIScrollView+MJRefresh.m */; };
 		D761F0231BA5AED3000757B0 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F0101BA5AED3000757B0 /* UIView+MJExtension.m */; };
-		D761F02C1BA5BE47000757B0 /* WeathGetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F02B1BA5BE47000757B0 /* WeathGetManager.m */; };
-		D761F02F1BA5C004000757B0 /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F02E1BA5C004000757B0 /* Weather.m */; };
 		D761F0351BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F0321BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m */; };
 		D761F0361BA5C703000757B0 /* RKISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F0341BA5C703000757B0 /* RKISO8601DateFormatter.m */; };
+		D7630E021BB21B7F005292E1 /* LYRestfulBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = D7630E011BB21B7F005292E1 /* LYRestfulBussiness.m */; settings = {ASSET_TAGS = (); }; };
 		D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */; };
 		D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */; };
 		D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */; };
@@ -687,14 +686,14 @@
 		D761F00E1BA5AED3000757B0 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		D761F00F1BA5AED3000757B0 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		D761F0101BA5AED3000757B0 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
-		D761F02A1BA5BE47000757B0 /* WeathGetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeathGetManager.h; sourceTree = "<group>"; };
-		D761F02B1BA5BE47000757B0 /* WeathGetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeathGetManager.m; sourceTree = "<group>"; };
 		D761F02D1BA5C004000757B0 /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
 		D761F02E1BA5C004000757B0 /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
 		D761F0311BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatterValueTransformer.h; sourceTree = "<group>"; };
 		D761F0321BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatterValueTransformer.m; sourceTree = "<group>"; };
 		D761F0331BA5C703000757B0 /* RKISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKISO8601DateFormatter.h; sourceTree = "<group>"; };
 		D761F0341BA5C703000757B0 /* RKISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKISO8601DateFormatter.m; sourceTree = "<group>"; };
+		D7630E001BB21B7F005292E1 /* LYRestfulBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYRestfulBussiness.h; sourceTree = "<group>"; };
+		D7630E011BB21B7F005292E1 /* LYRestfulBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYRestfulBussiness.m; sourceTree = "<group>"; };
 		D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageINeedPlayViewController.h; path = Classes/INeedPlay/HomePageINeedPlayViewController.h; sourceTree = "<group>"; };
 		D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageINeedPlayViewController.m; path = Classes/INeedPlay/HomePageINeedPlayViewController.m; sourceTree = "<group>"; };
 		D7A230CB1BA7160B00E8B51B /* LYWineBarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWineBarInfoCell.h; sourceTree = "<group>"; };
@@ -1298,8 +1297,8 @@
 			children = (
 				AD8899D81B9AFE62007BCC7C /* lieyuTests.m */,
 				AD8899D61B9AFE62007BCC7C /* Supporting Files */,
-				D761F02A1BA5BE47000757B0 /* WeathGetManager.h */,
-				D761F02B1BA5BE47000757B0 /* WeathGetManager.m */,
+				D7630E001BB21B7F005292E1 /* LYRestfulBussiness.h */,
+				D7630E011BB21B7F005292E1 /* LYRestfulBussiness.m */,
 			);
 			path = lieyuTests;
 			sourceTree = "<group>";
@@ -2227,8 +2226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D761F02F1BA5C004000757B0 /* Weather.m in Sources */,
-				D761F02C1BA5BE47000757B0 /* WeathGetManager.m in Sources */,
+				D7630E021BB21B7F005292E1 /* LYRestfulBussiness.m in Sources */,
 				AD8899D91B9AFE62007BCC7C /* lieyuTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

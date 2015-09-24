@@ -16,7 +16,7 @@ NSString *gSessionId = nil;
 {
     return RestKitMapWithDic([LYRestfulResponseBase class],
                                 @{
-                                  @"code" : @"code",
+                                  @"errorcode" : @"code",
                                   @"message" : @"message",
                                   @"sessionId":@"sessionId"
                                 });
@@ -29,10 +29,10 @@ NSString *gSessionId = nil;
 {
     RKObjectMapping *statusMapping = [RKObjectMapping mappingForClass:[LYRestfulResponse class]];
     [statusMapping addAttributeMappingsFromDictionary:@{
-                                                            @"code" : @"code",
+                                                            @"errorcode" : @"code",
                                                             @"message" : @"message",
                                                             @"sessionId":@"sessionId",
-                                                            @"payload":@"payload"
+                                                            @"data":@"payload"
                                                         }];
     return statusMapping;
 }
