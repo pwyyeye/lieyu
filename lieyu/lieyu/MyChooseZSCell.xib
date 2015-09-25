@@ -22,16 +22,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-8" maxY="0.0"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
-                        <state key="normal" title="私聊" image="C891BE30-7E26-4252-AF02-D784895B5B24">
-                            <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncn-8q-CHh">
-                        <rect key="frame" x="141" y="42" width="67" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-8" maxY="0.0"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
-                        <state key="normal" title="电话" image="C25C89BA-D017-4275-BE77-67935AEF79DB">
+                        <state key="normal" title="私聊" image="FBB81BBD-B527-492C-BDC0-42A9AD93D9E1">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -47,6 +38,15 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncn-8q-CHh">
+                        <rect key="frame" x="141" y="42" width="67" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-8" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                        <state key="normal" title="电话" image="B29CE12D-E1A6-4D93-9001-67243947E3C9">
+                            <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -59,7 +59,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="C25C89BA-D017-4275-BE77-67935AEF79DB" width="19" height="19">
+        <image name="B29CE12D-E1A6-4D93-9001-67243947E3C9" width="19" height="19">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -153,7 +153,7 @@ E34TgxOOE5cTqhOuE8ETzBPVE9oT4hPlE+oT+RP9FAQUDBQZFB4UIBQiFCcULxQyFDcUPxRCFFQUVxRc
 AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAFF4
 </mutableData>
         </image>
-        <image name="C891BE30-7E26-4252-AF02-D784895B5B24" width="21" height="19">
+        <image name="FBB81BBD-B527-492C-BDC0-42A9AD93D9E1" width="21" height="19">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

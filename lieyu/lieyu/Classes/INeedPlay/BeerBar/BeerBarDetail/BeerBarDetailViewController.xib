@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeerBarDetailViewController">
@@ -41,16 +41,6 @@
                     <rect key="frame" x="0.0" y="499" width="320" height="69"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Qf-zL-gKW">
-                            <rect key="frame" x="23" y="8" width="68" height="61"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <inset key="titleEdgeInsets" minX="-34" minY="38" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="13" minY="-16" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="我要订位" image="icon_ordersits">
-                                <color key="titleColor" red="0.40392156862745099" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="J3H-P8-Uou">
                             <rect key="frame" x="216" y="8" width="68" height="61"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -71,6 +61,16 @@
                                 <color key="titleColor" red="0.4039215686" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Qf-zL-gKW">
+                            <rect key="frame" x="23" y="8" width="68" height="61"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <inset key="titleEdgeInsets" minX="-34" minY="38" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="13" minY="-16" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="我要订位" image="icon_ordersits">
+                                <color key="titleColor" red="0.40392156862745099" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -82,7 +82,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="96X-DT-GEW" id="HBL-mj-0Sl">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="219.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="颜色酒吧" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PIi-JY-IS5">
@@ -201,7 +201,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwQ-ej-J52" id="Jfr-2l-B75">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门订座套餐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JXA-Gg-EX9">
@@ -238,4 +238,9 @@
         <image name="icon_managers" width="42" height="42"/>
         <image name="icon_ordersits" width="42" height="42"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

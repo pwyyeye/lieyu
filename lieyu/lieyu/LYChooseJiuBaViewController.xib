@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYChooseJiuBaViewController">
+            <connections>
+                <outlet property="searchBar" destination="sfZ-u1-dqU" id="mba-oe-xmC"/>
+                <outlet property="searchDisplayController" destination="TDt-ty-lFu" id="TJd-bz-wQ0"/>
+                <outlet property="tableView" destination="wuo-He-ekY" id="itT-HJ-iqd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wuo-He-ekY">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <searchBar key="tableHeaderView" contentMode="redraw" id="sfZ-u1-dqU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="s2a-X8-A22"/>
+                        </connections>
+                    </searchBar>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="dNC-8h-Iom"/>
+                        <outlet property="delegate" destination="-1" id="SJd-mK-oRs"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="wuo-He-ekY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Fem-hm-Q7a"/>
+                <constraint firstItem="wuo-He-ekY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="I4c-jl-WXH"/>
+                <constraint firstAttribute="bottom" secondItem="wuo-He-ekY" secondAttribute="bottom" id="Lq8-Mk-oTc"/>
+                <constraint firstAttribute="trailing" secondItem="wuo-He-ekY" secondAttribute="trailing" id="ZVQ-dL-zIa"/>
+            </constraints>
+            <point key="canvasLocation" x="323" y="283"/>
+        </view>
+        <searchDisplayController id="TDt-ty-lFu">
+            <connections>
+                <outlet property="delegate" destination="-1" id="ZFA-RL-l55"/>
+                <outlet property="searchBar" destination="sfZ-u1-dqU" id="Glw-oL-Jcj"/>
+                <outlet property="searchContentsController" destination="-1" id="PBO-0j-IRj"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="cJU-Ob-HLV"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="Crh-qL-32R"/>
+            </connections>
+        </searchDisplayController>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

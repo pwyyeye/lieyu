@@ -1,0 +1,174 @@
+//
+//  MyZSManageViewController.m
+//  lieyu
+//
+//  Created by 薛斯岐 on 15/9/25.
+//  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
+//
+
+#import "MyZSManageViewController.h"
+#import "ZSDetailModel.h"
+#import "LYZSdetailCell.h"
+#import "LYZSeditView.h"
+#import "LYZSApplicationViewController.h"
+@interface MyZSManageViewController ()
+
+@end
+
+@implementation MyZSManageViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    zsList=[[NSMutableArray alloc]init];
+    [self setupViewStyles];
+    _tableView.showsHorizontalScrollIndicator=NO;
+    _tableView.showsVerticalScrollIndicator=NO;
+    _tableView.separatorColor=RGB(237, 237, 237);
+    _tableView.backgroundColor=RGB(237, 237, 237);
+    self.view.backgroundColor=RGB(237, 237, 237);
+//    [self.tableView setHidden:YES];
+    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"more1"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
+    [self.navigationItem setRightBarButtonItem:rightBtn];
+    [self getZSDetail];
+    
+    // Do any additional setup after loading the view from its nib.
+}
+- (void)setupViewStyles
+{
+    
+    UINib * detailNib = [UINib nibWithNibName:@"LYZSdetailCell" bundle:nil];
+    [self.tableView registerNib:detailNib forCellReuseIdentifier:@"LYZSdetailCell"];
+    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 14)];
+    
+    view1.backgroundColor=RGB(237, 237, 237);
+    self.tableView.tableHeaderView=view1;
+}
+-(void)getZSDetail{
+    [zsList removeAllObjects];
+    for (int i=0; i<8; i++) {
+        ZSDetailModel * detailModel=[[ZSDetailModel alloc]init];
+        detailModel.userName= [NSString stringWithFormat:@"%@%d",@"EasonChan",i];
+        detailModel.biaoti=@"你的满意是我最大的光荣";
+        detailModel.jiuba=@"绯红酒吧";
+        [zsList addObject:detailModel];
+    }
+    [self.tableView reloadData];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    return 1;
+    
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return 104;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return [zsList  count];
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    LYZSdetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYZSdetailCell"];
+//    NSUInteger row = [indexPath row];
+    
+    ZSDetailModel * detailModel=zsList[indexPath.row];
+    cell.nameLal.text=detailModel.userName;
+    cell.biaoqianLal.text=detailModel.biaoti;
+    cell.jiubaLal.text=detailModel.jiuba;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+}
+#pragma mark - 更多
+-(void)moreAct:(id)sender{
+    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
+    [_bgView setTag:99999];
+    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
+    [_bgView setAlpha:1.0];
+    rightBtn.enabled=false;
+    [self.view addSubview:_bgView];
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LYZSeditView" owner:nil options:nil];
+    seditView= (LYZSeditView *)[nibView objectAtIndex:0];
+    seditView.top=SCREEN_HEIGHT;
+    [seditView.quxiaoBtn addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
+    [seditView.editListBtn addTarget:self action:@selector(editZsAct:) forControlEvents:UIControlEventTouchDown];
+    [seditView.shenqingBtn addTarget:self action:@selector(shenqingAct:) forControlEvents:UIControlEventTouchDown];
+    [_bgView addSubview:seditView];
+    
+    [UIView beginAnimations:@"animationID" context:nil];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:seditView cache:NO];
+    seditView.top=SCREEN_HEIGHT-seditView.height-64;
+    [UIView commitAnimations];
+    
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame=CGRectMake(0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT-seditView.height-64);
+    [button setBackgroundColor:[UIColor clearColor]];
+    [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
+    [_bgView insertSubview:button aboveSubview:_bgView];
+    button.backgroundColor=[UIColor clearColor];
+}
+#pragma mark - 编辑列表
+-(void)editZsAct:(id)sender{
+
+}
+#pragma mark - 申请专属经理
+-(void)shenqingAct:(id)sender{
+    LYZSApplicationViewController *applicationViewController=[[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
+    applicationViewController.title=@"申请专属经理";
+    [self.navigationController pushViewController:applicationViewController animated:YES];
+    [self SetViewDisappear:nil];
+}
+
+#pragma mark - 消失
+-(void)SetViewDisappear:(id)sender
+{
+    rightBtn.enabled=YES;
+    if (_bgView)
+    {
+        _bgView.backgroundColor=[UIColor clearColor];
+        [UIView animateWithDuration:.5
+                         animations:^{
+                             
+                             seditView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300);
+                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+                             _bgView.alpha=0.0;
+                         }];
+        [_bgView performSelector:@selector(removeFromSuperview)
+                      withObject:nil
+                      afterDelay:2];
+        
+        _bgView=nil;
+    }
+    
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

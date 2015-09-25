@@ -13,6 +13,7 @@
 #import "MyCollectionViewController.h"
 #import "LYMyOrderManageViewController.h"
 #import "LYUserLoginViewController.h"
+#import "MyZSManageViewController.h"
 @interface MyInfoViewController ()
 
 @end
@@ -21,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     listArr =[[NSMutableArray alloc]init];
     //    self.automaticallyAdjustsScrollViewInsets=0;
     
@@ -170,7 +172,9 @@
             
         case 3:// 专属经理
         {
-            
+            MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
+            myZSManageViewController.title=@"我的专属经理";
+            [self.navigationController pushViewController:myZSManageViewController animated:YES];
             
             break;
         }
