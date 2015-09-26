@@ -11,6 +11,11 @@
 
 @interface MainTabbarViewController ()
 
+<
+    UITabBarControllerDelegate,
+    UITabBarDelegate
+>
+
 @end
 
 @implementation MainTabbarViewController

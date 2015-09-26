@@ -35,8 +35,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self performSelector:@selector(setCustomTitle:) withObject:@"一起玩" afterDelay:0.1];
     self.oriNavItems = [self.navigationController.navigationBar.items copy];
-    [self setCustomTitle:@"一起玩"];
     [self.navigationController.navigationBar addSubview:_fillterButton];
     CGRect rc = _fillterButton.frame;
     rc.origin.x = 10;
@@ -46,14 +46,16 @@
 }
 - (void)viewWillLayoutSubviews
 {
+
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
+
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-//    [self setCustomTitle:nil];
+    [self setCustomTitle:nil];
     [_fillterButton removeFromSuperview];
 }
 

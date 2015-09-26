@@ -24,6 +24,8 @@
     [self setupDataStore];
     UINavigationController * nav = (UINavigationController *)self.window.rootViewController;
     nav.delegate = self;
+    self.window.backgroundColor = [UIColor whiteColor];
+
     return YES;
 }
 
@@ -41,7 +43,22 @@
     }
     else
     {
-        [viewController.navigationController setNavigationBarHidden:NO];
+        BOOL isTabBarContrller = [viewController isKindOfClass:[UITabBarController class]];
+        UIViewController *dstController = viewController;
+        if (isTabBarContrller)
+        {
+            UITabBarController * tabBarController = (UITabBarController *)viewController;
+            dstController = tabBarController.selectedViewController;
+        }
+        
+        if (![dstController conformsToProtocol:@protocol(NeedHideNavigationBar)])
+        {
+            [dstController.navigationController setNavigationBarHidden:NO];
+        }
+        else
+        {
+            [dstController.navigationController setNavigationBarHidden:YES];
+        }
     }
 }
 

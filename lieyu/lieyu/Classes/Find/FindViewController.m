@@ -33,20 +33,22 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self performSelector:@selector(setCustomTitle:) withObject:@"发现" afterDelay:0.1];
+
     [super viewWillAppear:animated];
-    [self setCustomTitle:@"发现"];
 }
 
 - (void)viewWillLayoutSubviews
 {
+
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
 }
 
--(void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-//    [self setCustomTitle:nil];
+    [self setCustomTitle:nil];
 }
 /*
 #pragma mark - Navigation
