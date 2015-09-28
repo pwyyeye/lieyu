@@ -60,10 +60,10 @@
 
         if([status integerValue] == -1){
             
-            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            [app stopLoading];
-        
-            [app.navigationController pushViewController:vc animated:YES];
+//            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+//            [app stopLoading];
+//        
+//            [app.navigationController pushViewController:vc animated:YES];
 //            [app.navigationController presentViewController:vc animated:YES completion:^{
 //                
 //            }];
@@ -75,7 +75,7 @@
                 ShowMessage([array objectAtIndex:0]);
             }
             
-            [app stopLoading];
+//            [app stopLoading];
         }else{
             [self.delegate didRecieveResults:responseObject withName:urlName];
         }
@@ -83,7 +83,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        [app stopLoading];
+//        [app stopLoading];
         
         //[mi_statusbar setHidden:YES];
         //[timer invalidate];
@@ -118,11 +118,11 @@
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
         if([status integerValue] == -1){
+//            
+//            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+//            [app stopLoading];
             
-            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            [app stopLoading];
-            
-            [app.navigationController pushViewController:vc animated:YES];
+//            [app.navigationController pushViewController:vc animated:YES];
         }else if([status integerValue] == 0){
             id array=[responseObject objectForKey:@"msg"];
             if ([array isKindOfClass:[NSString class]]) {
@@ -131,7 +131,7 @@
                   ShowMessage([array objectAtIndex:0]);
             }
             
-            [app stopLoading];
+//            [app stopLoading];
            
         }else{
             [self.delegate didRecieveResults:responseObject withName:urlName];
@@ -143,7 +143,7 @@
         
         //[alertView dismissWithClickedButtonIndex:0 animated:YES];
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        [app stopLoading];
+//        [app stopLoading];
 
         NSLog(@"Error: %@", error);
         NSLog ( @"operation: %@" , operation. responseString );
@@ -226,11 +226,11 @@
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
         if([status integerValue] == -1){
-            
-            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-            [app stopLoading];
-            
-            [app.navigationController pushViewController:vc animated:YES];
+//            
+//            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+//            [app stopLoading];
+//            
+//            [app.navigationController pushViewController:vc animated:YES];
         }else if([status integerValue] == 0){
             id array=[responseObject objectForKey:@"msg"];
             if ([array isKindOfClass:[NSString class]]) {
@@ -239,7 +239,7 @@
                 ShowMessage([array objectAtIndex:0]);
             }
             
-            [app stopLoading];
+//            [app stopLoading];
             
         }else{
             [self.delegate didRecieveResults:responseObject withName:urlName];

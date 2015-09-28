@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonDigest.h>
+
 @interface MyUtil : NSObject
 
 +(MyUtil *)shareUtil;
