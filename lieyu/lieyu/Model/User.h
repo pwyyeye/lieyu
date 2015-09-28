@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "LYCoreDataObject.h"
 
-@interface User : LYCoreDataObject
+@interface User : NSManagedObject
 
 @property (nonatomic, retain) NSString * account;
 @property (nonatomic, retain) NSString * avatar;

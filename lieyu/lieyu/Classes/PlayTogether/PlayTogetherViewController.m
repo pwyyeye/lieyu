@@ -8,7 +8,10 @@
 
 #import "PlayTogetherViewController.h"
 #import "MacroDefinition.h"
-@interface PlayTogetherViewController ()
+#import "LYRestfulBussiness.h"
+
+@interface PlayTogetherViewController
+()
 
 @property(nonatomic,weak) IBOutlet UIButton * allListButton;
 @property(nonatomic,weak) IBOutlet UIButton * nearDistanceButton;
@@ -25,6 +28,7 @@
     
     [self setupViewStyles];
     // Do any additional setup after loading the view.
+
 }
 
 - (void)didReceiveMemoryWarning {

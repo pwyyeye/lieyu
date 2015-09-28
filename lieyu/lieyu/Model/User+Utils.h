@@ -7,9 +7,8 @@
 //
 
 #import "User.h"
-#import "RestKitMapping.h"
 
-@interface User (Utils)<RestKitMapping>
+@interface User (Utils)
 
 + (User *)initFromPushMsgItem:(NSDictionary *)userInfo;
 

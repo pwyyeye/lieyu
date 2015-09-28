@@ -91,16 +91,6 @@ static BOOL suppressServerCommunication = NO;
     }
 }
 
--(void)setupRestKit {
-
-    // Enable Activity Indicator Spinner
-    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-    
-    // Initialize managed object store
-    self.objectManager.managedObjectStore = self.managedObjectStore;
-    NSLog(@"Done setting up rest kit.");
-}
-
 
 
 - (void)setupManagedObjectModel
@@ -113,7 +103,7 @@ static BOOL suppressServerCommunication = NO;
 - (void)setupRKStorage {
     NSError *err = nil;
     
-    self.managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:self.managedObjectModel];
+//    self.managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:self.managedObjectModel];
     
     NSString *dbFileName = @"lieyu";
     if (self.testMode) {
@@ -151,12 +141,12 @@ static BOOL suppressServerCommunication = NO;
     }
 
 
-    [self.managedObjectStore createPersistentStoreCoordinator];
-    [self.managedObjectStore addSQLitePersistentStoreAtPath:storeURL.path
-                                     fromSeedDatabaseAtPath:nil
-                                          withConfiguration:nil
-                                                    options:options
-                                                      error:&err];
+//    [self.managedObjectStore createPersistentStoreCoordinator];
+//    [self.managedObjectStore addSQLitePersistentStoreAtPath:storeURL.path
+//                                     fromSeedDatabaseAtPath:nil
+//                                          withConfiguration:nil
+//                                                    options:options
+//                                                      error:&err];
     
     if (err != nil) {
         NSLog(@"%@", err);
@@ -165,14 +155,12 @@ static BOOL suppressServerCommunication = NO;
 
 - (void)setupContext
 {
-    [self.managedObjectStore createManagedObjectContexts];
     self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];//NSMainQueueConcurrencyType];
     self.managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
-    self.managedObjectContext.persistentStoreCoordinator = self.managedObjectStore.persistentStoreCoordinator;
+//    self.managedObjectContext.persistentStoreCoordinator = self.managedObjectStore.persistentStoreCoordinator;
 
 
     // Configure a managed object cache to ensure we do not create duplicate objects
-    self.managedObjectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:self.managedObjectStore.persistentStoreManagedObjectContext];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onObjectsChanged:)
@@ -183,7 +171,7 @@ static BOOL suppressServerCommunication = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onObjectsNeedMerge:)
                                                  name:NSManagedObjectContextDidSaveNotification
-                                               object:self.managedObjectStore.mainQueueManagedObjectContext];
+                                               object:self.managedObjectContext];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onLocalObjectsSaved:)
@@ -311,3 +299,7 @@ static BOOL suppressServerCommunication = NO;
 }
 
 @end
+
+
+
+

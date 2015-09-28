@@ -22,4 +22,13 @@
     // Configure the view for the selected state
 }
 
+
+- (void)configureCell:(id)model
+{
+
+    
+}
+
+
+
 @end

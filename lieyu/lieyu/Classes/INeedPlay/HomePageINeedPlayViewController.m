@@ -10,6 +10,7 @@
 #import "HomePageINeedPlayViewController.h"
 #import "MJRefresh.h"
 #import "BeerBarDetailViewController.h"
+#import "BearBarListViewController.h"
 
 @interface HomePageINeedPlayViewController ()
 <
@@ -91,13 +92,17 @@
 
 - (IBAction)beerBarClick:(id)sender
 {
-
+    BearBarListViewController * bearBarController  = [[BearBarListViewController alloc ] initWithNibName:@"BearBarListViewController" bundle:nil];
+    bearBarController.entryType = BaseEntry_WineBar;
+    [self.navigationController pushViewController:bearBarController animated:YES];
 }
 
 
 - (IBAction)yzhClick:(id)sender
 {
-
+    BearBarListViewController * bearBarController  = [[BearBarListViewController alloc ] initWithNibName:@"BearBarListViewController" bundle:nil];
+    bearBarController.entryType = BaseEntry_Yzh;
+    [self.navigationController pushViewController:bearBarController animated:YES];
 }
 
 - (IBAction)selectAreaClick:(id)sender
