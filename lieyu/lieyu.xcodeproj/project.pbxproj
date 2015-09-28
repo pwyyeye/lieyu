@@ -248,6 +248,10 @@
 		D748BC7A1BA1CB0E005AA996 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC771BA1CB0E005AA996 /* User.m */; };
 		D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC791BA1CB0E005AA996 /* User+Utils.m */; };
 		D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC7E1BA1CB35005AA996 /* LYCoreDataObject.m */; };
+		D74C60851BB69F6300A49598 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D74C60841BB69F6300A49598 /* RTLabel.m */; settings = {ASSET_TAGS = (); }; };
+		D74C60871BB6E8B600A49598 /* LYRestfulBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = D7630E011BB21B7F005292E1 /* LYRestfulBussiness.m */; settings = {ASSET_TAGS = (); }; };
+		D74C608B1BB6F0BF00A49598 /* BearBarListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D74C60891BB6F0BF00A49598 /* BearBarListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		D74C608C1BB6F0BF00A49598 /* BearBarListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D74C608A1BB6F0BF00A49598 /* BearBarListViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		D761F0111BA5AED3000757B0 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D761EFE71BA5AED3000757B0 /* MJRefreshAutoFooter.m */; };
 		D761F0121BA5AED3000757B0 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D761EFE91BA5AED3000757B0 /* MJRefreshBackFooter.m */; };
 		D761F0131BA5AED3000757B0 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = D761EFEB1BA5AED3000757B0 /* MJRefreshComponent.m */; };
@@ -270,6 +274,9 @@
 		D761F0351BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F0321BA5C703000757B0 /* ISO8601DateFormatterValueTransformer.m */; };
 		D761F0361BA5C703000757B0 /* RKISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D761F0341BA5C703000757B0 /* RKISO8601DateFormatter.m */; };
 		D7630E021BB21B7F005292E1 /* LYRestfulBussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = D7630E011BB21B7F005292E1 /* LYRestfulBussiness.m */; };
+		D794ED061BB78009000DC568 /* LYCustomSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED051BB78009000DC568 /* LYCustomSegmentControl.m */; settings = {ASSET_TAGS = (); }; };
+		D794ED091BB786AA000DC568 /* PFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED081BB786AA000DC568 /* PFImage.m */; settings = {ASSET_TAGS = (); }; };
+		D794ED0C1BB7872A000DC568 /* PFRect.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED0B1BB7872A000DC568 /* PFRect.m */; settings = {ASSET_TAGS = (); }; };
 		D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */; };
 		D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */; };
 		D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */; };
@@ -787,6 +794,12 @@
 		D748BC791BA1CB0E005AA996 /* User+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Utils.m"; sourceTree = "<group>"; };
 		D748BC7D1BA1CB35005AA996 /* LYCoreDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCoreDataObject.h; sourceTree = "<group>"; };
 		D748BC7E1BA1CB35005AA996 /* LYCoreDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCoreDataObject.m; sourceTree = "<group>"; };
+		D74C60831BB69F6300A49598 /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
+		D74C60841BB69F6300A49598 /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
+		D74C60881BB6F0BF00A49598 /* BearBarListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BearBarListViewController.h; sourceTree = "<group>"; };
+		D74C60891BB6F0BF00A49598 /* BearBarListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BearBarListViewController.m; sourceTree = "<group>"; };
+		D74C608A1BB6F0BF00A49598 /* BearBarListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BearBarListViewController.xib; sourceTree = "<group>"; };
+		D74C608D1BB6F64F00A49598 /* HomePageEntryConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageEntryConstant.h; sourceTree = "<group>"; };
 		D761EFE61BA5AED3000757B0 /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		D761EFE71BA5AED3000757B0 /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		D761EFE81BA5AED3000757B0 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -833,6 +846,12 @@
 		D761F0341BA5C703000757B0 /* RKISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKISO8601DateFormatter.m; sourceTree = "<group>"; };
 		D7630E001BB21B7F005292E1 /* LYRestfulBussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYRestfulBussiness.h; sourceTree = "<group>"; };
 		D7630E011BB21B7F005292E1 /* LYRestfulBussiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYRestfulBussiness.m; sourceTree = "<group>"; };
+		D794ED041BB78009000DC568 /* LYCustomSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCustomSegmentControl.h; sourceTree = "<group>"; };
+		D794ED051BB78009000DC568 /* LYCustomSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCustomSegmentControl.m; sourceTree = "<group>"; };
+		D794ED071BB786AA000DC568 /* PFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFImage.h; sourceTree = "<group>"; };
+		D794ED081BB786AA000DC568 /* PFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFImage.m; sourceTree = "<group>"; };
+		D794ED0A1BB7872A000DC568 /* PFRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRect.h; sourceTree = "<group>"; };
+		D794ED0B1BB7872A000DC568 /* PFRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRect.m; sourceTree = "<group>"; };
 		D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageINeedPlayViewController.h; path = Classes/INeedPlay/HomePageINeedPlayViewController.h; sourceTree = "<group>"; };
 		D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageINeedPlayViewController.m; path = Classes/INeedPlay/HomePageINeedPlayViewController.m; sourceTree = "<group>"; };
 		D7A230CB1BA7160B00E8B51B /* LYWineBarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWineBarInfoCell.h; sourceTree = "<group>"; };
@@ -1659,6 +1678,7 @@
 			isa = PBXGroup;
 			children = (
 				D729DB5D1BADB8AB005A9E60 /* BeerBarDetail */,
+				D74C608D1BB6F64F00A49598 /* HomePageEntryConstant.h */,
 			);
 			name = BeerBar;
 			path = Classes/INeedPlay/BeerBar;
@@ -1681,6 +1701,9 @@
 				D71E1D931BAE963900915F37 /* LYShareSnsView.h */,
 				D71E1D941BAE963900915F37 /* LYShareSnsView.m */,
 				D71E1D961BAE965600915F37 /* LYShareSnsView.xib */,
+				D74C60881BB6F0BF00A49598 /* BearBarListViewController.h */,
+				D74C60891BB6F0BF00A49598 /* BearBarListViewController.m */,
+				D74C608A1BB6F0BF00A49598 /* BearBarListViewController.xib */,
 			);
 			path = BeerBarDetail;
 			sourceTree = "<group>";
@@ -1992,6 +2015,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D74C60821BB69F6300A49598 /* RTLabel */ = {
+			isa = PBXGroup;
+			children = (
+				D74C60831BB69F6300A49598 /* RTLabel.h */,
+				D74C60841BB69F6300A49598 /* RTLabel.m */,
+			);
+			path = RTLabel;
+			sourceTree = "<group>";
+		};
 		D761EFE31BA5AE82000757B0 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -2101,6 +2133,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				D794ED031BB77FCF000DC568 /* CustomSegment */,
 				D729DB5C1BADB8AB005A9E60 /* BeerBar */,
 				D7A230CA1BA7152000E8B51B /* Cell */,
 				D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */,
@@ -2175,6 +2208,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D74C60821BB69F6300A49598 /* RTLabel */,
 				15E184971BB5319900681BB2 /* Toast */,
 				15E2402F1BB0F3540090D240 /* IQKeyBoardManager */,
 				15EFEF811BA99CD5004739A2 /* 水平菜单 */,
@@ -2189,6 +2223,10 @@
 		D764F0C71BA1BBCF001649D9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D794ED0A1BB7872A000DC568 /* PFRect.h */,
+				D794ED0B1BB7872A000DC568 /* PFRect.m */,
+				D794ED071BB786AA000DC568 /* PFImage.h */,
+				D794ED081BB786AA000DC568 /* PFImage.m */,
 				D748BC4D1BA1C52E005AA996 /* Apple */,
 				D71E1D981BAE9C1100915F37 /* LYColors.h */,
 				D71E1D991BAE9C1100915F37 /* LYColors.m */,
@@ -2196,6 +2234,16 @@
 				D73652381BAEB2BF002541CE /* LYTableViewCellLayout.h */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D794ED031BB77FCF000DC568 /* CustomSegment */ = {
+			isa = PBXGroup;
+			children = (
+				D794ED041BB78009000DC568 /* LYCustomSegmentControl.h */,
+				D794ED051BB78009000DC568 /* LYCustomSegmentControl.m */,
+			);
+			name = CustomSegment;
+			path = Classes/INeedPlay/CustomSegment;
 			sourceTree = "<group>";
 		};
 		D7A230CA1BA7152000E8B51B /* Cell */ = {
@@ -2302,6 +2350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */,
+				D74C608C1BB6F0BF00A49598 /* BearBarListViewController.xib in Resources */,
 				A2F9DA711BAA667D009DEAF3 /* OrderHeadView.xib in Resources */,
 				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
 				A2020D621BA67E9E0090B92A /* disClosure@3x.png in Resources */,
@@ -2455,6 +2504,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D74C60871BB6E8B600A49598 /* LYRestfulBussiness.m in Sources */,
 				15E1849A1BB5319900681BB2 /* Toast+UIView.m in Sources */,
 				15E184831BB51A9500681BB2 /* LYZSApplicationViewController.m in Sources */,
 				A20100CA1BA9212A009283D1 /* ZSCustomerDetailViewController.m in Sources */,
@@ -2469,6 +2519,7 @@
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
 				15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */,
+				D794ED061BB78009000DC568 /* LYCustomSegmentControl.m in Sources */,
 				15E240481BB0F3540090D240 /* IQSegmentedNextPrevious.m in Sources */,
 				A2F9DA741BAA6AB7009DEAF3 /* OrderBottomView.m in Sources */,
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
@@ -2476,6 +2527,7 @@
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
 				D761F01C1BA5AED3000757B0 /* MJRefreshGifHeader.m in Sources */,
 				15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */,
+				D74C608B1BB6F0BF00A49598 /* BearBarListViewController.m in Sources */,
 				15EE515A1BA7085C00464B74 /* ZSAlreadyPayedViewController.m in Sources */,
 				D761F01A1BA5AED3000757B0 /* MJRefreshBackNormalFooter.m in Sources */,
 				15E240BA1BB3A4CD0090D240 /* MyChooseZSCell.m in Sources */,
@@ -2537,6 +2589,7 @@
 				D761F0191BA5AED3000757B0 /* MJRefreshBackGifFooter.m in Sources */,
 				15E240A51BB381450090D240 /* OrderDetailHeadView.m in Sources */,
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
+				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D761F01D1BA5AED3000757B0 /* MJRefreshNormalHeader.m in Sources */,
 				15E1848D1BB5220C00681BB2 /* LyZSuploadIdCardViewController.m in Sources */,
 				15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */,
@@ -2607,8 +2660,10 @@
 				15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */,
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
 				D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */,
+				D74C60851BB69F6300A49598 /* RTLabel.m in Sources */,
 				D748BC6E1BA1C856005AA996 /* MJProperty.m in Sources */,
 				15E240471BB0F3540090D240 /* IQKeyboardManager.m in Sources */,
+				D794ED0C1BB7872A000DC568 /* PFRect.m in Sources */,
 				D761F0111BA5AED3000757B0 /* MJRefreshAutoFooter.m in Sources */,
 				D748BC6C1BA1C856005AA996 /* MJConst.m in Sources */,
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
@@ -2745,6 +2800,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				INFOPLIST_FILE = lieyu/Info.plist;
@@ -2764,6 +2820,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				INFOPLIST_FILE = lieyu/Info.plist;

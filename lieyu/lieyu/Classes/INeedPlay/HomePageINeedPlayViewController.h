@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LYBaseViewController.h"
+#import "HomePageEntryConstant.h"
+
 @interface HomePageINeedPlayViewController : LYBaseViewController
 
 
