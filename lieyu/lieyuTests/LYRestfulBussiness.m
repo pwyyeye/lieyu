@@ -7,7 +7,7 @@
 //
 
 #import "LYRestfulBussiness.h"
-#import "RestKit.h"
+
 HttpOperatorProvider * httpClient = nil;
 
 @implementation LYRestfulBussiness
@@ -19,16 +19,16 @@ HttpOperatorProvider * httpClient = nil;
           @"maxprice":[miniprice stringValue],
           @"minnum":[miniprice stringValue],
           @"maxnum":[miniprice stringValue]                     };
-    httpClient  = [[HttpOperatorProvider alloc] initWithBaseUrl:URL init:^(RKObjectManager *obj) {
+    httpClient  = [[HttpOperatorProvider alloc] initWithBaseUrl:URL init:^(NSObject *obj) {
         
     }];
     
-    
-    RKResponseDescriptor *des = RestKitResponse(API_QUERYDRINK, [LYRestfulResponseBase mapping], @"");
-    [httpClient.client addResponseDescriptor:des];
-    [httpClient postDataWithApi:URL api:API_QUERYDRINK jsonParams:param retHandle:^(LYErrorMessage *erMsg, id data) {
-        
-    }];
+//    
+//    RKResponseDescriptor *des = RestKitResponse(API_QUERYDRINK, [LYRestfulResponseBase mapping], @"");
+//    [httpClient.client addResponseDescriptor:des];
+//    [httpClient postDataWithApi:URL api:API_QUERYDRINK jsonParams:param retHandle:^(LYErrorMessage *erMsg, id data) {
+//        
+//    }];
 
 }
 

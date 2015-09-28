@@ -9,15 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "Blocks.h"
-#import "RestKit.h"
 
 @class RKObjectManager;
 @interface LYDataStore : NSObject
 
 @property(nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property(nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property(nonatomic, strong) RKManagedObjectStore *managedObjectStore;
-@property(nonatomic, strong) RKObjectManager *objectManager;
 @property(nonatomic,readonly)NSString *dbFilePath;
 @property(nonatomic, copy) SimpleBlock onSave;
 

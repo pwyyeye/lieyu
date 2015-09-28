@@ -8,34 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "NetPublic.h"
-#import "RestKit.h"
+
 NSString *gSessionId = nil;
 
 @implementation LYRestfulResponseBase
-+(RKObjectMapping *)mapping
-{
-    return RestKitMapWithDic([LYRestfulResponseBase class],
-                                @{
-                                  @"errorcode" : @"code",
-                                  @"message" : @"message",
-                                  @"sessionId":@"sessionId"
-                                });
-}
+
 
 @end
 
 @implementation LYRestfulResponse
-+(RKObjectMapping *)mapping
-{
-    RKObjectMapping *statusMapping = [RKObjectMapping mappingForClass:[LYRestfulResponse class]];
-    [statusMapping addAttributeMappingsFromDictionary:@{
-                                                            @"errorcode" : @"code",
-                                                            @"message" : @"message",
-                                                            @"sessionId":@"sessionId",
-                                                            @"data":@"payload"
-                                                        }];
-    return statusMapping;
-}
+
 @end
 
 NSString *getSysLang()

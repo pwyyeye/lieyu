@@ -7,17 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
 #import "NetPublic.h"
-#import "RestKit.h"
 
-typedef void(^init)(RKObjectManager *obj);
+typedef void(^init)(NSObject *obj);
 
 @interface HttpOperatorProvider : NSObject
 
 - (id)  initWithBaseUrl:(NSString *)url init:(init)handle;
 
--(void)removeRespnseDescriptor:(RKResponseDescriptor *)obj;
 
 
 //<---处理get请求后返回的结果
@@ -43,7 +40,6 @@ typedef void(^init)(RKObjectManager *obj);
 //- (AFHTTPRequestOperation *)uploadFile:(NSString *)filePath param:(id)param remoteUrl:(NSString *)url fileName:(NSString *)fileName fileType:(NSString *)fileType;
 
 - (void)cancelAllRequest;
-- (RKObjectManager *)client;
 
 /**
  *  适配模型映射
@@ -51,8 +47,6 @@ typedef void(^init)(RKObjectManager *obj);
  *  @param ary ary description
  */
 
-- (void)addResponseDescriptorsFromArray:(NSArray *)ary;
-- (void)removeDescriptors:(NSArray *)ary;
 
 
 @end

@@ -10,7 +10,6 @@
 #define ZKPublic_NetPublic_h
 
 #import "MJExtension.h"
-#import "RestKitMapping.h"
 //错误信息
 #define ERROR_Message      @"ERROR_Message"
 #define SUCCESS_CODE       @"00000000"
@@ -58,7 +57,7 @@ typedef NS_ENUM(NSUInteger, ReqState)
 
 @end
 
-@interface LYRestfulResponseBase:NSObject<RestKitMapping>
+@interface LYRestfulResponseBase:NSObject
 
 @property(nonatomic,copy)NSString *code;
 @property(nonatomic,copy)NSString *message;
@@ -66,7 +65,7 @@ typedef NS_ENUM(NSUInteger, ReqState)
 
 @end
 
-@interface LYRestfulResponse : LYRestfulResponseBase <RestKitMapping>
+@interface LYRestfulResponse : LYRestfulResponseBase
 
 @property(nonatomic,copy)NSDictionary *payload;
 
