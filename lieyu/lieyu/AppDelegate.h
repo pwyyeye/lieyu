@@ -16,7 +16,7 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
+@property(strong,nonatomic) NSString *s_app_id;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 

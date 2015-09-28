@@ -30,6 +30,8 @@
 		15E184931BB52B0E00681BB2 /* LYJiuBaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E184911BB52B0E00681BB2 /* LYJiuBaCell.xib */; };
 		15E184961BB52CA200681BB2 /* JiuBaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184951BB52CA200681BB2 /* JiuBaModel.m */; };
 		15E1849A1BB5319900681BB2 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184991BB5319900681BB2 /* Toast+UIView.m */; };
+		15E1849D1BB8D1A500681BB2 /* HTTPController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E1849C1BB8D1A500681BB2 /* HTTPController.m */; };
+		15E184A01BB8D20700681BB2 /* MyUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E1849F1BB8D20700681BB2 /* MyUtil.m */; };
 		15E240461BB0F3540090D240 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15E240301BB0F3540090D240 /* IQKeyboardManager.bundle */; };
 		15E240471BB0F3540090D240 /* IQKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240321BB0F3540090D240 /* IQKeyboardManager.m */; };
 		15E240481BB0F3540090D240 /* IQSegmentedNextPrevious.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240361BB0F3540090D240 /* IQSegmentedNextPrevious.m */; };
@@ -336,6 +338,11 @@
 		15E184951BB52CA200681BB2 /* JiuBaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiuBaModel.m; sourceTree = "<group>"; };
 		15E184981BB5319900681BB2 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
 		15E184991BB5319900681BB2 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
+		15E1849B1BB8D1A500681BB2 /* HTTPController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPController.h; sourceTree = "<group>"; };
+		15E1849C1BB8D1A500681BB2 /* HTTPController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPController.m; sourceTree = "<group>"; };
+		15E1849E1BB8D20700681BB2 /* MyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUtil.h; sourceTree = "<group>"; };
+		15E1849F1BB8D20700681BB2 /* MyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUtil.m; sourceTree = "<group>"; };
+		15E184A11BB8D90C00681BB2 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		15E240301BB0F3540090D240 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
 		15E240311BB0F3540090D240 /* IQKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQKeyboardManager.h; sourceTree = "<group>"; };
 		15E240321BB0F3540090D240 /* IQKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQKeyboardManager.m; sourceTree = "<group>"; };
@@ -1593,6 +1600,7 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15E184A11BB8D90C00681BB2 /* libPods-AFNetworking.a */,
 				D748BC551BA1C7C6005AA996 /* MobileCoreServices.framework */,
 				D748BC531BA1C7A8005AA996 /* SystemConfiguration.framework */,
 				D748BC511BA1C765005AA996 /* CoreTelephony.framework */,
@@ -2230,6 +2238,10 @@
 				D748BC4D1BA1C52E005AA996 /* Apple */,
 				D71E1D981BAE9C1100915F37 /* LYColors.h */,
 				D71E1D991BAE9C1100915F37 /* LYColors.m */,
+				15E1849B1BB8D1A500681BB2 /* HTTPController.h */,
+				15E1849C1BB8D1A500681BB2 /* HTTPController.m */,
+				15E1849E1BB8D20700681BB2 /* MyUtil.h */,
+				15E1849F1BB8D20700681BB2 /* MyUtil.m */,
 				D73652371BAEAC4F002541CE /* NeedHideNavigationBar.h */,
 				D73652381BAEB2BF002541CE /* LYTableViewCellLayout.h */,
 			);
@@ -2525,6 +2537,7 @@
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
+				15E1849D1BB8D1A500681BB2 /* HTTPController.m in Sources */,
 				D761F01C1BA5AED3000757B0 /* MJRefreshGifHeader.m in Sources */,
 				15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */,
 				D74C608B1BB6F0BF00A49598 /* BearBarListViewController.m in Sources */,
@@ -2537,6 +2550,7 @@
 				A2FD57751BAFE94400CFFF92 /* TaoCanMCell.m in Sources */,
 				D761F0151BA5AED3000757B0 /* MJRefreshHeader.m in Sources */,
 				D748BC6D1BA1C856005AA996 /* MJFoundation.m in Sources */,
+				15E184A01BB8D20700681BB2 /* MyUtil.m in Sources */,
 				15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
 				A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */,
@@ -2809,6 +2823,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lieyu/Vendor/RestKit/lib",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2829,6 +2844,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/lieyu/Vendor/RestKit/lib",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
