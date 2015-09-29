@@ -21,8 +21,8 @@
 -(void)getTokenByqiNiuWithParams:(NSDictionary*)params
                            block:(void(^)(NSString* result)) block{
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_QINIUTOKEN baseURL:QINIU_SERVER  params:params success:^(id response) {
-        NSDictionary *tokenDic = response[@"token"];
-        NSString *token=[tokenDic objectForKey:@"tokenDic"];
+        
+        NSString *token=response[@"data"];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             block(token);
         });

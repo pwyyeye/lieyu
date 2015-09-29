@@ -26,9 +26,15 @@
 #define ZS_DANPINLIST  @"lyProductAction.do?action=list"
 //专属经理库存列表
 #define ZS_KUCUNLIST  @"lyItemProductAction.do?action=list"
+
+//专属经理 设置某天卡座满座
+#define ZS_KAZUO_ADD  @"lySetDeckFullAction.do?action=add"
+//专属经理 设置某天卡座(未)满座
+#define ZS_KAZUO_DEL  @"lySetDeckFullAction.do?action=delete"
+
+
 //专属经理 我的客户
 #define ZS_USERS_FRIEND  @"lyUsersFriendAction.do?action=list"
-
 
 //一周卡座是否满座
 #define ZS_KUZUOISFULL  @"lySetDeckFullAction.do?action=list"

@@ -9,6 +9,7 @@
 #import "ZSSeatControlView.h"
 #import "KaZuoCell.h"
 #import "ZSManageHttpTool.h"
+#import "DeckFullModel.h"
 @interface ZSSeatControlView ()
 
 @end
@@ -25,13 +26,14 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    nowTime = [dateFormatter stringFromDate:[NSDate new]];
     listArr =[[NSMutableArray alloc]init];
     
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+    [self getKaZuoData];
     // Do any additional setup after loading the view from its nib.
 }
 #pragma mark -获取一周卡座信息
@@ -39,8 +41,8 @@
     [listArr removeAllObjects];
     __weak __typeof(self)weakSelf = self;
     NSDictionary *dic=@{@"barid":@"1",@"userid":@"1"};
-    [[ZSManageHttpTool shareInstance] getDeckFullWithParams:dic block:^(NSString *result) {
-        
+    [[ZSManageHttpTool shareInstance] getDeckFullWithParams:dic block:^(NSMutableArray *result) {
+        listArr = result;
         [weakSelf.tableView reloadData];
         
     }];
@@ -56,7 +58,7 @@
 #pragma mark tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return listArr.count;
     
 }
 
@@ -80,12 +82,20 @@
         
         
     }
-    
+    DeckFullModel *deckFullModel=listArr[indexPath.row];
     cell.isQuanManSwitch.tag=indexPath.row;
+    if(deckFullModel.isFull==1){
+        [cell.isQuanManSwitch setOn:YES];
+    }else{
+        [cell.isQuanManSwitch setOn:false];
+    }
     [cell.isQuanManSwitch addTarget:self action:@selector(kazuoChoose:) forControlEvents:UIControlEventValueChanged];
     //    @{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""}
-    cell.timeLal.text=@"今天";
-    cell.zhouLal.text=@"周三";
+    cell.timeLal.text=deckFullModel.deckDate;
+    if ([nowTime isEqualToString:deckFullModel.deckDate]) {
+        cell.timeLal.text=@"今天";
+    }
+    cell.zhouLal.text=deckFullModel.weekNum;
     //    cell.disImageView;
     
     
@@ -96,7 +106,25 @@
     
 }
 -(void)kazuoChoose:(UISwitch *)sender{
-    NSLog(@"*****%ld",sender.tag);
+    NSLog(@"%ld**********",sender.tag);
+    DeckFullModel *deckFullModel=listArr[sender.tag];
+    NSDictionary *dic=@{@"setDate":deckFullModel.deckDate,@"barid":@"1",@"userid":@"1"};
+    if(deckFullModel.isFull==1){
+        NSLog(@"*****%d",deckFullModel.isFull);
+        [[ZSManageHttpTool shareInstance] setDeckADDWithParams:dic complete:^(BOOL result) {
+            if (result) {
+                deckFullModel.isFull=0;
+            }
+        }];
+    }else{
+        NSLog(@"*****%d",deckFullModel.isFull);
+        [[ZSManageHttpTool shareInstance] setDeckDelWithParams:dic complete:^(BOOL result) {
+            if (result) {
+                deckFullModel.isFull=1;
+            }
+        }];
+    }
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -30,8 +30,6 @@
 }
 -(void)getMyCustomerslist{
     [_listContent removeAllObjects];
-    NSArray *arr=@[@"A",@"B",@"B",@"C",@"C",@"D",@"D",@"E",@"D",@"F",@"D",@"Z",@"D",@"J",@"L",@"M",@"L",@"M",@"L",@"M",@"Q",@"W",@"T",@"P",@"T",@"P",@"T",@"P",@"N",@"X",@"N"];
-    
     __weak __typeof(self)weakSelf = self;
     NSDictionary *dic=@{@"userid":@"2"};
     [[ZSManageHttpTool shareInstance] getUsersFriendWithParams:dic block:^(NSMutableArray *result) {

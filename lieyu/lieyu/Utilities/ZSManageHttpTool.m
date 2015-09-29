@@ -12,6 +12,7 @@
 #import "CheHeModel.h"
 #import "KuCunModel.h"
 #import "CustomerModel.h"
+#import "DeckFullModel.h"
 @implementation ZSManageHttpTool
 + (ZSManageHttpTool *)shareInstance
 {
@@ -79,12 +80,12 @@
 }
 #pragma mark -获取一周卡座
 -(void) getDeckFullWithParams:(NSDictionary*)params
-                        block:(void(^)(NSString* result)) block{
-    [HTTPController requestWihtMethod:RequestMethodTypeGet url:ZS_KUZUOISFULL baseURL:QINIU_SERVER  params:params success:^(id response) {
-        NSString *dataStr = response[@"data"];
-        
+                        block:(void(^)(NSMutableArray* result)) block{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KUZUOISFULL baseURL:LY_SERVER  params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[DeckFullModel objectArrayWithKeyValuesArray:dataList]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-            block(dataStr);
+            block(tempArr);
         });
     } failure:^(NSError *err) {
         //        NSLog(err.domain);
@@ -101,6 +102,51 @@
             block(tempArr);
         });
     } failure:^(NSError *err) {
+        
+    }];
+}
+#pragma mark -专属经理 设置某天卡座满座
+
+-(void) setDeckADDWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KAZUO_ADD baseURL:LY_SERVER params:params success:^(id response) {
+            NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+            if ([code isEqualToString:@"0"]) {
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    result(YES);
+                });
+                
+            }else{
+                result(NO);
+            }
+            
+        
+        } failure:^(NSError *err) {
+            
+                result(NO);
+            
+        
+    }];
+}
+#pragma mark -专属经理 设置某天卡座(未)满座
+-(void) setDeckDelWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KAZUO_DEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+            if ([code isEqualToString:@"0"]) {
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    result(YES);
+                });
+                
+            }else{
+                result(NO);
+            }
+            
+        
+    } failure:^(NSError *err) {
+        
+            result(NO);
+        
         
     }];
 }

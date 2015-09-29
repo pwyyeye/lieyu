@@ -25,7 +25,11 @@
                             block:(void(^)(NSMutableArray* result)) block;
 //获取卡座一周是否满座
 -(void) getDeckFullWithParams:(NSDictionary*)params
-                            block:(void(^)(NSString* result)) block;
+                            block:(void(^)(NSMutableArray* result)) block;
+//专属经理 设置某天卡座满座
+-(void) setDeckADDWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+//专属经理 设置某天卡座(未)满座
+-(void) setDeckDelWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 
 //获取我的客户
 -(void) getUsersFriendWithParams:(NSDictionary*)params

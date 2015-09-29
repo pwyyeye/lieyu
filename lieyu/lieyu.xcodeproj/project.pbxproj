@@ -26,6 +26,7 @@
 		15013B041BBA33BF00061FAF /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 15013AF41BBA33BE00061FAF /* UIView+WebCacheOperation.m */; };
 		15013B071BBA3BD000061FAF /* LYCommonHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 15013B061BBA3BD000061FAF /* LYCommonHttpTool.m */; };
 		151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6BB1BBA871600E7A81C /* TagModel.m */; };
+		151BB6BF1BBAB80900E7A81C /* DeckFullModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6BE1BBAB80900E7A81C /* DeckFullModel.m */; };
 		15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE633E1BA84FD500FFAD1A /* NoticeCell.m */; };
 		15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE633F1BA84FD500FFAD1A /* NoticeCell.xib */; };
 		15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE63431BA854AB00FFAD1A /* ZSNoticeCenterViewController.m */; };
@@ -357,6 +358,8 @@
 		15013B061BBA3BD000061FAF /* LYCommonHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCommonHttpTool.m; sourceTree = "<group>"; };
 		151BB6BA1BBA871600E7A81C /* TagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagModel.h; sourceTree = "<group>"; };
 		151BB6BB1BBA871600E7A81C /* TagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagModel.m; sourceTree = "<group>"; };
+		151BB6BD1BBAB80900E7A81C /* DeckFullModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeckFullModel.h; sourceTree = "<group>"; };
+		151BB6BE1BBAB80900E7A81C /* DeckFullModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeckFullModel.m; sourceTree = "<group>"; };
 		15AE633D1BA84FD500FFAD1A /* NoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeCell.h; sourceTree = "<group>"; };
 		15AE633E1BA84FD500FFAD1A /* NoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeCell.m; sourceTree = "<group>"; };
 		15AE633F1BA84FD500FFAD1A /* NoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
@@ -1477,6 +1480,8 @@
 				A2F9DA651BAA5666009DEAF3 /* ShopDetailmodel.m */,
 				151BB6BA1BBA871600E7A81C /* TagModel.h */,
 				151BB6BB1BBA871600E7A81C /* TagModel.m */,
+				151BB6BD1BBAB80900E7A81C /* DeckFullModel.h */,
+				151BB6BE1BBAB80900E7A81C /* DeckFullModel.m */,
 			);
 			name = modles;
 			sourceTree = "<group>";
@@ -2524,6 +2529,7 @@
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
 				15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */,
 				15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */,
+				151BB6BF1BBAB80900E7A81C /* DeckFullModel.m in Sources */,
 				15E240A11BB37EF60090D240 /* LYOrderDetailViewController.m in Sources */,
 				D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */,
 				15E240621BB1237E0090D240 /* BiaoQianChooseViewController.m in Sources */,
