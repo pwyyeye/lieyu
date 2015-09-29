@@ -8,6 +8,7 @@
 
 #import "ZSSeatControlView.h"
 #import "KaZuoCell.h"
+#import "ZSManageHttpTool.h"
 @interface ZSSeatControlView ()
 
 @end
@@ -30,8 +31,21 @@
     
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    [self.tableView reloadData];
+    
     // Do any additional setup after loading the view from its nib.
+}
+#pragma mark -获取一周卡座信息
+-(void)getKaZuoData{
+    [listArr removeAllObjects];
+    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"barid":@"1",@"userid":@"1"};
+    [[ZSManageHttpTool shareInstance] getDeckFullWithParams:dic block:^(NSString *result) {
+        
+        [weakSelf.tableView reloadData];
+        
+    }];
+     
+   
 }
 
 - (void)didReceiveMemoryWarning {

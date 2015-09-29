@@ -10,6 +10,7 @@
 #import "CustomerCell.h"
 #import "CustomerModel.h"
 #import "ZSCustomerDetailViewController.h"
+#import "ZSManageHttpTool.h"
 @interface ZSMyClientsViewController ()
 
 @end
@@ -30,36 +31,40 @@
 -(void)getMyCustomerslist{
     [_listContent removeAllObjects];
     NSArray *arr=@[@"A",@"B",@"B",@"C",@"C",@"D",@"D",@"E",@"D",@"F",@"D",@"Z",@"D",@"J",@"L",@"M",@"L",@"M",@"L",@"M",@"Q",@"W",@"T",@"P",@"T",@"P",@"T",@"P",@"N",@"X",@"N"];
-    NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
-    for (NSString *ss in arr) {
-        CustomerModel *customer=[[CustomerModel alloc]init];
-        customer.name=[NSString stringWithFormat:@"%@son",ss];
-        [addressBookTemp addObject:customer];
-    }
-    UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
-    for (CustomerModel *addressBook in addressBookTemp) {
-        NSInteger sect = [theCollation sectionForObject:addressBook
-                                collationStringSelector:@selector(name)];
-        addressBook.sectionNumber = sect;
-        
-    }
-    NSInteger highSection = [[theCollation sectionTitles] count];
-    NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
-    for (int i=0; i<=highSection; i++) {
-        NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
-        [sectionArrays addObject:sectionArray];
-    }
     
-    for (CustomerModel *addressBook in addressBookTemp) {
-        [(NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber] addObject:addressBook];
-    }
-    
-    for (NSMutableArray *sectionArray in sectionArrays) {
-        NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(name)];
-        [_listContent addObject:sortedSection];
+    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"userid":@"2"};
+    [[ZSManageHttpTool shareInstance] getUsersFriendWithParams:dic block:^(NSMutableArray *result) {
+        NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
+        addressBookTemp =result;
         
-    }
-    [self.tableView reloadData];
+        UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
+        for (CustomerModel *addressBook in addressBookTemp) {
+            NSInteger sect = [theCollation sectionForObject:addressBook
+                                    collationStringSelector:@selector(username)];
+            addressBook.sectionNumber = sect;
+            
+        }
+        NSInteger highSection = [[theCollation sectionTitles] count];
+        NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
+        for (int i=0; i<=highSection; i++) {
+            NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
+            [sectionArrays addObject:sectionArray];
+        }
+        
+        for (CustomerModel *addressBook in addressBookTemp) {
+            [(NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber] addObject:addressBook];
+        }
+        
+        for (NSMutableArray *sectionArray in sectionArrays) {
+            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(username)];
+            [_listContent addObject:sortedSection];
+            
+        }
+        
+        
+        [weakSelf.tableView reloadData];
+    }];
 
 }
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -173,8 +178,8 @@
     else
         addressBook = (CustomerModel *)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
-    if ([[addressBook.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
-        cell.nameLal.text = addressBook.name;
+    if ([[addressBook.username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
+        cell.nameLal.text = addressBook.username;
         
     } else {
         
@@ -233,7 +238,7 @@
     for (NSArray *section in _listContent) {
         for (CustomerModel *addressBook in section)
         {
-            NSComparisonResult result = [addressBook.name compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
+            NSComparisonResult result = [addressBook.username compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
             if (result == NSOrderedSame)
             {
                 [_filteredListContent addObject:addressBook];

@@ -9,7 +9,34 @@
 #import <Foundation/Foundation.h>
 
 @interface KuCunModel : NSObject
+
+//"barid": 1,
+//"createDate": "",
+//"deleteflag": 0,
+//"id": 1,
+//"linkurl": "",
+//"lybarsVO": null,
+//"lyuserVO": null,
+//"modifyDate": "",
+//"name": "1",
+//"price": 50,
+//"stock": 0,
+//"unit": "wo",
+//"userid": 1
+@property(nonatomic,assign)int  id;
+@property(nonatomic,assign)int barid;
+@property(nonatomic,assign)int userid;
+@property(nonatomic,assign)int stock;
+@property(nonatomic,assign)int deleteflag;
 @property(nonatomic,copy)NSString * name;
-@property(nonatomic,copy)NSString * img;
-@property(nonatomic,copy)NSString * count;
+@property(nonatomic,copy)NSString * linkurl;
+@property(nonatomic,copy)NSString * lybarsVO;
+@property(nonatomic,copy)NSString * createdate;
+@property(nonatomic,copy)NSString * lyuserVO;
+@property(nonatomic,assign)double price;
+@property(nonatomic,copy)NSString * unit;
+
+@property(nonatomic,copy)NSString * modifydate;
+
+
 @end

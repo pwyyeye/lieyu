@@ -9,7 +9,61 @@
 #import "HTTPController.h"
 #import "AppDelegate.h"
 #import "LYUserLoginViewController.h"
+
 @implementation HTTPController
++ (void)requestWihtMethod:(RequestMethodType)methodType
+                      url:(NSString*)url
+                  baseURL:(NSString*)baseStr
+                   params:(NSDictionary*)params
+                  success:(void (^)(id response))success
+                  failure:(void (^)(NSError* err))failure
+{
+    NSURL* baseURL = [NSURL URLWithString:baseStr];
+    //获得请求管理者
+    AFHTTPRequestOperationManager* mgr = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
+    
+#ifdef ContentType
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:ContentType];
+#endif
+    mgr.requestSerializer.HTTPShouldHandleCookies = YES;
+    
+    switch (methodType) {
+        case RequestMethodTypeGet:
+        {
+            //GET请求
+            [mgr GET:url parameters:params
+             success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
+                 if (success) {
+                     success(responseObj);
+                 }
+             } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+                 if (failure) {
+                     failure(error);
+                 }
+             }];
+            
+        }
+            break;
+        case RequestMethodTypePost:
+        {
+            //POST请求
+            [mgr POST:url parameters:params
+              success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
+                  if (success) {
+                      success(responseObj);
+                  }
+              } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+                  if (failure) {
+                      failure(error);
+                  }
+              }];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withUrlName:(NSString *)name{
     self = [super init];
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];

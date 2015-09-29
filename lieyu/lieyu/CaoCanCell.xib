@@ -58,7 +58,7 @@
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPK-RK-g3Q">
                         <rect key="frame" x="234" y="50" width="71" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                        <state key="normal" title="分销佣金：30%" backgroundImage="ZSyjbj">
+                        <state key="normal" backgroundImage="ZSyjbj">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>

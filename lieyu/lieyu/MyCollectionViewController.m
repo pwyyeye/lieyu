@@ -27,27 +27,27 @@
 }
 -(void)getinKeList{
     [collectionList removeAllObjects];
-    PinKeModel * pinKeModel=[[PinKeModel alloc]init];
-    pinKeModel.name=@"颜色酒吧";
-    pinKeModel.jiubaName=@"顶级最嗨最热嘿吧";
-    pinKeModel.dizhi=@"上海市浦东新区张杨北路112号";
-    pinKeModel.time=@"2016-09-09 12:00";
-    pinKeModel.money=@"￥500起";
-    PinKeModel * pinKeModel2=[[PinKeModel alloc]init];
-    pinKeModel2.name=@"颜色酒吧";
-    pinKeModel2.jiubaName=@"顶级最嗨最热嘿吧";
-    pinKeModel2.dizhi=@"上海市浦东新区张杨北路112号";
-    pinKeModel2.time=@"2016-09-09 12:00";
-    pinKeModel2.money=@"￥500起";
-    PinKeModel * pinKeModel3=[[PinKeModel alloc]init];
-    pinKeModel3.name=@"颜色酒吧";
-    pinKeModel3.jiubaName=@"顶级最嗨最热嘿吧";
-    pinKeModel3.dizhi=@"上海市浦东新区张杨北路112号";
-    pinKeModel3.time=@"2016-09-09 12:00";
-    pinKeModel3.money=@"￥500起";
-    [collectionList addObject:pinKeModel];
-    [collectionList addObject:pinKeModel2];
-    [collectionList addObject:pinKeModel3];
+//    PinKeModel * pinKeModel=[[PinKeModel alloc]init];
+//    pinKeModel.name=@"颜色酒吧";
+//    pinKeModel.jiubaName=@"顶级最嗨最热嘿吧";
+//    pinKeModel.dizhi=@"上海市浦东新区张杨北路112号";
+//    pinKeModel.time=@"2016-09-09 12:00";
+//    pinKeModel.money=@"￥500起";
+//    PinKeModel * pinKeModel2=[[PinKeModel alloc]init];
+//    pinKeModel2.name=@"颜色酒吧";
+//    pinKeModel2.jiubaName=@"顶级最嗨最热嘿吧";
+//    pinKeModel2.dizhi=@"上海市浦东新区张杨北路112号";
+//    pinKeModel2.time=@"2016-09-09 12:00";
+//    pinKeModel2.money=@"￥500起";
+//    PinKeModel * pinKeModel3=[[PinKeModel alloc]init];
+//    pinKeModel3.name=@"颜色酒吧";
+//    pinKeModel3.jiubaName=@"顶级最嗨最热嘿吧";
+//    pinKeModel3.dizhi=@"上海市浦东新区张杨北路112号";
+//    pinKeModel3.time=@"2016-09-09 12:00";
+//    pinKeModel3.money=@"￥500起";
+//    [collectionList addObject:pinKeModel];
+//    [collectionList addObject:pinKeModel2];
+//    [collectionList addObject:pinKeModel3];
     
     [self.tableView reloadData];
 }
@@ -81,11 +81,11 @@
         
     }
     PinKeModel * pinKeModel=collectionList[indexPath.row];
-    cell.nameLal.text=pinKeModel.name;
-    cell.jiageLal.text=pinKeModel.money;
-    cell.miaosuLal.text=pinKeModel.jiubaName;
-    cell.dizhiLal.text=pinKeModel.dizhi;
-    cell.timeLal.text=pinKeModel.time;
+//    cell.nameLal.text=pinKeModel.name;
+//    cell.jiageLal.text=pinKeModel.money;
+//    cell.miaosuLal.text=pinKeModel.jiubaName;
+//    cell.dizhiLal.text=pinKeModel.dizhi;
+//    cell.timeLal.text=pinKeModel.time;
     return cell;
 }
 

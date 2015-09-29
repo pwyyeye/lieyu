@@ -11,11 +11,12 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property(strong,nonatomic) NSTimer *timer;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property(strong,nonatomic) NSString *s_app_id;
+@property(strong,nonatomic) NSString *qiniu_token;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
