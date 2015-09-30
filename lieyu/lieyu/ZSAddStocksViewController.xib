@@ -7,6 +7,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSAddStocksViewController">
             <connections>
+                <outlet property="fifthRadioBtn" destination="zqR-uJ-e4I" id="BAf-CS-nFS"/>
+                <outlet property="firstRadioBtn" destination="BVN-WU-Abi" id="DyE-eZ-PQT"/>
+                <outlet property="fourthRadioBtn" destination="gkO-9c-qe7" id="hzA-rz-Kvd"/>
+                <outlet property="imageAddlal" destination="vqB-I3-v9r" id="X6D-d0-Xc5"/>
+                <outlet property="kucunTex" destination="FEQ-bw-LEt" id="kuL-gO-VVy"/>
+                <outlet property="secondRadioBtn" destination="SvH-7h-dfh" id="QxC-Vv-BfN"/>
+                <outlet property="sixthRadioBtn" destination="lad-VW-96s" id="mk2-gB-gcX"/>
+                <outlet property="thirdRadioBtn" destination="kMC-aY-xDo" id="mYH-zV-Zv3"/>
+                <outlet property="titleTex" destination="7vM-Xb-0kl" id="G7Y-XL-cmZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -36,6 +45,9 @@
                             <rect key="frame" x="18" y="41" width="285" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="9JJ-NJ-o8i"/>
+                            </connections>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="套餐标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpN-5J-w71">
                             <rect key="frame" x="18" y="8" width="83" height="21"/>
@@ -54,7 +66,16 @@
                             <state key="normal" image="picAdd">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="addPictures:" destination="-1" eventType="touchUpInside" id="tpJ-1q-dx4"/>
+                            </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqB-I3-v9r">
+                            <rect key="frame" x="97" y="35" width="210" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -70,7 +91,10 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FEQ-bw-LEt">
                             <rect key="frame" x="80" y="11" width="196" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            <connections>
+                                <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="Cgc-c7-z7H"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -106,8 +130,11 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" title="瓶" image="danxuanSelected"/>
+                            <connections>
+                                <action selector="chooseRadioAct:" destination="-1" eventType="touchUpInside" id="RD7-O5-esc"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMC-aY-xDo">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMC-aY-xDo">
                             <rect key="frame" x="15" y="97" width="77" height="22"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -117,8 +144,11 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" title="盘" image="danxuanSelected"/>
+                            <connections>
+                                <action selector="chooseRadioAct:" destination="-1" eventType="touchUpInside" id="a8J-rt-hai"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqR-uJ-e4I">
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zqR-uJ-e4I">
                             <rect key="frame" x="15" y="135" width="77" height="22"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -128,8 +158,11 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" title="扎" image="danxuanSelected"/>
+                            <connections>
+                                <action selector="chooseRadioAct:" destination="-1" eventType="touchUpInside" id="Gi1-Td-Ngk"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkO-9c-qe7">
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkO-9c-qe7">
                             <rect key="frame" x="187" y="97" width="77" height="22"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -139,8 +172,11 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" title="箱" image="danxuanSelected"/>
+                            <connections>
+                                <action selector="chooseRadioAct:" destination="-1" eventType="touchUpInside" id="Axo-qm-fIi"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lad-VW-96s">
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lad-VW-96s">
                             <rect key="frame" x="187" y="135" width="77" height="22"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -150,8 +186,11 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" title="杯" image="danxuanSelected"/>
+                            <connections>
+                                <action selector="chooseRadioAct:" destination="-1" eventType="touchUpInside" id="Sqc-TU-dp4"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvH-7h-dfh">
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvH-7h-dfh">
                             <rect key="frame" x="187" y="57" width="77" height="22"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -161,6 +200,9 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" title="打" image="danxuanSelected"/>
+                            <connections>
+                                <action selector="chooseRadioAct:" destination="-1" eventType="touchUpInside" id="H7F-xU-keE"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>

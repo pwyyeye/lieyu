@@ -10,6 +10,7 @@
 #import "LYDataStore.h"
 #import "NeedHideNavigationBar.h"
 #import "LYCommonHttpTool.h"
+#import "DejalActivityView.h"
 @interface AppDelegate ()
 <
     UINavigationControllerDelegate
@@ -91,7 +92,15 @@
     }];
     
 }
+- (void)startLoading
+{
+    [DejalBezelActivityView activityViewForView:self.window];
+}
 
+- (void)stopLoading
+{
+    [DejalBezelActivityView removeViewAnimated:YES];
+}
 @end
 
 

@@ -19,7 +19,8 @@
 @property(strong,nonatomic) NSString *qiniu_token;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-
-
+-(void)doHeart;
+- (void)startLoading;
+- (void)stopLoading;
 @end
 

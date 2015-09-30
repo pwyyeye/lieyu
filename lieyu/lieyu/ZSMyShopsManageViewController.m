@@ -20,7 +20,7 @@
 #import "ZSReleaseGoodViewController.h"
 #import "ZSAddStocksViewController.h"
 #import "ZSManageHttpTool.h"
-@interface ZSMyShopsManageViewController ()
+@interface ZSMyShopsManageViewController ()<ZSAddStocksDelegate>
 
 @end
 
@@ -406,6 +406,7 @@
         {
             ZSAddStocksViewController *addStocksViewController=[[ZSAddStocksViewController alloc]initWithNibName:@"ZSAddStocksViewController" bundle:nil];
             addStocksViewController.title=@"添加库存";
+            addStocksViewController.delegate=self;
             [self.navigationController pushViewController:addStocksViewController animated:YES];
             break;
         }
@@ -565,6 +566,11 @@
     [sender resignFirstResponder];
 }
 
+#pragma mark -添加库存代理
+- (void)addStocks{
+    [self showMessage:@"保存成功"];
+    [self getKuCunList];
+}
 - (IBAction)backAct:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

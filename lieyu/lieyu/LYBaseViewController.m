@@ -47,6 +47,15 @@
 
     // Do any additional setup after loading the view.
 }
+-(void)showMessage:(NSString*) message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:message message:nil delegate:nil  cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView setBackgroundColor:[UIColor clearColor]];
+    
+    //必须在这里调用show方法，否则indicator不在UIAlerView里面
+    [alertView show];
+    
+}
 -(void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }

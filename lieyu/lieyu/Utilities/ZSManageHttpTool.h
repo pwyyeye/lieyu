@@ -23,11 +23,21 @@
 //获取专属经理-库存列表
 -(void) getMyKuCunListWithParams:(NSDictionary*)params
                             block:(void(^)(NSMutableArray* result)) block;
+
+//专属经理-库存添加
+-(void) addItemProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+
+
 //获取卡座一周是否满座
 -(void) getDeckFullWithParams:(NSDictionary*)params
                             block:(void(^)(NSMutableArray* result)) block;
+
+
+
 //专属经理 设置某天卡座满座
 -(void) setDeckADDWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+
+
 //专属经理 设置某天卡座(未)满座
 -(void) setDeckDelWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 

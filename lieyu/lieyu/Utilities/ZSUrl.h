@@ -27,6 +27,10 @@
 //专属经理库存列表
 #define ZS_KUCUNLIST  @"lyItemProductAction.do?action=list"
 
+//专属经理库存添加
+#define ZS_KUCUN_ADD  @"lyItemProductAction.do?action=add"
+
+
 //专属经理 设置某天卡座满座
 #define ZS_KAZUO_ADD  @"lySetDeckFullAction.do?action=add"
 //专属经理 设置某天卡座(未)满座
