@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "LYDataStore.h"
 #import "NeedHideNavigationBar.h"
-
+#import "LYCommonHttpTool.h"
+#import "DejalActivityView.h"
 @interface AppDelegate ()
 <
     UINavigationControllerDelegate
@@ -25,7 +26,8 @@
     UINavigationController * nav = (UINavigationController *)self.window.rootViewController;
     nav.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];
-
+    _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
+    [_timer setFireDate:[NSDate distantFuture]];//暂停
     return YES;
 }
 
@@ -78,10 +80,27 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [_timer setFireDate:[NSDate distantPast]];//开启
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
+#pragma mark - 心跳获取7牛key
+-(void)doHeart{
+    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    //    [app startLoading];
+    [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
+        _qiniu_token=result;
+    }];
+    
+}
+- (void)startLoading
+{
+    [DejalBezelActivityView activityViewForView:self.window];
+}
 
-
+- (void)stopLoading
+{
+    [DejalBezelActivityView removeViewAnimated:YES];
+}
 @end
 
 

@@ -43,14 +43,72 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R0B-uf-dUf">
+                    <rect key="frame" x="229" y="18" width="75" height="75"/>
+                    <state key="normal" image="pencil1">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzf-wl-yzg">
+                    <rect key="frame" x="15" y="134" width="75" height="75"/>
+                    <state key="normal" image="pencil1">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="编辑列表" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsJ-Bb-wqj">
+                    <rect key="frame" x="15" y="217" width="75" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jy-wl-qmF">
+                    <rect key="frame" x="123" y="134" width="75" height="75"/>
+                    <state key="normal" image="pencil1">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="编辑列表" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jz-6L-b0d">
+                    <rect key="frame" x="123" y="217" width="75" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcA-aS-KdQ">
+                    <rect key="frame" x="229" y="134" width="75" height="75"/>
+                    <state key="normal" image="pencil1">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="编辑列表" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bog-tt-N28">
+                    <rect key="frame" x="229" y="217" width="75" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="编辑列表" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87V-ry-Rk5">
+                    <rect key="frame" x="229" y="101" width="75" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="editListBtn" destination="heG-wz-S4Q" id="KlA-DK-w1b"/>
+                <outlet property="fifthBtn" destination="2jy-wl-qmF" id="LBM-Wa-fLC"/>
+                <outlet property="fifthLal" destination="7jz-6L-b0d" id="xRv-Lj-ypU"/>
+                <outlet property="firstLal" destination="Wh8-79-Vb1" id="eif-pT-sjt"/>
+                <outlet property="fourthBtn" destination="zzf-wl-yzg" id="6ZB-4Q-ky6"/>
+                <outlet property="fourthLal" destination="gsJ-Bb-wqj" id="wGd-xm-mde"/>
                 <outlet property="quxiaoBtn" destination="OLf-iK-zcf" id="jNs-wC-CR0"/>
+                <outlet property="secondLal" destination="LhQ-Og-HKE" id="LDy-oF-dxG"/>
                 <outlet property="shenqingBtn" destination="IIp-cb-WG7" id="54L-E7-zkT"/>
+                <outlet property="sixthBtn" destination="vcA-aS-KdQ" id="EZB-E0-pzP"/>
+                <outlet property="sixthLal" destination="bog-tt-N28" id="laJ-1D-QC1"/>
+                <outlet property="thirdBtn" destination="R0B-uf-dUf" id="dw0-Ql-N82"/>
+                <outlet property="thirdLal" destination="87V-ry-Rk5" id="kni-ui-Vxy"/>
             </connections>
             <point key="canvasLocation" x="323" y="282.5"/>
         </view>

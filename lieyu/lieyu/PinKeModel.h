@@ -7,12 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-
+//"buynum": 0,
+//"id": 0,
+//"linkicon": "www.245.com",
+//"maxnum": 10,
+//"minnum": 3,
+//"price": 2000,
+//"rebate": 0.3,
+//"smdate": "",
+//"smid": 3,
+//"subtitle": "",
+//"title": "普通套餐"
 @interface PinKeModel : NSObject
-@property(nonatomic,copy)NSString * name;
-@property(nonatomic,copy)NSString * jiubaName;
-@property(nonatomic,copy)NSString * img;
-@property(nonatomic,copy)NSString * time;
-@property(nonatomic,copy)NSString * dizhi;
-@property(nonatomic,copy)NSString * money;
+@property(nonatomic,assign)int id;
+@property(nonatomic,assign)int buynum;
+@property(nonatomic,assign)int maxnum;
+@property(nonatomic,assign)int minnum;
+@property(nonatomic,copy)NSString * title;
+@property(nonatomic,copy)NSString * linkicon;
+@property(nonatomic,copy)NSString * subtitle;
+@property(nonatomic,assign)double  price;
+@property(nonatomic,assign)double  money;
+@property(nonatomic,assign)double  rebate;
+@property(nonatomic,copy)NSString * smdate;
+@property(nonatomic,assign)int smid;
 @end

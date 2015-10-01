@@ -19,7 +19,8 @@
 #import "ZSReleasePackagesViewController.h"
 #import "ZSReleaseGoodViewController.h"
 #import "ZSAddStocksViewController.h"
-@interface ZSMyShopsManageViewController ()
+#import "ZSManageHttpTool.h"
+@interface ZSMyShopsManageViewController ()<ZSAddStocksDelegate>
 
 @end
 
@@ -47,121 +48,96 @@
 -(void)getTaoCanList{
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
-    TaoCanModel * taoCanModel=[[TaoCanModel alloc]init];
-    taoCanModel.name=@"散台特惠轩单支洋酒套餐";
-    taoCanModel.del=@"［适合2-4人］";
-    taoCanModel.zhekouMoney=@"￥1200";
-    taoCanModel.money=@"￥1550";
-    taoCanModel.yongjin=@"分销佣金：30%";
-    taoCanModel.time=@"6.12 - 617";
+    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"barid":@"1"};
+    [[ZSManageHttpTool shareInstance] getMyTaoCanListWithParams:dic block:^(NSMutableArray *result) {
+        dataList =result;
+        UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+        view1.backgroundColor=[UIColor whiteColor];
+        _tableView.tableHeaderView=view1;
+        
+        
+        [weakSelf.tableView reloadData];
+    }];
+        
     
-    TaoCanModel * taoCanModel1=[[TaoCanModel alloc]init];
-    taoCanModel1.name=@"散台特惠轩单支洋酒套餐";
-    taoCanModel1.del=@"［适合2-4人］";
-    taoCanModel1.zhekouMoney=@"￥1200";
-    taoCanModel1.money=@"￥1550";
-    taoCanModel1.yongjin=@"分销佣金：30%";
-    taoCanModel1.time=@"6.12 - 617";
-    
-    TaoCanModel * taoCanModel2=[[TaoCanModel alloc]init];
-    taoCanModel2.name=@"散台特惠轩单支洋酒套餐";
-    taoCanModel2.del=@"［适合2-4人］";
-    taoCanModel2.zhekouMoney=@"￥1200";
-    taoCanModel2.money=@"￥1550";
-    taoCanModel2.yongjin=@"分销佣金：30%";
-    taoCanModel2.time=@"6.12 - 617";
-    [dataList addObject:taoCanModel];
-    [dataList addObject:taoCanModel1];
-    [dataList addObject:taoCanModel2];
-    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
-    view1.backgroundColor=[UIColor whiteColor];
-    _tableView.tableHeaderView=view1;
-    
-    
-    [self.tableView reloadData];
+//    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+//    view1.backgroundColor=[UIColor whiteColor];
+//    _tableView.tableHeaderView=view1;
+//    
+//    
+//    [self.tableView reloadData];
     
 }
 -(void)getinKeList{
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
-    PinKeModel * pinKeModel=[[PinKeModel alloc]init];
-    pinKeModel.name=@"十周年庆卡座5人套餐3000元";
-    pinKeModel.jiubaName=@"颜色酒吧";
-    pinKeModel.dizhi=@"上海市浦东新区张杨北路112号";
-    pinKeModel.time=@"6.12 - 617";
-    
-    PinKeModel * pinKeModel2=[[PinKeModel alloc]init];
-    pinKeModel2.name=@"十周年庆卡座5人套餐3000元";
-    pinKeModel2.jiubaName=@"颜色酒吧";
-    pinKeModel2.dizhi=@"上海市浦东新区张杨北路112号";
-    pinKeModel2.time=@"6.12 - 617";
-    
-    PinKeModel * pinKeModel3=[[PinKeModel alloc]init];
-    pinKeModel3.name=@"十周年庆卡座5人套餐3000元";
-    pinKeModel3.jiubaName=@"颜色酒吧";
-    pinKeModel3.dizhi=@"上海市浦东新区张杨北路112号";
-    pinKeModel3.time=@"6.12 - 617";
-    [dataList addObject:pinKeModel];
-    [dataList addObject:pinKeModel2];
-    [dataList addObject:pinKeModel3];
-    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
-    view1.backgroundColor=[UIColor whiteColor];
-    _tableView.tableHeaderView=view1;
-    [self.tableView reloadData];
+    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"barid":@"1"};
+    [[ZSManageHttpTool shareInstance] getMyPinkerListWithParams:dic block:^(NSMutableArray *result) {
+        dataList =result;
+        UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+        view1.backgroundColor=[UIColor whiteColor];
+        _tableView.tableHeaderView=view1;
+        
+        
+        [weakSelf.tableView reloadData];
+    }];
 }
 -(void)getChiHeList{
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
-    CheHeModel * cheHeModel=[[CheHeModel alloc]init];
-    cheHeModel.name=@"散台特惠轩尼诗";
-    cheHeModel.money=@"￥1550";
-    cheHeModel.yongjin=@"分销佣金：30%";
-    cheHeModel.kucun=@"13";
-    CheHeModel * cheHeModel1=[[CheHeModel alloc]init];
-    cheHeModel1.name=@"散台特惠轩尼诗";
-    cheHeModel1.money=@"￥1550";
-    cheHeModel1.yongjin=@"分销佣金：30%";
-    cheHeModel1.kucun=@"13";
-    CheHeModel * cheHeModel2=[[CheHeModel alloc]init];
-    cheHeModel2.name=@"散台特惠轩尼诗";
-    cheHeModel2.money=@"￥1550";
-    cheHeModel2.yongjin=@"分销佣金：30%";
-    cheHeModel2.kucun=@"13";
-    [dataList addObject:cheHeModel];
-    [dataList addObject:cheHeModel1];
-    [dataList addObject:cheHeModel2];
-    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
-    view1.backgroundColor=[UIColor whiteColor];
-    _tableView.tableHeaderView=view1;
-    [self.tableView reloadData];
+    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"barid":@"1"};
+    [[ZSManageHttpTool shareInstance] getMyDanPinListWithParams:dic block:^(NSMutableArray *result) {
+        dataList =result;
+        UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+        view1.backgroundColor=[UIColor whiteColor];
+        _tableView.tableHeaderView=view1;
+        
+        
+        [weakSelf.tableView reloadData];
+    }];
+
 }
 -(void)getKuCunList{
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
-    KuCunModel *kuCunModel=[[KuCunModel alloc]init];
-    kuCunModel.name=@"散台特惠轩尼诗";
-    kuCunModel.count=@"200件";
-    KuCunModel *kuCunModel1=[[KuCunModel alloc]init];
-    kuCunModel1.name=@"散台特惠轩尼诗";
-    kuCunModel1.count=@"200件";
-    KuCunModel *kuCunModel2=[[KuCunModel alloc]init];
-    kuCunModel2.name=@"散台特惠轩尼诗";
-    kuCunModel2.count=@"200件";
-    [dataList addObject:kuCunModel];
-    [dataList addObject:kuCunModel1];
-    [dataList addObject:kuCunModel2];
-    serchDataList = dataList.mutableCopy;
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"SerchHeadView" owner:nil options:nil];
-    SerchHeadView *serchHeadView= (SerchHeadView *)[nibView objectAtIndex:0];
-    [serchHeadView.serchText addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [serchHeadView.serchText addTarget:self action:@selector(serchTextValChange:) forControlEvents:UIControlEventEditingChanged];
-    _tableView.tableHeaderView=serchHeadView;
-    [self.tableView reloadData];
+    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"barid":@"1",@"userid":@"1"};
+    [[ZSManageHttpTool shareInstance] getMyKuCunListWithParams:dic block:^(NSMutableArray *result) {
+        dataList =result;
+        
+        serchDataList = dataList.mutableCopy;
+        NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"SerchHeadView" owner:nil options:nil];
+        SerchHeadView *serchHeadView= (SerchHeadView *)[nibView objectAtIndex:0];
+        [serchHeadView.serchText addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+        [serchHeadView.serchText addTarget:self action:@selector(serchTextValChange:) forControlEvents:UIControlEventEditingChanged];
+        weakSelf.tableView.tableHeaderView=serchHeadView;
+        
+        [weakSelf.tableView reloadData];
+    }];
+    
+    
 }
 
 #pragma mark 搜索
 -(void)serchTextValChange:(UITextField *)sender{
     NSString *ss=sender.text;
+    [serchDataList removeAllObjects];
+    if([ss isEqualToString:@""]){
+        serchDataList =[dataList mutableCopy];
+    }else{
+        for (KuCunModel *kuCunModel in dataList) {
+            
+            NSRange range = [kuCunModel.name rangeOfString:ss];//匹配得到的下标
+            NSLog(@"rang:%@",NSStringFromRange(range));
+            if (range.length >0){
+                [serchDataList addObject:kuCunModel ];
+            }
+        }
+    }
+    [_tableView reloadData];
     NSLog(@"*****%@",ss);
 }
 - (IBAction)titelChangeAct:(UISegmentedControl *)sender {
@@ -270,11 +246,16 @@
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
             TaoCanModel *taoCanModel=dataList[indexPath.row];
-            cell.nameLal.text=taoCanModel.name;
-            cell.delLal.text=taoCanModel.del;
-            cell.timeLal.text=taoCanModel.time;
-            cell.moneyLal.text=taoCanModel.money;
-            cell.zhekouLal.text=taoCanModel.zhekouMoney;
+            cell.nameLal.text=taoCanModel.title;
+            cell.delLal.text=taoCanModel.subtitle;
+            cell.timeLal.text=taoCanModel.smdate;
+            
+            NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+            NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.f",taoCanModel.price] attributes:attribtDic];
+            cell.moneyLal.attributedText=attribtStr;
+            cell.zhekouLal.text=[NSString stringWithFormat:@"￥%.f",taoCanModel.price];
+            NSString *flStr=[NSString stringWithFormat:@"分销佣金：%.f%\%",taoCanModel.rebate*100];
+            [cell.yjBtn setTitle:flStr forState:0];
             return cell;
             break;
         }
@@ -296,10 +277,10 @@
             [cell addSubview:lineLal];
 
             PinKeModel *pinKeModel=dataList[indexPath.row];
-            cell.nameLal.text=pinKeModel.name;
-            cell.didianLal.text=pinKeModel.dizhi;
-            cell.shopNameLal.text=pinKeModel.jiubaName;
-            cell.timeLal.text=pinKeModel.time;
+            cell.nameLal.text=pinKeModel.title;
+            cell.didianLal.text=pinKeModel.subtitle;
+            cell.shopNameLal.text=@"";
+            cell.timeLal.text=pinKeModel.smdate;
             return cell;
             break;
             
@@ -322,9 +303,10 @@
             [cell addSubview:lineLal];
             CheHeModel *cheHeModel=dataList[indexPath.row];
             cell.nameLal.text=cheHeModel.name;
-            cell.countLal.text=cheHeModel.kucun;
-            cell.moneyLal.text=cheHeModel.money;
-            [cell.yjBtn setTitle:cheHeModel.yongjin forState:0];
+            cell.countLal.text=[NSString stringWithFormat:@"%d",cheHeModel.ordernum];
+            cell.moneyLal.text=[NSString stringWithFormat:@"￥%.f",cheHeModel.price];
+            NSString *flStr=[NSString stringWithFormat:@"分销佣金：%.f%\%",cheHeModel.rebate*100];
+            [cell.yjBtn setTitle:flStr forState:0];
             return cell;
             break;
         }
@@ -343,7 +325,7 @@
             }
             KuCunModel *kuCunModel=serchDataList[indexPath.row];
             cell.namelal.text=kuCunModel.name;
-            cell.countLal.text=kuCunModel.count;
+            cell.countLal.text=[NSString stringWithFormat:@"%d件",kuCunModel.stock];
             return cell;
             break;
         }
@@ -424,6 +406,7 @@
         {
             ZSAddStocksViewController *addStocksViewController=[[ZSAddStocksViewController alloc]initWithNibName:@"ZSAddStocksViewController" bundle:nil];
             addStocksViewController.title=@"添加库存";
+            addStocksViewController.delegate=self;
             [self.navigationController pushViewController:addStocksViewController animated:YES];
             break;
         }
@@ -583,6 +566,11 @@
     [sender resignFirstResponder];
 }
 
+#pragma mark -添加库存代理
+- (void)addStocks{
+    [self showMessage:@"保存成功"];
+    [self getKuCunList];
+}
 - (IBAction)backAct:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

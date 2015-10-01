@@ -12,5 +12,5 @@
 @interface LYBaseViewController : UIViewController
 
 - (void)setCustomTitle:(NSString *)title;
-
+-(void)showMessage:(NSString*) message;
 @end

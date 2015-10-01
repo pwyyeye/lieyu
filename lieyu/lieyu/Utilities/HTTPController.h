@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
+#import "MJExtension.h"
 //#import "NSDictionary+JSONManage.h"
 //#import "NSString+JSONCategories.h"
 //#import "NSObject+JSONCategories.h"
-typedef enum {
-    GETURL,
-    POSTURL
-}urltype;
+typedef NS_ENUM(NSInteger, RequestMethodType){
+    RequestMethodTypePost = 1,
+    RequestMethodTypeGet = 2
+};
+
 @protocol HTTPControllerProtocol <NSObject>
     //定义一个方法，接收一个参数：AnyObject
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname;
@@ -31,7 +33,12 @@ typedef enum {
 
 
 }
-
++(void) requestWihtMethod:(RequestMethodType)
+methodType url : (NSString *)url
+                  baseURL:(NSString*)baseStr
+                   params:(NSDictionary *)params
+                  success:(void (^)(id response))success
+                  failure:(void (^)(NSError *err))failure;
 @property (nonatomic, assign) id<HTTPControllerProtocol> delegate ;
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withUrlName:(NSString *)name;
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withPam:(NSDictionary *)pam  withUrlName:(NSString *)name;

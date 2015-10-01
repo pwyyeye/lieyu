@@ -19,4 +19,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "UIImageView+WebCache.h"
+#import "AppDelegate.h"
 #endif /* lieyu_pch */

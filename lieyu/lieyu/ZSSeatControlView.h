@@ -10,6 +10,7 @@
 
 @interface ZSSeatControlView : LYBaseViewController{
     NSMutableArray *listArr;
+    NSString *nowTime;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

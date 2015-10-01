@@ -9,7 +9,6 @@
 #import "MyZSManageViewController.h"
 #import "ZSDetailModel.h"
 #import "LYZSdetailCell.h"
-#import "LYZSeditView.h"
 #import "LYZSApplicationViewController.h"
 @interface MyZSManageViewController ()
 
