@@ -7,7 +7,10 @@
 //
 
 #import "LYBaseViewController.h"
+@protocol ZSAddChanPinDelegate<NSObject>
+- (void)addChanPin:(NSMutableArray *)arr;
 
+@end
 @interface ChanPinListViewController : LYBaseViewController{
     NSMutableArray *_listContent;
     NSMutableArray *_filteredListContent;
@@ -15,5 +18,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
+- (IBAction)sureAct:(UIButton *)sender;
+@property (nonatomic, weak) id <ZSAddChanPinDelegate> delegate;
 @end

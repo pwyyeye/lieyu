@@ -12,5 +12,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *taocanImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLal;
 @property (weak, nonatomic) IBOutlet UIButton *jianAct;
+@property (weak, nonatomic) IBOutlet UIButton *jianDAct;
+@property (weak, nonatomic) IBOutlet UIButton *jiaDAct;
+@property (weak, nonatomic) IBOutlet UITextField *countTex;
 
 @end

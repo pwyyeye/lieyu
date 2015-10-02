@@ -24,6 +24,8 @@
 -(void) getMyKuCunListWithParams:(NSDictionary*)params
                             block:(void(^)(NSMutableArray* result)) block;
 
+//专属经理-套餐添加
+-(void) addTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 //专属经理-库存添加
 -(void) addItemProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 

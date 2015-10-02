@@ -116,7 +116,31 @@
         
     }];
 }
-
+#pragma mark专属经理-套餐添加
+-(void) addTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_TAOCAN_ADD baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+        if ([code isEqualToString:@"0"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
 
 #pragma mark -获取一周卡座
 -(void) getDeckFullWithParams:(NSDictionary*)params

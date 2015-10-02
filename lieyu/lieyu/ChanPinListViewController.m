@@ -8,6 +8,8 @@
 
 #import "ChanPinListViewController.h"
 #import "KuCunCell.h"
+#import "ZSManageHttpTool.h"
+#import "KuCunModel.h"
 @interface ChanPinListViewController ()
 
 @end
@@ -16,6 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     _tableView.separatorColor=[UIColor clearColor];
+    _listContent = [NSMutableArray new];
+    _filteredListContent = [NSMutableArray new];
+    [self getKuCunList];
     // Do any additional setup after loading the view from its nib.
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -51,12 +57,22 @@
     }
     
     
-    //CustomerModel *addressBook = nil;
+    KuCunModel *kuCunModel = nil;
+    cell.selBtn.tag=indexPath.row;
     if (tableView == self.searchDisplayController.searchResultsTableView){
-    
+        kuCunModel = (KuCunModel *)[_filteredListContent objectAtIndex:indexPath.row];
+        [cell.selBtn addTarget:self action:@selector(chooseRadioForSer:) forControlEvents:UIControlEventTouchDown] ;
     }else{
-    
+        kuCunModel= (KuCunModel *)[_listContent objectAtIndex:indexPath.row];
+        [cell.selBtn addTarget:self action:@selector(chooseRadio:) forControlEvents:UIControlEventTouchDown] ;
     }
+    cell.namelal.text=kuCunModel.name;
+    [cell.countLal setHidden:YES];
+    [cell.selBtn setHidden:NO];
+    [cell.selBtn setSelected:kuCunModel.isSel];
+    
+    
+    
         //addressBook = (CustomerModel *)[_filteredListContent objectAtIndex:indexPath.row];
     
         //addressBook = (CustomerModel *)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
@@ -114,15 +130,12 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     [_filteredListContent removeAllObjects];
-    for (NSArray *section in _listContent) {
-//        for (CustomerModel *addressBook in section)
-//        {
-//            NSComparisonResult result = [addressBook.name compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
-//            if (result == NSOrderedSame)
-//            {
-//                [_filteredListContent addObject:addressBook];
-//            }
-//        }
+    for (KuCunModel *kuCunModel in _listContent) {
+        NSComparisonResult result = [kuCunModel.name compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
+        if (result == NSOrderedSame)
+        {
+            [_filteredListContent addObject:kuCunModel];
+        }
     }
 }
 
@@ -144,6 +157,32 @@
     
     return YES;
 }
+#pragma mark -库存列表
+-(void)getKuCunList{
+    [_listContent removeAllObjects];
+//    [serchDataList removeAllObjects];
+    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"barid":@"1",@"userid":@"1"};
+    [[ZSManageHttpTool shareInstance] getMyKuCunListWithParams:dic block:^(NSMutableArray *result) {
+        _listContent =result;
+        [weakSelf.tableView reloadData];
+    }];
+    
+    
+}
+#pragma mark -选择
+-(void)chooseRadio:(UIButton *)sender{
+    KuCunModel * kuCunModel = (KuCunModel *)[_listContent objectAtIndex:sender.tag];
+    kuCunModel.isSel=!kuCunModel.isSel;
+    sender.selected=kuCunModel.isSel;
+}
+#pragma mark -搜索的选择
+-(void)chooseRadioForSer:(UIButton *)sender{
+   KuCunModel * kuCunModel = (KuCunModel *)[_filteredListContent objectAtIndex:sender.tag];
+    kuCunModel.isSel=!kuCunModel.isSel;
+    sender.selected=kuCunModel.isSel;
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -159,5 +198,16 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+#pragma mark - 确定按钮
+- (IBAction)sureAct:(UIButton *)sender {
+    NSMutableArray *arr=[[NSMutableArray alloc]init];
+    for (KuCunModel * kuCunModel in _listContent) {
+        if(kuCunModel.isSel){
+            kuCunModel.useCount=1;
+            [arr addObject:kuCunModel];
+        }
+    }
+    [self.delegate addChanPin:arr];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

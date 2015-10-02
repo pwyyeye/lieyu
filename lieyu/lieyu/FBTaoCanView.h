@@ -15,8 +15,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *fromPriceTex;
 @property (weak, nonatomic) IBOutlet UITextField *toPriceTex;
 @property (weak, nonatomic) IBOutlet UIButton *timeChooseBtn;
+@property (weak, nonatomic) IBOutlet UILabel *timeLal;
+@property (weak, nonatomic) IBOutlet UILabel *imageAddlal;
 @property (weak, nonatomic) IBOutlet UITextField *fromPopulationTex;
 @property (weak, nonatomic) IBOutlet UITextField *toPopulationTex;
-@property (weak, nonatomic) IBOutlet UILabel *timeLal;
-
+@property (weak, nonatomic) IBOutlet UIButton *addTaoCanBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLal;
 @end
