@@ -20,7 +20,7 @@
 #import "ZSReleaseGoodViewController.h"
 #import "ZSAddStocksViewController.h"
 #import "ZSManageHttpTool.h"
-@interface ZSMyShopsManageViewController ()<ZSAddStocksDelegate>
+@interface ZSMyShopsManageViewController ()<ZSAddStocksDelegate,ZSAddTaoCanDelegate>
 
 @end
 
@@ -44,7 +44,7 @@
     [self getTaoCanList];
     // Do any additional setup after loading the view from its nib.
 }
-
+#pragma mark -套餐列表
 -(void)getTaoCanList{
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
@@ -56,7 +56,7 @@
         view1.backgroundColor=[UIColor whiteColor];
         _tableView.tableHeaderView=view1;
         
-        
+        totolCount=[NSString stringWithFormat:@"共产品：%d个",(int)dataList.count];
         [weakSelf.tableView reloadData];
     }];
         
@@ -69,6 +69,7 @@
 //    [self.tableView reloadData];
     
 }
+#pragma mark -拼客列表
 -(void)getinKeList{
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
@@ -80,10 +81,11 @@
         view1.backgroundColor=[UIColor whiteColor];
         _tableView.tableHeaderView=view1;
         
-        
+        totolCount=[NSString stringWithFormat:@"共产品：%d个",(int)dataList.count];
         [weakSelf.tableView reloadData];
     }];
 }
+#pragma mark -吃喝列表
 -(void)getChiHeList{
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
@@ -95,11 +97,12 @@
         view1.backgroundColor=[UIColor whiteColor];
         _tableView.tableHeaderView=view1;
         
-        
+        totolCount=[NSString stringWithFormat:@"共产品：%d个",(int)dataList.count];
         [weakSelf.tableView reloadData];
     }];
 
 }
+#pragma mark -库存列表
 -(void)getKuCunList{
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
@@ -107,7 +110,7 @@
     NSDictionary *dic=@{@"barid":@"1",@"userid":@"1"};
     [[ZSManageHttpTool shareInstance] getMyKuCunListWithParams:dic block:^(NSMutableArray *result) {
         dataList =result;
-        
+        totolCount=[NSString stringWithFormat:@"共产品：%d个",(int)dataList.count];
         serchDataList = dataList.mutableCopy;
         NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"SerchHeadView" owner:nil options:nil];
         SerchHeadView *serchHeadView= (SerchHeadView *)[nibView objectAtIndex:0];
@@ -217,7 +220,7 @@
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
     view.backgroundColor=RGB(247, 247, 247);
     UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(15, 11, 200, 12)];
-    label.text=@"共产品：50个";
+    label.text=totolCount;
     label.font=[UIFont systemFontOfSize:12];
     label.textColor=RGB(51, 51, 51);
     [view addSubview:label];
@@ -311,7 +314,7 @@
             break;
         }
             
-        default:// 已消费
+        default:// 库存
         {
             static NSString *kuCunCellIdentifier = @"KuCunCell";
             
@@ -343,26 +346,26 @@
 {
     switch (self.titleSeq.selectedSegmentIndex) {
             
-        case 0://待消费
+        case 0://套餐列表
         {
             return 83;
             break;
         }
             
-        case 1:// 待留位
+        case 1:// 拼客
         {
             return 90;
             break;
             
         }
             
-        case 2:// 待催促
+        case 2:// 单品
         {
             return 83;
             break;
         }
             
-        default:// 已消费
+        default:// 库存
         {
             return 64;
             break;
@@ -383,6 +386,7 @@
         case 0://套餐
         {
             ZSReleasePackagesViewController *releasePackageViewController=[[ZSReleasePackagesViewController alloc]initWithNibName:@"ZSReleasePackagesViewController" bundle:nil];
+            releasePackageViewController.delegate=self;
             [self.navigationController pushViewController:releasePackageViewController animated:YES];
             break;
         }
@@ -570,6 +574,11 @@
 - (void)addStocks{
     [self showMessage:@"保存成功"];
     [self getKuCunList];
+}
+#pragma mark -添加套餐代理
+- (void)addTaoCan{
+    [self showMessage:@"保存成功"];
+    [self getTaoCanList];
 }
 - (IBAction)backAct:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];

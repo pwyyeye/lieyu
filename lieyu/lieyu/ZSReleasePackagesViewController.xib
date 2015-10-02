@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="oyi-lP-WIZ">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="oyi-lP-WIZ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="527"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
@@ -24,16 +24,31 @@
                         <outlet property="delegate" destination="-1" id="EN2-Yt-5eE"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rgP-gt-cFp">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rgP-gt-cFp">
                     <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                     <color key="backgroundColor" red="0.13725490200000001" green="0.65098039220000004" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="GgJ-sG-RqM"/>
+                    </constraints>
                     <state key="normal" title="确定">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="sureAct:" destination="-1" eventType="touchUpInside" id="wlS-Qj-7bG"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="rgP-gt-cFp" secondAttribute="trailing" id="6L9-hL-hOE"/>
+                <constraint firstItem="rgP-gt-cFp" firstAttribute="top" secondItem="oyi-lP-WIZ" secondAttribute="bottom" id="Rgv-4L-rOS"/>
+                <constraint firstAttribute="bottom" secondItem="rgP-gt-cFp" secondAttribute="bottom" id="agf-D9-UMp"/>
+                <constraint firstItem="rgP-gt-cFp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gEF-jg-N36"/>
+                <constraint firstItem="oyi-lP-WIZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="op4-oI-Wq7"/>
+                <constraint firstAttribute="trailing" secondItem="oyi-lP-WIZ" secondAttribute="trailing" id="qKT-b1-HBv"/>
+                <constraint firstItem="oyi-lP-WIZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qbP-kK-qsj"/>
+            </constraints>
             <point key="canvasLocation" x="324" y="303"/>
         </view>
     </objects>

@@ -18,6 +18,7 @@
     UIButton *surebutton;
     NSMutableArray *dataList;
     NSMutableArray *serchDataList;
+    NSString *totolCount;
 }
 - (IBAction)backAct:(UIButton *)sender;
 - (IBAction)titelChangeAct:(UISegmentedControl *)sender;

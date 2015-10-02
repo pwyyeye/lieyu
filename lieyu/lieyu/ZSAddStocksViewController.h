@@ -33,7 +33,7 @@
 - (IBAction)addPictures:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *titleTex;
 @property (weak, nonatomic) IBOutlet UITextField *kucunTex;
--(void)showMessage:(NSString*) message;
+
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *imageAddlal;
 @property (nonatomic, weak) id <ZSAddStocksDelegate> delegate;

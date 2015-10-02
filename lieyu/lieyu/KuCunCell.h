@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *kuCunImageView;
 @property (weak, nonatomic) IBOutlet UILabel *namelal;
 @property (weak, nonatomic) IBOutlet UILabel *countLal;
+@property (weak, nonatomic) IBOutlet UIButton *selBtn;
 
 @end

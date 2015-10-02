@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FBTaoCanView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="397"/>
+            <rect key="frame" x="0.0" y="0.0" width="312" height="418"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ztp-Mt-DXQ">
@@ -37,6 +37,12 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spS-wB-3O5">
+                            <rect key="frame" x="92" y="35" width="210" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -76,62 +82,86 @@
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tx-C0-rn6">
-                            <rect key="frame" x="89" y="21" width="20" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="实际价格" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwT-Qk-BBK">
+                            <rect key="frame" x="111" y="42" width="74" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zql-Zm-aWI">
-                            <rect key="frame" x="111" y="17" width="74" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOA-eK-ElS">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOA-eK-ElS">
                             <rect key="frame" x="216" y="21" width="20" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="thL-2g-vI2">
+                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="thL-2g-vI2">
                             <rect key="frame" x="238" y="17" width="74" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tx-C0-rn6">
+                            <rect key="frame" x="178" y="22" width="20" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zql-Zm-aWI">
+                            <rect key="frame" x="200" y="18" width="74" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V68-eb-S3Z">
-                    <rect key="frame" x="0.0" y="332" width="320" height="51"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6KO-UR-slJ">
+                    <rect key="frame" x="0.0" y="332" width="320" height="36"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahj-tP-Ddf">
-                            <rect key="frame" x="287" y="15" width="20" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtt-HN-J3R">
+                            <rect key="frame" x="285" y="7" width="20" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivD-bh-LQg">
-                            <rect key="frame" x="188" y="15" width="20" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dN-Ob-787">
+                            <rect key="frame" x="186" y="7" width="20" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CRC-Gr-6ou">
-                            <rect key="frame" x="111" y="11" width="74" height="30"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="适合人数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKi-va-tgQ">
+                            <rect key="frame" x="16" y="7" width="54" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ak9-Pg-isb">
+                            <rect key="frame" x="104" y="3" width="74" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                         </textField>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="适合人数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiz-TL-Ufb">
-                            <rect key="frame" x="18" y="15" width="54" height="21"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4VO-DQ-IS7">
+                            <rect key="frame" x="213" y="3" width="74" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hbT-sy-3xV">
+                    <rect key="frame" x="0.0" y="382" width="320" height="36"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="套餐内容" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YA-A8-EIB">
+                            <rect key="frame" x="16" y="7" width="60" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tdb-6k-6l3">
-                            <rect key="frame" x="211" y="11" width="74" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrA-BK-wbm">
+                            <rect key="frame" x="277" y="4" width="27" height="27"/>
+                            <state key="normal" image="addIcon">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -141,18 +171,22 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="addPhotoBtn" destination="cjQ-E0-v4n" id="F9f-cW-RGN"/>
-                <outlet property="fromPopulationTex" destination="CRC-Gr-6ou" id="MnM-iD-B4P"/>
+                <outlet property="addTaoCanBtn" destination="XrA-BK-wbm" id="mFv-Ub-auG"/>
+                <outlet property="fromPopulationTex" destination="ak9-Pg-isb" id="rey-5l-BH2"/>
                 <outlet property="fromPriceTex" destination="zql-Zm-aWI" id="ec3-FH-vSh"/>
+                <outlet property="imageAddlal" destination="spS-wB-3O5" id="yGI-H6-p2n"/>
                 <outlet property="taocanTitleTex" destination="g6x-lz-mdv" id="l5r-Fe-W9l"/>
                 <outlet property="timeChooseBtn" destination="2ss-S2-xAs" id="Kp5-ir-wEB"/>
                 <outlet property="timeLal" destination="XsB-BP-uGe" id="o4e-N2-pXo"/>
-                <outlet property="toPopulationTex" destination="Tdb-6k-6l3" id="TMq-hk-OrY"/>
+                <outlet property="titleLal" destination="6YA-A8-EIB" id="dJ1-1H-Ezv"/>
+                <outlet property="toPopulationTex" destination="4VO-DQ-IS7" id="sNg-QX-1Gl"/>
                 <outlet property="toPriceTex" destination="thL-2g-vI2" id="tjx-xJ-Z2F"/>
             </connections>
-            <point key="canvasLocation" x="313" y="223.5"/>
+            <point key="canvasLocation" x="309" y="234"/>
         </view>
     </objects>
     <resources>
+        <image name="addIcon" width="27" height="27"/>
         <image name="disClosure.png" width="7" height="10"/>
         <image name="picAdd" width="69" height="69"/>
     </resources>

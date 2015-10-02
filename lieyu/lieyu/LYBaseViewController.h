@@ -10,7 +10,8 @@
 #import "MacroDefinition.h"
 #import "UIViewExt.h"
 @interface LYBaseViewController : UIViewController
-
+- (NSString *)randomStringWithLength:(int)len;
+- (NSString *)getDateTimeString;
 - (void)setCustomTitle:(NSString *)title;
 -(void)showMessage:(NSString*) message;
 @end

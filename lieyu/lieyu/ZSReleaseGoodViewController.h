@@ -7,10 +7,14 @@
 //
 
 #import "LYBaseViewController.h"
-
+#import "LYZSeditView.h"
+#import "UzysAssetsPickerController.h"
 @interface ZSReleaseGoodViewController : LYBaseViewController{
     NSMutableArray *chanPinDelList;
     NSMutableArray *biaoQianList;
+    LYZSeditView *seditView;
+    UIView  *_bgView;
+    NSMutableArray *keyArr;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)sureAct:(UIButton *)sender;

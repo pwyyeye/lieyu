@@ -27,6 +27,8 @@
 //专属经理库存列表
 #define ZS_KUCUNLIST  @"lyItemProductAction.do?action=list"
 
+//专属经理套餐添加
+#define ZS_TAOCAN_ADD  @"lySetMealAction.do?action=add"
 //专属经理库存添加
 #define ZS_KUCUN_ADD  @"lyItemProductAction.do?action=add"
 

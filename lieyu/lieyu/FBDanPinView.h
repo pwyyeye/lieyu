@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *danpinTitleTex;
 @property (weak, nonatomic) IBOutlet UITextView *shuoMingTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoBtn;
+@property (weak, nonatomic) IBOutlet UILabel *imageAddlal;
 @end

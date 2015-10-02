@@ -37,6 +37,6 @@
 @property(nonatomic,copy)NSString * unit;
 
 @property(nonatomic,copy)NSString * modifydate;
-
-
+@property(nonatomic,assign)BOOL isSel;
+@property(nonatomic,assign)int useCount;
 @end
