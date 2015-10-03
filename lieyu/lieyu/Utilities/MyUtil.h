@@ -39,4 +39,6 @@
 
 + (BOOL) validateIdentityCard: (NSString *)identityCard;
 
+//弹出消息框来显示消息
++ (void)showMessage:(NSString* )message;
 @end

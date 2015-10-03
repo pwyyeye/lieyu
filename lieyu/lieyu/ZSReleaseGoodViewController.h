@@ -9,7 +9,11 @@
 #import "LYBaseViewController.h"
 #import "LYZSeditView.h"
 #import "UzysAssetsPickerController.h"
-@interface ZSReleaseGoodViewController : LYBaseViewController{
+@protocol ZSAddDanPinDelegate<NSObject>
+- (void)addDanPin;
+
+@end
+@interface ZSReleaseGoodViewController : LYBaseViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UzysAssetsPickerControllerDelegate>{
     NSMutableArray *chanPinDelList;
     NSMutableArray *biaoQianList;
     LYZSeditView *seditView;
@@ -18,5 +22,5 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)sureAct:(UIButton *)sender;
-
+@property (nonatomic, weak) id <ZSAddDanPinDelegate> delegate;
 @end

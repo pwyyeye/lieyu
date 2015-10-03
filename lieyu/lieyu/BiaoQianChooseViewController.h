@@ -7,9 +7,12 @@
 //
 
 #import "LYBaseViewController.h"
+@protocol BiaoQianChooseDelegate<NSObject>
+- (void)addBiaoQian:(NSMutableArray *)arr;
 
+@end
 @interface BiaoQianChooseViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)sureAct:(id)sender;
-
+@property (nonatomic, weak) id <BiaoQianChooseDelegate> delegate;
 @end

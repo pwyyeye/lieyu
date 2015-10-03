@@ -20,4 +20,5 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 - (IBAction)sureAct:(UIButton *)sender;
 @property (nonatomic, weak) id <ZSAddChanPinDelegate> delegate;
+@property (nonatomic,assign)bool isDX;//是否单选
 @end

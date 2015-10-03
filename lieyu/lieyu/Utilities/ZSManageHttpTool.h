@@ -24,11 +24,19 @@
 -(void) getMyKuCunListWithParams:(NSDictionary*)params
                             block:(void(^)(NSMutableArray* result)) block;
 
+//获取酒水分类列表
+-(void) getProductCategoryListWithParams:(NSDictionary*)params
+                           block:(void(^)(NSMutableArray* result)) block;
+//获取酒水品牌列表
+-(void) getBrandListWithParams:(NSDictionary*)params
+                           block:(void(^)(NSMutableArray* result)) block;
+
 //专属经理-套餐添加
 -(void) addTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 //专属经理-库存添加
 -(void) addItemProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
-
+//专属经理-单品添加
+-(void) addProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 
 //获取卡座一周是否满座
 -(void) getDeckFullWithParams:(NSDictionary*)params

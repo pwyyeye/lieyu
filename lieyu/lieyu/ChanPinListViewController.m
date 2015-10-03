@@ -172,16 +172,41 @@
 }
 #pragma mark -选择
 -(void)chooseRadio:(UIButton *)sender{
-    KuCunModel * kuCunModel = (KuCunModel *)[_listContent objectAtIndex:sender.tag];
-    kuCunModel.isSel=!kuCunModel.isSel;
-    sender.selected=kuCunModel.isSel;
+    if(self.isDX){
+        KuCunModel * kuCunModel = (KuCunModel *)[_listContent objectAtIndex:sender.tag];
+        kuCunModel.isSel=true;
+        sender.selected=kuCunModel.isSel;
+        for (KuCunModel * kuCunModelTemp in _listContent) {
+            if(![kuCunModel isEqual:kuCunModelTemp]){
+                kuCunModelTemp.isSel=false;
+            }
+        }
+        [_tableView reloadData];
+    }else{
+        KuCunModel * kuCunModel = (KuCunModel *)[_listContent objectAtIndex:sender.tag];
+        kuCunModel.isSel=!kuCunModel.isSel;
+        sender.selected=kuCunModel.isSel;
+    }
+    
 }
 #pragma mark -搜索的选择
 -(void)chooseRadioForSer:(UIButton *)sender{
-   KuCunModel * kuCunModel = (KuCunModel *)[_filteredListContent objectAtIndex:sender.tag];
-    kuCunModel.isSel=!kuCunModel.isSel;
-    sender.selected=kuCunModel.isSel;
-
+    if(self.isDX){
+        KuCunModel * kuCunModel = (KuCunModel *)[_filteredListContent objectAtIndex:sender.tag];
+        kuCunModel.isSel=true;
+        sender.selected=kuCunModel.isSel;
+        for (KuCunModel * kuCunModelTemp in _listContent) {
+            if(![kuCunModel isEqual:kuCunModelTemp]){
+                kuCunModelTemp.isSel=false;
+            }
+        }
+        [_tableView reloadData];
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    }else{
+        KuCunModel * kuCunModel = (KuCunModel *)[_filteredListContent objectAtIndex:sender.tag];
+        kuCunModel.isSel=!kuCunModel.isSel;
+        sender.selected=kuCunModel.isSel;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

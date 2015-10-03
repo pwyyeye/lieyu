@@ -9,6 +9,7 @@
 #import "LYUserLoginViewController.h"
 #import "LYResetPasswordViewController.h"
 #import "LYRegistrationViewController.h"
+#import "LYUserHttpTool.h"
 @interface LYUserLoginViewController ()
 
 @end
@@ -42,6 +43,18 @@
 }
 #pragma mark - 登录
 - (IBAction)loginAct:(UIButton *)sender {
+    if(self.userNameTex.text.length<1){
+        [self showMessage:@"请输入用户名!"];
+        return;
+    }
+    if(self.passWordTex.text.length<1){
+        [self showMessage:@"请输入密码!"];
+        return;
+    }
+    NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":self.passWordTex.text};
+    [[LYUserHttpTool shareInstance] userLoginWithParams:dic block:^(UserModel *result) {
+//        NSLog(result.username);
+    }];
 }
 #pragma mark - 注册
 - (IBAction)zhuceAct:(UIButton *)sender {
@@ -49,6 +62,11 @@
     registrationViewController.title=@"注册";
     [self.navigationController pushViewController:registrationViewController animated:YES];
 }
+
 - (IBAction)otherAct:(UIButton *)sender {
+}
+
+- (IBAction)exitEdit:(UITextField *)sender {
+    [sender resignFirstResponder];
 }
 @end

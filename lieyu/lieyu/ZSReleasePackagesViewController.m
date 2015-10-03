@@ -159,15 +159,19 @@
 #pragma mark选择套餐明细
 -(void)taoCanChoose:(id)sender{
     ChanPinListViewController *chanPinListViewController=[[ChanPinListViewController alloc]initWithNibName:@"ChanPinListViewController" bundle:nil];
+    chanPinListViewController.title=@"产品列表";
     chanPinListViewController.delegate=self;
     [self.navigationController pushViewController:
      chanPinListViewController animated:YES];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"FBTaoCanSectionBottom" owner:nil options:nil];
-    taoCanSectionBottom= (FBTaoCanSectionBottom *)[nibView objectAtIndex:0];
+    if(taoCanSectionBottom==nil){
+        NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"FBTaoCanSectionBottom" owner:nil options:nil];
+        taoCanSectionBottom= (FBTaoCanSectionBottom *)[nibView objectAtIndex:0];
+        
+        [taoCanSectionBottom.yjTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    }
     
-    [taoCanSectionBottom.yjTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
     //            orderHeadView.detLal.text=orderInfoModel.paytime;
     //    view.backgroundColor=[UIColor yellowColor];
     return taoCanSectionBottom;
@@ -217,7 +221,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 94;
+    return 92;
     
 }
 
