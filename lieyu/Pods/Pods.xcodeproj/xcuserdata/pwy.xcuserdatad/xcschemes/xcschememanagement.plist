@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-RongCloudIMKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>670CD30F214AEC5209D0E127</key>
+		<key>3CFC130DF0B8A2EC1AE52EF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6BD900A8B73D6EB9A464D8A8</key>
+		<key>4A98F03BCF18957EAA08CEEE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>85A959FAF981B1FBF7A10105</key>
+		<key>B1BB4B999D4A82680961A7A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E4ECF43937D3295E18E382DD</key>
+		<key>D3824303DBBF1E6FE7EA23AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E25E50200939D3B4083B5089</key>
 		<dict>
 			<key>primary</key>
 			<true/>
