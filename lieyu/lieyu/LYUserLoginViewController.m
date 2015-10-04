@@ -54,8 +54,9 @@
     NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":self.passWordTex.text};
     [[LYUserHttpTool shareInstance] userLoginWithParams:dic block:^(UserModel *result) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        app.s_app_id=result.token;
+        app.s_app_id=@"7dx29og4iejtplo7wvqeisd2";//result.token;
         app.userModel=result;
+        [app getImToken];
 //        NSLog(result.username);
     }];
 }

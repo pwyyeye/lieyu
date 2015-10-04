@@ -19,10 +19,12 @@
 @property(strong,nonatomic) NSString *s_app_id;
 @property(retain,nonatomic) UserModel *userModel;
 @property(strong,nonatomic) NSString *qiniu_token;
+@property(strong,nonatomic) NSString *im_token;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 -(void)doHeart;
 - (void)startLoading;
 - (void)stopLoading;
+-(void)getImToken;
 @end
 

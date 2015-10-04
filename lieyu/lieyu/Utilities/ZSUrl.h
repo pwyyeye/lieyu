@@ -12,7 +12,8 @@
 #define LY_SERVER @"http://121.40.229.133:8001/lieyu/"
 #define QINIU_SERVER @"http://121.40.229.133:8001/portal/"
 //URL地址
-
+//IMtoken
+#define LY_IMTOKEN  @"friendAction.do?action=custom"
 //7牛token
 #define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"
 //获取验证码

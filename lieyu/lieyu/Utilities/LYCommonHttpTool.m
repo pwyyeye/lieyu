@@ -30,5 +30,18 @@
 //        NSLog(err.domain);
     }];
 }
+// 获取IMtoken
+-(void) getTokenByIMWithParams:(NSDictionary*)params
+                         block:(void(^)(NSString* result)) block{
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_IMTOKEN baseURL:QINIU_SERVER  params:params success:^(id response) {
+        
+        NSString *token=response[@"data"];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            block(token);
+        });
+    } failure:^(NSError *err) {
+        //        NSLog(err.domain);
+    }];
 
+}
 @end

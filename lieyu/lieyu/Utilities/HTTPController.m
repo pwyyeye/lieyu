@@ -20,13 +20,10 @@
 {
     //添加userid
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSString *newUrl;
     if (![MyUtil isEmptyString:app.s_app_id]) {
-        newUrl = [NSString stringWithFormat:@"%@&s_app_id=%@",baseStr,app.s_app_id];
-    }else{
-        newUrl=baseStr;
+        url = [NSString stringWithFormat:@"%@&SEM_LOGIN_TOKEN=%@",url,app.s_app_id];
     }
-    NSURL* baseURL = [NSURL URLWithString:newUrl];
+    NSURL* baseURL = [NSURL URLWithString:baseStr];
     //获得请求管理者
     AFHTTPRequestOperationManager* mgr = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
     
