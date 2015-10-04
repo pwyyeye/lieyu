@@ -259,6 +259,7 @@
 		D73652421BAEBF44002541CE /* KuCunModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652401BAEBF44002541CE /* KuCunModel.m */; };
 		D73652471BAEBF60002541CE /* PinKeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652441BAEBF60002541CE /* PinKeModel.m */; };
 		D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652461BAEBF60002541CE /* TaoCanModel.m */; };
+		D74436161BC1577200958046 /* libcorecrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D74436151BC1577200958046 /* libcorecrypto.tbd */; };
 		D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D747142A1BAD151400611579 /* MainTabbarViewController.m */; };
 		D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC361BA1C24B005AA996 /* HttpOperatorProvider+backend.m */; };
 		D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC381BA1C24B005AA996 /* HttpOperatorProvider.m */; };
@@ -745,6 +746,7 @@
 		D73652441BAEBF60002541CE /* PinKeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinKeModel.m; sourceTree = "<group>"; };
 		D73652451BAEBF60002541CE /* TaoCanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoCanModel.h; sourceTree = "<group>"; };
 		D73652461BAEBF60002541CE /* TaoCanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoCanModel.m; sourceTree = "<group>"; };
+		D74436151BC1577200958046 /* libcorecrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcorecrypto.tbd; path = usr/lib/system/libcorecrypto.tbd; sourceTree = SDKROOT; };
 		D74714291BAD151400611579 /* MainTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabbarViewController.h; path = Classes/MainTabbarViewController.h; sourceTree = "<group>"; };
 		D747142A1BAD151400611579 /* MainTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabbarViewController.m; path = Classes/MainTabbarViewController.m; sourceTree = "<group>"; };
 		D748BC351BA1C24B005AA996 /* HttpOperatorProvider+backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HttpOperatorProvider+backend.h"; sourceTree = "<group>"; };
@@ -867,9 +869,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
+				D74436161BC1577200958046 /* libcorecrypto.tbd in Frameworks */,
 				AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */,
 				D748BC561BA1C7C6005AA996 /* MobileCoreServices.framework in Frameworks */,
-				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
 				D748BC521BA1C765005AA996 /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1674,6 +1677,7 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D74436151BC1577200958046 /* libcorecrypto.tbd */,
 				AD798A361BB99A1F006D08F5 /* libPods.a */,
 				D748BC551BA1C7C6005AA996 /* MobileCoreServices.framework */,
 				D748BC531BA1C7A8005AA996 /* SystemConfiguration.framework */,
@@ -2773,6 +2777,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lieyu/Vendor/RestKit/lib",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -2795,6 +2800,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lieyu/Vendor/RestKit/lib",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";

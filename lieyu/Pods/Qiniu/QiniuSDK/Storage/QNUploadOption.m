@@ -9,32 +9,28 @@
 #import "QNUploadOption+Private.h"
 #import "QNUploadManager.h"
 
-static NSString *mime(NSString *mimeType) {
-	if (mimeType == nil || [mimeType isEqualToString:@""]) {
-		return @"application/octet-stream";
-	}
-	return mimeType;
-}
-
 @implementation QNUploadOption
 
-+ (NSDictionary *)filteParam:(NSDictionary *)params {
-	NSMutableDictionary *ret = [NSMutableDictionary dictionary];
-	if (params == nil) {
-		return ret;
+- (instancetype)initWithProgessHandler:(QNUpProgressHandler)progress {
+	if (self = [super init]) {
+		_progressHandler = progress;
 	}
-
-	[params enumerateKeysAndObjectsUsingBlock: ^(NSString *key, NSString *obj, BOOL *stop) {
-	         if ([key hasPrefix:@"x:"] && ![obj isEqualToString:@""]) {
-	                 ret[key] = obj;
-		 }
-	 }];
-
-	return ret;
+	return self;
 }
 
-- (instancetype)initWithProgessHandler:(QNUpProgressHandler)progress {
-	return [self initWithMime:nil progressHandler:progress params:nil checkCrc:NO cancellationSignal:nil];
++ (NSDictionary *)filteParam:(NSDictionary *)params {
+	if (params == nil) {
+		return nil;
+	}
+	NSMutableDictionary *ret = [NSMutableDictionary dictionary];
+
+	[params enumerateKeysAndObjectsUsingBlock: ^(NSString *key, NSString *obj, BOOL *stop) {
+	    if ([key hasPrefix:@"x:"]) {
+	        ret[key] = obj;
+		}
+	}];
+
+	return ret;
 }
 
 - (instancetype)initWithMime:(NSString *)mimeType
@@ -43,21 +39,18 @@ static NSString *mime(NSString *mimeType) {
                     checkCrc:(BOOL)check
           cancellationSignal:(QNUpCancellationSignal)cancel {
 	if (self = [super init]) {
-		_mimeType = mime(mimeType);
-		_progressHandler = progress != nil ? progress : ^(NSString *key, float percent) {
-		};
+		_mimeType = mimeType;
+		_progressHandler = progress;
 		_params = [QNUploadOption filteParam:params];
 		_checkCrc = check;
-		_cancellationSignal = cancel != nil ? cancel : ^BOOL () {
-			return NO;
-		};
+		_cancellationSignal = cancel;
 	}
 
 	return self;
 }
 
-+ (instancetype)defaultOptions {
-	return [[QNUploadOption alloc] initWithMime:nil progressHandler:nil params:nil checkCrc:NO cancellationSignal:nil];
+- (BOOL)priv_isCancelled {
+	return _cancellationSignal && _cancellationSignal();
 }
 
 @end
