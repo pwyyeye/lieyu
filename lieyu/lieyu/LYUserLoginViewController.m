@@ -10,7 +10,7 @@
 #import "LYResetPasswordViewController.h"
 #import "LYRegistrationViewController.h"
 #import "LYUserHttpTool.h"
-@interface LYUserLoginViewController ()
+@interface LYUserLoginViewController ()<LYRegistrationDelegate,LYResetPasswordDelegate>
 
 @end
 
@@ -53,6 +53,9 @@
     }
     NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":self.passWordTex.text};
     [[LYUserHttpTool shareInstance] userLoginWithParams:dic block:^(UserModel *result) {
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        app.s_app_id=result.token;
+        app.userModel=result;
 //        NSLog(result.username);
     }];
 }
@@ -68,5 +71,13 @@
 
 - (IBAction)exitEdit:(UITextField *)sender {
     [sender resignFirstResponder];
+}
+#pragma mark - 注册代理
+- (void)registration{
+    [MyUtil showMessage:@"注册成功"];
+}
+#pragma mark - 重置密码代理
+- (void)resetPassword{
+    [MyUtil showMessage:@"重置密码成功"];
 }
 @end
