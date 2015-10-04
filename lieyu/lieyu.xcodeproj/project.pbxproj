@@ -1207,6 +1207,13 @@
 			name = IM;
 			sourceTree = "<group>";
 		};
+		15EA6DDA1BC16C7B00620C9E /* IM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = IM;
+			sourceTree = "<group>";
+		};
 		15EE51321BA6E1AB00464B74 /* 订单管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2114,6 +2121,7 @@
 		D761F0291BA5B92D000757B0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				15EA6DDA1BC16C7B00620C9E /* IM */,
 				D761F0281BA5B90E000757B0 /* Mine */,
 				D761F0271BA5B8D5000757B0 /* Find */,
 				D761F0261BA5B8C2000757B0 /* Wines */,

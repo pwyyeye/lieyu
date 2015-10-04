@@ -23,9 +23,9 @@
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_QINIUTOKEN baseURL:QINIU_SERVER  params:params success:^(id response) {
         
         NSString *token=response[@"data"];
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
+        
             block(token);
-        });
+        
     } failure:^(NSError *err) {
 //        NSLog(err.domain);
     }];
@@ -36,9 +36,9 @@
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_IMTOKEN baseURL:QINIU_SERVER  params:params success:^(id response) {
         
         NSString *token=response[@"data"];
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
+        
             block(token);
-        });
+       
     } failure:^(NSError *err) {
         //        NSLog(err.domain);
     }];

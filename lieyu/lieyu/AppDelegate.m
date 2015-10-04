@@ -11,9 +11,10 @@
 #import "NeedHideNavigationBar.h"
 #import "LYCommonHttpTool.h"
 #import "DejalActivityView.h"
+#import <RongIMKit/RongIMKit.h>
 @interface AppDelegate ()
 <
-    UINavigationControllerDelegate
+UINavigationControllerDelegate
 >
 @end
 
@@ -22,6 +23,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [self setupDataStore];
     UINavigationController * nav = (UINavigationController *)self.window.rootViewController;
     nav.delegate = self;
@@ -101,6 +103,7 @@
 {
     [DejalBezelActivityView removeViewAnimated:YES];
 }
+//获取IMToken
 -(void)getImToken{
     if(_userModel){
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
@@ -109,7 +112,19 @@
         }];
     }
     
-
+    
+}
+//IM连接服务器
+-(void)connectWithToken{
+    [[RCIM sharedRCIM] connectWithToken:_im_token success:^(NSString *userId) {
+        // Connect 成功
+    }
+    error:^(RCConnectErrorCode status) {
+                                      // Connect 失败
+    }
+    tokenIncorrect:^() {
+                             // Token 失效的状态处理
+    }];
 }
 @end
 

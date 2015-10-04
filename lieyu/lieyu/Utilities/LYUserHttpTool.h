@@ -23,4 +23,7 @@
 // 用户忘记更新密码
 -(void) setNewPassWord:(NSDictionary*)params
         complete:(void (^)(BOOL result))result;
+// 我的专属经理收藏
+-(void) getMyVipStore:(NSDictionary*)params
+              block:(void(^)(NSMutableArray* result)) block;
 @end

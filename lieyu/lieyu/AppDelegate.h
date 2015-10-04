@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "UserModel.h"
+#define RONGCLOUD_IM_APPKEY @"3argexb6rtese"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -26,5 +27,6 @@
 - (void)startLoading;
 - (void)stopLoading;
 -(void)getImToken;
+-(void)connectWithToken;
 @end
 

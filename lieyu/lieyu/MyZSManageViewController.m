@@ -10,6 +10,8 @@
 #import "ZSDetailModel.h"
 #import "LYZSdetailCell.h"
 #import "LYZSApplicationViewController.h"
+#import "LYUserHttpTool.h"
+#import <RongIMKit/RongIMKit.h>
 @interface MyZSManageViewController ()
 
 @end
@@ -44,14 +46,16 @@
 }
 -(void)getZSDetail{
     [zsList removeAllObjects];
-    for (int i=0; i<8; i++) {
-        ZSDetailModel * detailModel=[[ZSDetailModel alloc]init];
-        detailModel.userName= [NSString stringWithFormat:@"%@%d",@"EasonChan",i];
-        detailModel.biaoti=@"你的满意是我最大的光荣";
-        detailModel.jiuba=@"绯红酒吧";
-        [zsList addObject:detailModel];
-    }
-    [self.tableView reloadData];
+    __weak __typeof(self)weakSelf = self;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:app.userModel.userid]};
+    NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:2]};
+    [[LYUserHttpTool shareInstance]getMyVipStore:dic block:^(NSMutableArray *result) {
+        [zsList addObjectsFromArray:result];
+        [weakSelf.tableView reloadData];
+    }];
+    
+//    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -79,8 +83,12 @@
     
     ZSDetailModel * detailModel=zsList[indexPath.row];
     cell.nameLal.text=detailModel.userName;
-    cell.biaoqianLal.text=detailModel.biaoti;
-    cell.jiubaLal.text=detailModel.jiuba;
+    cell.biaoqianLal.text=detailModel.introduction;
+    cell.jiubaLal.text=detailModel.usernick;
+    [cell.messageBtn addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
+    cell.messageBtn.tag=indexPath.row;
+    cell.phoneBtn.tag=indexPath.row;
+    [cell.phoneBtn addTarget:self action:@selector(callPhone:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -154,6 +162,31 @@
         _bgView=nil;
     }
     
+}
+#pragma mark -电话
+- (void)callPhone:(UIButton *)sender
+{
+    ZSDetailModel * detailModel=zsList[sender.tag];
+    
+    if( [MyUtil isPureInt:detailModel.mobile]){
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",detailModel.mobile];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+
+    }
+    //phoneNumber = "18369......"
+}
+#pragma mark -发消息
+- (void)sendMessage:(UIButton *)sender{
+    ZSDetailModel * detailModel=zsList[sender.tag];
+    
+    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+    conversationVC.targetId = @"id_xxxx"; // 接收者的 targetId，这里为举例。
+    conversationVC.userName = @"name_xxx"; // 接受者的 username，这里为举例。
+    conversationVC.title = @"name_xxx"; // 会话的 title。
+    
+    // 把单聊视图控制器添加到导航栈。
+    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
