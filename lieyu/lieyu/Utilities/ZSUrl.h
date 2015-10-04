@@ -15,7 +15,12 @@
 
 //7牛token
 #define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"
-
+//获取验证码
+#define LY_YZM  @"registerAction.do?action=custom"
+//注册
+#define LY_ZC  @"registerAction.do?action=add"
+//登录
+#define LY_DL  @"accountAction.do?action=login"
 
 
 //专属经理套餐列表
@@ -31,7 +36,13 @@
 #define ZS_TAOCAN_ADD  @"lySetMealAction.do?action=add"
 //专属经理库存添加
 #define ZS_KUCUN_ADD  @"lyItemProductAction.do?action=add"
+//专属经理单品添加
+#define ZS_DANPIN_ADD  @"lyProductAction.do?action=add"
 
+//获取酒水分类列表
+#define ZS_JIUSHUI_FENLEI_LIST  @"productcategoryAction.do?action=list"
+//获取酒水品牌列表
+#define ZS_JIUSHUI_BRAND_LIST  @"brandAction.do?action=list"
 
 //专属经理 设置某天卡座满座
 #define ZS_KAZUO_ADD  @"lySetDeckFullAction.do?action=add"

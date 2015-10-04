@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ProductCategoryModel.h"
 @interface BiaoQianBtn : UIButton
-
+@property (nonatomic,retain)ProductCategoryModel *model;
 @end

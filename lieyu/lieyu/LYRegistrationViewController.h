@@ -9,11 +9,14 @@
 #import "LYBaseViewController.h"
 
 @interface LYRegistrationViewController : LYBaseViewController
+- (IBAction)zcAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTex;
 @property (weak, nonatomic) IBOutlet UITextField *yzmTex;
 @property (weak, nonatomic) IBOutlet UIButton *getYzmBtn;
 - (IBAction)getYzmAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *passWordTex;
 @property (weak, nonatomic) IBOutlet UITextField *againPassWordTex;
-
+@property(strong,nonatomic) NSTimer *timer;
+@property(assign,nonatomic) int step;
+- (IBAction)exitEdit:(UITextField *)sender;
 @end

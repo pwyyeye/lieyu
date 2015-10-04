@@ -111,14 +111,14 @@
     NSDictionary *dic=@{@"setDate":deckFullModel.deckDate,@"barid":@"1",@"userid":@"1"};
     if(deckFullModel.isFull==1){
         NSLog(@"*****%d",deckFullModel.isFull);
-        [[ZSManageHttpTool shareInstance] setDeckADDWithParams:dic complete:^(BOOL result) {
+        [[ZSManageHttpTool shareInstance] setDeckDelWithParams:dic complete:^(BOOL result) {
             if (result) {
                 deckFullModel.isFull=0;
             }
         }];
     }else{
         NSLog(@"*****%d",deckFullModel.isFull);
-        [[ZSManageHttpTool shareInstance] setDeckDelWithParams:dic complete:^(BOOL result) {
+        [[ZSManageHttpTool shareInstance] setDeckADDWithParams:dic complete:^(BOOL result) {
             if (result) {
                 deckFullModel.isFull=1;
             }

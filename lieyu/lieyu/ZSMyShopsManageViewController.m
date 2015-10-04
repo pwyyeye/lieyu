@@ -20,7 +20,7 @@
 #import "ZSReleaseGoodViewController.h"
 #import "ZSAddStocksViewController.h"
 #import "ZSManageHttpTool.h"
-@interface ZSMyShopsManageViewController ()<ZSAddStocksDelegate,ZSAddTaoCanDelegate>
+@interface ZSMyShopsManageViewController ()<ZSAddStocksDelegate,ZSAddTaoCanDelegate,ZSAddDanPinDelegate>
 
 @end
 
@@ -579,6 +579,11 @@
 - (void)addTaoCan{
     [self showMessage:@"保存成功"];
     [self getTaoCanList];
+}
+#pragma mark -添加套餐代理
+- (void)addDanPin{
+    [self showMessage:@"保存成功"];
+    [self getChiHeList];
 }
 - (IBAction)backAct:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];

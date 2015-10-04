@@ -13,6 +13,8 @@
 #import "KuCunModel.h"
 #import "CustomerModel.h"
 #import "DeckFullModel.h"
+#import "ProductCategoryModel.h"
+#import "BrandModel.h"
 @implementation ZSManageHttpTool
 + (ZSManageHttpTool *)shareInstance
 {
@@ -98,32 +100,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KUCUN_ADD baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         
-        if ([code isEqualToString:@"0"]) {
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
-                result(YES);
-            });
-            [app stopLoading];
-        }else{
-            result(NO);
-            [app stopLoading];
-        }
-        
-        
-    } failure:^(NSError *err) {
-        
-        result(NO);
-        [app stopLoading];
-        
-    }];
-}
-#pragma mark专属经理-套餐添加
--(void) addTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_TAOCAN_ADD baseURL:LY_SERVER params:params success:^(id response) {
-        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-        
-        if ([code isEqualToString:@"0"]) {
+        if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
             });
@@ -142,6 +119,90 @@
     }];
 }
 
+#pragma mark -专属经理-单品添加
+-(void) addProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_DANPIN_ADD baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
+
+#pragma mark专属经理-套餐添加
+-(void) addTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_TAOCAN_ADD baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
+#pragma mark -获取酒水分类列表
+-(void) getProductCategoryListWithParams:(NSDictionary*)params
+                                   block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_JIUSHUI_FENLEI_LIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ProductCategoryModel objectArrayWithKeyValuesArray:dataList]];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            block(tempArr);
+        });
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+
+}
+#pragma mark -获取酒水品牌列表
+-(void) getBrandListWithParams:(NSDictionary*)params
+                         block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_JIUSHUI_BRAND_LIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ProductCategoryModel objectArrayWithKeyValuesArray:dataList]];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            block(tempArr);
+        });
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
 #pragma mark -获取一周卡座
 -(void) getDeckFullWithParams:(NSDictionary*)params
                         block:(void(^)(NSMutableArray* result)) block{
@@ -185,7 +246,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KAZUO_ADD baseURL:LY_SERVER params:params success:^(id response) {
             NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         
-            if ([code isEqualToString:@"0"]) {
+            if ([code isEqualToString:@"1"]) {
                 dispatch_async(dispatch_get_main_queue(), ^(void) {
                     result(YES);
                 });
@@ -210,7 +271,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KAZUO_DEL baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         
-            if ([code isEqualToString:@"0"]) {
+            if ([code isEqualToString:@"1"]) {
                 dispatch_async(dispatch_get_main_queue(), ^(void) {
                     result(YES);
                     

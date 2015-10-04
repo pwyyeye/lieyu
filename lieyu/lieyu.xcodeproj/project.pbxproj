@@ -119,6 +119,10 @@
 		15E240D21BB3D5940090D240 /* LYRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240D01BB3D5940090D240 /* LYRegistrationViewController.xib */; };
 		15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240D41BB3E8610090D240 /* MyPKfriendCell.m */; };
 		15E240D71BB3E8610090D240 /* MyPKfriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240D51BB3E8610090D240 /* MyPKfriendCell.xib */; };
+		15EA6DBF1BBE479A00620C9E /* ProductCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6DBE1BBE479A00620C9E /* ProductCategoryModel.m */; };
+		15EA6DC21BBE47C400620C9E /* BrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6DC11BBE47C400620C9E /* BrandModel.m */; };
+		15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6DC41BBFC80700620C9E /* LYUserHttpTool.m */; };
+		15EA6DCC1BC014BD00620C9E /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6DCB1BC014BD00620C9E /* UserModel.m */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
@@ -520,6 +524,14 @@
 		15E240D31BB3E8610090D240 /* MyPKfriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPKfriendCell.h; sourceTree = "<group>"; };
 		15E240D41BB3E8610090D240 /* MyPKfriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPKfriendCell.m; sourceTree = "<group>"; };
 		15E240D51BB3E8610090D240 /* MyPKfriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPKfriendCell.xib; sourceTree = "<group>"; };
+		15EA6DBD1BBE479A00620C9E /* ProductCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCategoryModel.h; sourceTree = "<group>"; };
+		15EA6DBE1BBE479A00620C9E /* ProductCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCategoryModel.m; sourceTree = "<group>"; };
+		15EA6DC01BBE47C400620C9E /* BrandModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrandModel.h; sourceTree = "<group>"; };
+		15EA6DC11BBE47C400620C9E /* BrandModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrandModel.m; sourceTree = "<group>"; };
+		15EA6DC31BBFC80700620C9E /* LYUserHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserHttpTool.h; sourceTree = "<group>"; };
+		15EA6DC41BBFC80700620C9E /* LYUserHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserHttpTool.m; sourceTree = "<group>"; };
+		15EA6DCA1BC014BD00620C9E /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		15EA6DCB1BC014BD00620C9E /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
@@ -1146,6 +1158,7 @@
 		15E240BC1BB3A9590090D240 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
+				15EA6DC61BC0149700620C9E /* model */,
 				15E240CD1BB3D56A0090D240 /* 注册 */,
 				15E240C21BB3CA880090D240 /* 忘记密码 */,
 				15E240BD1BB3A9AA0090D240 /* LYUserLoginViewController.h */,
@@ -1176,6 +1189,15 @@
 				15E240D01BB3D5940090D240 /* LYRegistrationViewController.xib */,
 			);
 			name = "注册";
+			sourceTree = "<group>";
+		};
+		15EA6DC61BC0149700620C9E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				15EA6DCA1BC014BD00620C9E /* UserModel.h */,
+				15EA6DCB1BC014BD00620C9E /* UserModel.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		15EE51321BA6E1AB00464B74 /* 订单管理 */ = {
@@ -1538,6 +1560,10 @@
 				151BB6BB1BBA871600E7A81C /* TagModel.m */,
 				151BB6BD1BBAB80900E7A81C /* DeckFullModel.h */,
 				151BB6BE1BBAB80900E7A81C /* DeckFullModel.m */,
+				15EA6DBD1BBE479A00620C9E /* ProductCategoryModel.h */,
+				15EA6DBE1BBE479A00620C9E /* ProductCategoryModel.m */,
+				15EA6DC01BBE47C400620C9E /* BrandModel.h */,
+				15EA6DC11BBE47C400620C9E /* BrandModel.m */,
 			);
 			name = modles;
 			sourceTree = "<group>";
@@ -2121,6 +2147,8 @@
 				15013AD01BBA161100061FAF /* ZSManageHttpTool.m */,
 				15013B051BBA3BD000061FAF /* LYCommonHttpTool.h */,
 				15013B061BBA3BD000061FAF /* LYCommonHttpTool.m */,
+				15EA6DC31BBFC80700620C9E /* LYUserHttpTool.h */,
+				15EA6DC41BBFC80700620C9E /* LYUserHttpTool.m */,
 				15013AD21BBA25C200061FAF /* ZSUrl.h */,
 				D794ED0A1BB7872A000DC568 /* PFRect.h */,
 				D794ED0B1BB7872A000DC568 /* PFRect.m */,
@@ -2487,6 +2515,7 @@
 				15013B041BBA33BF00061FAF /* UIView+WebCacheOperation.m in Sources */,
 				15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
+				15EA6DCC1BC014BD00620C9E /* UserModel.m in Sources */,
 				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
 				15E240771BB24F510090D240 /* MyCollectionViewController.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
@@ -2526,8 +2555,10 @@
 				15F54A901BB030420020EB4C /* ChanPinListViewController.m in Sources */,
 				A2FD57701BAFE91F00CFFF92 /* FBTaoCanView.m in Sources */,
 				D7A6005D1BAC6CF50006A768 /* PlayTogetherViewController.m in Sources */,
+				15EA6DBF1BBE479A00620C9E /* ProductCategoryModel.m in Sources */,
 				D761F0201BA5AED3000757B0 /* MJRefreshConst.m in Sources */,
 				15013B031BBA33BF00061FAF /* UIImageView+WebCache.m in Sources */,
+				15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */,
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
 				D761F01B1BA5AED3000757B0 /* MJRefreshBackStateFooter.m in Sources */,
@@ -2557,6 +2588,7 @@
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
 				D761F0221BA5AED3000757B0 /* UIScrollView+MJRefresh.m in Sources */,
 				A2F9DA6A1BAA58B1009DEAF3 /* DetailCell.m in Sources */,
+				15EA6DC21BBE47C400620C9E /* BrandModel.m in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				15E1847D1BB4FEF900681BB2 /* LYZSeditView.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,

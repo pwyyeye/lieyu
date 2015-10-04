@@ -16,5 +16,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *userNameTex;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 - (IBAction)otherAct:(UIButton *)sender;
-
+- (IBAction)exitEdit:(UITextField *)sender;
 @end
