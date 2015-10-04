@@ -20,4 +20,7 @@
 // 注册
 -(void) setZhuCe:(NSDictionary*)params
              complete:(void (^)(BOOL result))result;
+// 用户忘记更新密码
+-(void) setNewPassWord:(NSDictionary*)params
+        complete:(void (^)(BOOL result))result;
 @end

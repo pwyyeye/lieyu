@@ -19,8 +19,11 @@
 #define LY_YZM  @"registerAction.do?action=custom"
 //注册
 #define LY_ZC  @"registerAction.do?action=add"
+//找回密码
+#define LY_GET_PW  @"registerAction.do?action=update"
 //登录
 #define LY_DL  @"accountAction.do?action=login"
+
 
 
 //专属经理套餐列表
