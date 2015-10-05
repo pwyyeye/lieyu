@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LYWineBarInfoCell : UITableViewCell
+@interface LYWineBarInfoCell : UITableViewCell<LYTableViewCellLayout>
 
 @property(nonatomic,weak)IBOutlet UIImageView * mImageView;
 @property(nonatomic,weak)IBOutlet UILabel * barNameLabel;
@@ -17,5 +17,6 @@
 @property(nonatomic,weak)IBOutlet UILabel * costLabel;
 
 @property(nonatomic,weak)IBOutlet UILabel * distanceLabel;
+@property(nonatomic,weak)IBOutlet UILabel * starLabel;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "LYWineBarInfoCell.h"
 #import "MacroDefinition.h"
+#import "JiuBaModel.h"
 
 @implementation LYWineBarInfoCell
 
@@ -25,4 +26,19 @@
     // Configure the view for the selected state
 }
 
+- (void)configureCell:(JiuBaModel*)model
+{
+    //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
+    [_mImageView sd_setImageWithURL:[NSURL URLWithString:model.baricon] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        
+    }];
+    
+    [_barNameLabel setText:model.barname];
+    [_barDescLabel setText:model.subtitle];
+    [_barAddrLabel setText:model.address];
+    [_costLabel setText:@(model.lowest_consumption).stringValue];
+    [_distanceLabel setText:model.distance];
+    [_starLabel setText:model.star_num];
+
+}
 @end

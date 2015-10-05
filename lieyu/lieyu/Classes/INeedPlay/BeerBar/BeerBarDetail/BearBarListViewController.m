@@ -11,6 +11,12 @@
 #import "BeerBarDetailViewController.h"
 #import "LYCustomSegmentControl.h"
 #import "MJRefresh.h"
+#import "LYToPlayRestfulBusiness.h"
+#import "MReqToPlayHomeList.h"
+#import "LYUserLocation.h"
+#import "LYAdshowCell.h"
+
+#define PAGESIZE 20
 
 @interface BearBarListViewController ()
 <
@@ -21,6 +27,8 @@
 @property(nonatomic,weak)IBOutlet UITableView * tableView;
 @property(nonatomic,weak)IBOutlet UIView * topView;
 @property(nonatomic,strong) NSMutableArray *aryList;
+@property(nonatomic,strong) NSMutableArray *bannerList;
+@property(nonatomic,assign) NSInteger curPageIndex;
 @property(nonatomic,strong) LYCustomSegmentControl *segmentCtrl;
 
 @end
@@ -33,13 +41,14 @@
     self.aryList = [NSMutableArray new];
     self.tableView.delegate = self;
     self.tableView.dataSource =self ;
+    self.curPageIndex = 1;
     [self setupViewStyles];
+    [self loadItemList:nil];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)setwineBarTop
 {
-    CGFloat w = _topView.frame.size.width;
     self.segmentCtrl =
     [[LYCustomSegmentControl alloc] initWithTitleItems:@[@"闹吧",@"清吧",@"演艺吧",@"音乐吧"] frame:_topView.frame];
     
@@ -49,12 +58,59 @@
     self.segmentCtrl.titleColor = UIColorFromRGB(0x666666);
     self.segmentCtrl.font = [UIFont systemFontOfSize:13];
     self.segmentCtrl.selectedIndex = 0;
+    
+    __weak __typeof(self) weakSelf = self;
     [self.segmentCtrl setSelectedItem:^(NSInteger index)
      {
-         
+         [weakSelf loadItemList:nil];
      }];
+
 }
 
+- (void)loadItemList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
+
+{
+    MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
+    LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
+    
+    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
+    hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
+    hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
+    hList.city = [LYUserLocation instance].city;
+    
+    NSString * mainType = nil;
+    if (self.entryType == BaseEntry_WineBar) {
+        mainType = @"酒吧";
+    }
+    else
+    {
+        mainType = @"夜总会";
+    }
+    
+#if 0
+    hList.bartype = mainType;
+    hList.subtype = _segmentCtrl.selectedItemTitle;
+    hList.need_page = @(1);
+    hList.p = @(1);
+    hList.per = @(PAGESIZE);
+#endif
+    
+    __weak __typeof(self)weakSelf = self;
+    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+    {
+        if (ermsg.state == Req_Success)
+        {
+            if (weakSelf.curPageIndex == 1) {
+                [weakSelf.aryList removeAllObjects];
+            }
+            
+            [weakSelf.aryList addObjectsFromArray:barList];
+            weakSelf.bannerList = bannerList.mutableCopy;
+            [weakSelf.tableView reloadData];
+        }
+        block !=nil? block(ermsg,bannerList,barList):nil;
+    }];
+}
 
 
 - (void)setYzhTop
@@ -69,9 +125,11 @@
     self.segmentCtrl.titleColor = UIColorFromRGB(0x666666);
     self.segmentCtrl.font = [UIFont systemFontOfSize:13];
     self.segmentCtrl.selectedIndex = 0;
+    
+    __weak __typeof(self) weakSelf = self;
     [self.segmentCtrl setSelectedItem:^(NSInteger index)
      {
-         
+         [weakSelf loadItemList:nil];
      }];
 
 }
@@ -79,12 +137,38 @@
 - (void)installFreshEvent
 {
     
-    self.tableView.header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        
+    __weak BearBarListViewController * weakSelf = self;
+    __weak UITableView *tableView = self.tableView;
+
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
+            ^{
+                weakSelf.curPageIndex = 1;
+        [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+        {
+            if (Req_Success == ermsg.state)
+            {
+                if (barList.count == PAGESIZE)
+                {
+                    weakSelf.curPageIndex = 2;
+                    weakSelf.tableView.footer.hidden = NO;
+                }
+                else
+                {
+                    weakSelf.tableView.footer.hidden = YES;
+                }
+                [weakSelf.tableView.header endRefreshing];
+            }
+        }];
     }];
     
-    self.tableView.footer = [MJRefreshFooter footerWithRefreshingBlock:^{
-        
+    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
+            if (Req_Success == ermsg.state) {
+                weakSelf.curPageIndex ++;
+                [weakSelf.tableView.footer endRefreshing];
+            }
+
+        }];
     }];
 }
 
@@ -116,7 +200,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _aryList.count+4;
+    return _aryList.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,6 +211,8 @@
         case 0:
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"LYAdshowCell" forIndexPath:indexPath];
+            LYAdshowCell * adCell = (LYAdshowCell *)cell;
+            [adCell setBannerUrlList:_bannerList];
         }
             break;
 
@@ -135,6 +221,9 @@
             LYWineBarInfoCell * barCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarInfoCell" forIndexPath:indexPath];
             
             cell = barCell;
+            if ([_aryList count] >=1) {
+                [barCell configureCell:[_aryList objectAtIndex:indexPath.row - 1]];
+            }
         }
             break;
     }

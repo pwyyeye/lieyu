@@ -12,7 +12,7 @@
 #import "MJExtension.h"
 //错误信息
 #define ERROR_Message      @"ERROR_Message"
-#define SUCCESS_CODE       @"00000000"
+#define SUCCESS_CODE       @"1"
 //错误信息类型
 
 typedef NS_ENUM(NSUInteger, ErrorMessageType)

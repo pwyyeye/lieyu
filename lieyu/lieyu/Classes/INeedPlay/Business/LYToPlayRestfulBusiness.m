@@ -7,6 +7,7 @@
 //
 
 #import "LYToPlayRestfulBusiness.h"
+#import "JiuBaModel.h"
 
 @implementation LYToPlayRestfulBusiness
 
@@ -22,9 +23,16 @@
     {
         [app stopLoading];
         NSDictionary *dataDic = response[@"data"];
-        NSMutableArray *bannerList = [dataDic valueForKey:@"banner"];
-        NSMutableArray * barlist = [dataDic valueForKey:@"barlist"];
+        NSMutableArray *bannerList = nil;
+        NSMutableArray * barlist = nil;
         LYErrorMessage * erMsg = [LYErrorMessage instanceWithDictionary:response];
+        if (erMsg.state == Req_Success)
+        {
+            bannerList = [dataDic valueForKey:@"banner"];
+            barlist = [dataDic valueForKey:@"barlist"];
+            barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel objectArrayWithKeyValuesArray:barlist]];
+        }
+        
         block(erMsg,bannerList,barlist);
     } failure:^(NSError *err)
     {

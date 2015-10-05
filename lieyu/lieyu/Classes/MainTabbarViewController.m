@@ -10,6 +10,7 @@
 #import "MacroDefinition.h"
 #import "LYLocationManager.h"
 #import "LYUserLocation.h"
+#import <MapKit/MapKit.h>
 @interface MainTabbarViewController ()
 
 <
@@ -58,6 +59,17 @@
 - (void)onLocationUpdated:(CLLocation *)location
 {
     [LYUserLocation instance].currentLocation = location;
+    __weak __typeof(self) weakSelf = self;
+    [self.locationManager reverseGeocode:location completionHandle:^(NSArray *placemarks, NSError *error)
+     {
+         MKPlacemark *pk = [placemarks firstObject];
+         if (pk) {
+             [LYUserLocation instance].city = pk.locality;
+             if (pk.locality) {
+                 [weakSelf.locationManager stopUpdateLocation];
+             }
+         }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

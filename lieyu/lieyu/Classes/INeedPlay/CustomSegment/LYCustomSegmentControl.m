@@ -99,6 +99,12 @@
     [self updateBtnStatus:item];
 }
 
+- (NSString *)selectedItemTitle
+{
+    UIButton * btn = [self itemOfIndex:_selectedIndex];
+    return btn.titleLabel.text;
+}
+
 - (void)dealloc
 {
     self.selectedItem = nil;

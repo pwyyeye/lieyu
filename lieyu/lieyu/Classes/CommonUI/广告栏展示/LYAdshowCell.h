@@ -12,7 +12,9 @@
 <
     UIScrollViewDelegate
 >
+
 @property(nonatomic,weak)IBOutlet UIPageControl *pageCtrl;
 @property(nonatomic,weak)IBOutlet UIScrollView *bannerScrollview;
+@property(nonatomic,strong)NSArray *bannerUrlList;
 
 @end

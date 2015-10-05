@@ -32,7 +32,7 @@ NSString *getSysLang()
     LYErrorMessage * erMsg = [[LYErrorMessage alloc] init];
     erMsg.mErrorCode = [dic stringForKeySafe:@"errorcode"];
     erMsg.mErrorMessage = [dic stringForKeySafe:@"message"];
-    if ([erMsg.mErrorCode isEqualToString:@"1"]) {
+    if ([erMsg.mErrorCode isEqualToString:SUCCESS_CODE]) {
         erMsg.state = Req_Success;
     }
     else
