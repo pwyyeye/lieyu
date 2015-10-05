@@ -28,6 +28,10 @@
 
 //我的专属经理
 #define LY_MY_ZSJL @"lyUsersVipStoreAction.do?action=list"
+//申请专属经理
+#define LY_APPLY_MANAGER @"lyUsersVipApplyAction.do?action=add"
+//获取酒吧列表
+#define LY_JIUBA_LIST  @"toPlayAction.do?action=list"
 
 
 //专属经理套餐列表
@@ -59,8 +63,7 @@
 
 //专属经理 我的客户
 #define ZS_USERS_FRIEND  @"lyUsersFriendAction.do?action=list"
-//获取酒吧列表
-#define LY_JIUBA_LIST  @"toPlayAction.do?action=list"
+
 
 //一周卡座是否满座
 #define ZS_KUZUOISFULL  @"lySetDeckFullAction.do?action=list"

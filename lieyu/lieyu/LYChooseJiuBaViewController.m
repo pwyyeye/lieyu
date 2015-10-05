@@ -7,7 +7,6 @@
 //
 
 #import "LYChooseJiuBaViewController.h"
-#import "JiuBaModel.h"
 #import "LYJiuBaCell.h"
 #import "LYUserHttpTool.h"
 @interface LYChooseJiuBaViewController ()
@@ -195,9 +194,9 @@
         addressBook = (JiuBaModel*)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-//    ZSCustomerDetailViewController *customerDetailsViewController=[[ZSCustomerDetailViewController alloc]initWithNibName:@"ZSCustomerDetailViewController" bundle:nil];
-//    
-//    [self.navigationController pushViewController:customerDetailsViewController animated:YES];
+    [self.delegate chooseJiuBa:addressBook];
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 

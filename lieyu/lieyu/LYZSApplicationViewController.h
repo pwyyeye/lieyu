@@ -16,5 +16,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *zfbTex;
 @property (weak, nonatomic) IBOutlet UITextField *yhkKhmYhmTex;
 - (IBAction)nextAct:(UIButton *)sender;
-
+@property (weak, nonatomic) IBOutlet UITextField *sfzTex;
+@property (weak, nonatomic) IBOutlet UITextField *yhkyhmTex;
+@property (weak, nonatomic) IBOutlet UILabel *jiubaLal;
+- (IBAction)exitEdit:(UITextField *)sender;
 @end
