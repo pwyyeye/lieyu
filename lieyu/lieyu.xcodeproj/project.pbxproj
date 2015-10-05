@@ -310,6 +310,8 @@
 		D794ED061BB78009000DC568 /* LYCustomSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED051BB78009000DC568 /* LYCustomSegmentControl.m */; };
 		D794ED091BB786AA000DC568 /* PFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED081BB786AA000DC568 /* PFImage.m */; };
 		D794ED0C1BB7872A000DC568 /* PFRect.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED0B1BB7872A000DC568 /* PFRect.m */; };
+		D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */; };
+		D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4191BC265CF00BCE47C /* CLLocation+CoordinateConvert.m */; };
 		D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */; };
 		D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */; };
 		D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */; };
@@ -847,6 +849,10 @@
 		D794ED081BB786AA000DC568 /* PFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFImage.m; sourceTree = "<group>"; };
 		D794ED0A1BB7872A000DC568 /* PFRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRect.h; sourceTree = "<group>"; };
 		D794ED0B1BB7872A000DC568 /* PFRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRect.m; sourceTree = "<group>"; };
+		D7A1D4151BC2657E00BCE47C /* LYLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLocationManager.h; sourceTree = "<group>"; };
+		D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLocationManager.m; sourceTree = "<group>"; };
+		D7A1D4181BC265CF00BCE47C /* CLLocation+CoordinateConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+CoordinateConvert.h"; sourceTree = "<group>"; };
+		D7A1D4191BC265CF00BCE47C /* CLLocation+CoordinateConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+CoordinateConvert.m"; sourceTree = "<group>"; };
 		D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageINeedPlayViewController.h; path = Classes/INeedPlay/HomePageINeedPlayViewController.h; sourceTree = "<group>"; };
 		D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageINeedPlayViewController.m; path = Classes/INeedPlay/HomePageINeedPlayViewController.m; sourceTree = "<group>"; };
 		D7A230CB1BA7160B00E8B51B /* LYWineBarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWineBarInfoCell.h; sourceTree = "<group>"; };
@@ -1855,6 +1861,8 @@
 		D748BC4D1BA1C52E005AA996 /* Apple */ = {
 			isa = PBXGroup;
 			children = (
+				D7A1D4181BC265CF00BCE47C /* CLLocation+CoordinateConvert.h */,
+				D7A1D4191BC265CF00BCE47C /* CLLocation+CoordinateConvert.m */,
 				D748BC571BA1C821005AA996 /* NSString+Expend.h */,
 				D748BC581BA1C821005AA996 /* NSString+Expend.m */,
 				D748BC4E1BA1C52E005AA996 /* NSDictionary+Json.h */,
@@ -2161,6 +2169,8 @@
 		D764F0C71BA1BBCF001649D9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D7A1D4151BC2657E00BCE47C /* LYLocationManager.h */,
+				D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */,
 				D7545DFF1BB99A3A005B854F /* HTTPController.h */,
 				D7545E001BB99A3A005B854F /* HTTPController.m */,
 				15013ACF1BBA161100061FAF /* ZSManageHttpTool.h */,
@@ -2468,6 +2478,7 @@
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
 				15013B021BBA33BF00061FAF /* UIImageView+HighlightedWebCache.m in Sources */,
+				D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */,
 				A2FD577D1BAFE97000CFFF92 /* FBTaoCanSectionBottom.m in Sources */,
 				15E184961BB52CA200681BB2 /* JiuBaModel.m in Sources */,
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
@@ -2595,6 +2606,7 @@
 				15E2404A1BB0F3540090D240 /* IQTitleBarButtonItem.m in Sources */,
 				15E240C61BB3CAC20090D240 /* LYResetPasswordViewController.m in Sources */,
 				151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */,
+				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
 				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,
