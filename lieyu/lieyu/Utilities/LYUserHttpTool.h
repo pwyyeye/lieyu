@@ -27,6 +27,6 @@
 -(void) getMyVipStore:(NSDictionary*)params
               block:(void(^)(NSMutableArray* result)) block;
 // 获取酒吧信息
--(void) getMyVipStore:(NSDictionary*)params
+-(void) getJiuBaList:(NSDictionary*)params
                 block:(void(^)(NSMutableArray* result)) block;
 @end

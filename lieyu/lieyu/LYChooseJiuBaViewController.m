@@ -9,6 +9,7 @@
 #import "LYChooseJiuBaViewController.h"
 #import "JiuBaModel.h"
 #import "LYJiuBaCell.h"
+#import "LYUserHttpTool.h"
 @interface LYChooseJiuBaViewController ()
 
 @end
@@ -25,38 +26,38 @@
 #pragma mark - 所有酒吧
 -(void)getJiuBalist{
     [_listContent removeAllObjects];
-    NSArray *arr=@[@"A",@"B",@"B",@"C",@"C",@"D",@"D",@"E",@"D",@"F",@"D",@"Z",@"D",@"J",@"L",@"M",@"L",@"M",@"L",@"M",@"Q",@"W",@"T",@"P",@"T",@"P",@"T",@"P",@"N",@"X",@"N"];
-    NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
-    for (NSString *ss in arr) {
-        JiuBaModel *customer=[[JiuBaModel alloc]init];
-        customer.name=[NSString stringWithFormat:@"%@son",ss];
-        customer.quYu=@"保定区";
-        [addressBookTemp addObject:customer];
-    }
-    UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
-    for (JiuBaModel *addressBook in addressBookTemp) {
-        NSInteger sect = [theCollation sectionForObject:addressBook
-                                collationStringSelector:@selector(name)];
-        addressBook.sectionNumber = sect;
+     __weak __typeof(self)weakSelf = self;
+    [[LYUserHttpTool shareInstance]getJiuBaList:nil block:^(NSMutableArray *result) {
+        NSMutableArray *addressBookTemp = [[NSMutableArray  alloc]initWithArray:result];
+        UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
+        for (JiuBaModel *addressBook in addressBookTemp) {
+            NSInteger sect = [theCollation sectionForObject:addressBook
+                                    collationStringSelector:@selector(barname)];
+            addressBook.sectionNumber = sect;
+            
+        }
+        NSInteger highSection = [[theCollation sectionTitles] count];
+        NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
+        for (int i=0; i<=highSection; i++) {
+            NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
+            [sectionArrays addObject:sectionArray];
+        }
         
-    }
-    NSInteger highSection = [[theCollation sectionTitles] count];
-    NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
-    for (int i=0; i<=highSection; i++) {
-        NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
-        [sectionArrays addObject:sectionArray];
-    }
-    
-    for (JiuBaModel *addressBook in addressBookTemp) {
-        [(NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber] addObject:addressBook];
-    }
-    
-    for (NSMutableArray *sectionArray in sectionArrays) {
-        NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(name)];
-        [_listContent addObject:sortedSection];
+        for (JiuBaModel *addressBook in addressBookTemp) {
+            [(NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber] addObject:addressBook];
+        }
         
-    }
-    [self.tableView reloadData];
+        for (NSMutableArray *sectionArray in sectionArrays) {
+            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(barname)];
+            [_listContent addObject:sortedSection];
+            
+        }
+        [weakSelf.tableView reloadData];
+    }];
+    
+    
+    
+    
 }
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
@@ -169,13 +170,13 @@
     else
         addressBook = (JiuBaModel *)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
-    if ([[addressBook.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
-        cell.jiubaLal.text = addressBook.name;
-        cell.quYuLal.text = addressBook.quYu;
+    if ([[addressBook.barname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
+        cell.jiubaLal.text = addressBook.barname;
+        cell.quYuLal.text = addressBook.address;
     } else {
         
         cell.jiubaLal.text = @"No Name";
-        cell.quYuLal.text = addressBook.quYu;
+        cell.quYuLal.text = addressBook.address;
     }
     
     //    cell.backgroundColor=[UIColor clearColor];
@@ -230,7 +231,7 @@
     for (NSArray *section in _listContent) {
         for (JiuBaModel *addressBook in section)
         {
-            NSComparisonResult result = [addressBook.name compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
+            NSComparisonResult result = [addressBook.barname compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
             if (result == NSOrderedSame)
             {
                 [_filteredListContent addObject:addressBook];
