@@ -26,4 +26,7 @@
 // 我的专属经理收藏
 -(void) getMyVipStore:(NSDictionary*)params
               block:(void(^)(NSMutableArray* result)) block;
+// 获取酒吧信息
+-(void) getMyVipStore:(NSDictionary*)params
+                block:(void(^)(NSMutableArray* result)) block;
 @end

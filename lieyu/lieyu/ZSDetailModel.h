@@ -18,11 +18,11 @@
 //"username": "130610",
 //"usernick": ""
 @property(nonatomic,assign)int id;
-@property (nonatomic, retain) NSString * avatar_img;
-@property (nonatomic, retain) NSString * introduction;
-@property (nonatomic, retain) NSString * mobile;
-@property (nonatomic, retain) NSString * servicestar;
+@property (nonatomic, copy) NSString * avatar_img;
+@property (nonatomic, copy) NSString * introduction;
+@property (nonatomic, copy) NSString * mobile;
+@property (nonatomic, copy) NSString * servicestar;
 @property(nonatomic,assign)int userid;
-@property (nonatomic, retain) NSString * userName;
-@property (nonatomic, retain) NSString * usernick;
+@property (nonatomic, copy) NSString * userName;
+@property (nonatomic, copy) NSString * usernick;
 @end
