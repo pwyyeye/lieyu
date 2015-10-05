@@ -55,7 +55,11 @@ typedef NS_ENUM(NSUInteger, ReqState)
 
 @property ReqState state;
 
++ (LYErrorMessage *)instanceWithDictionary:(NSDictionary *)dic;
++ (LYErrorMessage *)instanceWithError:(NSError *)er;
+
 @end
+
 
 @interface LYRestfulResponseBase:NSObject
 

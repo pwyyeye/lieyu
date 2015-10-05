@@ -8,14 +8,17 @@
 
 #import "MainTabbarViewController.h"
 #import "MacroDefinition.h"
-
+#import "LYLocationManager.h"
+#import "LYUserLocation.h"
 @interface MainTabbarViewController ()
 
 <
     UITabBarControllerDelegate,
-    UITabBarDelegate
+    UITabBarDelegate,
+    LYLocationManagerDelegate
 >
 
+@property(nonatomic,strong)LYLocationManager * locationManager;
 @end
 
 @implementation MainTabbarViewController
@@ -24,6 +27,9 @@
 {
     [super viewDidLoad];
     [self setupViewStyles];
+    self.locationManager = [[LYLocationManager alloc] init];
+    [_locationManager beginUpdateLocation:kCLLocationAccuracyBest];
+    _locationManager.locationDelegate = self;
     // Do any additional setup after loading the view.
 }
 
@@ -47,6 +53,11 @@
     }
 
     self.view.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)onLocationUpdated:(CLLocation *)location
+{
+    [LYUserLocation instance].currentLocation = location;
 }
 
 - (void)didReceiveMemoryWarning {

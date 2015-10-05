@@ -9,7 +9,8 @@
 #ifndef lieyu_RestfulConstant_h
 #define lieyu_RestfulConstant_h
 
-#define UrlOfBackEnd @"http://******"
+#import "ZSUrl.h"
+#define LY_TOPLAY_HOMELIST @"toPlayAction.do?action=list"
 
 #endif
 

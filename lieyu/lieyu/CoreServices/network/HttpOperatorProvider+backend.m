@@ -19,7 +19,7 @@
     ^{
         if ( Client == nil)
         {
-             Client = [[HttpOperatorProvider alloc] initWithBaseUrl:UrlOfBackEnd init:^(NSObject *obj)
+             Client = [[HttpOperatorProvider alloc] initWithBaseUrl:nil init:^(NSObject *obj)
 
             {
             }];

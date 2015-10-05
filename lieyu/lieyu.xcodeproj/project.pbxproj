@@ -312,6 +312,11 @@
 		D794ED0C1BB7872A000DC568 /* PFRect.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED0B1BB7872A000DC568 /* PFRect.m */; };
 		D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */; };
 		D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4191BC265CF00BCE47C /* CLLocation+CoordinateConvert.m */; };
+		D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D41C1BC266CD00BCE47C /* LYUserLocation.m */; };
+		D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4201BC2690C00BCE47C /* LYToPlayRestfulBusiness.m */; };
+		D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4231BC26ADF00BCE47C /* LYBaseQuery.m */; };
+		D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4261BC26C4700BCE47C /* MReqToPlayHomeList.m */; };
+		D7A1D42B1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D42A1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m */; };
 		D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */; };
 		D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */; };
 		D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */; };
@@ -853,6 +858,16 @@
 		D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLocationManager.m; sourceTree = "<group>"; };
 		D7A1D4181BC265CF00BCE47C /* CLLocation+CoordinateConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+CoordinateConvert.h"; sourceTree = "<group>"; };
 		D7A1D4191BC265CF00BCE47C /* CLLocation+CoordinateConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+CoordinateConvert.m"; sourceTree = "<group>"; };
+		D7A1D41B1BC266CD00BCE47C /* LYUserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserLocation.h; sourceTree = "<group>"; };
+		D7A1D41C1BC266CD00BCE47C /* LYUserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserLocation.m; sourceTree = "<group>"; };
+		D7A1D41F1BC2690C00BCE47C /* LYToPlayRestfulBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYToPlayRestfulBusiness.h; path = Classes/INeedPlay/Business/LYToPlayRestfulBusiness.h; sourceTree = "<group>"; };
+		D7A1D4201BC2690C00BCE47C /* LYToPlayRestfulBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYToPlayRestfulBusiness.m; path = Classes/INeedPlay/Business/LYToPlayRestfulBusiness.m; sourceTree = "<group>"; };
+		D7A1D4221BC26ADF00BCE47C /* LYBaseQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBaseQuery.h; sourceTree = "<group>"; };
+		D7A1D4231BC26ADF00BCE47C /* LYBaseQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBaseQuery.m; sourceTree = "<group>"; };
+		D7A1D4251BC26C4700BCE47C /* MReqToPlayHomeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MReqToPlayHomeList.h; path = Classes/INeedPlay/Business/MReqToPlayHomeList.h; sourceTree = "<group>"; };
+		D7A1D4261BC26C4700BCE47C /* MReqToPlayHomeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MReqToPlayHomeList.m; path = Classes/INeedPlay/Business/MReqToPlayHomeList.m; sourceTree = "<group>"; };
+		D7A1D4291BC2746D00BCE47C /* NSDictionary+YRSafeCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YRSafeCategory.h"; sourceTree = "<group>"; };
+		D7A1D42A1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YRSafeCategory.m"; sourceTree = "<group>"; };
 		D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageINeedPlayViewController.h; path = Classes/INeedPlay/HomePageINeedPlayViewController.h; sourceTree = "<group>"; };
 		D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageINeedPlayViewController.m; path = Classes/INeedPlay/HomePageINeedPlayViewController.m; sourceTree = "<group>"; };
 		D7A230CB1BA7160B00E8B51B /* LYWineBarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWineBarInfoCell.h; sourceTree = "<group>"; };
@@ -1861,6 +1876,8 @@
 		D748BC4D1BA1C52E005AA996 /* Apple */ = {
 			isa = PBXGroup;
 			children = (
+				D7A1D4291BC2746D00BCE47C /* NSDictionary+YRSafeCategory.h */,
+				D7A1D42A1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m */,
 				D7A1D4181BC265CF00BCE47C /* CLLocation+CoordinateConvert.h */,
 				D7A1D4191BC265CF00BCE47C /* CLLocation+CoordinateConvert.m */,
 				D748BC571BA1C821005AA996 /* NSString+Expend.h */,
@@ -1915,6 +1932,8 @@
 			children = (
 				D748BC7D1BA1CB35005AA996 /* LYCoreDataObject.h */,
 				D748BC7E1BA1CB35005AA996 /* LYCoreDataObject.m */,
+				D7A1D4221BC26ADF00BCE47C /* LYBaseQuery.h */,
+				D7A1D4231BC26ADF00BCE47C /* LYBaseQuery.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2086,6 +2105,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				D7A1D41E1BC2689D00BCE47C /* Business */,
 				D794ED031BB77FCF000DC568 /* CustomSegment */,
 				D729DB5C1BADB8AB005A9E60 /* BeerBar */,
 				D7A230CA1BA7152000E8B51B /* Cell */,
@@ -2191,6 +2211,8 @@
 				15E1849F1BB8D20700681BB2 /* MyUtil.m */,
 				D73652371BAEAC4F002541CE /* NeedHideNavigationBar.h */,
 				D73652381BAEB2BF002541CE /* LYTableViewCellLayout.h */,
+				D7A1D41B1BC266CD00BCE47C /* LYUserLocation.h */,
+				D7A1D41C1BC266CD00BCE47C /* LYUserLocation.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -2203,6 +2225,17 @@
 			);
 			name = CustomSegment;
 			path = Classes/INeedPlay/CustomSegment;
+			sourceTree = "<group>";
+		};
+		D7A1D41E1BC2689D00BCE47C /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				D7A1D41F1BC2690C00BCE47C /* LYToPlayRestfulBusiness.h */,
+				D7A1D4201BC2690C00BCE47C /* LYToPlayRestfulBusiness.m */,
+				D7A1D4251BC26C4700BCE47C /* MReqToPlayHomeList.h */,
+				D7A1D4261BC26C4700BCE47C /* MReqToPlayHomeList.m */,
+			);
+			name = Business;
 			sourceTree = "<group>";
 		};
 		D7A230CA1BA7152000E8B51B /* Cell */ = {
@@ -2479,6 +2512,7 @@
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
 				15013B021BBA33BF00061FAF /* UIImageView+HighlightedWebCache.m in Sources */,
 				D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */,
+				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
 				A2FD577D1BAFE97000CFFF92 /* FBTaoCanSectionBottom.m in Sources */,
 				15E184961BB52CA200681BB2 /* JiuBaModel.m in Sources */,
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
@@ -2491,6 +2525,7 @@
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
+				D7A1D42B1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m in Sources */,
 				D761F01C1BA5AED3000757B0 /* MJRefreshGifHeader.m in Sources */,
 				15013AFD1BBA33BE00061FAF /* SDWebImagePrefetcher.m in Sources */,
 				15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */,
@@ -2566,7 +2601,9 @@
 				15E240A51BB381450090D240 /* OrderDetailHeadView.m in Sources */,
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
+				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
 				D761F01D1BA5AED3000757B0 /* MJRefreshNormalHeader.m in Sources */,
+				D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */,
 				15E1848D1BB5220C00681BB2 /* LyZSuploadIdCardViewController.m in Sources */,
 				15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */,
 				15E184881BB5214F00681BB2 /* LYChooseJiuBaViewController.m in Sources */,
@@ -2609,6 +2646,7 @@
 				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
+				D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */,
 				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,
 				15E2409A1BB296CF0090D240 /* OrderDetailCell.m in Sources */,
 				15013AFE1BBA33BF00061FAF /* UIButton+WebCache.m in Sources */,
