@@ -26,6 +26,9 @@
 #define LY_DL  @"accountAction.do?action=login"
 
 
+//我的专属经理
+#define LY_MY_ZSJL @"lyUsersVipStoreAction.do?action=list"
+
 
 //专属经理套餐列表
 #define ZS_TAOCANLIST  @"lySetMealAction.do?action=list"

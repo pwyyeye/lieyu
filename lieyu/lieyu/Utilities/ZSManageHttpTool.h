@@ -54,4 +54,6 @@
 //获取我的客户
 -(void) getUsersFriendWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block;
+
+
 @end

@@ -8,7 +8,7 @@
 
 #import "LYUserHttpTool.h"
 #import "HTTPController.h"
-
+#import "ZSDetailModel.h"
 @implementation LYUserHttpTool
 
 + (LYUserHttpTool *)shareInstance{
@@ -129,4 +129,30 @@
         
     }];
 }
+
+#pragma mark  - 我的专属经理收藏
+-(void) getMyVipStore:(NSDictionary*)params
+             block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ZSJL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if([code isEqualToString:@"1"]){
+            NSArray *dataList = response[@"data"];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ZSDetailModel objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+        }else{
+            [MyUtil showMessage:message];
+        }
+        
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 @end

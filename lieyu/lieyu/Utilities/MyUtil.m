@@ -167,5 +167,10 @@
                                               otherButtonTitles:nil];
     [alertView show];
 }
-
+//判断是否数字
++ (BOOL)isPureInt:(NSString*)string{
+    NSScanner* scan = [NSScanner scannerWithString:string];
+    int val;
+    return[scan scanInt:&val] && [scan isAtEnd];
+}
 @end
