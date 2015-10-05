@@ -59,6 +59,8 @@
 
 //专属经理 我的客户
 #define ZS_USERS_FRIEND  @"lyUsersFriendAction.do?action=list"
+//获取酒吧列表
+#define LY_JIUBA_LIST  @"toPlayAction.do?action=list"
 
 //一周卡座是否满座
 #define ZS_KUZUOISFULL  @"lySetDeckFullAction.do?action=list"
