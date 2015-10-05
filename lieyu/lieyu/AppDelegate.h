@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "UserModel.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -16,11 +17,14 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property(strong,nonatomic) NSString *s_app_id;
+@property(retain,nonatomic) UserModel *userModel;
 @property(strong,nonatomic) NSString *qiniu_token;
+@property(strong,nonatomic) NSString *im_token;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 -(void)doHeart;
 - (void)startLoading;
 - (void)stopLoading;
+-(void)getImToken;
 @end
 

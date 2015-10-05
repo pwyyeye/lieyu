@@ -14,4 +14,7 @@
 // 获取7牛token
 -(void) getTokenByqiNiuWithParams:(NSDictionary*)params
                             block:(void(^)(NSString* result)) block;
+// 获取IMtoken
+-(void) getTokenByIMWithParams:(NSDictionary*)params
+                            block:(void(^)(NSString* result)) block;
 @end

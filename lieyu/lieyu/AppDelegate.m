@@ -101,6 +101,16 @@
 {
     [DejalBezelActivityView removeViewAnimated:YES];
 }
+-(void)getImToken{
+    if(_userModel){
+        NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
+        [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:dic block:^(NSString *result) {
+            _im_token=result;
+        }];
+    }
+    
+
+}
 @end
 
 

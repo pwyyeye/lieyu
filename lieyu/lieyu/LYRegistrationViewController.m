@@ -117,7 +117,9 @@
     [[LYUserHttpTool shareInstance] setZhuCe:dic complete:^(BOOL result) {
         if (result) {
             [_timer setFireDate:[NSDate distantPast]];
-            [self showMessage:@"注册成功!"];
+            
+            [self.delegate registration];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }

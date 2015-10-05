@@ -12,15 +12,19 @@
 #define LY_SERVER @"http://121.40.229.133:8001/lieyu/"
 #define QINIU_SERVER @"http://121.40.229.133:8001/portal/"
 //URL地址
-
+//IMtoken
+#define LY_IMTOKEN  @"friendAction.do?action=custom"
 //7牛token
 #define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"
 //获取验证码
 #define LY_YZM  @"registerAction.do?action=custom"
 //注册
 #define LY_ZC  @"registerAction.do?action=add"
+//找回密码
+#define LY_GET_PW  @"registerAction.do?action=update"
 //登录
 #define LY_DL  @"accountAction.do?action=login"
+
 
 
 //专属经理套餐列表

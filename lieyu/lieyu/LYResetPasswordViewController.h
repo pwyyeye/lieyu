@@ -7,11 +7,20 @@
 //
 
 #import "LYBaseViewController.h"
+@protocol LYResetPasswordDelegate<NSObject>
+- (void)resetPassword;
 
+@end
 @interface LYResetPasswordViewController : LYBaseViewController
 - (IBAction)nextAct:(UIButton *)sender;
 - (IBAction)getYZMAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *getPassWordTypeTex;
 @property (weak, nonatomic) IBOutlet UITextField *yzmText;
-
+@property (weak, nonatomic) IBOutlet UIButton *getYzmBtn;
+@property(strong,nonatomic) NSTimer *timer;
+@property(assign,nonatomic) int step;
+@property (weak, nonatomic) IBOutlet UITextField *passWordTex;
+@property (weak, nonatomic) IBOutlet UITextField *againPassWordTex;
+- (IBAction)exitEdit:(UITextField *)sender;
+@property (nonatomic, weak) id <LYResetPasswordDelegate> delegate;
 @end

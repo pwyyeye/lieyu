@@ -7,7 +7,10 @@
 //
 
 #import "LYBaseViewController.h"
+@protocol LYRegistrationDelegate<NSObject>
+- (void)registration;
 
+@end
 @interface LYRegistrationViewController : LYBaseViewController
 - (IBAction)zcAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTex;
@@ -19,4 +22,5 @@
 @property(strong,nonatomic) NSTimer *timer;
 @property(assign,nonatomic) int step;
 - (IBAction)exitEdit:(UITextField *)sender;
+@property (nonatomic, weak) id <LYRegistrationDelegate> delegate;
 @end

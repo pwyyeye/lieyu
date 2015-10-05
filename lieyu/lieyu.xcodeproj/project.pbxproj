@@ -1203,6 +1203,13 @@
 			name = model;
 			sourceTree = "<group>";
 		};
+		15EA6DCD1BC0DA1400620C9E /* IM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = IM;
+			sourceTree = "<group>";
+		};
 		15EE51321BA6E1AB00464B74 /* 订单管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2129,6 +2136,7 @@
 			children = (
 				151BB6E01BBB913E00E7A81C /* DejalActivityView.h */,
 				151BB6E11BBB913E00E7A81C /* DejalActivityView.m */,
+				15EA6DCD1BC0DA1400620C9E /* IM */,
 				151BB6C01BBB78CB00E7A81C /* 照片 */,
 				15013AD31BBA33BE00061FAF /* SDWebImage */,
 				D74C60821BB69F6300A49598 /* RTLabel */,
@@ -2768,6 +2776,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lieyu/Vendor",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				INFOPLIST_FILE = lieyu/Info.plist;
@@ -2791,6 +2804,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lieyu/Vendor",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				INFOPLIST_FILE = lieyu/Info.plist;
