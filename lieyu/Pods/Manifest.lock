@@ -1,33 +1,36 @@
 PODS:
-  - AFNetworking (2.4.1):
+  - AFNetworking (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.4.1):
+  - AFNetworking/NSURLConnection (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
+  - AFNetworking/NSURLSession (2.6.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - Qiniu (7.0.6):
     - AFNetworking (~> 2.0)
+  - RongCloudIMKit (2.3.0)
 
 DEPENDENCIES:
   - Qiniu (~> 7.0)
+  - RongCloudIMKit (= 2.3.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  Qiniu: 5f70ceaa3133ff3c368990bc99b595a3d155b010
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  Qiniu: b3216d1a1b9a647792e5cc46c358e42c08fdaa99
+  RongCloudIMKit: f816b4c62781f408069d90db98678bc9f0e2d390
 
 COCOAPODS: 0.34.4
