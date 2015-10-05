@@ -45,7 +45,7 @@
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="B2M-HK-ikN"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="支付宝账号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SVT-ht-P79">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="383130239@qq.com" borderStyle="roundedRect" placeholder="支付宝账号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SVT-ht-P79">
                     <rect key="frame" x="9" y="163" width="303" height="30"/>
                     <color key="textColor" red="0.92941176470588238" green="0.47450980392156861" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -54,7 +54,7 @@
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="5vP-Sx-VvD"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="身份证" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VHk-sa-kNu">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="350124198410140157" borderStyle="roundedRect" placeholder="身份证" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VHk-sa-kNu">
                     <rect key="frame" x="9" y="119" width="303" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits"/>
@@ -102,7 +102,7 @@
                         <action selector="chooseJiuBaAct:" destination="-1" eventType="touchUpInside" id="HjW-uq-c9m"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="支付宝账号名称（填写支付宝的使用名称）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbq-u7-0Ad">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xuebzufo2" borderStyle="roundedRect" placeholder="支付宝账号名称（填写支付宝的使用名称）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbq-u7-0Ad">
                     <rect key="frame" x="9" y="253" width="303" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits"/>

@@ -53,8 +53,8 @@
     NSMutableDictionary *dic=
     [[NSMutableDictionary alloc]initWithDictionary:@{@"introduction":_zwjsTex.text,@"idcard":self.sfzTex.text,@"barid":[NSNumber numberWithInt:jiuBaNow.barid]}];
     if((self.zfbTex.text.length>0)&& (self.zfbzhTex.text.length>0)){
-        [dic setObject:self.zfbTex.text forKey:@"alipayaccount"];
-        [dic setObject:self.zfbzhTex.text forKey:@"alipayAccountName"];
+        [dic setObject:self.zfbzhTex.text forKey:@"alipayaccount"];
+        [dic setObject:self.zfbTex.text forKey:@"alipayAccountName"];
     }
     if((self.yhkkhTex.text.length>0)&& (self.yhkKhmYhmTex.text.length>0)&& (self.yhkyhmTex.text.length>0)){
         [dic setObject:self.yhkkhTex.text forKey:@"bankCard"];

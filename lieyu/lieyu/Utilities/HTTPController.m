@@ -68,7 +68,46 @@
             break;
     }
 }
+//文件上传
++ (void)requestFileWihtUrl:(NSString*)url
+                  baseURL:(NSString*)baseStr
+                       params:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block
+                  success:(void (^)(id response))success
+                  failure:(void (^)(NSError* err))failure
+{
+    //添加userid
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    if (![MyUtil isEmptyString:app.s_app_id]) {
+        url = [NSString stringWithFormat:@"%@&SEM_LOGIN_TOKEN=%@",url,app.s_app_id];
+    }
+    NSURL* baseURL = [NSURL URLWithString:baseStr];
+    //获得请求管理者
+    AFHTTPRequestOperationManager* mgr = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
+    
+#ifdef ContentType
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:ContentType];
+#endif
+    mgr.requestSerializer.HTTPShouldHandleCookies = YES;
+    
+//    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [mgr POST:url parameters:params constructingBodyWithBlock:block success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (success) {
+            success(responseObject);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
 
+    }];
+    
+    
+    
+                    
+    
+}
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withUrlName:(NSString *)name{
     self = [super init];
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];

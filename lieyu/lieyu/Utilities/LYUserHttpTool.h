@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ZSUrl.h"
 #import "UserModel.h"
+#import "AFNetworking.h"
 @interface LYUserHttpTool : NSObject
 + (LYUserHttpTool *)shareInstance;
 // 登录
@@ -29,4 +30,6 @@
 // 获取酒吧信息
 -(void) getJiuBaList:(NSDictionary*)params
                 block:(void(^)(NSMutableArray* result)) block;
+//申请专属经理
+-(void) setApplyVip:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block complete:(void (^)(BOOL result))result;
 @end

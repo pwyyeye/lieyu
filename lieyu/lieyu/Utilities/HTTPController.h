@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
 };
 
 @protocol HTTPControllerProtocol <NSObject>
-    //定义一个方法，接收一个参数：AnyObject
+//定义一个方法，接收一个参数：AnyObject
 -(void) didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname;
 
 @end
@@ -30,11 +30,15 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
     NSDictionary *pamDic;
     UIAlertView *alertView;
     UIActivityIndicatorView *indicator;
-
-
+    
+    
 }
-+(void) requestWihtMethod:(RequestMethodType)
-methodType url : (NSString *)url
++(void)requestFileWihtUrl:(NSString*)url
+                     baseURL:(NSString*)baseStr
+                      params:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block
+                     success:(void (^)(id response))success
+                     failure:(void (^)(NSError* err))failure;
++(void) requestWihtMethod:(RequestMethodType)methodType url : (NSString *)url
                   baseURL:(NSString*)baseStr
                    params:(NSDictionary *)params
                   success:(void (^)(id response))success
