@@ -19,7 +19,7 @@
     }
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_TOPLAY_HOMELIST  baseURL:LY_SERVER params:param success:^(id response)
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_HOMELIST  baseURL:LY_SERVER params:param success:^(id response)
     {
         [app stopLoading];
         NSDictionary *dataDic = response[@"data"];
@@ -43,5 +43,47 @@
 
 }
 
+- (void)getBearBarOrYzhDetail:(NSNumber *)itemId results:(void(^)(LYErrorMessage * erMsg,BeerBarOrYzhDetailModel * detailItem))block
+{
+    if (itemId == nil) {
+        return;
+    }
+    NSDictionary * param = @{@"barid":itemId};
+
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_BARDETAIL  baseURL:LY_SERVER params:param success:^(id response)
+     {
+         [app stopLoading];
+         NSDictionary *dataDic = response[@"data"];
+         BeerBarOrYzhDetailModel *model = nil;
+
+         LYErrorMessage * erMsg = [LYErrorMessage instanceWithDictionary:response];
+         if (erMsg.state == Req_Success)
+         {
+             model = [BeerBarOrYzhDetailModel initFormDictionary:dataDic];
+         }
+         
+         block(erMsg,model);
+     } failure:^(NSError *err)
+     {
+         [app stopLoading];
+         LYErrorMessage * erMsg = [LYErrorMessage instanceWithError:err];
+         block(erMsg,nil);
+     }];
+}
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
