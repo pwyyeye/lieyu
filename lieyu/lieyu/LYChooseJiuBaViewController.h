@@ -7,7 +7,11 @@
 //
 
 #import "LYBaseViewController.h"
+#import "JiuBaModel.h"
+@protocol LYChooseJiuBaDelegate<NSObject>
+- (void)chooseJiuBa:(JiuBaModel *)jiuBaModel;
 
+@end
 @interface LYChooseJiuBaViewController : LYBaseViewController<UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
 {
     NSMutableArray *_listContent;
@@ -16,5 +20,5 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (nonatomic, retain) IBOutlet UISearchBar *searchBar;
-
+@property (nonatomic, weak) id <LYChooseJiuBaDelegate> delegate;
 @end

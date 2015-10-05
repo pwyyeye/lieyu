@@ -9,5 +9,5 @@
 #import "LYBaseViewController.h"
 
 @interface LyZSuploadIdCardViewController : LYBaseViewController
-
+@property (nonatomic, retain)  NSDictionary *paramdic;
 @end
