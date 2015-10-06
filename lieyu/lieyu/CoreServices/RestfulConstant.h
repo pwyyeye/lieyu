@@ -10,7 +10,8 @@
 #define lieyu_RestfulConstant_h
 
 #import "ZSUrl.h"
-#define LY_TOPLAY_HOMELIST @"toPlayAction.do?action=list"
+#define kHttpAPI_LY_TOPLAY_HOMELIST @"toPlayAction.do?action=list"
+#define kHttpAPI_LY_TOPLAY_BARDETAIL @"toPlayAction.do?action=custom"
 
 #endif
 
