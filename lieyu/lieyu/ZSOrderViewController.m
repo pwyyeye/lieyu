@@ -18,7 +18,7 @@
 #import "OrderBottomForCCView.h"
 #import "OrderBottomForXFView.h"
 #import "ZSManageHttpTool.h"
-#import "ProductVOModel.h"
+
 
 
 @interface ZSOrderViewController ()
@@ -469,6 +469,7 @@
         
     }
     OrderInfoModel *orderInfoModel;
+    ShopDetailmodel *shopDetailmodel=[[ShopDetailmodel alloc]init];
     if(mMenuHriZontal.selectIndex==0){
         orderInfoModel=serchDaiXiaoFei[indexPath.section];
 
@@ -477,16 +478,39 @@
     }
     if(orderInfoModel.ordertype==0){
     //0-－套餐订单
+        
+        
+        SetMealInfoModel *setMealInfoModel=orderInfoModel.setMealInfo;
+        SetMealVOModel *setMealVOModel=setMealInfoModel.setMealVO;
+        shopDetailmodel.name=setMealInfoModel.fullName;
+        shopDetailmodel.img=setMealVOModel.linkUrl;
+        shopDetailmodel.youfeiPrice=setMealVOModel.price;
+        shopDetailmodel.money=setMealVOModel.marketprice;
+        shopDetailmodel.count=[NSString stringWithFormat:@"[适合%@-%@人]",setMealVOModel.minnum,setMealVOModel.maxnum];
     }else if(orderInfoModel.ordertype==1){
     //拼客订单
-    }else{
         NSArray *arr=orderInfoModel.goodslist;
         NSDictionary *dicTemp=arr[indexPath.row];
-        
+        GoodsModel *goodsModel=[GoodsModel objectWithKeyValues:dicTemp];
+        ProductVOModel *productVOModel=goodsModel.productVO;
+        shopDetailmodel.name=goodsModel.fullName;
+        shopDetailmodel.img=productVOModel.image;
+        shopDetailmodel.youfeiPrice=productVOModel.price;
+        shopDetailmodel.money=productVOModel.marketprice;
+        shopDetailmodel.count=[NSString stringWithFormat:@"X%@",goodsModel.quantity];
+    }else{
         //吃喝订单
+        NSArray *arr=orderInfoModel.goodslist;
+        NSDictionary *dicTemp=arr[indexPath.row];
+        GoodsModel *goodsModel=[GoodsModel objectWithKeyValues:dicTemp];
+        ProductVOModel *productVOModel=goodsModel.productVO;
+        shopDetailmodel.name=goodsModel.fullName;
+        shopDetailmodel.img=productVOModel.image;
+        shopDetailmodel.youfeiPrice=productVOModel.price;
+        shopDetailmodel.money=productVOModel.marketprice;
+        shopDetailmodel.count=[NSString stringWithFormat:@"X%@",goodsModel.quantity];
     }
-    NSArray *arr=orderInfoModel.detailModel;
-    ShopDetailmodel *shopDetailmodel=arr[indexPath.row];
+    
     cell.nameLal.text=shopDetailmodel.name;
     cell.countLal.text=shopDetailmodel.count;
     if(mMenuHriZontal.selectIndex==0){

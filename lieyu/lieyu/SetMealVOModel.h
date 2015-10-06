@@ -25,12 +25,13 @@
 @property(nonatomic,assign)int ispinker;
 @property(nonatomic,copy)NSString * ispinkerName;
 @property(nonatomic,copy)NSString * linkUrl;
-@property(nonatomic,assign)double maxnum;
-@property(nonatomic,assign)double minnum;
+@property(nonatomic,copy)NSString *maxnum;
+@property(nonatomic,copy)NSString *minnum;
 @property(nonatomic,copy)NSString * modifyDate;
 @property(nonatomic,copy)NSString * offshelfDate;
 @property(nonatomic,assign)int orders;
 @property(nonatomic,copy)NSString * price;
+@property(nonatomic,copy)NSString * marketprice;
 @property(nonatomic,copy)NSString * rebate;
 @property(nonatomic,copy)NSString * recommended;
 @property(nonatomic,copy)NSString * referprice;

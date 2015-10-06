@@ -34,13 +34,13 @@
 @property(nonatomic,assign)int itemProductId;
 @property(nonatomic,copy)NSString * itemProductName;
 @property(nonatomic,copy)NSString * keyword;
-@property(nonatomic,assign)double marketprice;
+@property(nonatomic,copy)NSString *marketprice;
 @property(nonatomic,copy)NSString * memo;
 @property(nonatomic,copy)NSString * modifydate;
 @property(nonatomic,copy)NSString * name;
 @property(nonatomic,copy)NSString * num;
 @property(nonatomic,copy)NSString * offshelfDate;
-@property(nonatomic,assign)double price;
+@property(nonatomic,copy)NSString *price;
 @property(nonatomic,assign)int productimageid;
 @property(nonatomic,assign)double rebate;
 @property(nonatomic,assign)double sales;

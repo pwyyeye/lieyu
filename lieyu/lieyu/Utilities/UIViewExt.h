@@ -5,7 +5,6 @@
  */
 
 #import <UIKit/UIKit.h>
-
 CGPoint CGRectGetCenter(CGRect rect);
 CGRect  CGRectMoveToCenter(CGRect rect, CGPoint center);
 
