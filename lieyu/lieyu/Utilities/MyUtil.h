@@ -38,7 +38,10 @@
 + (NSString *)md5HexDigest:(NSString*)input;
 
 + (BOOL) validateIdentityCard: (NSString *)identityCard;
-
+//判断是否数字
++ (BOOL)isPureInt:(NSString*)string;
 //弹出消息框来显示消息
 + (void)showMessage:(NSString* )message;
+
+
 @end

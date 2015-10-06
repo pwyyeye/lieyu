@@ -27,6 +27,29 @@ NSString *getSysLang()
 
 @implementation LYErrorMessage
 
++ (LYErrorMessage *)instanceWithDictionary:(NSDictionary *)dic
+{
+    LYErrorMessage * erMsg = [[LYErrorMessage alloc] init];
+    erMsg.mErrorCode = [dic stringForKeySafe:@"errorcode"];
+    erMsg.mErrorMessage = [dic stringForKeySafe:@"message"];
+    if ([erMsg.mErrorCode isEqualToString:SUCCESS_CODE]) {
+        erMsg.state = Req_Success;
+    }
+    else
+    {
+        erMsg.state = Req_Failed;
+    }
+    return erMsg;
+}
+
++ (LYErrorMessage *)instanceWithError:(NSError *)er
+{
+    LYErrorMessage * erMsg = [[LYErrorMessage alloc] init];
+    erMsg.mErrorMessage = er.description;
+    erMsg.mErrorCode = er.domain;
+    
+    return erMsg;
+}
 
 @end
 

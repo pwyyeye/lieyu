@@ -259,6 +259,7 @@
 		D73652421BAEBF44002541CE /* KuCunModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652401BAEBF44002541CE /* KuCunModel.m */; };
 		D73652471BAEBF60002541CE /* PinKeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652441BAEBF60002541CE /* PinKeModel.m */; };
 		D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652461BAEBF60002541CE /* TaoCanModel.m */; };
+		D74436161BC1577200958046 /* libcorecrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D74436151BC1577200958046 /* libcorecrypto.tbd */; };
 		D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D747142A1BAD151400611579 /* MainTabbarViewController.m */; };
 		D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC361BA1C24B005AA996 /* HttpOperatorProvider+backend.m */; };
 		D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC381BA1C24B005AA996 /* HttpOperatorProvider.m */; };
@@ -309,6 +310,16 @@
 		D794ED061BB78009000DC568 /* LYCustomSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED051BB78009000DC568 /* LYCustomSegmentControl.m */; };
 		D794ED091BB786AA000DC568 /* PFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED081BB786AA000DC568 /* PFImage.m */; };
 		D794ED0C1BB7872A000DC568 /* PFRect.m in Sources */ = {isa = PBXBuildFile; fileRef = D794ED0B1BB7872A000DC568 /* PFRect.m */; };
+		D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */; };
+		D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4191BC265CF00BCE47C /* CLLocation+CoordinateConvert.m */; };
+		D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D41C1BC266CD00BCE47C /* LYUserLocation.m */; };
+		D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4201BC2690C00BCE47C /* LYToPlayRestfulBusiness.m */; };
+		D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4231BC26ADF00BCE47C /* LYBaseQuery.m */; };
+		D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4261BC26C4700BCE47C /* MReqToPlayHomeList.m */; };
+		D7A1D42B1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D42A1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m */; };
+		D7A1D42E1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D42D1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m */; };
+		D7A1D4311BC2CD1B00BCE47C /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4301BC2CD1B00BCE47C /* AnnouncementModel.m */; };
+		D7A1D4341BC2CE0900BCE47C /* RecommendPackageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4331BC2CE0900BCE47C /* RecommendPackageModel.m */; };
 		D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */; };
 		D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */; };
 		D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */; };
@@ -745,6 +756,7 @@
 		D73652441BAEBF60002541CE /* PinKeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinKeModel.m; sourceTree = "<group>"; };
 		D73652451BAEBF60002541CE /* TaoCanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoCanModel.h; sourceTree = "<group>"; };
 		D73652461BAEBF60002541CE /* TaoCanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoCanModel.m; sourceTree = "<group>"; };
+		D74436151BC1577200958046 /* libcorecrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcorecrypto.tbd; path = usr/lib/system/libcorecrypto.tbd; sourceTree = SDKROOT; };
 		D74714291BAD151400611579 /* MainTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabbarViewController.h; path = Classes/MainTabbarViewController.h; sourceTree = "<group>"; };
 		D747142A1BAD151400611579 /* MainTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabbarViewController.m; path = Classes/MainTabbarViewController.m; sourceTree = "<group>"; };
 		D748BC351BA1C24B005AA996 /* HttpOperatorProvider+backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HttpOperatorProvider+backend.h"; sourceTree = "<group>"; };
@@ -845,6 +857,26 @@
 		D794ED081BB786AA000DC568 /* PFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFImage.m; sourceTree = "<group>"; };
 		D794ED0A1BB7872A000DC568 /* PFRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFRect.h; sourceTree = "<group>"; };
 		D794ED0B1BB7872A000DC568 /* PFRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFRect.m; sourceTree = "<group>"; };
+		D7A1D4151BC2657E00BCE47C /* LYLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLocationManager.h; sourceTree = "<group>"; };
+		D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLocationManager.m; sourceTree = "<group>"; };
+		D7A1D4181BC265CF00BCE47C /* CLLocation+CoordinateConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+CoordinateConvert.h"; sourceTree = "<group>"; };
+		D7A1D4191BC265CF00BCE47C /* CLLocation+CoordinateConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+CoordinateConvert.m"; sourceTree = "<group>"; };
+		D7A1D41B1BC266CD00BCE47C /* LYUserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserLocation.h; sourceTree = "<group>"; };
+		D7A1D41C1BC266CD00BCE47C /* LYUserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserLocation.m; sourceTree = "<group>"; };
+		D7A1D41F1BC2690C00BCE47C /* LYToPlayRestfulBusiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYToPlayRestfulBusiness.h; path = Classes/INeedPlay/Business/LYToPlayRestfulBusiness.h; sourceTree = "<group>"; };
+		D7A1D4201BC2690C00BCE47C /* LYToPlayRestfulBusiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYToPlayRestfulBusiness.m; path = Classes/INeedPlay/Business/LYToPlayRestfulBusiness.m; sourceTree = "<group>"; };
+		D7A1D4221BC26ADF00BCE47C /* LYBaseQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBaseQuery.h; sourceTree = "<group>"; };
+		D7A1D4231BC26ADF00BCE47C /* LYBaseQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBaseQuery.m; sourceTree = "<group>"; };
+		D7A1D4251BC26C4700BCE47C /* MReqToPlayHomeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MReqToPlayHomeList.h; path = Classes/INeedPlay/Business/MReqToPlayHomeList.h; sourceTree = "<group>"; };
+		D7A1D4261BC26C4700BCE47C /* MReqToPlayHomeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MReqToPlayHomeList.m; path = Classes/INeedPlay/Business/MReqToPlayHomeList.m; sourceTree = "<group>"; };
+		D7A1D4291BC2746D00BCE47C /* NSDictionary+YRSafeCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+YRSafeCategory.h"; sourceTree = "<group>"; };
+		D7A1D42A1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+YRSafeCategory.m"; sourceTree = "<group>"; };
+		D7A1D42C1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarOrYzhDetailModel.h; sourceTree = "<group>"; };
+		D7A1D42D1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarOrYzhDetailModel.m; sourceTree = "<group>"; };
+		D7A1D42F1BC2CD1B00BCE47C /* AnnouncementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnouncementModel.h; sourceTree = "<group>"; };
+		D7A1D4301BC2CD1B00BCE47C /* AnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnouncementModel.m; sourceTree = "<group>"; };
+		D7A1D4321BC2CE0900BCE47C /* RecommendPackageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendPackageModel.h; sourceTree = "<group>"; };
+		D7A1D4331BC2CE0900BCE47C /* RecommendPackageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendPackageModel.m; sourceTree = "<group>"; };
 		D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageINeedPlayViewController.h; path = Classes/INeedPlay/HomePageINeedPlayViewController.h; sourceTree = "<group>"; };
 		D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageINeedPlayViewController.m; path = Classes/INeedPlay/HomePageINeedPlayViewController.m; sourceTree = "<group>"; };
 		D7A230CB1BA7160B00E8B51B /* LYWineBarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWineBarInfoCell.h; sourceTree = "<group>"; };
@@ -867,9 +899,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
+				D74436161BC1577200958046 /* libcorecrypto.tbd in Frameworks */,
 				AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */,
 				D748BC561BA1C7C6005AA996 /* MobileCoreServices.framework in Frameworks */,
-				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
 				D748BC521BA1C765005AA996 /* CoreTelephony.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1201,6 +1234,13 @@
 			sourceTree = "<group>";
 		};
 		15EA6DCD1BC0DA1400620C9E /* IM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = IM;
+			sourceTree = "<group>";
+		};
+		15EA6DDA1BC16C7B00620C9E /* IM */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -1681,6 +1721,7 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D74436151BC1577200958046 /* libcorecrypto.tbd */,
 				AD798A361BB99A1F006D08F5 /* libPods.a */,
 				D748BC551BA1C7C6005AA996 /* MobileCoreServices.framework */,
 				D748BC531BA1C7A8005AA996 /* SystemConfiguration.framework */,
@@ -1844,6 +1885,10 @@
 		D748BC4D1BA1C52E005AA996 /* Apple */ = {
 			isa = PBXGroup;
 			children = (
+				D7A1D4291BC2746D00BCE47C /* NSDictionary+YRSafeCategory.h */,
+				D7A1D42A1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m */,
+				D7A1D4181BC265CF00BCE47C /* CLLocation+CoordinateConvert.h */,
+				D7A1D4191BC265CF00BCE47C /* CLLocation+CoordinateConvert.m */,
 				D748BC571BA1C821005AA996 /* NSString+Expend.h */,
 				D748BC581BA1C821005AA996 /* NSString+Expend.m */,
 				D748BC4E1BA1C52E005AA996 /* NSDictionary+Json.h */,
@@ -1887,6 +1932,12 @@
 				D748BC771BA1CB0E005AA996 /* User.m */,
 				D748BC781BA1CB0E005AA996 /* User+Utils.h */,
 				D748BC791BA1CB0E005AA996 /* User+Utils.m */,
+				D7A1D42C1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.h */,
+				D7A1D42D1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m */,
+				D7A1D42F1BC2CD1B00BCE47C /* AnnouncementModel.h */,
+				D7A1D4301BC2CD1B00BCE47C /* AnnouncementModel.m */,
+				D7A1D4321BC2CE0900BCE47C /* RecommendPackageModel.h */,
+				D7A1D4331BC2CE0900BCE47C /* RecommendPackageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1896,6 +1947,8 @@
 			children = (
 				D748BC7D1BA1CB35005AA996 /* LYCoreDataObject.h */,
 				D748BC7E1BA1CB35005AA996 /* LYCoreDataObject.m */,
+				D7A1D4221BC26ADF00BCE47C /* LYBaseQuery.h */,
+				D7A1D4231BC26ADF00BCE47C /* LYBaseQuery.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2067,6 +2120,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				D7A1D41E1BC2689D00BCE47C /* Business */,
 				D794ED031BB77FCF000DC568 /* CustomSegment */,
 				D729DB5C1BADB8AB005A9E60 /* BeerBar */,
 				D7A230CA1BA7152000E8B51B /* Cell */,
@@ -2114,6 +2168,7 @@
 		D761F0291BA5B92D000757B0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				15EA6DDA1BC16C7B00620C9E /* IM */,
 				D761F0281BA5B90E000757B0 /* Mine */,
 				D761F0271BA5B8D5000757B0 /* Find */,
 				D761F0261BA5B8C2000757B0 /* Wines */,
@@ -2149,6 +2204,8 @@
 		D764F0C71BA1BBCF001649D9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D7A1D4151BC2657E00BCE47C /* LYLocationManager.h */,
+				D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */,
 				D7545DFF1BB99A3A005B854F /* HTTPController.h */,
 				D7545E001BB99A3A005B854F /* HTTPController.m */,
 				15013ACF1BBA161100061FAF /* ZSManageHttpTool.h */,
@@ -2169,6 +2226,8 @@
 				15E1849F1BB8D20700681BB2 /* MyUtil.m */,
 				D73652371BAEAC4F002541CE /* NeedHideNavigationBar.h */,
 				D73652381BAEB2BF002541CE /* LYTableViewCellLayout.h */,
+				D7A1D41B1BC266CD00BCE47C /* LYUserLocation.h */,
+				D7A1D41C1BC266CD00BCE47C /* LYUserLocation.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -2181,6 +2240,17 @@
 			);
 			name = CustomSegment;
 			path = Classes/INeedPlay/CustomSegment;
+			sourceTree = "<group>";
+		};
+		D7A1D41E1BC2689D00BCE47C /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				D7A1D41F1BC2690C00BCE47C /* LYToPlayRestfulBusiness.h */,
+				D7A1D4201BC2690C00BCE47C /* LYToPlayRestfulBusiness.m */,
+				D7A1D4251BC26C4700BCE47C /* MReqToPlayHomeList.h */,
+				D7A1D4261BC26C4700BCE47C /* MReqToPlayHomeList.m */,
+			);
+			name = Business;
 			sourceTree = "<group>";
 		};
 		D7A230CA1BA7152000E8B51B /* Cell */ = {
@@ -2408,7 +2478,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		81AD541F280B918F0559B4B7 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -2416,14 +2486,14 @@
 			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		98977BCA0959D91E3A5FA70E /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -2431,7 +2501,7 @@
 			name = "Copy Pods Resources";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
@@ -2456,6 +2526,8 @@
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
 				15013B021BBA33BF00061FAF /* UIImageView+HighlightedWebCache.m in Sources */,
+				D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */,
+				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
 				A2FD577D1BAFE97000CFFF92 /* FBTaoCanSectionBottom.m in Sources */,
 				15E184961BB52CA200681BB2 /* JiuBaModel.m in Sources */,
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
@@ -2468,6 +2540,7 @@
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
+				D7A1D42B1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m in Sources */,
 				D761F01C1BA5AED3000757B0 /* MJRefreshGifHeader.m in Sources */,
 				15013AFD1BBA33BE00061FAF /* SDWebImagePrefetcher.m in Sources */,
 				15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */,
@@ -2543,7 +2616,9 @@
 				15E240A51BB381450090D240 /* OrderDetailHeadView.m in Sources */,
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
+				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
 				D761F01D1BA5AED3000757B0 /* MJRefreshNormalHeader.m in Sources */,
+				D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */,
 				15E1848D1BB5220C00681BB2 /* LyZSuploadIdCardViewController.m in Sources */,
 				15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */,
 				15E184881BB5214F00681BB2 /* LYChooseJiuBaViewController.m in Sources */,
@@ -2559,6 +2634,7 @@
 				151BB6D41BBB78E000E7A81C /* UzysAssetsViewCell.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
+				D7A1D4341BC2CE0900BCE47C /* RecommendPackageModel.m in Sources */,
 				151BB6D21BBB78E000E7A81C /* UzysAssetsPickerController.m in Sources */,
 				15F54A901BB030420020EB4C /* ChanPinListViewController.m in Sources */,
 				A2FD57701BAFE91F00CFFF92 /* FBTaoCanView.m in Sources */,
@@ -2583,14 +2659,17 @@
 				15E2404A1BB0F3540090D240 /* IQTitleBarButtonItem.m in Sources */,
 				15E240C61BB3CAC20090D240 /* LYResetPasswordViewController.m in Sources */,
 				151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */,
+				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
+				D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */,
 				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,
 				15E2409A1BB296CF0090D240 /* OrderDetailCell.m in Sources */,
 				15013AFE1BBA33BF00061FAF /* UIButton+WebCache.m in Sources */,
 				D73652421BAEBF44002541CE /* KuCunModel.m in Sources */,
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
 				D7545E011BB99A3A005B854F /* HTTPController.m in Sources */,
+				D7A1D4311BC2CD1B00BCE47C /* AnnouncementModel.m in Sources */,
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
 				A2FD578E1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
@@ -2619,6 +2698,7 @@
 				A2020D591BA6781B0090B92A /* FunctionListCell.m in Sources */,
 				D761F0141BA5AED3000757B0 /* MJRefreshFooter.m in Sources */,
 				15E240491BB0F3540090D240 /* IQTextView.m in Sources */,
+				D7A1D42E1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m in Sources */,
 				A2F9DA7D1BAA8C83009DEAF3 /* SerchHeadView.m in Sources */,
 				A2F9DA7A1BAA6F68009DEAF3 /* OrderHandleButton.m in Sources */,
 				A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */,
@@ -2786,6 +2866,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lieyu/Vendor/RestKit/lib",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -2813,6 +2894,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lieyu/Vendor/RestKit/lib",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";

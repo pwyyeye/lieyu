@@ -11,6 +11,8 @@
 #import "MJRefresh.h"
 #import "BeerBarDetailViewController.h"
 #import "BearBarListViewController.h"
+#import "LYToPlayRestfulBusiness.h"
+#import "LYUserLocation.h"
 
 @interface HomePageINeedPlayViewController ()
 <
@@ -20,6 +22,7 @@
     UITextFieldDelegate
 >
 
+@property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property(nonatomic,strong) IBOutlet UIView * topView;
 @property(nonatomic,weak) IBOutlet UIButton * myFllowButton;
@@ -48,7 +51,33 @@
     rc.origin.y = 0;
     _topView.frame = rc;
     [self.navigationController.navigationBar addSubview:_topView];
+    [self loadHomeList];
+    
 }
+
+- (void)loadHomeList
+{
+    MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
+    LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
+    
+    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
+    hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
+    hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
+    hList.city = [LYUserLocation instance].city;
+    hList.bartype = @"酒吧/夜总会";
+//    hList.need_page = @(1);
+//    hList.p = @(1);
+//    hList.per = @(3);
+    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
+        if (ermsg.state == Req_Success)
+        {
+            self.aryList = barList.mutableCopy;
+            self.bannerList = bannerList.mutableCopy;
+            [self.tableView reloadData];
+        }
+    }];
+}
+
 - (void)viewWillLayoutSubviews
 {
     if (self.navigationController.navigationBarHidden != NO) {
@@ -118,7 +147,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _aryList.count+4;
+    return _aryList.count+3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,6 +158,10 @@
         case 0:
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"LYAdshowCell" forIndexPath:indexPath];
+            if (cell) {
+                LYAdshowCell * adCell = (LYAdshowCell *)cell;
+                adCell.bannerUrlList = self.bannerList;
+            }
         }
             break;
         case 1:
@@ -148,6 +181,7 @@
             LYWineBarInfoCell * barCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarInfoCell" forIndexPath:indexPath];
             
             cell = barCell;
+            [barCell configureCell:[_aryList objectAtIndex:indexPath.row-3]];
         }
             break;
     }

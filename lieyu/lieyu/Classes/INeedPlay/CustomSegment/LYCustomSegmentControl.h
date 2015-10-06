@@ -18,7 +18,7 @@ typedef void(^selectItem)(NSInteger index);
 @property(nonatomic, assign)NSInteger selectedIndex;
 
 @property(nonatomic ,copy)selectItem selectedItem;
-
+@property(nonatomic, copy)NSString * selectedItemTitle;
 - (LYCustomSegmentControl *)initWithTitleItems:(NSArray *)ary frame:(CGRect)frame;
 
 

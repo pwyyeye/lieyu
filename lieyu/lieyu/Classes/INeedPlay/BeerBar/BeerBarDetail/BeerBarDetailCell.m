@@ -7,6 +7,7 @@
 //
 
 #import "BeerBarDetailCell.h"
+#import "JiuBaModel.h"
 
 @interface BeerBarDetailCell()
 

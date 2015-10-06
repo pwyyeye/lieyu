@@ -12,7 +12,8 @@
 #define LY_SERVER @"http://121.40.229.133:8001/lieyu/"
 #define QINIU_SERVER @"http://121.40.229.133:8001/portal/"
 //URL地址
-
+//IMtoken
+#define LY_IMTOKEN  @"friendAction.do?action=custom"
 //7牛token
 #define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"
 //获取验证码
@@ -24,6 +25,13 @@
 //登录
 #define LY_DL  @"accountAction.do?action=login"
 
+
+//我的专属经理
+#define LY_MY_ZSJL @"lyUsersVipStoreAction.do?action=list"
+//申请专属经理
+#define LY_APPLY_MANAGER @"lyUsersVipApplyAction.do?action=add"
+//获取酒吧列表
+#define LY_JIUBA_LIST  @"toPlayAction.do?action=list"
 
 
 //专属经理套餐列表
@@ -55,6 +63,7 @@
 
 //专属经理 我的客户
 #define ZS_USERS_FRIEND  @"lyUsersFriendAction.do?action=list"
+
 
 //一周卡座是否满座
 #define ZS_KUZUOISFULL  @"lySetDeckFullAction.do?action=list"

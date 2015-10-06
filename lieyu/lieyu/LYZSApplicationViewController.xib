@@ -7,9 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYZSApplicationViewController">
             <connections>
+                <outlet property="jiubaLal" destination="s6I-Rg-4Hn" id="AKX-ST-B3s"/>
+                <outlet property="sfzTex" destination="VHk-sa-kNu" id="8uC-NJ-rdK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yhkKhmYhmTex" destination="kER-ri-W9T" id="YaB-aQ-7CY"/>
                 <outlet property="yhkkhTex" destination="zif-AJ-Q2i" id="3fR-hi-ogC"/>
+                <outlet property="yhkyhmTex" destination="GHv-lS-IS2" id="HZc-4x-Dv8"/>
                 <outlet property="zfbTex" destination="jbq-u7-0Ad" id="FDL-Wx-JWG"/>
                 <outlet property="zfbzhTex" destination="SVT-ht-P79" id="7SR-0W-bbv"/>
                 <outlet property="zwjsTex" destination="nas-sC-uR8" id="nvZ-gk-GpL"/>
@@ -38,22 +41,42 @@
                     <rect key="frame" x="9" y="23" width="303" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="B2M-HK-ikN"/>
+                    </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="支付宝账号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SVT-ht-P79">
-                    <rect key="frame" x="9" y="119" width="303" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="383130239@qq.com" borderStyle="roundedRect" placeholder="支付宝账号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SVT-ht-P79">
+                    <rect key="frame" x="9" y="163" width="303" height="30"/>
                     <color key="textColor" red="0.92941176470588238" green="0.47450980392156861" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="5vP-Sx-VvD"/>
+                    </connections>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="350124198410140157" borderStyle="roundedRect" placeholder="身份证" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VHk-sa-kNu">
+                    <rect key="frame" x="9" y="119" width="303" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="y6Q-3H-gbz"/>
+                    </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="银行卡卡号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zif-AJ-Q2i">
-                    <rect key="frame" x="9" y="166" width="303" height="30"/>
+                    <rect key="frame" x="9" y="208" width="303" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="8Ia-Pd-eTV"/>
+                    </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="银行卡开户＋用户名（例如：工商宝山支行＋陈幸妤）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kER-ri-W9T">
-                    <rect key="frame" x="9" y="255" width="303" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="银行卡开户（例如：工商宝山支行）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kER-ri-W9T">
+                    <rect key="frame" x="9" y="297" width="303" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="ZVx-sH-Is0"/>
+                    </connections>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="酒吧" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulO-rU-Qgq">
                     <rect key="frame" x="17" y="78" width="142" height="18"/>
@@ -61,7 +84,7 @@
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请正确选择你所处的酒吧" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6I-Rg-4Hn">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请正确选择你所处的酒吧" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6I-Rg-4Hn">
                     <rect key="frame" x="172" y="81" width="124" height="11"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,10 +102,21 @@
                         <action selector="chooseJiuBaAct:" destination="-1" eventType="touchUpInside" id="HjW-uq-c9m"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="支付宝账号名称（填写支付宝的使用名称）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbq-u7-0Ad">
-                    <rect key="frame" x="9" y="211" width="303" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xuebzufo2" borderStyle="roundedRect" placeholder="支付宝账号名称（填写支付宝的使用名称）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jbq-u7-0Ad">
+                    <rect key="frame" x="9" y="253" width="303" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="PrV-Hb-Rn4"/>
+                    </connections>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="银行卡开户用户名（例如：陈幸妤）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHv-lS-IS2">
+                    <rect key="frame" x="8" y="340" width="303" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="ZCg-uP-cOd"/>
+                    </connections>
                 </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

@@ -56,6 +56,7 @@
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         app.s_app_id=result.token;
         app.userModel=result;
+        [app getImToken];
 //        NSLog(result.username);
     }];
 }

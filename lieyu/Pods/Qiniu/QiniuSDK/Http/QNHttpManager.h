@@ -7,31 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "QNHttpDelegate.h"
 
-#import "QNConfiguration.h"
+@class QNResponseInfo;
 
-@interface QNHttpManager : NSObject <QNHttpDelegate>
+typedef void (^QNInternalProgressBlock)(long long totalBytesWritten, long long totalBytesExpectedToWrite);
+typedef void (^QNCompleteBlock)(QNResponseInfo *info, NSDictionary *resp);
+typedef BOOL (^QNCancelBlock)(void);
 
-- (instancetype)initWithTimeout:(UInt32)timeout
-                   urlConverter:(QNUrlConvert)converter
-                            dns:(QNDnsManager *)dns;
+@interface QNHttpManager : NSObject
 
-- (void)    multipartPost:(NSString *)url
-                 withData:(NSData *)data
-               withParams:(NSDictionary *)params
-             withFileName:(NSString *)key
-             withMimeType:(NSString *)mime
-        withCompleteBlock:(QNCompleteBlock)completeBlock
-        withProgressBlock:(QNInternalProgressBlock)progressBlock
-          withCancelBlock:(QNCancelBlock)cancelBlock;
+- (void)multipartPost:(NSString *)url
+             withData:(NSData *)data
+           withParams:(NSDictionary *)params
+         withFileName:(NSString *)key
+         withMimeType:(NSString *)mime
+    withCompleteBlock:(QNCompleteBlock)completeBlock
+    withProgressBlock:(QNInternalProgressBlock)progressBlock
+      withCancelBlock:(QNCancelBlock)cancelBlock;
 
-- (void)             post:(NSString *)url
-                 withData:(NSData *)data
-               withParams:(NSDictionary *)params
-              withHeaders:(NSDictionary *)headers
-        withCompleteBlock:(QNCompleteBlock)completeBlock
-        withProgressBlock:(QNInternalProgressBlock)progressBlock
-          withCancelBlock:(QNCancelBlock)cancelBlock;
+- (void)         post:(NSString *)url
+             withData:(NSData *)data
+           withParams:(NSDictionary *)params
+          withHeaders:(NSDictionary *)headers
+    withCompleteBlock:(QNCompleteBlock)completeBlock
+    withProgressBlock:(QNInternalProgressBlock)progressBlock
+      withCancelBlock:(QNCancelBlock)cancelBlock;
 
 @end

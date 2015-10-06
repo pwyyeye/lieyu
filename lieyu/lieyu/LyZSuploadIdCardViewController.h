@@ -7,7 +7,17 @@
 //
 
 #import "LYBaseViewController.h"
-
-@interface LyZSuploadIdCardViewController : LYBaseViewController
-
+#import "LYZSeditView.h"
+@interface LyZSuploadIdCardViewController : LYBaseViewController{
+    LYZSeditView *seditView;
+    UIView  *_bgView;
+    int picTag;
+    UIImage *idcard_zhengmian;
+    UIImage *idcard_fanmian;
+}
+- (IBAction)nextAct:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *zmAddBtn;
+@property (weak, nonatomic) IBOutlet UIButton *fmAddBtn;
+@property (nonatomic, retain)  NSDictionary *paramdic;
+- (IBAction)addPictures:(UIButton *)sender;
 @end
