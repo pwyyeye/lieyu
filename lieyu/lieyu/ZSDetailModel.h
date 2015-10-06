@@ -25,4 +25,5 @@
 @property(nonatomic,assign)int userid;
 @property (nonatomic, copy) NSString * userName;
 @property (nonatomic, copy) NSString * usernick;
+@property (nonatomic, copy) NSString * imUserId;
 @end

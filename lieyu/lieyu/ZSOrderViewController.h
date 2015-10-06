@@ -18,12 +18,14 @@
     UIView  *_bgView;
     UIView  *monView;
     NSDateFormatter * dateFormatter;
+    NSDateFormatter * dateFormatterUp;
     UIButton *surebutton;
     MenuHrizontal *mMenuHriZontal;
     NSMutableArray *daiXiaoFei;
     NSMutableArray *serchDaiXiaoFei;
     XiaoFeiMaUiew *xiaoFeiMaUiew;
     KaZuoView *kaZuoView;
+    NSDate *nowDate;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
