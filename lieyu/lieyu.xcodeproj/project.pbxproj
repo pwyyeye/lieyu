@@ -130,7 +130,6 @@
 		15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C4B1BC3785200756153 /* SetMealVOModel.m */; };
 		15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */; };
 		15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C511BC3BE4D00756153 /* GoodsModel.m */; };
-		15EB7C581BC41C8C00756153 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C571BC41C8C00756153 /* UIViewExt.m */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
@@ -562,8 +561,6 @@
 		15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductVOModel.m; sourceTree = "<group>"; };
 		15EB7C501BC3BE4D00756153 /* GoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsModel.h; sourceTree = "<group>"; };
 		15EB7C511BC3BE4D00756153 /* GoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsModel.m; sourceTree = "<group>"; };
-		15EB7C561BC41C8C00756153 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
-		15EB7C571BC41C8C00756153 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
 		15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
@@ -2247,8 +2244,6 @@
 				D794ED0B1BB7872A000DC568 /* PFRect.m */,
 				D794ED071BB786AA000DC568 /* PFImage.h */,
 				D794ED081BB786AA000DC568 /* PFImage.m */,
-				15EB7C561BC41C8C00756153 /* UIViewExt.h */,
-				15EB7C571BC41C8C00756153 /* UIViewExt.m */,
 				D748BC4D1BA1C52E005AA996 /* Apple */,
 				D71E1D981BAE9C1100915F37 /* LYColors.h */,
 				D71E1D991BAE9C1100915F37 /* LYColors.m */,
@@ -2595,7 +2590,6 @@
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
 				15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
-				15EB7C581BC41C8C00756153 /* UIViewExt.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
 				A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */,
