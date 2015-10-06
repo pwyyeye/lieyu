@@ -13,6 +13,7 @@
 #import "BearBarListViewController.h"
 #import "LYToPlayRestfulBusiness.h"
 #import "LYUserLocation.h"
+#import "JiuBaModel.h"
 
 @interface HomePageINeedPlayViewController ()
 <
@@ -223,6 +224,9 @@
 {
     if (indexPath.row >= 3) {
         BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    
+        JiuBaModel * model = [_aryList objectAtIndex:indexPath.row -3];
+        controller.beerBarId = @(model.barid);
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

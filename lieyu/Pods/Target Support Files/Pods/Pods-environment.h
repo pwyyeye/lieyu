@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 6
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// HCSStarRatingView
+#define COCOAPODS_POD_AVAILABLE_HCSStarRatingView
+#define COCOAPODS_VERSION_MAJOR_HCSStarRatingView 1
+#define COCOAPODS_VERSION_MINOR_HCSStarRatingView 4
+#define COCOAPODS_VERSION_PATCH_HCSStarRatingView 2
+
 // Qiniu
 #define COCOAPODS_POD_AVAILABLE_Qiniu
 #define COCOAPODS_VERSION_MAJOR_Qiniu 7

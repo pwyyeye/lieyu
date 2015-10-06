@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "NeedHideNavigationBar.h"
+
 @interface BeerBarDetailViewController : UIViewController
 <
     UITableViewDelegate,
     UITableViewDataSource,
     NeedHideNavigationBar
 >
+
+@property(nonatomic,strong)NSNumber * beerBarId;
 
 @end

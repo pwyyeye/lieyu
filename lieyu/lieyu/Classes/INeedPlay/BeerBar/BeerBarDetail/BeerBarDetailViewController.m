@@ -13,6 +13,10 @@
 #import "LYShareSnsView.h"
 #import "LYAdshowCell.h"
 #import "LYColors.h"
+#import "LYToPlayRestfulBusiness.h"
+#import "BeerBarOrYzhDetailModel.h"
+#import "RecommendPackageModel.h"
+
 
 @interface BeerBarDetailViewController ()
 
@@ -24,6 +28,7 @@
 @property(nonatomic,weak)IBOutlet UIView *bottomBarView;
 @property(nonatomic,assign)CGFloat dyBarDetailH;
 
+@property(nonatomic,strong) BeerBarOrYzhDetailModel *beerBarDetail;
 
 @end
 
@@ -32,7 +37,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViewStyles];
+    [self loadBarDetail];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)loadBarDetail
+{
+    __weak __typeof(self ) weakSelf = self;
+    LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
+    [bus getBearBarOrYzhDetail:_beerBarId results:^(LYErrorMessage *erMsg, BeerBarOrYzhDetailModel *detailItem)
+    {
+        if (erMsg.state == Req_Success) {
+            weakSelf.beerBarDetail = detailItem;
+            [weakSelf.tableView reloadData];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,7 +95,7 @@
             return 2;
             break;
         case 1:
-            return 4;
+            return [[_beerBarDetail recommend_package] count]+1;
             break;
         case 2:
             return 1;
@@ -96,12 +115,18 @@
         {
             if (indexPath.row == 0) {
                             cell = [tableView dequeueReusableCellWithIdentifier:@"LYAdshowCell" forIndexPath:indexPath];
+                LYAdshowCell * adCell = (LYAdshowCell *)cell;
+                adCell.frame = CGRectMake(0, 0, CGRectGetWidth(adCell.bounds), 264);
+                _beerBarDetail.banners = @[@"http://img4.imgtn.bdimg.com/it/u=1083196650,946960492&fm=15&gp=0.jpg"];
+                [adCell setBannerUrlList:_beerBarDetail.banners];
             }
             else
             {
                 cell = _barDetailCell;
+                UILabel * labOrdNum = (UILabel *)[cell viewWithTag:6];
+                labOrdNum.text = _beerBarDetail.today_sm_buynum;
             }
-            [_barDetailCell configureCell:nil];
+            [_barDetailCell configureCell:_beerBarDetail];
 
         }
             break;
@@ -113,9 +138,11 @@
             else
             {
                 cell = [tableView dequeueReusableCellWithIdentifier:@"PacketBarCell" forIndexPath:indexPath];
-                PacketBarCell * tCell = cell;
+                PacketBarCell * tCell = (PacketBarCell *)cell;
                 {
-                    [tCell configureCell:nil];
+                    RecommendPackageModel * model = nil;
+                    model = indexPath.row-1 < _beerBarDetail.recommend_package.count ?[_beerBarDetail.recommend_package objectAtIndex:indexPath.row-1]:nil;
+                    [tCell configureCell:model];
                 }
                 
             }
