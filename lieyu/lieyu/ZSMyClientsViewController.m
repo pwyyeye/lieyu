@@ -34,7 +34,7 @@
     NSDictionary *dic=@{@"userid":@"2"};
     [[ZSManageHttpTool shareInstance] getUsersFriendWithParams:dic block:^(NSMutableArray *result) {
         NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
-        addressBookTemp =result;
+        [addressBookTemp addObjectsFromArray:result];
         
         UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
         for (CustomerModel *addressBook in addressBookTemp) {

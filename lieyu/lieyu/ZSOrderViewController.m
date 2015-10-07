@@ -20,6 +20,7 @@
 #import "ZSManageHttpTool.h"
 #import "GoodsModel.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <RongIMKit/RongIMKit.h>
 @interface ZSOrderViewController ()
 
 @end
@@ -36,6 +37,7 @@
     serchDaiXiaoFei=[[NSMutableArray alloc]init];
     self.menuView.backgroundColor=[UIColor clearColor];
     dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatterUp= [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
     [dateFormatterUp setDateFormat:@"yyyy-MM-dd"];
     NSString *dateStr= [dateFormatter stringFromDate:[NSDate new]];
@@ -94,6 +96,7 @@
     NSDictionary *dic=@{@"orderStatus":@"1",@"createDate":dateStr,@"consumptionStatus":@"1"};
     __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+        [daiXiaoFei addObjectsFromArray:result];
         UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
         view1.backgroundColor=[UIColor whiteColor];
         _tableView.tableHeaderView=view1;
@@ -110,6 +113,7 @@
     NSDictionary *dic=@{@"orderStatus":@"1",@"createDate":dateStr,@"consumptionStatus":@"0"};
     __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+        [daiXiaoFei addObjectsFromArray:result];
         UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
         view1.backgroundColor=[UIColor whiteColor];
         _tableView.tableHeaderView=view1;
@@ -126,6 +130,7 @@
     NSDictionary *dic=@{@"orderStatus":@"7",@"createDate":dateStr};
     __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+        [daiXiaoFei addObjectsFromArray:result];
         UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
         view1.backgroundColor=[UIColor whiteColor];
         _tableView.tableHeaderView=view1;
@@ -144,6 +149,7 @@
     NSDictionary *dic=@{@"orderStatus":@"3,4,5",@"createDate":dateStr};
     __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+        [daiXiaoFei addObjectsFromArray:result];
         UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
         view1.backgroundColor=[UIColor whiteColor];
         _tableView.tableHeaderView=view1;
@@ -154,6 +160,21 @@
 #pragma mark 搜索
 -(void)serchTextValChange:(UITextField *)sender{
     NSString *ss=sender.text;
+    [serchDaiXiaoFei removeAllObjects];
+    if([ss isEqualToString:@""]){
+        serchDaiXiaoFei =[daiXiaoFei mutableCopy];
+    }else{
+        for (OrderInfoModel *orderInfoModel in daiXiaoFei) {
+            NSString *orderNo=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+            
+            NSRange range = [orderNo rangeOfString:ss];//匹配得到的下标
+            NSLog(@"rang:%@",NSStringFromRange(range));
+            if (range.length >0){
+                [serchDaiXiaoFei addObject:orderInfoModel ];
+            }
+        }
+    }
+    [_tableView reloadData];
     NSLog(@"*****%@",ss);
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -168,6 +189,8 @@
                 return orderInfoModel.goodslist.count;
             }else if(orderInfoModel.ordertype==0){
                 return 1;
+            }else{
+                return 1;
             }
             
             break;
@@ -179,6 +202,8 @@
             if(orderInfoModel.ordertype==2){
                 return orderInfoModel.goodslist.count;
             }else if(orderInfoModel.ordertype==0){
+                return 1;
+            }else{
                 return 1;
             }
             
@@ -193,6 +218,8 @@
                 return orderInfoModel.goodslist.count;
             }else if(orderInfoModel.ordertype==0){
                 return 1;
+            }else{
+                return 1;
             }
             
             break;
@@ -205,8 +232,9 @@
                 return orderInfoModel.goodslist.count;
             }else if(orderInfoModel.ordertype==0){
                 return 1;
+            }else{
+                return 1;
             }
-            
             break;
         }
         default://退单
@@ -216,8 +244,9 @@
                 return orderInfoModel.goodslist.count;
             }else if(orderInfoModel.ordertype==0){
                 return 1;
+            }else{
+                return 1;
             }
-            
             break;
         }
             
@@ -286,7 +315,11 @@
             orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
             [orderBottomView.duimaBtn addTarget:self action:@selector(duimaAct:) forControlEvents:UIControlEventTouchUpInside];
             [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
+            
             [orderBottomView.dianhuaBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+            orderBottomView.duimaBtn.tag=section;
+            orderBottomView.siliaoBtn.tag=section;
+            orderBottomView.dianhuaBtn.tag=section;
             //    view.backgroundColor=[UIColor yellowColor];
             return orderBottomView;
             break;
@@ -302,6 +335,9 @@
             [orderBottomView.kazuoBtn addTarget:self action:@selector(kazuoAct:) forControlEvents:UIControlEventTouchUpInside];
             [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
             [orderBottomView.dianhuaBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+            orderBottomView.kazuoBtn.tag=section;
+            orderBottomView.siliaoBtn.tag=section;
+            orderBottomView.dianhuaBtn.tag=section;
             //    view.backgroundColor=[UIColor yellowColor];
             return orderBottomView;
             break;
@@ -316,6 +352,8 @@
             orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
             [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
             [orderBottomView.dianhuaBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+            orderBottomView.siliaoBtn.tag=section;
+            orderBottomView.dianhuaBtn.tag=section;
             //    view.backgroundColor=[UIColor yellowColor];
             return orderBottomView;
             break;
@@ -328,8 +366,8 @@
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomForXFView" owner:nil options:nil];
             OrderBottomForXFView *orderBottomView= (OrderBottomForXFView *)[nibView objectAtIndex:0];
             orderBottomView.fukuanLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
-//            orderBottomView.jiesuanLal.text=orderInfoModel.jiesuanmoney;
-            orderBottomView.yjLal.text=@"佣金:￥300";
+            orderBottomView.jiesuanLal.text=[NSString stringWithFormat:@"￥%.f",orderInfoModel.amountPay.doubleValue- orderInfoModel.rebateAmout.doubleValue];
+            orderBottomView.yjLal.text=[NSString stringWithFormat:@"佣金:￥%@",orderInfoModel.rebateAmout];
             //    view.backgroundColor=[UIColor yellowColor];
             return orderBottomView;
             break;
@@ -342,6 +380,14 @@
             OrderBottomForXFView *orderBottomView= (OrderBottomForXFView *)[nibView objectAtIndex:0];
             orderBottomView.titleOneLal.text=@"实际退款";
             orderBottomView.titleTwoLal.textColor=RGB(234, 79, 79);
+            if(orderInfoModel.orderStatus==5){
+                orderBottomView.titleTwoLal.text=@"已违约（违约金）";
+                orderBottomView.jiesuanLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.penalty];
+            }else{
+                orderBottomView.titleTwoLal.text=@"未违约";
+            }
+            orderBottomView.fukuanLal.text=[NSString stringWithFormat:@"￥%.f",orderInfoModel.amountPay.doubleValue- orderInfoModel.penalty.doubleValue];
+            
 //            if(orderInfoModel.isWeiYue){
 //                orderBottomView.titleTwoLal.text=@"已违约（违约金）";
 //                orderBottomView.jiesuanLal.text=orderInfoModel.jiesuanmoney;
@@ -401,6 +447,23 @@
             
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
             OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+            orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+            orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
+            orderHeadView.nameLal.text=orderInfoModel.username;
+            orderHeadView.userImgeView.layer.masksToBounds =YES;
+            orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
+            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+            //
+            if(orderInfoModel.ordertype==0){
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
+                orderHeadView.detLal.text=orderInfoModel.reachtime;
+            }else if(orderInfoModel.ordertype==1){
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
+                orderHeadView.detLal.text=orderInfoModel.reachtime;
+            }else{
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
+            }
+            [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"zuo"]];
 //            orderHeadView.nameLal.text=orderInfoModel.name;
 //            
 //            orderHeadView.detLal.text=orderInfoModel.paytime;
@@ -415,6 +478,23 @@
             
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
             OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+            orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+//            orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
+            orderHeadView.nameLal.text=orderInfoModel.username;
+            orderHeadView.userImgeView.layer.masksToBounds =YES;
+            orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
+            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+            //
+            if(orderInfoModel.ordertype==0){
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
+                orderHeadView.detLal.text=orderInfoModel.reachtime;
+            }else if(orderInfoModel.ordertype==1){
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
+                orderHeadView.detLal.text=orderInfoModel.reachtime;
+            }else{
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
+            }
+            [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"cui"]];
 //            orderHeadView.nameLal.text=orderInfoModel.name;
             
             //            orderHeadView.detLal.text=orderInfoModel.paytime;
@@ -429,6 +509,23 @@
             
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
             OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+            orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+            orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
+            orderHeadView.nameLal.text=orderInfoModel.consumptionCode;
+            orderHeadView.userImgeView.layer.masksToBounds =YES;
+            orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
+            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+            //
+            if(orderInfoModel.ordertype==0){
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
+                orderHeadView.detLal.text=orderInfoModel.reachtime;
+            }else if(orderInfoModel.ordertype==1){
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
+                orderHeadView.detLal.text=orderInfoModel.reachtime;
+            }else{
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
+            }
+            [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"wan"]];
 //            orderHeadView.nameLal.text=orderInfoModel.name;
 //            orderHeadView.detLal.text=orderInfoModel.paytime;
             //            orderHeadView.detLal.text=orderInfoModel.paytime;
@@ -442,6 +539,28 @@
             
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
             OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+            orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+            orderHeadView.orderTimeLal.text=orderInfoModel.consumptionCode;
+            orderHeadView.nameLal.text=orderInfoModel.username;
+            orderHeadView.userImgeView.layer.masksToBounds =YES;
+            orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
+            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+            //
+            if(orderInfoModel.ordertype==0){
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
+                orderHeadView.detLal.text=orderInfoModel.reachtime;
+            }else if(orderInfoModel.ordertype==1){
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
+                orderHeadView.detLal.text=orderInfoModel.reachtime;
+            }else{
+                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
+            }
+            if(orderInfoModel.orderStatus==5){
+                [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"tui"]];
+            }else{
+                [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"wei"]];
+            }
+            
 //            orderHeadView.nameLal.text=orderInfoModel.name;
 //            orderHeadView.detLal.text=orderInfoModel.paytime;
             //            orderHeadView.detLal.text=orderInfoModel.paytime;
@@ -474,6 +593,8 @@
     }else{
         orderInfoModel=daiXiaoFei[indexPath.section];
     }
+    
+    NSLog(@"******套餐类型%@*****",[NSString stringWithFormat:@"%d",orderInfoModel.ordertype ]);
     if(orderInfoModel.ordertype==0){
     //0-－套餐订单
         
@@ -487,15 +608,18 @@
         shopDetailmodel.count=[NSString stringWithFormat:@"[适合%@-%@人]",setMealVOModel.minnum,setMealVOModel.maxnum];
     }else if(orderInfoModel.ordertype==1){
     //拼客订单
-        NSArray *arr=orderInfoModel.goodslist;
-        NSDictionary *dicTemp=arr[indexPath.row];
-        GoodsModel *goodsModel=[GoodsModel objectWithKeyValues:dicTemp];
-        ProductVOModel *productVOModel=goodsModel.productVO;
-        shopDetailmodel.name=goodsModel.fullName;
-        shopDetailmodel.img=productVOModel.image;
-        shopDetailmodel.youfeiPrice=productVOModel.price;
-        shopDetailmodel.money=productVOModel.marketprice;
-        shopDetailmodel.count=[NSString stringWithFormat:@"X%@",goodsModel.quantity];
+        
+        SetMealVOModel *setMealVOModel=orderInfoModel.pinkerinfo;
+        shopDetailmodel.name=setMealVOModel.smname;
+        shopDetailmodel.img=setMealVOModel.linkUrl;
+        shopDetailmodel.youfeiPrice=setMealVOModel.price;
+        shopDetailmodel.money=setMealVOModel.marketprice;
+        if(mMenuHriZontal.selectIndex==1||mMenuHriZontal.selectIndex==2){
+            shopDetailmodel.count=[NSString stringWithFormat:@"拼客人数%@（%d人参与）",orderInfoModel.allnum,(int)orderInfoModel.pinkerList.count];
+        }else{
+            shopDetailmodel.count=[NSString stringWithFormat:@"%@人拼客",orderInfoModel.allnum];
+        }
+        
     }else{
         //吃喝订单
         NSArray *arr=orderInfoModel.goodslist;
@@ -519,11 +643,12 @@
     UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, 290, 0.5)];
     lineLal.backgroundColor=RGB(199, 199, 199);
     [cell addSubview:lineLal];
-    cell.zhekouLal.text=shopDetailmodel.youfeiPrice;
+    cell.zhekouLal.text=[NSString stringWithFormat:@"￥%@",shopDetailmodel.youfeiPrice];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:shopDetailmodel.money attributes:attribtDic];
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",shopDetailmodel.money] attributes:attribtDic];
     cell.moneylal.attributedText=attribtStr;
-//    @property (weak, nonatomic) IBOutlet UIImageView *detImageView;
+    [cell.detImageView setImageWithURL:[NSURL URLWithString:shopDetailmodel.img]];
+
     
     
     return cell;
@@ -647,6 +772,7 @@
     xiaoFeiMaUiew= (XiaoFeiMaUiew *)[nibView objectAtIndex:0];
     xiaoFeiMaUiew.top=-xiaoFeiMaUiew.height;
     [xiaoFeiMaUiew.xiaofeiMaTextField addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    xiaoFeiMaUiew.xiaofeiMaTextField.tag=sender.tag;
     xiaoFeiMaUiew.xiaofeiMaTextField.returnKeyType=UIReturnKeyDone;
     xiaoFeiMaUiew.xiaofeiMaTextField.delegate=self;
     [_bgView addSubview:xiaoFeiMaUiew];
@@ -668,16 +794,53 @@
 #pragma mark return事件
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self SetViewDisappearForDuiMa:nil];
+    //对码
+    
+    OrderInfoModel *orderInfoModel=serchDaiXiaoFei[textField.tag];
+    
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id],@"consumptionCode":textField.text};
+    __weak __typeof(self)weakSelf = self;
+    [[ZSManageHttpTool shareInstance] setManagerConfirmOrderWithParams:dic complete:^(BOOL result) {
+        if(result){
+            [self showMessage:@"消费码兑换成功！"];
+            [weakSelf getDaiXiaoFei];
+        }
+    }];
     return YES;
 }
 
 #pragma mark 私聊
 -(void)siliaoAct:(OrderHandleButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    if(mMenuHriZontal.selectIndex==0){
+        orderInfoModel=serchDaiXiaoFei[sender.tag];
+    }else{
+        orderInfoModel=daiXiaoFei[sender.tag];
+    }
+    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+    conversationVC.targetId = orderInfoModel.imuserid; // 接收者的 targetId，这里为举例。
+    conversationVC.userName =orderInfoModel.username; // 接受者的 username，这里为举例。
+    conversationVC.title =orderInfoModel.username; // 会话的 title。
     
+    // 把单聊视图控制器添加到导航栈。
+    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 #pragma mark 电话
 -(void)dianhuaAct:(OrderHandleButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    if(mMenuHriZontal.selectIndex==0){
+        orderInfoModel=serchDaiXiaoFei[sender.tag];
+    }else{
+        orderInfoModel=daiXiaoFei[sender.tag];
+    }
     
+    
+    if( [MyUtil isPureInt:orderInfoModel.phone]){
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",orderInfoModel.phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        
+    }
 }
 #pragma mark 卡座
 -(void)kazuoAct:(OrderHandleButton *)sender{
@@ -822,6 +985,44 @@
     self.timeLal.text=[dateFormatter stringFromDate:[self.calendarLogic.selectedCalendarDay date]];
     nowDate=[self.calendarLogic.selectedCalendarDay date];
     [self SetViewDisappear:sender];
+    switch (mMenuHriZontal.selectIndex) {
+            
+        case 0://待消费
+        {
+            ////ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
+            [self getDaiXiaoFei];
+            
+            break;
+        }
+            
+        case 1:// 待留位
+        {
+            [self getDaiLiuWei];
+            break;
+            
+        }
+            
+        case 2:// 待催促
+        {
+            [self getDaiCuiCu];
+            break;
+        }
+            
+        case 3:// 已消费
+        {
+            [self getDaiXiaoFei];
+            
+            break;
+        }
+        default://退单
+        {
+            [self getTuiDan];
+            
+            break;
+        }
+            
+    }
+    
 //    if (_bgView)
 //    {
 //        _bgView.backgroundColor=[UIColor clearColor];
@@ -840,6 +1041,7 @@
 //    }
 }
 -(void)SetViewDisappearForDuiMa:(id)sender{
+    
     if (_bgView)
     {
         _bgView.backgroundColor=[UIColor clearColor];
@@ -856,9 +1058,35 @@
         
         _bgView=nil;
     }
+    
 }
--(void)SetViewDisappearForKaZuoSure:(id)sender{
+-(void)SetViewDisappearForKaZuoSure:(UIButton *)sender{
     [self SetViewDisappearForKaZuo:sender];
+    OrderInfoModel *orderInfoModel=daiXiaoFei[sender.tag];
+    __weak __typeof(self)weakSelf = self;
+    if(kaZuoView.YesKaZuoBtn.selected==true){
+        //留座位
+        NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+        
+        [[ZSManageHttpTool shareInstance] setManagerConfirmSeatWithParams:dic complete:^(BOOL result) {
+            if(result){
+                [self showMessage:@"留座成功！"];
+                [weakSelf getDaiLiuWei];
+            }
+        }];
+    }else{
+        //取消订单
+        NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+        
+        [[ZSManageHttpTool shareInstance] setMangerCancelWithParams:dic complete:^(BOOL result) {
+            if(result){
+                [self showMessage:@"取消订单成功！"];
+                [weakSelf getDaiLiuWei];
+            }
+        }];
+
+    }
+    
 }
 -(void)SetViewDisappearForKaZuo:(id)sender{
     if (_bgView)

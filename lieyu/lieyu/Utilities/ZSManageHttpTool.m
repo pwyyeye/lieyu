@@ -52,6 +52,94 @@
     }];
 
 }
+
+#pragma mark - 专属经理订单对码
+-(void) setManagerConfirmOrderWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_DUIMA baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+                
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [MyUtil showMessage:message];
+            [app stopLoading];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
+#pragma mark -专属经理-确认卡座
+-(void) setManagerConfirmSeatWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KAZUO_SURE baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+                
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [MyUtil showMessage:message];
+            [app stopLoading];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
+
+#pragma mark -专属经理-取消订单
+-(void) setMangerCancelWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KAZUO_CANCEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+                
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [MyUtil showMessage:message];
+            [app stopLoading];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
+
+
 #pragma mark -获取专属经理-套餐列表
 -(void) getMyTaoCanListWithParams:(NSDictionary*)params
     block:(void(^)(NSMutableArray* result)) block{
