@@ -33,10 +33,17 @@
 //获取酒吧列表
 #define LY_JIUBA_LIST  @"toPlayAction.do?action=list"
 
-
-//专属经理套餐列表
+/***订单***/
+//专属经理订单列表
 #define ZS_ORDER_LIST  @"smOrderAction.do?action=list"
+//专属经理订单-对码
+#define ZS_DUIMA  @"lyOrderAction.do?action=managerConfirmOrder"
+//专属经理-确认卡座
+#define ZS_KAZUO_SURE @"lyOrderAction.do?action=managerConfirmSeat"
+//专属经理-取消订单
+#define ZS_KAZUO_CANCEL @"lyOrderAction.do?action=mangerCancel"
 
+/***商铺管理***/
 //专属经理套餐列表
 #define ZS_TAOCANLIST  @"lySetMealAction.do?action=list"
 //专属经理拼客套餐列表

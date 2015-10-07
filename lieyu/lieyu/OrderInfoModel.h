@@ -10,7 +10,7 @@
 #import "PinkInfoModel.h"
 #import "SetMealInfoModel.h"
 @interface OrderInfoModel : NSObject
-@property(nonatomic,assign)int allnum;
+@property(nonatomic,copy)NSString *allnum;
 @property(nonatomic,copy)NSString *amountPay;
 @property(nonatomic,copy)NSString * avatar_img;
 @property(nonatomic,assign)int barid;
@@ -32,11 +32,11 @@
 @property(nonatomic,assign)int orderStatus;
 @property(nonatomic,copy)NSString * orderTypeName;
 @property(nonatomic,assign)int paymentStatus;
-@property(nonatomic,assign)int penalty;
+@property(nonatomic,copy)NSString * penalty;
 @property(nonatomic,copy)NSString * phone;
 @property(nonatomic,retain)NSArray * pinkerList;
 @property(nonatomic,assign)int pinkerType;
-@property(nonatomic,retain)PinkInfoModel * pinkerinfo;
+@property(nonatomic,retain)SetMealVOModel * pinkerinfo;
 @property(nonatomic,copy)NSString * reachtime;
 @property(nonatomic,retain)SetMealInfoModel * setMealInfo;
 @property(nonatomic,copy)NSString * sn;
