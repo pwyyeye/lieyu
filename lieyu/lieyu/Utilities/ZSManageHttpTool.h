@@ -11,6 +11,10 @@
 #import "HTTPController.h"
 @interface ZSManageHttpTool : NSObject
 + (ZSManageHttpTool *)shareInstance;
+//专属经理套餐列表
+-(void) getZSOrderListWithParams:(NSDictionary*)params
+                            block:(void(^)(NSMutableArray* result)) block;
+
 //获取专属经理-商铺套餐列表
 -(void) getMyTaoCanListWithParams:(NSDictionary*)params
                             block:(void(^)(NSMutableArray* result)) block;

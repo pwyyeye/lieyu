@@ -125,6 +125,11 @@
 		15EA6DCC1BC014BD00620C9E /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6DCB1BC014BD00620C9E /* UserModel.m */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
+		15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C451BC3751300756153 /* PinkInfoModel.m */; };
+		15EB7C491BC3753B00756153 /* SetMealInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C481BC3753B00756153 /* SetMealInfoModel.m */; };
+		15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C4B1BC3785200756153 /* SetMealVOModel.m */; };
+		15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */; };
+		15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C511BC3BE4D00756153 /* GoodsModel.m */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
@@ -546,6 +551,16 @@
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
+		15EB7C441BC3751300756153 /* PinkInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinkInfoModel.h; sourceTree = "<group>"; };
+		15EB7C451BC3751300756153 /* PinkInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinkInfoModel.m; sourceTree = "<group>"; };
+		15EB7C471BC3753B00756153 /* SetMealInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMealInfoModel.h; sourceTree = "<group>"; };
+		15EB7C481BC3753B00756153 /* SetMealInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMealInfoModel.m; sourceTree = "<group>"; };
+		15EB7C4A1BC3785200756153 /* SetMealVOModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMealVOModel.h; sourceTree = "<group>"; };
+		15EB7C4B1BC3785200756153 /* SetMealVOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMealVOModel.m; sourceTree = "<group>"; };
+		15EB7C4D1BC37A1A00756153 /* ProductVOModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductVOModel.h; sourceTree = "<group>"; };
+		15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductVOModel.m; sourceTree = "<group>"; };
+		15EB7C501BC3BE4D00756153 /* GoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsModel.h; sourceTree = "<group>"; };
+		15EB7C511BC3BE4D00756153 /* GoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsModel.m; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
 		15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
@@ -1611,6 +1626,16 @@
 				15EA6DBE1BBE479A00620C9E /* ProductCategoryModel.m */,
 				15EA6DC01BBE47C400620C9E /* BrandModel.h */,
 				15EA6DC11BBE47C400620C9E /* BrandModel.m */,
+				15EB7C441BC3751300756153 /* PinkInfoModel.h */,
+				15EB7C451BC3751300756153 /* PinkInfoModel.m */,
+				15EB7C471BC3753B00756153 /* SetMealInfoModel.h */,
+				15EB7C481BC3753B00756153 /* SetMealInfoModel.m */,
+				15EB7C4A1BC3785200756153 /* SetMealVOModel.h */,
+				15EB7C4B1BC3785200756153 /* SetMealVOModel.m */,
+				15EB7C4D1BC37A1A00756153 /* ProductVOModel.h */,
+				15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */,
+				15EB7C501BC3BE4D00756153 /* GoodsModel.h */,
+				15EB7C511BC3BE4D00756153 /* GoodsModel.m */,
 			);
 			name = modles;
 			sourceTree = "<group>";
@@ -2557,11 +2582,13 @@
 				15E184A01BB8D20700681BB2 /* MyUtil.m in Sources */,
 				15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
+				15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */,
 				A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */,
 				15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */,
 				15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
+				15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
@@ -2646,6 +2673,7 @@
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
 				D761F01B1BA5AED3000757B0 /* MJRefreshBackStateFooter.m in Sources */,
+				15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */,
 				15013AF71BBA33BE00061FAF /* SDImageCache.m in Sources */,
 				A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */,
 				D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */,
@@ -2656,6 +2684,7 @@
 				15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
+				15EB7C491BC3753B00756153 /* SetMealInfoModel.m in Sources */,
 				15E2404A1BB0F3540090D240 /* IQTitleBarButtonItem.m in Sources */,
 				15E240C61BB3CAC20090D240 /* LYResetPasswordViewController.m in Sources */,
 				151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */,
@@ -2673,6 +2702,7 @@
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
 				A2FD578E1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
+				15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */,
 				D761F0221BA5AED3000757B0 /* UIScrollView+MJRefresh.m in Sources */,
 				A2F9DA6A1BAA58B1009DEAF3 /* DetailCell.m in Sources */,
 				15EA6DC21BBE47C400620C9E /* BrandModel.m in Sources */,

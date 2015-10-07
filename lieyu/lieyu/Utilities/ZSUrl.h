@@ -35,6 +35,9 @@
 
 
 //专属经理套餐列表
+#define ZS_ORDER_LIST  @"smOrderAction.do?action=list"
+
+//专属经理套餐列表
 #define ZS_TAOCANLIST  @"lySetMealAction.do?action=list"
 //专属经理拼客套餐列表
 #define ZS_PINKELIST  @"lyPinkerAction.do?action=list"

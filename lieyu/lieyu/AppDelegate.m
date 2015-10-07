@@ -109,6 +109,7 @@ UINavigationControllerDelegate
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
         [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:dic block:^(NSString *result) {
             _im_token=result;
+            [self connectWithToken];
         }];
     }
     
@@ -118,11 +119,15 @@ UINavigationControllerDelegate
 -(void)connectWithToken{
     [[RCIM sharedRCIM] connectWithToken:_im_token success:^(NSString *userId) {
         // Connect 成功
+        NSLog(@"****登录成功%@",userId);
     }
     error:^(RCConnectErrorCode status) {
+        NSLog(@"****登录失败");
                                       // Connect 失败
     }
     tokenIncorrect:^() {
+        NSLog(@"Token 失效的状态处理");
+
                              // Token 失效的状态处理
     }];
 }

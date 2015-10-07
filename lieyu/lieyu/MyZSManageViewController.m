@@ -47,7 +47,7 @@
 -(void)getZSDetail{
     [zsList removeAllObjects];
     __weak __typeof(self)weakSelf = self;
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 //    NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:app.userModel.userid]};
     NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:2]};
     [[LYUserHttpTool shareInstance]getMyVipStore:dic block:^(NSMutableArray *result) {
@@ -181,9 +181,9 @@
     
     RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-    conversationVC.targetId = @"id_xxxx"; // 接收者的 targetId，这里为举例。
-    conversationVC.userName = @"name_xxx"; // 接受者的 username，这里为举例。
-    conversationVC.title = @"name_xxx"; // 会话的 title。
+    conversationVC.targetId = detailModel.imUserId; // 接收者的 targetId，这里为举例。
+    conversationVC.userName =detailModel.userName; // 接受者的 username，这里为举例。
+    conversationVC.title = detailModel.userName; // 会话的 title。
     
     // 把单聊视图控制器添加到导航栈。
     [self.navigationController pushViewController:conversationVC animated:YES];
