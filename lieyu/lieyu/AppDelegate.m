@@ -120,7 +120,7 @@ UINavigationControllerDelegate
 //IM连接服务器
 -(void)connectWithToken{
     NSLog(@"_im_token=%@",_im_token);
-    [[RCIM sharedRCIM] connectWithToken:_im_token success:^(NSString *userId) {
+    [[RCIM sharedRCIM] connectWithToken:@"z/bhY6asGlRDp0LMYET3CG3k1jdpB8s6nY70TLjkQTvQBJWxYyZ4dh7doKdR3GzxY/le1kUIEb/ZYUde6PEC+ZMJRJlD9tM5" success:^(NSString *userId) {
         // Connect 成功
         NSLog(@"****登录成功%@",userId);
     }
