@@ -14,7 +14,7 @@
 #import <RongIMKit/RongIMKit.h>
 @interface AppDelegate ()
 <
-UINavigationControllerDelegate
+UINavigationControllerDelegate,RCIMUserInfoDataSource
 >
 @end
 
@@ -108,7 +108,7 @@ UINavigationControllerDelegate
     if(_userModel){
         NSLog(@"userid=%d",_userModel.userid);
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
-        [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:dic block:^(NSString *result) {
+        [[LYCommonHttpTool shareInstance] getTokenByIMWithParams:dic block:^(NSString *result) {
             _im_token=result;
             
             [self connectWithToken];
@@ -133,6 +133,21 @@ UINavigationControllerDelegate
 
                              // Token 失效的状态处理
     }];
+}
+
+// 获取用户信息的方法。
+-(void)getUserInfoWithUserId:(NSString *)userId completion:(void(^)(RCUserInfo* userInfo))completion
+{
+    // 此处最终代码逻辑实现需要您从本地缓存或服务器端获取用户信息。
+    
+    
+        RCUserInfo *user = [[RCUserInfo alloc]init];
+        user.userId = @"1";
+        user.name = @"韩梅梅";
+        user.portraitUri = @"http://rongcloud-web.qiniudn.com/docs_demo_rongcloud_logo.png";
+        
+        return completion(user);
+    
 }
 @end
 

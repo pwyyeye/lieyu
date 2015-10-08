@@ -49,7 +49,7 @@
     </objects>
     <resources>
         <image name="dan" width="25" height="25"/>
-        <image name="orderDai" width="25" height="25"/>
+        <image name="orderDai" width="22" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

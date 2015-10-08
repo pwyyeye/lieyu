@@ -26,7 +26,7 @@
     });
     return instance;
 }
-#pragma mark -获取专属经理套餐列表
+#pragma mark -获取专属经理订单列表
 -(void) getZSOrderListWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
