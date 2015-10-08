@@ -106,9 +106,11 @@ UINavigationControllerDelegate
 //获取IMToken
 -(void)getImToken{
     if(_userModel){
+        NSLog(@"userid=%d",_userModel.userid);
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
         [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:dic block:^(NSString *result) {
             _im_token=result;
+            
             [self connectWithToken];
         }];
     }
@@ -117,6 +119,7 @@ UINavigationControllerDelegate
 }
 //IM连接服务器
 -(void)connectWithToken{
+    NSLog(@"_im_token=%@",_im_token);
     [[RCIM sharedRCIM] connectWithToken:_im_token success:^(NSString *userId) {
         // Connect 成功
         NSLog(@"****登录成功%@",userId);
