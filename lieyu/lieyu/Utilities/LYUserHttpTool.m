@@ -10,6 +10,7 @@
 #import "HTTPController.h"
 #import "ZSDetailModel.h"
 #import "JiuBaModel.h"
+#import "OrderInfoModel.h"
 @implementation LYUserHttpTool
 
 + (LYUserHttpTool *)shareInstance{
@@ -201,5 +202,32 @@
     } failure:^(NSError *err) {
         [app stopLoading];
     }];
+}
+
+#pragma mark -获取我的订单列表
+-(void) getMyOrderListWithParams:(NSDictionary*)params
+                           block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+    
 }
 @end

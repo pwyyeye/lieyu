@@ -78,4 +78,5 @@
 //一周卡座是否满座
 #define ZS_KUZUOISFULL  @"lySetDeckFullAction.do?action=list"
 
+
 #endif

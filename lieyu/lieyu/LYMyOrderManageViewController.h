@@ -9,10 +9,16 @@
 #import "LYBaseViewController.h"
 #import "MenuHrizontal.h"
 #import "NeedHideNavigationBar.h"
+#import "NSObject+MJKeyValue.h"
 @interface LYMyOrderManageViewController : LYBaseViewController<MenuHrizontalDelegate>
 {
     MenuHrizontal *mMenuHriZontal;
+    NSMutableArray *dataList;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
+@property (weak, nonatomic) IBOutlet UIView *tobView;
+@property (weak, nonatomic) IBOutlet UIView *nodataView;
+@property (weak, nonatomic) IBOutlet UIImageView *kongImageView;
+
 @end
