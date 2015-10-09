@@ -14,6 +14,7 @@
 {
     MenuHrizontal *mMenuHriZontal;
     NSMutableArray *dataList;
+    int userId;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *menuView;

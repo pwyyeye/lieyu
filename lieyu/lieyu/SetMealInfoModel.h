@@ -19,6 +19,7 @@
 @property(nonatomic,copy)NSString * inmenberAvatar_img;
 @property(nonatomic,copy)NSString * modifyDate;
 @property(nonatomic,assign)double price;
+
 @property(nonatomic,retain)ProductVOModel * productVO;
 @property(nonatomic,assign)double quantity;
 @property(nonatomic,assign)double returnQuantity;

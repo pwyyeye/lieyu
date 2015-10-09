@@ -21,7 +21,7 @@
         }
         if (mScrollView == nil) {
             mScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            mScrollView.backgroundColor=RGB(255, 13, 94);
+            mScrollView.backgroundColor=RGB(229, 255, 245);
             mScrollView.showsHorizontalScrollIndicator = NO;
         }
         if (mItemInfoArray == nil) {

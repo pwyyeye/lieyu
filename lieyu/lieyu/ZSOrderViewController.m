@@ -59,7 +59,7 @@
 //    7－已完成
 //    8-已返利
 //    9-已评价
-    
+//    10-退款
 //    "consumptionStatus": 0,1  0  不一定去 1 一定去
     // Do any additional setup after loading the view from its nib.
 }
@@ -511,7 +511,7 @@
             OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
             orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
             orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
-            orderHeadView.nameLal.text=orderInfoModel.consumptionCode;
+            orderHeadView.nameLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
             [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
@@ -540,7 +540,7 @@
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
             OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
             orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
-            orderHeadView.orderTimeLal.text=orderInfoModel.consumptionCode;
+            orderHeadView.nameLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
             orderHeadView.nameLal.text=orderInfoModel.username;
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;

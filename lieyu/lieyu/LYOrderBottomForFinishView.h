@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface LYOrderBottomForFinishView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *titleTwoLal;
+@property (weak, nonatomic) IBOutlet UILabel *moneyOnelal;
 
 @property (weak, nonatomic) IBOutlet UILabel *moneyLal;
 @property (weak, nonatomic) IBOutlet UILabel *titleLal;
