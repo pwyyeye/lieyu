@@ -9,12 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "PinkInfoModel.h"
 #import "SetMealInfoModel.h"
+#import "JiuBaModel.h"
 @interface OrderInfoModel : NSObject
 @property(nonatomic,copy)NSString *allnum;
 @property(nonatomic,copy)NSString *amountPay;
 @property(nonatomic,copy)NSString * avatar_img;
 @property(nonatomic,assign)int barid;
-@property(nonatomic,retain)NSArray * barinfo;
+@property(nonatomic,retain)JiuBaModel * barinfo;
+@property(nonatomic,copy)NSString * beforeOrAfter;
+@property(nonatomic,copy)NSString * begindate;
+@property(nonatomic,copy)NSString * checkUserAvatar_img;
+@property(nonatomic,copy)NSString * checkUserImUserid;
+@property(nonatomic,copy)NSString * checkUserName;
+@property(nonatomic,copy)NSString * checkUserMobile;
 @property(nonatomic,assign)int checkuserid;
 @property(nonatomic,assign)int ordertype;
 @property(nonatomic,copy)NSString * consumptionCode;
@@ -45,6 +52,13 @@
 @property(nonatomic,assign)int tax;
 @property(nonatomic,copy)NSString *rebateAmout;
 /*
+ 
+ "beforeOrAfter": "",
+ "begindate": "",
+ "checkUserAvatar_img": "http://source.lie98.com/pwyArtboard1.png?imageView2/0/w/80/h/80",
+ "checkUserImUserid": "ISm8H83sCD4=",
+ "checkUserName": "帅爆了",
+ "checkuserid": 0,
 {
     "allnum": 1,
     "amountPay": 2000,

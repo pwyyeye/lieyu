@@ -42,7 +42,7 @@
 @property(nonatomic,copy)NSString * offshelfDate;
 @property(nonatomic,copy)NSString *price;
 @property(nonatomic,assign)int productimageid;
-@property(nonatomic,assign)double rebate;
+@property(nonatomic,copy)NSString *rebate;
 @property(nonatomic,assign)double sales;
 @property(nonatomic,assign)int scorecount;
 @property(nonatomic,assign)int stock;
