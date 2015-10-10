@@ -649,7 +649,7 @@
     cell.moneylal.attributedText=attribtStr;
     [cell.detImageView setImageWithURL:[NSURL URLWithString:shopDetailmodel.img]];
 
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
     

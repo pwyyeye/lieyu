@@ -16,6 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLal;
 @property (weak, nonatomic) IBOutlet UILabel *miaosuLal;
 @property (weak, nonatomic) IBOutlet UILabel *miaosuCenterLal;
+@property (weak, nonatomic) IBOutlet UILabel *delTitelTwoLal;
+@property (weak, nonatomic) IBOutlet UILabel *weiyuejinLal;
 @property (weak, nonatomic) IBOutlet UIButton *oneBtn;
+@property (weak, nonatomic) IBOutlet UILabel *deTitleOne;
 @property (weak, nonatomic) IBOutlet UIButton *secondBtn;
 @end

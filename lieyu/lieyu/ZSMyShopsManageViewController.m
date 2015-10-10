@@ -259,6 +259,7 @@
             cell.zhekouLal.text=[NSString stringWithFormat:@"￥%.f",taoCanModel.price];
             NSString *flStr=[NSString stringWithFormat:@"分销佣金：%.f%\%",taoCanModel.rebate*100];
             [cell.yjBtn setTitle:flStr forState:0];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             break;
         }
@@ -284,6 +285,7 @@
             cell.didianLal.text=pinKeModel.subtitle;
             cell.shopNameLal.text=@"";
             cell.timeLal.text=pinKeModel.smdate;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             break;
             
@@ -310,6 +312,7 @@
             cell.moneyLal.text=[NSString stringWithFormat:@"￥%.f",cheHeModel.price];
             NSString *flStr=[NSString stringWithFormat:@"分销佣金：%.f%\%",cheHeModel.rebate*100];
             [cell.yjBtn setTitle:flStr forState:0];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             break;
         }
@@ -329,6 +332,7 @@
             KuCunModel *kuCunModel=serchDataList[indexPath.row];
             cell.namelal.text=kuCunModel.name;
             cell.countLal.text=[NSString stringWithFormat:@"%d件",kuCunModel.stock];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             break;
         }

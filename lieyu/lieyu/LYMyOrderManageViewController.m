@@ -15,10 +15,12 @@
 #import "OrderHeadView.h"
 #import "OrderDetailCell.h"
 #import "ShopDetailmodel.h"
+#import "PinkInfoModel.h"
 #import "GoodsModel.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "OrderHandleButton.h"
 #import <RongIMKit/RongIMKit.h>
+
 @interface LYMyOrderManageViewController ()
 
 @end
@@ -27,36 +29,135 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    nowDic =[[NSMutableDictionary alloc]init];
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     userId=app.userModel.userid;
+    pageCount=1;
+    perCount=5;
     [self.tableView setHidden:YES];
     [self.nodataView setHidden:NO];
     [self.kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
     dataList=[[NSMutableArray alloc]init];
     [self getMenuHrizontal];
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     [self getAllOrder];
+    
     // Do any additional setup after loading the view from its nib.
 }
-#pragma mark 获取所有订单
+#pragma mark 刷新
+-(void)refreshData{
+    pageCount=1;
+    [nowDic removeObjectForKey:@"p"];
+    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+    [self getOrderWithDic:nowDic];
+    
+}
+#pragma mark 下拉加载更多
+-(void)loadMoreData{
+    [nowDic removeObjectForKey:@"p"];
+    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+    [self getOrderWithDicMore:nowDic];
+
+}
+#pragma mark 获取所有订单数据
 -(void)getAllOrder{
+    pageCount=1;
     [dataList removeAllObjects];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount]};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     
+    [self getOrderWithDic:dic];
+}
+#pragma mark 获取待付款数据
+-(void)getDaiFuKuan{
+    pageCount=1;
+    [dataList removeAllObjects];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"0"};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     
-//    NSDictionary *dic=@{@"orderStatus":@"0",@"createDate":dateStr};
+    [self getOrderWithDic:dic];
+}
+#pragma mark 获取待消费数据
+-(void)getDaiXiaoFei{
+    pageCount=1;
+    [dataList removeAllObjects];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"1,2"};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+    
+    [self getOrderWithDic:dic];
+}
+#pragma mark 获取已返利数据
+-(void)getYiFanLi{
+    pageCount=1;
+    [dataList removeAllObjects];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"8,9"};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+    
+    [self getOrderWithDic:dic];
+}
+#pragma mark 获取待返利数据
+-(void)getDaiFanLi{
+    pageCount=1;
+    [dataList removeAllObjects];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"7"};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+    
+    [self getOrderWithDic:dic];
+}
+#pragma mark 获取退款数据
+-(void)getTuiDan{
+    pageCount=1;
+    [dataList removeAllObjects];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"3,4,5,10"};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+    
+    [self getOrderWithDic:dic];
+}
+#pragma mark 获取订单数据
+-(void)getOrderWithDic:(NSDictionary *)dic{
+    
     __weak __typeof(self)weakSelf = self;
-    [[LYUserHttpTool shareInstance]getMyOrderListWithParams:nil block:^(NSMutableArray *result) {
-        [dataList addObjectsFromArray:result];
+    NSLog(@"****getOrderWithDic%ld******",dataList.count);
+    [[LYUserHttpTool shareInstance]getMyOrderListWithParams:dic block:^(NSMutableArray *result) {
+        [dataList removeAllObjects];
+        NSMutableArray *arr=[result mutableCopy];
+        [dataList addObjectsFromArray:arr];
+        NSLog(@"****block%ld******",dataList.count);
         if(dataList.count>0){
-            [self.tableView setHidden:NO];
-            [self.nodataView setHidden:YES];
+            [weakSelf.tableView setHidden:NO];
+            [weakSelf.nodataView setHidden:YES];
+            pageCount++;
+            [weakSelf.tableView.footer resetNoMoreData];
         }else{
-            [self.tableView setHidden:YES];
-            [self.nodataView setHidden:NO];
+            [weakSelf.tableView setHidden:YES];
+            [weakSelf.nodataView setHidden:NO];
         }
         [weakSelf.tableView reloadData];
+        
+        
+        
     }];
+    [weakSelf.tableView.header endRefreshing];
     
-
+}
+#pragma mark 获取更多订单数据
+-(void)getOrderWithDicMore:(NSDictionary *)dic{
+    __weak __typeof(self)weakSelf = self;
+    [[LYUserHttpTool shareInstance]getMyOrderListWithParams:dic block:^(NSMutableArray *result) {
+        if(result.count>0){
+            [dataList addObjectsFromArray:result];
+            pageCount++;
+            [weakSelf.tableView reloadData];
+        }else{
+            [weakSelf.tableView.footer noticeNoMoreData];
+        }
+        
+        
+        
+    }];
+    [weakSelf.tableView.footer endRefreshing];
+    
 }
 #pragma mark 获取顶部菜单
 -(void)getMenuHrizontal{
@@ -98,6 +199,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"*********numberOfRowsInSection%ld*******",dataList.count);
     OrderInfoModel *orderInfoModel=dataList[section];
     if(orderInfoModel.ordertype==2){
         return orderInfoModel.goodslist.count;
@@ -110,6 +212,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"*********numberOfSectionsInTableView%ld*******",dataList.count);
     return dataList.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -117,6 +220,7 @@
     return 68;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    NSLog(@"*********heightForFooterInSection%ld*******",dataList.count);
     OrderInfoModel *orderInfoModel=dataList[section];
     if( orderInfoModel.orderStatus == 7 || orderInfoModel.orderStatus == 3 || orderInfoModel.orderStatus == 3
        || orderInfoModel.orderStatus == 5){
@@ -127,6 +231,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    NSLog(@"*********viewForFooterInSection%ld*******",dataList.count);
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
     //orderstatus:
     //    0－未付款
@@ -141,19 +246,103 @@
     //    9-已评价
     //    10-退款
     OrderInfoModel *orderInfoModel=dataList[section];
+    
     //订单状态是 3  4   5 10 7 的底部不一样
     if( orderInfoModel.orderStatus == 7 || orderInfoModel.orderStatus == 3 || orderInfoModel.orderStatus == 4
        || orderInfoModel.orderStatus == 5 || orderInfoModel.orderStatus == 10){
         NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LYOrderBottomForFinishView" owner:nil options:nil];
         LYOrderBottomForFinishView *orderBottomView= (LYOrderBottomForFinishView *)[nibView objectAtIndex:0];
+        BOOL isFaqi=false;
+        if(orderInfoModel.ordertype==1){
+            //拼客
+            //判断是否发起人
+            
+            
+            if(orderInfoModel.userid==userId){
+                isFaqi=true;
+            }
+        }
         if(orderInfoModel.orderStatus==7 ){
-            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
-            orderBottomView.miaosuCenterLal.text=@"猎娱承诺返利金额会予以15个工作日发放个人账户中";
+            if(orderInfoModel.ordertype==1){
+                NSString *moneyStr=@"0";
+                NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+                if(pinkerList.count>0){
+                    for (PinkInfoModel *pinkInfoModel in pinkerList) {
+                        if(pinkInfoModel.inmember==userId){
+                            if(pinkInfoModel.paymentStatus==1){
+                                moneyStr=pinkInfoModel.price;
+                            }
+                        }
+                    }
+                }
+                orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",moneyStr];
+                if(!isFaqi){
+                    orderBottomView.miaosuCenterLal.text=@"消费完成等待系统确定";
+                }else{
+                    
+                    orderBottomView.miaosuCenterLal.text=@"猎娱承诺返利金额会予以15个工作日发放个人账户中";
+                }
+            }else{
+                orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
+                orderBottomView.miaosuCenterLal.text=@"猎娱承诺返利金额会予以15个工作日发放个人账户中";
+            }
+            
         }else{
             orderBottomView.titleLal.text=@"交易金额";
             orderBottomView.titleTwoLal.text=@"退款金额";
+            [orderBottomView.titleTwoLal setHidden:false];
             orderBottomView.moneyOnelal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
+            [orderBottomView.moneyOnelal setHidden:false];
             orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.f",orderInfoModel.amountPay.doubleValue- orderInfoModel.penalty.doubleValue];
+            if(orderInfoModel.ordertype==1){
+                NSString *moneyStr=@"0";
+                
+                NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+                if(pinkerList.count>0){
+                    for (PinkInfoModel *pinkInfoModel in pinkerList) {
+                        if(pinkInfoModel.inmember==userId){
+                            if(pinkInfoModel.paymentStatus==1){
+                                moneyStr=pinkInfoModel.price;
+                                
+                            }
+                        }
+                    }
+                }
+                orderBottomView.moneyOnelal.text=[NSString stringWithFormat:@"￥%@",moneyStr];
+                if(isFaqi){
+                    
+                    orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.2f",moneyStr.doubleValue-orderInfoModel.penalty.doubleValue];
+                }else{
+                    
+                    orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",moneyStr];
+                }
+            }
+            if(orderInfoModel.penalty.doubleValue<0.1){
+                orderBottomView.deTitleOne.text=@"未违约";
+            }else{
+                
+                if(orderInfoModel.ordertype==1){
+                    if(isFaqi){
+                        orderBottomView.deTitleOne.text=@"违约金:";
+                        orderBottomView.weiyuejinLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.penalty];
+                    }else{
+                       orderBottomView.deTitleOne.text=@"未违约";
+                    }
+                }else{
+                    orderBottomView.deTitleOne.text=@"违约金:";
+                    orderBottomView.weiyuejinLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.penalty];
+                }
+            }
+            if(orderInfoModel.orderStatus==10){
+                [orderBottomView.secondBtn setTitle:@"删除订单" forState:UIControlStateSelected];
+                orderBottomView.secondBtn.selected=YES;
+                [orderBottomView setHidden:false];
+                [orderBottomView.secondBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                orderBottomView.secondBtn.tag=section;
+            }else{
+                orderBottomView.delTitelTwoLal.text=@"待退款";
+                
+            }
         }
         
 //        [orderBottomView.duimaBtn addTarget:self action:@selector(duimaAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -168,17 +357,21 @@
     }else{
         NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LYOrderBottomView" owner:nil options:nil];
         LYOrderBottomView *orderBottomView= (LYOrderBottomView *)[nibView objectAtIndex:0];
-        orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
+        
         [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
         [orderBottomView.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
         orderBottomView.phoneBtn.tag=section;
         orderBottomView.siliaoBtn.tag=section;
         orderBottomView.zsUserImageView.layer.masksToBounds =YES;
         orderBottomView.zsUserImageView.layer.cornerRadius =orderBottomView.zsUserImageView.width/2;
-        [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:orderInfoModel.checkUserAvatar_img]];
-        orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
+        
+        
+        
         //根据订单类型 订单状态设置底部按钮
         if(orderInfoModel.ordertype==0){
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
+            [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:orderInfoModel.checkUserAvatar_img]];
+            orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
             if(orderInfoModel.orderStatus==0){
                 [orderBottomView.oneBtn setTitle:@"删除订单" forState:0];
                 [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -188,6 +381,7 @@
                 [orderBottomView.secondBtn addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.oneBtn.tag=section;
                 orderBottomView.secondBtn.tag=section;
+                
             }else if(orderInfoModel.orderStatus==1){
                 [orderBottomView.oneBtn setTitle:@"取消订单" forState:0];
                 [orderBottomView.oneBtn setHidden:NO];
@@ -209,47 +403,111 @@
                 orderBottomView.secondBtn.tag=section;
             }
         }else if(orderInfoModel.ordertype==1){
+            //拼客
             //判断是否发起人
             BOOL isFaqi=false;
             
             if(orderInfoModel.userid==userId){
                 isFaqi=true;
             }
+            bool isfu=false;
+            NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+            NSString *moneyStr=@"0";
+            if(pinkerList.count>0){
+                for (PinkInfoModel *pinkInfoModel in pinkerList) {
+                    if(pinkInfoModel.inmember==userId){
+                        moneyStr=pinkInfoModel.price;
+                        if(pinkInfoModel.paymentStatus==1){
+                            isfu=true;
+                            
+                        }
+                    }
+                }
+            }
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",moneyStr];
+            if(isfu){
+                [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:orderInfoModel.checkUserAvatar_img]];
+                orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
+            }else{
+                [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+                orderBottomView.zsUserNameLal.text=orderInfoModel.username;
+            }
             if(orderInfoModel.orderStatus==0){
-                bool isfu=false;
                 
                 if(isFaqi){
-                    
+                    if(isfu){
+                        [orderBottomView.oneBtn setTitle:@"删除订单" forState:0];
+                        [orderBottomView.oneBtn setHidden:NO];
+                        [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                        [orderBottomView.secondBtn setTitle:@"立即拼客" forState:UIControlStateSelected];
+                        orderBottomView.secondBtn.selected=YES;
+                        [orderBottomView.secondBtn addTarget:self action:@selector(payPinAct:) forControlEvents:UIControlEventTouchUpInside];
+                        orderBottomView.oneBtn.tag=section;
+                        orderBottomView.secondBtn.tag=section;
+                    }else{
+                        [orderBottomView.oneBtn setTitle:@"删除订单" forState:0];
+                        [orderBottomView.oneBtn setHidden:NO];
+                        [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                        [orderBottomView.secondBtn setTitle:@"立即付款" forState:UIControlStateSelected];
+                        orderBottomView.secondBtn.selected=YES;
+                        [orderBottomView.secondBtn addTarget:self action:@selector(payPinAct:) forControlEvents:UIControlEventTouchUpInside];
+                        orderBottomView.oneBtn.tag=section;
+                        orderBottomView.secondBtn.tag=section;
+                    }
+                }else{
+                    if(isfu){
+                        
+                        [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                        orderBottomView.secondBtn.selected=YES;
+                        
+                        
+                    }else{
+                        [orderBottomView.oneBtn setTitle:@"删除订单" forState:0];
+                        [orderBottomView.oneBtn setHidden:NO];
+                        [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                        [orderBottomView.secondBtn setTitle:@"立即付款" forState:UIControlStateSelected];
+                        orderBottomView.secondBtn.selected=YES;
+                        [orderBottomView.secondBtn addTarget:self action:@selector(payPinAct:) forControlEvents:UIControlEventTouchUpInside];
+                        orderBottomView.oneBtn.tag=section;
+                        orderBottomView.secondBtn.tag=section;
+                    }
                 }
-                [orderBottomView.oneBtn setTitle:@"删除订单" forState:0];
-                [orderBottomView.oneBtn setHidden:NO];
-                [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.secondBtn setTitle:@"立即拼客" forState:UIControlStateSelected];
-                orderBottomView.secondBtn.selected=YES;
-                [orderBottomView.secondBtn addTarget:self action:@selector(payPinAct:) forControlEvents:UIControlEventTouchUpInside];
-                orderBottomView.oneBtn.tag=section;
-                orderBottomView.secondBtn.tag=section;
+                
             }else if(orderInfoModel.orderStatus==1){
-                [orderBottomView.oneBtn setTitle:@"取消订单" forState:0];
-                [orderBottomView.oneBtn setHidden:NO];
-                [orderBottomView.oneBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.secondBtn setTitle:@"一定会去" forState:UIControlStateSelected];
-                orderBottomView.secondBtn.selected=YES;
-                [orderBottomView.secondBtn addTarget:self action:@selector(yiDinHuiQuAct:) forControlEvents:UIControlEventTouchUpInside];
-                orderBottomView.oneBtn.tag=section;
-                orderBottomView.secondBtn.tag=section;
+                if(isFaqi){
+                    
+                    [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
+                    [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    orderBottomView.secondBtn.tag=section;
+                }else{
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    orderBottomView.secondBtn.selected=YES;
+                }
+                
             }else if(orderInfoModel.orderStatus==2){
-                [orderBottomView.miaosuLal setHidden:NO];
-                [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
-                [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
-                orderBottomView.secondBtn.tag=section;
+                if(isFaqi){
+                    [orderBottomView.miaosuLal setHidden:NO];
+                    [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
+                    [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    orderBottomView.secondBtn.tag=section;
+                }else{
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    orderBottomView.secondBtn.selected=YES;
+                }
+                
             }else if(orderInfoModel.orderStatus==8 || orderInfoModel.orderStatus==9 ){
                 
                 [orderBottomView.secondBtn setTitle:@"删除订单" forState:0];
-                [orderBottomView.secondBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                if(isFaqi){
+                  [orderBottomView.secondBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                }
+                
                 orderBottomView.secondBtn.tag=section;
             }
         }else{
+            [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:orderInfoModel.checkUserAvatar_img]];
+            orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
             if(orderInfoModel.orderStatus==0){
                 [orderBottomView.oneBtn setTitle:@"删除订单" forState:0];
                 [orderBottomView.oneBtn setHidden:NO];
@@ -281,18 +539,36 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSLog(@"*********viewForHeaderInSection%ld*******",dataList.count);
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
     OrderInfoModel *orderInfoModel=dataList[section];
     
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
     OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
     orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+    orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
     //获取酒吧信息
-    if(orderInfoModel.consumptionCode){
-        if(orderInfoModel.consumptionCode.length>0){
-            orderHeadView.orderTimeLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
+    if(orderInfoModel.ordertype==1){
+        BOOL isFaqi=false;
+        
+        if(orderInfoModel.userid==userId){
+            isFaqi=true;
+        }
+        if(isFaqi){
+            if(orderInfoModel.consumptionCode){
+                if(orderInfoModel.consumptionCode.length>0){
+                    orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
+                }
+            }
+        }
+    }else{
+        if(orderInfoModel.consumptionCode){
+            if(orderInfoModel.consumptionCode.length>0){
+                orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
+            }
         }
     }
+    
     orderHeadView.nameLal.text=orderInfoModel.barinfo.barname;
     orderHeadView.userImgeView.layer.masksToBounds =YES;
     orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
@@ -330,7 +606,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSLog(@"*********cellForRowAtIndexPath%ld*******",dataList.count);
     static NSString *CellIdentifier = @"OrderDetailCell";
     
     OrderDetailCell *cell = (OrderDetailCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -344,9 +620,6 @@
     OrderInfoModel *orderInfoModel;
     ShopDetailmodel *shopDetailmodel=[[ShopDetailmodel alloc]init];
     orderInfoModel= dataList[indexPath.section];
-
-    
-    NSLog(@"******套餐类型%@*****",[NSString stringWithFormat:@"%d",orderInfoModel.ordertype ]);
     if(orderInfoModel.ordertype==0){
         //0-－套餐订单
         
@@ -360,8 +633,6 @@
         shopDetailmodel.count=[NSString stringWithFormat:@"[适合%@-%@人]",setMealVOModel.minnum,setMealVOModel.maxnum];
         shopDetailmodel.rebate=setMealVOModel.rebate;
     }else if(orderInfoModel.ordertype==1){
-        //拼客订单
-        
         SetMealVOModel *setMealVOModel=orderInfoModel.pinkerinfo;
         shopDetailmodel.name=setMealVOModel.smname;
         shopDetailmodel.img=setMealVOModel.linkUrl;
@@ -371,6 +642,8 @@
 //        if(mMenuHriZontal.selectIndex==1||mMenuHriZontal.selectIndex==2){
 //            shopDetailmodel.count=[NSString stringWithFormat:@"拼客人数%@（%d人参与）",orderInfoModel.allnum,(int)orderInfoModel.pinkerList.count];
 //        }else{
+        
+
             shopDetailmodel.count=[NSString stringWithFormat:@"%@人拼客",orderInfoModel.allnum];
 //        }
         
@@ -397,7 +670,17 @@
     }else{
         [cell.yjBtn setHidden:YES];
     }
-    
+    if(orderInfoModel.ordertype==1){
+        //拼客订单
+        BOOL isFaqi=false;
+        
+        if(orderInfoModel.userid==userId){
+            isFaqi=true;
+        }
+        if(!isFaqi){
+           [cell.yjBtn setHidden:YES];
+        }
+    }
     UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, 290, 0.5)];
     lineLal.backgroundColor=RGB(199, 199, 199);
     [cell addSubview:lineLal];
@@ -407,7 +690,7 @@
     cell.moneyLal.attributedText=attribtStr;
     [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:shopDetailmodel.img]];
     
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
     
@@ -452,6 +735,47 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
     }
+}
+#pragma mark MenuHrizontalDelegate
+-(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
+    switch (aIndex) {
+            
+        case 0://订单
+        {
+            [self getAllOrder];
+            break;
+        }
+            
+        case 1:// 待付款
+        {
+            [self getDaiFuKuan];
+            break;
+        }
+            
+        case 2:// 待消费
+        {
+            [self getDaiXiaoFei];
+            break;
+        }
+            
+        case 3:// 已返利
+        {
+            [self getYiFanLi];
+            break;
+        }
+        case 4:// 待返利
+        {
+            [self getDaiFanLi];
+            break;
+        }
+        default://退款
+        {
+            [self getTuiDan];
+            break;
+        }
+            
+    }
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
