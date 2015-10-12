@@ -7,7 +7,16 @@
 //
 
 #import "LYBaseViewController.h"
-
-@interface LYOrderDetailViewController : LYBaseViewController
-
+#import "OrderInfoModel.h"
+#import "NSObject+MJKeyValue.h"
+@interface LYOrderDetailViewController : LYBaseViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *tableView;
+    int sectionNum;
+    UIView *dibuView;
+    BOOL isFaqi;
+    int userId;
+}
+@property (nonatomic, assign)  BOOL isHaveBtn;
+@property (nonatomic, retain)  OrderInfoModel *orderInfoModel;
 @end

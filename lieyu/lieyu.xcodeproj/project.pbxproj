@@ -131,6 +131,8 @@
 		15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */; };
 		15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C511BC3BE4D00756153 /* GoodsModel.m */; };
 		15EB7C5B1BC6048100756153 /* gouGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C5A1BC6048100756153 /* gouGif.gif */; };
+		15EB7C5E1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */; };
+		15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
@@ -564,6 +566,9 @@
 		15EB7C511BC3BE4D00756153 /* GoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsModel.m; sourceTree = "<group>"; };
 		15EB7C591BC5FD2C00756153 /* LYMineUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYMineUrl.h; sourceTree = "<group>"; };
 		15EB7C5A1BC6048100756153 /* gouGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gouGif.gif; sourceTree = "<group>"; };
+		15EB7C5C1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailSectionBottomForTuiKuanPinView.h; sourceTree = "<group>"; };
+		15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailSectionBottomForTuiKuanPinView.m; sourceTree = "<group>"; };
+		15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailSectionBottomForTuiKuanPinView.xib; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
 		15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
@@ -1203,6 +1208,9 @@
 				15E240B21BB3A1EA0090D240 /* OrderDetailSectionBottomForDanPinView.h */,
 				15E240B31BB3A1EA0090D240 /* OrderDetailSectionBottomForDanPinView.m */,
 				15E240B51BB3A1FC0090D240 /* OrderDetailSectionBottomForDanPinView.xib */,
+				15EB7C5C1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.h */,
+				15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */,
+				15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */,
 			);
 			name = "订单明细";
 			sourceTree = "<group>";
@@ -2445,6 +2453,7 @@
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
+				15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */,
 				15E184931BB52B0E00681BB2 /* LYJiuBaCell.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
@@ -2569,6 +2578,7 @@
 				15E240481BB0F3540090D240 /* IQSegmentedNextPrevious.m in Sources */,
 				A2F9DA741BAA6AB7009DEAF3 /* OrderBottomView.m in Sources */,
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
+				15EB7C5E1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
 				D7A1D42B1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m in Sources */,

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderDetailHeadView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *titleOneLal;
+@property (weak, nonatomic) IBOutlet UILabel *titleTwoLal;
 
 @end

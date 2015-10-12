@@ -20,7 +20,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "OrderHandleButton.h"
 #import <RongIMKit/RongIMKit.h>
-
+#import "LYOrderDetailViewController.h"
 @interface LYMyOrderManageViewController ()
 
 @end
@@ -168,7 +168,7 @@
         NSString *ss=menuArrNew[i];
         NSMutableDictionary *itemTemp =[[NSMutableDictionary alloc]init] ;
         // 使用颜色创建UIImage//未选中颜色
-        CGSize imageSize = CGSizeMake((SCREEN_WIDTH/5.5), 44);
+        CGSize imageSize = CGSizeMake((SCREEN_WIDTH/5.5), 34);
         UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
         [RGB(229, 255, 245) set];
         UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
@@ -186,8 +186,8 @@
         
         [itemTemp setObject: selectedImg forKey:HEIGHTKEY];
         [itemTemp setObject: ss forKey:TITLEKEY];
-        [itemTemp setObject:[NSNumber numberWithFloat:self.view.width/5]  forKey:TITLEWIDTH];
-        [itemTemp setObject:@"88"  forKey:COUNTORDER];
+        [itemTemp setObject:[NSNumber numberWithFloat:SCREEN_WIDTH/5.5]  forKey:TITLEWIDTH];
+        [itemTemp setObject:@""  forKey:COUNTORDER];
         [barArr addObject:itemTemp];
     }
     
@@ -224,10 +224,10 @@
     OrderInfoModel *orderInfoModel=dataList[section];
     if( orderInfoModel.orderStatus == 7 || orderInfoModel.orderStatus == 3 || orderInfoModel.orderStatus == 3
        || orderInfoModel.orderStatus == 5){
-         return 76;
+         return 90;
     }
     
-    return 120;
+    return 134;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -697,7 +697,12 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_tableView deselectRowAtIndexPath:indexPath animated:false];
+    OrderInfoModel *orderInfoModel= dataList[indexPath.section];
+    LYOrderDetailViewController *orderDetailViewController=[[LYOrderDetailViewController alloc]init];
+    orderDetailViewController.title=@"订单详情";
+    orderDetailViewController.orderInfoModel=orderInfoModel;
+    [self.navigationController pushViewController:orderDetailViewController animated:YES];
+//    [_tableView deselectRowAtIndexPath:indexPath animated:false];
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
