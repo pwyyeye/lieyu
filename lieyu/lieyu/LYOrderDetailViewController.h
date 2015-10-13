@@ -15,7 +15,9 @@
     int sectionNum;
     UIView *dibuView;
     BOOL isFaqi;
+    bool isfu;
     int userId;
+    NSString *fukuanPKStr;
 }
 @property (nonatomic, assign)  BOOL isHaveBtn;
 @property (nonatomic, retain)  OrderInfoModel *orderInfoModel;

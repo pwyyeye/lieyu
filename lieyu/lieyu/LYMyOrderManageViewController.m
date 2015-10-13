@@ -118,7 +118,6 @@
 -(void)getOrderWithDic:(NSDictionary *)dic{
     
     __weak __typeof(self)weakSelf = self;
-    NSLog(@"****getOrderWithDic%ld******",dataList.count);
     [[LYUserHttpTool shareInstance]getMyOrderListWithParams:dic block:^(NSMutableArray *result) {
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
@@ -222,7 +221,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     NSLog(@"*********heightForFooterInSection%ld*******",dataList.count);
     OrderInfoModel *orderInfoModel=dataList[section];
-    if( orderInfoModel.orderStatus == 7 || orderInfoModel.orderStatus == 3 || orderInfoModel.orderStatus == 3
+    if( orderInfoModel.orderStatus == 7 || orderInfoModel.orderStatus == 3 || orderInfoModel.orderStatus == 4
        || orderInfoModel.orderStatus == 5){
          return 90;
     }
@@ -383,14 +382,22 @@
                 orderBottomView.secondBtn.tag=section;
                 
             }else if(orderInfoModel.orderStatus==1){
-                [orderBottomView.oneBtn setTitle:@"取消订单" forState:0];
-                [orderBottomView.oneBtn setHidden:NO];
-                [orderBottomView.oneBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.secondBtn setTitle:@"一定会去" forState:UIControlStateSelected];
-                orderBottomView.secondBtn.selected=YES;
-                [orderBottomView.secondBtn addTarget:self action:@selector(yiDinHuiQuAct:) forControlEvents:UIControlEventTouchUpInside];
-                orderBottomView.oneBtn.tag=section;
-                orderBottomView.secondBtn.tag=section;
+                if(orderInfoModel.consumptionStatus==0){
+                    [orderBottomView.oneBtn setTitle:@"取消订单" forState:0];
+                    [orderBottomView.oneBtn setHidden:NO];
+                    [orderBottomView.oneBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [orderBottomView.secondBtn setTitle:@"一定会去" forState:UIControlStateSelected];
+                    orderBottomView.secondBtn.selected=YES;
+                    [orderBottomView.secondBtn addTarget:self action:@selector(yiDinHuiQuAct:) forControlEvents:UIControlEventTouchUpInside];
+                    orderBottomView.oneBtn.tag=section;
+                    orderBottomView.secondBtn.tag=section;
+                }else{
+                    [orderBottomView.miaosuLal setHidden:YES];
+                    [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
+                    [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    orderBottomView.secondBtn.tag=section;
+                }
+                
             }else if(orderInfoModel.orderStatus==2){
                 [orderBottomView.miaosuLal setHidden:NO];
                 [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
@@ -441,7 +448,7 @@
                         [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                         [orderBottomView.secondBtn setTitle:@"立即拼客" forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
-                        [orderBottomView.secondBtn addTarget:self action:@selector(payPinAct:) forControlEvents:UIControlEventTouchUpInside];
+                        [orderBottomView.secondBtn addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
                         orderBottomView.oneBtn.tag=section;
                         orderBottomView.secondBtn.tag=section;
                     }else{
@@ -450,7 +457,7 @@
                         [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                         [orderBottomView.secondBtn setTitle:@"立即付款" forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
-                        [orderBottomView.secondBtn addTarget:self action:@selector(payPinAct:) forControlEvents:UIControlEventTouchUpInside];
+                        [orderBottomView.secondBtn addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
                         orderBottomView.oneBtn.tag=section;
                         orderBottomView.secondBtn.tag=section;
                     }
@@ -467,7 +474,7 @@
                         [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                         [orderBottomView.secondBtn setTitle:@"立即付款" forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
-                        [orderBottomView.secondBtn addTarget:self action:@selector(payPinAct:) forControlEvents:UIControlEventTouchUpInside];
+                        [orderBottomView.secondBtn addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
                         orderBottomView.oneBtn.tag=section;
                         orderBottomView.secondBtn.tag=section;
                     }
@@ -781,6 +788,54 @@
             
     }
     
+}
+#pragma mark 删除订单
+-(void)shanChuDinDanAct:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    orderInfoModel=dataList[sender.tag];
+    __weak __typeof(self)weakSelf = self;
+
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+    [[LYUserHttpTool shareInstance]delMyOrder:dic complete:^(BOOL result) {
+        if(result){
+            [MyUtil showMessage:@"删除成功"];
+            [weakSelf refreshData];
+        }
+    }];
+    
+}
+#pragma mark 付款
+-(void)payAct:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    orderInfoModel=dataList[sender.tag];
+    
+}
+#pragma mark 取消订单
+- (void)queXiaoDinDanAct:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    orderInfoModel=dataList[sender.tag];
+    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+    [[LYUserHttpTool shareInstance]cancelMyOrder:dic complete:^(BOOL result) {
+        if(result){
+            [MyUtil showMessage:@"取消订单成功"];
+            [weakSelf refreshData];
+        }
+    }];
+
+}
+#pragma mark 一定会去
+- (void)yiDinHuiQuAct:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    orderInfoModel=dataList[sender.tag];
+    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+    [[LYUserHttpTool shareInstance]sureMyOrder:dic complete:^(BOOL result) {
+        if(result){
+            [MyUtil showMessage:@"设置成功"];
+            [weakSelf refreshData];
+        }
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

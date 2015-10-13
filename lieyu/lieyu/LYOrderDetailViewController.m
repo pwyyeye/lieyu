@@ -18,6 +18,10 @@
 #import "GoodsModel.h"
 #import "MyChooseZSCell.h"
 #import "MyPKfriendCell.h"
+#import "OrderDetailSectionBottomForDanPinView.h"
+#import "LYUserHttpTool.h"
+#import <RongIMKit/RongIMKit.h>
+#import "OrderHandleButton.h"
 @interface LYOrderDetailViewController ()
 
 @end
@@ -39,11 +43,24 @@
     if(_orderInfoModel.ordertype==1){
         //拼客
         //判断是否发起人
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        int userId=app.userModel.userid;
+        
         
         if(_orderInfoModel.userid==userId){
             isFaqi=true;
+        }
+        isfu=false;
+        NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+        fukuanPKStr=@"0";
+        if(pinkerList.count>0){
+            for (PinkInfoModel *pinkInfoModel in pinkerList) {
+                if(pinkInfoModel.inmember==userId){
+                    fukuanPKStr=pinkInfoModel.price;
+                    if(pinkInfoModel.paymentStatus==1){
+                        isfu=true;
+                        
+                    }
+                }
+            }
         }
     }
     bool isShow=true;
@@ -52,17 +69,42 @@
             isShow=false;
         }
     }else if(_orderInfoModel.ordertype==1){
+        //是否参与
+        if(isFaqi){
+            if(_orderInfoModel.orderStatus==3 || _orderInfoModel.orderStatus==4  || _orderInfoModel.orderStatus==5){
+                isShow=false;
+            }
+        }else{
+            if(_orderInfoModel.orderStatus==0){
+                if(isfu){
+                    isShow=false;
+                }else{
+                    isShow=true;
+                }
+                
+            }else{
+                if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9 || _orderInfoModel.orderStatus==10){
+                    isShow=true;
+                }else{
+                   isShow=false;
+                }
+            }
+
+        }
         
     }else{
-        
+        if(_orderInfoModel.orderStatus==3 || _orderInfoModel.orderStatus==4  || _orderInfoModel.orderStatus==5){
+            isShow=false;
+        }
     }
     
     if(isShow){
         tableView =[[UITableView alloc]initWithFrame:(CGRect){0,0,SCREEN_WIDTH,SCREEN_HEIGHT-rect.size.height-rectNav.size.height-43} style:UITableViewStyleGrouped];
         dibuView =[[UIView alloc]initWithFrame:(CGRect){0,tableView.height+tableView.top,SCREEN_WIDTH,43}];
-        dibuView.backgroundColor=[UIColor redColor];
+        dibuView.backgroundColor=[UIColor whiteColor];
         [self.view addSubview:tableView];
         [self.view addSubview:dibuView];
+        [self getButton];
     }else{
         tableView =[[UITableView alloc]initWithFrame:(CGRect){0,0,SCREEN_WIDTH,SCREEN_HEIGHT} style:UITableViewStyleGrouped];
         [self.view addSubview:tableView];
@@ -75,7 +117,280 @@
     [self getDataList];
     // Do any additional setup after loading the view from its nib.
 }
+#pragma mark 初始化按钮
+-(void)getButton{
+    if(_orderInfoModel.ordertype==0){
+        if(_orderInfoModel.orderStatus==0){
+            UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
+            btn2.backgroundColor=RGB(229, 229, 229);
+            
+            [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
+            btn2.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+            [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn2];
+            
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
+            btn1.backgroundColor=RGB(247, 138, 79);
+            NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",_orderInfoModel.amountPay];
+            [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }else if(_orderInfoModel.orderStatus==1){
+            if(_orderInfoModel.consumptionStatus==0){
+                UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
+                btn1.backgroundColor=RGB(229, 229, 229);
+                
+                [btn1 setTitle:@"取消订单" forState:UIControlStateNormal];
+                btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn1 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+                [btn1 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn1];
+                
+                UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
+                btn2.backgroundColor=RGB(247, 138, 79);
+                
+                [btn2 setTitle:@"一定会去" forState:UIControlStateNormal];
+                btn2.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn2 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+                [btn2 addTarget:self action:@selector(yiDinHuiQuAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn2];
+            }else{
+                UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+                btn1.backgroundColor=RGB(229, 229, 229);
+                [btn1 setTitle:@"取消订单" forState:UIControlStateNormal];
+                btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn1 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+                [btn1 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn1];
+            }
+        }else if(_orderInfoModel.orderStatus==2){
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+            btn1.backgroundColor=RGB(229, 229, 229);
+            [btn1 setTitle:@"取消订单" forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }else if(_orderInfoModel.orderStatus==7){
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+            btn1.backgroundColor=RGB(247, 138, 79);
+            [btn1 setTitle:@"电话咨询" forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(dhzxAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+            btn1.backgroundColor=RGB(247, 138, 79);
+            [btn1 setTitle:@"删除订单" forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }else if(_orderInfoModel.orderStatus==10){
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+            btn1.backgroundColor=RGB(247, 138, 79);
+            [btn1 setTitle:@"删除订单" forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }
+    }else if (_orderInfoModel.ordertype==1){
+        if(isFaqi){
+            if(_orderInfoModel.orderStatus==0){
+                if(isfu){
+                    UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
+                    btn2.backgroundColor=RGB(229, 229, 229);
+                    
+                    [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
+                    btn2.titleLabel.font = [UIFont systemFontOfSize:12];
+                    [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+                    [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [dibuView addSubview:btn2];
+                    
+                    UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
+                    btn1.backgroundColor=RGB(35, 166, 116);
+                    [btn1 setTitle:@"邀请好友" forState:UIControlStateNormal];
+                    btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                    [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+                    [btn1 addTarget:self action:@selector(yaoQinAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [dibuView addSubview:btn1];
+                    
 
+                }else{
+                    UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
+                    btn2.backgroundColor=RGB(229, 229, 229);
+                    
+                    [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
+                    btn2.titleLabel.font = [UIFont systemFontOfSize:12];
+                    [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+                    [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [dibuView addSubview:btn2];
+                    
+                    UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
+                    btn1.backgroundColor=RGB(247, 138, 79);
+                    NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",_orderInfoModel.amountPay];
+                    [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
+                    btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                    [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+                    [btn1 addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [dibuView addSubview:btn1];
+                }
+                
+            }else if(_orderInfoModel.orderStatus==1){
+                
+                    UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+                    btn1.backgroundColor=RGB(229, 229, 229);
+                    [btn1 setTitle:@"取消订单" forState:UIControlStateNormal];
+                    btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                    [btn1 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+                    [btn1 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [dibuView addSubview:btn1];
+                
+            }else if(_orderInfoModel.orderStatus==2){
+                UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+                btn1.backgroundColor=RGB(229, 229, 229);
+                [btn1 setTitle:@"取消订单" forState:UIControlStateNormal];
+                btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn1 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+                [btn1 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn1];
+            }else if(_orderInfoModel.orderStatus==7){
+                UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+                btn1.backgroundColor=RGB(247, 138, 79);
+                [btn1 setTitle:@"电话咨询" forState:UIControlStateNormal];
+                btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+                [btn1 addTarget:self action:@selector(dhzxAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn1];
+            }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
+                UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+                btn1.backgroundColor=RGB(247, 138, 79);
+                [btn1 setTitle:@"删除订单" forState:UIControlStateNormal];
+                btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+                [btn1 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn1];
+            }else if(_orderInfoModel.orderStatus==10){
+                UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+                btn1.backgroundColor=RGB(247, 138, 79);
+                [btn1 setTitle:@"删除订单" forState:UIControlStateNormal];
+                btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+                [btn1 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn1];
+            }
+        }else{
+            if(_orderInfoModel.orderStatus==0){
+                if(!isfu){
+                   
+                    UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
+                    btn2.backgroundColor=RGB(229, 229, 229);
+                    
+                    [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
+                    btn2.titleLabel.font = [UIFont systemFontOfSize:12];
+                    [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+                    [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [dibuView addSubview:btn2];
+                    
+                    UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
+                    btn1.backgroundColor=RGB(247, 138, 79);
+                    NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",_orderInfoModel.amountPay];
+                    [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
+                    btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                    [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+                    [btn1 addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [dibuView addSubview:btn1];
+                }
+                
+            }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
+                UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+                btn1.backgroundColor=RGB(247, 138, 79);
+                [btn1 setTitle:@"删除订单" forState:UIControlStateNormal];
+                btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+                [btn1 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn1];
+            }else if(_orderInfoModel.orderStatus==10){
+                UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+                btn1.backgroundColor=RGB(247, 138, 79);
+                [btn1 setTitle:@"删除订单" forState:UIControlStateNormal];
+                btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+                [btn1 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn1];
+            }
+        }
+    }else{
+        if(_orderInfoModel.orderStatus==0){
+            UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
+            btn2.backgroundColor=RGB(229, 229, 229);
+            
+            [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
+            btn2.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+            [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn2];
+            
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
+            btn1.backgroundColor=RGB(247, 138, 79);
+            NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",_orderInfoModel.amountPay];
+            [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }else if(_orderInfoModel.orderStatus==1){
+            
+                UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+                btn1.backgroundColor=RGB(229, 229, 229);
+                [btn1 setTitle:@"取消订单" forState:UIControlStateNormal];
+                btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+                [btn1 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+                [btn1 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                [dibuView addSubview:btn1];
+           
+        }else if(_orderInfoModel.orderStatus==2){
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+            btn1.backgroundColor=RGB(229, 229, 229);
+            [btn1 setTitle:@"取消订单" forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }else if(_orderInfoModel.orderStatus==7){
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+            btn1.backgroundColor=RGB(247, 138, 79);
+            [btn1 setTitle:@"电话咨询" forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(dhzxAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+            btn1.backgroundColor=RGB(247, 138, 79);
+            [btn1 setTitle:@"删除订单" forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }else if(_orderInfoModel.orderStatus==10){
+            UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width, dibuView.height)];
+            btn1.backgroundColor=RGB(247, 138, 79);
+            [btn1 setTitle:@"删除订单" forState:UIControlStateNormal];
+            btn1.titleLabel.font = [UIFont systemFontOfSize:12];
+            [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
+            [btn1 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [dibuView addSubview:btn1];
+        }
+
+    }
+}
+#pragma mark 初始化数据
 -(void)getDataList{
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
     //orderstatus:
@@ -92,6 +407,8 @@
     //    10-退款
     NSString *nowB;
     NSString *nextB;
+    
+    //顶部状态描述
     if(_orderInfoModel.ordertype==0){
         sectionNum=3;
         if(_orderInfoModel.orderStatus==0){
@@ -123,13 +440,112 @@
             nowB=@"已经返利";
             nextB=@"删除订单";
         }else{
+            sectionNum=1;
             nowB=@"已经退款";
             nextB=@"删除订单";
         }
     }else if(_orderInfoModel.ordertype==1){
-        
+        sectionNum=4;
+        if(_orderInfoModel.orderStatus==0){
+            if(isFaqi){
+                if(isfu){
+                    sectionNum=4;
+                    nowB=@"开始拼客";
+                    nextB=@"等待拼成";
+                }else{
+                    sectionNum=3;
+                    nowB=@"还未付款";
+                    nextB=@"支付消费";
+                }
+            }else{
+                if(isfu){
+                    sectionNum=4;
+                    nowB=@"已经参与";
+                    nextB=@"等待拼成";
+                }else{
+                    sectionNum=3;
+                    nowB=@"还未付款";
+                    nextB=@"立即付款";
+                }
+            }
+            
+            
+        }else if(_orderInfoModel.orderStatus==1){
+            sectionNum=4;
+            if(_orderInfoModel.consumptionStatus==0){
+                nowB=@"已经拼成";
+                nextB=@"到店消费";
+            }else{
+                nowB=@"已经拼成";
+                nextB=@"到店消费";
+            }
+            
+        }else if(_orderInfoModel.orderStatus==2){
+            sectionNum=4;
+            nowB=@"已经留位";
+            nextB=@"到店消费";
+            
+        }else if(_orderInfoModel.orderStatus==3 || _orderInfoModel.orderStatus==4 || _orderInfoModel.orderStatus==5){
+            sectionNum=1;
+            nowB=@"取消订单";
+            nextB=@"等待退款";
+        }else if(_orderInfoModel.orderStatus==7){
+            if(isfu){
+                sectionNum=4;
+                nowB=@"已经消费";
+                nextB=@"等待返利";
+            }else{
+                sectionNum=3;
+                nowB=@"已经消费";
+                nextB=@"系统审核";
+            }
+            
+        }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
+            sectionNum=3;
+            if(isfu){
+                nowB=@"已经返利";
+                nextB=@"删除订单";
+            }else{
+                nowB=@"消费完成";
+                nextB=@"删除订单";
+            }
+            
+        }else{
+            sectionNum=1;
+            nowB=@"已经退款";
+            nextB=@"删除订单";
+        }
     }else{
-        
+        sectionNum=3;
+        if(_orderInfoModel.orderStatus==0){
+            nowB=@"还未付款";
+            nextB=@"支付消费";
+            
+        }else if(_orderInfoModel.orderStatus==1){
+                nowB=@"已经付款";
+                nextB=@"等待消费";
+            
+            
+        }else if(_orderInfoModel.orderStatus==2){
+            nowB=@"已经付款";
+            nextB=@"等待消费";
+            
+        }else if(_orderInfoModel.orderStatus==3 || _orderInfoModel.orderStatus==4 || _orderInfoModel.orderStatus==5){
+            sectionNum=1;
+            nowB=@"取消订单";
+            nextB=@"等待退款";
+        }else if(_orderInfoModel.orderStatus==7){
+            nowB=@"已经消费";
+            nextB=@"等待返利";
+        }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
+            sectionNum=2;
+            nowB=@"已经返利";
+            nextB=@"删除订单";
+        }else{
+            sectionNum=1;
+            nowB=@"已经退款";
+            nextB=@"删除订单";
+        }
     }
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderDetailHeadView" owner:nil options:nil];
     OrderDetailHeadView *orderDetailHeadView= (OrderDetailHeadView *)[nibView objectAtIndex:0];
@@ -149,8 +565,25 @@
             return 1;
         }
 
+    }else if(section==1){
+        if(_orderInfoModel.ordertype==1){
+            if(isFaqi){
+                return _orderInfoModel.pinkerList.count;
+            }else{
+                return 1;
+            }
+            
+        }else{
+            return 1;
+        }
+    }else if(section==2){
+        
+            return 1;
+        
     }else{
-        return 1;
+        
+            return 1;
+        
     }
     
 }
@@ -243,8 +676,19 @@
             return orderDetailSectionBottomForTuiKuanView;
         }
         if(_orderInfoModel.ordertype==2){
-            return nil;
-        }else if(_orderInfoModel.ordertype==0){
+            
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderDetailSectionBottomForDanPinView" owner:nil options:nil];
+            OrderDetailSectionBottomForDanPinView *orderDetailSectionBottomForDanPinView= (OrderDetailSectionBottomForDanPinView *)[nibView objectAtIndex:0];
+            
+            NSString *fukuanStr=@"￥0";
+            NSString *flStr=@"￥0";
+            fukuanStr = [NSString stringWithFormat:@"￥%@",_orderInfoModel.amountPay];
+            flStr = [NSString stringWithFormat:@"￥%@",_orderInfoModel.rebateAmout];
+            orderDetailSectionBottomForDanPinView.dizhiLal.text=_orderInfoModel.barinfo.address;
+            orderDetailSectionBottomForDanPinView.payLal.text=fukuanStr;
+            orderDetailSectionBottomForDanPinView.flLal.text=flStr;
+            return orderDetailSectionBottomForDanPinView;
+        }else{
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderDetailSectionBottomView" owner:nil options:nil];
             OrderDetailSectionBottomView *orderDetailSectionBottomView= (OrderDetailSectionBottomView *)[nibView objectAtIndex:0];
             
@@ -325,7 +769,36 @@
         [view addSubview:label];
         
         if(_orderInfoModel.ordertype==1){
-            label.text=@"我的拼客好友";
+            UILabel *label1=[[UILabel alloc]initWithFrame:CGRectMake(215, 11, 90, 12)];
+            label1.font=[UIFont systemFontOfSize:12];
+            label1.textColor=RGB(240, 77, 109);
+            label1.textAlignment=NSTextAlignmentRight;
+            label1.text=[NSString stringWithFormat:@"%ld/%@",_orderInfoModel.pinkerList.count,_orderInfoModel.allnum];
+            [view addSubview:label1];
+            if(isFaqi){
+                //"pinkertype":"0"// 0、请客 1、AA付款 2、自由付款 （发起人自由 其他AA）
+                NSString *pinkType;
+                if(_orderInfoModel.pinkerType==0){
+                    pinkType=@"我请客";
+                }else if(_orderInfoModel.pinkerType==1){
+                    pinkType=@"AA付款";
+                }else{
+                    pinkType=@"自由付款";
+                }
+                label.text=[NSString stringWithFormat:@"我的拼客好友(%@)",pinkType];
+            }else{
+                NSString *pinkType;
+                if(_orderInfoModel.pinkerType==0){
+                    pinkType=@"他请客";
+                }else if(_orderInfoModel.pinkerType==1){
+                    pinkType=@"AA付款";
+                }else{
+                    pinkType=@"自由付款";
+                }
+
+                label.text=[NSString stringWithFormat:@"邀请我的好友(%@)",pinkType];
+            }
+            
         }else{
             label.text=@"我选择的VIP专属经理";
         }
@@ -340,7 +813,7 @@
         [view addSubview:label];
         
         if(_orderInfoModel.ordertype==1){
-            label.text=@"我选择的VIP专属经理";
+            label.text=@"我们选择的VIP专属经理";
         }else{
             label.text=@"关于待";
         }
@@ -445,7 +918,36 @@
         return cell;
     }else if(indexPath.section==1){
         if(_orderInfoModel.ordertype==1){
+            NSString *CellIdentifier = @"MyPKfriendCell";
             
+            MyPKfriendCell *cell = (MyPKfriendCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+                cell = (MyPKfriendCell *)[nibArray objectAtIndex:0];
+                cell.backgroundColor=[UIColor whiteColor];
+                cell.pkUserimageView.layer.masksToBounds =YES;
+                cell.pkUserimageView.layer.cornerRadius =cell.pkUserimageView.width/2;
+                
+            }
+            NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+            PinkInfoModel *pinkInfoModel=pinkerList[indexPath.row];
+            [cell.pkUserimageView  setImageWithURL:[NSURL URLWithString:pinkInfoModel.inmenberAvatar_img]];
+            cell.pkNameLal.text=pinkInfoModel.inmemberName;
+            if(userId!=pinkInfoModel.inmember){
+                [cell.siliaoBtn setHidden:NO];
+                [cell.phoneBtn setHidden:NO];
+                [cell.siliaoBtn addTarget:self action:@selector(siliaoActForPK:) forControlEvents:UIControlEventTouchUpInside];
+                [cell.phoneBtn addTarget:self action:@selector(dianhuaActForPK:) forControlEvents:UIControlEventTouchUpInside];
+                cell.phoneBtn.tag=indexPath.row;
+                cell.siliaoBtn.tag=indexPath.row;
+            }else{
+                [cell.siliaoBtn setHidden:YES];
+                [cell.phoneBtn setHidden:YES];
+            }
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
         }else{
             //vip专属经理列表
             NSString *CellIdentifier = @"MyChooseZSCell";
@@ -463,13 +965,57 @@
             [cell.userImageView setImageWithURL:[NSURL URLWithString:_orderInfoModel.checkUserAvatar_img]];
             cell.nameLal.text=_orderInfoModel.checkUserName;
             cell.ageLal.text=@"年龄：秘密";
+            if(_orderInfoModel.orderStatus==0 || _orderInfoModel.orderStatus==1 || _orderInfoModel.orderStatus==2){
+                [cell.siliaoBtn setHidden:false];
+                [cell.phoneBtn setHidden:false];
+                [cell.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
+                [cell.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+                cell.phoneBtn.tag=indexPath.section;
+                cell.siliaoBtn.tag=indexPath.section;
+            }else{
+                [cell.siliaoBtn setHidden:YES];
+                [cell.phoneBtn setHidden:YES];
+            }
+            
+            
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
         }
     }else if(indexPath.section==2){
         if(_orderInfoModel.ordertype==1){
+            //vip专属经理列表
+            NSString *CellIdentifier = @"MyChooseZSCell";
             
+            MyChooseZSCell *cell = (MyChooseZSCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
+                cell = (MyChooseZSCell *)[nibArray objectAtIndex:0];
+                cell.backgroundColor=[UIColor whiteColor];
+                cell.userImageView.layer.masksToBounds =YES;
+                cell.userImageView.layer.cornerRadius =cell.userImageView.width/2;
+                
+            }
+            
+            [cell.userImageView setImageWithURL:[NSURL URLWithString:_orderInfoModel.checkUserAvatar_img]];
+            cell.nameLal.text=_orderInfoModel.checkUserName;
+            cell.ageLal.text=@"年龄：秘密";
+            if(_orderInfoModel.orderStatus==0 || _orderInfoModel.orderStatus==1 || _orderInfoModel.orderStatus==2){
+                [cell.siliaoBtn setHidden:false];
+                [cell.phoneBtn setHidden:false];
+                [cell.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
+                [cell.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+                cell.phoneBtn.tag=indexPath.section;
+                cell.siliaoBtn.tag=indexPath.section;
+            }else{
+                [cell.siliaoBtn setHidden:YES];
+                [cell.phoneBtn setHidden:YES];
+            }
+            
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
         }else{
             NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
             UITableViewCell *cell = nil;
@@ -539,13 +1085,13 @@
         return 76;
     }else if(indexPath.section==1){
         if(_orderInfoModel.ordertype==1){
-            
+            return 46;
         }else{
             return 76;
         }
     }else if(indexPath.section==2){
         if(_orderInfoModel.ordertype==1){
-            
+            return 76;
         }else{
             UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
             return cell.frame.size.height;
@@ -557,6 +1103,107 @@
 
     }
     return 76;
+}
+#pragma mark 付款
+-(void)payAct:(UIButton *)sender{
+    
+    
+}
+#pragma mark 取消订单
+- (void)queXiaoDinDanAct:(UIButton *)sender{
+//    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:_orderInfoModel.id]};
+    [[LYUserHttpTool shareInstance]cancelMyOrder:dic complete:^(BOOL result) {
+        if(result){
+            [MyUtil showMessage:@"取消订单成功"];
+//            [weakSelf refreshData];
+        }
+    }];
+    
+}
+#pragma mark 一定会去
+- (void)yiDinHuiQuAct:(UIButton *)sender{
+//    __weak __typeof(self)weakSelf = self;
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:_orderInfoModel.id]};
+    [[LYUserHttpTool shareInstance]sureMyOrder:dic complete:^(BOOL result) {
+        if(result){
+            [MyUtil showMessage:@"设置成功"];
+//            [weakSelf refreshData];
+        }
+    }];
+}
+#pragma mark 电话咨询
+- (void)dhzxAct:(UIButton *)sender{
+    
+}
+#pragma mark 删除订单
+-(void)shanChuDinDanAct:(UIButton *)sender{
+    
+//    __weak __typeof(self)weakSelf = self;
+    
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:_orderInfoModel.id]};
+    [[LYUserHttpTool shareInstance]delMyOrder:dic complete:^(BOOL result) {
+        if(result){
+            [MyUtil showMessage:@"删除成功"];
+            
+        }
+    }];
+    
+}
+#pragma mark 邀请拼客
+-(void)yaoQinAct:(UIButton *)sender{
+    
+}
+#pragma mark 私聊
+-(void)siliaoAct:(UIButton *)sender{
+    
+    
+    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+    conversationVC.targetId = _orderInfoModel.imuserid; // 接收者的 targetId，这里为举例。
+    conversationVC.userName =_orderInfoModel.username; // 接受者的 username，这里为举例。
+    conversationVC.title =_orderInfoModel.username; // 会话的 title。
+    
+    // 把单聊视图控制器添加到导航栈。
+    [self.navigationController pushViewController:conversationVC animated:YES];
+}
+#pragma mark 电话
+-(void)dianhuaAct:(UIButton *)sender{
+    
+    
+    
+    
+    if( [MyUtil isPureInt:_orderInfoModel.checkUserMobile]){
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        
+    }
+}
+#pragma mark 私聊
+-(void)siliaoActForPK:(UIButton *)sender{
+    
+    NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+    PinkInfoModel *pinkInfoModel=pinkerList[sender.tag];
+    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+    conversationVC.targetId = _orderInfoModel.imuserid; // 接收者的 targetId，这里为举例。
+    conversationVC.userName =_orderInfoModel.username; // 接受者的 username，这里为举例。
+    conversationVC.title =_orderInfoModel.username; // 会话的 title。
+    
+    // 把单聊视图控制器添加到导航栈。
+    [self.navigationController pushViewController:conversationVC animated:YES];
+}
+#pragma mark 电话
+-(void)dianhuaActForPK:(UIButton *)sender{
+    
+    
+    
+    
+    if( [MyUtil isPureInt:_orderInfoModel.checkUserMobile]){
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

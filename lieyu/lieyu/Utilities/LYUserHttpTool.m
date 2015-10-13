@@ -229,4 +229,89 @@
     }];
     
 }
+
+#pragma mark -删除我的订单
+-(void) delMyOrder:(NSDictionary*)params
+          complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_DEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
+#pragma mark -取消我的订单
+-(void) cancelMyOrder:(NSDictionary*)params
+             complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_CANCEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
+#pragma mark 一定会去
+-(void) sureMyOrder:(NSDictionary*)params
+           complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_GO baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
 @end
