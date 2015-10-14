@@ -36,5 +36,15 @@
 //我的订单
 -(void) getMyOrderListWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block;
+//删除订单
+-(void) delMyOrder:(NSDictionary*)params
+        complete:(void (^)(BOOL result))result;
 
+//取消订单
+-(void) cancelMyOrder:(NSDictionary*)params
+          complete:(void (^)(BOOL result))result;
+
+//一定会去
+-(void) sureMyOrder:(NSDictionary*)params
+             complete:(void (^)(BOOL result))result;
 @end

@@ -43,6 +43,8 @@
 //专属经理-取消订单
 #define ZS_KAZUO_CANCEL @"lyOrderAction.do?action=mangerCancel"
 
+
+
 /***商铺管理***/
 //专属经理套餐列表
 #define ZS_TAOCANLIST  @"lySetMealAction.do?action=list"
@@ -73,6 +75,8 @@
 
 //专属经理 我的客户
 #define ZS_USERS_FRIEND  @"lyUsersFriendAction.do?action=list"
+
+
 
 
 //一周卡座是否满座

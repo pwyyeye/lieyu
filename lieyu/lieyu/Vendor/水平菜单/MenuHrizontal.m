@@ -63,7 +63,7 @@
         
         
         //title
-        UILabel *titlelbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 8.5,vButton.width, 11)];
+        UILabel *titlelbl=[[UILabel alloc]initWithFrame:CGRectMake(0, (30-11)/2,vButton.width, 11)];
         titlelbl.text=vTitleStr;
         titlelbl.font=[UIFont systemFontOfSize:11];
         titlelbl.backgroundColor=[UIColor clearColor];
