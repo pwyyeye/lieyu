@@ -9,6 +9,7 @@
 #import "LYBaseViewController.h"
 #import "LYZSeditView.h"
 #import "UzysAssetsPickerController.h"
+#import "UserModel.h"
 @protocol ZSAddStocksDelegate<NSObject>
 - (void)addStocks;
 
@@ -21,6 +22,7 @@
     UIView  *_bgView;
      NSString* filePath;
     NSMutableArray *keyArr;
+    UserModel *userModel;
 }
 - (IBAction)sureAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *firstRadioBtn;
@@ -33,6 +35,7 @@
 - (IBAction)addPictures:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *titleTex;
 @property (weak, nonatomic) IBOutlet UITextField *kucunTex;
+@property (weak, nonatomic) IBOutlet UITextField *priceTex;
 
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *imageAddlal;

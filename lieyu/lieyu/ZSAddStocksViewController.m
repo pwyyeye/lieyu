@@ -18,9 +18,11 @@
 
 - (void)viewDidLoad {
     keyArr=[NSMutableArray new];
-    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    userModel=app.userModel;
     [super viewDidLoad];
     chooseStr=@"瓶";
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -49,12 +51,11 @@
         [self showMessage:@"请输入库存"];
         return;
     }
-    
-    if(keyArr.count<1){
-        [self showMessage:@"请选择图片"];
+    if (self.priceTex.text.length<1) {
+        [self showMessage:@"请填写价格"];
         return;
-        
     }
+    
     
     NSMutableString *linkurl=[NSMutableString new];
     for (NSString *str in keyArr) {
@@ -66,35 +67,13 @@
     [dic setObject:self.titleTex.text forKey:@"name"];
     [dic setObject:chooseStr forKey:@"unit"];
     [dic setObject:self.kucunTex.text forKey:@"stock"];
-    [dic setObject:linkurl forKey:@"linkurl"];
-    [dic setObject:@"1" forKey:@"userid"];
-    [dic setObject:@"1" forKey:@"barid"];
-    // [dic setObject:@"" forKey:@"price"];
+//    [dic setObject:linkurl forKey:@"linkurl"];
+    [dic setObject:[NSNumber numberWithInt:userModel.userid] forKey:@"userid"];
+    [dic setObject:[NSNumber numberWithInt:userModel.barid] forKey:@"barid"];
+    [dic setObject:self.priceTex.text forKey:@"price"];
     //网络访问
     [[ZSManageHttpTool shareInstance] addItemProductWithParams:dic complete:^(BOOL result) {
         if (result) {
-            //看缓存中是否有数据 有去掉
-            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
-            NSMutableArray *keyBenDiArr;
-            if (userDef) {
-                NSArray *arr=[userDef objectForKey:@"QINIUKEY"];
-                keyBenDiArr = [[NSMutableArray alloc]initWithArray:arr];
-                
-                if(keyBenDiArr){
-                    NSArray *arrTemp=[NSArray arrayWithArray: keyBenDiArr];
-                    for (NSString *upKey in keyArr) {
-                        for (NSString *keyIn in arrTemp) {
-                            if([upKey isEqualToString:keyIn]){
-                                [keyBenDiArr removeObject:keyIn];
-                            }
-                        }
-                    }
-                }
-                [userDef setObject:keyBenDiArr forKey:@"QINIUKEY"];
-                [userDef synchronize];
-                
-                
-            }
             [self.delegate addStocks];
             [self.navigationController popViewControllerAnimated:YES];
         }

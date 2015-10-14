@@ -214,14 +214,16 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KUCUN_ADD baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-        
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
+                
                 result(YES);
             });
             [app stopLoading];
         }else{
             result(NO);
+            [MyUtil showMessage:message];
             [app stopLoading];
         }
         
@@ -240,7 +242,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_DANPIN_ADD baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-        
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
@@ -248,6 +250,33 @@
             [app stopLoading];
         }else{
             result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
+#pragma mark专属经理 单品下架
+-(void) delProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_DANPIN_DEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [MyUtil showMessage:message];
             [app stopLoading];
         }
         
@@ -259,7 +288,62 @@
         
     }];
 }
-
+#pragma mark专属经理 套餐下架
+-(void) delTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_TAOCAN_DEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [MyUtil showMessage:message];
+            [app stopLoading];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
+#pragma mark专属经理 库存下架
+-(void) delItemProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    
+}
+#pragma mark专属经理 拼客下架
+-(void) delPinKeWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_PINKE_DEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [MyUtil showMessage:message];
+            [app stopLoading];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
 #pragma mark专属经理-套餐添加
 -(void) addTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];

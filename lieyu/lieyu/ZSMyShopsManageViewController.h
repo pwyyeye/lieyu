@@ -19,6 +19,7 @@
     NSMutableArray *dataList;
     NSMutableArray *serchDataList;
     NSString *totolCount;
+    int userId;
 }
 - (IBAction)backAct:(UIButton *)sender;
 - (IBAction)titelChangeAct:(UISegmentedControl *)sender;

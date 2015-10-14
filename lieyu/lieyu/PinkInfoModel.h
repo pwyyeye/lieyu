@@ -16,6 +16,8 @@
 @property(nonatomic,assign)int inmember;
 @property(nonatomic,copy)NSString * inmemberName;
 @property(nonatomic,copy)NSString * inmenberAvatar_img;
+@property(nonatomic,copy)NSString * inmenberImUserid;
+@property(nonatomic,copy)NSString * inmenbermobile;
 @property(nonatomic,copy)NSString * modifyDate;
 @property(nonatomic,assign)int paymentStatus;
 @property(nonatomic,copy)NSString * price;

@@ -30,6 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    userModel=app.userModel;
     keyArr=[NSMutableArray new];
     chanPinDelList=[[NSMutableArray alloc]init];
     biaoQianList=[[NSMutableArray alloc]init];
@@ -38,6 +40,8 @@
 
     [danPinView.jiageTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
     danPinView.jiageTex.delegate=self;
+    [danPinView.toPriceTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    danPinView.toPriceTex.delegate=self;
     [danPinView.danpinTitleTex addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
     danPinView.danpinTitleTex.delegate=self;
     
@@ -547,7 +551,11 @@
         return;
     }
     if (danPinView.jiageTex.text.length<1) {
-        [self showMessage:@"请填写价格"];
+        [self showMessage:@"请填写实际价格"];
+        return;
+    }
+    if (danPinView.toPriceTex.text.length<1) {
+        [self showMessage:@"请填写市场价格"];
         return;
     }
     if (chanPinDelList.count<1) {
@@ -572,6 +580,7 @@
     NSMutableDictionary *dic=[NSMutableDictionary new];
     [dic setObject:danPinView.danpinTitleTex.text forKey:@"fullname"];
     [dic setObject:danPinView.jiageTex.text forKey:@"price"];
+    [dic setObject:danPinView.toPriceTex.text forKey:@"marketprice"];
     [dic setObject:fxyj forKey:@"rebate"];
     [dic setObject:linkurl forKey:@"image"];
     NSArray *biaoQianTemparr=biaoQianList[0];
@@ -581,7 +590,7 @@
     [dic setObject:[NSString stringWithFormat:@"%d",kuCunModel.id]forKey:@"itemProductId"];
     [dic setObject:[NSString stringWithFormat:@"%d",typeModel.id] forKey:@"categoryid"];
     [dic setObject:[NSString stringWithFormat:@"%d",brandModel.id]  forKey:@"brandid"];
-    [dic setObject:[NSString stringWithFormat:@"%d",1]  forKey:@"barid"];
+    [dic setObject:[NSNumber numberWithInt:userModel.barid] forKey:@"barid"];
     [[ZSManageHttpTool shareInstance] addProductWithParams:dic complete:^(BOOL result) {
         if (result) {
             //看缓存中是否有数据 有去掉

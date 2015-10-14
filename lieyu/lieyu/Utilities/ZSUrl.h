@@ -55,6 +55,13 @@
 //专属经理库存列表
 #define ZS_KUCUNLIST  @"lyItemProductAction.do?action=list"
 
+//专属经理 单品下架
+#define ZS_DANPIN_DEL @"lyProductAction.do?action=update"
+//专属经理 套餐下架
+#define ZS_TAOCAN_DEL @"lySetMealAction.do?action=update"
+//专属经理 拼客下架
+#define ZS_PINKE_DEL @"lyPinkerAction.do?action=update"
+
 //专属经理套餐添加
 #define ZS_TAOCAN_ADD  @"lySetMealAction.do?action=add"
 //专属经理库存添加

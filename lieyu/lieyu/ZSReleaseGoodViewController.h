@@ -18,6 +18,7 @@
     NSMutableArray *biaoQianList;
     LYZSeditView *seditView;
     UIView  *_bgView;
+    UserModel *userModel;
     NSMutableArray *keyArr;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
