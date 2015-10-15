@@ -133,6 +133,8 @@
 		15EB7C5B1BC6048100756153 /* gouGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C5A1BC6048100756153 /* gouGif.gif */; };
 		15EB7C5E1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */; };
 		15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */; };
+		15EB7C681BCF3CAF00756153 /* LYPlayTogetherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C671BCF3CAF00756153 /* LYPlayTogetherCell.m */; };
+		15EB7C6C1BCF8BF700756153 /* LYHomePageHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C6B1BCF8BF700756153 /* LYHomePageHttpTool.m */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
@@ -569,6 +571,11 @@
 		15EB7C5C1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailSectionBottomForTuiKuanPinView.h; sourceTree = "<group>"; };
 		15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailSectionBottomForTuiKuanPinView.m; sourceTree = "<group>"; };
 		15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailSectionBottomForTuiKuanPinView.xib; sourceTree = "<group>"; };
+		15EB7C661BCF3CAF00756153 /* LYPlayTogetherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPlayTogetherCell.h; sourceTree = "<group>"; };
+		15EB7C671BCF3CAF00756153 /* LYPlayTogetherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPlayTogetherCell.m; sourceTree = "<group>"; };
+		15EB7C691BCF8B8600756153 /* LYHomePageUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYHomePageUrl.h; sourceTree = "<group>"; };
+		15EB7C6A1BCF8BF700756153 /* LYHomePageHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomePageHttpTool.h; sourceTree = "<group>"; };
+		15EB7C6B1BCF8BF700756153 /* LYHomePageHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomePageHttpTool.m; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
 		15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
@@ -1272,6 +1279,15 @@
 			children = (
 			);
 			name = IM;
+			sourceTree = "<group>";
+		};
+		15EB7C621BCF3B9B00756153 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				15EB7C661BCF3CAF00756153 /* LYPlayTogetherCell.h */,
+				15EB7C671BCF3CAF00756153 /* LYPlayTogetherCell.m */,
+			);
+			name = cell;
 			sourceTree = "<group>";
 		};
 		15EE51321BA6E1AB00464B74 /* 订单管理 */ = {
@@ -2170,6 +2186,7 @@
 		D761F0251BA5B8A5000757B0 /* PlayTogether */ = {
 			isa = PBXGroup;
 			children = (
+				15EB7C621BCF3B9B00756153 /* cell */,
 				D7A6005B1BAC6CF50006A768 /* PlayTogetherViewController.h */,
 				D7A6005C1BAC6CF50006A768 /* PlayTogetherViewController.m */,
 			);
@@ -2251,8 +2268,11 @@
 				15013B061BBA3BD000061FAF /* LYCommonHttpTool.m */,
 				15EA6DC31BBFC80700620C9E /* LYUserHttpTool.h */,
 				15EA6DC41BBFC80700620C9E /* LYUserHttpTool.m */,
+				15EB7C6A1BCF8BF700756153 /* LYHomePageHttpTool.h */,
+				15EB7C6B1BCF8BF700756153 /* LYHomePageHttpTool.m */,
 				15013AD21BBA25C200061FAF /* ZSUrl.h */,
 				15EB7C591BC5FD2C00756153 /* LYMineUrl.h */,
+				15EB7C691BCF8B8600756153 /* LYHomePageUrl.h */,
 				D794ED0A1BB7872A000DC568 /* PFRect.h */,
 				D794ED0B1BB7872A000DC568 /* PFRect.m */,
 				D794ED071BB786AA000DC568 /* PFImage.h */,
@@ -2689,6 +2709,7 @@
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
 				D761F01B1BA5AED3000757B0 /* MJRefreshBackStateFooter.m in Sources */,
+				15EB7C6C1BCF8BF700756153 /* LYHomePageHttpTool.m in Sources */,
 				15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */,
 				15013AF71BBA33BE00061FAF /* SDImageCache.m in Sources */,
 				A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */,
@@ -2725,6 +2746,7 @@
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				15E1847D1BB4FEF900681BB2 /* LYZSeditView.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
+				15EB7C681BCF3CAF00756153 /* LYPlayTogetherCell.m in Sources */,
 				D71E1D951BAE963900915F37 /* LYShareSnsView.m in Sources */,
 				15E2404D1BB0F3540090D240 /* UIView+Hierarchy.m in Sources */,
 				15E240D11BB3D5940090D240 /* LYRegistrationViewController.m in Sources */,

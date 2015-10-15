@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    userModel=app.userModel;
     zsList=[[NSMutableArray alloc]init];
     [self setupViewStyles];
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -49,7 +51,7 @@
     __weak __typeof(self)weakSelf = self;
 //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 //    NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:app.userModel.userid]};
-    NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:2]};
+    NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:userModel.userid]};
     [[LYUserHttpTool shareInstance]getMyVipStore:dic block:^(NSMutableArray *result) {
         [zsList addObjectsFromArray:result];
         [weakSelf.tableView reloadData];

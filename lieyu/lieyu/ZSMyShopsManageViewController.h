@@ -11,6 +11,7 @@
 #import "WQDraggableCalendarView.h"
 #import "WQScrollCalendarWrapperView.h"
 #import "NeedHideNavigationBar.h"
+#import "UserModel.h"
 @interface ZSMyShopsManageViewController : LYBaseViewController<NeedHideNavigationBar>{
     UIView  *_bgView;
     UIView  *monView;
@@ -20,6 +21,7 @@
     NSMutableArray *serchDataList;
     NSString *totolCount;
     int userId;
+    UserModel *userModel;
 }
 - (IBAction)backAct:(UIButton *)sender;
 - (IBAction)titelChangeAct:(UISegmentedControl *)sender;
