@@ -40,6 +40,14 @@
 //获取酒水品牌列表
 -(void) getBrandListWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block;
+//专属经理 单品下架
+-(void) delItemProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+//专属经理 套餐下架
+-(void) delTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+//专属经理 库存下架
+-(void) delProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+//专属经理 拼客下架
+-(void) delPinKeWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 
 //专属经理-套餐添加
 -(void) addTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
@@ -47,6 +55,7 @@
 -(void) addItemProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 //专属经理-单品添加
 -(void) addProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+
 
 //获取卡座一周是否满座
 -(void) getDeckFullWithParams:(NSDictionary*)params

@@ -11,6 +11,9 @@
 @implementation PinKeCell
 
 - (void)awakeFromNib {
+    self.pinkeImageView.layer.masksToBounds =YES;
+    
+    self.pinkeImageView.layer.cornerRadius =self.pinkeImageView.frame.size.width/2;
     // Initialization code
 }
 

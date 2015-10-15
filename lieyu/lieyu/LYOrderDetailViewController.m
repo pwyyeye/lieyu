@@ -964,7 +964,7 @@
             
             [cell.userImageView setImageWithURL:[NSURL URLWithString:_orderInfoModel.checkUserAvatar_img]];
             cell.nameLal.text=_orderInfoModel.checkUserName;
-            cell.ageLal.text=@"年龄：秘密";
+            cell.ageLal.text=[NSString stringWithFormat:@"年龄：%@",_orderInfoModel.checkUserAge];
             if(_orderInfoModel.orderStatus==0 || _orderInfoModel.orderStatus==1 || _orderInfoModel.orderStatus==2){
                 [cell.siliaoBtn setHidden:false];
                 [cell.phoneBtn setHidden:false];
@@ -999,7 +999,7 @@
             
             [cell.userImageView setImageWithURL:[NSURL URLWithString:_orderInfoModel.checkUserAvatar_img]];
             cell.nameLal.text=_orderInfoModel.checkUserName;
-            cell.ageLal.text=@"年龄：秘密";
+            cell.ageLal.text=[NSString stringWithFormat:@"年龄：%@",_orderInfoModel.checkUserAge];
             if(_orderInfoModel.orderStatus==0 || _orderInfoModel.orderStatus==1 || _orderInfoModel.orderStatus==2){
                 [cell.siliaoBtn setHidden:false];
                 [cell.phoneBtn setHidden:false];
@@ -1186,9 +1186,9 @@
     PinkInfoModel *pinkInfoModel=pinkerList[sender.tag];
     RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-    conversationVC.targetId = _orderInfoModel.imuserid; // 接收者的 targetId，这里为举例。
-    conversationVC.userName =_orderInfoModel.username; // 接受者的 username，这里为举例。
-    conversationVC.title =_orderInfoModel.username; // 会话的 title。
+    conversationVC.targetId = pinkInfoModel.inmenberImUserid; // 接收者的 targetId，这里为举例。
+    conversationVC.userName =pinkInfoModel.inmemberName; // 接受者的 username，这里为举例。
+    conversationVC.title =pinkInfoModel.inmemberName; // 会话的 title。
     
     // 把单聊视图控制器添加到导航栈。
     [self.navigationController pushViewController:conversationVC animated:YES];
@@ -1197,10 +1197,11 @@
 -(void)dianhuaActForPK:(UIButton *)sender{
     
     
+    NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+    PinkInfoModel *pinkInfoModel=pinkerList[sender.tag];
     
-    
-    if( [MyUtil isPureInt:_orderInfoModel.checkUserMobile]){
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
+    if( [MyUtil isPureInt:pinkInfoModel.inmenbermobile]){
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",pinkInfoModel.inmenbermobile];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
     }

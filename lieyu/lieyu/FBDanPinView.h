@@ -10,6 +10,7 @@
 
 @interface FBDanPinView : UIView
 @property (weak, nonatomic) IBOutlet UITextField *jiageTex;
+@property (weak, nonatomic) IBOutlet UITextField *toPriceTex;
 @property (weak, nonatomic) IBOutlet UITextField *danpinTitleTex;
 @property (weak, nonatomic) IBOutlet UITextView *shuoMingTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addPhotoBtn;
