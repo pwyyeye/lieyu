@@ -10,7 +10,7 @@
 #import "HTTPController.h"
 #import "LYHomePageUrl.h"
 #import "ZSUrl.h"
-#import "PinKeModel.h"
+
 @implementation LYHomePageHttpTool
 + (LYHomePageHttpTool *)shareInstance
 {
@@ -47,5 +47,31 @@
     }];
     
 }
+#pragma mark 一起玩列表详细
+-(void) getTogetherDetailWithParams:(NSDictionary*)params
+                              block:(void(^)(PinKeModel* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YIQIWAN_DETAIL baseURL:LY_SERVER params:params success:^(id response) {
+        NSDictionary *dataDic = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            PinKeModel *pinKeModel=[PinKeModel objectWithKeyValues:dataDic];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(pinKeModel);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
 
+
+}
 @end

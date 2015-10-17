@@ -12,10 +12,12 @@
 #import "MJRefresh.h"
 #import "LYHomePageHttpTool.h"
 #import "LYPlayTogetherCell.h"
-
+#import "LYShaiXuanViewController.h"
 #import "PinKeModel.h"
+#import "ProductCategoryModel.h"
+#import "LYPlayTogetherMainViewController.h"
 @interface PlayTogetherViewController
-()
+()<ShaiXuanDelegate>
 {
     NSMutableArray *dataList;
     int pageCount;
@@ -34,6 +36,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _tableView.showsHorizontalScrollIndicator=NO;
+    _tableView.showsVerticalScrollIndicator=NO;
+    _tableView.separatorColor=[UIColor clearColor];
     dataList=[[NSMutableArray alloc]init];
     pageCount=1;
     perCount=20;
@@ -68,16 +73,17 @@
     
     PinKeModel *pinKeModel =[dataList objectAtIndex:indexPath.row];
     [cell configureCell:pinKeModel];
-    
-    
+    cell.pkBtn.tag=indexPath.row;
+    [cell.pkBtn addTarget:self action:@selector(woYaoPin:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 113;
+    return 118;
 }
 
 
@@ -148,7 +154,7 @@
     [dataList removeAllObjects];
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount]};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
-    [self getData:dic];
+    [self getData:nowDic];
 }
 -(void)getDataForDistance{
     //    min_num=1(最低人数)
@@ -169,7 +175,7 @@
     [dataList removeAllObjects];
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"sort":@"priceasc"};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
-    [self getData:dic];
+    [self getData:nowDic];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -206,7 +212,11 @@
 - (IBAction)filterClick:(id)sender
 {
 
-
+    
+    LYShaiXuanViewController *shaiXuanViewController=[[LYShaiXuanViewController alloc]initWithNibName:@"LYShaiXuanViewController" bundle:nil];
+    shaiXuanViewController.title=@"筛选";
+    shaiXuanViewController.delegate=self;
+    [self.navigationController pushViewController:shaiXuanViewController animated:YES];
 }
 
 - (void)setupViewStyles
@@ -259,5 +269,46 @@
     self.allListButton.selected=NO;
     self.nearDistanceButton.selected=YES;
     [self getDataForDistance];
+}
+- (void)addCondition:(NSMutableArray *)arr{
+    if(arr.count>0){
+        pageCount=1;
+        [dataList removeAllObjects];
+        [nowDic removeObjectForKey:@"p"];
+        [nowDic removeObjectForKey:@"minprice"];
+        [nowDic removeObjectForKey:@"maxprice"];
+        [nowDic removeObjectForKey:@"minnum"];
+        [nowDic removeObjectForKey:@"maxnum"];
+        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+        for (ProductCategoryModel *mode in arr) {
+            if(mode.type==0){
+                if([mode.minprice isEqualToString:@"10000"]){
+                    [nowDic setObject:mode.minprice forKey:@"minprice"];
+                }else{
+                    [nowDic setObject:mode.maxprice forKey:@"maxprice"];
+                    [nowDic setObject:mode.minprice forKey:@"minprice"];
+                }
+
+            }else if(mode.type==1){
+                if([mode.minnum isEqualToString:@"15"]){
+                    [nowDic setObject:mode.minnum forKey:@"minnum"];
+                }else{
+                    [nowDic setObject:mode.maxnum forKey:@"maxnum"];
+                    [nowDic setObject:mode.minnum forKey:@"minnum"];
+                }
+            }
+        }
+        
+        
+        [self getData:nowDic];
+    }
+    
+}
+-(void)woYaoPin:(UIButton *)sender{
+    PinKeModel *pinKeModel =[dataList objectAtIndex:sender.tag];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
+    playTogetherMainViewController.pinKeModel=pinKeModel;
+    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
 }
 @end

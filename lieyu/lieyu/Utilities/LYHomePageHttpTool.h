@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "PinKeModel.h"
 @interface LYHomePageHttpTool : NSObject
 + (LYHomePageHttpTool *)shareInstance;
 //一起玩列表
 -(void) getTogetherListWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block;
+//一起玩列表详细
+-(void) getTogetherDetailWithParams:(NSDictionary*)params
+                            block:(void(^)(PinKeModel* result)) block;
 @end

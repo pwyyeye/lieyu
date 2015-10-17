@@ -1,138 +1,115 @@
 //
-//  BiaoQianChooseViewController.m
+//  LYShaiXuanViewController.m
 //  lieyu
 //
-//  Created by 薛斯岐 on 15/9/22.
+//  Created by 薛斯岐 on 15/10/16.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "BiaoQianChooseViewController.h"
-#import "TypeChooseCell.h"
-#import "BiaoQianBtn.h"
+#import "LYShaiXuanViewController.h"
 #import "ProductCategoryModel.h"
-#import "BrandModel.h"
-#import "ZSManageHttpTool.h"
 #import "BiaoQianBtn.h"
-@interface BiaoQianChooseViewController ()
+#import "TypeChooseCell.h"
+@interface LYShaiXuanViewController ()
 {
-  NSMutableArray  *biaoqianList;
-    
+    NSMutableArray  *dataList;
 }
 @end
 
-@implementation BiaoQianChooseViewController
+@implementation LYShaiXuanViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    biaoqianList=[NSMutableArray new];
+    dataList=[NSMutableArray new];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
-    [self geBiaoQianData];
+    [self getData];
     // Do any additional setup after loading the view from its nib.
 }
-#pragma mark 标签
--(void)geBiaoQianData{
-    //获取酒水类型
-    [biaoqianList removeAllObjects];
-    __weak __typeof(self)weakSelf = self;
-    [[ZSManageHttpTool shareInstance] getProductCategoryListWithParams:nil block:^(NSMutableArray *result) {
-//        [weakSelf geBiaoQianForJGData];
-        NSMutableArray *jiuShuiLXList=[weakSelf setRow:result];
-        NSDictionary *dic=@{@"title":@"酒水类型：",@"data":jiuShuiLXList};
-        [biaoqianList addObject:dic];
-        [weakSelf geBiaoQianForBrandData];
-    }];
-    
-    
-}
-#pragma mark 获取价格
--(void)geBiaoQianForJGData{
+#pragma mark 条件数据
+-(void)getData{
+    //价格
     ProductCategoryModel *model=[[ProductCategoryModel alloc]init];
     model.name=@"1000以内";
+    model.maxprice=@"1000";
+    model.minprice=@"0";
+    model.type=0;
     ProductCategoryModel *model1=[[ProductCategoryModel alloc]init];
     model1.name=@"1k-3k以内";
+    model1.maxprice=@"3000";
+    model1.minprice=@"1000";
+    model1.type=0;
     ProductCategoryModel *model2=[[ProductCategoryModel alloc]init];
     model2.name=@"3k-5k以内";
+    model2.maxprice=@"5000";
+    model2.minprice=@"3000";
+    model2.type=0;
     ProductCategoryModel *model3=[[ProductCategoryModel alloc]init];
     model3.name=@"5k-10k以内";
+    model3.maxprice=@"10000";
+    model3.minprice=@"5000";
+    model3.type=0;
     ProductCategoryModel *model4=[[ProductCategoryModel alloc]init];
     model4.name=@"一万以上";
+    model4.maxprice=@"10000000";
+    model4.minprice=@"10000";
+    model4.type=0;
     NSArray *arr=@[model,model1,model2];
     NSArray *arr1=@[model3,model4];
     NSMutableArray *jiageArr=[[NSMutableArray alloc]init];
     [jiageArr addObject:arr];
     [jiageArr addObject:arr1];
     NSDictionary *dic=@{@"title":@"价格(元)：",@"data":jiageArr};
-    [biaoqianList addObject:dic];
+    [dataList addObject:dic];
+    
+    //人数
+    //价格
+    ProductCategoryModel *model20=[[ProductCategoryModel alloc]init];
+    model20.name=@"3-5人";
+    model20.minnum=@"3";
+    model20.maxnum=@"5";
+    model20.type=1;
+    ProductCategoryModel *model21=[[ProductCategoryModel alloc]init];
+    model21.name=@"5-8人";
+    model21.minnum=@"5";
+    model21.maxnum=@"8";
+    model21.type=1;
+    ProductCategoryModel *model22=[[ProductCategoryModel alloc]init];
+    model22.name=@"8-12人";
+    model22.minnum=@"8";
+    model22.maxnum=@"12";
+    model22.type=1;
+    ProductCategoryModel *model23=[[ProductCategoryModel alloc]init];
+    model23.name=@"12-15人";
+    model23.minnum=@"12";
+    model23.maxnum=@"15";
+    model23.type=1;
+    ProductCategoryModel *model24=[[ProductCategoryModel alloc]init];
+    model24.name=@"15人以上";
+    model24.minnum=@"15";
+    model24.maxnum=@"150000";
+    model24.type=1;
+    NSArray *arr20=@[model20,model21,model22];
+    NSArray *arr21=@[model23,model24];
+    NSMutableArray *renArr=[[NSMutableArray alloc]init];
+    [renArr addObject:arr20];
+    [renArr addObject:arr21];
+    NSDictionary *dic1=@{@"title":@"人数：",@"data":renArr};
+    [dataList addObject:dic1];
 }
-#pragma mark 获取品牌
--(void)geBiaoQianForBrandData{
-    __weak __typeof(self)weakSelf = self;
-    [[ZSManageHttpTool shareInstance] getBrandListWithParams:nil block:^(NSMutableArray *result) {
-        NSMutableArray *brandList=[weakSelf setRow:result];
-        NSDictionary *dic=@{@"title":@"酒水品牌：",@"data":brandList};
-        [biaoqianList addObject:dic];
-        [weakSelf.tableView reloadData];
-    }];
-}
-#pragma mark酒水类型数据分成3列
--(NSMutableArray *)setRow:(NSMutableArray *)arr{
-    int nowCount=1;
-    NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:3];
-    NSMutableArray *dataArr=[[NSMutableArray alloc]init];
-    for (int i=0; i<arr.count; i++) {
-        ProductCategoryModel *productCategoryModel= arr[i];
-        
-        if(nowCount%3==0){
-            [pageArr addObject:productCategoryModel];
-            [dataArr addObject:pageArr];
-            pageArr=[[NSMutableArray alloc]initWithCapacity:3];
-        }else{
-            [pageArr addObject:productCategoryModel];
-            if(i==arr.count-1){
-                [dataArr addObject:pageArr];
-            }
-        }
-        nowCount++;
-    }
-    return dataArr;
-}
-//#pragma mark酒水品牌数据分成3列
-//-(NSMutableArray *)setJiuShuiBrandRow:(NSMutableArray *)arr{
-//    int nowCount=1;
-//    NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:3];
-//    NSMutableArray *dataArr=[[NSMutableArray alloc]init];
-//    for (int i=0; i<arr.count; i++) {
-//        BrandModel *productCategoryModel= arr[i];
-//        
-//        if(nowCount%3==0){
-//            [pageArr addObject:productCategoryModel];
-//            [dataArr addObject:pageArr];
-//            pageArr=[[NSMutableArray alloc]initWithCapacity:3];
-//        }else{
-//            [pageArr addObject:productCategoryModel];
-//            if(i==arr.count-1){
-//                [pageArr addObject:pageArr];
-//            }
-//        }
-//        nowCount++;
-//    }
-//    return dataArr;
-//}
-
 #pragma mark table代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    NSDictionary *dic=@{@"title":@"酒水品牌：",@"data":brandList};
-    NSDictionary *dic= biaoqianList [section];
+    //    NSDictionary *dic=@{@"title":@"酒水品牌：",@"data":brandList};
+    NSDictionary *dic= dataList [section];
     NSArray *arr=[dic objectForKey:@"data"];
     return arr.count;
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return biaoqianList.count;
+    return dataList.count;
 }
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
 //    return @"今日发布套餐：15套";
@@ -141,7 +118,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     //    NSDictionary *dic=@{@"title":@"酒水品牌：",@"data":brandList};
-    NSDictionary *dic= biaoqianList [section];
+    NSDictionary *dic= dataList [section];
     NSString *title=[dic objectForKey:@"title"];
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
     view.backgroundColor=[UIColor whiteColor];
@@ -160,7 +137,7 @@
 {
     static NSString *cellIdentifier = @"TypeChooseCell";
     
-     TypeChooseCell*cell = (TypeChooseCell *)[_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    TypeChooseCell*cell = (TypeChooseCell *)[_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil];
         cell = (TypeChooseCell *)[nibArray objectAtIndex:0];
@@ -168,7 +145,7 @@
         
         
     }
-    NSDictionary *dic= biaoqianList [indexPath.section];
+    NSDictionary *dic= dataList [indexPath.section];
     NSArray *arr=[dic objectForKey:@"data"];
     NSArray *arrTemp=arr[indexPath.row];
     if(arrTemp.count==1){
@@ -207,8 +184,8 @@
             [cell.threeBtn setSelected:productCategoryModel.isSel];
         }
     }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -231,8 +208,8 @@
     UITouch *touch = [touches anyObject];
     CGPoint currentTouchPosition = [touch locationInView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint: currentTouchPosition];
-    button.model.isSel=true;
-    NSDictionary *dic= biaoqianList [indexPath.section];
+    button.model.isSel=!button.model.isSel;
+    NSDictionary *dic= dataList [indexPath.section];
     NSArray *arr=[dic objectForKey:@"data"];
     for (NSArray *arr1 in arr) {
         for (ProductCategoryModel *model in arr1) {
@@ -244,25 +221,10 @@
     NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:indexPath.section];
     [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)sureAct:(id)sender {
     //获取选中的类型数据
     NSMutableArray *arrNew=[NSMutableArray new];
-    for (NSDictionary *dic in biaoqianList) {
+    for (NSDictionary *dic in dataList) {
         NSArray *arr=[dic objectForKey:@"data"];
         for (NSArray *arr1 in arr) {
             bool isflag=false;
@@ -279,13 +241,25 @@
         }
     }
     //判断是否符合条件
-    if(arrNew.count==biaoqianList.count){
-        [self.delegate addBiaoQian:arrNew];
+    
+        [self.delegate addCondition:arrNew];
         [self.navigationController popViewControllerAnimated:YES];
-    }else{
-        [self showMessage:@"请选择类型"];
-        return;
-    }
-
+    
+    
 }
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
 @end

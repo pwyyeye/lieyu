@@ -10,5 +10,6 @@
 #define lieyu_LYHomePageUrl_h
 //一起玩列表
 #define LY_YIQIWAN_LIST  @"togetherAction.do?action=list"
-
+//一起玩列表详细
+#define LY_YIQIWAN_DETAIL @"togetherAction.do?action=custom"
 #endif
