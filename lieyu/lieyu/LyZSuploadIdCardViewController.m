@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view from its nib.
 }
 #pragma mark - 添加照片
@@ -162,7 +163,7 @@
 
     [[LYUserHttpTool shareInstance]setApplyVip:_paramdic block:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImagePNGRepresentation(idcard_zhengmian) name:@"idcardImagesFile" fileName:@"idcard_1.png" mimeType:@"image/png"];
-        [formData appendPartWithFileData:UIImagePNGRepresentation(idcard_fanmian) name:@"idcardImagesFile" fileName:@"idcard_2.png" mimeType:@"image/png"];
+        [formData appendPartWithFileData:UIImagePNGRepresentation(idcard_fanmian) name:@"idcardImagesFileBack" fileName:@"idcard_2.png" mimeType:@"image/png"];
     } complete:^(BOOL result) {
         if(result){
             [MyUtil showMessage:@"申请成功!"];

@@ -31,6 +31,7 @@
     [super viewDidLoad];
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     userId=app.userModel.userid;
+    userModel=app.userModel;
     dataList=[[NSMutableArray alloc]init];
     serchDataList=[[NSMutableArray alloc]init];
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -52,7 +53,7 @@
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dic=@{@"barid":@"1"};
+    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:userModel.barid]};
     [[ZSManageHttpTool shareInstance] getMyTaoCanListWithParams:dic block:^(NSMutableArray *result) {
         dataList =result;
         UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
@@ -77,7 +78,7 @@
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dic=@{@"barid":@"1"};
+    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:userModel.barid]};
     [[ZSManageHttpTool shareInstance] getMyPinkerListWithParams:dic block:^(NSMutableArray *result) {
         dataList =result;
         UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
@@ -93,7 +94,7 @@
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dic=@{@"barid":@"1"};
+    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:userModel.barid]};
     [[ZSManageHttpTool shareInstance] getMyDanPinListWithParams:dic block:^(NSMutableArray *result) {
         dataList =result;
         UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
@@ -110,7 +111,7 @@
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dic=@{@"barid":@"1",@"userid":@"1"};
+    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:userModel.barid],@"userid":[NSNumber numberWithInt:userModel.userid]};
     [[ZSManageHttpTool shareInstance] getMyKuCunListWithParams:dic block:^(NSMutableArray *result) {
         dataList =result;
         totolCount=[NSString stringWithFormat:@"共产品：%d个",(int)dataList.count];

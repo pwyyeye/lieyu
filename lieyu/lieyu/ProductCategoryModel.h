@@ -26,5 +26,8 @@
 @property(nonatomic,assign)BOOL isSel;
 @property(nonatomic,assign)int type;
 @property(nonatomic,copy)NSString * url;
-
+@property(nonatomic,copy)NSString *minprice;
+@property(nonatomic,copy)NSString *maxprice;
+@property(nonatomic,copy)NSString *minnum;
+@property(nonatomic,copy)NSString *maxnum;
 @end

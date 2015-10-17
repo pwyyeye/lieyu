@@ -13,7 +13,7 @@
     UIView  *_bgView;
     LYZSeditView *seditView;
     UIBarButtonItem *rightBtn;
-    
+    UserModel *userModel;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
