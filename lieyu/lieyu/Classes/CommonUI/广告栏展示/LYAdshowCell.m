@@ -38,7 +38,8 @@
         }
 
         imgView.tag = tag;
-        [imgView sd_setImageWithURL:[NSURL URLWithString:bannerUrlList[i]] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+         NSString *str=bannerUrlList[i] ;
+        [imgView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
         }];
     }

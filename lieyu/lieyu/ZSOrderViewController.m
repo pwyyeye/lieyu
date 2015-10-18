@@ -423,7 +423,8 @@
             orderHeadView.nameLal.text=orderInfoModel.username;
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+            NSString *str=orderInfoModel.avatar_img ;
+            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
             //
             if(orderInfoModel.ordertype==0){
                 [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
@@ -452,7 +453,8 @@
             orderHeadView.nameLal.text=orderInfoModel.username;
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+            NSString *str=orderInfoModel.avatar_img ;
+            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
             //
             if(orderInfoModel.ordertype==0){
                 [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
@@ -483,7 +485,8 @@
             orderHeadView.nameLal.text=orderInfoModel.username;
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+            NSString *str=orderInfoModel.avatar_img ;
+            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
             //
             if(orderInfoModel.ordertype==0){
                 [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
@@ -514,7 +517,8 @@
             orderHeadView.nameLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+            NSString *str=orderInfoModel.avatar_img ;
+            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
             //
             if(orderInfoModel.ordertype==0){
                 [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
@@ -544,7 +548,8 @@
             orderHeadView.nameLal.text=orderInfoModel.username;
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+            NSString *str=orderInfoModel.avatar_img ;
+            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
             //
             if(orderInfoModel.ordertype==0){
                 [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
@@ -647,7 +652,8 @@
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",shopDetailmodel.money] attributes:attribtDic];
     cell.moneylal.attributedText=attribtStr;
-    [cell.detImageView setImageWithURL:[NSURL URLWithString:shopDetailmodel.img]];
+    NSString *str=shopDetailmodel.img ;
+    [cell.detImageView setImageWithURL:[NSURL URLWithString:str]];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

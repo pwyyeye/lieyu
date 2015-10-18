@@ -74,4 +74,60 @@
 
 
 }
+
+#pragma mark 一起玩确认订单
+-(void) getTogetherOrderWithParams:(NSDictionary*)params
+                             block:(void(^)(PinKeModel* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YIQIWAN_DOORDER baseURL:LY_SERVER params:params success:^(id response) {
+        NSDictionary *dataDic = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            PinKeModel *pinKeModel=[PinKeModel objectWithKeyValues:dataDic];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(pinKeModel);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+
+}
+#pragma mark录入拼客订单
+-(void) setTogetherOrderInWithParams:(NSDictionary*)params
+                            complete:(void (^)(NSString *result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YIQIWAN_INORDER baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        NSString *data=[NSString stringWithFormat:@"%@",response[@"data"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(data);
+            });
+            [app stopLoading];
+        }else{
+            
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        
+        
+        
+    }];
+}
 @end

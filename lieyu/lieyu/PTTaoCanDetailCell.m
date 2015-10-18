@@ -1,16 +1,15 @@
 //
-//  LYPlayTogetherCell.m
+//  PTTaoCanDetailCell.m
 //  lieyu
 //
-//  Created by 薛斯岐 on 15/10/15.
+//  Created by 薛斯岐 on 15/10/17.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "LYPlayTogetherCell.h"
+#import "PTTaoCanDetailCell.h"
 #import "PinKeModel.h"
-#import "JiuBaModel.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-@implementation LYPlayTogetherCell
+@implementation PTTaoCanDetailCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -26,12 +25,11 @@
     
     //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
     NSString *str=model.barinfo.baricon ;
-    [_pkIconImageView  setImageWithURL:[NSURL URLWithString:str]];
+    [_jiuBaImageView  setImageWithURL:[NSURL URLWithString:str]];
     
-    _barnameLal.text=model.barinfo.barname;
-    _introductionLal.text=model.title;
-    _addressLal.text=model.barinfo.address;
-    _scLal.text=model.barinfo.fav_num;
+    _jiubaLal.text=model.barinfo.barname;
+    _titleLal.text=model.title;
+    _moneyLal.text=[NSString stringWithFormat:@"￥%@",model.price];
     
 }
 @end

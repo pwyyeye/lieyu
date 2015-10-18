@@ -1,14 +1,14 @@
 //
-//  PTTaoCanCell.m
+//  PTPayAmoutCell.m
 //  lieyu
 //
 //  Created by 薛斯岐 on 15/10/17.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "PTTaoCanCell.h"
-#import "KuCunModel.h"
-@implementation PTTaoCanCell
+#import "PTPayAmoutCell.h"
+
+@implementation PTPayAmoutCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -19,11 +19,8 @@
 
     // Configure the view for the selected state
 }
-- (void)configureCell:(KuCunModel*)model
-{
-        //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
-    self.titleLal.text=model.name;
-    self.countLal.text=model.num;
-    self.jiagelal.text=[NSString stringWithFormat:@"￥%@",model.price];
+
+- (IBAction)exitEdit:(UITextField *)sender {
+    [sender resignFirstResponder];
 }
 @end

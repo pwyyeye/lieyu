@@ -47,7 +47,7 @@
     __weak __typeof(self)weakSelf = self;
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         pageCount=1;
-        [dataList removeAllObjects];
+        
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [weakSelf getData:nowDic];
@@ -118,9 +118,10 @@
     
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getTogetherListWithParams:dic block:^(NSMutableArray *result) {
-        
+        [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
+        
         NSLog(@"****block%ld******",dataList.count);
         if(dataList.count>0){
             
@@ -308,7 +309,8 @@
     PinKeModel *pinKeModel =[dataList objectAtIndex:sender.tag];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
-    playTogetherMainViewController.pinKeModel=pinKeModel;
+    playTogetherMainViewController.title=@"我要拼客";
+    playTogetherMainViewController.smid=pinKeModel.smid;
     [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
 }
 @end

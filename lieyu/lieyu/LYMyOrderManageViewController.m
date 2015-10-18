@@ -63,7 +63,7 @@
 #pragma mark 获取所有订单数据
 -(void)getAllOrder{
     pageCount=1;
-    [dataList removeAllObjects];
+//    [dataList removeAllObjects];
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount]};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     
@@ -72,7 +72,7 @@
 #pragma mark 获取待付款数据
 -(void)getDaiFuKuan{
     pageCount=1;
-    [dataList removeAllObjects];
+//    [dataList removeAllObjects];
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"0"};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     
@@ -81,7 +81,7 @@
 #pragma mark 获取待消费数据
 -(void)getDaiXiaoFei{
     pageCount=1;
-    [dataList removeAllObjects];
+//    [dataList removeAllObjects];
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"1,2"};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     
@@ -90,7 +90,7 @@
 #pragma mark 获取已返利数据
 -(void)getYiFanLi{
     pageCount=1;
-    [dataList removeAllObjects];
+//    [dataList removeAllObjects];
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"8,9"};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     
@@ -99,7 +99,7 @@
 #pragma mark 获取待返利数据
 -(void)getDaiFanLi{
     pageCount=1;
-    [dataList removeAllObjects];
+//    [dataList removeAllObjects];
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"7"};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     
@@ -108,7 +108,7 @@
 #pragma mark 获取退款数据
 -(void)getTuiDan{
     pageCount=1;
-    [dataList removeAllObjects];
+//    [dataList removeAllObjects];
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"3,4,5,10"};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     
@@ -369,7 +369,8 @@
         //根据订单类型 订单状态设置底部按钮
         if(orderInfoModel.ordertype==0){
             orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
-            [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:orderInfoModel.checkUserAvatar_img]];
+            NSString *str=orderInfoModel.checkUserAvatar_img ;
+            [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
             orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
             if(orderInfoModel.orderStatus==0){
                 [orderBottomView.oneBtn setTitle:@"删除订单" forState:0];
@@ -433,10 +434,12 @@
             }
             orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",moneyStr];
             if(isfu){
-                [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:orderInfoModel.checkUserAvatar_img]];
+                NSString *str=orderInfoModel.checkUserAvatar_img;
+                [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
                 orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
             }else{
-                [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:orderInfoModel.avatar_img]];
+                NSString *str=orderInfoModel.avatar_img ;
+                [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
                 orderBottomView.zsUserNameLal.text=orderInfoModel.username;
             }
             if(orderInfoModel.orderStatus==0){
@@ -512,7 +515,8 @@
                 orderBottomView.secondBtn.tag=section;
             }
         }else{
-            [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:orderInfoModel.checkUserAvatar_img]];
+            NSString *str=orderInfoModel.checkUserAvatar_img ;
+            [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
             orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
             orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
             if(orderInfoModel.orderStatus==0){
@@ -579,7 +583,8 @@
     orderHeadView.nameLal.text=orderInfoModel.barinfo.barname;
     orderHeadView.userImgeView.layer.masksToBounds =YES;
     orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-    [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:orderInfoModel.barinfo.baricon]];
+    NSString *str=orderInfoModel.barinfo.baricon ;
+    [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
     //
     if(orderInfoModel.ordertype==0){
         [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
@@ -695,7 +700,8 @@
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",shopDetailmodel.money] attributes:attribtDic];
     cell.moneyLal.attributedText=attribtStr;
-    [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:shopDetailmodel.img]];
+    NSString *str=shopDetailmodel.img ;
+    [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:str]];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

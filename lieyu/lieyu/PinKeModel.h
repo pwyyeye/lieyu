@@ -23,6 +23,7 @@
 @property(nonatomic,assign)int id;
 @property(nonatomic,copy)NSString * buynum;
 @property(nonatomic,retain)JiuBaModel * barinfo;
+@property(nonatomic,retain)NSArray * banner;
 @property(nonatomic,retain)NSArray * goodsList;
 @property(nonatomic,retain)NSArray * managerList;
 @property(nonatomic,copy)NSString * introduction;

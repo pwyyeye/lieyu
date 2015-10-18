@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "EScrollerView.h"
 @interface PTTopCell : UITableViewCell<LYTableViewCellLayout>
+{
+    EScrollerView *scroller;
+}
 @property (weak, nonatomic) IBOutlet UILabel *shoucangCountLal;
 @property (weak, nonatomic) IBOutlet UILabel *addressLal;
 @property (weak, nonatomic) IBOutlet UIImageView *jiubaImageView;
 @property (weak, nonatomic) IBOutlet UILabel *jiubaNameLal;
+@property (weak, nonatomic) IBOutlet UILabel *taoCanNameLal;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 
 @end

@@ -262,7 +262,8 @@
             cell.moneyLal.attributedText=attribtStr;
             cell.zhekouLal.text=[NSString stringWithFormat:@"￥%.f",taoCanModel.price];
             NSString *flStr=[NSString stringWithFormat:@"分销佣金：%.f%\%",taoCanModel.rebate*100];
-            [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:taoCanModel.linkicon]];
+            NSString *str=taoCanModel.linkicon ;
+            [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:str]];
             [cell.yjBtn setTitle:flStr forState:0];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
@@ -290,7 +291,8 @@
             cell.didianLal.text=pinKeModel.subtitle;
             cell.shopNameLal.text=@"";
             cell.timeLal.text=pinKeModel.smdate;
-            [cell.pinkeImageView setImageWithURL:[NSURL URLWithString:pinKeModel.linkicon]];
+            NSString *str=pinKeModel.linkicon ;
+            [cell.pinkeImageView setImageWithURL:[NSURL URLWithString:str]];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
@@ -319,7 +321,8 @@
             cell.moneyLal.text=[NSString stringWithFormat:@"￥%.f",cheHeModel.price];
             NSString *flStr=[NSString stringWithFormat:@"分销佣金：%.f%\%",cheHeModel.rebate*100];
             [cell.yjBtn setTitle:flStr forState:0];
-            [cell.cheHeImageView setImageWithURL:[NSURL URLWithString:cheHeModel.img_80]];
+            NSString *str=cheHeModel.img_80 ;
+            [cell.cheHeImageView setImageWithURL:[NSURL URLWithString:str]];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             break;
@@ -340,7 +343,8 @@
             KuCunModel *kuCunModel=serchDataList[indexPath.row];
             cell.namelal.text=kuCunModel.name;
             cell.countLal.text=[NSString stringWithFormat:@"%d件",kuCunModel.stock];
-            [cell.kuCunImageView setImageWithURL:[NSURL URLWithString:kuCunModel.linkurl]];
+            NSString *str=kuCunModel.linkurl ;
+            [cell.kuCunImageView setImageWithURL:[NSURL URLWithString:str]];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             break;

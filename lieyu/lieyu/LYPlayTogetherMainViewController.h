@@ -9,6 +9,8 @@
 #import "LYBaseViewController.h"
 #import "PinKeModel.h"
 @interface LYPlayTogetherMainViewController : LYBaseViewController
+- (IBAction)ljpkAct:(UIButton *)sender;
 @property(nonatomic,retain)PinKeModel * pinKeModel;
+@property(nonatomic,assign)int smid;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
