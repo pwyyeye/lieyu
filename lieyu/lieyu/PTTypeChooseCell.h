@@ -9,12 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface PTTypeChooseCell : UITableViewCell<LYTableViewCellLayout>
-{
-    NSString *pinkertype;
-}
+
 @property (weak, nonatomic) IBOutlet UIButton *payAllBtn;
 @property (weak, nonatomic) IBOutlet UIButton *aaBtn;
 @property (weak, nonatomic) IBOutlet UIButton *freePayBtn;
+@property (copy, nonatomic) NSString *pinkertype;
 - (IBAction)typeChooseAct:(UIButton *)sender;
 
 @end

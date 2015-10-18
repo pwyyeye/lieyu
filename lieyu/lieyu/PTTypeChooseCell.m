@@ -11,7 +11,8 @@
 @implementation PTTypeChooseCell
 
 - (void)awakeFromNib {
-    pinkertype=@"1";
+//    pinkertype=@"1";
+    
     // Initialization code
 }
 
@@ -24,17 +25,18 @@
 - (IBAction)typeChooseAct:(UIButton *)sender {
     [sender setSelected:YES];
     if(sender.tag==100){
-        pinkertype=@"0";
+        _pinkertype=@"0";
         [self.aaBtn setSelected:false];
         [self.freePayBtn setSelected:false];
     }else if(sender.tag==101){
-        pinkertype=@"1";
+        _pinkertype=@"1";
         [self.payAllBtn setSelected:false];
         [self.freePayBtn setSelected:false];
     }else{
-        pinkertype=@"2";
+        _pinkertype=@"2";
         [self.aaBtn setSelected:false];
         [self.payAllBtn setSelected:false];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"typeChange" object:nil];
 }
 @end

@@ -24,6 +24,7 @@
     int count = self.numLal.text.intValue;
     count++;
     self.numLal.text=[NSString stringWithFormat:@"%d",count];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"typeChange" object:nil];
 }
 
 - (IBAction)jianAct:(UIButton *)sender {
@@ -32,5 +33,6 @@
         count--;
     }
     self.numLal.text=[NSString stringWithFormat:@"%d",count];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"typeChange" object:nil];
 }
 @end

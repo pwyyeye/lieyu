@@ -129,6 +129,14 @@
 		15EB350A1BD1F61800BA6161 /* PTTimeChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35091BD1F61800BA6161 /* PTTimeChooseCell.m */; };
 		15EB350D1BD1F63F00BA6161 /* PTChooseNumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB350C1BD1F63F00BA6161 /* PTChooseNumCell.m */; };
 		15EB35101BD1F67200BA6161 /* PTShowIntroductionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB350F1BD1F67200BA6161 /* PTShowIntroductionsCell.m */; };
+		15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35121BD26CC800BA6161 /* PTTaoCanDetailCell.m */; };
+		15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35151BD26D0F00BA6161 /* PTPayAmoutCell.m */; };
+		15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35181BD26D2F00BA6161 /* PTAddressCell.m */; };
+		15EB351C1BD26D5900BA6161 /* PTzsjlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB351B1BD26D5900BA6161 /* PTzsjlCell.m */; };
+		15EB351F1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB351E1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m */; };
+		15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35221BD3395800BA6161 /* EScrollerView.m */; };
+		15EB35271BD379A500BA6161 /* LYtimeChooseTimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35251BD379A500BA6161 /* LYtimeChooseTimeController.m */; };
+		15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB35261BD379A500BA6161 /* LYtimeChooseTimeController.xib */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
 		15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C451BC3751300756153 /* PinkInfoModel.m */; };
@@ -574,6 +582,21 @@
 		15EB350C1BD1F63F00BA6161 /* PTChooseNumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTChooseNumCell.m; sourceTree = "<group>"; };
 		15EB350E1BD1F67200BA6161 /* PTShowIntroductionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowIntroductionsCell.h; sourceTree = "<group>"; };
 		15EB350F1BD1F67200BA6161 /* PTShowIntroductionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTShowIntroductionsCell.m; sourceTree = "<group>"; };
+		15EB35111BD26CC800BA6161 /* PTTaoCanDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTaoCanDetailCell.h; sourceTree = "<group>"; };
+		15EB35121BD26CC800BA6161 /* PTTaoCanDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTaoCanDetailCell.m; sourceTree = "<group>"; };
+		15EB35141BD26D0F00BA6161 /* PTPayAmoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPayAmoutCell.h; sourceTree = "<group>"; };
+		15EB35151BD26D0F00BA6161 /* PTPayAmoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPayAmoutCell.m; sourceTree = "<group>"; };
+		15EB35171BD26D2F00BA6161 /* PTAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTAddressCell.h; sourceTree = "<group>"; };
+		15EB35181BD26D2F00BA6161 /* PTAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTAddressCell.m; sourceTree = "<group>"; };
+		15EB351A1BD26D5900BA6161 /* PTzsjlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTzsjlCell.h; sourceTree = "<group>"; };
+		15EB351B1BD26D5900BA6161 /* PTzsjlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTzsjlCell.m; sourceTree = "<group>"; };
+		15EB351D1BD2717E00BA6161 /* LYPlayTogetherPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPlayTogetherPayViewController.h; sourceTree = "<group>"; };
+		15EB351E1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPlayTogetherPayViewController.m; sourceTree = "<group>"; };
+		15EB35211BD3395800BA6161 /* EScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EScrollerView.h; sourceTree = "<group>"; };
+		15EB35221BD3395800BA6161 /* EScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EScrollerView.m; sourceTree = "<group>"; };
+		15EB35241BD379A500BA6161 /* LYtimeChooseTimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYtimeChooseTimeController.h; sourceTree = "<group>"; };
+		15EB35251BD379A500BA6161 /* LYtimeChooseTimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYtimeChooseTimeController.m; sourceTree = "<group>"; };
+		15EB35261BD379A500BA6161 /* LYtimeChooseTimeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYtimeChooseTimeController.xib; sourceTree = "<group>"; };
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
@@ -1307,6 +1330,15 @@
 			name = IM;
 			sourceTree = "<group>";
 		};
+		15EB35201BD3394000BA6161 /* banner */ = {
+			isa = PBXGroup;
+			children = (
+				15EB35211BD3395800BA6161 /* EScrollerView.h */,
+				15EB35221BD3395800BA6161 /* EScrollerView.m */,
+			);
+			name = banner;
+			sourceTree = "<group>";
+		};
 		15EB7C621BCF3B9B00756153 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1324,6 +1356,14 @@
 				15EB350C1BD1F63F00BA6161 /* PTChooseNumCell.m */,
 				15EB350E1BD1F67200BA6161 /* PTShowIntroductionsCell.h */,
 				15EB350F1BD1F67200BA6161 /* PTShowIntroductionsCell.m */,
+				15EB35111BD26CC800BA6161 /* PTTaoCanDetailCell.h */,
+				15EB35121BD26CC800BA6161 /* PTTaoCanDetailCell.m */,
+				15EB35141BD26D0F00BA6161 /* PTPayAmoutCell.h */,
+				15EB35151BD26D0F00BA6161 /* PTPayAmoutCell.m */,
+				15EB35171BD26D2F00BA6161 /* PTAddressCell.h */,
+				15EB35181BD26D2F00BA6161 /* PTAddressCell.m */,
+				15EB351A1BD26D5900BA6161 /* PTzsjlCell.h */,
+				15EB351B1BD26D5900BA6161 /* PTzsjlCell.m */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -1343,6 +1383,11 @@
 			children = (
 				15EB7C771BD0DB9400756153 /* LYPlayTogetherMainViewController.h */,
 				15EB7C781BD0DB9400756153 /* LYPlayTogetherMainViewController.m */,
+				15EB351D1BD2717E00BA6161 /* LYPlayTogetherPayViewController.h */,
+				15EB351E1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m */,
+				15EB35241BD379A500BA6161 /* LYtimeChooseTimeController.h */,
+				15EB35251BD379A500BA6161 /* LYtimeChooseTimeController.m */,
+				15EB35261BD379A500BA6161 /* LYtimeChooseTimeController.xib */,
 			);
 			name = "我要拼客";
 			sourceTree = "<group>";
@@ -2298,6 +2343,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				15EB35201BD3394000BA6161 /* banner */,
 				151BB6E01BBB913E00E7A81C /* DejalActivityView.h */,
 				151BB6E11BBB913E00E7A81C /* DejalActivityView.m */,
 				15EA6DCD1BC0DA1400620C9E /* IM */,
@@ -2526,6 +2572,7 @@
 				15E240831BB279CB0090D240 /* LYMyOrderManageViewController.xib in Resources */,
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
+				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
@@ -2711,7 +2758,10 @@
 				15013AF61BBA33BE00061FAF /* NSData+ImageContentType.m in Sources */,
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
 				15E240CB1BB3CF2E0090D240 /* LYSurePassWordViewController.m in Sources */,
+				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
+				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,
+				15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */,
 				D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */,
 				D761F0171BA5AED3000757B0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
@@ -2769,6 +2819,7 @@
 				15EA6DBF1BBE479A00620C9E /* ProductCategoryModel.m in Sources */,
 				D761F0201BA5AED3000757B0 /* MJRefreshConst.m in Sources */,
 				15013B031BBA33BF00061FAF /* UIImageView+WebCache.m in Sources */,
+				15EB35271BD379A500BA6161 /* LYtimeChooseTimeController.m in Sources */,
 				15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */,
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
@@ -2778,6 +2829,7 @@
 				15013AF71BBA33BE00061FAF /* SDImageCache.m in Sources */,
 				A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */,
 				D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */,
+				15EB351F1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m in Sources */,
 				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
 				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
 				D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */,
@@ -2793,9 +2845,11 @@
 				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
+				15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */,
 				D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */,
 				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,
 				15E2409A1BB296CF0090D240 /* OrderDetailCell.m in Sources */,
+				15EB351C1BD26D5900BA6161 /* PTzsjlCell.m in Sources */,
 				15013AFE1BBA33BF00061FAF /* UIButton+WebCache.m in Sources */,
 				15EB7C791BD0DB9400756153 /* LYPlayTogetherMainViewController.m in Sources */,
 				D73652421BAEBF44002541CE /* KuCunModel.m in Sources */,

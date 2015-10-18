@@ -16,4 +16,10 @@
 //一起玩列表详细
 -(void) getTogetherDetailWithParams:(NSDictionary*)params
                             block:(void(^)(PinKeModel* result)) block;
+//一起玩确认订单
+-(void) getTogetherOrderWithParams:(NSDictionary*)params
+                              block:(void(^)(PinKeModel* result)) block;
+//录入拼客订单
+-(void) setTogetherOrderInWithParams:(NSDictionary*)params
+        complete:(void (^)(NSString *result))result;
 @end

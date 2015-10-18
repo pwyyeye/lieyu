@@ -30,6 +30,22 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     self.window.backgroundColor = [UIColor whiteColor];
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
+    
+    //IM推送
+    if ([application
+         respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings
+                                                settingsForTypes:(UIUserNotificationTypeBadge |
+                                                                  UIUserNotificationTypeSound |
+                                                                  UIUserNotificationTypeAlert)
+                                                categories:nil];
+        [application registerUserNotificationSettings:settings];
+    } else {
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeAlert |
+        UIRemoteNotificationTypeSound;
+        [application registerForRemoteNotificationTypes:myTypes];
+    }
     return YES;
 }
 
@@ -65,8 +81,28 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         }
     }
 }
-
-
+//注册用户通知设置
+- (void)application:(UIApplication *)application
+didRegisterUserNotificationSettings:
+(UIUserNotificationSettings *)notificationSettings {
+    // register to receive notifications
+    [application registerForRemoteNotifications];
+}
+/**
+ * 推送处理3
+ */
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *token =
+    [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"
+                                                           withString:@""]
+      stringByReplacingOccurrencesOfString:@">"
+      withString:@""]
+     stringByReplacingOccurrencesOfString:@" "
+     withString:@""];
+    
+    [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+}
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

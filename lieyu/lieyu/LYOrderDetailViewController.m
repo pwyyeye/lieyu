@@ -738,7 +738,8 @@
         //获取酒吧信息
         orderHeadView.userImgeView.layer.masksToBounds =YES;
         orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-        [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:_orderInfoModel.barinfo.baricon]];
+        NSString *str=_orderInfoModel.barinfo.baricon ;
+        [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
         orderHeadView.nameLal.text=_orderInfoModel.barinfo.barname;
         
         if(_orderInfoModel.ordertype==1){
@@ -911,7 +912,8 @@
         NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
         NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",shopDetailmodel.money] attributes:attribtDic];
         cell.moneyLal.attributedText=attribtStr;
-        [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:shopDetailmodel.img]];
+        NSString *str=shopDetailmodel.img ;
+        [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:str]];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -931,7 +933,8 @@
             }
             NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
             PinkInfoModel *pinkInfoModel=pinkerList[indexPath.row];
-            [cell.pkUserimageView  setImageWithURL:[NSURL URLWithString:pinkInfoModel.inmenberAvatar_img]];
+            NSString *str=pinkInfoModel.inmenberAvatar_img ;
+            [cell.pkUserimageView  setImageWithURL:[NSURL URLWithString:str]];
             cell.pkNameLal.text=pinkInfoModel.inmemberName;
             if(userId!=pinkInfoModel.inmember){
                 [cell.siliaoBtn setHidden:NO];
@@ -961,8 +964,8 @@
                 cell.userImageView.layer.cornerRadius =cell.userImageView.width/2;
                 
             }
-            
-            [cell.userImageView setImageWithURL:[NSURL URLWithString:_orderInfoModel.checkUserAvatar_img]];
+            NSString *str=_orderInfoModel.checkUserAvatar_img ;
+            [cell.userImageView setImageWithURL:[NSURL URLWithString:str]];
             cell.nameLal.text=_orderInfoModel.checkUserName;
             cell.ageLal.text=[NSString stringWithFormat:@"年龄：%@",_orderInfoModel.checkUserAge];
             if(_orderInfoModel.orderStatus==0 || _orderInfoModel.orderStatus==1 || _orderInfoModel.orderStatus==2){
@@ -996,8 +999,8 @@
                 cell.userImageView.layer.cornerRadius =cell.userImageView.width/2;
                 
             }
-            
-            [cell.userImageView setImageWithURL:[NSURL URLWithString:_orderInfoModel.checkUserAvatar_img]];
+            NSString *str=_orderInfoModel.checkUserAvatar_img ;
+            [cell.userImageView setImageWithURL:[NSURL URLWithString:str]];
             cell.nameLal.text=_orderInfoModel.checkUserName;
             cell.ageLal.text=[NSString stringWithFormat:@"年龄：%@",_orderInfoModel.checkUserAge];
             if(_orderInfoModel.orderStatus==0 || _orderInfoModel.orderStatus==1 || _orderInfoModel.orderStatus==2){

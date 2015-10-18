@@ -12,4 +12,8 @@
 #define LY_YIQIWAN_LIST  @"togetherAction.do?action=list"
 //一起玩列表详细
 #define LY_YIQIWAN_DETAIL @"togetherAction.do?action=custom"
+//从套餐转到订单确认
+#define LY_YIQIWAN_DOORDER @"togetherneedAction.do?action=expand"
+//录入拼客订单
+#define LY_YIQIWAN_INORDER @"pinkerOrderAction.do?action=add"
 #endif
