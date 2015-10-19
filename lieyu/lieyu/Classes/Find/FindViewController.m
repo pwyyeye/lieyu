@@ -33,7 +33,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self performSelector:@selector(setCustomTitle:) withObject:@"发现" afterDelay:0.1];
+//    [self performSelector:@selector(setCustomTitle:) withObject:@"发现" afterDelay:0.1];
 
     [super viewWillAppear:animated];
 }
@@ -48,7 +48,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self setCustomTitle:nil];
+    [super viewWillDisappear:animated];
+//    [self setCustomTitle:nil];
 }
 /*
 #pragma mark - Navigation

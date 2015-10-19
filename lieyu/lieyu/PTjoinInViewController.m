@@ -29,7 +29,7 @@
 }
 #pragma mark - 获取数据
 -(void)getdata{
-    NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:self.smid]};
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:self.smid]};
     __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance]getZSOrderDetailWithParams:dic block:^(OrderInfoModel *result) {
         pinKeModel = result;
@@ -40,7 +40,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section==3){
-        return 3;
+        return pinKeModel.pinkerinfo.goodsDetailList.count;
         
     }else{
         return 1;
@@ -120,21 +120,26 @@
             
             cell = [tableView dequeueReusableCellWithIdentifier:@"CYPayAmoutCell" forIndexPath:indexPath];
             CYPayAmoutCell *payAmoutCell = (CYPayAmoutCell *)cell;
+            payAmoutCell.priceLal.text=[NSString stringWithFormat:@"￥%@",pinKeModel.pinkerNeedPayAmount];
             
         }
             break;
         case 2:
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"CYInfoCell" forIndexPath:indexPath];
-            CYInfoCell *payAmoutCell = (CYInfoCell *)cell;
-            
+            CYInfoCell *infoCell = (CYInfoCell *)cell;
+            infoCell.addressLal.text=pinKeModel.barinfo.address;
+            infoCell.timeLal.text=pinKeModel.reachtime;
+            infoCell.numLal.text=pinKeModel.allnum;
         }
             break;
         
         default:
         {
+            NSArray *arr=pinKeModel.pinkerinfo.goodsDetailList;
             cell = [tableView dequeueReusableCellWithIdentifier:@"PTTaoCanCell" forIndexPath:indexPath];
-            PTTaoCanCell *payAmoutCell = (PTTaoCanCell *)cell;
+            PTTaoCanCell *taoCanCell = (PTTaoCanCell *)cell;
+            [taoCanCell configureCell:arr[indexPath.row]];
         }
             break;
     }
