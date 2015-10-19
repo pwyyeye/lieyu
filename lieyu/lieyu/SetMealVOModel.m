@@ -9,5 +9,10 @@
 #import "SetMealVOModel.h"
 
 @implementation SetMealVOModel
-
++ (NSDictionary *)objectClassInArray
+{
+    return @{
+             @"goodsDetailList" : @"KuCunModel",
+             };
+}
 @end

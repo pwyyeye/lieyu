@@ -22,8 +22,12 @@
 #import "LYUserHttpTool.h"
 #import <RongIMKit/RongIMKit.h>
 #import "OrderHandleButton.h"
+#import "UserModel.h"
+#import "UMSocial.h"
 @interface LYOrderDetailViewController ()
-
+{
+    UserModel *userModel;
+}
 @end
 
 @implementation LYOrderDetailViewController
@@ -31,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    userModel=app.userModel;
     userId=app.userModel.userid;
     sectionNum=0;
     CGRect rect;
@@ -1137,7 +1142,12 @@
 }
 #pragma mark 电话咨询
 - (void)dhzxAct:(UIButton *)sender{
-    
+    if( [MyUtil isPureInt:_orderInfoModel.checkUserMobile]){
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        
+    }
+
 }
 #pragma mark 删除订单
 -(void)shanChuDinDanAct:(UIButton *)sender{
@@ -1155,7 +1165,18 @@
 }
 #pragma mark 邀请拼客
 -(void)yaoQinAct:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
     
+    orderInfoModel=_orderInfoModel;
+    //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
+    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=%d",userModel.username,orderInfoModel.barinfo.barname,orderInfoModel.id];
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:UmengAppkey
+                                      shareText:ss
+                                     shareImage:nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,UMShareToEmail,nil]
+                                       delegate:nil];
 }
 #pragma mark 私聊
 -(void)siliaoAct:(UIButton *)sender{
