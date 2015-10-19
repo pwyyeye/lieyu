@@ -36,6 +36,9 @@
 /***订单***/
 //专属经理订单列表
 #define ZS_ORDER_LIST  @"smOrderAction.do?action=list"
+
+//订单详细
+#define ZS_ORDER_DETAIL  @"smOrderAction.do?action=custom"
 //专属经理订单-对码
 #define ZS_DUIMA  @"lyOrderAction.do?action=managerConfirmOrder"
 //专属经理-确认卡座

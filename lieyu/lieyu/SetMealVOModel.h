@@ -21,6 +21,7 @@
 @property(nonatomic,copy)NSString * enddate;
 @property(nonatomic,assign)int id;
 @property(nonatomic,retain)NSArray * images;
+@property(nonatomic,retain)NSArray * goodsDetailList;
 @property(nonatomic,copy)NSString * introduction;
 @property(nonatomic,assign)int ispinker;
 @property(nonatomic,copy)NSString * ispinkerName;

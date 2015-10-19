@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "ZSUrl.h"
 #import "HTTPController.h"
+#import "OrderInfoModel.h"
 @interface ZSManageHttpTool : NSObject
 + (ZSManageHttpTool *)shareInstance;
 //专属经理订单列表
 -(void) getZSOrderListWithParams:(NSDictionary*)params
                             block:(void(^)(NSMutableArray* result)) block;
+//订单详细
+-(void) getZSOrderDetailWithParams:(NSDictionary*)params
+                           block:(void(^)(OrderInfoModel* result)) block;
 //专属经理订单对码
 -(void) setManagerConfirmOrderWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 //专属经理-确认卡座

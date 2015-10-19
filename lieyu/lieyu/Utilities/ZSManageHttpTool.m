@@ -15,7 +15,7 @@
 #import "DeckFullModel.h"
 #import "ProductCategoryModel.h"
 #import "BrandModel.h"
-#import "OrderInfoModel.h"
+
 @implementation ZSManageHttpTool
 + (ZSManageHttpTool *)shareInstance
 {
@@ -52,7 +52,31 @@
     }];
 
 }
-
+#pragma mark -获取订单详细
+-(void) getZSOrderDetailWithParams:(NSDictionary*)params
+                             block:(void(^)(OrderInfoModel* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_ORDER_DETAIL baseURL:LY_SERVER params:params success:^(id response) {
+        NSDictionary *dataDic = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            OrderInfoModel *orderInfoModel = [OrderInfoModel objectWithKeyValues:dataDic];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(orderInfoModel);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+}
 #pragma mark - 专属经理订单对码
 -(void) setManagerConfirmOrderWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];

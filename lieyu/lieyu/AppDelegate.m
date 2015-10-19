@@ -12,6 +12,11 @@
 #import "LYCommonHttpTool.h"
 #import "DejalActivityView.h"
 #import <RongIMKit/RongIMKit.h>
+#import "UMSocial.h"
+#import "UMSocialControllerService.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "PTjoinInViewController.h"
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
@@ -46,6 +51,19 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         UIRemoteNotificationTypeSound;
         [application registerForRemoteNotificationTypes:myTypes];
     }
+    
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:UmengAppkey];
+    
+    //打开调试log的开关
+    [UMSocialData openLog:YES];
+    //AppID：wxf1e19b28e6b1613c
+    //设置微信AppId，设置分享url，默认使用友盟的网址
+    [UMSocialWechatHandler setWXAppId:@"wx93dfab7e2f716610" appSecret:@"67e20dbce508b01bb4a934c9f38b5ac3" url:@"http://www.peikua.com"];
+    
+    //打开新浪微博的SSO开关
+    [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    
     return YES;
 }
 
@@ -183,6 +201,31 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         user.portraitUri = @"http://rongcloud-web.qiniudn.com/docs_demo_rongcloud_logo.png";
         
         return completion(user);
+    
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    NSLog(@"sourceApplication: %@", sourceApplication);
+    NSLog(@"URL scheme:%@", [url scheme]);
+    NSLog(@"URL query: %@", [url query]);
+    
+    if ([sourceApplication isEqualToString:@"com.3Sixty.CallCustomURL"]){
+        // 接受传过来的参数
+        UIStoryboard *storyboard =
+        [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UINavigationController *rootNavi = [storyboard
+                                            instantiateViewControllerWithIdentifier:@"rootNavi"];
+        PTjoinInViewController *playTogetherPayViewController=[storyboard instantiateViewControllerWithIdentifier:@"PTjoinInViewController"];
+        playTogetherPayViewController.title=@"拼客详情";
+        [rootNavi pushViewController:playTogetherPayViewController animated:YES];
+        return YES;
+    }else{
+        return NO;
+    }
     
 }
 @end

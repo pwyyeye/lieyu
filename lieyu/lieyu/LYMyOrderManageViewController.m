@@ -21,8 +21,12 @@
 #import "OrderHandleButton.h"
 #import <RongIMKit/RongIMKit.h>
 #import "LYOrderDetailViewController.h"
+#import "UMSocial.h"
+#import "UserModel.h"
 @interface LYMyOrderManageViewController ()
-
+{
+    UserModel *userModel;
+}
 @end
 
 @implementation LYMyOrderManageViewController
@@ -31,6 +35,7 @@
     [super viewDidLoad];
 //    nowDic =[[NSMutableDictionary alloc]init];
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    userModel=app.userModel;
     userId=app.userModel.userid;
     pageCount=1;
     perCount=5;
@@ -451,7 +456,7 @@
                         [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                         [orderBottomView.secondBtn setTitle:@"立即拼客" forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
-                        [orderBottomView.secondBtn addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
+                        [orderBottomView.secondBtn addTarget:self action:@selector(pinkeAct:) forControlEvents:UIControlEventTouchUpInside];
                         orderBottomView.oneBtn.tag=section;
                         orderBottomView.secondBtn.tag=section;
                     }else{
@@ -842,6 +847,21 @@
             [weakSelf refreshData];
         }
     }];
+}
+#pragma mark 立即拼客
+- (void)pinkeAct:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    
+    orderInfoModel=dataList[sender.tag];
+    //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
+    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=%d",userModel.username,orderInfoModel.barinfo.barname,orderInfoModel.id];
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:UmengAppkey
+                                      shareText:ss
+                                     shareImage:nil
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,UMShareToEmail,nil]
+                                       delegate:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
