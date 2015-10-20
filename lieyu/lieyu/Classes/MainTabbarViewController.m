@@ -49,7 +49,7 @@
     {
         item.image = [[UIImage imageNamed:aryImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.selectedImage = [[UIImage imageNamed:selectedImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        
+
         i ++;
     }
 
@@ -80,6 +80,13 @@
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
     
+}
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    item.imageInsets = UIEdgeInsetsZero;
+    item.imageInsets = UIEdgeInsetsMake(-3, 0, 4, 0);
+    item.titlePositionAdjustment = UIOffsetMake(0, -5);
 }
 
 /*
