@@ -11,5 +11,10 @@
 @interface PacketBarCell : UITableViewCell<LYTableViewCellLayout>
 
 @property(nonatomic,weak)IBOutlet UILabel * labFanli;
+@property(nonatomic,weak)IBOutlet UIImageView * photoImage;
+@property(nonatomic,weak)IBOutlet UILabel * labBuyerDetail;
+@property(nonatomic,weak)IBOutlet UILabel * labCost;
+@property(nonatomic,weak)IBOutlet UILabel * labCostDel;
+@property(nonatomic,weak)IBOutlet UILabel * labTitle;
 
 @end

@@ -24,7 +24,7 @@
 @property(nonatomic,strong)NSNumber *orders;
 @property(nonatomic,strong)NSNumber *price;
 @property(nonatomic,strong)NSNumber *rebate;
-@property(nonatomic,strong)NSNumber *referprice;
+@property(nonatomic,strong)NSNumber *maketprice;
 @property(nonatomic,strong)NSNumber *serviceType;
 @property(nonatomic,strong)NSNumber *smid;
 @property(nonatomic,strong)NSNumber *smtime;

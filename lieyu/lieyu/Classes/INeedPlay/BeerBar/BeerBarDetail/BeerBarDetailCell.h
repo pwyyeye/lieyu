@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <HCSStarRatingView/HCSStarRatingView.h>
 
 @interface BeerBarDetailCell : UITableViewCell<LYTableViewCellLayout>
 
@@ -16,7 +17,8 @@
 @property(nonatomic,weak)IBOutlet UILabel * address;
 @property(nonatomic,weak)IBOutlet UIView * spectialContainer;
 @property(nonatomic,weak)IBOutlet UIView * typeContainer;
-
+@property(nonatomic,weak)IBOutlet HCSStarRatingView * serviceNumView;
+@property(nonatomic,weak)IBOutlet HCSStarRatingView * envNumView;
 
 @end
 

@@ -13,7 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _pageCtrl.numberOfPages = 4;
+    _pageCtrl.numberOfPages = 0;
     _bannerScrollview.delegate = self;
 
 }

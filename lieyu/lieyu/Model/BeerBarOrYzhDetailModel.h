@@ -41,3 +41,10 @@
 +(BeerBarOrYzhDetailModel *)initFormDictionary:(NSDictionary *)dic;
 
 @end
+
+
+
+
+
+
+

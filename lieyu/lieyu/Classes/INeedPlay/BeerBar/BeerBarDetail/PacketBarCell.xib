@@ -35,7 +35,7 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aoo-fB-uJ0">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aoo-fB-uJ0" userLabel="line">
                         <rect key="frame" x="265" y="47" width="40" height="1"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -55,7 +55,13 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="delLine" destination="aoo-fB-uJ0" id="Ibh-WE-BSZ"/>
+                <outlet property="labBuyerDetail" destination="Rnb-QB-aCf" id="aXQ-jE-vCG"/>
+                <outlet property="labCost" destination="WjX-XU-J2l" id="SZC-gg-k3f"/>
+                <outlet property="labCostDel" destination="k39-9d-E27" id="08z-kv-VtX"/>
                 <outlet property="labFanli" destination="k6C-Un-O9x" id="aLk-Zv-k5S"/>
+                <outlet property="labTitle" destination="Ykx-E1-LcT" id="Y8c-qv-fwH"/>
+                <outlet property="photoImage" destination="C0I-Oi-M0m" id="qLh-XB-4Bw"/>
             </connections>
             <point key="canvasLocation" x="217" y="266.5"/>
         </tableViewCell>
