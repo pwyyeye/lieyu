@@ -1907,10 +1907,10 @@
 			isa = PBXGroup;
 			children = (
 				15E1846A1BB4DC8E00681BB2 /* 专属经理 */,
-				15E240BC1BB3A9590090D240 /* 登录 */,
 				15E2407E1BB2795E0090D240 /* 我的订单 */,
 				15E240731BB24E4E0090D240 /* 我的收藏 */,
 				15E2406D1BB247180090D240 /* 推荐商家 */,
+				15E240BC1BB3A9590090D240 /* 登录 */,
 				A2020D461BA661250090B92A /* MyInfoViewController.h */,
 				A2020D471BA661260090B92A /* MyInfoViewController.m */,
 				A2020D481BA661260090B92A /* MyInfoViewController.xib */,
@@ -2380,44 +2380,12 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		D748BC831BA1CD35005AA996 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				D748BC891BA1CDB9005AA996 /* Controllers */,
-				D748BC8A1BA1CDB9005AA996 /* Models */,
-				D748BC8B1BA1CDB9005AA996 /* Views */,
-			);
-			name = Login;
-			path = Classes/Login;
-			sourceTree = "<group>";
-		};
 		D748BC841BA1CD35005AA996 /* Register */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Register;
 			path = Classes/Register;
-			sourceTree = "<group>";
-		};
-		D748BC891BA1CDB9005AA996 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		D748BC8A1BA1CDB9005AA996 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		D748BC8B1BA1CDB9005AA996 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		D74C60821BB69F6300A49598 /* RTLabel */ = {
@@ -2598,7 +2566,6 @@
 				D761F0261BA5B8C2000757B0 /* Wines */,
 				D761F0251BA5B8A5000757B0 /* PlayTogether */,
 				D761F0241BA5B847000757B0 /* iNeedPaly */,
-				D748BC831BA1CD35005AA996 /* Login */,
 				D748BC841BA1CD35005AA996 /* Register */,
 				D74714291BAD151400611579 /* MainTabbarViewController.h */,
 				D747142A1BAD151400611579 /* MainTabbarViewController.m */,

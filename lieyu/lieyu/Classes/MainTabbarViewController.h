@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MainTabbarViewController: UITabBarController
-
+@property(assign,nonatomic) NSInteger lastSelectIndex;
 @end

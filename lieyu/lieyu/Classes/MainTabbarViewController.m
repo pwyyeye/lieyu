@@ -31,6 +31,7 @@
     self.locationManager = [[LYLocationManager alloc] init];
     [_locationManager beginUpdateLocation:kCLLocationAccuracyBest];
     _locationManager.locationDelegate = self;
+    self.delegate=self;
     // Do any additional setup after loading the view.
 }
 
@@ -79,6 +80,7 @@
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
+    [super setSelectedIndex:selectedIndex];
         NSLog(@"----pass-%d---",selectedIndex);
 }
 
@@ -92,6 +94,26 @@
 }
 */
 
+-(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+//    if(tabBarController.selectedIndex == 3)    //"我的账号"
+//    {
+////        NSLog(@"----pass-pass%@---%d",@"test",tabBarController.selectedIndex);
+//        return NO;
+//    }else{
+//        return YES;
+//    }
+    self.lastSelectIndex=self.selectedIndex;
+    return YES;
+}
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    NSLog(@"----pass-tabBarController%d---",self.selectedIndex);
+    if (self.selectedIndex==2||self.selectedIndex==3) {
+        self.selectedIndex=self.lastSelectIndex;
+    }
+}
 
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    NSLog(@"----pass-pass%@---",@"didSelectItem");
+}
 
 @end
