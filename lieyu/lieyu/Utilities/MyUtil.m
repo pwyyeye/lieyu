@@ -173,4 +173,20 @@
     int val;
     return[scan scanInt:&val] && [scan isAtEnd];
 }
++ (NSDictionary *) getKeyValue:(NSString *)string{
+//    name=ligang&phone=13888888888
+    NSMutableDictionary *dic=[NSMutableDictionary new];
+    if(string){
+        NSArray *arr=[string componentsSeparatedByString:@"&"];
+        for (NSString *str in arr) {
+            NSArray *arr1=[str componentsSeparatedByString:@"="];
+            if(arr1.count>=2){
+                [dic setObject:arr1[1] forKey:arr1[0]];
+            }
+        }
+    }
+    
+    
+    return dic;
+}
 @end

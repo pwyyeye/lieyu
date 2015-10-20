@@ -27,6 +27,7 @@
 @property (nonatomic, copy) NSString * servicestar;
 @property(nonatomic,assign)int userid;
 @property (nonatomic, copy) NSString * userName;
+@property (nonatomic, copy) NSString * username;
 @property (nonatomic, copy) NSString * usernick;
 @property (nonatomic, copy) NSString * imUserId;
 @property (nonatomic, assign) bool issel;

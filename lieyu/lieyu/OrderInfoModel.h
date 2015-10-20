@@ -52,6 +52,7 @@
 @property(nonatomic,copy)NSString * username;
 @property(nonatomic,assign)int tax;
 @property(nonatomic,copy)NSString *rebateAmout;
+@property(nonatomic,copy)NSString *pinkerNeedPayAmount;
 /*
  
  "beforeOrAfter": "",

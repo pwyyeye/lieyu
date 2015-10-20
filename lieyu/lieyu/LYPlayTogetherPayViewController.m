@@ -17,7 +17,9 @@
 #import "PTAddressCell.h"
 #import "PTzsjlCell.h"
 #import "ZSDetailModel.h"
+#import "PTContactCell.h"
 #import "LYtimeChooseTimeController.h"
+#import <RongIMKit/RongIMKit.h>
 @interface LYPlayTogetherPayViewController ()<DateChooseDelegate>
 {
     PinKeModel *pinKeModel;
@@ -87,7 +89,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if(pinKeModel){
-        return 7;
+        return 8;
     }else{
         return 0;
     }
@@ -96,7 +98,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(section==0 || section==1  || section==4 || section==5){
+    if(section==0 || section==1  || section==4 || section==5 || section==7){
         return 1;
     }else{
         return 34;
@@ -104,7 +106,7 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if(section==0 || section==1  || section==4 || section==5){
+    if(section==0 || section==1  || section==4 || section==5 || section==7){
         return [[UIView alloc] initWithFrame:CGRectZero];
         
     }else{
@@ -187,10 +189,10 @@
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"PTAddressCell" forIndexPath:indexPath];
             addressCell = (PTAddressCell *)cell;
-            
+            addressCell.addresssLal.text=pinKeModel.barinfo.address;
         }
             break;
-        default:
+        case 6:
         {
             ZSDetailModel *zsModel=zsArr[indexPath.row];
             cell = [tableView dequeueReusableCellWithIdentifier:@"PTzsjlCell" forIndexPath:indexPath];
@@ -201,6 +203,16 @@
                 [adCell.selBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
                 
             }
+            
+        }
+            break;
+        default:
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"PTContactCell" forIndexPath:indexPath];
+            PTContactCell *contactCell = (PTContactCell *)cell;
+            [contactCell.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
+            [contactCell.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+            
         }
             break;
     }
@@ -253,9 +265,14 @@
             h = 44;
         }
             break;
-        default://专属经理
+        case 6:// 地点
         {
             h = 76;
+        }
+            break;
+        default://专属经理
+        {
+            h = 44;
         }
             break;
     }
@@ -330,6 +347,42 @@
         }];
 
     }
+    
+}
+#pragma mark 私聊
+-(void)siliaoAct:(UIButton *)sender{
+    for (ZSDetailModel *zsDetailModel in zsArr) {
+        if(zsDetailModel.issel){
+            RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+            conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+            conversationVC.targetId = zsDetailModel.imUserId; // 接收者的 targetId，这里为举例。
+            conversationVC.userName =zsDetailModel.username; // 接受者的 username，这里为举例。
+            conversationVC.title =zsDetailModel.username; // 会话的 title。
+            
+            // 把单聊视图控制器添加到导航栈。
+            [self.navigationController pushViewController:conversationVC animated:YES];
+        }
+    }
+    
+    
+    
+}
+#pragma mark 电话
+-(void)dianhuaAct:(UIButton *)sender{
+    for (ZSDetailModel *zsDetailModel in zsArr) {
+        if(zsDetailModel.issel){
+            if( [MyUtil isPureInt:zsDetailModel.mobile]){
+                NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",zsDetailModel.mobile];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                
+            }
+        }
+    }
+
+   
+    
+    
+    
     
 }
 @end

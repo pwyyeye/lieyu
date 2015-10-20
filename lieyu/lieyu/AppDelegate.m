@@ -213,15 +213,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"URL scheme:%@", [url scheme]);
     NSLog(@"URL query: %@", [url query]);
     
-    if ([sourceApplication isEqualToString:@"com.3Sixty.CallCustomURL"]){
+    if ([sourceApplication isEqualToString:@"com.apple.mobilesafari"]){
         // 接受传过来的参数
+        NSDictionary *dic=[MyUtil getKeyValue:[url query]];
+        NSString *smid=[dic objectForKey:@"id"];
         UIStoryboard *storyboard =
         [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UINavigationController *rootNavi = [storyboard
-                                            instantiateViewControllerWithIdentifier:@"rootNavi"];
+        UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
         PTjoinInViewController *playTogetherPayViewController=[storyboard instantiateViewControllerWithIdentifier:@"PTjoinInViewController"];
         playTogetherPayViewController.title=@"拼客详情";
-        [rootNavi pushViewController:playTogetherPayViewController animated:YES];
+        playTogetherPayViewController.smid=smid.intValue;
+        [navigationController pushViewController:playTogetherPayViewController animated:YES];
         return YES;
     }else{
         return NO;

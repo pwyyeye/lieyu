@@ -186,7 +186,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self performSelector:@selector(setCustomTitle:) withObject:@"一起玩" afterDelay:0.1];
+    [super viewWillDisappear:animated];
+//    [self performSelector:@selector(setCustomTitle:) withObject:@"一起玩" afterDelay:0.1];
     self.oriNavItems = [self.navigationController.navigationBar.items copy];
     [self.navigationController.navigationBar addSubview:_fillterButton];
     CGRect rc = _fillterButton.frame;
@@ -206,7 +207,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self setCustomTitle:nil];
+    [super viewWillDisappear:YES];
+//    [self setCustomTitle:nil];
     [_fillterButton removeFromSuperview];
 }
 
