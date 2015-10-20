@@ -10,5 +10,9 @@
 #import "LYBaseViewController.h"
 
 @interface PlayTogetherViewController : LYBaseViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)allListAct:(UIButton *)sender;
+
+- (IBAction)nearDistanceAct:(UIButton *)sender;
 
 @end

@@ -9,5 +9,10 @@
 #import "PinKeModel.h"
 
 @implementation PinKeModel
-
++ (NSDictionary *)objectClassInArray
+{
+    return @{
+             @"goodsList" : @"KuCunModel",@"managerList":@"ZSDetailModel",
+             };
+}
 @end

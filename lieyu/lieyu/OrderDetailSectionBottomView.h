@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface OrderDetailSectionBottomView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *payLal;
+@property (weak, nonatomic) IBOutlet UILabel *flLal;
+@property (weak, nonatomic) IBOutlet UILabel *dizhiLal;
+@property (weak, nonatomic) IBOutlet UILabel *payTimelal;
 
 @end

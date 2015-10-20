@@ -28,8 +28,9 @@
 
 - (void)configureCell:(JiuBaModel*)model
 {
+    NSString *str=model.baricon ;
     //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
-    [_mImageView sd_setImageWithURL:[NSURL URLWithString:model.baricon] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [_mImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
     }];
     

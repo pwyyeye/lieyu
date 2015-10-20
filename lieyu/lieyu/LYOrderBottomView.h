@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *miaosuCenterLal;
 @property (weak, nonatomic) IBOutlet UIButton *oneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *secondBtn;
+@property (weak, nonatomic) IBOutlet UILabel *zsUserNameLal;
 
 @end

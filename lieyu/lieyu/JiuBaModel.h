@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AnnouncementModel.h"
+#import "RecommendPackageModel.h"
 @interface JiuBaModel : NSObject
 
 //"address": "莉莉玛莲街道",
@@ -34,18 +35,18 @@
 //"today_sm_buynum": ""
 @property(nonatomic,assign)int id;
 @property (nonatomic, copy) NSString * address;
-@property (nonatomic, copy) NSString * announcement;
+@property (nonatomic, retain) AnnouncementModel * announcement;
 @property (nonatomic, retain) NSArray * banners;
 @property (nonatomic, retain) NSArray * tese;
 @property (nonatomic, copy) NSString * baricon;
-@property (nonatomic, copy) NSString * today_sm_buynum;
+@property (nonatomic, copy) NSString * today_sm_buynum;//预订量
 @property(nonatomic,assign)int barid;
 @property(nonatomic,assign)int barlevelid;
 @property (nonatomic, copy) NSString * barlevelname;
 @property (nonatomic, copy) NSString * bartypename;
 @property (nonatomic, copy) NSString * distance;
 @property (nonatomic, copy) NSString * environment_num;
-@property(nonatomic,assign)int fav_num;
+@property(nonatomic,copy)NSString * fav_num;
 @property (nonatomic, copy) NSString * barname;
 @property (nonatomic, copy) NSString * latitude;
 @property (nonatomic, copy) NSString * longitude;

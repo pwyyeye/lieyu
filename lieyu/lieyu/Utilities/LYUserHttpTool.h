@@ -10,6 +10,7 @@
 #import "ZSUrl.h"
 #import "UserModel.h"
 #import "AFNetworking.h"
+#import "LYMineUrl.h"
 @interface LYUserHttpTool : NSObject
 + (LYUserHttpTool *)shareInstance;
 // 登录
@@ -32,4 +33,18 @@
                 block:(void(^)(NSMutableArray* result)) block;
 //申请专属经理
 -(void) setApplyVip:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block complete:(void (^)(BOOL result))result;
+//我的订单
+-(void) getMyOrderListWithParams:(NSDictionary*)params
+                           block:(void(^)(NSMutableArray* result)) block;
+//删除订单
+-(void) delMyOrder:(NSDictionary*)params
+        complete:(void (^)(BOOL result))result;
+
+//取消订单
+-(void) cancelMyOrder:(NSDictionary*)params
+          complete:(void (^)(BOOL result))result;
+
+//一定会去
+-(void) sureMyOrder:(NSDictionary*)params
+             complete:(void (^)(BOOL result))result;
 @end

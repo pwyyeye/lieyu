@@ -29,6 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    userModel=app.userModel;
     keyArr =[NSMutableArray new];
     _tableView.separatorColor=[UIColor clearColor];
     taocanDelList=[[NSMutableArray alloc]init];
@@ -491,7 +493,11 @@
         return;
     }
     if (taoCanView.fromPriceTex.text.length<1) {
-        [self showMessage:@"请填写价格"];
+        [self showMessage:@"请填写实际价格"];
+        return;
+    }
+    if (taoCanView.toPriceTex.text.length<1) {
+        [self showMessage:@"请填写市场价格"];
         return;
     }
     if ([taoCanView.timeLal.text isEqualToString:@"请正确选择你的套餐时间"]) {
@@ -535,6 +541,7 @@
     NSMutableDictionary *dic=[NSMutableDictionary new];
     [dic setObject:taoCanView.taocanTitleTex.text forKey:@"smname"];
     [dic setObject:taoCanView.fromPriceTex.text forKey:@"price"];
+    [dic setObject:taoCanView.toPriceTex.text forKey:@"marketprice"];
     [dic setObject:fxyj forKey:@"rebate"];
     [dic setObject:linkurl forKey:@"linkurl"];
     
@@ -544,8 +551,8 @@
     [dic setObject:taoCanView.fromPopulationTex.text forKey:@"minnum"];
     [dic setObject:taoCanView.toPopulationTex.text forKey:@"maxnum"];
     [dic setObject:deCountStr forKey:@"goodsNum"];
-    [dic setObject:@"1" forKey:@"userid"];
-    [dic setObject:@"1" forKey:@"barid"];
+    [dic setObject:[NSNumber numberWithInt:userModel.userid] forKey:@"userid"];
+    [dic setObject:[NSNumber numberWithInt:userModel.barid] forKey:@"barid"];
     // [dic setObject:@"" forKey:@"price"];
     //网络访问
     [[ZSManageHttpTool shareInstance] addTaoCanWithParams:dic complete:^(BOOL result) {

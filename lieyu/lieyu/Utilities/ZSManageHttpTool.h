@@ -9,8 +9,22 @@
 #import <Foundation/Foundation.h>
 #import "ZSUrl.h"
 #import "HTTPController.h"
+#import "OrderInfoModel.h"
 @interface ZSManageHttpTool : NSObject
 + (ZSManageHttpTool *)shareInstance;
+//专属经理订单列表
+-(void) getZSOrderListWithParams:(NSDictionary*)params
+                            block:(void(^)(NSMutableArray* result)) block;
+//订单详细
+-(void) getZSOrderDetailWithParams:(NSDictionary*)params
+                           block:(void(^)(OrderInfoModel* result)) block;
+//专属经理订单对码
+-(void) setManagerConfirmOrderWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+//专属经理-确认卡座
+-(void) setManagerConfirmSeatWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+//专属经理-取消订单
+-(void) setMangerCancelWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+
 //获取专属经理-商铺套餐列表
 -(void) getMyTaoCanListWithParams:(NSDictionary*)params
                             block:(void(^)(NSMutableArray* result)) block;
@@ -30,6 +44,14 @@
 //获取酒水品牌列表
 -(void) getBrandListWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block;
+//专属经理 单品下架
+-(void) delItemProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+//专属经理 套餐下架
+-(void) delTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+//专属经理 库存下架
+-(void) delProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+//专属经理 拼客下架
+-(void) delPinKeWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 
 //专属经理-套餐添加
 -(void) addTaoCanWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
@@ -37,6 +59,7 @@
 -(void) addItemProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 //专属经理-单品添加
 -(void) addProductWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+
 
 //获取卡座一周是否满座
 -(void) getDeckFullWithParams:(NSDictionary*)params

@@ -11,6 +11,9 @@
 @implementation OrderDetailCell
 
 - (void)awakeFromNib {
+    self.taoCanImageView.layer.masksToBounds =YES;
+    
+    self.taoCanImageView.layer.cornerRadius =self.taoCanImageView.frame.size.width/2;
     // Initialization code
 }
 

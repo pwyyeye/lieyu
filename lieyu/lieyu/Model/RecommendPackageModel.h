@@ -30,6 +30,7 @@
 @property(nonatomic,strong)NSNumber *smtime;
 @property(nonatomic,copy)NSString  *subtitle;
 @property(nonatomic,copy)NSString  *title;
+@property(nonatomic,copy)NSString  *marketprice;
 
 @end
 

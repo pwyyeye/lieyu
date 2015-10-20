@@ -123,8 +123,57 @@
 		15EA6DC21BBE47C400620C9E /* BrandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6DC11BBE47C400620C9E /* BrandModel.m */; };
 		15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6DC41BBFC80700620C9E /* LYUserHttpTool.m */; };
 		15EA6DCC1BC014BD00620C9E /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EA6DCB1BC014BD00620C9E /* UserModel.m */; };
+		15EB35011BD1F4E000BA6161 /* PTTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35001BD1F4E000BA6161 /* PTTopCell.m */; };
+		15EB35041BD1F4F900BA6161 /* PTTypeChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35031BD1F4F900BA6161 /* PTTypeChooseCell.m */; };
+		15EB35071BD1F51200BA6161 /* PTTaoCanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35061BD1F51200BA6161 /* PTTaoCanCell.m */; };
+		15EB350A1BD1F61800BA6161 /* PTTimeChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35091BD1F61800BA6161 /* PTTimeChooseCell.m */; };
+		15EB350D1BD1F63F00BA6161 /* PTChooseNumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB350C1BD1F63F00BA6161 /* PTChooseNumCell.m */; };
+		15EB35101BD1F67200BA6161 /* PTShowIntroductionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB350F1BD1F67200BA6161 /* PTShowIntroductionsCell.m */; };
+		15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35121BD26CC800BA6161 /* PTTaoCanDetailCell.m */; };
+		15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35151BD26D0F00BA6161 /* PTPayAmoutCell.m */; };
+		15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35181BD26D2F00BA6161 /* PTAddressCell.m */; };
+		15EB351C1BD26D5900BA6161 /* PTzsjlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB351B1BD26D5900BA6161 /* PTzsjlCell.m */; };
+		15EB351F1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB351E1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m */; };
+		15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35221BD3395800BA6161 /* EScrollerView.m */; };
+		15EB35271BD379A500BA6161 /* LYtimeChooseTimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35251BD379A500BA6161 /* LYtimeChooseTimeController.m */; };
+		15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB35261BD379A500BA6161 /* LYtimeChooseTimeController.xib */; };
+		15EB35461BD4839D00BA6161 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15EB352B1BD4839D00BA6161 /* UMSocialLocalizable.strings */; };
+		15EB35471BD4839D00BA6161 /* libUMSocial_Sdk_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB35391BD4839D00BA6161 /* libUMSocial_Sdk_4.2.3.a */; };
+		15EB35481BD4839D00BA6161 /* libUMSocial_Sdk_Comment_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB353A1BD4839D00BA6161 /* libUMSocial_Sdk_Comment_4.2.3.a */; };
+		15EB35491BD4839D00BA6161 /* UMSCommentDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB353C1BD4839D00BA6161 /* UMSCommentDetailController.xib */; };
+		15EB354A1BD4839D00BA6161 /* UMSCommentInputController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB353D1BD4839D00BA6161 /* UMSCommentInputController.xib */; };
+		15EB354B1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB353E1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib */; };
+		15EB354C1BD4839D00BA6161 /* UMShareEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB353F1BD4839D00BA6161 /* UMShareEditViewController.xib */; };
+		15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB35401BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib */; };
+		15EB354E1BD4839D00BA6161 /* UMSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB35411BD4839D00BA6161 /* UMSLoginViewController.xib */; };
+		15EB354F1BD4839D00BA6161 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB35421BD4839D00BA6161 /* UMSnsAccountViewController.xib */; };
+		15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB35431BD4839D00BA6161 /* UMSShareListController.xib */; };
+		15EB35511BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15EB35441BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle */; };
+		15EB35571BD483F500BA6161 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB35551BD483F500BA6161 /* libSocialSina.a */; };
+		15EB35651BD4840300BA6161 /* libSocialSinaSSO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB35581BD4840300BA6161 /* libSocialSinaSSO.a */; };
+		15EB35661BD4840300BA6161 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB355A1BD4840300BA6161 /* libWeiboSDK.a */; };
+		15EB35671BD4840300BA6161 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15EB35621BD4840300BA6161 /* WeiboSDK.bundle */; };
+		15EB356D1BD4840D00BA6161 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB35681BD4840D00BA6161 /* libSocialWechat.a */; };
+		15EB356E1BD4840D00BA6161 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB35691BD4840D00BA6161 /* libWeChatSDK.a */; };
+		15EB35721BD495A700BA6161 /* CYTopShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35711BD495A700BA6161 /* CYTopShowCell.m */; };
+		15EB35751BD495C600BA6161 /* CYPayAmoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35741BD495C600BA6161 /* CYPayAmoutCell.m */; };
+		15EB35781BD495ED00BA6161 /* CYInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35771BD495ED00BA6161 /* CYInfoCell.m */; };
+		15EB357C1BD4972800BA6161 /* PTjoinInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB357B1BD4972800BA6161 /* PTjoinInViewController.m */; };
 		15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */; };
 		15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */; };
+		15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C451BC3751300756153 /* PinkInfoModel.m */; };
+		15EB7C491BC3753B00756153 /* SetMealInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C481BC3753B00756153 /* SetMealInfoModel.m */; };
+		15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C4B1BC3785200756153 /* SetMealVOModel.m */; };
+		15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */; };
+		15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C511BC3BE4D00756153 /* GoodsModel.m */; };
+		15EB7C5B1BC6048100756153 /* gouGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C5A1BC6048100756153 /* gouGif.gif */; };
+		15EB7C5E1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */; };
+		15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */; };
+		15EB7C681BCF3CAF00756153 /* LYPlayTogetherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C671BCF3CAF00756153 /* LYPlayTogetherCell.m */; };
+		15EB7C6C1BCF8BF700756153 /* LYHomePageHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C6B1BCF8BF700756153 /* LYHomePageHttpTool.m */; };
+		15EB7C741BD0A0DB00756153 /* LYShaiXuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C721BD0A0DB00756153 /* LYShaiXuanViewController.m */; };
+		15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C731BD0A0DB00756153 /* LYShaiXuanViewController.xib */; };
+		15EB7C791BD0DB9400756153 /* LYPlayTogetherMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C781BD0DB9400756153 /* LYPlayTogetherMainViewController.m */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
@@ -145,6 +194,15 @@
 		15F54A911BB030420020EB4C /* ChanPinListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F54A8F1BB030420020EB4C /* ChanPinListViewController.xib */; };
 		15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F54A931BB0393C0020EB4C /* TimeChooseTwoViewController.m */; };
 		15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F54A941BB0393C0020EB4C /* TimeChooseTwoViewController.xib */; };
+		15FD2A611BD5125A00D66920 /* PTContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2A601BD5125A00D66920 /* PTContactCell.m */; };
+		15FD2A971BD5DD7A00D66920 /* FindMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2A961BD5DD7A00D66920 /* FindMenuCell.m */; };
+		15FD2A9C1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2A9A1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m */; };
+		15FD2A9D1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2A9B1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib */; };
+		15FD2AA11BD5EC8900D66920 /* TimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AA01BD5EC8900D66920 /* TimeButton.m */; };
+		15FD2AA41BD61EC500D66920 /* DWTopInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AA31BD61EC500D66920 /* DWTopInfoView.m */; };
+		15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2AA51BD61EE000D66920 /* DWTopInfoView.xib */; };
+		15FD2AA91BD6243700D66920 /* TaoCanTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AA81BD6243700D66920 /* TaoCanTitleView.m */; };
+		15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */; };
 		A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */; };
 		A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */; };
 		A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100811BA7AFAB009283D1 /* LYProductslistViewController.m */; };
@@ -543,9 +601,113 @@
 		15EA6DC41BBFC80700620C9E /* LYUserHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserHttpTool.m; sourceTree = "<group>"; };
 		15EA6DCA1BC014BD00620C9E /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		15EA6DCB1BC014BD00620C9E /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		15EB34FF1BD1F4E000BA6161 /* PTTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTopCell.h; sourceTree = "<group>"; };
+		15EB35001BD1F4E000BA6161 /* PTTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTopCell.m; sourceTree = "<group>"; };
+		15EB35021BD1F4F900BA6161 /* PTTypeChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTypeChooseCell.h; sourceTree = "<group>"; };
+		15EB35031BD1F4F900BA6161 /* PTTypeChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTypeChooseCell.m; sourceTree = "<group>"; };
+		15EB35051BD1F51200BA6161 /* PTTaoCanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTaoCanCell.h; sourceTree = "<group>"; };
+		15EB35061BD1F51200BA6161 /* PTTaoCanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTaoCanCell.m; sourceTree = "<group>"; };
+		15EB35081BD1F61800BA6161 /* PTTimeChooseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTimeChooseCell.h; sourceTree = "<group>"; };
+		15EB35091BD1F61800BA6161 /* PTTimeChooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTimeChooseCell.m; sourceTree = "<group>"; };
+		15EB350B1BD1F63F00BA6161 /* PTChooseNumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTChooseNumCell.h; sourceTree = "<group>"; };
+		15EB350C1BD1F63F00BA6161 /* PTChooseNumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTChooseNumCell.m; sourceTree = "<group>"; };
+		15EB350E1BD1F67200BA6161 /* PTShowIntroductionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTShowIntroductionsCell.h; sourceTree = "<group>"; };
+		15EB350F1BD1F67200BA6161 /* PTShowIntroductionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTShowIntroductionsCell.m; sourceTree = "<group>"; };
+		15EB35111BD26CC800BA6161 /* PTTaoCanDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTTaoCanDetailCell.h; sourceTree = "<group>"; };
+		15EB35121BD26CC800BA6161 /* PTTaoCanDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTTaoCanDetailCell.m; sourceTree = "<group>"; };
+		15EB35141BD26D0F00BA6161 /* PTPayAmoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTPayAmoutCell.h; sourceTree = "<group>"; };
+		15EB35151BD26D0F00BA6161 /* PTPayAmoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTPayAmoutCell.m; sourceTree = "<group>"; };
+		15EB35171BD26D2F00BA6161 /* PTAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTAddressCell.h; sourceTree = "<group>"; };
+		15EB35181BD26D2F00BA6161 /* PTAddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTAddressCell.m; sourceTree = "<group>"; };
+		15EB351A1BD26D5900BA6161 /* PTzsjlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTzsjlCell.h; sourceTree = "<group>"; };
+		15EB351B1BD26D5900BA6161 /* PTzsjlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTzsjlCell.m; sourceTree = "<group>"; };
+		15EB351D1BD2717E00BA6161 /* LYPlayTogetherPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPlayTogetherPayViewController.h; sourceTree = "<group>"; };
+		15EB351E1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPlayTogetherPayViewController.m; sourceTree = "<group>"; };
+		15EB35211BD3395800BA6161 /* EScrollerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EScrollerView.h; sourceTree = "<group>"; };
+		15EB35221BD3395800BA6161 /* EScrollerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EScrollerView.m; sourceTree = "<group>"; };
+		15EB35241BD379A500BA6161 /* LYtimeChooseTimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYtimeChooseTimeController.h; sourceTree = "<group>"; };
+		15EB35251BD379A500BA6161 /* LYtimeChooseTimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYtimeChooseTimeController.m; sourceTree = "<group>"; };
+		15EB35261BD379A500BA6161 /* LYtimeChooseTimeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYtimeChooseTimeController.xib; sourceTree = "<group>"; };
+		15EB352C1BD4839D00BA6161 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
+		15EB352E1BD4839D00BA6161 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
+		15EB352F1BD4839D00BA6161 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
+		15EB35301BD4839D00BA6161 /* UMSocialBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialBar.h; sourceTree = "<group>"; };
+		15EB35311BD4839D00BA6161 /* UMSocialConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialConfig.h; sourceTree = "<group>"; };
+		15EB35321BD4839D00BA6161 /* UMSocialControllerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialControllerService.h; sourceTree = "<group>"; };
+		15EB35331BD4839D00BA6161 /* UMSocialControllerServiceComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialControllerServiceComment.h; sourceTree = "<group>"; };
+		15EB35341BD4839D00BA6161 /* UMSocialData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialData.h; sourceTree = "<group>"; };
+		15EB35351BD4839D00BA6161 /* UMSocialDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialDataService.h; sourceTree = "<group>"; };
+		15EB35361BD4839D00BA6161 /* UMSocialSnsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSnsData.h; sourceTree = "<group>"; };
+		15EB35371BD4839D00BA6161 /* UMSocialSnsPlatformManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSnsPlatformManager.h; sourceTree = "<group>"; };
+		15EB35381BD4839D00BA6161 /* UMSocialSnsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSnsService.h; sourceTree = "<group>"; };
+		15EB35391BD4839D00BA6161 /* libUMSocial_Sdk_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMSocial_Sdk_4.2.3.a; sourceTree = "<group>"; };
+		15EB353A1BD4839D00BA6161 /* libUMSocial_Sdk_Comment_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMSocial_Sdk_Comment_4.2.3.a; sourceTree = "<group>"; };
+		15EB353C1BD4839D00BA6161 /* UMSCommentDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSCommentDetailController.xib; sourceTree = "<group>"; };
+		15EB353D1BD4839D00BA6161 /* UMSCommentInputController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSCommentInputController.xib; sourceTree = "<group>"; };
+		15EB353E1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSCommentInputControlleriPad.xib; sourceTree = "<group>"; };
+		15EB353F1BD4839D00BA6161 /* UMShareEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMShareEditViewController.xib; sourceTree = "<group>"; };
+		15EB35401BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMShareEditViewControlleriPad.xib; sourceTree = "<group>"; };
+		15EB35411BD4839D00BA6161 /* UMSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSLoginViewController.xib; sourceTree = "<group>"; };
+		15EB35421BD4839D00BA6161 /* UMSnsAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSnsAccountViewController.xib; sourceTree = "<group>"; };
+		15EB35431BD4839D00BA6161 /* UMSShareListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSShareListController.xib; sourceTree = "<group>"; };
+		15EB35441BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResourcesNew.bundle; sourceTree = "<group>"; };
+		15EB35451BD4839D00BA6161 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
+		15EB35551BD483F500BA6161 /* libSocialSina.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSina.a; sourceTree = "<group>"; };
+		15EB35561BD483F500BA6161 /* UMSocialSinaHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaHandler.h; sourceTree = "<group>"; };
+		15EB35581BD4840300BA6161 /* libSocialSinaSSO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialSinaSSO.a; sourceTree = "<group>"; };
+		15EB35591BD4840300BA6161 /* UMSocialSinaSSOHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialSinaSSOHandler.h; sourceTree = "<group>"; };
+		15EB355A1BD4840300BA6161 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		15EB355B1BD4840300BA6161 /* WBHttpRequest+WeiboShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboShare.h"; sourceTree = "<group>"; };
+		15EB355C1BD4840300BA6161 /* WBHttpRequest+WeiboToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboToken.h"; sourceTree = "<group>"; };
+		15EB355D1BD4840300BA6161 /* WBHttpRequest+WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboUser.h"; sourceTree = "<group>"; };
+		15EB355E1BD4840300BA6161 /* WBHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHttpRequest.h; sourceTree = "<group>"; };
+		15EB355F1BD4840300BA6161 /* WBSDKBasicButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKBasicButton.h; sourceTree = "<group>"; };
+		15EB35601BD4840300BA6161 /* WBSDKCommentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKCommentButton.h; sourceTree = "<group>"; };
+		15EB35611BD4840300BA6161 /* WBSDKRelationshipButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSDKRelationshipButton.h; sourceTree = "<group>"; };
+		15EB35621BD4840300BA6161 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		15EB35631BD4840300BA6161 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		15EB35641BD4840300BA6161 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
+		15EB35681BD4840D00BA6161 /* libSocialWechat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWechat.a; sourceTree = "<group>"; };
+		15EB35691BD4840D00BA6161 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		15EB356A1BD4840D00BA6161 /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
+		15EB356B1BD4840D00BA6161 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		15EB356C1BD4840D00BA6161 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		15EB35701BD495A700BA6161 /* CYTopShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYTopShowCell.h; sourceTree = "<group>"; };
+		15EB35711BD495A700BA6161 /* CYTopShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYTopShowCell.m; sourceTree = "<group>"; };
+		15EB35731BD495C600BA6161 /* CYPayAmoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYPayAmoutCell.h; sourceTree = "<group>"; };
+		15EB35741BD495C600BA6161 /* CYPayAmoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYPayAmoutCell.m; sourceTree = "<group>"; };
+		15EB35761BD495ED00BA6161 /* CYInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYInfoCell.h; sourceTree = "<group>"; };
+		15EB35771BD495ED00BA6161 /* CYInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYInfoCell.m; sourceTree = "<group>"; };
+		15EB357A1BD4972800BA6161 /* PTjoinInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTjoinInViewController.h; sourceTree = "<group>"; };
+		15EB357B1BD4972800BA6161 /* PTjoinInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTjoinInViewController.m; sourceTree = "<group>"; };
 		15EB3FD91BAD472A00F07A29 /* ZSListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSListCell.h; sourceTree = "<group>"; };
 		15EB3FDA1BAD472A00F07A29 /* ZSListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSListCell.m; sourceTree = "<group>"; };
 		15EB3FDB1BAD472A00F07A29 /* ZSListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSListCell.xib; sourceTree = "<group>"; };
+		15EB7C441BC3751300756153 /* PinkInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinkInfoModel.h; sourceTree = "<group>"; };
+		15EB7C451BC3751300756153 /* PinkInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinkInfoModel.m; sourceTree = "<group>"; };
+		15EB7C471BC3753B00756153 /* SetMealInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMealInfoModel.h; sourceTree = "<group>"; };
+		15EB7C481BC3753B00756153 /* SetMealInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMealInfoModel.m; sourceTree = "<group>"; };
+		15EB7C4A1BC3785200756153 /* SetMealVOModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMealVOModel.h; sourceTree = "<group>"; };
+		15EB7C4B1BC3785200756153 /* SetMealVOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMealVOModel.m; sourceTree = "<group>"; };
+		15EB7C4D1BC37A1A00756153 /* ProductVOModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductVOModel.h; sourceTree = "<group>"; };
+		15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductVOModel.m; sourceTree = "<group>"; };
+		15EB7C501BC3BE4D00756153 /* GoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsModel.h; sourceTree = "<group>"; };
+		15EB7C511BC3BE4D00756153 /* GoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsModel.m; sourceTree = "<group>"; };
+		15EB7C591BC5FD2C00756153 /* LYMineUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYMineUrl.h; sourceTree = "<group>"; };
+		15EB7C5A1BC6048100756153 /* gouGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gouGif.gif; sourceTree = "<group>"; };
+		15EB7C5C1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailSectionBottomForTuiKuanPinView.h; sourceTree = "<group>"; };
+		15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailSectionBottomForTuiKuanPinView.m; sourceTree = "<group>"; };
+		15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailSectionBottomForTuiKuanPinView.xib; sourceTree = "<group>"; };
+		15EB7C661BCF3CAF00756153 /* LYPlayTogetherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPlayTogetherCell.h; sourceTree = "<group>"; };
+		15EB7C671BCF3CAF00756153 /* LYPlayTogetherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPlayTogetherCell.m; sourceTree = "<group>"; };
+		15EB7C691BCF8B8600756153 /* LYHomePageUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYHomePageUrl.h; sourceTree = "<group>"; };
+		15EB7C6A1BCF8BF700756153 /* LYHomePageHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomePageHttpTool.h; sourceTree = "<group>"; };
+		15EB7C6B1BCF8BF700756153 /* LYHomePageHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomePageHttpTool.m; sourceTree = "<group>"; };
+		15EB7C711BD0A0DB00756153 /* LYShaiXuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYShaiXuanViewController.h; sourceTree = "<group>"; };
+		15EB7C721BD0A0DB00756153 /* LYShaiXuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYShaiXuanViewController.m; sourceTree = "<group>"; };
+		15EB7C731BD0A0DB00756153 /* LYShaiXuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYShaiXuanViewController.xib; sourceTree = "<group>"; };
+		15EB7C771BD0DB9400756153 /* LYPlayTogetherMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPlayTogetherMainViewController.h; sourceTree = "<group>"; };
+		15EB7C781BD0DB9400756153 /* LYPlayTogetherMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPlayTogetherMainViewController.m; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
 		15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
@@ -576,6 +738,21 @@
 		15F54A921BB0393C0020EB4C /* TimeChooseTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeChooseTwoViewController.h; sourceTree = "<group>"; };
 		15F54A931BB0393C0020EB4C /* TimeChooseTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeChooseTwoViewController.m; sourceTree = "<group>"; };
 		15F54A941BB0393C0020EB4C /* TimeChooseTwoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeChooseTwoViewController.xib; sourceTree = "<group>"; };
+		15FD2A5F1BD5125A00D66920 /* PTContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTContactCell.h; sourceTree = "<group>"; };
+		15FD2A601BD5125A00D66920 /* PTContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTContactCell.m; sourceTree = "<group>"; };
+		15FD2A951BD5DD7A00D66920 /* FindMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindMenuCell.h; sourceTree = "<group>"; };
+		15FD2A961BD5DD7A00D66920 /* FindMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindMenuCell.m; sourceTree = "<group>"; };
+		15FD2A991BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYwoYaoDinWeiMainViewController.h; sourceTree = "<group>"; };
+		15FD2A9A1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYwoYaoDinWeiMainViewController.m; sourceTree = "<group>"; };
+		15FD2A9B1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYwoYaoDinWeiMainViewController.xib; sourceTree = "<group>"; };
+		15FD2A9F1BD5EC8900D66920 /* TimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeButton.h; sourceTree = "<group>"; };
+		15FD2AA01BD5EC8900D66920 /* TimeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeButton.m; sourceTree = "<group>"; };
+		15FD2AA21BD61EC500D66920 /* DWTopInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTopInfoView.h; sourceTree = "<group>"; };
+		15FD2AA31BD61EC500D66920 /* DWTopInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTopInfoView.m; sourceTree = "<group>"; };
+		15FD2AA51BD61EE000D66920 /* DWTopInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DWTopInfoView.xib; sourceTree = "<group>"; };
+		15FD2AA71BD6243700D66920 /* TaoCanTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoCanTitleView.h; sourceTree = "<group>"; };
+		15FD2AA81BD6243700D66920 /* TaoCanTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoCanTitleView.m; sourceTree = "<group>"; };
+		15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoCanTitleView.xib; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A20100741BA7ADCB009283D1 /* ZSReleaseMBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseMBViewController.h; sourceTree = "<group>"; };
@@ -901,9 +1078,16 @@
 			files = (
 				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
 				D74436161BC1577200958046 /* libcorecrypto.tbd in Frameworks */,
+				15EB356E1BD4840D00BA6161 /* libWeChatSDK.a in Frameworks */,
 				AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */,
+				15EB35571BD483F500BA6161 /* libSocialSina.a in Frameworks */,
+				15EB35471BD4839D00BA6161 /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
+				15EB35661BD4840300BA6161 /* libWeiboSDK.a in Frameworks */,
+				15EB35651BD4840300BA6161 /* libSocialSinaSSO.a in Frameworks */,
 				D748BC561BA1C7C6005AA996 /* MobileCoreServices.framework in Frameworks */,
+				15EB35481BD4839D00BA6161 /* libUMSocial_Sdk_Comment_4.2.3.a in Frameworks */,
 				D748BC521BA1C765005AA996 /* CoreTelephony.framework in Frameworks */,
+				15EB356D1BD4840D00BA6161 /* libSocialWechat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1305,7 @@
 				15E2407F1BB279CB0090D240 /* LYMyOrderManageViewController.h */,
 				15E240801BB279CB0090D240 /* LYMyOrderManageViewController.m */,
 				15E240811BB279CB0090D240 /* LYMyOrderManageViewController.xib */,
+				15EB7C5A1BC6048100756153 /* gouGif.gif */,
 			);
 			name = "我的订单";
 			sourceTree = "<group>";
@@ -1184,6 +1369,9 @@
 				15E240B21BB3A1EA0090D240 /* OrderDetailSectionBottomForDanPinView.h */,
 				15E240B31BB3A1EA0090D240 /* OrderDetailSectionBottomForDanPinView.m */,
 				15E240B51BB3A1FC0090D240 /* OrderDetailSectionBottomForDanPinView.xib */,
+				15EB7C5C1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.h */,
+				15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */,
+				15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */,
 			);
 			name = "订单明细";
 			sourceTree = "<group>";
@@ -1245,6 +1433,191 @@
 			children = (
 			);
 			name = IM;
+			sourceTree = "<group>";
+		};
+		15EB35201BD3394000BA6161 /* banner */ = {
+			isa = PBXGroup;
+			children = (
+				15EB35211BD3395800BA6161 /* EScrollerView.h */,
+				15EB35221BD3395800BA6161 /* EScrollerView.m */,
+			);
+			name = banner;
+			sourceTree = "<group>";
+		};
+		15EB35291BD4838600BA6161 /* 社会化分享 */ = {
+			isa = PBXGroup;
+			children = (
+				15EB35541BD483E900BA6161 /* Wechat */,
+				15EB35531BD483E000BA6161 /* sinaSSo */,
+				15EB35521BD483DA00BA6161 /* sina */,
+				15EB352A1BD4839D00BA6161 /* UMSocial_Sdk_4.2.3 */,
+			);
+			path = "社会化分享";
+			sourceTree = "<group>";
+		};
+		15EB352A1BD4839D00BA6161 /* UMSocial_Sdk_4.2.3 */ = {
+			isa = PBXGroup;
+			children = (
+				15EB352B1BD4839D00BA6161 /* UMSocialLocalizable.strings */,
+				15EB352D1BD4839D00BA6161 /* Header */,
+				15EB35391BD4839D00BA6161 /* libUMSocial_Sdk_4.2.3.a */,
+				15EB353A1BD4839D00BA6161 /* libUMSocial_Sdk_Comment_4.2.3.a */,
+				15EB353B1BD4839D00BA6161 /* SocialSDKXib */,
+				15EB35441BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle */,
+			);
+			path = UMSocial_Sdk_4.2.3;
+			sourceTree = "<group>";
+		};
+		15EB352D1BD4839D00BA6161 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				15EB352E1BD4839D00BA6161 /* UMSocial.h */,
+				15EB352F1BD4839D00BA6161 /* UMSocialAccountManager.h */,
+				15EB35301BD4839D00BA6161 /* UMSocialBar.h */,
+				15EB35311BD4839D00BA6161 /* UMSocialConfig.h */,
+				15EB35321BD4839D00BA6161 /* UMSocialControllerService.h */,
+				15EB35331BD4839D00BA6161 /* UMSocialControllerServiceComment.h */,
+				15EB35341BD4839D00BA6161 /* UMSocialData.h */,
+				15EB35351BD4839D00BA6161 /* UMSocialDataService.h */,
+				15EB35361BD4839D00BA6161 /* UMSocialSnsData.h */,
+				15EB35371BD4839D00BA6161 /* UMSocialSnsPlatformManager.h */,
+				15EB35381BD4839D00BA6161 /* UMSocialSnsService.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		15EB353B1BD4839D00BA6161 /* SocialSDKXib */ = {
+			isa = PBXGroup;
+			children = (
+				15EB353C1BD4839D00BA6161 /* UMSCommentDetailController.xib */,
+				15EB353D1BD4839D00BA6161 /* UMSCommentInputController.xib */,
+				15EB353E1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib */,
+				15EB353F1BD4839D00BA6161 /* UMShareEditViewController.xib */,
+				15EB35401BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib */,
+				15EB35411BD4839D00BA6161 /* UMSLoginViewController.xib */,
+				15EB35421BD4839D00BA6161 /* UMSnsAccountViewController.xib */,
+				15EB35431BD4839D00BA6161 /* UMSShareListController.xib */,
+			);
+			path = SocialSDKXib;
+			sourceTree = "<group>";
+		};
+		15EB35521BD483DA00BA6161 /* sina */ = {
+			isa = PBXGroup;
+			children = (
+				15EB35551BD483F500BA6161 /* libSocialSina.a */,
+				15EB35561BD483F500BA6161 /* UMSocialSinaHandler.h */,
+			);
+			name = sina;
+			sourceTree = "<group>";
+		};
+		15EB35531BD483E000BA6161 /* sinaSSo */ = {
+			isa = PBXGroup;
+			children = (
+				15EB35581BD4840300BA6161 /* libSocialSinaSSO.a */,
+				15EB35591BD4840300BA6161 /* UMSocialSinaSSOHandler.h */,
+				15EB355A1BD4840300BA6161 /* libWeiboSDK.a */,
+				15EB355B1BD4840300BA6161 /* WBHttpRequest+WeiboShare.h */,
+				15EB355C1BD4840300BA6161 /* WBHttpRequest+WeiboToken.h */,
+				15EB355D1BD4840300BA6161 /* WBHttpRequest+WeiboUser.h */,
+				15EB355E1BD4840300BA6161 /* WBHttpRequest.h */,
+				15EB355F1BD4840300BA6161 /* WBSDKBasicButton.h */,
+				15EB35601BD4840300BA6161 /* WBSDKCommentButton.h */,
+				15EB35611BD4840300BA6161 /* WBSDKRelationshipButton.h */,
+				15EB35621BD4840300BA6161 /* WeiboSDK.bundle */,
+				15EB35631BD4840300BA6161 /* WeiboSDK.h */,
+				15EB35641BD4840300BA6161 /* WeiboUser.h */,
+			);
+			name = sinaSSo;
+			sourceTree = "<group>";
+		};
+		15EB35541BD483E900BA6161 /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				15EB35681BD4840D00BA6161 /* libSocialWechat.a */,
+				15EB35691BD4840D00BA6161 /* libWeChatSDK.a */,
+				15EB356A1BD4840D00BA6161 /* UMSocialWechatHandler.h */,
+				15EB356B1BD4840D00BA6161 /* WXApi.h */,
+				15EB356C1BD4840D00BA6161 /* WXApiObject.h */,
+			);
+			name = Wechat;
+			sourceTree = "<group>";
+		};
+		15EB356F1BD4958900BA6161 /* 参与 */ = {
+			isa = PBXGroup;
+			children = (
+				15EB35701BD495A700BA6161 /* CYTopShowCell.h */,
+				15EB35711BD495A700BA6161 /* CYTopShowCell.m */,
+				15EB35731BD495C600BA6161 /* CYPayAmoutCell.h */,
+				15EB35741BD495C600BA6161 /* CYPayAmoutCell.m */,
+				15EB35761BD495ED00BA6161 /* CYInfoCell.h */,
+				15EB35771BD495ED00BA6161 /* CYInfoCell.m */,
+			);
+			name = "参与";
+			sourceTree = "<group>";
+		};
+		15EB35791BD4960E00BA6161 /* 我要参与 */ = {
+			isa = PBXGroup;
+			children = (
+				15EB357A1BD4972800BA6161 /* PTjoinInViewController.h */,
+				15EB357B1BD4972800BA6161 /* PTjoinInViewController.m */,
+			);
+			name = "我要参与";
+			sourceTree = "<group>";
+		};
+		15EB7C621BCF3B9B00756153 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				15EB356F1BD4958900BA6161 /* 参与 */,
+				15EB7C661BCF3CAF00756153 /* LYPlayTogetherCell.h */,
+				15EB7C671BCF3CAF00756153 /* LYPlayTogetherCell.m */,
+				15EB34FF1BD1F4E000BA6161 /* PTTopCell.h */,
+				15EB35001BD1F4E000BA6161 /* PTTopCell.m */,
+				15EB35021BD1F4F900BA6161 /* PTTypeChooseCell.h */,
+				15EB35031BD1F4F900BA6161 /* PTTypeChooseCell.m */,
+				15EB35051BD1F51200BA6161 /* PTTaoCanCell.h */,
+				15EB35061BD1F51200BA6161 /* PTTaoCanCell.m */,
+				15EB35081BD1F61800BA6161 /* PTTimeChooseCell.h */,
+				15EB35091BD1F61800BA6161 /* PTTimeChooseCell.m */,
+				15EB350B1BD1F63F00BA6161 /* PTChooseNumCell.h */,
+				15EB350C1BD1F63F00BA6161 /* PTChooseNumCell.m */,
+				15EB350E1BD1F67200BA6161 /* PTShowIntroductionsCell.h */,
+				15EB350F1BD1F67200BA6161 /* PTShowIntroductionsCell.m */,
+				15EB35111BD26CC800BA6161 /* PTTaoCanDetailCell.h */,
+				15EB35121BD26CC800BA6161 /* PTTaoCanDetailCell.m */,
+				15EB35141BD26D0F00BA6161 /* PTPayAmoutCell.h */,
+				15EB35151BD26D0F00BA6161 /* PTPayAmoutCell.m */,
+				15EB35171BD26D2F00BA6161 /* PTAddressCell.h */,
+				15EB35181BD26D2F00BA6161 /* PTAddressCell.m */,
+				15EB351A1BD26D5900BA6161 /* PTzsjlCell.h */,
+				15EB351B1BD26D5900BA6161 /* PTzsjlCell.m */,
+				15FD2A5F1BD5125A00D66920 /* PTContactCell.h */,
+				15FD2A601BD5125A00D66920 /* PTContactCell.m */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		15EB7C6D1BD0A00000756153 /* 筛选 */ = {
+			isa = PBXGroup;
+			children = (
+				15EB7C711BD0A0DB00756153 /* LYShaiXuanViewController.h */,
+				15EB7C721BD0A0DB00756153 /* LYShaiXuanViewController.m */,
+				15EB7C731BD0A0DB00756153 /* LYShaiXuanViewController.xib */,
+			);
+			name = "筛选";
+			sourceTree = "<group>";
+		};
+		15EB7C761BD0D9C400756153 /* 我要拼客 */ = {
+			isa = PBXGroup;
+			children = (
+				15EB7C771BD0DB9400756153 /* LYPlayTogetherMainViewController.h */,
+				15EB7C781BD0DB9400756153 /* LYPlayTogetherMainViewController.m */,
+				15EB351D1BD2717E00BA6161 /* LYPlayTogetherPayViewController.h */,
+				15EB351E1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m */,
+				15EB35241BD379A500BA6161 /* LYtimeChooseTimeController.h */,
+				15EB35251BD379A500BA6161 /* LYtimeChooseTimeController.m */,
+				15EB35261BD379A500BA6161 /* LYtimeChooseTimeController.xib */,
+			);
+			name = "我要拼客";
 			sourceTree = "<group>";
 		};
 		15EE51321BA6E1AB00464B74 /* 订单管理 */ = {
@@ -1357,6 +1730,41 @@
 				15EFEF831BA99CD5004739A2 /* MenuHrizontal.m */,
 			);
 			path = "水平菜单";
+			sourceTree = "<group>";
+		};
+		15FD2A941BD5DD5900D66920 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				15FD2A951BD5DD7A00D66920 /* FindMenuCell.h */,
+				15FD2A961BD5DD7A00D66920 /* FindMenuCell.m */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		15FD2A981BD5E81E00D66920 /* 我要订位 */ = {
+			isa = PBXGroup;
+			children = (
+				15FD2A9E1BD5EC4E00D66920 /* view */,
+				15FD2A991BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.h */,
+				15FD2A9A1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m */,
+				15FD2A9B1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib */,
+			);
+			name = "我要订位";
+			sourceTree = "<group>";
+		};
+		15FD2A9E1BD5EC4E00D66920 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				15FD2A9F1BD5EC8900D66920 /* TimeButton.h */,
+				15FD2AA01BD5EC8900D66920 /* TimeButton.m */,
+				15FD2AA21BD61EC500D66920 /* DWTopInfoView.h */,
+				15FD2AA31BD61EC500D66920 /* DWTopInfoView.m */,
+				15FD2AA51BD61EE000D66920 /* DWTopInfoView.xib */,
+				15FD2AA71BD6243700D66920 /* TaoCanTitleView.h */,
+				15FD2AA81BD6243700D66920 /* TaoCanTitleView.m */,
+				15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		9D0793CADE18DD09E4226921 /* Pods */ = {
@@ -1611,6 +2019,16 @@
 				15EA6DBE1BBE479A00620C9E /* ProductCategoryModel.m */,
 				15EA6DC01BBE47C400620C9E /* BrandModel.h */,
 				15EA6DC11BBE47C400620C9E /* BrandModel.m */,
+				15EB7C441BC3751300756153 /* PinkInfoModel.h */,
+				15EB7C451BC3751300756153 /* PinkInfoModel.m */,
+				15EB7C471BC3753B00756153 /* SetMealInfoModel.h */,
+				15EB7C481BC3753B00756153 /* SetMealInfoModel.m */,
+				15EB7C4A1BC3785200756153 /* SetMealVOModel.h */,
+				15EB7C4B1BC3785200756153 /* SetMealVOModel.m */,
+				15EB7C4D1BC37A1A00756153 /* ProductVOModel.h */,
+				15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */,
+				15EB7C501BC3BE4D00756153 /* GoodsModel.h */,
+				15EB7C511BC3BE4D00756153 /* GoodsModel.m */,
 			);
 			name = modles;
 			sourceTree = "<group>";
@@ -2120,6 +2538,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				15FD2A981BD5E81E00D66920 /* 我要订位 */,
 				D7A1D41E1BC2689D00BCE47C /* Business */,
 				D794ED031BB77FCF000DC568 /* CustomSegment */,
 				D729DB5C1BADB8AB005A9E60 /* BeerBar */,
@@ -2133,6 +2552,10 @@
 		D761F0251BA5B8A5000757B0 /* PlayTogether */ = {
 			isa = PBXGroup;
 			children = (
+				15EB35791BD4960E00BA6161 /* 我要参与 */,
+				15EB7C761BD0D9C400756153 /* 我要拼客 */,
+				15EB7C6D1BD0A00000756153 /* 筛选 */,
+				15EB7C621BCF3B9B00756153 /* cell */,
 				D7A6005B1BAC6CF50006A768 /* PlayTogetherViewController.h */,
 				D7A6005C1BAC6CF50006A768 /* PlayTogetherViewController.m */,
 			);
@@ -2149,6 +2572,7 @@
 		D761F0271BA5B8D5000757B0 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				15FD2A941BD5DD5900D66920 /* cell */,
 				D7A6005E1BAC6E0B0006A768 /* FindViewController.h */,
 				D7A6005F1BAC6E0B0006A768 /* FindViewController.m */,
 			);
@@ -2185,6 +2609,8 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				15EB35291BD4838600BA6161 /* 社会化分享 */,
+				15EB35201BD3394000BA6161 /* banner */,
 				151BB6E01BBB913E00E7A81C /* DejalActivityView.h */,
 				151BB6E11BBB913E00E7A81C /* DejalActivityView.m */,
 				15EA6DCD1BC0DA1400620C9E /* IM */,
@@ -2214,7 +2640,11 @@
 				15013B061BBA3BD000061FAF /* LYCommonHttpTool.m */,
 				15EA6DC31BBFC80700620C9E /* LYUserHttpTool.h */,
 				15EA6DC41BBFC80700620C9E /* LYUserHttpTool.m */,
+				15EB7C6A1BCF8BF700756153 /* LYHomePageHttpTool.h */,
+				15EB7C6B1BCF8BF700756153 /* LYHomePageHttpTool.m */,
 				15013AD21BBA25C200061FAF /* ZSUrl.h */,
+				15EB7C591BC5FD2C00756153 /* LYMineUrl.h */,
+				15EB7C691BCF8B8600756153 /* LYHomePageUrl.h */,
 				D794ED0A1BB7872A000DC568 /* PFRect.h */,
 				D794ED0B1BB7872A000DC568 /* PFRect.m */,
 				D794ED071BB786AA000DC568 /* PFImage.h */,
@@ -2325,6 +2755,7 @@
 				TargetAttributes = {
 					AD8899B51B9AFE61007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 5ZLNNRMM3Y;
 					};
 					AD8899D11B9AFE62007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
@@ -2339,6 +2770,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = AD8899AD1B9AFE61007BCC7C;
 			productRefGroup = AD8899B71B9AFE61007BCC7C /* Products */;
@@ -2356,18 +2788,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15EB354E1BD4839D00BA6161 /* UMSLoginViewController.xib in Resources */,
 				15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */,
 				D74C608C1BB6F0BF00A49598 /* BearBarListViewController.xib in Resources */,
 				A2F9DA711BAA667D009DEAF3 /* OrderHeadView.xib in Resources */,
 				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
 				A2020D621BA67E9E0090B92A /* disClosure@3x.png in Resources */,
 				A2FD57671BAFE6E500CFFF92 /* KuCunCell.xib in Resources */,
+				15EB35511BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				15E240461BB0F3540090D240 /* IQKeyboardManager.bundle in Resources */,
 				15F54A911BB030420020EB4C /* ChanPinListViewController.xib in Resources */,
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
 				A2020D611BA67E9E0090B92A /* disClosure@2x.png in Resources */,
 				151BB6D31BBB78E000E7A81C /* UzysAssetsPickerController.xib in Resources */,
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
+				15EB35491BD4839D00BA6161 /* UMSCommentDetailController.xib in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
 				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
@@ -2378,6 +2813,8 @@
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
 				15E240B11BB39DD40090D240 /* OrderDetailSectionBottomView.xib in Resources */,
 				A2020D801BA67FA40090B92A /* Fill20219@3x.png in Resources */,
+				15EB35671BD4840300BA6161 /* WeiboSDK.bundle in Resources */,
+				15EB354B1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib in Resources */,
 				A20100841BA7AFAB009283D1 /* LYProductslistViewController.xib in Resources */,
 				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
 				15E240D71BB3E8610090D240 /* MyPKfriendCell.xib in Resources */,
@@ -2386,10 +2823,14 @@
 				15E240C71BB3CAC20090D240 /* LYResetPasswordViewController.xib in Resources */,
 				15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */,
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,
+				15EB354C1BD4839D00BA6161 /* UMShareEditViewController.xib in Resources */,
+				15EB354F1BD4839D00BA6161 /* UMSnsAccountViewController.xib in Resources */,
+				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
 				15E240631BB1237E0090D240 /* BiaoQianChooseViewController.xib in Resources */,
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
 				A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */,
 				A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */,
+				15EB35461BD4839D00BA6161 /* UMSocialLocalizable.strings in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
 				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
 				15E240CC1BB3CF2E0090D240 /* LYSurePassWordViewController.xib in Resources */,
@@ -2400,6 +2841,7 @@
 				151BB6D11BBB78E000E7A81C /* UzysAssetPickerController.bundle in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
 				15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */,
+				15FD2A9D1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib in Resources */,
 				A2F9DA841BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib in Resources */,
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
@@ -2409,19 +2851,23 @@
 				15E240831BB279CB0090D240 /* LYMyOrderManageViewController.xib in Resources */,
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
+				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
+				15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */,
 				15E184931BB52B0E00681BB2 /* LYJiuBaCell.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,
 				A2FD577E1BAFE97000CFFF92 /* FBTaoCanSectionBottom.xib in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
+				15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */,
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
+				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
@@ -2429,6 +2875,7 @@
 				D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */,
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
 				15E240D21BB3D5940090D240 /* LYRegistrationViewController.xib in Resources */,
+				15EB354A1BD4839D00BA6161 /* UMSCommentInputController.xib in Resources */,
 				15E2407D1BB2521C0090D240 /* CollectionCell.xib in Resources */,
 				15E1847F1BB4FF0900681BB2 /* LYZSeditView.xib in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
@@ -2443,6 +2890,7 @@
 				15E240A71BB381610090D240 /* OrderDetailHeadView.xib in Resources */,
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
+				15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */,
 				15E240C11BB3A9AA0090D240 /* LYUserLoginViewController.xib in Resources */,
 				D761F01F1BA5AED3000757B0 /* MJRefresh.bundle in Resources */,
 				A2FD576C1BAFE85900CFFF92 /* PinKeCell.xib in Resources */,
@@ -2455,8 +2903,10 @@
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
 				15EE515B1BA7085C00464B74 /* ZSAlreadyPayedViewController.xib in Resources */,
+				15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */,
 				AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */,
 				A2FD57761BAFE94400CFFF92 /* TaoCanMCell.xib in Resources */,
+				15EB7C5B1BC6048100756153 /* gouGif.gif in Resources */,
 				15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */,
 				15E240A21BB37EF60090D240 /* LYOrderDetailViewController.xib in Resources */,
 				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
@@ -2526,18 +2976,22 @@
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
 				15013B021BBA33BF00061FAF /* UIImageView+HighlightedWebCache.m in Sources */,
+				15EB35011BD1F4E000BA6161 /* PTTopCell.m in Sources */,
 				D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */,
 				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
 				A2FD577D1BAFE97000CFFF92 /* FBTaoCanSectionBottom.m in Sources */,
 				15E184961BB52CA200681BB2 /* JiuBaModel.m in Sources */,
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
+				15EB350D1BD1F63F00BA6161 /* PTChooseNumCell.m in Sources */,
+				15EB357C1BD4972800BA6161 /* PTjoinInViewController.m in Sources */,
 				151BB6D71BBB78E000E7A81C /* UzysGroupViewCell.m in Sources */,
 				15AE63451BA854AB00FFAD1A /* ZSNoticeCenterViewController.m in Sources */,
 				D794ED061BB78009000DC568 /* LYCustomSegmentControl.m in Sources */,
 				15E240481BB0F3540090D240 /* IQSegmentedNextPrevious.m in Sources */,
 				A2F9DA741BAA6AB7009DEAF3 /* OrderBottomView.m in Sources */,
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
+				15EB7C5E1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
 				D7A1D42B1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m in Sources */,
@@ -2557,11 +3011,13 @@
 				15E184A01BB8D20700681BB2 /* MyUtil.m in Sources */,
 				15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
+				15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */,
 				A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */,
 				15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */,
 				15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
+				15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
@@ -2576,6 +3032,7 @@
 				15013AFF1BBA33BF00061FAF /* UIImage+GIF.m in Sources */,
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
+				15FD2AA11BD5EC8900D66920 /* TimeButton.m in Sources */,
 				D761F0231BA5AED3000757B0 /* UIView+MJExtension.m in Sources */,
 				15E240581BB101340090D240 /* ZSAddStocksViewController.m in Sources */,
 				15E240AF1BB39DC50090D240 /* OrderDetailSectionBottomView.m in Sources */,
@@ -2586,13 +3043,17 @@
 				15013AF61BBA33BE00061FAF /* NSData+ImageContentType.m in Sources */,
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
 				15E240CB1BB3CF2E0090D240 /* LYSurePassWordViewController.m in Sources */,
+				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
+				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,
+				15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */,
 				D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */,
 				D761F0171BA5AED3000757B0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
 				15E184741BB4EB7A00681BB2 /* LYZSdetailCell.m in Sources */,
 				AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */,
 				15E240C01BB3A9AA0090D240 /* LYUserLoginViewController.m in Sources */,
+				15EB35751BD495C600BA6161 /* CYPayAmoutCell.m in Sources */,
 				15013B041BBA33BF00061FAF /* UIView+WebCacheOperation.m in Sources */,
 				15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
@@ -2605,9 +3066,11 @@
 				D748BC7A1BA1CB0E005AA996 /* User.m in Sources */,
 				151BB6E21BBB913E00E7A81C /* DejalActivityView.m in Sources */,
 				D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */,
+				15FD2AA91BD6243700D66920 /* TaoCanTitleView.m in Sources */,
 				15E2405C1BB1029C0090D240 /* FBDanPinView.m in Sources */,
 				151BB6D51BBB78E000E7A81C /* UzysGroupPickerView.m in Sources */,
 				D71E1D9A1BAE9C1100915F37 /* LYColors.m in Sources */,
+				15EB7C741BD0A0DB00756153 /* LYShaiXuanViewController.m in Sources */,
 				A20100E01BA94404009283D1 /* WQCalendarDay.m in Sources */,
 				D748BC731BA1C856005AA996 /* NSString+MJExtension.m in Sources */,
 				15E2404F1BB0F3540090D240 /* UIWindow+Hierarchy.m in Sources */,
@@ -2617,6 +3080,7 @@
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
+				15EB35101BD1F67200BA6161 /* PTShowIntroductionsCell.m in Sources */,
 				D761F01D1BA5AED3000757B0 /* MJRefreshNormalHeader.m in Sources */,
 				D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */,
 				15E1848D1BB5220C00681BB2 /* LyZSuploadIdCardViewController.m in Sources */,
@@ -2627,10 +3091,12 @@
 				15E240821BB279CB0090D240 /* LYMyOrderManageViewController.m in Sources */,
 				15E240B41BB3A1EA0090D240 /* OrderDetailSectionBottomForDanPinView.m in Sources */,
 				15E184921BB52B0E00681BB2 /* LYJiuBaCell.m in Sources */,
+				15FD2A9C1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m in Sources */,
 				15013B071BBA3BD000061FAF /* LYCommonHttpTool.m in Sources */,
 				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,
 				A2F9DA631BAA5621009DEAF3 /* OrderInfoModel.m in Sources */,
 				15E240711BB2478B0090D240 /* TuiJianShangJiaViewController.m in Sources */,
+				15FD2A971BD5DD7A00D66920 /* FindMenuCell.m in Sources */,
 				151BB6D41BBB78E000E7A81C /* UzysAssetsViewCell.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
@@ -2642,30 +3108,41 @@
 				15EA6DBF1BBE479A00620C9E /* ProductCategoryModel.m in Sources */,
 				D761F0201BA5AED3000757B0 /* MJRefreshConst.m in Sources */,
 				15013B031BBA33BF00061FAF /* UIImageView+WebCache.m in Sources */,
+				15EB35271BD379A500BA6161 /* LYtimeChooseTimeController.m in Sources */,
 				15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */,
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
 				D761F01B1BA5AED3000757B0 /* MJRefreshBackStateFooter.m in Sources */,
+				15EB7C6C1BCF8BF700756153 /* LYHomePageHttpTool.m in Sources */,
+				15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */,
 				15013AF71BBA33BE00061FAF /* SDImageCache.m in Sources */,
 				A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */,
+				15EB35781BD495ED00BA6161 /* CYInfoCell.m in Sources */,
 				D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */,
+				15EB351F1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m in Sources */,
 				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
 				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
 				D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */,
+				15FD2AA41BD61EC500D66920 /* DWTopInfoView.m in Sources */,
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
 				15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
+				15EB35071BD1F51200BA6161 /* PTTaoCanCell.m in Sources */,
+				15EB7C491BC3753B00756153 /* SetMealInfoModel.m in Sources */,
 				15E2404A1BB0F3540090D240 /* IQTitleBarButtonItem.m in Sources */,
 				15E240C61BB3CAC20090D240 /* LYResetPasswordViewController.m in Sources */,
 				151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */,
 				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
+				15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */,
 				D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */,
 				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,
 				15E2409A1BB296CF0090D240 /* OrderDetailCell.m in Sources */,
+				15EB351C1BD26D5900BA6161 /* PTzsjlCell.m in Sources */,
 				15013AFE1BBA33BF00061FAF /* UIButton+WebCache.m in Sources */,
+				15EB7C791BD0DB9400756153 /* LYPlayTogetherMainViewController.m in Sources */,
 				D73652421BAEBF44002541CE /* KuCunModel.m in Sources */,
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
 				D7545E011BB99A3A005B854F /* HTTPController.m in Sources */,
@@ -2673,12 +3150,15 @@
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
 				A2FD578E1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
+				15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */,
 				D761F0221BA5AED3000757B0 /* UIScrollView+MJRefresh.m in Sources */,
 				A2F9DA6A1BAA58B1009DEAF3 /* DetailCell.m in Sources */,
 				15EA6DC21BBE47C400620C9E /* BrandModel.m in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				15E1847D1BB4FEF900681BB2 /* LYZSeditView.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
+				15EB35721BD495A700BA6161 /* CYTopShowCell.m in Sources */,
+				15EB7C681BCF3CAF00756153 /* LYPlayTogetherCell.m in Sources */,
 				D71E1D951BAE963900915F37 /* LYShareSnsView.m in Sources */,
 				15E2404D1BB0F3540090D240 /* UIView+Hierarchy.m in Sources */,
 				15E240D11BB3D5940090D240 /* LYRegistrationViewController.m in Sources */,
@@ -2694,6 +3174,7 @@
 				D748BC461BA1C280005AA996 /* LYDataStore.m in Sources */,
 				D748BC6F1BA1C856005AA996 /* MJType.m in Sources */,
 				15E2404C1BB0F3540090D240 /* NSArray+Sort.m in Sources */,
+				15EB35041BD1F4F900BA6161 /* PTTypeChooseCell.m in Sources */,
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
 				A2020D591BA6781B0090B92A /* FunctionListCell.m in Sources */,
 				D761F0141BA5AED3000757B0 /* MJRefreshFooter.m in Sources */,
@@ -2701,6 +3182,7 @@
 				D7A1D42E1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m in Sources */,
 				A2F9DA7D1BAA8C83009DEAF3 /* SerchHeadView.m in Sources */,
 				A2F9DA7A1BAA6F68009DEAF3 /* OrderHandleButton.m in Sources */,
+				15FD2A611BD5125A00D66920 /* PTContactCell.m in Sources */,
 				A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */,
 				15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */,
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
@@ -2717,6 +3199,7 @@
 				15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */,
 				15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */,
 				151BB6D61BBB78E000E7A81C /* UzysGroupPickerViewController.m in Sources */,
+				15EB350A1BD1F61800BA6161 /* PTTimeChooseCell.m in Sources */,
 				151BB6BF1BBAB80900E7A81C /* DeckFullModel.m in Sources */,
 				15E240A11BB37EF60090D240 /* LYOrderDetailViewController.m in Sources */,
 				D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */,
@@ -2744,6 +3227,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		15EB352B1BD4839D00BA6161 /* UMSocialLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15EB352C1BD4839D00BA6161 /* en */,
+				15EB35451BD4839D00BA6161 /* zh-Hans */,
+			);
+			name = UMSocialLocalizable.strings;
+			sourceTree = "<group>";
+		};
 		AD8899C61B9AFE61007BCC7C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2851,6 +3343,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: youren huang (P4N3EPBLYC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: youren huang (P4N3EPBLYC)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2867,8 +3361,11 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/RestKit/lib",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 					"$(SDKROOT)/usr/lib/system",
+					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/UMSocial_Sdk_4.2.3",
+					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -2879,6 +3376,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: youren huang (P4N3EPBLYC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: youren huang (P4N3EPBLYC)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2895,8 +3394,11 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/RestKit/lib",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 					"$(SDKROOT)/usr/lib/system",
+					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/UMSocial_Sdk_4.2.3",
+					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

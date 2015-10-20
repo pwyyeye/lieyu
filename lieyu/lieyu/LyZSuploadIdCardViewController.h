@@ -14,6 +14,7 @@
     int picTag;
     UIImage *idcard_zhengmian;
     UIImage *idcard_fanmian;
+    
 }
 - (IBAction)nextAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *zmAddBtn;

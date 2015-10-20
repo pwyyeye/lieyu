@@ -9,5 +9,10 @@
 #import "JiuBaModel.h"
 
 @implementation JiuBaModel
-
++ (NSDictionary *)objectClassInArray
+{
+    return @{
+             @"recommend_package" : @"RecommendPackageModel",
+             };
+}
 @end

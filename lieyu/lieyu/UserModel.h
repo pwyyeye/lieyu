@@ -43,4 +43,5 @@
 @property(nonatomic,copy)NSString * username;
 @property(nonatomic,copy)NSString * usernick;
 @property(nonatomic,copy)NSString * usertype;
+@property(nonatomic,assign)int barid;
 @end

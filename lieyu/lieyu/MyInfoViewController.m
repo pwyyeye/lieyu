@@ -74,6 +74,12 @@
     orderInfoLal.text=@"我属于你生命中小宝贝";
     orderInfoLal.textAlignment=NSTextAlignmentCenter;
     [view addSubview:orderInfoLal];
+    UIButton *setTingBack=[UIButton buttonWithType:0];
+    setTingBack.frame=CGRectMake(280,20, 22,22);
+    [setTingBack setImage:[UIImage imageNamed:@"icon_setting_normal"] forState:0];
+    [setTingBack addTarget:self action:@selector(settingQct:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:setTingBack];
+    
     self.tableView.tableHeaderView=view;
     [self.tableView reloadData];
 }

@@ -8,15 +8,23 @@
 
 #import "FindViewController.h"
 #import "MacroDefinition.h"
-
+#import "FindMenuCell.h"
 @interface FindViewController ()
-
+{
+    NSArray *datalist;
+}
 @end
 
 @implementation FindViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
+              @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
+              @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
+              @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
+              @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
+    
     [self setupViewStyles];
     // Do any additional setup after loading the view.
 }
@@ -33,7 +41,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self performSelector:@selector(setCustomTitle:) withObject:@"发现" afterDelay:0.1];
+//    [self performSelector:@selector(setCustomTitle:) withObject:@"发现" afterDelay:0.1];
 
     [super viewWillAppear:animated];
 }
@@ -48,7 +56,45 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [self setCustomTitle:nil];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return datalist.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FindMenuCell *cell = nil;
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:@"FindMenuCell" forIndexPath:indexPath];
+    
+    NSDictionary *dic =[datalist objectAtIndex:indexPath.section];
+    [cell.imageView setImage:[UIImage imageNamed:[dic objectForKey:@"image"]]];
+    cell.titleLal.text=[dic objectForKey:@"title"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return 51;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    //        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    //        [self.navigationController pushViewController:controller animated:YES];
+    
 }
 /*
 #pragma mark - Navigation

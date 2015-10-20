@@ -173,4 +173,24 @@
     int val;
     return[scan scanInt:&val] && [scan isAtEnd];
 }
++ (NSDictionary *) getKeyValue:(NSString *)string{
+//    name=ligang&phone=13888888888
+    NSMutableDictionary *dic=[NSMutableDictionary new];
+    if(string){
+        NSArray *arr=[string componentsSeparatedByString:@"&"];
+        for (NSString *str in arr) {
+            NSArray *arr1=[str componentsSeparatedByString:@"="];
+            if(arr1.count>=2){
+                [dic setObject:arr1[1] forKey:arr1[0]];
+            }
+        }
+    }
+    
+    
+    return dic;
+}
++ (NSString *) getMoonValue:(NSString *)string{
+    NSDictionary *dic=@{@"1":@"一月",@"2":@"二月",@"3":@"三月",@"4":@"四月",@"5":@"五月",@"6":@"六月",@"7":@"七月",@"8":@"八月",@"9":@"九月",@"10":@"十月",@"11":@"十一月",@"12":@"十二月"};
+    return [dic objectForKey:string];
+}
 @end

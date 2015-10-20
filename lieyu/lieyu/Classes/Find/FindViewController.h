@@ -10,5 +10,6 @@
 #import "LYBaseViewController.h"
 
 @interface FindViewController : LYBaseViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

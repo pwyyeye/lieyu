@@ -9,6 +9,7 @@
 #import "LYBaseViewController.h"
 #import "LYZSeditView.h"
 #import "UzysAssetsPickerController.h"
+#import "UserModel.h"
 @protocol ZSAddTaoCanDelegate<NSObject>
 - (void)addTaoCan;
 
@@ -23,7 +24,7 @@
     LYZSeditView *seditView;
     UIView  *_bgView;
     NSMutableArray *keyArr;
-    
+    UserModel *userModel;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)sureAct:(UIButton *)sender;

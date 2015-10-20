@@ -15,4 +15,5 @@
 @property(nonatomic,copy)NSString * money;
 @property(nonatomic,copy)NSString * count;
 @property(nonatomic,copy)NSString * detile;
+@property(nonatomic,copy)NSString * rebate;
 @end

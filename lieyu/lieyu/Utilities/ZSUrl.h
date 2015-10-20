@@ -33,7 +33,22 @@
 //获取酒吧列表
 #define LY_JIUBA_LIST  @"toPlayAction.do?action=list"
 
+/***订单***/
+//专属经理订单列表
+#define ZS_ORDER_LIST  @"smOrderAction.do?action=list"
 
+//订单详细
+#define ZS_ORDER_DETAIL  @"smOrderAction.do?action=custom"
+//专属经理订单-对码
+#define ZS_DUIMA  @"lyOrderAction.do?action=managerConfirmOrder"
+//专属经理-确认卡座
+#define ZS_KAZUO_SURE @"lyOrderAction.do?action=managerConfirmSeat"
+//专属经理-取消订单
+#define ZS_KAZUO_CANCEL @"lyOrderAction.do?action=mangerCancel"
+
+
+
+/***商铺管理***/
 //专属经理套餐列表
 #define ZS_TAOCANLIST  @"lySetMealAction.do?action=list"
 //专属经理拼客套餐列表
@@ -42,6 +57,13 @@
 #define ZS_DANPINLIST  @"lyProductAction.do?action=list"
 //专属经理库存列表
 #define ZS_KUCUNLIST  @"lyItemProductAction.do?action=list"
+
+//专属经理 单品下架
+#define ZS_DANPIN_DEL @"lyProductAction.do?action=update"
+//专属经理 套餐下架
+#define ZS_TAOCAN_DEL @"lySetMealAction.do?action=update"
+//专属经理 拼客下架
+#define ZS_PINKE_DEL @"lyPinkerAction.do?action=update"
 
 //专属经理套餐添加
 #define ZS_TAOCAN_ADD  @"lySetMealAction.do?action=add"
@@ -65,7 +87,10 @@
 #define ZS_USERS_FRIEND  @"lyUsersFriendAction.do?action=list"
 
 
+
+
 //一周卡座是否满座
 #define ZS_KUZUOISFULL  @"lySetDeckFullAction.do?action=list"
+
 
 #endif
