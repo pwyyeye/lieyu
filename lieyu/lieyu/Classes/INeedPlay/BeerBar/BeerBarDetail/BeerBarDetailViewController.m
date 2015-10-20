@@ -13,8 +13,9 @@
 #import "LYShareSnsView.h"
 #import "LYAdshowCell.h"
 #import "LYColors.h"
-
+#import "LYwoYaoDinWeiMainViewController.h"
 @interface BeerBarDetailViewController ()
+- (IBAction)dinweiAct:(UIButton *)sender;
 
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
@@ -197,4 +198,8 @@
 }
 */
 
+- (IBAction)dinweiAct:(UIButton *)sender {
+    LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
+    [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];
+}
 @end

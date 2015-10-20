@@ -9,11 +9,13 @@
 #import "MenuHrizontal.h"
 #import "MacroDefinition.h"
 #import "UIViewExt.h"
+#import "TimeButton.h"
 #define BUTTONITEMWIDTH   70
 
 @implementation MenuHrizontal
 - (id)initWithFrame:(CGRect)frame ButtonItems:(NSArray *)aItemsArray
 {
+    jianWidth=0;
     self = [super initWithFrame:frame];
     if (self) {
         if (mButtonArray == nil) {
@@ -32,7 +34,27 @@
     }
     return self;
 }
-
+- (id)initWithFrameForTime:(CGRect)frame ButtonItems:(NSArray *)aItemsArray
+{
+    jianWidth=52;
+    self = [super initWithFrame:frame];
+    if (self) {
+        if (mButtonArray == nil) {
+            mButtonArray = [[NSMutableArray alloc] init];
+        }
+        if (mScrollView == nil) {
+            mScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            mScrollView.backgroundColor=RGB(229, 255, 245);
+            mScrollView.showsHorizontalScrollIndicator = NO;
+        }
+        if (mItemInfoArray == nil) {
+            mItemInfoArray = [[NSMutableArray alloc]init];
+        }
+        [mItemInfoArray removeAllObjects];
+        [self createMenuItemsForTime:aItemsArray];
+    }
+    return self;
+}
 
 -(void)createMenuItems:(NSArray *)aItemsArray{
     int i = 0;
@@ -97,7 +119,70 @@
     // 保存menu总长度，如果小于320则不需要移动，方便点击button时移动位置的判断
     mTotalWidth = menuWidth;
 }
-
+-(void)createMenuItemsForTime:(NSArray *)aItemsArray{
+    int i = 0;
+    float menuWidth = 0.0;
+    //
+    for (NSDictionary *lDic in aItemsArray) {
+        
+//        UIImage *normalImg = [lDic objectForKey:NOMALKEY];
+        NSString *weekStr = [lDic objectForKey:WEEKKEY];
+        NSString *vTitleStr = [lDic objectForKey:TITLEKEY];
+        float vButtonWidth = [[lDic objectForKey:TITLEWIDTH] floatValue];
+        TimeButton *vButton = [TimeButton buttonWithType:UIButtonTypeCustom];
+        vButton.userInteractionEnabled=YES;
+        
+        
+        [vButton setBackgroundColor:RGB(35, 166, 116)];
+        [vButton setBackgroundImage:[UIImage imageNamed:@"bg_navbar_time"] forState:UIControlStateSelected];
+        //        [vButton setTitle:vTitleStr forState:UIControlStateNormal];
+        //        [vButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        //        [vButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+        [vButton setTag:i];
+        [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height+1)];
+        
+        
+        
+        //title
+        vButton.weekLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 11,vButton.width, 10)];
+        vButton.weekLal.text=weekStr;
+        vButton.weekLal.font=[UIFont systemFontOfSize:7];
+        vButton.weekLal.backgroundColor=[UIColor clearColor];
+        vButton.weekLal.textColor =RGB(255, 255, 255);
+        vButton.weekLal.textAlignment=1;
+        [vButton addSubview:vButton.weekLal];
+        
+        
+        vButton.titleLal =[[UILabel alloc]initWithFrame:CGRectMake(0, 28,vButton.width, 20)];
+        vButton.titleLal.text=vTitleStr;
+        vButton.titleLal.font=[UIFont systemFontOfSize:17];
+        vButton.titleLal.backgroundColor=[UIColor clearColor];
+        vButton.titleLal.textColor =RGB(255, 255, 255);
+        vButton.titleLal.textAlignment=1;
+        [vButton addSubview:vButton.titleLal];
+        //
+        if(i==0){
+            [vButton setSelected:true];
+        }
+        [mScrollView addSubview:vButton];
+        [mButtonArray addObject:vButton];
+        
+        menuWidth += vButtonWidth;
+        i++;
+        
+        //保存button资源信息，同时增加button.oringin.x的位置，方便点击button时，移动位置。
+        NSMutableDictionary *vNewDic = [lDic mutableCopy];
+        [vNewDic setObject:[NSNumber numberWithFloat:menuWidth] forKey:TOTALWIDTH];
+        [mItemInfoArray addObject:vNewDic];
+    }
+    
+    [mScrollView setContentSize:CGSizeMake(menuWidth, self.frame.size.height)];
+    [mScrollView setBackgroundColor: [UIColor clearColor]];//RGB(35, 166, 116)
+    [self addSubview:mScrollView];
+    // 保存menu总长度，如果小于320则不需要移动，方便点击button时移动位置的判断
+    mTotalWidth = menuWidth;
+}
 #pragma mark - 其他辅助功能
 #pragma mark 取消所有button点击状态
 -(void)changeButtonsToNormalState{
@@ -128,14 +213,14 @@
         return;
     }
      //宽度小于320肯定不需要移动
-    if (mTotalWidth <= 320) {
+    if (mTotalWidth <= 320-jianWidth) {
         return;
     }
     NSDictionary *vDic = [mItemInfoArray objectAtIndex:aIndex];
     float vButtonOrigin = [[vDic objectForKey:TOTALWIDTH] floatValue];
     if (vButtonOrigin >= 300) {
         if ((vButtonOrigin + 180) >= mScrollView.contentSize.width) {
-            [mScrollView setContentOffset:CGPointMake(mScrollView.contentSize.width - 320, mScrollView.contentOffset.y) animated:YES];
+            [mScrollView setContentOffset:CGPointMake(mScrollView.contentSize.width - 320+jianWidth, mScrollView.contentOffset.y) animated:YES];
             return;
         }
         

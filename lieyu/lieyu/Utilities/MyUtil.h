@@ -44,5 +44,6 @@
 + (void)showMessage:(NSString* )message;
 //获取键值参数
 + (NSDictionary *) getKeyValue:(NSString *)string;
-
+//获取月份中文
++ (NSString *) getMoonValue:(NSString *)string;
 @end

@@ -195,6 +195,14 @@
 		15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F54A931BB0393C0020EB4C /* TimeChooseTwoViewController.m */; };
 		15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F54A941BB0393C0020EB4C /* TimeChooseTwoViewController.xib */; };
 		15FD2A611BD5125A00D66920 /* PTContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2A601BD5125A00D66920 /* PTContactCell.m */; };
+		15FD2A971BD5DD7A00D66920 /* FindMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2A961BD5DD7A00D66920 /* FindMenuCell.m */; };
+		15FD2A9C1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2A9A1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m */; };
+		15FD2A9D1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2A9B1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib */; };
+		15FD2AA11BD5EC8900D66920 /* TimeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AA01BD5EC8900D66920 /* TimeButton.m */; };
+		15FD2AA41BD61EC500D66920 /* DWTopInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AA31BD61EC500D66920 /* DWTopInfoView.m */; };
+		15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2AA51BD61EE000D66920 /* DWTopInfoView.xib */; };
+		15FD2AA91BD6243700D66920 /* TaoCanTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AA81BD6243700D66920 /* TaoCanTitleView.m */; };
+		15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */; };
 		A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */; };
 		A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */; };
 		A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100811BA7AFAB009283D1 /* LYProductslistViewController.m */; };
@@ -732,6 +740,19 @@
 		15F54A941BB0393C0020EB4C /* TimeChooseTwoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeChooseTwoViewController.xib; sourceTree = "<group>"; };
 		15FD2A5F1BD5125A00D66920 /* PTContactCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTContactCell.h; sourceTree = "<group>"; };
 		15FD2A601BD5125A00D66920 /* PTContactCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTContactCell.m; sourceTree = "<group>"; };
+		15FD2A951BD5DD7A00D66920 /* FindMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindMenuCell.h; sourceTree = "<group>"; };
+		15FD2A961BD5DD7A00D66920 /* FindMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindMenuCell.m; sourceTree = "<group>"; };
+		15FD2A991BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYwoYaoDinWeiMainViewController.h; sourceTree = "<group>"; };
+		15FD2A9A1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYwoYaoDinWeiMainViewController.m; sourceTree = "<group>"; };
+		15FD2A9B1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYwoYaoDinWeiMainViewController.xib; sourceTree = "<group>"; };
+		15FD2A9F1BD5EC8900D66920 /* TimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeButton.h; sourceTree = "<group>"; };
+		15FD2AA01BD5EC8900D66920 /* TimeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeButton.m; sourceTree = "<group>"; };
+		15FD2AA21BD61EC500D66920 /* DWTopInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTopInfoView.h; sourceTree = "<group>"; };
+		15FD2AA31BD61EC500D66920 /* DWTopInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTopInfoView.m; sourceTree = "<group>"; };
+		15FD2AA51BD61EE000D66920 /* DWTopInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DWTopInfoView.xib; sourceTree = "<group>"; };
+		15FD2AA71BD6243700D66920 /* TaoCanTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoCanTitleView.h; sourceTree = "<group>"; };
+		15FD2AA81BD6243700D66920 /* TaoCanTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoCanTitleView.m; sourceTree = "<group>"; };
+		15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoCanTitleView.xib; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A20100741BA7ADCB009283D1 /* ZSReleaseMBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseMBViewController.h; sourceTree = "<group>"; };
@@ -1711,6 +1732,41 @@
 			path = "水平菜单";
 			sourceTree = "<group>";
 		};
+		15FD2A941BD5DD5900D66920 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				15FD2A951BD5DD7A00D66920 /* FindMenuCell.h */,
+				15FD2A961BD5DD7A00D66920 /* FindMenuCell.m */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		15FD2A981BD5E81E00D66920 /* 我要订位 */ = {
+			isa = PBXGroup;
+			children = (
+				15FD2A9E1BD5EC4E00D66920 /* view */,
+				15FD2A991BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.h */,
+				15FD2A9A1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m */,
+				15FD2A9B1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib */,
+			);
+			name = "我要订位";
+			sourceTree = "<group>";
+		};
+		15FD2A9E1BD5EC4E00D66920 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				15FD2A9F1BD5EC8900D66920 /* TimeButton.h */,
+				15FD2AA01BD5EC8900D66920 /* TimeButton.m */,
+				15FD2AA21BD61EC500D66920 /* DWTopInfoView.h */,
+				15FD2AA31BD61EC500D66920 /* DWTopInfoView.m */,
+				15FD2AA51BD61EE000D66920 /* DWTopInfoView.xib */,
+				15FD2AA71BD6243700D66920 /* TaoCanTitleView.h */,
+				15FD2AA81BD6243700D66920 /* TaoCanTitleView.m */,
+				15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		9D0793CADE18DD09E4226921 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2482,6 +2538,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				15FD2A981BD5E81E00D66920 /* 我要订位 */,
 				D7A1D41E1BC2689D00BCE47C /* Business */,
 				D794ED031BB77FCF000DC568 /* CustomSegment */,
 				D729DB5C1BADB8AB005A9E60 /* BeerBar */,
@@ -2515,6 +2572,7 @@
 		D761F0271BA5B8D5000757B0 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				15FD2A941BD5DD5900D66920 /* cell */,
 				D7A6005E1BAC6E0B0006A768 /* FindViewController.h */,
 				D7A6005F1BAC6E0B0006A768 /* FindViewController.m */,
 			);
@@ -2783,6 +2841,7 @@
 				151BB6D11BBB78E000E7A81C /* UzysAssetPickerController.bundle in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
 				15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */,
+				15FD2A9D1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib in Resources */,
 				A2F9DA841BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib in Resources */,
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
@@ -2808,6 +2867,7 @@
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */,
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
+				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
@@ -2843,6 +2903,7 @@
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
 				15EE515B1BA7085C00464B74 /* ZSAlreadyPayedViewController.xib in Resources */,
+				15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */,
 				AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */,
 				A2FD57761BAFE94400CFFF92 /* TaoCanMCell.xib in Resources */,
 				15EB7C5B1BC6048100756153 /* gouGif.gif in Resources */,
@@ -2971,6 +3032,7 @@
 				15013AFF1BBA33BF00061FAF /* UIImage+GIF.m in Sources */,
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
+				15FD2AA11BD5EC8900D66920 /* TimeButton.m in Sources */,
 				D761F0231BA5AED3000757B0 /* UIView+MJExtension.m in Sources */,
 				15E240581BB101340090D240 /* ZSAddStocksViewController.m in Sources */,
 				15E240AF1BB39DC50090D240 /* OrderDetailSectionBottomView.m in Sources */,
@@ -3004,6 +3066,7 @@
 				D748BC7A1BA1CB0E005AA996 /* User.m in Sources */,
 				151BB6E21BBB913E00E7A81C /* DejalActivityView.m in Sources */,
 				D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */,
+				15FD2AA91BD6243700D66920 /* TaoCanTitleView.m in Sources */,
 				15E2405C1BB1029C0090D240 /* FBDanPinView.m in Sources */,
 				151BB6D51BBB78E000E7A81C /* UzysGroupPickerView.m in Sources */,
 				D71E1D9A1BAE9C1100915F37 /* LYColors.m in Sources */,
@@ -3028,10 +3091,12 @@
 				15E240821BB279CB0090D240 /* LYMyOrderManageViewController.m in Sources */,
 				15E240B41BB3A1EA0090D240 /* OrderDetailSectionBottomForDanPinView.m in Sources */,
 				15E184921BB52B0E00681BB2 /* LYJiuBaCell.m in Sources */,
+				15FD2A9C1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m in Sources */,
 				15013B071BBA3BD000061FAF /* LYCommonHttpTool.m in Sources */,
 				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,
 				A2F9DA631BAA5621009DEAF3 /* OrderInfoModel.m in Sources */,
 				15E240711BB2478B0090D240 /* TuiJianShangJiaViewController.m in Sources */,
+				15FD2A971BD5DD7A00D66920 /* FindMenuCell.m in Sources */,
 				151BB6D41BBB78E000E7A81C /* UzysAssetsViewCell.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
@@ -3058,6 +3123,7 @@
 				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
 				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
 				D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */,
+				15FD2AA41BD61EC500D66920 /* DWTopInfoView.m in Sources */,
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
 				15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,

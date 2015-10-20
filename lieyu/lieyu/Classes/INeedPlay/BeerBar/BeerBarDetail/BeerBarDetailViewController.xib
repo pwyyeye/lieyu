@@ -70,6 +70,9 @@
                             <state key="normal" title="我要订位" image="icon_ordersits">
                                 <color key="titleColor" red="0.40392156862745099" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="dinweiAct:" destination="-1" eventType="touchUpInside" id="xxQ-bh-7fR"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

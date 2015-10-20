@@ -130,4 +130,33 @@
         
     }];
 }
+
+#pragma mark我要订位
+-(void) getWoYaoDinWeiDetailWithParams:(NSDictionary*)params
+                                 block:(void(^)(JiuBaModel* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_WOYAODINWEI_INFO baseURL:LY_SERVER params:params success:^(id response) {
+        NSDictionary *dataDic = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            JiuBaModel *jiuBaModel=[JiuBaModel objectWithKeyValues:dataDic];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(jiuBaModel);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+    
+
+
+}
 @end
