@@ -11,6 +11,7 @@
 #define NOMALKEY   @"normalKey"
 #define HEIGHTKEY  @"helightKey"
 #define TITLEKEY   @"titleKey"
+#define WEEKKEY   @"weekKey"
 #define TITLEWIDTH @"titleWidth"
 #define TOTALWIDTH @"totalWidth"
 #define COUNTORDER @"countOrder"
@@ -25,12 +26,14 @@
     NSMutableArray        *mItemInfoArray;
     UIScrollView          *mScrollView;
     float                 mTotalWidth;
+    int                 jianWidth;
 }
 
 @property (nonatomic,assign) id <MenuHrizontalDelegate> delegate;
 
 #pragma mark 初始化菜单
 - (id)initWithFrame:(CGRect)frame ButtonItems:(NSArray *)aItemsArray;
+- (id)initWithFrameForTime:(CGRect)frame ButtonItems:(NSArray *)aItemsArray;
 @property (nonatomic,assign) NSInteger selectIndex;
 #pragma mark 选中某个button
 -(void)clickButtonAtIndex:(NSInteger)aIndex;

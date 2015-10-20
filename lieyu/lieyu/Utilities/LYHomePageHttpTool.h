@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PinKeModel.h"
+#import "JiuBaModel.h"
 @interface LYHomePageHttpTool : NSObject
 + (LYHomePageHttpTool *)shareInstance;
 //一起玩列表
@@ -22,4 +23,8 @@
 //录入拼客订单
 -(void) setTogetherOrderInWithParams:(NSDictionary*)params
         complete:(void (^)(NSString *result))result;
+
+//我要订位
+-(void) getWoYaoDinWeiDetailWithParams:(NSDictionary*)params
+                              block:(void(^)(JiuBaModel* result)) block;
 @end

@@ -16,4 +16,8 @@
 #define LY_YIQIWAN_DOORDER @"togetherneedAction.do?action=expand"
 //录入拼客订单
 #define LY_YIQIWAN_INORDER @"pinkerOrderAction.do?action=add"
+
+
+//我要订位
+#define LY_WOYAODINWEI_INFO @"toPlayAction.do?action=expand"
 #endif
