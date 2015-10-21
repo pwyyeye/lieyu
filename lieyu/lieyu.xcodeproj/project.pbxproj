@@ -1744,6 +1744,7 @@
 		15FD2A981BD5E81E00D66920 /* 我要订位 */ = {
 			isa = PBXGroup;
 			children = (
+				15FD2AAD1BD715F400D66920 /* 套餐详情 */,
 				15FD2A9E1BD5EC4E00D66920 /* view */,
 				15FD2A991BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.h */,
 				15FD2A9A1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m */,
@@ -1765,6 +1766,13 @@
 				15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		15FD2AAD1BD715F400D66920 /* 套餐详情 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "套餐详情";
 			sourceTree = "<group>";
 		};
 		9D0793CADE18DD09E4226921 /* Pods */ = {
