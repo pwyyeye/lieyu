@@ -119,8 +119,6 @@
     }
 }
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSLog(@"----pass-pass%@---",@"didSelectItem");
-}
+
 
 @end

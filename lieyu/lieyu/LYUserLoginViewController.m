@@ -60,6 +60,23 @@
 //        NSLog(result.username);
     }];
 }
+#pragma mark - 自动登录
+- (void)aotuLogin:(NSString *)username and:(NSString *) password {
+    if(username.length<1){
+        return;
+    }
+    if(password.length<1){
+        return;
+    }
+    NSDictionary *dic=@{@"username":username,@"password":password};
+    [[LYUserHttpTool shareInstance] userLoginWithParams:dic block:^(UserModel *result) {
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        app.s_app_id=result.token;
+        app.userModel=result;
+        [app getImToken];
+        //        NSLog(result.username);
+    }];
+}
 #pragma mark - 注册
 - (IBAction)zhuceAct:(UIButton *)sender {
     LYRegistrationViewController *registrationViewController=[[LYRegistrationViewController alloc]initWithNibName:@"LYRegistrationViewController" bundle:nil];
