@@ -20,4 +20,8 @@
 
 //我要订位
 #define LY_WOYAODINWEI_INFO @"toPlayAction.do?action=expand"
+// 我要订位请求获取套餐信息
+#define LY_WOYAODINWEI_TAOCAN_INFO @"toPlayAction.do?action=save"
+//录入套餐订单
+#define LY_WOYAODINWEI_INORDER @"smOrderAction.do?action=add"
 #endif

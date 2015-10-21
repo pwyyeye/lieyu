@@ -14,6 +14,7 @@
 #import "OrderInfoModel.h"
 #import "LYHomePageHttpTool.h"
 #import "JiuBaModel.h"
+#import "DWTaoCanXQViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 @interface LYwoYaoDinWeiMainViewController ()
 {
@@ -121,7 +122,7 @@
 }
 #pragma mark 获取数据
 -(void)getdata{
-    NSDictionary *dic=@{@"barid":@"17",@"smdate":@"2015-09-20"};
+    NSDictionary *dic=@{@"barid":[NSString stringWithFormat:@"%d",self.barid],@"smdate":@"2015-09-20"};
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiDetailWithParams:dic block:^(JiuBaModel *result) {
         jiubaModel=result;
@@ -194,7 +195,15 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSDictionary *dic=weekDateArr[mMenuHriZontal.selectIndex];
+    NSString *dataChoose=[dic objectForKey:@"date"];
+    RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.row];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
+    taoCanXQViewController.title=@"套餐详情";
+    taoCanXQViewController.smid=model.smid.intValue;
+    taoCanXQViewController.dateStr=dataChoose;
+    [self.navigationController pushViewController:taoCanXQViewController animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

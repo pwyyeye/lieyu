@@ -7,7 +7,11 @@
 //
 
 #import "TaoCanModel.h"
-
 @implementation TaoCanModel
-
++ (NSDictionary *)objectClassInArray
+{
+    return @{
+             @"goodsList" : @"KuCunModel",@"managerList":@"ZSDetailModel",
+             };
+}
 @end

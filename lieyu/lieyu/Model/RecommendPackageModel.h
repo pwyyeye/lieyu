@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "JiuBaModel.h"
 @interface RecommendPackageModel : NSObject
 
-@property(nonatomic,copy)NSString *barinfo;
+@property(nonatomic,strong) NSString * barinfo;
 @property(nonatomic,strong)NSNumber *buynum;
 @property(nonatomic,strong)NSArray *goodsList;
 @property(nonatomic,strong)NSNumber *id;
