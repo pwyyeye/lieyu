@@ -19,4 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *moonLal;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
+@property (assign, nonatomic) int barid;
+
 @end

@@ -16,7 +16,7 @@
 #import "LYToPlayRestfulBusiness.h"
 #import "BeerBarOrYzhDetailModel.h"
 #import "RecommendPackageModel.h"
-
+#import "LYwoYaoDinWeiMainViewController.h"
 
 @interface BeerBarDetailViewController ()
 
@@ -224,4 +224,9 @@
 }
 */
 
+- (IBAction)dianweiAct:(UIButton *)sender {
+    LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
+    woYaoDinWeiMainViewController.barid=17;
+    [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];
+}
 @end

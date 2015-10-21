@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PinKeModel.h"
 #import "JiuBaModel.h"
+#import "TaoCanModel.h"
 @interface LYHomePageHttpTool : NSObject
 + (LYHomePageHttpTool *)shareInstance;
 //一起玩列表
@@ -24,7 +25,17 @@
 -(void) setTogetherOrderInWithParams:(NSDictionary*)params
         complete:(void (^)(NSString *result))result;
 
+
 //我要订位
 -(void) getWoYaoDinWeiDetailWithParams:(NSDictionary*)params
                               block:(void(^)(JiuBaModel* result)) block;
+// 请求获取套餐信息
+-(void) getWoYaoDinWeiTaoCanDetailWithParams:(NSDictionary*)params
+                                 block:(void(^)(TaoCanModel* result)) block;
+//我要订位确认订单
+-(void) getWoYaoDinWeiOrderWithParams:(NSDictionary*)params
+                             block:(void(^)(TaoCanModel* result)) block;
+//录入套餐订单
+-(void) setWoYaoDinWeiOrderInWithParams:(NSDictionary*)params
+                            complete:(void (^)(NSString *result))result;
 @end

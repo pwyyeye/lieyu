@@ -7,36 +7,29 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "JiuBaModel.h"
 @interface TaoCanModel : NSObject
-//"smname":"标题",
-//"price":"价格",
-//"rebate":"返利点",
-//"linkUrl":"icon链接地址", //多张图片，用","号分隔
-//"minnum":"适合最少人数",
-//"maxnum":"适合最多人数"
-//"smdate":"套餐时间"
-//"begindate":"开始时间"，
-//"enddate":"结束时间",
-//"userid":"专属经理ID",
-//"barid":"酒吧ID",
-//"introduction":"介绍",
-//"goodsList":[//套餐商品id
-//             商品id1,商品id2,商品id3......
-//             ],
-//"goodsNum":[//套餐商品数量
-//            数量1,数量2,数量3......
 
+@property(nonatomic,retain)JiuBaModel * barinfo;
 @property(nonatomic,assign)int id;
 @property(nonatomic,assign)int buynum;
 @property(nonatomic,assign)int maxnum;
 @property(nonatomic,assign)int minnum;
 @property(nonatomic,copy)NSString * title;
 @property(nonatomic,copy)NSString * linkicon;
+@property(nonatomic,copy)NSString * linkUrl;
 @property(nonatomic,copy)NSString * subtitle;
 @property(nonatomic,assign)double  price;
 @property(nonatomic,assign)double  money;
 @property(nonatomic,assign)double  rebate;
 @property(nonatomic,copy)NSString * smdate;
+@property(nonatomic,copy)NSString * serviceType;
+@property(nonatomic,copy)NSString * smtime;
+@property(nonatomic,copy)NSString * ispinker;
+@property(nonatomic,copy)NSString *marketprice;
+@property(nonatomic,copy)NSString *introduction;
 @property(nonatomic,assign)int smid;
+@property(nonatomic,retain)NSArray * goodsList;
+@property(nonatomic,retain)NSArray * managerList;
+@property(nonatomic,retain)NSArray * banner;
 @end
