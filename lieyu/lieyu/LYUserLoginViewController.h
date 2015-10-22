@@ -8,7 +8,12 @@
 
 #import "LYBaseViewController.h"
 
+
+
 @interface LYUserLoginViewController : LYBaseViewController
+
+
+
 - (IBAction)forgetPassWordAct:(UIButton *)sender;
 - (IBAction)loginAct:(UIButton *)sender;
 - (IBAction)zhuceAct:(UIButton *)sender;
@@ -17,4 +22,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 - (IBAction)otherAct:(UIButton *)sender;
 - (IBAction)exitEdit:(UITextField *)sender;
+- (void)aotuLogin:(NSString *)username and:(NSString *) password;
 @end

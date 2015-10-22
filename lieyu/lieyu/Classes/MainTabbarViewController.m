@@ -31,6 +31,7 @@
     self.locationManager = [[LYLocationManager alloc] init];
     [_locationManager beginUpdateLocation:kCLLocationAccuracyBest];
     _locationManager.locationDelegate = self;
+    self.delegate=self;
     // Do any additional setup after loading the view.
 }
 
@@ -79,7 +80,8 @@
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
-    
+    [super setSelectedIndex:selectedIndex];
+        NSLog(@"----pass-%d---",selectedIndex);
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
@@ -98,5 +100,48 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+//    if(tabBarController.selectedIndex == 3)    //"我的账号"
+//    {
+////        NSLog(@"----pass-pass%@---%d",@"test",tabBarController.selectedIndex);
+//        return NO;
+//    }else{
+//        return YES;
+//    }
+    self.lastSelectIndex=self.selectedIndex;
+    return YES;
+}
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    NSLog(@"----pass-tabBarController%d---",self.selectedIndex);
+    if (self.selectedIndex==2||self.selectedIndex==3) {
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        if([MyUtil isEmptyString:app.s_app_id]){
+            LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+//            [self.navigationController presentViewController:login animated:YES completion:^{
+//               
+//            }];
+            UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self  action:@selector(back:)];
+            self.navigationController.navigationItem.backBarButtonItem=item;
+            [self.navigationController pushViewController:login animated:YES];
+            
+        }
+        
+        
+    }
+}
+
+-(void)loginSuccess:(BOOL)isLoginSucces{
+    NSLog(@"----pass-pass%@---",@"isLoginSucces");
+    if (isLoginSucces) {
+        
+    }else{
+        self.selectedIndex=_lastSelectIndex;
+    }
+}
+
+-(void)back:(id)sender{
+    NSLog(@"----pass-pass%@---",@"back");
+}
 
 @end

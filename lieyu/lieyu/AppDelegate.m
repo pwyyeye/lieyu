@@ -160,9 +160,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //获取IMToken
 -(void)getImToken{
     if(_userModel){
+        NSLog(@"userid=%d",_userModel.userid);
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
         [[LYCommonHttpTool shareInstance] getTokenByIMWithParams:dic block:^(NSString *result) {
             _im_token=result;
+            
             [self connectWithToken];
         }];
     }
@@ -171,7 +173,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 //IM连接服务器
 -(void)connectWithToken{
-    [[RCIM sharedRCIM] connectWithToken:_im_token success:^(NSString *userId) {
+    NSLog(@"_im_token=%@",_im_token);
+    [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
         // Connect 成功
         NSLog(@"****登录成功%@",userId);
     }
