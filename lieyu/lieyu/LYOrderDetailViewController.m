@@ -129,10 +129,10 @@
             UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
             btn2.backgroundColor=RGB(229, 229, 229);
             
-            [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
+            [btn2 setTitle:@"删除订单" forState:UIControlStateNormal];
             btn2.titleLabel.font = [UIFont systemFontOfSize:12];
             [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
-            [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [btn2 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
             [dibuView addSubview:btn2];
             
             UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
@@ -230,10 +230,10 @@
                     UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
                     btn2.backgroundColor=RGB(229, 229, 229);
                     
-                    [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
+                    [btn2 setTitle:@"删除订单" forState:UIControlStateNormal];
                     btn2.titleLabel.font = [UIFont systemFontOfSize:12];
                     [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
-                    [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [btn2 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                     [dibuView addSubview:btn2];
                     
                     UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
@@ -335,10 +335,10 @@
             UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
             btn2.backgroundColor=RGB(229, 229, 229);
             
-            [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
+            [btn2 setTitle:@"删除订单" forState:UIControlStateNormal];
             btn2.titleLabel.font = [UIFont systemFontOfSize:12];
             [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
-            [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+            [btn2 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
             [dibuView addSubview:btn2];
             
             UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
@@ -867,6 +867,7 @@
             shopDetailmodel.money=setMealVOModel.marketprice;
             shopDetailmodel.count=[NSString stringWithFormat:@"[适合%@-%@人]",setMealVOModel.minnum,setMealVOModel.maxnum];
             shopDetailmodel.rebate=setMealVOModel.rebate;
+            cell.timeLal.text=[NSString stringWithFormat:@"X%@",orderInfoModel.allnum];
         }else if(_orderInfoModel.ordertype==1){
             SetMealVOModel *setMealVOModel=orderInfoModel.pinkerinfo;
             shopDetailmodel.name=setMealVOModel.smname;
