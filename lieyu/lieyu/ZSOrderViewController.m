@@ -514,7 +514,8 @@
             OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
             orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
             orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
-            orderHeadView.nameLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
+            orderHeadView.nameLal.text=orderInfoModel.username;
+            orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
             NSString *str=orderInfoModel.avatar_img ;
