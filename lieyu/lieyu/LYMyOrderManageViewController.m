@@ -649,6 +649,7 @@
         shopDetailmodel.money=setMealVOModel.marketprice;
         shopDetailmodel.count=[NSString stringWithFormat:@"[适合%@-%@人]",setMealVOModel.minnum,setMealVOModel.maxnum];
         shopDetailmodel.rebate=setMealVOModel.rebate;
+        cell.timeLal.text=[NSString stringWithFormat:@"X%@",orderInfoModel.allnum];
     }else if(orderInfoModel.ordertype==1){
         SetMealVOModel *setMealVOModel=orderInfoModel.pinkerinfo;
         shopDetailmodel.name=setMealVOModel.smname;
@@ -663,7 +664,6 @@
 
             shopDetailmodel.count=[NSString stringWithFormat:@"%@人拼客",orderInfoModel.allnum];
 //        }
-        
     }else{
         //吃喝订单
         NSArray *arr=orderInfoModel.goodslist;
