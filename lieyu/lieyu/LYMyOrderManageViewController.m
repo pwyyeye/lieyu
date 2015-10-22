@@ -451,9 +451,9 @@
                 
                 if(isFaqi){
                     if(isfu){
-                        [orderBottomView.oneBtn setTitle:@"删除订单" forState:0];
+                        [orderBottomView.oneBtn setTitle:@"取消订单" forState:0];
                         [orderBottomView.oneBtn setHidden:NO];
-                        [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                        [orderBottomView.oneBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                         [orderBottomView.secondBtn setTitle:@"立即拼客" forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
                         [orderBottomView.secondBtn addTarget:self action:@selector(pinkeAct:) forControlEvents:UIControlEventTouchUpInside];

@@ -2876,6 +2876,7 @@
 				TargetAttributes = {
 					AD8899B51B9AFE61007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 5ZLNNRMM3Y;
 					};
 					AD8899D11B9AFE62007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
@@ -3501,7 +3502,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "67e5984a-b577-4a53-9843-c357fd454726";
+				PROVISIONING_PROFILE = "b1de35eb-5750-4bb5-b7e3-882ee409cb93";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -3534,7 +3535,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "67e5984a-b577-4a53-9843-c357fd454726";
+				PROVISIONING_PROFILE = "b1de35eb-5750-4bb5-b7e3-882ee409cb93";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
