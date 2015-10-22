@@ -336,6 +336,7 @@
         }
         if(!issel){
             [self showMessage:@"请选择专属经理!"];
+            return;
         }
         
         NSDictionary *dic=@{@"pinkerid":[NSNumber numberWithInt:pinKeModel.id],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":numCell.numLal.text,@"payamount":payAmoutCell.payAmountTex.text,@"pinkerType":typeChooseCell.pinkertype};

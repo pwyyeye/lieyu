@@ -378,6 +378,7 @@
         }
         if(!issel){
             [self showMessage:@"请选择专属经理!"];
+            return;
         }
         
         NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:taoCanModel.smid],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":numCell.numLal.text,@"consumptionStatus":gotype};

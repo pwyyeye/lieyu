@@ -24,4 +24,11 @@
 #define LY_WOYAODINWEI_TAOCAN_INFO @"toPlayAction.do?action=save"
 //录入套餐订单
 #define LY_WOYAODINWEI_INORDER @"smOrderAction.do?action=add"
+
+
+//吃喝专场
+//获取吃喝列表
+#define LY_CH_LISt @"drinksAction.do?action=list"
+//获取吃喝明细
+#define LY_CH_DETAIL @"drinksAction.do?action=custom"
 #endif

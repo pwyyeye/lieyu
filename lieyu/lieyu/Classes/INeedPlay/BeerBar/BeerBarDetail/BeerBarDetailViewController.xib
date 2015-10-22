@@ -60,6 +60,9 @@
                             <state key="normal" title="吃喝专场" image="icon_eatdrinkspecial">
                                 <color key="titleColor" red="0.4039215686" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="chiHeAct:" destination="-1" eventType="touchUpInside" id="FeY-Ac-cNx"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Qf-zL-gKW">
                             <rect key="frame" x="23" y="8" width="68" height="61"/>

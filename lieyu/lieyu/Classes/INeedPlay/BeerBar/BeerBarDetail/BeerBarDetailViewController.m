@@ -17,7 +17,7 @@
 #import "BeerBarOrYzhDetailModel.h"
 #import "RecommendPackageModel.h"
 #import "LYwoYaoDinWeiMainViewController.h"
-
+#import "CHshowDetailListViewController.h"
 @interface BeerBarDetailViewController ()
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -228,5 +228,14 @@
     LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
     woYaoDinWeiMainViewController.barid=17;
     [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];
+}
+
+- (IBAction)chiHeAct:(UIButton *)sender {
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CHshowDetailListViewController *showDetailListViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHshowDetailListViewController"];
+    showDetailListViewController.title=@"吃喝专场";
+    showDetailListViewController.barid=17;
+    showDetailListViewController.barName=@"颜色酒吧";
+    [self.navigationController pushViewController:showDetailListViewController animated:YES];
 }
 @end
