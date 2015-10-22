@@ -443,7 +443,7 @@
         }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
             sectionNum=2;
             nowB=@"已经返利";
-            nextB=@"删除订单";
+            nextB=@"继续消费";
         }else{
             sectionNum=1;
             nowB=@"已经退款";
@@ -509,7 +509,7 @@
             sectionNum=3;
             if(isfu){
                 nowB=@"已经返利";
-                nextB=@"删除订单";
+                nextB=@"继续消费";
             }else{
                 nowB=@"消费完成";
                 nextB=@"删除订单";
@@ -545,7 +545,7 @@
         }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
             sectionNum=2;
             nowB=@"已经返利";
-            nextB=@"删除订单";
+            nextB=@"继续消费";
         }else{
             sectionNum=1;
             nowB=@"已经退款";
