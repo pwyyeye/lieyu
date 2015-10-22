@@ -18,5 +18,6 @@
 
 @property(nonatomic,strong)NSNumber * beerBarId;
 - (IBAction)dianweiAct:(UIButton *)sender;
+- (IBAction)chiHeAct:(UIButton *)sender;
 
 @end

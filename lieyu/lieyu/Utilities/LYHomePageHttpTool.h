@@ -10,6 +10,7 @@
 #import "PinKeModel.h"
 #import "JiuBaModel.h"
 #import "TaoCanModel.h"
+#import "CheHeModel.h"
 @interface LYHomePageHttpTool : NSObject
 + (LYHomePageHttpTool *)shareInstance;
 //一起玩列表
@@ -38,4 +39,12 @@
 //录入套餐订单
 -(void) setWoYaoDinWeiOrderInWithParams:(NSDictionary*)params
                             complete:(void (^)(NSString *result))result;
+
+//吃喝专场
+//获取吃喝列表
+-(void) getCHListWithParams:(NSDictionary*)params
+                            block:(void(^)(NSMutableArray* result)) block;
+// 请求获取吃喝信息
+-(void) getCHDetailWithParams:(NSDictionary*)params
+                                       block:(void(^)(CheHeModel* result)) block;
 @end
