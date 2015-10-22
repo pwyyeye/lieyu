@@ -8,7 +8,12 @@
 
 #import "LYBaseViewController.h"
 
+
+
 @interface LYUserLoginViewController : LYBaseViewController
+
+
+
 - (IBAction)forgetPassWordAct:(UIButton *)sender;
 - (IBAction)loginAct:(UIButton *)sender;
 - (IBAction)zhuceAct:(UIButton *)sender;

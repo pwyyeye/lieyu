@@ -57,6 +57,10 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
+//      [self dismissViewControllerAnimated:YES completion:^{
+//          
+//      }];
+        [self.navigationController popViewControllerAnimated:YES ];
 //        NSLog(result.username);
     }];
 }
@@ -74,7 +78,7 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
-        //        NSLog(result.username);
+       
     }];
 }
 #pragma mark - 注册
