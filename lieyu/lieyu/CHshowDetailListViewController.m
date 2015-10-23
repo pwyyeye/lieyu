@@ -12,6 +12,7 @@
 #import "MJRefresh.h"
 #import "CHShaiXuanViewController.h"
 #import "ProductCategoryModel.h"
+#import "CHJiuPinDetailViewController.h"
 @interface CHshowDetailListViewController ()<CHShaiXuanDelegate>
 {
     NSMutableArray *dataList;
@@ -123,7 +124,13 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CheHeModel *chiHeModel=dataList[indexPath.row];
-    [MyUtil showMessage:chiHeModel.fullname];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CHJiuPinDetailViewController *jiuPinDetailViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHJiuPinDetailViewController"];
+    jiuPinDetailViewController.title=@"套餐详情";
+    jiuPinDetailViewController.shopid=chiHeModel.id;
+    [self.navigationController pushViewController:jiuPinDetailViewController animated:YES];
+
+    
 }
 //返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
