@@ -11,6 +11,8 @@
 #import "JiuBaModel.h"
 #import "TaoCanModel.h"
 #import "CheHeModel.h"
+#import "CarInfoModel.h"
+#import "CarModel.h"
 @interface LYHomePageHttpTool : NSObject
 + (LYHomePageHttpTool *)shareInstance;
 //一起玩列表
@@ -47,4 +49,13 @@
 // 请求获取吃喝信息
 -(void) getCHDetailWithParams:(NSDictionary*)params
                                        block:(void(^)(CheHeModel* result)) block;
+//加入购物车
+-(void) addCarWithParams:(NSDictionary*)params
+                      block:(void(^)(BOOL result)) block;
+//购物车列表
+-(void) getCarListWithParams:(NSDictionary*)params
+                            block:(void(^)(NSMutableArray* result)) block;
+//购物车数量变更
+-(void) updataCarNumWithParams:(NSDictionary*)params
+        complete:(void (^)(BOOL result))result;
 @end

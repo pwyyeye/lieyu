@@ -234,7 +234,7 @@
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CHshowDetailListViewController *showDetailListViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHshowDetailListViewController"];
     showDetailListViewController.title=@"吃喝专场";
-    showDetailListViewController.barid=17;
+    showDetailListViewController.barid=1;
     showDetailListViewController.barName=@"颜色酒吧";
     [self.navigationController pushViewController:showDetailListViewController animated:YES];
 }

@@ -111,7 +111,7 @@
         [self.view addSubview:dibuView];
         [self getButton];
     }else{
-        tableView =[[UITableView alloc]initWithFrame:(CGRect){0,0,SCREEN_WIDTH,SCREEN_HEIGHT} style:UITableViewStyleGrouped];
+        tableView =[[UITableView alloc]initWithFrame:(CGRect){0,0,SCREEN_WIDTH,SCREEN_HEIGHT-rect.size.height-rectNav.size.height} style:UITableViewStyleGrouped];
         [self.view addSubview:tableView];
     }
     
@@ -468,7 +468,7 @@
                     nowB=@"已经参与";
                     nextB=@"等待拼成";
                 }else{
-                    sectionNum=3;
+                    sectionNum=2;
                     nowB=@"还未付款";
                     nextB=@"立即付款";
                 }
@@ -495,19 +495,19 @@
             nowB=@"取消订单";
             nextB=@"等待退款";
         }else if(_orderInfoModel.orderStatus==7){
-            if(isfu){
+            if(isFaqi){
                 sectionNum=4;
                 nowB=@"已经消费";
                 nextB=@"等待返利";
             }else{
-                sectionNum=3;
+                sectionNum=2;
                 nowB=@"已经消费";
                 nextB=@"系统审核";
             }
             
         }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
             sectionNum=3;
-            if(isfu){
+            if(isFaqi){
                 nowB=@"已经返利";
                 nextB=@"继续消费";
             }else{
@@ -938,7 +938,17 @@
                 
             }
             NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
-            PinkInfoModel *pinkInfoModel=pinkerList[indexPath.row];
+            PinkInfoModel *pinkInfoModel;
+            if(isFaqi){
+                pinkInfoModel=pinkerList[indexPath.row];
+            }else{
+                for (PinkInfoModel *pinkInfoModelTemp in pinkerList){
+                    if(pinkInfoModelTemp.inmember==_orderInfoModel.userid){
+                        pinkInfoModel=pinkInfoModelTemp;
+                    }
+                }
+            }
+            
             NSString *str=pinkInfoModel.inmenberAvatar_img ;
             [cell.pkUserimageView  setImageWithURL:[NSURL URLWithString:str]];
             cell.pkNameLal.text=pinkInfoModel.inmemberName;
@@ -1073,7 +1083,51 @@
         }
 
     }else{
-    
+        NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
+        UITableViewCell *cell = nil;
+        if (cell == nil)
+        {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor=[UIColor whiteColor];
+            UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
+            [lal1 setTag:1];
+            lal1.textAlignment=NSTextAlignmentLeft;
+            lal1.font=[UIFont boldSystemFontOfSize:12];
+            lal1.backgroundColor=[UIColor clearColor];
+            lal1.textColor= RGB(128, 128, 128);
+            lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+            lal1.lineBreakMode=UILineBreakModeWordWrap;
+            [cell.contentView addSubview:lal1];
+            
+        }
+        
+        
+        UILabel *lal = (UILabel*)[cell viewWithTag:1];
+        NSString *title=@"请您在规定的预约时间内到您所选购的商品地点消费，如果您已超过预约时间，无法消费，需取消订单，我们将会收取您的20%卡座预订费（100元封顶），如有多有不便，敬请谅解！";
+        
+        //高度固定不折行，根据字的多少计算label的宽度
+        
+        CGSize size = [title sizeWithFont:lal.font
+                        constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
+                            lineBreakMode:NSLineBreakByWordWrapping];
+        //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+        //根据计算结果重新设置UILabel的尺寸
+        lal.height=size.height;
+        lal.text=title;
+        CGRect cellFrame = [cell frame];
+        cellFrame.origin=CGPointMake(0, 0);
+        cellFrame.size.width=SCREEN_WIDTH;
+        cellFrame.size.height=lal.size.height+20;
+        
+        [cell setFrame:cellFrame];
+        
+        
+        
+        
+        return cell;
+
     }
     return  nil;
     

@@ -70,7 +70,7 @@
     [daiXiaoFei removeAllObjects];
     [serchDaiXiaoFei removeAllObjects];
     NSString *dateStr=[dateFormatterUp stringFromDate:nowDate];
-    NSDictionary *dic=@{@"orderStatus":@"0",@"createDate":dateStr};
+    NSDictionary *dic=@{@"orderStatus":@"2",@"createDate":dateStr};
     __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
         [daiXiaoFei addObjectsFromArray:result];
@@ -127,7 +127,7 @@
     [daiXiaoFei removeAllObjects];
     [serchDaiXiaoFei removeAllObjects];
     NSString *dateStr=[dateFormatterUp stringFromDate:nowDate];
-    NSDictionary *dic=@{@"orderStatus":@"7",@"createDate":dateStr};
+    NSDictionary *dic=@{@"orderStatus":@"7,8,9",@"createDate":dateStr};
     __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
         [daiXiaoFei addObjectsFromArray:result];
@@ -366,7 +366,7 @@
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomForXFView" owner:nil options:nil];
             OrderBottomForXFView *orderBottomView= (OrderBottomForXFView *)[nibView objectAtIndex:0];
             orderBottomView.fukuanLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
-            orderBottomView.jiesuanLal.text=[NSString stringWithFormat:@"￥%.f",orderInfoModel.amountPay.doubleValue- orderInfoModel.rebateAmout.doubleValue];
+            orderBottomView.jiesuanLal.text=[NSString stringWithFormat:@"￥%.2f",orderInfoModel.amountPay.doubleValue- orderInfoModel.rebateAmout.doubleValue];
             orderBottomView.yjLal.text=[NSString stringWithFormat:@"佣金:￥%@",orderInfoModel.rebateAmout];
             //    view.backgroundColor=[UIColor yellowColor];
             return orderBottomView;

@@ -31,4 +31,10 @@
 #define LY_CH_LISt @"drinksAction.do?action=list"
 //获取吃喝明细
 #define LY_CH_DETAIL @"drinksAction.do?action=custom"
+//加入购物车
+#define LY_CH_ADDCAR @"cartAction.do?action=add"
+//购物车列表
+#define LY_CH_CARLIST @"cartAction.do?action=list"
+//购物车数量变更
+#define LY_CH_NUMCHANGE @"cartAction.do?action=update"
 #endif

@@ -291,4 +291,85 @@
         [app stopLoading];
     }];
 }
+#pragma mark 添加购物车
+-(void) addCarWithParams:(NSDictionary*)params
+                   block:(void(^)(BOOL result)) result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CH_ADDCAR baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
+#pragma mark购物车列表
+-(void) getCarListWithParams:(NSDictionary*)params
+                       block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CH_CARLIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CarInfoModel objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+}
+#pragma mark购物车数量变更
+-(void) updataCarNumWithParams:(NSDictionary*)params
+                      complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CH_NUMCHANGE baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
 @end

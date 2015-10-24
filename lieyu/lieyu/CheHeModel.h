@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ProductVOModel.h"
+#import "JiuBaModel.h"
 @interface CheHeModel : NSObject
 /*
 "allocatestock": 1,
@@ -46,11 +47,12 @@
 "weight": 0.8999999761581421
 */
 @property(nonatomic,assign)int  id;
+@property(nonatomic,retain)JiuBaModel *barinfo;
 @property(nonatomic,assign)int barid;
 @property(nonatomic,assign)int brandid;
 @property(nonatomic,assign)int categoryid;
 @property(nonatomic,assign)int favnum;
-@property(nonatomic,assign)int num;
+@property(nonatomic,copy)NSString *num;
 @property(nonatomic,assign)int ishot;
 @property(nonatomic,assign)int scorecount;
 @property(nonatomic,assign)int upflag;
@@ -76,6 +78,7 @@
 @property(nonatomic,copy)NSString * img_450;
 @property(nonatomic,copy)NSString * img_80;
 @property(nonatomic,copy)NSString  *price;
+@property(nonatomic,retain)NSArray *goodsList;
 @property(nonatomic,assign)double  money;
 @property(nonatomic,assign)double  rebate;
 @property(nonatomic,copy)NSString * modifydate;
