@@ -9,6 +9,10 @@
 #import "LYBaseViewController.h"
 #import "OrderInfoModel.h"
 #import "NSObject+MJKeyValue.h"
+@protocol OrderDetailDelegate<NSObject>
+- (void)refreshTable;
+
+@end
 @interface LYOrderDetailViewController : LYBaseViewController<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *tableView;
@@ -21,4 +25,5 @@
 }
 @property (nonatomic, assign)  BOOL isHaveBtn;
 @property (nonatomic, retain)  OrderInfoModel *orderInfoModel;
+@property (nonatomic, weak) id <OrderDetailDelegate> delegate;
 @end

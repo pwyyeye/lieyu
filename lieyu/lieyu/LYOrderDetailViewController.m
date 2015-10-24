@@ -219,10 +219,16 @@
                     
                     UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
                     btn1.backgroundColor=RGB(35, 166, 116);
-                    [btn1 setTitle:@"邀请好友" forState:UIControlStateNormal];
+                    if(_orderInfoModel.pinkerList.count<_orderInfoModel.allnum.intValue){
+                        [btn1 setTitle:@"邀请好友" forState:UIControlStateNormal];
+                        [btn1 addTarget:self action:@selector(yaoQinAct:) forControlEvents:UIControlEventTouchUpInside];
+                    }else{
+                        [btn1 setTitle:@"人数已满" forState:UIControlStateNormal];
+                    }
+                    
                     btn1.titleLabel.font = [UIFont systemFontOfSize:12];
                     [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
-                    [btn1 addTarget:self action:@selector(yaoQinAct:) forControlEvents:UIControlEventTouchUpInside];
+                    
                     [dibuView addSubview:btn1];
                     
 
@@ -299,7 +305,7 @@
                     [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
                     btn2.titleLabel.font = [UIFont systemFontOfSize:12];
                     [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
-                    [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    [btn2 addTarget:self action:@selector(shanChuDinDanByCanYuAct:) forControlEvents:UIControlEventTouchUpInside];
                     [dibuView addSubview:btn2];
                     
                     UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
@@ -963,7 +969,9 @@
                 [cell.siliaoBtn setHidden:YES];
                 [cell.phoneBtn setHidden:YES];
             }
-            
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 45.5, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
@@ -995,7 +1003,9 @@
                 [cell.siliaoBtn setHidden:YES];
                 [cell.phoneBtn setHidden:YES];
             }
-            
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
@@ -1031,7 +1041,9 @@
                 [cell.phoneBtn setHidden:YES];
             }
             
-            
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return cell;
@@ -1178,7 +1190,9 @@
     NSDictionary *dic=@{@"id":[NSNumber numberWithInt:_orderInfoModel.id]};
     [[LYUserHttpTool shareInstance]cancelMyOrder:dic complete:^(BOOL result) {
         if(result){
-            [MyUtil showMessage:@"取消订单成功"];
+            
+            [self.delegate refreshTable];
+            [self.navigationController popViewControllerAnimated:YES];
 //            [weakSelf refreshData];
         }
     }];
@@ -1212,7 +1226,35 @@
     NSDictionary *dic=@{@"id":[NSNumber numberWithInt:_orderInfoModel.id]};
     [[LYUserHttpTool shareInstance]delMyOrder:dic complete:^(BOOL result) {
         if(result){
-            [MyUtil showMessage:@"删除成功"];
+            [self.delegate refreshTable];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }
+    }];
+    
+}
+
+#pragma mark 参与人删除订单
+-(void)shanChuDinDanByCanYuAct:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    orderInfoModel=_orderInfoModel;
+    __weak __typeof(self)weakSelf = self;
+    NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+    int orderid=0;
+    if(pinkerList.count>0){
+        for (PinkInfoModel *pinkInfoModel in pinkerList) {
+            if(pinkInfoModel.inmember==userId){
+                
+                orderid=pinkInfoModel.id;
+            }
+        }
+    }
+    
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderid]};
+    [[LYUserHttpTool shareInstance]delMyOrderByCanYu:dic complete:^(BOOL result) {
+        if(result){
+            [self.delegate refreshTable];
+            [self.navigationController popViewControllerAnimated:YES];
             
         }
     }];

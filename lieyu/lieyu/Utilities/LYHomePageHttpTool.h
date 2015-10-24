@@ -58,4 +58,12 @@
 //购物车数量变更
 -(void) updataCarNumWithParams:(NSDictionary*)params
         complete:(void (^)(BOOL result))result;
+//购物车转订单
+-(void) getChiHeOrderWithParams:(NSDictionary*)params
+                                block:(void(^)(CarInfoModel* result)) block;
+//录入购物车订单
+-(void) setChiHeOrderInWithParams:(NSDictionary*)params
+                               complete:(void (^)(NSString *result))result;
+//购物车删除
+-(void) delcarWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
 @end

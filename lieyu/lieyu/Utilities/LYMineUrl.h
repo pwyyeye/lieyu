@@ -12,6 +12,8 @@
 #define LY_MY_ORDER  @"lyOrderAction.do?action=list"
 //删除订单
 #define LY_MY_ORDER_DEL @"lyOrderAction.do?action=delete"
+//参与人删除订单
+#define LY_MY_ORDER_DELBYCANYU @"pinkerOrderAction.do?action=delete"
 //取消订单
 #define LY_MY_ORDER_CANCEL @"lyOrderAction.do?action=cancel"
 //一定会去

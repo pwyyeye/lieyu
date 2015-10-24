@@ -35,6 +35,12 @@
 #define LY_CH_ADDCAR @"cartAction.do?action=add"
 //购物车列表
 #define LY_CH_CARLIST @"cartAction.do?action=list"
+//购物车删除
+#define LY_CH_DEL @"cartAction.do?action=delete"
 //购物车数量变更
 #define LY_CH_NUMCHANGE @"cartAction.do?action=update"
+//购物车转订单
+#define LY_CH_INORDER  @"cartAction.do?action=list"
+//录入购物车订单
+#define LY_CH_ORDERIN @"cartAction.do?action=addToOrder"
 #endif

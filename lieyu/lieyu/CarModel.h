@@ -19,4 +19,5 @@
 @property(nonatomic,copy)NSString * price;
 @property(nonatomic,copy)NSString * quantity;
 @property(nonatomic,assign)int userid;
+@property(nonatomic,assign)BOOL isSel;
 @end

@@ -50,6 +50,10 @@
 		1559DD0B1BDA2A1200F3FE9B /* LYCarListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1559DD091BDA2A1200F3FE9B /* LYCarListViewController.xib */; };
 		1559DD101BDA2A3E00F3FE9B /* CarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DD0E1BDA2A3E00F3FE9B /* CarInfoCell.m */; };
 		1559DD111BDA2A3E00F3FE9B /* CarInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1559DD0F1BDA2A3E00F3FE9B /* CarInfoCell.xib */; };
+		1559DD151BDB279700F3FE9B /* CarHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DD141BDB279700F3FE9B /* CarHeadView.m */; };
+		1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1559DD161BDB27DB00F3FE9B /* CarHeadView.xib */; };
+		1559DD1A1BDB2B3C00F3FE9B /* CarBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DD191BDB2B3C00F3FE9B /* CarBottomView.m */; };
+		1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1559DD1B1BDB2B4E00F3FE9B /* CarBottomView.xib */; };
 		15A4CF3B1BD7309500C22C01 /* LYTitleInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A4CF3A1BD7309500C22C01 /* LYTitleInfoCell.m */; };
 		15A4CF3E1BD7321C00C22C01 /* DWTaoCanXQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A4CF3D1BD7321C00C22C01 /* DWTaoCanXQViewController.m */; };
 		15A4CF421BD7605200C22C01 /* DWSureOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A4CF411BD7605200C22C01 /* DWSureOrderViewController.m */; };
@@ -67,6 +71,14 @@
 		15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63441BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib */; };
 		15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */; };
 		15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */; };
+		15B866171BDB4247002E2BB6 /* CarChooseBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B866161BDB4247002E2BB6 /* CarChooseBtn.m */; };
+		15B8661B1BDB5894002E2BB6 /* CHDoOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8661A1BDB5894002E2BB6 /* CHDoOrderViewController.m */; };
+		15B8661F1BDB5C73002E2BB6 /* CHDoOrderBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8661E1BDB5C73002E2BB6 /* CHDoOrderBottomView.m */; };
+		15B866211BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B866201BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib */; };
+		15B866241BDB5CFB002E2BB6 /* CHDoOrderHeardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B866231BDB5CFB002E2BB6 /* CHDoOrderHeardView.m */; };
+		15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B866251BDB5D06002E2BB6 /* CHDoOrderHeardView.xib */; };
+		15B866291BDB6A57002E2BB6 /* AllInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B866281BDB6A57002E2BB6 /* AllInfoModel.m */; };
+		15B8662C1BDB6D29002E2BB6 /* CHDoOrderell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8662B1BDB6D29002E2BB6 /* CHDoOrderell.m */; };
 		15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E1846C1BB4DCF100681BB2 /* MyZSManageViewController.m */; };
 		15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E1846D1BB4DCF100681BB2 /* MyZSManageViewController.xib */; };
 		15E184741BB4EB7A00681BB2 /* LYZSdetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184721BB4EB7A00681BB2 /* LYZSdetailCell.m */; };
@@ -509,6 +521,12 @@
 		1559DD0D1BDA2A3E00F3FE9B /* CarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarInfoCell.h; sourceTree = "<group>"; };
 		1559DD0E1BDA2A3E00F3FE9B /* CarInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarInfoCell.m; sourceTree = "<group>"; };
 		1559DD0F1BDA2A3E00F3FE9B /* CarInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarInfoCell.xib; sourceTree = "<group>"; };
+		1559DD131BDB279700F3FE9B /* CarHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarHeadView.h; sourceTree = "<group>"; };
+		1559DD141BDB279700F3FE9B /* CarHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarHeadView.m; sourceTree = "<group>"; };
+		1559DD161BDB27DB00F3FE9B /* CarHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarHeadView.xib; sourceTree = "<group>"; };
+		1559DD181BDB2B3C00F3FE9B /* CarBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarBottomView.h; sourceTree = "<group>"; };
+		1559DD191BDB2B3C00F3FE9B /* CarBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarBottomView.m; sourceTree = "<group>"; };
+		1559DD1B1BDB2B4E00F3FE9B /* CarBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarBottomView.xib; sourceTree = "<group>"; };
 		15A4CF391BD7309500C22C01 /* LYTitleInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTitleInfoCell.h; sourceTree = "<group>"; };
 		15A4CF3A1BD7309500C22C01 /* LYTitleInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTitleInfoCell.m; sourceTree = "<group>"; };
 		15A4CF3C1BD7321C00C22C01 /* DWTaoCanXQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTaoCanXQViewController.h; sourceTree = "<group>"; };
@@ -539,6 +557,20 @@
 		15AE63471BA8576500FFAD1A /* ZSOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSOrderViewController.h; sourceTree = "<group>"; };
 		15AE63481BA8576500FFAD1A /* ZSOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSOrderViewController.m; sourceTree = "<group>"; };
 		15AE63491BA8576500FFAD1A /* ZSOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSOrderViewController.xib; sourceTree = "<group>"; };
+		15B866151BDB4247002E2BB6 /* CarChooseBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarChooseBtn.h; sourceTree = "<group>"; };
+		15B866161BDB4247002E2BB6 /* CarChooseBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarChooseBtn.m; sourceTree = "<group>"; };
+		15B866191BDB5894002E2BB6 /* CHDoOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDoOrderViewController.h; sourceTree = "<group>"; };
+		15B8661A1BDB5894002E2BB6 /* CHDoOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDoOrderViewController.m; sourceTree = "<group>"; };
+		15B8661D1BDB5C73002E2BB6 /* CHDoOrderBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDoOrderBottomView.h; sourceTree = "<group>"; };
+		15B8661E1BDB5C73002E2BB6 /* CHDoOrderBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDoOrderBottomView.m; sourceTree = "<group>"; };
+		15B866201BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHDoOrderBottomView.xib; sourceTree = "<group>"; };
+		15B866221BDB5CFB002E2BB6 /* CHDoOrderHeardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDoOrderHeardView.h; sourceTree = "<group>"; };
+		15B866231BDB5CFB002E2BB6 /* CHDoOrderHeardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDoOrderHeardView.m; sourceTree = "<group>"; };
+		15B866251BDB5D06002E2BB6 /* CHDoOrderHeardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHDoOrderHeardView.xib; sourceTree = "<group>"; };
+		15B866271BDB6A57002E2BB6 /* AllInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllInfoModel.h; sourceTree = "<group>"; };
+		15B866281BDB6A57002E2BB6 /* AllInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllInfoModel.m; sourceTree = "<group>"; };
+		15B8662A1BDB6D29002E2BB6 /* CHDoOrderell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDoOrderell.h; sourceTree = "<group>"; };
+		15B8662B1BDB6D29002E2BB6 /* CHDoOrderell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDoOrderell.m; sourceTree = "<group>"; };
 		15E1846B1BB4DCF100681BB2 /* MyZSManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyZSManageViewController.h; sourceTree = "<group>"; };
 		15E1846C1BB4DCF100681BB2 /* MyZSManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyZSManageViewController.m; sourceTree = "<group>"; };
 		15E1846D1BB4DCF100681BB2 /* MyZSManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyZSManageViewController.xib; sourceTree = "<group>"; };
@@ -1266,6 +1298,7 @@
 		1559DCFF1BDA24CB00F3FE9B /* 购物车 */ = {
 			isa = PBXGroup;
 			children = (
+				1559DD121BDB273100F3FE9B /* view */,
 				1559DD0C1BDA2A1900F3FE9B /* cell */,
 				1559DD001BDA24D500F3FE9B /* model */,
 				1559DD071BDA2A1200F3FE9B /* LYCarListViewController.h */,
@@ -1282,6 +1315,8 @@
 				1559DD021BDA24EB00F3FE9B /* CarModel.m */,
 				1559DD041BDA254600F3FE9B /* CarInfoModel.h */,
 				1559DD051BDA254600F3FE9B /* CarInfoModel.m */,
+				15B866271BDB6A57002E2BB6 /* AllInfoModel.h */,
+				15B866281BDB6A57002E2BB6 /* AllInfoModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1294,6 +1329,21 @@
 				1559DD0F1BDA2A3E00F3FE9B /* CarInfoCell.xib */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		1559DD121BDB273100F3FE9B /* view */ = {
+			isa = PBXGroup;
+			children = (
+				15B866151BDB4247002E2BB6 /* CarChooseBtn.h */,
+				15B866161BDB4247002E2BB6 /* CarChooseBtn.m */,
+				1559DD131BDB279700F3FE9B /* CarHeadView.h */,
+				1559DD141BDB279700F3FE9B /* CarHeadView.m */,
+				1559DD161BDB27DB00F3FE9B /* CarHeadView.xib */,
+				1559DD181BDB2B3C00F3FE9B /* CarBottomView.h */,
+				1559DD191BDB2B3C00F3FE9B /* CarBottomView.m */,
+				1559DD1B1BDB2B4E00F3FE9B /* CarBottomView.xib */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		15A4CF3F1BD7602600C22C01 /* 确认订单 */ = {
@@ -1333,6 +1383,8 @@
 		15A4CF531BD86A0A00C22C01 /* 吃喝专场 */ = {
 			isa = PBXGroup;
 			children = (
+				15B8661C1BDB5C4B002E2BB6 /* view */,
+				15B866181BDB586D002E2BB6 /* 确认订单 */,
 				1559DCE71BD8D85400F3FE9B /* 吃喝明细 */,
 				1559DCE11BD8C0AE00F3FE9B /* 筛选 */,
 				15A4CF781BD8719000C22C01 /* cell */,
@@ -1366,8 +1418,32 @@
 				1559DCFA1BD9E1AD00F3FE9B /* CHBarCell.m */,
 				1559DCFC1BD9E1C800F3FE9B /* CHPorTypeCell.h */,
 				1559DCFD1BD9E1C800F3FE9B /* CHPorTypeCell.m */,
+				15B8662A1BDB6D29002E2BB6 /* CHDoOrderell.h */,
+				15B8662B1BDB6D29002E2BB6 /* CHDoOrderell.m */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		15B866181BDB586D002E2BB6 /* 确认订单 */ = {
+			isa = PBXGroup;
+			children = (
+				15B866191BDB5894002E2BB6 /* CHDoOrderViewController.h */,
+				15B8661A1BDB5894002E2BB6 /* CHDoOrderViewController.m */,
+			);
+			name = "确认订单";
+			sourceTree = "<group>";
+		};
+		15B8661C1BDB5C4B002E2BB6 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				15B8661D1BDB5C73002E2BB6 /* CHDoOrderBottomView.h */,
+				15B8661E1BDB5C73002E2BB6 /* CHDoOrderBottomView.m */,
+				15B866201BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib */,
+				15B866221BDB5CFB002E2BB6 /* CHDoOrderHeardView.h */,
+				15B866231BDB5CFB002E2BB6 /* CHDoOrderHeardView.m */,
+				15B866251BDB5D06002E2BB6 /* CHDoOrderHeardView.xib */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		15E1846A1BB4DC8E00681BB2 /* 专属经理 */ = {
@@ -3009,6 +3085,7 @@
 				15EB354B1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib in Resources */,
 				A20100841BA7AFAB009283D1 /* LYProductslistViewController.xib in Resources */,
 				1559DD0B1BDA2A1200F3FE9B /* LYCarListViewController.xib in Resources */,
+				15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */,
 				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
 				15E240D71BB3E8610090D240 /* MyPKfriendCell.xib in Resources */,
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
@@ -3018,6 +3095,7 @@
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,
 				15EB354C1BD4839D00BA6161 /* UMShareEditViewController.xib in Resources */,
 				15EB354F1BD4839D00BA6161 /* UMSnsAccountViewController.xib in Resources */,
+				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
 				15E240631BB1237E0090D240 /* BiaoQianChooseViewController.xib in Resources */,
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
@@ -3043,6 +3121,7 @@
 				15E240BB1BB3A4CD0090D240 /* MyChooseZSCell.xib in Resources */,
 				A2F9DA761BAA6AE2009DEAF3 /* OrderBottomView.xib in Resources */,
 				A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */,
+				15B866211BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib in Resources */,
 				15E240831BB279CB0090D240 /* LYMyOrderManageViewController.xib in Resources */,
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
@@ -3058,6 +3137,7 @@
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,
+				1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */,
 				A2FD577E1BAFE97000CFFF92 /* FBTaoCanSectionBottom.xib in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */,
@@ -3159,7 +3239,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1559DD1A1BDB2B3C00F3FE9B /* CarBottomView.m in Sources */,
 				15013AD11BBA161100061FAF /* ZSManageHttpTool.m in Sources */,
+				1559DD151BDB279700F3FE9B /* CarHeadView.m in Sources */,
 				15013AFC1BBA33BE00061FAF /* SDWebImageManager.m in Sources */,
 				D74C60871BB6E8B600A49598 /* LYRestfulBussiness.m in Sources */,
 				15E1849A1BB5319900681BB2 /* Toast+UIView.m in Sources */,
@@ -3193,6 +3275,7 @@
 				15EB7C5E1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
+				15B866241BDB5CFB002E2BB6 /* CHDoOrderHeardView.m in Sources */,
 				D7A1D42B1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m in Sources */,
 				D761F01C1BA5AED3000757B0 /* MJRefreshGifHeader.m in Sources */,
 				15013AFD1BBA33BE00061FAF /* SDWebImagePrefetcher.m in Sources */,
@@ -3278,6 +3361,7 @@
 				D748BC731BA1C856005AA996 /* NSString+MJExtension.m in Sources */,
 				15E2404F1BB0F3540090D240 /* UIWindow+Hierarchy.m in Sources */,
 				15013B011BBA33BF00061FAF /* UIImage+WebP.m in Sources */,
+				15B8661B1BDB5894002E2BB6 /* CHDoOrderViewController.m in Sources */,
 				D761F0191BA5AED3000757B0 /* MJRefreshBackGifFooter.m in Sources */,
 				15E240A51BB381450090D240 /* OrderDetailHeadView.m in Sources */,
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
@@ -3344,6 +3428,7 @@
 				1559DD101BDA2A3E00F3FE9B /* CarInfoCell.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
 				15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */,
+				15B866291BDB6A57002E2BB6 /* AllInfoModel.m in Sources */,
 				15A4CF461BD7682400C22C01 /* DWOredrNextCell.m in Sources */,
 				D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */,
 				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,
@@ -3396,6 +3481,7 @@
 				15FD2AB11BD7231C00D66920 /* LYTaoCanXQCell.m in Sources */,
 				15A4CF7B1BD871C000C22C01 /* CHDetailCollectionCell.m in Sources */,
 				15E240491BB0F3540090D240 /* IQTextView.m in Sources */,
+				15B8662C1BDB6D29002E2BB6 /* CHDoOrderell.m in Sources */,
 				D7A1D42E1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m in Sources */,
 				A2F9DA7D1BAA8C83009DEAF3 /* SerchHeadView.m in Sources */,
 				A2F9DA7A1BAA6F68009DEAF3 /* OrderHandleButton.m in Sources */,
@@ -3404,6 +3490,7 @@
 				15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */,
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
 				D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */,
+				15B8661F1BDB5C73002E2BB6 /* CHDoOrderBottomView.m in Sources */,
 				D74C60851BB69F6300A49598 /* RTLabel.m in Sources */,
 				D748BC6E1BA1C856005AA996 /* MJProperty.m in Sources */,
 				15E240471BB0F3540090D240 /* IQKeyboardManager.m in Sources */,
@@ -3415,6 +3502,7 @@
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
 				15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */,
 				15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */,
+				15B866171BDB4247002E2BB6 /* CarChooseBtn.m in Sources */,
 				151BB6D61BBB78E000E7A81C /* UzysGroupPickerViewController.m in Sources */,
 				15EB350A1BD1F61800BA6161 /* PTTimeChooseCell.m in Sources */,
 				151BB6BF1BBAB80900E7A81C /* DeckFullModel.m in Sources */,

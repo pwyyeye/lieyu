@@ -12,7 +12,7 @@
 #import "CHTopDetailCell.h"
 #import "CHBarCell.h"
 #import "CHPorTypeCell.h"
-
+#import "LYCarListViewController.h"
 @interface CHJiuPinDetailViewController ()
 {
     CheHeModel *chiHeModel;
@@ -248,11 +248,13 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+#pragma mark -购物车
 - (IBAction)shopCarAct:(UIButton *)sender {
-    NSLog(@"*************")
+    LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
+    carListViewController.title=@"购物车";
+    [self.navigationController pushViewController:carListViewController animated:YES];
 }
-//添加购物车
+#pragma mark -添加购物车
 - (IBAction)addCarAct:(UIButton *)sender {
     //数量选择
     _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
