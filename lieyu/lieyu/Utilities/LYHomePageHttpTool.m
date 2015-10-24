@@ -241,6 +241,7 @@
     }];
     
 }
+
 #pragma mark 吃喝列表
 -(void) getCHListWithParams:(NSDictionary*)params
                       block:(void(^)(NSMutableArray* result)) block{
@@ -368,6 +369,90 @@
     } failure:^(NSError *err) {
         [app stopLoading];
         result(NO);
+        
+        
+    }];
+}
+#pragma mark购物车转订单
+-(void) getChiHeOrderWithParams:(NSDictionary*)params
+                          block:(void(^)(CarInfoModel* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CH_INORDER baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *arr = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            if(arr.count>0){
+                NSDictionary *dataDic =arr[0];
+                CarInfoModel *carInfoModel=[CarInfoModel objectWithKeyValues:dataDic];
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    block(carInfoModel);
+                });
+            }
+            
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+}
+#pragma mark购物车删除
+-(void) delcarWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CH_DEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [MyUtil showMessage:message];
+            [app stopLoading];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+        result(NO);
+        [app stopLoading];
+        
+    }];
+}
+#pragma mark录入购物车订单
+-(void) setChiHeOrderInWithParams:(NSDictionary*)params
+                         complete:(void (^)(NSString *result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CH_ORDERIN baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        NSString *data=[NSString stringWithFormat:@"%@",response[@"data"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(data);
+            });
+            [app stopLoading];
+        }else{
+            
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        
         
         
     }];

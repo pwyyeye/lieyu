@@ -14,6 +14,7 @@
 #import "LYMyOrderManageViewController.h"
 #import "LYUserLoginViewController.h"
 #import "MyZSManageViewController.h"
+#import "LYCarListViewController.h"
 @interface MyInfoViewController ()
 
 @end
@@ -187,7 +188,9 @@
         case 4:// 购物车
         {
             
-            
+            LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
+            carListViewController.title=@"购物车";
+            [self.navigationController pushViewController:carListViewController animated:YES];
             break;
         }
         case 5:// 信息中心

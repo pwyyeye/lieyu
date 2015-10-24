@@ -39,7 +39,9 @@
 //删除订单
 -(void) delMyOrder:(NSDictionary*)params
         complete:(void (^)(BOOL result))result;
-
+//删除参与人订单
+-(void) delMyOrderByCanYu:(NSDictionary*)params
+                 complete:(void (^)(BOOL result))result;
 //取消订单
 -(void) cancelMyOrder:(NSDictionary*)params
           complete:(void (^)(BOOL result))result;

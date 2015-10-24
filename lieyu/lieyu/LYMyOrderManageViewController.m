@@ -454,9 +454,18 @@
                         [orderBottomView.oneBtn setTitle:@"取消订单" forState:0];
                         [orderBottomView.oneBtn setHidden:NO];
                         [orderBottomView.oneBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
-                        [orderBottomView.secondBtn setTitle:@"立即拼客" forState:UIControlStateSelected];
-                        orderBottomView.secondBtn.selected=YES;
-                        [orderBottomView.secondBtn addTarget:self action:@selector(pinkeAct:) forControlEvents:UIControlEventTouchUpInside];
+                        if(orderInfoModel.pinkerList.count<orderInfoModel.allnum.intValue){
+                            [orderBottomView.secondBtn setTitle:@"立即拼客" forState:UIControlStateSelected];
+                            orderBottomView.secondBtn.selected=YES;
+                            [orderBottomView.secondBtn addTarget:self action:@selector(pinkeAct:) forControlEvents:UIControlEventTouchUpInside];
+//                            [orderBottomView.secondBtn addTarget:self action:@selector(pinkeAct:) forControlEvents:UIControlEventTouchUpInside];
+                        }else{
+                            [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%@人",orderInfoModel.allnum] forState:UIControlStateSelected];
+                            orderBottomView.secondBtn.selected=YES;
+                            
+                        }
+                        
+                        
                         orderBottomView.oneBtn.tag=section;
                         orderBottomView.secondBtn.tag=section;
                     }else{
@@ -479,7 +488,7 @@
                     }else{
                         [orderBottomView.oneBtn setTitle:@"删除订单" forState:0];
                         [orderBottomView.oneBtn setHidden:NO];
-                        [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                        [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanByCanYuAct:) forControlEvents:UIControlEventTouchUpInside];
                         [orderBottomView.secondBtn setTitle:@"立即付款" forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
                         [orderBottomView.secondBtn addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -718,6 +727,7 @@
     OrderInfoModel *orderInfoModel= dataList[indexPath.section];
     LYOrderDetailViewController *orderDetailViewController=[[LYOrderDetailViewController alloc]init];
     orderDetailViewController.title=@"订单详情";
+    orderDetailViewController.delegate=self;
     orderDetailViewController.orderInfoModel=orderInfoModel;
     [self.navigationController pushViewController:orderDetailViewController animated:YES];
 //    [_tableView deselectRowAtIndexPath:indexPath animated:false];
@@ -815,6 +825,31 @@
     }];
     
 }
+#pragma mark 参与人删除订单
+-(void)shanChuDinDanByCanYuAct:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    orderInfoModel=dataList[sender.tag];
+    __weak __typeof(self)weakSelf = self;
+    NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+    int orderid=0;
+    if(pinkerList.count>0){
+        for (PinkInfoModel *pinkInfoModel in pinkerList) {
+            if(pinkInfoModel.inmember==userId){
+                
+                orderid=pinkInfoModel.id;
+            }
+        }
+    }
+
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderid]};
+    [[LYUserHttpTool shareInstance]delMyOrderByCanYu:dic complete:^(BOOL result) {
+        if(result){
+            [MyUtil showMessage:@"取消成功"];
+            [weakSelf refreshData];
+        }
+    }];
+    
+}
 #pragma mark 付款
 -(void)payAct:(UIButton *)sender{
     OrderInfoModel *orderInfoModel;
@@ -862,6 +897,11 @@
                                      shareImage:nil
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,UMShareToEmail,nil]
                                        delegate:nil];
+}
+- (void)refreshTable{
+    [MyUtil showMessage:@"操作成功"];
+    [self refreshData];
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

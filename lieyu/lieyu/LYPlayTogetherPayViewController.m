@@ -201,7 +201,9 @@
                 [adCell configureCell:zsModel];
                 adCell.selBtn.tag=indexPath.row;
                 [adCell.selBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
-                
+                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+                lineLal.backgroundColor=RGB(199, 199, 199);
+                [cell addSubview:lineLal];
             }
             
         }

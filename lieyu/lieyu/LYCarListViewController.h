@@ -9,5 +9,6 @@
 #import "LYBaseViewController.h"
 
 @interface LYCarListViewController : LYBaseViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
