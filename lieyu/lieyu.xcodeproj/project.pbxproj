@@ -2876,6 +2876,7 @@
 				TargetAttributes = {
 					AD8899B51B9AFE61007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 9MQ7NFCFDK;
 					};
 					AD8899D11B9AFE62007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
@@ -3479,8 +3480,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: south east (fujian) motor corporation Ltd.,";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: south east (fujian) motor corporation Ltd.,";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3501,7 +3502,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "67e5984a-b577-4a53-9843-c357fd454726";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -3512,8 +3513,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: south east (fujian) motor corporation Ltd.,";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: south east (fujian) motor corporation Ltd.,";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3534,7 +3535,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "67e5984a-b577-4a53-9843-c357fd454726";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
