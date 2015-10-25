@@ -386,7 +386,7 @@
             }else{
                 orderBottomView.titleTwoLal.text=@"未违约";
             }
-            orderBottomView.fukuanLal.text=[NSString stringWithFormat:@"￥%.f",orderInfoModel.amountPay.doubleValue- orderInfoModel.penalty.doubleValue];
+            orderBottomView.fukuanLal.text=[NSString stringWithFormat:@"￥%.2f",orderInfoModel.amountPay.doubleValue- orderInfoModel.penalty.doubleValue];
             
 //            if(orderInfoModel.isWeiYue){
 //                orderBottomView.titleTwoLal.text=@"已违约（违约金）";
@@ -547,6 +547,7 @@
             orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
             orderHeadView.nameLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
             orderHeadView.nameLal.text=orderInfoModel.username;
+            orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
             NSString *str=orderInfoModel.avatar_img ;
@@ -621,7 +622,8 @@
         shopDetailmodel.youfeiPrice=setMealVOModel.price;
         shopDetailmodel.money=setMealVOModel.marketprice;
         if(mMenuHriZontal.selectIndex==1||mMenuHriZontal.selectIndex==2){
-            shopDetailmodel.count=[NSString stringWithFormat:@"拼客人数%@（%d人参与）",orderInfoModel.allnum,(int)orderInfoModel.pinkerList.count];
+//            shopDetailmodel.count=[NSString stringWithFormat:@"拼客人数%@（%d人参与）",orderInfoModel.allnum,(int)orderInfoModel.pinkerList.count];
+            shopDetailmodel.count=[NSString stringWithFormat:@"拼客人数%@",orderInfoModel.allnum];
         }else{
             shopDetailmodel.count=[NSString stringWithFormat:@"%@人拼客",orderInfoModel.allnum];
         }

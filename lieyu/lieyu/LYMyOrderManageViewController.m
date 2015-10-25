@@ -297,7 +297,7 @@
             [orderBottomView.titleTwoLal setHidden:false];
             orderBottomView.moneyOnelal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
             [orderBottomView.moneyOnelal setHidden:false];
-            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.f",orderInfoModel.amountPay.doubleValue- orderInfoModel.penalty.doubleValue];
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.2f",orderInfoModel.amountPay.doubleValue- orderInfoModel.penalty.doubleValue];
             if(orderInfoModel.ordertype==1){
                 NSString *moneyStr=@"0";
                 

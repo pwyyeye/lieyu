@@ -485,10 +485,10 @@
             sectionNum=4;
             if(_orderInfoModel.consumptionStatus==0){
                 nowB=@"已经拼成";
-                nextB=@"到店消费";
+                nextB=@"等待留位";
             }else{
                 nowB=@"已经拼成";
-                nextB=@"到店消费";
+                nextB=@"等待留位";
             }
             
         }else if(_orderInfoModel.orderStatus==2){
@@ -668,7 +668,7 @@
                     }
                 }
                 if(isFaqi){
-                   tuiKuanStr=[NSString stringWithFormat:@"￥%.f",payVule - _orderInfoModel.penalty.doubleValue];
+                   tuiKuanStr=[NSString stringWithFormat:@"￥%.2f",payVule - _orderInfoModel.penalty.doubleValue];
                     weiYueStr=[NSString stringWithFormat:@"￥%@",_orderInfoModel.penalty];
                 }else{
                     tuiKuanStr=fukuanStr;
@@ -676,7 +676,7 @@
                 }
             }else{
                 fukuanStr= [NSString stringWithFormat:@"￥%@",_orderInfoModel.amountPay];
-                tuiKuanStr=[NSString stringWithFormat:@"￥%.f",_orderInfoModel.amountPay.doubleValue- _orderInfoModel.penalty.doubleValue];
+                tuiKuanStr=[NSString stringWithFormat:@"￥%.2f",_orderInfoModel.amountPay.doubleValue- _orderInfoModel.penalty.doubleValue];
                 weiYueStr=[NSString stringWithFormat:@"￥%@",_orderInfoModel.penalty];
             }
             orderDetailSectionBottomForTuiKuanView.payLal.text=fukuanStr;
