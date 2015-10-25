@@ -39,6 +39,15 @@
             [mgr GET:url parameters:params
              success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                  if (success) {
+                     NSString *code = [NSString stringWithFormat:@"%@",responseObj[@"errorcode"]];
+                     if ([code isEqualToString:@"-1"]) {
+                         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+                         UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
+                         [nav pushViewController:login animated:YES];
+                         [app stopLoading];
+                         return;
+                     }
+                     
                      success(responseObj);
                  }
              } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
@@ -55,6 +64,14 @@
             [mgr POST:url parameters:params
               success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                   if (success) {
+                      NSString *code = [NSString stringWithFormat:@"%@",responseObj[@"errorcode"]];
+                      if ([code isEqualToString:@"-1"]) {
+                          LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+                          UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
+                          [nav pushViewController:login animated:YES];
+                          [app stopLoading];
+                          return;
+                      }
                       success(responseObj);
                   }
               } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
@@ -94,6 +111,14 @@
 //    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
     [mgr POST:url parameters:params constructingBodyWithBlock:block success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (success) {
+            NSString *code = [NSString stringWithFormat:@"%@",responseObject[@"errorcode"]];
+            if ([code isEqualToString:@"-1"]) {
+                LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+                UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
+                [nav pushViewController:login animated:YES];
+                [app stopLoading];
+                return;
+            }
             success(responseObject);
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

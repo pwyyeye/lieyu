@@ -87,6 +87,7 @@
 
 - (void)viewWillLayoutSubviews
 {
+    [super viewWillLayoutSubviews];
     if (self.navigationController.navigationBarHidden != YES) {
         [self.navigationController setNavigationBarHidden:YES];
     }
