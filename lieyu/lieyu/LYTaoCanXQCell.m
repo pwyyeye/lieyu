@@ -29,7 +29,7 @@
     
     _nameLal.text=model.title;
     _delLal.text=[NSString stringWithFormat:@"[适合%d-%d人]",model.minnum,model.maxnum];
-    _zhekouLal.text=[NSString stringWithFormat:@"￥%.f",model.price];
+    _zhekouLal.text=[NSString stringWithFormat:@"￥%.2f",model.price];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];
     _moneyLal.attributedText=attribtStr;

@@ -11,6 +11,7 @@
 @interface PTjoinInViewController : LYBaseViewController{
     OrderInfoModel *pinKeModel;
 }
+@property (weak, nonatomic) IBOutlet UIButton *payBtn;
 - (IBAction)payAct:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(nonatomic,assign)int smid;

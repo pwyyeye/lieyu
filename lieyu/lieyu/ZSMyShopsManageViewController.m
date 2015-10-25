@@ -258,9 +258,9 @@
             cell.timeLal.text=taoCanModel.smdate;
             
             NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-            NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.f",taoCanModel.price] attributes:attribtDic];
+            NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%.2f",taoCanModel.price] attributes:attribtDic];
             cell.moneyLal.attributedText=attribtStr;
-            cell.zhekouLal.text=[NSString stringWithFormat:@"￥%.f",taoCanModel.price];
+            cell.zhekouLal.text=[NSString stringWithFormat:@"￥%.2f",taoCanModel.price];
             NSString *flStr=[NSString stringWithFormat:@"分销佣金：%.f%\%",taoCanModel.rebate*100];
             NSString *str=taoCanModel.linkicon ;
             [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:str]];
@@ -318,7 +318,7 @@
             CheHeModel *cheHeModel=dataList[indexPath.row];
             cell.nameLal.text=cheHeModel.name;
             cell.countLal.text=[NSString stringWithFormat:@"%d",cheHeModel.ordernum];
-            cell.moneyLal.text=[NSString stringWithFormat:@"￥%.f",cheHeModel.price];
+            cell.moneyLal.text=[NSString stringWithFormat:@"￥%@",cheHeModel.price];
             NSString *flStr=[NSString stringWithFormat:@"分销佣金：%.f%\%",cheHeModel.rebate*100];
             [cell.yjBtn setTitle:flStr forState:0];
             NSString *str=cheHeModel.img_80 ;
