@@ -9,7 +9,7 @@
 #import "BeerBarDetailCell.h"
 #import "JiuBaModel.h"
 #import "BeerBarOrYzhDetailModel.h"
-
+#import "TeseModel.h"
 @interface BeerBarDetailCell()
 
 @end
@@ -20,6 +20,7 @@
     // Initialization code
     [self initializeStar:_serviceNumView];
     [self initializeStar:_envNumView];
+    
 }
 
 - (void)initializeStar:(HCSStarRatingView *)starView
@@ -56,6 +57,24 @@
     [_address setText:model.address];
     _envNumView.value = [model.environment_num doubleValue];
     _serviceNumView.value = [model.star_num doubleValue];
+    if(model.bartypename){
+        [_typeBtn1 setHidden:NO];
+        [_typeBtn1 setTitle:model.bartypename forState:0];
+    }
+    if(model.barlevelname){
+        [_typeBtn2 setHidden:NO];
+        [_typeBtn2 setTitle:model.barlevelname forState:0];
+    }
+    NSArray *teseArr=@[_teseBtn1,_teseBtn2,_teseBtn3,_teseBtn4];
+    for (int i=0; i<model.tese.count; i++) {
+        if(i<=teseArr.count){
+            TeseModel *teseModel=model.tese[i];
+            [_teseBtn1 setHidden:NO];
+            [_teseBtn1 setTitle:teseModel.name forState:0];
+        }else{
+            break;
+        }
+    }
 }
 
 @end

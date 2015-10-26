@@ -79,6 +79,7 @@
 		15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B866251BDB5D06002E2BB6 /* CHDoOrderHeardView.xib */; };
 		15B866291BDB6A57002E2BB6 /* AllInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B866281BDB6A57002E2BB6 /* AllInfoModel.m */; };
 		15B8662C1BDB6D29002E2BB6 /* CHDoOrderell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8662B1BDB6D29002E2BB6 /* CHDoOrderell.m */; };
+		15B866321BDDF9F1002E2BB6 /* TeseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B866311BDDF9F1002E2BB6 /* TeseModel.m */; };
 		15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E1846C1BB4DCF100681BB2 /* MyZSManageViewController.m */; };
 		15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E1846D1BB4DCF100681BB2 /* MyZSManageViewController.xib */; };
 		15E184741BB4EB7A00681BB2 /* LYZSdetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184721BB4EB7A00681BB2 /* LYZSdetailCell.m */; };
@@ -589,6 +590,8 @@
 		15B866281BDB6A57002E2BB6 /* AllInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllInfoModel.m; sourceTree = "<group>"; };
 		15B8662A1BDB6D29002E2BB6 /* CHDoOrderell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHDoOrderell.h; sourceTree = "<group>"; };
 		15B8662B1BDB6D29002E2BB6 /* CHDoOrderell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHDoOrderell.m; sourceTree = "<group>"; };
+		15B866301BDDF9F1002E2BB6 /* TeseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeseModel.h; sourceTree = "<group>"; };
+		15B866311BDDF9F1002E2BB6 /* TeseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeseModel.m; sourceTree = "<group>"; };
 		15E1846B1BB4DCF100681BB2 /* MyZSManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyZSManageViewController.h; sourceTree = "<group>"; };
 		15E1846C1BB4DCF100681BB2 /* MyZSManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyZSManageViewController.m; sourceTree = "<group>"; };
 		15E1846D1BB4DCF100681BB2 /* MyZSManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyZSManageViewController.xib; sourceTree = "<group>"; };
@@ -2910,6 +2913,8 @@
 				D7A1D4301BC2CD1B00BCE47C /* AnnouncementModel.m */,
 				D7A1D4321BC2CE0900BCE47C /* RecommendPackageModel.h */,
 				D7A1D4331BC2CE0900BCE47C /* RecommendPackageModel.m */,
+				15B866301BDDF9F1002E2BB6 /* TeseModel.h */,
+				15B866311BDDF9F1002E2BB6 /* TeseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
