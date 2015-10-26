@@ -12,6 +12,7 @@
 //#import "NSDictionary+JSONManage.h"
 //#import "NSString+JSONCategories.h"
 //#import "NSObject+JSONCategories.h"
+#import "LYUserLoginViewController.h"
 typedef NS_ENUM(NSInteger, RequestMethodType){
     RequestMethodTypePost = 1,
     RequestMethodTypeGet = 2
@@ -30,6 +31,7 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
     NSDictionary *pamDic;
     UIAlertView *alertView;
     UIActivityIndicatorView *indicator;
+    LYUserLoginViewController *loginViewController;
     
     
 }

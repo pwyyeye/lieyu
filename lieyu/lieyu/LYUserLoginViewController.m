@@ -18,7 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=@"登录";
     // Do any additional setup after loading the view from its nib.
+    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,6 +30,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    if (self.navigationController.navigationBarHidden != NO) {
+        [self.navigationController setNavigationBarHidden:NO];
+    }
+    
+}
 /*
 #pragma mark - Navigation
 
@@ -101,5 +113,14 @@
 #pragma mark - 重置密码代理
 - (void)resetPassword{
     [MyUtil showMessage:@"重置密码成功"];
+}
+
+
+-(void)gotoBack{
+    if ([self.delegate respondsToSelector:@selector(loginSuccess:)]) {
+        [self.delegate loginSuccess:NO];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 @end

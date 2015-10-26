@@ -35,7 +35,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     self.window.backgroundColor = [UIColor whiteColor];
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
-    
     //IM推送
     if ([application
          respondsToSelector:@selector(registerUserNotificationSettings:)]) {

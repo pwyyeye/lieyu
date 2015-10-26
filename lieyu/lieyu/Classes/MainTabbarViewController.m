@@ -121,8 +121,7 @@
 //            [self.navigationController presentViewController:login animated:YES completion:^{
 //               
 //            }];
-            UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self  action:@selector(back:)];
-            self.navigationController.navigationItem.backBarButtonItem=item;
+            login.delegate=self;
             [self.navigationController pushViewController:login animated:YES];
             
         }
@@ -140,8 +139,6 @@
     }
 }
 
--(void)back:(id)sender{
-    NSLog(@"----pass-pass%@---",@"back");
-}
+
 
 @end

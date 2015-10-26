@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LYUserHttpTool.h"
 #import "LYUserLoginViewController.h"
-@interface MainTabbarViewController: UITabBarController
+
+@interface MainTabbarViewController: UITabBarController<LoginDelegate>
 @property(assign,nonatomic) NSInteger lastSelectIndex;
 @end

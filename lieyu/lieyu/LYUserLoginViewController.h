@@ -9,10 +9,16 @@
 #import "LYBaseViewController.h"
 
 
+@protocol LoginDelegate <NSObject>
+
+-(void)loginSuccess:(BOOL)isLoginSucces;
+
+@end
 
 @interface LYUserLoginViewController : LYBaseViewController
 
 
+@property(strong,nonatomic) id<LoginDelegate> delegate;
 
 - (IBAction)forgetPassWordAct:(UIButton *)sender;
 - (IBAction)loginAct:(UIButton *)sender;

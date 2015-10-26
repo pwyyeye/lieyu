@@ -24,6 +24,7 @@
 @property(strong,nonatomic) NSString *qiniu_token;
 @property(strong,nonatomic) NSString *im_token;
 @property(strong,nonatomic) NSString *im_userId;
+@property(strong,nonatomic) UINavigationController *navigationController;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 -(void)doHeart;
