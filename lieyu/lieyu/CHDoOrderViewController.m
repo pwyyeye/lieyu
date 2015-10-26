@@ -14,6 +14,7 @@
 #import "ZSDetailModel.h"
 #import "PTzsjlCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "ChoosePayController.h"
 @interface CHDoOrderViewController ()
 {
     CarInfoModel *carInfoModel;
@@ -218,10 +219,20 @@
         NSDictionary *dic=@{@"ids":self.ids,@"checkuserid":[NSNumber numberWithInt:userId]};
         [[LYHomePageHttpTool shareInstance]setChiHeOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
-                [MyUtil showMessage:result];
+//                [MyUtil showMessage:result];
                 
                 //支付宝页面"data": "P130637201510181610220",
                 //result的值就是P130637201510181610220
+                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+                detailViewController.orderNo=result;
+                detailViewController.payAmount=carInfoModel.all_info.all_amount.doubleValue;
+                CarModel *mo=carInfoModel.cartlist.firstObject;
+                detailViewController.productName=mo.product.fullname;
+                detailViewController.productDescription=@"暂无";
+                self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+                
+                [self.navigationController pushViewController:detailViewController animated:YES];
+
             }
         }];
         
