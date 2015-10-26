@@ -16,5 +16,6 @@
 @property(nonatomic,weak)IBOutlet UILabel * labCost;
 @property(nonatomic,weak)IBOutlet UILabel * labCostDel;
 @property(nonatomic,weak)IBOutlet UILabel * labTitle;
+@property (weak, nonatomic) IBOutlet UIButton *flBtn;
 
 @end

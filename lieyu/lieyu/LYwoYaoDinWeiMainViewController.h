@@ -13,6 +13,7 @@
 {
     MenuHrizontal *mMenuHriZontal;
     NSMutableArray *weekDateArr;
+    NSString *datePar;
 }
 - (IBAction)soucangAct:(UIButton *)sender;
 - (IBAction)backAct:(UIButton *)sender;

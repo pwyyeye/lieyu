@@ -80,7 +80,7 @@
             
         }
         if(i==0){
-            
+            datePar=dateStr;
             _moonLal.text=[MyUtil getMoonValue:[NSString stringWithFormat:@"%d",month]];
             weekStr=@"今天";
         }
@@ -122,7 +122,7 @@
 }
 #pragma mark 获取数据
 -(void)getdata{
-    NSDictionary *dic=@{@"barid":[NSString stringWithFormat:@"%d",self.barid],@"smdate":@"2015-09-20"};
+    NSDictionary *dic=@{@"barid":[NSString stringWithFormat:@"%d",self.barid],@"smdate":datePar};
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiDetailWithParams:dic block:^(JiuBaModel *result) {
         jiubaModel=result;
@@ -187,7 +187,9 @@
     cell.moneyLal.attributedText=attribtStr;
     NSString *str=model.linkUrl ;
     [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:str]];
-
+    UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+    lineLal.backgroundColor=RGB(199, 199, 199);
+    [cell addSubview:lineLal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -233,6 +235,8 @@
 -(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
      NSDictionary *dic=weekDateArr[aIndex];
     _moonLal.text=_moonLal.text=[MyUtil getMoonValue:[dic objectForKey:@"month"]];
+    datePar=[dic objectForKey:@"date"];
+    [self getdata];
 }
 - (IBAction)soucangAct:(UIButton *)sender {
     

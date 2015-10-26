@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NeedHideNavigationBar.h"
-
+#import "EScrollerView.h"
 @interface BeerBarDetailViewController : UIViewController
 <
     UITableViewDelegate,

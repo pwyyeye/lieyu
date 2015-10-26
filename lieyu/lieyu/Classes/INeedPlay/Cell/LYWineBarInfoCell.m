@@ -37,7 +37,7 @@
     [_barNameLabel setText:model.barname];
     [_barDescLabel setText:model.subtitle];
     [_barAddrLabel setText:model.address];
-    [_costLabel setText:@(model.lowest_consumption).stringValue];
+    [_costLabel setText:[NSString stringWithFormat:@"￥%@起",@(model.lowest_consumption).stringValue]];
     [_distanceLabel setText:model.distance];
     [_starLabel setText:model.star_num];
 

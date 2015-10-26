@@ -15,7 +15,7 @@
 #import "MReqToPlayHomeList.h"
 #import "LYUserLocation.h"
 #import "LYAdshowCell.h"
-
+#import "JiuBaModel.h"
 #define PAGESIZE 20
 
 @interface BearBarListViewController ()
@@ -43,10 +43,30 @@
     self.tableView.dataSource =self ;
     self.curPageIndex = 1;
     [self setupViewStyles];
-    [self loadItemList:nil];
+    [self getData];
     // Do any additional setup after loading the view from its nib.
 }
+-(void)getData{
+    __weak BearBarListViewController * weakSelf = self;
+//    __weak UITableView *tableView = self.tableView;
+    [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+     {
+         if (Req_Success == ermsg.state)
+         {
+             if (barList.count == PAGESIZE)
+             {
+                 weakSelf.curPageIndex = 2;
+                 weakSelf.tableView.footer.hidden = NO;
+             }
+             else
+             {
+                 weakSelf.tableView.footer.hidden = YES;
+             }
+//             [weakSelf.tableView.header endRefreshing];
+         }
+     }];
 
+}
 - (void)setwineBarTop
 {
     self.segmentCtrl =
@@ -62,6 +82,7 @@
     __weak __typeof(self) weakSelf = self;
     [self.segmentCtrl setSelectedItem:^(NSInteger index)
      {
+         weakSelf.curPageIndex = 1;
          [weakSelf loadItemList:nil];
      }];
 
@@ -87,11 +108,11 @@
         mainType = @"夜总会";
     }
     
-#if 0
+#if 1
     hList.bartype = mainType;
     hList.subtype = _segmentCtrl.selectedItemTitle;
     hList.need_page = @(1);
-    hList.p = @(1);
+    hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
 #endif
     
@@ -102,6 +123,7 @@
         {
             if (weakSelf.curPageIndex == 1) {
                 [weakSelf.aryList removeAllObjects];
+//                [weakSelf.bannerList removeAllObjects];
             }
             
             [weakSelf.aryList addObjectsFromArray:barList];
@@ -210,9 +232,20 @@
     {
         case 0:
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"LYAdshowCell" forIndexPath:indexPath];
-            LYAdshowCell * adCell = (LYAdshowCell *)cell;
-            [adCell setBannerUrlList:_bannerList];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"topViewCell"] ;
+            NSMutableArray *bigArr=[[NSMutableArray alloc]init];
+            
+            for (NSString *iconStr in _bannerList) {
+                NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
+                [dicTemp setObject:iconStr forKey:@"ititle"];
+                [dicTemp setObject:@"" forKey:@"mainHeading"];
+                [bigArr addObject:dicTemp];
+            }
+            
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 128)
+                                                                  scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
+            [cell addSubview:scroller];
+            
         }
             break;
 
@@ -238,13 +271,13 @@
     switch (indexPath.row) {
         case 0://广告
         {
-            h = 150;
+            h = 128;
         }
             break;
 
         default:
         {
-            h = 122.8;
+            h = 104;
         }
             break;
     }
@@ -256,6 +289,9 @@
 {
     if (indexPath.row >= 1) {
         BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+        
+        JiuBaModel *model=[_aryList objectAtIndex:indexPath.row - 1];
+        controller.beerBarId = @(model.barid);
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

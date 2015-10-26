@@ -136,6 +136,9 @@
                 
                 
             }
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
         }
             break;
         case 3:

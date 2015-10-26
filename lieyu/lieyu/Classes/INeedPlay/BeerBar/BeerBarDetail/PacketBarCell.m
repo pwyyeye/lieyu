@@ -8,7 +8,7 @@
 
 #import "PacketBarCell.h"
 #import "RecommendPackageModel.h"
-
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface PacketBarCell ()
 
 @property(nonatomic,weak)IBOutlet UIView * delLine;
@@ -21,6 +21,9 @@
     // Initialization code
     _labFanli.layer.cornerRadius = 10.0f;
     _labFanli.layer.masksToBounds = YES;
+    self.photoImage.layer.masksToBounds =YES;
+    
+    self.photoImage.layer.cornerRadius =self.photoImage.frame.size.width/2;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -38,22 +41,29 @@
     
     _labBuyerDetail.text = [NSString stringWithFormat:@"%@人已购买[适合%@-%@人]",model.buynum
                             ,model.minnum,model.maxnum];
-    [_photoImage sd_setImageWithURL:[NSURL URLWithString:model.linkUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        
-    }];
+//    [_photoImage sd_setImageWithURL:[NSURL URLWithString:model.linkUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        
+//    }];
+    [_photoImage setImageWithURL:[NSURL URLWithString:model.linkUrl]];
 //    _labFanli.text = model.
-    _labCost.text = model.price.stringValue;
-    if (model.maketprice == nil) {
-        _delLine.hidden = YES;
+    _labCost.text = [NSString stringWithFormat:@"￥%@",model.price.stringValue];
+//    if (model.maketprice == nil) {
+//        _delLine.hidden = YES;
+//    }
+//    else
+//    {
+//        _delLine.hidden = NO;
+//    }
+    if(model.maketprice){
+        NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+        NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.maketprice] attributes:attribtDic];
+        _labCostDel.attributedText=attribtStr;
     }
-    else
-    {
-        _delLine.hidden = NO;
-    }
-    _labCostDel.text = model.maketprice.stringValue;
+    
     _labTitle.text = model.title;
-    _labFanli.text = [NSString stringWithFormat:@"再返利%d%%",(int)([model.rebate doubleValue]*100)];
-    _labFanli.adjustsFontSizeToFitWidth = YES;
+    [_flBtn setTitle:[NSString stringWithFormat:@"再返利%d%%",(int)([model.rebate doubleValue]*100)] forState:0];
+    
+//    _labFanli.adjustsFontSizeToFitWidth = YES;
 }
 
 
