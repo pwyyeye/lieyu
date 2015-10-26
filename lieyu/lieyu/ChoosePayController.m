@@ -174,17 +174,17 @@
 #pragma mark - alipay delegate
 -(void)callBack:(NSDictionary *)resultDic{
     if (resultDic.count==0) {
-        ShowMessage(@"支付订单失败，如果您确定已经付款成功，请及时联系客服！");
+        [MyUtil showMessage:@"支付订单失败，如果您确定已经付款成功，请及时联系客服！"];
         return;
         
     }
     //9000订单支付成功 且 success＝＝true
     if ([[resultDic objectForKey:@"partner"] rangeOfString:@"success=\"true\""].location == NSNotFound) {
-        ShowMessage(@"支付订单失败，如果您确定已经付款成功，请及时联系客服！");
+          [MyUtil showMessage:@"支付订单失败，如果您确定已经付款成功，请及时联系客服！"];
         return;
     }
     if ([[resultDic objectForKey:@"resultStatus"] longLongValue]==9000) {
-         ShowMessage(@"支付成功！");
+           [MyUtil showMessage:@"支付成功！"];
         LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
     
       //  detailViewController.orderNoString=_orderNo;
