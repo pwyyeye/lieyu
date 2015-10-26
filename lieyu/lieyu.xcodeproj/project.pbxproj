@@ -79,7 +79,6 @@
 		15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B866251BDB5D06002E2BB6 /* CHDoOrderHeardView.xib */; };
 		15B866291BDB6A57002E2BB6 /* AllInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B866281BDB6A57002E2BB6 /* AllInfoModel.m */; };
 		15B8662C1BDB6D29002E2BB6 /* CHDoOrderell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B8662B1BDB6D29002E2BB6 /* CHDoOrderell.m */; };
-		15B866321BDDF9F1002E2BB6 /* TeseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B866311BDDF9F1002E2BB6 /* TeseModel.m */; };
 		15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E1846C1BB4DCF100681BB2 /* MyZSManageViewController.m */; };
 		15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E1846D1BB4DCF100681BB2 /* MyZSManageViewController.xib */; };
 		15E184741BB4EB7A00681BB2 /* LYZSdetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184721BB4EB7A00681BB2 /* LYZSdetailCell.m */; };
@@ -3931,6 +3930,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor",
 					"$(PROJECT_DIR)",
 				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				HEADER_SEARCH_PATHS = (
@@ -3973,6 +3973,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor",
 					"$(PROJECT_DIR)",
 				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				HEADER_SEARCH_PATHS = (
