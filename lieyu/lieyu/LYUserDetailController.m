@@ -8,6 +8,7 @@
 
 #import "LYUserDetailController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "UserModel.h"
 @interface LYUserDetailController ()
 
 @end
@@ -73,10 +74,10 @@
 //    label.text=data[indexPath.row];
     cell.textLabel.text=data[indexPath.row];
     label.tag=200+indexPath.row;
-    
+    label.font=[UIFont systemFontOfSize:13];
+    label.textColor=RGB(51, 51, 51);
     if (indexPath.row==0) {
-        label.font=[UIFont systemFontOfSize:13];
-        label.textColor=RGB(51, 51, 51);
+       
         UIImageView *headerImage=[[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 50, 50)];
         headerImage.contentMode = UIViewContentModeScaleAspectFit;
         headerImage.layer.masksToBounds=YES;
@@ -89,29 +90,25 @@
         }
         
         
-        CALayer *layerShadow=[[CALayer alloc]init];
-        layerShadow.frame=CGRectMake(0,79.5,SCREEN_WIDTH,1);
-        layerShadow.borderColor=[RGB(237, 227, 227) CGColor];
-        layerShadow.borderWidth=0.5;
-        [cell.layer addSublayer:layerShadow];
         
         
         
-    }else{
-        if ([MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"user_nick"]]) {
-            cell.textLabel.text=[USER_DEFAULT objectForKey:@"user_name"];
-        }else{
-            cell.textLabel.text=[USER_DEFAULT objectForKey:@"user_nick"];
-            
-        }
         
-        cell.textLabel.font=[UIFont systemFontOfSize:11];
-        cell.textLabel.textColor=RGB(51, 51, 51);
+    }else if(indexPath.row==1){
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        UserModel *mod= app.userModel;
+        label.text=mod.usernick;
+       
         label.font=[UIFont systemFontOfSize:13];
         label.textColor=RGB(51, 51, 51);
     }
     cell.tag=100+indexPath.row;
     [cell.contentView addSubview:label];
+    CALayer *layerShadow=[[CALayer alloc]init];
+    layerShadow.frame=CGRectMake(0,49.5,SCREEN_WIDTH,1);
+    layerShadow.borderColor=[RGB(237, 237, 237) CGColor];
+    layerShadow.borderWidth=0.5;
+    [cell.layer addSublayer:layerShadow];
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
@@ -289,7 +286,7 @@
                     break;
             }
         }else{
-            if (buttonIndex==1) {
+            if (buttonIndex==2) {
                 return;
             }else{
                 sourceType=UIImagePickerControllerSourceTypeSavedPhotosAlbum;
