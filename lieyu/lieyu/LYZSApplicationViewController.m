@@ -21,8 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    userModel=app.userModel;
     // Do any additional setup after loading the view from its nib.
 }
 

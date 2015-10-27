@@ -65,15 +65,6 @@
                             <color key="textColor" red="0.40392156862745099" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-P8-Uou">
-                            <rect key="frame" x="214" y="0.0" width="106" height="59"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <inset key="titleEdgeInsets" minX="-34" minY="38" maxX="0.0" maxY="0.0"/>
-                            <inset key="imageEdgeInsets" minX="13" minY="-16" maxX="0.0" maxY="0.0"/>
-                            <state key="normal">
-                                <color key="titleColor" red="0.4039215686" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SM-5N-3Iy">
                             <rect key="frame" x="106" y="0.0" width="107" height="61"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -96,6 +87,18 @@
                             </state>
                             <connections>
                                 <action selector="dianweiAct:" destination="-1" eventType="touchUpInside" id="HbK-4X-X2U"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-P8-Uou">
+                            <rect key="frame" x="214" y="0.0" width="106" height="59"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <inset key="titleEdgeInsets" minX="-34" minY="38" maxX="0.0" maxY="0.0"/>
+                            <inset key="imageEdgeInsets" minX="13" minY="-16" maxX="0.0" maxY="0.0"/>
+                            <state key="normal">
+                                <color key="titleColor" red="0.4039215686" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="zsliAct:" destination="-1" eventType="touchUpInside" id="j2G-w8-mt1"/>
                             </connections>
                         </button>
                     </subviews>
@@ -278,6 +281,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxf-r2-gHn">
+                        <rect key="frame" x="120" y="72" width="178" height="23"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="daohanAct:" destination="96X-DT-GEW" eventType="touchUpInside" id="Q9z-qb-ppt"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>

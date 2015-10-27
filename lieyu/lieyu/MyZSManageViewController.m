@@ -11,7 +11,9 @@
 #import "LYZSdetailCell.h"
 #import "LYZSApplicationViewController.h"
 #import "LYUserHttpTool.h"
+#import "LYHomePageHttpTool.h"
 #import <RongIMKit/RongIMKit.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface MyZSManageViewController ()
 
 @end
@@ -20,8 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    userModel=app.userModel;
+    
     zsList=[[NSMutableArray alloc]init];
     [self setupViewStyles];
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -30,8 +31,11 @@
     _tableView.backgroundColor=RGB(237, 237, 237);
     self.view.backgroundColor=RGB(237, 237, 237);
 //    [self.tableView setHidden:YES];
-    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"more1"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
-    [self.navigationItem setRightBarButtonItem:rightBtn];
+    if(!_isBarVip){
+        rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"more1"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
+        [self.navigationItem setRightBarButtonItem:rightBtn];
+    }
+    
     [self getZSDetail];
     
     // Do any additional setup after loading the view from its nib.
@@ -51,11 +55,20 @@
     __weak __typeof(self)weakSelf = self;
 //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 //    NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:app.userModel.userid]};
-    NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:userModel.userid]};
-    [[LYUserHttpTool shareInstance]getMyVipStore:dic block:^(NSMutableArray *result) {
-        [zsList addObjectsFromArray:result];
-        [weakSelf.tableView reloadData];
-    }];
+    if(_isBarVip){
+        NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:_barid]};
+        [[LYHomePageHttpTool shareInstance]getBarVipWithParams:dic block:^(NSMutableArray *result) {
+            [zsList addObjectsFromArray:result];
+            [weakSelf.tableView reloadData];
+        }];
+    }else{
+        NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:self.userModel.userid]};
+        [[LYUserHttpTool shareInstance]getMyVipStore:dic block:^(NSMutableArray *result) {
+            [zsList addObjectsFromArray:result];
+            [weakSelf.tableView reloadData];
+        }];
+    }
+    
     
 //    [self.tableView reloadData];
 }
@@ -90,7 +103,11 @@
     [cell.messageBtn addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
     cell.messageBtn.tag=indexPath.row;
     cell.phoneBtn.tag=indexPath.row;
+    cell.scBtn.tag=indexPath.row;
+    [cell.userImageView setImageWithURL:[NSURL URLWithString:detailModel.avatar_img]];
     [cell.phoneBtn addTarget:self action:@selector(callPhone:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.scBtn setHidden:!_isBarVip];
+    [cell.scBtn  addTarget:self action:@selector(scAct:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -135,6 +152,7 @@
 -(void)editZsAct:(id)sender{
 
 }
+
 #pragma mark - 申请专属经理
 -(void)shenqingAct:(id)sender{
     LYZSApplicationViewController *applicationViewController=[[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
@@ -164,6 +182,18 @@
         _bgView=nil;
     }
     
+}
+#pragma mark -收藏
+-(void)scAct:(UIButton *)sender{
+    ZSDetailModel * detailModel=zsList[sender.tag];
+    NSDictionary *dic=@{@"vipUserid":[NSNumber numberWithInt:detailModel.userid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
+    [[LYHomePageHttpTool shareInstance] scVipWithParams:dic complete:^(BOOL result) {
+        if(result){
+            
+            [MyUtil showMessage:@"收藏成功"];
+            
+        }
+    }];
 }
 #pragma mark -电话
 - (void)callPhone:(UIButton *)sender

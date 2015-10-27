@@ -43,4 +43,9 @@
 #define LY_CH_INORDER  @"cartAction.do?action=list"
 //录入购物车订单
 #define LY_CH_ORDERIN @"cartAction.do?action=addToOrder"
+
+//获取某个酒吧下的专属经理列表
+#define LY_BAR_VIPLIST @"toPlayGetVipAction.do?action=list"
+//收藏专属经理
+#define LY_SC_VIPLIST @"lyUsersVipStoreAction.do?action=add"
 #endif

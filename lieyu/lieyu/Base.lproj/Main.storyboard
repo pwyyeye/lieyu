@@ -16,7 +16,7 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hdH-sG-Uxx">
                                 <rect key="frame" x="280" y="36" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="7C1394D5-7CA0-4531-85B8-0D2E24F63DC6">
+                                <state key="normal" image="2E4CBB44-0523-48B2-8A21-6B5D693E5E81">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -293,6 +293,16 @@
                                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="meM-j4-xoW">
+                                                            <rect key="frame" x="117" y="77" width="186" height="26"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="daohan:" destination="Uem-QK-NMZ" eventType="touchUpInside" id="p9a-4P-hxR"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -306,6 +316,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addressLal" destination="4fh-l8-cEh" id="2wU-nU-D8l"/>
+                                            <outlet property="daohanBtn" destination="meM-j4-xoW" id="Pe5-h0-tlS"/>
                                             <outlet property="jiubaImageView" destination="6vz-Qr-YwX" id="kLr-HF-W8C"/>
                                             <outlet property="jiubaNameLal" destination="3YJ-BC-LI6" id="Xz8-dF-Afu"/>
                                             <outlet property="shoucangCountLal" destination="LG1-73-vln" id="0bN-aC-eOy"/>
@@ -2265,19 +2276,19 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fbx-lX-au7">
-                                <rect key="frame" x="0.0" y="20" width="320" height="450"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="450"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="spaceEntryCell" rowHeight="78" id="dL1-ct-tQl">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="78"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="spaceEntryCell" rowHeight="67" id="dL1-ct-tQl">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dL1-ct-tQl" id="7Ah-MM-7vP">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="77.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="66.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0vx-E7-0pt">
-                                                    <rect key="frame" x="0.0" y="14" width="167" height="50"/>
+                                                    <rect key="frame" x="0.0" y="12" width="160" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.96470588235294119" green="0.40000000000000002" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" image="icon_beerBar">
@@ -2288,7 +2299,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZAL-HP-f9M">
-                                                    <rect key="frame" x="166" y="14" width="154" height="50"/>
+                                                    <rect key="frame" x="160" y="12" width="160" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.41568627450980389" green="0.78431372549019607" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" image="icon_yzh">
@@ -2299,22 +2310,23 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="jiujiBeerBarCell" rowHeight="50" id="0lW-CX-KPg">
-                                        <rect key="frame" x="0.0" y="100" width="320" height="50"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="jiujiBeerBarCell" rowHeight="41" id="0lW-CX-KPg">
+                                        <rect key="frame" x="0.0" y="89" width="320" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0lW-CX-KPg" id="2iF-UQ-F6j">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="40.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QTR-BU-hFI">
-                                                    <rect key="frame" x="3" y="12" width="127" height="26"/>
+                                                    <rect key="frame" x="14" y="8" width="95" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <inset key="titleEdgeInsets" minX="9" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="研究酒吧" image="icon_broadcast">
+                                                    <state key="normal" title="究级酒吧" image="icon_broadcast">
                                                         <color key="titleColor" red="1" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -2412,7 +2424,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="7C1394D5-7CA0-4531-85B8-0D2E24F63DC6" width="22" height="22">
+        <image name="2E4CBB44-0523-48B2-8A21-6B5D693E5E81" width="22" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -2526,8 +2538,8 @@ FiMWKxYuFkAWQxZIAAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAFko
         <image name="gouwucheBtn" width="129" height="42"/>
         <image name="gouwucheIcon" width="19" height="16"/>
         <image name="icon_back" width="63" height="63"/>
-        <image name="icon_beerBar" width="71" height="22"/>
-        <image name="icon_broadcast" width="27" height="26"/>
+        <image name="icon_beerBar" width="60" height="19"/>
+        <image name="icon_broadcast" width="24" height="23"/>
         <image name="icon_heart" width="14" height="12"/>
         <image name="icon_locate" width="11" height="14"/>
         <image name="icon_locatecity" width="13" height="15"/>
@@ -2536,7 +2548,7 @@ FiMWKxYuFkAWQxZIAAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAFko
         <image name="icon_singleoption_normal" width="15" height="15"/>
         <image name="icon_star" width="14" height="14"/>
         <image name="icon_xinxi_normal1" width="19" height="17"/>
-        <image name="icon_yzh" width="85" height="26"/>
+        <image name="icon_yzh" width="73" height="22"/>
         <image name="icon_zhuyishixiang_normal" width="18" height="18"/>
         <image name="icon_zixun_normal" width="18" height="18"/>
         <image name="jia2" width="35" height="35"/>

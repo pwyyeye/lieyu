@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="你的满意是我最大的光荣" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXD-im-HqQ">
-                                <rect key="frame" x="97" y="28" width="192" height="30"/>
+                                <rect key="frame" x="97" y="28" width="144" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -53,6 +53,12 @@
                                 <color key="textColor" red="0.13725490196078433" green="0.65098039215686276" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vH4-1l-4at">
+                                <rect key="frame" x="258" y="5" width="23" height="23"/>
+                                <state key="normal" image="icon_shoucang_normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -65,11 +71,13 @@
                 <outlet property="messageBtn" destination="4L5-Wh-4Xq" id="qxA-wT-3Hq"/>
                 <outlet property="nameLal" destination="DgO-Pu-wIS" id="ejf-V6-0io"/>
                 <outlet property="phoneBtn" destination="AuA-Fw-MAQ" id="i0l-V1-mX6"/>
+                <outlet property="scBtn" destination="vH4-1l-4at" id="KR7-0B-gNt"/>
                 <outlet property="userImageView" destination="I5f-WN-9LG" id="OSm-Yi-V6m"/>
             </connections>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon_shoucang_normal" width="23" height="23"/>
         <image name="icon_xinxi_normal" width="21" height="19"/>
         <image name="phoneLv" width="19" height="19"/>
     </resources>

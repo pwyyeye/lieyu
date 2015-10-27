@@ -3956,6 +3956,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor",
 					"$(PROJECT_DIR)",
 				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				HEADER_SEARCH_PATHS = (
@@ -3998,6 +3999,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor",
 					"$(PROJECT_DIR)",
 				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				HEADER_SEARCH_PATHS = (

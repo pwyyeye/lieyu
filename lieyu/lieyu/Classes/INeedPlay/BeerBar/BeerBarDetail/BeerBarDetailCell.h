@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <HCSStarRatingView/HCSStarRatingView.h>
-
+#import "BeerBarOrYzhDetailModel.h"
 @interface BeerBarDetailCell : UITableViewCell<LYTableViewCellLayout>
-
+{
+    BeerBarOrYzhDetailModel *barOrYzhDetailModel;
+}
 @property(nonatomic,weak)IBOutlet UIImageView * barPhoto;
 @property(nonatomic,weak)IBOutlet UILabel * barName;
 @property(nonatomic,weak)IBOutlet UILabel * preOrderNumber;
@@ -27,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *teseBtn2;
 @property (weak, nonatomic) IBOutlet UIButton *teseBtn3;
 @property (weak, nonatomic) IBOutlet UIButton *teseBtn4;
+- (IBAction)daohanAct:(UIButton *)sender;
 
 @end
 

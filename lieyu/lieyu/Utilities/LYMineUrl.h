@@ -18,4 +18,7 @@
 #define LY_MY_ORDER_CANCEL @"lyOrderAction.do?action=cancel"
 //一定会去
 #define LY_MY_ORDER_GO @"lyOrderAction.do?action=custom"
+//收藏的店铺
+#define LY_MY_ORDER_GO @"lyOrderAction.do?action=custom"
+
 #endif

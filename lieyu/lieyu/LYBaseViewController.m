@@ -63,7 +63,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(UserModel *)userModel{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+     return  app.userModel;
+}
 
 - (void)setCustomTitle:(NSString *)title
 {

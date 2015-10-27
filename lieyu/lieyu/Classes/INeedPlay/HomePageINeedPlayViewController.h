@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LYBaseViewController.h"
 #import "HomePageEntryConstant.h"
-
+#import "EScrollerView.h"
 @interface HomePageINeedPlayViewController : LYBaseViewController
 
 

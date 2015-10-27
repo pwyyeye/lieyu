@@ -14,7 +14,7 @@
 #import "LYToPlayRestfulBusiness.h"
 #import "LYUserLocation.h"
 #import "JiuBaModel.h"
-
+#define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
 <
     UITableViewDelegate,
@@ -30,14 +30,19 @@
 @property(nonatomic,weak) IBOutlet UITableView * tableView;
 @property(nonatomic,weak) IBOutlet UITextField * searchTextField;
 //@property(nonatomic,weak) IBOutlet UITabBarItem * tabBarItem;
-
+@property(nonatomic,assign) NSInteger curPageIndex;
 @end
 
 @implementation HomePageINeedPlayViewController
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    self.curPageIndex = 1;
+    _tableView.showsHorizontalScrollIndicator=NO;
+    _tableView.showsVerticalScrollIndicator=NO;
+    _tableView.separatorColor=[UIColor clearColor];
     [self initialize];
     [self setupViewStyles];
     
@@ -52,11 +57,31 @@
     rc.origin.y = 0;
     _topView.frame = rc;
     [self.navigationController.navigationBar addSubview:_topView];
-    [self loadHomeList];
+//    [self loadHomeList];
+    [self getData];
+}
+-(void)getData{
+    __weak HomePageINeedPlayViewController * weakSelf = self;
+    //    __weak UITableView *tableView = self.tableView;
+    [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+     {
+         if (Req_Success == ermsg.state)
+         {
+             if (barList.count == PAGESIZE)
+             {
+                 weakSelf.curPageIndex = 2;
+                 weakSelf.tableView.footer.hidden = NO;
+             }
+             else
+             {
+                 weakSelf.tableView.footer.hidden = YES;
+             }
+             //             [weakSelf.tableView.header endRefreshing];
+         }
+     }];
     
 }
-
-- (void)loadHomeList
+- (void)loadHomeList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
 {
     MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
     LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
@@ -67,15 +92,21 @@
     hList.city = [LYUserLocation instance].city;
     hList.bartype = @"酒吧/夜总会";
 //    hList.need_page = @(1);
-//    hList.p = @(1);
-//    hList.per = @(3);
+    hList.p = @(_curPageIndex);
+    hList.per = @(20);
+    __weak __typeof(self)weakSelf = self;
     [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
         if (ermsg.state == Req_Success)
         {
+            if (weakSelf.curPageIndex == 1) {
+                [weakSelf.aryList removeAllObjects];
+                //                [weakSelf.bannerList removeAllObjects];
+            }
             self.aryList = barList.mutableCopy;
             self.bannerList = bannerList.mutableCopy;
             [self.tableView reloadData];
         }
+        block !=nil? block(ermsg,bannerList,barList):nil;
     }];
 }
 
@@ -103,10 +134,46 @@
     [self.tableView registerNib:adCellNib forCellReuseIdentifier:@"LYAdshowCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarInfoCell" bundle:nil] forCellReuseIdentifier:@"LYWineBarInfoCell"];
    
-
+    [self installFreshEvent];
 
 }
-
+- (void)installFreshEvent
+{
+    
+    __weak HomePageINeedPlayViewController * weakSelf = self;
+//    __weak UITableView *tableView = self.tableView;
+    
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
+                             ^{
+                                 weakSelf.curPageIndex = 1;
+                                 [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+                                  {
+                                      if (Req_Success == ermsg.state)
+                                      {
+                                          if (barList.count == PAGESIZE)
+                                          {
+                                              weakSelf.curPageIndex = 2;
+                                              weakSelf.tableView.footer.hidden = NO;
+                                          }
+                                          else
+                                          {
+                                              weakSelf.tableView.footer.hidden = YES;
+                                          }
+                                          [weakSelf.tableView.header endRefreshing];
+                                      }
+                                  }];
+                             }];
+    
+    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
+            if (Req_Success == ermsg.state) {
+                weakSelf.curPageIndex ++;
+                [weakSelf.tableView.footer endRefreshing];
+            }
+            
+        }];
+    }];
+}
 
 - (void)setupToViewStyles
 {
@@ -158,11 +225,18 @@
     {
         case 0:
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"LYAdshowCell" forIndexPath:indexPath];
-            if (cell) {
-                LYAdshowCell * adCell = (LYAdshowCell *)cell;
-                adCell.bannerUrlList = self.bannerList;
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"topViewCell"] ;            NSMutableArray *bigArr=[[NSMutableArray alloc]init];
+            
+            for (NSString *iconStr in self.bannerList) {
+                NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
+                [dicTemp setObject:iconStr forKey:@"ititle"];
+                [dicTemp setObject:@"" forKey:@"mainHeading"];
+                [bigArr addObject:dicTemp];
             }
+            
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122)
+                                                                  scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
+            [cell addSubview:scroller];
         }
             break;
         case 1:
@@ -183,6 +257,9 @@
             
             cell = barCell;
             [barCell configureCell:[_aryList objectAtIndex:indexPath.row-3]];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 103.5, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
         }
             break;
     }
@@ -197,22 +274,22 @@
     switch (indexPath.row) {
         case 0://广告
         {
-            h = 143;
+            h = 122;
         }
             break;
         case 1:// 选项卡 ，酒吧或夜总会
         {
-            h = 78;
+            h = 67;
         }
             break;
         case 2:
         {
-            h = 50;
+            h = 41;
         }
             break;
         default:
         {
-            h = 122.8;
+            h = 104;
         }
             break;
     }

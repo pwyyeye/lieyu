@@ -22,21 +22,17 @@
 #import "LYUserHttpTool.h"
 #import <RongIMKit/RongIMKit.h>
 #import "OrderHandleButton.h"
-#import "UserModel.h"
+
 #import "UMSocial.h"
 @interface LYOrderDetailViewController ()
-{
-    UserModel *userModel;
-}
+
 @end
 
 @implementation LYOrderDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    userModel=app.userModel;
-    userId=app.userModel.userid;
+    
     sectionNum=0;
     CGRect rect;
     
@@ -1266,7 +1262,7 @@
     
     orderInfoModel=_orderInfoModel;
     //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
-    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=%d",userModel.username,orderInfoModel.barinfo.barname,orderInfoModel.id];
+    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=%d",self.userModel.username,orderInfoModel.barinfo.barname,orderInfoModel.id];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UmengAppkey
