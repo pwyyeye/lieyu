@@ -19,6 +19,8 @@
 #import "LYwoYaoDinWeiMainViewController.h"
 #import "CHshowDetailListViewController.h"
 #import "DWTaoCanXQViewController.h"
+#import "LYUserLocation.h"
+#import "MyZSManageViewController.h"
 @interface BeerBarDetailViewController ()
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -334,5 +336,13 @@
     showDetailListViewController.barid=_beerBarDetail.barid.intValue;
     showDetailListViewController.barName=_beerBarDetail.barname;
     [self.navigationController pushViewController:showDetailListViewController animated:YES];
+}
+
+- (IBAction)zsliAct:(UIButton *)sender {
+    MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
+    myZSManageViewController.title=@"我的专属经理";
+    myZSManageViewController.barid=_beerBarDetail.barid.intValue;
+    myZSManageViewController.isBarVip=true;
+    [self.navigationController pushViewController:myZSManageViewController animated:YES];
 }
 @end

@@ -10,6 +10,7 @@
 #import "UIViewExt.h"
 #import <UIKit/UIKit.h>
 @interface LYBaseViewController : UIViewController
+@property (nonatomic,retain)UserModel *userModel;
 - (NSString *)randomStringWithLength:(int)len;
 - (NSString *)getDateTimeString;
 - (void)setCustomTitle:(NSString *)title;

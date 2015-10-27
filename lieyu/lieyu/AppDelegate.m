@@ -62,10 +62,101 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    
+    [self startLocation];
     return YES;
 }
-
+//开始定位
+-(void)startLocation{
+    if (![CLLocationManager locationServicesEnabled])
+        
+    {
+        [MyUtil showMessage:@"请开启定位服务!"];
+        //提示开启定位服务
+        
+        return ;
+        
+    }
+    
+    
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
+        
+        && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
+        
+    {
+        
+        if (!locationManager)
+            
+        {
+            
+            locationManager = [[CLLocationManager alloc] init];
+            
+        }
+        
+        
+        
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+            
+        {
+            
+            [locationManager performSelector:@selector(requestWhenInUseAuthorization)];//用这个方法，plist里要加字段NSLocationWhenInUseUsageDescription
+            
+        }
+        
+    }
+    
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted
+             
+             || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+        
+    {
+        
+        //提示开启当前应用定位服务
+        [MyUtil showMessage:@"请开启定位服务!"];
+        return ;
+        
+    }
+    if (!locationManager)
+        
+    {
+        
+        locationManager = [[CLLocationManager alloc] init];
+        
+    }
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 100.0f;
+    [locationManager startUpdatingLocation];
+}
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error{
+    //    [self showMessage:@"定位失败!"];
+}
+//定位代理经纬度回调
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    
+    
+//    [locationManager stopUpdatingLocation];
+    NSLog(@"location ok");
+    _userLocation=newLocation;
+    NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
+    
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+        for (CLPlacemark * placemark in placemarks) {
+            
+            NSDictionary *test = [placemark addressDictionary];
+            //  Country(国家)  State(城市)  SubLocality(区)
+            NSLog(@"%@", [test objectForKey:@"State"]);
+            NSLog(@"%@", placemark.locality);
+            citystr= placemark.locality;
+            
+        }
+        
+    }];
+    
+}
 - (void)setupDataStore
 {
     [LYDataStore currentInstance];

@@ -16,6 +16,7 @@
 #import "PinKeModel.h"
 #import "ProductCategoryModel.h"
 #import "LYPlayTogetherMainViewController.h"
+#import "LYUserLocation.h"
 @interface PlayTogetherViewController
 ()<ShaiXuanDelegate>
 {
@@ -174,8 +175,13 @@
     //    rebatedesc
     pageCount=1;
     [dataList removeAllObjects];
-    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"sort":@"priceasc"};
+    CLLocation *userLocation=[LYUserLocation instance].currentLocation;
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount]};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+    if(userLocation){
+        [nowDic setObject:@(userLocation.coordinate.longitude).stringValue forKey:@"longitude"];
+        [nowDic setObject:@(userLocation.coordinate.latitude).stringValue forKey:@"latitude"];
+    }
     [self getData:nowDic];
 }
 - (void)didReceiveMemoryWarning {

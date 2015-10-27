@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "EScrollerView.h"
+#import "PinKeModel.h"
 @interface PTTopCell : UITableViewCell<LYTableViewCellLayout>
 {
     EScrollerView *scroller;
+    PinKeModel *pinKeModel;
 }
 @property (weak, nonatomic) IBOutlet UILabel *shoucangCountLal;
 @property (weak, nonatomic) IBOutlet UILabel *addressLal;
@@ -18,5 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *jiubaNameLal;
 @property (weak, nonatomic) IBOutlet UILabel *taoCanNameLal;
 @property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UIButton *daohanBtn;
+- (IBAction)daohan:(UIButton *)sender;
 
 @end

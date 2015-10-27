@@ -13,8 +13,9 @@
     UIView  *_bgView;
     LYZSeditView *seditView;
     UIBarButtonItem *rightBtn;
-    UserModel *userModel;
+    
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (assign, nonatomic) BOOL isBarVip;
+@property (assign, nonatomic) int barid;
 @end

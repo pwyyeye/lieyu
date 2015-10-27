@@ -13,6 +13,7 @@
 #import "CHBarCell.h"
 #import "CHPorTypeCell.h"
 #import "LYCarListViewController.h"
+#import "LYUserLocation.h"
 @interface CHJiuPinDetailViewController ()
 {
     CheHeModel *chiHeModel;
@@ -230,9 +231,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        //        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
-    //        [self.navigationController pushViewController:controller animated:YES];
-    
+    if(indexPath.section==1){
+        if(indexPath.row==0){
+            
+            NSDictionary *dic=@{@"title":chiHeModel.barinfo.barname,@"latitude":chiHeModel.barinfo.latitude,@"longitude":chiHeModel.barinfo.longitude};
+            [[LYUserLocation instance] daoHan:dic];
+        }
+    }
+    //CheHeModel
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

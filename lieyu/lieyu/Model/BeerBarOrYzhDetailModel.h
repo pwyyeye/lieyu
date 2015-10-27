@@ -27,8 +27,8 @@
 @property(nonatomic,copy)NSString * environment_num;
 @property(nonatomic,strong)NSNumber *  fav_num;
 @property(nonatomic,strong)NSNumber * id;
-@property(nonatomic,copy)NSDecimalNumber * latitude;
-@property(nonatomic,copy)NSDecimalNumber * longitude;
+@property(nonatomic,copy)NSString * latitude;
+@property(nonatomic,copy)NSString * longitude;
 @property(nonatomic,copy)NSNumber * lowest_consumption;
 @property(nonatomic,strong)NSArray *recommend_package;  //RecommendPackageModel
 @property(nonatomic,copy)NSString *star_num;

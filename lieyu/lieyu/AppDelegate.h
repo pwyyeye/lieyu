@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "UserModel.h"
+#import <CoreLocation/CoreLocation.h>
 #define UmengAppkey @"56244a0467e58e25ce0026b3"
 #define RONGCLOUD_IM_APPKEY @"3argexb6rtese"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+@interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate>
+{
+    CLLocationManager *locationManager;
+    NSString *citystr;
+}
 @property (strong, nonatomic) UIWindow *window;
 @property(strong,nonatomic) NSTimer *timer;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -24,6 +28,7 @@
 @property(strong,nonatomic) NSString *qiniu_token;
 @property(strong,nonatomic) NSString *im_token;
 @property(strong,nonatomic) NSString *im_userId;
+@property(retain,nonatomic) CLLocation * userLocation;
 @property(strong,nonatomic) UINavigationController *navigationController;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

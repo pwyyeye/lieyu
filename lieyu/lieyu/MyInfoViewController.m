@@ -182,6 +182,7 @@
         {
             MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
             myZSManageViewController.title=@"我的专属经理";
+            myZSManageViewController.isBarVip=false;
             [self.navigationController pushViewController:myZSManageViewController animated:YES];
             
             break;

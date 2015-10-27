@@ -66,4 +66,11 @@
                                complete:(void (^)(NSString *result))result;
 //购物车删除
 -(void) delcarWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result;
+
+//获取某个酒吧下的专属经理列表
+-(void) getBarVipWithParams:(NSDictionary*)params
+                       block:(void(^)(NSMutableArray* result)) block;
+//收藏专属经理
+-(void) scVipWithParams:(NSDictionary*)params
+                      complete:(void (^)(BOOL result))result;
 @end

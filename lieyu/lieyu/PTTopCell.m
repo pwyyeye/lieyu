@@ -7,12 +7,14 @@
 //
 
 #import "PTTopCell.h"
-#import "PinKeModel.h"
+
 #import "JiuBaModel.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "LYUserLocation.h"
 @implementation PTTopCell
 
 - (void)awakeFromNib {
+    [_daohanBtn setBackgroundColor:[UIColor clearColor]];
     // Initialization code
 }
 
@@ -23,6 +25,7 @@
 }
 - (void)configureCell:(PinKeModel*)model
 {
+    pinKeModel=model;
     NSMutableArray *bigArr=[[NSMutableArray alloc]init];
     
     for (NSString *iconStr in model.banner) {
@@ -44,5 +47,9 @@
     _addressLal.text=model.barinfo.address;
     _shoucangCountLal.text=model.barinfo.fav_num;
     
+}
+- (IBAction)daohan:(UIButton *)sender {
+    NSDictionary *dic=@{@"title":pinKeModel.barinfo.barname,@"latitude":pinKeModel.barinfo.latitude,@"longitude":pinKeModel.barinfo.longitude};
+    [[LYUserLocation instance] daoHan:dic];
 }
 @end

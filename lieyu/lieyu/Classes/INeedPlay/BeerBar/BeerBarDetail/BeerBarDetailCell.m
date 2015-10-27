@@ -8,8 +8,10 @@
 
 #import "BeerBarDetailCell.h"
 #import "JiuBaModel.h"
-#import "BeerBarOrYzhDetailModel.h"
+
 #import "TeseModel.h"
+#import "MJExtension.h"
+#import "LYUserLocation.h"
 @interface BeerBarDetailCell()
 
 @end
@@ -49,6 +51,7 @@
 - (void)configureCell:(BeerBarOrYzhDetailModel *)model
 {
 //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
+    barOrYzhDetailModel=model;
     _barName.text = model.barname;
     [_barPhoto sd_setImageWithURL:[NSURL URLWithString:model.baricon] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
@@ -68,15 +71,20 @@
     NSArray *teseArr=@[_teseBtn1,_teseBtn2,_teseBtn3,_teseBtn4];
     for (int i=0; i<model.tese.count; i++) {
         if(i<=teseArr.count){
-            TeseModel *teseModel=model.tese[i];
+            NSDictionary *dic=model.tese[i];
             [_teseBtn1 setHidden:NO];
-            [_teseBtn1 setTitle:teseModel.name forState:0];
+            [_teseBtn1 setTitle:[dic objectForKey:@"name"] forState:0];
         }else{
             break;
         }
     }
 }
 
+- (IBAction)daohanAct:(UIButton *)sender {
+
+    NSDictionary *dic=@{@"title":barOrYzhDetailModel.barname,@"latitude":barOrYzhDetailModel.latitude,@"longitude":barOrYzhDetailModel.longitude};
+    [[LYUserLocation instance] daoHan:dic];
+}
 @end
 
 

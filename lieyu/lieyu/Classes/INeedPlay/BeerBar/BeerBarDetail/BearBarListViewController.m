@@ -37,7 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _tableView.showsHorizontalScrollIndicator=NO;
+    _tableView.showsVerticalScrollIndicator=NO;
+    _tableView.separatorColor=[UIColor clearColor];
     self.aryList = [NSMutableArray new];
     self.tableView.delegate = self;
     self.tableView.dataSource =self ;
@@ -257,6 +259,9 @@
             if ([_aryList count] >=1) {
                 [barCell configureCell:[_aryList objectAtIndex:indexPath.row - 1]];
             }
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 103.5, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
         }
             break;
     }

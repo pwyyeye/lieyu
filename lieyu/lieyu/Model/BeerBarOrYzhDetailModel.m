@@ -26,10 +26,5 @@
     
     return model;
 }
-+ (NSDictionary *)objectClassInArray
-{
-    return @{
-             @"tese" : @"TeseModel",
-             };
-}
+
 @end

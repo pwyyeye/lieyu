@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *jiubaLal;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
+@property (weak, nonatomic) IBOutlet UIButton *scBtn;
 
 @end
