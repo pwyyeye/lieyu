@@ -358,6 +358,9 @@
 		ADE103AF1BDE4C8E00D9EC38 /* ChoosePayController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103AB1BDE4C8E00D9EC38 /* ChoosePayController.m */; };
 		ADE103B01BDE4C8E00D9EC38 /* PayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103AD1BDE4C8E00D9EC38 /* PayCell.m */; };
 		ADE103B11BDE4C8E00D9EC38 /* PayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE103AE1BDE4C8E00D9EC38 /* PayCell.xib */; };
+		ADE103B51BDF286A00D9EC38 /* Setting.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103B41BDF286A00D9EC38 /* Setting.m */; };
+		ADE103B81BDFA2A800D9EC38 /* LYBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103B71BDFA2A800D9EC38 /* LYBaseTableViewController.m */; };
+		ADE103BB1BDFA5F200D9EC38 /* LYUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */; };
 		D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */; };
 		D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D8A1BAE8C3300915F37 /* PacketBarCell.m */; };
 		D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71E1D8B1BAE8C3300915F37 /* PacketBarCell.xib */; };
@@ -1134,6 +1137,12 @@
 		ADE103AC1BDE4C8E00D9EC38 /* PayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayCell.h; sourceTree = "<group>"; };
 		ADE103AD1BDE4C8E00D9EC38 /* PayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayCell.m; sourceTree = "<group>"; };
 		ADE103AE1BDE4C8E00D9EC38 /* PayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayCell.xib; sourceTree = "<group>"; };
+		ADE103B31BDF286A00D9EC38 /* Setting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
+		ADE103B41BDF286A00D9EC38 /* Setting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Setting.m; sourceTree = "<group>"; };
+		ADE103B61BDFA2A800D9EC38 /* LYBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBaseTableViewController.h; sourceTree = "<group>"; };
+		ADE103B71BDFA2A800D9EC38 /* LYBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBaseTableViewController.m; sourceTree = "<group>"; };
+		ADE103B91BDFA5F200D9EC38 /* LYUserDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserDetailController.h; sourceTree = "<group>"; };
+		ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserDetailController.m; sourceTree = "<group>"; };
 		D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarDetailCell.h; sourceTree = "<group>"; };
 		D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarDetailCell.m; sourceTree = "<group>"; };
 		D71E1D891BAE8C3300915F37 /* PacketBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketBarCell.h; sourceTree = "<group>"; };
@@ -2321,18 +2330,21 @@
 			path = "../Classes/CommonUI/日历";
 			sourceTree = "<group>";
 		};
-		A2020D421BA660640090B92A /* base */ = {
+		A2020D421BA660640090B92A /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				A2020D431BA660B50090B92A /* LYBaseViewController.h */,
 				A2020D441BA660B50090B92A /* LYBaseViewController.m */,
+				ADE103B61BDFA2A800D9EC38 /* LYBaseTableViewController.h */,
+				ADE103B71BDFA2A800D9EC38 /* LYBaseTableViewController.m */,
 			);
-			name = base;
+			name = Base;
 			sourceTree = "<group>";
 		};
 		A2020D4B1BA6612C0090B92A /* 个人信息 */ = {
 			isa = PBXGroup;
 			children = (
+				ADE103B21BDF285C00D9EC38 /* 设置 */,
 				1559DCFF1BDA24CB00F3FE9B /* 购物车 */,
 				15E1846A1BB4DC8E00681BB2 /* 专属经理 */,
 				15E2407E1BB2795E0090D240 /* 我的订单 */,
@@ -2777,6 +2789,17 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		ADE103B21BDF285C00D9EC38 /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				ADE103B31BDF286A00D9EC38 /* Setting.h */,
+				ADE103B41BDF286A00D9EC38 /* Setting.m */,
+				ADE103B91BDFA5F200D9EC38 /* LYUserDetailController.h */,
+				ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */,
+			);
+			name = "设置";
+			sourceTree = "<group>";
+		};
 		D729DB5C1BADB8AB005A9E60 /* BeerBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -3112,7 +3135,6 @@
 			children = (
 				A2020D4C1BA661C00090B92A /* 专属经理 */,
 				A2020D4B1BA6612C0090B92A /* 个人信息 */,
-				A2020D421BA660640090B92A /* base */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -3120,6 +3142,7 @@
 		D761F0291BA5B92D000757B0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A2020D421BA660640090B92A /* Base */,
 				15EA6DDA1BC16C7B00620C9E /* IM */,
 				D761F0281BA5B90E000757B0 /* Mine */,
 				D761F0271BA5B8D5000757B0 /* Find */,
@@ -3529,6 +3552,7 @@
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
 				15EB350D1BD1F63F00BA6161 /* PTChooseNumCell.m in Sources */,
+				ADE103B81BDFA2A800D9EC38 /* LYBaseTableViewController.m in Sources */,
 				15EB357C1BD4972800BA6161 /* PTjoinInViewController.m in Sources */,
 				151BB6D71BBB78E000E7A81C /* UzysGroupViewCell.m in Sources */,
 				ADE1039A1BDE49BC00D9EC38 /* DataVerifier.m in Sources */,
@@ -3581,6 +3605,7 @@
 				ADE103A91BDE4B2300D9EC38 /* AlipayOrder.m in Sources */,
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,
 				1559DCFB1BD9E1AD00F3FE9B /* CHBarCell.m in Sources */,
+				ADE103B51BDF286A00D9EC38 /* Setting.m in Sources */,
 				15013B001BBA33BF00061FAF /* UIImage+MultiFormat.m in Sources */,
 				15E240671BB1243A0090D240 /* TypeChooseCell.m in Sources */,
 				D748BC711BA1C856005AA996 /* NSObject+MJKeyValue.m in Sources */,
@@ -3779,6 +3804,7 @@
 				15B866171BDB4247002E2BB6 /* CarChooseBtn.m in Sources */,
 				151BB6D61BBB78E000E7A81C /* UzysGroupPickerViewController.m in Sources */,
 				15EB350A1BD1F61800BA6161 /* PTTimeChooseCell.m in Sources */,
+				ADE103BB1BDFA5F200D9EC38 /* LYUserDetailController.m in Sources */,
 				151BB6BF1BBAB80900E7A81C /* DeckFullModel.m in Sources */,
 				15E240A11BB37EF60090D240 /* LYOrderDetailViewController.m in Sources */,
 				D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */,

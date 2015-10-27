@@ -23,6 +23,7 @@
     if (![MyUtil isEmptyString:app.s_app_id]) {
         url = [NSString stringWithFormat:@"%@&SEM_LOGIN_TOKEN=%@",url,app.s_app_id];
     }
+ 
     NSURL* baseURL = [NSURL URLWithString:baseStr];
     //获得请求管理者
     AFHTTPRequestOperationManager* mgr = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];

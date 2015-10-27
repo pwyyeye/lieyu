@@ -30,9 +30,7 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
     NSString *urlName;
     NSDictionary *pamDic;
     UIAlertView *alertView;
-    UIActivityIndicatorView *indicator;
-    LYUserLoginViewController *loginViewController;
-    
+    UIActivityIndicatorView *indicator;    
     
 }
 +(void)requestFileWihtUrl:(NSString*)url

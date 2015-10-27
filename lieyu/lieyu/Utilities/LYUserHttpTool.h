@@ -16,6 +16,9 @@
 // 登录
 -(void) userLoginWithParams:(NSDictionary*)params
                             block:(void(^)(UserModel* result)) block;
+//登出
+-(void) userLogOutWithParams:(NSDictionary*)params
+                       block:(void(^)(BOOL result)) block;
 // 获取验证码
 -(void) getYanZhengMa:(NSDictionary*)params
              complete:(void (^)(BOOL result))result;
@@ -49,4 +52,6 @@
 //一定会去
 -(void) sureMyOrder:(NSDictionary*)params
              complete:(void (^)(BOOL result))result;
+
+
 @end

@@ -12,7 +12,7 @@
 #import "TuiJianShangJiaViewController.h"
 #import "MyCollectionViewController.h"
 #import "LYMyOrderManageViewController.h"
-#import "LYUserLoginViewController.h"
+#import "Setting.h"
 #import "MyZSManageViewController.h"
 #import "LYCarListViewController.h"
 @interface MyInfoViewController ()
@@ -218,9 +218,8 @@
 
 #pragma mark 设置
 - (IBAction)settingQct:(UIButton *)sender {
-    LYUserLoginViewController *userLoginViewController=[[LYUserLoginViewController alloc]initWithNibName:@"LYUserLoginViewController" bundle:nil];
-    userLoginViewController.title=@"登录";
-    [self.navigationController pushViewController:userLoginViewController animated:YES];
+    Setting *setting =[[Setting alloc] init];
+    [self.navigationController pushViewController:setting animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
