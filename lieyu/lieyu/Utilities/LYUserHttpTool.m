@@ -45,6 +45,30 @@
         [app stopLoading];
     }];
 }
+
+#pragma mark - 登出
+-(void) userLogOutWithParams:(NSDictionary*)params
+                      block:(void(^)(BOOL result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_LOGOUT baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(YES);
+            });
+        }else{
+            block(NO);
+            [MyUtil showMessage:message];
+        }
+        
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 #pragma mark - 获取验证码
 -(void) getYanZhengMa:(NSDictionary*)params
              complete:(void (^)(BOOL result))result{

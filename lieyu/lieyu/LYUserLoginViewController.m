@@ -69,6 +69,8 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
+        [USER_DEFAULT setObject:result forKey:@"userModel"];
+        [USER_DEFAULT setObject:self.passWordTex.text forKey:@"pass"];
 //      [self dismissViewControllerAnimated:YES completion:^{
 //          
 //      }];
@@ -77,11 +79,14 @@
     }];
 }
 #pragma mark - 自动登录
-- (void)aotuLogin:(NSString *)username and:(NSString *) password {
-    if(username.length<1){
+- (void)aotuLogin{
+    UserModel *model=[USER_DEFAULT objectForKey:@"userModel"];
+    NSString *username=model.username;
+    NSString *password=[USER_DEFAULT objectForKey:@"pass"];
+    if([MyUtil isEmptyString:username]){
         return;
     }
-    if(password.length<1){
+    if([MyUtil isEmptyString:password]){
         return;
     }
     NSDictionary *dic=@{@"username":username,@"password":password};
