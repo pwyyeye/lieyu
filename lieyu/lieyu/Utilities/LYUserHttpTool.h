@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ZSUrl.h"
 #import "UserModel.h"
+#import "CustomerModel.h"
 #import "AFNetworking.h"
 #import "LYMineUrl.h"
 @interface LYUserHttpTool : NSObject
@@ -54,4 +55,24 @@
              complete:(void (^)(BOOL result))result;
 
 
+//好友列表
+-(void) getFriendsList:(NSDictionary*)params
+               block:(void(^)(NSMutableArray* result)) block;
+//加好友
+-(void) addFriends:(NSDictionary*)params
+                 complete:(void (^)(BOOL result))result;
+
+//收藏的店铺
+-(void) getMyBarWithParams:(NSDictionary*)params
+                      block:(void(^)(NSMutableArray* result)) block;
+//收藏酒吧
+-(void) addMyBarWithParams:(NSDictionary*)params
+                 complete:(void (^)(BOOL result))result;
+//删除收藏酒吧
+-(void) delMyBarWithParams:(NSDictionary*)params
+                 complete:(void (^)(BOOL result))result;
+
+//信息中心
+-(void) getAddMeListWithParams:(NSDictionary*)params
+                           block:(void(^)(NSMutableArray* result)) block;
 @end

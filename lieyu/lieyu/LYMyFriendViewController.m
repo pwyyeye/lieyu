@@ -1,27 +1,26 @@
 //
-//  ZSMyClientsViewController.m
+//  LYMyFriendViewController.m
 //  lieyu
 //
-//  Created by SEM on 15/9/16.
+//  Created by 薛斯岐 on 15/10/28.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSMyClientsViewController.h"
+#import "LYMyFriendViewController.h"
 #import "CustomerCell.h"
-#import "CustomerModel.h"
-#import "ZSCustomerDetailViewController.h"
-#import "ZSManageHttpTool.h"
-@interface ZSMyClientsViewController ()
+#import "LYUserHttpTool.h"
+@interface LYMyFriendViewController ()
 
 @end
 
-@implementation ZSMyClientsViewController
+@implementation LYMyFriendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
-    
-    self.title=@"我的客户";
+    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add5"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
+    [self.navigationItem setRightBarButtonItem:rightBtn];
+    self.title=@"好友列表";
     
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
@@ -32,14 +31,14 @@
     [_listContent removeAllObjects];
     __weak __typeof(self)weakSelf = self;
     NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
-    [[ZSManageHttpTool shareInstance] getUsersFriendWithParams:dic block:^(NSMutableArray *result) {
+    [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
         NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
         [addressBookTemp addObjectsFromArray:result];
         
         UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
         for (CustomerModel *addressBook in addressBookTemp) {
             NSInteger sect = [theCollation sectionForObject:addressBook
-                                    collationStringSelector:@selector(username)];
+                                    collationStringSelector:@selector(friendName)];
             addressBook.sectionNumber = sect;
             
         }
@@ -55,7 +54,7 @@
         }
         
         for (NSMutableArray *sectionArray in sectionArrays) {
-            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(username)];
+            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(friendName)];
             [_listContent addObject:sortedSection];
             
         }
@@ -63,7 +62,7 @@
         
         [weakSelf.tableView reloadData];
     }];
-
+    
 }
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
@@ -107,35 +106,35 @@
     }
 }
 /*
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (tableView != self.searchDisplayController.searchResultsTableView) {
-        NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
-        if (sectionTitle == nil) {
-            return nil;
-        }
-        
-        UILabel *label = [[UILabel alloc] init];
-        label.frame = CGRectMake(20, 0, 320, 20);
-        label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor blackColor];
-        label.shadowColor = [UIColor grayColor];
-        label.shadowOffset = CGSizeMake(-1.0, 1.0);
-        label.font = [UIFont boldSystemFontOfSize:20];
-        label.textColor=[self colorWithHexString:@"#BDE2E5"];
-        label.text = sectionTitle;
-        
-        UIImageView *xiaxianView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 22,320, 3)];
-        xiaxianView.image=[UIImage imageNamed:@"分割线-深"];
-        UIView *view = [[UIView alloc] init];
-        view.backgroundColor=[self colorWithHexString:@"#00000000"];
-        [view addSubview:label];
-        [view addSubview:xiaxianView];
-        return view;
-    }
-    return nil;
-}
-*/
+ -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+ {
+ if (tableView != self.searchDisplayController.searchResultsTableView) {
+ NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
+ if (sectionTitle == nil) {
+ return nil;
+ }
+ 
+ UILabel *label = [[UILabel alloc] init];
+ label.frame = CGRectMake(20, 0, 320, 20);
+ label.backgroundColor = [UIColor clearColor];
+ label.textColor = [UIColor blackColor];
+ label.shadowColor = [UIColor grayColor];
+ label.shadowOffset = CGSizeMake(-1.0, 1.0);
+ label.font = [UIFont boldSystemFontOfSize:20];
+ label.textColor=[self colorWithHexString:@"#BDE2E5"];
+ label.text = sectionTitle;
+ 
+ UIImageView *xiaxianView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 22,320, 3)];
+ xiaxianView.image=[UIImage imageNamed:@"分割线-深"];
+ UIView *view = [[UIView alloc] init];
+ view.backgroundColor=[self colorWithHexString:@"#00000000"];
+ [view addSubview:label];
+ [view addSubview:xiaxianView];
+ return view;
+ }
+ return nil;
+ }
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView)
@@ -168,7 +167,7 @@
         
         
     }
-
+    
     
     CustomerModel *addressBook = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView)
@@ -176,15 +175,15 @@
     else
         addressBook = (CustomerModel *)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
-    if ([[addressBook.username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
-        cell.nameLal.text = addressBook.username;
+    if ([[addressBook.friendName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
+        cell.nameLal.text = addressBook.friendName;
         
     } else {
         
         cell.nameLal.text = @"No Name";
     }
     
-//    cell.backgroundColor=[UIColor clearColor];
+    //    cell.backgroundColor=[UIColor clearColor];
     
     return cell;
 }
@@ -200,9 +199,9 @@
         addressBook = (CustomerModel*)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    ZSCustomerDetailViewController *customerDetailsViewController=[[ZSCustomerDetailViewController alloc]initWithNibName:@"ZSCustomerDetailViewController" bundle:nil];
-    
-    [self.navigationController pushViewController:customerDetailsViewController animated:YES];
+//    ZSCustomerDetailViewController *customerDetailsViewController=[[ZSCustomerDetailViewController alloc]initWithNibName:@"ZSCustomerDetailViewController" bundle:nil];
+//    
+//    [self.navigationController pushViewController:customerDetailsViewController animated:YES];
 }
 
 
@@ -236,7 +235,7 @@
     for (NSArray *section in _listContent) {
         for (CustomerModel *addressBook in section)
         {
-            NSComparisonResult result = [addressBook.username compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
+            NSComparisonResult result = [addressBook.friendName compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
             if (result == NSOrderedSame)
             {
                 [_filteredListContent addObject:addressBook];
@@ -267,7 +266,64 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark - 更多
+-(void)moreAct:(id)sender{
+    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
+    [_bgView setTag:99999];
+    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
+    [_bgView setAlpha:1.0];
+    rightBtn.enabled=false;
+    [self.view addSubview:_bgView];
+    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LYZSeditView" owner:nil options:nil];
+    seditView= (LYZSeditView *)[nibView objectAtIndex:0];
+    seditView.top=SCREEN_HEIGHT;
+    [seditView.quxiaoBtn addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
+    [seditView.editListBtn setHidden:YES];
+    [seditView.shenqingBtn setImage:[UIImage imageNamed:@"addFriendIcon"] forState:0];
+    seditView.firstLal.text=@"添加好友";
+//    [seditView.editListBtn addTarget:self action:@selector(editZsAct:) forControlEvents:UIControlEventTouchDown];
+    [seditView.shenqingBtn addTarget:self action:@selector(addFriendAct:) forControlEvents:UIControlEventTouchDown];
+    [_bgView addSubview:seditView];
+    
+    [UIView beginAnimations:@"animationID" context:nil];
+    [UIView setAnimationDuration:0.3];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:seditView cache:NO];
+    seditView.top=SCREEN_HEIGHT-seditView.height-64;
+    [UIView commitAnimations];
+    
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame=CGRectMake(0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT-seditView.height-64);
+    [button setBackgroundColor:[UIColor clearColor]];
+    [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
+    [_bgView insertSubview:button aboveSubview:_bgView];
+    button.backgroundColor=[UIColor clearColor];
+}
+#pragma mark - 消失
+-(void)SetViewDisappear:(id)sender
+{
+    rightBtn.enabled=YES;
+    if (_bgView)
+    {
+        _bgView.backgroundColor=[UIColor clearColor];
+        [UIView animateWithDuration:.5
+                         animations:^{
+                             
+                             seditView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300);
+                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+                             _bgView.alpha=0.0;
+                         }];
+        [_bgView performSelector:@selector(removeFromSuperview)
+                      withObject:nil
+                      afterDelay:2];
+        
+        _bgView=nil;
+    }
+    
+}
+-(void)addFriendAct:(id)sender{
+    
+}
 /*
 #pragma mark - Navigation
 

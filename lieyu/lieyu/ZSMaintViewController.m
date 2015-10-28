@@ -115,12 +115,14 @@
     NSString *title=[dic objectForKey:@"title"];
     NSString *delInfo=[dic objectForKey:@"delInfo"];
 //    @{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""}
+    [cell.mesImageView setHidden:YES];
     cell.backImageView.backgroundColor=bColor;
     cell.CoutentImageView.image=imge;
     cell.titleLbl.text=title;
     cell.delLal.text=delInfo;
 //    cell.disImageView;
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     
     
     

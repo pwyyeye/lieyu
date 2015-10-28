@@ -15,6 +15,7 @@
 #import "Setting.h"
 #import "MyZSManageViewController.h"
 #import "LYCarListViewController.h"
+#import "MyMessageListViewController.h"
 @interface MyInfoViewController ()
 
 @end
@@ -136,9 +137,10 @@
     cell.titleLbl.width=200;
     //    cell.disImageView;
     
+    [cell.mesImageView setHidden:YES];
     
-    
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
     
     
@@ -198,6 +200,9 @@
         case 5:// 信息中心
         {
             
+            MyMessageListViewController *messageListViewController=[[MyMessageListViewController alloc]initWithNibName:@"MyMessageListViewController" bundle:nil];
+            messageListViewController.title=@"信息中心";
+            [self.navigationController pushViewController:messageListViewController animated:YES];
             
             break;
         }
