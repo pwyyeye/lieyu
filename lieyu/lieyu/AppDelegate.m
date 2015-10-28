@@ -17,6 +17,7 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSinaHandler.h"
 #import "PTjoinInViewController.h"
+
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
@@ -30,8 +31,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     // Override point for customization after application launch.
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [self setupDataStore];
-    UINavigationController * nav = (UINavigationController *)self.window.rootViewController;
-    nav.delegate = self;
+    _navigationController= (UINavigationController *)self.window.rootViewController;
+    _navigationController.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
@@ -63,7 +64,18 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [self startLocation];
-    return YES;
+    
+    
+    
+    //引导页启动
+    if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+        [self showIntroWithCrossDissolve];
+        UIViewController *view=[[UIViewController alloc] init];
+        view.view=_intro;
+        self.window.rootViewController=view;
+    }
+    
+     return YES;
 }
 //开始定位
 -(void)startLocation{
@@ -318,6 +330,74 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }else{
         return NO;
     }
+    
+}
+
+
+#pragma mark--引导页
+- (void)showIntroWithCrossDissolve {
+    //    EAIntroPage *page1 = [EAIntroPage page];
+    //    page1.title = @"Hello world";
+    //    page1.desc = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+    //    page1.bgImage = [UIImage imageNamed:@"1.jpg"];
+    
+    EAIntroPage *page1 = [EAIntroPage page];
+    if (isRetina) {
+        page1.bgImage = [UIImage imageNamed:@"1_retina.png"];
+    }else{
+        page1.bgImage = [UIImage imageNamed:@"1"];
+    }
+    
+    
+    EAIntroPage *page2 = [EAIntroPage page];
+    if (isRetina) {
+        page2.bgImage = [UIImage imageNamed:@"2_retina.png"];
+    }else{
+        page2.bgImage = [UIImage imageNamed:@"2"];
+    }
+    
+    
+    EAIntroPage *page3 = [EAIntroPage page];
+    
+    if (isRetina) {
+        page3.bgImage = [UIImage imageNamed:@"3_retina.png"];
+    }else{
+        page3.bgImage = [UIImage imageNamed:@"3"];
+    }
+    
+    EAIntroPage *page4 = [EAIntroPage page];
+    
+    if (isRetina) {
+        page4.bgImage = [UIImage imageNamed:@"4_retina.png"];
+    }else{
+        page4.bgImage = [UIImage imageNamed:@"4"];
+    }
+    
+    //    page4.titleImage = [UIImage imageNamed:@"skip-btn"];
+    //
+    //    page4.imgPositionY = SCREEN_HEIGHT-100;
+    
+    page4.customView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-175, SCREEN_WIDTH, 40)];
+    _intro = [[EAIntroView alloc] initWithFrame:self.window.bounds andPages:@[page1,page2,page3,page4]];
+    
+    UIButton *button=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-55, 0, 110, 40)];
+    [button setBackgroundImage:[UIImage imageNamed:@"skip-btn"] forState:UIControlStateNormal];
+    [button addTarget:_intro action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
+    [page4.customView addSubview:button];
+    [page4.customView bringSubviewToFront:button];//显示到最前面
+    
+    
+    
+    
+    _intro.skipButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    
+    [_intro setDelegate:self];
+    [_intro showInView:self.window animateDuration:1.0];
+}
+- (void)introDidFinish{
+    NSLog(@"----pass-introDidFinish%@---",@"introDidFinish");
+    [USER_DEFAULT setObject:@"NO" forKey:@"firstUseApp"];
+    self.window.rootViewController=_navigationController;
     
 }
 @end
