@@ -22,6 +22,9 @@
     bool isfu;
     int userId;
     NSString *fukuanPKStr;
+    NSString *aboutTitle;
+    NSString *aboutContent;
+    
 }
 @property (nonatomic, assign)  BOOL isHaveBtn;
 @property (nonatomic, retain)  OrderInfoModel *orderInfoModel;

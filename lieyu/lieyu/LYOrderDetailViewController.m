@@ -32,7 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    aboutTitle=@"";
+    aboutContent=@"";
     sectionNum=0;
     CGRect rect;
     
@@ -426,14 +427,20 @@
             if(_orderInfoModel.consumptionStatus==0){
                 nowB=@"还没想去";
                 nextB=@"一定会去";
+                aboutTitle=@"关于还没想去";
+                aboutContent=@"对于不确定一定会去的用户来说，我们专属经理不会为您留位；当用户决定一定会去的时候，只要点击一定会去按钮，我们的专属经理将会在为您预订卡座。";
             }else{
                 nowB=@"一定会去";
                 nextB=@"等待留位";
+                aboutTitle=@"关于等待留位";
+                aboutContent=@"请您耐心等待，VIP专属经理将会帮您预留座位，如预留成功，您将会收到短信消费码提示。";
             }
             
         }else if(_orderInfoModel.orderStatus==2){
             nowB=@"已经留位";
             nextB=@"到店消费";
+            aboutTitle=@"关于卡座预订费";
+            aboutContent=@"VIP专属经理已经帮你预留座位，请您提前30分钟到店消费。如取消退款将会收取您20%的卡座占用费（100元封顶），如有不便，敬请谅解！";
             
         }else if(_orderInfoModel.orderStatus==3 || _orderInfoModel.orderStatus==4 || _orderInfoModel.orderStatus==5){
             sectionNum=1;
@@ -442,6 +449,8 @@
         }else if(_orderInfoModel.orderStatus==7){
             nowB=@"已经消费";
             nextB=@"等待返利";
+            aboutTitle=@"关于返利";
+            aboutContent=@"用户只需在线下单并消费成功，即可获得对应的订单返利。猎娱平台承若返利金额将会在15个工作日内汇到用户在猎娱平台支付的对应账户内。";
         }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
             sectionNum=2;
             nowB=@"已经返利";
@@ -459,6 +468,8 @@
                     sectionNum=4;
                     nowB=@"开始拼客";
                     nextB=@"等待拼成";
+                    aboutTitle=@"关于发起拼客";
+                    aboutContent=@"您已经发起了的拼客活动，请您分享您的参与玩友，记得电话问问，拼成效率更高哦！";
                 }else{
                     sectionNum=3;
                     nowB=@"还未付款";
@@ -466,7 +477,7 @@
                 }
             }else{
                 if(isfu){
-                    sectionNum=4;
+                    sectionNum=2;
                     nowB=@"已经参与";
                     nextB=@"等待拼成";
                 }else{
@@ -486,12 +497,19 @@
                 nowB=@"已经拼成";
                 nextB=@"等待留位";
             }
-            
+            if(!isFaqi){
+                sectionNum=2;
+            }
         }else if(_orderInfoModel.orderStatus==2){
             sectionNum=4;
             nowB=@"已经留位";
             nextB=@"到店消费";
-            
+            if(!isFaqi){
+                sectionNum=2;
+            }else{
+                aboutTitle=@"关于卡座预订费";
+                aboutContent=@"VIP专属经理已经帮你预留座位，请您提前30分钟到店消费。如取消退款将会收取您20%的卡座占用费（100元封顶），如有不便，敬请谅解！";
+            }
         }else if(_orderInfoModel.orderStatus==3 || _orderInfoModel.orderStatus==4 || _orderInfoModel.orderStatus==5){
             sectionNum=1;
             nowB=@"取消订单";
@@ -501,6 +519,8 @@
                 sectionNum=4;
                 nowB=@"已经消费";
                 nextB=@"等待返利";
+                aboutTitle=@"关于返利";
+                aboutContent=@"用户只需在线下单并消费成功，即可获得对应的订单返利。猎娱平台承若返利金额将会在15个工作日内汇到用户在猎娱平台支付的对应账户内。";
             }else{
                 sectionNum=2;
                 nowB=@"已经消费";
@@ -515,6 +535,7 @@
             }else{
                 nowB=@"消费完成";
                 nextB=@"删除订单";
+                sectionNum=2;
             }
             
         }else{
@@ -522,8 +543,9 @@
             nowB=@"已经退款";
             nextB=@"删除订单";
         }
+        
     }else{
-        sectionNum=3;
+        sectionNum=2;
         if(_orderInfoModel.orderStatus==0){
             nowB=@"还未付款";
             nextB=@"支付消费";
@@ -542,8 +564,11 @@
             nowB=@"取消订单";
             nextB=@"等待退款";
         }else if(_orderInfoModel.orderStatus==7){
+            sectionNum=3;
             nowB=@"已经消费";
             nextB=@"等待返利";
+            aboutTitle=@"关于返利";
+            aboutContent=@"用户只需在线下单并消费成功，即可获得对应的订单返利。猎娱平台承若返利金额将会在15个工作日内汇到用户在猎娱平台支付的对应账户内。";
         }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
             sectionNum=2;
             nowB=@"已经返利";

@@ -245,10 +245,10 @@
         
         if ([urlname isEqualToString:@"modifyAvata"]) {
             //更新上个页面值
-            ShowMessage(@"修改成功！");
+//            ShowMessage(@"修改成功！");
             [USER_DEFAULT setObject:[dictemp objectForKey:@"data"] forKey:@"avatar_img"];
         }else if([urlname isEqualToString:@"modifyNick"]){
-            ShowMessage(@"修改成功！");
+//            ShowMessage(@"修改成功！");
             //            _selectedLabel.text=_modifyNick;
             
             [USER_DEFAULT setObject:_modifyNick  forKey:@"user_nick"];
