@@ -9,6 +9,7 @@
 #import "FindViewController.h"
 #import "MacroDefinition.h"
 #import "FindMenuCell.h"
+#import "LYMyFriendViewController.h"
 @interface FindViewController ()
 {
     NSArray *datalist;
@@ -19,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _tableView.showsHorizontalScrollIndicator=NO;
+    _tableView.showsVerticalScrollIndicator=NO;
+    _tableView.separatorColor=[UIColor clearColor];
     datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
               @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
               @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
@@ -59,24 +63,60 @@
     [super viewWillDisappear:animated];
     [self setCustomTitle:nil];
 }
-
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 14)];
+    view.backgroundColor=RGB(239, 239, 244);
+    return view;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 14;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if(section==0){
+        return 1;
+    }
+        return 2;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return datalist.count;
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FindMenuCell *cell = nil;
-    
+    NSDictionary *dic;
     cell = [tableView dequeueReusableCellWithIdentifier:@"FindMenuCell" forIndexPath:indexPath];
-    
-    NSDictionary *dic =[datalist objectAtIndex:indexPath.section];
+    if(indexPath.section==0){
+        
+        
+         dic=[datalist objectAtIndex:0];
+        
+    }else if(indexPath.section==1){
+        if(indexPath.row==0){
+            dic=[datalist objectAtIndex:1];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 50.5, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
+        }else{
+            dic=[datalist objectAtIndex:2];
+        }
+        
+    }else{
+        if(indexPath.row==0){
+            dic=[datalist objectAtIndex:3];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 50.5, 290, 0.5)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
+        }else{
+            dic=[datalist objectAtIndex:4];
+        }
+    }
     [cell.imageView setImage:[UIImage imageNamed:[dic objectForKey:@"image"]]];
     cell.titleLal.text=[dic objectForKey:@"title"];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -91,7 +131,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if(indexPath.section==0){
+        //最近联系
+    }else if(indexPath.section==1){
+        if(indexPath.row==0){
+            //玩友列表
+            LYMyFriendViewController *myFriendViewController=[[LYMyFriendViewController alloc]initWithNibName:@"LYMyFriendViewController" bundle:nil];
+            [self.navigationController pushViewController:myFriendViewController animated:YES];
+        }else{
+            //附近玩客
+        }
+    }else{
+        if(indexPath.row==0){
+            //摇一摇
+        }else{
+            //扫一扫
+        }
+    }
     //        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     //        [self.navigationController pushViewController:controller animated:YES];
     

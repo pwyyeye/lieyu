@@ -50,7 +50,7 @@
 @property (nonatomic, copy) NSString * barname;
 @property (nonatomic, copy) NSString * latitude;
 @property (nonatomic, copy) NSString * longitude;
-@property(nonatomic,assign)int lowest_consumption;
+@property(nonatomic,copy)NSString * lowest_consumption;
 @property (nonatomic, retain) NSArray * recommend_package;
 @property(nonatomic,copy)NSString * star_num;
 @property(nonatomic,copy)NSString * subtitle;

@@ -11,6 +11,7 @@
 #import "ZSDetailModel.h"
 #import "JiuBaModel.h"
 #import "OrderInfoModel.h"
+#import "MyBarModel.h"
 @implementation LYUserHttpTool
 
 + (LYUserHttpTool *)shareInstance{
@@ -310,6 +311,7 @@
         
     }];
 }
+
 #pragma mark -取消我的订单
 -(void) cancelMyOrder:(NSDictionary*)params
              complete:(void (^)(BOOL result))result{
@@ -365,5 +367,165 @@
         
         
     }];
+}
+#pragma mark 好友列表
+-(void) getFriendsList:(NSDictionary*)params
+                 block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    NSString *ss = [NSString stringWithFormat:@"%@&userId=%@",LY_MY_FRIENDS_LIST,[params objectForKey:@"userid"]];
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:ss baseURL:QINIU_SERVER params:nil success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if([code isEqualToString:@"1"]){
+            NSDictionary *dicTemp=response[@"data"];
+            NSArray *dataList = dicTemp[@"items"];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+        }else{
+            [MyUtil showMessage:message];
+        }
+        
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+#pragma mark加好友
+-(void) addFriends:(NSDictionary*)params
+          complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADDFRIEND_LIST baseURL:QINIU_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
+#pragma mark 收藏的店铺
+-(void) getMyBarWithParams:(NSDictionary*)params
+                     block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_LIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[MyBarModel objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+}
+#pragma mark 收藏酒吧
+-(void) addMyBarWithParams:(NSDictionary*)params
+                  complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_ADD baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
+#pragma mark 删除收藏酒吧
+-(void) delMyBarWithParams:(NSDictionary*)params
+                  complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_DEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
+#pragma mark 信息中心
+-(void) getAddMeListWithParams:(NSDictionary*)params
+                         block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADDME_LIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+
 }
 @end

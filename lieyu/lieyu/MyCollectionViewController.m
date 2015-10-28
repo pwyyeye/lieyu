@@ -8,7 +8,9 @@
 
 #import "MyCollectionViewController.h"
 #import "CollectionCell.h"
-#import "PinKeModel.h"
+#import "MyBarModel.h"
+#import "LYUserHttpTool.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface MyCollectionViewController ()
 
 @end
@@ -22,51 +24,33 @@
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     _tableView.backgroundColor=RGB(237, 237, 237);
-    [self getinKeList];
+    [self gedata];
     // Do any additional setup after loading the view from its nib.
 }
--(void)getinKeList{
+-(void)gedata{
     [collectionList removeAllObjects];
-//    PinKeModel * pinKeModel=[[PinKeModel alloc]init];
-//    pinKeModel.name=@"颜色酒吧";
-//    pinKeModel.jiubaName=@"顶级最嗨最热嘿吧";
-//    pinKeModel.dizhi=@"上海市浦东新区张杨北路112号";
-//    pinKeModel.time=@"2016-09-09 12:00";
-//    pinKeModel.money=@"￥500起";
-//    PinKeModel * pinKeModel2=[[PinKeModel alloc]init];
-//    pinKeModel2.name=@"颜色酒吧";
-//    pinKeModel2.jiubaName=@"顶级最嗨最热嘿吧";
-//    pinKeModel2.dizhi=@"上海市浦东新区张杨北路112号";
-//    pinKeModel2.time=@"2016-09-09 12:00";
-//    pinKeModel2.money=@"￥500起";
-//    PinKeModel * pinKeModel3=[[PinKeModel alloc]init];
-//    pinKeModel3.name=@"颜色酒吧";
-//    pinKeModel3.jiubaName=@"顶级最嗨最热嘿吧";
-//    pinKeModel3.dizhi=@"上海市浦东新区张杨北路112号";
-//    pinKeModel3.time=@"2016-09-09 12:00";
-//    pinKeModel3.money=@"￥500起";
-//    [collectionList addObject:pinKeModel];
-//    [collectionList addObject:pinKeModel2];
-//    [collectionList addObject:pinKeModel3];
-    
-    [self.tableView reloadData];
+    __weak __typeof(self)weakSelf = self;
+        [[LYUserHttpTool shareInstance]getMyBarWithParams:nil block:^(NSMutableArray *result) {
+            [collectionList addObjectsFromArray:result];
+            [weakSelf.tableView reloadData];
+        }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 1;
+    return [collectionList  count];
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 110;
+    return 96;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-        return [collectionList  count];
+        return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -80,20 +64,72 @@
         
         
     }
-    PinKeModel * pinKeModel=collectionList[indexPath.row];
-//    cell.nameLal.text=pinKeModel.name;
-//    cell.jiageLal.text=pinKeModel.money;
-//    cell.miaosuLal.text=pinKeModel.jiubaName;
-//    cell.dizhiLal.text=pinKeModel.dizhi;
-//    cell.timeLal.text=pinKeModel.time;
+    MyBarModel * myBarModel=collectionList[indexPath.section];
+    cell.nameLal.text=myBarModel.barname;
+    [cell.collectionImageView setImageWithURL:[NSURL URLWithString:myBarModel.barinfo.baricon]];
+    cell.jiageLal.text=[NSString stringWithFormat:@"￥%@起",myBarModel.barinfo.lowest_consumption];
+    cell.miaosuLal.text=myBarModel.barinfo.subtitle;
+    cell.dizhiLal.text=myBarModel.barinfo.address;
+//    UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 95.5, 290, 0.5)];
+//    lineLal.backgroundColor=RGB(199, 199, 199);
+//    [cell addSubview:lineLal];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+//    cell.timeLal.text=myBarModel.c;
     return cell;
 }
-
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 14)];
+    view.backgroundColor=RGB(239, 239, 244);
+    return view;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 14;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc]initWithFrame:CGRectZero];
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    
+}
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"取消";
+}
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return UITableViewCellEditingStyleDelete;
+//}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+        return YES;
+    
+    
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        __weak __typeof(self)weakSelf = self;
+        MyBarModel * myBarModel=collectionList[indexPath.section];
+        NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:myBarModel.barid]};
+        [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
+            if(result){
+                
+                [MyUtil showMessage:@"删除成功"];
+                [weakSelf gedata];
+            }
+        }];
+
+    }
     
 }
 - (void)didReceiveMemoryWarning {

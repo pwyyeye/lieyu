@@ -420,6 +420,7 @@
     if(_orderInfoModel.ordertype==0){
         sectionNum=3;
         if(_orderInfoModel.orderStatus==0){
+            sectionNum=2;
             nowB=@"还未付款";
             nextB=@"支付消费";
             
@@ -848,7 +849,7 @@
         if(_orderInfoModel.ordertype==1){
             label.text=@"我们选择的VIP专属经理";
         }else{
-            label.text=@"关于待";
+            label.text=aboutTitle;
         }
         return view;
         
@@ -861,7 +862,7 @@
         label.textColor=RGB(51, 51, 51);
         [view addSubview:label];
 
-        label.text=@"关于待";
+        label.text=aboutTitle;
         
         return view;
     }
@@ -1091,7 +1092,7 @@
             
             
             UILabel *lal = (UILabel*)[cell viewWithTag:1];
-            NSString *title=@"请您在规定的预约时间内到您所选购的商品地点消费，如果您已超过预约时间，无法消费，需取消订单，我们将会收取您的20%卡座预订费（100元封顶），如有多有不便，敬请谅解！";
+            NSString *title=aboutContent;
             
             //高度固定不折行，根据字的多少计算label的宽度
             
@@ -1138,7 +1139,7 @@
         
         
         UILabel *lal = (UILabel*)[cell viewWithTag:1];
-        NSString *title=@"请您在规定的预约时间内到您所选购的商品地点消费，如果您已超过预约时间，无法消费，需取消订单，我们将会收取您的20%卡座预订费（100元封顶），如有多有不便，敬请谅解！";
+        NSString *title=aboutContent;
         
         //高度固定不折行，根据字的多少计算label的宽度
         
