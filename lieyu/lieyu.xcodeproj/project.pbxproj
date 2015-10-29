@@ -369,12 +369,12 @@
 		AD8899D91B9AFE62007BCC7C /* lieyuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899D81B9AFE62007BCC7C /* lieyuTests.m */; };
 		AD92AE9C1BE1D339009F2A34 /* lieyu_default_female@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD92AE9A1BE1D339009F2A34 /* lieyu_default_female@2x.png */; };
 		AD92AE9D1BE1D339009F2A34 /* lieyu_default_male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD92AE9B1BE1D339009F2A34 /* lieyu_default_male@2x.png */; };
-		AD92AEA11BE1E349009F2A34 /* LYAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEA01BE1E349009F2A34 /* LYAlert.m */; };
-		AD92AEA41BE22987009F2A34 /* LYTagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEA31BE22987009F2A34 /* LYTagTableViewController.m */; };
 		AD92AEA81BE22A79009F2A34 /* UserTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEA71BE22A79009F2A34 /* UserTagModel.m */; };
 		AD92AEAC1BE23521009F2A34 /* LYTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEAA1BE23521009F2A34 /* LYTagTableViewCell.m */; };
 		AD92AEAD1BE23521009F2A34 /* LYTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD92AEAB1BE23521009F2A34 /* LYTagTableViewCell.xib */; };
 		AD92AEB11BE235D9009F2A34 /* LYUserTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEB01BE235D9009F2A34 /* LYUserTagButton.m */; };
+		AD92AEB51BE24165009F2A34 /* LYAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEB41BE24165009F2A34 /* LYAlert.m */; };
+		AD92AEB81BE242A3009F2A34 /* LYTagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */; };
 		ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
 		ADD530411BDE1E9D002CF4D8 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD5303F1BDE1E9D002CF4D8 /* AlipaySDK.framework */; };
 		ADD530AF1BDE2BA3002CF4D8 /* AlipaySDK.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
@@ -1124,10 +1124,6 @@
 		AD8899D81B9AFE62007BCC7C /* lieyuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lieyuTests.m; sourceTree = "<group>"; };
 		AD92AE9A1BE1D339009F2A34 /* lieyu_default_female@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyu_default_female@2x.png"; sourceTree = "<group>"; };
 		AD92AE9B1BE1D339009F2A34 /* lieyu_default_male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyu_default_male@2x.png"; sourceTree = "<group>"; };
-		AD92AE9F1BE1E349009F2A34 /* LYAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAlert.h; sourceTree = "<group>"; };
-		AD92AEA01BE1E349009F2A34 /* LYAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAlert.m; sourceTree = "<group>"; };
-		AD92AEA21BE22987009F2A34 /* LYTagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTagTableViewController.h; sourceTree = "<group>"; };
-		AD92AEA31BE22987009F2A34 /* LYTagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTagTableViewController.m; sourceTree = "<group>"; };
 		AD92AEA61BE22A79009F2A34 /* UserTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagModel.h; sourceTree = "<group>"; };
 		AD92AEA71BE22A79009F2A34 /* UserTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTagModel.m; sourceTree = "<group>"; };
 		AD92AEA91BE23521009F2A34 /* LYTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTagTableViewCell.h; sourceTree = "<group>"; };
@@ -1135,6 +1131,10 @@
 		AD92AEAB1BE23521009F2A34 /* LYTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYTagTableViewCell.xib; sourceTree = "<group>"; };
 		AD92AEAF1BE235D9009F2A34 /* LYUserTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserTagButton.h; sourceTree = "<group>"; };
 		AD92AEB01BE235D9009F2A34 /* LYUserTagButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserTagButton.m; sourceTree = "<group>"; };
+		AD92AEB31BE24165009F2A34 /* LYAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAlert.h; sourceTree = "<group>"; };
+		AD92AEB41BE24165009F2A34 /* LYAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAlert.m; sourceTree = "<group>"; };
+		AD92AEB61BE242A3009F2A34 /* LYTagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTagTableViewController.h; sourceTree = "<group>"; };
+		AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTagTableViewController.m; sourceTree = "<group>"; };
 		ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		ADD5303F1BDE1E9D002CF4D8 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		ADD68E241BE10E330060E751 /* 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@2x.png"; sourceTree = "<group>"; };
@@ -2916,15 +2916,6 @@
 			name = "头像";
 			sourceTree = "<group>";
 		};
-		AD92AE9E1BE1E313009F2A34 /* 弹出视图 */ = {
-			isa = PBXGroup;
-			children = (
-				AD92AE9F1BE1E349009F2A34 /* LYAlert.h */,
-				AD92AEA01BE1E349009F2A34 /* LYAlert.m */,
-			);
-			name = "弹出视图";
-			sourceTree = "<group>";
-		};
 		AD92AEA51BE229B3009F2A34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2941,6 +2932,15 @@
 				AD92AEB01BE235D9009F2A34 /* LYUserTagButton.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		AD92AEB21BE2412E009F2A34 /* 弹出视图 */ = {
+			isa = PBXGroup;
+			children = (
+				AD92AEB31BE24165009F2A34 /* LYAlert.h */,
+				AD92AEB41BE24165009F2A34 /* LYAlert.m */,
+			);
+			name = "弹出视图";
 			sourceTree = "<group>";
 		};
 		ADE103391BDE48CA00D9EC38 /* Alipay */ = {
@@ -3076,8 +3076,8 @@
 				ADE103B41BDF286A00D9EC38 /* Setting.m */,
 				ADE103B91BDFA5F200D9EC38 /* LYUserDetailController.h */,
 				ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */,
-				AD92AEA21BE22987009F2A34 /* LYTagTableViewController.h */,
-				AD92AEA31BE22987009F2A34 /* LYTagTableViewController.m */,
+				AD92AEB61BE242A3009F2A34 /* LYTagTableViewController.h */,
+				AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */,
 				AD92AEA91BE23521009F2A34 /* LYTagTableViewCell.h */,
 				AD92AEAA1BE23521009F2A34 /* LYTagTableViewCell.m */,
 				AD92AEAB1BE23521009F2A34 /* LYTagTableViewCell.xib */,
@@ -3316,6 +3316,7 @@
 		D761EFE31BA5AE82000757B0 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				AD92AEB21BE2412E009F2A34 /* 弹出视图 */,
 				15844BB61BE1BDE400247FBC /* IM聊天 */,
 				D7A600521BAC64F80006A768 /* 广告栏展示 */,
 				A20100B41BA80E12009283D1 /* 信息中心 */,
@@ -4032,9 +4033,9 @@
 				15E2404F1BB0F3540090D240 /* UIWindow+Hierarchy.m in Sources */,
 				15013B011BBA33BF00061FAF /* UIImage+WebP.m in Sources */,
 				15B8661B1BDB5894002E2BB6 /* CHDoOrderViewController.m in Sources */,
-				AD92AEA11BE1E349009F2A34 /* LYAlert.m in Sources */,
 				D761F0191BA5AED3000757B0 /* MJRefreshBackGifFooter.m in Sources */,
 				15E240A51BB381450090D240 /* OrderDetailHeadView.m in Sources */,
+				AD92AEB51BE24165009F2A34 /* LYAlert.m in Sources */,
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
@@ -4191,6 +4192,7 @@
 				ADE103BB1BDFA5F200D9EC38 /* LYUserDetailController.m in Sources */,
 				151BB6BF1BBAB80900E7A81C /* DeckFullModel.m in Sources */,
 				15E240A11BB37EF60090D240 /* LYOrderDetailViewController.m in Sources */,
+				AD92AEB81BE242A3009F2A34 /* LYTagTableViewController.m in Sources */,
 				D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */,
 				15E240621BB1237E0090D240 /* BiaoQianChooseViewController.m in Sources */,
 			);
