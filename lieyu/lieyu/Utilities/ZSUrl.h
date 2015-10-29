@@ -27,8 +27,15 @@
 #define LY_GET_PW  @"registerAction.do?action=update"
 //登录
 #define LY_DL  @"accountAction.do?action=login"
-//登录
+//登出
 #define LY_LOGOUT  @"accountAction.do?action=logout"
+
+/***个人中心设置－－－pwy***/
+//
+#define LY_GETUSERTAGS  @"brandAction.do?action=custom"
+
+
+
 
 //我的专属经理
 #define LY_MY_ZSJL @"lyUsersVipStoreAction.do?action=list"

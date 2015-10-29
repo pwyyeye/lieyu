@@ -33,6 +33,10 @@
 
 +(NSString *)getFormatDate:(NSDate *)date;
 
++(NSDate *)getDateFromString:(NSString *)dateString;
+
++(NSDate *)getFullDateFromString:(NSString *)dateString;
+
 +(NSString *)trim:(NSString *)string;
 
 + (NSString *)md5HexDigest:(NSString*)input;

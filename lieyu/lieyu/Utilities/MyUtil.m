@@ -126,6 +126,33 @@
     return currentDateStr;
     
 }
+
++(NSDate *)getDateFromString:(NSString *)dateString
+{
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //用[NSDate date]可以获取系统当前时间
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    
+    return date;
+    
+}
+
++(NSDate *)getFullDateFromString:(NSString *)dateString
+{
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //用[NSDate date]可以获取系统当前时间
+    NSDate *date = [dateFormatter dateFromString:dateString];
+    
+    return date;
+    
+}
+
 +(NSString *)trim:(NSString *)string{
     NSString *result = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return result;

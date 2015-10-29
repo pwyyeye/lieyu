@@ -12,6 +12,7 @@
 #import "JiuBaModel.h"
 #import "OrderInfoModel.h"
 #import "MyBarModel.h"
+#import "UserTagModel.h"
 @implementation LYUserHttpTool
 
 + (LYUserHttpTool *)shareInstance{
@@ -46,6 +47,28 @@
         [app stopLoading];
     }];
 }
+
+#pragma mark - 自动登录
+-(void) userAutoLoginWithParams:(NSDictionary*)params
+                      block:(void(^)(UserModel* result)) block{
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_DL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        NSDictionary *dataDic = response[@"data"];
+        UserModel *userModel=[UserModel objectWithKeyValues:dataDic];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(userModel);
+            });
+        }else{
+            [MyUtil showMessage:message];
+        }
+        
+    } failure:^(NSError *err) {
+    }];
+}
+
 
 #pragma mark - 登出
 -(void) userLogOutWithParams:(NSDictionary*)params
@@ -528,4 +551,28 @@
     }];
 
 }
+
+
+#pragma mark - 获取用户标签
+-(void) getUserTags:(NSDictionary*)params
+                          block:(void(^)(NSMutableArray* result)) block{
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_GETUSERTAGS baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        NSArray *dataList = response[@"data"];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr=[UserTagModel objectArrayWithKeyValuesArray:dataList];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+        }else{
+            [MyUtil showMessage:message];
+        }
+        
+    } failure:^(NSError *err) {
+    }];
+}
+
 @end

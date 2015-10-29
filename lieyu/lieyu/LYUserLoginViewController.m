@@ -79,7 +79,7 @@
     }];
 }
 #pragma mark - 自动登录
-- (void)aotuLogin{
+- (void)autoLogin{
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
     if([MyUtil isEmptyString:username]){
@@ -89,7 +89,7 @@
         return;
     }
     NSDictionary *dic=@{@"username":username,@"password":password};
-    [[LYUserHttpTool shareInstance] userLoginWithParams:dic block:^(UserModel *result) {
+    [[LYUserHttpTool shareInstance] userAutoLoginWithParams:dic block:^(UserModel *result) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         app.s_app_id=result.token;
         app.userModel=result;

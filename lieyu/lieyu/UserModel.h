@@ -43,5 +43,9 @@
 @property(nonatomic,copy)NSString * username;
 @property(nonatomic,copy)NSString * usernick;
 @property(nonatomic,copy)NSString * usertype;
+@property(strong,nonatomic) NSString *gender;
+@property(strong,nonatomic) NSString *age;
+@property(strong,nonatomic) NSString *birthday;
+@property(strong,nonatomic) NSArray *tags;
 @property(nonatomic,assign)int barid;
 @end

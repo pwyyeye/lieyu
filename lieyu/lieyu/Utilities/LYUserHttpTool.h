@@ -17,6 +17,10 @@
 // 登录
 -(void) userLoginWithParams:(NSDictionary*)params
                             block:(void(^)(UserModel* result)) block;
+//自动登录
+-(void) userAutoLoginWithParams:(NSDictionary*)params
+                          block:(void(^)(UserModel* result)) block;
+
 //登出
 -(void) userLogOutWithParams:(NSDictionary*)params
                        block:(void(^)(BOOL result)) block;
