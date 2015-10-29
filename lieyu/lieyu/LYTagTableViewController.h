@@ -7,8 +7,9 @@
 //
 
 #import "LYBaseTableViewController.h"
-
+#import "UserTagModel.h"
+#import "LYUserHttpTool.h"
 @interface LYTagTableViewController : LYBaseTableViewController
 
-
+@property(strong,nonatomic) NSMutableArray *dataArray;
 @end

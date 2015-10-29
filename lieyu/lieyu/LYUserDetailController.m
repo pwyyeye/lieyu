@@ -9,6 +9,7 @@
 #import "LYUserDetailController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UserModel.h"
+#import "LYTagTableViewController.h"
 @interface LYUserDetailController ()
 
 @end
@@ -192,6 +193,10 @@
 //        [self showAlertView];
     }else if(indexPath.row==3){
         [self showAlertView];
+    }else if (indexPath.row==4){
+        LYTagTableViewController *taglist=[[LYTagTableViewController alloc] init];
+        [self.navigationController pushViewController:taglist animated:YES];
+    
     }
     
     

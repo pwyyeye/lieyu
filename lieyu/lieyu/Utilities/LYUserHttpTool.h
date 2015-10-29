@@ -79,4 +79,8 @@
 //信息中心
 -(void) getAddMeListWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block;
+
+//获取用户标签
+-(void) getUserTags:(NSDictionary*)params
+              block:(void(^)(NSMutableArray* result)) block;
 @end
