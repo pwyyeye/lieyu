@@ -17,7 +17,7 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSinaHandler.h"
 #import "PTjoinInViewController.h"
-
+#import "LYUserLoginViewController.h"
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
@@ -65,7 +65,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [self startLocation];
-    
+     
     
     
     //引导页启动
@@ -239,6 +239,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+            LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+            [login autoLogin];
+    }
+    
     [_timer setFireDate:[NSDate distantPast]];//开启
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }

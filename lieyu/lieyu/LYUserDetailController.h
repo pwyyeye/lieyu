@@ -7,11 +7,17 @@
 //
 
 #import "LYBaseTableViewController.h"
-
-@interface LYUserDetailController : LYBaseTableViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
+#import "LYAlert.h"
+@interface LYUserDetailController : LYBaseTableViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,LYAlertDelegate>
 @property(strong,nonatomic) UITableViewCell *selectcedCell;
 
 @property(strong,nonatomic) NSString *modifyNick;
 
 @property(strong,nonatomic) UILabel *selectedLabel;
+
+@property(strong,nonatomic) UIDatePicker *datePicker;
+
+//弹出视图
+@property(strong,nonatomic) LYAlert *alertView;
+
 @end

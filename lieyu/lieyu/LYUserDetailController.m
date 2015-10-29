@@ -27,6 +27,11 @@
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     self.title=@"个人信息";
     data=@[@"头像",@"昵称",@"性别",@"生日",@"标签"];
+    _datePicker=[[UIDatePicker alloc] init];
+    _datePicker.datePickerMode=UIDatePickerModeDate;
+    NSLocale *local=[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+    _datePicker.locale=local;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,39 +74,63 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-85, indexPath.row==0?25:10, 60, 30)];
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-165, indexPath.row==0?25:10, 130, 30)];
     label.font=[UIFont systemFontOfSize:13.0];
 //    label.text=data[indexPath.row];
     cell.textLabel.text=data[indexPath.row];
     label.tag=200+indexPath.row;
     label.font=[UIFont systemFontOfSize:13];
     label.textColor=RGB(51, 51, 51);
+    label.textAlignment=NSTextAlignmentRight;
+    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;
     if (indexPath.row==0) {
        
-        UIImageView *headerImage=[[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 50, 50)];
+        UIImageView *headerImage=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 0, 50, 50)];
         headerImage.contentMode = UIViewContentModeScaleAspectFit;
         headerImage.layer.masksToBounds=YES;
-        headerImage.layer.cornerRadius=35;
+        headerImage.layer.cornerRadius=25;
         headerImage.tag=888;
         [cell addSubview:headerImage];
-        if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"avatar_img"]]) {
-            NSURL *url=[NSURL URLWithString:[USER_DEFAULT objectForKey:@"avatar_img"]];
-            [headerImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"df_03_"]];
-        }
-        
-        
-        
-        
+        NSURL *url=[NSURL URLWithString:mod.avatar_img];
+        [headerImage setImageWithURL:url placeholderImage:[UIImage imageNamed:mod.gender.intValue==1?@"lieyu_default_male":@"lieyu_default_female"]];
         
         
     }else if(indexPath.row==1){
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        UserModel *mod= app.userModel;
+        
         label.text=mod.usernick;
-       
-        label.font=[UIFont systemFontOfSize:13];
-        label.textColor=RGB(51, 51, 51);
+        
+    }else if(indexPath.row==2){
+        label.text=mod.gender.intValue==1?@"男":@"女";
+    }else if(indexPath.row==3){
+        label.text=mod.birthday;
+        if (![MyUtil isEmptyString:mod.birthday]) {
+            NSDate *birthday=[MyUtil getDateFromString:mod.birthday];
+            [_datePicker setDate:birthday animated:NO];
+        }else{
+            [_datePicker setDate:[NSDate date] animated:NO];
+        }
+        
+    }else if(indexPath.row==4){
+        NSArray *tags=mod.tags;
+        NSString *tagname=@"";
+        if (tags.count==0) {
+            tagname=@"选择适合自己的标签";
+        }else{
+            for (NSDictionary *tag in tags) {
+                if ([tagname isEqualToString:@""]) {
+                    tagname= [NSString stringWithFormat:@"%@",[tag objectForKey:@"tagname"]];
+                }else{
+                    tagname= [NSString stringWithFormat:@"%@,%@",tagname,[tag objectForKey:@"tagname"]];
+                }
+                
+            }
+        }
+        label.text=tagname;
+        
     }
+    
     cell.tag=100+indexPath.row;
     [cell.contentView addSubview:label];
     CALayer *layerShadow=[[CALayer alloc]init];
@@ -129,6 +158,7 @@
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    _selectcedCell=[tableView viewWithTag:100+indexPath.row];
     if (indexPath.row==0) {
         UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
         
@@ -138,10 +168,9 @@
         
         
         
-        _selectcedCell=[tableView viewWithTag:100+indexPath.row];
         //        _selectedLabel=_selectcedCell.textLabel;//[_selectcedCell.contentView viewWithTag:200+indexPath.item];
         
-    }else{
+    }else if(indexPath.row==1){
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"修改昵称"
                                
                                                         message:@""
@@ -159,9 +188,48 @@
         text1.keyboardType = UIKeyboardTypeDefault;
         
         [alert show];
+    }else if(indexPath.row==2){
+//        [self showAlertView];
+    }else if(indexPath.row==3){
+        [self showAlertView];
     }
     
     
+    
+}
+
+-(void)showAlertView{
+    if (_alertView!=nil) {
+        [_alertView removeFromSuperview];
+        _alertView=nil;
+    }
+    _alertView=[[LYAlert alloc] initWithType:LYAlertTypeDefault];
+    _alertView.delegate=self;
+    [self.view addSubview:_alertView];
+    
+    [_alertView.showView addSubview:_datePicker];
+    [_alertView show];
+    
+
+}
+
+-(void)button_cancel{
+    [_alertView removeFromSuperview];
+    _alertView=nil;
+    return;
+    
+}
+
+-(void)button_ok{
+    NSDate *select  = [_datePicker date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *date = [dateFormatter stringFromDate:select];
+    NSLog(@"----pass-pass%@---",date);
+    [_alertView removeFromSuperview];
+    _alertView=nil;
+    UILabel *label=[_selectcedCell viewWithTag:_selectcedCell.tag+100];
+    label.text=date;
     
 }
 
@@ -231,34 +299,6 @@
         
     }];
     
-}
-
--(void)didRecieveResults:(NSDictionary *)dictemp withName:(NSString *)urlname{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app stopLoading];
-    
-    NSLog(@"----pass-userdetail%@---",dictemp);
-    if ([[dictemp objectForKey:@"status"] integerValue]== 1) {
-        
-        if ([urlname isEqualToString:@"modifyAvata"]) {
-            //更新上个页面值
-//            ShowMessage(@"修改成功！");
-            [USER_DEFAULT setObject:[dictemp objectForKey:@"data"] forKey:@"avatar_img"];
-        }else if([urlname isEqualToString:@"modifyNick"]){
-//            ShowMessage(@"修改成功！");
-            //            _selectedLabel.text=_modifyNick;
-            
-            [USER_DEFAULT setObject:_modifyNick  forKey:@"user_nick"];
-            [self.tableView reloadData];
-            
-            
-            
-        }
-        //发送通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeToReload" object:nil];
-        //        [self.navigationController popViewControllerAnimated:YES];
-        
-    }
 }
 
 #pragma mark - UIActionSheetDelegate
