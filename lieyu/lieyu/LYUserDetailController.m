@@ -49,6 +49,23 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - 保存用户信息
+
+-(void)savaUserInfo:(NSMutableDictionary *)userInfo needReload:(BOOL)isNeed{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;
+    [userInfo setObject:[NSString stringWithFormat:@"%d",mod.userid] forKey:@"userid"];
+    [[LYUserHttpTool shareInstance] saveUserInfo:[userInfo copy] complete:^(BOOL result) {
+        if (result) {
+            [MyUtil showMessage:@"修改成功！"];
+            if (isNeed) {
+                [self.tableView reloadData];
+            }
+            
+        }
+    }];
+
+}
 
 #pragma mark - Table view data source
 
@@ -79,6 +96,7 @@
     label.font=[UIFont systemFontOfSize:13.0];
 //    label.text=data[indexPath.row];
     cell.textLabel.text=data[indexPath.row];
+    cell.textLabel.font=[UIFont boldSystemFontOfSize:13.0];
     label.tag=200+indexPath.row;
     label.font=[UIFont systemFontOfSize:13];
     label.textColor=RGB(51, 51, 51);
@@ -88,10 +106,10 @@
     UserModel *mod= app.userModel;
     if (indexPath.row==0) {
        
-        UIImageView *headerImage=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 0, 50, 50)];
+        UIImageView *headerImage=[[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-70, 5, 40, 40)];
         headerImage.contentMode = UIViewContentModeScaleAspectFit;
         headerImage.layer.masksToBounds=YES;
-        headerImage.layer.cornerRadius=25;
+        headerImage.layer.cornerRadius=20;
         headerImage.tag=888;
         [cell addSubview:headerImage];
         NSURL *url=[NSURL URLWithString:mod.avatar_img];
@@ -119,11 +137,11 @@
         if (tags.count==0) {
             tagname=@"选择适合自己的标签";
         }else{
-            for (NSDictionary *tag in tags) {
+            for (UserTagModel *tag in tags) {
                 if ([tagname isEqualToString:@""]) {
-                    tagname= [NSString stringWithFormat:@"%@",[tag objectForKey:@"tagname"]];
+                    tagname= [NSString stringWithFormat:@"%@",[MyUtil isEmptyString:tag.name]?tag.tagname:tag.name];
                 }else{
-                    tagname= [NSString stringWithFormat:@"%@,%@",tagname,[tag objectForKey:@"tagname"]];
+                    tagname= [NSString stringWithFormat:@"%@,%@",tagname,[MyUtil isEmptyString:tag.name]?tag.tagname:tag.name];
                 }
                 
             }
@@ -160,6 +178,8 @@
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     _selectcedCell=[tableView viewWithTag:100+indexPath.row];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;
     if (indexPath.row==0) {
         UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
         
@@ -185,7 +205,7 @@
         
         UITextField * text1 = [alert textFieldAtIndex:0];
         
-        text1.text=[USER_DEFAULT objectForKey:@"user_nick"];
+        text1.text=mod.usernick;
         text1.keyboardType = UIKeyboardTypeDefault;
         
         [alert show];
@@ -194,7 +214,20 @@
     }else if(indexPath.row==3){
         [self showAlertView];
     }else if (indexPath.row==4){
+        
         LYTagTableViewController *taglist=[[LYTagTableViewController alloc] init];
+        taglist.delegate=self;
+        //登录反馈的 id为tagid name 为tagname
+        for (UserTagModel *tag in mod.tags) {
+            if (tag.id==0) {
+                tag.id=tag.tagid;
+            }
+            if ([MyUtil isEmptyString:tag.name]) {
+                tag.name=tag.tagname;
+            }
+            
+        }
+        taglist.selectedArray=mod.tags;
         [self.navigationController pushViewController:taglist animated:YES];
     
     }
@@ -203,6 +236,32 @@
     
 }
 
+
+-(void)userTagSelected:(NSMutableArray *)usertags{
+    NSString *tagids=@"";
+    NSString *tagNames=@"";
+    for (UserTagModel *usertag in usertags) {
+        if ([tagids isEqualToString:@""]) {
+            tagids=[NSString stringWithFormat:@"%d",usertag.id];
+            tagNames=[NSString stringWithFormat:@"%@",usertag.name];
+        }else{
+            tagids=[NSString stringWithFormat:@"%@,%d",tagids,usertag.id];
+            tagNames=[NSString stringWithFormat:@"%@,%@",tagNames,usertag.name];
+        }
+    
+    }
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;
+    
+    mod.tags=[usertags copy];
+    
+    UILabel *label=[_selectcedCell viewWithTag:_selectcedCell.tag+100];
+    label.text=tagNames;
+    
+    NSMutableDictionary *userinfo=[NSMutableDictionary new];
+    [userinfo setObject:tagids forKey:@"tag"];
+    [self savaUserInfo:userinfo needReload:YES];
+}
 -(void)showAlertView{
     if (_alertView!=nil) {
         [_alertView removeFromSuperview];
@@ -224,7 +283,7 @@
     return;
     
 }
-
+#pragma mark - 修改生日
 -(void)button_ok{
     NSDate *select  = [_datePicker date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -233,26 +292,38 @@
     NSLog(@"----pass-pass%@---",date);
     [_alertView removeFromSuperview];
     _alertView=nil;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;
+    
+    if ([date isEqualToString:mod.birthday]) {
+        return;
+    }
+    
     UILabel *label=[_selectcedCell viewWithTag:_selectcedCell.tag+100];
     label.text=date;
+    mod.birthday=date;
+    NSMutableDictionary *userinfo=[NSMutableDictionary new];
+    [userinfo setObject:date forKey:@"birthday"];
+    [self savaUserInfo:userinfo needReload:YES];
     
 }
-
+#pragma mark -  修改昵称
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     UITextField *tf=[alertView textFieldAtIndex:0];
-    
-    if ([MyUtil isEmptyString:tf.text] || [tf.text isEqualToString:[USER_DEFAULT objectForKey:@"user_nick"]]) {
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;
+    if ([MyUtil isEmptyString:tf.text] || [tf.text isEqualToString:mod.usernick]) {
         return;
     }
     
     NSLog(@"----pass-pass%@---",tf.text);
     _modifyNick=tf.text;
     
-//    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_modifyUserNick withType:POSTURL withPam:@{@"user_nick":tf.text} withUrlName:@"modifyNick"];
-//    httpController.delegate = self;
-//    
-//    [httpController onSearchForPostJson];
+    NSMutableDictionary *userinfo=[NSMutableDictionary new];
+    [userinfo setObject:_modifyNick forKey:@"usernick"];
+    mod.usernick=_modifyNick;
+    [self savaUserInfo:userinfo needReload:YES];
     
     
 }
@@ -286,13 +357,20 @@
     UIImageView *imageView= (UIImageView *)[_selectcedCell viewWithTag:888];
     imageView.image=scaledImage ;
     
-    
-//    HTTPController *httpController =  [[HTTPController alloc]initWith:requestUrl_modifyUserAvatar withType:POSTURL withPam:nil withUrlName:@"modifyAvata"];
-//    httpController.delegate = self;
-//    
-//    [httpController onFileForPostJson:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//        [formData appendPartWithFileData:UIImagePNGRepresentation(scaledImage) name:@"avatar_img" fileName:@"avatar_img.png" mimeType:@"image/png"];
-//    } error:nil];
+    [HTTPController uploadImageToQiuNiu:scaledImage complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+        if (![MyUtil isEmptyString:key]) {
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            UserModel *mod= app.userModel;
+            mod.avatar_img=[MyUtil getQiniuUrl:key width:80 andHeight:80];
+            NSLog(@"----pass-uploadImageToQiuNiu%@---",mod.avatar_img);
+            NSMutableDictionary *userinfo=[NSMutableDictionary new];
+            
+            [userinfo setObject:key forKey:@"avatar_img"];
+            
+            [self savaUserInfo:userinfo needReload:YES];
+        }
+    }];
+
     
     
 }
@@ -353,6 +431,8 @@
     }
     
 }
+
+
 
 
 @end

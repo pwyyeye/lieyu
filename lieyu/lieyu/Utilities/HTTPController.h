@@ -13,6 +13,9 @@
 //#import "NSString+JSONCategories.h"
 //#import "NSObject+JSONCategories.h"
 #import "LYUserLoginViewController.h"
+#import "QNUploadManager.h"
+#import "QNUploadOption.h"
+
 typedef NS_ENUM(NSInteger, RequestMethodType){
     RequestMethodTypePost = 1,
     RequestMethodTypeGet = 2
@@ -43,6 +46,10 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
                    params:(NSDictionary *)params
                   success:(void (^)(id response))success
                   failure:(void (^)(NSError *err))failure;
+//七牛上传图片
++(void)uploadImageToQiuNiu:(UIImage *)image complete:(QNUpCompletionHandler)completionHandler;
+
+
 @property (nonatomic, assign) id<HTTPControllerProtocol> delegate ;
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withUrlName:(NSString *)name;
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withPam:(NSDictionary *)pam  withUrlName:(NSString *)name;

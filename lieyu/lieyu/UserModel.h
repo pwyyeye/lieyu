@@ -26,7 +26,7 @@
 //"username": "13799996422",
 //"usernick": "",
 //"usertype": "1"
-@property(nonatomic,assign)int applyStatus;
+@property(nonatomic,assign)int applyStatus; 
 @property(nonatomic,copy)NSString * avatar_img;
 @property(nonatomic,copy)NSString * captchas;
 @property(nonatomic,copy)NSString * confirm;

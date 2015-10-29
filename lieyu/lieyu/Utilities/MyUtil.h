@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonDigest.h>
-
 @interface MyUtil : NSObject
 
 +(MyUtil *)shareUtil;
@@ -33,6 +32,8 @@
 
 +(NSString *)getFormatDate:(NSDate *)date;
 
++(NSString *)getNumberFormatDate:(NSDate *)date;
+
 +(NSDate *)getDateFromString:(NSString *)dateString;
 
 +(NSDate *)getFullDateFromString:(NSString *)dateString;
@@ -50,4 +51,10 @@
 + (NSDictionary *) getKeyValue:(NSString *)string;
 //获取月份中文
 + (NSString *) getMoonValue:(NSString *)string;
+//获取纯色块图片
++(UIImage *)getImageFromColor:(UIColor *)color;
+//获取随机数
++ (NSString *)randomStringWithLength:(int)len;
+//获取7牛全链接
++ (NSString *)getQiniuUrl:(NSString *)key width:(NSInteger)width andHeight:(NSInteger)height;
 @end

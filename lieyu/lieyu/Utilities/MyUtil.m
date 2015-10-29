@@ -19,7 +19,7 @@
     NSLog(@"-------singletonAlipay---------%@",singleton);
     return singleton;
 }
-
+#pragma --mark 判断字符串是否为空
 + (BOOL) isEmptyString:(NSString *)string {
     if (string == nil || string == NULL) {
         return YES;
@@ -32,6 +32,7 @@
     }
     return NO;
 }
+#pragma --mark  转化UTF8 的json
 + (NSString *) toJsonUTF8String:(id)obj{
     NSError *error=nil;
     NSData *data=[NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:&error];
@@ -42,7 +43,7 @@
     NSString *json=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return json;
 }
-
+#pragma --mark  保存图片到沙盒
 + (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName andCompressionQuality:(CGFloat) quality {
     NSData *imageDate=UIImageJPEGRepresentation(currentImage, quality);
     NSString *fullPath=[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]  stringByAppendingPathComponent:imageName];
@@ -55,7 +56,7 @@
 }
 
 
-//颜色值转化 ＃ffffff 转化成10进制
+#pragma --mark  颜色值转化 ＃ffffff 转化成10进制
 +(int)colorStringToInt:(NSString *)colorStrig colorNo:(int)colorNo
 {
     const char *cstr;
@@ -80,7 +81,7 @@
     return nColor;
 }
 
-//验证手机号码格式
+#pragma --mark  验证手机号码格式
 + (BOOL)isValidateTelephone:(NSString *)str
 
 {
@@ -107,13 +108,14 @@
     
 }
 
-//利用正则表达式验证邮箱
+#pragma --mark  利用正则表达式验证邮箱
 +(BOOL)isValidateEmail:(NSString *)email {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:email];
 }
 
+#pragma --mark 获取格式化日期字符串 yyyy-MM-dd HH:mm:ss
 +(NSString *)getFormatDate:(NSDate *)date
 {
     //实例化一个NSDateFormatter对象
@@ -126,7 +128,21 @@
     return currentDateStr;
     
 }
+#pragma --mark 获取格式化日期字符串 yyyyMMddHHmmss
++(NSString *)getNumberFormatDate:(NSDate *)date
+{
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+    //用[NSDate date]可以获取系统当前时间
+    NSString *currentDateStr = [dateFormatter stringFromDate:date];
+    
+    return currentDateStr;
+    
+}
 
+#pragma --mark 字符串转日期 yyyy－MM－dd
 +(NSDate *)getDateFromString:(NSString *)dateString
 {
     //实例化一个NSDateFormatter对象
@@ -139,7 +155,7 @@
     return date;
     
 }
-
+#pragma --mark 字符串转日期 yyyyMMddHHmmss
 +(NSDate *)getFullDateFromString:(NSString *)dateString
 {
     //实例化一个NSDateFormatter对象
@@ -153,13 +169,14 @@
     
 }
 
+#pragma --mark 字符串去除空串
 +(NSString *)trim:(NSString *)string{
     NSString *result = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     return result;
 
 }
 
-
+#pragma --mark md5 加密
 + (NSString *)md5HexDigest:(NSString*)input
 {
     const char *cStr = [input UTF8String];
@@ -174,7 +191,7 @@
              ] lowercaseString];
 }
 
-//身份证号
+#pragma --mark 验证身份证号
 + (BOOL) validateIdentityCard: (NSString *)identityCard
 {
     BOOL flag;
@@ -186,7 +203,7 @@
     NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
     return [identityCardPredicate evaluateWithObject:identityCard];
 }
-//弹出消息框来显示消息
+#pragma --mark 弹出消息框来显示消息
 + (void)showMessage:(NSString* )message
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil
@@ -194,7 +211,7 @@
                                               otherButtonTitles:nil];
     [alertView show];
 }
-//判断是否数字
+#pragma --mark 判断是否数字
 + (BOOL)isPureInt:(NSString*)string{
     NSScanner* scan = [NSScanner scannerWithString:string];
     int val;
@@ -220,4 +237,37 @@
     NSDictionary *dic=@{@"1":@"一月",@"2":@"二月",@"3":@"三月",@"4":@"四月",@"5":@"五月",@"6":@"六月",@"7":@"七月",@"8":@"八月",@"9":@"九月",@"10":@"十月",@"11":@"十一月",@"12":@"十二月"};
     return [dic objectForKey:string];
 }
+#pragma --mark 通过颜色生产纯色图片
++(UIImage *)getImageFromColor:(UIColor *)color{
+    
+    CGRect rect = CGRectMake(0, 0, 10, 10);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext(); return img;
+}
+
+#pragma --mark 生产指定长度随机串
++ (NSString *)randomStringWithLength:(int)len
+{
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform((int)[letters length])]];
+    }
+    
+    return randomString;
+}
+
+#pragma --mark 获取7牛访问链接
+
++ (NSString *)getQiniuUrl:(NSString *)key width:(NSInteger)width andHeight:(NSInteger)height{
+    NSString *encodeKey=[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [NSString stringWithFormat:@"@http://source.lie98.com/%@?imageView2/0/w/%d/h/%d",encodeKey,width,height];
+}
+
+
 @end

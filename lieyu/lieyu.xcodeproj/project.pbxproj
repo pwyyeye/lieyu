@@ -2930,6 +2930,9 @@
 			children = (
 				AD92AEAF1BE235D9009F2A34 /* LYUserTagButton.h */,
 				AD92AEB01BE235D9009F2A34 /* LYUserTagButton.m */,
+				AD92AEA91BE23521009F2A34 /* LYTagTableViewCell.h */,
+				AD92AEAA1BE23521009F2A34 /* LYTagTableViewCell.m */,
+				AD92AEAB1BE23521009F2A34 /* LYTagTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3078,9 +3081,6 @@
 				ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */,
 				AD92AEB61BE242A3009F2A34 /* LYTagTableViewController.h */,
 				AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */,
-				AD92AEA91BE23521009F2A34 /* LYTagTableViewCell.h */,
-				AD92AEAA1BE23521009F2A34 /* LYTagTableViewCell.m */,
-				AD92AEAB1BE23521009F2A34 /* LYTagTableViewCell.xib */,
 			);
 			name = "设置";
 			sourceTree = "<group>";

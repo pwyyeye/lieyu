@@ -9,5 +9,10 @@
 #import "UserModel.h"
 
 @implementation UserModel
-
++ (NSDictionary *)objectClassInArray
+{
+    return @{
+             @"tags" : @"UserTagModel",
+             };
+}
 @end
