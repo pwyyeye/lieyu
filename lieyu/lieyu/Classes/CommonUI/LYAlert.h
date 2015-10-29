@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, LYAlertType) {
 -(void)button_ok;
 
 -(void)button_cancel;
-
+ 
 @end
 
 @interface LYAlert : UIView

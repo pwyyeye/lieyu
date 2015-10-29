@@ -86,9 +86,12 @@
     }
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
-    NSArray *cellArray=_dataArray[indexPath.section];
+    NSArray *cellArray=_dataArray[indexPath.row];
     if (cellArray.count==3) {
-        cell.button1.usertag=[cellArray objectAtIndex:0];
+        UserTagModel *tag1=[cellArray objectAtIndex:0];
+        cell.button1.usertag=tag1;
+        
+        [cell.button1 setTitle:tag1.name forState:UIControlStateNormal];
         cell.button2.usertag=[cellArray objectAtIndex:1];
         cell.button3.usertag=[cellArray objectAtIndex:2];
     }else if(cellArray.count==2){

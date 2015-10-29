@@ -22,7 +22,7 @@
 }
 */
 -(instancetype)initWithType:(LYAlertType)type{
-    self=[super init];
+    self=[super init]; 
     if (self) {
         if (type==LYAlertTypeDefault) {
             self.frame=CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
