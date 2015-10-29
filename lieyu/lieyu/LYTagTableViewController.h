@@ -9,7 +9,24 @@
 #import "LYBaseTableViewController.h"
 #import "UserTagModel.h"
 #import "LYUserHttpTool.h"
+
+
+@protocol LYUserTagSelectedDelegate <NSObject>
+
+-(void)userTagSelected:(NSMutableArray *)usertags;
+
+@end
+
 @interface LYTagTableViewController : LYBaseTableViewController
 
+@property(strong,nonatomic) id<LYUserTagSelectedDelegate>delegate;
+
 @property(strong,nonatomic) NSMutableArray *dataArray;
+
+@property(strong,nonatomic) NSMutableArray *tagButtons;
+
+//之前选择的标签
+@property(strong,nonatomic) NSArray *selectedArray;
 @end
+
+

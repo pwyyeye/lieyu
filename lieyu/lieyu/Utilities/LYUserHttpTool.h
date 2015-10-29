@@ -83,6 +83,10 @@
 //获取用户标签
 -(void) getUserTags:(NSDictionary*)params
               block:(void(^)(NSMutableArray* result)) block;
+//保存用户资料
+-(void) saveUserInfo:(NSDictionary*)params
+            complete:(void (^)(BOOL result))result;
+
 //查找好友
 -(void) getFindFriendListWithParams:(NSDictionary*)params
                          block:(void(^)(NSMutableArray* result)) block;

@@ -31,9 +31,10 @@
 #define LY_LOGOUT  @"accountAction.do?action=logout"
 
 /***个人中心设置－－－pwy***/
-//
+//请求用户标签列表
 #define LY_GETUSERTAGS  @"brandAction.do?action=custom"
-
+//请求修改用户信息
+#define LY_SAVE_USERINFO  @"accountAction.do?action=save"
 
 
 

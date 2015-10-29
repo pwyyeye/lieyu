@@ -12,6 +12,8 @@
 
 @property(assign,nonatomic) NSInteger id;
 @property(strong,nonatomic) NSString *name;
+@property(strong,nonatomic) NSString *tagname;
+@property(assign,nonatomic) NSInteger tagid;
 @property(assign,nonatomic) NSInteger orders;
 
 @end

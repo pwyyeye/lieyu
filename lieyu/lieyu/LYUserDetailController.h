@@ -8,7 +8,10 @@
 
 #import "LYBaseTableViewController.h"
 #import "LYAlert.h"
-@interface LYUserDetailController : LYBaseTableViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,LYAlertDelegate>
+#import "LYTagTableViewController.h"
+#import "UserTagModel.h"
+#import "HTTPController.h"
+@interface LYUserDetailController : LYBaseTableViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,LYAlertDelegate,LYUserTagSelectedDelegate>
 @property(strong,nonatomic) UITableViewCell *selectcedCell;
 
 @property(strong,nonatomic) NSString *modifyNick;

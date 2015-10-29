@@ -624,4 +624,28 @@
     }];
 }
 
+
+#pragma mark 保存用户信息
+-(void) saveUserInfo:(NSDictionary*)params
+                  complete:(void (^)(BOOL result))result{
+
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SAVE_USERINFO baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+        }else{
+            result(NO);
+         
+            [MyUtil showMessage:message];
+        }
+        
+    } failure:^(NSError *err) {
+        result(NO);
+        
+        
+    }];
+}
 @end
