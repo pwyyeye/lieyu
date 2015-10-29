@@ -32,17 +32,20 @@
 //"online": "",
 //"user": 130610,
 //"username": "陈华阳"
-@property(nonatomic,copy)NSString * friend;
+@property(nonatomic,assign)int friend;
 @property(nonatomic,copy)NSString * friendName;
+@property(nonatomic,copy)NSString * name;
 @property(nonatomic,copy)NSString * icon;
 @property(nonatomic,copy)NSString * imUserId;
 @property(nonatomic,copy)NSString * makeDate;
 @property(nonatomic,copy)NSString * makeWay;
+@property(nonatomic,copy)NSString * distance;
 @property(nonatomic,copy)NSString * mobile;
 @property(nonatomic,copy)NSString * online;
 @property(nonatomic,copy)NSString * user;
 @property(nonatomic,copy)NSString * sex;
 @property(nonatomic,copy)NSString * usernick;
+@property(nonatomic,copy)NSString *mark;
 @property(nonatomic,assign)int id;
 @property(nonatomic,assign)int userid;
 @property(nonatomic,copy)NSString * username;
@@ -50,6 +53,7 @@
 @property(nonatomic,copy)NSString * username_en;
 @property(nonatomic,copy)NSString * phone;
 @property(nonatomic,retain)NSArray * tag;
+@property(nonatomic,retain)NSArray *userTag;
 @property NSInteger sectionNumber;
 @property BOOL rowSelected;
 @end

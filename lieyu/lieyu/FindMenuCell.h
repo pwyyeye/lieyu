@@ -10,6 +10,6 @@
 
 @interface FindMenuCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLal;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 
 @end

@@ -528,4 +528,55 @@
     }];
 
 }
+#pragma mark查找好友
+-(void) getFindFriendListWithParams:(NSDictionary*)params
+                              block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FINDFRIEND_LIST baseURL:QINIU_SERVER params:params success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSArray *dataList= data[@"items"];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+}
+//附近玩家
+-(void) getFindNearFriendListWithParams:(NSDictionary*)params
+                                  block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FINDNEARFRIEND_LIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSArray *dataList= response[@"data"];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+}
 @end

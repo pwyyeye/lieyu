@@ -9,6 +9,7 @@
 
 #import "UIViewExt.h"
 #import <UIKit/UIKit.h>
+#import "IMchatViewController.h"
 @interface LYBaseViewController : UIViewController
 @property (nonatomic,retain)UserModel *userModel;
 - (NSString *)randomStringWithLength:(int)len;

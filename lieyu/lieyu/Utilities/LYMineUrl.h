@@ -32,4 +32,8 @@
 #define LY_ADDME_LIST @"lyUsersFriendAction.do?action=expand"
 //加好友
 #define LY_ADDFRIEND_LIST @"friendAction.do?action=add"
+//查找好友
+#define LY_FINDFRIEND_LIST @"usersAction.do?action=cancel"
+//附近玩家
+#define LY_FINDNEARFRIEND_LIST @"lyUserShakeAction.do?action=update"
 #endif

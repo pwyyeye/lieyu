@@ -75,4 +75,10 @@
 //信息中心
 -(void) getAddMeListWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block;
+//查找好友
+-(void) getFindFriendListWithParams:(NSDictionary*)params
+                         block:(void(^)(NSMutableArray* result)) block;
+//附近玩家
+-(void) getFindNearFriendListWithParams:(NSDictionary*)params
+                              block:(void(^)(NSMutableArray* result)) block;
 @end

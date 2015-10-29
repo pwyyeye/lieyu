@@ -9,6 +9,9 @@
 #import "LYMyFriendViewController.h"
 #import "CustomerCell.h"
 #import "LYUserHttpTool.h"
+#import "LYMyFriendDetailViewController.h"
+#import "LYSearchFriendViewController.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface LYMyFriendViewController ()
 
 @end
@@ -21,7 +24,6 @@
     rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add5"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
     [self.navigationItem setRightBarButtonItem:rightBtn];
     self.title=@"好友列表";
-    
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
     [self getMyCustomerslist];
@@ -182,7 +184,8 @@
         
         cell.nameLal.text = @"No Name";
     }
-    
+    [cell.cusImageView setImageWithURL:[NSURL URLWithString:addressBook.icon]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //    cell.backgroundColor=[UIColor clearColor];
     
     return cell;
@@ -199,9 +202,11 @@
         addressBook = (CustomerModel*)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-//    ZSCustomerDetailViewController *customerDetailsViewController=[[ZSCustomerDetailViewController alloc]initWithNibName:@"ZSCustomerDetailViewController" bundle:nil];
-//    
-//    [self.navigationController pushViewController:customerDetailsViewController animated:YES];
+    LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    friendDetailViewController.title=@"详细信息";
+    friendDetailViewController.type=@"0";
+    friendDetailViewController.customerModel=addressBook;
+    [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }
 
 
@@ -322,7 +327,9 @@
     
 }
 -(void)addFriendAct:(id)sender{
-    
+    LYSearchFriendViewController *searchFriendViewController=[[LYSearchFriendViewController alloc]initWithNibName:@"LYSearchFriendViewController" bundle:nil];
+    searchFriendViewController.title=@"搜索";
+    [self.navigationController pushViewController:searchFriendViewController animated:YES];
 }
 /*
 #pragma mark - Navigation

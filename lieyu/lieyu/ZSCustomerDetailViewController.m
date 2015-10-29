@@ -7,7 +7,7 @@
 //
 
 #import "ZSCustomerDetailViewController.h"
-
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface ZSCustomerDetailViewController ()
 
 @end
@@ -22,6 +22,7 @@
     self.customerImageView.layer.masksToBounds =YES;
     
     self.customerImageView.layer.cornerRadius =self.customerImageView.frame.size.width/2;
+    
     // Do any additional setup after loading the view from its nib.
 }
 
