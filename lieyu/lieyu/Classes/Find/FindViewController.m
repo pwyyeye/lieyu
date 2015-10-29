@@ -148,7 +148,7 @@
             //扫一扫
             SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
             saoYiSaoViewController.title=@"扫一扫";
-            [self.navigationController pushViewController:saoYiSaoViewController animated:YES];
+            [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
         }
     }
     //        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
