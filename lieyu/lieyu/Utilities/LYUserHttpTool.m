@@ -602,4 +602,26 @@
         [app stopLoading];
     }];
 }
+#pragma mark - 获取用户标签
+-(void) getUserTags:(NSDictionary*)params
+              block:(void(^)(NSMutableArray* result)) block{
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_GETUSERTAGS baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        NSArray *dataList = response[@"data"];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr=[UserTagModel objectArrayWithKeyValuesArray:dataList];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+        }else{
+            [MyUtil showMessage:message];
+        }
+        
+    } failure:^(NSError *err) {
+    }];
+}
+
 @end
