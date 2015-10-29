@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OS0-df-sgu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="OS0-df-sgu">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -16,7 +16,7 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hdH-sG-Uxx">
                                 <rect key="frame" x="280" y="36" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="DF50A25C-B9C9-42F1-B66A-99F4A6065BE4">
+                                <state key="normal" image="786C4DEF-B3B2-459F-A668-3A897A38D04A">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -2175,7 +2175,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="imageView" destination="7aS-NQ-H55" id="Uwo-f0-MfK"/>
+                                            <outlet property="iconImageView" destination="7aS-NQ-H55" id="nos-bw-YGt"/>
                                             <outlet property="titleLal" destination="7Uv-0I-YPF" id="hU0-mm-DNZ"/>
                                         </connections>
                                     </tableViewCell>
@@ -2424,7 +2424,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DF50A25C-B9C9-42F1-B66A-99F4A6065BE4" width="22" height="22">
+        <image name="786C4DEF-B3B2-459F-A668-3A897A38D04A" width="22" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

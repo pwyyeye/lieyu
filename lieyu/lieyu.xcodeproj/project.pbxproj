@@ -54,6 +54,26 @@
 		1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1559DD161BDB27DB00F3FE9B /* CarHeadView.xib */; };
 		1559DD1A1BDB2B3C00F3FE9B /* CarBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DD191BDB2B3C00F3FE9B /* CarBottomView.m */; };
 		1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1559DD1B1BDB2B4E00F3FE9B /* CarBottomView.xib */; };
+		15844BB41BE1B17D00247FBC /* LYMyFriendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15844BB21BE1B17D00247FBC /* LYMyFriendDetailViewController.m */; };
+		15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15844BB31BE1B17D00247FBC /* LYMyFriendDetailViewController.xib */; };
+		15844BB91BE1BE7800247FBC /* IMchatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15844BB81BE1BE7800247FBC /* IMchatViewController.m */; };
+		15844BBE1BE1C70600247FBC /* LYSearchFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15844BBC1BE1C70600247FBC /* LYSearchFriendViewController.m */; };
+		15844BBF1BE1C70600247FBC /* LYSearchFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15844BBD1BE1C70600247FBC /* LYSearchFriendViewController.xib */; };
+		15844BC31BE1CA3200247FBC /* WanYouInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15844BC11BE1CA3200247FBC /* WanYouInfoCell.m */; };
+		15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15844BC21BE1CA3200247FBC /* WanYouInfoCell.xib */; };
+		15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15844BC61BE1CAEB00247FBC /* FindMenuTwoCell.m */; };
+		15844BC91BE1CAEB00247FBC /* FindMenuTwoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15844BC71BE1CAEB00247FBC /* FindMenuTwoCell.xib */; };
+		15844BCE1BE1EF5000247FBC /* LYAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15844BCC1BE1EF5000247FBC /* LYAddFriendViewController.m */; };
+		15844BCF1BE1EF5000247FBC /* LYAddFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15844BCD1BE1EF5000247FBC /* LYAddFriendViewController.xib */; };
+		15844BD41BE1FA3600247FBC /* LYNearFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15844BD21BE1FA3600247FBC /* LYNearFriendViewController.m */; };
+		15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15844BD31BE1FA3600247FBC /* LYNearFriendViewController.xib */; };
+		15844BFD1BE2101200247FBC /* SaoYiSaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15844BFB1BE2101200247FBC /* SaoYiSaoViewController.m */; };
+		15844BFE1BE2101200247FBC /* SaoYiSaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15844BFC1BE2101200247FBC /* SaoYiSaoViewController.xib */; };
+		15844C021BE22A0300247FBC /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15844C011BE22A0300247FBC /* libiconv.dylib */; };
+		15844C031BE22A6900247FBC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15844BFF1BE229B400247FBC /* AVFoundation.framework */; };
+		15844C051BE22A7500247FBC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15844C041BE22A7500247FBC /* CoreMedia.framework */; };
+		15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15844C061BE22A8100247FBC /* CoreVideo.framework */; };
+		15844C091BE22A8800247FBC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15844C081BE22A8800247FBC /* QuartzCore.framework */; };
 		15A4CF3B1BD7309500C22C01 /* LYTitleInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A4CF3A1BD7309500C22C01 /* LYTitleInfoCell.m */; };
 		15A4CF3E1BD7321C00C22C01 /* DWTaoCanXQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A4CF3D1BD7321C00C22C01 /* DWTaoCanXQViewController.m */; };
 		15A4CF421BD7605200C22C01 /* DWSureOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A4CF411BD7605200C22C01 /* DWSureOrderViewController.m */; };
@@ -579,6 +599,34 @@
 		1559DD181BDB2B3C00F3FE9B /* CarBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarBottomView.h; sourceTree = "<group>"; };
 		1559DD191BDB2B3C00F3FE9B /* CarBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarBottomView.m; sourceTree = "<group>"; };
 		1559DD1B1BDB2B4E00F3FE9B /* CarBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarBottomView.xib; sourceTree = "<group>"; };
+		15844BB11BE1B17D00247FBC /* LYMyFriendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYMyFriendDetailViewController.h; sourceTree = "<group>"; };
+		15844BB21BE1B17D00247FBC /* LYMyFriendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYMyFriendDetailViewController.m; sourceTree = "<group>"; };
+		15844BB31BE1B17D00247FBC /* LYMyFriendDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYMyFriendDetailViewController.xib; sourceTree = "<group>"; };
+		15844BB71BE1BE7800247FBC /* IMchatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMchatViewController.h; sourceTree = "<group>"; };
+		15844BB81BE1BE7800247FBC /* IMchatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMchatViewController.m; sourceTree = "<group>"; };
+		15844BBB1BE1C70600247FBC /* LYSearchFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSearchFriendViewController.h; sourceTree = "<group>"; };
+		15844BBC1BE1C70600247FBC /* LYSearchFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSearchFriendViewController.m; sourceTree = "<group>"; };
+		15844BBD1BE1C70600247FBC /* LYSearchFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYSearchFriendViewController.xib; sourceTree = "<group>"; };
+		15844BC01BE1CA3200247FBC /* WanYouInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WanYouInfoCell.h; sourceTree = "<group>"; };
+		15844BC11BE1CA3200247FBC /* WanYouInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WanYouInfoCell.m; sourceTree = "<group>"; };
+		15844BC21BE1CA3200247FBC /* WanYouInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WanYouInfoCell.xib; sourceTree = "<group>"; };
+		15844BC51BE1CAEB00247FBC /* FindMenuTwoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindMenuTwoCell.h; sourceTree = "<group>"; };
+		15844BC61BE1CAEB00247FBC /* FindMenuTwoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindMenuTwoCell.m; sourceTree = "<group>"; };
+		15844BC71BE1CAEB00247FBC /* FindMenuTwoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindMenuTwoCell.xib; sourceTree = "<group>"; };
+		15844BCB1BE1EF5000247FBC /* LYAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAddFriendViewController.h; sourceTree = "<group>"; };
+		15844BCC1BE1EF5000247FBC /* LYAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAddFriendViewController.m; sourceTree = "<group>"; };
+		15844BCD1BE1EF5000247FBC /* LYAddFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYAddFriendViewController.xib; sourceTree = "<group>"; };
+		15844BD11BE1FA3600247FBC /* LYNearFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYNearFriendViewController.h; sourceTree = "<group>"; };
+		15844BD21BE1FA3600247FBC /* LYNearFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYNearFriendViewController.m; sourceTree = "<group>"; };
+		15844BD31BE1FA3600247FBC /* LYNearFriendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYNearFriendViewController.xib; sourceTree = "<group>"; };
+		15844BFA1BE2101200247FBC /* SaoYiSaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaoYiSaoViewController.h; sourceTree = "<group>"; };
+		15844BFB1BE2101200247FBC /* SaoYiSaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaoYiSaoViewController.m; sourceTree = "<group>"; };
+		15844BFC1BE2101200247FBC /* SaoYiSaoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaoYiSaoViewController.xib; sourceTree = "<group>"; };
+		15844BFF1BE229B400247FBC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		15844C011BE22A0300247FBC /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		15844C041BE22A7500247FBC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		15844C061BE22A8100247FBC /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		15844C081BE22A8800247FBC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		15A4CF391BD7309500C22C01 /* LYTitleInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTitleInfoCell.h; sourceTree = "<group>"; };
 		15A4CF3A1BD7309500C22C01 /* LYTitleInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTitleInfoCell.m; sourceTree = "<group>"; };
 		15A4CF3C1BD7321C00C22C01 /* DWTaoCanXQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTaoCanXQViewController.h; sourceTree = "<group>"; };
@@ -1388,6 +1436,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15844C091BE22A8800247FBC /* QuartzCore.framework in Frameworks */,
+				15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */,
+				15844C051BE22A7500247FBC /* CoreMedia.framework in Frameworks */,
+				15844C031BE22A6900247FBC /* AVFoundation.framework in Frameworks */,
+				15844C021BE22A0300247FBC /* libiconv.dylib in Frameworks */,
 				ADE103A31BDE4AB800D9EC38 /* libssl.a in Frameworks */,
 				ADD530AF1BDE2BA3002CF4D8 /* AlipaySDK.bundle in Frameworks */,
 				ADD530411BDE1E9D002CF4D8 /* AlipaySDK.framework in Frameworks */,
@@ -1557,6 +1610,65 @@
 			name = view;
 			sourceTree = "<group>";
 		};
+		15844BB01BE1B15600247FBC /* 玩友详情 */ = {
+			isa = PBXGroup;
+			children = (
+				15844BB11BE1B17D00247FBC /* LYMyFriendDetailViewController.h */,
+				15844BB21BE1B17D00247FBC /* LYMyFriendDetailViewController.m */,
+				15844BB31BE1B17D00247FBC /* LYMyFriendDetailViewController.xib */,
+			);
+			name = "玩友详情";
+			sourceTree = "<group>";
+		};
+		15844BB61BE1BDE400247FBC /* IM聊天 */ = {
+			isa = PBXGroup;
+			children = (
+				15844BB71BE1BE7800247FBC /* IMchatViewController.h */,
+				15844BB81BE1BE7800247FBC /* IMchatViewController.m */,
+			);
+			name = "IM聊天";
+			sourceTree = "<group>";
+		};
+		15844BBA1BE1C64100247FBC /* 搜索玩友 */ = {
+			isa = PBXGroup;
+			children = (
+				15844BBB1BE1C70600247FBC /* LYSearchFriendViewController.h */,
+				15844BBC1BE1C70600247FBC /* LYSearchFriendViewController.m */,
+				15844BBD1BE1C70600247FBC /* LYSearchFriendViewController.xib */,
+			);
+			name = "搜索玩友";
+			sourceTree = "<group>";
+		};
+		15844BCA1BE1EF3300247FBC /* 加好友 */ = {
+			isa = PBXGroup;
+			children = (
+				15844BCB1BE1EF5000247FBC /* LYAddFriendViewController.h */,
+				15844BCC1BE1EF5000247FBC /* LYAddFriendViewController.m */,
+				15844BCD1BE1EF5000247FBC /* LYAddFriendViewController.xib */,
+			);
+			name = "加好友";
+			sourceTree = "<group>";
+		};
+		15844BD01BE1F34200247FBC /* 附近玩家 */ = {
+			isa = PBXGroup;
+			children = (
+				15844BD11BE1FA3600247FBC /* LYNearFriendViewController.h */,
+				15844BD21BE1FA3600247FBC /* LYNearFriendViewController.m */,
+				15844BD31BE1FA3600247FBC /* LYNearFriendViewController.xib */,
+			);
+			name = "附近玩家";
+			sourceTree = "<group>";
+		};
+		15844BF91BE20F4100247FBC /* 扫一扫 */ = {
+			isa = PBXGroup;
+			children = (
+				15844BFA1BE2101200247FBC /* SaoYiSaoViewController.h */,
+				15844BFB1BE2101200247FBC /* SaoYiSaoViewController.m */,
+				15844BFC1BE2101200247FBC /* SaoYiSaoViewController.xib */,
+			);
+			name = "扫一扫";
+			sourceTree = "<group>";
+		};
 		15A4CF3F1BD7602600C22C01 /* 确认订单 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1660,6 +1772,9 @@
 		15B866811BE06D40002E2BB6 /* 玩友列表 */ = {
 			isa = PBXGroup;
 			children = (
+				15844BCA1BE1EF3300247FBC /* 加好友 */,
+				15844BBA1BE1C64100247FBC /* 搜索玩友 */,
+				15844BB01BE1B15600247FBC /* 玩友详情 */,
 				15B866821BE0776D002E2BB6 /* LYMyFriendViewController.h */,
 				15B866831BE0776D002E2BB6 /* LYMyFriendViewController.m */,
 				15B866841BE0776D002E2BB6 /* LYMyFriendViewController.xib */,
@@ -2262,8 +2377,14 @@
 		15FD2A941BD5DD5900D66920 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				15844BC51BE1CAEB00247FBC /* FindMenuTwoCell.h */,
+				15844BC61BE1CAEB00247FBC /* FindMenuTwoCell.m */,
+				15844BC71BE1CAEB00247FBC /* FindMenuTwoCell.xib */,
 				15FD2A951BD5DD7A00D66920 /* FindMenuCell.h */,
 				15FD2A961BD5DD7A00D66920 /* FindMenuCell.m */,
+				15844BC01BE1CA3200247FBC /* WanYouInfoCell.h */,
+				15844BC11BE1CA3200247FBC /* WanYouInfoCell.m */,
+				15844BC21BE1CA3200247FBC /* WanYouInfoCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -2694,6 +2815,11 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15844C081BE22A8800247FBC /* QuartzCore.framework */,
+				15844C061BE22A8100247FBC /* CoreVideo.framework */,
+				15844C041BE22A7500247FBC /* CoreMedia.framework */,
+				15844C011BE22A0300247FBC /* libiconv.dylib */,
+				15844BFF1BE229B400247FBC /* AVFoundation.framework */,
 				ADE103A01BDE4AB800D9EC38 /* libcrypto.a */,
 				ADE103A11BDE4AB800D9EC38 /* libssl.a */,
 				ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */,
@@ -3190,7 +3316,7 @@
 		D761EFE31BA5AE82000757B0 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
-				AD92AE9E1BE1E313009F2A34 /* 弹出视图 */,
+				15844BB61BE1BDE400247FBC /* IM聊天 */,
 				D7A600521BAC64F80006A768 /* 广告栏展示 */,
 				A20100B41BA80E12009283D1 /* 信息中心 */,
 				A201007F1BA7AF72009283D1 /* 产品 */,
@@ -3332,6 +3458,8 @@
 		D761F0271BA5B8D5000757B0 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				15844BF91BE20F4100247FBC /* 扫一扫 */,
+				15844BD01BE1F34200247FBC /* 附近玩家 */,
 				15B866811BE06D40002E2BB6 /* 玩友列表 */,
 				15FD2A941BD5DD5900D66920 /* cell */,
 				D7A6005E1BAC6E0B0006A768 /* FindViewController.h */,
@@ -3550,6 +3678,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15EB354E1BD4839D00BA6161 /* UMSLoginViewController.xib in Resources */,
+				15844BBF1BE1C70600247FBC /* LYSearchFriendViewController.xib in Resources */,
 				15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */,
 				ADD68E391BE10E550060E751 /* 2@3x.png in Resources */,
 				D74C608C1BB6F0BF00A49598 /* BearBarListViewController.xib in Resources */,
@@ -3600,6 +3729,7 @@
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
 				15E240631BB1237E0090D240 /* BiaoQianChooseViewController.xib in Resources */,
+				15844BCF1BE1EF5000247FBC /* LYAddFriendViewController.xib in Resources */,
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
 				A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */,
 				A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */,
@@ -3622,6 +3752,7 @@
 				15FD2A9D1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib in Resources */,
 				A2F9DA841BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib in Resources */,
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
+				15844BC91BE1CAEB00247FBC /* FindMenuTwoCell.xib in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
 				15E240BB1BB3A4CD0090D240 /* MyChooseZSCell.xib in Resources */,
 				A2F9DA761BAA6AE2009DEAF3 /* OrderBottomView.xib in Resources */,
@@ -3639,6 +3770,7 @@
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
 				15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */,
 				15E184931BB52B0E00681BB2 /* LYJiuBaCell.xib in Resources */,
+				15844BFE1BE2101200247FBC /* SaoYiSaoViewController.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,
@@ -3647,10 +3779,12 @@
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */,
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
+				15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */,
 				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
 				ADD68E281BE10E330060E751 /* 1@2x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
+				15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */,
 				ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
 				A2F9DA7F1BAA8CC3009DEAF3 /* SerchHeadView.xib in Resources */,
@@ -3677,6 +3811,7 @@
 				15E240A71BB381610090D240 /* OrderDetailHeadView.xib in Resources */,
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
+				15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */,
 				ADD68E3F1BE10E7E0060E751 /* skip-btn@3x.png in Resources */,
 				15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */,
 				ADD68E3A1BE10E550060E751 /* 3@3x.png in Resources */,
@@ -3796,8 +3931,10 @@
 				A2F9DA741BAA6AB7009DEAF3 /* OrderBottomView.m in Sources */,
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
 				15EB7C5E1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m in Sources */,
+				15844BB41BE1B17D00247FBC /* LYMyFriendDetailViewController.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
+				15844BB91BE1BE7800247FBC /* IMchatViewController.m in Sources */,
 				15B866241BDB5CFB002E2BB6 /* CHDoOrderHeardView.m in Sources */,
 				D7A1D42B1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m in Sources */,
 				ADE103981BDE49BC00D9EC38 /* base64.m in Sources */,
@@ -3815,6 +3952,7 @@
 				D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */,
 				A2FD57751BAFE94400CFFF92 /* TaoCanMCell.m in Sources */,
 				15B866851BE0776D002E2BB6 /* LYMyFriendViewController.m in Sources */,
+				15844BD41BE1FA3600247FBC /* LYNearFriendViewController.m in Sources */,
 				D761F0151BA5AED3000757B0 /* MJRefreshHeader.m in Sources */,
 				D748BC6D1BA1C856005AA996 /* MJFoundation.m in Sources */,
 				ADE1039B1BDE49BC00D9EC38 /* MD5DataSigner.m in Sources */,
@@ -3844,6 +3982,7 @@
 				15E240671BB1243A0090D240 /* TypeChooseCell.m in Sources */,
 				D748BC711BA1C856005AA996 /* NSObject+MJKeyValue.m in Sources */,
 				15013AFF1BBA33BF00061FAF /* UIImage+GIF.m in Sources */,
+				15844BC31BE1CA3200247FBC /* WanYouInfoCell.m in Sources */,
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
 				15FD2AA11BD5EC8900D66920 /* TimeButton.m in Sources */,
@@ -3933,6 +4072,7 @@
 				D761F0201BA5AED3000757B0 /* MJRefreshConst.m in Sources */,
 				15013B031BBA33BF00061FAF /* UIImageView+WebCache.m in Sources */,
 				15EB35271BD379A500BA6161 /* LYtimeChooseTimeController.m in Sources */,
+				15844BBE1BE1C70600247FBC /* LYSearchFriendViewController.m in Sources */,
 				15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */,
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
@@ -4007,6 +4147,7 @@
 				D761F0121BA5AED3000757B0 /* MJRefreshBackFooter.m in Sources */,
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
 				D748BC461BA1C280005AA996 /* LYDataStore.m in Sources */,
+				15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */,
 				D748BC6F1BA1C856005AA996 /* MJType.m in Sources */,
 				15E2404C1BB0F3540090D240 /* NSArray+Sort.m in Sources */,
 				15EB35041BD1F4F900BA6161 /* PTTypeChooseCell.m in Sources */,
@@ -4026,9 +4167,10 @@
 				A2F9DA7A1BAA6F68009DEAF3 /* OrderHandleButton.m in Sources */,
 				15FD2A611BD5125A00D66920 /* PTContactCell.m in Sources */,
 				A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */,
+				15844BCE1BE1EF5000247FBC /* LYAddFriendViewController.m in Sources */,
 				15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */,
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
-				AD92AEA41BE22987009F2A34 /* LYTagTableViewController.m in Sources */,
+				15844BFD1BE2101200247FBC /* SaoYiSaoViewController.m in Sources */,
 				D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */,
 				15B8661F1BDB5C73002E2BB6 /* CHDoOrderBottomView.m in Sources */,
 				D74C60851BB69F6300A49598 /* RTLabel.m in Sources */,
@@ -4220,6 +4362,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/UMSocial_Sdk_4.2.3",
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/lieyu/Vendor/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -4263,6 +4406,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/UMSocial_Sdk_4.2.3",
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/lieyu/Vendor/ZBarSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

@@ -24,10 +24,10 @@
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     _tableView.backgroundColor=RGB(237, 237, 237);
-    [self gedata];
+    [self getData];
     // Do any additional setup after loading the view from its nib.
 }
--(void)gedata{
+-(void)getData{
     [collectionList removeAllObjects];
     __weak __typeof(self)weakSelf = self;
         [[LYUserHttpTool shareInstance]getMyBarWithParams:nil block:^(NSMutableArray *result) {
@@ -125,7 +125,7 @@
             if(result){
                 
                 [MyUtil showMessage:@"删除成功"];
-                [weakSelf gedata];
+                [weakSelf getData];
             }
         }];
 

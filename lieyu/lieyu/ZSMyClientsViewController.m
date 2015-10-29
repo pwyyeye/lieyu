@@ -11,6 +11,7 @@
 #import "CustomerModel.h"
 #import "ZSCustomerDetailViewController.h"
 #import "ZSManageHttpTool.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface ZSMyClientsViewController ()
 
 @end
@@ -183,7 +184,7 @@
         
         cell.nameLal.text = @"No Name";
     }
-    
+    [cell.cusImageView setImageWithURL:[NSURL URLWithString:addressBook.avatar_img]];
 //    cell.backgroundColor=[UIColor clearColor];
     
     return cell;

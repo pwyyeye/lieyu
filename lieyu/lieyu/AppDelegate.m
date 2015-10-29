@@ -31,6 +31,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     // Override point for customization after application launch.
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [self setupDataStore];
+//    [ZBarReaderView class];
     _navigationController= (UINavigationController *)self.window.rootViewController;
     _navigationController.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];

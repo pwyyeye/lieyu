@@ -1,29 +1,23 @@
 //
-//  ZSCustomerDetailViewController.m
+//  IMchatViewController.m
 //  lieyu
 //
-//  Created by SEM on 15/9/16.
+//  Created by 薛斯岐 on 15/10/29.
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSCustomerDetailViewController.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
-@interface ZSCustomerDetailViewController ()
+#import "IMchatViewController.h"
+
+@interface IMchatViewController ()
 
 @end
 
-@implementation ZSCustomerDetailViewController
+@implementation IMchatViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
-    
-    self.title=@"客户详情";
-    self.customerImageView.layer.masksToBounds =YES;
-    
-    self.customerImageView.layer.cornerRadius =self.customerImageView.frame.size.width/2;
-    
-    // Do any additional setup after loading the view from its nib.
+     self.edgesForExtendedLayout = UIRectEdgeNone;
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
