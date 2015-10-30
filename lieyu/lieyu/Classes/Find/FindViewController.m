@@ -12,6 +12,7 @@
 #import "LYNearFriendViewController.h"
 #import "LYMyFriendViewController.h"
 #import "SaoYiSaoViewController.h"
+#import "YaoYiYaoViewController.h"
 @interface FindViewController ()
 {
     NSArray *datalist;
@@ -144,6 +145,9 @@
     }else{
         if(indexPath.row==0){
             //摇一摇
+            YaoYiYaoViewController *yaoYiYaoViewController=[[YaoYiYaoViewController alloc]initWithNibName:@"YaoYiYaoViewController" bundle:nil];
+            yaoYiYaoViewController.title=@"摇一摇";
+            [self.navigationController pushViewController:yaoYiYaoViewController  animated:YES];
         }else{
             //扫一扫
             SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];

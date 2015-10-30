@@ -14,6 +14,7 @@
 #import "OrderInfoModel.h"
 #import "LYHomePageHttpTool.h"
 #import "JiuBaModel.h"
+#import "LYUserHttpTool.h"
 #import "DWTaoCanXQViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 @interface LYwoYaoDinWeiMainViewController ()
@@ -239,6 +240,15 @@
     [self getdata];
 }
 - (IBAction)soucangAct:(UIButton *)sender {
+
+    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:jiubaModel.barid]};
+    [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
+        if(result){
+            
+            [MyUtil showMessage:@"收藏成功"];
+        }
+    }];
+
     
 }
 

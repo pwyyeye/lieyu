@@ -36,4 +36,8 @@
 #define LY_FINDFRIEND_LIST @"usersAction.do?action=cancel"
 //附近玩家
 #define LY_FINDNEARFRIEND_LIST @"lyUserShakeAction.do?action=update"
+//摇一摇
+#define LY_YAOYIYAO_LIST @"lyUserShakeAction.do?action=add"
+//摇到的历史
+#define LY_YAOHIS_LIST @"lyUserShakeAction.do?action=list"
 #endif

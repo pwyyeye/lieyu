@@ -33,6 +33,11 @@
 
     // Do any additional setup after loading the view from its nib.
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 #pragma mark 初始化数据
 -(void)getDataForShowList{
     [listArr removeAllObjects];

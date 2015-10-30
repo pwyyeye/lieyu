@@ -93,4 +93,10 @@
 //附近玩家
 -(void) getFindNearFriendListWithParams:(NSDictionary*)params
                               block:(void(^)(NSMutableArray* result)) block;
+//摇一摇
+-(void) getYaoYiYaoFriendListWithParams:(NSDictionary*)params
+                                  block:(void(^)(NSMutableArray* result)) block;
+//摇到的历史
+-(void) getYaoYiYaoHisFriendListWithParams:(NSDictionary*)params
+                                  block:(void(^)(NSMutableArray* result)) block;
 @end

@@ -29,6 +29,7 @@
     rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"more1"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
     [self.navigationItem setRightBarButtonItem:rightBtn];
     datalist =[[NSMutableArray alloc]init];
+    filteredListContent=[[NSMutableArray alloc]init];
     [self getData];
     // Do any additional setup after loading the view from its nib.
 }
