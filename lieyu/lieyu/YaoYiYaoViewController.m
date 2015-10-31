@@ -98,7 +98,7 @@
             
             [weakSelf.userImageView setImageWithURL:[NSURL URLWithString:customerModel.avatar_img]];
         }else{
-            
+           
         }
     }];
 }
@@ -161,7 +161,7 @@
 - (IBAction)queryDetailAct:(UIButton *)sender {
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     friendDetailViewController.title=@"详细信息";
-    friendDetailViewController.type=@"3";
+    friendDetailViewController.type=@"1";
     friendDetailViewController.customerModel=customerModel;
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }

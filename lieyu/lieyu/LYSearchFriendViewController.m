@@ -125,7 +125,7 @@
         CustomerModel *customerModel=searchlist[indexPath.row];
         LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
         friendDetailViewController.title=@"详细信息";
-        friendDetailViewController.type=@"1";
+        friendDetailViewController.type=@"4";
         friendDetailViewController.customerModel=customerModel;
         [self.navigationController pushViewController:friendDetailViewController animated:YES];
     }else{

@@ -29,9 +29,16 @@
 //我的好友
 #define LY_MY_FRIENDS_LIST @"friendAction.do?action=list"
 //信息中心添加我的朋友信息
-#define LY_ADDME_LIST @"lyUsersFriendAction.do?action=expand"
+#define LY_ADDME_LIST @"lyUserShakeAction.do?action=expand"
 //加好友
 #define LY_ADDFRIEND_LIST @"friendAction.do?action=add"
+//打招呼
+#define LY_GREETINGS_LIST @"lyUserShakeAction.do?action=custom"
+// 接受打招呼好友
+#define LY_ACCEPT_GREETINGS @"lyUserShakeAction.do?action=save"
+//忽略打招呼好友
+#define LY_DEL_GREETINGS @"lyUserShakeAction.do?action=delete"
+
 //查找好友
 #define LY_FINDFRIEND_LIST @"usersAction.do?action=cancel"
 //附近玩家
