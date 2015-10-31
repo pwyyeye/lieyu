@@ -270,11 +270,19 @@
         [self.navigationController pushViewController:shaiXuanViewController animated:YES];
         return;
     }
+    pageCount=1;
+    
+    [nowDic removeObjectForKey:@"p"];
+    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     [nowDic removeObjectForKey:@"sort"];
     [nowDic setObject:sortkey forKey:@"sort"];
     [self getData:nowDic];
 }
 - (void)addShaiXuan:(NSMutableArray *)arr{
+    pageCount=1;
+    
+    [nowDic removeObjectForKey:@"p"];
+    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     [nowDic removeObjectForKey:@"minprice"];
     [nowDic removeObjectForKey:@"sort"];
     [nowDic removeObjectForKey:@"maxprice"];
