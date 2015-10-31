@@ -40,6 +40,7 @@
 @property(nonatomic,copy)NSString * imuserid;
 @property(nonatomic,copy)NSString * makeDate;
 @property(nonatomic,copy)NSString * makeWay;
+@property(nonatomic,copy)NSString * message;
 @property(nonatomic,copy)NSString * distance;
 @property(nonatomic,copy)NSString * mobile;
 @property(nonatomic,copy)NSString * online;

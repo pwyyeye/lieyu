@@ -65,6 +65,12 @@
 //加好友
 -(void) addFriends:(NSDictionary*)params
                  complete:(void (^)(BOOL result))result;
+//确认打招呼
+-(void) sureFriends:(NSDictionary*)params
+          complete:(void (^)(BOOL result))result;
+//拒绝打招呼
+-(void) refuseFriends:(NSDictionary*)params
+           complete:(void (^)(BOOL result))result;
 
 //收藏的店铺
 -(void) getMyBarWithParams:(NSDictionary*)params

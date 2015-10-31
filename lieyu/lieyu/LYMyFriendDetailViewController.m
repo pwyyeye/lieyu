@@ -25,11 +25,13 @@
     if([_type isEqualToString:@"0"]){
         self.namelal.text=_customerModel.friendName;
         [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.icon]];
-    }else if([_type isEqualToString:@"1"]){
+    }else if([_type isEqualToString:@"4"]){
         self.namelal.text=_customerModel.name;
         [_setBtn setTitle:@"加为好友" forState:0];
         [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.mark]];
-        
+        if([_customerModel.sex isEqualToString:@"1"]){
+            _sexImageView.image=[UIImage imageNamed:@"manIcon"];
+        }
     }else{
         [_setBtn setTitle:@"加为好友" forState:0];
         self.namelal.text=_customerModel.username;

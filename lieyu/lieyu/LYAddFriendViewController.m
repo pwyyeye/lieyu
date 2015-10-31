@@ -25,6 +25,9 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)exitEdit:(id)sender {
+    [sender resignFirstResponder];
+}
 
 /*
 #pragma mark - Navigation
@@ -38,10 +41,10 @@
 
 - (IBAction)sendAct:(UIButton *)sender {
     NSDictionary *dic;
-    if([_type isEqualToString:@"1"]){
-        dic=@{@"user":[NSNumber numberWithInt:self.userModel.userid],@"friend":[NSNumber numberWithInt:_customerModel.friend],@"makeWay":@"1"};
+    if([_type isEqualToString:@"4"]){
+        dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.id],@"message":_messagetext.text,@"type":_type};
     }else{
-        dic=@{@"user":[NSNumber numberWithInt:self.userModel.userid],@"friend":[NSNumber numberWithInt:_customerModel.userid],@"makeWay":@"1"};
+        dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.userid],@"message":_messagetext.text,@"type":_type};
     }
     
     [[LYUserHttpTool shareInstance] addFriends:dic complete:^(BOOL result) {

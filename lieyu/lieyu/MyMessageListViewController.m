@@ -79,8 +79,8 @@
     }
     CustomerModel * model =dataList[indexPath.section];
     [cell.userImageView setImageWithURL:[NSURL URLWithString:model.avatar_img]];
-    cell.titleLal.text=model.username;
-    cell.detLal.text=@"一起玩吧";
+    cell.titleLal.text=model.usernick;
+    cell.detLal.text=model.message;
     
     [cell.okBtn addTarget:self action:@selector(okAct:) forControlEvents:UIControlEventTouchDown];
     cell.okBtn.tag=indexPath.section;

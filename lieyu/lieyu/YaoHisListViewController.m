@@ -8,7 +8,7 @@
 
 #import "YaoHisListViewController.h"
 #import "LYUserHttpTool.h"
-
+#import "LYUserLocation.h"
 #import "WanYouInfoCell.h"
 #import "CustomerModel.h"
 #import "LYMyFriendDetailViewController.h"
@@ -32,9 +32,10 @@
 -(void)getData{
     
     __weak __typeof(self)weakSelf = self;
-    
+    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
+    NSDictionary *dic=@{@"longitude":@(userLocation.coordinate.longitude),@"latitude":@(userLocation.coordinate.latitude)};
     [[LYUserHttpTool shareInstance]
-     getYaoYiYaoHisFriendListWithParams:nil block:^(NSMutableArray *result) {
+     getYaoYiYaoHisFriendListWithParams:dic block:^(NSMutableArray *result) {
          [datalist removeAllObjects];
          
          [datalist addObjectsFromArray:result];
