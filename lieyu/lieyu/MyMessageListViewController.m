@@ -105,12 +105,42 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [[UIView alloc]initWithFrame:CGRectZero];
 }
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"拒绝";
+}
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return UITableViewCellEditingStyleDelete;
+//}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return YES;
+    
+    
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        __weak __typeof(self)weakSelf = self;
+        CustomerModel * model =dataList[indexPath.section];
+        NSDictionary *dic=@{@"id":[NSNumber numberWithInt:model.id]};
+        [[LYUserHttpTool shareInstance] refuseFriends:dic complete:^(BOOL result) {
+            if(result){
+                
+                [MyUtil showMessage:@"已拒绝"];
+                [weakSelf getData];
+            }
+        }];
+        
+    }
+    
+}
 -(void)okAct:(UIButton *)sender{
     __weak __typeof(self)weakSelf = self;
     CustomerModel * model =dataList[sender.tag];
-    NSDictionary *dic=@{@"user":[NSNumber numberWithInt:self.userModel.userid],@"friend":[NSNumber numberWithInt:model.userid],@"makeWay":@"1"};
-    [[LYUserHttpTool shareInstance] addFriends:dic complete:^(BOOL result) {
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:model.id],@"friendUserid":[NSNumber numberWithInt:model.userid]};
+    [[LYUserHttpTool shareInstance] sureFriends:dic complete:^(BOOL result) {
         if(result){
             
             [MyUtil showMessage:@"你们已成为朋友"];
