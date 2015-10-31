@@ -37,6 +37,7 @@
 @property(nonatomic,copy)NSString * name;
 @property(nonatomic,copy)NSString * icon;
 @property(nonatomic,copy)NSString * imUserId;
+@property(nonatomic,copy)NSString * imuserid;
 @property(nonatomic,copy)NSString * makeDate;
 @property(nonatomic,copy)NSString * makeWay;
 @property(nonatomic,copy)NSString * distance;

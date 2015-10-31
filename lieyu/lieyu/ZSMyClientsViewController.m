@@ -202,7 +202,7 @@
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     ZSCustomerDetailViewController *customerDetailsViewController=[[ZSCustomerDetailViewController alloc]initWithNibName:@"ZSCustomerDetailViewController" bundle:nil];
-    
+    customerDetailsViewController.customerModel=addressBook;
     [self.navigationController pushViewController:customerDetailsViewController animated:YES];
 }
 

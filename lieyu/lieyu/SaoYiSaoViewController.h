@@ -7,10 +7,14 @@
 //
 
 #import "LYBaseViewController.h"
-//#import "ZBarSDK.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface SaoYiSaoViewController : LYBaseViewController
-//<ZBarReaderViewDelegate>
-//@property (weak, nonatomic) IBOutlet ZBarReaderView *readerView;
+@interface SaoYiSaoViewController : LYBaseViewController<AVCaptureMetadataOutputObjectsDelegate>
+@property (weak, nonatomic) IBOutlet UIView *viewPreview;
+@property (weak, nonatomic) IBOutlet UILabel *lblStatus;
+@property (weak, nonatomic) IBOutlet UIButton *startBtn;
+
+
+- (IBAction)startStopReading:(id)sender;
 
 @end

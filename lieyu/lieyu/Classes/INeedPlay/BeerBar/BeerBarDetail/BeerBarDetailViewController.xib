@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-Cg-bvf">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="509"/>
+                    <rect key="frame" x="0.0" y="-22" width="320" height="531"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="YLh-nG-mzE"/>
@@ -116,11 +116,11 @@
                 <constraint firstItem="XXg-kz-6Dv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V5D-SY-Yw5"/>
                 <constraint firstAttribute="trailing" secondItem="XXg-kz-6Dv" secondAttribute="trailing" id="bDJ-7N-7lk"/>
                 <constraint firstAttribute="bottom" secondItem="XXg-kz-6Dv" secondAttribute="bottom" id="qGe-6r-p6n"/>
-                <constraint firstItem="0kO-Cg-bvf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="s0M-fD-ctw"/>
+                <constraint firstItem="0kO-Cg-bvf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-22" id="s0M-fD-ctw"/>
             </constraints>
             <point key="canvasLocation" x="66" y="74"/>
         </view>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="188" id="96X-DT-GEW" customClass="BeerBarDetailCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="96X-DT-GEW" customClass="BeerBarDetailCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="96X-DT-GEW" id="HBL-mj-0Sl">
@@ -186,10 +186,6 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4Z-EP-mlC" userLabel="serviceStar" customClass="HCSStarRatingView">
-                        <rect key="frame" x="79" y="189" width="81" height="19"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="885-eE-jsK" userLabel="envStar" customClass="HCSStarRatingView">
                         <rect key="frame" x="231" y="189" width="81" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -290,6 +286,10 @@
                             <action selector="daohanAct:" destination="96X-DT-GEW" eventType="touchUpInside" id="Q9z-qb-ppt"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4Z-EP-mlC" userLabel="serviceStar" customClass="HCSStarRatingView">
+                        <rect key="frame" x="79" y="189" width="81" height="19"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>

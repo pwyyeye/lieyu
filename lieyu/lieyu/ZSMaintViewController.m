@@ -15,6 +15,7 @@
 #import "ZSNoticeCenterViewController.h"
 #import "XiaoFeiMaUiew.h"
 #import "ZSListCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface ZSMaintViewController ()
 
 @end
@@ -48,14 +49,16 @@
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 228)];
     view.backgroundColor=RGB(35, 166, 116);
     //外部圆
-    cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(130, 82, 60, 60)];
+    cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(116, 68, 88, 88)];
     [view addSubview:cImageView];
-    myPhotoImageView=[[UIImageView alloc]initWithFrame:CGRectMake(130, 82, 60, 60)];
+    [cImageView setImage:[UIImage imageNamed:@"yuanhuan"]];
+    myPhotoImageView=[[UIImageView alloc]initWithFrame:CGRectMake(130, 81.7, 60, 60)];
     //照片圆形
     myPhotoImageView.layer.masksToBounds =YES;
     
     myPhotoImageView.layer.cornerRadius =myPhotoImageView.frame.size.width/2;
-    myPhotoImageView.backgroundColor=[UIColor whiteColor];
+    myPhotoImageView.backgroundColor=[UIColor lightGrayColor];
+    [myPhotoImageView setImageWithURL:[NSURL URLWithString:self.userModel.avatar_img]];
     [view addSubview:myPhotoImageView];
     namelal=[[UILabel alloc]initWithFrame:CGRectMake(114,167,166,18)];
     [namelal setTextColor:RGB(255,255,255)];
@@ -68,7 +71,7 @@
     [orderInfoLal setTextColor:RGB(255,255,255)];
     orderInfoLal.font=[UIFont boldSystemFontOfSize:10];
     orderInfoLal.backgroundColor=[UIColor clearColor];
-    orderInfoLal.text=@"您有30个订单要处理，请即时处理！";
+//    orderInfoLal.text=@"您有30个订单要处理，请即时处理！";
     orderInfoLal.textAlignment=NSTextAlignmentLeft;
     [view addSubview:orderInfoLal];
     self.tableView.tableHeaderView=view;
@@ -113,13 +116,13 @@
     UIColor *bColor=[dic objectForKey:@"colorRGB"];
     UIImage *imge=[UIImage imageNamed:[dic objectForKey:@"imageContent"]];
     NSString *title=[dic objectForKey:@"title"];
-    NSString *delInfo=[dic objectForKey:@"delInfo"];
+//    NSString *delInfo=[dic objectForKey:@"delInfo"];
 //    @{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""}
     [cell.mesImageView setHidden:YES];
     cell.backImageView.backgroundColor=bColor;
     cell.CoutentImageView.image=imge;
     cell.titleLbl.text=title;
-    cell.delLal.text=delInfo;
+//    cell.delLal.text=delInfo;
 //    cell.disImageView;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 

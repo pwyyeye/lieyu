@@ -914,4 +914,7 @@
 }
 */
 
+- (IBAction)gohomeAct:(UIButton *)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 @end

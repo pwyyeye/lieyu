@@ -238,6 +238,13 @@
 		15EB7C741BD0A0DB00756153 /* LYShaiXuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C721BD0A0DB00756153 /* LYShaiXuanViewController.m */; };
 		15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C731BD0A0DB00756153 /* LYShaiXuanViewController.xib */; };
 		15EB7C791BD0DB9400756153 /* LYPlayTogetherMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C781BD0DB9400756153 /* LYPlayTogetherMainViewController.m */; };
+		15ED32721BE2F49800E086A1 /* YaoYiYaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED32701BE2F49800E086A1 /* YaoYiYaoViewController.m */; };
+		15ED32731BE2F49800E086A1 /* YaoYiYaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32711BE2F49800E086A1 /* YaoYiYaoViewController.xib */; };
+		15ED32791BE318A800E086A1 /* 5018.wav in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32781BE318A800E086A1 /* 5018.wav */; };
+		15ED327E1BE336C400E086A1 /* YaoSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED327C1BE336C400E086A1 /* YaoSettingViewController.m */; };
+		15ED327F1BE336C400E086A1 /* YaoSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED327D1BE336C400E086A1 /* YaoSettingViewController.xib */; };
+		15ED32831BE336DC00E086A1 /* YaoHisListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED32811BE336DC00E086A1 /* YaoHisListViewController.m */; };
+		15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
@@ -924,6 +931,16 @@
 		15EB7C731BD0A0DB00756153 /* LYShaiXuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYShaiXuanViewController.xib; sourceTree = "<group>"; };
 		15EB7C771BD0DB9400756153 /* LYPlayTogetherMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPlayTogetherMainViewController.h; sourceTree = "<group>"; };
 		15EB7C781BD0DB9400756153 /* LYPlayTogetherMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPlayTogetherMainViewController.m; sourceTree = "<group>"; };
+		15ED326F1BE2F49800E086A1 /* YaoYiYaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoYiYaoViewController.h; sourceTree = "<group>"; };
+		15ED32701BE2F49800E086A1 /* YaoYiYaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoYiYaoViewController.m; sourceTree = "<group>"; };
+		15ED32711BE2F49800E086A1 /* YaoYiYaoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoYiYaoViewController.xib; sourceTree = "<group>"; };
+		15ED32781BE318A800E086A1 /* 5018.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 5018.wav; sourceTree = "<group>"; };
+		15ED327B1BE336C400E086A1 /* YaoSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoSettingViewController.h; sourceTree = "<group>"; };
+		15ED327C1BE336C400E086A1 /* YaoSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoSettingViewController.m; sourceTree = "<group>"; };
+		15ED327D1BE336C400E086A1 /* YaoSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoSettingViewController.xib; sourceTree = "<group>"; };
+		15ED32801BE336DC00E086A1 /* YaoHisListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoHisListViewController.h; sourceTree = "<group>"; };
+		15ED32811BE336DC00E086A1 /* YaoHisListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoHisListViewController.m; sourceTree = "<group>"; };
+		15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoHisListViewController.xib; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
 		15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
@@ -2262,6 +2279,31 @@
 			name = "我要拼客";
 			sourceTree = "<group>";
 		};
+		15ED326E1BE2F48100E086A1 /* 摇一摇 */ = {
+			isa = PBXGroup;
+			children = (
+				15ED327A1BE336A200E086A1 /* 设置 */,
+				15ED32781BE318A800E086A1 /* 5018.wav */,
+				15ED326F1BE2F49800E086A1 /* YaoYiYaoViewController.h */,
+				15ED32701BE2F49800E086A1 /* YaoYiYaoViewController.m */,
+				15ED32711BE2F49800E086A1 /* YaoYiYaoViewController.xib */,
+			);
+			name = "摇一摇";
+			sourceTree = "<group>";
+		};
+		15ED327A1BE336A200E086A1 /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				15ED327B1BE336C400E086A1 /* YaoSettingViewController.h */,
+				15ED327C1BE336C400E086A1 /* YaoSettingViewController.m */,
+				15ED327D1BE336C400E086A1 /* YaoSettingViewController.xib */,
+				15ED32801BE336DC00E086A1 /* YaoHisListViewController.h */,
+				15ED32811BE336DC00E086A1 /* YaoHisListViewController.m */,
+				15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */,
+			);
+			name = "设置";
+			sourceTree = "<group>";
+		};
 		15EE51321BA6E1AB00464B74 /* 订单管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3459,6 +3501,7 @@
 		D761F0271BA5B8D5000757B0 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				15ED326E1BE2F48100E086A1 /* 摇一摇 */,
 				15844BF91BE20F4100247FBC /* 扫一扫 */,
 				15844BD01BE1F34200247FBC /* 附近玩家 */,
 				15B866811BE06D40002E2BB6 /* 玩友列表 */,
@@ -3645,7 +3688,6 @@
 				TargetAttributes = {
 					AD8899B51B9AFE61007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 9MQ7NFCFDK;
 					};
 					AD8899D11B9AFE62007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
@@ -3685,6 +3727,7 @@
 				D74C608C1BB6F0BF00A49598 /* BearBarListViewController.xib in Resources */,
 				A2F9DA711BAA667D009DEAF3 /* OrderHeadView.xib in Resources */,
 				ADD68E321BE10E400060E751 /* 3_retina.png in Resources */,
+				15ED327F1BE336C400E086A1 /* YaoSettingViewController.xib in Resources */,
 				1559DD111BDA2A3E00F3FE9B /* CarInfoCell.xib in Resources */,
 				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
 				A2020D621BA67E9E0090B92A /* disClosure@3x.png in Resources */,
@@ -3702,6 +3745,7 @@
 				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
+				15ED32791BE318A800E086A1 /* 5018.wav in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
@@ -3739,6 +3783,7 @@
 				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
 				15E240CC1BB3CF2E0090D240 /* LYSurePassWordViewController.xib in Resources */,
 				A2FD57801BAFE97000CFFF92 /* FBTaoCanSectionHead.xib in Resources */,
+				15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
 				ADD68E2A1BE10E330060E751 /* 3@2x.png in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
@@ -3840,6 +3885,7 @@
 				15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */,
 				15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */,
 				AD92AE9D1BE1D339009F2A34 /* lieyu_default_male@2x.png in Resources */,
+				15ED32731BE2F49800E086A1 /* YaoYiYaoViewController.xib in Resources */,
 				A2F9DA931BABD62F009DEAF3 /* OrderBottomForCCView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3902,6 +3948,7 @@
 				AD92AEB11BE235D9009F2A34 /* LYUserTagButton.m in Sources */,
 				ADE103A81BDE4B2300D9EC38 /* SingletonAlipay.m in Sources */,
 				15E184831BB51A9500681BB2 /* LYZSApplicationViewController.m in Sources */,
+				15ED32831BE336DC00E086A1 /* YaoHisListViewController.m in Sources */,
 				15A4CF4C1BD7689F00C22C01 /* DWOrderTopCell.m in Sources */,
 				A20100CA1BA9212A009283D1 /* ZSCustomerDetailViewController.m in Sources */,
 				A2020D891BA6A5AA0090B92A /* KaZuoCell.m in Sources */,
@@ -4112,6 +4159,7 @@
 				D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */,
 				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,
 				15E2409A1BB296CF0090D240 /* OrderDetailCell.m in Sources */,
+				15ED327E1BE336C400E086A1 /* YaoSettingViewController.m in Sources */,
 				15EB351C1BD26D5900BA6161 /* PTzsjlCell.m in Sources */,
 				15013AFE1BBA33BF00061FAF /* UIButton+WebCache.m in Sources */,
 				15EB7C791BD0DB9400756153 /* LYPlayTogetherMainViewController.m in Sources */,
@@ -4173,6 +4221,7 @@
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
 				15844BFD1BE2101200247FBC /* SaoYiSaoViewController.m in Sources */,
 				D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */,
+				15ED32721BE2F49800E086A1 /* YaoYiYaoViewController.m in Sources */,
 				15B8661F1BDB5C73002E2BB6 /* CHDoOrderBottomView.m in Sources */,
 				D74C60851BB69F6300A49598 /* RTLabel.m in Sources */,
 				D748BC6E1BA1C856005AA996 /* MJProperty.m in Sources */,
@@ -4334,8 +4383,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4378,8 +4427,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mengjiao Huang (M2PK8CRW43)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -9,6 +9,7 @@
 #import "MyCollectionViewController.h"
 #import "CollectionCell.h"
 #import "MyBarModel.h"
+#import "BeerBarDetailViewController.h"
 #import "LYUserHttpTool.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 @interface MyCollectionViewController ()
@@ -96,7 +97,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     
+    JiuBaModel * model = [collectionList objectAtIndex:indexPath.section];
+    controller.beerBarId = @(model.barid);
+    [self.navigationController pushViewController:controller animated:YES];
    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     

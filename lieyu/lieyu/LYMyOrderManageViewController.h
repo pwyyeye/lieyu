@@ -26,5 +26,6 @@
 @property (weak, nonatomic) IBOutlet UIView *tobView;
 @property (weak, nonatomic) IBOutlet UIView *nodataView;
 @property (weak, nonatomic) IBOutlet UIImageView *kongImageView;
+- (IBAction)gohomeAct:(UIButton *)sender;
 
 @end
