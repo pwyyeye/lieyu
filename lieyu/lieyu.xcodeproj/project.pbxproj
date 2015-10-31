@@ -382,6 +382,8 @@
 		AD92AEB11BE235D9009F2A34 /* LYUserTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEB01BE235D9009F2A34 /* LYUserTagButton.m */; };
 		AD92AEB51BE24165009F2A34 /* LYAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEB41BE24165009F2A34 /* LYAlert.m */; };
 		AD92AEB81BE242A3009F2A34 /* LYTagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */; };
+		AD92AEBC1BE50AD9009F2A34 /* AboutLieyu.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEBA1BE50AD9009F2A34 /* AboutLieyu.m */; };
+		AD92AEBD1BE50AD9009F2A34 /* AboutLieyu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD92AEBB1BE50AD9009F2A34 /* AboutLieyu.xib */; };
 		ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
 		ADD530411BDE1E9D002CF4D8 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD5303F1BDE1E9D002CF4D8 /* AlipaySDK.framework */; };
 		ADD530AF1BDE2BA3002CF4D8 /* AlipaySDK.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
@@ -1152,6 +1154,9 @@
 		AD92AEB41BE24165009F2A34 /* LYAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAlert.m; sourceTree = "<group>"; };
 		AD92AEB61BE242A3009F2A34 /* LYTagTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTagTableViewController.h; sourceTree = "<group>"; };
 		AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTagTableViewController.m; sourceTree = "<group>"; };
+		AD92AEB91BE50AD9009F2A34 /* AboutLieyu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutLieyu.h; sourceTree = "<group>"; };
+		AD92AEBA1BE50AD9009F2A34 /* AboutLieyu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutLieyu.m; sourceTree = "<group>"; };
+		AD92AEBB1BE50AD9009F2A34 /* AboutLieyu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutLieyu.xib; sourceTree = "<group>"; };
 		ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		ADD5303F1BDE1E9D002CF4D8 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		ADD68E241BE10E330060E751 /* 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@2x.png"; sourceTree = "<group>"; };
@@ -3123,6 +3128,9 @@
 				ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */,
 				AD92AEB61BE242A3009F2A34 /* LYTagTableViewController.h */,
 				AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */,
+				AD92AEB91BE50AD9009F2A34 /* AboutLieyu.h */,
+				AD92AEBA1BE50AD9009F2A34 /* AboutLieyu.m */,
+				AD92AEBB1BE50AD9009F2A34 /* AboutLieyu.xib */,
 			);
 			name = "设置";
 			sourceTree = "<group>";
@@ -3772,6 +3780,7 @@
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
 				A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */,
 				A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */,
+				AD92AEBD1BE50AD9009F2A34 /* AboutLieyu.xib in Resources */,
 				15EB35461BD4839D00BA6161 /* UMSocialLocalizable.strings in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
 				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
@@ -3933,6 +3942,7 @@
 			files = (
 				1559DD1A1BDB2B3C00F3FE9B /* CarBottomView.m in Sources */,
 				ADE103AF1BDE4C8E00D9EC38 /* ChoosePayController.m in Sources */,
+				AD92AEBC1BE50AD9009F2A34 /* AboutLieyu.m in Sources */,
 				15013AD11BBA161100061FAF /* ZSManageHttpTool.m in Sources */,
 				1559DD151BDB279700F3FE9B /* CarHeadView.m in Sources */,
 				15013AFC1BBA33BE00061FAF /* SDWebImageManager.m in Sources */,

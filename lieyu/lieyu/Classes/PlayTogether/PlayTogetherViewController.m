@@ -203,6 +203,15 @@
     _fillterButton.frame = rc;
     
 //    [self setCustomTitle:@"一起玩"];
+    _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
+    
+    _myTitle.backgroundColor = [UIColor clearColor];
+    _myTitle.textColor=[UIColor whiteColor];
+    _myTitle.textAlignment = NSTextAlignmentCenter;
+    [_myTitle setFont:[UIFont systemFontOfSize:17.0]];
+    [_myTitle setText:@"一起玩"];
+    //        self.navigationItem.titleView=titleText;
+    [self.navigationController.navigationBar addSubview:_myTitle];
    
 
 }
@@ -222,6 +231,7 @@
 //    [self setCustomTitle:@""];
 
     [_fillterButton removeFromSuperview];
+    [_myTitle removeFromSuperview];
 }
 
 - (IBAction)filterClick:(id)sender

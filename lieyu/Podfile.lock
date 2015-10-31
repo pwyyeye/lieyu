@@ -1,39 +1,43 @@
 PODS:
-  - AFNetworking (2.6.0):
+  - AFNetworking (2.6.1):
+    - AFNetworking/NSURLConnection (= 2.6.1)
+    - AFNetworking/NSURLSession (= 2.6.1)
+    - AFNetworking/Reachability (= 2.6.1)
+    - AFNetworking/Security (= 2.6.1)
+    - AFNetworking/Serialization (= 2.6.1)
+    - AFNetworking/UIKit (= 2.6.1)
+  - AFNetworking/NSURLConnection (2.6.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.1)
+  - AFNetworking/Security (2.6.1)
+  - AFNetworking/Serialization (2.6.1)
+  - AFNetworking/UIKit (2.6.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.6.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.0)
-  - AFNetworking/Security (2.6.0)
-  - AFNetworking/Serialization (2.6.0)
-  - AFNetworking/UIKit (2.6.0):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - HCSStarRatingView (1.4.2)
-  - Qiniu (7.0.6):
+  - HappyDNS (0.2.3)
+  - HCSStarRatingView (1.4.3)
+  - Qiniu (7.0.13):
     - AFNetworking (~> 2.0)
+    - HappyDNS (~> 0.2)
   - RongCloudIMKit (2.3.0)
 
 DEPENDENCIES:
   - HCSStarRatingView (~> 1.4.2)
+  - HCSStarRatingView (~> 1.4.3)
   - Qiniu (~> 7.0)
   - RongCloudIMKit (= 2.3.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
-  HCSStarRatingView: 6157471eff9fe3ec7240e131a5b0aba39f097e57
-  Qiniu: b3216d1a1b9a647792e5cc46c358e42c08fdaa99
+  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
+  HCSStarRatingView: bada6ae98258c3019531e0218030e2d5ad10765a
+  Qiniu: d899770cc7b9a7abb3bff9fd993adc93c9475d45
   RongCloudIMKit: f816b4c62781f408069d90db98678bc9f0e2d390
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0

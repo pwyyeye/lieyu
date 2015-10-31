@@ -37,7 +37,16 @@
                @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
 //    [self setupViewStyles];
-    self.title = @"发现";
+//    self.title = nil;
+//    self.navigationItem.title = @"发现";
+//    UILabel *titleText = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
+//    
+//    titleText.backgroundColor = [UIColor clearColor];
+//    titleText.textColor=[UIColor whiteColor];
+//    titleText.textAlignment = NSTextAlignmentCenter;
+//    [titleText setFont:[UIFont systemFontOfSize:17.0]];
+//    [titleText setText:@"我是导航栏标题"];
+//    self.navigationItem.titleView=titleText;
     // Do any additional setup after loading the view.
 }
 
@@ -52,6 +61,16 @@
 
     [super viewWillAppear:animated];
 //    [self setCustomTitle:@"发现"];
+    
+         _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
+    
+        _myTitle.backgroundColor = [UIColor clearColor];
+        _myTitle.textColor=[UIColor whiteColor];
+        _myTitle.textAlignment = NSTextAlignmentCenter;
+        [_myTitle setFont:[UIFont systemFontOfSize:17.0]];
+        [_myTitle setText:@"发现"];
+//        self.navigationItem.titleView=titleText;
+    [self.navigationController.navigationBar addSubview:_myTitle];
 }
 
 - (void)viewWillLayoutSubviews
@@ -68,6 +87,7 @@
 {
     [super viewWillDisappear:animated];
 //    [super setCustomTitle:@""];
+    [_myTitle removeFromSuperview];
 
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

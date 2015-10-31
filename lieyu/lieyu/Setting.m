@@ -9,6 +9,7 @@
 #import "Setting.h"
 #import "LYUserHttpTool.h"
 #import "LYUserDetailController.h"
+#import "AboutLieyu.h"
 @interface Setting ()
 
 @end
@@ -23,7 +24,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    _data=@[@"编辑个人资料",@"消息提醒",@"清除缓存",@"关于猎娱"];
+    _data=@[@"编辑个人资料",@"清除缓存",@"关于猎娱"];
     
     
     self.title=@"个人设置";
@@ -124,12 +125,14 @@
     if (indexPath.row==0) {
 //        [self gotoAppStorePageRaisal:@""];//app评价地址
         detailViewController=[[LYUserDetailController alloc] init];
-    }else if (indexPath.row==2) {
+    }else if (indexPath.row==1) {
         [USER_DEFAULT removeObjectForKey:@"user_name"];
         [USER_DEFAULT removeObjectForKey:@"user_pass"];
         [MyUtil showMessage:@"清除成功！"];
         
-    }    
+    }else if(indexPath.row==2){
+        detailViewController=[[AboutLieyu alloc] initWithNibName:@"AboutLieyu" bundle:nil];
+    }
     
     // Push the view controller.
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];

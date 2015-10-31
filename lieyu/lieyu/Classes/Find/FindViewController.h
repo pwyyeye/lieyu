@@ -11,5 +11,5 @@
 
 @interface FindViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property(strong,nonatomic) UILabel *myTitle;
 @end

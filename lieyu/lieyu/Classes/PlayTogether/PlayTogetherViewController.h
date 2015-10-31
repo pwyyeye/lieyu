@@ -11,6 +11,8 @@
 
 @interface PlayTogetherViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property(strong,nonatomic) UILabel *myTitle;
+
 - (IBAction)allListAct:(UIButton *)sender;
 
 - (IBAction)nearDistanceAct:(UIButton *)sender;
