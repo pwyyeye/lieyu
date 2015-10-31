@@ -36,7 +36,8 @@
                @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
                @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
-    [self setupViewStyles];
+//    [self setupViewStyles];
+    self.title = @"发现";
     // Do any additional setup after loading the view.
 }
 
@@ -45,30 +46,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setupViewStyles
-{
-    self.title = @"发现";
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
 //    [self performSelector:@selector(setCustomTitle:) withObject:@"发现" afterDelay:0.1];
 
     [super viewWillAppear:animated];
+//    [self setCustomTitle:@"发现"];
 }
 
 - (void)viewWillLayoutSubviews
 {
+    [super viewWillLayoutSubviews];
 
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self setCustomTitle:nil];
+//    [super setCustomTitle:@""];
+
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

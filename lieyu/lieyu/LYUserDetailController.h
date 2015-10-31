@@ -11,7 +11,8 @@
 #import "LYTagTableViewController.h"
 #import "UserTagModel.h"
 #import "HTTPController.h"
-@interface LYUserDetailController : LYBaseTableViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,LYAlertDelegate,LYUserTagSelectedDelegate>
+#import "LYUserTagButton.h"
+@interface LYUserDetailController : LYBaseTableViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,LYAlertDelegate,LYUserTagSelectedDelegate,LYChooseButtonDelegate>
 @property(strong,nonatomic) UITableViewCell *selectcedCell;
 
 @property(strong,nonatomic) NSString *modifyNick;
@@ -22,5 +23,7 @@
 
 //弹出视图
 @property(strong,nonatomic) LYAlert *alertView;
+
+@property(assign,nonatomic)NSInteger sex;
 
 @end

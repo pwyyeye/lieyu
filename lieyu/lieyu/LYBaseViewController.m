@@ -21,8 +21,6 @@
     self.navigationController.navigationBar.barTintColor=RGB(35, 166, 116);
     //若为yesnavigationBar背景 会有50％的透明
     self.navigationController.navigationBar.translucent = NO;
-//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-//    [self.navigationItem setLeftBarButtonItem:item];
     
     //返回的颜色
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
@@ -71,7 +69,7 @@
 - (void)setCustomTitle:(NSString *)title
 {
     int titleTag = 1000000;
-    self.title = nil;
+//    self.title = nil;
     UINavigationBar *navBar = self.navigationController.navigationBar;
     UILabel *label = (UILabel *)[self.navigationController.navigationBar viewWithTag:titleTag];
     if (label)

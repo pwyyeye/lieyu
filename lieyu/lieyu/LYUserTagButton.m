@@ -33,8 +33,13 @@
 -(void)selectedClick:(UIButton *)button{
     if (self.selected==YES) {
         self.selected=NO;
+        
     }else{
         self.selected=YES;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(chooseButton:andSelected:)]) {
+        [self.delegate chooseButton:self andSelected:self.selected];
     }
     
 }

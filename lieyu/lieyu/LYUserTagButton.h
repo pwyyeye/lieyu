@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "UserTagModel.h"
+
+@protocol LYChooseButtonDelegate <NSObject>
+
+-(void)chooseButton:(UIButton *)sender andSelected:(BOOL)isSelected;
+
+@end
+
 @interface LYUserTagButton : UIButton
+@property(strong,nonatomic) id<LYChooseButtonDelegate> delegate;
 @property(strong,nonatomic) UserTagModel *usertag;
 @end

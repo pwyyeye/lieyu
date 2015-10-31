@@ -266,7 +266,7 @@
 
 + (NSString *)getQiniuUrl:(NSString *)key width:(NSInteger)width andHeight:(NSInteger)height{
     NSString *encodeKey=[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return [NSString stringWithFormat:@"@http://source.lie98.com/%@?imageView2/0/w/%d/h/%d",encodeKey,width,height];
+    return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%d/h/%d",encodeKey,width,height];
 }
 
 

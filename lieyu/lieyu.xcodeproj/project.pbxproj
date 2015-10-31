@@ -3491,13 +3491,6 @@
 			name = PlayTogether;
 			sourceTree = "<group>";
 		};
-		D761F0261BA5B8C2000757B0 /* Wines */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Wines;
-			sourceTree = "<group>";
-		};
 		D761F0271BA5B8D5000757B0 /* Find */ = {
 			isa = PBXGroup;
 			children = (
@@ -3528,7 +3521,6 @@
 				15EA6DDA1BC16C7B00620C9E /* IM */,
 				D761F0281BA5B90E000757B0 /* Mine */,
 				D761F0271BA5B8D5000757B0 /* Find */,
-				D761F0261BA5B8C2000757B0 /* Wines */,
 				D761F0251BA5B8A5000757B0 /* PlayTogether */,
 				D761F0241BA5B847000757B0 /* iNeedPaly */,
 				D748BC841BA1CD35005AA996 /* Register */,
@@ -3692,7 +3684,7 @@
 					};
 					AD8899D11B9AFE62007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 5ZLNNRMM3Y;
+						DevelopmentTeam = HTBQ4BN66Y;
 						TestTargetID = AD8899B51B9AFE61007BCC7C;
 					};
 				};

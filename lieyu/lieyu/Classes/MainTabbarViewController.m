@@ -37,13 +37,13 @@
 
 - (void)setupViewStyles
 {
-    NSArray * aryImages = @[@"icon_ineedplay",@"icon_palytogether",@"icon_find",@"icon_me"];
-    NSArray * selectedImages = @[@"icon_ineedplay",@"icon_palytogether",@"icon_find",@"icon_me"];
+    NSArray * aryImages = @[@"icon_woyaowan",@"icon_yiqiwan",@"icon_faxian",@"icon_wode"];
+    NSArray * selectedImages = @[@"icon_woyaowan_selected",@"icon_yiqiwan_selected",@"icon_faxian_selected",@"icon_wode_selected"];
 
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(13, 159, 103, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(166  , 166, 166, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(166, 166, 166, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateNormal];
     
     int i = 0;
     for (UITabBarItem *item in self.tabBar.items)
@@ -128,6 +128,7 @@
         
         
     }
+    
 }
 
 -(void)loginSuccess:(BOOL)isLoginSucces{
@@ -139,6 +140,7 @@
 }
 
 -(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
     //用户退出以后 返回到首页
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if([MyUtil isEmptyString:app.s_app_id]){

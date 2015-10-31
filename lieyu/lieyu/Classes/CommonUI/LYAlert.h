@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, LYAlertType) {
 
 @protocol LYAlertDelegate <NSObject>
 
--(void)button_ok;
+-(void)button_ok:(NSInteger)customType;
 
 -(void)button_cancel;
  
@@ -31,6 +31,8 @@ typedef NS_ENUM(NSInteger, LYAlertType) {
 @property(assign,nonatomic) LYAlertType alertType;
 
 @property(strong,nonatomic) id<LYAlertDelegate> delegate;
+
+@property(assign,nonatomic) NSInteger customType;
 
 //阴影部分
 @property(strong,nonatomic) UIButton *shadeButton;

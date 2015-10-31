@@ -61,6 +61,7 @@
     // Do any additional setup after loading the view.
 
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return dataList.count;
@@ -200,6 +201,9 @@
     rc.origin.x = 10;
     rc.origin.y = 8;
     _fillterButton.frame = rc;
+    
+//    [self setCustomTitle:@"一起玩"];
+   
 
 }
 - (void)viewWillLayoutSubviews
@@ -209,12 +213,14 @@
         [self.navigationController setNavigationBarHidden:NO];
 
     }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
-//    [self setCustomTitle:nil];
+//    [self setCustomTitle:@""];
+
     [_fillterButton removeFromSuperview];
 }
 

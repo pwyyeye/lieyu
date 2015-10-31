@@ -10,6 +10,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UserModel.h"
 #import "LYTagTableViewController.h"
+
 @interface LYUserDetailController ()
 
 @end
@@ -122,6 +123,7 @@
         
     }else if(indexPath.row==2){
         label.text=mod.gender.intValue==1?@"男":@"女";
+ 
     }else if(indexPath.row==3){
         label.text=mod.birthday;
         if (![MyUtil isEmptyString:mod.birthday]) {
@@ -210,7 +212,7 @@
         
         [alert show];
     }else if(indexPath.row==2){
-//        [self showAlertView];
+        [self showAlertViewForSex];
     }else if(indexPath.row==3){
         [self showAlertView];
     }else if (indexPath.row==4){
@@ -268,6 +270,7 @@
         _alertView=nil;
     }
     _alertView=[[LYAlert alloc] initWithType:LYAlertTypeDefault];
+    _alertView.customType=0;
     _alertView.delegate=self;
     [self.view addSubview:_alertView];
     
@@ -277,34 +280,98 @@
 
 }
 
+-(void)showAlertViewForSex{
+    if (_alertView!=nil) {
+        [_alertView removeFromSuperview];
+        _alertView=nil;
+    }
+    _alertView=[[LYAlert alloc] initWithType:LYAlertTypeDefault];
+    _alertView.delegate=self;
+    _alertView.customType=1;
+    _alertView.shade_proportion=0.7;
+    [self.view addSubview:_alertView];
+    
+    LYUserTagButton *male=[[LYUserTagButton alloc] initWithFrame:CGRectMake(60, 30, 60, 35)];
+    [male setTitle:@"男" forState:UIControlStateNormal];
+    male.delegate=self;
+    male.tag=2001;
+    
+    
+    LYUserTagButton *fmale=[[LYUserTagButton alloc] initWithFrame:CGRectMake(190, 30, 60, 35)];
+    [fmale setTitle:@"女" forState:UIControlStateNormal];
+    fmale.delegate=self;
+    fmale.tag=2000;
+    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;
+    if (mod.gender.intValue==1) {
+        male.selected=YES;
+        fmale.selected=NO;
+    }else{
+        fmale.selected=YES;
+        male.selected=NO;
+    }
+    _sex=mod.gender.intValue;
+    
+    [_alertView.showView addSubview:male];
+    
+    [_alertView.showView addSubview:fmale];
+    
+    
+    [_alertView show];
+    
+    
+}
+-(void)chooseButton:(UIButton *)sender andSelected:(BOOL)isSelected{
+    if (isSelected) {
+        if (sender.tag==2000) {
+            _sex=0;
+           LYUserTagButton *male= (LYUserTagButton *)[_alertView viewWithTag:2001];
+            male.selected=NO;
+        }else if (sender.tag==2001) {
+            _sex=1;
+            LYUserTagButton *fmale= (LYUserTagButton *)[_alertView viewWithTag:2000];
+            fmale.selected=NO;
+        }
+    }
+
+}
+
 -(void)button_cancel{
     [_alertView removeFromSuperview];
     _alertView=nil;
     return;
     
 }
-#pragma mark - 修改生日
--(void)button_ok{
-    NSDate *select  = [_datePicker date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *date = [dateFormatter stringFromDate:select];
-    NSLog(@"----pass-pass%@---",date);
+#pragma mark - 修改生日 / 性别
+-(void)button_ok:(NSInteger) customType{
     [_alertView removeFromSuperview];
     _alertView=nil;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UserModel *mod= app.userModel;
     
-    if ([date isEqualToString:mod.birthday]) {
-        return;
+    if (customType==0) {
+        NSDate *select  = [_datePicker date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *date = [dateFormatter stringFromDate:select];
+        
+        if ([date isEqualToString:mod.birthday]) {
+            return;
+        }
+        UILabel *label=[_selectcedCell viewWithTag:_selectcedCell.tag+100];
+        label.text=date;
+        mod.birthday=date;
+        NSMutableDictionary *userinfo=[NSMutableDictionary new];
+        [userinfo setObject:date forKey:@"birthday"];
+        [self savaUserInfo:userinfo needReload:YES];
+    }else if(customType==1){
+        mod.gender=[NSString stringWithFormat:@"%d",_sex];
+        NSMutableDictionary *userinfo=[NSMutableDictionary new];
+        [userinfo setObject:[NSString stringWithFormat:@"%d",_sex] forKey:@"gender"];
+        [self savaUserInfo:userinfo needReload:YES];
     }
     
-    UILabel *label=[_selectcedCell viewWithTag:_selectcedCell.tag+100];
-    label.text=date;
-    mod.birthday=date;
-    NSMutableDictionary *userinfo=[NSMutableDictionary new];
-    [userinfo setObject:date forKey:@"birthday"];
-    [self savaUserInfo:userinfo needReload:YES];
     
 }
 #pragma mark -  修改昵称
@@ -362,7 +429,7 @@
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             UserModel *mod= app.userModel;
             mod.avatar_img=[MyUtil getQiniuUrl:key width:80 andHeight:80];
-            NSLog(@"----pass-uploadImageToQiuNiu%@---",mod.avatar_img);
+  
             NSMutableDictionary *userinfo=[NSMutableDictionary new];
             
             [userinfo setObject:key forKey:@"avatar_img"];

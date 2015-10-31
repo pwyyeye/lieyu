@@ -83,6 +83,7 @@
     [buttomView addSubview:barView];
     
 //    if (_alertType==LYAlertTypeDefault) {
+
         [self MoveView:self To:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) During:0.5];
         _shadeButton.backgroundColor=[UIColor colorWithWhite:0 alpha:0.2];
 //    }
@@ -97,8 +98,8 @@
 }
 //代理方法
 -(void)ok{
-    if ([self.delegate respondsToSelector:@selector(button_ok)]) {
-        [self.delegate button_ok];
+    if ([self.delegate respondsToSelector:@selector(button_ok:)]) {
+        [self.delegate button_ok:_customType];
     }
 }
 
