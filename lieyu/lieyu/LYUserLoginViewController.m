@@ -101,6 +101,7 @@
 - (IBAction)zhuceAct:(UIButton *)sender {
     LYRegistrationViewController *registrationViewController=[[LYRegistrationViewController alloc]initWithNibName:@"LYRegistrationViewController" bundle:nil];
     registrationViewController.title=@"注册";
+    registrationViewController.delegate=self;
     [self.navigationController pushViewController:registrationViewController animated:YES];
 }
 
@@ -118,6 +119,7 @@
 - (void)resetPassword{
     [MyUtil showMessage:@"重置密码成功"];
 }
+
 
 
 -(void)gotoBack{
