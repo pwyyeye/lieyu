@@ -330,6 +330,7 @@
     LYSearchFriendViewController *searchFriendViewController=[[LYSearchFriendViewController alloc]initWithNibName:@"LYSearchFriendViewController" bundle:nil];
     searchFriendViewController.title=@"搜索";
     [self.navigationController pushViewController:searchFriendViewController animated:YES];
+    [self SetViewDisappear:nil];
 }
 /*
 #pragma mark - Navigation

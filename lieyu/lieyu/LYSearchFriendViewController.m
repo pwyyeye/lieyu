@@ -11,6 +11,8 @@
 #import "WanYouInfoCell.h"
 #import "CustomerModel.h"
 #import "LYUserHttpTool.h"
+#import "YaoYiYaoViewController.h"
+#import "SaoYiSaoViewController.h"
 #import "LYMyFriendDetailViewController.h"
 @interface LYSearchFriendViewController ()
 {
@@ -129,7 +131,16 @@
         friendDetailViewController.customerModel=customerModel;
         [self.navigationController pushViewController:friendDetailViewController animated:YES];
     }else{
-        
+        if(indexPath.row==0){
+            YaoYiYaoViewController *yaoYiYaoViewController=[[YaoYiYaoViewController alloc]initWithNibName:@"YaoYiYaoViewController" bundle:nil];
+            yaoYiYaoViewController.title=@"摇一摇";
+            [self.navigationController pushViewController:yaoYiYaoViewController  animated:YES];
+        }else{
+            //扫一扫
+            SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
+            saoYiSaoViewController.title=@"扫一扫";
+            [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
+        }
     }
     
     
