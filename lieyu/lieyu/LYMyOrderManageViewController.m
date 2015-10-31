@@ -23,6 +23,7 @@
 #import "LYOrderDetailViewController.h"
 #import "UMSocial.h"
 #import "UserModel.h"
+#import "ChoosePayController.h"
 @interface LYMyOrderManageViewController ()
 
 @end
@@ -46,6 +47,24 @@
     
     // Do any additional setup after loading the view from its nib.
 }
+-(void)gotoBack{
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[ChoosePayController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+    }
+//    if ([[self.navigationController.viewControllers lastObject] isKindOfClass:[ChoosePayController class]]) {
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//    }else{
+       [self.navigationController popViewControllerAnimated:YES];
+//    }
+    
+    
+
+    
+}
+
 #pragma mark 刷新
 -(void)refreshData{
     pageCount=1;
