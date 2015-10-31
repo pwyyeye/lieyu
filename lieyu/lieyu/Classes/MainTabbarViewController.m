@@ -131,7 +131,6 @@
 }
 
 -(void)loginSuccess:(BOOL)isLoginSucces{
-    NSLog(@"----pass-pass%@---",@"isLoginSucces");
     if (isLoginSucces) {
         
     }else{
