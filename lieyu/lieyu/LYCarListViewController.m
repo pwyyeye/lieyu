@@ -86,9 +86,11 @@
     CarInfoModel *carInfoModel=dataList[section];
     double payAmount=0;
     for (CarModel * carModel in carInfoModel.cartlist) {
-        double price=carModel.product.price.doubleValue;
-        double num =carModel.quantity.doubleValue;
-        payAmount=payAmount+price*num;
+        if(carModel.isSel){
+            double price=carModel.product.price.doubleValue;
+            double num =carModel.quantity.doubleValue;
+            payAmount=payAmount+price*num;
+        }
     }
     bottomView.priceLal.text =[NSString stringWithFormat:@"￥%.2f",payAmount];
     return bottomView;
