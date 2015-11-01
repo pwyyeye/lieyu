@@ -20,6 +20,7 @@
 #import "PTContactCell.h"
 #import "LYtimeChooseTimeController.h"
 #import <RongIMKit/RongIMKit.h>
+#import "ChoosePayController.h"
 @interface LYPlayTogetherPayViewController ()<DateChooseDelegate>
 {
     PinKeModel *pinKeModel;
@@ -343,9 +344,17 @@
         
         NSDictionary *dic=@{@"pinkerid":[NSNumber numberWithInt:pinKeModel.id],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":numCell.numLal.text,@"payamount":payAmoutCell.payAmountTex.text,@"pinkerType":typeChooseCell.pinkertype};
         [[LYHomePageHttpTool shareInstance]setTogetherOrderInWithParams:dic complete:^(NSString *result) {
-            if(!result){
+            if(result){
                 //支付宝页面"data": "P130637201510181610220",
                 //result的值就是P130637201510181610220
+                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+                detailViewController.orderNo=result;
+                detailViewController.payAmount=payAmoutCell.payAmountTex.text.doubleValue;
+                detailViewController.productName=pinKeModel.title;
+                detailViewController.productDescription=@"暂无";
+                self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+                
+                [self.navigationController pushViewController:detailViewController animated:YES];
             }
         }];
 
