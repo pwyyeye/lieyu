@@ -12,6 +12,7 @@
 #import "CYPayAmoutCell.h"
 #import "CYInfoCell.h"
 #import "PTTaoCanCell.h"
+#import "ChoosePayController.h"
 @interface PTjoinInViewController ()
 
 @end
@@ -199,6 +200,25 @@
 */
 #pragma mark - 立即支付
 - (IBAction)payAct:(id)sender {
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *userModel= app.userModel;
     
+    ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+    if(pinKeModel.pinkerList.count>0){
+        for (PinkInfoModel *pinkInfoModel in pinKeModel.pinkerList) {
+            
+            if(pinkInfoModel.inmember==userModel.userid){
+                detailViewController.orderNo=pinkInfoModel.sn;
+                detailViewController.payAmount=pinkInfoModel.price.doubleValue;
+            }
+        }
+    }
+
+    detailViewController.productName=pinKeModel.fullname;
+    detailViewController.productDescription=@"暂无";
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
+
 }
 @end

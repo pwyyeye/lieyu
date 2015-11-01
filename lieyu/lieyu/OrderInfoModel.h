@@ -23,6 +23,7 @@
 @property(nonatomic,copy)NSString * checkUserName;
 @property(nonatomic,copy)NSString * checkUserMobile;
 @property(nonatomic,copy)NSString * checkUserAge;
+@property(strong,nonatomic) NSString *fullname;
 @property(nonatomic,assign)int checkuserid;
 @property(nonatomic,assign)int ordertype;
 @property(nonatomic,copy)NSString * consumptionCode;

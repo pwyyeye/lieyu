@@ -869,6 +869,26 @@
 -(void)payAct:(UIButton *)sender{
     OrderInfoModel *orderInfoModel;
     orderInfoModel=dataList[sender.tag];
+    ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+    detailViewController.orderNo=orderInfoModel.sn;
+    detailViewController.payAmount=orderInfoModel.amountPay.doubleValue;
+    detailViewController.productName=orderInfoModel.fullname;
+    detailViewController.productDescription=@"暂无";
+    //如果是拼客 特殊处理
+    if(orderInfoModel.ordertype==1){
+        if(orderInfoModel.pinkerList.count>0){
+            for (PinkInfoModel *pinkInfoModel in orderInfoModel.pinkerList) {
+                if(pinkInfoModel.inmember==userId){
+                     detailViewController.orderNo=pinkInfoModel.sn;
+                     detailViewController.payAmount=pinkInfoModel.price.doubleValue;
+                }
+            }
+        }
+    }
+    
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
     
 }
 #pragma mark 取消订单
