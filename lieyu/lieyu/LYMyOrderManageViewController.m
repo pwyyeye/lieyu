@@ -277,7 +277,7 @@
             //判断是否发起人
             
             
-            if(orderInfoModel.userid==userId){
+            if(orderInfoModel.userid==self.userModel.userid){
                 isFaqi=true;
             }
         }
@@ -319,7 +319,7 @@
                 NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
                 if(pinkerList.count>0){
                     for (PinkInfoModel *pinkInfoModel in pinkerList) {
-                        if(pinkInfoModel.inmember==userId){
+                        if(pinkInfoModel.inmember==self.userModel.userid){
                             if(pinkInfoModel.paymentStatus==1){
                                 moneyStr=pinkInfoModel.price;
                                 
@@ -435,7 +435,7 @@
             //判断是否发起人
             BOOL isFaqi=false;
             
-            if(orderInfoModel.userid==userId){
+            if(orderInfoModel.userid==self.userModel.userid){
                 isFaqi=true;
             }
             bool isfu=false;
@@ -443,7 +443,7 @@
             NSString *moneyStr=@"0";
             if(pinkerList.count>0){
                 for (PinkInfoModel *pinkInfoModel in pinkerList) {
-                    if(pinkInfoModel.inmember==userId){
+                    if(pinkInfoModel.inmember==self.userModel.userid){
                         moneyStr=pinkInfoModel.price;
                         if(pinkInfoModel.paymentStatus==1){
                             isfu=true;
@@ -591,7 +591,7 @@
     if(orderInfoModel.ordertype==1){
         BOOL isFaqi=false;
         
-        if(orderInfoModel.userid==userId){
+        if(orderInfoModel.userid==self.userModel.userid){
             isFaqi=true;
         }
         if(isFaqi){
@@ -715,7 +715,7 @@
         //拼客订单
         BOOL isFaqi=false;
         
-        if(orderInfoModel.userid==userId){
+        if(orderInfoModel.userid==self.userModel.userid){
             isFaqi=true;
         }
         if(!isFaqi){
@@ -849,7 +849,7 @@
     int orderid=0;
     if(pinkerList.count>0){
         for (PinkInfoModel *pinkInfoModel in pinkerList) {
-            if(pinkInfoModel.inmember==userId){
+            if(pinkInfoModel.inmember==self.userModel.userid){
                 
                 orderid=pinkInfoModel.id;
             }

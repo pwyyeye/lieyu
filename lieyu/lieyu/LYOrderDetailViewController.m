@@ -36,7 +36,7 @@
     aboutContent=@"";
     sectionNum=0;
     CGRect rect;
-    
+    userId=self.userModel.userid;
     rect = [[UIApplication sharedApplication] statusBarFrame];
     
     // 导航栏（navigationbar）
