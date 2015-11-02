@@ -14,13 +14,15 @@
 #import "LYToPlayRestfulBusiness.h"
 #import "LYUserLocation.h"
 #import "JiuBaModel.h"
-#define PAGESIZE 20
+#import "LYHomeSearchViewController.h"
+#define PAGESIZE 2
 @interface HomePageINeedPlayViewController ()
 <
     UITableViewDelegate,
     UITableViewDataSource,
 
-    UITextFieldDelegate
+    UITextFieldDelegate,
+SearchDelegate
 >
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -40,6 +42,7 @@
     
     [super viewDidLoad];
     self.curPageIndex = 1;
+    self.aryList=[[NSMutableArray alloc]init];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -89,11 +92,11 @@
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
-    hList.city = [LYUserLocation instance].city;
+//    hList.city = [LYUserLocation instance].city;
     hList.bartype = @"酒吧/夜总会";
 //    hList.need_page = @(1);
     hList.p = @(_curPageIndex);
-    hList.per = @(20);
+    hList.per = @(PAGESIZE);
     __weak __typeof(self)weakSelf = self;
     [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
         if (ermsg.state == Req_Success)
@@ -101,9 +104,10 @@
             if (weakSelf.curPageIndex == 1) {
                 [weakSelf.aryList removeAllObjects];
                 //                [weakSelf.bannerList removeAllObjects];
+                self.bannerList = bannerList.mutableCopy;
             }
-            self.aryList = barList.mutableCopy;
-            self.bannerList = bannerList.mutableCopy;
+            [self.aryList addObjectsFromArray:barList.mutableCopy] ;
+            
             [self.tableView reloadData];
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
@@ -167,6 +171,14 @@
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
+                if (barList.count == PAGESIZE)
+                {
+                    weakSelf.tableView.footer.hidden = NO;
+                }
+                else
+                {
+                    weakSelf.tableView.footer.hidden = YES;
+                }
                 weakSelf.curPageIndex ++;
                 [weakSelf.tableView.footer endRefreshing];
             }
@@ -320,11 +332,27 @@
 
 
 }
-
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField; {
+    LYHomeSearchViewController *homeSearchViewController=[[LYHomeSearchViewController alloc]initWithNibName:@"LYHomeSearchViewController" bundle:nil];
+    homeSearchViewController.delegate=self;
+    [self presentViewController:homeSearchViewController animated:false completion:^{
+        
+    }];
+    
+    return false;
+}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.searchTextField resignFirstResponder];
+}
+#pragma mark 搜索代理
+- (void)addCondition:(JiuBaModel *)model{
+    BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    
+    
+    controller.beerBarId = @(model.barid);
+    [self.navigationController pushViewController:controller animated:YES];
 }
 /*
 #pragma mark - Navigation
