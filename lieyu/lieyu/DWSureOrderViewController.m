@@ -273,6 +273,7 @@
         if(indexPath.row==3){
             LYtimeChooseTimeController *timeChooseTimeController=[[LYtimeChooseTimeController alloc]initWithNibName:@"LYtimeChooseTimeController" bundle:nil];
             timeChooseTimeController.title=@"时间选择";
+            timeChooseTimeController.type=1;
             timeChooseTimeController.delegate=self;
             [self.navigationController pushViewController:timeChooseTimeController animated:YES];
         }
@@ -290,6 +291,10 @@
 #pragma mark 选择专属经理
 -(void)chooseZS:(UIButton *)sender{
     ZSDetailModel *zsModel=zsArr[sender.tag];
+    if([zsModel.isFull isEqualToString:@"1"]){
+        [self showMessage:@"该经理的卡座已满,请选择其他专属经理!"];
+        return;
+    }
     zsModel.issel=true;
     for (int i=0; i<zsArr.count; i++) {
         ZSDetailModel *zsModelTemp=zsArr[i];
