@@ -99,7 +99,7 @@
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
-    hList.city = [LYUserLocation instance].city;
+    hList.city = @"上海";
     
     NSString * mainType = nil;
     if (self.entryType == BaseEntry_WineBar) {

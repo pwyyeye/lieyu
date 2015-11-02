@@ -245,6 +245,8 @@
 		15ED327F1BE336C400E086A1 /* YaoSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED327D1BE336C400E086A1 /* YaoSettingViewController.xib */; };
 		15ED32831BE336DC00E086A1 /* YaoHisListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED32811BE336DC00E086A1 /* YaoHisListViewController.m */; };
 		15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */; };
+		15ED32891BE6F2E800E086A1 /* LYHomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */; };
+		15ED328A1BE6F2E800E086A1 /* LYHomeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32881BE6F2E800E086A1 /* LYHomeSearchViewController.xib */; };
 		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
@@ -943,6 +945,9 @@
 		15ED32801BE336DC00E086A1 /* YaoHisListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoHisListViewController.h; sourceTree = "<group>"; };
 		15ED32811BE336DC00E086A1 /* YaoHisListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoHisListViewController.m; sourceTree = "<group>"; };
 		15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoHisListViewController.xib; sourceTree = "<group>"; };
+		15ED32861BE6F2E800E086A1 /* LYHomeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSearchViewController.h; sourceTree = "<group>"; };
+		15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSearchViewController.m; sourceTree = "<group>"; };
+		15ED32881BE6F2E800E086A1 /* LYHomeSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearchViewController.xib; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
 		15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
@@ -2309,6 +2314,16 @@
 			name = "设置";
 			sourceTree = "<group>";
 		};
+		15ED32851BE6F23100E086A1 /* 搜索 */ = {
+			isa = PBXGroup;
+			children = (
+				15ED32861BE6F2E800E086A1 /* LYHomeSearchViewController.h */,
+				15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */,
+				15ED32881BE6F2E800E086A1 /* LYHomeSearchViewController.xib */,
+			);
+			name = "搜索";
+			sourceTree = "<group>";
+		};
 		15EE51321BA6E1AB00464B74 /* 订单管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3474,6 +3489,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				15ED32851BE6F23100E086A1 /* 搜索 */,
 				15A4CF531BD86A0A00C22C01 /* 吃喝专场 */,
 				15FD2A981BD5E81E00D66920 /* 我要订位 */,
 				D7A1D41E1BC2689D00BCE47C /* Business */,
@@ -3792,6 +3808,7 @@
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				15E184841BB51A9500681BB2 /* LYZSApplicationViewController.xib in Resources */,
 				151BB6D11BBB78E000E7A81C /* UzysAssetPickerController.bundle in Resources */,
+				15ED328A1BE6F2E800E086A1 /* LYHomeSearchViewController.xib in Resources */,
 				ADD68E2B1BE10E330060E751 /* 4@2x.png in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
 				15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */,
@@ -4156,6 +4173,7 @@
 				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				1559DD101BDA2A3E00F3FE9B /* CarInfoCell.m in Sources */,
+				15ED32891BE6F2E800E086A1 /* LYHomeSearchViewController.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
 				15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */,
 				15B866291BDB6A57002E2BB6 /* AllInfoModel.m in Sources */,

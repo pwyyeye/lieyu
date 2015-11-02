@@ -40,7 +40,7 @@
 -(void)getKaZuoData{
     [listArr removeAllObjects];
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dic=@{@"barid":@"1",@"userid":@"1"};
+    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:self.userModel.barid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
     [[ZSManageHttpTool shareInstance] getDeckFullWithParams:dic block:^(NSMutableArray *result) {
         listArr = result;
         [weakSelf.tableView reloadData];
@@ -108,7 +108,7 @@
 -(void)kazuoChoose:(UISwitch *)sender{
     NSLog(@"%ld**********",sender.tag);
     DeckFullModel *deckFullModel=listArr[sender.tag];
-    NSDictionary *dic=@{@"setDate":deckFullModel.deckDate,@"barid":@"1",@"userid":@"1"};
+    NSDictionary *dic=@{@"setDate":deckFullModel.deckDate,@"barid":[NSNumber numberWithInt:self.userModel.barid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
     if(deckFullModel.isFull==1){
         NSLog(@"*****%d",deckFullModel.isFull);
         [[ZSManageHttpTool shareInstance] setDeckDelWithParams:dic complete:^(BOOL result) {
