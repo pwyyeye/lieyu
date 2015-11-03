@@ -10,9 +10,15 @@
 #import "LYBaseViewController.h"
 #import "HomePageEntryConstant.h"
 #import "EScrollerView.h"
-@interface HomePageINeedPlayViewController : LYBaseViewController
+#import "LYAlert.h"
+#import "CityChooseButton.h"
+
+
+@interface HomePageINeedPlayViewController : LYBaseViewController<LYChooseCityDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *cityBtn;
+
+@property(strong,nonatomic) LYAlert *alertView;
 
 
 @end

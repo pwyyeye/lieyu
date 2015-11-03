@@ -63,8 +63,9 @@
         [self showMessage:@"请输入密码!"];
         return;
     }
-//    NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":[MyUtil md5HexDigest:self.passWordTex.text] };
-    NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":self.passWordTex.text};
+    NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":[MyUtil md5HexDigest:self.passWordTex.text] };
+    NSLog(@"----pass-[MyUtil md5HexDigest:self.passWordTex.text]=%@---",[MyUtil md5HexDigest:self.passWordTex.text]);
+//    NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":self.passWordTex.text};
     [[LYUserHttpTool shareInstance] userLoginWithParams:dic block:^(UserModel *result) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         app.s_app_id=result.token;

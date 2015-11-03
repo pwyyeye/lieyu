@@ -424,6 +424,7 @@
 		ADE103BB1BDFA5F200D9EC38 /* LYUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */; };
 		ADE103C11BE0EAAA00D9EC38 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103BE1BE0EAAA00D9EC38 /* EAIntroPage.m */; };
 		ADE103C21BE0EAAA00D9EC38 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103C01BE0EAAA00D9EC38 /* EAIntroView.m */; };
+		ADF38F421BE8D8B400A80B08 /* CityChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF38F411BE8D8B400A80B08 /* CityChooseButton.m */; };
 		D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */; };
 		D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D8A1BAE8C3300915F37 /* PacketBarCell.m */; };
 		D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71E1D8B1BAE8C3300915F37 /* PacketBarCell.xib */; };
@@ -1294,6 +1295,8 @@
 		ADE103BE1BE0EAAA00D9EC38 /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
 		ADE103BF1BE0EAAA00D9EC38 /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
 		ADE103C01BE0EAAA00D9EC38 /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
+		ADF38F401BE8D8B400A80B08 /* CityChooseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityChooseButton.h; sourceTree = "<group>"; };
+		ADF38F411BE8D8B400A80B08 /* CityChooseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityChooseButton.m; sourceTree = "<group>"; };
 		D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarDetailCell.h; sourceTree = "<group>"; };
 		D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarDetailCell.m; sourceTree = "<group>"; };
 		D71E1D891BAE8C3300915F37 /* PacketBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketBarCell.h; sourceTree = "<group>"; };
@@ -3211,6 +3214,15 @@
 			name = "引导页";
 			sourceTree = "<group>";
 		};
+		ADF38F3F1BE8CD9C00A80B08 /* 定位 */ = {
+			isa = PBXGroup;
+			children = (
+				ADF38F401BE8D8B400A80B08 /* CityChooseButton.h */,
+				ADF38F411BE8D8B400A80B08 /* CityChooseButton.m */,
+			);
+			name = "定位";
+			sourceTree = "<group>";
+		};
 		D729DB5C1BADB8AB005A9E60 /* BeerBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -3501,6 +3513,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				ADF38F3F1BE8CD9C00A80B08 /* 定位 */,
 				15ED32851BE6F23100E086A1 /* 搜索 */,
 				15A4CF531BD86A0A00C22C01 /* 吃喝专场 */,
 				15FD2A981BD5E81E00D66920 /* 我要订位 */,
@@ -4055,6 +4068,7 @@
 				A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */,
 				15013AFB1BBA33BE00061FAF /* SDWebImageDownloaderOperation.m in Sources */,
 				15E2404B1BB0F3540090D240 /* IQToolbar.m in Sources */,
+				ADF38F421BE8D8B400A80B08 /* CityChooseButton.m in Sources */,
 				A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */,
 				ADE103A91BDE4B2300D9EC38 /* AlipayOrder.m in Sources */,
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,

@@ -18,6 +18,7 @@
 #import "LYHomeSearchViewController.h"
 #import "DWTaoCanXQViewController.h"
 #import "MyCollectionViewController.h"
+
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
 <
@@ -106,6 +107,9 @@ SearchDelegate
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
+    if (![MyUtil isEmptyString:_cityBtn.titleLabel.text]) {
+       hList.city = _cityBtn.titleLabel.text;
+    }
 //    hList.city = [LYUserLocation instance].city;
 //    hList.bartype = @"酒吧/夜总会";
     hList.need_page = @(1);
@@ -231,11 +235,82 @@ SearchDelegate
     [self.navigationController pushViewController:bearBarController animated:YES];
 }
 
+#pragma mark 选择区域
+
 - (IBAction)selectAreaClick:(id)sender
 {
+    
 
+    if (_alertView!=nil || _alertView.isShow==YES) {
+        [_alertView removeFromSuperview];
+        _alertView=nil;
+        return;
+    }
+    _alertView=[[LYAlert alloc] initWithType:LYAlertTypeUpToDown];
+    _alertView.shade_proportion=0.7;
+    
+    UILabel *title=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 200, 25)];
+    title.text=@"热门城市";
+    title.font=[UIFont boldSystemFontOfSize:15];
+    title.textColor=RGB(51, 51, 51);
+    
+    NSArray *buttonArray=@[@"上海",@"北京",@"广州",@"杭州"];
+    [self initCityButon:buttonArray];
+    [_alertView.showView addSubview: title];
+    
+    [_alertView show];
+    
+    [self.view addSubview:_alertView];
+    
+       
 
 }
+
+
+-(void)initCityButon:(NSArray *)buttonArray{
+    if (buttonArray.count>0) {
+        float x=0;//按钮 x 坐标
+        float y=50;
+        float width=((SCREEN_WIDTH-60)/3);
+        float height=30;
+        
+        for (int i=0; i<buttonArray.count; i++) {
+            x+=width+10;//间隔10
+            if(i%3==0&&i!=0){//三个按钮换行
+                x=20;
+                if ((int)(i/3)>0) {
+                    y=y+40;
+                }
+                
+            }else if(i==0){//第一次 x＝0
+                x=20;//间隔10
+            }
+            
+            
+            
+            CGRect rect=CGRectMake(x, y, width, height);
+            CityChooseButton *button=[[CityChooseButton alloc] initWithFrame:rect];
+            [button setTitle:[buttonArray objectAtIndex:i] forState:UIControlStateNormal];
+            button.delegate=self;
+            [_alertView.showView addSubview: button];
+
+        }
+        //        x=10;
+    }
+    
+}
+
+
+-(void)chooseButton:(UIButton *)sender andSelected:(BOOL)isSelected{
+    if (isSelected) {
+        _cityBtn.titleLabel.text=sender.titleLabel.text;
+        [self getData];
+        [_alertView removeFromSuperview];
+        _alertView=nil;
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -10,7 +10,7 @@
 #import "HttpOperatorProvider.h"
 
 #define API_QUERYDRINK @"drinksAction.do?action=list"
-#define URL @"http://121.40.229.133:8001/lieyu/"
+#define URL LY_SERVER
 
 
 @interface LYRestfulBussiness : NSObject
