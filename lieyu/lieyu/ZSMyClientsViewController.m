@@ -185,6 +185,7 @@
         cell.nameLal.text = @"No Name";
     }
     [cell.cusImageView setImageWithURL:[NSURL URLWithString:addressBook.avatar_img]];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //    cell.backgroundColor=[UIColor clearColor];
     
     return cell;

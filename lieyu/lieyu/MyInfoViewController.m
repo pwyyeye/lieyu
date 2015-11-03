@@ -24,7 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        _tableView.height=431;
+    }
+    _tableView.height=431;
     listArr =[[NSMutableArray alloc]init];
     //    self.automaticallyAdjustsScrollViewInsets=0;
     
@@ -137,7 +140,7 @@
     cell.backImageView.backgroundColor=bColor;
     cell.CoutentImageView.image=imge;
     cell.titleLbl.text=title;
-    cell.delLal.text=delInfo;
+//    cell.delLal.text=delInfo;
     cell.delLal.textAlignment=NSTextAlignmentRight;
     cell.titleLbl.width=200;
     //    cell.disImageView;

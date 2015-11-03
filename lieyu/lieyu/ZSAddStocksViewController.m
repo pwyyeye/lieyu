@@ -18,6 +18,12 @@
 
 - (void)viewDidLoad {
     keyArr=[NSMutableArray new];
+    [_scrollView setContentSize:CGSizeMake(self.view.width, 610)];
+    
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        _suerBtn.top=378;
+    }
+    _scrollView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     userModel=app.userModel;
     [super viewDidLoad];

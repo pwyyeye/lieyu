@@ -57,4 +57,5 @@
 + (NSString *)randomStringWithLength:(int)len;
 //获取7牛全链接
 + (NSString *)getQiniuUrl:(NSString *)key width:(NSInteger)width andHeight:(NSInteger)height;
++ (NSString*)deviceString;
 @end
