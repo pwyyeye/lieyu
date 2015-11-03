@@ -16,4 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *scLal;
 @property (weak, nonatomic) IBOutlet UIButton *pkBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *price;
+
+@property (weak, nonatomic) IBOutlet UILabel *marketprice;
+@property (weak, nonatomic) IBOutlet UILabel *favNum;
 @end

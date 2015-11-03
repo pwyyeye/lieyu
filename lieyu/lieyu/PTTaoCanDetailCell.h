@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *moneyLal;
 @property (weak, nonatomic) IBOutlet UILabel *jiubaLal;
 @property (weak, nonatomic) IBOutlet UILabel *pikeTypeLal;
+@property (weak, nonatomic) IBOutlet UILabel *marketprice;
 @property (weak, nonatomic) IBOutlet UIImageView *jiuBaImageView;
 @end

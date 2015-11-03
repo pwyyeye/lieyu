@@ -21,6 +21,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *taoCanNameLal;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIButton *daohanBtn;
+@property (weak, nonatomic) IBOutlet UILabel *price;
+
+@property (weak, nonatomic) IBOutlet UILabel *marketprice;
+//套餐适合人数说明
+@property (weak, nonatomic) IBOutlet UILabel *fitNum;
+
 - (IBAction)daohan:(UIButton *)sender;
 
 @end

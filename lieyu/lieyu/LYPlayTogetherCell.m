@@ -31,7 +31,12 @@
     _barnameLal.text=model.barinfo.barname;
     _introductionLal.text=model.title;
     _addressLal.text=model.barinfo.address;
-    _scLal.text=model.barinfo.fav_num;
+//    _scLal.text=model.barinfo.fav_num;
+    _price.text=[NSString stringWithFormat:@"¥%@",model.price];
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];
+    _marketprice.attributedText=attribtStr;
+    _favNum.text=model.barinfo.fav_num;
     
 }
 @end

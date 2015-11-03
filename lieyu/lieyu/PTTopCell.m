@@ -38,6 +38,7 @@
     scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, self.topView.frame.size.width, self.topView.frame.size.height)
                                            scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     [self.topView addSubview:scroller];
+    
     //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
     NSString *str=model.barinfo.baricon ;
     [_jiubaImageView  setImageWithURL:[NSURL URLWithString:str]];
@@ -46,6 +47,12 @@
     _taoCanNameLal.text=model.title;
     _addressLal.text=model.barinfo.address;
     _shoucangCountLal.text=model.barinfo.fav_num;
+    _price.text=[NSString stringWithFormat:@"¥%@",pinKeModel.price] ;
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",pinKeModel.marketprice] attributes:attribtDic];
+    _marketprice.attributedText=attribtStr;
+    _fitNum.text=[NSString stringWithFormat:@"套餐预定人数：%@~%@人（根据个人需求可调整套餐人数）",pinKeModel.minnum,pinKeModel.maxnum];
+    
     
 }
 - (IBAction)daohan:(UIButton *)sender {
