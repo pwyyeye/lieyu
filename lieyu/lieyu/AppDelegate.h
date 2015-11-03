@@ -20,12 +20,14 @@
     CLLocationManager *locationManager;
     
 }
+
 @property (strong, nonatomic) UIWindow *window;
 @property(strong,nonatomic) NSTimer *timer;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property(strong,nonatomic) NSString *s_app_id;
+@property(retain,nonatomic) NSMutableArray *imArr;
 @property(retain,nonatomic) UserModel *userModel;
 @property(strong,nonatomic) NSString *qiniu_token;
 @property(strong,nonatomic) NSString *im_token;

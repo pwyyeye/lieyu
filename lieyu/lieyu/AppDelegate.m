@@ -18,6 +18,7 @@
 #import "UMSocialSinaHandler.h"
 #import "PTjoinInViewController.h"
 #import "LYUserLoginViewController.h"
+#import "CustomerModel.h"
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
@@ -29,6 +30,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    _imArr=[[NSMutableArray alloc]init];
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
 
@@ -327,13 +329,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 // 获取用户信息的方法。
 -(void)getUserInfoWithUserId:(NSString *)userId completion:(void(^)(RCUserInfo* userInfo))completion
 {
+    CustomerModel *val;
     // 此处最终代码逻辑实现需要您从本地缓存或服务器端获取用户信息。
-    
+    for (CustomerModel *model in _imArr) {
+        if([model.imUserId isEqualToString:userId]){
+            val=model;
+            break;
+        }
+    }
     
         RCUserInfo *user = [[RCUserInfo alloc]init];
-        user.userId = @"1";
-        user.name = @"韩梅梅";
-        user.portraitUri = @"http://rongcloud-web.qiniudn.com/docs_demo_rongcloud_logo.png";
+        user.userId =val.imUserId;
+        user.name = val.username;
+        user.portraitUri = val.icon;
         
         return completion(user);
     
