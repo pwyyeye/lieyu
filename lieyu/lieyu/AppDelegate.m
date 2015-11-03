@@ -30,6 +30,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
+    [[RCIM sharedRCIM] setUserInfoDataSource:self];
+
     [self loadHisData];
     [self setupDataStore];
 //    [ZBarReaderView class];
