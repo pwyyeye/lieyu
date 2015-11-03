@@ -11,7 +11,7 @@
 
 @implementation LYToPlayRestfulBusiness
 
-- (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList))block
+- (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList,NSArray *newbanner))block
 {
     NSDictionary * param = [reqParam keyValues];
     if (param == nil) {
@@ -25,20 +25,22 @@
         NSDictionary *dataDic = response[@"data"];
         NSMutableArray *bannerList = nil;
         NSMutableArray * barlist = nil;
+        NSArray *newbanner = nil;
         LYErrorMessage * erMsg = [LYErrorMessage instanceWithDictionary:response];
         if (erMsg.state == Req_Success)
         {
             bannerList = [dataDic valueForKey:@"banner"];
             barlist = [dataDic valueForKey:@"barlist"];
+            newbanner=[dataDic valueForKey:@"newbanner"];
             barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel objectArrayWithKeyValuesArray:barlist]];
         }
         
-        block(erMsg,bannerList,barlist);
+        block(erMsg,bannerList,barlist,newbanner);
     } failure:^(NSError *err)
     {
         [app stopLoading];
         LYErrorMessage * erMsg = [LYErrorMessage instanceWithError:err];
-        block(erMsg,nil,nil);
+        block(erMsg,nil,nil,nil);
     }];
 
 }

@@ -18,7 +18,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,EAIntroDelegate>
 {
     CLLocationManager *locationManager;
-    NSString *citystr;
+    
 }
 @property (strong, nonatomic) UIWindow *window;
 @property(strong,nonatomic) NSTimer *timer;
@@ -30,6 +30,7 @@
 @property(strong,nonatomic) NSString *qiniu_token;
 @property(strong,nonatomic) NSString *im_token;
 @property(strong,nonatomic) NSString *im_userId;
+@property(strong,nonatomic) NSString *citystr;
 @property(retain,nonatomic) CLLocation * userLocation;
 @property(strong,nonatomic) UINavigationController *navigationController;
 

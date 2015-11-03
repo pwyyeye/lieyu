@@ -16,7 +16,7 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hdH-sG-Uxx">
                                 <rect key="frame" x="280" y="36" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="12120060-B9AA-41A6-9347-F39474298391">
+                                <state key="normal" image="E959E45F-55AE-4EB7-9081-13A59E226B62">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -2155,7 +2155,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindMenuCell" rowHeight="51" id="4Yx-ie-pLJ" customClass="FindMenuCell">
-                                        <rect key="frame" x="0.0" y="113.5" width="320" height="51"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="320" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Yx-ie-pLJ" id="h35-uk-vqj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
@@ -2259,7 +2259,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dNh-Cl-Ta0">
-                                        <rect key="frame" x="270" y="14" width="37" height="15"/>
+                                        <rect key="frame" x="258" y="14" width="53" height="15"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -2353,6 +2353,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-5"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="cityBtn" destination="dNh-Cl-Ta0" id="pcg-We-tmY"/>
                         <outlet property="myFllowButton" destination="eSz-VZ-SxN" id="bCF-vI-PPg"/>
                         <outlet property="searchTextField" destination="WOy-ZH-OYY" id="SL8-W1-L2k"/>
                         <outlet property="tabBarItem" destination="MIk-bv-Ph5" id="ckX-0S-yBP"/>
@@ -2424,7 +2425,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="12120060-B9AA-41A6-9347-F39474298391" width="22" height="22">
+        <image name="E959E45F-55AE-4EB7-9081-13A59E226B62" width="22" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
