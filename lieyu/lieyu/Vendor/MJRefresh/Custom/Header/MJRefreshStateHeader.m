@@ -65,7 +65,7 @@
         self.lastUpdatedTimeLabel.text = self.lastUpdatedTimeText(lastUpdatedTime);
         return;
     }
-    
+     self.lastUpdatedTimeLabel.font=[UIFont systemFontOfSize:11];
     if (lastUpdatedTime) {
         // 1.获得年月日
         NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -86,6 +86,7 @@
         
         // 3.显示日期
         self.lastUpdatedTimeLabel.text = [NSString stringWithFormat:@"最后更新：%@", time];
+       
     } else {
         self.lastUpdatedTimeLabel.text = @"最后更新：无记录";
     }

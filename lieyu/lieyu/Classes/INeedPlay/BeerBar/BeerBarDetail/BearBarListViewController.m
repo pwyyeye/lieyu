@@ -142,7 +142,7 @@
 {
     CGFloat w = _topView.frame.size.width;
     self.segmentCtrl =
-    [[LYCustomSegmentControl alloc] initWithTitleItems:@[@"商业会所",@"夜总会"] frame:_topView.frame];
+    [[LYCustomSegmentControl alloc] initWithTitleItems:@[@"商务会所",@"KTV"] frame:_topView.frame];
     
     [self.topView addSubview:_segmentCtrl];
     self.segmentCtrl.selectedColor = [UIColor whiteColor];
