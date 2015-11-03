@@ -34,6 +34,8 @@ typedef NS_ENUM(NSInteger, LYAlertType) {
 
 @property(assign,nonatomic) NSInteger customType;
 
+@property(assign,nonatomic) BOOL isShow;
+
 //阴影部分
 @property(strong,nonatomic) UIButton *shadeButton;
 //显示部分
