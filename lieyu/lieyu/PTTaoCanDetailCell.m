@@ -30,6 +30,8 @@
     _jiubaLal.text=model.barinfo.barname;
     _titleLal.text=model.title;
     _moneyLal.text=[NSString stringWithFormat:@"￥%@",model.price];
-    
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];
+    _marketprice.attributedText=attribtStr;
 }
 @end

@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    nowDic =[[NSMutableDictionary alloc]init];
-    
+    self.title=@"我的订单";
     pageCount=1;
     perCount=5;
     [self.tableView setHidden:YES];
