@@ -37,6 +37,7 @@
 		151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6D01BBB78E000E7A81C /* UzysWrapperPickerController.m */; };
 		151BB6E21BBB913E00E7A81C /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6E11BBB913E00E7A81C /* DejalActivityView.m */; };
 		153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */; };
+		15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */; };
 		1559DCE51BD8C0EA00F3FE9B /* CHShaiXuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DCE31BD8C0EA00F3FE9B /* CHShaiXuanViewController.m */; };
 		1559DCE61BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1559DCE41BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib */; };
 		1559DCF01BD9C7C800F3FE9B /* CHChooseNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DCEF1BD9C7C800F3FE9B /* CHChooseNumView.m */; };
@@ -583,6 +584,7 @@
 		151BB6E11BBB913E00E7A81C /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		153F08B71BE87C0D00B7749E /* LYRecentContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYRecentContactViewController.h; sourceTree = "<group>"; };
 		153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYRecentContactViewController.m; sourceTree = "<group>"; };
+		15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewMain.storyboard; sourceTree = "<group>"; };
 		1559DCE21BD8C0EA00F3FE9B /* CHShaiXuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHShaiXuanViewController.h; sourceTree = "<group>"; };
 		1559DCE31BD8C0EA00F3FE9B /* CHShaiXuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHShaiXuanViewController.m; sourceTree = "<group>"; };
 		1559DCE41BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHShaiXuanViewController.xib; sourceTree = "<group>"; };
@@ -2941,6 +2943,7 @@
 				AD8899C31B9AFE61007BCC7C /* ViewController.h */,
 				AD8899C41B9AFE61007BCC7C /* ViewController.m */,
 				AD8899C61B9AFE61007BCC7C /* Main.storyboard */,
+				15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */,
 				AD8899C91B9AFE61007BCC7C /* Images.xcassets */,
 				AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */,
 				AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */,
@@ -3796,6 +3799,7 @@
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
 				ADD68E311BE10E400060E751 /* 2_retina.png in Resources */,
 				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
+				15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */,
 				15E240C71BB3CAC20090D240 /* LYResetPasswordViewController.xib in Resources */,
 				15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */,
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,

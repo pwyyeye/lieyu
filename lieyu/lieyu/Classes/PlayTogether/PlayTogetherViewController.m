@@ -40,7 +40,7 @@
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.height=330;
     }
-    _tableView.height=330;
+//    _tableView.height=330;
 
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
@@ -336,7 +336,7 @@
 }
 -(void)woYaoPin:(UIButton *)sender{
     PinKeModel *pinKeModel =[dataList objectAtIndex:sender.tag];
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
     playTogetherMainViewController.title=@"我要拼客";
     playTogetherMainViewController.smid=pinKeModel.smid;

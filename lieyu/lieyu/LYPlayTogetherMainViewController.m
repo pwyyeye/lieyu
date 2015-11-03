@@ -193,7 +193,7 @@
 #pragma mark 立即拼客
 - (IBAction)ljpkAct:(UIButton *)sender {
     if(_pinKeModel){
-        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         LYPlayTogetherPayViewController *playTogetherPayViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherPayViewController"];
         playTogetherPayViewController.title=@"拼客详情";
         playTogetherPayViewController.smid=_pinKeModel.smid;

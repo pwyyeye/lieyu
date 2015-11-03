@@ -295,7 +295,7 @@
         
         RecommendPackageModel * model = nil;
         model = indexPath.row < _beerBarDetail.recommend_package.count ?[_beerBarDetail.recommend_package objectAtIndex:indexPath.row]:nil;
-        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
         taoCanXQViewController.title=@"套餐详情";
         taoCanXQViewController.smid=model.smid.intValue;

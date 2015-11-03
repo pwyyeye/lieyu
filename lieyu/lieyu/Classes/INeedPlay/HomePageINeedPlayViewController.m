@@ -392,7 +392,7 @@ SearchDelegate
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         NSString *dateStr=[dateFormatter stringFromDate:[NSDate new]];
-         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
         taoCanXQViewController.title=@"套餐详情";
         taoCanXQViewController.smid=linkid.intValue;
@@ -400,7 +400,7 @@ SearchDelegate
         [self.navigationController pushViewController:taoCanXQViewController animated:YES];
     }else if (ad_type.intValue ==4){
 //    4：拼客
-        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
         playTogetherMainViewController.title=@"我要拼客";
         playTogetherMainViewController.smid=linkid.intValue;
