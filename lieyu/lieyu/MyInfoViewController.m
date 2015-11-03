@@ -137,7 +137,7 @@
     cell.backImageView.backgroundColor=bColor;
     cell.CoutentImageView.image=imge;
     cell.titleLbl.text=title;
-    cell.delLal.text=delInfo;
+//    cell.delLal.text=delInfo;
     cell.delLal.textAlignment=NSTextAlignmentRight;
     cell.titleLbl.width=200;
     //    cell.disImageView;

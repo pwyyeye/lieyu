@@ -23,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="wpo-T4-8hg">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="wpo-T4-8hg">
                     <rect key="frame" x="8" y="27" width="262" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -42,7 +42,7 @@
                         <action selector="backAct:" destination="-1" eventType="touchUpInside" id="45W-Rh-Kxb"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zl5-lM-why">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zl5-lM-why">
                     <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="搜索历史" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdN-CR-afr">
@@ -135,7 +135,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EyP-eg-fOr">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EyP-eg-fOr">
                     <rect key="frame" x="0.0" y="70" width="320" height="498"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -145,6 +145,19 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.13725490196078433" green="0.65098039215686276" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Zl5-lM-why" secondAttribute="bottom" id="77O-BR-LB7"/>
+                <constraint firstAttribute="bottom" secondItem="EyP-eg-fOr" secondAttribute="bottom" id="87Y-Bg-qgj"/>
+                <constraint firstAttribute="trailing" secondItem="EyP-eg-fOr" secondAttribute="trailing" id="Em9-6i-gsB"/>
+                <constraint firstItem="wpo-T4-8hg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="FGt-ju-Otf"/>
+                <constraint firstItem="EyP-eg-fOr" firstAttribute="top" secondItem="wpo-T4-8hg" secondAttribute="bottom" constant="13" id="KRk-kP-Vf4"/>
+                <constraint firstAttribute="trailing" secondItem="Zl5-lM-why" secondAttribute="trailing" id="L7x-ea-RAd"/>
+                <constraint firstItem="Zl5-lM-why" firstAttribute="top" secondItem="wpo-T4-8hg" secondAttribute="bottom" constant="13" id="OcP-c0-is6"/>
+                <constraint firstItem="wpo-T4-8hg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="27" id="SpB-8K-B7A"/>
+                <constraint firstItem="Zl5-lM-why" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cju-mx-YKt"/>
+                <constraint firstItem="EyP-eg-fOr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qtP-jp-vbU"/>
+                <constraint firstAttribute="trailing" secondItem="wpo-T4-8hg" secondAttribute="trailing" constant="50" id="za2-dM-IZY"/>
+            </constraints>
             <point key="canvasLocation" x="271" y="307"/>
         </view>
     </objects>

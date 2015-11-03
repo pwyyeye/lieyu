@@ -97,7 +97,7 @@
     }
     cell.zhouLal.text=deckFullModel.weekNum;
     //    cell.disImageView;
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
     

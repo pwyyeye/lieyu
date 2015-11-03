@@ -15,6 +15,7 @@
 #import "ZSNoticeCenterViewController.h"
 #import "XiaoFeiMaUiew.h"
 #import "ZSListCell.h"
+#import "LYRecentContactViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 @interface ZSMaintViewController ()
 
@@ -154,8 +155,9 @@
             
         case 1:// 通知中心
         {
-            ZSNoticeCenterViewController *noticeViewController=[[ZSNoticeCenterViewController alloc]initWithNibName:@"ZSNoticeCenterViewController" bundle:nil];
-            [self.navigationController pushViewController:noticeViewController animated:YES];
+            LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
+            chat.title=@"最近联系";
+            [self.navigationController pushViewController:chat animated:YES];
             break;
         }
             

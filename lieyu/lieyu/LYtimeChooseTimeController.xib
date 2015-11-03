@@ -41,6 +41,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="g2r-rG-ejL" secondAttribute="bottom" id="1yM-D3-WNJ"/>
+                <constraint firstItem="g2r-rG-ejL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="527" id="dDp-wF-vE1"/>
                 <constraint firstAttribute="trailing" secondItem="g2r-rG-ejL" secondAttribute="trailing" id="pxj-jd-dn4"/>
                 <constraint firstItem="g2r-rG-ejL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="vIg-YC-WMd"/>
             </constraints>

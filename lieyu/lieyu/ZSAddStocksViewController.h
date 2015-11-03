@@ -36,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleTex;
 @property (weak, nonatomic) IBOutlet UITextField *kucunTex;
 @property (weak, nonatomic) IBOutlet UITextField *priceTex;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *suerBtn;
 
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *imageAddlal;

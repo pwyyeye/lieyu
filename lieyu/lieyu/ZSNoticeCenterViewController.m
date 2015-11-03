@@ -59,7 +59,7 @@
     cell.timelbl.text=@"3H";
     cell.remarkLbl.text=@"这个套餐有吗？";
     
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
     return cell;

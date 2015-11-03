@@ -108,6 +108,8 @@
     [cell.phoneBtn addTarget:self action:@selector(callPhone:) forControlEvents:UIControlEventTouchUpInside];
     [cell.scBtn setHidden:!_isBarVip];
     [cell.scBtn  addTarget:self action:@selector(scAct:) forControlEvents:UIControlEventTouchUpInside];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 
