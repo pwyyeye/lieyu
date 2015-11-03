@@ -330,7 +330,7 @@
 }
 
 - (IBAction)chiHeAct:(UIButton *)sender {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     CHshowDetailListViewController *showDetailListViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHshowDetailListViewController"];
     showDetailListViewController.title=@"吃喝专场";
     showDetailListViewController.barid=_beerBarDetail.barid.intValue;

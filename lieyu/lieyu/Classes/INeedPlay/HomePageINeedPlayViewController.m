@@ -110,9 +110,9 @@ SearchDelegate
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
-    if (![MyUtil isEmptyString:_cityBtn.titleLabel.text]) {
-       hList.city = _cityBtn.titleLabel.text;
-    }
+//    if (![MyUtil isEmptyString:_cityBtn.titleLabel.text]) {
+//       hList.city = _cityBtn.titleLabel.text;
+//    }
 //    hList.city = [LYUserLocation instance].city;
 //    hList.bartype = @"酒吧/夜总会";
     hList.need_page = @(1);
