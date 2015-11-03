@@ -91,7 +91,10 @@
             [weakSelf.resultView setHidden:NO];
             weakSelf.namelal.text=customerModel.username;
             weakSelf.delLal.text=[NSString stringWithFormat:@"%@米",customerModel.distance];
-            
+            if (customerModel.distance.doubleValue>1000) {
+                double d=customerModel.distance.doubleValue/1000;
+                weakSelf.delLal.text=[NSString stringWithFormat:@"%.2f米",d];
+            }
             if([customerModel.sex isEqualToString:@"1"]){
                 weakSelf.sexImageView.image=[UIImage imageNamed:@"manIcon"];
             }

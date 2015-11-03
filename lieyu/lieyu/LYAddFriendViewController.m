@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _messagetext.text=[NSString stringWithFormat:@"我是%@",self.userModel.username];
+    _messagetext.text=[NSString stringWithFormat:@"我是%@",self.userModel.usernick];
     // Do any additional setup after loading the view from its nib.
 }
 

@@ -30,6 +30,7 @@
     [self.navigationItem setRightBarButtonItem:rightBtn];
     datalist =[[NSMutableArray alloc]init];
     filteredListContent=[[NSMutableArray alloc]init];
+    self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     [self getData];
     // Do any additional setup after loading the view from its nib.
 }
@@ -79,10 +80,16 @@
         }
         CustomerModel *customerModel=filteredListContent[indexPath.row];
         [cell.userImageView  setImageWithURL:[NSURL URLWithString:customerModel.avatar_img]];
-        cell.titleLal.text=customerModel.username;
+        cell.titleLal.text=customerModel.usernick;
+    
     
         cell.detLal.text=[NSString stringWithFormat:@"%@米",customerModel.distance];
-    
+        if ([MyUtil isEmptyString:customerModel.distance]) {
+            if (customerModel.distance.doubleValue>1000) {
+                double d=customerModel.distance.doubleValue/1000;
+                cell.detLal.text=[NSString stringWithFormat:@"%.2f米",d];
+            }
+        }
         if([customerModel.sex isEqualToString:@"1"]){
             cell.sexImageView.image=[UIImage imageNamed:@"manIcon"];
         }
