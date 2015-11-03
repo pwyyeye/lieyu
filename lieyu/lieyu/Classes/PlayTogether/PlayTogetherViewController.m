@@ -37,6 +37,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        _tableView.height=330;
+    }
+    _tableView.height=330;
+
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];

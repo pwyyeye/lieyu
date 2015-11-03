@@ -45,6 +45,9 @@ SearchDelegate
 {
     
     [super viewDidLoad];
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        _tableView.height=368;
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
     self.curPageIndex = 1;
     self.aryList=[[NSMutableArray alloc]init];
