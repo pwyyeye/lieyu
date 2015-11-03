@@ -25,17 +25,29 @@
     if([_type isEqualToString:@"0"]){
         self.namelal.text=_customerModel.friendName;
         [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.icon]];
+        if (_customerModel.sex.integerValue==0) {
+            self.sexImageView.image=[UIImage imageNamed:@"woman"];
+        }else{
+            self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+        }
+        if (_customerModel.tag.count>0) {
+            
+//            _zhiwuLal.text=_customerModel.tag.firstObject;
+        }
     }else if([_type isEqualToString:@"4"]){
         self.namelal.text=_customerModel.name;
-        [_setBtn setTitle:@"加为好友" forState:0];
+        [_setBtn setTitle:@"打招呼" forState:0];
         [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.mark]];
         if([_customerModel.sex isEqualToString:@"1"]){
             _sexImageView.image=[UIImage imageNamed:@"manIcon"];
         }
     }else{
-        [_setBtn setTitle:@"加为好友" forState:0];
+        [_setBtn setTitle:@"打招呼" forState:0];
         self.namelal.text=_customerModel.username;
         self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
+        if (_customerModel.distance.doubleValue>1000) {
+            self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
+        }
         
         if([_customerModel.sex isEqualToString:@"1"]){
             _sexImageView.image=[UIImage imageNamed:@"manIcon"];

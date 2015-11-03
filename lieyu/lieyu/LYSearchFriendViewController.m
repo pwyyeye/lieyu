@@ -29,6 +29,7 @@
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     searchlist=[[NSMutableArray alloc]init];
+    self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     datalist=@[
                @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
