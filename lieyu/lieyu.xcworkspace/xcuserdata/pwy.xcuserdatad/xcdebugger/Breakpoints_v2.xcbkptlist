@@ -17,6 +17,38 @@
             endingLineNumber = "1249"
             landmarkName = "-shanChuDinDanAct:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[LYOrderDetailViewController shanChuDinDanAct:]"
+                  moduleName = "lieyu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu%E5%89%AF%E6%9C%AC%202/lieyu/lieyu/LYOrderDetailViewController.m"
+                  timestampString = "468215788.826346"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1249"
+                  endingLineNumber = "1249"
+                  offsetFromSymbolStart = "280">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[LYOrderDetailViewController shanChuDinDanAct:]_block_invoke"
+                  moduleName = "lieyu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu%E5%89%AF%E6%9C%AC%202/lieyu/lieyu/LYOrderDetailViewController.m"
+                  timestampString = "468215788.827481"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1250"
+                  endingLineNumber = "1250"
+                  offsetFromSymbolStart = "18">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
