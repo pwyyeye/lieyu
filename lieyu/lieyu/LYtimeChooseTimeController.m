@@ -16,6 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if(_type==1){
+        [_datePicker setDatePickerMode:UIDatePickerModeTime];
+    }
     dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd  HH:mm:ss"];
     // Do any additional setup after loading the view from its nib.

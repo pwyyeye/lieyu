@@ -14,16 +14,22 @@
 #import "LYToPlayRestfulBusiness.h"
 #import "LYUserLocation.h"
 #import "JiuBaModel.h"
+#import "LYPlayTogetherMainViewController.h"
+#import "LYHomeSearchViewController.h"
+#import "DWTaoCanXQViewController.h"
+#import "MyCollectionViewController.h"
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
 <
     UITableViewDelegate,
     UITableViewDataSource,
-
-    UITextFieldDelegate
+    EScrollerViewDelegate,
+    UITextFieldDelegate,
+SearchDelegate
 >
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
+@property(nonatomic,strong)NSMutableArray *newbannerList;
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property(nonatomic,strong) IBOutlet UIView * topView;
 @property(nonatomic,weak) IBOutlet UIButton * myFllowButton;
@@ -39,7 +45,9 @@
 {
     
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
     self.curPageIndex = 1;
+    self.aryList=[[NSMutableArray alloc]init];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -48,7 +56,16 @@
     
     // Do any additional setup after loading the view from its nib.
 }
-
+-(void)cityChange{
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    [_cityBtn setTitle:delegate.citystr forState:0];
+}
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityChange" object:nil];
+    
+    
+    
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -89,21 +106,23 @@
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
-    hList.city = [LYUserLocation instance].city;
-    hList.bartype = @"酒吧/夜总会";
-//    hList.need_page = @(1);
+//    hList.city = [LYUserLocation instance].city;
+//    hList.bartype = @"酒吧/夜总会";
+    hList.need_page = @(1);
     hList.p = @(_curPageIndex);
-    hList.per = @(20);
+    hList.per = @(PAGESIZE);
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
+    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList,NSArray *newbanner) {
         if (ermsg.state == Req_Success)
         {
             if (weakSelf.curPageIndex == 1) {
                 [weakSelf.aryList removeAllObjects];
                 //                [weakSelf.bannerList removeAllObjects];
+                weakSelf.bannerList = bannerList.mutableCopy;
+                weakSelf.newbannerList = newbanner.mutableCopy;
             }
-            self.aryList = barList.mutableCopy;
-            self.bannerList = bannerList.mutableCopy;
+            [self.aryList addObjectsFromArray:barList.mutableCopy] ;
+            
             [self.tableView reloadData];
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
@@ -167,6 +186,14 @@
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
+                if (barList.count == PAGESIZE)
+                {
+                    weakSelf.tableView.footer.hidden = NO;
+                }
+                else
+                {
+                    weakSelf.tableView.footer.hidden = YES;
+                }
                 weakSelf.curPageIndex ++;
                 [weakSelf.tableView.footer endRefreshing];
             }
@@ -184,7 +211,9 @@
 
 - (IBAction)myFllowClick:(id)sender
 {
-
+    MyCollectionViewController *maintViewController=[[MyCollectionViewController alloc]initWithNibName:@"MyCollectionViewController" bundle:nil];
+    maintViewController.title=@"我的收藏";
+    [self.navigationController pushViewController:maintViewController animated:YES];
 }
 
 - (IBAction)beerBarClick:(id)sender
@@ -236,6 +265,7 @@
             
             EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122)
                                                                   scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
+            scroller.delegate=self;
             [cell addSubview:scroller];
         }
             break;
@@ -320,11 +350,60 @@
 
 
 }
-
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField; {
+    LYHomeSearchViewController *homeSearchViewController=[[LYHomeSearchViewController alloc]initWithNibName:@"LYHomeSearchViewController" bundle:nil];
+    homeSearchViewController.delegate=self;
+    [self presentViewController:homeSearchViewController animated:false completion:^{
+        
+    }];
+    
+    return false;
+}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.searchTextField resignFirstResponder];
+}
+#pragma mark 搜索代理
+- (void)addCondition:(JiuBaModel *)model{
+    BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    
+    
+    controller.beerBarId = @(model.barid);
+    [self.navigationController pushViewController:controller animated:YES];
+}
+-(void)EScrollerViewDidClicked:(NSUInteger)index{
+    NSDictionary *dic = _newbannerList [index];
+    NSNumber *ad_type=[dic objectForKey:@"ad_type"];
+    NSNumber *linkid=[dic objectForKey:@"linkid"];
+//    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客
+//    "linkid": 1 //对应的id  比如酒吧 就是对应酒吧id  套餐就是对应套餐id 活动就对应活动页面的id
+    if(ad_type.intValue ==1){
+        //酒吧
+        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+        
+        controller.beerBarId = linkid;
+        [self.navigationController pushViewController:controller animated:YES];
+    }else if (ad_type.intValue ==3){
+//    套餐/3
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateStr=[dateFormatter stringFromDate:[NSDate new]];
+         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
+        taoCanXQViewController.title=@"套餐详情";
+        taoCanXQViewController.smid=linkid.intValue;
+        taoCanXQViewController.dateStr=dateStr;
+        [self.navigationController pushViewController:taoCanXQViewController animated:YES];
+    }else if (ad_type.intValue ==4){
+//    4：拼客
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
+        playTogetherMainViewController.title=@"我要拼客";
+        playTogetherMainViewController.smid=linkid.intValue;
+        [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
+    }
+    
 }
 /*
 #pragma mark - Navigation

@@ -17,4 +17,5 @@
 - (IBAction)sureAct:(id)sender;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic,weak)id<DateChooseDelegate>delegate;
+@property (nonatomic,assign)int type;
 @end

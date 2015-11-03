@@ -119,17 +119,18 @@
 #endif
     
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner)
     {
         if (ermsg.state == Req_Success)
         {
             if (weakSelf.curPageIndex == 1) {
                 [weakSelf.aryList removeAllObjects];
+                weakSelf.bannerList = bannerList.mutableCopy;
 //                [weakSelf.bannerList removeAllObjects];
             }
             
             [weakSelf.aryList addObjectsFromArray:barList];
-            weakSelf.bannerList = bannerList.mutableCopy;
+            
             [weakSelf.tableView reloadData];
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
@@ -162,7 +163,7 @@
 {
     
     __weak BearBarListViewController * weakSelf = self;
-    __weak UITableView *tableView = self.tableView;
+//    __weak UITableView *tableView = self.tableView;
 
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
             ^{
@@ -188,6 +189,15 @@
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
+                if (barList.count == PAGESIZE)
+                {
+                    
+                    weakSelf.tableView.footer.hidden = NO;
+                }
+                else
+                {
+                    weakSelf.tableView.footer.hidden = YES;
+                }
                 weakSelf.curPageIndex ++;
                 [weakSelf.tableView.footer endRefreshing];
             }

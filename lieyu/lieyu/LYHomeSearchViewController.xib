@@ -7,7 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYHomeSearchViewController">
             <connections>
-                <outlet property="searchDisplayController" destination="pya-Fq-gS0" id="vkC-F7-B4T"/>
+                <outlet property="hisbtn1" destination="9WY-gx-xur" id="3TK-8G-yZD"/>
+                <outlet property="hisbtn2" destination="DHA-wU-YWt" id="IM3-da-Zqj"/>
+                <outlet property="hisbtn3" destination="oke-o2-lET" id="97W-GT-cMq"/>
+                <outlet property="hisbtn4" destination="JcJ-Di-fPX" id="8YF-dI-hhG"/>
+                <outlet property="hisbtn5" destination="Ev1-Wv-Fmz" id="4xc-V8-wvs"/>
+                <outlet property="hisbtn6" destination="LrV-6Y-s8f" id="zvu-Bo-hRx"/>
+                <outlet property="serchText" destination="wpo-T4-8hg" id="IlL-qj-8Wz"/>
                 <outlet property="tableView" destination="EyP-eg-fOr" id="sqg-FP-lLj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,36 +23,135 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EyP-eg-fOr">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="wpo-T4-8hg">
+                    <rect key="frame" x="8" y="27" width="262" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="M14-jj-g3h"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOo-0A-StO">
+                    <rect key="frame" x="278" y="34" width="33" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="取消">
+                        <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="backAct:" destination="-1" eventType="touchUpInside" id="45W-Rh-Kxb"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zl5-lM-why">
+                    <rect key="frame" x="0.0" y="70" width="320" height="498"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="搜索历史" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdN-CR-afr">
+                            <rect key="frame" x="15" y="21" width="79" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oke-o2-lET">
+                            <rect key="frame" x="219" y="73" width="85" height="26"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" backgroundImage="type">
+                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="typeSelect"/>
+                            <connections>
+                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="emi-kI-SbD"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JcJ-Di-fPX">
+                            <rect key="frame" x="16" y="122" width="85" height="26"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" backgroundImage="type">
+                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="typeSelect"/>
+                            <connections>
+                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="LiW-2P-JHv"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ev1-Wv-Fmz">
+                            <rect key="frame" x="118" y="122" width="85" height="26"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" backgroundImage="type">
+                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="typeSelect"/>
+                            <connections>
+                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="Xug-Mf-Rro"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LrV-6Y-s8f">
+                            <rect key="frame" x="219" y="122" width="85" height="26"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" backgroundImage="type">
+                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="typeSelect"/>
+                            <connections>
+                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="1xz-og-YHp"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-dG-QFb">
+                            <rect key="frame" x="128" y="215" width="65" height="30"/>
+                            <state key="normal" title="清除历史">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="delHisData:" destination="-1" eventType="touchUpInside" id="QyM-72-RIa"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9WY-gx-xur">
+                            <rect key="frame" x="15" y="73" width="85" height="26"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" backgroundImage="type">
+                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="typeSelect"/>
+                            <connections>
+                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="LRj-3e-S8V"/>
+                            </connections>
+                        </button>
+                        <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHA-wU-YWt">
+                            <rect key="frame" x="118" y="73" width="85" height="26"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <state key="normal" backgroundImage="type">
+                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="typeSelect"/>
+                            <connections>
+                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="sh0-o9-t96"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <searchBar key="tableHeaderView" contentMode="redraw" id="fK1-To-w0a">
-                        <rect key="frame" x="-28" y="273" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <textInputTraits key="textInputTraits"/>
-                        <connections>
-                            <outlet property="delegate" destination="-1" id="3WF-SN-iwI"/>
-                        </connections>
-                    </searchBar>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EyP-eg-fOr">
+                    <rect key="frame" x="0.0" y="70" width="320" height="498"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="spB-c9-wjT"/>
                         <outlet property="delegate" destination="-1" id="hAb-bv-tUx"/>
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.13725490196078433" green="0.65098039215686276" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
             <point key="canvasLocation" x="271" y="307"/>
         </view>
-        <searchDisplayController id="pya-Fq-gS0">
-            <connections>
-                <outlet property="delegate" destination="-1" id="49B-pb-5Qv"/>
-                <outlet property="searchBar" destination="fK1-To-w0a" id="XFs-rl-3pC"/>
-                <outlet property="searchContentsController" destination="-1" id="6LH-nm-cGm"/>
-                <outlet property="searchResultsDataSource" destination="-1" id="yg5-Hm-OIU"/>
-                <outlet property="searchResultsDelegate" destination="-1" id="6Gr-oU-DEt"/>
-            </connections>
-        </searchDisplayController>
     </objects>
+    <resources>
+        <image name="type" width="87" height="26"/>
+        <image name="typeSelect" width="87" height="26"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

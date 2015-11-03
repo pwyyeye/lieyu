@@ -12,6 +12,7 @@
 #import "EScrollerView.h"
 @interface HomePageINeedPlayViewController : LYBaseViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *cityBtn;
 
 
 @end

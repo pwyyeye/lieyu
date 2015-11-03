@@ -30,5 +30,7 @@
 @property (nonatomic, copy) NSString * username;
 @property (nonatomic, copy) NSString * usernick;
 @property (nonatomic, copy) NSString * imUserId;
+@property (nonatomic, copy) NSString * isFull;
+//"isFull": 1,1表示卡座满，0表示卡座没满
 @property (nonatomic, assign) bool issel;
 @end

@@ -23,6 +23,10 @@
      AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
     return delegate.userLocation;
 }
+-(NSString *)city{
+    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+    return delegate.citystr;
+}
 -(void)daoHan:(NSDictionary *) dic{
     //获取当前位置
     MKMapItem *mylocation = [MKMapItem mapItemForCurrentLocation];

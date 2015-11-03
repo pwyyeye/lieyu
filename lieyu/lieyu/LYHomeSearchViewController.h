@@ -7,8 +7,20 @@
 //
 
 #import "LYBaseViewController.h"
+#import "JiuBaModel.h"
+@protocol SearchDelegate<NSObject>
+- (void)addCondition:(JiuBaModel *)model;
 
+@end
 @interface LYHomeSearchViewController : LYBaseViewController
+@property (weak, nonatomic) IBOutlet UIButton *hisbtn6;
+@property (weak, nonatomic) IBOutlet UIButton *hisbtn5;
+@property (weak, nonatomic) IBOutlet UIButton *hisbtn4;
+@property (weak, nonatomic) IBOutlet UIButton *hisbtn3;
+@property (weak, nonatomic) IBOutlet UIButton *hisbtn1;
+@property (weak, nonatomic) IBOutlet UIButton *hisbtn2;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+- (IBAction)backAct:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UITextField *serchText;
+@property (nonatomic, weak) id <SearchDelegate> delegate;
 @end

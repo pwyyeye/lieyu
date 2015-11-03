@@ -30,6 +30,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
+    [self loadHisData];
     [self setupDataStore];
 //    [ZBarReaderView class];
     _navigationController= (UINavigationController *)self.window.rootViewController;
@@ -153,7 +154,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     NSLog(@"location ok");
     _userLocation=newLocation;
     NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
-    
+    [self saveHisData];
     CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
         
@@ -163,13 +164,37 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
             //  Country(国家)  State(城市)  SubLocality(区)
             NSLog(@"%@", [test objectForKey:@"State"]);
             NSLog(@"%@", placemark.locality);
-            citystr= placemark.locality;
+            _citystr= placemark.locality;
             
         }
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cityChange" object:nil];
     }];
     
 }
+#pragma mark 获取历史搜索数据
+-(void)loadHisData{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"hisLocation.plist"];
+    if([fileManager fileExistsAtPath:filename]){
+        _userLocation= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+    }else{
+        _userLocation = [[CLLocation alloc]initWithLatitude:31.2 longitude:121.4];
+        
+    }
+    
+}
+#pragma mark 保存历史数据
+-(void)saveHisData{
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"hisLocation.plist"];
+//    NSString *filename1 = [Path stringByAppendingPathComponent:@"hiscity.plist"];
+    [NSKeyedArchiver archiveRootObject:_userLocation toFile:filename];
+    
+    
+}
+
 - (void)setupDataStore
 {
     [LYDataStore currentInstance];
