@@ -36,6 +36,7 @@
 		151BB6D71BBB78E000E7A81C /* UzysGroupViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6CE1BBB78E000E7A81C /* UzysGroupViewCell.m */; };
 		151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6D01BBB78E000E7A81C /* UzysWrapperPickerController.m */; };
 		151BB6E21BBB913E00E7A81C /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6E11BBB913E00E7A81C /* DejalActivityView.m */; };
+		153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */; };
 		1559DCE51BD8C0EA00F3FE9B /* CHShaiXuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DCE31BD8C0EA00F3FE9B /* CHShaiXuanViewController.m */; };
 		1559DCE61BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1559DCE41BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib */; };
 		1559DCF01BD9C7C800F3FE9B /* CHChooseNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DCEF1BD9C7C800F3FE9B /* CHChooseNumView.m */; };
@@ -580,6 +581,8 @@
 		151BB6D01BBB78E000E7A81C /* UzysWrapperPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysWrapperPickerController.m; sourceTree = "<group>"; };
 		151BB6E01BBB913E00E7A81C /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
 		151BB6E11BBB913E00E7A81C /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
+		153F08B71BE87C0D00B7749E /* LYRecentContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYRecentContactViewController.h; sourceTree = "<group>"; };
+		153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYRecentContactViewController.m; sourceTree = "<group>"; };
 		1559DCE21BD8C0EA00F3FE9B /* CHShaiXuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHShaiXuanViewController.h; sourceTree = "<group>"; };
 		1559DCE31BD8C0EA00F3FE9B /* CHShaiXuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHShaiXuanViewController.m; sourceTree = "<group>"; };
 		1559DCE41BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHShaiXuanViewController.xib; sourceTree = "<group>"; };
@@ -1565,6 +1568,15 @@
 				151BB6D01BBB78E000E7A81C /* UzysWrapperPickerController.m */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		153F08B61BE87BCD00B7749E /* 最近联系 */ = {
+			isa = PBXGroup;
+			children = (
+				153F08B71BE87C0D00B7749E /* LYRecentContactViewController.h */,
+				153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */,
+			);
+			name = "最近联系";
 			sourceTree = "<group>";
 		};
 		1559DCE11BD8C0AE00F3FE9B /* 筛选 */ = {
@@ -3518,6 +3530,7 @@
 		D761F0271BA5B8D5000757B0 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				153F08B61BE87BCD00B7749E /* 最近联系 */,
 				15ED326E1BE2F48100E086A1 /* 摇一摇 */,
 				15844BF91BE20F4100247FBC /* 扫一扫 */,
 				15844BD01BE1F34200247FBC /* 附近玩家 */,
@@ -4192,6 +4205,7 @@
 				D7A1D4311BC2CD1B00BCE47C /* AnnouncementModel.m in Sources */,
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
 				A2FD578E1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m in Sources */,
+				153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
 				15A4CF5C1BD86CF800C22C01 /* ShaiXuanBtn.m in Sources */,
 				15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */,

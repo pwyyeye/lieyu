@@ -13,6 +13,7 @@
 #import "LYMyFriendViewController.h"
 #import "SaoYiSaoViewController.h"
 #import "YaoYiYaoViewController.h"
+#import "LYRecentContactViewController.h"
 @interface FindViewController ()
 {
     NSArray *datalist;
@@ -26,16 +27,16 @@
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
-//    datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
-//              @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
-//              @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
-//              @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-//              @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
-    datalist=@[
-               @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
-               @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
-               @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-               @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
+    datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
+              @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
+              @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
+              @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
+              @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
+//    datalist=@[
+//               @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
+//               @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
+//               @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
+//               @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
 //    [self setupViewStyles];
 //    self.title = nil;
 //    self.navigationItem.title = @"发现";
@@ -102,36 +103,42 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
+    if(section==0){
+        return 1;
+    }
         return 2;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FindMenuCell *cell = nil;
     NSDictionary *dic;
     cell = [tableView dequeueReusableCellWithIdentifier:@"FindMenuCell" forIndexPath:indexPath];
-     if(indexPath.section==0){
+    if(indexPath.section==0){
+        dic=[datalist objectAtIndex:0];
+        
+    }
+    else if(indexPath.section==1){
         if(indexPath.row==0){
-            dic=[datalist objectAtIndex:0];
+            dic=[datalist objectAtIndex:1];
             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 50.5, 290, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
         }else{
-            dic=[datalist objectAtIndex:1];
+            dic=[datalist objectAtIndex:2];
         }
         
     }else{
         if(indexPath.row==0){
-            dic=[datalist objectAtIndex:2];
+            dic=[datalist objectAtIndex:3];
             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 50.5, 290, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
         }else{
-            dic=[datalist objectAtIndex:3];
+            dic=[datalist objectAtIndex:4];
         }
     }
     [cell.imageView setImage:[UIImage imageNamed:[dic objectForKey:@"image"]]];
@@ -152,6 +159,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section==0){
+        LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
+        chat.title=@"最近联系";
+        [self.navigationController pushViewController:chat animated:YES];
+    }
+    else if(indexPath.section==1){
         if(indexPath.row==0){
             //玩友列表
             LYMyFriendViewController *myFriendViewController=[[LYMyFriendViewController alloc]initWithNibName:@"LYMyFriendViewController" bundle:nil];
