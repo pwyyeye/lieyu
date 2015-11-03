@@ -54,7 +54,7 @@
     [listArr addObject:dic3];
     [listArr addObject:dic4];
     [listArr addObject:dic5];
-    [listArr addObject:dic6];
+//    [listArr addObject:dic6];
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 228)];
     view.backgroundColor=RGB(35, 166, 116);
     //外部圆
@@ -214,11 +214,11 @@
         
         default://推荐商户
         {
-            TuiJianShangJiaViewController *tuiJianShangJiaViewController=[[TuiJianShangJiaViewController alloc]initWithNibName:@"TuiJianShangJiaViewController" bundle:nil];
-            tuiJianShangJiaViewController.title=@"推荐商家";
-            [self.navigationController pushViewController:tuiJianShangJiaViewController animated:YES];
-            
-            break;
+//            TuiJianShangJiaViewController *tuiJianShangJiaViewController=[[TuiJianShangJiaViewController alloc]initWithNibName:@"TuiJianShangJiaViewController" bundle:nil];
+//            tuiJianShangJiaViewController.title=@"推荐商家";
+//            [self.navigationController pushViewController:tuiJianShangJiaViewController animated:YES];
+//            
+//            break;
         }
             
     }
