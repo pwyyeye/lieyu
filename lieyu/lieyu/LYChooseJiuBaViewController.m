@@ -8,6 +8,7 @@
 
 #import "LYChooseJiuBaViewController.h"
 #import "LYJiuBaCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "LYUserHttpTool.h"
 @interface LYChooseJiuBaViewController ()
 
@@ -177,7 +178,7 @@
         cell.jiubaLal.text = @"No Name";
         cell.quYuLal.text = addressBook.address;
     }
-    
+    [cell.jiubaImageView setImageWithURL:[NSURL URLWithString:addressBook.baricon]];
     //    cell.backgroundColor=[UIColor clearColor];
     
     return cell;

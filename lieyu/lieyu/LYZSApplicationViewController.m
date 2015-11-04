@@ -13,7 +13,6 @@
 @interface LYZSApplicationViewController ()<LYChooseJiuBaDelegate>
 {
     JiuBaModel *jiuBaNow;
-    UserModel *userModel;
 }
 @end
 
@@ -52,7 +51,7 @@
         return;
     }
     NSMutableDictionary *dic=
-    [[NSMutableDictionary alloc]initWithDictionary:@{@"introduction":_zwjsTex.text,@"idcard":self.sfzTex.text,@"barid":[NSNumber numberWithInt:jiuBaNow.barid],@"userid":[NSNumber numberWithInt:userModel.userid]}];
+    [[NSMutableDictionary alloc]initWithDictionary:@{@"introduction":_zwjsTex.text,@"idcard":self.sfzTex.text,@"barid":[NSNumber numberWithInt:jiuBaNow.barid],@"userid":[NSNumber numberWithInt:self.userModel.userid]}];
     if((self.zfbTex.text.length>0)&& (self.zfbzhTex.text.length>0)){
         [dic setObject:self.zfbzhTex.text forKey:@"alipayaccount"];
         [dic setObject:self.zfbTex.text forKey:@"alipayAccountName"];
