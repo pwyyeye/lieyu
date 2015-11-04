@@ -893,7 +893,7 @@
 }
 #pragma mark 取消订单
 - (void)queXiaoDinDanAct:(UIButton *)sender{
-    OrderInfoModel *orderInfoModel; 
+    OrderInfoModel *orderInfoModel;
     orderInfoModel=dataList[sender.tag];
     __weak __typeof(self)weakSelf = self;
     NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
