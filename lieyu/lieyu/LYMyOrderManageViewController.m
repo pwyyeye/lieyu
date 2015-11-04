@@ -766,9 +766,10 @@
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
     conversationVC.targetId = orderInfoModel.imuserid; // 接收者的 targetId，这里为举例。
     conversationVC.userName =orderInfoModel.username; // 接受者的 username，这里为举例。
-    conversationVC.title =orderInfoModel.username; // 会话的 title。
+    conversationVC.title =orderInfoModel.checkUserName; // 会话的 title。
     
     // 把单聊视图控制器添加到导航栈。
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 #pragma mark 电话

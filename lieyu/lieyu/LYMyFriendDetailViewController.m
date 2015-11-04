@@ -101,6 +101,7 @@
         conversationVC.title = _customerModel.friendName; // 会话的 title。
         
         // 把单聊视图控制器添加到导航栈。
+        [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
         [self.navigationController pushViewController:conversationVC animated:YES];
     }
     
