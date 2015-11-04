@@ -19,8 +19,7 @@
 @property(nonatomic,weak)IBOutlet UILabel * address;
 @property(nonatomic,weak)IBOutlet UIView * spectialContainer;
 @property(nonatomic,weak)IBOutlet UIView * typeContainer;
-@property(nonatomic,weak)IBOutlet HCSStarRatingView * serviceNumView;
-@property(nonatomic,weak)IBOutlet HCSStarRatingView * envNumView;
+
 @property (weak, nonatomic) IBOutlet UIButton *typeBtn1;
 @property (weak, nonatomic) IBOutlet UIButton *typeBtn2;
 @property (weak, nonatomic) IBOutlet UIButton *typeBtn3;

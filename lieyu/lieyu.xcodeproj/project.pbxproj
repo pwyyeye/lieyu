@@ -38,6 +38,7 @@
 		151BB6E21BBB913E00E7A81C /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6E11BBB913E00E7A81C /* DejalActivityView.m */; };
 		153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */; };
 		15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */; };
+		15571BC31BE998D7006F73D0 /* YaoYiYaoViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15571BC21BE998D7006F73D0 /* YaoYiYaoViewController4.xib */; };
 		1559DCE51BD8C0EA00F3FE9B /* CHShaiXuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DCE31BD8C0EA00F3FE9B /* CHShaiXuanViewController.m */; };
 		1559DCE61BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1559DCE41BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib */; };
 		1559DCF01BD9C7C800F3FE9B /* CHChooseNumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DCEF1BD9C7C800F3FE9B /* CHChooseNumView.m */; };
@@ -586,6 +587,7 @@
 		153F08B71BE87C0D00B7749E /* LYRecentContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYRecentContactViewController.h; sourceTree = "<group>"; };
 		153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYRecentContactViewController.m; sourceTree = "<group>"; };
 		15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewMain.storyboard; sourceTree = "<group>"; };
+		15571BC21BE998D7006F73D0 /* YaoYiYaoViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoYiYaoViewController4.xib; sourceTree = "<group>"; };
 		1559DCE21BD8C0EA00F3FE9B /* CHShaiXuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHShaiXuanViewController.h; sourceTree = "<group>"; };
 		1559DCE31BD8C0EA00F3FE9B /* CHShaiXuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHShaiXuanViewController.m; sourceTree = "<group>"; };
 		1559DCE41BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHShaiXuanViewController.xib; sourceTree = "<group>"; };
@@ -2314,6 +2316,7 @@
 				15ED326F1BE2F49800E086A1 /* YaoYiYaoViewController.h */,
 				15ED32701BE2F49800E086A1 /* YaoYiYaoViewController.m */,
 				15ED32711BE2F49800E086A1 /* YaoYiYaoViewController.xib */,
+				15571BC21BE998D7006F73D0 /* YaoYiYaoViewController4.xib */,
 			);
 			name = "摇一摇";
 			sourceTree = "<group>";
@@ -3862,6 +3865,7 @@
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
+				15571BC31BE998D7006F73D0 /* YaoYiYaoViewController4.xib in Resources */,
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
 				15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */,
 				15E184931BB52B0E00681BB2 /* LYJiuBaCell.xib in Resources */,

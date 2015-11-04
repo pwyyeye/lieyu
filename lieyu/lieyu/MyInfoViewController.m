@@ -27,7 +27,7 @@
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.height=431;
     }
-    _tableView.height=431;
+//    _tableView.height=431;
     listArr =[[NSMutableArray alloc]init];
     //    self.automaticallyAdjustsScrollViewInsets=0;
     
