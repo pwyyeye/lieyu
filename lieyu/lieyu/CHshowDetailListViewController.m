@@ -266,6 +266,7 @@
         _btnItem3.isup=false;
         _btnItem4.isup=false;
         CHShaiXuanViewController *shaiXuanViewController=[[CHShaiXuanViewController alloc]initWithNibName:@"CHShaiXuanViewController" bundle:nil];
+        shaiXuanViewController.title=@"筛选";
         shaiXuanViewController.delegate=self;
         [self.navigationController pushViewController:shaiXuanViewController animated:YES];
         return;
