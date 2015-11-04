@@ -1665,10 +1665,14 @@
                                     <outlet property="delegate" destination="yhx-ad-A4O" id="cXX-WN-nbF"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncs-bZ-NkN">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncs-bZ-NkN">
                                 <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.54117647059999996" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="BsK-nJ-Hhm"/>
+                                    <constraint firstAttribute="width" constant="320" id="viZ-vF-B83"/>
+                                </constraints>
                                 <state key="normal" title="马上支付">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
