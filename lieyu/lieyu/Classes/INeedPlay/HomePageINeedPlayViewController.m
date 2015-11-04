@@ -307,6 +307,7 @@ SearchDelegate
 -(void)chooseButton:(UIButton *)sender andSelected:(BOOL)isSelected{
     if (isSelected) {
         _cityBtn.titleLabel.text=sender.titleLabel.text;
+        [_cityBtn setTitle:sender.titleLabel.text forState:UIControlStateNormal];
         [self getData];
         [_alertView removeFromSuperview];
         _alertView=nil;
