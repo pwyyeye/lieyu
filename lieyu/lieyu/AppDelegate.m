@@ -361,7 +361,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         NSDictionary *dic=[MyUtil getKeyValue:[url query]];
         NSString *smid=[dic objectForKey:@"id"];
         UIStoryboard *storyboard =
-        [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        [UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
         PTjoinInViewController *playTogetherPayViewController=[storyboard instantiateViewControllerWithIdentifier:@"PTjoinInViewController"];
         playTogetherPayViewController.title=@"拼客详情";

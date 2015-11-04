@@ -160,7 +160,14 @@
 }
 
 - (IBAction)nextAct:(UIButton *)sender {
-
+    if(!idcard_zhengmian){
+        [MyUtil showMessage:@"请上传身份证正面"];
+        return;
+    }
+    if(!idcard_fanmian){
+        [MyUtil showMessage:@"请上传身份证反面"];
+        return;
+    }
     [[LYUserHttpTool shareInstance]setApplyVip:_paramdic block:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImagePNGRepresentation(idcard_zhengmian) name:@"idcardImagesFile" fileName:@"idcard_1.png" mimeType:@"image/png"];
         [formData appendPartWithFileData:UIImagePNGRepresentation(idcard_fanmian) name:@"idcardImagesFileBack" fileName:@"idcard_2.png" mimeType:@"image/png"];

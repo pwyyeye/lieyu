@@ -177,9 +177,19 @@
     }else{
         if(indexPath.row==0){
             //摇一摇
-            YaoYiYaoViewController *yaoYiYaoViewController=[[YaoYiYaoViewController alloc]initWithNibName:@"YaoYiYaoViewController" bundle:nil];
+            YaoYiYaoViewController *yaoYiYaoViewController;
+            if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+                yaoYiYaoViewController=[[YaoYiYaoViewController alloc]initWithNibName:@"YaoYiYaoViewController4" bundle:nil];
+                yaoYiYaoViewController.is4s=true;
+            }else{
+                yaoYiYaoViewController=[[YaoYiYaoViewController alloc]initWithNibName:@"YaoYiYaoViewController" bundle:nil];
+                yaoYiYaoViewController.is4s=false;
+            }
+//            yaoYiYaoViewController=[[YaoYiYaoViewController alloc]initWithNibName:@"YaoYiYaoViewController4" bundle:nil];
+//            yaoYiYaoViewController.is4s=true;
             yaoYiYaoViewController.title=@"摇一摇";
             [self.navigationController pushViewController:yaoYiYaoViewController  animated:YES];
+            
         }else{
             //扫一扫
             SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];

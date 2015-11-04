@@ -243,7 +243,7 @@
         [MyUtil showMessage:@"请勾选要购买的物品"];
         return;
     }
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     CHDoOrderViewController *doOrderViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHDoOrderViewController"];
     doOrderViewController.title=@"确认订单";
     doOrderViewController.ids=ss;

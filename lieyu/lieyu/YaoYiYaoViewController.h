@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *namelal;
 @property (weak, nonatomic) IBOutlet UILabel *delLal;
 @property (weak, nonatomic) IBOutlet UILabel *zhiwuLal;
+@property (assign, nonatomic) BOOL is4s;
 @property (weak, nonatomic) IBOutlet UIButton *detailBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *sexImageView;
 - (IBAction)queryDetailAct:(UIButton *)sender;

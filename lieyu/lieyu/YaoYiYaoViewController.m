@@ -123,8 +123,14 @@
     //让imgup上下移动
     CABasicAnimation *translation2 = [CABasicAnimation animationWithKeyPath:@"position"];
     translation2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    translation2.fromValue = [NSValue valueWithCGPoint:CGPointMake(160, 126.5)];
-    translation2.toValue = [NSValue valueWithCGPoint:CGPointMake(160, 126.5-100)];
+    if(_is4s){
+        translation2.fromValue = [NSValue valueWithCGPoint:CGPointMake(160, 104)];
+        translation2.toValue = [NSValue valueWithCGPoint:CGPointMake(160, 104-100)];
+    }else{
+        translation2.fromValue = [NSValue valueWithCGPoint:CGPointMake(160, 126.5)];
+        translation2.toValue = [NSValue valueWithCGPoint:CGPointMake(160, 126.5-100)];
+    }
+    
     translation2.duration = 0.4;
     translation2.repeatCount = 1;
     translation2.autoreverses = YES;
@@ -132,8 +138,14 @@
     //让imagdown上下移动
     CABasicAnimation *translation = [CABasicAnimation animationWithKeyPath:@"position"];
     translation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    translation.fromValue = [NSValue valueWithCGPoint:CGPointMake(160, 379.5)];
-    translation.toValue = [NSValue valueWithCGPoint:CGPointMake(160, 379.5+100)];
+    if(_is4s){
+        translation.fromValue = [NSValue valueWithCGPoint:CGPointMake(160,  343.5)];
+        translation.toValue = [NSValue valueWithCGPoint:CGPointMake(160,  343.5+100)];
+    }else{
+        translation.fromValue = [NSValue valueWithCGPoint:CGPointMake(160, 379.5)];
+        translation.toValue = [NSValue valueWithCGPoint:CGPointMake(160, 379.5+100)];
+    }
+    
     translation.duration = 0.4;
     translation.repeatCount = 1;
     translation.autoreverses = YES;

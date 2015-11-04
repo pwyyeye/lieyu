@@ -248,7 +248,7 @@
 }
 #pragma mark - 马上购买
 - (IBAction)payAct:(UIButton *)sender {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     DWSureOrderViewController *sureOrderViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWSureOrderViewController"];
     sureOrderViewController.title=@"确认订单";
     sureOrderViewController.smid=taoCanModel.smid;

@@ -20,22 +20,22 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    [self initializeStar:_serviceNumView];
-    [self initializeStar:_envNumView];
+//    [self initializeStar:_serviceNumView];
+//    [self initializeStar:_envNumView];
     
 }
 
-- (void)initializeStar:(HCSStarRatingView *)starView
-{
-    starView.maximumValue = 5;
-    starView.minimumValue = 0;
-    starView.allowsHalfStars = YES;
-    
-    starView.emptyStarImage = [UIImage imageNamed:@"icon_flowers_disable"];
-    starView.halfStarImage = [UIImage imageNamed:@"icon_flowers_half_normal"]; // optional
-    starView.filledStarImage = [UIImage imageNamed:@"icon_flowers_normal"];
-    starView.userInteractionEnabled = NO;
-}
+//- (void)initializeStar:(HCSStarRatingView *)starView
+//{
+//    starView.maximumValue = 5;
+//    starView.minimumValue = 0;
+//    starView.allowsHalfStars = YES;
+//    
+//    starView.emptyStarImage = [UIImage imageNamed:@"icon_flowers_disable"];
+//    starView.halfStarImage = [UIImage imageNamed:@"icon_flowers_half_normal"]; // optional
+//    starView.filledStarImage = [UIImage imageNamed:@"icon_flowers_normal"];
+//    starView.userInteractionEnabled = NO;
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -58,8 +58,7 @@
     }];
     [_preOrderNumber setText:model.today_sm_buynum];
     [_address setText:model.address];
-    _envNumView.value = [model.environment_num doubleValue];
-    _serviceNumView.value = [model.star_num doubleValue];
+
     if(model.bartypename){
         [_typeBtn1 setHidden:NO];
         [_typeBtn1 setTitle:model.bartypename forState:0];
