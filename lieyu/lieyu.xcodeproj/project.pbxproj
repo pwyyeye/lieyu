@@ -440,7 +440,6 @@
 		D73652421BAEBF44002541CE /* KuCunModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652401BAEBF44002541CE /* KuCunModel.m */; };
 		D73652471BAEBF60002541CE /* PinKeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652441BAEBF60002541CE /* PinKeModel.m */; };
 		D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D73652461BAEBF60002541CE /* TaoCanModel.m */; };
-		D74436161BC1577200958046 /* libcorecrypto.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D74436151BC1577200958046 /* libcorecrypto.tbd */; };
 		D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D747142A1BAD151400611579 /* MainTabbarViewController.m */; };
 		D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC361BA1C24B005AA996 /* HttpOperatorProvider+backend.m */; };
 		D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D748BC381BA1C24B005AA996 /* HttpOperatorProvider.m */; };
@@ -1478,7 +1477,6 @@
 				ADD530AF1BDE2BA3002CF4D8 /* AlipaySDK.bundle in Frameworks */,
 				ADD530411BDE1E9D002CF4D8 /* AlipaySDK.framework in Frameworks */,
 				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
-				D74436161BC1577200958046 /* libcorecrypto.tbd in Frameworks */,
 				15EB356E1BD4840D00BA6161 /* libWeChatSDK.a in Frameworks */,
 				AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */,
 				15EB35571BD483F500BA6161 /* libSocialSina.a in Frameworks */,
@@ -3691,6 +3689,7 @@
 				AD8899B31B9AFE61007BCC7C /* Frameworks */,
 				AD8899B41B9AFE61007BCC7C /* Resources */,
 				98977BCA0959D91E3A5FA70E /* Copy Pods Resources */,
+				CD24CA82C7F57CA2EAAE4FF1 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3973,6 +3972,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD24CA82C7F57CA2EAAE4FF1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
