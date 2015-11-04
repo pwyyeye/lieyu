@@ -86,7 +86,7 @@
         [app.imArr removeAllObjects];
         CustomerModel *model1=[[CustomerModel alloc]init];
         model1.imUserId=self.userModel.imuserId;
-        model1.username=self.userModel.username;
+        model1.username=self.userModel.usernick;
         model1.icon=self.userModel.avatar_img;
         CustomerModel *model2=[[CustomerModel alloc]init];
         model2.imUserId=_customerModel.imUserId;

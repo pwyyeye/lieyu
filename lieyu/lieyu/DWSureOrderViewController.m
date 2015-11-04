@@ -18,6 +18,7 @@
 #import <RongIMKit/RongIMKit.h>
 #import "LYtimeChooseTimeController.h"
 #import "DWIsGoToViewController.h"
+#import "ChoosePayController.h"
 @interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate>
 {
     TaoCanModel *taoCanModel;
@@ -177,6 +178,7 @@
                     timeCell = (DWOredrNextCell *)cell;
                     timeCell.titleLal.text=@"选择到店时间";
                     timeCell.delLal.text=@"到店时间";
+                    [timeCell.delLal setTextColor:[UIColor redColor]];
                     
                 }
                 UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
@@ -189,6 +191,7 @@
                     typeCell = (DWOredrNextCell *)cell;
                     typeCell.titleLal.text=@"消费状态";
                     typeCell.delLal.text=@"选择正确消费状态";
+                    [typeCell.delLal setTextColor:[UIColor redColor]];
                 }
                 UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
                 lineLal.backgroundColor=RGB(199, 199, 199);
@@ -391,9 +394,18 @@
         NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:taoCanModel.smid],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":numCell.numLal.text,@"consumptionStatus":gotype};
         [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
-                [MyUtil showMessage:result];
+//                [MyUtil showMessage:result];
                 //支付宝页面"data": "P130637201510181610220",
                 //result的值就是P130637201510181610220
+                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+                detailViewController.orderNo=result;
+                int num = numCell.numLal.text.intValue;
+                detailViewController.payAmount=taoCanModel.price*num;
+                detailViewController.productName=taoCanModel.title;
+                detailViewController.productDescription=@"暂无";
+                self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+                
+                [self.navigationController pushViewController:detailViewController animated:YES];
             }
         }];
         

@@ -1305,7 +1305,7 @@
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
     conversationVC.targetId = _orderInfoModel.imuserid; // 接收者的 targetId，这里为举例。
     conversationVC.userName =_orderInfoModel.username; // 接受者的 username，这里为举例。
-    conversationVC.title =_orderInfoModel.username; // 会话的 title。
+    conversationVC.title =_orderInfoModel.checkUserName; // 会话的 title。
     
     // 把单聊视图控制器添加到导航栈。
     [self.navigationController pushViewController:conversationVC animated:YES];

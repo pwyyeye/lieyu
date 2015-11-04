@@ -30,7 +30,7 @@
     NSString *str=model.avatar_img ;
     [_userImageView  setImageWithURL:[NSURL URLWithString:str]];
     
-    _nameLal.text=model.username;
+    _nameLal.text=model.usernick;
     _ageLal.text=[NSString stringWithFormat:@"年龄：%@",model.age];
     
     [self.selBtn setSelected:model.issel];

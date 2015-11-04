@@ -340,7 +340,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
         RCUserInfo *user = [[RCUserInfo alloc]init];
         user.userId =val.imUserId;
-        user.name = val.username;
+        user.name = val.usernick;
         user.portraitUri = val.icon;
         
         return completion(user);

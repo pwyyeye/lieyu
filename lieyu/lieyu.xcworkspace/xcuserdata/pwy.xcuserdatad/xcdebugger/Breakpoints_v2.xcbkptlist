@@ -26,12 +26,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu%E6%9C%80%E6%96%B0/lieyu/lieyu/LYOrderDetailViewController.m"
-                  timestampString = "468306283.336112"
+                  timestampString = "468309988.45812"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1249"
                   endingLineNumber = "1249"
-                  offsetFromSymbolStart = "280">
+                  offsetFromSymbolStart = "288">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu%E6%9C%80%E6%96%B0/lieyu/lieyu/LYOrderDetailViewController.m"
-                  timestampString = "468306283.336558"
+                  timestampString = "468309988.458522"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1250"
                   endingLineNumber = "1250"
-                  offsetFromSymbolStart = "18">
+                  offsetFromSymbolStart = "24">
                </Location>
             </Locations>
          </BreakpointContent>
