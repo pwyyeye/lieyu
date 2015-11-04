@@ -61,8 +61,8 @@ SearchDelegate
     // Do any additional setup after loading the view from its nib.
 }
 -(void)cityChange{
-    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-    [_cityBtn setTitle:delegate.citystr forState:0];
+//    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+//    [_cityBtn setTitle:delegate.citystr forState:0];
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityChange" object:nil];
@@ -110,9 +110,9 @@ SearchDelegate
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
-//    if (![MyUtil isEmptyString:_cityBtn.titleLabel.text]) {
-//       hList.city = _cityBtn.titleLabel.text;
-//    }
+    if (![MyUtil isEmptyString:_cityBtn.titleLabel.text]) {
+       hList.city = _cityBtn.titleLabel.text;
+    }
 //    hList.city = [LYUserLocation instance].city;
 //    hList.bartype = @"酒吧/夜总会";
     hList.need_page = @(1);
