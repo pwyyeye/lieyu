@@ -11,9 +11,10 @@
 @implementation LYJiuBaCell
 
 - (void)awakeFromNib {
-    self.jiubaImageView.layer.masksToBounds =YES;
-    
-    self.jiubaImageView.layer.cornerRadius =self.jiubaImageView.frame.size.width/2;
+//    self.jiubaImageView.layer.masksToBounds =YES;
+//    
+//    self.jiubaImageView.layer.cornerRadius =self.jiubaImageView.frame.size.width/2;
+//    [self.jiubaImageView setBackgroundColor:[UIColor clearColor]];
     // Initialization code
 }
 
