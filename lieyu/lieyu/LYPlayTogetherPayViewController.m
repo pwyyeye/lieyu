@@ -372,8 +372,8 @@
             RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
             conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
             conversationVC.targetId = zsDetailModel.imUserId; // 接收者的 targetId，这里为举例。
-            conversationVC.userName =zsDetailModel.username; // 接受者的 username，这里为举例。
-            conversationVC.title =zsDetailModel.username; // 会话的 title。
+            conversationVC.userName =zsDetailModel.usernick; // 接受者的 username，这里为举例。
+            conversationVC.title =zsDetailModel.usernick; // 会话的 title。
             
             // 把单聊视图控制器添加到导航栈。
             [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];

@@ -1288,7 +1288,7 @@
     
     orderInfoModel=_orderInfoModel;
     //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
-    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n %@inPinkerWebAction.do?id=%d",self.userModel.username,orderInfoModel.barinfo.barname,LY_SERVER,orderInfoModel.id];
+    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n %@inPinkerWebAction.do?id=%d",self.userModel.usernick,orderInfoModel.barinfo.barname,LY_SERVER,orderInfoModel.id];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UmengAppkey
