@@ -187,7 +187,7 @@
             }
 //            yaoYiYaoViewController=[[YaoYiYaoViewController alloc]initWithNibName:@"YaoYiYaoViewController4" bundle:nil];
 //            yaoYiYaoViewController.is4s=true;
-//            yaoYiYaoViewController.title=@"摇一摇";
+            yaoYiYaoViewController.title=@"摇一摇";
             [self.navigationController pushViewController:yaoYiYaoViewController  animated:YES];
             
         }else{
