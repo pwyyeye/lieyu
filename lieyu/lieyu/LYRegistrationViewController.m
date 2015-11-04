@@ -113,7 +113,7 @@
         [self showMessage:@"两次输入密码不一致!"];
         return;
     }
-    NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":self.passWordTex.text,@"confirm":self.againPassWordTex.text};
+    NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":self.againPassWordTex.text};
     [[LYUserHttpTool shareInstance] setZhuCe:dic complete:^(BOOL result) {
         if (result) {
             [_timer setFireDate:[NSDate distantPast]];

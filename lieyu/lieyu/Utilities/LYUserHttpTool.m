@@ -123,6 +123,37 @@
     }];
     
 }
+
+#pragma mark - 获取忘记密码验证码
+-(void) getResetYanZhengMa:(NSDictionary*)params
+             complete:(void (^)(BOOL result))result{
+    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_RYZM baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+    
+}
 #pragma mark -注册
 -(void) setZhuCe:(NSDictionary*)params
         complete:(void (^)(BOOL result))result{

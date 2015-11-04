@@ -23,6 +23,7 @@
     
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,7 +91,7 @@
     if([MyUtil isEmptyString:password]){
         return;
     }
-    NSDictionary *dic=@{@"username":username,@"password":password};
+    NSDictionary *dic=@{@"username":username,@"password":[MyUtil md5HexDigest: password]};
     [[LYUserHttpTool shareInstance] userAutoLoginWithParams:dic block:^(UserModel *result) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         app.s_app_id=result.token;

@@ -21,6 +21,10 @@
 #define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"
 //获取验证码
 #define LY_YZM  @"registerAction.do?action=custom"
+
+//获取忘记密码验证码
+#define LY_RYZM  @"registerAction.do?action=list"
+
 //注册
 #define LY_ZC  @"registerAction.do?action=add"
 //找回密码

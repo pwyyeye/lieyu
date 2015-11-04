@@ -237,6 +237,14 @@
 
     [_fillterButton removeFromSuperview];
     [_myTitle removeFromSuperview];
+    _myTitle=nil;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [_fillterButton removeFromSuperview];
+    [_myTitle removeFromSuperview];
+    _myTitle=nil;
 }
 
 - (IBAction)filterClick:(id)sender

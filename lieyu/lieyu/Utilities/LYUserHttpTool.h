@@ -27,6 +27,10 @@
 // 获取验证码
 -(void) getYanZhengMa:(NSDictionary*)params
              complete:(void (^)(BOOL result))result;
+
+// 获取忘记密码验证码
+-(void) getResetYanZhengMa:(NSDictionary*)params
+             complete:(void (^)(BOOL result))result;
 // 注册
 -(void) setZhuCe:(NSDictionary*)params
              complete:(void (^)(BOOL result))result;

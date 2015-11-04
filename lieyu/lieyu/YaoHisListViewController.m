@@ -76,7 +76,7 @@
     cell.detLal.text=[NSString stringWithFormat:@"%@米",customerModel.distance];
     if (customerModel.distance.doubleValue>1000) {
         double d=customerModel.distance.doubleValue/1000;
-        cell.detLal.text=[NSString stringWithFormat:@"%.2f米",d];
+        cell.detLal.text=[NSString stringWithFormat:@"%.2f千米",d];
     }
     if([customerModel.sex isEqualToString:@"1"]){
         cell.sexImageView.image=[UIImage imageNamed:@"manIcon"];

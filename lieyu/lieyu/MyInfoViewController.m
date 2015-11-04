@@ -44,6 +44,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (self.navigationController.navigationBarHidden != YES) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
     [self getDataForShowList];
 }
 #pragma mark 初始化数据

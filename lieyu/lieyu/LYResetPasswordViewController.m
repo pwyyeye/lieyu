@@ -73,9 +73,10 @@
         [self showMessage:@"两次输入密码不一致!"];
         return;
     }
-    NSDictionary *dic=@{@"mobile":self.getPassWordTypeTex.text,@"captchas":self.yzmText.text,@"newpassword":self.passWordTex.text,@"password":self.againPassWordTex.text};
+    NSDictionary *dic=@{@"mobile":self.getPassWordTypeTex.text,@"captchas":self.yzmText.text,@"newpassword":[MyUtil md5HexDigest: self.passWordTex.text],@"password":[MyUtil md5HexDigest: self.againPassWordTex.text]};
     [[LYUserHttpTool shareInstance] setNewPassWord:dic complete:^(BOOL result) {
         if (result) {
+            [MyUtil showMessage:@"修改成功！"];
             [_timer setFireDate:[NSDate distantPast]];
             [self.delegate resetPassword];
             [self.navigationController popViewControllerAnimated:YES];
@@ -93,10 +94,10 @@
         [self showMessage:@"请输入正确的手机格式!"];
     }
     NSDictionary *dic=@{@"mobile":self.getPassWordTypeTex.text};
-    [[LYUserHttpTool shareInstance] getYanZhengMa:dic complete:^(BOOL result) {
+    [[LYUserHttpTool shareInstance] getResetYanZhengMa:dic complete:^(BOOL result) {
         if (result) {
             [_timer setFireDate:[NSDate distantPast]];
-            [self showMessage:@"验证码发送成功请输入短信中的验证码!"];
+            [self showMessage:@"验证码发送成功!"];
         }
     }];
 }
