@@ -28,6 +28,8 @@
 
 //我的好友
 #define LY_MY_FRIENDS_LIST @"friendAction.do?action=list"
+//删除好友
+#define LY_MY_FRIENDS_DEL @"friendAction.do?action=delete"
 //信息中心添加我的朋友信息
 #define LY_ADDME_LIST @"lyUserShakeAction.do?action=expand"
 //加好友

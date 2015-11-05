@@ -73,6 +73,9 @@
 //加好友
 -(void) addFriends:(NSDictionary*)params
                  complete:(void (^)(BOOL result))result;
+//删除好友
+-(void) delMyFriends:(NSDictionary*)params
+                 complete:(void (^)(BOOL result))result;
 //用户信息
 -(void) getUserInfo:(NSDictionary*)params
           block:(void(^)(CustomerModel* result)) block;
