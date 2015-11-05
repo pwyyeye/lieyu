@@ -13,6 +13,8 @@
 #import "CYInfoCell.h"
 #import "PTTaoCanCell.h"
 #import "ChoosePayController.h"
+#import "LYHomePageHttpTool.h"
+#import "LYMyOrderManageViewController.h"
 @interface PTjoinInViewController ()
 
 @end
@@ -126,6 +128,9 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"CYPayAmoutCell" forIndexPath:indexPath];
             CYPayAmoutCell *payAmoutCell = (CYPayAmoutCell *)cell;
             payAmoutCell.priceLal.text=[NSString stringWithFormat:@"￥%@",pinKeModel.pinkerNeedPayAmount];
+            if(pinKeModel.pinkerNeedPayAmount.doubleValue==0.0){
+                [_payBtn setTitle:@"免费参与" forState:UIControlStateNormal];
+            }
             
         }
             break;
@@ -204,25 +209,32 @@
 */
 #pragma mark - 立即支付
 - (IBAction)payAct:(id)sender {
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    UserModel *userModel= app.userModel;
     
-    ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
-    if(pinKeModel.pinkerList.count>0){
-        for (NSDictionary *dic in pinKeModel.pinkerList) {
-            PinkInfoModel *pinkInfoModel=[PinkInfoModel objectWithKeyValues:dic];
-            if(pinkInfoModel.inmember==userModel.userid){
-                detailViewController.orderNo=pinkInfoModel.sn;
-                detailViewController.payAmount=pinkInfoModel.price.doubleValue;
-            }
-        }
-    }
+    [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:@{@"id":[NSString stringWithFormat:@"%d",pinKeModel.id],@"payamount":pinKeModel.pinkerNeedPayAmount} complete:^(NSString *result) {
+        if(result){
+            //支付宝页面"data": "P130637201510181610220",
+            //result的值就是P130637201510181610220
+            if (pinKeModel.pinkerNeedPayAmount.doubleValue==0.0) {
+                UIViewController *detailViewController;
+                
+                detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+    
+                [self.navigationController pushViewController:detailViewController animated:YES];
 
-    detailViewController.productName=pinKeModel.fullname;
-    detailViewController.productDescription=@"暂无";
-    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+            }else{
+                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+                detailViewController.orderNo=result;
+                detailViewController.payAmount=pinKeModel.pinkerNeedPayAmount.doubleValue;
+                detailViewController.productName=pinKeModel.fullname;
+                detailViewController.productDescription=@"暂无";
+                self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+                
+                [self.navigationController pushViewController:detailViewController animated:YES];
+            }
+           
+        }
+    }];
     
-    [self.navigationController pushViewController:detailViewController animated:YES];
 
 }
 @end

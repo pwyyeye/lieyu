@@ -53,6 +53,7 @@
     [[LYUserHttpTool shareInstance] userLogOutWithParams:@{@"sessionid":app.s_app_id} block:^(BOOL result) {
         if (result) {
             app.s_app_id=@"";
+            app.userModel=nil;
             [USER_DEFAULT removeObjectForKey:@"username"];
             [USER_DEFAULT removeObjectForKey:@"password"];
              [self.navigationController popViewControllerAnimated:YES ];
