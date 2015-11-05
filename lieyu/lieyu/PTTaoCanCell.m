@@ -23,7 +23,7 @@
 {
         //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
     self.titleLal.text=model.name;
-    self.countLal.text=model.num;
+    self.countLal.text=[NSString stringWithFormat:@"%@ %@",model.num,model.unit]; ;
     double d=model.price.doubleValue*model.num.intValue;
     self.jiagelal.text=[NSString stringWithFormat:@"￥%.2f",d];
 }

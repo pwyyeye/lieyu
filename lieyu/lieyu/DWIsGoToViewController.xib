@@ -83,21 +83,21 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="不一定会去的状态：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ5-Lp-R5H">
-                    <rect key="frame" x="16" y="224" width="111" height="21"/>
+                    <rect key="frame" x="16" y="158" width="111" height="21"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2.不一定去可以给您一定的确认缓冲时间，予以您确定前做好确定会去准备。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jm2-ld-jEh">
-                    <rect key="frame" x="16" y="282" width="288" height="47"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.为了确保你退款不扣除卡座占用费，您可以选择不一定去。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySB-yi-kik">
+                    <rect key="frame" x="16" y="181" width="288" height="34"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.为了确保你退款不扣除卡座占用费，您可以选择不一定去。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySB-yi-kik">
-                    <rect key="frame" x="16" y="247" width="288" height="34"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2.不一定去可以给您一定的确认缓冲时间，予以您确定前做好确定会去准备。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jm2-ld-jEh">
+                    <rect key="frame" x="16" y="210" width="288" height="47"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -105,7 +105,6 @@
                 </label>
             </subviews>
             <animations/>
-            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Dc6-TL-iUe" secondAttribute="trailing" id="2tp-MI-VyN"/>
                 <constraint firstItem="Dc6-TL-iUe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XM0-qJ-DbE"/>

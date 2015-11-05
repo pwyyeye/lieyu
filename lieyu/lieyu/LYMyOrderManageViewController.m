@@ -872,7 +872,7 @@
     OrderInfoModel *orderInfoModel;
     orderInfoModel=dataList[sender.tag];
     __weak __typeof(self)weakSelf = self;
-    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确认要删除订单吗？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
         //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
         if (buttonIndex == 0) {
             //取消
@@ -957,7 +957,7 @@
     OrderInfoModel *orderInfoModel;
     orderInfoModel=dataList[sender.tag];
     __weak __typeof(self)weakSelf = self;
-    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确认要取消订单吗？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
         //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
         if (buttonIndex == 0) {
             //取消

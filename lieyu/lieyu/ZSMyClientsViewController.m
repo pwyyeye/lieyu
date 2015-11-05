@@ -26,6 +26,7 @@
     
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
+    _searchBar.barTintColor=[UIColor whiteColor];
     [self getMyCustomerslist];
     // Do any additional setup after loading the view from its nib.
 }

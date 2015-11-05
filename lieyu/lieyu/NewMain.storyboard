@@ -851,7 +851,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNA-Ju-IvP">
-                                                    <rect key="frame" x="281" y="27" width="22" height="22"/>
+                                                    <rect key="frame" x="272" y="18" width="40" height="40"/>
                                                     <animations/>
                                                     <state key="normal" image="danxuan">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1427,7 +1427,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nL-mP-vE1">
-                                                    <rect key="frame" x="281" y="27" width="22" height="22"/>
+                                                    <rect key="frame" x="272" y="20" width="40" height="40"/>
                                                     <animations/>
                                                     <state key="normal" image="danxuan">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1641,7 +1641,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jT-DN-8W8">
-                                                    <rect key="frame" x="281" y="27" width="22" height="22"/>
+                                                    <rect key="frame" x="272" y="17" width="40" height="40"/>
                                                     <animations/>
                                                     <state key="normal" image="danxuan">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1906,6 +1906,7 @@
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyY-dY-bsh">
                                                     <rect key="frame" x="0.0" y="374" width="320" height="14"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.56862745098039214" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
