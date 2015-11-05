@@ -175,7 +175,7 @@
     switch (indexPath.section) {
         case 0://广告
         {
-            h = 256;
+            h = 334;
         }
             break;
         case 1:// 选项卡 ，酒吧或夜总会

@@ -36,6 +36,7 @@
 		151BB6D71BBB78E000E7A81C /* UzysGroupViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6CE1BBB78E000E7A81C /* UzysGroupViewCell.m */; };
 		151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6D01BBB78E000E7A81C /* UzysWrapperPickerController.m */; };
 		151BB6E21BBB913E00E7A81C /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 151BB6E11BBB913E00E7A81C /* DejalActivityView.m */; };
+		152247861BEAF82800E68A2B /* AlertBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 152247851BEAF82800E68A2B /* AlertBlock.m */; };
 		153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */; };
 		15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */; };
 		15571BC31BE998D7006F73D0 /* YaoYiYaoViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15571BC21BE998D7006F73D0 /* YaoYiYaoViewController4.xib */; };
@@ -583,6 +584,8 @@
 		151BB6D01BBB78E000E7A81C /* UzysWrapperPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysWrapperPickerController.m; sourceTree = "<group>"; };
 		151BB6E01BBB913E00E7A81C /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
 		151BB6E11BBB913E00E7A81C /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
+		152247841BEAF82800E68A2B /* AlertBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertBlock.h; sourceTree = "<group>"; };
+		152247851BEAF82800E68A2B /* AlertBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertBlock.m; sourceTree = "<group>"; };
 		153F08B71BE87C0D00B7749E /* LYRecentContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYRecentContactViewController.h; sourceTree = "<group>"; };
 		153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYRecentContactViewController.m; sourceTree = "<group>"; };
 		15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewMain.storyboard; sourceTree = "<group>"; };
@@ -1573,6 +1576,15 @@
 				151BB6D01BBB78E000E7A81C /* UzysWrapperPickerController.m */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		152247831BEAF7E600E68A2B /* AlertBlock */ = {
+			isa = PBXGroup;
+			children = (
+				152247841BEAF82800E68A2B /* AlertBlock.h */,
+				152247851BEAF82800E68A2B /* AlertBlock.m */,
+			);
+			name = AlertBlock;
 			sourceTree = "<group>";
 		};
 		153F08B61BE87BCD00B7749E /* 最近联系 */ = {
@@ -3587,6 +3599,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				152247831BEAF7E600E68A2B /* AlertBlock */,
 				ADE103BC1BE0EAAA00D9EC38 /* EAIntroView */,
 				15EB35291BD4838600BA6161 /* 社会化分享 */,
 				15EB35201BD3394000BA6161 /* banner */,
@@ -4079,6 +4092,7 @@
 				15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */,
 				A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */,
 				15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */,
+				152247861BEAF82800E68A2B /* AlertBlock.m in Sources */,
 				15A4CF501BD7862700C22C01 /* DWIsGoToViewController.m in Sources */,
 				15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,

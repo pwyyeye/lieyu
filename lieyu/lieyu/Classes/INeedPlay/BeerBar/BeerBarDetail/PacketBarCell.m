@@ -54,9 +54,9 @@
 //    {
 //        _delLine.hidden = NO;
 //    }
-    if(model.maketprice){
+    if(model.marketprice){
         NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-        NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.maketprice] attributes:attribtDic];
+        NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];
         _labCostDel.attributedText=attribtStr;
     }
     

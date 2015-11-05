@@ -18,8 +18,8 @@
                         <rect key="frame" x="217" y="86" width="12" height="12"/>
                         <animations/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="收藏" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RK-MK-YBV" userLabel="shoucang">
-                        <rect key="frame" x="233" y="87" width="20" height="10"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RK-MK-YBV" userLabel="shoucang">
+                        <rect key="frame" x="233" y="87" width="30" height="10"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,6 +91,7 @@
                 <outlet property="costLabel" destination="i2s-9J-tCb" id="DPw-9e-UA7"/>
                 <outlet property="distanceLabel" destination="CEJ-Zf-WAW" id="hxE-Dq-KqI"/>
                 <outlet property="mImageView" destination="tfL-Aw-2Ho" id="jRI-jM-Sj7"/>
+                <outlet property="scCountLal" destination="1RK-MK-YBV" id="Q3G-Cc-TXJ"/>
                 <outlet property="starLabel" destination="DCT-Hj-67T" id="94w-nN-aa6"/>
             </connections>
             <point key="canvasLocation" x="305" y="305.5"/>

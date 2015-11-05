@@ -13,5 +13,5 @@
 @interface BearBarListViewController :LYBaseViewController
 
 @property(nonatomic,assign)BaseEntry entryType;
-
+@property(nonatomic,copy)NSString *cityStr;
 @end

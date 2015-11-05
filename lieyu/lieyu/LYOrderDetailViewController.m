@@ -15,6 +15,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "OrderDetailCell.h"
 #import "ShopDetailmodel.h"
+#import "ChoosePayController.h"
 #import "GoodsModel.h"
 #import "MyChooseZSCell.h"
 #import "MyPKfriendCell.h"
@@ -1204,20 +1205,53 @@
 #pragma mark 付款
 -(void)payAct:(UIButton *)sender{
     
+    OrderInfoModel *orderInfoModel;
+    orderInfoModel=_orderInfoModel;
+    ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+    detailViewController.orderNo=orderInfoModel.sn;
+    detailViewController.payAmount=orderInfoModel.amountPay.doubleValue;
+    detailViewController.productName=orderInfoModel.fullname;
+    detailViewController.productDescription=@"暂无";
+    //如果是拼客 特殊处理
+    if(orderInfoModel.ordertype==1){
+        if(orderInfoModel.pinkerList.count>0){
+            for (NSDictionary *dic in orderInfoModel.pinkerList) {
+                PinkInfoModel *pinkInfoModel =[PinkInfoModel objectWithKeyValues:dic];
+                if(pinkInfoModel.inmember==userId){
+                    detailViewController.orderNo=pinkInfoModel.sn;
+                    detailViewController.payAmount=pinkInfoModel.price.doubleValue;
+                }
+            }
+        }
+    }
     
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 #pragma mark 取消订单
 - (void)queXiaoDinDanAct:(UIButton *)sender{
 //    __weak __typeof(self)weakSelf = self;
     NSDictionary *dic=@{@"id":[NSNumber numberWithInt:_orderInfoModel.id]};
-    [[LYUserHttpTool shareInstance]cancelMyOrder:dic complete:^(BOOL result) {
-        if(result){
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+        //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
+        if (buttonIndex == 0) {
+            //取消
+        }else if (buttonIndex == 1){
+            //确定
+            [[LYUserHttpTool shareInstance]cancelMyOrder:dic complete:^(BOOL result) {
+                if(result){
+                    
+                    [self.delegate refreshTable];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    //            [weakSelf refreshData];
+                }
+            }];
             
-            [self.delegate refreshTable];
-            [self.navigationController popViewControllerAnimated:YES];
-//            [weakSelf refreshData];
         }
     }];
+    [alert show];
+    
     
 }
 #pragma mark 一定会去
@@ -1246,13 +1280,24 @@
 //    __weak __typeof(self)weakSelf = self;
     
     NSDictionary *dic=@{@"id":[NSNumber numberWithInt:_orderInfoModel.id]};
-    [[LYUserHttpTool shareInstance]delMyOrder:dic complete:^(BOOL result) {
-        if(result){
-            [self.delegate refreshTable];
-            [self.navigationController popViewControllerAnimated:YES];
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+        //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
+        if (buttonIndex == 0) {
+            //取消
+        }else if (buttonIndex == 1){
+            //确定
+            [[LYUserHttpTool shareInstance]delMyOrder:dic complete:^(BOOL result) {
+                if(result){
+                    [self.delegate refreshTable];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                }
+            }];
             
         }
     }];
+    [alert show];
+    
     
 }
 
@@ -1260,7 +1305,7 @@
 -(void)shanChuDinDanByCanYuAct:(UIButton *)sender{
     OrderInfoModel *orderInfoModel;
     orderInfoModel=_orderInfoModel;
-    __weak __typeof(self)weakSelf = self;
+//    __weak __typeof(self)weakSelf = self;
     NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
     int orderid=0;
     if(pinkerList.count>0){
@@ -1273,13 +1318,24 @@
     }
     
     NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderid]};
-    [[LYUserHttpTool shareInstance]delMyOrderByCanYu:dic complete:^(BOOL result) {
-        if(result){
-            [self.delegate refreshTable];
-            [self.navigationController popViewControllerAnimated:YES];
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+        //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
+        if (buttonIndex == 0) {
+            //取消
+        }else if (buttonIndex == 1){
+            //确定
+            [[LYUserHttpTool shareInstance]delMyOrderByCanYu:dic complete:^(BOOL result) {
+                if(result){
+                    [self.delegate refreshTable];
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                }
+            }];
             
         }
     }];
+    [alert show];
+    
     
 }
 #pragma mark 邀请拼客

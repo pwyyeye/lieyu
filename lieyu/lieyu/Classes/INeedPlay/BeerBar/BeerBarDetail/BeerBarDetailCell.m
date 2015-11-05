@@ -71,8 +71,9 @@
     for (int i=0; i<model.tese.count; i++) {
         if(i<=teseArr.count){
             NSDictionary *dic=model.tese[i];
-            [_teseBtn1 setHidden:NO];
-            [_teseBtn1 setTitle:[dic objectForKey:@"name"] forState:0];
+            UIButton *teseBtnTemp=teseArr[i];
+            [teseBtnTemp setHidden:NO];
+            [teseBtnTemp setTitle:[dic objectForKey:@"name"] forState:0];
         }else{
             break;
         }

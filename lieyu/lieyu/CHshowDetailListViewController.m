@@ -28,14 +28,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    rightBtn=[[UIBarButtonItem alloc]initWithTitle:@"购物车" style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
-    [rightBtn setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                         [UIFont fontWithName:@"Helvetica-Bold" size:12], NSFontAttributeName,
-                                         [UIColor whiteColor], NSForegroundColorAttributeName,
-                                         nil]
-                               forState:UIControlStateNormal];
-//    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"carNew"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
-    [self.navigationItem setRightBarButtonItem:rightBtn];
+    
+    
+    UIImage *buttonImage = [UIImage imageNamed:@"carNew"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+    [button addTarget:self action: @selector(showcarAct)
+     forControlEvents:UIControlEventTouchUpInside];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
+    [view addSubview:button];
+    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+    self.navigationItem.rightBarButtonItem = customBarItem;
+    
+//    rightBtn=[[UIBarButtonItem alloc]initWithTitle:@"购物车" style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
+//    [rightBtn setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                         [UIFont fontWithName:@"Helvetica-Bold" size:12], NSFontAttributeName,
+//                                         [UIColor whiteColor], NSForegroundColorAttributeName,
+//                                         nil]
+//                               forState:UIControlStateNormal];
+////    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"carNew"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
+//    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:brm,rightBtn,nil,nil]];
     dataList = [[NSMutableArray alloc]init];
     pageCount=1;
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:@{@"barid":[NSString stringWithFormat:@"%d",self.barid]}];
