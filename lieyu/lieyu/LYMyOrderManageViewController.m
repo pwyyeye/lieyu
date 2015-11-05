@@ -568,7 +568,7 @@
                 [orderBottomView.secondBtn addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.oneBtn.tag=section;
                 orderBottomView.secondBtn.tag=section;
-            }else if(orderInfoModel.orderStatus==1){
+            }else if(orderInfoModel.orderStatus==1 || orderInfoModel.orderStatus==2){
                 [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
                 [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.secondBtn.tag=section;

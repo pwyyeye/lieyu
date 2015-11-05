@@ -18,4 +18,5 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic,weak)id<DateChooseDelegate>delegate;
 @property (nonatomic,assign)int type;
+@property (nonatomic,retain)NSDate *nowDate;
 @end

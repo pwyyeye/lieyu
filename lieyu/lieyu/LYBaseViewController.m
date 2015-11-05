@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.automaticallyAdjustsScrollViewInsets=0;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.barTintColor=RGB(35, 166, 116);
