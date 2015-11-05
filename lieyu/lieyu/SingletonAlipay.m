@@ -50,7 +50,7 @@
     //必须填充－－－－－－－－－end
     
 //    order.amount = [NSString stringWithFormat:@"%.2f",0.01]; //商品价格
-    order.notifyURL =  @"http://www.peikua.com/plugins/pk_app_alipay/notify_url.php"; //回调URL  $return_url = DOMAIN."/plugins/pk_alipay/pk_return_url.php";
+    order.notifyURL =  @"http://www.lie98.com/lieyu/alipayOrderAction.do"; //回调URL  $return_url = DOMAIN."/plugins/pk_alipay/pk_return_url.php";
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";

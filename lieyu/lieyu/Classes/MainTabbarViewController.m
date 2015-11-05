@@ -81,7 +81,6 @@
 - (void)setSelectedIndex:(NSUInteger)selectedIndex
 {
     [super setSelectedIndex:selectedIndex];
-        NSLog(@"----pass-%d---",selectedIndex);
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
@@ -102,13 +101,6 @@
 */
 
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
-//    if(tabBarController.selectedIndex == 3)    //"我的账号"
-//    {
-////        NSLog(@"----pass-pass%@---%d",@"test",tabBarController.selectedIndex);
-//        return NO;
-//    }else{
-//        return YES;
-//    }
     self.lastSelectIndex=self.selectedIndex;
     return YES;
 }

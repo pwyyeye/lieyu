@@ -27,7 +27,9 @@
 //录入拼客订单
 -(void) setTogetherOrderInWithParams:(NSDictionary*)params
         complete:(void (^)(NSString *result))result;
-
+//参与拼客
+-(void) inTogetherOrderInWithParams:(NSDictionary*)params
+                           complete:(void (^)(NSString *result))result;
 
 //我要订位
 -(void) getWoYaoDinWeiDetailWithParams:(NSDictionary*)params

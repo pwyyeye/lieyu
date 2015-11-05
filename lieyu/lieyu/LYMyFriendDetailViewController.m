@@ -43,7 +43,7 @@
         }
     }else{
         [_setBtn setTitle:@"打招呼" forState:0];
-        self.namelal.text=_customerModel.username;
+        self.namelal.text=_customerModel.usernick;
         self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
         if (_customerModel.distance.doubleValue>1000) {
             self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];

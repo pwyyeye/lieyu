@@ -133,6 +133,36 @@
     }];
 }
 
+#pragma mark录入拼客订单
+-(void) inTogetherOrderInWithParams:(NSDictionary*)params
+                            complete:(void (^)(NSString *result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_INPINKER baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        NSString *data=[NSString stringWithFormat:@"%@",response[@"data"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(data);
+            });
+            [app stopLoading];
+        }else{
+            
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        
+        
+        
+    }];
+}
+
 #pragma mark我要订位
 -(void) getWoYaoDinWeiDetailWithParams:(NSDictionary*)params
                                  block:(void(^)(JiuBaModel* result)) block{
