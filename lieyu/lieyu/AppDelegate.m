@@ -346,7 +346,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
             RCUserInfo *user = [[RCUserInfo alloc]init];
             user.userId =result.imUserId;
             user.name = result.name;
-            user.portraitUri = result.mark;
+            user.portraitUri = [MyUtil getQiniuUrl:result.mark width:80 andHeight:80];
 //            [[RCDataBaseManager shareInstance] insertUserToDB:user];
             return completion(user);
         }];
