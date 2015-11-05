@@ -55,7 +55,7 @@
 }
 #pragma mark 获取数据
 -(void)getdata{
-    NSDictionary *dic=@{@"smid":[NSString stringWithFormat:@"%d",self.smid]};
+    NSDictionary *dic=@{@"smid":[NSString stringWithFormat:@"%d",self.smid],@"smdate":_dateStr};
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiOrderWithParams:dic block:^(TaoCanModel *result) {
         taoCanModel=result;
