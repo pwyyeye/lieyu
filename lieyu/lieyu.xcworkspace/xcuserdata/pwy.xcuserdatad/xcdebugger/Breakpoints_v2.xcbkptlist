@@ -22,31 +22,46 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[LYOrderDetailViewController shanChuDinDanAct:]"
+                  symbolName = "__48-[LYOrderDetailViewController queXiaoDinDanAct:]_block_invoke_2"
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu%E6%9C%80%E6%96%B0/lieyu/lieyu/LYOrderDetailViewController.m"
-                  timestampString = "468349110.470143"
+                  timestampString = "468392722.695684"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1249"
                   endingLineNumber = "1249"
-                  offsetFromSymbolStart = "280">
+                  offsetFromSymbolStart = "216">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__48-[LYOrderDetailViewController shanChuDinDanAct:]_block_invoke"
+                  symbolName = "__copy_helper_block_"
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu%E6%9C%80%E6%96%B0/lieyu/lieyu/LYOrderDetailViewController.m"
-                  timestampString = "468349110.470581"
+                  timestampString = "468392722.69623"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1250"
-                  endingLineNumber = "1250"
-                  offsetFromSymbolStart = "18">
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "lieyu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu%E6%9C%80%E6%96%B0/lieyu/lieyu/LYOrderDetailViewController.m"
+                  timestampString = "468392722.696523"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "10">
                </Location>
             </Locations>
          </BreakpointContent>
