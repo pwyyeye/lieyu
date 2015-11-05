@@ -340,7 +340,7 @@
 
 - (IBAction)zsliAct:(UIButton *)sender {
     MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
-    myZSManageViewController.title=@"我的专属经理";
+    myZSManageViewController.title=@"专属经理";
     myZSManageViewController.barid=_beerBarDetail.barid.intValue;
     myZSManageViewController.isBarVip=true;
     [self.navigationController pushViewController:myZSManageViewController animated:YES];

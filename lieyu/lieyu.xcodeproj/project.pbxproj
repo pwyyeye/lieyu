@@ -124,6 +124,13 @@
 		15B866901BE0B04C002E2BB6 /* MyMessageListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B8668E1BE0B04C002E2BB6 /* MyMessageListViewController.xib */; };
 		15B866981BE0C183002E2BB6 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B866961BE0C183002E2BB6 /* MessageCell.m */; };
 		15B866991BE0C183002E2BB6 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15B866971BE0C183002E2BB6 /* MessageCell.xib */; };
+		15CC31D01BEB2BF100DDD03F /* RCDataBaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC31CF1BEB2BF100DDD03F /* RCDataBaseManager.m */; };
+		15CC31DF1BEB2C5B00DDD03F /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC31D31BEB2C5B00DDD03F /* DBHelper.m */; };
+		15CC31E01BEB2C5B00DDD03F /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC31D51BEB2C5B00DDD03F /* FMDatabase.m */; };
+		15CC31E11BEB2C5B00DDD03F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC31D71BEB2C5B00DDD03F /* FMDatabaseAdditions.m */; };
+		15CC31E21BEB2C5B00DDD03F /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC31D91BEB2C5B00DDD03F /* FMDatabasePool.m */; };
+		15CC31E31BEB2C5B00DDD03F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC31DB1BEB2C5B00DDD03F /* FMDatabaseQueue.m */; };
+		15CC31E41BEB2C5B00DDD03F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC31DE1BEB2C5B00DDD03F /* FMResultSet.m */; };
 		15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E1846C1BB4DCF100681BB2 /* MyZSManageViewController.m */; };
 		15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E1846D1BB4DCF100681BB2 /* MyZSManageViewController.xib */; };
 		15E184741BB4EB7A00681BB2 /* LYZSdetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184721BB4EB7A00681BB2 /* LYZSdetailCell.m */; };
@@ -741,6 +748,21 @@
 		15B866951BE0C183002E2BB6 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		15B866961BE0C183002E2BB6 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		15B866971BE0C183002E2BB6 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		15CC31CE1BEB2BF100DDD03F /* RCDataBaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCDataBaseManager.h; sourceTree = "<group>"; };
+		15CC31CF1BEB2BF100DDD03F /* RCDataBaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCDataBaseManager.m; sourceTree = "<group>"; };
+		15CC31D21BEB2C5B00DDD03F /* DBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBHelper.h; sourceTree = "<group>"; };
+		15CC31D31BEB2C5B00DDD03F /* DBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBHelper.m; sourceTree = "<group>"; };
+		15CC31D41BEB2C5B00DDD03F /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		15CC31D51BEB2C5B00DDD03F /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		15CC31D61BEB2C5B00DDD03F /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		15CC31D71BEB2C5B00DDD03F /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		15CC31D81BEB2C5B00DDD03F /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		15CC31D91BEB2C5B00DDD03F /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		15CC31DA1BEB2C5B00DDD03F /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		15CC31DB1BEB2C5B00DDD03F /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		15CC31DC1BEB2C5B00DDD03F /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		15CC31DD1BEB2C5B00DDD03F /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		15CC31DE1BEB2C5B00DDD03F /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		15E1846B1BB4DCF100681BB2 /* MyZSManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyZSManageViewController.h; sourceTree = "<group>"; };
 		15E1846C1BB4DCF100681BB2 /* MyZSManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyZSManageViewController.m; sourceTree = "<group>"; };
 		15E1846D1BB4DCF100681BB2 /* MyZSManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyZSManageViewController.xib; sourceTree = "<group>"; };
@@ -1967,6 +1989,26 @@
 				15B866971BE0C183002E2BB6 /* MessageCell.xib */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		15CC31D11BEB2C5B00DDD03F /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				15CC31D21BEB2C5B00DDD03F /* DBHelper.h */,
+				15CC31D31BEB2C5B00DDD03F /* DBHelper.m */,
+				15CC31D41BEB2C5B00DDD03F /* FMDatabase.h */,
+				15CC31D51BEB2C5B00DDD03F /* FMDatabase.m */,
+				15CC31D61BEB2C5B00DDD03F /* FMDatabaseAdditions.h */,
+				15CC31D71BEB2C5B00DDD03F /* FMDatabaseAdditions.m */,
+				15CC31D81BEB2C5B00DDD03F /* FMDatabasePool.h */,
+				15CC31D91BEB2C5B00DDD03F /* FMDatabasePool.m */,
+				15CC31DA1BEB2C5B00DDD03F /* FMDatabaseQueue.h */,
+				15CC31DB1BEB2C5B00DDD03F /* FMDatabaseQueue.m */,
+				15CC31DC1BEB2C5B00DDD03F /* FMDB.h */,
+				15CC31DD1BEB2C5B00DDD03F /* FMResultSet.h */,
+				15CC31DE1BEB2C5B00DDD03F /* FMResultSet.m */,
+			);
+			path = DB;
 			sourceTree = "<group>";
 		};
 		15E1846A1BB4DC8E00681BB2 /* 专属经理 */ = {
@@ -3376,6 +3418,9 @@
 		D748BC431BA1C280005AA996 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				15CC31D11BEB2C5B00DDD03F /* DB */,
+				15CC31CE1BEB2BF100DDD03F /* RCDataBaseManager.h */,
+				15CC31CF1BEB2BF100DDD03F /* RCDataBaseManager.m */,
 				D748BC441BA1C280005AA996 /* LYDataStore.h */,
 				D748BC451BA1C280005AA996 /* LYDataStore.m */,
 			);
@@ -4158,6 +4203,7 @@
 				A2FD57751BAFE94400CFFF92 /* TaoCanMCell.m in Sources */,
 				15B866851BE0776D002E2BB6 /* LYMyFriendViewController.m in Sources */,
 				15844BD41BE1FA3600247FBC /* LYNearFriendViewController.m in Sources */,
+				15CC31D01BEB2BF100DDD03F /* RCDataBaseManager.m in Sources */,
 				D761F0151BA5AED3000757B0 /* MJRefreshHeader.m in Sources */,
 				D748BC6D1BA1C856005AA996 /* MJFoundation.m in Sources */,
 				ADE1039B1BDE49BC00D9EC38 /* MD5DataSigner.m in Sources */,
@@ -4170,9 +4216,11 @@
 				152247861BEAF82800E68A2B /* AlertBlock.m in Sources */,
 				15A4CF501BD7862700C22C01 /* DWIsGoToViewController.m in Sources */,
 				15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */,
+				15CC31DF1BEB2C5B00DDD03F /* DBHelper.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
 				15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */,
+				15CC31E41BEB2C5B00DDD03F /* FMResultSet.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
@@ -4211,6 +4259,7 @@
 				D761F0171BA5AED3000757B0 /* MJRefreshAutoNormalFooter.m in Sources */,
 				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
 				15E184741BB4EB7A00681BB2 /* LYZSdetailCell.m in Sources */,
+				15CC31E11BEB2C5B00DDD03F /* FMDatabaseAdditions.m in Sources */,
 				AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */,
 				15E240C01BB3A9AA0090D240 /* LYUserLoginViewController.m in Sources */,
 				15EB35751BD495C600BA6161 /* CYPayAmoutCell.m in Sources */,
@@ -4269,6 +4318,7 @@
 				15E240711BB2478B0090D240 /* TuiJianShangJiaViewController.m in Sources */,
 				15FD2A971BD5DD7A00D66920 /* FindMenuCell.m in Sources */,
 				15A4CF3B1BD7309500C22C01 /* LYTitleInfoCell.m in Sources */,
+				15CC31E21BEB2C5B00DDD03F /* FMDatabasePool.m in Sources */,
 				151BB6D41BBB78E000E7A81C /* UzysAssetsViewCell.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
@@ -4332,6 +4382,7 @@
 				D761F0211BA5AED3000757B0 /* UIScrollView+MJExtension.m in Sources */,
 				D7545E011BB99A3A005B854F /* HTTPController.m in Sources */,
 				D7A1D4311BC2CD1B00BCE47C /* AnnouncementModel.m in Sources */,
+				15CC31E01BEB2C5B00DDD03F /* FMDatabase.m in Sources */,
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
 				A2FD578E1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m in Sources */,
 				153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */,
@@ -4400,6 +4451,7 @@
 				D748BC6C1BA1C856005AA996 /* MJConst.m in Sources */,
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
 				15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */,
+				15CC31E31BEB2C5B00DDD03F /* FMDatabaseQueue.m in Sources */,
 				15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */,
 				15B866171BDB4247002E2BB6 /* CarChooseBtn.m in Sources */,
 				151BB6D61BBB78E000E7A81C /* UzysGroupPickerViewController.m in Sources */,
@@ -4549,8 +4601,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: youren huang (P4N3EPBLYC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: youren huang (P4N3EPBLYC)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4593,8 +4645,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: youren huang (P4N3EPBLYC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: youren huang (P4N3EPBLYC)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

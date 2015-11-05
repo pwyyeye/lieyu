@@ -40,6 +40,10 @@
 // 我的专属经理收藏
 -(void) getMyVipStore:(NSDictionary*)params
               block:(void(^)(NSMutableArray* result)) block;
+// 删除我的专属经理收藏
+-(void) delMyVipStore:(NSDictionary*)params
+              complete:(void (^)(BOOL result))result;
+
 // 获取酒吧信息
 -(void) getJiuBaList:(NSDictionary*)params
                 block:(void(^)(NSMutableArray* result)) block;
@@ -69,6 +73,10 @@
 //加好友
 -(void) addFriends:(NSDictionary*)params
                  complete:(void (^)(BOOL result))result;
+//用户信息
+-(void) getUserInfo:(NSDictionary*)params
+          block:(void(^)(CustomerModel* result)) block;
+
 //确认打招呼
 -(void) sureFriends:(NSDictionary*)params
           complete:(void (^)(BOOL result))result;

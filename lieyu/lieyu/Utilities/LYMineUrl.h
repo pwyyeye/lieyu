@@ -32,6 +32,8 @@
 #define LY_ADDME_LIST @"lyUserShakeAction.do?action=expand"
 //加好友
 #define LY_ADDFRIEND_LIST @"friendAction.do?action=add"
+//用户信息
+#define LY_USER_INFO @"usersAction.do?action=login"
 //打招呼
 #define LY_GREETINGS_LIST @"lyUserShakeAction.do?action=custom"
 // 接受打招呼好友

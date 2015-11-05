@@ -235,6 +235,35 @@
         [app stopLoading];
     }];
 }
+#pragma mark 删除我的专属经理收藏
+-(void) delMyVipStore:(NSDictionary*)params
+             complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ZSJL_DEL baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+
+}
 #pragma mark  - 我的专属经理申请-酒吧列表
 -(void) getJiuBaList:(NSDictionary*)params
                block:(void(^)(NSMutableArray* result)) block{
@@ -472,6 +501,29 @@
         [app stopLoading];
         result(NO);
         
+        
+    }];
+}
+#pragma mark用户信息
+-(void) getUserInfo:(NSDictionary*)params
+              block:(void(^)(CustomerModel* result)) block{
+    
+    NSString *ss = [NSString stringWithFormat:@"%@&imUserId=%@",LY_USER_INFO,[params objectForKey:@"imUserId"]];
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:ss baseURL:QINIU_SERVER params:nil success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+        if([code isEqualToString:@"1"]){
+            NSDictionary *dicTemp=response[@"data"];
+            CustomerModel *model=[CustomerModel objectWithKeyValues:dicTemp];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(model);
+            });
+        }else{
+//            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
         
     }];
 }

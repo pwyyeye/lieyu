@@ -112,7 +112,38 @@
 
     return cell;
 }
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return UITableViewCellEditingStyleDelete;
+//}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(_isBarVip){
+        return NO;
+    }
+    return YES;
+    
+    
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        __weak __typeof(self)weakSelf = self;
+        ZSDetailModel * detailModel=zsList[indexPath.row];
+        NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:self.userModel.userid],@"vipUserid":[NSNumber numberWithInt:detailModel.userid]};
+        [[LYUserHttpTool shareInstance] delMyVipStore:dic complete:^(BOOL result) {
+            if (result) {
+                [MyUtil showMessage:@"修改成功！"];
+                [weakSelf getZSDetail];
+            }
+        }];
+        
+    }
+    
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -197,6 +228,7 @@
         }
     }];
 }
+
 #pragma mark -电话
 - (void)callPhone:(UIButton *)sender
 {
