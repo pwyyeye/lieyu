@@ -276,6 +276,10 @@
         if(indexPath.row==3){
             LYtimeChooseTimeController *timeChooseTimeController=[[LYtimeChooseTimeController alloc]initWithNibName:@"LYtimeChooseTimeController" bundle:nil];
             timeChooseTimeController.title=@"时间选择";
+            NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSDate *dateTemp=[formatter dateFromString:_dateStr];
+            timeChooseTimeController.nowDate=dateTemp;
             timeChooseTimeController.type=1;
             timeChooseTimeController.delegate=self;
             [self.navigationController pushViewController:timeChooseTimeController animated:YES];

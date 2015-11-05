@@ -18,6 +18,7 @@
     [super viewDidLoad];
     if(_type==1){
         [_datePicker setDatePickerMode:UIDatePickerModeTime];
+        [_datePicker setDate:_nowDate];
     }
     dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd  HH:mm:ss"];
