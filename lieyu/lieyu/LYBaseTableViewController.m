@@ -33,7 +33,7 @@
     
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
-    
+
     //设置标题颜色
     
     UIColor * color = [UIColor whiteColor];

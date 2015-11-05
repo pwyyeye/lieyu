@@ -27,16 +27,21 @@
     
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
-    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-    [button addTarget:self action: @selector(gotoBack)
-     forControlEvents:UIControlEventTouchUpInside];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-    [view addSubview:button];
-    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
-    self.navigationItem.leftBarButtonItem = customBarItem;
+//    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [button setImage:buttonImage forState:UIControlStateNormal];
+//    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+//    [button addTarget:self action: @selector(gotoBack)
+//     forControlEvents:UIControlEventTouchUpInside];
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
+//    [view addSubview:button];
+//    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+    
+    
+    
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+
+    self.navigationItem.leftBarButtonItem = item;
     
     
 
