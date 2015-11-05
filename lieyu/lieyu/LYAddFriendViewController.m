@@ -51,6 +51,7 @@
         if(result){
             
             [MyUtil showMessage:@"发送请求成功"];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 

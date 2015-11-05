@@ -370,6 +370,8 @@
 		A2FD57801BAFE97000CFFF92 /* FBTaoCanSectionHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FD577C1BAFE97000CFFF92 /* FBTaoCanSectionHead.xib */; };
 		A2FD578E1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FD578C1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m */; };
 		A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */; };
+		AD0080931BEA4F4F00937CFF /* lieyuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */; };
+		AD0080941BEA4F4F00937CFF /* lieyuIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */; };
 		AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD798A361BB99A1F006D08F5 /* libPods.a */; };
 		AD8899BC1B9AFE61007BCC7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BB1B9AFE61007BCC7C /* main.m */; };
 		AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BE1B9AFE61007BCC7C /* AppDelegate.m */; };
@@ -1138,6 +1140,8 @@
 		A2FD578B1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleasePackagesViewController.h; sourceTree = "<group>"; };
 		A2FD578C1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleasePackagesViewController.m; sourceTree = "<group>"; };
 		A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleasePackagesViewController.xib; sourceTree = "<group>"; };
+		AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@2x.png"; sourceTree = "<group>"; };
+		AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@3x.png"; sourceTree = "<group>"; };
 		AD798A361BB99A1F006D08F5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		AD8899B61B9AFE61007BCC7C /* lieyu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lieyu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899BA1B9AFE61007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -3183,6 +3187,8 @@
 		ADE103C31BE0EBCC00D9EC38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */,
+				AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */,
 				ADE103C41BE0EBDC00D9EC38 /* images */,
 			);
 			name = Resources;
@@ -3797,6 +3803,7 @@
 				15ED32791BE318A800E086A1 /* 5018.wav in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
+				AD0080941BEA4F4F00937CFF /* lieyuIcon@3x.png in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
@@ -3819,6 +3826,7 @@
 				15E240C71BB3CAC20090D240 /* LYResetPasswordViewController.xib in Resources */,
 				15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */,
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,
+				AD0080931BEA4F4F00937CFF /* lieyuIcon@2x.png in Resources */,
 				15EB354C1BD4839D00BA6161 /* UMShareEditViewController.xib in Resources */,
 				15EB354F1BD4839D00BA6161 /* UMSnsAccountViewController.xib in Resources */,
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
