@@ -242,8 +242,20 @@
                     
                     UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
                     btn1.backgroundColor=RGB(247, 138, 79);
-                    NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",_orderInfoModel.amountPay];
-                    [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
+                    
+                        if(_orderInfoModel.pinkerList.count>0){
+                            for (NSDictionary *dic in _orderInfoModel.pinkerList) {
+                                PinkInfoModel *pinkInfoModel =[PinkInfoModel objectWithKeyValues:dic];
+                                if(pinkInfoModel.inmember==userId){
+                                    NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",pinkInfoModel.price];
+                                    [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
+                                    
+                                }
+                            }
+                        }
+                    
+//                    NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",_orderInfoModel.amountPay];
+//                    [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
                     btn1.titleLabel.font = [UIFont systemFontOfSize:12];
                     [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
                     [btn1 addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -308,8 +320,16 @@
                     
                     UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
                     btn1.backgroundColor=RGB(247, 138, 79);
-                    NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",_orderInfoModel.amountPay];
-                    [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
+                    if(_orderInfoModel.pinkerList.count>0){
+                        for (NSDictionary *dic in _orderInfoModel.pinkerList) {
+                            PinkInfoModel *pinkInfoModel =[PinkInfoModel objectWithKeyValues:dic];
+                            if(pinkInfoModel.inmember==userId){
+                                NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",pinkInfoModel.price];
+                                [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
+                                
+                            }
+                        }
+                    }
                     btn1.titleLabel.font = [UIFont systemFontOfSize:12];
                     [btn1 setTitleColor:RGB(255, 255, 255)  forState:UIControlStateNormal];
                     [btn1 addTarget:self action:@selector(payAct:) forControlEvents:UIControlEventTouchUpInside];

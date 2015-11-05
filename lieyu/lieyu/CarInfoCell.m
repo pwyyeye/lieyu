@@ -54,7 +54,7 @@
     carModel=model;
     [_danPinImageView  setImageWithURL:[NSURL URLWithString:model.product.image]];
     _nameLal.text=model.product.fullname;
-    _delLal.text=[NSString stringWithFormat:@"x%@(%@)",model.product.num,model.product.unit];
+    _delLal.text=[NSString stringWithFormat:@"(%@)",model.product.unit];
     _zhekouLal.text=model.product.price;
     _numLal.text=model.quantity;
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};

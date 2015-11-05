@@ -147,14 +147,51 @@
             if (cell) {
                 LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
                 titleInfoCell.titleLal.text=@"服务类型";
-                titleInfoCell.delLal.text=@"1对1专属服务";
+                titleInfoCell.delLal.text=taoCanModel.serviceType;
                 
             }
         }
             break;
         case 4:
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"shoumingCell" forIndexPath:indexPath];
+            NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
+            
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.backgroundColor=[UIColor whiteColor];
+                UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
+                [lal1 setTag:1];
+                lal1.textAlignment=NSTextAlignmentLeft;
+                lal1.font=[UIFont boldSystemFontOfSize:12];
+                lal1.backgroundColor=[UIColor clearColor];
+                lal1.textColor= RGB(128, 128, 128);
+                lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+                lal1.lineBreakMode=UILineBreakModeWordWrap;
+                [cell.contentView addSubview:lal1];
+                
+            
+            
+            
+            UILabel *lal = (UILabel*)[cell viewWithTag:1];
+            NSString *title=taoCanModel.introduction;
+            
+            //高度固定不折行，根据字的多少计算label的宽度
+            
+            CGSize size = [title sizeWithFont:lal.font
+                            constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
+                                lineBreakMode:NSLineBreakByWordWrapping];
+            //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+            //根据计算结果重新设置UILabel的尺寸
+            lal.height=size.height;
+            lal.text=title;
+            CGRect cellFrame = [cell frame];
+            cellFrame.origin=CGPointMake(0, 0);
+            cellFrame.size.width=SCREEN_WIDTH;
+            cellFrame.size.height=lal.size.height+20;
+            
+            [cell setFrame:cellFrame];
+
             
         }
             break;
@@ -195,7 +232,8 @@
             break;
         case 4:// 选项卡 ，酒吧或夜总会
         {
-            h = 71;
+            UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+            return cell.frame.size.height;
         }
             break;
         default:
