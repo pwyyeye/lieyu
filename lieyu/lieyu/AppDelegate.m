@@ -339,20 +339,20 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //    LYUserHttpTool
     
     //看本地缓存是否存在
-    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
-    if (userInfo==nil) {
+//    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
+//    if (userInfo==nil) {
         NSDictionary *dic = @{@"imUserId":userId};
         [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
             RCUserInfo *user = [[RCUserInfo alloc]init];
             user.userId =result.imUserId;
             user.name = result.name;
             user.portraitUri = result.mark;
-            [[RCDataBaseManager shareInstance] insertUserToDB:user];
+//            [[RCDataBaseManager shareInstance] insertUserToDB:user];
             return completion(user);
         }];
-    }else{
-        return completion(userInfo);
-    }
+//    }else{
+//        return completion(userInfo);
+//    }
     
     
     

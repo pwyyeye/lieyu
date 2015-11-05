@@ -464,7 +464,7 @@
                 }
             }
             orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",moneyStr];
-            if(isfu){
+            if(isFaqi){
                 NSString *str=orderInfoModel.checkUserAvatar_img;
                 [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
                 orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
@@ -772,16 +772,46 @@
 -(void)siliaoAct:(OrderHandleButton *)sender{
     OrderInfoModel *orderInfoModel;
     orderInfoModel=dataList[sender.tag];
+    BOOL isFaqi=false;
+    if(orderInfoModel.ordertype==1){
+        //拼客
+        //判断是否发起人
+        if(orderInfoModel.userid==self.userModel.userid){
+            isFaqi=true;
+        }
+        if(isFaqi){
+            RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+            conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+            conversationVC.targetId = orderInfoModel.checkUserImUserid; // 接收者的 targetId，这里为举例。
+            conversationVC.userName =orderInfoModel.checkUserName; // 接受者的 username，这里为举例。
+            conversationVC.title =orderInfoModel.checkUserName; // 会话的 title。
+            
+            // 把单聊视图控制器添加到导航栈。
+            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+            [self.navigationController pushViewController:conversationVC animated:YES];
+        }else{
+            RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+            conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+            conversationVC.targetId = orderInfoModel.imuserid; // 接收者的 targetId，这里为举例。
+            conversationVC.userName =orderInfoModel.username; // 接受者的 username，这里为举例。
+            conversationVC.title =orderInfoModel.username; // 会话的 title。
+            
+            // 把单聊视图控制器添加到导航栈。
+            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+            [self.navigationController pushViewController:conversationVC animated:YES];
+        }
+    }else{
+        RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+        conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+        conversationVC.targetId = orderInfoModel.checkUserImUserid; // 接收者的 targetId，这里为举例。
+        conversationVC.userName =orderInfoModel.checkUserName; // 接受者的 username，这里为举例。
+        conversationVC.title =orderInfoModel.checkUserName; // 会话的 title。
+        
+        // 把单聊视图控制器添加到导航栈。
+        [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+        [self.navigationController pushViewController:conversationVC animated:YES];
+    }
     
-    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
-    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-    conversationVC.targetId = orderInfoModel.imuserid; // 接收者的 targetId，这里为举例。
-    conversationVC.userName =orderInfoModel.username; // 接受者的 username，这里为举例。
-    conversationVC.title =orderInfoModel.checkUserName; // 会话的 title。
-    
-    // 把单聊视图控制器添加到导航栈。
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
-    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 #pragma mark 电话
 -(void)dianhuaAct:(OrderHandleButton *)sender{

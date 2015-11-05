@@ -187,6 +187,7 @@
         
         cell.nameLal.text = @"No Name";
     }
+    [cell.smallImageView setHidden:YES];
     [cell.cusImageView setImageWithURL:[NSURL URLWithString:addressBook.icon]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //    cell.backgroundColor=[UIColor clearColor];
@@ -212,7 +213,44 @@
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return UITableViewCellEditingStyleDelete;
+//}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return YES;
+    
+    
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        __weak __typeof(self)weakSelf = self;
+        CustomerModel *addressBook = nil;
+        if (tableView == self.searchDisplayController.searchResultsTableView)
+            addressBook = (CustomerModel *)[_filteredListContent objectAtIndex:indexPath.row];
+        else
+            addressBook = (CustomerModel *)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        NSDictionary *dic=@{@"id":[NSNumber numberWithInt:addressBook.id]};
+        [[LYUserHttpTool shareInstance] delMyFriends:dic complete:^(BOOL result) {
+            if(result){
+                
+                [MyUtil showMessage:@"删除成功"];
+                if (tableView == self.searchDisplayController.searchResultsTableView){
+                    [self.searchDisplayController setActive:NO animated:YES];
+                }
+                [weakSelf getMyCustomerslist];
+            }
+        }];
+        
+    }
+    
+}
 
 #pragma mark -
 #pragma mark UISearchBarDelegate

@@ -25,8 +25,12 @@
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     //获取详细
-    [self getdata];
+    
     // Do any additional setup after loading the view.
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self getdata];
 }
 #pragma mark - 获取数据
 -(void)getdata{
@@ -205,8 +209,8 @@
     
     ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
     if(pinKeModel.pinkerList.count>0){
-        for (PinkInfoModel *pinkInfoModel in pinKeModel.pinkerList) {
-            
+        for (NSDictionary *dic in pinKeModel.pinkerList) {
+            PinkInfoModel *pinkInfoModel=[PinkInfoModel objectWithKeyValues:dic];
             if(pinkInfoModel.inmember==userModel.userid){
                 detailViewController.orderNo=pinkInfoModel.sn;
                 detailViewController.payAmount=pinkInfoModel.price.doubleValue;
