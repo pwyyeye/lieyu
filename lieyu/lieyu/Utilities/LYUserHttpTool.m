@@ -504,6 +504,29 @@
         
     }];
 }
+#pragma mark用户信息
+-(void) getUserInfo:(NSDictionary*)params
+              block:(void(^)(CustomerModel* result)) block{
+    
+    NSString *ss = [NSString stringWithFormat:@"%@&imUserId=%@",LY_USER_INFO,[params objectForKey:@"imUserId"]];
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:ss baseURL:QINIU_SERVER params:nil success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        
+        if([code isEqualToString:@"1"]){
+            NSDictionary *dicTemp=response[@"data"];
+            CustomerModel *model=[CustomerModel objectWithKeyValues:dicTemp];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(model);
+            });
+        }else{
+//            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        
+    }];
+}
 #pragma mark确认打招呼
 -(void) sureFriends:(NSDictionary*)params
            complete:(void (^)(BOOL result))result{

@@ -82,18 +82,7 @@
         addFriendViewController.type=self.type;
         [self.navigationController pushViewController:addFriendViewController animated:YES];
     }else{
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        [app.imArr removeAllObjects];
-        CustomerModel *model1=[[CustomerModel alloc]init];
-        model1.imUserId=self.userModel.imuserId;
-        model1.username=self.userModel.usernick;
-        model1.icon=self.userModel.avatar_img;
-        CustomerModel *model2=[[CustomerModel alloc]init];
-        model2.imUserId=_customerModel.imUserId;
-        model2.username=_customerModel.friendName;
-        model2.icon=_customerModel.icon;
-        [app.imArr addObject:model1];
-        [app.imArr addObject:model2];
+        
         RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
         conversationVC.targetId = _customerModel.imUserId; // 接收者的 targetId，这里为举例。

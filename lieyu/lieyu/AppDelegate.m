@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LYDataStore.h"
+#import <AudioToolbox/AudioToolbox.h>
 #import "NeedHideNavigationBar.h"
 #import "LYCommonHttpTool.h"
 #import "DejalActivityView.h"
@@ -19,6 +20,8 @@
 #import "PTjoinInViewController.h"
 #import "LYUserLoginViewController.h"
 #import "CustomerModel.h"
+#import "LYUserHttpTool.h"
+#import "RCDataBaseManager.h"
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
@@ -33,7 +36,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
-    _imArr=[[NSMutableArray alloc]init];
+    
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
 
@@ -333,21 +336,29 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 // 获取用户信息的方法。
 -(void)getUserInfoWithUserId:(NSString *)userId completion:(void(^)(RCUserInfo* userInfo))completion
 {
-    CustomerModel *val;
-    // 此处最终代码逻辑实现需要您从本地缓存或服务器端获取用户信息。
-    for (CustomerModel *model in _imArr) {
-        if([model.imUserId isEqualToString:userId]){
-            val=model;
-            break;
-        }
+//    LYUserHttpTool
+    
+    //看本地缓存是否存在
+    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
+    if (userInfo==nil) {
+        NSDictionary *dic = @{@"imUserId":userId};
+        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
+            RCUserInfo *user = [[RCUserInfo alloc]init];
+            user.userId =result.imUserId;
+            user.name = result.name;
+            user.portraitUri = result.mark;
+            [[RCDataBaseManager shareInstance] insertUserToDB:user];
+            return completion(user);
+        }];
+    }else{
+        return completion(userInfo);
     }
     
-        RCUserInfo *user = [[RCUserInfo alloc]init];
-        user.userId =val.imUserId;
-        user.name = val.usernick;
-        user.portraitUri = val.icon;
+    
+    
+    
         
-        return completion(user);
+    
     
 }
 
@@ -378,7 +389,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
 }
 
-
+- (void)application:(UIApplication *)application
+didReceiveLocalNotification:(UILocalNotification *)notification {
+    //震动
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    AudioServicesPlaySystemSound(1007);
+}
 #pragma mark--引导页
 - (void)showIntroWithCrossDissolve {
     //    EAIntroPage *page1 = [EAIntroPage page];

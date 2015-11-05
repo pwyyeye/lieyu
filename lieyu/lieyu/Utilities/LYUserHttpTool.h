@@ -73,6 +73,10 @@
 //加好友
 -(void) addFriends:(NSDictionary*)params
                  complete:(void (^)(BOOL result))result;
+//用户信息
+-(void) getUserInfo:(NSDictionary*)params
+          block:(void(^)(CustomerModel* result)) block;
+
 //确认打招呼
 -(void) sureFriends:(NSDictionary*)params
           complete:(void (^)(BOOL result))result;

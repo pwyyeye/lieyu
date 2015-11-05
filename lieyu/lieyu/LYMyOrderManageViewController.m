@@ -32,6 +32,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+    [button addTarget:self action: @selector(gotoBack)
+     forControlEvents:UIControlEventTouchUpInside];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
+    [view addSubview:button];
+    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+    self.navigationItem.leftBarButtonItem = customBarItem;
+
 //    nowDic =[[NSMutableDictionary alloc]init];
     self.title=@"我的订单";
     pageCount=1;
