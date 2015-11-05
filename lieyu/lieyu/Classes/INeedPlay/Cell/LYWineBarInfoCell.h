@@ -15,6 +15,7 @@
 @property(nonatomic,weak)IBOutlet UILabel * barDescLabel;
 @property(nonatomic,weak)IBOutlet UILabel * barAddrLabel;
 @property(nonatomic,weak)IBOutlet UILabel * costLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scCountLal;
 
 @property(nonatomic,weak)IBOutlet UILabel * distanceLabel;
 @property(nonatomic,weak)IBOutlet UILabel * starLabel;

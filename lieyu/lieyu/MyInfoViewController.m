@@ -18,6 +18,7 @@
 #import "LYCarListViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "MyMessageListViewController.h"
+#import "UserTagModel.h"
 @interface MyInfoViewController ()
 {
     NSString *userType;
@@ -109,7 +110,21 @@
     [orderInfoLal setTextColor:RGB(255,255,255)];
     orderInfoLal.font=[UIFont boldSystemFontOfSize:10];
     orderInfoLal.backgroundColor=[UIColor clearColor];
-    orderInfoLal.text=@"";
+    NSArray *tagArr=self.userModel.tags;
+    if(tagArr.count>0){
+        NSMutableString *biaoTag=[[NSMutableString alloc]init];
+        for (int i=0 ; i < tagArr.count; i++ ){
+            UserTagModel *userTagModel =tagArr[i];
+            
+            NSString *biaoqianStr=userTagModel.tagname;
+            [biaoTag appendString:biaoqianStr];
+            if(i!=tagArr.count-1){
+                [biaoTag appendString:@","];
+            }
+        }
+        orderInfoLal.text=biaoTag;
+    }
+   
     orderInfoLal.textAlignment=NSTextAlignmentCenter;
     [view addSubview:orderInfoLal];
     UIButton *setTingBack=[UIButton buttonWithType:0];

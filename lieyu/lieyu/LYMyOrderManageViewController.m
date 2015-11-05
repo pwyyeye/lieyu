@@ -780,7 +780,7 @@
     
     
     if( [MyUtil isPureInt:orderInfoModel.checkUserMobile]){
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",orderInfoModel.phone];
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",orderInfoModel.checkUserMobile];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
     }
@@ -831,14 +831,23 @@
     OrderInfoModel *orderInfoModel;
     orderInfoModel=dataList[sender.tag];
     __weak __typeof(self)weakSelf = self;
-
-    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
-    [[LYUserHttpTool shareInstance]delMyOrder:dic complete:^(BOOL result) {
-        if(result){
-            [MyUtil showMessage:@"删除成功"];
-            [weakSelf refreshData];
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+        //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
+        if (buttonIndex == 0) {
+            //取消
+        }else if (buttonIndex == 1){
+            //确定
+            NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+            [[LYUserHttpTool shareInstance]delMyOrder:dic complete:^(BOOL result) {
+                if(result){
+                    [MyUtil showMessage:@"删除成功"];
+                    [weakSelf refreshData];
+                }
+            }];
         }
     }];
+    [alert show];
+    
     
 }
 #pragma mark 参与人删除订单
@@ -856,14 +865,23 @@
             }
         }
     }
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+        //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
+        if (buttonIndex == 0) {
+            //取消
+        }else if (buttonIndex == 1){
+            //确定
+            NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderid]};
+            [[LYUserHttpTool shareInstance]delMyOrderByCanYu:dic complete:^(BOOL result) {
+                if(result){
+                    [MyUtil showMessage:@"取消成功"];
+                    [weakSelf refreshData];
+                }
+            }];
 
-    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderid]};
-    [[LYUserHttpTool shareInstance]delMyOrderByCanYu:dic complete:^(BOOL result) {
-        if(result){
-            [MyUtil showMessage:@"取消成功"];
-            [weakSelf refreshData];
         }
     }];
+    [alert show];
     
 }
 #pragma mark 付款
@@ -878,7 +896,8 @@
     //如果是拼客 特殊处理
     if(orderInfoModel.ordertype==1){
         if(orderInfoModel.pinkerList.count>0){
-            for (PinkInfoModel *pinkInfoModel in orderInfoModel.pinkerList) {
+            for (NSDictionary *dic in orderInfoModel.pinkerList) {
+                PinkInfoModel *pinkInfoModel =[PinkInfoModel objectWithKeyValues:dic];
                 if(pinkInfoModel.inmember==userId){
                      detailViewController.orderNo=pinkInfoModel.sn;
                      detailViewController.payAmount=pinkInfoModel.price.doubleValue;
@@ -897,13 +916,24 @@
     OrderInfoModel *orderInfoModel;
     orderInfoModel=dataList[sender.tag];
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
-    [[LYUserHttpTool shareInstance]cancelMyOrder:dic complete:^(BOOL result) {
-        if(result){
-            [MyUtil showMessage:@"取消订单成功"];
-            [weakSelf refreshData];
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+        //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
+        if (buttonIndex == 0) {
+            //取消
+        }else if (buttonIndex == 1){
+            //确定
+            NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+            [[LYUserHttpTool shareInstance]cancelMyOrder:dic complete:^(BOOL result) {
+                if(result){
+                    [MyUtil showMessage:@"取消订单成功"];
+                    [weakSelf refreshData];
+                }
+            }];
         }
     }];
+    [alert show];
+    
+    
 
 }
 #pragma mark 一定会去

@@ -227,6 +227,7 @@ SearchDelegate
 {
     BearBarListViewController * bearBarController  = [[BearBarListViewController alloc ] initWithNibName:@"BearBarListViewController" bundle:nil];
     bearBarController.entryType = BaseEntry_WineBar;
+    bearBarController.cityStr=_cityBtn.titleLabel.text;
     [self.navigationController pushViewController:bearBarController animated:YES];
 }
 
