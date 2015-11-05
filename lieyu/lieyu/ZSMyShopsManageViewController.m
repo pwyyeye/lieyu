@@ -111,7 +111,7 @@
     [dataList removeAllObjects];
     [serchDataList removeAllObjects];
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:userModel.barid],@"userid":[NSNumber numberWithInt:userModel.userid]};
+    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:userModel.barid]};//,@"userid":[NSNumber numberWithInt:userModel.userid]
     [[ZSManageHttpTool shareInstance] getMyKuCunListWithParams:dic block:^(NSMutableArray *result) {
         dataList =result;
         totolCount=[NSString stringWithFormat:@"共产品：%d个",(int)dataList.count];

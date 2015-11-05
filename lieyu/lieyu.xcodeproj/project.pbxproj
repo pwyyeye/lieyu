@@ -52,6 +52,7 @@
 		152247B81BEB064600E68A2B /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 152247A81BEB064600E68A2B /* IQUIView+IQKeyboardToolbar.m */; };
 		152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 152247AB1BEB064600E68A2B /* IQKeyboardManager.bundle */; };
 		153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */; };
+		154D30DE1BEB972A00CDD251 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154D30DD1BEB972A00CDD251 /* ZSMyShopsManageViewController.m */; };
 		15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */; };
 		15571BC31BE998D7006F73D0 /* YaoYiYaoViewController4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15571BC21BE998D7006F73D0 /* YaoYiYaoViewController4.xib */; };
 		1559DCE51BD8C0EA00F3FE9B /* CHShaiXuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1559DCE31BD8C0EA00F3FE9B /* CHShaiXuanViewController.m */; };
@@ -262,7 +263,6 @@
 		15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */; };
 		15ED32891BE6F2E800E086A1 /* LYHomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */; };
 		15ED328A1BE6F2E800E086A1 /* LYHomeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32881BE6F2E800E086A1 /* LYHomeSearchViewController.xib */; };
-		15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
 		15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51471BA7063000464B74 /* ZSWaitPayViewController.xib */; };
@@ -631,6 +631,7 @@
 		152247AB1BEB064600E68A2B /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
 		153F08B71BE87C0D00B7749E /* LYRecentContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYRecentContactViewController.h; sourceTree = "<group>"; };
 		153F08B81BE87C0D00B7749E /* LYRecentContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYRecentContactViewController.m; sourceTree = "<group>"; };
+		154D30DD1BEB972A00CDD251 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
 		15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewMain.storyboard; sourceTree = "<group>"; };
 		15571BC21BE998D7006F73D0 /* YaoYiYaoViewController4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoYiYaoViewController4.xib; sourceTree = "<group>"; };
 		1559DCE21BD8C0EA00F3FE9B /* CHShaiXuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHShaiXuanViewController.h; sourceTree = "<group>"; };
@@ -995,7 +996,6 @@
 		15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSearchViewController.m; sourceTree = "<group>"; };
 		15ED32881BE6F2E800E086A1 /* LYHomeSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearchViewController.xib; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
-		15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSMyShopsManageViewController.m; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
 		15EE51451BA7063000464B74 /* ZSWaitPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWaitPayViewController.h; sourceTree = "<group>"; };
 		15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSWaitPayViewController.m; sourceTree = "<group>"; };
@@ -2491,7 +2491,7 @@
 				A20100791BA7ADD6009283D1 /* 发布单品 */,
 				A201008A1BA7B030009283D1 /* 添加库存 */,
 				15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */,
-				15EE51401BA6E32E00464B74 /* ZSMyShopsManageViewController.m */,
+				154D30DD1BEB972A00CDD251 /* ZSMyShopsManageViewController.m */,
 				15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */,
 			);
 			name = "商铺管理";
@@ -4264,7 +4264,6 @@
 				15E240C01BB3A9AA0090D240 /* LYUserLoginViewController.m in Sources */,
 				15EB35751BD495C600BA6161 /* CYPayAmoutCell.m in Sources */,
 				15013B041BBA33BF00061FAF /* UIView+WebCacheOperation.m in Sources */,
-				15EE51421BA6E32E00464B74 /* ZSMyShopsManageViewController.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
 				15EA6DCC1BC014BD00620C9E /* UserModel.m in Sources */,
 				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
@@ -4321,6 +4320,7 @@
 				15CC31E21BEB2C5B00DDD03F /* FMDatabasePool.m in Sources */,
 				151BB6D41BBB78E000E7A81C /* UzysAssetsViewCell.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
+				154D30DE1BEB972A00CDD251 /* ZSMyShopsManageViewController.m in Sources */,
 				D761F0181BA5AED3000757B0 /* MJRefreshAutoStateFooter.m in Sources */,
 				D7A1D4341BC2CE0900BCE47C /* RecommendPackageModel.m in Sources */,
 				151BB6D21BBB78E000E7A81C /* UzysAssetsPickerController.m in Sources */,
@@ -4601,8 +4601,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: youren huang (P4N3EPBLYC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: youren huang (P4N3EPBLYC)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4645,8 +4645,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: youren huang (P4N3EPBLYC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: youren huang (P4N3EPBLYC)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -21,7 +21,7 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-Cg-bvf">
                     <rect key="frame" x="0.0" y="-22" width="320" height="531"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="YLh-nG-mzE"/>
                         <outlet property="delegate" destination="-1" id="aZW-RJ-9cZ"/>
@@ -144,7 +144,7 @@
                         <color key="textColor" red="0.56862745098039214" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1200" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWp-P5-oPg">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWp-P5-oPg">
                         <rect key="frame" x="143" y="43" width="106" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.94117647058823528" green="0.30196078431372547" blue="0.42745098039215684" alpha="1" colorSpace="calibratedRGB"/>
@@ -326,6 +326,7 @@
                 <outlet property="typeBtn3" destination="YZb-W8-ewq" id="AJs-ES-zd2"/>
                 <outlet property="typeBtn4" destination="bP3-U1-Yht" id="FwQ-ZY-E9Z"/>
                 <outlet property="typeContainer" destination="NYd-eE-bCW" id="jWv-W0-s8s"/>
+                <outlet property="ydlLbl" destination="lWp-P5-oPg" id="Taa-9n-e6W"/>
             </connections>
             <point key="canvasLocation" x="543" y="2"/>
         </tableViewCell>

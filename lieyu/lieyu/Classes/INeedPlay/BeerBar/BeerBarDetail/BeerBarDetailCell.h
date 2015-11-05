@@ -13,6 +13,7 @@
 {
     BeerBarOrYzhDetailModel *barOrYzhDetailModel;
 }
+@property (weak, nonatomic) IBOutlet UILabel *ydlLbl;
 @property(nonatomic,weak)IBOutlet UIImageView * barPhoto;
 @property(nonatomic,weak)IBOutlet UILabel * barName;
 @property(nonatomic,weak)IBOutlet UILabel * preOrderNumber;

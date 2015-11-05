@@ -241,7 +241,7 @@
             UILabel *label1=[[UILabel alloc]initWithFrame:CGRectMake(215, 11, 60, 12)];
             label1.font=[UIFont systemFontOfSize:12];
             label1.textColor=RGB(51, 51, 51);
-            label1.text=@"订单数量：";
+            label1.text=@"套餐数量：";
             UILabel *label2=[[UILabel alloc]initWithFrame:CGRectMake(215+60, 11, 80, 12)];
             label2.font=[UIFont systemFontOfSize:12];
             label2.textColor=RGB(254, 96, 96);

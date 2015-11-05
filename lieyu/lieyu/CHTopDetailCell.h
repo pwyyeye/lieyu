@@ -11,6 +11,7 @@
 @interface CHTopDetailCell : UITableViewCell<LYTableViewCellLayout>{
     EScrollerView *scroller;
 }
+@property (weak, nonatomic) IBOutlet UILabel *markPriceLal;
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UILabel *barNameLal;
 @property (weak, nonatomic) IBOutlet UILabel *priceLal;

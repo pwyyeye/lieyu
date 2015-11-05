@@ -26,9 +26,14 @@
     //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
     _barNameLal.text=model.fullname;
     _priceLal.text=[NSString stringWithFormat:@"￥%@",model.price];
+    if(model.marketprice){
+        NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+        NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];
+        _markPriceLal.attributedText=attribtStr;
+    }
      NSString *flTem=[NSString stringWithFormat:@"再返利%.f%%",model.rebate*100];
     _flLal.text=flTem;
-    NSString *uintStr=[NSString stringWithFormat:@"%@%@%@%@",model.num,model.unit,model.product_item.num,model.product_item.unit];
+    NSString *uintStr=[NSString stringWithFormat:@"%@%@%@%@",model.num,model.unit,model.product_item.num,@"组"];
     _unitLal.text=uintStr;
     //banner
     NSMutableArray *bigArr=[[NSMutableArray alloc]init];

@@ -53,6 +53,7 @@
 //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
     barOrYzhDetailModel=model;
     _barName.text = model.barname;
+    _ydlLbl.text=model.today_sm_buynum;
     [_barPhoto sd_setImageWithURL:[NSURL URLWithString:model.baricon] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
     }];

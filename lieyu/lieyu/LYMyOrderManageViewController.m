@@ -709,7 +709,7 @@
         shopDetailmodel.img=productVOModel.image;
         shopDetailmodel.youfeiPrice=productVOModel.price;
         shopDetailmodel.money=productVOModel.marketprice;
-        shopDetailmodel.count=[NSString stringWithFormat:@"X%@",goodsModel.quantity];
+        shopDetailmodel.count=[NSString stringWithFormat:@"X%@(%@)",goodsModel.quantity,goodsModel.productVO.unit];
         shopDetailmodel.rebate=productVOModel.rebate;
     }
     
