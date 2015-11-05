@@ -939,7 +939,7 @@
         if(orderInfoModel.pinkerList.count>0){
             for (NSDictionary *dic in orderInfoModel.pinkerList) {
                 PinkInfoModel *pinkInfoModel =[PinkInfoModel objectWithKeyValues:dic];
-                if(pinkInfoModel.inmember==userId){
+                if(pinkInfoModel.inmember==self.userModel.userid){
                      detailViewController.orderNo=pinkInfoModel.sn;
                      detailViewController.payAmount=pinkInfoModel.price.doubleValue;
                 }

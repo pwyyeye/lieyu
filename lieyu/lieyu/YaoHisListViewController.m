@@ -71,7 +71,7 @@
     }
     CustomerModel *customerModel=datalist[indexPath.row];
     [cell.userImageView  setImageWithURL:[NSURL URLWithString:customerModel.avatar_img]];
-    cell.titleLal.text=customerModel.username;
+    cell.titleLal.text=customerModel.usernick;
     
     cell.detLal.text=[NSString stringWithFormat:@"%@米",customerModel.distance];
     if (customerModel.distance.doubleValue>1000) {

@@ -56,7 +56,7 @@
         fukuanPKStr=@"0";
         if(pinkerList.count>0){
             for (PinkInfoModel *pinkInfoModel in pinkerList) {
-                if(pinkInfoModel.inmember==userId){
+                if(pinkInfoModel.inmember==self.userModel.userid){
                     fukuanPKStr=pinkInfoModel.price;
                     if(pinkInfoModel.paymentStatus==1){
                         isfu=true;
