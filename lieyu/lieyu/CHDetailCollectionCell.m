@@ -12,7 +12,12 @@
 -(void)configureCell:(CheHeModel *)model{
     NSLog(@"***%@****%@",model.fullname,model.img_260);
     _nameLal.text=model.fullname;
-    _jiubaNameLal.text=model.barname;
+    if(model.marketprice){
+        NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+        NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];
+        _jiubaNameLal.attributedText=attribtStr;
+    }
+    
     _priceLal.text=[NSString stringWithFormat:@"￥%@",model.price];
     _flLal.text=[NSString stringWithFormat:@"再返利%.f%%",model.rebate*100];
     [_goodsImageView setImageWithURL:[NSURL URLWithString:model.img_260]];
