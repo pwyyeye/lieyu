@@ -28,7 +28,7 @@
     _priceLal.text=[NSString stringWithFormat:@"￥%@",model.price];
      NSString *flTem=[NSString stringWithFormat:@"再返利%.f%%",model.rebate*100];
     _flLal.text=flTem;
-    NSString *uintStr=[NSString stringWithFormat:@"%@%@%@%@",model.num,model.unit,model.product_item.num,model.product_item.unit];
+    NSString *uintStr=[NSString stringWithFormat:@"%@%@%@%@",model.num,model.unit,model.product_item.num,@"组"];
     _unitLal.text=uintStr;
     //banner
     NSMutableArray *bigArr=[[NSMutableArray alloc]init];
