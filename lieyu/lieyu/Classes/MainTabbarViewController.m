@@ -31,8 +31,32 @@
 //    self.locationManager = [[LYLocationManager alloc] init];
 //    [_locationManager beginUpdateLocation:kCLLocationAccuracyBest];
 //    _locationManager.locationDelegate = self;
-//    self.delegate=self;
+    self.delegate=self;
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:@"ReceivesMessage" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete) name:@"CompleteMessage" object:nil];
+}
+-(void)tabbarChagne{
+   NSArray *items= self.tabBar.items;
+   UITabBarItem *item=[items objectAtIndex:2];
+    if ([item.badgeValue isEqualToString:@""]) {
+        item.badgeValue=[NSString stringWithFormat:@"%d",1];
+    }else{
+        item.badgeValue=[NSString stringWithFormat:@"%d",item.badgeValue.intValue+1];
+    }
+    
+    
+    
+}
+
+
+
+-(void)tabbarChagneComplete{
+    NSArray *items= self.tabBar.items;
+    UITabBarItem *item=[items objectAtIndex:2];
+    item.badgeValue=@"";
+
 }
 
 - (void)setupViewStyles
@@ -148,6 +172,11 @@
     if([MyUtil isEmptyString:app.s_app_id]){
         self.selectedIndex=0;
     }
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReceivesMessage" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CompleteMessage" object:nil];
 }
 
 @end

@@ -38,6 +38,7 @@
     //    self.automaticallyAdjustsScrollViewInsets=0;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.bounces=NO;
     [self getDataForShowList];
 
     // Do any additional setup after loading the view from its nib.
