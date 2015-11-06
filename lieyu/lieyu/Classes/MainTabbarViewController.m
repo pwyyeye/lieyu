@@ -28,10 +28,10 @@
 {
     [super viewDidLoad];
     [self setupViewStyles];
-    self.locationManager = [[LYLocationManager alloc] init];
-    [_locationManager beginUpdateLocation:kCLLocationAccuracyBest];
-    _locationManager.locationDelegate = self;
-    self.delegate=self;
+//    self.locationManager = [[LYLocationManager alloc] init];
+//    [_locationManager beginUpdateLocation:kCLLocationAccuracyBest];
+//    _locationManager.locationDelegate = self;
+//    self.delegate=self;
     // Do any additional setup after loading the view.
 }
 
