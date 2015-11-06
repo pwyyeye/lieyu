@@ -541,13 +541,14 @@
     NSString *ss = [NSString stringWithFormat:@"%@&imUserId=%@",LY_USER_INFO,[params objectForKey:@"imUserId"]];
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:ss baseURL:QINIU_SERVER params:nil success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-        
+        NSString *meessage = [NSString stringWithFormat:@"%@",response[@"message"]];
+        NSLog(@"message:%@",meessage);
         if([code isEqualToString:@"1"]){
             NSDictionary *dicTemp=response[@"data"];
             CustomerModel *model=[CustomerModel objectWithKeyValues:dicTemp];
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
+            
                 block(model);
-            });
+            
         }else{
 //            [MyUtil showMessage:message];
         }
