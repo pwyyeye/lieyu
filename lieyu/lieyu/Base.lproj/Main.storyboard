@@ -17,7 +17,7 @@
                                 <rect key="frame" x="280" y="36" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <state key="normal" image="225A85A6-6098-4952-9B70-06618C27AC7C">
+                                <state key="normal" image="086BBBEE-3DCF-4B52-9CBD-B795EB0F0BD6">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -2478,9 +2478,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <animations/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Nb2-Eu-uqF">
-                                                    <rect key="frame" x="49" y="13" width="10" height="10"/>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Nb2-Eu-uqF">
+                                                    <rect key="frame" x="46" y="13" width="4" height="4"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <animations/>
@@ -2760,7 +2761,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="225A85A6-6098-4952-9B70-06618C27AC7C" width="22" height="22">
+        <image name="086BBBEE-3DCF-4B52-9CBD-B795EB0F0BD6" width="22" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
