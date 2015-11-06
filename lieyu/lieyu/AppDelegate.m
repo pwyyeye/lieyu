@@ -326,6 +326,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //IM连接服务器
 -(void)connectWithToken{
     NSLog(@"_im_token=%@",_im_token);
+//    _im_token=@"aqw73LOC9fju/Zfr+G0uCIZ6iyJm4gkQBO3AbCIB4IoMo7IJ9CyOesCxoHF0+KU1I2fSIds0iGGsdNrAeyA1L6CePnAuGYiF";
     [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
         // Connect 成功
         NSLog(@"****登录成功%@",userId);

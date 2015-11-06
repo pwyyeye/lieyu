@@ -88,7 +88,6 @@
 		15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15844BD31BE1FA3600247FBC /* LYNearFriendViewController.xib */; };
 		15844BFD1BE2101200247FBC /* SaoYiSaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15844BFB1BE2101200247FBC /* SaoYiSaoViewController.m */; };
 		15844BFE1BE2101200247FBC /* SaoYiSaoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15844BFC1BE2101200247FBC /* SaoYiSaoViewController.xib */; };
-		15844C021BE22A0300247FBC /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15844C011BE22A0300247FBC /* libiconv.dylib */; };
 		15844C031BE22A6900247FBC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15844BFF1BE229B400247FBC /* AVFoundation.framework */; };
 		15844C051BE22A7500247FBC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15844C041BE22A7500247FBC /* CoreMedia.framework */; };
 		15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15844C061BE22A8100247FBC /* CoreVideo.framework */; };
@@ -384,6 +383,7 @@
 		A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */; };
 		AD0080931BEA4F4F00937CFF /* lieyuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */; };
 		AD0080941BEA4F4F00937CFF /* lieyuIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */; };
+		AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */; };
 		AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD798A361BB99A1F006D08F5 /* libPods.a */; };
 		AD8899BC1B9AFE61007BCC7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BB1B9AFE61007BCC7C /* main.m */; };
 		AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BE1B9AFE61007BCC7C /* AppDelegate.m */; };
@@ -1179,6 +1179,7 @@
 		A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleasePackagesViewController.xib; sourceTree = "<group>"; };
 		AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@2x.png"; sourceTree = "<group>"; };
 		AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@3x.png"; sourceTree = "<group>"; };
+		AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		AD798A361BB99A1F006D08F5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		AD8899B61B9AFE61007BCC7C /* lieyu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lieyu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899BA1B9AFE61007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1513,11 +1514,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */,
 				15844C091BE22A8800247FBC /* QuartzCore.framework in Frameworks */,
 				15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */,
 				15844C051BE22A7500247FBC /* CoreMedia.framework in Frameworks */,
 				15844C031BE22A6900247FBC /* AVFoundation.framework in Frameworks */,
-				15844C021BE22A0300247FBC /* libiconv.dylib in Frameworks */,
 				ADE103A31BDE4AB800D9EC38 /* libssl.a in Frameworks */,
 				ADD530AF1BDE2BA3002CF4D8 /* AlipaySDK.bundle in Frameworks */,
 				ADD530411BDE1E9D002CF4D8 /* AlipaySDK.framework in Frameworks */,
@@ -3021,6 +3022,7 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */,
 				15844C081BE22A8800247FBC /* QuartzCore.framework */,
 				15844C061BE22A8100247FBC /* CoreVideo.framework */,
 				15844C041BE22A7500247FBC /* CoreMedia.framework */,
@@ -4530,7 +4532,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Production IOS Push Services: com.langzu.lieyu";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Production IOS Push Services: com.langzu.lieyu";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4574,7 +4577,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Production IOS Push Services: com.langzu.lieyu";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Production IOS Push Services: com.langzu.lieyu";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
