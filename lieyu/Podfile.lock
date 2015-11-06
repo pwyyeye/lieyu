@@ -25,7 +25,7 @@ PODS:
   - Qiniu (7.0.13):
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.2)
-  - RongCloudIMKit (2.3.4)
+  - RongCloudIMKit (2.3.5)
 
 DEPENDENCIES:
   - HCSStarRatingView (~> 1.4.3)
@@ -37,6 +37,6 @@ SPEC CHECKSUMS:
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   HCSStarRatingView: bada6ae98258c3019531e0218030e2d5ad10765a
   Qiniu: d899770cc7b9a7abb3bff9fd993adc93c9475d45
-  RongCloudIMKit: f7fce38683b41e480dfdff7672248855ecf5aee9
+  RongCloudIMKit: 920b35a7e80b4593bfb3a1c5121bf03c7e1fbf72
 
 COCOAPODS: 0.39.0
