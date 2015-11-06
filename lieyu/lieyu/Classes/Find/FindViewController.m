@@ -17,6 +17,7 @@
 @interface FindViewController ()
 {
     NSArray *datalist;
+    BOOL isMes;
 }
 @end
 
@@ -24,14 +25,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    isMes=false;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:RECEIVES_MESSAGE object:nil];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
-              @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
-              @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
-              @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-              @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
+               @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
+               @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
+               @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
+               @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
+
+    
+    
 //    datalist=@[
 //               @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
 //               @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
@@ -51,6 +57,13 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:RECEIVES_MESSAGE object:nil];
+}
+-(void)receivesMessage{
+    isMes=true;
+    [_tableView reloadData];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -119,7 +132,12 @@
     cell = [tableView dequeueReusableCellWithIdentifier:@"FindMenuCell" forIndexPath:indexPath];
     if(indexPath.section==0){
         dic=[datalist objectAtIndex:0];
-        
+        if(isMes){
+            [cell.messageImageView setHidden:NO];
+            
+        }else{
+            [cell.messageImageView setHidden:YES];
+        }
     }
     else if(indexPath.section==1){
         if(indexPath.row==0){
@@ -159,6 +177,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section==0){
+        if(isMes){
+            [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
+            isMes=false;
+        }
+        
         LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
         chat.title=@"最近联系";
         [self.navigationController pushViewController:chat animated:YES];

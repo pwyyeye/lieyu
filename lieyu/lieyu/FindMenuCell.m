@@ -11,6 +11,9 @@
 @implementation FindMenuCell
 
 - (void)awakeFromNib {
+    self.messageImageView.layer.masksToBounds =YES;
+    
+    self.messageImageView.layer.cornerRadius =self.messageImageView.frame.size.width/2;
     // Initialization code
 }
 
