@@ -84,7 +84,7 @@
     
     
         cell.detLal.text=[NSString stringWithFormat:@"%@米",customerModel.distance];
-        if ([MyUtil isEmptyString:customerModel.distance]) {
+        if (![MyUtil isEmptyString:customerModel.distance]) {
             if (customerModel.distance.doubleValue>1000) {
                 double d=customerModel.distance.doubleValue/1000;
                 cell.detLal.text=[NSString stringWithFormat:@"%.2f千米",d];
