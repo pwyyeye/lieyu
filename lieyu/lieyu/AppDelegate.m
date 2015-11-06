@@ -367,7 +367,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             user.name = result.name;
             user.portraitUri = result.mark;
             [[RCDataBaseManager shareInstance] insertUserToDB:user];
-            return completion(user);
+             completion(user);
         }];
     }else{
         NSDictionary *dic = @{@"imUserId":userId};
@@ -375,11 +375,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             RCUserInfo *user = [[RCUserInfo alloc]init];
             user.userId =result.imUserId;
             user.name = result.name;
-            user.portraitUri = [MyUtil getQiniuUrl:result.mark width:80 andHeight:80];
+            user.portraitUri = result.mark;
             [[RCDataBaseManager shareInstance] insertUserToDB:user];
             
         }];
-        return completion(userInfo);
+         completion(userInfo);
     }
     
     
