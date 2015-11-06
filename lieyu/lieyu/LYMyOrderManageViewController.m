@@ -253,7 +253,7 @@
     NSLog(@"*********heightForFooterInSection%ld*******",dataList.count);
     OrderInfoModel *orderInfoModel=dataList[section];
     if( orderInfoModel.orderStatus == 7 || orderInfoModel.orderStatus == 3 || orderInfoModel.orderStatus == 4
-       || orderInfoModel.orderStatus == 5){
+       || orderInfoModel.orderStatus == 5 || orderInfoModel.orderStatus == 10){
          return 90;
     }
     
