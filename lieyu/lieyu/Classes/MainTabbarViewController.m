@@ -31,7 +31,7 @@
 //    self.locationManager = [[LYLocationManager alloc] init];
 //    [_locationManager beginUpdateLocation:kCLLocationAccuracyBest];
 //    _locationManager.locationDelegate = self;
-//    self.delegate=self;
+    self.delegate=self;
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:@"ReceivesMessage" object:nil];
     
