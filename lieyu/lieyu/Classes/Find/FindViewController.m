@@ -185,6 +185,7 @@
         LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
         chat.title=@"最近联系";
         [self.navigationController pushViewController:chat animated:YES];
+        [self.tableView reloadData];
     }
     else if(indexPath.section==1){
         if(indexPath.row==0){
