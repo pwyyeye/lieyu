@@ -13,8 +13,8 @@
 #import "EAIntroView.h"
 
 #define UmengAppkey @"56244a0467e58e25ce0026b3"
-#define RONGCLOUD_IM_APPKEY @"3argexb6rtese"
-//#define RONGCLOUD_IM_APPKEY @"ik1qhw091chyp"
+//#define RONGCLOUD_IM_APPKEY @"3argexb6rtese"
+#define RONGCLOUD_IM_APPKEY @"ik1qhw091chyp"
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,EAIntroDelegate>
 {
     CLLocationManager *locationManager;
