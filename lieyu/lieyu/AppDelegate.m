@@ -63,7 +63,17 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         UIRemoteNotificationTypeSound;
         [application registerForRemoteNotificationTypes:myTypes];
     }
-    
+    NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromLaunchOptions:launchOptions];
+    if (pushServiceData) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+        NSLog(@"该启动事件包含来自融云的推送服务");
+        for (id key in [pushServiceData allKeys]) {
+            NSLog(@"%@", pushServiceData[key]);
+        }
+    } else {
+        NSLog(@"该启动事件不包含来自融云的推送服务");
+    }
+
     //设置友盟社会化组件appkey
     [UMSocialData setAppKey:UmengAppkey];
     
