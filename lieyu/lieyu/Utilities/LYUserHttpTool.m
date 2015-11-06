@@ -546,8 +546,10 @@
         if([code isEqualToString:@"1"]){
             NSDictionary *dicTemp=response[@"data"];
             CustomerModel *model=[CustomerModel objectWithKeyValues:dicTemp];
-            
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(model);
+
+            });
             
         }else{
 //            [MyUtil showMessage:message];
