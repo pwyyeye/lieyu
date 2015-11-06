@@ -33,14 +33,14 @@
 //    _locationManager.locationDelegate = self;
     self.delegate=self;
     // Do any additional setup after loading the view.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:@"ReceivesMessage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:RECEIVES_MESSAGE object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete) name:@"CompleteMessage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete) name:COMPLETE_MESSAGE object:nil];
 }
 -(void)tabbarChagne{
    NSArray *items= self.tabBar.items;
    UITabBarItem *item=[items objectAtIndex:2];
-    if ([item.badgeValue isEqualToString:@""]) {
+    if ([MyUtil isEmptyString:item.badgeValue]) {
         item.badgeValue=[NSString stringWithFormat:@"%d",1];
     }else{
         item.badgeValue=[NSString stringWithFormat:@"%d",item.badgeValue.intValue+1];
@@ -55,7 +55,7 @@
 -(void)tabbarChagneComplete{
     NSArray *items= self.tabBar.items;
     UITabBarItem *item=[items objectAtIndex:2];
-    item.badgeValue=@"";
+    item.badgeValue=nil;
 
 }
 
@@ -175,8 +175,8 @@
 }
 
 -(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReceivesMessage" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"CompleteMessage" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:RECEIVES_MESSAGE object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:COMPLETE_MESSAGE object:nil];
 }
 
 @end
