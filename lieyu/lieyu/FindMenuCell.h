@@ -11,5 +11,6 @@
 @interface FindMenuCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLal;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *messageImageView;
 
 @end
