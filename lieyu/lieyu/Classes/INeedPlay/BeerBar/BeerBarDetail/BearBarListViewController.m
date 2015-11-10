@@ -140,7 +140,7 @@
 
 - (void)setYzhTop
 {
-    CGFloat w = _topView.frame.size.width;
+//    CGFloat w = _topView.frame.size.width;
     self.segmentCtrl =
     [[LYCustomSegmentControl alloc] initWithTitleItems:@[@"商务会所",@"KTV"] frame:_topView.frame];
     

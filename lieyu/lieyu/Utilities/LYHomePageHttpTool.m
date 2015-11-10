@@ -435,7 +435,7 @@
 #pragma mark购物车删除
 -(void) delcarWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CH_DEL baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
@@ -443,11 +443,11 @@
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
             });
-            [app stopLoading];
+//            [app stopLoading];
         }else{
             result(NO);
             [MyUtil showMessage:message];
-            [app stopLoading];
+//            [app stopLoading];
         }
         
         
