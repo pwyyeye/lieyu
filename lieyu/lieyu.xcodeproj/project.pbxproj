@@ -403,6 +403,8 @@
 		AD92AEB81BE242A3009F2A34 /* LYTagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */; };
 		AD92AEBC1BE50AD9009F2A34 /* AboutLieyu.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEBA1BE50AD9009F2A34 /* AboutLieyu.m */; };
 		AD92AEBD1BE50AD9009F2A34 /* AboutLieyu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD92AEBB1BE50AD9009F2A34 /* AboutLieyu.xib */; };
+		ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */; };
+		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
 		ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
 		ADD530411BDE1E9D002CF4D8 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD5303F1BDE1E9D002CF4D8 /* AlipaySDK.framework */; };
 		ADD530AF1BDE2BA3002CF4D8 /* AlipaySDK.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
@@ -1211,6 +1213,10 @@
 		AD92AEB91BE50AD9009F2A34 /* AboutLieyu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutLieyu.h; sourceTree = "<group>"; };
 		AD92AEBA1BE50AD9009F2A34 /* AboutLieyu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutLieyu.m; sourceTree = "<group>"; };
 		AD92AEBB1BE50AD9009F2A34 /* AboutLieyu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutLieyu.xib; sourceTree = "<group>"; };
+		ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.0.a; sourceTree = "<group>"; };
+		ADCDF7A91BF19A890040E9E3 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
+		ADCDF7AE1BF1A84F0040E9E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		ADCDF7B01BF1A8530040E9E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		ADD5303F1BDE1E9D002CF4D8 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		ADD68E241BE10E330060E751 /* 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@2x.png"; sourceTree = "<group>"; };
@@ -1526,6 +1532,7 @@
 				15EB356E1BD4840D00BA6161 /* libWeChatSDK.a in Frameworks */,
 				AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */,
 				15EB35571BD483F500BA6161 /* libSocialSina.a in Frameworks */,
+				ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */,
 				15EB35471BD4839D00BA6161 /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
 				15EB35661BD4840300BA6161 /* libWeiboSDK.a in Frameworks */,
 				15EB35651BD4840300BA6161 /* libSocialSinaSSO.a in Frameworks */,
@@ -3091,6 +3098,7 @@
 				AD8899BA1B9AFE61007BCC7C /* Info.plist */,
 				AD8899BB1B9AFE61007BCC7C /* main.m */,
 				D73652391BAEB314002541CE /* lieyu.pch */,
+				ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -3153,6 +3161,15 @@
 				AD92AEB41BE24165009F2A34 /* LYAlert.m */,
 			);
 			name = "弹出视图";
+			sourceTree = "<group>";
+		};
+		ADCDF7A71BF19A890040E9E3 /* UMessage_Sdk_1.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */,
+				ADCDF7A91BF19A890040E9E3 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.2.0;
 			sourceTree = "<group>";
 		};
 		ADE103391BDE48CA00D9EC38 /* Alipay */ = {
@@ -3720,6 +3737,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				ADCDF7A71BF19A890040E9E3 /* UMessage_Sdk_1.2.0 */,
 				152247871BEB05EE00E68A2B /* IQKeyBoardManager */,
 				152247831BEAF7E600E68A2B /* AlertBlock */,
 				ADE103BC1BE0EAAA00D9EC38 /* EAIntroView */,
@@ -4012,6 +4030,7 @@
 				1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */,
 				A2FD577E1BAFE97000CFFF92 /* FBTaoCanSectionBottom.xib in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
+				ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */,
 				15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */,
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
 				15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */,
@@ -4512,6 +4531,15 @@
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
+		ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ADCDF7AE1BF1A84F0040E9E3 /* zh-Hans */,
+				ADCDF7B01BF1A8530040E9E3 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -4605,8 +4633,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yao ming (BYY82XFVSL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yao ming (BYY82XFVSL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4636,6 +4664,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/lieyu/Vendor/ZBarSDK",
+					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -4649,8 +4678,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yao ming (BYY82XFVSL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yao ming (BYY82XFVSL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4680,6 +4709,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/lieyu/Vendor/ZBarSDK",
+					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

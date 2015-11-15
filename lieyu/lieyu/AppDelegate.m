@@ -22,11 +22,16 @@
 #import "CustomerModel.h"
 #import "LYUserHttpTool.h"
 #import "RCDataBaseManager.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "UMessage.h"
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
 >
 @end
+
+#define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define _IPHONE80_ 80000
 
 @implementation AppDelegate
 
@@ -86,7 +91,54 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [self startLocation];
-     
+    
+    
+    //友盟推送
+    
+    [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+    {
+        //register remoteNotification types
+        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
+        action1.identifier = @"action1_identifier";
+        action1.title=@"Accept";
+        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
+        
+        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
+        action2.identifier = @"action2_identifier";
+        action2.title=@"Reject";
+        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
+        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+        action2.destructive = YES;
+        
+        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
+        categorys.identifier = @"category1";//这组动作的唯一标示
+        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
+        
+        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert
+                                                                                     categories:[NSSet setWithObject:categorys]];
+        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
+        
+    } else{
+        //register remoteNotification types
+        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+         |UIRemoteNotificationTypeSound
+         |UIRemoteNotificationTypeAlert];
+    }
+#else
+    
+    //register remoteNotification types
+    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+     |UIRemoteNotificationTypeSound
+     |UIRemoteNotificationTypeAlert];
+    
+#endif
+    
+ 
+    //for log
+    [UMessage setLogEnabled:YES];
     
     
     //引导页启动
@@ -269,6 +321,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
      withString:@""];
     
     [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+    
+    [UMessage registerDeviceToken:deviceToken];
 }
 /**
  * 推送处理4
@@ -276,7 +330,28 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
  */
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+    
+    NSLog(@"----pass-userInfo%@---",userInfo);
+    
+    
+    
+    //判断是否友盟消息推送 根据反馈信息
+    /**
+     userInfo{
+     aps =     {
+     alert = "\U5c0a\U656c\U7684xxx\U4e13\U5c5e\U7ecf\U7406\Uff0c\U4f60\U6709\U4e00\U4efd\U8ba2\U5355\Uff0c\U8bf7\U53ca\U65f6\U5904\U7406\U3002";
+     sound = default;
+     };
+     d = uu04812144712755443811;
+     p = 0;
+     }*/
+    if ([userInfo objectForKey:@"aps"]&&[userInfo objectForKey:@"d"]) {
+        [UMessage didReceiveRemoteNotification:userInfo];
+    }else{//否则认为是im推送
+        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+    }
+    
+    
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -286,6 +361,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [_timer setFireDate:[NSDate distantPast]];//开启
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -333,6 +409,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     
 }
+
+
+
 //IM连接服务器
 -(void)connectWithToken{
     NSLog(@"_im_token=%@",_im_token);
@@ -412,8 +491,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [navigationController pushViewController:playTogetherPayViewController animated:YES];
         return YES;
     }else{
-        return NO;
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+        }];
+        return YES;
     }
+    
+    
     
 }
 

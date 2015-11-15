@@ -28,6 +28,7 @@
 }
 -(id)initWithFrameRect:(CGRect)rect scrolArray:(NSArray *)array needTitile:(BOOL)isNeedTitle
 {
+    
     imageArray=array;
     self.daoHangArray = [NSArray arrayWithArray:array];
     titleArray = [[NSMutableArray alloc] init];

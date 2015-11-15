@@ -10,6 +10,7 @@
 #import "LYResetPasswordViewController.h"
 #import "LYRegistrationViewController.h"
 #import "LYUserHttpTool.h"
+#import "UMessage.h"
 @interface LYUserLoginViewController ()<LYRegistrationDelegate,LYResetPasswordDelegate>
 
 @end
@@ -72,11 +73,22 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
+        
         [USER_DEFAULT setObject:self.userNameTex.text forKey:@"username"];
         [USER_DEFAULT setObject:self.passWordTex.text forKey:@"pass"];
 //      [self dismissViewControllerAnimated:YES completion:^{
 //          
 //      }];
+        
+        //先删除别名，然后再注册新的－－－友盟 消息推送
+        [UMessage removeAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+            NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+        }];
+        [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+            NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+        }];
+        
+        
         [self.navigationController popViewControllerAnimated:YES ];
 //        NSLog(result.username);
     }];
