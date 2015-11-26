@@ -4697,7 +4697,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fc8a2451-9953-4d57-8f94-68dcb40e421c";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -4742,7 +4742,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fc8a2451-9953-4d57-8f94-68dcb40e421c";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
