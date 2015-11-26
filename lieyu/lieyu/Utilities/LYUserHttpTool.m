@@ -453,6 +453,38 @@
         
     }];
 }
+
+#pragma mark微信预支付
+-(void) prepareWeixinPayWithParams:(NSDictionary*)params
+                          complete:(void (^)(NSDictionary *result))block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_WEIXIN_YUFU baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        NSDictionary *data=response[@"data"];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(data);
+            });
+            [app stopLoading];
+        }else{
+            
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        NSLog(@"----pass-err%@---",err);
+        [app stopLoading];
+        
+        
+        
+    }];
+}
+
 #pragma mark 好友列表
 -(void) getFriendsList:(NSDictionary*)params
                  block:(void(^)(NSMutableArray* result)) block{

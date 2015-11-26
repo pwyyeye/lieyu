@@ -15,6 +15,9 @@
 //参与人删除订单
 #define LY_MY_ORDER_DELBYCANYU @"pinkerOrderAction.do?action=delete"
 
+//微信预付款接口
+#define LY_WEIXIN_YUFU @"tenpayOrderAction.do?action=custom"
+
 //取消订单
 #define LY_MY_ORDER_CANCEL @"lyOrderAction.do?action=cancel"
 //一定会去

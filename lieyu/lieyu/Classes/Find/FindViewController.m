@@ -33,7 +33,7 @@
     datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
                @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
                @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
-               @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
+              // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
 
     
@@ -116,7 +116,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section==0){
+    if(section==0||section==2){
         return 1;
     }
         return 2;
@@ -156,7 +156,7 @@
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
         }else{
-            dic=[datalist objectAtIndex:4];
+//            dic=[datalist objectAtIndex:4];
         }
     }
     [cell.imageView setImage:[UIImage imageNamed:[dic objectForKey:@"image"]]];
@@ -199,7 +199,7 @@
             //附近玩客
         }
     }else{
-        if(indexPath.row==0){
+        if(indexPath.row==0 && NO){
             //摇一摇
             YaoYiYaoViewController *yaoYiYaoViewController;
             if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){

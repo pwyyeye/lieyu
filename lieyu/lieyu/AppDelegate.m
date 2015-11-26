@@ -24,6 +24,8 @@
 #import "RCDataBaseManager.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMessage.h"
+#import "WXApi.h"
+#import "SingletonTenpay.h"
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
@@ -86,7 +88,10 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [UMSocialData openLog:YES];
     //AppID：wxf1e19b28e6b1613c
     //设置微信AppId，设置分享url，默认使用友盟的网址
-    [UMSocialWechatHandler setWXAppId:@"wx93dfab7e2f716610" appSecret:@"67e20dbce508b01bb4a934c9f38b5ac3" url:@"http://www.peikua.com"];
+    [UMSocialWechatHandler setWXAppId:@"wxb1f5e1de5d4778b9" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.lie98.com"];
+    
+    //向微信注册
+    [WXApi registerApp:@"wxb1f5e1de5d4778b9" withDescription:@"猎娱"];
     
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
@@ -469,6 +474,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
 }
 
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    
+    return [WXApi handleOpenURL:url delegate:[SingletonTenpay singletonTenpay]];
+}
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -490,6 +500,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         playTogetherPayViewController.smid=smid.intValue;
         [navigationController pushViewController:playTogetherPayViewController animated:YES];
         return YES;
+    }else if([sourceApplication isEqualToString:@"com.tencent.xin"]){
+        return [WXApi handleOpenURL:url delegate:[SingletonTenpay singletonTenpay]];
     }else{
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {

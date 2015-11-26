@@ -233,7 +233,6 @@
 		15EB35661BD4840300BA6161 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB355A1BD4840300BA6161 /* libWeiboSDK.a */; };
 		15EB35671BD4840300BA6161 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15EB35621BD4840300BA6161 /* WeiboSDK.bundle */; };
 		15EB356D1BD4840D00BA6161 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB35681BD4840D00BA6161 /* libSocialWechat.a */; };
-		15EB356E1BD4840D00BA6161 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15EB35691BD4840D00BA6161 /* libWeChatSDK.a */; };
 		15EB35721BD495A700BA6161 /* CYTopShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35711BD495A700BA6161 /* CYTopShowCell.m */; };
 		15EB35751BD495C600BA6161 /* CYPayAmoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35741BD495C600BA6161 /* CYPayAmoutCell.m */; };
 		15EB35781BD495ED00BA6161 /* CYInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB35771BD495ED00BA6161 /* CYInfoCell.m */; };
@@ -383,6 +382,9 @@
 		A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */; };
 		AD0080931BEA4F4F00937CFF /* lieyuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */; };
 		AD0080941BEA4F4F00937CFF /* lieyuIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */; };
+		AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD198CBB1C00308400AA654D /* libWeChatSDK.a */; };
+		AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC01C00357C00AA654D /* SingletonTenpay.m */; };
+		AD198CC41C00368300AA654D /* TenpayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC31C00368300AA654D /* TenpayModel.m */; };
 		AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */; };
 		AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD798A361BB99A1F006D08F5 /* libPods.a */; };
 		AD8899BC1B9AFE61007BCC7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BB1B9AFE61007BCC7C /* main.m */; };
@@ -944,7 +946,6 @@
 		15EB35631BD4840300BA6161 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		15EB35641BD4840300BA6161 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
 		15EB35681BD4840D00BA6161 /* libSocialWechat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWechat.a; sourceTree = "<group>"; };
-		15EB35691BD4840D00BA6161 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		15EB356A1BD4840D00BA6161 /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWechatHandler.h; sourceTree = "<group>"; };
 		15EB356B1BD4840D00BA6161 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		15EB356C1BD4840D00BA6161 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -1181,6 +1182,12 @@
 		A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleasePackagesViewController.xib; sourceTree = "<group>"; };
 		AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@2x.png"; sourceTree = "<group>"; };
 		AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@3x.png"; sourceTree = "<group>"; };
+		AD198CBB1C00308400AA654D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		AD198CBD1C00309B00AA654D /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		AD198CBF1C00357C00AA654D /* SingletonTenpay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonTenpay.h; sourceTree = "<group>"; };
+		AD198CC01C00357C00AA654D /* SingletonTenpay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonTenpay.m; sourceTree = "<group>"; };
+		AD198CC21C00368300AA654D /* TenpayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenpayModel.h; sourceTree = "<group>"; };
+		AD198CC31C00368300AA654D /* TenpayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenpayModel.m; sourceTree = "<group>"; };
 		AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		AD798A361BB99A1F006D08F5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		AD8899B61B9AFE61007BCC7C /* lieyu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lieyu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1520,6 +1527,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */,
 				AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */,
 				15844C091BE22A8800247FBC /* QuartzCore.framework in Frameworks */,
 				15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */,
@@ -1529,7 +1537,6 @@
 				ADD530AF1BDE2BA3002CF4D8 /* AlipaySDK.bundle in Frameworks */,
 				ADD530411BDE1E9D002CF4D8 /* AlipaySDK.framework in Frameworks */,
 				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
-				15EB356E1BD4840D00BA6161 /* libWeChatSDK.a in Frameworks */,
 				AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */,
 				15EB35571BD483F500BA6161 /* libSocialSina.a in Frameworks */,
 				ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */,
@@ -2353,8 +2360,9 @@
 		15EB35541BD483E900BA6161 /* Wechat */ = {
 			isa = PBXGroup;
 			children = (
+				AD198CBD1C00309B00AA654D /* WechatAuthSDK.h */,
+				AD198CBB1C00308400AA654D /* libWeChatSDK.a */,
 				15EB35681BD4840D00BA6161 /* libSocialWechat.a */,
-				15EB35691BD4840D00BA6161 /* libWeChatSDK.a */,
 				15EB356A1BD4840D00BA6161 /* UMSocialWechatHandler.h */,
 				15EB356B1BD4840D00BA6161 /* WXApi.h */,
 				15EB356C1BD4840D00BA6161 /* WXApiObject.h */,
@@ -3048,6 +3056,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AD198CBE1C00350900AA654D /* Tenpay */ = {
+			isa = PBXGroup;
+			children = (
+				AD198CBF1C00357C00AA654D /* SingletonTenpay.h */,
+				AD198CC01C00357C00AA654D /* SingletonTenpay.m */,
+				AD198CC21C00368300AA654D /* TenpayModel.h */,
+				AD198CC31C00368300AA654D /* TenpayModel.m */,
+			);
+			name = Tenpay;
+			sourceTree = "<group>";
+		};
+		AD198D041C0365D700AA654D /* URL */ = {
+			isa = PBXGroup;
+			children = (
+				15013AD21BBA25C200061FAF /* ZSUrl.h */,
+				15EB7C591BC5FD2C00756153 /* LYMineUrl.h */,
+				15EB7C691BCF8B8600756153 /* LYHomePageUrl.h */,
+			);
+			name = URL;
+			sourceTree = "<group>";
+		};
 		AD8899AD1B9AFE61007BCC7C = {
 			isa = PBXGroup;
 			children = (
@@ -3532,6 +3561,7 @@
 		D748BC801BA1CCE0005AA996 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AD198CBE1C00350900AA654D /* Tenpay */,
 				ADE103391BDE48CA00D9EC38 /* Alipay */,
 				D761F0291BA5B92D000757B0 /* Modules */,
 				D761EFE31BA5AE82000757B0 /* CommonUI */,
@@ -3761,6 +3791,7 @@
 		D764F0C71BA1BBCF001649D9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				AD198D041C0365D700AA654D /* URL */,
 				D7A1D4151BC2657E00BCE47C /* LYLocationManager.h */,
 				D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */,
 				D7545DFF1BB99A3A005B854F /* HTTPController.h */,
@@ -3773,9 +3804,6 @@
 				15EA6DC41BBFC80700620C9E /* LYUserHttpTool.m */,
 				15EB7C6A1BCF8BF700756153 /* LYHomePageHttpTool.h */,
 				15EB7C6B1BCF8BF700756153 /* LYHomePageHttpTool.m */,
-				15013AD21BBA25C200061FAF /* ZSUrl.h */,
-				15EB7C591BC5FD2C00756153 /* LYMineUrl.h */,
-				15EB7C691BCF8B8600756153 /* LYHomePageUrl.h */,
 				D794ED0A1BB7872A000DC568 /* PFRect.h */,
 				D794ED0B1BB7872A000DC568 /* PFRect.m */,
 				D794ED071BB786AA000DC568 /* PFImage.h */,
@@ -4240,6 +4268,8 @@
 				15CC31DF1BEB2C5B00DDD03F /* DBHelper.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
+				AD198CC41C00368300AA654D /* TenpayModel.m in Sources */,
+				AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */,
 				15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */,
 				15CC31E41BEB2C5B00DDD03F /* FMResultSet.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,

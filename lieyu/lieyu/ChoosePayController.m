@@ -8,6 +8,7 @@
 
 #import "ChoosePayController.h"
 #import "LYMyOrderManageViewController.h"
+#import "SingletonTenpay.h"
 @interface ChoosePayController ()
 
 @end
@@ -23,11 +24,16 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+//    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor=RGB(237, 237, 237);
+    self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     self.title=@"选择支付方式";
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
+    _data=@[
+            @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
+           @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
+            ];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,15 +65,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return _data.count;
 }
 
 -
@@ -95,33 +99,46 @@
     if ([MyUtil isEmptyString:_productDescription]) {
         return;
     }
-    AlipayOrder *order=[[AlipayOrder alloc] init];
-//    
-    order.tradeNO = _orderNo; //订单ID（由商家自行制定）
-    order.productName = _productName; //商品标题
-    order.productDescription = _productDescription; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.2f",_payAmount];
-//    order.amount=[NSString stringWithFormat:@"%.2f",0.01];
     
-    SingletonAlipay *alipay=[SingletonAlipay singletonAlipay];
-    alipay.delegate=self;
-    [alipay payOrder:order];
+    if (indexPath.row==0) {
+        AlipayOrder *order=[[AlipayOrder alloc] init];
+        //
+        order.tradeNO = _orderNo; //订单ID（由商家自行制定）
+        order.productName = _productName; //商品标题
+        order.productDescription = _productDescription; //商品描述
+        order.amount = [NSString stringWithFormat:@"%.2f",_payAmount];
+        //    order.amount=[NSString stringWithFormat:@"%.2f",0.01];
+        
+        SingletonAlipay *alipay=[SingletonAlipay singletonAlipay];
+        alipay.delegate=self;
+        [alipay payOrder:order];
+    }else{
+        SingletonTenpay *tenpay=[SingletonTenpay singletonTenpay];
+
+        [tenpay preparePay:@{@"orderNo":_orderNo,@"payAmount":[NSString stringWithFormat:@"%.0f",_payAmount*100],@"productDescription":_productName} complete:^(BaseReq *result) {
+            if (result) {
+                [tenpay onReq:result];
+            }
+        }];
+    }
+   
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PayCell *cell = [[PayCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"paycell"];
 
-    cell.imageView.image=[UIImage imageNamed:@"AlipayIcon"];
-    
-    cell.textLabel.text=@"支付宝";
+    NSDictionary *dic= _data[indexPath.row];
+    cell.textLabel.text=[dic objectForKey:@"payname"];
     cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
     cell.textLabel.textColor=RGB(51, 51, 51);
     
-    cell.detailTextLabel.text=@"支付宝安全支付";
+    cell.detailTextLabel.text=[dic objectForKey:@"paydetail"];
     cell.detailTextLabel.font= [UIFont systemFontOfSize:11];
     cell.detailTextLabel.textColor=RGB(128, 128, 128);
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    cell.imageView.image=[UIImage imageNamed:[dic objectForKey:@"payicon"]];
+
     // Configure the cell...
     
     return cell;

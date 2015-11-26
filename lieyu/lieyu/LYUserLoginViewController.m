@@ -81,9 +81,13 @@
 //      }];
         
         //先删除别名，然后再注册新的－－－友盟 消息推送
-        [UMessage removeAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-            NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-        }];
+        if ([USER_DEFAULT objectForKey:@"userid"]) {
+            [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+            }];
+        }
+        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",result.userid] forKey:@"userid"];
+        
         [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
             NSLog(@"----pass-addAlias%@---%@",responseObject,error);
         }];

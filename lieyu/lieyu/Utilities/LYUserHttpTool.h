@@ -62,6 +62,11 @@
 -(void) cancelMyOrder:(NSDictionary*)params
           complete:(void (^)(BOOL result))result;
 
+//微信预支付
+-(void) prepareWeixinPayWithParams:(NSDictionary*)params
+                          complete:(void (^)(NSDictionary *result))result;
+
+
 //一定会去
 -(void) sureMyOrder:(NSDictionary*)params
              complete:(void (^)(BOOL result))result;

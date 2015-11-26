@@ -20,4 +20,5 @@
 
 @property(assign,nonatomic) double payAmount;
 
+@property(strong,nonatomic) NSArray *data;
 @end

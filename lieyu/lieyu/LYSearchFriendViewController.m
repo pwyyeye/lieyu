@@ -31,8 +31,9 @@
     searchlist=[[NSMutableArray alloc]init];
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     datalist=@[
-               @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-               @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
+//               @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
+               @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}
+            ];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -132,12 +133,12 @@
         friendDetailViewController.customerModel=customerModel;
         [self.navigationController pushViewController:friendDetailViewController animated:YES];
     }else{
-        if(indexPath.row==0){
+        if(indexPath.row==0&&NO){
             YaoYiYaoViewController *yaoYiYaoViewController=[[YaoYiYaoViewController alloc]initWithNibName:@"YaoYiYaoViewController" bundle:nil];
             yaoYiYaoViewController.title=@"摇一摇";
             [self.navigationController pushViewController:yaoYiYaoViewController  animated:YES];
         }else{
-            //扫一扫
+//            扫一扫
             SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
             saoYiSaoViewController.title=@"扫一扫";
             [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
