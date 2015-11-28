@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class JiuBaModel;
 
 @interface LYWineBarCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_header;
@@ -30,4 +31,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_star;
 @property (weak, nonatomic) IBOutlet UIButton *btn_zang;
+
+@property (nonatomic,strong) JiuBaModel *jiuBaModel;
 @end

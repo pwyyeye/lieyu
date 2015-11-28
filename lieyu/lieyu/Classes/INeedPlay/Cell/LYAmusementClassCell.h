@@ -17,11 +17,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *button_page_right;
 @property (weak, nonatomic) IBOutlet UILabel *label_line_middle;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView_one;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView_two;
-@property (nonatomic,strong) UIImageView *imageView_three;
-@property (nonatomic,strong) UIImageView *imageView_four;
+
 @property (weak, nonatomic) IBOutlet UILabel *label_line_bottom;
-@property (weak, nonatomic) IBOutlet UIView *view_bottom;
+
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewArray;
+
 
 @end

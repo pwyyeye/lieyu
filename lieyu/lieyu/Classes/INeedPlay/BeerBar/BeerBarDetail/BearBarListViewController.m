@@ -7,7 +7,7 @@
 //
 
 #import "BearBarListViewController.h"
-#import "LYWineBarInfoCell.h"
+#import "LYWineBarCell.h"
 #import "BeerBarDetailViewController.h"
 #import "LYCustomSegmentControl.h"
 #import "MJRefresh.h"
@@ -263,11 +263,11 @@
 
         default:
         {
-            LYWineBarInfoCell * barCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarInfoCell" forIndexPath:indexPath];
+            LYWineBarCell * barCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarCell" forIndexPath:indexPath];
             
             cell = barCell;
             if ([_aryList count] >=1) {
-                [barCell configureCell:[_aryList objectAtIndex:indexPath.row - 1]];
+                //[barCell configureCell:[_aryList objectAtIndex:indexPath.row - 1]];
             }
             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 103.5, 290, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
