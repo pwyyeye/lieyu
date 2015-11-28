@@ -129,12 +129,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" id="fCi-ux-1mr">
-                        <rect key="frame" x="0.0" y="273" width="320" height="8"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
                 </subviews>
                 <animations/>
             </tableViewCellContentView>
@@ -157,7 +151,6 @@
                 <outlet property="label_price" destination="KYg-NY-7wj" id="0oc-7M-RHf"/>
                 <outlet property="label_star_count" destination="YlE-J3-JKZ" id="epa-Fv-9ky"/>
                 <outlet property="label_zang_count" destination="PfN-We-TAz" id="rf4-dj-U1Q"/>
-                <outlet property="view_bottom" destination="fCi-ux-1mr" id="DuG-gd-BJ2"/>
             </connections>
             <point key="canvasLocation" x="81" y="263"/>
         </tableViewCell>

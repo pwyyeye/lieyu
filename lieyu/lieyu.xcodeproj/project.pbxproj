@@ -294,6 +294,8 @@
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		85F672B21C097D48001BEE5B /* LYHotRecommandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672B01C097D48001BEE5B /* LYHotRecommandCell.m */; };
 		85F672B31C097D48001BEE5B /* LYHotRecommandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672B11C097D48001BEE5B /* LYHotRecommandCell.xib */; };
+		85F672B71C099776001BEE5B /* LYWineBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672B51C099776001BEE5B /* LYWineBarCell.m */; };
+		85F672B81C099776001BEE5B /* LYWineBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672B61C099776001BEE5B /* LYWineBarCell.xib */; };
 		A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */; };
 		A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */; };
 		A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100811BA7AFAB009283D1 /* LYProductslistViewController.m */; };
@@ -1056,6 +1058,9 @@
 		85F672AF1C097D48001BEE5B /* LYHotRecommandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotRecommandCell.h; sourceTree = "<group>"; };
 		85F672B01C097D48001BEE5B /* LYHotRecommandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotRecommandCell.m; sourceTree = "<group>"; };
 		85F672B11C097D48001BEE5B /* LYHotRecommandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotRecommandCell.xib; sourceTree = "<group>"; };
+		85F672B41C099776001BEE5B /* LYWineBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWineBarCell.h; sourceTree = "<group>"; };
+		85F672B51C099776001BEE5B /* LYWineBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWineBarCell.m; sourceTree = "<group>"; };
+		85F672B61C099776001BEE5B /* LYWineBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWineBarCell.xib; sourceTree = "<group>"; };
 		A20100741BA7ADCB009283D1 /* ZSReleaseMBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseMBViewController.h; sourceTree = "<group>"; };
 		A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleaseMBViewController.m; sourceTree = "<group>"; };
 		A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleaseMBViewController.xib; sourceTree = "<group>"; };
@@ -3858,6 +3863,9 @@
 				D7A230CB1BA7160B00E8B51B /* LYWineBarInfoCell.h */,
 				D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */,
 				D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */,
+				85F672B41C099776001BEE5B /* LYWineBarCell.h */,
+				85F672B51C099776001BEE5B /* LYWineBarCell.m */,
+				85F672B61C099776001BEE5B /* LYWineBarCell.xib */,
 				85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */,
 				85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */,
 				85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */,
@@ -4068,6 +4076,7 @@
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
 				15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */,
 				15E184931BB52B0E00681BB2 /* LYJiuBaCell.xib in Resources */,
+				85F672B81C099776001BEE5B /* LYWineBarCell.xib in Resources */,
 				15844BFE1BE2101200247FBC /* SaoYiSaoViewController.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
@@ -4293,6 +4302,7 @@
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
+				85F672B71C099776001BEE5B /* LYWineBarCell.m in Sources */,
 				A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */,
 				15013AFB1BBA33BE00061FAF /* SDWebImageDownloaderOperation.m in Sources */,
 				ADF38F421BE8D8B400A80B08 /* CityChooseButton.m in Sources */,

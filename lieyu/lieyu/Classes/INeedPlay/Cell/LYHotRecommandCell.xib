@@ -53,6 +53,10 @@
                 <animations/>
             </tableViewCellContentView>
             <animations/>
+            <connections>
+                <outlet property="label_line_bottom" destination="qnd-gV-DBI" id="QK8-OC-edF"/>
+                <outlet property="label_line_top" destination="P3A-gA-uWC" id="qsq-Cu-8rF"/>
+            </connections>
             <point key="canvasLocation" x="431" y="163"/>
         </tableViewCell>
     </objects>
