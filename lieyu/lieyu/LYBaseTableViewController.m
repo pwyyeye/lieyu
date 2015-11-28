@@ -19,9 +19,17 @@
     
     self.automaticallyAdjustsScrollViewInsets=0;
     //    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBar.barTintColor=RGB(35, 166, 116);
+//    self.navigationController.navigationBar.barTintColor=RGB(35, 166, 116);
     //若为yesnavigationBar背景 会有50％的透明
-    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.navigationBar.translucent = YES;
+//    CGRect rect = self.navigationController.navigationBar.frame;
+//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+//        CAGradientLayer *gradient = [CAGradientLayer layer];
+//    gradient.frame = rect;
+//        gradient.colors = [NSArray arrayWithObjects:[UIColor colorWithRed:109 green:0 blue:142 alpha:100],[UIColor colorWithRed:64 green:1 blue:120 alpha:100],nil];
+//    [self.navigationController.navigationBar.layer insertSublayer:gradient atIndex:0];
+    
+    
     //    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     //    [self.navigationItem setLeftBarButtonItem:item];
     

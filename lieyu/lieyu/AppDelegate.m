@@ -26,6 +26,8 @@
 #import "UMessage.h"
 #import "WXApi.h"
 #import "SingletonTenpay.h"
+
+
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
@@ -42,7 +44,15 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     // Override point for customization after application launch.
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+//    [UINavigationBar appearance];
     
+//    UIColor *_inputColor0 = RGB(109, 0, 142);
+//    UIColor *_inputColor1 = RGB(64, 1, 120);
+//    NSArray *colors = [NSArray arrayWithObjects:_inputColor0, _inputColor1, nil];
+//    CAGradientLayer *gradient = [CAGradientLayer layer];
+//    gradient.frame = self.navigationController.navigationBar.frame;
+//    gradient.colors = colors;
+//    [self.navigationController.navigationBar.layer insertSublayer:gradient atIndex:1];
     
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
@@ -354,7 +364,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }else{//否则认为是im推送
         [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     }
-    
     
 }
 - (void)applicationWillResignActive:(UIApplication *)application {

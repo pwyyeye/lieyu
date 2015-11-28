@@ -10,14 +10,14 @@
 #import "ZSMaintViewController.h"
 #import "ZSListCell.h"
 #import "UserModel.h"
-#import "TuiJianShangJiaViewController.h"
-#import "MyCollectionViewController.h"
-#import "LYMyOrderManageViewController.h"
-#import "Setting.h"
-#import "MyZSManageViewController.h"
-#import "LYCarListViewController.h"
+#import "TuiJianShangJiaViewController.h"//推荐商家
+#import "MyCollectionViewController.h"//我的收藏
+#import "LYMyOrderManageViewController.h"//我的订单
+#import "Setting.h"//设置
+#import "MyZSManageViewController.h"//我的专属经理
+#import "LYCarListViewController.h"//购物车
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import "MyMessageListViewController.h"
+#import "MyMessageListViewController.h"//我的消息列表
 #import "UserTagModel.h"
 @interface MyInfoViewController ()
 {
@@ -51,6 +51,14 @@
     }
     [self getDataForShowList];
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (self.navigationController.navigationBarHidden != NO) {
+        self.navigationController.navigationBarHidden = NO;
+    }
+}
+
 #pragma mark 初始化数据
 -(void)getDataForShowList{
     [listArr removeAllObjects];
