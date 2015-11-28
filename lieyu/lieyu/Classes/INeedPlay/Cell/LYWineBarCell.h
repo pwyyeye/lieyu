@@ -1,15 +1,14 @@
 //
-//  LYWineBarInfoCell.h
+//  LYWineBarCell.h
 //  lieyu
 //
-//  Created by newfly on 9/14/15.
-//  Copyright (c) 2015 狼族（上海）网络科技有限公司. All rights reserved.
+//  Created by 狼族 on 15/11/28.
+//  Copyright © 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface LYWineBarInfoCell : UITableViewCell<LYTableViewCellLayout>
-
+@interface LYWineBarCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_header;
 
 @property (weak, nonatomic) IBOutlet UILabel *label_jiuba;
@@ -31,5 +30,4 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_star;
 @property (weak, nonatomic) IBOutlet UIButton *btn_zang;
-
 @end

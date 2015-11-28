@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 狼族（上海）网络科技有限公司. All rights reserved.
 //
 #import "LYAdshowCell.h"
-#import "LYWineBarInfoCell.h"
+#import "LYWineBarCell.h"
 #import "HomePageINeedPlayViewController.h"
 #import "MJRefresh.h"
 #import "BeerBarDetailViewController.h"
@@ -51,18 +51,17 @@ SearchDelegate
         _tableView.height=368;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
-//    self.curPageIndex = 1;
-//    self.aryList=[[NSMutableArray alloc]init];
-//    _tableView.showsHorizontalScrollIndicator=NO;
-//    _tableView.showsVerticalScrollIndicator=NO;
-//    _tableView.separatorColor=[UIColor clearColor];
+     self.curPageIndex = 1;
+     self.aryList=[[NSMutableArray alloc]init];
+    _tableView.showsHorizontalScrollIndicator=NO;
+    _tableView.showsVerticalScrollIndicator=NO;
    [self initialize];
    [self setupViewStyles];
-//    
+    
 //    // Do any additional setup after loading the view from its nib.
 //    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarInfoCell" bundle:nil] forCellReuseIdentifier:@"LYWineBarInfoCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYHotRecommandCell" bundle:nil]  forCellReuseIdentifier:@"hotCell"];
      [self.tableView registerNib:[UINib nibWithNibName:@"LYAmusementClassCell" bundle:nil] forCellReuseIdentifier:@"LYAmusementClassCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -454,9 +453,7 @@ SearchDelegate
             break;
         case 3:
         {
-            LYWineBarInfoCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarInfoCell" forIndexPath:indexPath];
-            wineCell.label_line_bottom.hidden = YES;
-            wineCell.view_bottom.hidden = YES;
+            LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
             wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return wineCell;
