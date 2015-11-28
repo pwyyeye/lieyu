@@ -99,7 +99,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     
     //友盟推送
-    
     [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
@@ -389,7 +388,10 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
         _qiniu_token=result;
     }];
-    
+    if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+        LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+        [login autoLogin];
+    }
 }
 - (void)startLoading
 {
