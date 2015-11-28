@@ -34,13 +34,11 @@
     _serchText.text=hisSerchArr[sender.tag];
     [_serchText resignFirstResponder];
     
-    
-        
+
         [self.tableView setHidden:NO];
         _curPageIndex=1;
         keyStr=_serchText.text;
         [self getData];
-    
 
 }
 
@@ -222,7 +220,6 @@
 //    hList.city = [LYUserLocation instance].city;
     
     
-    
 #if 1
     hList.barname = keyStr;
     hList.need_page = @(1);
@@ -297,8 +294,6 @@
             [self.delegate addCondition:model];
     }];
 
-    
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

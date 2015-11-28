@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol LYTableViewCellLayout <NSObject>
-
+@optional
 + (CGFloat )adjustCellHeight:(id)model;
 
 - (void )configureCell:(id)model;

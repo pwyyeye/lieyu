@@ -375,8 +375,7 @@
     @finally {
         
     }
-    
-   
+
 }
 //七牛上传图片
 +(void)uploadImageToQiuNiu:(UIImage *)image complete:(QNUpCompletionHandler)completionHandler{
