@@ -157,9 +157,6 @@
         
     } failure:^(NSError *err) {
         [app stopLoading];
-        
-        
-        
     }];
 }
 

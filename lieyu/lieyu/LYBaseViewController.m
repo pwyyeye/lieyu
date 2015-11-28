@@ -7,6 +7,7 @@
 //
 
 #import "LYBaseViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface LYBaseViewController ()
 
@@ -17,17 +18,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets=0;
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBar.barTintColor=RGB(35, 166, 116);
+   // self.automaticallyAdjustsScrollViewInsets=0;
+    self.automaticallyAdjustsScrollViewInsets = YES;
+//    self.navigationController.navigationBar.barTintColor=RGB(64,1,120);
     //若为yesnavigationBar背景 会有50％的透明
-    self.navigationController.navigationBar.translucent = NO;
+//    self.navigationController.navigationBar.translucent = YES;
+    
+    //修改的部分
+    UIColor *_inputColor0 = RGBA(109, 0, 142,0.8);
+    UIColor *_inputColor1 = RGBA(64, 1, 120,0.8);
+    CGPoint _inputPoint0 = CGPointMake(0.5, 0);
+    CGPoint _inputPoint1 = CGPointMake(0.5, 1);
+    CAGradientLayer *layer = [CAGradientLayer new];
+    layer.colors = @[(__bridge id)_inputColor0.CGColor, (__bridge id)_inputColor1.CGColor];
+    layer.startPoint = _inputPoint0;
+    layer.endPoint = _inputPoint1;
+    layer.frame = CGRectMake(0, -20, 320, 64);
+    [self.navigationController.navigationBar.layer addSublayer:layer];
+    
+//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+//    CAGradientLayer *gradient = [CAGradientLayer layer];
+//    gradient.frame = self.navigationController.navigationBar.frame;
+//    gradient.colors = [NSArray arrayWithObjects: RGB(109, 0, 142),RGB(64, 1, 120),nil];
+//    [self.navigationController.navigationBar.layer insertSublayer:gradient atIndex:0];
+    
+    
     
     //返回的颜色
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
+    
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
     
@@ -43,7 +65,6 @@
 //    self.navigationItem.leftBarButtonItem = customBarItem;
     
     
-
     //设置标题颜色
     
     UIColor * color = [UIColor whiteColor];
@@ -53,7 +74,7 @@
     self.navigationController.navigationBar.titleTextAttributes = dict;
     
     //设置电池状态栏为白色
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
 
     // Do any additional setup after loading the view.
