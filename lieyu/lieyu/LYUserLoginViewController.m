@@ -21,9 +21,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    [self.navigationItem setLeftBarButtonItem:item];
+//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+//    [self.navigationItem setLeftBarButtonItem:item];
     
+   // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
+}
+- (IBAction)goBackClick:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,18 +46,11 @@
 //    if (self.navigationController.navigationBarHidden != NO) {
 //        [self.navigationController setNavigationBarHidden:NO];
 //    }
-//    
-    self.userNameTex.borderStyle = UITextBorderStyleRoundedRect;
-    self.passWordTex.borderStyle = UITextBorderStyleRoundedRect;
-    self.userNameTex.layer.cornerRadius = 6;
+//
+
     //self.userNameTex.layer.borderWidth = 0.5;
   //  self.userNameTex.layer.borderColor = RGBA(255,255,255, 0.2).CGColor;
    // self.userNameTex.layer.masksToBounds = YES;
-    self.userNameTex.layer.shadowOpacity = 1;
-    self.userNameTex.layer.shadowOffset = CGSizeMake(20, 20);
-    self.userNameTex.layer.shadowColor = RGBA(0, 0, 0, 0.24).CGColor;
-    self.userNameTex.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.userNameTex.layer.shadowRadius = 2;
 }
 
 #pragma mark - Navigation

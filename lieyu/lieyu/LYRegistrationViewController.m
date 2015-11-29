@@ -19,6 +19,7 @@
     _step=60;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];
+    /*
     CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);
     UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
     [RGB(35, 166, 116) set];
@@ -32,7 +33,7 @@
     UIImage *selectedImg = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     [self.getYzmBtn setBackgroundImage:selectedImg  forState:UIControlStateDisabled];
-    
+    */
     // Do any additional setup after loading the view from its nib.
 }
 #pragma mark -定时器更新验证码按钮

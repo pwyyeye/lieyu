@@ -24,6 +24,10 @@
     _btn_star.layer.borderWidth = 0.5;
     _btn_star.layer.borderColor = RGBACOLOR(255, 255, 255, 0.5).CGColor;
     
+    NSString *perscent = [NSString stringWithFormat:@"30%@",@"%"];
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:perscent];
+    [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:11] range:NSMakeRange(2, 1.99)];
+    _label_fanli_percent.attributedText = attributedStr;
 }
 
 - (void)setJiuBaModel:(JiuBaModel *)jiuBaModel{

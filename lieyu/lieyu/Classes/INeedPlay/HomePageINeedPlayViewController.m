@@ -453,15 +453,15 @@ UITableViewDataSource,UITableViewDelegate,
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    if (indexPath.row >= 3) {
+    
+    if (indexPath.section >= 3) {
         BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     
-        JiuBaModel * model = [_aryList objectAtIndex:indexPath.row -3];
+        JiuBaModel * model = [_aryList objectAtIndex:indexPath.section -3];
         controller.beerBarId = @(model.barid);
         [self.navigationController pushViewController:controller animated:YES];
     }
-    */
+    
 }
 
 #pragma textfield delegate

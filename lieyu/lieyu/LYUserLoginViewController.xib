@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYUserLoginViewController">
             <connections>
+                <outlet property="btn_getBack" destination="cQS-T1-Wgn" id="Zqj-P3-fn6"/>
                 <outlet property="passWordTex" destination="udk-cZ-jda" id="kUP-UF-nLD"/>
                 <outlet property="userImageView" destination="xvr-qN-7Rm" id="nLu-NA-BOA"/>
                 <outlet property="userNameTex" destination="r2z-Mv-Y8t" id="fEo-vR-yqG"/>
@@ -20,6 +21,16 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MineBigBG" id="v45-lu-qgO">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textFieldLong" id="bYT-6V-NnL">
+                    <rect key="frame" x="10" y="251" width="300" height="52"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textFieldLong" id="Mme-DJ-yaF">
+                    <rect key="frame" x="10" y="307" width="300" height="52"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                 </imageView>
@@ -48,8 +59,8 @@
                         <action selector="loginAct:" destination="-1" eventType="touchUpInside" id="2MN-6K-QTN"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="   输入登录密码" borderStyle="line" placeholder="密码" minimumFontSize="17" id="udk-cZ-jda">
-                    <rect key="frame" x="10" y="303" width="300" height="48"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="输入登录密码" placeholder="密码" minimumFontSize="17" id="udk-cZ-jda">
+                    <rect key="frame" x="30" y="315" width="273" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,8 +96,22 @@
                         <action selector="zhuceAct:" destination="-1" eventType="touchUpInside" id="bH6-3r-wCB"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="   输入手机号" borderStyle="line" minimumFontSize="17" id="r2z-Mv-Y8t">
-                    <rect key="frame" x="10" y="251" width="300" height="48"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userIcon" id="4U3-EB-kcb">
+                    <rect key="frame" x="125" y="95" width="70" height="90"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cQS-T1-Wgn">
+                    <rect key="frame" x="8" y="30" width="24" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <animations/>
+                    <state key="normal" backgroundImage="btn_back2"/>
+                    <connections>
+                        <action selector="goBackClick:" destination="-1" eventType="touchUpInside" id="gTo-28-BKa"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="输入手机号" minimumFontSize="17" id="r2z-Mv-Y8t">
+                    <rect key="frame" x="30" y="259" width="273" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -97,11 +122,6 @@
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="b7S-nC-vYf"/>
                     </connections>
                 </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userIcon" id="4U3-EB-kcb">
-                    <rect key="frame" x="125" y="95" width="70" height="90"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <animations/>
-                </imageView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -111,7 +131,9 @@
     <resources>
         <image name="MineBG" width="120" height="120"/>
         <image name="MineBigBG" width="320" height="567"/>
+        <image name="btn_back2" width="16" height="16"/>
         <image name="login" width="304" height="54"/>
+        <image name="textFieldLong" width="304" height="54"/>
         <image name="userIcon" width="70" height="90"/>
     </resources>
 </document>

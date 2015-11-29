@@ -28,5 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 - (IBAction)otherAct:(UIButton *)sender;
 - (IBAction)exitEdit:(UITextField *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btn_getBack;
 - (void)autoLogin;
 @end
