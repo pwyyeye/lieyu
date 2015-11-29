@@ -2573,6 +2573,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <animations/>
                                         <state key="normal" title="上海"/>
+                                        <connections>
+                                            <action selector="cityChangeClick:" destination="9Tx-jj-Na6" eventType="touchUpInside" id="TGO-v4-6ad"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="猎娱" id="S9m-n5-lyE">
                                         <rect key="frame" x="135" y="30" width="51" height="25"/>
@@ -2585,6 +2588,9 @@
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" backgroundImage="search"/>
+                                        <connections>
+                                            <action selector="searchClick:" destination="9Tx-jj-Na6" eventType="touchUpInside" id="2SE-1N-EOW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <animations/>
@@ -2941,7 +2947,7 @@ AAAAAAAAPgAAAAAAAAAAAAAAAAAAFjc
         <image name="icon_myfllow" width="65" height="28"/>
         <image name="icon_singleoption_highlightl" width="16" height="15"/>
         <image name="icon_singleoption_normal" width="15" height="15"/>
-        <image name="icon_star" width="14" height="14"/>
+        <image name="icon_star" width="15" height="15"/>
         <image name="icon_xinxi_normal1" width="19" height="17"/>
         <image name="icon_yzh" width="73" height="22"/>
         <image name="icon_zhuyishixiang_normal" width="18" height="18"/>

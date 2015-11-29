@@ -13,17 +13,21 @@
 - (void)awakeFromNib {
     // Initialization code
 //    self.scrollView.directionalLockEnabled = YES;
-//    _imageView_three = [[UIImageView alloc]initWithFrame:CGRectMake(328, 8, 150, 150)];
-//    _imageView_three.image = [UIImage imageNamed:@"CommonIcon"];
-//    [self.scrollView addSubview:_imageView_three];
-//    
-//    _imageView_four = [[UIImageView alloc]initWithFrame:CGRectMake(328+ 160, 8, 150, 150)];
-//    _imageView_four.image = [UIImage imageNamed:@"CommonIcon"];
-//    [self.scrollView addSubview:_imageView_four];
+
     
     self.label_lineTop.frame = CGRectMake(0, 0, 320, 0.5);
     self.label_line_middle.frame = CGRectMake(0, 44.5, 320, 0.5);
-    self.view_bottom.frame = CGRectMake(0,211, 320, 8);
+    self.label_line_bottom.bounds = CGRectMake(0, 0, 320, 0.5);
+    
+    for (UIImageView *igv in _imageViewArray) {
+        igv.layer.cornerRadius = 4;
+        igv.layer.masksToBounds = YES;
+        
+    }
+    ((UIImageView *)_imageViewArray[0]).image = [UIImage imageNamed:@"激情夜店.jpg"];
+        ((UIImageView *)_imageViewArray[1]).image = [UIImage imageNamed:@"文艺清吧.jpg"];
+        ((UIImageView *)_imageViewArray[2]).image = [UIImage imageNamed:@"音乐清吧1.jpg"];
+        ((UIImageView *)_imageViewArray[3]).image = [UIImage imageNamed:@"ktv.jpg"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

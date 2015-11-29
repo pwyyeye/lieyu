@@ -7,7 +7,9 @@
 //
 
 #import "LYHomeSearchViewController.h"
-#import "LYWineBarInfoCell.h"
+/*
+
+#import "LYWineBarCell.h"
 #import "BeerBarDetailViewController.h"
 #import "NetPublic.h"
 #import "LYToPlayRestfulBusiness.h"
@@ -28,8 +30,10 @@
 }
 @property(nonatomic,assign) NSInteger curPageIndex;
 @end
+ */
 
 @implementation LYHomeSearchViewController
+/*
 - (IBAction)hisKeyAct:(UIButton *)sender {
     _serchText.text=hisSerchArr[sender.tag];
     [_serchText resignFirstResponder];
@@ -41,9 +45,11 @@
         [self getData];
 
 }
+ */
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    /*
     hisSerchArr=[[NSMutableArray alloc]init];
     self.curPageIndex = 1;
     [self setupViewStyles];
@@ -58,10 +64,15 @@
     [_serchText addTarget:self action:@selector(valueChangeAct:) forControlEvents:UIControlEventEditingChanged];
     btnArr=@[_hisbtn1,_hisbtn2,_hisbtn3,_hisbtn4,_hisbtn5,_hisbtn6];
     [self getHisUI];
+    */
     
 //    [self getData];
     // Do any additional setup after loading the view from its nib.
+    
+   
+    
 }
+/*
 -(void)getHisUI{
     [self loadHisData];
     for (UIButton *btn in btnArr) {
@@ -140,6 +151,7 @@
     }
     
 }
+
 - (IBAction)valueChangeAct:(UITextField *)sender {
     if(sender.text.length <=0){
         [self.tableView setHidden:YES];
@@ -258,14 +270,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+        LYWineBarCell * barCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarCell" forIndexPath:indexPath];
     
-        
-        
-        LYWineBarInfoCell * barCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarInfoCell" forIndexPath:indexPath];
-        
-        
-       
-        [barCell configureCell:[searchlist objectAtIndex:indexPath.row]];
+        //[barCell configureCell:[searchlist objectAtIndex:indexPath.row]];
         
         UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 103.5, 290, 0.5)];
         lineLal.backgroundColor=RGB(199, 199, 199);
@@ -306,7 +313,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -314,11 +321,12 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 - (IBAction)backAct:(UIButton *)sender {
     [self dismissViewControllerAnimated:false completion:^{
         
     }];
 }
+ */
 @end

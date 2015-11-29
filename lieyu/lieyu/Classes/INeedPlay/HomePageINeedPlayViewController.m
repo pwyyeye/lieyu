@@ -20,15 +20,16 @@
 #import "MyCollectionViewController.h"
 #import "LYAmusementClassCell.h"
 #import "LYHotRecommandCell.h"
+#import "LYCityChooseViewController.h"
+#import "LYHomeSearcherViewController.h"
 
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
 <
 UITableViewDataSource,UITableViewDelegate,
     EScrollerViewDelegate,
-    UITextFieldDelegate,
-SearchDelegate
->
+    UITextFieldDelegate
+>//,SearchDelegate
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
@@ -50,7 +51,7 @@ SearchDelegate
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.height=368;
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
      self.curPageIndex = 1;
      self.aryList=[[NSMutableArray alloc]init];
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -65,7 +66,7 @@ SearchDelegate
     [self.tableView registerNib:[UINib nibWithNibName:@"LYHotRecommandCell" bundle:nil]  forCellReuseIdentifier:@"hotCell"];
      [self.tableView registerNib:[UINib nibWithNibName:@"LYAmusementClassCell" bundle:nil] forCellReuseIdentifier:@"LYAmusementClassCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+
 }
 -(void)cityChange{
 //    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -75,10 +76,6 @@ SearchDelegate
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityChange" object:nil];
 }
 
-//109 0 142 100
-//64 1 120 100
-//
-
 - (void)viewWillAppear:(BOOL)animated
 {
     CGRect rc = _topView.frame;
@@ -86,10 +83,17 @@ SearchDelegate
     rc.origin.y = -20;
     _topView.frame = rc;
     [self.navigationController.navigationBar addSubview:_topView];
-//    self.navigationController.navigationBar.translucent = YES;
     [self getData];
 }
 
+- (IBAction)cityChangeClick:(UIButton *)sender {
+    LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
+    [self.navigationController pushViewController:cityChooseVC animated:YES];
+}
+- (IBAction)searchClick:(UIButton *)sender {
+    LYHomeSearcherViewController *homeSearchVC = [[LYHomeSearcherViewController alloc]init];
+    [self.navigationController pushViewController:homeSearchVC animated:YES];
+}
 
 -(void)getData{
     __weak HomePageINeedPlayViewController * weakSelf = self;
@@ -139,7 +143,6 @@ SearchDelegate
                 weakSelf.newbannerList = newbanner.mutableCopy;
             }
             [self.aryList addObjectsFromArray:barList.mutableCopy] ;
-            
             [self.tableView reloadData];
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
@@ -165,7 +168,8 @@ SearchDelegate
 
 - (void)setupViewStyles
 {
-   /* [self setupToViewStyles];
+   [self setupToViewStyles];
+    /*
     UINib * adCellNib = [UINib nibWithNibName:@"LYAdshowCell" bundle:nil];
     [self.tableView registerNib:adCellNib forCellReuseIdentifier:@"LYAdshowCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarInfoCell" bundle:nil] forCellReuseIdentifier:@"LYWineBarInfoCell"];
@@ -254,7 +258,6 @@ SearchDelegate
 - (IBAction)selectAreaClick:(id)sender
 {
     
-
     if (_alertView!=nil || _alertView.isShow==YES) {
         [_alertView removeFromSuperview];
         _alertView=nil;
@@ -276,7 +279,6 @@ SearchDelegate
     
     [self.view addSubview:_alertView];
     
-       
 
 }
 
@@ -332,19 +334,18 @@ SearchDelegate
 
 #pragma mark UITableViewDataSoucre&UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    return self.aryList.count + 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   
     return 1;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (!section || section == 3) {
-        return 0.1;
+        return 0.00001;
     }
     return 4;
 }
@@ -359,9 +360,10 @@ SearchDelegate
     return view;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 2) {
-        return 0.1;
+        return 0.0001;
     }
     return 4;
 }
@@ -370,52 +372,6 @@ SearchDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
-    /*
-    switch (indexPath.row)
-    {
-        case 0:
-        {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"topViewCell"] ;            NSMutableArray *bigArr=[[NSMutableArray alloc]init];
-            
-            for (NSString *iconStr in self.bannerList) {
-                NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
-                [dicTemp setObject:iconStr forKey:@"ititle"];
-                [dicTemp setObject:@"" forKey:@"mainHeading"];
-                [bigArr addObject:dicTemp];
-            }
-            
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122)
-                                                                  scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
-            scroller.delegate=self;
-            [cell addSubview:scroller];
-        }
-            break;
-        case 1:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"spaceEntryCell" forIndexPath:indexPath];
-        }
-            break;
-        case 2:
-        {
-            
-            cell = [tableView dequeueReusableCellWithIdentifier:@"jiujiBeerBarCell" forIndexPath:indexPath];
-            cell.backgroundColor = RGBA(250, 250, 250, 1.0);
-        }
-            break;
-        default:
-        {
-            LYWineBarInfoCell * barCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarInfoCell" forIndexPath:indexPath];
-            
-            cell = barCell;
-            [barCell configureCell:[_aryList objectAtIndex:indexPath.row-3]];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 103.5, 290, 0.5)];
-            lineLal.backgroundColor=RGB(199, 199, 199);
-            [cell addSubview:lineLal];
-        }
-            break;
-    }
-    */
-    
     switch (indexPath.section) {
         case 0:
         {
@@ -451,24 +407,18 @@ SearchDelegate
             return hotCell;
         }
             break;
-        case 3:
+        
+        default:
         {
             LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
             wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+            JiuBaModel *jiuBaModel = self.aryList[indexPath.section - 3];
+            wineCell.jiuBaModel = jiuBaModel;
             return wineCell;
         }
             break;
-            
-        default:
-            break;
     }
-    
-    
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
   return cell;
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -528,7 +478,7 @@ SearchDelegate
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField; {
     LYHomeSearchViewController *homeSearchViewController=[[LYHomeSearchViewController alloc]initWithNibName:@"LYHomeSearchViewController" bundle:nil];
-    homeSearchViewController.delegate=self;
+//    homeSearchViewController.delegate=self;
     [self presentViewController:homeSearchViewController animated:false completion:^{
         
     }];

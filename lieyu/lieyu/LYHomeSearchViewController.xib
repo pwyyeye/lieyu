@@ -1,181 +1,102 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYHomeSearchViewController">
-            <connections>
-                <outlet property="hisbtn1" destination="9WY-gx-xur" id="3TK-8G-yZD"/>
-                <outlet property="hisbtn2" destination="DHA-wU-YWt" id="IM3-da-Zqj"/>
-                <outlet property="hisbtn3" destination="oke-o2-lET" id="97W-GT-cMq"/>
-                <outlet property="hisbtn4" destination="JcJ-Di-fPX" id="8YF-dI-hhG"/>
-                <outlet property="hisbtn5" destination="Ev1-Wv-Fmz" id="4xc-V8-wvs"/>
-                <outlet property="hisbtn6" destination="LrV-6Y-s8f" id="zvu-Bo-hRx"/>
-                <outlet property="serchText" destination="wpo-T4-8hg" id="IlL-qj-8Wz"/>
-                <outlet property="tableView" destination="EyP-eg-fOr" id="sqg-FP-lLj"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYHomeSearchViewController"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="wpo-T4-8hg">
-                    <rect key="frame" x="8" y="27" width="262" height="30"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="M14-jj-g3h"/>
-                    </connections>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOo-0A-StO">
-                    <rect key="frame" x="278" y="34" width="33" height="16"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="取消">
-                        <color key="titleColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="backAct:" destination="-1" eventType="touchUpInside" id="45W-Rh-Kxb"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zl5-lM-why">
-                    <rect key="frame" x="0.0" y="70" width="320" height="498"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="搜索历史" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdN-CR-afr">
-                            <rect key="frame" x="15" y="21" width="79" height="21"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oke-o2-lET">
-                            <rect key="frame" x="219" y="73" width="85" height="26"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" backgroundImage="type">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" backgroundImage="typeSelect"/>
-                            <connections>
-                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="emi-kI-SbD"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JcJ-Di-fPX">
-                            <rect key="frame" x="16" y="122" width="85" height="26"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" backgroundImage="type">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" backgroundImage="typeSelect"/>
-                            <connections>
-                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="LiW-2P-JHv"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ev1-Wv-Fmz">
-                            <rect key="frame" x="118" y="122" width="85" height="26"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" backgroundImage="type">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" backgroundImage="typeSelect"/>
-                            <connections>
-                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="Xug-Mf-Rro"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LrV-6Y-s8f">
-                            <rect key="frame" x="219" y="122" width="85" height="26"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" backgroundImage="type">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" backgroundImage="typeSelect"/>
-                            <connections>
-                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="1xz-og-YHp"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-dG-QFb">
-                            <rect key="frame" x="128" y="215" width="65" height="30"/>
-                            <animations/>
-                            <state key="normal" title="清除历史">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="delHisData:" destination="-1" eventType="touchUpInside" id="QyM-72-RIa"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9WY-gx-xur">
-                            <rect key="frame" x="15" y="73" width="85" height="26"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" backgroundImage="type">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" backgroundImage="typeSelect"/>
-                            <connections>
-                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="LRj-3e-S8V"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHA-wU-YWt">
-                            <rect key="frame" x="118" y="73" width="85" height="26"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" backgroundImage="type">
-                                <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" backgroundImage="typeSelect"/>
-                            <connections>
-                                <action selector="hisKeyAct:" destination="-1" eventType="touchUpInside" id="sh0-o9-t96"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EyP-eg-fOr">
-                    <rect key="frame" x="0.0" y="70" width="320" height="498"/>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="spB-c9-wjT"/>
-                        <outlet property="delegate" destination="-1" id="hAb-bv-tUx"/>
-                    </connections>
-                </tableView>
-            </subviews>
-            <animations/>
-            <color key="backgroundColor" red="0.13725490196078433" green="0.65098039215686276" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="Zl5-lM-why" secondAttribute="bottom" id="77O-BR-LB7"/>
-                <constraint firstAttribute="bottom" secondItem="EyP-eg-fOr" secondAttribute="bottom" id="87Y-Bg-qgj"/>
-                <constraint firstAttribute="trailing" secondItem="EyP-eg-fOr" secondAttribute="trailing" id="Em9-6i-gsB"/>
-                <constraint firstItem="wpo-T4-8hg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="FGt-ju-Otf"/>
-                <constraint firstItem="EyP-eg-fOr" firstAttribute="top" secondItem="wpo-T4-8hg" secondAttribute="bottom" constant="13" id="KRk-kP-Vf4"/>
-                <constraint firstAttribute="trailing" secondItem="Zl5-lM-why" secondAttribute="trailing" id="L7x-ea-RAd"/>
-                <constraint firstItem="Zl5-lM-why" firstAttribute="top" secondItem="wpo-T4-8hg" secondAttribute="bottom" constant="13" id="OcP-c0-is6"/>
-                <constraint firstItem="wpo-T4-8hg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="27" id="SpB-8K-B7A"/>
-                <constraint firstItem="Zl5-lM-why" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cju-mx-YKt"/>
-                <constraint firstItem="EyP-eg-fOr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qtP-jp-vbU"/>
-                <constraint firstAttribute="trailing" secondItem="wpo-T4-8hg" secondAttribute="trailing" constant="50" id="za2-dM-IZY"/>
-            </constraints>
-            <point key="canvasLocation" x="271" y="307"/>
-        </view>
+        <viewController id="NKw-2n-yDg" customClass="LYHomeSearchViewController">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="9Kk-rR-cQV"/>
+                <viewControllerLayoutGuide type="bottom" id="HAh-Hf-Jan"/>
+            </layoutGuides>
+            <view key="view" contentMode="scaleToFill" id="AvW-w4-b05">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="UdE-vi-0hE">
+                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                        <animations/>
+                        <textInputTraits key="textInputTraits"/>
+                        <scopeButtonTitles>
+                            <string>Title</string>
+                            <string>Title</string>
+                        </scopeButtonTitles>
+                    </searchBar>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fox-Sa-fIe">
+                        <rect key="frame" x="116" y="124" width="88" height="27"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VrC-Hz-wZX">
+                        <rect key="frame" x="16" y="124" width="88" height="27"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lov-zf-J6O">
+                        <rect key="frame" x="16" y="169" width="88" height="27"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DV-Ln-msr">
+                        <rect key="frame" x="116" y="169" width="88" height="27"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DFR-cF-Brf">
+                        <rect key="frame" x="216" y="169" width="88" height="27"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrz-RU-gkY">
+                        <rect key="frame" x="216" y="124" width="88" height="27"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8m-Vl-tG5">
+                        <rect key="frame" x="132" y="336" width="60" height="30"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="清除历史">
+                            <color key="titleColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            </view>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outlet property="btn_clean" destination="m8m-Vl-tG5" id="3QE-Sj-mK7"/>
+                <outlet property="search" destination="UdE-vi-0hE" id="Gza-M3-2Jc"/>
+                <outletCollection property="btn_historyArray" destination="VrC-Hz-wZX" id="lWS-x6-Haj"/>
+                <outletCollection property="btn_historyArray" destination="Fox-Sa-fIe" id="IPm-9N-DhF"/>
+                <outletCollection property="btn_historyArray" destination="qrz-RU-gkY" id="uQb-A2-FlV"/>
+                <outletCollection property="btn_historyArray" destination="lov-zf-J6O" id="XiT-B0-Dij"/>
+                <outletCollection property="btn_historyArray" destination="8DV-Ln-msr" id="IMS-vx-wwb"/>
+                <outletCollection property="btn_historyArray" destination="DFR-cF-Brf" id="gpA-y8-QVF"/>
+            </connections>
+            <point key="canvasLocation" x="400" y="291"/>
+        </viewController>
     </objects>
-    <resources>
-        <image name="type" width="87" height="26"/>
-        <image name="typeSelect" width="87" height="26"/>
-    </resources>
 </document>

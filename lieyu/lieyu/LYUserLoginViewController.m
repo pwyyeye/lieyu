@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"登录";
     // Do any additional setup after loading the view from its nib.
     
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
@@ -32,13 +31,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    if (self.navigationController.navigationBarHidden != NO) {
-        [self.navigationController setNavigationBarHidden:NO];
-    }
-    
+//    if (self.navigationController.navigationBarHidden != NO) {
+//        [self.navigationController setNavigationBarHidden:NO];
+//    }
+//    
+    self.userNameTex.borderStyle = UITextBorderStyleRoundedRect;
+    self.passWordTex.borderStyle = UITextBorderStyleRoundedRect;
+    self.userNameTex.layer.cornerRadius = 6;
+    //self.userNameTex.layer.borderWidth = 0.5;
+  //  self.userNameTex.layer.borderColor = RGBA(255,255,255, 0.2).CGColor;
+   // self.userNameTex.layer.masksToBounds = YES;
+    self.userNameTex.layer.shadowOpacity = 1;
+    self.userNameTex.layer.shadowOffset = CGSizeMake(20, 20);
+    self.userNameTex.layer.shadowColor = RGBA(0, 0, 0, 0.24).CGColor;
+    self.userNameTex.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.userNameTex.layer.shadowRadius = 2;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -55,7 +70,8 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
+
 #pragma mark - 忘记密码
 - (IBAction)forgetPassWordAct:(UIButton *)sender {
     LYResetPasswordViewController *resetPasswordViewController=[[LYResetPasswordViewController alloc]initWithNibName:@"LYResetPasswordViewController" bundle:nil];
@@ -155,4 +171,5 @@
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+ 
 @end
