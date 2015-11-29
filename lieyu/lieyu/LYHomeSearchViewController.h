@@ -7,11 +7,13 @@
 //
 
 #import "LYBaseViewController.h"
+/*
 #import "JiuBaModel.h"
 @protocol SearchDelegate<NSObject>
 - (void)addCondition:(JiuBaModel *)model;
 
 @end
+ */
 @interface LYHomeSearchViewController : LYBaseViewController
 /*
 @property (weak, nonatomic) IBOutlet UIButton *hisbtn6;

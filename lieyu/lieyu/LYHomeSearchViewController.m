@@ -7,6 +7,8 @@
 //
 
 #import "LYHomeSearchViewController.h"
+/*
+
 #import "LYWineBarCell.h"
 #import "BeerBarDetailViewController.h"
 #import "NetPublic.h"
@@ -28,6 +30,7 @@
 }
 @property(nonatomic,assign) NSInteger curPageIndex;
 @end
+ */
 
 @implementation LYHomeSearchViewController
 /*
@@ -66,9 +69,10 @@
 //    [self getData];
     // Do any additional setup after loading the view from its nib.
     
-    
+   
     
 }
+/*
 -(void)getHisUI{
     [self loadHisData];
     for (UIButton *btn in btnArr) {
@@ -147,7 +151,7 @@
     }
     
 }
-/*
+
 - (IBAction)valueChangeAct:(UITextField *)sender {
     if(sender.text.length <=0){
         [self.tableView setHidden:YES];
@@ -317,11 +321,12 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 - (IBAction)backAct:(UIButton *)sender {
     [self dismissViewControllerAnimated:false completion:^{
         
     }];
 }
+ */
 @end

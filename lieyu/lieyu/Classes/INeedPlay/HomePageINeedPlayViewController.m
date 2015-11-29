@@ -21,15 +21,15 @@
 #import "LYAmusementClassCell.h"
 #import "LYHotRecommandCell.h"
 #import "LYCityChooseViewController.h"
+#import "LYHomeSearcherViewController.h"
 
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
 <
 UITableViewDataSource,UITableViewDelegate,
     EScrollerViewDelegate,
-    UITextFieldDelegate,
-SearchDelegate
->
+    UITextFieldDelegate
+>//,SearchDelegate
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
@@ -51,7 +51,7 @@ SearchDelegate
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.height=368;
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
      self.curPageIndex = 1;
      self.aryList=[[NSMutableArray alloc]init];
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -89,6 +89,10 @@ SearchDelegate
 - (IBAction)cityChangeClick:(UIButton *)sender {
     LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
     [self.navigationController pushViewController:cityChooseVC animated:YES];
+}
+- (IBAction)searchClick:(UIButton *)sender {
+    LYHomeSearcherViewController *homeSearchVC = [[LYHomeSearcherViewController alloc]init];
+    [self.navigationController pushViewController:homeSearchVC animated:YES];
 }
 
 -(void)getData{
