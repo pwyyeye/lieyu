@@ -203,6 +203,7 @@
     NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
     return [identityCardPredicate evaluateWithObject:identityCard];
 }
+
 #pragma --mark 弹出消息框来显示消息
 + (void)showMessage:(NSString* )message
 {

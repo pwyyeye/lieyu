@@ -23,6 +23,7 @@
     
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
+    self.title=@"登录";
     
 }
 
@@ -56,13 +57,6 @@
     self.userNameTex.layer.shadowRadius = 2;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    if (self.navigationController.navigationBarHidden != NO) {
-        [self.navigationController setNavigationBarHidden:NO];
-    }
-}
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
