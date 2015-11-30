@@ -17,6 +17,7 @@
 #import "LYUserHttpTool.h"
 #import "DWTaoCanXQViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "LYDinWeiTableViewCell.h"
 @interface LYwoYaoDinWeiMainViewController ()
 {
     JiuBaModel *jiubaModel;
@@ -35,6 +36,8 @@
     [self getMenuHrizontal];
     [self getdata];
     // Do any additional setup after loading the view from its nib.
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
+    self.navigationItem.title = @"所有套餐";
 }
 #pragma mark 获取七天日期
 -(void)getweekDate{
@@ -49,8 +52,6 @@
     NSDateComponents *comps ;
     for (int i=0; i<7; i++) {
         comps = [calendar components:unitFlags fromDate:nowDate];
-            
-
 //        int year = (int)[comps year];
         int week = (int)[comps weekday];
         int month = (int)[comps month];
@@ -60,36 +61,39 @@
         NSString *weekStr;        
         if(week==1)
         {
-            weekStr=@"星期天";
+            weekStr=@"周日";
         }else if(week==2){
-            weekStr=@"星期一";
+            weekStr=@"周一";
             
         }else if(week==3){
-            weekStr=@"星期二";
+            weekStr=@"周二";
             
         }else if(week==4){
-            weekStr=@"星期三";
+            weekStr=@"周三";
             
         }else if(week==5){
-            weekStr=@"星期四";
+            weekStr=@"周四";
             
         }else if(week==6){
-            weekStr=@"星期五";
+            weekStr=@"周五";
             
         }else if(week==7){
-            weekStr=@"星期六";
+            weekStr=@"周六";
             
         }
         if(i==0){
             datePar=dateStr;
-            _moonLal.text=[MyUtil getMoonValue:[NSString stringWithFormat:@"%d",month]];
             weekStr=@"今天";
         }
         NSDictionary *dic=@{@"date":dateStr,@"week":weekStr,@"month":[NSString stringWithFormat:@"%d",month],@"day":[NSString stringWithFormat:@"%d",day]};
         [weekDateArr addObject:dic];
         nowDate = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([nowDate timeIntervalSinceReferenceDate] + 24*3600)];
     }
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 #pragma mark 获取顶部菜单
 -(void)getMenuHrizontal{
@@ -110,13 +114,14 @@
         [itemTemp setObject:normalImg forKey:NOMALKEY];
         [itemTemp setObject: [dic objectForKey:@"week"] forKey:WEEKKEY];
         [itemTemp setObject:[dic objectForKey:@"day"]  forKey:TITLEKEY];
+        [itemTemp setObject:[dic objectForKey:@"month"] forKey:MONTHKEY];
         [itemTemp setObject:[NSNumber numberWithFloat:67.5]  forKey:TITLEWIDTH];
         [itemTemp setObject:@""  forKey:COUNTORDER];
         [barArr addObject:itemTemp];
     }
     
     if (mMenuHriZontal == nil) {
-        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrameForTime:CGRectMake(52, 21, SCREEN_WIDTH-52, self.menuView.height-21) ButtonItems:barArr];
+        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrameForTime:CGRectMake(0,64, 320, 50) ButtonItems:barArr];
         mMenuHriZontal.delegate = self;
     }
     [self.view addSubview:mMenuHriZontal];
@@ -127,58 +132,41 @@
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiDetailWithParams:dic block:^(JiuBaModel *result) {
         jiubaModel=result;
-        NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"DWTopInfoView" owner:nil options:nil];
-        DWTopInfoView *topInfoView= (DWTopInfoView *)[nibView objectAtIndex:0];
-        
-        [topInfoView.jiubaImageView setImageWithURL:[NSURL URLWithString:jiubaModel.baricon]];
-        topInfoView.addressLal.text=jiubaModel.address;
-        topInfoView.jiubaName.text=jiubaModel.barname;
-        topInfoView.yudingliangLal.text=jiubaModel.today_sm_buynum;
-        weakSelf.tableView.tableHeaderView=topInfoView;
         [weakSelf.tableView reloadData];
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-        return jiubaModel.recommend_package.count;
+        return 1;
    
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return jiubaModel.recommend_package.count;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 48;
+    return 8;
 }
 
-
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
- 
-    
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"TaoCanTitleView" owner:nil options:nil];
-    TaoCanTitleView *taoCanTitleView= (TaoCanTitleView *)[nibView objectAtIndex:0];
-    taoCanTitleView.orderNumLal.text=[NSString stringWithFormat:@"%ld",jiubaModel.recommend_package.count];
-    return taoCanTitleView;
-    
-    
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+// 
+//    
+//    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"TaoCanTitleView" owner:nil options:nil];
+//    TaoCanTitleView *taoCanTitleView= (TaoCanTitleView *)[nibView objectAtIndex:0];
+//    taoCanTitleView.orderNumLal.text=[NSString stringWithFormat:@"%ld",jiubaModel.recommend_package.count];
+//    return taoCanTitleView;
+//    
+//    
+//}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    static NSString *CellIdentifier = @"OrderDetailCell";
-    RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.row];
-    OrderDetailCell *cell = (OrderDetailCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-        cell = (OrderDetailCell *)[nibArray objectAtIndex:0];
-        cell.backgroundColor=[UIColor whiteColor];
-    }
-    
-    cell.nameLal.text=model.title;
+    /*
+   
+
     cell.delLal.text=[NSString stringWithFormat:@"[适合%@-%@人]",model.minnum,model.maxnum];
     NSString *flTem=[NSString stringWithFormat:@"再返利%.f%%",model.rebate.doubleValue*100];
     [cell.yjBtn setTitle:flTem forState:0];
@@ -191,8 +179,16 @@
     UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
     lineLal.backgroundColor=RGB(199, 199, 199);
     [cell addSubview:lineLal];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+   
+    */
+    LYDinWeiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
+    RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.section];
+    cell.label_name.text = model.title;
+    cell.label_price_now.text = [NSString stringWithFormat:@"¥%@",model.price];
+    cell.label_price_old.text = [NSString stringWithFormat:@"¥%@",model.marketprice];
+    cell.label_buyCount.text = [NSString stringWithFormat:@"%@人购",model.buynum];
+    [cell.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl]];
+     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
@@ -206,17 +202,19 @@
     taoCanXQViewController.title=@"套餐详情";
     taoCanXQViewController.smid=model.smid.intValue;
     taoCanXQViewController.dateStr=dataChoose;
+    taoCanXQViewController.weekStr = [dic objectForKey:@"week"];
     [self.navigationController pushViewController:taoCanXQViewController animated:YES];
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 76;
+    return 70;
 }
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleNone;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -235,21 +233,17 @@
 #pragma mark MenuHrizontalDelegate
 -(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
      NSDictionary *dic=weekDateArr[aIndex];
-    _moonLal.text=_moonLal.text=[MyUtil getMoonValue:[dic objectForKey:@"month"]];
-    datePar=[dic objectForKey:@"date"];
+    datePar=[dic objectForKey:@"month"];
     [self getdata];
 }
-- (IBAction)soucangAct:(UIButton *)sender {
 
+- (IBAction)soucangAct:(UIButton *)sender {
     NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:jiubaModel.barid]};
     [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
         if(result){
-            
             [MyUtil showMessage:@"收藏成功"];
         }
     }];
-
-    
 }
 
 - (IBAction)backAct:(UIButton *)sender {

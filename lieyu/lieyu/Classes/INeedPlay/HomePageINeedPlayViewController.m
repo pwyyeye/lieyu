@@ -22,6 +22,7 @@
 #import "LYHotRecommandCell.h"
 #import "LYCityChooseViewController.h"
 #import "LYHomeSearcherViewController.h"
+#import "LYHotJiuBarViewController.h"
 
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
@@ -179,10 +180,8 @@ UITableViewDataSource,UITableViewDelegate,
 }
 - (void)installFreshEvent
 {
-    
     __weak HomePageINeedPlayViewController * weakSelf = self;
 //    __weak UITableView *tableView = self.tableView;
-    
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
                              ^{
                                  weakSelf.curPageIndex = 1;
@@ -203,6 +202,7 @@ UITableViewDataSource,UITableViewDelegate,
                                       }
                                   }];
                              }];
+
     
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
@@ -254,67 +254,6 @@ UITableViewDataSource,UITableViewDelegate,
 }
 
 #pragma mark 选择区域
-
-- (IBAction)selectAreaClick:(id)sender
-{
-    
-    if (_alertView!=nil || _alertView.isShow==YES) {
-        [_alertView removeFromSuperview];
-        _alertView=nil;
-        return;
-    }
-    _alertView=[[LYAlert alloc] initWithType:LYAlertTypeUpToDown];
-    _alertView.shade_proportion=0.7;
-    
-    UILabel *title=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 200, 25)];
-    title.text=@"热门城市";
-    title.font=[UIFont boldSystemFontOfSize:15];
-    title.textColor=RGB(51, 51, 51);
-    
-    NSArray *buttonArray=@[@"上海",@"北京",@"广州",@"杭州"];
-    [self initCityButon:buttonArray];
-    [_alertView.showView addSubview: title];
-    
-    [_alertView show];
-    
-    [self.view addSubview:_alertView];
-    
-
-}
-
-
--(void)initCityButon:(NSArray *)buttonArray{
-    if (buttonArray.count>0) {
-        float x=0;//按钮 x 坐标
-        float y=50;
-        float width=((SCREEN_WIDTH-60)/3);
-        float height=30;
-        
-        for (int i=0; i<buttonArray.count; i++) {
-            x+=width+10;//间隔10
-            if(i%3==0&&i!=0){//三个按钮换行
-                x=20;
-                if ((int)(i/3)>0) {
-                    y=y+40;
-                }
-                
-            }else if(i==0){//第一次 x＝0
-                x=20;//间隔10
-            }
-            
-            CGRect rect=CGRectMake(x, y, width, height);
-            CityChooseButton *button=[[CityChooseButton alloc] initWithFrame:rect];
-            [button setTitle:[buttonArray objectAtIndex:i] forState:UIControlStateNormal];
-            button.delegate=self;
-            [_alertView.showView addSubview: button];
-
-        }
-        //        x=10;
-    }
-    
-}
-
-
 -(void)chooseButton:(UIButton *)sender andSelected:(BOOL)isSelected{
     if (isSelected) {
         _cityBtn.titleLabel.text=sender.titleLabel.text;
@@ -325,6 +264,12 @@ UITableViewDataSource,UITableViewDelegate,
     }
 }
 
+- (IBAction)upClick:(id)sender {
+    [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+}
+- (IBAction)aroundMeClick:(id)sender {
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -378,7 +323,6 @@ UITableViewDataSource,UITableViewDelegate,
             cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             NSMutableArray *bigArr=[[NSMutableArray alloc]init];
             for (NSString *iconStr in self.bannerList) {
-                
                 NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
                 [dicTemp setObject:iconStr forKey:@"ititle"];
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
@@ -397,6 +341,9 @@ UITableViewDataSource,UITableViewDelegate,
             amuseCell.scrollView.contentSize = CGSizeMake(640, 0);
             amuseCell.scrollView.alwaysBounceVertical = NO;
             amuseCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            for (UIButton *btn in amuseCell.buttonArray) {
+                [btn addTarget:self action:@selector(hotJiuClick) forControlEvents:UIControlEventTouchUpInside];
+            }
             return amuseCell;
         }
             break;
@@ -404,6 +351,7 @@ UITableViewDataSource,UITableViewDelegate,
         {
             
             LYHotRecommandCell *hotCell = [tableView dequeueReusableCellWithIdentifier:@"hotCell" forIndexPath:indexPath];
+            
             return hotCell;
         }
             break;
@@ -419,6 +367,11 @@ UITableViewDataSource,UITableViewDelegate,
             break;
     }
   return cell;
+}
+
+- (void)hotJiuClick{
+    LYHotJiuBarViewController *hotJiuBarVC = [[LYHotJiuBarViewController alloc]init];
+    [self.navigationController pushViewController:hotJiuBarVC animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

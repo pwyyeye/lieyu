@@ -124,6 +124,7 @@
             LYHeaderTableViewCell *headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
             [headerCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.banners[0]]];
             headerCell.label_laBa.text = self.beerBarDetail.announcement.content;
+            headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return headerCell;
 
         }
@@ -134,17 +135,28 @@
             LYBarTitleTableViewCell *barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             [barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon]];
             barTitleCell.label_name.text = self.beerBarDetail.barname;
-            barTitleCell.label_price.text = [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
+            
+            NSString *priceStr = [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
+            NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
+            [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(1, 3)];
+            if ([self.beerBarDetail.lowest_consumption integerValue] > 999) {
+                 [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(1, 4)];
+            }
+            
+            
+            barTitleCell.label_price.attributedText = attributedStr;
+            
             for (int i = 0;i < 5;i ++) {
                 UIImageView *imageView = barTitleCell.imageView_starArray[i];
                 imageView.image = [UIImage imageNamed:@"starGray"];
             }
-            if (self.beerBarDetail.star_num) {
-                for (int y = 0; y < self.beerBarDetail.star_num; y++) {
+            if ([self.beerBarDetail.star_num integerValue]) {
+                for (int y = 0; y < [self.beerBarDetail.star_num integerValue]; y++) {
                     UIImageView *imageView = barTitleCell.imageView_starArray[y];
                     imageView.image = [UIImage imageNamed:@"starRed"];
                 }
             }
+            barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return barTitleCell;
             
         }
@@ -154,6 +166,7 @@
             LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
             barPointCell.label_point.text = self.beerBarDetail.address;
             barPointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                        barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return barPointCell;
         }
             break;
@@ -175,6 +188,7 @@
                 label.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
                 label.text = self.beerBarDetail.subtypename;
             }
+                        barSpecialCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return barSpecialCell;
         }
             break;
@@ -184,6 +198,7 @@
                 case 0:
                 {
                     LYBarDescTitleTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTitleTableViewCell" forIndexPath:indexPath];
+                    barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
                     return barDescTitleCell;
                 }
                     break;
@@ -192,6 +207,7 @@
                 {
                     LYBarDesrcTableViewCell *barDescCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDesrcTableViewCell" forIndexPath:indexPath];
                     barDescCell.label_content.text = self.beerBarDetail.announcement.content;
+                    barDescCell.selectionStyle = UITableViewCellSelectionStyleNone;
 //                    if (indexPath.row == 1 || indexPath.row == 5) {
 //                        barDescCell.imageView_content.hidden = YES;
 //                        barDescCell.label_content.text = self.beerBarDetail.announcement.content;
@@ -248,17 +264,10 @@
 //            cellFrame.size.height=lal.size.height+20;
 //            
 //            [cell setFrame:cellFrame];
-//            
-//            
-//            
-//            
-//            
-        
+
             break;
 
     }
-    
-    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 }

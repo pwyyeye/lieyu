@@ -87,18 +87,18 @@
         //title
         UILabel *titlelbl=[[UILabel alloc]initWithFrame:CGRectMake(0, (30-11)/2,vButton.width, 11)];
         titlelbl.text=vTitleStr;
-        titlelbl.font=[UIFont systemFontOfSize:11];
+        titlelbl.font=[UIFont systemFontOfSize:10];
         titlelbl.backgroundColor=[UIColor clearColor];
-        titlelbl.textColor =RGB(102, 102, 102);
+        titlelbl.textColor =RGB(255, 255, 255);
         titlelbl.textAlignment=1;
         [vButton addSubview:titlelbl];
         
         
         UILabel *countbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 27,vButton.width, 8)];
         countbl.text=countSumStr;
-        countbl.font=[UIFont systemFontOfSize:6];
+        countbl.font=[UIFont systemFontOfSize:9];
         countbl.backgroundColor=[UIColor clearColor];
-        countbl.textColor =RGB(255, 0, 0);
+        countbl.textColor =RGB(255, 255, 255);
         countbl.textAlignment=1;
         [vButton addSubview:countbl];
         //
@@ -128,36 +128,37 @@
 //        UIImage *normalImg = [lDic objectForKey:NOMALKEY];
         NSString *weekStr = [lDic objectForKey:WEEKKEY];
         NSString *vTitleStr = [lDic objectForKey:TITLEKEY];
+        NSString *vMonthStr = [lDic objectForKey:MONTHKEY];
         float vButtonWidth = [[lDic objectForKey:TITLEWIDTH] floatValue];
         TimeButton *vButton = [TimeButton buttonWithType:UIButtonTypeCustom];
         vButton.userInteractionEnabled=YES;
         
         
-        [vButton setBackgroundColor:RGB(35, 166, 116)];
-        [vButton setBackgroundImage:[UIImage imageNamed:@"bg_navbar_time"] forState:UIControlStateSelected];
+        [vButton setBackgroundColor:RGB(114, 5, 147)];
+
+        //[vButton setBackgroundImage:[UIImage imageNamed:@"portrait_bg"] forState:UIControlStateSelected];
         //        [vButton setTitle:vTitleStr forState:UIControlStateNormal];
         //        [vButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         //        [vButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
         [vButton setTag:i];
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height+1)];
-        
-        
+        [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];
         
         //title
-        vButton.weekLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 11,vButton.width, 10)];
+        vButton.weekLal=[[UILabel alloc]initWithFrame:CGRectMake(20, 10,20, 14)];
         vButton.weekLal.text=weekStr;
-        vButton.weekLal.font=[UIFont systemFontOfSize:7];
+        vButton.weekLal.font=[UIFont systemFontOfSize:10];
         vButton.weekLal.backgroundColor=[UIColor clearColor];
         vButton.weekLal.textColor =RGB(255, 255, 255);
         vButton.weekLal.textAlignment=1;
         [vButton addSubview:vButton.weekLal];
         
         
-        vButton.titleLal =[[UILabel alloc]initWithFrame:CGRectMake(0, 28,vButton.width, 20)];
-        vButton.titleLal.text=vTitleStr;
-        vButton.titleLal.font=[UIFont systemFontOfSize:17];
+        vButton.titleLal =[[UILabel alloc]initWithFrame:CGRectMake(11, 28,40, 10)];
+        vButton.titleLal.text= [NSString stringWithFormat:@"%@月%@日",vMonthStr, vTitleStr];
+        vButton.titleLal.font=[UIFont systemFontOfSize:9];
         vButton.titleLal.backgroundColor=[UIColor clearColor];
+        vButton.titleLal.alpha = 0.7;
         vButton.titleLal.textColor =RGB(255, 255, 255);
         vButton.titleLal.textAlignment=1;
         [vButton addSubview:vButton.titleLal];

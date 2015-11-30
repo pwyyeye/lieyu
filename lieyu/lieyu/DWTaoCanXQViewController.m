@@ -7,13 +7,14 @@
 //
 
 #import "DWTaoCanXQViewController.h"
-#import "PTTaoCanCell.h"
-#import "PTShowIntroductionsCell.h"
-#import "LYTaoCanXQCell.h"
 #import "LYTitleInfoCell.h"
 #import "LYHomePageHttpTool.h"
 #import "TaoCanModel.h"
 #import "DWSureOrderViewController.h"
+#import "LYTaoCanHeaderTableViewCell.h"
+#import "LYBarPointTableViewCell.h"
+#import "LYTaoCanContentTableViewCell.h"
+#import "LYTaoCanListTableViewCell.h"
 @interface DWTaoCanXQViewController ()
 {
     TaoCanModel *taoCanModel;
@@ -29,28 +30,57 @@
     _tableView.separatorColor=[UIColor clearColor];
     [self getdata];
     // Do any additional setup after loading the view.
+    [self setTableViewCell];
+    self.navigationController.navigationBarHidden = YES;
+    [self createButton];
+}
+
+- (void)createButton{
+    UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 30, 40, 40)];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"icon_huanhui_action"] forState:UIControlStateNormal];
+    [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backBtn];
+    
+    UIButton *collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(216, 30, 40, 40)];
+    [collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
+    [collectBtn addTarget:self action:@selector(collectClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *shareBtn = [[UIButton alloc]initWithFrame:CGRectMake(272, 30, 40, 40)];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)backClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark 收藏按钮action
+- (void)collectClick{
+    
+}
+
+- (void)shareClick{
+    
+}
+
+- (void)setTableViewCell{
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYTaoCanHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYTaoCanHeaderTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYBarPointTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarPointTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYTaoCanContentTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYTaoCanContentTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYTaoCanListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYTaoCanListTableViewCell"];
 }
 #pragma mark 获取数据
 -(void)getdata{
     NSDictionary *dic=@{@"smid":[NSString stringWithFormat:@"%d",self.smid]};
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiTaoCanDetailWithParams:dic block:^(TaoCanModel *result) {
-        taoCanModel=result;
+        taoCanModel = result;
         [weakSelf.tableView reloadData];
     }];
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section==2){
-        if(taoCanModel.goodsList){
-            return taoCanModel.goodsList.count;
-        }else{
-            return 0;
-        }
-        
-    }else{
-        return 1;
-    }
+    return 1;
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -63,38 +93,19 @@
     
     
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(section==2 || section==4 || section==5){
-        return 34;
-    }else{
-        return 1;
+    if (!section) {
+        return LONG_LONG_MIN;
     }
+    return 8;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if(section==0  || section==1 || section==3){
-        return [[UIView alloc] initWithFrame:CGRectZero];
-    }else{
-        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
-        view.backgroundColor=RGB(247, 247, 247);
-        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(15, 11, 200, 12)];
-        if(section==2){
-            label.text=@"套餐内容";
-        }else if (section==4){
-            label.text=@"套餐说明";
-        }else{
-            label.text=@"套餐消费流程";
-        }
-        
-        label.font=[UIFont systemFontOfSize:12];
-        label.textColor=RGB(51, 51, 51);
-        [view addSubview:label];
-        return view;
-    }
-    
-    
+    return [[UIView alloc]init];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -103,19 +114,14 @@
     {
         case 0:
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"LYTaoCanXQCell" forIndexPath:indexPath];
-            if (cell) {
-                LYTaoCanXQCell * adCell = (LYTaoCanXQCell *)cell;
-                [adCell configureCell:taoCanModel];
-                
-                
-            }
+            LYTaoCanHeaderTableViewCell *headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYTaoCanHeaderTableViewCell" forIndexPath:indexPath];
+            headerCell.model = taoCanModel;
+            return headerCell;
         }
             break;
         case 1:
         {
-            
-            
+            /*
             cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
             if (cell) {
                 LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
@@ -123,85 +129,109 @@
                 titleInfoCell.delLal.text=_dateStr;
                 
             }
+             */
+            LYBarPointTableViewCell *pointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
+            pointCell.label_point.text = taoCanModel.barinfo.address;
+            pointCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            pointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            return pointCell;
         }
             break;
         case 2:
         {
+//            套餐时间
+            cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
+            if (cell) {
+                LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
+                titleInfoCell.titleLal.text=@"套餐时间";
+                titleInfoCell.delLal.text= [NSString stringWithFormat:@"%@ %@",_dateStr,_weekStr];
+            }
+            /*
             NSArray *taocanArr=taoCanModel.goodsList;
-            
             cell = [tableView dequeueReusableCellWithIdentifier:@"PTTaoCanCell" forIndexPath:indexPath];
             if (cell) {
                 PTTaoCanCell * taocanCell = (PTTaoCanCell *)cell;
                 [taocanCell configureCell:taocanArr[indexPath.row]];
-                
-                
             }
             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
+             */
         }
             break;
         case 3:
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
-            if (cell) {
-                LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
-                titleInfoCell.titleLal.text=@"服务类型";
-                titleInfoCell.delLal.text=taoCanModel.serviceType;
-                
-            }
+
+//            cell = [tableView dequeueReusableCellWithIdentifier:@"PTTaoCanCell" forIndexPath:indexPath];
+//            if (cell) {
+//               PTTaoCanCell * taocanCell = (PTTaoCanCell *)cell;
+//                [taocanCell configureCell:taocanArr[indexPath.row]];
+//            }
+//            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
+//            lineLal.backgroundColor=RGB(199, 199, 199);
+//            [cell addSubview:lineLal];
+            
+            LYTaoCanListTableViewCell *listCell = [tableView dequeueReusableCellWithIdentifier:@"LYTaoCanListTableViewCell" forIndexPath:indexPath];
+            listCell.goodListArray = taoCanModel.goodsList;
+            return listCell;
         }
             break;
         case 4:
         {
-            NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
-            
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
-                cell.accessoryType = UITableViewCellAccessoryNone;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor=[UIColor whiteColor];
-                UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
-                [lal1 setTag:1];
-                lal1.textAlignment=NSTextAlignmentLeft;
-                lal1.font=[UIFont boldSystemFontOfSize:12];
-                lal1.backgroundColor=[UIColor clearColor];
-                lal1.textColor= RGB(128, 128, 128);
-                lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
-                lal1.lineBreakMode=UILineBreakModeWordWrap;
-                [cell.contentView addSubview:lal1];
-                
-            
-            
-            
-            UILabel *lal = (UILabel*)[cell viewWithTag:1];
-            NSString *title=taoCanModel.introduction;
-            
-            //高度固定不折行，根据字的多少计算label的宽度
-            
-            CGSize size = [title sizeWithFont:lal.font
-                            constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
-                                lineBreakMode:NSLineBreakByWordWrapping];
-            //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-            //根据计算结果重新设置UILabel的尺寸
-            lal.height=size.height;
-            lal.text=title;
-            CGRect cellFrame = [cell frame];
-            cellFrame.origin=CGPointMake(0, 0);
-            cellFrame.size.width=SCREEN_WIDTH;
-            cellFrame.size.height=lal.size.height+20;
-            
-            [cell setFrame:cellFrame];
+//            NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
+//            
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
+//                cell.accessoryType = UITableViewCellAccessoryNone;
+//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                cell.backgroundColor=[UIColor whiteColor];
+//                UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
+//                [lal1 setTag:1];
+//                lal1.textAlignment=NSTextAlignmentLeft;
+//                lal1.font=[UIFont boldSystemFontOfSize:12];
+//                lal1.backgroundColor=[UIColor clearColor];
+//                lal1.textColor= RGB(128, 128, 128);
+//                lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+//                lal1.lineBreakMode=UILineBreakModeWordWrap;
+//                [cell.contentView addSubview:lal1];
+//                
+//            
+//            
+//            
+//            UILabel *lal = (UILabel*)[cell viewWithTag:1];
+//            NSString *title=taoCanModel.introduction;
+//            
+//            //高度固定不折行，根据字的多少计算label的宽度
+//            
+//            CGSize size = [title sizeWithFont:lal.font
+//                            constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
+//                                lineBreakMode:NSLineBreakByWordWrapping];
+//            //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+//            //根据计算结果重新设置UILabel的尺寸
+//            lal.height=size.height;
+//            lal.text=title;
+//            CGRect cellFrame = [cell frame];
+//            cellFrame.origin=CGPointMake(0, 0);
+//            cellFrame.size.width=SCREEN_WIDTH;
+//            cellFrame.size.height=lal.size.height+20;
+//            
+//            [cell setFrame:cellFrame];
 
-            
+            LYTaoCanContentTableViewCell *contentCell = [tableView dequeueReusableCellWithIdentifier:@"LYTaoCanContentTableViewCell" forIndexPath:indexPath];
+            contentCell.label_desrc.text = taoCanModel.introduction;
+            return contentCell;
+        
         }
             break;
+            
         default:
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"PTShowIntroductionsCell" forIndexPath:indexPath];
+            LYTaoCanListTableViewCell *progressCell = [tableView dequeueReusableCellWithIdentifier:@"LYTaoCanListTableViewCell" forIndexPath:indexPath];
+            progressCell.isProgress = YES;
+            progressCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return progressCell;
         }
             break;
     }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -212,48 +242,44 @@
     switch (indexPath.section) {
         case 0://广告
         {
-            h = 334;
+            h = 466;
         }
             break;
         case 1:// 选项卡 ，酒吧或夜总会
         {
-            h = 44;
+            h = 60;
         }
             break;
         case 2:// 选项卡 ，酒吧或夜总会
         {
-            h = 44;
+            h = 40;
         }
             break;
         case 3:// 选项卡 ，酒吧或夜总会
         {
-            h = 44;
+            h = 187;
         }
             break;
         case 4:// 选项卡 ，酒吧或夜总会
         {
-            UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-            return cell.frame.size.height;
+            CGSize size = [taoCanModel.introduction boundingRectWithSize:CGSizeMake(320, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+                                                                                                                                    return size.height+44+22;
         }
             break;
         default:
         {
-            h = 162;
+            h = 229;
         }
             break;
     }
     return h;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     //        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     //        [self.navigationController pushViewController:controller animated:YES];
-    
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

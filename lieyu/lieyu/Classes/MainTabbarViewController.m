@@ -45,9 +45,6 @@
     }else{
         item.badgeValue=[NSString stringWithFormat:@"%d",item.badgeValue.intValue+1];
     }
-    
-    
-    
 }
 
 

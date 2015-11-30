@@ -18,7 +18,6 @@
 - (IBAction)soucangAct:(UIButton *)sender;
 - (IBAction)backAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UILabel *moonLal;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (assign, nonatomic) int barid;
 
