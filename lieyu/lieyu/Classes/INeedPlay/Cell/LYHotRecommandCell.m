@@ -12,6 +12,12 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    _label_line_bottom.bounds = CGRectMake(0, 0, 320, 0.5);
+    _label_line_top.bounds = CGRectMake(0, 0, 320, 0.2);
+    _label_line_bottom.hidden = YES;
+    _label_line_top.hidden = YES;
+   // _label_line_top.backgroundColor = [UIColor redColor];
+   // _label_line_bottom.backgroundColor= [UIColor redColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 狼族（上海）网络科技有限公司. All rights reserved.
 //
 #import "LYAdshowCell.h"
-#import "LYWineBarInfoCell.h"
+#import "LYWineBarCell.h"
 #import "HomePageINeedPlayViewController.h"
 #import "MJRefresh.h"
 #import "BeerBarDetailViewController.h"
@@ -20,15 +20,17 @@
 #import "MyCollectionViewController.h"
 #import "LYAmusementClassCell.h"
 #import "LYHotRecommandCell.h"
+#import "LYCityChooseViewController.h"
+#import "LYHomeSearcherViewController.h"
+#import "LYHotJiuBarViewController.h"
 
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
 <
 UITableViewDataSource,UITableViewDelegate,
     EScrollerViewDelegate,
-    UITextFieldDelegate,
-SearchDelegate
->
+    UITextFieldDelegate
+>//,SearchDelegate
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
@@ -50,23 +52,22 @@ SearchDelegate
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.height=368;
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
-//    self.curPageIndex = 1;
-//    self.aryList=[[NSMutableArray alloc]init];
-//    _tableView.showsHorizontalScrollIndicator=NO;
-//    _tableView.showsVerticalScrollIndicator=NO;
-//    _tableView.separatorColor=[UIColor clearColor];
+   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
+     self.curPageIndex = 1;
+     self.aryList=[[NSMutableArray alloc]init];
+    _tableView.showsHorizontalScrollIndicator=NO;
+    _tableView.showsVerticalScrollIndicator=NO;
    [self initialize];
    [self setupViewStyles];
-//    
+    
 //    // Do any additional setup after loading the view from its nib.
 //    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarInfoCell" bundle:nil] forCellReuseIdentifier:@"LYWineBarInfoCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYHotRecommandCell" bundle:nil]  forCellReuseIdentifier:@"hotCell"];
      [self.tableView registerNib:[UINib nibWithNibName:@"LYAmusementClassCell" bundle:nil] forCellReuseIdentifier:@"LYAmusementClassCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+
 }
 -(void)cityChange{
 //    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
@@ -76,10 +77,6 @@ SearchDelegate
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityChange" object:nil];
 }
 
-//109 0 142 100
-//64 1 120 100
-//
-
 - (void)viewWillAppear:(BOOL)animated
 {
     CGRect rc = _topView.frame;
@@ -87,10 +84,17 @@ SearchDelegate
     rc.origin.y = -20;
     _topView.frame = rc;
     [self.navigationController.navigationBar addSubview:_topView];
-//    self.navigationController.navigationBar.translucent = YES;
     [self getData];
 }
 
+- (IBAction)cityChangeClick:(UIButton *)sender {
+    LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
+    [self.navigationController pushViewController:cityChooseVC animated:YES];
+}
+- (IBAction)searchClick:(UIButton *)sender {
+    LYHomeSearcherViewController *homeSearchVC = [[LYHomeSearcherViewController alloc]init];
+    [self.navigationController pushViewController:homeSearchVC animated:YES];
+}
 
 -(void)getData{
     __weak HomePageINeedPlayViewController * weakSelf = self;
@@ -140,7 +144,6 @@ SearchDelegate
                 weakSelf.newbannerList = newbanner.mutableCopy;
             }
             [self.aryList addObjectsFromArray:barList.mutableCopy] ;
-            
             [self.tableView reloadData];
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
@@ -166,7 +169,8 @@ SearchDelegate
 
 - (void)setupViewStyles
 {
-   /* [self setupToViewStyles];
+   [self setupToViewStyles];
+    /*
     UINib * adCellNib = [UINib nibWithNibName:@"LYAdshowCell" bundle:nil];
     [self.tableView registerNib:adCellNib forCellReuseIdentifier:@"LYAdshowCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarInfoCell" bundle:nil] forCellReuseIdentifier:@"LYWineBarInfoCell"];
@@ -176,10 +180,8 @@ SearchDelegate
 }
 - (void)installFreshEvent
 {
-    
     __weak HomePageINeedPlayViewController * weakSelf = self;
 //    __weak UITableView *tableView = self.tableView;
-    
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
                              ^{
                                  weakSelf.curPageIndex = 1;
@@ -200,6 +202,7 @@ SearchDelegate
                                       }
                                   }];
                              }];
+
     
     self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
@@ -251,69 +254,6 @@ SearchDelegate
 }
 
 #pragma mark 选择区域
-
-- (IBAction)selectAreaClick:(id)sender
-{
-    
-
-    if (_alertView!=nil || _alertView.isShow==YES) {
-        [_alertView removeFromSuperview];
-        _alertView=nil;
-        return;
-    }
-    _alertView=[[LYAlert alloc] initWithType:LYAlertTypeUpToDown];
-    _alertView.shade_proportion=0.7;
-    
-    UILabel *title=[[UILabel alloc] initWithFrame:CGRectMake(20, 10, 200, 25)];
-    title.text=@"热门城市";
-    title.font=[UIFont boldSystemFontOfSize:15];
-    title.textColor=RGB(51, 51, 51);
-    
-    NSArray *buttonArray=@[@"上海",@"北京",@"广州",@"杭州"];
-    [self initCityButon:buttonArray];
-    [_alertView.showView addSubview: title];
-    
-    [_alertView show];
-    
-    [self.view addSubview:_alertView];
-    
-       
-
-}
-
-
--(void)initCityButon:(NSArray *)buttonArray{
-    if (buttonArray.count>0) {
-        float x=0;//按钮 x 坐标
-        float y=50;
-        float width=((SCREEN_WIDTH-60)/3);
-        float height=30;
-        
-        for (int i=0; i<buttonArray.count; i++) {
-            x+=width+10;//间隔10
-            if(i%3==0&&i!=0){//三个按钮换行
-                x=20;
-                if ((int)(i/3)>0) {
-                    y=y+40;
-                }
-                
-            }else if(i==0){//第一次 x＝0
-                x=20;//间隔10
-            }
-            
-            CGRect rect=CGRectMake(x, y, width, height);
-            CityChooseButton *button=[[CityChooseButton alloc] initWithFrame:rect];
-            [button setTitle:[buttonArray objectAtIndex:i] forState:UIControlStateNormal];
-            button.delegate=self;
-            [_alertView.showView addSubview: button];
-
-        }
-        //        x=10;
-    }
-    
-}
-
-
 -(void)chooseButton:(UIButton *)sender andSelected:(BOOL)isSelected{
     if (isSelected) {
         _cityBtn.titleLabel.text=sender.titleLabel.text;
@@ -324,6 +264,12 @@ SearchDelegate
     }
 }
 
+- (IBAction)upClick:(id)sender {
+    [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+}
+- (IBAction)aroundMeClick:(id)sender {
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -333,19 +279,18 @@ SearchDelegate
 
 #pragma mark UITableViewDataSoucre&UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    return self.aryList.count + 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   
     return 1;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (!section || section == 3) {
-        return 0.1;
+        return 0.00001;
     }
     return 4;
 }
@@ -360,9 +305,10 @@ SearchDelegate
     return view;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == 2) {
-        return 0.1;
+        return 0.0001;
     }
     return 4;
 }
@@ -371,59 +317,12 @@ SearchDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
-    /*
-    switch (indexPath.row)
-    {
-        case 0:
-        {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"topViewCell"] ;            NSMutableArray *bigArr=[[NSMutableArray alloc]init];
-            
-            for (NSString *iconStr in self.bannerList) {
-                NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
-                [dicTemp setObject:iconStr forKey:@"ititle"];
-                [dicTemp setObject:@"" forKey:@"mainHeading"];
-                [bigArr addObject:dicTemp];
-            }
-            
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122)
-                                                                  scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
-            scroller.delegate=self;
-            [cell addSubview:scroller];
-        }
-            break;
-        case 1:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"spaceEntryCell" forIndexPath:indexPath];
-        }
-            break;
-        case 2:
-        {
-            
-            cell = [tableView dequeueReusableCellWithIdentifier:@"jiujiBeerBarCell" forIndexPath:indexPath];
-            cell.backgroundColor = RGBA(250, 250, 250, 1.0);
-        }
-            break;
-        default:
-        {
-            LYWineBarInfoCell * barCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarInfoCell" forIndexPath:indexPath];
-            
-            cell = barCell;
-            [barCell configureCell:[_aryList objectAtIndex:indexPath.row-3]];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 103.5, 290, 0.5)];
-            lineLal.backgroundColor=RGB(199, 199, 199);
-            [cell addSubview:lineLal];
-        }
-            break;
-    }
-    */
-    
     switch (indexPath.section) {
         case 0:
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             NSMutableArray *bigArr=[[NSMutableArray alloc]init];
             for (NSString *iconStr in self.bannerList) {
-                
                 NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
                 [dicTemp setObject:iconStr forKey:@"ititle"];
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
@@ -442,6 +341,9 @@ SearchDelegate
             amuseCell.scrollView.contentSize = CGSizeMake(640, 0);
             amuseCell.scrollView.alwaysBounceVertical = NO;
             amuseCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            for (UIButton *btn in amuseCell.buttonArray) {
+                [btn addTarget:self action:@selector(hotJiuClick) forControlEvents:UIControlEventTouchUpInside];
+            }
             return amuseCell;
         }
             break;
@@ -449,29 +351,27 @@ SearchDelegate
         {
             
             LYHotRecommandCell *hotCell = [tableView dequeueReusableCellWithIdentifier:@"hotCell" forIndexPath:indexPath];
+            
             return hotCell;
         }
             break;
-        case 3:
+        
+        default:
         {
-            LYWineBarInfoCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"LYWineBarInfoCell" forIndexPath:indexPath];
-            wineCell.label_line_bottom.hidden = YES;
-            wineCell.view_bottom.hidden = YES;
+            LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
             wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+            JiuBaModel *jiuBaModel = self.aryList[indexPath.section - 3];
+            wineCell.jiuBaModel = jiuBaModel;
             return wineCell;
         }
             break;
-            
-        default:
-            break;
     }
-    
-    
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
   return cell;
+}
 
+- (void)hotJiuClick{
+    LYHotJiuBarViewController *hotJiuBarVC = [[LYHotJiuBarViewController alloc]init];
+    [self.navigationController pushViewController:hotJiuBarVC animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -506,15 +406,15 @@ SearchDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    if (indexPath.row >= 3) {
+    
+    if (indexPath.section >= 3) {
         BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     
-        JiuBaModel * model = [_aryList objectAtIndex:indexPath.row -3];
+        JiuBaModel * model = [_aryList objectAtIndex:indexPath.section -3];
         controller.beerBarId = @(model.barid);
         [self.navigationController pushViewController:controller animated:YES];
     }
-    */
+    
 }
 
 #pragma textfield delegate
@@ -531,7 +431,7 @@ SearchDelegate
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField; {
     LYHomeSearchViewController *homeSearchViewController=[[LYHomeSearchViewController alloc]initWithNibName:@"LYHomeSearchViewController" bundle:nil];
-    homeSearchViewController.delegate=self;
+//    homeSearchViewController.delegate=self;
     [self presentViewController:homeSearchViewController animated:false completion:^{
         
     }];

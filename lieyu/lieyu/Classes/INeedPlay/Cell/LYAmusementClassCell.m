@@ -7,30 +7,30 @@
 //
 
 #import "LYAmusementClassCell.h"
+#import "LYHotJiuBarViewController.h"
 
 @implementation LYAmusementClassCell
 
 - (void)awakeFromNib {
     // Initialization code
 //    self.scrollView.directionalLockEnabled = YES;
-//    _imageView_three = [[UIImageView alloc]initWithFrame:CGRectMake(328, 8, 150, 150)];
-//    _imageView_three.image = [UIImage imageNamed:@"CommonIcon"];
-//    [self.scrollView addSubview:_imageView_three];
-//    
-//    _imageView_four = [[UIImageView alloc]initWithFrame:CGRectMake(328+ 160, 8, 150, 150)];
-//    _imageView_four.image = [UIImage imageNamed:@"CommonIcon"];
-//    [self.scrollView addSubview:_imageView_four];
+
     
     self.label_lineTop.frame = CGRectMake(0, 0, 320, 0.5);
-    self.label_line_blue.frame = CGRectMake(0, 0.5, 4, 45);
-    self.imageView_line_Three.frame = CGRectMake(12, 16, 17, 13);
-    self.label_title.frame = CGRectMake(39, 11, 64, 22);
-    self.button_page_left.frame = CGRectMake(254, 11, 24, 24);
-    self.button_page_right.frame = CGRectMake(288, 11, 24, 24);
     self.label_line_middle.frame = CGRectMake(0, 44.5, 320, 0.5);
-    self.scrollView.frame = CGRectMake(0, 45, 320, 211- 45);
-    self.view_bottom.frame = CGRectMake(0,211, 320, 8);
+    self.label_line_bottom.bounds = CGRectMake(0, 0, 320, 0.5);
+    self.label_line_bottom.hidden = YES;
+    
+    for (UIButton *btn in _buttonArray) {
+        btn.layer.cornerRadius = 4;
+        btn.layer.masksToBounds = YES;
+    }
+    [((UIButton *)_buttonArray[0]) setBackgroundImage:[UIImage imageNamed:@"jiQingYeDian.jpg"] forState:UIControlStateNormal];
+    [((UIButton *)_buttonArray[1]) setBackgroundImage:[UIImage imageNamed:@"文艺清吧.jpg"] forState:UIControlStateNormal];
+    [((UIButton *)_buttonArray[2]) setBackgroundImage:[UIImage imageNamed:@"音乐清吧1.jpg"] forState:UIControlStateNormal];
+    [((UIButton *)_buttonArray[3]) setBackgroundImage:[UIImage imageNamed:@"ktv.jpg"] forState:UIControlStateNormal];
 }
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

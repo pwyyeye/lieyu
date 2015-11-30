@@ -192,8 +192,6 @@
 		15E240C11BB3A9AA0090D240 /* LYUserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240BF1BB3A9AA0090D240 /* LYUserLoginViewController.xib */; };
 		15E240C61BB3CAC20090D240 /* LYResetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240C41BB3CAC20090D240 /* LYResetPasswordViewController.m */; };
 		15E240C71BB3CAC20090D240 /* LYResetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240C51BB3CAC20090D240 /* LYResetPasswordViewController.xib */; };
-		15E240CB1BB3CF2E0090D240 /* LYSurePassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240C91BB3CF2E0090D240 /* LYSurePassWordViewController.m */; };
-		15E240CC1BB3CF2E0090D240 /* LYSurePassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240CA1BB3CF2E0090D240 /* LYSurePassWordViewController.xib */; };
 		15E240D11BB3D5940090D240 /* LYRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240CF1BB3D5940090D240 /* LYRegistrationViewController.m */; };
 		15E240D21BB3D5940090D240 /* LYRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E240D01BB3D5940090D240 /* LYRegistrationViewController.xib */; };
 		15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E240D41BB3E8610090D240 /* MyPKfriendCell.m */; };
@@ -260,7 +258,6 @@
 		15ED32831BE336DC00E086A1 /* YaoHisListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED32811BE336DC00E086A1 /* YaoHisListViewController.m */; };
 		15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */; };
 		15ED32891BE6F2E800E086A1 /* LYHomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */; };
-		15ED328A1BE6F2E800E086A1 /* LYHomeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32881BE6F2E800E086A1 /* LYHomeSearchViewController.xib */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
 		15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51471BA7063000464B74 /* ZSWaitPayViewController.xib */; };
@@ -293,8 +290,45 @@
 		3879F2061C0BE19500B72629 /* LPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2051C0BE19500B72629 /* LPSelectButton.m */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
+		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
+		8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */; };
+		8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */; };
+		855192701C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */; };
+		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
+		855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */; };
+		85EE80321C0AF09B00958F76 /* LYHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */; };
+		85EE80331C0AF09B00958F76 /* LYHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */; };
+		85EE80371C0AF19600958F76 /* LYBarTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80351C0AF19600958F76 /* LYBarTitleTableViewCell.m */; };
+		85EE80381C0AF19600958F76 /* LYBarTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE80361C0AF19600958F76 /* LYBarTitleTableViewCell.xib */; };
+		85EE803C1C0AF3FD00958F76 /* LYBarPointTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE803A1C0AF3FD00958F76 /* LYBarPointTableViewCell.m */; };
+		85EE803D1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE803B1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib */; };
+		85EE80411C0AF49900958F76 /* LYBarSpecialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE803F1C0AF49900958F76 /* LYBarSpecialTableViewCell.m */; };
+		85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE80401C0AF49900958F76 /* LYBarSpecialTableViewCell.xib */; };
+		85EE80461C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80441C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m */; };
+		85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE80451C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib */; };
+		85EE804B1C0AF82D00958F76 /* LYBarDesrcTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80491C0AF82D00958F76 /* LYBarDesrcTableViewCell.m */; };
+		85EE804C1C0AF82D00958F76 /* LYBarDesrcTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE804A1C0AF82D00958F76 /* LYBarDesrcTableViewCell.xib */; };
+		85F625861C0BDFC9002858C8 /* LYLMenuDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625841C0BDFC9002858C8 /* LYLMenuDropViewController.m */; };
+		85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625851C0BDFC9002858C8 /* LYLMenuDropViewController.xib */; };
+		85F6258B1C0BE74E002858C8 /* LYHotBarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625891C0BE74E002858C8 /* LYHotBarMenuViewController.m */; };
+		85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F6258A1C0BE74E002858C8 /* LYHotBarMenuViewController.xib */; };
+		85F625901C0BF282002858C8 /* LYHorMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6258E1C0BF282002858C8 /* LYHorMenuViewController.m */; };
+		85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F6258F1C0BF282002858C8 /* LYHorMenuViewController.xib */; };
+		85F625971C0C20C6002858C8 /* LYDinWeiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625951C0C20C6002858C8 /* LYDinWeiTableViewCell.m */; };
+		85F625981C0C20C6002858C8 /* LYDinWeiTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625961C0C20C6002858C8 /* LYDinWeiTableViewCell.xib */; };
+		85F6259C1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6259A1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.m */; };
+		85F6259D1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F6259B1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.xib */; };
+		85F625A11C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6259F1C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m */; };
+		85F625A21C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625A01C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib */; };
+		85F625A61C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625A41C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m */; };
+		85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625A51C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib */; };
 		85F672B21C097D48001BEE5B /* LYHotRecommandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672B01C097D48001BEE5B /* LYHotRecommandCell.m */; };
 		85F672B31C097D48001BEE5B /* LYHotRecommandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672B11C097D48001BEE5B /* LYHotRecommandCell.xib */; };
+		85F672B71C099776001BEE5B /* LYWineBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672B51C099776001BEE5B /* LYWineBarCell.m */; };
+		85F672B81C099776001BEE5B /* LYWineBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672B61C099776001BEE5B /* LYWineBarCell.xib */; };
+		85F672BC1C09D7F8001BEE5B /* LYCityChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672BA1C09D7F8001BEE5B /* LYCityChooseViewController.m */; };
+		85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */; };
+		85F672BF1C09DCFB001BEE5B /* LYHomeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672BE1C09DCFB001BEE5B /* LYHomeSearchViewController.xib */; };
 		A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */; };
 		A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */; };
 		A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100811BA7AFAB009283D1 /* LYProductslistViewController.m */; };
@@ -526,8 +560,6 @@
 		D7A1D4311BC2CD1B00BCE47C /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4301BC2CD1B00BCE47C /* AnnouncementModel.m */; };
 		D7A1D4341BC2CE0900BCE47C /* RecommendPackageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A1D4331BC2CE0900BCE47C /* RecommendPackageModel.m */; };
 		D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */; };
-		D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */; };
-		D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */; };
 		D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A230D11BA7259100E8B51B /* LYAdBannerCell.m */; };
 		D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7A230D21BA7259100E8B51B /* LYAdBannerCell.xib */; };
 		D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A600571BAC654D0006A768 /* LYAdshowCell.m */; };
@@ -867,9 +899,6 @@
 		15E240C31BB3CAC20090D240 /* LYResetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYResetPasswordViewController.h; sourceTree = "<group>"; };
 		15E240C41BB3CAC20090D240 /* LYResetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYResetPasswordViewController.m; sourceTree = "<group>"; };
 		15E240C51BB3CAC20090D240 /* LYResetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYResetPasswordViewController.xib; sourceTree = "<group>"; };
-		15E240C81BB3CF2E0090D240 /* LYSurePassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSurePassWordViewController.h; sourceTree = "<group>"; };
-		15E240C91BB3CF2E0090D240 /* LYSurePassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSurePassWordViewController.m; sourceTree = "<group>"; };
-		15E240CA1BB3CF2E0090D240 /* LYSurePassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYSurePassWordViewController.xib; sourceTree = "<group>"; };
 		15E240CE1BB3D5940090D240 /* LYRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYRegistrationViewController.h; sourceTree = "<group>"; };
 		15E240CF1BB3D5940090D240 /* LYRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYRegistrationViewController.m; sourceTree = "<group>"; };
 		15E240D01BB3D5940090D240 /* LYRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYRegistrationViewController.xib; sourceTree = "<group>"; };
@@ -1002,7 +1031,6 @@
 		15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoHisListViewController.xib; sourceTree = "<group>"; };
 		15ED32861BE6F2E800E086A1 /* LYHomeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSearchViewController.h; sourceTree = "<group>"; };
 		15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSearchViewController.m; sourceTree = "<group>"; };
-		15ED32881BE6F2E800E086A1 /* LYHomeSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearchViewController.xib; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
 		15EE51451BA7063000464B74 /* ZSWaitPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWaitPayViewController.h; sourceTree = "<group>"; };
@@ -1056,9 +1084,64 @@
 		85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementClassCell.h; sourceTree = "<group>"; };
 		85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAmusementClassCell.m; sourceTree = "<group>"; };
 		85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYAmusementClassCell.xib; sourceTree = "<group>"; };
+		855192661C0B30E0007B9949 /* LYHotJiuBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotJiuBarViewController.h; sourceTree = "<group>"; };
+		855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotJiuBarViewController.m; sourceTree = "<group>"; };
+		855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotJiuBarViewController.xib; sourceTree = "<group>"; };
+		8551926C1C0B3339007B9949 /* LYHotBarMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuTableViewCell.h; sourceTree = "<group>"; };
+		8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuTableViewCell.m; sourceTree = "<group>"; };
+		8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotBarMenuTableViewCell.xib; sourceTree = "<group>"; };
+		855536BC1C0A922200D296DA /* LYHomeSearcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSearcherViewController.h; sourceTree = "<group>"; };
+		855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSearcherViewController.m; sourceTree = "<group>"; };
+		855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearcherViewController.xib; sourceTree = "<group>"; };
+		85EE802F1C0AF09B00958F76 /* LYHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHeaderTableViewCell.h; sourceTree = "<group>"; };
+		85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHeaderTableViewCell.m; sourceTree = "<group>"; };
+		85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		85EE80341C0AF19600958F76 /* LYBarTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarTitleTableViewCell.h; sourceTree = "<group>"; };
+		85EE80351C0AF19600958F76 /* LYBarTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarTitleTableViewCell.m; sourceTree = "<group>"; };
+		85EE80361C0AF19600958F76 /* LYBarTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarTitleTableViewCell.xib; sourceTree = "<group>"; };
+		85EE80391C0AF3FD00958F76 /* LYBarPointTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarPointTableViewCell.h; sourceTree = "<group>"; };
+		85EE803A1C0AF3FD00958F76 /* LYBarPointTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarPointTableViewCell.m; sourceTree = "<group>"; };
+		85EE803B1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarPointTableViewCell.xib; sourceTree = "<group>"; };
+		85EE803E1C0AF49900958F76 /* LYBarSpecialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarSpecialTableViewCell.h; sourceTree = "<group>"; };
+		85EE803F1C0AF49900958F76 /* LYBarSpecialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarSpecialTableViewCell.m; sourceTree = "<group>"; };
+		85EE80401C0AF49900958F76 /* LYBarSpecialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarSpecialTableViewCell.xib; sourceTree = "<group>"; };
+		85EE80431C0AF76E00958F76 /* LYBarDescTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarDescTitleTableViewCell.h; sourceTree = "<group>"; };
+		85EE80441C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarDescTitleTableViewCell.m; sourceTree = "<group>"; };
+		85EE80451C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarDescTitleTableViewCell.xib; sourceTree = "<group>"; };
+		85EE80481C0AF82D00958F76 /* LYBarDesrcTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarDesrcTableViewCell.h; sourceTree = "<group>"; };
+		85EE80491C0AF82D00958F76 /* LYBarDesrcTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarDesrcTableViewCell.m; sourceTree = "<group>"; };
+		85EE804A1C0AF82D00958F76 /* LYBarDesrcTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarDesrcTableViewCell.xib; sourceTree = "<group>"; };
+		85F625831C0BDFC9002858C8 /* LYLMenuDropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLMenuDropViewController.h; sourceTree = "<group>"; };
+		85F625841C0BDFC9002858C8 /* LYLMenuDropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLMenuDropViewController.m; sourceTree = "<group>"; };
+		85F625851C0BDFC9002858C8 /* LYLMenuDropViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYLMenuDropViewController.xib; sourceTree = "<group>"; };
+		85F625881C0BE74E002858C8 /* LYHotBarMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuViewController.h; sourceTree = "<group>"; };
+		85F625891C0BE74E002858C8 /* LYHotBarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuViewController.m; sourceTree = "<group>"; };
+		85F6258A1C0BE74E002858C8 /* LYHotBarMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotBarMenuViewController.xib; sourceTree = "<group>"; };
+		85F6258D1C0BF282002858C8 /* LYHorMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHorMenuViewController.h; sourceTree = "<group>"; };
+		85F6258E1C0BF282002858C8 /* LYHorMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHorMenuViewController.m; sourceTree = "<group>"; };
+		85F6258F1C0BF282002858C8 /* LYHorMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHorMenuViewController.xib; sourceTree = "<group>"; };
+		85F625941C0C20C6002858C8 /* LYDinWeiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYDinWeiTableViewCell.h; sourceTree = "<group>"; };
+		85F625951C0C20C6002858C8 /* LYDinWeiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYDinWeiTableViewCell.m; sourceTree = "<group>"; };
+		85F625961C0C20C6002858C8 /* LYDinWeiTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYDinWeiTableViewCell.xib; sourceTree = "<group>"; };
+		85F625991C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTaoCanHeaderTableViewCell.h; sourceTree = "<group>"; };
+		85F6259A1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTaoCanHeaderTableViewCell.m; sourceTree = "<group>"; };
+		85F6259B1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYTaoCanHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		85F6259E1C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTaoCanContentTableViewCell.h; sourceTree = "<group>"; };
+		85F6259F1C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTaoCanContentTableViewCell.m; sourceTree = "<group>"; };
+		85F625A01C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYTaoCanContentTableViewCell.xib; sourceTree = "<group>"; };
+		85F625A31C0C4DB7002858C8 /* LYTaoCanListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTaoCanListTableViewCell.h; sourceTree = "<group>"; };
+		85F625A41C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTaoCanListTableViewCell.m; sourceTree = "<group>"; };
+		85F625A51C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYTaoCanListTableViewCell.xib; sourceTree = "<group>"; };
 		85F672AF1C097D48001BEE5B /* LYHotRecommandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotRecommandCell.h; sourceTree = "<group>"; };
 		85F672B01C097D48001BEE5B /* LYHotRecommandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotRecommandCell.m; sourceTree = "<group>"; };
 		85F672B11C097D48001BEE5B /* LYHotRecommandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotRecommandCell.xib; sourceTree = "<group>"; };
+		85F672B41C099776001BEE5B /* LYWineBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWineBarCell.h; sourceTree = "<group>"; };
+		85F672B51C099776001BEE5B /* LYWineBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWineBarCell.m; sourceTree = "<group>"; };
+		85F672B61C099776001BEE5B /* LYWineBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWineBarCell.xib; sourceTree = "<group>"; };
+		85F672B91C09D7F8001BEE5B /* LYCityChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCityChooseViewController.h; sourceTree = "<group>"; };
+		85F672BA1C09D7F8001BEE5B /* LYCityChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCityChooseViewController.m; sourceTree = "<group>"; };
+		85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYCityChooseViewController.xib; sourceTree = "<group>"; };
+		85F672BE1C09DCFB001BEE5B /* LYHomeSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearchViewController.xib; sourceTree = "<group>"; };
 		A20100741BA7ADCB009283D1 /* ZSReleaseMBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseMBViewController.h; sourceTree = "<group>"; };
 		A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleaseMBViewController.m; sourceTree = "<group>"; };
 		A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleaseMBViewController.xib; sourceTree = "<group>"; };
@@ -1520,9 +1603,6 @@
 		D7A1D4331BC2CE0900BCE47C /* RecommendPackageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendPackageModel.m; sourceTree = "<group>"; };
 		D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomePageINeedPlayViewController.h; path = Classes/INeedPlay/HomePageINeedPlayViewController.h; sourceTree = "<group>"; };
 		D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomePageINeedPlayViewController.m; path = Classes/INeedPlay/HomePageINeedPlayViewController.m; sourceTree = "<group>"; };
-		D7A230CB1BA7160B00E8B51B /* LYWineBarInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWineBarInfoCell.h; sourceTree = "<group>"; };
-		D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWineBarInfoCell.m; sourceTree = "<group>"; };
-		D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWineBarInfoCell.xib; sourceTree = "<group>"; };
 		D7A230D01BA7259100E8B51B /* LYAdBannerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAdBannerCell.h; sourceTree = "<group>"; };
 		D7A230D11BA7259100E8B51B /* LYAdBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAdBannerCell.m; sourceTree = "<group>"; };
 		D7A230D21BA7259100E8B51B /* LYAdBannerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYAdBannerCell.xib; sourceTree = "<group>"; };
@@ -2235,9 +2315,6 @@
 				15E240C31BB3CAC20090D240 /* LYResetPasswordViewController.h */,
 				15E240C41BB3CAC20090D240 /* LYResetPasswordViewController.m */,
 				15E240C51BB3CAC20090D240 /* LYResetPasswordViewController.xib */,
-				15E240C81BB3CF2E0090D240 /* LYSurePassWordViewController.h */,
-				15E240C91BB3CF2E0090D240 /* LYSurePassWordViewController.m */,
-				15E240CA1BB3CF2E0090D240 /* LYSurePassWordViewController.xib */,
 			);
 			name = "忘记密码";
 			sourceTree = "<group>";
@@ -2492,7 +2569,10 @@
 			children = (
 				15ED32861BE6F2E800E086A1 /* LYHomeSearchViewController.h */,
 				15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */,
-				15ED32881BE6F2E800E086A1 /* LYHomeSearchViewController.xib */,
+				85F672BE1C09DCFB001BEE5B /* LYHomeSearchViewController.xib */,
+				855536BC1C0A922200D296DA /* LYHomeSearcherViewController.h */,
+				855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */,
+				855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */,
 			);
 			name = "搜索";
 			sourceTree = "<group>";
@@ -2640,6 +2720,7 @@
 		15FD2A9E1BD5EC4E00D66920 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				85F625931C0C20A9002858C8 /* Cell */,
 				15FD2A9F1BD5EC8900D66920 /* TimeButton.h */,
 				15FD2AA01BD5EC8900D66920 /* TimeButton.m */,
 				15FD2AA21BD61EC500D66920 /* DWTopInfoView.h */,
@@ -2648,6 +2729,9 @@
 				15FD2AA71BD6243700D66920 /* TaoCanTitleView.h */,
 				15FD2AA81BD6243700D66920 /* TaoCanTitleView.m */,
 				15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */,
+				85F6258D1C0BF282002858C8 /* LYHorMenuViewController.h */,
+				85F6258E1C0BF282002858C8 /* LYHorMenuViewController.m */,
+				85F6258F1C0BF282002858C8 /* LYHorMenuViewController.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2669,8 +2753,81 @@
 				15FD2AB01BD7231C00D66920 /* LYTaoCanXQCell.m */,
 				15A4CF391BD7309500C22C01 /* LYTitleInfoCell.h */,
 				15A4CF3A1BD7309500C22C01 /* LYTitleInfoCell.m */,
+				85F625991C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.h */,
+				85F6259A1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.m */,
+				85F6259B1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.xib */,
+				85F6259E1C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.h */,
+				85F6259F1C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m */,
+				85F625A01C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib */,
+				85F625A31C0C4DB7002858C8 /* LYTaoCanListTableViewCell.h */,
+				85F625A41C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m */,
+				85F625A51C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		855192651C0B30C4007B9949 /* 热门酒吧 */ = {
+			isa = PBXGroup;
+			children = (
+				8551926B1C0B3275007B9949 /* Cell */,
+				855192661C0B30E0007B9949 /* LYHotJiuBarViewController.h */,
+				855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */,
+				855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */,
+				85F625831C0BDFC9002858C8 /* LYLMenuDropViewController.h */,
+				85F625841C0BDFC9002858C8 /* LYLMenuDropViewController.m */,
+				85F625851C0BDFC9002858C8 /* LYLMenuDropViewController.xib */,
+				85F625881C0BE74E002858C8 /* LYHotBarMenuViewController.h */,
+				85F625891C0BE74E002858C8 /* LYHotBarMenuViewController.m */,
+				85F6258A1C0BE74E002858C8 /* LYHotBarMenuViewController.xib */,
+			);
+			name = "热门酒吧";
+			path = "Classes/INeedPlay/热门酒吧";
+			sourceTree = "<group>";
+		};
+		8551926B1C0B3275007B9949 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8551926C1C0B3339007B9949 /* LYHotBarMenuTableViewCell.h */,
+				8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */,
+				8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		85EE802E1C0AF03700958F76 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				85EE802F1C0AF09B00958F76 /* LYHeaderTableViewCell.h */,
+				85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */,
+				85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */,
+				85EE80341C0AF19600958F76 /* LYBarTitleTableViewCell.h */,
+				85EE80351C0AF19600958F76 /* LYBarTitleTableViewCell.m */,
+				85EE80361C0AF19600958F76 /* LYBarTitleTableViewCell.xib */,
+				85EE80391C0AF3FD00958F76 /* LYBarPointTableViewCell.h */,
+				85EE803A1C0AF3FD00958F76 /* LYBarPointTableViewCell.m */,
+				85EE803B1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib */,
+				85EE803E1C0AF49900958F76 /* LYBarSpecialTableViewCell.h */,
+				85EE803F1C0AF49900958F76 /* LYBarSpecialTableViewCell.m */,
+				85EE80401C0AF49900958F76 /* LYBarSpecialTableViewCell.xib */,
+				85EE80431C0AF76E00958F76 /* LYBarDescTitleTableViewCell.h */,
+				85EE80441C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m */,
+				85EE80451C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib */,
+				85EE80481C0AF82D00958F76 /* LYBarDesrcTableViewCell.h */,
+				85EE80491C0AF82D00958F76 /* LYBarDesrcTableViewCell.m */,
+				85EE804A1C0AF82D00958F76 /* LYBarDesrcTableViewCell.xib */,
+			);
+			name = Cell;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		85F625931C0C20A9002858C8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				85F625941C0C20C6002858C8 /* LYDinWeiTableViewCell.h */,
+				85F625951C0C20C6002858C8 /* LYDinWeiTableViewCell.m */,
+				85F625961C0C20C6002858C8 /* LYDinWeiTableViewCell.xib */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		9D0793CADE18DD09E4226921 /* Pods */ = {
@@ -3412,6 +3569,9 @@
 			children = (
 				ADF38F401BE8D8B400A80B08 /* CityChooseButton.h */,
 				ADF38F411BE8D8B400A80B08 /* CityChooseButton.m */,
+				85F672B91C09D7F8001BEE5B /* LYCityChooseViewController.h */,
+				85F672BA1C09D7F8001BEE5B /* LYCityChooseViewController.m */,
+				85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */,
 			);
 			name = "定位";
 			sourceTree = "<group>";
@@ -3429,6 +3589,7 @@
 		D729DB5D1BADB8AB005A9E60 /* BeerBarDetail */ = {
 			isa = PBXGroup;
 			children = (
+				85EE802E1C0AF03700958F76 /* Cell */,
 				D729DB5E1BADB8D3005A9E60 /* BeerBarDetailViewController.h */,
 				D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */,
 				D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */,
@@ -3710,6 +3871,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				855192651C0B30C4007B9949 /* 热门酒吧 */,
 				ADF38F3F1BE8CD9C00A80B08 /* 定位 */,
 				15ED32851BE6F23100E086A1 /* 搜索 */,
 				15A4CF531BD86A0A00C22C01 /* 吃喝专场 */,
@@ -3860,9 +4022,9 @@
 		D7A230CA1BA7152000E8B51B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				D7A230CB1BA7160B00E8B51B /* LYWineBarInfoCell.h */,
-				D7A230CC1BA7160B00E8B51B /* LYWineBarInfoCell.m */,
-				D7A230CD1BA7160B00E8B51B /* LYWineBarInfoCell.xib */,
+				85F672B41C099776001BEE5B /* LYWineBarCell.h */,
+				85F672B51C099776001BEE5B /* LYWineBarCell.m */,
+				85F672B61C099776001BEE5B /* LYWineBarCell.xib */,
 				85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */,
 				85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */,
 				85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */,
@@ -3981,6 +4143,7 @@
 				1559DD111BDA2A3E00F3FE9B /* CarInfoCell.xib in Resources */,
 				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
 				A2020D621BA67E9E0090B92A /* disClosure@3x.png in Resources */,
+				85EE80331C0AF09B00958F76 /* LYHeaderTableViewCell.xib in Resources */,
 				A2FD57671BAFE6E500CFFF92 /* KuCunCell.xib in Resources */,
 				15EB35511BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				15F54A911BB030420020EB4C /* ChanPinListViewController.xib in Resources */,
@@ -3992,10 +4155,12 @@
 				15EB35491BD4839D00BA6161 /* UMSCommentDetailController.xib in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
 				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
+				85F672BF1C09DCFB001BEE5B /* LYHomeSearchViewController.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
 				15ED32791BE318A800E086A1 /* 5018.wav in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
+				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
 				AD0080941BEA4F4F00937CFF /* lieyuIcon@3x.png in Resources */,
@@ -4017,6 +4182,7 @@
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
 				ADD68E311BE10E400060E751 /* 2_retina.png in Resources */,
 				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
+				8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */,
 				15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */,
 				15E240C71BB3CAC20090D240 /* LYResetPasswordViewController.xib in Resources */,
 				15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */,
@@ -4034,16 +4200,16 @@
 				AD92AEBD1BE50AD9009F2A34 /* AboutLieyu.xib in Resources */,
 				15EB35461BD4839D00BA6161 /* UMSocialLocalizable.strings in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
+				85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */,
 				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
-				15E240CC1BB3CF2E0090D240 /* LYSurePassWordViewController.xib in Resources */,
 				A2FD57801BAFE97000CFFF92 /* FBTaoCanSectionHead.xib in Resources */,
 				15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */,
+				85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
 				ADD68E2A1BE10E330060E751 /* 3@2x.png in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				15E184841BB51A9500681BB2 /* LYZSApplicationViewController.xib in Resources */,
 				151BB6D11BBB78E000E7A81C /* UzysAssetPickerController.bundle in Resources */,
-				15ED328A1BE6F2E800E086A1 /* LYHomeSearchViewController.xib in Resources */,
 				ADD68E2B1BE10E330060E751 /* 4@2x.png in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
 				15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */,
@@ -4055,10 +4221,12 @@
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
 				15844BC91BE1CAEB00247FBC /* FindMenuTwoCell.xib in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
+				855192701C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib in Resources */,
 				15E240BB1BB3A4CD0090D240 /* MyChooseZSCell.xib in Resources */,
 				A2F9DA761BAA6AE2009DEAF3 /* OrderBottomView.xib in Resources */,
 				A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */,
 				15B866211BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib in Resources */,
+				85F625981C0C20C6002858C8 /* LYDinWeiTableViewCell.xib in Resources */,
 				15E240831BB279CB0090D240 /* LYMyOrderManageViewController.xib in Resources */,
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
@@ -4073,6 +4241,7 @@
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
 				15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */,
 				15E184931BB52B0E00681BB2 /* LYJiuBaCell.xib in Resources */,
+				85F672B81C099776001BEE5B /* LYWineBarCell.xib in Resources */,
 				15844BFE1BE2101200247FBC /* SaoYiSaoViewController.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
@@ -4081,20 +4250,25 @@
 				A2FD577E1BAFE97000CFFF92 /* FBTaoCanSectionBottom.xib in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */,
+				85EE804C1C0AF82D00958F76 /* LYBarDesrcTableViewCell.xib in Resources */,
 				15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */,
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
 				15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */,
 				85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */,
 				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
+				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
 				ADD68E281BE10E330060E751 /* 1@2x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */,
 				ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
+				85F625A21C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib in Resources */,
 				A2F9DA7F1BAA8CC3009DEAF3 /* SerchHeadView.xib in Resources */,
+				855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */,
 				D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */,
 				ADD68E331BE10E400060E751 /* 4_retina.png in Resources */,
+				85EE803D1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib in Resources */,
 				ADE103B11BDE4C8E00D9EC38 /* PayCell.xib in Resources */,
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
 				15E240D21BB3D5940090D240 /* LYRegistrationViewController.xib in Resources */,
@@ -4116,7 +4290,10 @@
 				15E240A71BB381610090D240 /* OrderDetailHeadView.xib in Resources */,
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
+				85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */,
 				15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */,
+				85EE80381C0AF19600958F76 /* LYBarTitleTableViewCell.xib in Resources */,
+				85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */,
 				ADD68E3F1BE10E7E0060E751 /* skip-btn@3x.png in Resources */,
 				15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */,
 				ADD68E3A1BE10E550060E751 /* 3@3x.png in Resources */,
@@ -4124,11 +4301,12 @@
 				D761F01F1BA5AED3000757B0 /* MJRefresh.bundle in Resources */,
 				A2FD576C1BAFE85900CFFF92 /* PinKeCell.xib in Resources */,
 				A2FD57651BAFE6C000CFFF92 /* CheHeCell.xib in Resources */,
+				85F6259D1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.xib in Resources */,
 				15E240B61BB3A1FC0090D240 /* OrderDetailSectionBottomForDanPinView.xib in Resources */,
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
+				85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */,
 				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
-				D7A230CF1BA7160B00E8B51B /* LYWineBarInfoCell.xib in Resources */,
 				15E184891BB5214F00681BB2 /* LYChooseJiuBaViewController.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
@@ -4227,6 +4405,8 @@
 				15A4CF4C1BD7689F00C22C01 /* DWOrderTopCell.m in Sources */,
 				A20100CA1BA9212A009283D1 /* ZSCustomerDetailViewController.m in Sources */,
 				A2020D891BA6A5AA0090B92A /* KaZuoCell.m in Sources */,
+				85EE80321C0AF09B00958F76 /* LYHeaderTableViewCell.m in Sources */,
+				85F625901C0BF282002858C8 /* LYHorMenuViewController.m in Sources */,
 				D748BC701BA1C856005AA996 /* NSObject+MJCoding.m in Sources */,
 				D761F01E1BA5AED3000757B0 /* MJRefreshStateHeader.m in Sources */,
 				D71E1D911BAE8F3100915F37 /* BusinessPublicNoteCell.m in Sources */,
@@ -4243,6 +4423,7 @@
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
 				15EB350D1BD1F63F00BA6161 /* PTChooseNumCell.m in Sources */,
+				855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */,
 				ADE103B81BDFA2A800D9EC38 /* LYBaseTableViewController.m in Sources */,
 				15EB357C1BD4972800BA6161 /* PTjoinInViewController.m in Sources */,
 				151BB6D71BBB78E000E7A81C /* UzysGroupViewCell.m in Sources */,
@@ -4256,6 +4437,7 @@
 				15844BB41BE1B17D00247FBC /* LYMyFriendDetailViewController.m in Sources */,
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
+				85F6259C1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.m in Sources */,
 				15844BB91BE1BE7800247FBC /* IMchatViewController.m in Sources */,
 				15B866241BDB5CFB002E2BB6 /* CHDoOrderHeardView.m in Sources */,
 				D7A1D42B1BC2746D00BCE47C /* NSDictionary+YRSafeCategory.m in Sources */,
@@ -4289,8 +4471,10 @@
 				15A4CF501BD7862700C22C01 /* DWIsGoToViewController.m in Sources */,
 				15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */,
 				15CC31DF1BEB2C5B00DDD03F /* DBHelper.m in Sources */,
+				85F625A11C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
+				85EE80461C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m in Sources */,
 				AD198CC41C00368300AA654D /* TenpayModel.m in Sources */,
 				AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */,
 				15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */,
@@ -4299,6 +4483,7 @@
 				3879F2061C0BE19500B72629 /* LPSelectButton.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
+				85F672B71C099776001BEE5B /* LYWineBarCell.m in Sources */,
 				A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */,
 				15013AFB1BBA33BE00061FAF /* SDWebImageDownloaderOperation.m in Sources */,
 				ADF38F421BE8D8B400A80B08 /* CityChooseButton.m in Sources */,
@@ -4307,7 +4492,9 @@
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,
 				1559DCFB1BD9E1AD00F3FE9B /* CHBarCell.m in Sources */,
 				ADE103B51BDF286A00D9EC38 /* Setting.m in Sources */,
+				85EE804B1C0AF82D00958F76 /* LYBarDesrcTableViewCell.m in Sources */,
 				15013B001BBA33BF00061FAF /* UIImage+MultiFormat.m in Sources */,
+				85F625971C0C20C6002858C8 /* LYDinWeiTableViewCell.m in Sources */,
 				15E240671BB1243A0090D240 /* TypeChooseCell.m in Sources */,
 				D748BC711BA1C856005AA996 /* NSObject+MJKeyValue.m in Sources */,
 				15013AFF1BBA33BF00061FAF /* UIImage+GIF.m in Sources */,
@@ -4325,7 +4512,6 @@
 				A2FD576B1BAFE85900CFFF92 /* PinKeCell.m in Sources */,
 				15013AF61BBA33BE00061FAF /* NSData+ImageContentType.m in Sources */,
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
-				15E240CB1BB3CF2E0090D240 /* LYSurePassWordViewController.m in Sources */,
 				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
 				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,
@@ -4354,6 +4540,7 @@
 				15E2405C1BB1029C0090D240 /* FBDanPinView.m in Sources */,
 				152247B01BEB064600E68A2B /* IQUIWindow+Hierarchy.m in Sources */,
 				151BB6D51BBB78E000E7A81C /* UzysGroupPickerView.m in Sources */,
+				855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */,
 				D71E1D9A1BAE9C1100915F37 /* LYColors.m in Sources */,
 				15EB7C741BD0A0DB00756153 /* LYShaiXuanViewController.m in Sources */,
 				A20100E01BA94404009283D1 /* WQCalendarDay.m in Sources */,
@@ -4406,6 +4593,7 @@
 				15EA6DBF1BBE479A00620C9E /* ProductCategoryModel.m in Sources */,
 				AD92AEA81BE22A79009F2A34 /* UserTagModel.m in Sources */,
 				D761F0201BA5AED3000757B0 /* MJRefreshConst.m in Sources */,
+				85EE80411C0AF49900958F76 /* LYBarSpecialTableViewCell.m in Sources */,
 				15013B031BBA33BF00061FAF /* UIImageView+WebCache.m in Sources */,
 				15EB35271BD379A500BA6161 /* LYtimeChooseTimeController.m in Sources */,
 				15844BBE1BE1C70600247FBC /* LYSearchFriendViewController.m in Sources */,
@@ -4419,6 +4607,7 @@
 				15013AF71BBA33BE00061FAF /* SDImageCache.m in Sources */,
 				A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */,
 				15EB35781BD495ED00BA6161 /* CYInfoCell.m in Sources */,
+				85F625A61C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m in Sources */,
 				D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */,
 				15EB351F1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m in Sources */,
 				1559DCF51BD9D6AC00F3FE9B /* CHJiuPinDetailViewController.m in Sources */,
@@ -4426,11 +4615,13 @@
 				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
 				D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */,
 				15FD2AA41BD61EC500D66920 /* DWTopInfoView.m in Sources */,
+				85EE803C1C0AF3FD00958F76 /* LYBarPointTableViewCell.m in Sources */,
 				ADE103C11BE0EAAA00D9EC38 /* EAIntroPage.m in Sources */,
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
 				15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
+				85F6258B1C0BE74E002858C8 /* LYHotBarMenuViewController.m in Sources */,
 				15EB35071BD1F51200BA6161 /* PTTaoCanCell.m in Sources */,
 				15EB7C491BC3753B00756153 /* SetMealInfoModel.m in Sources */,
 				ADE103B01BDE4C8E00D9EC38 /* PayCell.m in Sources */,
@@ -4490,6 +4681,7 @@
 				D748BC721BA1C856005AA996 /* NSObject+MJProperty.m in Sources */,
 				152247B31BEB064600E68A2B /* IQSegmentedNextPrevious.m in Sources */,
 				D761F0121BA5AED3000757B0 /* MJRefreshBackFooter.m in Sources */,
+				85F625861C0BDFC9002858C8 /* LYLMenuDropViewController.m in Sources */,
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
 				D748BC461BA1C280005AA996 /* LYDataStore.m in Sources */,
 				15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */,
@@ -4515,18 +4707,20 @@
 				15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */,
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
 				15844BFD1BE2101200247FBC /* SaoYiSaoViewController.m in Sources */,
-				D7A230CE1BA7160B00E8B51B /* LYWineBarInfoCell.m in Sources */,
 				15ED32721BE2F49800E086A1 /* YaoYiYaoViewController.m in Sources */,
 				15B8661F1BDB5C73002E2BB6 /* CHDoOrderBottomView.m in Sources */,
 				D74C60851BB69F6300A49598 /* RTLabel.m in Sources */,
 				D748BC6E1BA1C856005AA996 /* MJProperty.m in Sources */,
+				85EE80371C0AF19600958F76 /* LYBarTitleTableViewCell.m in Sources */,
 				ADE1039D1BDE49BC00D9EC38 /* openssl_wrapper.m in Sources */,
+				85F672BC1C09D7F8001BEE5B /* LYCityChooseViewController.m in Sources */,
 				D794ED0C1BB7872A000DC568 /* PFRect.m in Sources */,
 				15013AF91BBA33BE00061FAF /* SDWebImageDecoder.m in Sources */,
 				D761F0111BA5AED3000757B0 /* MJRefreshAutoFooter.m in Sources */,
 				15013AFA1BBA33BE00061FAF /* SDWebImageDownloader.m in Sources */,
 				D748BC6C1BA1C856005AA996 /* MJConst.m in Sources */,
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
+				8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */,
 				15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */,
 				15CC31E31BEB2C5B00DDD03F /* FMDatabaseQueue.m in Sources */,
 				15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */,

@@ -7,7 +7,6 @@
 //
 
 #import "LYResetPasswordViewController.h"
-#import "LYSurePassWordViewController.h"
 #import "LYUserHttpTool.h"
 @interface LYResetPasswordViewController ()
 

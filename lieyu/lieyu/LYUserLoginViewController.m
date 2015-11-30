@@ -19,12 +19,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"登录";
     // Do any additional setup after loading the view from its nib.
     
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    [self.navigationItem setLeftBarButtonItem:item];
+//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+//    [self.navigationItem setLeftBarButtonItem:item];
     
+   // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
+}
+- (IBAction)goBackClick:(id)sender {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,15 +35,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    if (self.navigationController.navigationBarHidden != NO) {
-        [self.navigationController setNavigationBarHidden:NO];
-    }
-    
+//    if (self.navigationController.navigationBarHidden != NO) {
+//        [self.navigationController setNavigationBarHidden:NO];
+//    }
+//
+
+    //self.userNameTex.layer.borderWidth = 0.5;
+  //  self.userNameTex.layer.borderColor = RGBA(255,255,255, 0.2).CGColor;
+   // self.userNameTex.layer.masksToBounds = YES;
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -48,7 +60,8 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
+
 #pragma mark - 忘记密码
 - (IBAction)forgetPassWordAct:(UIButton *)sender {
     LYResetPasswordViewController *resetPasswordViewController=[[LYResetPasswordViewController alloc]initWithNibName:@"LYResetPasswordViewController" bundle:nil];
@@ -148,4 +161,5 @@
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+ 
 @end
