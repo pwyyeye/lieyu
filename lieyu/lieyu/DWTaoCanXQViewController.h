@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) int smid;
 @property (copy, nonatomic) NSString *dateStr;
+@property (nonatomic,copy) NSString *weekStr;
 @end

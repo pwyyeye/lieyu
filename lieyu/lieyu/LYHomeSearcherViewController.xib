@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYHomeSearcherViewController">
             <connections>
-                <outlet property="btnClearHistory" destination="6Ol-N0-roY" id="HYZ-OP-Yl3"/>
                 <outlet property="searchBar" destination="8wO-wA-6tw" id="lhe-73-rWe"/>
+                <outlet property="tableView" destination="K5a-ST-sAY" id="4tp-yq-hbF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="btnHistoryArray" destination="MdP-m3-mnV" id="nUn-mZ-8QG"/>
                 <outletCollection property="btnHistoryArray" destination="kGN-G0-RqR" id="13i-iA-yWM"/>
@@ -36,7 +36,7 @@
                     <rect key="frame" x="116" y="124" width="88" height="27"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Button">
+                    <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -44,7 +44,7 @@
                     <rect key="frame" x="16" y="124" width="88" height="27"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Button">
+                    <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -52,7 +52,7 @@
                     <rect key="frame" x="16" y="169" width="88" height="27"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Button">
+                    <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -60,7 +60,7 @@
                     <rect key="frame" x="116" y="169" width="88" height="27"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Button">
+                    <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -68,7 +68,7 @@
                     <rect key="frame" x="216" y="169" width="88" height="27"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Button">
+                    <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -76,7 +76,7 @@
                     <rect key="frame" x="216" y="124" width="88" height="27"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Button">
+                    <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
@@ -87,7 +87,19 @@
                     <state key="normal" title="清除历史">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="delHisData:" destination="-1" eventType="touchUpInside" id="eC8-OA-6q6"/>
+                    </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K5a-ST-sAY">
+                    <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9PP-yi-DTn"/>
+                        <outlet property="delegate" destination="-1" id="8ah-hl-t2s"/>
+                    </connections>
+                </tableView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

@@ -7,9 +7,27 @@
 //
 
 #import "LYHomeSearcherViewController.h"
+#import "LYWineBarCell.h"
+#import "BeerBarDetailViewController.h"
+#import "NetPublic.h"
+#import "LYToPlayRestfulBusiness.h"
+#import "MReqToPlayHomeList.h"
+#import "LYWineBarCell.h"
+#import "BiaoQianBtn.h"
+#import "TypeChooseCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
-@interface LYHomeSearcherViewController ()
-
+#define PAGESIZE 20
+@interface LYHomeSearcherViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+    NSArray *datalist;
+    NSMutableArray *searchlist;
+    NSString *keyStr;
+    NSMutableArray *hisSerchArr;
+    NSMutableArray *hisRoute;
+    NSArray *btnArr;
+}
+@property(nonatomic,assign) NSInteger curPageIndex;
 @end
 
 @implementation LYHomeSearcherViewController
@@ -17,15 +35,203 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setHistoryBtn];//设置历史按钮
+    searchlist = [[NSMutableArray alloc]initWithCapacity:0];
+    _searchBar.delegate = self;
+    [self setupViewStyles];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
+    self.tableView.hidden = YES;
+    [self loadHisData];
+    hisSerchArr=[[NSMutableArray alloc]init];
+    self.curPageIndex = 1;
+    datalist=[[NSMutableArray alloc]init];
+    self.tableView.rowHeight = 274;
+    
 }
-- (void)setHistoryBtn{
-    for (UIButton *button in _btnHistoryArray) {
+
+#pragma mark 获取历史搜索数据
+-(void)loadHisData{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+    if([fileManager fileExistsAtPath:filename]){
+        hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+    }else{
+        hisSerchArr = [[NSMutableArray alloc]initWithCapacity:6];
+        
+    }
+    [self setHistory];
+}
+#pragma mark清空记录
+-(IBAction)delHisData:(UIButton *)sendid{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"删除历史记录" message:@"确定删除？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+    [alertView show];
+    
+}
+#pragma mark清空记录
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==0){
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+        if([fileManager fileExistsAtPath:filename]){
+            hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+            [hisSerchArr removeAllObjects];
+            [NSKeyedArchiver archiveRootObject:hisSerchArr toFile:filename];
+        }
+        for (UIButton *btn in _btnHistoryArray) {
+            btn.layer.borderColor = [UIColor whiteColor].CGColor;
+            btn.layer.cornerRadius = 0;
+            [btn setTitle:@"" forState:UIControlStateNormal];
+        }
+    }
+}
+#pragma mark 保存历史数据
+-(void)saveHisData:(NSString *)strKey{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+    if([fileManager fileExistsAtPath:filename]){
+        hisRoute= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+    }else{
+        hisRoute = [[NSMutableArray alloc]initWithCapacity:6];
+        
+    }
+    bool ishis=false;
+    for (NSString *arrtemp in hisRoute) {
+        
+        if([arrtemp isEqualToString:strKey]){
+            ishis=true;
+            break;
+        }
+    }
+    if(!ishis){
+        if(hisRoute.count==6){
+            [hisRoute removeObjectAtIndex:hisRoute.count-1];
+        }
+        [hisRoute insertObject:strKey atIndex:0];
+        [NSKeyedArchiver archiveRootObject:hisRoute toFile:filename];
+    }
+    
+}
+
+- (void)setHistory{
+    for (int i = 0; i < hisSerchArr.count;i ++) {
+        UIButton *button = _btnHistoryArray[i];
         button.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
         button.layer.cornerRadius = 1.8;
         button.layer.masksToBounds = YES;
-        [button setTitle:@"某某酒吧" forState:UIControlStateNormal];
+        NSString *str = hisSerchArr[i];
+        [button setTitle:str
+                forState:UIControlStateNormal];
     }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if (!searchText.length) {
+        self.tableView.hidden = YES;
+        [self loadHisData];
+        return;
+    }
+    [self.tableView setHidden:NO];
+    _curPageIndex=1;
+    keyStr= searchText;
+    [self getData];
+}
+
+- (void)setupViewStyles
+{
+    __weak LYHomeSearcherViewController * weakSelf = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBaraCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
+    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
+            if (Req_Success == ermsg.state) {
+                if (barList.count == PAGESIZE)
+                {
+                    weakSelf.tableView.footer.hidden = NO;
+                }
+                else
+                {
+                    weakSelf.tableView.footer.hidden = YES;
+                }
+                weakSelf.curPageIndex ++;
+                [self.tableView.footer endRefreshing];
+            }
+            
+        }];
+    }];
+    
+    
+}
+-(void)getData{
+    __weak LYHomeSearcherViewController * weakSelf = self;
+    //    __weak UITableView *tableView = self.tableView;
+    [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+     {
+         if (Req_Success == ermsg.state)
+         {
+             if (barList.count == PAGESIZE)
+             {
+                 weakSelf.curPageIndex = 2;
+                 weakSelf.tableView.footer.hidden = NO;
+             }
+             else
+             {
+                 weakSelf.tableView.footer.hidden = YES;
+             }
+             //             [weakSelf.tableView.header endRefreshing];
+         }
+     }];
+    
+}
+
+- (void)loadItemList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
+
+{
+    MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
+    LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
+    
+    //    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
+    //    hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
+    //    hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
+    //    hList.city = [LYUserLocation instance].city;
+    
+    
+#if 1
+    hList.barname = keyStr;
+    hList.need_page = @(1);
+    hList.p = @(_curPageIndex);
+    hList.per = @(PAGESIZE);
+#endif
+    
+    __weak __typeof(self)weakSelf = self;
+    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray * newbanner)
+     {
+         if (ermsg.state == Req_Success)
+         {
+             if (weakSelf.curPageIndex == 1) {
+                 [searchlist removeAllObjects];
+                 //                [weakSelf.bannerList removeAllObjects];
+             }
+             
+             [searchlist addObjectsFromArray:barList];
+             if (searchlist.count) {
+                 [self saveHisData:_searchBar.text];
+             }
+             [weakSelf.tableView reloadData];
+         }
+         block !=nil? block(ermsg,bannerList,barList):nil;
+     }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return searchlist.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
+    JiuBaModel *model = [searchlist objectAtIndex:indexPath.row];
+    wineCell.jiuBaModel = model;
+    return wineCell;
 }
 
 - (void)didReceiveMemoryWarning {

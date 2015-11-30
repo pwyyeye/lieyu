@@ -20,7 +20,7 @@
     CLLocationManager *locationManager;
     
 }
-
+ 
 @property (strong, nonatomic) UIWindow *window;
 @property(strong,nonatomic) NSTimer *timer;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

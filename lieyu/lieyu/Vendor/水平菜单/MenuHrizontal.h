@@ -11,6 +11,7 @@
 #define NOMALKEY   @"normalKey"
 #define HEIGHTKEY  @"helightKey"
 #define TITLEKEY   @"titleKey"
+#define MONTHKEY   @"month"
 #define WEEKKEY   @"weekKey"
 #define TITLEWIDTH @"titleWidth"
 #define TOTALWIDTH @"totalWidth"
@@ -30,7 +31,7 @@
 }
 
 @property (nonatomic,assign) id <MenuHrizontalDelegate> delegate;
-
+@property (nonatomic,strong) NSArray *weekDateArr;
 #pragma mark 初始化菜单
 - (id)initWithFrame:(CGRect)frame ButtonItems:(NSArray *)aItemsArray;
 - (id)initWithFrameForTime:(CGRect)frame ButtonItems:(NSArray *)aItemsArray;

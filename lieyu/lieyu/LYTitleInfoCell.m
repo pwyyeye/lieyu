@@ -12,6 +12,11 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    _titleLal.font = [UIFont boldSystemFontOfSize:18];
+    _titleLal.textColor = RGBA(51, 51, 51, 1);
+    _titleLal.frame = CGRectMake(10, 8, 72, 24);
+    _delLal.font = [UIFont systemFontOfSize:14];
+    _delLal.textColor = RGBA(114, 5, 147, 1);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

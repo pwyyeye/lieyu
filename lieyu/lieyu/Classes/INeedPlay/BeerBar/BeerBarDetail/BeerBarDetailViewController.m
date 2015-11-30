@@ -8,10 +8,10 @@
 
 #import "BeerBarDetailViewController.h"
 #import "MacroDefinition.h"
-#import "BeerBarDetailCell.h"
-#import "PacketBarCell.h"
+//#import "BeerBarDetailCell.h"
+//#import "PacketBarCell.h"
 #import "LYShareSnsView.h"
-#import "LYAdshowCell.h"
+//#import "LYAdshowCell.h"
 #import "LYColors.h"
 #import "LYToPlayRestfulBusiness.h"
 #import "BeerBarOrYzhDetailModel.h"
@@ -21,11 +21,17 @@
 #import "DWTaoCanXQViewController.h"
 #import "LYUserLocation.h"
 #import "MyZSManageViewController.h"
+#import "LYHeaderTableViewCell.h"
+#import "LYBarTitleTableViewCell.h"
+#import "LYBarPointTableViewCell.h"
+#import "LYBarSpecialTableViewCell.h"
+#import "LYBarDescTitleTableViewCell.h"
+#import "LYBarDesrcTableViewCell.h"
 @interface BeerBarDetailViewController ()
 
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
-@property(nonatomic,strong)IBOutlet BeerBarDetailCell *barDetailCell;
+//@property(nonatomic,strong)IBOutlet BeerBarDetailCell *barDetailCell;
 @property(nonatomic,strong)IBOutlet UITableViewCell *orderTotalCell;
 
 @property(nonatomic,weak)IBOutlet UIView *bottomBarView;
@@ -60,6 +66,11 @@
     }];
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -72,12 +83,13 @@
 
 
 - (void)setupViewStyles
-{    
-    [_tableView registerNib:[UINib nibWithNibName:@"PacketBarCell" bundle:nil] forCellReuseIdentifier:@"PacketBarCell"];
-    
-    [_tableView registerNib:[UINib nibWithNibName:@"BusinessPublicNoteCell" bundle:nil] forCellReuseIdentifier:@"BusinessPublicNoteCell"];
-    
-    [_tableView registerNib:[UINib nibWithNibName:@"LYAdshowCell" bundle:nil] forCellReuseIdentifier:@"LYAdshowCell"];
+{
+    [_tableView registerNib:[UINib nibWithNibName:@"LYHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYHeaderTableViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"LYBarTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarTitleTableViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"LYBarPointTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarPointTableViewCell"];
+     [_tableView registerNib:[UINib nibWithNibName:@"LYBarSpecialTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarSpecialTableViewCell"];
+     [_tableView registerNib:[UINib nibWithNibName:@"LYBarDescTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDescTitleTableViewCell"];
+     [_tableView registerNib:[UINib nibWithNibName:@"LYBarDesrcTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDesrcTableViewCell"];
 
 //    LYShareSnsView * shareView = [LYShareSnsView loadFromNib];
 //    [self.view addSubview:shareView];
@@ -86,30 +98,20 @@
 //    shareView.center = center;
     
     self.bottomBarView.backgroundColor = [LYColors tabbarBgColor];
-    _dyBarDetailH = [BeerBarDetailCell adjustCellHeight:nil];
+    //_dyBarDetailH = [BeerBarDetailCell adjustCellHeight:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return 2;
-            break;
-        case 1:
-            return [[_beerBarDetail recommend_package] count];
-            break;
-        case 2:
-            return 1;
-        
-        default:
-            break;
+    if (section == 4) {
+        return 10;
     }
-    return 0;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,191 +121,241 @@
     {
         case 0:
         {
-            if (indexPath.row == 0) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"topViewCell"] ;
-                NSMutableArray *bigArr=[[NSMutableArray alloc]init];
-                
-                for (NSString *iconStr in _beerBarDetail.banners) {
-                    NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
-                    [dicTemp setObject:iconStr forKey:@"ititle"];
-                    [dicTemp setObject:@"" forKey:@"mainHeading"];
-                    [bigArr addObject:dicTemp];
-                }
-                
-                EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 242)
-                                                       scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
-                [cell addSubview:scroller];
-            }
-            else
-            {
-                cell = _barDetailCell;
-                UILabel * labOrdNum = (UILabel *)[cell viewWithTag:6];
-                labOrdNum.text = _beerBarDetail.today_sm_buynum;
-            }
-            [_barDetailCell configureCell:_beerBarDetail];
+            LYHeaderTableViewCell *headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
+            [headerCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.banners[0]]];
+            headerCell.label_laBa.text = self.beerBarDetail.announcement.content;
+            headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return headerCell;
 
         }
             break;
         case 1:
         {
            
-                cell = [tableView dequeueReusableCellWithIdentifier:@"PacketBarCell" forIndexPath:indexPath];
-                PacketBarCell * tCell = (PacketBarCell *)cell;
-                {
-                    RecommendPackageModel * model = nil;
-                    model = indexPath.row < _beerBarDetail.recommend_package.count ?[_beerBarDetail.recommend_package objectAtIndex:indexPath.row]:nil;
-                    [tCell configureCell:model];
-                }
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 87.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
+            LYBarTitleTableViewCell *barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
+            [barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon]];
+            barTitleCell.label_name.text = self.beerBarDetail.barname;
             
+            NSString *priceStr = [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
+            NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
+            [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(1, 3)];
+            if ([self.beerBarDetail.lowest_consumption integerValue] > 999) {
+                 [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(1, 4)];
+            }
+            
+            
+            barTitleCell.label_price.attributedText = attributedStr;
+            
+            for (int i = 0;i < 5;i ++) {
+                UIImageView *imageView = barTitleCell.imageView_starArray[i];
+                imageView.image = [UIImage imageNamed:@"starGray"];
+            }
+            if ([self.beerBarDetail.star_num integerValue]) {
+                for (int y = 0; y < [self.beerBarDetail.star_num integerValue]; y++) {
+                    UIImageView *imageView = barTitleCell.imageView_starArray[y];
+                    imageView.image = [UIImage imageNamed:@"starRed"];
+                }
+            }
+            barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return barTitleCell;
+            
+        }
+            break;
+            case 2:
+        {
+            LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
+            barPointCell.label_point.text = self.beerBarDetail.address;
+            barPointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                        barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return barPointCell;
+        }
+            break;
+            case 3:
+        {
+            LYBarSpecialTableViewCell *barSpecialCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarSpecialTableViewCell" forIndexPath:indexPath];
+            for (int i = 0;i < 4; i ++) {
+                UILabel *label = barSpecialCell.label_specialArray[i];
+                label.layer.cornerRadius = 2;
+                label.layer.borderWidth = 0.5;
+                label.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
+                //label.text = self.beerBarDetail.tese[i];
+                NSLog(@"-------%@",self.beerBarDetail.tese);
+            }
+            for (int i = 0;i < 2; i ++) {
+                UILabel *label = barSpecialCell.label_classArray[i];
+                label.layer.cornerRadius = 2;
+                label.layer.borderWidth = 0.5;
+                label.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
+                label.text = self.beerBarDetail.subtypename;
+            }
+                        barSpecialCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return barSpecialCell;
         }
             break;
         default:
         {
-            
-            NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
-            
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
-                cell.accessoryType = UITableViewCellAccessoryNone;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor=[UIColor whiteColor];
-                UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
-                [lal1 setTag:1];
-                lal1.textAlignment=NSTextAlignmentLeft;
-                lal1.font=[UIFont boldSystemFontOfSize:12];
-                lal1.backgroundColor=[UIColor clearColor];
-                lal1.textColor= RGB(128, 128, 128);
-                lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
-                lal1.lineBreakMode=UILineBreakModeWordWrap;
-                [cell.contentView addSubview:lal1];
-                
+            switch (indexPath.row) {
+                case 0:
+                {
+                    LYBarDescTitleTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTitleTableViewCell" forIndexPath:indexPath];
+                    barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    return barDescTitleCell;
+                }
+                    break;
+                    
+                default:
+                {
+                    LYBarDesrcTableViewCell *barDescCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDesrcTableViewCell" forIndexPath:indexPath];
+                    barDescCell.label_content.text = self.beerBarDetail.announcement.content;
+                    barDescCell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                    if (indexPath.row == 1 || indexPath.row == 5) {
+//                        barDescCell.imageView_content.hidden = YES;
+//                        barDescCell.label_content.text = self.beerBarDetail.announcement.content;
+//                    }else{
+//                        barDescCell.imageView_content.image = [UIImage imageNamed:@"jiuBarContent.jpg"];
+//                        barDescCell.label_content.hidden = YES;
+//                    }
+                    
+                    return barDescCell;
+                }
+                    break;
             }
             
-            
-            UILabel *lal = (UILabel*)[cell viewWithTag:1];
-            NSString *title;
-            if(_beerBarDetail.announcement){
-               title=[NSString stringWithFormat:@"%@：\n     %@",_beerBarDetail.announcement.title,_beerBarDetail.announcement.content];
-            }else{
-                title=@"暂无公告";
-            }
-            
-            
-            //高度固定不折行，根据字的多少计算label的宽度
-            
-            CGSize size = [title sizeWithFont:lal.font
-                            constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
-                                lineBreakMode:NSLineBreakByWordWrapping];
-            //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-            //根据计算结果重新设置UILabel的尺寸
-            lal.height=size.height;
-            lal.text=title;
-            CGRect cellFrame = [cell frame];
-            cellFrame.origin=CGPointMake(0, 0);
-            cellFrame.size.width=SCREEN_WIDTH;
-            cellFrame.size.height=lal.size.height+20;
-            
-            [cell setFrame:cellFrame];
-            
-            
-            
-            
-            
-        
+//            NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
+//            
+//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
+//                cell.accessoryType = UITableViewCellAccessoryNone;
+//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                cell.backgroundColor=[UIColor whiteColor];
+//                UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
+//                [lal1 setTag:1];
+//                lal1.textAlignment=NSTextAlignmentLeft;
+//                lal1.font=[UIFont boldSystemFontOfSize:12];
+//                lal1.backgroundColor=[UIColor clearColor];
+//                lal1.textColor= RGB(128, 128, 128);
+//                lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+//                lal1.lineBreakMode=UILineBreakModeWordWrap;
+//                [cell.contentView addSubview:lal1];
+//                
+//            }
+//            
+//            
+//            UILabel *lal = (UILabel*)[cell viewWithTag:1];
+//            NSString *title;
+//            if(_beerBarDetail.announcement){
+//               title=[NSString stringWithFormat:@"%@：\n     %@",_beerBarDetail.announcement.title,_beerBarDetail.announcement.content];
+//            }else{
+//                title=@"暂无公告";
+//            }
+//            
+//            
+//            //高度固定不折行，根据字的多少计算label的宽度
+//            
+//            CGSize size = [title sizeWithFont:lal.font
+//                            constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
+//                                lineBreakMode:NSLineBreakByWordWrapping];
+//            //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+//            //根据计算结果重新设置UILabel的尺寸
+//            lal.height=size.height;
+//            lal.text=title;
+//            CGRect cellFrame = [cell frame];
+//            cellFrame.origin=CGPointMake(0, 0);
+//            cellFrame.size.width=SCREEN_WIDTH;
+//            cellFrame.size.height=lal.size.height+20;
+//            
+//            [cell setFrame:cellFrame];
+
             break;
 
     }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 1;
-    }
-    return 34;
+    return 0.001;
 }
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if(section==0){
-        return [[UIView alloc] initWithFrame:CGRectZero];
-        
-    }else{
-        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
-        view.backgroundColor=RGB(247, 247, 247);
-        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(15, 11, 200, 12)];
-        if(section==1){
-            label.text=@"今日热门订座套餐";
-            UILabel *label1=[[UILabel alloc]initWithFrame:CGRectMake(215, 11, 60, 12)];
-            label1.font=[UIFont systemFontOfSize:12];
-            label1.textColor=RGB(51, 51, 51);
-            label1.text=@"套餐数量：";
-            UILabel *label2=[[UILabel alloc]initWithFrame:CGRectMake(215+60, 11, 80, 12)];
-            label2.font=[UIFont systemFontOfSize:12];
-            label2.textColor=RGB(254, 96, 96);
-            label2.text=[NSString stringWithFormat:@"%ld",_beerBarDetail.recommend_package.count];
-            [view addSubview:label1];
-            [view addSubview:label2];
-        }else{
-            label.text=@"商家公告";
-        }
-        
-        label.font=[UIFont systemFontOfSize:12];
-        label.textColor=RGB(51, 51, 51);
-        [view addSubview:label];
-        return view;
-    }
-    
-    
+    UIView *headerView = [[UIView alloc]init];
+    headerView.backgroundColor = [UIColor clearColor];
+    return headerView;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 8;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *headerView = [[UIView alloc]init];
+    headerView.backgroundColor = [UIColor clearColor];
+    return headerView;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat h = 0.0f;
+    CGFloat h = 0.0;
     switch (indexPath.section) {
-        case 0://广告
+        case 0:
         {
-            h =  indexPath.row == 0? 242:_dyBarDetailH;
+            return 271;
         }
             break;
-        case 1:// 选项卡 ，酒吧或夜总会
+        case 1:
         {
-            h =  88;
+            return 77;
         }
             break;
         case 2:
         {
-            UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-            h=cell.frame.size.height;
+            return 60;
         }
             break;
+        case 3:
+        {
+            return 105;
+        }
+            break;
+            
         default:
         {
+            switch (indexPath.row) {
+                case 0:
+                {
+                    return 76;
+                }
+                    break;
+                    
+                default:
+                {
+                    return 145 + 4;
+                }
+                    break;
+            }
         }
             break;
     }
-    return h;
+        return h;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==1){
-        
-        RecommendPackageModel * model = nil;
-        model = indexPath.row < _beerBarDetail.recommend_package.count ?[_beerBarDetail.recommend_package objectAtIndex:indexPath.row]:nil;
-        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
-        DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
-        taoCanXQViewController.title=@"套餐详情";
-        taoCanXQViewController.smid=model.smid.intValue;
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        taoCanXQViewController.dateStr=[dateFormatter stringFromDate:[NSDate new]];
-        [self.navigationController pushViewController:taoCanXQViewController animated:YES];
-    }
+//    if(indexPath.section==1){
+//        
+//        RecommendPackageModel * model = nil;
+//        model = indexPath.row < _beerBarDetail.recommend_package.count ?[_beerBarDetail.recommend_package objectAtIndex:indexPath.row]:nil;
+//        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
+//        DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
+//        taoCanXQViewController.title=@"套餐详情";
+//        taoCanXQViewController.smid=model.smid.intValue;
+//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+//        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//        taoCanXQViewController.dateStr=[dateFormatter stringFromDate:[NSDate new]];
+//        [self.navigationController pushViewController:taoCanXQViewController animated:YES];
+//    }
     
     
     

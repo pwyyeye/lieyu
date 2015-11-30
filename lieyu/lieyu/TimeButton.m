@@ -20,11 +20,13 @@
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
     if(selected){
-        self.titleLal.textColor=RGB(35, 166, 116);
-        self.weekLal.textColor=RGB(35, 166, 116);
+        self.titleLal.textColor=RGB(114, 5, 147);
+        self.weekLal.textColor=RGB(114, 5, 147);
+        self.backgroundColor = [UIColor whiteColor];
     }else{
         self.titleLal.textColor=RGB(255, 255, 255);
         self.weekLal.textColor=RGB(255, 255, 255);
+        self.backgroundColor = RGB(114, 5, 147);
     }
 }
 @end
