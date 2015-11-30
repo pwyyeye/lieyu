@@ -421,6 +421,13 @@
 		A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */; };
 		AD0080931BEA4F4F00937CFF /* lieyuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */; };
 		AD0080941BEA4F4F00937CFF /* lieyuIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */; };
+		AD106B8B1C0AEF16007F5FBA /* LYUserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */; };
+		AD106B901C0AF044007F5FBA /* LYUserCenterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B8E1C0AF044007F5FBA /* LYUserCenterHeader.m */; };
+		AD106B911C0AF044007F5FBA /* LYUserCenterHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD106B8F1C0AF044007F5FBA /* LYUserCenterHeader.xib */; };
+		AD106B951C0B1A7C007F5FBA /* LYUserCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B931C0B1A7C007F5FBA /* LYUserCenterCell.m */; };
+		AD106B961C0B1A7C007F5FBA /* LYUserCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD106B941C0B1A7C007F5FBA /* LYUserCenterCell.xib */; };
+		AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B981C0BE898007F5FBA /* LYUserCenterFooter.m */; };
+		AD106B9B1C0BE898007F5FBA /* LYUserCenterFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD106B991C0BE898007F5FBA /* LYUserCenterFooter.xib */; };
 		AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD198CBB1C00308400AA654D /* libWeChatSDK.a */; };
 		AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC01C00357C00AA654D /* SingletonTenpay.m */; };
 		AD198CC41C00368300AA654D /* TenpayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC31C00368300AA654D /* TenpayModel.m */; };
@@ -1278,6 +1285,17 @@
 		A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleasePackagesViewController.xib; sourceTree = "<group>"; };
 		AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@2x.png"; sourceTree = "<group>"; };
 		AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@3x.png"; sourceTree = "<group>"; };
+		AD106B881C0AEF16007F5FBA /* LYUserCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserCenterController.h; sourceTree = "<group>"; };
+		AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserCenterController.m; sourceTree = "<group>"; };
+		AD106B8D1C0AF044007F5FBA /* LYUserCenterHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserCenterHeader.h; sourceTree = "<group>"; };
+		AD106B8E1C0AF044007F5FBA /* LYUserCenterHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserCenterHeader.m; sourceTree = "<group>"; };
+		AD106B8F1C0AF044007F5FBA /* LYUserCenterHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYUserCenterHeader.xib; sourceTree = "<group>"; };
+		AD106B921C0B1A7C007F5FBA /* LYUserCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserCenterCell.h; sourceTree = "<group>"; };
+		AD106B931C0B1A7C007F5FBA /* LYUserCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserCenterCell.m; sourceTree = "<group>"; };
+		AD106B941C0B1A7C007F5FBA /* LYUserCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYUserCenterCell.xib; sourceTree = "<group>"; };
+		AD106B971C0BE898007F5FBA /* LYUserCenterFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserCenterFooter.h; sourceTree = "<group>"; };
+		AD106B981C0BE898007F5FBA /* LYUserCenterFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserCenterFooter.m; sourceTree = "<group>"; };
+		AD106B991C0BE898007F5FBA /* LYUserCenterFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYUserCenterFooter.xib; sourceTree = "<group>"; };
 		AD198CBB1C00308400AA654D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		AD198CBD1C00309B00AA654D /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		AD198CBF1C00357C00AA654D /* SingletonTenpay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonTenpay.h; sourceTree = "<group>"; };
@@ -3919,6 +3937,17 @@
 			children = (
 				A2020D4C1BA661C00090B92A /* 专属经理 */,
 				A2020D4B1BA6612C0090B92A /* 个人信息 */,
+				AD106B881C0AEF16007F5FBA /* LYUserCenterController.h */,
+				AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */,
+				AD106B8D1C0AF044007F5FBA /* LYUserCenterHeader.h */,
+				AD106B8E1C0AF044007F5FBA /* LYUserCenterHeader.m */,
+				AD106B8F1C0AF044007F5FBA /* LYUserCenterHeader.xib */,
+				AD106B921C0B1A7C007F5FBA /* LYUserCenterCell.h */,
+				AD106B931C0B1A7C007F5FBA /* LYUserCenterCell.m */,
+				AD106B941C0B1A7C007F5FBA /* LYUserCenterCell.xib */,
+				AD106B971C0BE898007F5FBA /* LYUserCenterFooter.h */,
+				AD106B981C0BE898007F5FBA /* LYUserCenterFooter.m */,
+				AD106B991C0BE898007F5FBA /* LYUserCenterFooter.xib */,
 			);
 			name = Mine;
 			sourceTree = "<group>";
@@ -4133,6 +4162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15EB354E1BD4839D00BA6161 /* UMSLoginViewController.xib in Resources */,
+				AD106B911C0AF044007F5FBA /* LYUserCenterHeader.xib in Resources */,
 				15844BBF1BE1C70600247FBC /* LYSearchFriendViewController.xib in Resources */,
 				15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */,
 				ADD68E391BE10E550060E751 /* 2@3x.png in Resources */,
@@ -4266,6 +4296,7 @@
 				85F625A21C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib in Resources */,
 				A2F9DA7F1BAA8CC3009DEAF3 /* SerchHeadView.xib in Resources */,
 				855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */,
+				AD106B961C0B1A7C007F5FBA /* LYUserCenterCell.xib in Resources */,
 				D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */,
 				ADD68E331BE10E400060E751 /* 4_retina.png in Resources */,
 				85EE803D1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib in Resources */,
@@ -4295,6 +4326,7 @@
 				85EE80381C0AF19600958F76 /* LYBarTitleTableViewCell.xib in Resources */,
 				85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */,
 				ADD68E3F1BE10E7E0060E751 /* skip-btn@3x.png in Resources */,
+				AD106B9B1C0BE898007F5FBA /* LYUserCenterFooter.xib in Resources */,
 				15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */,
 				ADD68E3A1BE10E550060E751 /* 3@3x.png in Resources */,
 				15E240C11BB3A9AA0090D240 /* LYUserLoginViewController.xib in Resources */,
@@ -4399,6 +4431,7 @@
 				ADE103C21BE0EAAA00D9EC38 /* EAIntroView.m in Sources */,
 				15E1849A1BB5319900681BB2 /* Toast+UIView.m in Sources */,
 				AD92AEB11BE235D9009F2A34 /* LYUserTagButton.m in Sources */,
+				AD106B8B1C0AEF16007F5FBA /* LYUserCenterController.m in Sources */,
 				ADE103A81BDE4B2300D9EC38 /* SingletonAlipay.m in Sources */,
 				15E184831BB51A9500681BB2 /* LYZSApplicationViewController.m in Sources */,
 				15ED32831BE336DC00E086A1 /* YaoHisListViewController.m in Sources */,
@@ -4464,6 +4497,7 @@
 				15E184A01BB8D20700681BB2 /* MyUtil.m in Sources */,
 				15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
+				AD106B901C0AF044007F5FBA /* LYUserCenterHeader.m in Sources */,
 				15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */,
 				A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */,
 				15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */,
@@ -4529,6 +4563,7 @@
 				15EA6DCC1BC014BD00620C9E /* UserModel.m in Sources */,
 				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
 				15E240771BB24F510090D240 /* MyCollectionViewController.m in Sources */,
+				AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
 				D748BC7A1BA1CB0E005AA996 /* User.m in Sources */,
@@ -4650,6 +4685,7 @@
 				85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */,
 				D7545E011BB99A3A005B854F /* HTTPController.m in Sources */,
 				D7A1D4311BC2CD1B00BCE47C /* AnnouncementModel.m in Sources */,
+				AD106B951C0B1A7C007F5FBA /* LYUserCenterCell.m in Sources */,
 				15CC31E01BEB2C5B00DDD03F /* FMDatabase.m in Sources */,
 				A2F9DA661BAA5666009DEAF3 /* ShopDetailmodel.m in Sources */,
 				A2FD578E1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m in Sources */,

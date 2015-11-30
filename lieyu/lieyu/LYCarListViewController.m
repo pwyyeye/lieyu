@@ -24,15 +24,21 @@
 
 @implementation LYCarListViewController
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self getData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=@"购物车";
     dataList=[[NSMutableArray alloc]init];
 //    [self getData];
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carnumChange) name:@"carnumChange" object:nil];
     // Do any additional setup after loading the view from its nib.
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"carnumChange" object:nil];
