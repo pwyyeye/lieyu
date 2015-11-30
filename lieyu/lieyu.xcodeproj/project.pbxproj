@@ -290,6 +290,7 @@
 		15FD2AA91BD6243700D66920 /* TaoCanTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AA81BD6243700D66920 /* TaoCanTitleView.m */; };
 		15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */; };
 		15FD2AB11BD7231C00D66920 /* LYTaoCanXQCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AB01BD7231C00D66920 /* LYTaoCanXQCell.m */; };
+		3879F2061C0BE19500B72629 /* LPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2051C0BE19500B72629 /* LPSelectButton.m */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		85F672B21C097D48001BEE5B /* LYHotRecommandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672B01C097D48001BEE5B /* LYHotRecommandCell.m */; };
@@ -1048,6 +1049,8 @@
 		15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoCanTitleView.xib; sourceTree = "<group>"; };
 		15FD2AAF1BD7231C00D66920 /* LYTaoCanXQCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTaoCanXQCell.h; sourceTree = "<group>"; };
 		15FD2AB01BD7231C00D66920 /* LYTaoCanXQCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTaoCanXQCell.m; sourceTree = "<group>"; };
+		3879F2041C0BE19500B72629 /* LPSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSelectButton.h; path = ../LPSelectButton.h; sourceTree = "<group>"; };
+		3879F2051C0BE19500B72629 /* LPSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSelectButton.m; path = ../LPSelectButton.m; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementClassCell.h; sourceTree = "<group>"; };
@@ -3804,6 +3807,8 @@
 				AD198D041C0365D700AA654D /* URL */,
 				D7A1D4151BC2657E00BCE47C /* LYLocationManager.h */,
 				D7A1D4161BC2657E00BCE47C /* LYLocationManager.m */,
+				3879F2041C0BE19500B72629 /* LPSelectButton.h */,
+				3879F2051C0BE19500B72629 /* LPSelectButton.m */,
 				D7545DFF1BB99A3A005B854F /* HTTPController.h */,
 				D7545E001BB99A3A005B854F /* HTTPController.m */,
 				15013ACF1BBA161100061FAF /* ZSManageHttpTool.h */,
@@ -4291,6 +4296,7 @@
 				15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */,
 				15CC31E41BEB2C5B00DDD03F /* FMResultSet.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
+				3879F2061C0BE19500B72629 /* LPSelectButton.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
 				A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */,
@@ -4717,7 +4723,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fc8a2451-9953-4d57-8f94-68dcb40e421c";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -4762,7 +4768,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fc8a2451-9953-4d57-8f94-68dcb40e421c";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

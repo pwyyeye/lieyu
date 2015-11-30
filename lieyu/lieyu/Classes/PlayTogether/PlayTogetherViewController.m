@@ -17,8 +17,9 @@
 #import "ProductCategoryModel.h"
 #import "LYPlayTogetherMainViewController.h"
 #import "LYUserLocation.h"
+#import "LPSelectButton.h"
 @interface PlayTogetherViewController
-()<ShaiXuanDelegate>
+()<ShaiXuanDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *dataList;
     int pageCount;
@@ -29,7 +30,11 @@
 @property(nonatomic,weak) IBOutlet UIButton * nearDistanceButton;
 @property(nonatomic,strong) IBOutlet UIButton * fillterButton;
 @property(nonatomic,strong) NSArray *oriNavItems;
+@property (nonatomic, strong) UIView *sectionView;
 
+@property (nonatomic, strong) NSArray *buttonsArray;
+@property (nonatomic, strong) UIView *selectView;
+@property (nonatomic, strong) NSArray *itemsArray;
 
 @end
 
@@ -40,8 +45,6 @@
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.height=330;
     }
-//    _tableView.height=330;
-
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -64,7 +67,13 @@
         [self getDataWithDicMore:nowDic];
     }];
     // Do any additional setup after loading the view.
+    
+    
+    
+}
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -72,12 +81,133 @@
     return dataList.count;
 }
 
+/**
+ *description:
+ dict:
+ fontName
+ fontSize
+ textColor
+ content
+ imageW
+ imageH
+ imageUnSelectedName
+ imageSelectedName
+ *author:WTT
+ */
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    _sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    _sectionView.backgroundColor = [UIColor whiteColor];
+    NSArray *arrayKeys = @[@"fontName",@"fontSize",@"textColor",@"content",@"imageW",@"imageH",@"imageUnSelectedName",@"imageSelectedName"];
+    NSArray *array1 = @[@"FZLTXHK",@"14",RGBA(30, 30, 30, 1),@"所有地区",@"24",@"24",@"triangle_down",@"triangle_up"];
+    NSArray *array2 = @[@"FZLTXHK",@"14",[UIColor colorWithRed:30 green:30 blue:30 alpha:1],@"音乐清吧",@"24",@"24",@"triangle_down",@"triangle_up"];
+    NSArray *array3 = @[@"FZLTXHK",@"14",[UIColor colorWithRed:30 green:30 blue:30 alpha:1],@"离我最近",@"24",@"24",@"triangle_down",@"triangle_up"];
+    NSDictionary *dict1 = [NSDictionary dictionaryWithObjects:array1 forKeys:arrayKeys];
+    NSDictionary *dict2 = [NSDictionary dictionaryWithObjects:array2 forKeys:arrayKeys];
+    NSDictionary *dict3 = [NSDictionary dictionaryWithObjects:array3 forKeys:arrayKeys];
+    
+    UIView *partView1 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3, 13, 0.5, 14)];
+    partView1.backgroundColor = RGBA(204, 204, 204, 1);
+    [_sectionView addSubview:partView1];
+    
+    UIView *partView2 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3 * 2, 13, 0.5, 14)];
+    partView2.backgroundColor = RGBA(204, 204, 204, 1);
+    [_sectionView addSubview:partView2];
+
+    LPSelectButton *button1 = [[LPSelectButton alloc]initWithFrame:CGRectMake(0, 0, 319/3, 40) AndDictionary:dict1];
+    button1.tag = 1;
+    LPSelectButton *button2 = [[LPSelectButton alloc]initWithFrame:CGRectMake(319/3, 0, 319/3, 40) AndDictionary:dict2];
+    button2.tag = 2;
+    LPSelectButton *button3 = [[LPSelectButton alloc]initWithFrame:CGRectMake(319/3 * 2, 0, 319/3, 40) AndDictionary:dict3];
+    button3.tag = 3;
+    
+//    [button1 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+//    [button2 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+//    [button3 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.buttonsArray = [[NSArray alloc]initWithObjects:button1, button2, button3, nil];
+    
+    [self.sectionView addSubview:button1];
+    [self.sectionView addSubview:button2];
+    [self.sectionView addSubview:button3];
+    
+    return _sectionView;
+}
+//,@[@"宝山区",@"嘉定区",@"黄浦区",@"青浦区",@"闵行区",@"奉贤区",@"金山区",@"松江区",@"南汇区"]
+//,@[@"音乐清吧",@"激情夜店",@"文艺静吧",@"舞动KTV"]
+//,@[@"1公里以内",@"5公里以内",@"10公里以内",@"20公里以内"]
+- (void)changeSelection:(LPSelectButton *)button{
+    for (LPSelectButton *btn in _buttonsArray) {
+        if(btn.tag == button.tag){
+            if(btn.selected == YES){
+                btn.selected = NO;
+                btn.imageIcon.image = [UIImage imageNamed:@"triangle_down"];
+            }else{
+                btn.selected = YES;
+                btn.imageIcon.image = [UIImage imageNamed:@"triangle_up"];
+            }
+        }else{
+            btn.imageIcon.image = [UIImage imageNamed:@"triangle_down"];
+            btn.selected = NO;
+        }
+    }
+    if(self.selectView == nil){
+        self.selectView = [[UIView alloc]init];
+        self.itemsArray =
+  @[
+    @[@"宝山区",@"嘉定区",@"黄浦区",@"青浦区",@"闵行区",@"奉贤区",@"金山区",@"松江区",@"南汇区"],
+    @[@"音乐清吧",@"激情夜店",@"文艺静吧",@"舞动KTV"],
+    @[@"离我最近",@"1公里以内",@"5公里以内",@"10公里以内",@"20公里以内"]
+  ];
+        
+    }
+    [self.selectView removeFromSuperview];
+    NSArray *array = self.itemsArray[button.tag - 1];
+    [self showSelectView:array];
+}
+
+- (void)showSelectView:(NSArray *)array{
+    NSLog(@"array:%@",array);
+    int rows = (int)array.count / 3;
+    self.selectView.frame = CGRectMake(0, 104, 320, 74 + 50 * rows);
+    self.selectView.backgroundColor = [UIColor whiteColor];
+    for (int i = 0 ; i < array.count; i ++) {
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(7 + 108 * (i % 3), 20 + 50 * (i / 3), 90, 34)];
+        [button setTitleColor:RGBA(26, 26, 26, 1) forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        button.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(151, 151, 151, 1));
+        button.layer.borderWidth = 0.5;
+//        [button setImage:[self imageWithColor:RGBA(255, 255, 255, 1) andSize:button.frame.size] forState:UIControlStateNormal];
+        [button setBackgroundColor:[UIColor grayColor]];
+        [button setImage:[self imageWithColor:RGBA(114, 5, 147, 1) andSize:button.frame.size] forState:UIControlStateSelected];
+        [button setTitle:array[i] forState:UIControlStateNormal];
+        [self.selectView addSubview:button];
+    }
+    [self.view addSubview:self.selectView];
+}
+
+#pragma image
+- (UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 40;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LYPlayTogetherCell *cell = nil;
     
     cell = [tableView dequeueReusableCellWithIdentifier:@"LYPlayTogetherCell" forIndexPath:indexPath];
-    
+//    cell.backgroundColor = [UIColor lightGrayColor];
     PinKeModel *pinKeModel =[dataList objectAtIndex:indexPath.row];
     [cell configureCell:pinKeModel];
     cell.pkBtn.tag=indexPath.row;
@@ -90,17 +220,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 118;
+    return 148;
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-//        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
-//        [self.navigationController pushViewController:controller animated:YES];
-    
-}
 #pragma mark 获取更多一起玩数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{
     __weak __typeof(self)weakSelf = self;
@@ -213,8 +335,8 @@
     _myTitle.backgroundColor = [UIColor clearColor];
     _myTitle.textColor=[UIColor whiteColor];
     _myTitle.textAlignment = NSTextAlignmentCenter;
-    [_myTitle setFont:[UIFont systemFontOfSize:17.0]];
-    [_myTitle setText:@"一起玩"];
+    [_myTitle setFont:[UIFont systemFontOfSize:16.0]];
+    [_myTitle setText:@"热门拼客"];
     //        self.navigationItem.titleView=titleText;
     [self.navigationController.navigationBar addSubview:_myTitle];
    
@@ -342,6 +464,7 @@
     }
     
 }
+
 -(void)woYaoPin:(UIButton *)sender{
     PinKeModel *pinKeModel =[dataList objectAtIndex:sender.tag];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
@@ -350,4 +473,15 @@
     playTogetherMainViewController.smid=pinKeModel.smid;
     [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PinKeModel *pinKeModel = [dataList objectAtIndex:indexPath.row];
+    LYPlayTogetherMainViewController *playTogetherMainViewController = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
+    playTogetherMainViewController.title = @"我要拼客";
+    playTogetherMainViewController.smid = pinKeModel.smid;
+    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
+    
+}
+
 @end

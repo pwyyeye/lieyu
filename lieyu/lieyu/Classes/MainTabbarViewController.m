@@ -37,17 +37,15 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete) name:COMPLETE_MESSAGE object:nil];
 }
+
 -(void)tabbarChagne{
-   NSArray *items= self.tabBar.items;
+   NSArray *items = self.tabBar.items;
    UITabBarItem *item=[items objectAtIndex:2];
     if ([MyUtil isEmptyString:item.badgeValue]) {
         item.badgeValue=[NSString stringWithFormat:@"%d",1];
     }else{
         item.badgeValue=[NSString stringWithFormat:@"%d",item.badgeValue.intValue+1];
     }
-    
-    
-    
 }
 
 
@@ -61,13 +59,13 @@
 
 - (void)setupViewStyles
 {
-    NSArray * aryImages = @[@"icon_woyaowan",@"icon_yiqiwan",@"icon_faxian",@"icon_wode"];
-    NSArray * selectedImages = @[@"icon_woyaowan_selected",@"icon_yiqiwan_selected",@"icon_faxian_selected",@"icon_wode_selected"];
+    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"Find_normal",@"Mine_normal"];
+    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"Find_selected",@"Mine_selected"];
 
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(13, 159, 103, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(114, 5, 147, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(166, 166, 166, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(114, 5, 147, 0.3), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateNormal];
     
     int i = 0;
     for (UITabBarItem *item in self.tabBar.items)

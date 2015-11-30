@@ -20,6 +20,9 @@
 @end
 
 @implementation LYPlayTogetherMainViewController
+- (BOOL)prefersStatusBarHidden{
+    return NO;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +31,7 @@
     _tableView.separatorColor=[UIColor clearColor];
     //获取详细
     [self getdata];
+    self.navigationController.navigationBarHidden = YES;
     // Do any additional setup after loading the view.
 }
 -(void)getdata{

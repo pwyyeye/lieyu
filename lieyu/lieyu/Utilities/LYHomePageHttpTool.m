@@ -22,8 +22,7 @@
     return instance;
 }
 #pragma mark -获取一起玩列表
--(void) getTogetherListWithParams:(NSDictionary*)params
-                           block:(void(^)(NSMutableArray* result)) block{
+-(void) getTogetherListWithParams:(NSDictionary*)params block:(void(^)(NSMutableArray* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YIQIWAN_LIST baseURL:LY_SERVER params:params success:^(id response) {
