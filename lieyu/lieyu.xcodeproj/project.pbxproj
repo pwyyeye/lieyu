@@ -288,6 +288,7 @@
 		15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */; };
 		15FD2AB11BD7231C00D66920 /* LYTaoCanXQCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AB01BD7231C00D66920 /* LYTaoCanXQCell.m */; };
 		3879F2061C0BE19500B72629 /* LPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2051C0BE19500B72629 /* LPSelectButton.m */; };
+		8541D5B81C0D693A006BC45A /* LYHotBarMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
@@ -322,6 +323,8 @@
 		85F625A21C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625A01C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib */; };
 		85F625A61C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625A41C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m */; };
 		85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625A51C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib */; };
+		85F625AB1C0C8B87002858C8 /* LYOrderWriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625A91C0C8B87002858C8 /* LYOrderWriteTableViewCell.m */; };
+		85F625AC1C0C8B87002858C8 /* LYOrderWriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625AA1C0C8B87002858C8 /* LYOrderWriteTableViewCell.xib */; };
 		85F672B21C097D48001BEE5B /* LYHotRecommandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672B01C097D48001BEE5B /* LYHotRecommandCell.m */; };
 		85F672B31C097D48001BEE5B /* LYHotRecommandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672B11C097D48001BEE5B /* LYHotRecommandCell.xib */; };
 		85F672B71C099776001BEE5B /* LYWineBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672B51C099776001BEE5B /* LYWineBarCell.m */; };
@@ -1088,6 +1091,8 @@
 		3879F2051C0BE19500B72629 /* LPSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSelectButton.m; path = ../LPSelectButton.m; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
+		8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuView.m; sourceTree = "<group>"; };
 		85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementClassCell.h; sourceTree = "<group>"; };
 		85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAmusementClassCell.m; sourceTree = "<group>"; };
 		85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYAmusementClassCell.xib; sourceTree = "<group>"; };
@@ -1139,6 +1144,9 @@
 		85F625A31C0C4DB7002858C8 /* LYTaoCanListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTaoCanListTableViewCell.h; sourceTree = "<group>"; };
 		85F625A41C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTaoCanListTableViewCell.m; sourceTree = "<group>"; };
 		85F625A51C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYTaoCanListTableViewCell.xib; sourceTree = "<group>"; };
+		85F625A81C0C8B87002858C8 /* LYOrderWriteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYOrderWriteTableViewCell.h; sourceTree = "<group>"; };
+		85F625A91C0C8B87002858C8 /* LYOrderWriteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYOrderWriteTableViewCell.m; sourceTree = "<group>"; };
+		85F625AA1C0C8B87002858C8 /* LYOrderWriteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYOrderWriteTableViewCell.xib; sourceTree = "<group>"; };
 		85F672AF1C097D48001BEE5B /* LYHotRecommandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotRecommandCell.h; sourceTree = "<group>"; };
 		85F672B01C097D48001BEE5B /* LYHotRecommandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotRecommandCell.m; sourceTree = "<group>"; };
 		85F672B11C097D48001BEE5B /* LYHotRecommandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotRecommandCell.xib; sourceTree = "<group>"; };
@@ -1994,6 +2002,9 @@
 				15A4CF481BD7684700C22C01 /* DWnumCell.m */,
 				15A4CF4A1BD7689F00C22C01 /* DWOrderTopCell.h */,
 				15A4CF4B1BD7689F00C22C01 /* DWOrderTopCell.m */,
+				85F625A81C0C8B87002858C8 /* LYOrderWriteTableViewCell.h */,
+				85F625A91C0C8B87002858C8 /* LYOrderWriteTableViewCell.m */,
+				85F625AA1C0C8B87002858C8 /* LYOrderWriteTableViewCell.xib */,
 			);
 			name = cell;
 			sourceTree = "<group>";
@@ -2797,6 +2808,8 @@
 				85F625881C0BE74E002858C8 /* LYHotBarMenuViewController.h */,
 				85F625891C0BE74E002858C8 /* LYHotBarMenuViewController.m */,
 				85F6258A1C0BE74E002858C8 /* LYHotBarMenuViewController.xib */,
+				8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */,
+				8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */,
 			);
 			name = "热门酒吧";
 			path = "Classes/INeedPlay/热门酒吧";
@@ -4254,6 +4267,7 @@
 				855192701C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib in Resources */,
 				15E240BB1BB3A4CD0090D240 /* MyChooseZSCell.xib in Resources */,
 				A2F9DA761BAA6AE2009DEAF3 /* OrderBottomView.xib in Resources */,
+				85F625AC1C0C8B87002858C8 /* LYOrderWriteTableViewCell.xib in Resources */,
 				A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */,
 				15B866211BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib in Resources */,
 				85F625981C0C20C6002858C8 /* LYDinWeiTableViewCell.xib in Resources */,
@@ -4480,6 +4494,7 @@
 				ADE103991BDE49BC00D9EC38 /* DataSigner.m in Sources */,
 				15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */,
 				D74C608B1BB6F0BF00A49598 /* BearBarListViewController.m in Sources */,
+				85F625AB1C0C8B87002858C8 /* LYOrderWriteTableViewCell.m in Sources */,
 				15EE515A1BA7085C00464B74 /* ZSAlreadyPayedViewController.m in Sources */,
 				D761F01A1BA5AED3000757B0 /* MJRefreshBackNormalFooter.m in Sources */,
 				15E240BA1BB3A4CD0090D240 /* MyChooseZSCell.m in Sources */,
@@ -4588,6 +4603,7 @@
 				85F672B21C097D48001BEE5B /* LYHotRecommandCell.m in Sources */,
 				15E240A51BB381450090D240 /* OrderDetailHeadView.m in Sources */,
 				AD92AEB51BE24165009F2A34 /* LYAlert.m in Sources */,
+				8541D5B81C0D693A006BC45A /* LYHotBarMenuView.m in Sources */,
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,

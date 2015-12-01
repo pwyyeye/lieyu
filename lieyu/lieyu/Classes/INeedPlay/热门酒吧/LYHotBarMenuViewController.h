@@ -15,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_arrow_one;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_arrow_two;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_arrow_three;
+- (instancetype)initWithFrame:(CGRect)frame :(UIViewController *)controller;
 
+- (IBAction)test:(id)sender;
 @end
