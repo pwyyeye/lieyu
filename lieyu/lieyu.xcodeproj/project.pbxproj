@@ -288,6 +288,21 @@
 		15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */; };
 		15FD2AB11BD7231C00D66920 /* LYTaoCanXQCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AB01BD7231C00D66920 /* LYTaoCanXQCell.m */; };
 		3879F2061C0BE19500B72629 /* LPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2051C0BE19500B72629 /* LPSelectButton.m */; };
+		3879F24A1C0D325D00B72629 /* BarInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2481C0D325D00B72629 /* BarInfoTableViewCell.m */; };
+		3879F24B1C0D325D00B72629 /* BarInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F2491C0D325D00B72629 /* BarInfoTableViewCell.xib */; };
+		3879F2521C0D329600B72629 /* AddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2501C0D329600B72629 /* AddressTableViewCell.m */; };
+		3879F2531C0D329600B72629 /* AddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F2511C0D329600B72629 /* AddressTableViewCell.xib */; };
+		3879F2571C0D32B900B72629 /* TaocanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2551C0D32B900B72629 /* TaocanTableViewCell.m */; };
+		3879F2581C0D32B900B72629 /* TaocanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F2561C0D32B900B72629 /* TaocanTableViewCell.xib */; };
+		3879F25C1C0D32D100B72629 /* BitianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F25A1C0D32D100B72629 /* BitianTableViewCell.m */; };
+		3879F25D1C0D32D100B72629 /* BitianTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F25B1C0D32D100B72629 /* BitianTableViewCell.xib */; };
+		3879F2611C0D32EE00B72629 /* ContentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F25F1C0D32EE00B72629 /* ContentTableViewCell.m */; };
+		3879F2621C0D32EE00B72629 /* ContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F2601C0D32EE00B72629 /* ContentTableViewCell.xib */; };
+		3879F2661C0D361000B72629 /* LiuchengTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2641C0D361000B72629 /* LiuchengTableViewCell.m */; };
+		3879F2671C0D361000B72629 /* LiuchengTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F2651C0D361000B72629 /* LiuchengTableViewCell.xib */; };
+		3879F26A1C0D363500B72629 /* LPPlayTogetherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2691C0D363500B72629 /* LPPlayTogetherViewController.m */; };
+		3879F26E1C0D557400B72629 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F26C1C0D557400B72629 /* DetailTableViewCell.m */; };
+		3879F26F1C0D557400B72629 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F26D1C0D557400B72629 /* DetailTableViewCell.xib */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
@@ -1086,6 +1101,29 @@
 		15FD2AB01BD7231C00D66920 /* LYTaoCanXQCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTaoCanXQCell.m; sourceTree = "<group>"; };
 		3879F2041C0BE19500B72629 /* LPSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSelectButton.h; path = ../LPSelectButton.h; sourceTree = "<group>"; };
 		3879F2051C0BE19500B72629 /* LPSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSelectButton.m; path = ../LPSelectButton.m; sourceTree = "<group>"; };
+		3879F2471C0D325D00B72629 /* BarInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarInfoTableViewCell.h; sourceTree = "<group>"; };
+		3879F2481C0D325D00B72629 /* BarInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarInfoTableViewCell.m; sourceTree = "<group>"; };
+		3879F2491C0D325D00B72629 /* BarInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BarInfoTableViewCell.xib; sourceTree = "<group>"; };
+		3879F24F1C0D329600B72629 /* AddressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressTableViewCell.h; sourceTree = "<group>"; };
+		3879F2501C0D329600B72629 /* AddressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressTableViewCell.m; sourceTree = "<group>"; };
+		3879F2511C0D329600B72629 /* AddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressTableViewCell.xib; sourceTree = "<group>"; };
+		3879F2541C0D32B900B72629 /* TaocanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaocanTableViewCell.h; sourceTree = "<group>"; };
+		3879F2551C0D32B900B72629 /* TaocanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaocanTableViewCell.m; sourceTree = "<group>"; };
+		3879F2561C0D32B900B72629 /* TaocanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaocanTableViewCell.xib; sourceTree = "<group>"; };
+		3879F2591C0D32D000B72629 /* BitianTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitianTableViewCell.h; sourceTree = "<group>"; };
+		3879F25A1C0D32D100B72629 /* BitianTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitianTableViewCell.m; sourceTree = "<group>"; };
+		3879F25B1C0D32D100B72629 /* BitianTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BitianTableViewCell.xib; sourceTree = "<group>"; };
+		3879F25E1C0D32EE00B72629 /* ContentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTableViewCell.h; sourceTree = "<group>"; };
+		3879F25F1C0D32EE00B72629 /* ContentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTableViewCell.m; sourceTree = "<group>"; };
+		3879F2601C0D32EE00B72629 /* ContentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentTableViewCell.xib; sourceTree = "<group>"; };
+		3879F2631C0D361000B72629 /* LiuchengTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuchengTableViewCell.h; sourceTree = "<group>"; };
+		3879F2641C0D361000B72629 /* LiuchengTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuchengTableViewCell.m; sourceTree = "<group>"; };
+		3879F2651C0D361000B72629 /* LiuchengTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiuchengTableViewCell.xib; sourceTree = "<group>"; };
+		3879F2681C0D363500B72629 /* LPPlayTogetherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPPlayTogetherViewController.h; sourceTree = "<group>"; };
+		3879F2691C0D363500B72629 /* LPPlayTogetherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPPlayTogetherViewController.m; sourceTree = "<group>"; };
+		3879F26B1C0D557400B72629 /* DetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewCell.h; sourceTree = "<group>"; };
+		3879F26C1C0D557400B72629 /* DetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewCell.m; sourceTree = "<group>"; };
+		3879F26D1C0D557400B72629 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementClassCell.h; sourceTree = "<group>"; };
@@ -2503,6 +2541,7 @@
 		15EB7C621BCF3B9B00756153 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				3879F2461C0D31B300B72629 /* 套餐详情 */,
 				15EB356F1BD4958900BA6161 /* 参与 */,
 				15EB7C661BCF3CAF00756153 /* LYPlayTogetherCell.h */,
 				15EB7C671BCF3CAF00756153 /* LYPlayTogetherCell.m */,
@@ -2552,6 +2591,8 @@
 				15EB35241BD379A500BA6161 /* LYtimeChooseTimeController.h */,
 				15EB35251BD379A500BA6161 /* LYtimeChooseTimeController.m */,
 				15EB35261BD379A500BA6161 /* LYtimeChooseTimeController.xib */,
+				3879F2681C0D363500B72629 /* LPPlayTogetherViewController.h */,
+				3879F2691C0D363500B72629 /* LPPlayTogetherViewController.m */,
 			);
 			name = "我要拼客";
 			sourceTree = "<group>";
@@ -2782,6 +2823,34 @@
 				85F625A51C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		3879F2461C0D31B300B72629 /* 套餐详情 */ = {
+			isa = PBXGroup;
+			children = (
+				3879F2471C0D325D00B72629 /* BarInfoTableViewCell.h */,
+				3879F2481C0D325D00B72629 /* BarInfoTableViewCell.m */,
+				3879F2491C0D325D00B72629 /* BarInfoTableViewCell.xib */,
+				3879F2541C0D32B900B72629 /* TaocanTableViewCell.h */,
+				3879F2551C0D32B900B72629 /* TaocanTableViewCell.m */,
+				3879F2561C0D32B900B72629 /* TaocanTableViewCell.xib */,
+				3879F24F1C0D329600B72629 /* AddressTableViewCell.h */,
+				3879F2501C0D329600B72629 /* AddressTableViewCell.m */,
+				3879F2511C0D329600B72629 /* AddressTableViewCell.xib */,
+				3879F2591C0D32D000B72629 /* BitianTableViewCell.h */,
+				3879F25A1C0D32D100B72629 /* BitianTableViewCell.m */,
+				3879F25B1C0D32D100B72629 /* BitianTableViewCell.xib */,
+				3879F25E1C0D32EE00B72629 /* ContentTableViewCell.h */,
+				3879F25F1C0D32EE00B72629 /* ContentTableViewCell.m */,
+				3879F2601C0D32EE00B72629 /* ContentTableViewCell.xib */,
+				3879F2631C0D361000B72629 /* LiuchengTableViewCell.h */,
+				3879F2641C0D361000B72629 /* LiuchengTableViewCell.m */,
+				3879F2651C0D361000B72629 /* LiuchengTableViewCell.xib */,
+				3879F26B1C0D557400B72629 /* DetailTableViewCell.h */,
+				3879F26C1C0D557400B72629 /* DetailTableViewCell.m */,
+				3879F26D1C0D557400B72629 /* DetailTableViewCell.xib */,
+			);
+			name = "套餐详情";
 			sourceTree = "<group>";
 		};
 		855192651C0B30C4007B9949 /* 热门酒吧 */ = {
@@ -4202,6 +4271,7 @@
 				15EB35671BD4840300BA6161 /* WeiboSDK.bundle in Resources */,
 				ADD68E291BE10E330060E751 /* 2@2x.png in Resources */,
 				15EB354B1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib in Resources */,
+				3879F24B1C0D325D00B72629 /* BarInfoTableViewCell.xib in Resources */,
 				A20100841BA7AFAB009283D1 /* LYProductslistViewController.xib in Resources */,
 				1559DD0B1BDA2A1200F3FE9B /* LYCarListViewController.xib in Resources */,
 				AD92AEAD1BE23521009F2A34 /* LYTagTableViewCell.xib in Resources */,
@@ -4266,6 +4336,7 @@
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
+				3879F26F1C0D557400B72629 /* DetailTableViewCell.xib in Resources */,
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
 				15571BC31BE998D7006F73D0 /* YaoYiYaoViewController4.xib in Resources */,
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
@@ -4274,14 +4345,17 @@
 				85F672B81C099776001BEE5B /* LYWineBarCell.xib in Resources */,
 				15844BFE1BE2101200247FBC /* SaoYiSaoViewController.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
+				3879F2671C0D361000B72629 /* LiuchengTableViewCell.xib in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,
 				1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */,
 				A2FD577E1BAFE97000CFFF92 /* FBTaoCanSectionBottom.xib in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
+				3879F2621C0D32EE00B72629 /* ContentTableViewCell.xib in Resources */,
 				ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */,
 				85EE804C1C0AF82D00958F76 /* LYBarDesrcTableViewCell.xib in Resources */,
 				15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */,
+				3879F2531C0D329600B72629 /* AddressTableViewCell.xib in Resources */,
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
 				15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */,
 				85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */,
@@ -4322,10 +4396,12 @@
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
 				85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */,
+				3879F2581C0D32B900B72629 /* TaocanTableViewCell.xib in Resources */,
 				15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */,
 				85EE80381C0AF19600958F76 /* LYBarTitleTableViewCell.xib in Resources */,
 				85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */,
 				ADD68E3F1BE10E7E0060E751 /* skip-btn@3x.png in Resources */,
+				3879F25D1C0D32D100B72629 /* BitianTableViewCell.xib in Resources */,
 				AD106B9B1C0BE898007F5FBA /* LYUserCenterFooter.xib in Resources */,
 				15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */,
 				ADD68E3A1BE10E550060E751 /* 3@3x.png in Resources */,
@@ -4443,11 +4519,13 @@
 				D748BC701BA1C856005AA996 /* NSObject+MJCoding.m in Sources */,
 				D761F01E1BA5AED3000757B0 /* MJRefreshStateHeader.m in Sources */,
 				D71E1D911BAE8F3100915F37 /* BusinessPublicNoteCell.m in Sources */,
+				3879F2661C0D361000B72629 /* LiuchengTableViewCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
 				15013B021BBA33BF00061FAF /* UIImageView+HighlightedWebCache.m in Sources */,
 				15EB35011BD1F4E000BA6161 /* PTTopCell.m in Sources */,
+				3879F2571C0D32B900B72629 /* TaocanTableViewCell.m in Sources */,
 				D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */,
 				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
 				A2FD577D1BAFE97000CFFF92 /* FBTaoCanSectionBottom.m in Sources */,
@@ -4494,6 +4572,7 @@
 				D761F0151BA5AED3000757B0 /* MJRefreshHeader.m in Sources */,
 				D748BC6D1BA1C856005AA996 /* MJFoundation.m in Sources */,
 				ADE1039B1BDE49BC00D9EC38 /* MD5DataSigner.m in Sources */,
+				3879F25C1C0D32D100B72629 /* BitianTableViewCell.m in Sources */,
 				15E184A01BB8D20700681BB2 /* MyUtil.m in Sources */,
 				15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
@@ -4544,6 +4623,7 @@
 				15E184791BB4EEBB00681BB2 /* ZSDetailModel.m in Sources */,
 				15EFEF891BA9A80C004739A2 /* UIViewExt.m in Sources */,
 				A2FD576B1BAFE85900CFFF92 /* PinKeCell.m in Sources */,
+				3879F24A1C0D325D00B72629 /* BarInfoTableViewCell.m in Sources */,
 				15013AF61BBA33BE00061FAF /* NSData+ImageContentType.m in Sources */,
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
 				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
@@ -4571,6 +4651,7 @@
 				151BB6E21BBB913E00E7A81C /* DejalActivityView.m in Sources */,
 				15A4CF421BD7605200C22C01 /* DWSureOrderViewController.m in Sources */,
 				D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */,
+				3879F26E1C0D557400B72629 /* DetailTableViewCell.m in Sources */,
 				15FD2AA91BD6243700D66920 /* TaoCanTitleView.m in Sources */,
 				15E2405C1BB1029C0090D240 /* FBDanPinView.m in Sources */,
 				152247B01BEB064600E68A2B /* IQUIWindow+Hierarchy.m in Sources */,
@@ -4579,6 +4660,7 @@
 				D71E1D9A1BAE9C1100915F37 /* LYColors.m in Sources */,
 				15EB7C741BD0A0DB00756153 /* LYShaiXuanViewController.m in Sources */,
 				A20100E01BA94404009283D1 /* WQCalendarDay.m in Sources */,
+				3879F26A1C0D363500B72629 /* LPPlayTogetherViewController.m in Sources */,
 				D748BC731BA1C856005AA996 /* NSString+MJExtension.m in Sources */,
 				15B866981BE0C183002E2BB6 /* MessageCell.m in Sources */,
 				15013B011BBA33BF00061FAF /* UIImage+WebP.m in Sources */,
@@ -4591,6 +4673,7 @@
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
+				3879F2611C0D32EE00B72629 /* ContentTableViewCell.m in Sources */,
 				15EB35101BD1F67200BA6161 /* PTShowIntroductionsCell.m in Sources */,
 				D761F01D1BA5AED3000757B0 /* MJRefreshNormalHeader.m in Sources */,
 				D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */,
@@ -4656,6 +4739,7 @@
 				15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
+				3879F2521C0D329600B72629 /* AddressTableViewCell.m in Sources */,
 				85F6258B1C0BE74E002858C8 /* LYHotBarMenuViewController.m in Sources */,
 				15EB35071BD1F51200BA6161 /* PTTaoCanCell.m in Sources */,
 				15EB7C491BC3753B00756153 /* SetMealInfoModel.m in Sources */,
