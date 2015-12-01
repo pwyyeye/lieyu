@@ -11,6 +11,7 @@
 #import "UserTagModel.h"
 #import "LYMyOrderManageViewController.h"
 #import "MyMessageListViewController.h"
+#import "Setting.h"
 @implementation LYUserCenterHeader
 
 - (void)awakeFromNib {
@@ -110,6 +111,9 @@
     return self;
 }
 - (IBAction)gotoSetting:(id)sender {
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    Setting *setting =[[Setting alloc] init];
+    [app.navigationController pushViewController:setting animated:YES];
 }
 
 - (IBAction)gotoMessageList:(id)sender {

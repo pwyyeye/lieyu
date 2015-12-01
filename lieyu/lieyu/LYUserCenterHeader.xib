@@ -318,8 +318,8 @@
                             <state key="normal" image="waitEvaluation"/>
                             <variation key="default">
                                 <mask key="constraints">
-                                    <exclude reference="Ukh-2W-jUp"/>
                                     <exclude reference="Ctq-g4-L1w"/>
+                                    <exclude reference="Ukh-2W-jUp"/>
                                 </mask>
                             </variation>
                             <connections>

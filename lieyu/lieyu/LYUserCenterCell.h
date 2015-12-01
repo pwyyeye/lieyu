@@ -11,7 +11,8 @@
 @interface LYUserCenterCell : UICollectionViewCell
 
 
-@property (weak, nonatomic) IBOutlet UIButton *icon;
+@property (weak, nonatomic) IBOutlet UIImageView *icon;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *text;
 
