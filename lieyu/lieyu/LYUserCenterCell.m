@@ -39,6 +39,7 @@
     
     self.backgroundColor=[UIColor whiteColor];
     
+    _icon.contentMode=UIViewContentModeScaleAspectFit;
     
 }
 

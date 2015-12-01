@@ -2485,7 +2485,7 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindMenuCell" rowHeight="51" id="4Yx-ie-pLJ" customClass="FindMenuCell">
-                                        <rect key="frame" x="0.0" y="113.5" width="320" height="51"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="320" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Yx-ie-pLJ" id="h35-uk-vqj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
