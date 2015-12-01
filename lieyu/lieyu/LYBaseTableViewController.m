@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.automaticallyAdjustsScrollViewInsets=0;
+    self.automaticallyAdjustsScrollViewInsets=1;
     //    self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.navigationController.navigationBar.barTintColor=RGB(35, 166, 116);
     //若为yesnavigationBar背景 会有50％的透明

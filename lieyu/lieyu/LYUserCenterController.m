@@ -104,7 +104,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     // Configure the cell
     if (indexPath.row<6) {
         NSDictionary *dic=_data[indexPath.row];
-        [cell.icon setImage:[UIImage imageNamed:[dic objectForKey:@"icon"]] forState:UIControlStateNormal];
+        cell.icon.image=[UIImage imageNamed:[dic objectForKey:@"icon"]];
         cell.text.text=[dic objectForKey:@"title"];
     }
     return cell;

@@ -33,10 +33,10 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
     
     
-    self.tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-40-64);
-    self.tableView.bounces=NO;
+    self.tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    self.tableView.bounces=NO;
     
-    UIButton *logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40-64, SCREEN_WIDTH, 40)];
+    UIButton *logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, SCREEN_WIDTH, 40)];
     logoutButton.backgroundColor=RGB(35, 166, 116);
     
     [logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
