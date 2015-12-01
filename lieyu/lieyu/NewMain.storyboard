@@ -2311,8 +2311,8 @@
         <image name="icon_zhuyi" width="20" height="20"/>
         <image name="icon_zhuyishixiang_normal" width="20" height="20"/>
         <image name="icon_zixun" width="20" height="20"/>
-        <image name="icon_zixun_normal" width="20" height="20"/>
-        <image name="jia2" width="32" height="32"/>
+        <image name="icon_zixun_normal" width="24" height="24"/>
+        <image name="jia2" width="35" height="35"/>
         <image name="jia3" width="39" height="40"/>
         <image name="jiageNormal" width="64" height="31"/>
         <image name="jiageUp" width="64" height="31"/>
