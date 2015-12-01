@@ -36,11 +36,12 @@
     self.tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
 //    self.tableView.bounces=NO;
     
-    UIButton *logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40, SCREEN_WIDTH, 40)];
-    logoutButton.backgroundColor=RGB(35, 166, 116);
+    UIButton *logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40-64, SCREEN_WIDTH, 40)];
+    logoutButton.backgroundColor=[UIColor clearColor];
     
     [logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
     logoutButton.titleLabel.font=[UIFont systemFontOfSize:13];
+    [logoutButton setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
     [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:logoutButton];
 

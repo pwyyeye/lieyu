@@ -22,29 +22,27 @@
     self.automaticallyAdjustsScrollViewInsets = YES;
 //    self.navigationController.navigationBar.barTintColor=RGB(64,1,120);
     //若为yesnavigationBar背景 会有50％的透明
-//    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.translucent = YES;
     
     //修改的部分
-//    UIColor *_inputColor0 = RGBA(109, 0, 142,0.8);
-//    UIColor *_inputColor1 = RGBA(64, 1, 120,0.8);
-//    CGPoint _inputPoint0 = CGPointMake(0.5, 0);
-//    CGPoint _inputPoint1 = CGPointMake(0.5, 1);
-//    CAGradientLayer *layer = [CAGradientLayer new];
-//    layer.colors = @[(__bridge id)_inputColor0.CGColor, (__bridge id)_inputColor1.CGColor];
-//    layer.startPoint = _inputPoint0;
-//    layer.endPoint = _inputPoint1;
-//    layer.frame = CGRectMake(0, -20, 320, 64);
-//    [self.navigationController.navigationBar.layer addSublayer:layer];
+    UIColor *_inputColor0 = RGBA(109, 0, 142,0.9);
+    UIColor *_inputColor1 = RGBA(64, 1, 120,0.9);
+    CGPoint _inputPoint0 = CGPointMake(0.5, 0);
+    CGPoint _inputPoint1 = CGPointMake(0.5, 1);
+    CAGradientLayer *layer = [CAGradientLayer new];
+    layer.colors = @[(__bridge id)_inputColor0.CGColor, (__bridge id)_inputColor1.CGColor];
+    layer.startPoint = _inputPoint0;
+    layer.endPoint = _inputPoint1;
+    layer.frame = CGRectMake(0, -20, 320, 64);
+    layer.zPosition=-1;
+    [self.navigationController.navigationBar.layer addSublayer:layer];
     
-        UIImage *bgImage=[UIImage imageNamed:@"navBarbg"];
+    UIImage *bgImage=[UIImage imageNamed:@"navBarbg"];
+ 
+//    UIColor *color2=[UIColor colorWithPatternImage:bgImage];
+//    [self.navigationController.navigationBar setBarTintColor:RGB(255, 255, 255)];
     
-//        bgImage=[bgImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeTile];
-//    self.navigationController.navigationBar.frame=CGRectMake(0, -20, 320, 64);
-    UIColor *color2=[UIColor colorWithPatternImage:bgImage];
-//        self.navigationController.navigationBar.backgroundColor=[UIColor colorWithPatternImage:bgImage] ;
-//    [self.navigationController.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setBarTintColor:color2];
-    NSLog(@"----pass-self.navigationController.navigationBar.frame.size.height=%f---",self.navigationController.navigationBar.frame.size.height);
+    [self.navigationController.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];
     
     
 //    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
