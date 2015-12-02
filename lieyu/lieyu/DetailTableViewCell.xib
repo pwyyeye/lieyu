@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="DetailTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数目" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iDs-UP-VIO">
+                        <rect key="frame" x="160" y="15" width="50" height="14"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="VDq-4a-O53"/>
+                            <constraint firstAttribute="height" constant="14" id="w1k-GM-MGd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.23137254901960785" green="0.23137254901960785" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="detail" text="价格" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vao-z5-Td0">
+                        <rect key="frame" x="210" y="15" width="100" height="14"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="A3I-jE-fiX"/>
+                            <constraint firstAttribute="width" constant="100" id="XIw-yP-nfU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.23137254901960785" green="0.23137254901960785" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4W-SQ-adj">
+                        <rect key="frame" x="10" y="15" width="150" height="14"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="DuH-i9-0ZH"/>
+                            <constraint firstAttribute="width" constant="150" id="YFR-f3-mzC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.23137254901960785" green="0.23137254901960785" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="O4W-SQ-adj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="2kF-Vi-MHw"/>
+                    <constraint firstItem="O4W-SQ-adj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="83C-Dg-Epu"/>
+                    <constraint firstAttribute="trailing" secondItem="vao-z5-Td0" secondAttribute="trailing" constant="10" id="AvD-jW-TUO"/>
+                    <constraint firstItem="iDs-UP-VIO" firstAttribute="centerY" secondItem="O4W-SQ-adj" secondAttribute="centerY" id="RVB-g1-cjZ"/>
+                    <constraint firstItem="vao-z5-Td0" firstAttribute="centerY" secondItem="iDs-UP-VIO" secondAttribute="centerY" id="cqT-Kr-uYG"/>
+                    <constraint firstItem="iDs-UP-VIO" firstAttribute="leading" secondItem="O4W-SQ-adj" secondAttribute="trailing" id="wFf-dm-Gjg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="wineName" destination="O4W-SQ-adj" id="XNx-SS-h7h"/>
+                <outlet property="wineNumber" destination="iDs-UP-VIO" id="9hj-nB-lhJ"/>
+                <outlet property="winePrice" destination="vao-z5-Td0" id="52R-lh-0Sn"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

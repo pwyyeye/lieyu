@@ -18,6 +18,8 @@
 #import "LYPlayTogetherMainViewController.h"
 #import "LYUserLocation.h"
 #import "LPSelectButton.h"
+#import "LPPlayTogetherViewController.h"
+
 @interface PlayTogetherViewController
 ()<ShaiXuanDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -121,9 +123,9 @@
     LPSelectButton *button3 = [[LPSelectButton alloc]initWithFrame:CGRectMake(319/3 * 2, 0, 319/3, 40) AndDictionary:dict3];
     button3.tag = 3;
     
-//    [button1 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
-//    [button2 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
-//    [button3 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+    [button1 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+    [button2 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+    [button3 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
     
     self.buttonsArray = [[NSArray alloc]initWithObjects:button1, button2, button3, nil];
     
@@ -161,26 +163,28 @@
   ];
         
     }
-    [self.selectView removeFromSuperview];
+//    [self.selectView removeFromSuperview];
     NSArray *array = self.itemsArray[button.tag - 1];
     [self showSelectView:array];
 }
 
 - (void)showSelectView:(NSArray *)array{
-    NSLog(@"array:%@",array);
+    
     int rows = (int)array.count / 3;
-    self.selectView.frame = CGRectMake(0, 104, 320, 74 + 50 * rows);
-    self.selectView.backgroundColor = [UIColor whiteColor];
+    self.selectView.frame = CGRectMake(0, 104, 320, 74 + 50 * (rows - 1 ));
+    self.selectView.backgroundColor = [UIColor grayColor];
+    
     for (int i = 0 ; i < array.count; i ++) {
         UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(7 + 108 * (i % 3), 20 + 50 * (i / 3), 90, 34)];
         [button setTitleColor:RGBA(26, 26, 26, 1) forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         button.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(151, 151, 151, 1));
         button.layer.borderWidth = 0.5;
-//        [button setImage:[self imageWithColor:RGBA(255, 255, 255, 1) andSize:button.frame.size] forState:UIControlStateNormal];
-        [button setBackgroundColor:[UIColor grayColor]];
-        [button setImage:[self imageWithColor:RGBA(114, 5, 147, 1) andSize:button.frame.size] forState:UIControlStateSelected];
+        [button setImage:[self imageWithColor:RGBA(255, 255, 255, 1) andSize:button.frame.size] forState:UIControlStateNormal];
+//        [button setBackgroundColor:[UIColor grayColor]];
+        [button setImage:[self imageWithColor:RGBA(114, 5, 147, 1) andSize:button.frame.size] forState:UIControlStateHighlighted];
         [button setTitle:array[i] forState:UIControlStateNormal];
+//        button.enabled = YES;
         [self.selectView addSubview:button];
     }
     [self.view addSubview:self.selectView];
@@ -468,20 +472,28 @@
 -(void)woYaoPin:(UIButton *)sender{
     PinKeModel *pinKeModel =[dataList objectAtIndex:sender.tag];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
-    LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
-    playTogetherMainViewController.title=@"我要拼客";
-    playTogetherMainViewController.smid=pinKeModel.smid;
-    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
+//    LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
+//    playTogetherMainViewController.title=@"我要拼客";
+//    playTogetherMainViewController.smid=pinKeModel.smid;
+//    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
+    
+    LPPlayTogetherViewController *LPPlayVC = [stroyBoard instantiateViewControllerWithIdentifier:@"LPPlayVC"];
+    LPPlayVC.title = @"我要拼客";
+    LPPlayVC.smid = pinKeModel.smid;
+    [self.navigationController pushViewController:LPPlayVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PinKeModel *pinKeModel = [dataList objectAtIndex:indexPath.row];
-    LYPlayTogetherMainViewController *playTogetherMainViewController = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
-    playTogetherMainViewController.title = @"我要拼客";
-    playTogetherMainViewController.smid = pinKeModel.smid;
-    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
-    
+//    LYPlayTogetherMainViewController *playTogetherMainViewController = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
+//    playTogetherMainViewController.title = @"我要拼客";
+//    playTogetherMainViewController.smid = pinKeModel.smid;
+//    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
+    LPPlayTogetherViewController *LPPlayVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPPlayVC"];
+    LPPlayVC.title = @"我要拼客";
+    LPPlayVC.smid = pinKeModel.smid;
+    [self.navigationController pushViewController:LPPlayVC animated:YES];
 }
 
 @end

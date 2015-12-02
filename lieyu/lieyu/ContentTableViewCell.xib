@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="content" selectionStyle="default" indentationWidth="10" rowHeight="88" id="KGk-i7-Jjw" customClass="ContentTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="套餐内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJ6-9c-gD7">
+                        <rect key="frame" x="10" y="10" width="74" height="24"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="74" id="Akx-CV-cvE"/>
+                            <constraint firstAttribute="height" constant="24" id="tlf-sO-eep"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5lf-IK-qeD">
+                        <rect key="frame" x="10" y="50" width="300" height="21.5"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="LH1-Qi-yWK"/>
+                        </constraints>
+                    </tableView>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="mJ6-9c-gD7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="55r-MA-Mth"/>
+                    <constraint firstItem="mJ6-9c-gD7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Lh1-oo-afz"/>
+                    <constraint firstAttribute="trailing" secondItem="5lf-IK-qeD" secondAttribute="trailing" constant="10" id="PPM-fP-iBF"/>
+                    <constraint firstItem="5lf-IK-qeD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Q38-wc-rh2"/>
+                    <constraint firstItem="5lf-IK-qeD" firstAttribute="top" secondItem="mJ6-9c-gD7" secondAttribute="bottom" constant="16" id="SSf-ft-h9K"/>
+                    <constraint firstItem="mJ6-9c-gD7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="YHS-2i-A4r"/>
+                    <constraint firstAttribute="bottom" secondItem="5lf-IK-qeD" secondAttribute="bottom" constant="16" id="loG-my-oOa"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="YHS-2i-A4r"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="tableView" destination="5lf-IK-qeD" id="HhM-kG-kb3"/>
+            </connections>
+            <point key="canvasLocation" x="255" y="364"/>
+        </tableViewCell>
+    </objects>
+</document>
