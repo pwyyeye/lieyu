@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daG-Gk-NtN">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daG-Gk-NtN">
                                 <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-TZ-Lf7">
@@ -382,7 +382,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="eGe-Zz-i2p" id="Na1-3L-bT8"/>
                         <outlet property="buyBtn" destination="Ef5-dw-QWS" id="HcF-jf-aiZ"/>
+                        <outlet property="likeBtn" destination="0fJ-Xm-xC5" id="kSo-ax-BDe"/>
+                        <outlet property="shareBtn" destination="e0b-Lx-lzo" id="rSK-6O-Fgi"/>
                         <outlet property="tableView" destination="bc2-qW-W2g" id="7FN-RM-ucs"/>
                         <outlet property="zhuyiBtn" destination="PW4-9z-TYt" id="iNr-8H-b08"/>
                         <outlet property="zixunBtn" destination="lJa-vQ-J8E" id="cJ8-5T-rVG"/>

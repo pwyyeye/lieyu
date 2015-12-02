@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KuCunModel.h"
 
 @interface DetailTableViewCell : UITableViewCell
 
@@ -14,7 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *wineNumber;
 @property (weak, nonatomic) IBOutlet UILabel *winePrice;
 
+@property (nonatomic, strong) KuCunModel *good;
 
-- (void)configureCell:(NSDictionary *)wineInfo;
+- (void)configureCell:(KuCunModel *)good;
 
 @end

@@ -25,6 +25,8 @@
     NSLog(@"%@",self.goodList);
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.scrollEnabled = NO;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -45,8 +47,8 @@
         detail = [[[NSBundle mainBundle]loadNibNamed:@"DetailTableViewCell" owner:nil
         options:nil]firstObject];
     }
-    NSDictionary *dict = @{@"name":self.goodList[indexPath.row][@"_name"],@"price":self.goodList[indexPath.row][@"_price"],@"number":[NSString stringWithFormat:@"%@%@",self.goodList[indexPath.row][@"_num"],self.goodList[indexPath.row][@"_unit"]]};
-    [detail configureCell:dict];
+//    NSDictionary *dict = @{@"name":self.goodList[indexPath.row][@"_name"],@"price":self.goodList[indexPath.row][@"_price"],@"number":[NSString stringWithFormat:@"%@%@",self.goodList[indexPath.row][@"_num"],self.goodList[indexPath.row][@"_unit"]]};
+    [detail configureCell:self.goodList[indexPath.row]];
     return detail;
 }
 

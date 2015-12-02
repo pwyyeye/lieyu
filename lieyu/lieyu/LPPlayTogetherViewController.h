@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PinKeModel.h"
+#import "LPAlertView.h"
 
-@interface LPPlayTogetherViewController : UIViewController
+@interface LPPlayTogetherViewController : UIViewController<LPAlertViewDelegate>
 
 @property (nonatomic, assign)int smid;
 //@property (nonatomic, strong) 
@@ -20,6 +21,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *zixunBtn;
 @property (weak, nonatomic) IBOutlet UIButton *zhuyiBtn;
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *backBtn;
+@property (weak, nonatomic) IBOutlet UIButton *likeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
