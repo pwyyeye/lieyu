@@ -23,7 +23,7 @@
         }
         if (mScrollView == nil) {
             mScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            mScrollView.backgroundColor=RGB(229, 255, 245);
+            mScrollView.backgroundColor=RGB(114, 5, 147);
             mScrollView.showsHorizontalScrollIndicator = NO;
         }
         if (mItemInfoArray == nil) {
@@ -44,7 +44,7 @@
         }
         if (mScrollView == nil) {
             mScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            mScrollView.backgroundColor=RGB(229, 255, 245);
+            mScrollView.backgroundColor=RGB(114, 5, 147);
             mScrollView.showsHorizontalScrollIndicator = NO;
         }
         if (mItemInfoArray == nil) {
@@ -73,35 +73,19 @@
 
         [vButton setBackgroundImage:normalImg forState:UIControlStateNormal];
         [vButton setBackgroundImage:secImg forState:UIControlStateSelected];
-//        [vButton setTitle:vTitleStr forState:UIControlStateNormal];
-//        [vButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [vButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+        //设置title
+        [vButton setTitle:vTitleStr forState:UIControlStateNormal];
+        [vButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [vButton setTitleColor:RGB(37, 82, 157) forState:UIControlStateSelected];
+        vButton.titleLabel.font=[UIFont systemFontOfSize:10];
+        [vButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [vButton setTag:i];
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];
         if(i==0){
             [vButton setSelected:true];
         }
-        
-        
-        //title
-        UILabel *titlelbl=[[UILabel alloc]initWithFrame:CGRectMake(0, (30-11)/2,vButton.width, 11)];
-        titlelbl.text=vTitleStr;
-        titlelbl.font=[UIFont systemFontOfSize:10];
-        titlelbl.backgroundColor=[UIColor clearColor];
-        titlelbl.textColor =RGB(255, 255, 255);
-        titlelbl.textAlignment=1;
-        [vButton addSubview:titlelbl];
-        
-        
-        UILabel *countbl=[[UILabel alloc]initWithFrame:CGRectMake(0, 27,vButton.width, 8)];
-        countbl.text=countSumStr;
-        countbl.font=[UIFont systemFontOfSize:9];
-        countbl.backgroundColor=[UIColor clearColor];
-        countbl.textColor =RGB(255, 255, 255);
-        countbl.textAlignment=1;
-        [vButton addSubview:countbl];
-        //
+  
         [mScrollView addSubview:vButton];
         [mButtonArray addObject:vButton];
         

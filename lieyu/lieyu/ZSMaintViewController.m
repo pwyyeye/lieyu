@@ -27,11 +27,15 @@
     [super viewDidLoad];
     
     listArr =[[NSMutableArray alloc]init];
-//    self.automaticallyAdjustsScrollViewInsets=0;
+    self.automaticallyAdjustsScrollViewInsets=1;
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.frame=CGRectMake(0, -20,SCREEN_WIDTH, SCREEN_HEIGHT+20);
     [self getDataForShowList];
-    // Do any additional setup after loading the view from its nib.
+    
+    
+    
+   
 }
 
 #pragma mark 初始化数据
@@ -47,7 +51,8 @@
     [listArr addObject:dic2];
     [listArr addObject:dic3];
     [listArr addObject:dic4];
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 228)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, 320, 228)];
+    
     view.backgroundColor=RGB(35, 166, 116);
     //外部圆
     cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(116, 68, 88, 88)];
@@ -75,15 +80,26 @@
 //    orderInfoLal.text=@"您有30个订单要处理，请即时处理！";
     orderInfoLal.textAlignment=NSTextAlignmentLeft;
     [view addSubview:orderInfoLal];
+    
+    
+    //返回按钮
+    _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(20, 30, 40, 40)];
+    [_btnBack setImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
+    [_btnBack addTarget:self action:@selector(backAct:) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:_btnBack];
     self.tableView.tableHeaderView=view;
     [self.tableView reloadData];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];
     
     //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 #pragma mark tableview代理方法
 #pragma mark tableView
@@ -203,7 +219,7 @@
 }
 */
 - (IBAction)backAct:(id)sender {
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

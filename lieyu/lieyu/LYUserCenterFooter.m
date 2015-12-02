@@ -7,6 +7,7 @@
 //
 
 #import "LYUserCenterFooter.h"
+#import "ZSMaintViewController.h"
 
 @implementation LYUserCenterFooter
 
@@ -37,5 +38,9 @@
     return self;
 }
 - (IBAction)gotoManagerCenter:(id)sender {
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
+    
+    [app.navigationController pushViewController:maintViewController animated:YES];
 }
 @end

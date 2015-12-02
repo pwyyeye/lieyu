@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrderTTL.h"
 @interface LYUserCenterHeader : UICollectionReusableView
 //顶部带背景view
 @property (weak, nonatomic) IBOutlet UIView *headView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSetting;
 @property (weak, nonatomic) IBOutlet UIButton *btnMessage;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *line1Heght;
 //头像
 @property (weak, nonatomic) IBOutlet UIImageView *avatar_img;
@@ -23,6 +22,20 @@
 @property (weak, nonatomic) IBOutlet UIButton *age;
 //标签
 @property (weak, nonatomic) IBOutlet UIButton *tags;
+
+/**五个订单状态按钮*/
+
+@property (weak, nonatomic) IBOutlet UIButton *waitPay;
+
+@property (weak, nonatomic) IBOutlet UIButton *waitConsumption;
+
+@property (weak, nonatomic) IBOutlet UIButton *waitRebate;
+
+@property (weak, nonatomic) IBOutlet UIButton *waitEvaluation;
+
+@property (weak, nonatomic) IBOutlet UIButton *waitPayBack;
+
+
 
 //设置
 - (IBAction)gotoSetting:(id)sender;
@@ -41,5 +54,7 @@
 //待退款
 - (IBAction)gotoWaitPayBackOrderList:(id)sender;
 
+//load角标
+-(void)loadBadge:(OrderTTL *)orderTTL;
 
 @end

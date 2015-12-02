@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrderTTL.h"
 @interface LYUserCenterController : UICollectionViewController<UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate >
 @property(strong,nonatomic) NSArray *data;
+@property(strong,nonatomic) OrderTTL *orderTTL;
 @end

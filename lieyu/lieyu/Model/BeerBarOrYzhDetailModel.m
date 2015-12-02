@@ -22,7 +22,7 @@
 
 +(BeerBarOrYzhDetailModel *)initFormDictionary:(NSDictionary *)dic
 {
-    BeerBarOrYzhDetailModel * model = [BeerBarOrYzhDetailModel objectWithKeyValues:dic];
+    BeerBarOrYzhDetailModel * model = [BeerBarOrYzhDetailModel mj_objectWithKeyValues:dic];
     
     return model;
 }

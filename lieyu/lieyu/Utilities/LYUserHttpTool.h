@@ -12,6 +12,7 @@
 #import "CustomerModel.h"
 #import "AFNetworking.h"
 #import "LYMineUrl.h"
+#import "OrderTTL.h"
 @interface LYUserHttpTool : NSObject
 + (LYUserHttpTool *)shareInstance;
 // 登录
@@ -71,6 +72,8 @@
 -(void) sureMyOrder:(NSDictionary*)params
              complete:(void (^)(BOOL result))result;
 
+//获取订单统计状况
+-(void)getOrderTTL:(void (^)(OrderTTL* result))result;
 
 //好友列表
 -(void) getFriendsList:(NSDictionary*)params

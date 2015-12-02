@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //自定义返回
     UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:buttonImage forState:UIControlStateNormal];
@@ -43,7 +44,6 @@
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
     self.navigationItem.leftBarButtonItem = customBarItem;
 
-//    nowDic =[[NSMutableDictionary alloc]init];
     self.title=@"我的订单";
     pageCount=1;
     perCount=5;
@@ -200,7 +200,7 @@
         // 使用颜色创建UIImage//未选中颜色
         CGSize imageSize = CGSizeMake((SCREEN_WIDTH/5.5), 34);
         UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-        [RGB(229, 255, 245) set];
+        [RGB(114, 5, 147) set];
         UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
         UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
@@ -295,7 +295,7 @@
         if(orderInfoModel.orderStatus==7 ){
             if(orderInfoModel.ordertype==1){
                 NSString *moneyStr=@"0";
-                NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+                NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
                 if(pinkerList.count>0){
                     for (PinkInfoModel *pinkInfoModel in pinkerList) {
                         if(pinkInfoModel.inmember==userId){
@@ -327,7 +327,7 @@
             if(orderInfoModel.ordertype==1){
                 NSString *moneyStr=@"0";
                 
-                NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+                NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
                 if(pinkerList.count>0){
                     for (PinkInfoModel *pinkInfoModel in pinkerList) {
                         if(pinkInfoModel.inmember==self.userModel.userid){
@@ -450,7 +450,7 @@
                 isFaqi=true;
             }
             bool isfu=false;
-            NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+            NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
             NSString *moneyStr=@"0";
             if(pinkerList.count>0){
                 for (PinkInfoModel *pinkInfoModel in pinkerList) {
@@ -703,7 +703,7 @@
         //吃喝订单
         NSArray *arr=orderInfoModel.goodslist;
         NSDictionary *dicTemp=arr[indexPath.row];
-        GoodsModel *goodsModel=[GoodsModel objectWithKeyValues:dicTemp];
+        GoodsModel *goodsModel=[GoodsModel mj_objectWithKeyValues:dicTemp];
         ProductVOModel *productVOModel=goodsModel.productVO;
         shopDetailmodel.name=goodsModel.fullName;
         shopDetailmodel.img=productVOModel.image;
@@ -896,7 +896,7 @@
     OrderInfoModel *orderInfoModel;
     orderInfoModel=dataList[sender.tag];
     __weak __typeof(self)weakSelf = self;
-    NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+    NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
     int orderid=0;
     if(pinkerList.count>0){
         for (PinkInfoModel *pinkInfoModel in pinkerList) {
@@ -938,7 +938,7 @@
     if(orderInfoModel.ordertype==1){
         if(orderInfoModel.pinkerList.count>0){
             for (NSDictionary *dic in orderInfoModel.pinkerList) {
-                PinkInfoModel *pinkInfoModel =[PinkInfoModel objectWithKeyValues:dic];
+                PinkInfoModel *pinkInfoModel =[PinkInfoModel mj_objectWithKeyValues:dic];
                 if(pinkInfoModel.inmember==self.userModel.userid){
                      detailViewController.orderNo=pinkInfoModel.sn;
                      detailViewController.payAmount=pinkInfoModel.price.doubleValue;

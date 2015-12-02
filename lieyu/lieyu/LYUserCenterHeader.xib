@@ -57,28 +57,16 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNc-RX-6I4">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNc-RX-6I4">
                             <rect key="frame" x="286" y="44" width="24" height="24"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="Cfk-U5-SXN"/>
                                 <constraint firstAttribute="height" constant="24" id="Dub-HB-2is"/>
                             </constraints>
-                            <state key="normal" backgroundImage="userCenterSetting"/>
+                            <state key="normal" image="userCenterSetting"/>
                             <connections>
                                 <action selector="gotoSetting:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="17B-8D-R04"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTS-fO-BCi">
-                            <rect key="frame" x="245" y="44" width="24" height="24"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="24" id="5DX-0P-oQI"/>
-                                <constraint firstAttribute="height" constant="24" id="n0X-DK-69i"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="userMessage"/>
-                            <connections>
-                                <action selector="gotoMessageList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="dJN-cz-Foj"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-cg-HPc">
@@ -104,6 +92,18 @@
                                     <exclude reference="zUy-cQ-OTW"/>
                                 </mask>
                             </variation>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTS-fO-BCi">
+                            <rect key="frame" x="245" y="44" width="24" height="24"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="5DX-0P-oQI"/>
+                                <constraint firstAttribute="height" constant="24" id="n0X-DK-69i"/>
+                            </constraints>
+                            <state key="normal" image="userMessage"/>
+                            <connections>
+                                <action selector="gotoMessageList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="dJN-cz-Foj"/>
+                            </connections>
                         </button>
                     </subviews>
                     <animations/>
@@ -421,12 +421,17 @@
             <connections>
                 <outlet property="age" destination="AQW-Pi-kMR" id="PQ2-5g-WOl"/>
                 <outlet property="avatar_img" destination="ygw-yQ-gSS" id="3j5-Ls-Wsk"/>
-                <outlet property="btnMessage" destination="NTS-fO-BCi" id="VUU-YR-rmq"/>
-                <outlet property="btnSetting" destination="KNc-RX-6I4" id="nUz-De-Vis"/>
+                <outlet property="btnMessage" destination="NTS-fO-BCi" id="FTd-1v-YVe"/>
+                <outlet property="btnSetting" destination="KNc-RX-6I4" id="DGO-29-aio"/>
                 <outlet property="headView" destination="uKD-Od-hVt" id="Ath-Dv-Xj4"/>
                 <outlet property="line1Heght" destination="bww-Te-4jx" id="AhY-GD-uvb"/>
                 <outlet property="tags" destination="HgA-cg-HPc" id="9d5-Gp-e7h"/>
                 <outlet property="userNick" destination="Iuk-bF-Uqp" id="NXe-6x-WQO"/>
+                <outlet property="waitConsumption" destination="I7O-TL-unf" id="ib2-Af-uWr"/>
+                <outlet property="waitEvaluation" destination="cai-FL-cSj" id="zL6-o6-MAg"/>
+                <outlet property="waitPay" destination="sMQ-p7-byq" id="bD8-1O-3t4"/>
+                <outlet property="waitPayBack" destination="Fyr-Q8-jkr" id="wRc-cc-qKy"/>
+                <outlet property="waitRebate" destination="YPc-20-z80" id="Xge-0m-bJt"/>
             </connections>
             <point key="canvasLocation" x="312" y="176"/>
         </collectionReusableView>
