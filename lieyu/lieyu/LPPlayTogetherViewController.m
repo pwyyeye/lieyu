@@ -16,8 +16,12 @@
 
 
 #import "LYHomePageHttpTool.h"
+#import "ContentView.h"
 
 @interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic, strong) BitianTableViewCell *biTianCell;
+
 
 @end
 
@@ -29,14 +33,37 @@
 //    return statusview;
 //}
 
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorColor = [UIColor clearColor];
+    [self.backBtn addTarget:self action:@selector(backForword) forControlEvents:UIControlEventTouchUpInside];
+    [self.shareBtn addTarget:self action:@selector(shareTaocan) forControlEvents:UIControlEventTouchUpInside];
+    [self.likeBtn addTarget:self action:@selector(likeTaocan) forControlEvents:UIControlEventTouchUpInside];
     [self getdata];
+}
+
+- (void)backForword{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)shareTaocan{
+    NSLog(@"Share Success!");
+}
+
+- (void)likeTaocan{
+    NSLog(@"Like Success!");
 }
 
 - (void)addStatusView{
@@ -130,23 +157,23 @@
         }
         return cell;
     }else if(indexPath.section == 3){
-        BitianTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"biTian"];
-        if(!cell){
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"BitianTableViewCell" owner:nil options:nil]firstObject];
+        _biTianCell = [tableView dequeueReusableCellWithIdentifier:@"biTian"];
+        if(!_biTianCell){
+            _biTianCell = [[[NSBundle mainBundle]loadNibNamed:@"BitianTableViewCell" owner:nil options:nil]firstObject];
+            [_biTianCell.chooseTime addTarget:self action:@selector(chooseTimeForTaocan) forControlEvents:UIControlEventTouchUpInside];
+            [_biTianCell.chooseWay addTarget:self action:@selector(chooseWayForTaocan) forControlEvents:UIControlEventTouchUpInside];
+            [_biTianCell.addBtn addTarget:self action:@selector(addPeople) forControlEvents:UIControlEventTouchUpInside];
+            [_biTianCell.lessBtn addTarget:self action:@selector(lessPeople) forControlEvents:UIControlEventTouchUpInside];
         }
-        return cell;
+        return _biTianCell;
     }else if(indexPath.section == 4){
         ContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"content"];
         if(!cell){
             cell = [[[NSBundle mainBundle]loadNibNamed:@"ContentTableViewCell" owner:nil options:nil]firstObject];
         }
         if(self.pinKeModel){
-            for(int i = 0 ; i < self.pinKeModel.goodsList.count ; i ++){
-                NSString *str1 = self.pinKeModel.goodsList[i][@"_name"];
-                
-            }
-//            cell.goodList = self.pinKeModel.goodsList;
-//            [cell cellConfigure];
+            cell.goodList = self.pinKeModel.goodsList;
+            [cell cellConfigure];
         }
         return cell;
     }else{
@@ -165,4 +192,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 5;
 }
+
+- (void)chooseTimeForTaocan{
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    ContentView *contentView = [[[NSBundle mainBundle]loadNibNamed:@"ContentView" owner:nil options:nil]firstObject];
+    contentView.frame = CGRectMake(10, SCREEN_HEIGHT- 320, SCREEN_WIDTH - 20, 250);
+    alertView.contentView = contentView;
+    [alertView show];
+}
+
+- (void)chooseWayForTaocan{
+    
+}
+
+- (void)addPeople{
+    
+}
+
+- (void)lessPeople{
+    
+}
+
 @end

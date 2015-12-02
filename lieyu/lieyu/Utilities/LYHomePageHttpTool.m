@@ -31,7 +31,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -57,7 +57,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            PinKeModel *pinKeModel=[PinKeModel objectWithKeyValues:dataDic];
+            PinKeModel *pinKeModel=[PinKeModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(pinKeModel);
             });

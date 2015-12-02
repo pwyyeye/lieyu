@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="336"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="335"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="335.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1h-Lf-6lP">
@@ -154,7 +154,7 @@
         <image name="Rectangle 601" width="67" height="42"/>
         <image name="bulePoint" width="14" height="20"/>
         <image name="fire" width="15" height="20"/>
-        <image name="icon_star" width="15" height="15"/>
+        <image name="icon_star" width="14" height="14"/>
         <image name="zang" width="15" height="13"/>
     </resources>
 </document>

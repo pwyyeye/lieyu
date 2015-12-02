@@ -20,10 +20,10 @@
     // Configure the view for the selected state
 }
 
-- (void)configureCell:(NSDictionary *)wineInfo{
-    self.wineName.text = wineInfo[@"name"];
-    self.wineNumber.text = wineInfo[@"number"];
-    self.winePrice.text = [NSString stringWithFormat:@"¥%@",wineInfo[@"price"]];
+- (void)configureCell:(KuCunModel *)good{
+    self.wineName.text = good.name;
+    self.wineNumber.text = [NSString stringWithFormat:@"%@%@",good.num,good.unit];
+    self.winePrice.text = [NSString stringWithFormat:@"¥%@",good.price];
 }
 
 @end
