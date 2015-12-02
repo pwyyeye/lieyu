@@ -21,9 +21,9 @@
 }
 
 - (void)configureCell:(NSDictionary *)wineInfo{
-    self.wineName.text = wineInfo[@"wineName"];
-    self.wineNumber.text = wineInfo[@"wineNumber"];
-    self.winePrice.text = wineInfo[@"winePrice"];
+    self.wineName.text = wineInfo[@"name"];
+    self.wineNumber.text = wineInfo[@"number"];
+    self.winePrice.text = [NSString stringWithFormat:@"¥%@",wineInfo[@"price"]];
 }
 
 @end

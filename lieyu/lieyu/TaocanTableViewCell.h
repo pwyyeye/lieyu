@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *marketPrice;
 @property (weak, nonatomic) IBOutlet UILabel *profit;
 
+- (void)cellConfigure;
 
 @end

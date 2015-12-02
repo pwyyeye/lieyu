@@ -12,7 +12,7 @@
 + (NSDictionary *)objectClassInArray
 {
     return @{
-             @"goodsList" : @"KuCunModel",@"managerList":@"ZSDetailModel",
+             @"managerList":@"ZSDetailModel",@"goodsList" : @"KuCunModel",
              };
 }
 @end

@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="必填信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYG-Hp-jxB">
-                        <rect key="frame" x="16" y="10" width="78" height="24"/>
+                        <rect key="frame" x="10" y="10" width="78" height="24"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="78" id="CX4-2q-Ope"/>
@@ -59,6 +59,17 @@
                         <color key="textColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNs-8e-Xtg">
+                        <rect key="frame" x="164" y="143" width="32" height="32"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="0ht-ab-XLR"/>
+                            <constraint firstAttribute="height" constant="32" id="aub-AJ-mpG"/>
+                        </constraints>
+                        <state key="normal" image="gray_less">
+                            <color key="titleColor" red="0.98431372549999996" green="0.1450980392" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUW-w0-ICw">
                         <rect key="frame" x="262" y="143" width="32" height="32"/>
                         <animations/>
@@ -66,18 +77,10 @@
                             <constraint firstAttribute="height" constant="32" id="6Ec-6s-osg"/>
                             <constraint firstAttribute="width" constant="32" id="KF4-Cy-VKi"/>
                         </constraints>
-                        <state key="normal" image="purper_add"/>
+                        <state key="normal" image="purper_add">
+                            <color key="titleColor" red="0.98431372549999996" green="0.1450980392" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
                     </button>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDH-8g-hQT">
-                        <rect key="frame" x="205" y="144" width="48" height="30"/>
-                        <animations/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="48" id="Mlo-Ff-PQB"/>
-                            <constraint firstAttribute="height" constant="30" id="fP3-ta-VVt"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
-                    </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8k-An-6Y9">
                         <rect key="frame" x="151" y="99" width="153" height="20"/>
                         <animations/>
@@ -106,15 +109,16 @@
                             <color key="titleColor" red="0.36862745098039218" green="0.0" blue="0.51372549019607838" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNs-8e-Xtg">
-                        <rect key="frame" x="164" y="143" width="32" height="32"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDH-8g-hQT">
+                        <rect key="frame" x="205" y="144" width="48" height="30"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="32" id="0ht-ab-XLR"/>
-                            <constraint firstAttribute="height" constant="32" id="aub-AJ-mpG"/>
+                            <constraint firstAttribute="width" constant="48" id="Mlo-Ff-PQB"/>
+                            <constraint firstAttribute="height" constant="30" id="fP3-ta-VVt"/>
                         </constraints>
-                        <state key="normal" image="gray_less"/>
-                    </button>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                    </textField>
                 </subviews>
                 <animations/>
                 <constraints>
@@ -130,7 +134,7 @@
                     <constraint firstItem="HYG-Hp-jxB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="OAh-5W-M0A"/>
                     <constraint firstItem="Shy-MC-Ei3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Rd6-mS-kWG"/>
                     <constraint firstItem="h8k-An-6Y9" firstAttribute="centerY" secondItem="q14-rf-VuK" secondAttribute="centerY" id="VhJ-o8-NK0"/>
-                    <constraint firstItem="HYG-Hp-jxB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="WG5-WD-ea1"/>
+                    <constraint firstItem="HYG-Hp-jxB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WG5-WD-ea1"/>
                     <constraint firstItem="YNs-8e-Xtg" firstAttribute="centerY" secondItem="Fvg-4h-00b" secondAttribute="centerY" id="XrH-sY-arL"/>
                     <constraint firstItem="gDH-8g-hQT" firstAttribute="leading" secondItem="YNs-8e-Xtg" secondAttribute="trailing" constant="9" id="aDN-bZ-jh2"/>
                     <constraint firstItem="Fvg-4h-00b" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-20" id="hki-06-n0g"/>
@@ -159,8 +163,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="choose" width="42" height="42"/>
-        <image name="gray_less" width="96" height="96"/>
-        <image name="purper_add" width="96" height="96"/>
+        <image name="choose" width="14" height="14"/>
+        <image name="gray_less" width="32" height="32"/>
+        <image name="purper_add" width="32" height="32"/>
     </resources>
 </document>

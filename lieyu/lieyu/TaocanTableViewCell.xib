@@ -48,7 +48,7 @@
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="2f0-X0-ipB"/>
-                            <constraint firstAttribute="width" constant="42" id="LME-Fb-IDq"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="LME-Fb-IDq"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.98431372549019602" green="0.16078431372549021" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>

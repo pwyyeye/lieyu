@@ -14,4 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLbl;
 
+- (void)cellConfigure:(NSString *)address;
+
 @end

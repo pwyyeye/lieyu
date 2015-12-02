@@ -10,9 +10,10 @@
 
 @interface ContentTableViewCell : UITableViewCell<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *goodList;
+@property (nonatomic, strong) NSArray *goodList;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+- (void)cellConfigure;
 
 @end

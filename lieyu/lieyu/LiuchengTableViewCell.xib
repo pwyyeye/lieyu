@@ -43,10 +43,10 @@
                 </constraints>
             </tableViewCellContentView>
             <animations/>
-            <point key="canvasLocation" x="255" y="315"/>
+            <point key="canvasLocation" x="255" y="314.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="拼客" width="912" height="465"/>
+        <image name="拼客" width="304" height="155"/>
     </resources>
 </document>

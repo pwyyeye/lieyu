@@ -17,6 +17,12 @@
 @implementation ContentTableViewCell
 
 - (void)awakeFromNib {
+//    self.goodList = [[NSArray alloc]init];
+    
+}
+
+- (void)cellConfigure{
+    NSLog(@"%@",self.goodList);
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 }
@@ -34,11 +40,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"goodlist[%ld]:%@",indexPath.row,self.goodList[indexPath.row]);
-//    DetailTableViewCell *detail = [tableView dequeueReusableCellWithIdentifier:@""];
-//    [detail configureCell:self.goodList[indexPath.row]];
-    
-    return nil;
+    DetailTableViewCell *detail = [tableView dequeueReusableCellWithIdentifier:@"detail"];
+    if(!detail){
+        detail = [[[NSBundle mainBundle]loadNibNamed:@"DetailTableViewCell" owner:nil
+        options:nil]firstObject];
+    }
+    NSDictionary *dict = @{@"name":self.goodList[indexPath.row][@"_name"],@"price":self.goodList[indexPath.row][@"_price"],@"number":[NSString stringWithFormat:@"%@%@",self.goodList[indexPath.row][@"_num"],self.goodList[indexPath.row][@"_unit"]]};
+    [detail configureCell:dict];
+    return detail;
 }
 
 @end

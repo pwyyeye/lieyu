@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *icon4;
 @property (weak, nonatomic) IBOutlet UIImageView *icon5;
 
+- (void)cellConfigure:(NSDictionary *)dict;
 
 @end

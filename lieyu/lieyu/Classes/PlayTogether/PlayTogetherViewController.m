@@ -470,7 +470,7 @@
 }
 
 -(void)woYaoPin:(UIButton *)sender{
-//    PinKeModel *pinKeModel =[dataList objectAtIndex:sender.tag];
+    PinKeModel *pinKeModel =[dataList objectAtIndex:sender.tag];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
 //    LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
 //    playTogetherMainViewController.title=@"我要拼客";
@@ -478,17 +478,21 @@
 //    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
     
     LPPlayTogetherViewController *LPPlayVC = [stroyBoard instantiateViewControllerWithIdentifier:@"LPPlayVC"];
+    LPPlayVC.title = @"我要拼客";
+    LPPlayVC.smid = pinKeModel.smid;
     [self.navigationController pushViewController:LPPlayVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    PinKeModel *pinKeModel = [dataList objectAtIndex:indexPath.row];
+    PinKeModel *pinKeModel = [dataList objectAtIndex:indexPath.row];
 //    LYPlayTogetherMainViewController *playTogetherMainViewController = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
 //    playTogetherMainViewController.title = @"我要拼客";
 //    playTogetherMainViewController.smid = pinKeModel.smid;
 //    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
     LPPlayTogetherViewController *LPPlayVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPPlayVC"];
+    LPPlayVC.title = @"我要拼客";
+    LPPlayVC.smid = pinKeModel.smid;
     [self.navigationController pushViewController:LPPlayVC animated:YES];
 }
 

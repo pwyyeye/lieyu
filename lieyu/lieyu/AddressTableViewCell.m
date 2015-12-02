@@ -11,7 +11,7 @@
 @implementation AddressTableViewCell
 
 - (void)awakeFromNib {
-    self.addressLbl.text = self.Address;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -20,4 +20,7 @@
     // Configure the view for the selected state
 }
 
+- (void)cellConfigure:(NSString *)address{
+    self.addressLbl.text = address;
+}
 @end

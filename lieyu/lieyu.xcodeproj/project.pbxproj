@@ -303,6 +303,7 @@
 		3879F26A1C0D363500B72629 /* LPPlayTogetherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2691C0D363500B72629 /* LPPlayTogetherViewController.m */; };
 		3879F26E1C0D557400B72629 /* DetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F26C1C0D557400B72629 /* DetailTableViewCell.m */; };
 		3879F26F1C0D557400B72629 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F26D1C0D557400B72629 /* DetailTableViewCell.xib */; };
+		3879F2701C0D786E00B72629 /* LYHotBarMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
@@ -4510,6 +4511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3879F2701C0D786E00B72629 /* LYHotBarMenuView.m in Sources */,
 				1559DD1A1BDB2B3C00F3FE9B /* CarBottomView.m in Sources */,
 				ADE103AF1BDE4C8E00D9EC38 /* ChoosePayController.m in Sources */,
 				AD92AEBC1BE50AD9009F2A34 /* AboutLieyu.m in Sources */,
@@ -4684,7 +4686,6 @@
 				85F672B21C097D48001BEE5B /* LYHotRecommandCell.m in Sources */,
 				15E240A51BB381450090D240 /* OrderDetailHeadView.m in Sources */,
 				AD92AEB51BE24165009F2A34 /* LYAlert.m in Sources */,
-				8541D5B81C0D693A006BC45A /* LYHotBarMenuView.m in Sources */,
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
