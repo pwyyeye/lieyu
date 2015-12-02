@@ -33,7 +33,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         NSDictionary *dataDic = response[@"data"];
-        UserModel *userModel=[UserModel objectWithKeyValues:dataDic];
+        UserModel *userModel=[UserModel mj_objectWithKeyValues:dataDic];
         if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(userModel);
@@ -56,7 +56,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         NSDictionary *dataDic = response[@"data"];
-        UserModel *userModel=[UserModel objectWithKeyValues:dataDic];
+        UserModel *userModel=[UserModel mj_objectWithKeyValues:dataDic];
         if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(userModel);
@@ -222,7 +222,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if([code isEqualToString:@"1"]){
             NSArray *dataList = response[@"data"];
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ZSDetailModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ZSDetailModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -276,7 +276,7 @@
         if([code isEqualToString:@"1"]){
             NSDictionary *dicTemp = response[@"data"];
             NSArray *dataList =[dicTemp objectForKey:@"barlist"];
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[JiuBaModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -323,7 +323,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel mj_objectArrayWithKeyValuesArray:dataList]];
                 block(tempArr);
             
             
@@ -453,7 +453,28 @@
         
     }];
 }
+#pragma mark 获取订单统计
+-(void)getOrderTTL:(void (^)(OrderTTL* result))block{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_TTL baseURL:LY_SERVER params:nil success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        NSDictionary *data=response[@"data"];
+        OrderTTL *ttl=[OrderTTL mj_objectWithKeyValues:data];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(ttl);
+            });
+        }else{
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        NSLog(@"----pass-err%@---",err);
 
+    }];
+
+}
 #pragma mark微信预支付
 -(void) prepareWeixinPayWithParams:(NSDictionary*)params
                           complete:(void (^)(NSDictionary *result))block{
@@ -497,7 +518,7 @@
         if([code isEqualToString:@"1"]){
             NSDictionary *dicTemp=response[@"data"];
             NSArray *dataList = dicTemp[@"items"];
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -577,7 +598,7 @@
         NSLog(@"message:%@",meessage);
         if([code isEqualToString:@"1"]){
             NSDictionary *dicTemp=response[@"data"];
-            CustomerModel *model=[CustomerModel objectWithKeyValues:dicTemp];
+            CustomerModel *model=[CustomerModel mj_objectWithKeyValues:dicTemp];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(model);
 
@@ -659,7 +680,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[MyBarModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[MyBarModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -740,7 +761,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -767,7 +788,7 @@
         
         if ([code isEqualToString:@"1"]) {
             NSArray *dataList= data[@"items"];
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -792,7 +813,7 @@
         
         if ([code isEqualToString:@"1"]) {
             NSArray *dataList= response[@"data"];
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -817,7 +838,7 @@
         
         if ([code isEqualToString:@"1"]) {
             NSArray *dataList= response[@"data"];
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -842,7 +863,7 @@
         
         if ([code isEqualToString:@"1"]) {
             NSArray *dataList= response[@"data"];
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -867,7 +888,7 @@
         NSArray *dataList = response[@"data"];
         
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr=[UserTagModel objectArrayWithKeyValuesArray:dataList];
+            NSMutableArray *tempArr=[UserTagModel mj_objectArrayWithKeyValuesArray:dataList];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });

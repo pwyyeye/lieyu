@@ -52,7 +52,7 @@
             isFaqi=true;
         }
         isfu=false;
-        NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+        NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
         fukuanPKStr=@"0";
         if(pinkerList.count>0){
             for (PinkInfoModel *pinkInfoModel in pinkerList) {
@@ -245,7 +245,7 @@
                     
                         if(_orderInfoModel.pinkerList.count>0){
                             for (NSDictionary *dic in _orderInfoModel.pinkerList) {
-                                PinkInfoModel *pinkInfoModel =[PinkInfoModel objectWithKeyValues:dic];
+                                PinkInfoModel *pinkInfoModel =[PinkInfoModel mj_objectWithKeyValues:dic];
                                 if(pinkInfoModel.inmember==userId){
                                     NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",pinkInfoModel.price];
                                     [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
@@ -322,7 +322,7 @@
                     btn1.backgroundColor=RGB(247, 138, 79);
                     if(_orderInfoModel.pinkerList.count>0){
                         for (NSDictionary *dic in _orderInfoModel.pinkerList) {
-                            PinkInfoModel *pinkInfoModel =[PinkInfoModel objectWithKeyValues:dic];
+                            PinkInfoModel *pinkInfoModel =[PinkInfoModel mj_objectWithKeyValues:dic];
                             if(pinkInfoModel.inmember==userId){
                                 NSString *jiaGeStr=[NSString stringWithFormat:@"马上支付（￥%@）",pinkInfoModel.price];
                                 [btn1 setTitle:jiaGeStr forState:UIControlStateNormal];
@@ -699,7 +699,7 @@
             if(_orderInfoModel.ordertype==1){
                 
                 double payVule=0.0;
-                NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+                NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
                 if(pinkerList.count>0){
                     for (PinkInfoModel *pinkInfoModel in pinkerList) {
                         if(pinkInfoModel.inmember==userId){
@@ -749,7 +749,7 @@
             NSString *fukuanStr=@"￥0";
             NSString *flStr=@"￥0";
             if(_orderInfoModel.ordertype==1){
-                NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+                NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
                 if(pinkerList.count>0){
                     for (PinkInfoModel *pinkInfoModel in pinkerList) {
                         if(pinkInfoModel.inmember==userId){
@@ -936,7 +936,7 @@
             //吃喝订单
             NSArray *arr=orderInfoModel.goodslist;
             NSDictionary *dicTemp=arr[indexPath.row];
-            GoodsModel *goodsModel=[GoodsModel objectWithKeyValues:dicTemp];
+            GoodsModel *goodsModel=[GoodsModel mj_objectWithKeyValues:dicTemp];
             ProductVOModel *productVOModel=goodsModel.productVO;
             shopDetailmodel.name=goodsModel.fullName;
             shopDetailmodel.img=productVOModel.image;
@@ -986,7 +986,7 @@
                 cell.pkUserimageView.layer.cornerRadius =cell.pkUserimageView.width/2;
                 
             }
-            NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+            NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
             PinkInfoModel *pinkInfoModel;
             if(isFaqi){
                 pinkInfoModel=pinkerList[indexPath.row];
@@ -1236,7 +1236,7 @@
     if(orderInfoModel.ordertype==1){
         if(orderInfoModel.pinkerList.count>0){
             for (NSDictionary *dic in orderInfoModel.pinkerList) {
-                PinkInfoModel *pinkInfoModel =[PinkInfoModel objectWithKeyValues:dic];
+                PinkInfoModel *pinkInfoModel =[PinkInfoModel mj_objectWithKeyValues:dic];
                 if(pinkInfoModel.inmember==userId){
                     detailViewController.orderNo=pinkInfoModel.sn;
                     detailViewController.payAmount=pinkInfoModel.price.doubleValue;
@@ -1326,7 +1326,7 @@
     OrderInfoModel *orderInfoModel;
     orderInfoModel=_orderInfoModel;
 //    __weak __typeof(self)weakSelf = self;
-    NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+    NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
     int orderid=0;
     if(pinkerList.count>0){
         for (PinkInfoModel *pinkInfoModel in pinkerList) {
@@ -1402,7 +1402,7 @@
 #pragma mark 私聊
 -(void)siliaoActForPK:(UIButton *)sender{
     
-    NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+    NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
     PinkInfoModel *pinkInfoModel=pinkerList[sender.tag];
     RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
@@ -1417,7 +1417,7 @@
 -(void)dianhuaActForPK:(UIButton *)sender{
     
     
-    NSArray *pinkerList=[PinkInfoModel objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+    NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
     PinkInfoModel *pinkInfoModel=pinkerList[sender.tag];
     
     if( [MyUtil isPureInt:pinkInfoModel.inmenbermobile]){

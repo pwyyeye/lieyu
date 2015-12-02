@@ -632,7 +632,7 @@
         //吃喝订单
         NSArray *arr=orderInfoModel.goodslist;
         NSDictionary *dicTemp=arr[indexPath.row];
-        GoodsModel *goodsModel=[GoodsModel objectWithKeyValues:dicTemp];
+        GoodsModel *goodsModel=[GoodsModel mj_objectWithKeyValues:dicTemp];
         ProductVOModel *productVOModel=goodsModel.productVO;
         shopDetailmodel.name=goodsModel.fullName;
         shopDetailmodel.img=productVOModel.image;

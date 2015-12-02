@@ -23,7 +23,7 @@
 
 -(void)preparePay:(NSDictionary *)param complete:(void (^)(BaseReq *result))block{
     [[LYUserHttpTool shareInstance] prepareWeixinPayWithParams:param complete:^(NSDictionary *result) {
-        _tenpayModel=[TenpayModel objectWithKeyValues:result];
+        _tenpayModel=[TenpayModel mj_objectWithKeyValues:result];
         PayReq *request = [[PayReq alloc] init];
         request.partnerId = _tenpayModel.partnerid;
         request.prepayId= _tenpayModel.prepayid;

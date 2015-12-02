@@ -85,7 +85,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            PinKeModel *pinKeModel=[PinKeModel objectWithKeyValues:dataDic];
+            PinKeModel *pinKeModel=[PinKeModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(pinKeModel);
             });
@@ -173,7 +173,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            JiuBaModel *jiuBaModel=[JiuBaModel objectWithKeyValues:dataDic];
+            JiuBaModel *jiuBaModel=[JiuBaModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(jiuBaModel);
             });
@@ -199,7 +199,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            TaoCanModel *taoCanModel=[TaoCanModel objectWithKeyValues:dataDic];
+            TaoCanModel *taoCanModel=[TaoCanModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(taoCanModel);
             });
@@ -224,7 +224,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            TaoCanModel *taoCanModel=[TaoCanModel objectWithKeyValues:dataDic];
+            TaoCanModel *taoCanModel=[TaoCanModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(taoCanModel);
             });
@@ -282,7 +282,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CheHeModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CheHeModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -307,7 +307,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            CheHeModel *chiHeModel=[CheHeModel objectWithKeyValues:dataDic];
+            CheHeModel *chiHeModel=[CheHeModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(chiHeModel);
             });
@@ -360,7 +360,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CarInfoModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CarInfoModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -415,7 +415,7 @@
         if ([code isEqualToString:@"1"]) {
             if(arr.count>0){
                 NSDictionary *dataDic =arr[0];
-                CarInfoModel *carInfoModel=[CarInfoModel objectWithKeyValues:dataDic];
+                CarInfoModel *carInfoModel=[CarInfoModel mj_objectWithKeyValues:dataDic];
                 dispatch_async(dispatch_get_main_queue(), ^(void) {
                     block(carInfoModel);
                 });
@@ -496,7 +496,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ZSDetailModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ZSDetailModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });

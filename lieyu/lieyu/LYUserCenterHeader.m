@@ -20,6 +20,17 @@
     if (app.userModel) {
         //设置头像
         [_avatar_img setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:app.userModel.gender.intValue==0?@"lieyu_default_female":@"lieyu_default_male"]];
+        if ([MyUtil isEmptyString:app.userModel.age]) {
+            _age.hidden=YES;
+        }else{
+            _age.hidden=NO;
+        }
+        
+        if (app.userModel.tags.count==0) {
+            _tags.hidden=YES;
+        }else{
+            _tags.hidden=NO;
+        }
         [_age setTitle:[NSString stringWithFormat:@"%@岁",app.userModel.age]  forState:UIControlStateNormal];
         NSArray *tags=app.userModel.tags;
         NSMutableString *mytags=[[NSMutableString alloc] init];
@@ -36,27 +47,9 @@
         _userNick.text=app.userModel.usernick;
     }
     
-  //  修改的部分
-//    UIColor *_inputColor0 = RGBA(109, 0, 142,0.8);
-//    UIColor *_inputColor1 = RGBA(64, 1, 120,0.8);
-//    CGPoint _inputPoint0 = CGPointMake(0.5, 0);
-//    CGPoint _inputPoint1 = CGPointMake(0.5, 1);
-//    CAGradientLayer *layer = [CAGradientLayer new];
-//    layer.colors = @[(__bridge id)_inputColor0.CGColor, (__bridge id)_inputColor1.CGColor];
-//    layer.startPoint = _inputPoint0;
-//    layer.endPoint = _inputPoint1;
-//    layer.frame = CGRectMake(0, -20, SCREEN_WIDTH, self.bounds.size.height);
-//    [self.headView.layer addSublayer:layer];
-//    
-//
-//    [self.headView.layer setShadowColor:[UIColor redColor].CGColor];
-//    self.headView.layer.shadowOffset=CGSizeMake(0, -4);
-//    self.headView.layer.shadowOpacity=0.8;
-//    self.headView.layer.shadowRadius = 4;
-    
-//    _avatar_img_bg.image=[MyUtil getImageFromColor:RGBA(255, 255, 255, 0.5)];
+ 
 
-    
+    //设置背景色
     UIImageView *bgImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headBgColor"]];
     bgImage.frame=self.headView.bounds;
     bgImage.contentMode=UIViewContentModeScaleToFill;
@@ -71,20 +64,102 @@
     [self.headView bringSubviewToFront:_btnMessage];
     [self.headView bringSubviewToFront:_btnSetting];
     
-    
     self.avatar_img.layer.borderColor=RGB(176,143,199).CGColor; //要设置的颜色
     self.avatar_img.layer.borderWidth=2.5;
-    
-//    UIImage *bgImage=[UIImage imageNamed:@"headBgColor"];
-//    bgImage=[bgImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeTile];
-//    
-//    self.headView.backgroundColor=[UIColor colorWithPatternImage:bgImage] ;
     
 }
 
 -(void)updateConstraints{
      [super updateConstraints];
     _line1Heght.constant=0.5;
+    
+}
+//加载角标
+-(void)loadBadge:(OrderTTL *)orderTTL{
+   
+    if (orderTTL) {
+        if (orderTTL.waitPay>0) {//待付款
+            UILabel *badge=[[UILabel alloc] init];
+            badge.backgroundColor=[UIColor redColor];
+            badge.font=[UIFont systemFontOfSize:8];
+            badge.layer.masksToBounds=YES;
+            badge.layer.cornerRadius=6;
+            badge.textColor=[UIColor whiteColor];
+            badge.textAlignment=NSTextAlignmentCenter;
+            CGRect frame=_waitPay.frame;
+            badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitPay];
+            [_waitPay addSubview:badge];
+            
+        }
+        if(orderTTL.waitConsumption>0){//待消费
+            UILabel *badge=[[UILabel alloc] init];
+            badge.backgroundColor=[UIColor redColor];
+            badge.font=[UIFont systemFontOfSize:8];
+            badge.layer.masksToBounds=YES;
+            badge.layer.cornerRadius=6;
+            badge.textColor=[UIColor whiteColor];
+            badge.textAlignment=NSTextAlignmentCenter;
+            CGRect frame=_waitConsumption.frame;
+            badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitConsumption];
+            [_waitConsumption addSubview:badge];
+        }
+        if (orderTTL.waitRebate>0){//待返利
+            UILabel *badge=[[UILabel alloc] init];
+            badge.backgroundColor=[UIColor redColor];
+            badge.font=[UIFont systemFontOfSize:8];
+            badge.layer.masksToBounds=YES;
+            badge.layer.cornerRadius=6;
+            badge.textColor=[UIColor whiteColor];
+            badge.textAlignment=NSTextAlignmentCenter;
+            CGRect frame=_waitRebate.frame;
+            badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitRebate];
+            [_waitRebate addSubview:badge];
+        }
+        if(orderTTL.waitEvaluation>0){//待评价
+            UILabel *badge=[[UILabel alloc] init];
+            badge.backgroundColor=[UIColor redColor];
+            badge.font=[UIFont systemFontOfSize:8];
+            badge.layer.masksToBounds=YES;
+            badge.layer.cornerRadius=6;
+            badge.textColor=[UIColor whiteColor];
+            badge.textAlignment=NSTextAlignmentCenter;
+            CGRect frame=_waitEvaluation.frame;
+            badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitEvaluation];
+            [_waitEvaluation addSubview:badge];
+        }
+        if (orderTTL.waitPayBack>0){//待退款
+            UILabel *badge=[[UILabel alloc] init];
+            badge.backgroundColor=[UIColor redColor];
+            badge.font=[UIFont systemFontOfSize:8];
+            badge.layer.masksToBounds=YES;
+            badge.layer.cornerRadius=6;
+            badge.textColor=[UIColor whiteColor];
+            badge.textAlignment=NSTextAlignmentCenter;
+            CGRect frame=_waitPayBack.frame;
+            badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitPayBack];
+            [_waitPayBack addSubview:badge];
+        }
+        if (orderTTL.messageNum>0) {//消息中心
+            UILabel *badge=[[UILabel alloc] init];
+            badge.backgroundColor=[UIColor redColor];
+            badge.font=[UIFont systemFontOfSize:8];
+            badge.layer.masksToBounds=YES;
+            badge.layer.cornerRadius=6;
+            badge.textColor=[UIColor whiteColor];
+            badge.textAlignment=NSTextAlignmentCenter;
+            CGRect frame=_btnMessage.frame;
+            badge.frame=CGRectMake(frame.size.width-6, -3, 12, 12);
+            badge.text=[NSString stringWithFormat:@"%d",orderTTL.messageNum];
+            [_btnMessage insertSubview:badge aboveSubview:_btnMessage.titleLabel];
+
+        }
+            
+    }
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -110,6 +185,7 @@
     }
     return self;
 }
+
 - (IBAction)gotoSetting:(id)sender {
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     Setting *setting =[[Setting alloc] init];

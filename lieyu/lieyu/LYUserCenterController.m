@@ -19,6 +19,8 @@
 #import "MyZSManageViewController.h"//我的专属经理
 #import "LYCarListViewController.h"//购物车
 #import "MyMessageListViewController.h"//我的消息列表
+#import "LYUserHttpTool.h"
+
 
 @interface LYUserCenterController ()
 
@@ -43,16 +45,12 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     [self.collectionView registerClass:[LYUserCenterHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader"];
     
-    //判断是否专属经理
-//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    if(app.userModel.usertype.intValue==2||YES){
-//         [self.collectionView registerClass:[LYUserCenterFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter"];
-//    }
+  
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"LYUserCenterFooter" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter"];
     //
 
-    _data=@[@{@"title":@"购物车",@"icon":@"userShopCart"},@{@"title":@"收藏",@"icon":@"userFav"},@{@"title":@"专属经理",@"icon":@"userManager"},@{@"title":@"我的推荐",@"icon":@"userTuijian"},@{@"title":@"帮助与反馈",@"icon":@"userHelp"},@{@"title":@"更多",@"icon":@""}];
+    _data=@[@{@"title":@"购物车",@"icon":@"userShopCart"},@{@"title":@"收藏",@"icon":@"userFav"},@{@"title":@"专属经理",@"icon":@"userManager"},@{@"title":@"我的推荐",@"icon":@"userTuijian"},@{@"title":@"帮助与反馈",@"icon":@"userHelp"},@{@"title":@"",@"icon":@""}];
  
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
@@ -229,6 +227,15 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     if (kind==UICollectionElementKindSectionHeader) {
         headerView=[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader" forIndexPath:indexPath];
         headerView.frame=CGRectMake(0, -20, SCREEN_WIDTH, 240);
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        if (![MyUtil isEmptyString:app.s_app_id]) {
+            [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
+                _orderTTL=result;
+                LYUserCenterHeader *header=(LYUserCenterHeader *)headerView;
+                [header loadBadge:_orderTTL];
+            }];
+        }
+
     }else if(kind==UICollectionElementKindSectionFooter){
         //判断是否专属经理
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -249,8 +256,17 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    CGSize size = {SCREEN_WIDTH, 50};
-    return size;
+    
+    //判断是否专属经理
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if(app.userModel.usertype.intValue==2){
+        CGSize size = {SCREEN_WIDTH, 50};
+        return size;
+    }else{
+        CGSize size = {SCREEN_WIDTH, 0};
+        return size;
+    }
+    
 }
 
 

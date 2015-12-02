@@ -32,7 +32,7 @@
             bannerList = [dataDic valueForKey:@"banner"];
             barlist = [dataDic valueForKey:@"barlist"];
             newbanner=[dataDic valueForKey:@"newbanner"];
-            barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel objectArrayWithKeyValuesArray:barlist]];
+            barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:barlist]];
         }
         
         block(erMsg,bannerList,barlist,newbanner);

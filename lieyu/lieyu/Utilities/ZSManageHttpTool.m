@@ -37,7 +37,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel objectArrayWithKeyValuesArray:dataList]];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel mj_objectArrayWithKeyValuesArray:dataList]];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
             });
@@ -63,7 +63,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-            OrderInfoModel *orderInfoModel = [OrderInfoModel objectWithKeyValues:dataDic];
+            OrderInfoModel *orderInfoModel = [OrderInfoModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(orderInfoModel);
             });
@@ -171,7 +171,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_TAOCANLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
-        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[TaoCanModel objectArrayWithKeyValuesArray:dataList]];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[TaoCanModel mj_objectArrayWithKeyValuesArray:dataList]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             block(tempArr);
         });
@@ -187,7 +187,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_PINKELIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
-        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel objectArrayWithKeyValuesArray:dataList]];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:dataList]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             block(tempArr);
         });
@@ -204,7 +204,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_DANPINLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
-        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CheHeModel objectArrayWithKeyValuesArray:dataList]];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CheHeModel mj_objectArrayWithKeyValuesArray:dataList]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             block(tempArr);
         });
@@ -221,7 +221,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KUCUNLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
-        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[KuCunModel objectArrayWithKeyValuesArray:dataList]];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[KuCunModel mj_objectArrayWithKeyValuesArray:dataList]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             block(tempArr);
         });
@@ -400,7 +400,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_JIUSHUI_FENLEI_LIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
-        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ProductCategoryModel objectArrayWithKeyValuesArray:dataList]];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ProductCategoryModel mj_objectArrayWithKeyValuesArray:dataList]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             block(tempArr);
         });
@@ -417,7 +417,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_JIUSHUI_BRAND_LIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
-        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ProductCategoryModel objectArrayWithKeyValuesArray:dataList]];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[ProductCategoryModel mj_objectArrayWithKeyValuesArray:dataList]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             block(tempArr);
         });
@@ -433,7 +433,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_KUZUOISFULL baseURL:LY_SERVER  params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
-        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[DeckFullModel objectArrayWithKeyValuesArray:dataList]];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[DeckFullModel mj_objectArrayWithKeyValuesArray:dataList]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             block(tempArr);
         });
@@ -451,7 +451,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_USERS_FRIEND baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
-        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel objectArrayWithKeyValuesArray:dataList]];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[CustomerModel mj_objectArrayWithKeyValuesArray:dataList]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             block(tempArr);
         });
