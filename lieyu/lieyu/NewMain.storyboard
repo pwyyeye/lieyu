@@ -278,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhD-FF-5nv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-340" y="318"/>
+            <point key="canvasLocation" x="-796" y="1363"/>
         </scene>
         <!--Play Together View Controller-->
         <scene sceneID="tuA-Vk-j5V">
@@ -309,6 +309,9 @@
                                 <state key="normal" title="咨询猎娱" image="icon_zixun">
                                     <color key="titleColor" red="0.074509803920000006" green="0.65098039220000004" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="ZiXunLieyu:" destination="fvS-oF-oUI" eventType="touchUpInside" id="WNT-tu-coM"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPR-Ks-i7G">
                                 <rect key="frame" x="0.0" y="524" width="320" height="0.5"/>
@@ -335,11 +338,17 @@
                                 <rect key="frame" x="264" y="16" width="39" height="40"/>
                                 <animations/>
                                 <state key="normal" backgroundImage="share"/>
+                                <connections>
+                                    <action selector="ShareClick:" destination="fvS-oF-oUI" eventType="touchUpInside" id="Snp-7i-fdy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fJ-Xm-xC5">
                                 <rect key="frame" x="210" y="16" width="40" height="40"/>
                                 <animations/>
                                 <state key="normal" backgroundImage="icon_star_normal"/>
+                                <connections>
+                                    <action selector="LikeClick:" destination="fvS-oF-oUI" eventType="touchUpInside" id="HYw-0c-klK"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ef5-dw-QWS">
                                 <rect key="frame" x="216" y="524" width="104" height="44"/>
@@ -351,6 +360,9 @@
                                 <state key="normal" title="马上购买">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="BuyNow:" destination="fvS-oF-oUI" eventType="touchUpInside" id="rmF-f7-xgW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PW4-9z-TYt">
                                 <rect key="frame" x="112" y="524" width="104" height="44"/>
@@ -363,6 +375,9 @@
                                 <state key="normal" title="注意事项" image="icon_zhuyi">
                                     <color key="titleColor" red="0.29411764709999999" green="0.76470588240000004" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="ZhuYiShixiang:" destination="fvS-oF-oUI" eventType="touchUpInside" id="v0s-wr-O0d"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -393,7 +408,146 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fr1-F3-srg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-664" y="213"/>
+            <point key="canvasLocation" x="-1111" y="513"/>
+        </scene>
+        <!--Attention View Controller-->
+        <scene sceneID="4Iz-g6-76j">
+            <objects>
+                <viewController storyboardIdentifier="LPattention" id="MPL-KQ-y5u" customClass="LPAttentionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NKf-CO-U7L"/>
+                        <viewControllerLayoutGuide type="bottom" id="ha2-HI-O2N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YkA-0y-j3W">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. 关于退款：若专属经理未确认留位前退款，则我们将全额退款；若专属经理确认给予您留位后退款，则退款需收20%卡座占用费（100元封顶）。由于占用卡位时间会对酒吧造成经济损失，所以敬请谅解！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U33-RY-4vh">
+                                <rect key="frame" x="10" y="35" width="300" height="95.5"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="kjI-5a-pgc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 2. 若有任何疑问？投诉和建议，欢迎拨打客户热线；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdo-lB-0wX">
+                                <rect key="frame" x="10" y="135.5" width="300" height="38.5"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="tJN-Xo-cAA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 3. 商品图片为参考，具体以实物为准；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98R-re-jbC">
+                                <rect key="frame" x="10" y="179" width="300" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="YQj-7V-kVm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 4. 客户热线：021-36512128" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHV-cp-GEI">
+                                <rect key="frame" x="10" y="205" width="300" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="l9X-JJ-xoK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于退款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTG-SM-pKK">
+                                <rect key="frame" x="22" y="33" width="68" height="21"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="68" id="Oz7-zj-hVy"/>
+                                    <constraint firstAttribute="height" constant="21" id="zbd-oc-YsE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="98R-re-jbC" firstAttribute="top" secondItem="bdo-lB-0wX" secondAttribute="bottom" constant="5" id="0HY-S7-cBs"/>
+                            <constraint firstItem="xHV-cp-GEI" firstAttribute="top" secondItem="98R-re-jbC" secondAttribute="bottom" constant="5" id="8tW-EU-ISg"/>
+                            <constraint firstItem="98R-re-jbC" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="10" id="AsW-5d-vWd"/>
+                            <constraint firstAttribute="trailing" secondItem="98R-re-jbC" secondAttribute="trailing" constant="10" id="GwV-M6-Gab"/>
+                            <constraint firstItem="U33-RY-4vh" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="10" id="Hvm-b1-RDH"/>
+                            <constraint firstItem="UTG-SM-pKK" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="22" id="KxG-TU-qj6"/>
+                            <constraint firstAttribute="trailing" secondItem="U33-RY-4vh" secondAttribute="trailing" constant="10" id="LRb-az-pyP"/>
+                            <constraint firstAttribute="trailing" secondItem="bdo-lB-0wX" secondAttribute="trailing" constant="10" id="Ykd-ax-iDe"/>
+                            <constraint firstItem="bdo-lB-0wX" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="10" id="c7o-M0-egH"/>
+                            <constraint firstItem="UTG-SM-pKK" firstAttribute="top" secondItem="NKf-CO-U7L" secondAttribute="bottom" constant="13" id="gcu-IG-YKh"/>
+                            <constraint firstItem="xHV-cp-GEI" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="10" id="hwZ-Oa-DfI"/>
+                            <constraint firstAttribute="trailing" secondItem="xHV-cp-GEI" secondAttribute="trailing" constant="10" id="rlV-gN-thR"/>
+                            <constraint firstItem="U33-RY-4vh" firstAttribute="top" secondItem="NKf-CO-U7L" secondAttribute="bottom" constant="15" id="rvF-me-HBw"/>
+                            <constraint firstItem="bdo-lB-0wX" firstAttribute="top" secondItem="U33-RY-4vh" secondAttribute="bottom" constant="5" id="rzA-Mo-CJ5"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5tt-q1-wdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1111" y="-111"/>
+        </scene>
+        <!--Buy View Controller-->
+        <scene sceneID="4pI-z5-Uka">
+            <objects>
+                <viewController storyboardIdentifier="LPBuyVC" id="iPX-td-W2g" customClass="LPBuyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z7Q-nC-rXc"/>
+                        <viewControllerLayoutGuide type="bottom" id="JD3-1c-7Je"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="di6-jH-nz0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CbZ-pw-lK3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="iPX-td-W2g" id="wAP-SL-8pA"/>
+                                    <outlet property="delegate" destination="iPX-td-W2g" id="85U-P1-9bV"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48A-4k-ySD">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.36862745099999999" green="0.0" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="kmw-11-UBE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="立即购买">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="48A-4k-ySD" secondAttribute="trailing" id="Chy-5D-ZG2"/>
+                            <constraint firstItem="JD3-1c-7Je" firstAttribute="top" secondItem="48A-4k-ySD" secondAttribute="bottom" id="PLm-fn-t3E"/>
+                            <constraint firstItem="48A-4k-ySD" firstAttribute="leading" secondItem="di6-jH-nz0" secondAttribute="leading" id="xew-we-FVA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="CbZ-pw-lK3" id="nnv-tq-FkN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QL9-n0-YN9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-746" y="-111"/>
         </scene>
         <!--Play Together Main View Controller-->
         <scene sceneID="Thj-AB-kKh">
@@ -761,7 +915,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s0d-1f-GfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-350" y="256"/>
+            <point key="canvasLocation" x="10" y="1363"/>
         </scene>
         <!--Play Together Pay View Controller-->
         <scene sceneID="oUu-Id-gdE">
@@ -1205,7 +1359,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vgA-z4-7EA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-166" y="1289"/>
+            <point key="canvasLocation" x="-388" y="1363"/>
         </scene>
         <!--Tjoin In View Controller-->
         <scene sceneID="1gA-2d-BZn">
@@ -1454,7 +1608,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UsK-PH-AqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="201" y="1295"/>
+            <point key="canvasLocation" x="415" y="1363"/>
         </scene>
         <!--Sure Order View Controller-->
         <scene sceneID="vA0-n4-fJ3">

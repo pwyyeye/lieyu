@@ -11,6 +11,8 @@
 
 @interface LPAlertView : UIView
 
+@property (nonatomic, strong) NSString *labelText;
+
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, assign) id<LPAlertViewDelegate> delegate;
 
@@ -24,6 +26,6 @@
 
 @protocol LPAlertViewDelegate <NSObject>
 
-- (void)alertView:(LPAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end
