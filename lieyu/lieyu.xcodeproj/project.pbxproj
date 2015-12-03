@@ -465,6 +465,7 @@
 		AD106BBB1C0DDEFF007F5FBA /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106BAD1C0DDEFF007F5FBA /* NSObject+MJCoding.m */; };
 		AD106BBC1C0DDEFF007F5FBA /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106BAF1C0DDEFF007F5FBA /* NSObject+MJKeyValue.m */; };
 		AD106BBD1C0DDEFF007F5FBA /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106BB11C0DDEFF007F5FBA /* NSObject+MJProperty.m */; };
+		AD106BC51C0EDDD5007F5FBA /* OrderTTL.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106BC11C0E9593007F5FBA /* OrderTTL.m */; };
 		AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD198CBB1C00308400AA654D /* libWeChatSDK.a */; };
 		AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC01C00357C00AA654D /* SingletonTenpay.m */; };
 		AD198CC41C00368300AA654D /* TenpayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC31C00368300AA654D /* TenpayModel.m */; };
@@ -4601,6 +4602,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD106BC51C0EDDD5007F5FBA /* OrderTTL.m in Sources */,
 				3879F2701C0D786E00B72629 /* LYHotBarMenuView.m in Sources */,
 				1559DD1A1BDB2B3C00F3FE9B /* CarBottomView.m in Sources */,
 				ADE103AF1BDE4C8E00D9EC38 /* ChoosePayController.m in Sources */,
@@ -4943,7 +4945,6 @@
 				15B8661F1BDB5C73002E2BB6 /* CHDoOrderBottomView.m in Sources */,
 				D74C60851BB69F6300A49598 /* RTLabel.m in Sources */,
 				85EE80371C0AF19600958F76 /* LYBarTitleTableViewCell.m in Sources */,
-				AD106BC21C0E9593007F5FBA /* OrderTTL.m in Sources */,
 				ADE1039D1BDE49BC00D9EC38 /* openssl_wrapper.m in Sources */,
 				85F672BC1C09D7F8001BEE5B /* LYCityChooseViewController.m in Sources */,
 				D794ED0C1BB7872A000DC568 /* PFRect.m in Sources */,

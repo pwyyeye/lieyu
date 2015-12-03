@@ -12,6 +12,16 @@
 #import "NSObject+MJKeyValue.h"
 #import "MJRefresh.h"
 
+typedef NS_ENUM(NSInteger, LYOrderType) {
+    LYOrderTypeDefault=0,//all
+    LYOrderTypeWaitPay=1,//待付款
+    LYOrderTypeWaitConsumption=2,//待消费
+    LYOrderTypeWaitRebate=3,//待返利
+    LYOrderTypeWaitEvaluation=4,//待评价
+    LYOrderTypeWaitPayBack=5//待退款
+    
+};
+
 @interface LYMyOrderManageViewController : LYBaseViewController<MenuHrizontalDelegate>
 {
     MenuHrizontal *mMenuHriZontal;
@@ -26,6 +36,9 @@
 @property (weak, nonatomic) IBOutlet UIView *tobView;
 @property (weak, nonatomic) IBOutlet UIView *nodataView;
 @property (weak, nonatomic) IBOutlet UIImageView *kongImageView;
+
+@property(assign,nonatomic) LYOrderType orderType;
+
 - (IBAction)gohomeAct:(UIButton *)sender;
 
 @end

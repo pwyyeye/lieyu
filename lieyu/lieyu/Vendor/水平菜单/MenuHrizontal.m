@@ -10,10 +10,32 @@
 #import "MacroDefinition.h"
 #import "UIViewExt.h"
 #import "TimeButton.h"
+
 #define BUTTONITEMWIDTH   70
 
 @implementation MenuHrizontal
-- (id)initWithFrame:(CGRect)frame ButtonItems:(NSArray *)aItemsArray
+- (id)initWithFrame:(CGRect)frame ButtonItems:(NSArray *)aItemsArray{
+    jianWidth=0;
+    self = [super initWithFrame:frame];
+    if (self) {
+        if (mButtonArray == nil) {
+            mButtonArray = [[NSMutableArray alloc] init];
+        }
+        if (mScrollView == nil) {
+            mScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            mScrollView.backgroundColor=RGB(114, 5, 147);
+            mScrollView.showsHorizontalScrollIndicator = NO;
+        }
+        if (mItemInfoArray == nil) {
+            mItemInfoArray = [[NSMutableArray alloc]init];
+        }
+        [mItemInfoArray removeAllObjects];
+        [self createMenuItems:aItemsArray withOrderType:0];
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame ButtonItems:(NSArray *)aItemsArray andOrderType:(NSInteger) orderType
 {
     jianWidth=0;
     self = [super initWithFrame:frame];
@@ -30,7 +52,7 @@
             mItemInfoArray = [[NSMutableArray alloc]init];
         }
         [mItemInfoArray removeAllObjects];
-        [self createMenuItems:aItemsArray];
+        [self createMenuItems:aItemsArray withOrderType:orderType];
     }
     return self;
 }
@@ -56,7 +78,7 @@
     return self;
 }
 
--(void)createMenuItems:(NSArray *)aItemsArray{
+-(void)createMenuItems:(NSArray *)aItemsArray withOrderType:(NSInteger)orderType{
     int i = 0;
     float menuWidth = 0.0;
     //
@@ -82,7 +104,7 @@
         [vButton setTag:i];
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];
-        if(i==0){
+        if(i==orderType){
             [vButton setSelected:true];
         }
   

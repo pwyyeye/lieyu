@@ -200,24 +200,34 @@
 }
 
 - (IBAction)gotoOrderList:(id)sender {
-    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-    myOrderManageViewController.title=@"我的订单";
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
+    [self gotoMyOrderList:LYOrderTypeDefault];
 }
 
 - (IBAction)gotoWaitPayOrderList:(id)sender {
+    [self gotoMyOrderList:LYOrderTypeWaitPay];
 }
 
 - (IBAction)gotoWaitConsumptionOrderList:(id)sender {
+    [self gotoMyOrderList:LYOrderTypeWaitConsumption];
 }
 
 - (IBAction)gotoWaitRebateOrderList:(id)sender {
+    [self gotoMyOrderList:LYOrderTypeWaitRebate];
 }
 
 - (IBAction)gotoWaitEvaluationOrderList:(id)sender {
+    [self gotoMyOrderList:LYOrderTypeWaitEvaluation];
 }
 
 - (IBAction)gotoWaitPayBackOrderList:(id)sender {
+    [self gotoMyOrderList:LYOrderTypeWaitPayBack];
+}
+
+-(void)gotoMyOrderList:(NSInteger)orderType{
+    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+    myOrderManageViewController.title=@"我的订单";
+    myOrderManageViewController.orderType=orderType;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
 }
 @end
