@@ -17,11 +17,16 @@
 
 #import "LYHomePageHttpTool.h"
 #import "ContentView.h"
+#import "LPAttentionViewController.h"
+#import "LPBuyViewController.h"
+#import "LYtimeChooseTimeController.h"
 
 @interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) BitianTableViewCell *biTianCell;
-
+@property (nonatomic, strong) ContentView *contentView;
+@property (nonatomic, strong) NSArray *labelArray;
+@property (nonatomic, strong) NSString *defaultString;
 
 @end
 
@@ -44,10 +49,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
+    self.defaultString = @"请选择消费方式";
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorColor = [UIColor clearColor];
+    self.labelArray = @[@"我请客",
+                        @"AA付款",
+                        @"自由付款"];
     [self.backBtn addTarget:self action:@selector(backForword) forControlEvents:UIControlEventTouchUpInside];
     [self.shareBtn addTarget:self action:@selector(shareTaocan) forControlEvents:UIControlEventTouchUpInside];
     [self.likeBtn addTarget:self action:@selector(likeTaocan) forControlEvents:UIControlEventTouchUpInside];
@@ -133,7 +142,7 @@
         }
         return cell;
     }else if(indexPath.section == 1){
-        TaocanTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taoCan"];
+        TaocanTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taocan"];
         if(!cell){
             cell = [[[NSBundle mainBundle]loadNibNamed:@"TaocanTableViewCell" owner:nil options:nil]firstObject];
         }
@@ -185,24 +194,45 @@
     }
 }
 
+
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        for (int index = 0 ; index < _contentView.buttonStatusArray.count; index ++) {
+            if([_contentView.buttonStatusArray[index] isEqualToString:@"1"]){
+                [self.biTianCell.chooseWay setTitle:self.labelArray[index] forState:UIControlStateNormal];
+                self.defaultString = self.labelArray[index];
+            }
+        }
+        
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 5;
+    return 0.0001;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 5;
+    return 8;
 }
 
 - (void)chooseTimeForTaocan{
-    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
-    ContentView *contentView = [[[NSBundle mainBundle]loadNibNamed:@"ContentView" owner:nil options:nil]firstObject];
-    contentView.frame = CGRectMake(10, SCREEN_HEIGHT- 320, SCREEN_WIDTH - 20, 250);
-    alertView.contentView = contentView;
-    [alertView show];
+//    LYtimeChooseTimeController *timeChooseTimeController=[[LYtimeChooseTimeController alloc]initWithNibName:@"LYtimeChooseTimeController" bundle:nil];
+//    timeChooseTimeController.title=@"时间选择";
+//    timeChooseTimeController.delegate=self;
+//    [self.navigationController pushViewController:timeChooseTimeController animated:YES];
+    
 }
 
 - (void)chooseWayForTaocan{
-    
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    alertView.delegate = self;
+   
+    _contentView = [[[NSBundle mainBundle]loadNibNamed:@"ContentView" owner:nil options:nil]firstObject];
+    _contentView.defaultString = self.defaultString;
+    [_contentView contentViewChooseBtn];
+    _contentView.frame = CGRectMake(10, SCREEN_HEIGHT- 320, SCREEN_WIDTH - 20, 250);
+    alertView.contentView = _contentView;
+    [alertView show];
 }
 
 - (void)addPeople{
@@ -213,4 +243,22 @@
     
 }
 
+- (IBAction)ZiXunLieyu:(UIButton *)sender {
+}
+
+- (IBAction)ZhuYiShixiang:(UIButton *)sender {
+    LPAttentionViewController *LPattentionVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPattention"];
+    [self.navigationController pushViewController:LPattentionVC animated:YES];
+}
+
+- (IBAction)BuyNow:(UIButton *)sender {
+    LPBuyViewController *LPBuyVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPBuyVC"];
+    [self.navigationController pushViewController:LPBuyVC animated:YES];
+}
+
+- (IBAction)LikeClick:(UIButton *)sender {
+}
+
+- (IBAction)ShareClick:(UIButton *)sender {
+}
 @end

@@ -13,11 +13,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *radioButton2;
 @property (weak, nonatomic) IBOutlet UIButton *radioButton3;
 
-@property (nonatomic, strong) NSArray *buttonsArray;
+@property (nonatomic, strong) NSArray *radioButtons;
+@property (nonatomic, strong) NSArray *selectButton;
 @property (nonatomic, strong) NSMutableArray *buttonStatusArray;
 
-- (IBAction)Btn1Click:(UIButton *)sender;
-- (IBAction)Btn2Click:(UIButton *)sender;
-- (IBAction)Btn3Click:(UIButton *)sender;
+@property (nonatomic, strong) NSString *defaultString;
 
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn1;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn2;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn3;
+
+- (IBAction)BtnClick:(UIButton *)sender;
+
+- (void)contentViewChooseBtn;
 @end

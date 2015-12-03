@@ -26,7 +26,7 @@
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",self.dict[@"marketPrice"]] attributes:attribtDic];
     self.marketPrice.attributedText = attribtStr;
-    self.profit.text = [NSString stringWithFormat:@"返利%@",self.dict[@"profit"]];
+    self.profit.text = [NSString stringWithFormat:@"返利%.2f％",[self.dict[@"profit"] floatValue] * 100 ];
 }
 
 @end

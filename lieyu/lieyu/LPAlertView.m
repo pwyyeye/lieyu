@@ -54,7 +54,10 @@
         _backgroundView = [[UIView alloc]initWithFrame:self.frame];
         _backgroundView.backgroundColor = RGBA(0, 0, 0, 0.4);
         [self addSubview:_backgroundView];
-        [self initContentView];
+//        if(!_contentView){
+             [self initContentView];
+//        }
+       
         [self initAllButtons];
     }
     return self;
@@ -74,6 +77,9 @@
     _contentView.layer.masksToBounds = YES;
     
     _contentView.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20 , 250);
+    
+    
+    
     [self addSubview:_contentView];
 }
 
@@ -96,9 +102,9 @@
 }
 
 - (void)buttonWithPressed:(UIButton *)button{
-    if(_delegate && [_delegate respondsToSelector:@selector(alertView:clickButtinAtIndex:)]){
+    if(_delegate){
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
-        [_delegate alertView:self clickedButtonAtIndex:index];
+        [_delegate LPAlertView:self clickedButtonAtIndex:index];
     }
     [self hide];
 }

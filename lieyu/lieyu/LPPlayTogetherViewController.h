@@ -28,4 +28,12 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+- (IBAction)ZiXunLieyu:(UIButton *)sender;
+- (IBAction)ZhuYiShixiang:(UIButton *)sender;
+- (IBAction)BuyNow:(UIButton *)sender;
+- (IBAction)LikeClick:(UIButton *)sender;
+- (IBAction)ShareClick:(UIButton *)sender;
+
+
+
 @end

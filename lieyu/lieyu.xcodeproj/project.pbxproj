@@ -313,6 +313,20 @@
 		38E5D6CC1C0EA5B7004B49D2 /* ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6CB1C0EA5B7004B49D2 /* ContentView.m */; };
 		38E5D6CE1C0EA5C8004B49D2 /* ContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6CD1C0EA5C8004B49D2 /* ContentView.xib */; };
 		38E5D6D11C0EC2DA004B49D2 /* LPAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6D01C0EC2DA004B49D2 /* LPAlertView.m */; };
+		38E5D6D21C0EDA51004B49D2 /* OrderTTL.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106BC11C0E9593007F5FBA /* OrderTTL.m */; };
+		38E5D6D51C0EF90D004B49D2 /* LPAttentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6D41C0EF90D004B49D2 /* LPAttentionViewController.m */; };
+		38E5D6DA1C0EFBA2004B49D2 /* leftBackItem.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6D71C0EFBA2004B49D2 /* leftBackItem.png */; };
+		38E5D6DB1C0EFBA2004B49D2 /* leftBackItem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6D81C0EFBA2004B49D2 /* leftBackItem@2x.png */; };
+		38E5D6DC1C0EFBA2004B49D2 /* leftBackItem@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6D91C0EFBA2004B49D2 /* leftBackItem@3x.png */; };
+		38E5D6E01C0F0E00004B49D2 /* LPBuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6DF1C0F0E00004B49D2 /* LPBuyViewController.m */; };
+		38E5D6E51C0F1018004B49D2 /* LPBuyTaocanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6E31C0F1018004B49D2 /* LPBuyTaocanCell.m */; };
+		38E5D6E61C0F1018004B49D2 /* LPBuyTaocanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6E41C0F1018004B49D2 /* LPBuyTaocanCell.xib */; };
+		38E5D6EA1C0F106F004B49D2 /* LPBuyPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6E81C0F106F004B49D2 /* LPBuyPriceCell.m */; };
+		38E5D6EB1C0F106F004B49D2 /* LPBuyPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6E91C0F106F004B49D2 /* LPBuyPriceCell.xib */; };
+		38E5D6EF1C0F109F004B49D2 /* LPBuyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6ED1C0F109F004B49D2 /* LPBuyInfoCell.m */; };
+		38E5D6F01C0F109F004B49D2 /* LPBuyInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6EE1C0F109F004B49D2 /* LPBuyInfoCell.xib */; };
+		38E5D6F41C0F10E7004B49D2 /* LPBuyManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6F21C0F10E7004B49D2 /* LPBuyManagerCell.m */; };
+		38E5D6F51C0F10E7004B49D2 /* LPBuyManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6F31C0F10E7004B49D2 /* LPBuyManagerCell.xib */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
@@ -1149,6 +1163,25 @@
 		38E5D6CD1C0EA5C8004B49D2 /* ContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentView.xib; sourceTree = "<group>"; };
 		38E5D6CF1C0EC2DA004B49D2 /* LPAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAlertView.h; sourceTree = "<group>"; };
 		38E5D6D01C0EC2DA004B49D2 /* LPAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAlertView.m; sourceTree = "<group>"; };
+		38E5D6D31C0EF90D004B49D2 /* LPAttentionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPAttentionViewController.h; sourceTree = "<group>"; };
+		38E5D6D41C0EF90D004B49D2 /* LPAttentionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPAttentionViewController.m; sourceTree = "<group>"; };
+		38E5D6D71C0EFBA2004B49D2 /* leftBackItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftBackItem.png; sourceTree = "<group>"; };
+		38E5D6D81C0EFBA2004B49D2 /* leftBackItem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftBackItem@2x.png"; sourceTree = "<group>"; };
+		38E5D6D91C0EFBA2004B49D2 /* leftBackItem@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftBackItem@3x.png"; sourceTree = "<group>"; };
+		38E5D6DE1C0F0E00004B49D2 /* LPBuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPBuyViewController.h; sourceTree = "<group>"; };
+		38E5D6DF1C0F0E00004B49D2 /* LPBuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPBuyViewController.m; sourceTree = "<group>"; };
+		38E5D6E21C0F1018004B49D2 /* LPBuyTaocanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPBuyTaocanCell.h; sourceTree = "<group>"; };
+		38E5D6E31C0F1018004B49D2 /* LPBuyTaocanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPBuyTaocanCell.m; sourceTree = "<group>"; };
+		38E5D6E41C0F1018004B49D2 /* LPBuyTaocanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPBuyTaocanCell.xib; sourceTree = "<group>"; };
+		38E5D6E71C0F106F004B49D2 /* LPBuyPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPBuyPriceCell.h; sourceTree = "<group>"; };
+		38E5D6E81C0F106F004B49D2 /* LPBuyPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPBuyPriceCell.m; sourceTree = "<group>"; };
+		38E5D6E91C0F106F004B49D2 /* LPBuyPriceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPBuyPriceCell.xib; sourceTree = "<group>"; };
+		38E5D6EC1C0F109F004B49D2 /* LPBuyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPBuyInfoCell.h; sourceTree = "<group>"; };
+		38E5D6ED1C0F109F004B49D2 /* LPBuyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPBuyInfoCell.m; sourceTree = "<group>"; };
+		38E5D6EE1C0F109F004B49D2 /* LPBuyInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPBuyInfoCell.xib; sourceTree = "<group>"; };
+		38E5D6F11C0F10E7004B49D2 /* LPBuyManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPBuyManagerCell.h; sourceTree = "<group>"; };
+		38E5D6F21C0F10E7004B49D2 /* LPBuyManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPBuyManagerCell.m; sourceTree = "<group>"; };
+		38E5D6F31C0F10E7004B49D2 /* LPBuyManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPBuyManagerCell.xib; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
@@ -2583,6 +2616,7 @@
 		15EB7C621BCF3B9B00756153 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				38E5D6E11C0F0F8B004B49D2 /* 立即购买 */,
 				3879F2461C0D31B300B72629 /* 套餐详情 */,
 				15EB356F1BD4958900BA6161 /* 参与 */,
 				15EB7C661BCF3CAF00756153 /* LYPlayTogetherCell.h */,
@@ -2633,8 +2667,6 @@
 				15EB35241BD379A500BA6161 /* LYtimeChooseTimeController.h */,
 				15EB35251BD379A500BA6161 /* LYtimeChooseTimeController.m */,
 				15EB35261BD379A500BA6161 /* LYtimeChooseTimeController.xib */,
-				3879F2681C0D363500B72629 /* LPPlayTogetherViewController.h */,
-				3879F2691C0D363500B72629 /* LPPlayTogetherViewController.m */,
 			);
 			name = "我要拼客";
 			sourceTree = "<group>";
@@ -2898,6 +2930,7 @@
 		38E5D6B51C0EA427004B49D2 /* 拼客 */ = {
 			isa = PBXGroup;
 			children = (
+				38E5D6D61C0EFB7F004B49D2 /* 返回按钮 */,
 				38E5D6B61C0EA433004B49D2 /* 自定义AlertView */,
 			);
 			name = "拼客";
@@ -2926,6 +2959,48 @@
 				38E5D6D01C0EC2DA004B49D2 /* LPAlertView.m */,
 			);
 			name = "自定义AlertView";
+			sourceTree = "<group>";
+		};
+		38E5D6D61C0EFB7F004B49D2 /* 返回按钮 */ = {
+			isa = PBXGroup;
+			children = (
+				38E5D6D71C0EFBA2004B49D2 /* leftBackItem.png */,
+				38E5D6D81C0EFBA2004B49D2 /* leftBackItem@2x.png */,
+				38E5D6D91C0EFBA2004B49D2 /* leftBackItem@3x.png */,
+			);
+			name = "返回按钮";
+			sourceTree = "<group>";
+		};
+		38E5D6DD1C0F0DDC004B49D2 /* LP */ = {
+			isa = PBXGroup;
+			children = (
+				3879F2681C0D363500B72629 /* LPPlayTogetherViewController.h */,
+				3879F2691C0D363500B72629 /* LPPlayTogetherViewController.m */,
+				38E5D6D31C0EF90D004B49D2 /* LPAttentionViewController.h */,
+				38E5D6D41C0EF90D004B49D2 /* LPAttentionViewController.m */,
+				38E5D6DE1C0F0E00004B49D2 /* LPBuyViewController.h */,
+				38E5D6DF1C0F0E00004B49D2 /* LPBuyViewController.m */,
+			);
+			name = LP;
+			sourceTree = "<group>";
+		};
+		38E5D6E11C0F0F8B004B49D2 /* 立即购买 */ = {
+			isa = PBXGroup;
+			children = (
+				38E5D6E21C0F1018004B49D2 /* LPBuyTaocanCell.h */,
+				38E5D6E31C0F1018004B49D2 /* LPBuyTaocanCell.m */,
+				38E5D6E41C0F1018004B49D2 /* LPBuyTaocanCell.xib */,
+				38E5D6E71C0F106F004B49D2 /* LPBuyPriceCell.h */,
+				38E5D6E81C0F106F004B49D2 /* LPBuyPriceCell.m */,
+				38E5D6E91C0F106F004B49D2 /* LPBuyPriceCell.xib */,
+				38E5D6EC1C0F109F004B49D2 /* LPBuyInfoCell.h */,
+				38E5D6ED1C0F109F004B49D2 /* LPBuyInfoCell.m */,
+				38E5D6EE1C0F109F004B49D2 /* LPBuyInfoCell.xib */,
+				38E5D6F11C0F10E7004B49D2 /* LPBuyManagerCell.h */,
+				38E5D6F21C0F10E7004B49D2 /* LPBuyManagerCell.m */,
+				38E5D6F31C0F10E7004B49D2 /* LPBuyManagerCell.xib */,
+			);
+			name = "立即购买";
 			sourceTree = "<group>";
 		};
 		855192651C0B30C4007B9949 /* 热门酒吧 */ = {
@@ -4068,6 +4143,7 @@
 		D761F0251BA5B8A5000757B0 /* PlayTogether */ = {
 			isa = PBXGroup;
 			children = (
+				38E5D6DD1C0F0DDC004B49D2 /* LP */,
 				38E5D6C91C0EA56D004B49D2 /* 自定义AlertView */,
 				15EB35791BD4960E00BA6161 /* 我要参与 */,
 				15EB7C761BD0D9C400756153 /* 我要拼客 */,
@@ -4333,6 +4409,7 @@
 				ADD68E391BE10E550060E751 /* 2@3x.png in Resources */,
 				D74C608C1BB6F0BF00A49598 /* BearBarListViewController.xib in Resources */,
 				A2F9DA711BAA667D009DEAF3 /* OrderHeadView.xib in Resources */,
+				38E5D6DB1C0EFBA2004B49D2 /* leftBackItem@2x.png in Resources */,
 				ADD68E321BE10E400060E751 /* 3_retina.png in Resources */,
 				15ED327F1BE336C400E086A1 /* YaoSettingViewController.xib in Resources */,
 				1559DD111BDA2A3E00F3FE9B /* CarInfoCell.xib in Resources */,
@@ -4344,6 +4421,7 @@
 				15F54A911BB030420020EB4C /* ChanPinListViewController.xib in Resources */,
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
 				A2020D611BA67E9E0090B92A /* disClosure@2x.png in Resources */,
+				38E5D6F51C0F10E7004B49D2 /* LPBuyManagerCell.xib in Resources */,
 				151BB6D31BBB78E000E7A81C /* UzysAssetsPickerController.xib in Resources */,
 				15B866901BE0B04C002E2BB6 /* MyMessageListViewController.xib in Resources */,
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
@@ -4355,6 +4433,7 @@
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
 				15ED32791BE318A800E086A1 /* 5018.wav in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
+				38E5D6DC1C0EFBA2004B49D2 /* leftBackItem@3x.png in Resources */,
 				38E5D6BF1C0EA458004B49D2 /* CustomBtn_unSelected@3x.png in Resources */,
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
@@ -4429,6 +4508,7 @@
 				85F625981C0C20C6002858C8 /* LYDinWeiTableViewCell.xib in Resources */,
 				38E5D6C61C0EA4DF004B49D2 /* CustomBtn_Selected.png in Resources */,
 				15E240831BB279CB0090D240 /* LYMyOrderManageViewController.xib in Resources */,
+				38E5D6DA1C0EFBA2004B49D2 /* leftBackItem.png in Resources */,
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
 				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
@@ -4445,6 +4525,7 @@
 				15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */,
 				15E184931BB52B0E00681BB2 /* LYJiuBaCell.xib in Resources */,
 				85F672B81C099776001BEE5B /* LYWineBarCell.xib in Resources */,
+				38E5D6F01C0F109F004B49D2 /* LPBuyInfoCell.xib in Resources */,
 				15844BFE1BE2101200247FBC /* SaoYiSaoViewController.xib in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
 				3879F2671C0D361000B72629 /* LiuchengTableViewCell.xib in Resources */,
@@ -4465,6 +4546,7 @@
 				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
 				ADD68E281BE10E330060E751 /* 1@2x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
+				38E5D6E61C0F1018004B49D2 /* LPBuyTaocanCell.xib in Resources */,
 				38E5D6C71C0EA4DF004B49D2 /* CustomBtn_Selected@2x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */,
@@ -4518,6 +4600,7 @@
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
 				85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */,
 				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
+				38E5D6EB1C0F106F004B49D2 /* LPBuyPriceCell.xib in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
 				15E184891BB5214F00681BB2 /* LYChooseJiuBaViewController.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
@@ -4601,6 +4684,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38E5D6D21C0EDA51004B49D2 /* OrderTTL.m in Sources */,
 				3879F2701C0D786E00B72629 /* LYHotBarMenuView.m in Sources */,
 				1559DD1A1BDB2B3C00F3FE9B /* CarBottomView.m in Sources */,
 				ADE103AF1BDE4C8E00D9EC38 /* ChoosePayController.m in Sources */,
@@ -4626,6 +4710,7 @@
 				D761F01E1BA5AED3000757B0 /* MJRefreshStateHeader.m in Sources */,
 				D71E1D911BAE8F3100915F37 /* BusinessPublicNoteCell.m in Sources */,
 				3879F2661C0D361000B72629 /* LiuchengTableViewCell.m in Sources */,
+				38E5D6E51C0F1018004B49D2 /* LPBuyTaocanCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
@@ -4775,6 +4860,7 @@
 				15B866981BE0C183002E2BB6 /* MessageCell.m in Sources */,
 				15013B011BBA33BF00061FAF /* UIImage+WebP.m in Sources */,
 				15B8661B1BDB5894002E2BB6 /* CHDoOrderViewController.m in Sources */,
+				38E5D6D51C0EF90D004B49D2 /* LPAttentionViewController.m in Sources */,
 				D761F0191BA5AED3000757B0 /* MJRefreshBackGifFooter.m in Sources */,
 				152247B21BEB064600E68A2B /* IQKeyboardReturnKeyHandler.m in Sources */,
 				85F672B21C097D48001BEE5B /* LYHotRecommandCell.m in Sources */,
@@ -4906,6 +4992,7 @@
 				15E240D11BB3D5940090D240 /* LYRegistrationViewController.m in Sources */,
 				152247AE1BEB064600E68A2B /* IQUIView+Hierarchy.m in Sources */,
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
+				38E5D6F41C0F10E7004B49D2 /* LPBuyManagerCell.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
 				D761F0161BA5AED3000757B0 /* MJRefreshAutoGifFooter.m in Sources */,
 				15013AF81BBA33BE00061FAF /* SDWebImageCompat.m in Sources */,
@@ -4918,6 +5005,7 @@
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
 				D748BC461BA1C280005AA996 /* LYDataStore.m in Sources */,
 				15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */,
+				38E5D6E01C0F0E00004B49D2 /* LPBuyViewController.m in Sources */,
 				15EB35041BD1F4F900BA6161 /* PTTypeChooseCell.m in Sources */,
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
 				1559DD0A1BDA2A1200F3FE9B /* LYCarListViewController.m in Sources */,
@@ -4935,6 +5023,7 @@
 				A2F9DA7A1BAA6F68009DEAF3 /* OrderHandleButton.m in Sources */,
 				15FD2A611BD5125A00D66920 /* PTContactCell.m in Sources */,
 				A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */,
+				38E5D6EF1C0F109F004B49D2 /* LPBuyInfoCell.m in Sources */,
 				15844BCE1BE1EF5000247FBC /* LYAddFriendViewController.m in Sources */,
 				15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */,
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
@@ -4943,7 +5032,6 @@
 				15B8661F1BDB5C73002E2BB6 /* CHDoOrderBottomView.m in Sources */,
 				D74C60851BB69F6300A49598 /* RTLabel.m in Sources */,
 				85EE80371C0AF19600958F76 /* LYBarTitleTableViewCell.m in Sources */,
-				AD106BC21C0E9593007F5FBA /* OrderTTL.m in Sources */,
 				ADE1039D1BDE49BC00D9EC38 /* openssl_wrapper.m in Sources */,
 				85F672BC1C09D7F8001BEE5B /* LYCityChooseViewController.m in Sources */,
 				D794ED0C1BB7872A000DC568 /* PFRect.m in Sources */,
@@ -4953,6 +5041,7 @@
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
 				8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */,
 				15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */,
+				38E5D6EA1C0F106F004B49D2 /* LPBuyPriceCell.m in Sources */,
 				15CC31E31BEB2C5B00DDD03F /* FMDatabaseQueue.m in Sources */,
 				15EE514E1BA7069F00464B74 /* ZSReservedSeatViewController.m in Sources */,
 				15B866171BDB4247002E2BB6 /* CarChooseBtn.m in Sources */,

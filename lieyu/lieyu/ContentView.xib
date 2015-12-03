@@ -88,7 +88,7 @@
                     <color key="textColor" red="0.52941176469999995" green="0.52941176469999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJr-CT-Ozc">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJr-CT-Ozc">
                     <rect key="frame" x="64" y="74" width="21" height="22"/>
                     <animations/>
                     <constraints>
@@ -97,7 +97,7 @@
                     </constraints>
                     <state key="normal" image="CustomBtn_unSelected.png"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2H-cL-tj3">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2H-cL-tj3">
                     <rect key="frame" x="64" y="144" width="21" height="22"/>
                     <animations/>
                     <constraints>
@@ -106,34 +106,34 @@
                     </constraints>
                     <state key="normal" image="CustomBtn_unSelected.png"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y35-sw-bXc">
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y35-sw-bXc">
                     <rect key="frame" x="64" y="214.5" width="21" height="22"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="2Md-vF-rHp"/>
                         <constraint firstAttribute="height" constant="22" id="aEO-YE-cw3"/>
                     </constraints>
-                    <state key="normal" image="CustomBtn_Selected.png"/>
+                    <state key="normal" image="CustomBtn_unSelected.png"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBN-Jy-uZU">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBN-Jy-uZU">
                     <rect key="frame" x="20" y="63" width="280" height="45"/>
                     <animations/>
                     <connections>
-                        <action selector="Btn1Click:" destination="iN0-l3-epB" eventType="touchUpInside" id="xk7-ek-6gl"/>
+                        <action selector="BtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="SLT-ni-C16"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upG-fR-Kd6">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upG-fR-Kd6">
                     <rect key="frame" x="20" y="133" width="280" height="45"/>
                     <animations/>
                     <connections>
-                        <action selector="Btn2Click:" destination="iN0-l3-epB" eventType="touchUpInside" id="ha9-dn-yKR"/>
+                        <action selector="BtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="9Te-jn-hMu"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Xz-pN-z5Q">
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Xz-pN-z5Q">
                     <rect key="frame" x="20" y="203" width="280" height="45"/>
                     <animations/>
                     <connections>
-                        <action selector="Btn3Click:" destination="iN0-l3-epB" eventType="touchUpInside" id="yMT-4G-cVS"/>
+                        <action selector="BtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7r7-Df-EPU"/>
                     </connections>
                 </button>
             </subviews>
@@ -177,12 +177,14 @@
                 <outlet property="radioButton2" destination="N2H-cL-tj3" id="VHl-g6-u3X"/>
                 <outlet property="radioButton3" destination="Y35-sw-bXc" id="1ik-Cg-jXh"/>
                 <outlet property="redioButton1" destination="pJr-CT-Ozc" id="ccD-Gq-QR3"/>
+                <outlet property="selectBtn1" destination="vBN-Jy-uZU" id="VRg-Br-94Y"/>
+                <outlet property="selectBtn2" destination="upG-fR-Kd6" id="hZB-gA-mqK"/>
+                <outlet property="selectBtn3" destination="3Xz-pN-z5Q" id="nBp-tv-q9J"/>
             </connections>
             <point key="canvasLocation" x="175" y="217"/>
         </view>
     </objects>
     <resources>
-        <image name="CustomBtn_Selected.png" width="21" height="21"/>
         <image name="CustomBtn_unSelected.png" width="21" height="21"/>
     </resources>
 </document>
