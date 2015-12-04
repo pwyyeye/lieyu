@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LYOrderWriteTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *btn_chooseTime;
+@property (weak, nonatomic) IBOutlet UIButton *btn_isReserve;
+@property (weak, nonatomic) IBOutlet UIImageView *btn_minus;
+@property (weak, nonatomic) IBOutlet UIImageView *btn_add;
+@property (weak, nonatomic) IBOutlet UILabel *label_count;
 
 @end

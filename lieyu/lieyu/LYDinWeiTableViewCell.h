@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class RecommendPackageModel;
+@class TaoCanModel;
 
 @interface LYDinWeiTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_header;
@@ -14,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_buyCount;
 @property (weak, nonatomic) IBOutlet UILabel *label_price_now;
 @property (weak, nonatomic) IBOutlet UILabel *label_price_old;
-
+@property (nonatomic,strong) RecommendPackageModel *model;
+@property (weak, nonatomic) IBOutlet UILabel *label_percent;
+@property (nonatomic,strong) TaoCanModel *taoCanModel;
 @end
