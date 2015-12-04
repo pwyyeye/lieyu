@@ -581,6 +581,9 @@
 		ADF88E651C102E4F00CF5DED /* pingjiaxiangji.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF88E5C1C102E4F00CF5DED /* pingjiaxiangji.png */; };
 		ADF88E661C102E4F00CF5DED /* pingjiaxiangji@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF88E5D1C102E4F00CF5DED /* pingjiaxiangji@2x.png */; };
 		ADF88E671C102E4F00CF5DED /* pingjiaxiangji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF88E5E1C102E4F00CF5DED /* pingjiaxiangji@3x.png */; };
+		ADF88E6D1C11613800CF5DED /* empyImage16_9.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF88E6A1C11613800CF5DED /* empyImage16_9.png */; };
+		ADF88E6E1C11613800CF5DED /* empyImage120.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF88E6B1C11613800CF5DED /* empyImage120.png */; };
+		ADF88E6F1C11613800CF5DED /* empyImage300.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF88E6C1C11613800CF5DED /* empyImage300.png */; };
 		D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */; };
 		D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D8A1BAE8C3300915F37 /* PacketBarCell.m */; };
 		D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71E1D8B1BAE8C3300915F37 /* PacketBarCell.xib */; };
@@ -1677,6 +1680,9 @@
 		ADF88E5C1C102E4F00CF5DED /* pingjiaxiangji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pingjiaxiangji.png; sourceTree = "<group>"; };
 		ADF88E5D1C102E4F00CF5DED /* pingjiaxiangji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pingjiaxiangji@2x.png"; sourceTree = "<group>"; };
 		ADF88E5E1C102E4F00CF5DED /* pingjiaxiangji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pingjiaxiangji@3x.png"; sourceTree = "<group>"; };
+		ADF88E6A1C11613800CF5DED /* empyImage16_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empyImage16_9.png; sourceTree = "<group>"; };
+		ADF88E6B1C11613800CF5DED /* empyImage120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empyImage120.png; sourceTree = "<group>"; };
+		ADF88E6C1C11613800CF5DED /* empyImage300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empyImage300.png; sourceTree = "<group>"; };
 		D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarDetailCell.h; sourceTree = "<group>"; };
 		D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarDetailCell.m; sourceTree = "<group>"; };
 		D71E1D891BAE8C3300915F37 /* PacketBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketBarCell.h; sourceTree = "<group>"; };
@@ -3936,6 +3942,7 @@
 		ADE103C41BE0EBDC00D9EC38 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				ADF88E691C115FC600CF5DED /* 空态图 */,
 				ADF88E551C102E2D00CF5DED /* 我的 */,
 				38E5D6B51C0EA427004B49D2 /* 拼客 */,
 				AD92AE991BE1D329009F2A34 /* 头像 */,
@@ -4001,6 +4008,16 @@
 				ADF88E5E1C102E4F00CF5DED /* pingjiaxiangji@3x.png */,
 			);
 			name = "我的";
+			sourceTree = "<group>";
+		};
+		ADF88E691C115FC600CF5DED /* 空态图 */ = {
+			isa = PBXGroup;
+			children = (
+				ADF88E6A1C11613800CF5DED /* empyImage16_9.png */,
+				ADF88E6B1C11613800CF5DED /* empyImage120.png */,
+				ADF88E6C1C11613800CF5DED /* empyImage300.png */,
+			);
+			name = "空态图";
 			sourceTree = "<group>";
 		};
 		D729DB5C1BADB8AB005A9E60 /* BeerBar */ = {
@@ -4718,6 +4735,7 @@
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */,
 				38E5D7A31C113879004B49D2 /* gray_add.png in Resources */,
+				ADF88E6D1C11613800CF5DED /* empyImage16_9.png in Resources */,
 				ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
 				85F625A21C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib in Resources */,
@@ -4728,6 +4746,7 @@
 				38E5D7A71C113879004B49D2 /* gray_less@2x.png in Resources */,
 				ADD68E331BE10E400060E751 /* 4_retina.png in Resources */,
 				85EE803D1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib in Resources */,
+				ADF88E6F1C11613800CF5DED /* empyImage300.png in Resources */,
 				ADE103B11BDE4C8E00D9EC38 /* PayCell.xib in Resources */,
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
 				15E240D21BB3D5940090D240 /* LYRegistrationViewController.xib in Resources */,
@@ -4792,6 +4811,7 @@
 				15EB7C5B1BC6048100756153 /* gouGif.gif in Resources */,
 				15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */,
 				15E240A21BB37EF60090D240 /* LYOrderDetailViewController.xib in Resources */,
+				ADF88E6E1C11613800CF5DED /* empyImage120.png in Resources */,
 				38E5D7A91C113879004B49D2 /* purper_add.png in Resources */,
 				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
 				15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */,
