@@ -107,7 +107,7 @@
                     <state key="normal" image="CustomBtn_unSelected.png"/>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y35-sw-bXc">
-                    <rect key="frame" x="64" y="214.5" width="21" height="22"/>
+                    <rect key="frame" x="64" y="215" width="21" height="22"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="2Md-vF-rHp"/>

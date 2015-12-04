@@ -42,28 +42,6 @@
                         <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="选择到店时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Did-LD-gLN">
-                        <rect key="frame" x="189" y="50" width="84" height="17"/>
-                        <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="是否预留卡座" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jb-YM-gq4">
-                        <rect key="frame" x="189" y="100" width="84" height="17"/>
-                        <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="fullscreen exit" translatesAutoresizingMaskIntoConstraints="NO" id="XmH-xb-SE7">
-                        <rect key="frame" x="286" y="47" width="24" height="24"/>
-                        <animations/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fullscreen exit" translatesAutoresizingMaskIntoConstraints="NO" id="afS-Mv-llZ">
-                        <rect key="frame" x="286" y="97" width="24" height="24"/>
-                        <animations/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jian2" translatesAutoresizingMaskIntoConstraints="NO" id="PvM-LC-Mzh">
                         <rect key="frame" x="174" y="143" width="32" height="32"/>
                         <animations/>
@@ -79,15 +57,43 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mS1-74-Zei">
+                        <rect key="frame" x="189" y="100" width="84" height="18"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="是否预留卡座">
+                            <color key="titleColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dhs-0E-GAO">
+                        <rect key="frame" x="286" y="47" width="24" height="24"/>
+                        <animations/>
+                        <state key="normal" backgroundImage="fullscreen exit"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGn-AW-Rxm">
+                        <rect key="frame" x="286" y="97" width="24" height="24"/>
+                        <animations/>
+                        <state key="normal" backgroundImage="fullscreen exit"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8f9-ez-aO3">
+                        <rect key="frame" x="189" y="50" width="84" height="18"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="选择到店时间">
+                            <color key="titleColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <animations/>
-                <constraints>
-                    <constraint firstAttribute="trailing" secondItem="XmH-xb-SE7" secondAttribute="trailing" constant="10" id="Bzf-0X-CPg"/>
-                    <constraint firstAttribute="trailing" secondItem="Did-LD-gLN" secondAttribute="trailing" constant="47" id="RBo-iE-zdJ"/>
-                    <constraint firstAttribute="trailing" secondItem="7jb-YM-gq4" secondAttribute="trailing" constant="47" id="l5e-u3-HNV"/>
-                </constraints>
             </tableViewCellContentView>
             <animations/>
+            <connections>
+                <outlet property="btn_add" destination="oNm-tg-Dhs" id="LnB-ju-DfJ"/>
+                <outlet property="btn_chooseTime" destination="Dhs-0E-GAO" id="eW6-co-gsz"/>
+                <outlet property="btn_isReserve" destination="mGn-AW-Rxm" id="3ec-fK-OyF"/>
+                <outlet property="btn_minus" destination="PvM-LC-Mzh" id="qES-bP-Bf7"/>
+                <outlet property="label_count" destination="z7i-a4-qMI" id="oxh-yX-jlF"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

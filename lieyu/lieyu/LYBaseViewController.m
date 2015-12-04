@@ -20,6 +20,7 @@
     
    // self.automaticallyAdjustsScrollViewInsets=0;
     self.automaticallyAdjustsScrollViewInsets = YES;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 //    self.navigationController.navigationBar.barTintColor=RGB(64,1,120);
     //若为yesnavigationBar背景 会有50％的透明
     self.navigationController.navigationBar.translucent = YES;

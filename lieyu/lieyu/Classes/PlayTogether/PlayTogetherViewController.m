@@ -453,7 +453,7 @@
                     [nowDic setObject:mode.maxprice forKey:@"maxprice"];
                     [nowDic setObject:mode.minprice forKey:@"minprice"];
                 }
-
+  
             }else if(mode.type==1){
                 if([mode.minnum isEqualToString:@"15"]){
                     [nowDic setObject:mode.minnum forKey:@"minnum"];
