@@ -26,7 +26,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Diz-Uh-kLu">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费场所" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Diz-Uh-kLu">
                         <rect key="frame" x="10" y="47" width="100" height="18"/>
                         <animations/>
                         <constraints>
@@ -37,7 +37,7 @@
                         <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypd-00-TE2">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="具体地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypd-00-TE2">
                         <rect key="frame" x="10" y="81" width="100" height="18"/>
                         <animations/>
                         <constraints>
@@ -48,7 +48,7 @@
                         <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW9-1x-VUn">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gW9-1x-VUn">
                         <rect key="frame" x="10" y="115" width="100" height="18"/>
                         <animations/>
                         <constraints>
@@ -59,7 +59,7 @@
                         <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubd-YZ-s0G">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拼客人数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubd-YZ-s0G">
                         <rect key="frame" x="10" y="149" width="100" height="18"/>
                         <animations/>
                         <constraints>
@@ -70,8 +70,8 @@
                         <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvj-C1-1IA">
-                        <rect key="frame" x="110" y="47" width="120" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX酒吧" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvj-C1-1IA">
+                        <rect key="frame" x="110" y="47" width="200" height="18"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="Uaa-As-mrt"/>
@@ -81,8 +81,8 @@
                         <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jb-G2-5FJ">
-                        <rect key="frame" x="110" y="82" width="120" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海市XX区XX路XX号" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jb-G2-5FJ">
+                        <rect key="frame" x="110" y="82" width="200" height="17"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="o5F-8i-U2X"/>
@@ -91,8 +91,8 @@
                         <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMW-2y-fy5">
-                        <rect key="frame" x="110" y="150" width="120" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拼客X人" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZMW-2y-fy5">
+                        <rect key="frame" x="110" y="150" width="200" height="17"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="j8A-mV-Yfh"/>
@@ -101,8 +101,8 @@
                         <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7V-8v-Gvh">
-                        <rect key="frame" x="110" y="115" width="120" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="YYYY年MM月DD日 星期天 HH:MM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7V-8v-Gvh">
+                        <rect key="frame" x="89" y="115" width="221" height="17"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="fiw-ng-C4B"/>
@@ -124,11 +124,14 @@
                     <constraint firstItem="Jvj-C1-1IA" firstAttribute="trailing" secondItem="z7V-8v-Gvh" secondAttribute="trailing" id="9Qt-X6-mYh"/>
                     <constraint firstAttribute="bottom" secondItem="Ubd-YZ-s0G" secondAttribute="bottom" constant="10" id="E2D-gd-Rrf"/>
                     <constraint firstItem="ZMW-2y-fy5" firstAttribute="centerY" secondItem="Ubd-YZ-s0G" secondAttribute="centerY" id="I7Z-rF-Wiq"/>
+                    <constraint firstAttribute="trailing" secondItem="Jvj-C1-1IA" secondAttribute="trailing" constant="10" id="LeK-nC-Wr5"/>
                     <constraint firstItem="Jvj-C1-1IA" firstAttribute="leading" secondItem="Diz-Uh-kLu" secondAttribute="trailing" id="MvN-xQ-s5A"/>
                     <constraint firstItem="Jvj-C1-1IA" firstAttribute="leading" secondItem="2Jb-G2-5FJ" secondAttribute="leading" id="NHU-kD-0PQ"/>
+                    <constraint firstAttribute="trailing" secondItem="z7V-8v-Gvh" secondAttribute="trailing" constant="10" id="Oul-XL-FTj"/>
                     <constraint firstItem="Jvj-C1-1IA" firstAttribute="leading" secondItem="Diz-Uh-kLu" secondAttribute="trailing" id="T9R-fm-pZf"/>
                     <constraint firstItem="Jvj-C1-1IA" firstAttribute="trailing" secondItem="2Jb-G2-5FJ" secondAttribute="trailing" id="Tqa-aY-43c"/>
                     <constraint firstItem="gW9-1x-VUn" firstAttribute="top" secondItem="Ypd-00-TE2" secondAttribute="bottom" constant="16" id="Uud-vC-AsF"/>
+                    <constraint firstAttribute="trailing" secondItem="ZMW-2y-fy5" secondAttribute="trailing" constant="10" id="VZC-8N-pm2"/>
                     <constraint firstItem="Jvj-C1-1IA" firstAttribute="leading" secondItem="z7V-8v-Gvh" secondAttribute="leading" id="Vn2-oX-Pon"/>
                     <constraint firstItem="Ubd-YZ-s0G" firstAttribute="top" secondItem="gW9-1x-VUn" secondAttribute="bottom" constant="16" id="Z0X-ce-9Ra"/>
                     <constraint firstItem="2Jb-G2-5FJ" firstAttribute="leading" secondItem="Ypd-00-TE2" secondAttribute="trailing" id="atD-7F-BLd"/>
@@ -136,6 +139,7 @@
                     <constraint firstItem="z7V-8v-Gvh" firstAttribute="leading" secondItem="gW9-1x-VUn" secondAttribute="trailing" id="d5N-8L-nNU"/>
                     <constraint firstItem="YcK-au-KIh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="egf-78-3Xv"/>
                     <constraint firstItem="Ypd-00-TE2" firstAttribute="top" secondItem="Diz-Uh-kLu" secondAttribute="bottom" constant="16" id="fjQ-gs-DGJ"/>
+                    <constraint firstAttribute="trailing" secondItem="2Jb-G2-5FJ" secondAttribute="trailing" constant="10" id="iSn-NJ-pvf"/>
                     <constraint firstItem="Diz-Uh-kLu" firstAttribute="top" secondItem="YcK-au-KIh" secondAttribute="bottom" constant="16" id="job-Y7-nAA"/>
                     <constraint firstItem="Ubd-YZ-s0G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="m9h-Ab-8hR"/>
                     <constraint firstItem="2Jb-G2-5FJ" firstAttribute="top" secondItem="Jvj-C1-1IA" secondAttribute="bottom" constant="9" id="seR-8K-qD3"/>
@@ -162,6 +166,12 @@
                 </variation>
             </tableViewCellContentView>
             <animations/>
+            <connections>
+                <outlet property="LPAddress" destination="2Jb-G2-5FJ" id="bxH-7O-zdU"/>
+                <outlet property="LPBarName" destination="Jvj-C1-1IA" id="Vwf-qz-yq1"/>
+                <outlet property="LPNumber" destination="ZMW-2y-fy5" id="KYx-fr-kZi"/>
+                <outlet property="LPTime" destination="z7V-8v-Gvh" id="oje-qs-rQH"/>
+            </connections>
             <point key="canvasLocation" x="139" y="315.5"/>
         </tableViewCell>
     </objects>

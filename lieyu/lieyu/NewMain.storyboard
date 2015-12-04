@@ -422,7 +422,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. 关于退款：若专属经理未确认留位前退款，则我们将全额退款；若专属经理确认给予您留位后退款，则退款需收20%卡座占用费（100元封顶）。由于占用卡位时间会对酒吧造成经济损失，所以敬请谅解！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U33-RY-4vh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1、关于退款：若专属经理未确认留位前退款，则我们将全额退款；若专属经理确认给予您留位后退款，则退款需收20%卡座占用费（100元封顶）。由于占用卡位时间会对酒吧造成经济损失，所以敬请谅解！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U33-RY-4vh">
                                 <rect key="frame" x="10" y="35" width="300" height="95.5"/>
                                 <animations/>
                                 <constraints>
@@ -432,8 +432,8 @@
                                 <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 2. 若有任何疑问？投诉和建议，欢迎拨打客户热线；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdo-lB-0wX">
-                                <rect key="frame" x="10" y="135.5" width="300" height="38.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 2、若有任何疑问？投诉和建议，欢迎拨打客户热线；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdo-lB-0wX">
+                                <rect key="frame" x="10" y="130.5" width="300" height="38.5"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="tJN-Xo-cAA"/>
@@ -442,8 +442,8 @@
                                 <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 3. 商品图片为参考，具体以实物为准；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98R-re-jbC">
-                                <rect key="frame" x="10" y="179" width="300" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 3、商品图片为参考，具体以实物为准；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98R-re-jbC">
+                                <rect key="frame" x="10" y="169" width="300" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="YQj-7V-kVm"/>
@@ -452,8 +452,8 @@
                                 <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 4. 客户热线：021-36512128" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHV-cp-GEI">
-                                <rect key="frame" x="10" y="205" width="300" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 4、客户热线：021-36512128" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHV-cp-GEI">
+                                <rect key="frame" x="10" y="190" width="300" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="l9X-JJ-xoK"/>
@@ -462,36 +462,22 @@
                                 <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关于退款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTG-SM-pKK">
-                                <rect key="frame" x="22" y="33" width="68" height="21"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="68" id="Oz7-zj-hVy"/>
-                                    <constraint firstAttribute="height" constant="21" id="zbd-oc-YsE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="98R-re-jbC" firstAttribute="top" secondItem="bdo-lB-0wX" secondAttribute="bottom" constant="5" id="0HY-S7-cBs"/>
-                            <constraint firstItem="xHV-cp-GEI" firstAttribute="top" secondItem="98R-re-jbC" secondAttribute="bottom" constant="5" id="8tW-EU-ISg"/>
+                            <constraint firstItem="98R-re-jbC" firstAttribute="top" secondItem="bdo-lB-0wX" secondAttribute="bottom" id="0HY-S7-cBs"/>
+                            <constraint firstItem="xHV-cp-GEI" firstAttribute="top" secondItem="98R-re-jbC" secondAttribute="bottom" id="8tW-EU-ISg"/>
                             <constraint firstItem="98R-re-jbC" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="10" id="AsW-5d-vWd"/>
                             <constraint firstAttribute="trailing" secondItem="98R-re-jbC" secondAttribute="trailing" constant="10" id="GwV-M6-Gab"/>
                             <constraint firstItem="U33-RY-4vh" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="10" id="Hvm-b1-RDH"/>
-                            <constraint firstItem="UTG-SM-pKK" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="22" id="KxG-TU-qj6"/>
                             <constraint firstAttribute="trailing" secondItem="U33-RY-4vh" secondAttribute="trailing" constant="10" id="LRb-az-pyP"/>
                             <constraint firstAttribute="trailing" secondItem="bdo-lB-0wX" secondAttribute="trailing" constant="10" id="Ykd-ax-iDe"/>
                             <constraint firstItem="bdo-lB-0wX" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="10" id="c7o-M0-egH"/>
-                            <constraint firstItem="UTG-SM-pKK" firstAttribute="top" secondItem="NKf-CO-U7L" secondAttribute="bottom" constant="13" id="gcu-IG-YKh"/>
                             <constraint firstItem="xHV-cp-GEI" firstAttribute="leading" secondItem="YkA-0y-j3W" secondAttribute="leading" constant="10" id="hwZ-Oa-DfI"/>
                             <constraint firstAttribute="trailing" secondItem="xHV-cp-GEI" secondAttribute="trailing" constant="10" id="rlV-gN-thR"/>
                             <constraint firstItem="U33-RY-4vh" firstAttribute="top" secondItem="NKf-CO-U7L" secondAttribute="bottom" constant="15" id="rvF-me-HBw"/>
-                            <constraint firstItem="bdo-lB-0wX" firstAttribute="top" secondItem="U33-RY-4vh" secondAttribute="bottom" constant="5" id="rzA-Mo-CJ5"/>
+                            <constraint firstItem="bdo-lB-0wX" firstAttribute="top" secondItem="U33-RY-4vh" secondAttribute="bottom" id="rzA-Mo-CJ5"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -511,7 +497,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CbZ-pw-lK3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CbZ-pw-lK3">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -531,6 +517,9 @@
                                 <state key="normal" title="立即购买">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buyNowClick:" destination="iPX-td-W2g" eventType="touchUpInside" id="9Or-8D-O2D"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -542,6 +531,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buyNowBtn" destination="48A-4k-ySD" id="JHP-uc-L0h"/>
                         <outlet property="tableView" destination="CbZ-pw-lK3" id="nnv-tq-FkN"/>
                     </connections>
                 </viewController>

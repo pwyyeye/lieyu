@@ -38,7 +38,6 @@
     NSString *str=model.barinfo.baricon ;
     [_pkIconImageView  setImageWithURL:[NSURL URLWithString:str]];
     
-//    _barnameLal.text=model.barinfo.barname;
     _introductionLal.text=model.title;
     _barName.text = model.barinfo.barname;
 //    _scLal.text=model.barinfo.fav_num;

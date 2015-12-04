@@ -76,7 +76,7 @@
     _contentView.layer.cornerRadius = 5.0;
     _contentView.layer.masksToBounds = YES;
     
-    _contentView.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20 , 250);
+//    _contentView.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20 , 250);
     
     
     
@@ -102,9 +102,12 @@
 }
 
 - (void)buttonWithPressed:(UIButton *)button{
-    if(_delegate){
+    if(_delegate && _contentView.tag == 12){
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
-        [_delegate LPAlertView:self clickedButtonAtIndex:index];
+        [_delegate LPAlertView:self clickedButtonAtIndexWhenWay:index];
+    }else if(_delegate && _contentView.tag == 11){
+        NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
+        [_delegate LPAlertView:self clickedButtonAtIndexWhenTime:index];
     }
     [self hide];
 }

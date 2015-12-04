@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="套餐消费流程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAn-yI-6ue">
-                        <rect key="frame" x="16" y="10" width="111" height="20"/>
+                        <rect key="frame" x="10" y="15" width="111" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="111" id="38S-7E-Yii"/>
@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="拼客" translatesAutoresizingMaskIntoConstraints="NO" id="Psa-C1-aiS">
-                        <rect key="frame" x="10" y="40" width="300" height="155"/>
+                        <rect key="frame" x="10" y="45" width="300" height="155"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="155" id="Ee2-RB-k2S"/>
@@ -37,8 +37,8 @@
                 <constraints>
                     <constraint firstItem="Psa-C1-aiS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="2pf-TV-8ne"/>
                     <constraint firstAttribute="trailing" secondItem="Psa-C1-aiS" secondAttribute="trailing" constant="10" id="7UT-gx-LBH"/>
-                    <constraint firstItem="kAn-yI-6ue" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="MgE-aV-acE"/>
-                    <constraint firstItem="kAn-yI-6ue" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="dVV-HQ-zff"/>
+                    <constraint firstItem="kAn-yI-6ue" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="MgE-aV-acE"/>
+                    <constraint firstItem="kAn-yI-6ue" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="dVV-HQ-zff"/>
                     <constraint firstItem="Psa-C1-aiS" firstAttribute="top" secondItem="kAn-yI-6ue" secondAttribute="bottom" constant="10" id="jKd-fr-4Fd"/>
                 </constraints>
             </tableViewCellContentView>

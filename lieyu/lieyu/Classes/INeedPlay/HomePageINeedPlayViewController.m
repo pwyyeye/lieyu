@@ -50,7 +50,7 @@ UITableViewDataSource,UITableViewDelegate,
     
     [super viewDidLoad];
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-        _tableView.height=368;
+        _tableView.height=431;
     }
    // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
      self.curPageIndex = 1;

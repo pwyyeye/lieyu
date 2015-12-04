@@ -44,8 +44,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-        _tableView.height=330;
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
+       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        _tableView.frame = CGRectMake(0, 68, SCREEN_WIDTH, 370);
     }
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;

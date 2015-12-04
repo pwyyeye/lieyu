@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LPBuyInfoCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *LPBarName;
+@property (weak, nonatomic) IBOutlet UILabel *LPAddress;
+@property (weak, nonatomic) IBOutlet UILabel *LPTime;
+@property (weak, nonatomic) IBOutlet UILabel *LPNumber;
 
+- (void)cellConfigureWithName:(NSString *)name Address:(NSString *)address Time:(NSString *)time Number:(NSString *)number;
 @end

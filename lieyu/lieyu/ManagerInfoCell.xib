@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ManagerInfoCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="86.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbM-EY-L9n">
+                        <rect key="frame" x="16" y="10" width="67" height="67"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="67" id="U3x-LC-dgN"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="lieyuIcon.png"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务指数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEl-Ka-dGm">
+                        <rect key="frame" x="95" y="55" width="50" height="21"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="IbE-SM-4AJ"/>
+                            <constraint firstAttribute="height" constant="21" id="UAQ-2F-3nh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.52941176469999995" green="0.52941176469999995" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-2D-g0n">
+                        <rect key="frame" x="95" y="20" width="64" height="25"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="6aY-bI-fz5"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="C6N-pg-FO2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <state key="normal" title="经理名字">
+                            <color key="titleColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="jUp-yy-Okg">
+                        <rect key="frame" x="153" y="59" width="14" height="14"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="RMM-l6-3KQ"/>
+                            <constraint firstAttribute="height" constant="14" id="qe5-Tc-xBC"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="z3l-i6-fN9">
+                        <rect key="frame" x="175" y="59" width="14" height="14"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="9Od-0y-KDM"/>
+                            <constraint firstAttribute="width" constant="14" id="gA2-UC-7IE"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="REo-6q-mH3">
+                        <rect key="frame" x="197" y="59" width="14" height="14"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="L2Q-id-V0A"/>
+                            <constraint firstAttribute="height" constant="14" id="udl-Y4-Qqp"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="qHl-Pn-4xx">
+                        <rect key="frame" x="219" y="59" width="14" height="14"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="I7v-Mz-JHL"/>
+                            <constraint firstAttribute="height" constant="14" id="Uac-TU-a7d"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="knd-R2-SYz">
+                        <rect key="frame" x="241" y="59" width="14" height="14"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="jJt-Lr-hbN"/>
+                            <constraint firstAttribute="height" constant="14" id="vNg-9g-cij"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzv-kg-4GH">
+                        <rect key="frame" x="284" y="33.5" width="20" height="20"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="2i6-4t-D9q"/>
+                            <constraint firstAttribute="width" constant="20" id="Q6c-gP-spd"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="CustomBtn_unSelected.png"/>
+                    </button>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="qHl-Pn-4xx" firstAttribute="centerY" secondItem="tEl-Ka-dGm" secondAttribute="centerY" id="1F0-kl-PaC"/>
+                    <constraint firstItem="z3l-i6-fN9" firstAttribute="centerY" secondItem="tEl-Ka-dGm" secondAttribute="centerY" id="1Pi-ZQ-WRh"/>
+                    <constraint firstItem="jUp-yy-Okg" firstAttribute="leading" secondItem="tEl-Ka-dGm" secondAttribute="trailing" constant="8" id="1RV-kf-Yqp"/>
+                    <constraint firstItem="REo-6q-mH3" firstAttribute="centerY" secondItem="tEl-Ka-dGm" secondAttribute="centerY" id="BVz-4N-63c"/>
+                    <constraint firstAttribute="trailing" secondItem="Dzv-kg-4GH" secondAttribute="trailing" constant="16" id="BYF-lJ-nRz"/>
+                    <constraint firstAttribute="trailing" secondItem="gbM-EY-L9n" secondAttribute="trailing" constant="237" id="DSL-hm-6lN"/>
+                    <constraint firstItem="FbW-2D-g0n" firstAttribute="leading" secondItem="gbM-EY-L9n" secondAttribute="trailing" constant="12" id="HYQ-nm-yDe"/>
+                    <constraint firstAttribute="bottom" secondItem="gbM-EY-L9n" secondAttribute="bottom" constant="10" id="KPv-5j-64K"/>
+                    <constraint firstItem="tEl-Ka-dGm" firstAttribute="leading" secondItem="gbM-EY-L9n" secondAttribute="trailing" constant="12" id="LOh-dF-Gdz"/>
+                    <constraint firstItem="FbW-2D-g0n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="MVv-tC-XKO"/>
+                    <constraint firstItem="knd-R2-SYz" firstAttribute="leading" secondItem="qHl-Pn-4xx" secondAttribute="trailing" constant="8" id="NTd-kB-Hpi"/>
+                    <constraint firstItem="z3l-i6-fN9" firstAttribute="leading" secondItem="jUp-yy-Okg" secondAttribute="trailing" constant="8" id="Tpd-lj-vHV"/>
+                    <constraint firstItem="gbM-EY-L9n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Yzf-dJ-npS"/>
+                    <constraint firstItem="knd-R2-SYz" firstAttribute="centerY" secondItem="tEl-Ka-dGm" secondAttribute="centerY" id="cEA-QC-mXo"/>
+                    <constraint firstItem="REo-6q-mH3" firstAttribute="leading" secondItem="z3l-i6-fN9" secondAttribute="trailing" constant="8" id="iX9-d1-PeV"/>
+                    <constraint firstItem="Dzv-kg-4GH" firstAttribute="centerY" secondItem="gbM-EY-L9n" secondAttribute="centerY" id="jtG-f5-L58"/>
+                    <constraint firstItem="tEl-Ka-dGm" firstAttribute="top" secondItem="FbW-2D-g0n" secondAttribute="bottom" constant="10" id="k4U-cC-Byf"/>
+                    <constraint firstItem="gbM-EY-L9n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="oJh-Rq-hSv"/>
+                    <constraint firstItem="qHl-Pn-4xx" firstAttribute="leading" secondItem="REo-6q-mH3" secondAttribute="trailing" constant="8" id="qEC-ct-RtN"/>
+                    <constraint firstItem="jUp-yy-Okg" firstAttribute="centerY" secondItem="tEl-Ka-dGm" secondAttribute="centerY" id="xbF-tw-fT2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="iconImage" destination="gbM-EY-L9n" id="eKK-l7-J9J"/>
+                <outlet property="name" destination="FbW-2D-g0n" id="QgL-Pa-VM3"/>
+                <outlet property="radioButon" destination="Dzv-kg-4GH" id="xSu-Gv-gYC"/>
+                <outlet property="star1" destination="jUp-yy-Okg" id="tfq-vC-gEW"/>
+                <outlet property="star2" destination="z3l-i6-fN9" id="qBI-Kf-d4n"/>
+                <outlet property="star3" destination="REo-6q-mH3" id="lHW-YP-fJr"/>
+                <outlet property="star4" destination="qHl-Pn-4xx" id="WIk-CY-U8n"/>
+                <outlet property="star5" destination="knd-R2-SYz" id="kma-Xy-03H"/>
+            </connections>
+            <point key="canvasLocation" x="248" y="289.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="CustomBtn_unSelected.png" width="21" height="21"/>
+        <image name="lieyuIcon.png" width="84" height="84"/>
+        <image name="starRed" width="32" height="32"/>
+    </resources>
+</document>

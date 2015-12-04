@@ -15,6 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *LPprice;
 @property (weak, nonatomic) IBOutlet UILabel *LPmarketPrice;
 
-- (void)cellConfigure;
+- (void)cellConfigureWithImage:(NSString *)imageUrl name:(NSString *)name way:(NSString *)way price:(NSString *)price marketPrice:(NSString *)marketPrice;
 
 @end

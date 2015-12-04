@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PinKeModel.h"
 
 @interface LPBuyViewController : UIViewController
 
+@property (nonatomic, strong) PinKeModel *pinkeModel;
+@property (nonatomic, strong) NSDictionary *InfoDict;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *buyNowBtn;
+
+- (IBAction)buyNowClick:(UIButton *)sender;
+
 
 @end
