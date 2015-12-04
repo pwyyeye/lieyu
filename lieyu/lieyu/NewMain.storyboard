@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daG-Gk-NtN">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daG-Gk-NtN">
                                 <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-TZ-Lf7">
@@ -314,7 +314,7 @@
                                     <action selector="ZiXunLieyu:" destination="fvS-oF-oUI" eventType="touchUpInside" id="WNT-tu-coM"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3L-3U-YyM">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3L-3U-YyM">
                                 <rect key="frame" x="104" y="524" width="1" height="44"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
@@ -361,7 +361,7 @@
                                     <action selector="BuyNow:" destination="fvS-oF-oUI" eventType="touchUpInside" id="rmF-f7-xgW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PW4-9z-TYt">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PW4-9z-TYt">
                                 <rect key="frame" x="112" y="524" width="104" height="44"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -424,16 +424,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1、关于退款：若专属经理未确认留位前退款，则我们将全额退款；若专属经理确认给予您留位后退款，则退款需收20%卡座占用费（100元封顶）。由于占用卡位时间会对酒吧造成经济损失，所以敬请谅解！" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U33-RY-4vh">
-                                <rect key="frame" x="10" y="35" width="300" height="96"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="kjI-5a-pgc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 2、若有任何疑问？投诉和建议，欢迎拨打客户热线；" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdo-lB-0wX">
                                 <rect key="frame" x="10" y="131" width="300" height="38"/>
                                 <animations/>
@@ -519,7 +509,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="iPX-td-W2g" id="wAP-SL-8pA"/>
                                     <outlet property="delegate" destination="iPX-td-W2g" id="85U-P1-9bV"/>
@@ -542,7 +532,7 @@
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="48A-4k-ySD" secondAttribute="trailing" id="Chy-5D-ZG2"/>
                             <constraint firstItem="JD3-1c-7Je" firstAttribute="top" secondItem="48A-4k-ySD" secondAttribute="bottom" id="PLm-fn-t3E"/>
@@ -2607,7 +2597,7 @@
         <image name="xiaolianNormal" width="64" height="31"/>
         <image name="xiaoliangDown" width="64" height="31"/>
         <image name="单品" width="375" height="191"/>
-        <image name="套餐" width="376" height="192"/>
+        <image name="套餐" width="304" height="156"/>
         <image name="拼客" width="304" height="155"/>
         <image name="默认" width="64" height="31"/>
     </resources>

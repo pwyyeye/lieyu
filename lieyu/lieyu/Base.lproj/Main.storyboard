@@ -17,7 +17,7 @@
                                 <rect key="frame" x="280" y="36" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <state key="normal" image="5AE3A2E1-677A-4432-B3CE-5D567393C8DC">
+                                <state key="normal" image="24CB0B5B-6F7D-4E03-8762-F7F8A926D08A">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
