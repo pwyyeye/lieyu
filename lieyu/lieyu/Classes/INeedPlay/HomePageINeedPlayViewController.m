@@ -52,6 +52,13 @@ UITableViewDataSource,UITableViewDelegate,
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.height=431;
     }
+    
+    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.modalPresentationCapturesStatusBarAppearance = NO;
+    }
+    
    // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
      self.curPageIndex = 1;
      self.aryList=[[NSMutableArray alloc]init];
@@ -79,11 +86,14 @@ UITableViewDataSource,UITableViewDelegate,
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     CGRect rc = _topView.frame;
     rc.origin.x = 0;
     rc.origin.y = -20;
     _topView.frame = rc;
     [self.navigationController.navigationBar addSubview:_topView];
+    self.tableView.origin=CGPointMake(0, 0);
+    
     [self getData];
 }
 
@@ -106,11 +116,11 @@ UITableViewDataSource,UITableViewDelegate,
              if (barList.count == PAGESIZE)
              {
                  weakSelf.curPageIndex = 2;
-                 weakSelf.tableView.footer.hidden = NO;
+                 weakSelf.tableView.mj_footer.hidden = NO;
              }
              else
              {
-                 weakSelf.tableView.footer.hidden = YES;
+                 weakSelf.tableView.mj_footer.hidden = YES;
              }
              //             [weakSelf.tableView.header endRefreshing];
          }
@@ -152,6 +162,14 @@ UITableViewDataSource,UITableViewDelegate,
 
 - (void)viewWillLayoutSubviews
 {
+    [super viewWillLayoutSubviews];
+    
+    //ios 7.0适配
+//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+//       self.tableView.contentInset = UIEdgeInsetsMake(64,  0,  0,  0);
+//    }
+    
+
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
@@ -159,6 +177,7 @@ UITableViewDataSource,UITableViewDelegate,
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     [_topView removeFromSuperview];
 }
 
@@ -182,7 +201,7 @@ UITableViewDataSource,UITableViewDelegate,
 {
     __weak HomePageINeedPlayViewController * weakSelf = self;
 //    __weak UITableView *tableView = self.tableView;
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:
                              ^{
                                  weakSelf.curPageIndex = 1;
                                  [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
@@ -192,31 +211,31 @@ UITableViewDataSource,UITableViewDelegate,
                                           if (barList.count == PAGESIZE)
                                           {
                                               weakSelf.curPageIndex = 2;
-                                              weakSelf.tableView.footer.hidden = NO;
+                                              weakSelf.tableView.mj_footer.hidden = NO;
                                           }
                                           else
                                           {
-                                              weakSelf.tableView.footer.hidden = YES;
+                                              weakSelf.tableView.mj_footer.hidden = YES;
                                           }
-                                          [weakSelf.tableView.header endRefreshing];
+                                          [weakSelf.tableView.mj_header endRefreshing];
                                       }
                                   }];
                              }];
 
     
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
                 if (barList.count == PAGESIZE)
                 {
-                    weakSelf.tableView.footer.hidden = NO;
+                    weakSelf.tableView.mj_footer.hidden = NO;
                 }
                 else
                 {
-                    weakSelf.tableView.footer.hidden = YES;
+                    weakSelf.tableView.mj_footer.hidden = YES;
                 }
                 weakSelf.curPageIndex ++;
-                [weakSelf.tableView.footer endRefreshing];
+                [weakSelf.tableView.mj_footer endRefreshing];
             }
             
         }];

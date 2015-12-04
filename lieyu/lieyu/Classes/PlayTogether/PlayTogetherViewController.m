@@ -44,10 +44,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets=YES;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-        _tableView.frame = CGRectMake(0, 68, SCREEN_WIDTH, 370);
+        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-47);
     }
+
+    
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -57,21 +61,21 @@
     [self setupViewStyles];
     [self getDataForTogether];
     __weak __typeof(self)weakSelf = self;
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         pageCount=1;
         
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [weakSelf getData:nowDic];
     }];
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [self getDataWithDicMore:nowDic];
     }];
     // Do any additional setup after loading the view.
     
-    
+
     
 }
 
@@ -99,8 +103,10 @@
  */
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    _sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    _sectionView.backgroundColor = [UIColor whiteColor];
+//    [_sectionView removeFromSuperview];
+//    _sectionView=nil;
+    UIView *sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    sectionView.backgroundColor = [UIColor whiteColor];
     NSArray *arrayKeys = @[@"fontName",@"fontSize",@"textColor",@"content",@"imageW",@"imageH",@"imageUnSelectedName",@"imageSelectedName"];
     NSArray *array1 = @[@"FZLTXHK",@"14",RGBA(30, 30, 30, 1),@"所有地区",@"24",@"24",@"triangle_down",@"triangle_up"];
     NSArray *array2 = @[@"FZLTXHK",@"14",[UIColor colorWithRed:30 green:30 blue:30 alpha:1],@"音乐清吧",@"24",@"24",@"triangle_down",@"triangle_up"];
@@ -111,11 +117,11 @@
     
     UIView *partView1 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3, 13, 0.5, 14)];
     partView1.backgroundColor = RGBA(204, 204, 204, 1);
-    [_sectionView addSubview:partView1];
+    [sectionView addSubview:partView1];
     
     UIView *partView2 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3 * 2, 13, 0.5, 14)];
     partView2.backgroundColor = RGBA(204, 204, 204, 1);
-    [_sectionView addSubview:partView2];
+    [sectionView addSubview:partView2];
 
     LPSelectButton *button1 = [[LPSelectButton alloc]initWithFrame:CGRectMake(0, 0, 319/3, 40) AndDictionary:dict1];
     button1.tag = 1;
@@ -130,11 +136,11 @@
     
     self.buttonsArray = [[NSArray alloc]initWithObjects:button1, button2, button3, nil];
     
-    [self.sectionView addSubview:button1];
-    [self.sectionView addSubview:button2];
-    [self.sectionView addSubview:button3];
+    [sectionView addSubview:button1];
+    [sectionView  addSubview:button2];
+    [sectionView addSubview:button3];
     
-    return _sectionView;
+    return sectionView;
 }
 //,@[@"宝山区",@"嘉定区",@"黄浦区",@"青浦区",@"闵行区",@"奉贤区",@"金山区",@"松江区",@"南汇区"]
 //,@[@"音乐清吧",@"激情夜店",@"文艺静吧",@"舞动KTV"]
@@ -237,13 +243,13 @@
             pageCount++;
             [weakSelf.tableView reloadData];
         }else{
-            [weakSelf.tableView.footer noticeNoMoreData];
+            [weakSelf.tableView.mj_footer noticeNoMoreData];
         }
         
         
         
     }];
-    [weakSelf.tableView.footer endRefreshing];
+    [weakSelf.tableView.mj_footer endRefreshing];
     
 }
 
@@ -260,14 +266,14 @@
         if(dataList.count>0){
             
             pageCount++;
-            [weakSelf.tableView.footer resetNoMoreData];
+            [weakSelf.tableView.mj_footer resetNoMoreData];
         }
         [weakSelf.tableView reloadData];
         
         
         
     }];
-    [weakSelf.tableView.header endRefreshing];
+    [weakSelf.tableView.mj_header endRefreshing];
     
 }
 -(void)getDataForTogether{
@@ -325,14 +331,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewWillAppear:animated];
+    
 //    [self performSelector:@selector(setCustomTitle:) withObject:@"一起玩" afterDelay:0.1];
-    self.oriNavItems = [self.navigationController.navigationBar.items copy];
-    [self.navigationController.navigationBar addSubview:_fillterButton];
-    CGRect rc = _fillterButton.frame;
-    rc.origin.x = 10;
-    rc.origin.y = 8;
-    _fillterButton.frame = rc;
+//    self.oriNavItems = [self.navigationController.navigationBar.items copy];
+//    [self.navigationController.navigationBar addSubview:_fillterButton];
+//    CGRect rc = _fillterButton.frame;
+//    rc.origin.x = 10;
+//    rc.origin.y = 8;
+//    _fillterButton.frame = rc;
     
 //    [self setCustomTitle:@"一起玩"];
     _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
@@ -344,17 +351,35 @@
     [_myTitle setText:@"热门拼客"];
     //        self.navigationItem.titleView=titleText;
     [self.navigationController.navigationBar addSubview:_myTitle];
-   
+//    NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
+//    //ios 7.0适配
+//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+////        if (self.tableView.contentInset.top==0||self.tableView.contentInset.top==44) {
+//            self.tableView.contentInset = UIEdgeInsetsMake(64,  0,  0,  0);
+//            self.tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-47);
+////        }
+//
+//        
+//    }
+//   NSLog(@"----pass-self.tableView.contentInset.top2%f---",self.tableView.contentInset.top);
 
 }
 - (void)viewWillLayoutSubviews
 {
+    [super viewWillLayoutSubviews];
 
-    if (self.navigationController.navigationBarHidden != NO) {
+    if (self.navigationController.navigationBarHidden != NO ) {
         [self.navigationController setNavigationBarHidden:NO];
 
     }
-    
+//    //ios 7.0适配
+//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+//        NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
+//        if (self.tableView.contentInset.top==0 ||self.tableView.contentInset.top==128) {
+//            self.tableView.contentInset = UIEdgeInsetsMake(64,  0,  0,  0);
+//        }
+//
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

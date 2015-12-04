@@ -44,10 +44,12 @@
 //}
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
 }
 
@@ -57,6 +59,10 @@
 //       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
 //        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40);
 //    }
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.defaultString = @"请选择消费方式";
     self.defaultDate = [NSDate date];
     self.tableView.dataSource = self;
