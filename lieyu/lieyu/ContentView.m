@@ -14,7 +14,7 @@
     self.radioButtons = @[_redioButton1,_radioButton2,_radioButton3];
     self.selectButton = @[_selectBtn1, _selectBtn2, _selectBtn3];
     self.buttonStatusArray = [NSMutableArray array];
-    [self.buttonStatusArray addObjectsFromArray:@[@"NO",@"NO",@"YES"]];
+    [self.buttonStatusArray addObjectsFromArray:@[@"0",@"0",@"1"]];
 }
 
 - (void)contentViewChooseBtn{

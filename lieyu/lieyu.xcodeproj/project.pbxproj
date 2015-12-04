@@ -326,6 +326,13 @@
 		38E5D6F01C0F109F004B49D2 /* LPBuyInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6EE1C0F109F004B49D2 /* LPBuyInfoCell.xib */; };
 		38E5D6F41C0F10E7004B49D2 /* LPBuyManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6F21C0F10E7004B49D2 /* LPBuyManagerCell.m */; };
 		38E5D6F51C0F10E7004B49D2 /* LPBuyManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6F31C0F10E7004B49D2 /* LPBuyManagerCell.xib */; };
+		38E5D6F81C100A33004B49D2 /* TimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D6F71C100A33004B49D2 /* TimePickerView.m */; };
+		38E5D6FA1C100B01004B49D2 /* TimePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6F91C100B01004B49D2 /* TimePickerView.xib */; };
+		38E5D6FF1C103E17004B49D2 /* LPmanager.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6FC1C103E17004B49D2 /* LPmanager.png */; };
+		38E5D7001C103E17004B49D2 /* LPmanager@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6FD1C103E17004B49D2 /* LPmanager@2x.png */; };
+		38E5D7011C103E17004B49D2 /* LPmanager@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6FE1C103E17004B49D2 /* LPmanager@3x.png */; };
+		38E5D7051C1044F3004B49D2 /* ManagerInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D7031C1044F3004B49D2 /* ManagerInfoCell.m */; };
+		38E5D7061C1044F3004B49D2 /* ManagerInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7041C1044F3004B49D2 /* ManagerInfoCell.xib */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
@@ -1193,6 +1200,15 @@
 		38E5D6F11C0F10E7004B49D2 /* LPBuyManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPBuyManagerCell.h; sourceTree = "<group>"; };
 		38E5D6F21C0F10E7004B49D2 /* LPBuyManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPBuyManagerCell.m; sourceTree = "<group>"; };
 		38E5D6F31C0F10E7004B49D2 /* LPBuyManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPBuyManagerCell.xib; sourceTree = "<group>"; };
+		38E5D6F61C100A33004B49D2 /* TimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePickerView.h; sourceTree = "<group>"; };
+		38E5D6F71C100A33004B49D2 /* TimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePickerView.m; sourceTree = "<group>"; };
+		38E5D6F91C100B01004B49D2 /* TimePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimePickerView.xib; sourceTree = "<group>"; };
+		38E5D6FC1C103E17004B49D2 /* LPmanager.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LPmanager.png; sourceTree = "<group>"; };
+		38E5D6FD1C103E17004B49D2 /* LPmanager@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LPmanager@2x.png"; sourceTree = "<group>"; };
+		38E5D6FE1C103E17004B49D2 /* LPmanager@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LPmanager@3x.png"; sourceTree = "<group>"; };
+		38E5D7021C1044F3004B49D2 /* ManagerInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerInfoCell.h; sourceTree = "<group>"; };
+		38E5D7031C1044F3004B49D2 /* ManagerInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerInfoCell.m; sourceTree = "<group>"; };
+		38E5D7041C1044F3004B49D2 /* ManagerInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerInfoCell.xib; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
@@ -2954,6 +2970,7 @@
 		38E5D6B51C0EA427004B49D2 /* 拼客 */ = {
 			isa = PBXGroup;
 			children = (
+				38E5D6FB1C103DF4004B49D2 /* 专属经历 */,
 				38E5D6D61C0EFB7F004B49D2 /* 返回按钮 */,
 				38E5D6B61C0EA433004B49D2 /* 自定义AlertView */,
 			);
@@ -2981,6 +2998,9 @@
 				38E5D6CD1C0EA5C8004B49D2 /* ContentView.xib */,
 				38E5D6CF1C0EC2DA004B49D2 /* LPAlertView.h */,
 				38E5D6D01C0EC2DA004B49D2 /* LPAlertView.m */,
+				38E5D6F61C100A33004B49D2 /* TimePickerView.h */,
+				38E5D6F71C100A33004B49D2 /* TimePickerView.m */,
+				38E5D6F91C100B01004B49D2 /* TimePickerView.xib */,
 			);
 			name = "自定义AlertView";
 			sourceTree = "<group>";
@@ -3023,8 +3043,21 @@
 				38E5D6F11C0F10E7004B49D2 /* LPBuyManagerCell.h */,
 				38E5D6F21C0F10E7004B49D2 /* LPBuyManagerCell.m */,
 				38E5D6F31C0F10E7004B49D2 /* LPBuyManagerCell.xib */,
+				38E5D7021C1044F3004B49D2 /* ManagerInfoCell.h */,
+				38E5D7031C1044F3004B49D2 /* ManagerInfoCell.m */,
+				38E5D7041C1044F3004B49D2 /* ManagerInfoCell.xib */,
 			);
 			name = "立即购买";
+			sourceTree = "<group>";
+		};
+		38E5D6FB1C103DF4004B49D2 /* 专属经历 */ = {
+			isa = PBXGroup;
+			children = (
+				38E5D6FC1C103E17004B49D2 /* LPmanager.png */,
+				38E5D6FD1C103E17004B49D2 /* LPmanager@2x.png */,
+				38E5D6FE1C103E17004B49D2 /* LPmanager@3x.png */,
+			);
+			name = "专属经历";
 			sourceTree = "<group>";
 		};
 		855192651C0B30C4007B9949 /* 热门酒吧 */ = {
@@ -4570,6 +4603,7 @@
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
 				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
 				85F672B31C097D48001BEE5B /* LYHotRecommandCell.xib in Resources */,
+				38E5D6FA1C100B01004B49D2 /* TimePickerView.xib in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
 				38E5D6BE1C0EA458004B49D2 /* CustomBtn_unSelected@2x.png in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
@@ -4597,6 +4631,7 @@
 				15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */,
 				3879F2531C0D329600B72629 /* AddressTableViewCell.xib in Resources */,
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
+				38E5D7011C103E17004B49D2 /* LPmanager@3x.png in Resources */,
 				15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */,
 				ADF88E621C102E4F00CF5DED /* huiseStar.png in Resources */,
 				85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */,
@@ -4621,6 +4656,7 @@
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
 				15E240D21BB3D5940090D240 /* LYRegistrationViewController.xib in Resources */,
 				15EB354A1BD4839D00BA6161 /* UMSCommentInputController.xib in Resources */,
+				38E5D6FF1C103E17004B49D2 /* LPmanager.png in Resources */,
 				15E2407D1BB2521C0090D240 /* CollectionCell.xib in Resources */,
 				15E1847F1BB4FF0900681BB2 /* LYZSeditView.xib in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
@@ -4646,6 +4682,7 @@
 				85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */,
 				ADD68E3F1BE10E7E0060E751 /* skip-btn@3x.png in Resources */,
 				3879F25D1C0D32D100B72629 /* BitianTableViewCell.xib in Resources */,
+				38E5D7001C103E17004B49D2 /* LPmanager@2x.png in Resources */,
 				AD106B9B1C0BE898007F5FBA /* LYUserCenterFooter.xib in Resources */,
 				15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */,
 				ADD68E3A1BE10E550060E751 /* 3@3x.png in Resources */,
@@ -4678,6 +4715,7 @@
 				ADF88E671C102E4F00CF5DED /* pingjiaxiangji@3x.png in Resources */,
 				15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */,
 				AD92AE9D1BE1D339009F2A34 /* lieyu_default_male@2x.png in Resources */,
+				38E5D7061C1044F3004B49D2 /* ManagerInfoCell.xib in Resources */,
 				15ED32731BE2F49800E086A1 /* YaoYiYaoViewController.xib in Resources */,
 				A2F9DA931BABD62F009DEAF3 /* OrderBottomForCCView.xib in Resources */,
 			);
@@ -4810,6 +4848,7 @@
 				ADE103981BDE49BC00D9EC38 /* base64.m in Sources */,
 				D761F01C1BA5AED3000757B0 /* MJRefreshGifHeader.m in Sources */,
 				15013AFD1BBA33BE00061FAF /* SDWebImagePrefetcher.m in Sources */,
+				38E5D6F81C100A33004B49D2 /* TimePickerView.m in Sources */,
 				ADE103991BDE49BC00D9EC38 /* DataSigner.m in Sources */,
 				15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */,
 				D74C608B1BB6F0BF00A49598 /* BearBarListViewController.m in Sources */,
@@ -5038,6 +5077,7 @@
 				153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
 				15A4CF5C1BD86CF800C22C01 /* ShaiXuanBtn.m in Sources */,
+				38E5D7051C1044F3004B49D2 /* ManagerInfoCell.m in Sources */,
 				15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */,
 				152247B61BEB064600E68A2B /* IQTitleBarButtonItem.m in Sources */,
 				D761F0221BA5AED3000757B0 /* UIScrollView+MJRefresh.m in Sources */,

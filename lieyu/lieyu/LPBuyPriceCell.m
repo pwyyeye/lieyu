@@ -20,4 +20,9 @@
     // Configure the view for the selected state
 }
 
+- (void)cellConfigureWithPay:(NSString *)pay andProfit:(CGFloat)profit{
+    self.LPMoney.text = [NSString stringWithFormat:@"$%@",pay];
+    [self.LPProfit setTitle:[NSString stringWithFormat:@"返利¥%.2f",profit] forState:UIControlStateNormal];
+}
+
 @end

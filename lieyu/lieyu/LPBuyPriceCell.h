@@ -12,4 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *LPMoney;
 @property (weak, nonatomic) IBOutlet UIButton *LPProfit;
 
+- (void)cellConfigureWithPay:(NSString *)pay andProfit:(CGFloat)profit;
+
 @end

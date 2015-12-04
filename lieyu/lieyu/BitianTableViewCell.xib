@@ -16,18 +16,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="必填信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYG-Hp-jxB">
-                        <rect key="frame" x="10" y="10" width="78" height="24"/>
+                        <rect key="frame" x="10" y="15" width="78" height="26"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="78" id="CX4-2q-Ope"/>
-                            <constraint firstAttribute="height" constant="24" id="JQ6-0m-bOb"/>
+                            <constraint firstAttribute="height" constant="26" id="JQ6-0m-bOb"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <color key="textColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="0.93502155170000001" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预约时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shy-MC-Ei3">
-                        <rect key="frame" x="10" y="50" width="122" height="18"/>
+                        <rect key="frame" x="10" y="57" width="122" height="18"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="122" id="OSj-Wb-1fM"/>
@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拼客方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q14-rf-VuK">
-                        <rect key="frame" x="10" y="100" width="122" height="18"/>
+                        <rect key="frame" x="10" y="107" width="122" height="18"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="bTY-fo-tRz"/>
@@ -49,7 +49,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拼客人数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvg-4h-00b">
-                        <rect key="frame" x="10" y="150" width="122" height="18"/>
+                        <rect key="frame" x="10" y="157" width="122" height="18"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="122" id="kGM-dG-tvh"/>
@@ -60,7 +60,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNs-8e-Xtg">
-                        <rect key="frame" x="164" y="143" width="32" height="32"/>
+                        <rect key="frame" x="164" y="150" width="32" height="32"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="32" id="0ht-ab-XLR"/>
@@ -71,7 +71,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUW-w0-ICw">
-                        <rect key="frame" x="262" y="143" width="32" height="32"/>
+                        <rect key="frame" x="262" y="150" width="32" height="32"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="6Ec-6s-osg"/>
@@ -82,7 +82,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8k-An-6Y9">
-                        <rect key="frame" x="151" y="99" width="153" height="20"/>
+                        <rect key="frame" x="151" y="106" width="153" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="153" id="nMY-Fy-P0T"/>
@@ -96,7 +96,7 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obn-H3-8Pz">
-                        <rect key="frame" x="151" y="49" width="153" height="20"/>
+                        <rect key="frame" x="151" y="56" width="153" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="153" id="ab7-5H-Y4F"/>
@@ -110,7 +110,7 @@
                         </state>
                     </button>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDH-8g-hQT">
-                        <rect key="frame" x="205" y="144" width="48" height="30"/>
+                        <rect key="frame" x="205" y="151" width="48" height="30"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="Mlo-Ff-PQB"/>
@@ -131,7 +131,7 @@
                     <constraint firstItem="gDH-8g-hQT" firstAttribute="centerY" secondItem="Fvg-4h-00b" secondAttribute="centerY" id="EG7-ee-hUy"/>
                     <constraint firstAttribute="trailing" secondItem="h8k-An-6Y9" secondAttribute="trailing" constant="16" id="EhJ-Nq-IL5"/>
                     <constraint firstItem="Shy-MC-Ei3" firstAttribute="top" secondItem="HYG-Hp-jxB" secondAttribute="bottom" constant="16" id="EsY-PJ-g4Q"/>
-                    <constraint firstItem="HYG-Hp-jxB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="OAh-5W-M0A"/>
+                    <constraint firstItem="HYG-Hp-jxB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="OAh-5W-M0A"/>
                     <constraint firstItem="Shy-MC-Ei3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Rd6-mS-kWG"/>
                     <constraint firstItem="h8k-An-6Y9" firstAttribute="centerY" secondItem="q14-rf-VuK" secondAttribute="centerY" id="VhJ-o8-NK0"/>
                     <constraint firstItem="HYG-Hp-jxB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WG5-WD-ea1"/>

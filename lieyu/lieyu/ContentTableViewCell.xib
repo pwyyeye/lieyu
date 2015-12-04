@@ -15,18 +15,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="套餐内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJ6-9c-gD7">
-                        <rect key="frame" x="10" y="10" width="74" height="24"/>
+                        <rect key="frame" x="10" y="15" width="74" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="74" id="Akx-CV-cvE"/>
-                            <constraint firstAttribute="height" constant="24" id="tlf-sO-eep"/>
+                            <constraint firstAttribute="height" constant="20" id="tlf-sO-eep"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5lf-IK-qeD">
-                        <rect key="frame" x="10" y="50" width="300" height="21.5"/>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5lf-IK-qeD">
+                        <rect key="frame" x="10" y="51" width="300" height="21"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -36,7 +36,7 @@
                 </subviews>
                 <animations/>
                 <constraints>
-                    <constraint firstItem="mJ6-9c-gD7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="55r-MA-Mth"/>
+                    <constraint firstItem="mJ6-9c-gD7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="55r-MA-Mth"/>
                     <constraint firstItem="mJ6-9c-gD7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Lh1-oo-afz"/>
                     <constraint firstAttribute="trailing" secondItem="5lf-IK-qeD" secondAttribute="trailing" constant="10" id="PPM-fP-iBF"/>
                     <constraint firstItem="5lf-IK-qeD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Q38-wc-rh2"/>
@@ -54,7 +54,7 @@
             <connections>
                 <outlet property="tableView" destination="5lf-IK-qeD" id="HhM-kG-kb3"/>
             </connections>
-            <point key="canvasLocation" x="255" y="364"/>
+            <point key="canvasLocation" x="362" y="364"/>
         </tableViewCell>
     </objects>
 </document>

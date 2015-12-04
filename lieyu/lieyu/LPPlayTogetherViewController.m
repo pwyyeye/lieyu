@@ -20,13 +20,18 @@
 #import "LPAttentionViewController.h"
 #import "LPBuyViewController.h"
 #import "LYtimeChooseTimeController.h"
+#import "TimePickerView.h"
 
 @interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) BitianTableViewCell *biTianCell;
 @property (nonatomic, strong) ContentView *contentView;
+@property (nonatomic, strong) TimePickerView *LPtimeView;
+
 @property (nonatomic, strong) NSArray *labelArray;
+
 @property (nonatomic, strong) NSString *defaultString;
+@property (nonatomic, strong) NSDate *defaultDate;
 
 @end
 
@@ -48,8 +53,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     self.defaultString = @"请选择消费方式";
+    self.defaultDate = [NSDate date];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.showsVerticalScrollIndicator = NO;
@@ -119,7 +124,7 @@
             height = 184;
             break;
         case 4:
-            height = 200;
+            height = 66 + 44 * (int)self.pinKeModel.goodsList.count;
             break;
         case 5:
             height = 216;
@@ -194,8 +199,8 @@
     }
 }
 
-
-- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+#pragma 实现代理的方法
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
         for (int index = 0 ; index < _contentView.buttonStatusArray.count; index ++) {
             if([_contentView.buttonStatusArray[index] isEqualToString:@"1"]){
@@ -203,6 +208,21 @@
                 self.defaultString = self.labelArray[index];
             }
         }
+        
+    }
+}
+
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+//        for (int index = 0 ; index < _contentView.buttonStatusArray.count; index ++) {
+            self.defaultDate = _LPtimeView.timePicker.date;
+            NSLog(@"--------%@",_LPtimeView.timePicker.date);
+//            NSLog(@"--------2%@",_LPtimeView.timePicker.c)
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"MM月dd日 EEE HH:mm"];
+            NSString *dateString = [formatter stringFromDate:self.defaultDate];
+            [self.biTianCell.chooseTime setTitle:dateString forState:UIControlStateNormal];
+//        }
         
     }
 }
@@ -216,18 +236,22 @@
 }
 
 - (void)chooseTimeForTaocan{
-//    LYtimeChooseTimeController *timeChooseTimeController=[[LYtimeChooseTimeController alloc]initWithNibName:@"LYtimeChooseTimeController" bundle:nil];
-//    timeChooseTimeController.title=@"时间选择";
-//    timeChooseTimeController.delegate=self;
-//    [self.navigationController pushViewController:timeChooseTimeController animated:YES];
-    
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    alertView.delegate = self;
+    _LPtimeView = [[[NSBundle mainBundle]loadNibNamed:@"TimePickerView" owner:nil options:nil]firstObject];
+    _LPtimeView.tag = 11;
+//    [_timeView showTimeWithDate:self.defaultDate];
+    _LPtimeView.timePicker.date = self.defaultDate;
+    alertView.contentView = _LPtimeView;
+    _LPtimeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
+    [alertView show];
 }
 
 - (void)chooseWayForTaocan{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
     alertView.delegate = self;
-   
     _contentView = [[[NSBundle mainBundle]loadNibNamed:@"ContentView" owner:nil options:nil]firstObject];
+    _contentView.tag = 12;
     _contentView.defaultString = self.defaultString;
     [_contentView contentViewChooseBtn];
     _contentView.frame = CGRectMake(10, SCREEN_HEIGHT- 320, SCREEN_WIDTH - 20, 250);
@@ -253,6 +277,17 @@
 
 - (IBAction)BuyNow:(UIButton *)sender {
     LPBuyViewController *LPBuyVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPBuyVC"];
+    LPBuyVC.pinkeModel = self.pinKeModel;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yy年MM月dd日 EEE HH:mm"];
+    NSString *dateString = [formatter stringFromDate:self.defaultDate];
+    
+    NSDictionary *dict = @{@"time":dateString,
+                           @"way":self.defaultString,
+                           @"money":@"800",
+                           @"number":@"5"};
+    LPBuyVC.InfoDict = dict;
     [self.navigationController pushViewController:LPBuyVC animated:YES];
 }
 

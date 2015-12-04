@@ -20,4 +20,11 @@
     // Configure the view for the selected state
 }
 
+- (void)cellConfigureWithName:(NSString *)name Address:(NSString *)address Time:(NSString *)time Number:(NSString *)number{
+    self.LPBarName.text = name;
+    self.LPAddress.text = address;
+    self.LPTime.text = time;
+    self.LPNumber.text = [NSString stringWithFormat:@"拼客%@人",number];
+}
+
 @end
