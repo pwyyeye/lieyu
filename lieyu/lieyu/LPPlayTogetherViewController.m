@@ -53,6 +53,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
+       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40);
+    }
     self.defaultString = @"请选择消费方式";
     self.defaultDate = [NSDate date];
     self.tableView.dataSource = self;
