@@ -92,7 +92,6 @@
         UIButton *vButton = [UIButton buttonWithType:UIButtonTypeCustom];
         vButton.userInteractionEnabled=YES;
         
-
         [vButton setBackgroundImage:normalImg forState:UIControlStateNormal];
         [vButton setBackgroundImage:secImg forState:UIControlStateSelected];
         //设置title

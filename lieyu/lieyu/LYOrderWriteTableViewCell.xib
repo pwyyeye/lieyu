@@ -92,6 +92,8 @@
                 <outlet property="btn_chooseTime" destination="Dhs-0E-GAO" id="eW6-co-gsz"/>
                 <outlet property="btn_isReserve" destination="mGn-AW-Rxm" id="3ec-fK-OyF"/>
                 <outlet property="btn_minus" destination="PvM-LC-Mzh" id="qES-bP-Bf7"/>
+                <outlet property="btn_showTaocan" destination="mS1-74-Zei" id="Dh9-qk-2nV"/>
+                <outlet property="btn_showTime" destination="8f9-ez-aO3" id="2cW-3r-V92"/>
                 <outlet property="label_count" destination="z7i-a4-qMI" id="oxh-yX-jlF"/>
             </connections>
         </tableViewCell>

@@ -14,5 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *btn_minus;
 @property (weak, nonatomic) IBOutlet UIImageView *btn_add;
 @property (weak, nonatomic) IBOutlet UILabel *label_count;
+@property (weak, nonatomic) IBOutlet UIButton *btn_showTime;
+@property (weak, nonatomic) IBOutlet UIButton *btn_showTaocan;
 
 @end

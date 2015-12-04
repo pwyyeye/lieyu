@@ -78,8 +78,6 @@
     
 //    _contentView.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20 , 250);
     
-    
-    
     [self addSubview:_contentView];
 }
 

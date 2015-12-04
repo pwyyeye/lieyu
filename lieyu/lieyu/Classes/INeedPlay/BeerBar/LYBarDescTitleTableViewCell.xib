@@ -37,7 +37,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="yinHao" width="29" height="18"/>
+        <image name="yinHao" width="24" height="24"/>
         <image name="yinHaoRight" width="29" height="18"/>
     </resources>
 </document>

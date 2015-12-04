@@ -17,7 +17,7 @@
                                 <rect key="frame" x="280" y="36" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <state key="normal" image="247EFB99-6946-4396-804D-98DD7F92A240">
+                                <state key="normal" image="24CB0B5B-6F7D-4E03-8762-F7F8A926D08A">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -62,7 +62,7 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LYPlayTogetherCell" rowHeight="146" id="Amg-Ka-Our" customClass="LYPlayTogetherCell">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="146"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="146"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Amg-Ka-Our" id="2N6-1h-1vd">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="145"/>
@@ -2581,15 +2581,6 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QvQ-7H-4ZI">
-                                <rect key="frame" x="187" y="457" width="56" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <state key="normal" backgroundImage="fa"/>
-                                <connections>
-                                    <action selector="upClick:" destination="9Tx-jj-Na6" eventType="touchUpInside" id="T1V-wz-gIz"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wyA-8b-iaZ">
                                 <rect key="frame" x="254" y="457" width="56" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2827,7 +2818,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="247EFB99-6946-4396-804D-98DD7F92A240" width="22" height="22">
+        <image name="24CB0B5B-6F7D-4E03-8762-F7F8A926D08A" width="22" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -2931,7 +2922,7 @@ AAAAAAAAPgAAAAAAAAAAAAAAAAAAFjc
         </image>
         <image name="Fa" width="15" height="20"/>
         <image name="INeedYou" width="100" height="32"/>
-        <image name="Location" width="36" height="36"/>
+        <image name="Location" width="29" height="18"/>
         <image name="Shape" width="14" height="20"/>
         <image name="ZSyjbj" width="68" height="17"/>
         <image name="bg_fanli2" width="94" height="28"/>
@@ -2939,7 +2930,6 @@ AAAAAAAAPgAAAAAAAAAAAAAAAAAAFjc
         <image name="danxuan" width="22" height="22"/>
         <image name="danxuanSelected" width="22" height="22"/>
         <image name="disClosure.png" width="7" height="10"/>
-        <image name="fa" width="72" height="80"/>
         <image name="fab" width="72" height="80"/>
         <image name="flDown" width="64" height="31"/>
         <image name="flnormal" width="64" height="31"/>

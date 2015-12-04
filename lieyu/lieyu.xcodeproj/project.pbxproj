@@ -362,6 +362,13 @@
 		855192701C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */; };
 		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
 		855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */; };
+		85C4282E1C116ED90028FC21 /* LYHotBarMenuDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */; };
+		85C428721C119D3E0028FC21 /* LYCloseMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428701C119D3E0028FC21 /* LYCloseMeViewController.m */; };
+		85C428731C119D3E0028FC21 /* LYCloseMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428711C119D3E0028FC21 /* LYCloseMeViewController.xib */; };
+		85C428801C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4287D1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m */; };
+		85C428811C11B20B0028FC21 /* FirstPageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4287F1C11B20B0028FC21 /* FirstPageData.m */; };
+		85C428871C11D25D0028FC21 /* ContentViewTaocan.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428861C11D25D0028FC21 /* ContentViewTaocan.m */; };
+		85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428881C11D2710028FC21 /* ContentViewTaocan.xib */; };
 		85EE80321C0AF09B00958F76 /* LYHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */; };
 		85EE80331C0AF09B00958F76 /* LYHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */; };
 		85EE80371C0AF19600958F76 /* LYBarTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80351C0AF19600958F76 /* LYBarTitleTableViewCell.m */; };
@@ -1274,6 +1281,18 @@
 		855536BC1C0A922200D296DA /* LYHomeSearcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSearcherViewController.h; sourceTree = "<group>"; };
 		855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSearcherViewController.m; sourceTree = "<group>"; };
 		855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearcherViewController.xib; sourceTree = "<group>"; };
+		85C4282C1C116ED90028FC21 /* LYHotBarMenuDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuDropView.h; sourceTree = "<group>"; };
+		85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuDropView.m; sourceTree = "<group>"; };
+		85C4286F1C119D3E0028FC21 /* LYCloseMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCloseMeViewController.h; sourceTree = "<group>"; };
+		85C428701C119D3E0028FC21 /* LYCloseMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCloseMeViewController.m; sourceTree = "<group>"; };
+		85C428711C119D3E0028FC21 /* LYCloseMeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYCloseMeViewController.xib; sourceTree = "<group>"; };
+		85C4287C1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FirstPageData+CoreDataProperties.h"; sourceTree = "<group>"; };
+		85C4287D1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FirstPageData+CoreDataProperties.m"; sourceTree = "<group>"; };
+		85C4287E1C11B20B0028FC21 /* FirstPageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstPageData.h; sourceTree = "<group>"; };
+		85C4287F1C11B20B0028FC21 /* FirstPageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstPageData.m; sourceTree = "<group>"; };
+		85C428851C11D25D0028FC21 /* ContentViewTaocan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewTaocan.h; sourceTree = "<group>"; };
+		85C428861C11D25D0028FC21 /* ContentViewTaocan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewTaocan.m; sourceTree = "<group>"; };
+		85C428881C11D2710028FC21 /* ContentViewTaocan.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewTaocan.xib; sourceTree = "<group>"; };
 		85EE802F1C0AF09B00958F76 /* LYHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHeaderTableViewCell.h; sourceTree = "<group>"; };
 		85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHeaderTableViewCell.m; sourceTree = "<group>"; };
 		85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -3059,6 +3078,9 @@
 				38E5D6F61C100A33004B49D2 /* TimePickerView.h */,
 				38E5D6F71C100A33004B49D2 /* TimePickerView.m */,
 				38E5D6F91C100B01004B49D2 /* TimePickerView.xib */,
+				85C428851C11D25D0028FC21 /* ContentViewTaocan.h */,
+				85C428861C11D25D0028FC21 /* ContentViewTaocan.m */,
+				85C428881C11D2710028FC21 /* ContentViewTaocan.xib */,
 			);
 			name = "自定义AlertView";
 			sourceTree = "<group>";
@@ -3149,6 +3171,7 @@
 		855192651C0B30C4007B9949 /* 热门酒吧 */ = {
 			isa = PBXGroup;
 			children = (
+				85C4286E1C119D1B0028FC21 /* 离我最近 */,
 				8551926B1C0B3275007B9949 /* Cell */,
 				855192661C0B30E0007B9949 /* LYHotJiuBarViewController.h */,
 				855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */,
@@ -3161,6 +3184,8 @@
 				85F6258A1C0BE74E002858C8 /* LYHotBarMenuViewController.xib */,
 				8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */,
 				8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */,
+				85C4282C1C116ED90028FC21 /* LYHotBarMenuDropView.h */,
+				85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */,
 			);
 			name = "热门酒吧";
 			path = "Classes/INeedPlay/热门酒吧";
@@ -3174,6 +3199,27 @@
 				8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		85C4286E1C119D1B0028FC21 /* 离我最近 */ = {
+			isa = PBXGroup;
+			children = (
+				85C4286F1C119D3E0028FC21 /* LYCloseMeViewController.h */,
+				85C428701C119D3E0028FC21 /* LYCloseMeViewController.m */,
+				85C428711C119D3E0028FC21 /* LYCloseMeViewController.xib */,
+			);
+			path = "离我最近";
+			sourceTree = "<group>";
+		};
+		85C4287B1C11B1D80028FC21 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				85C4287C1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.h */,
+				85C4287D1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m */,
+				85C4287E1C11B20B0028FC21 /* FirstPageData.h */,
+				85C4287F1C11B20B0028FC21 /* FirstPageData.m */,
+			);
+			path = CoreDataModel;
 			sourceTree = "<group>";
 		};
 		85EE802E1C0AF03700958F76 /* Cell */ = {
@@ -4139,6 +4185,7 @@
 		D748BC751BA1CA69005AA996 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				85C4287B1C11B1D80028FC21 /* CoreDataModel */,
 				D748BC7C1BA1CB35005AA996 /* Base */,
 				D748BC761BA1CB0E005AA996 /* User.h */,
 				D748BC771BA1CB0E005AA996 /* User.m */,
@@ -4748,11 +4795,13 @@
 				ADD68E281BE10E330060E751 /* 1@2x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
 				38E5D6E61C0F1018004B49D2 /* LPBuyTaocanCell.xib in Resources */,
+				85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */,
 				38E5D6C71C0EA4DF004B49D2 /* CustomBtn_Selected@2x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */,
 				38E5D7A31C113879004B49D2 /* gray_add.png in Resources */,
 				ADF88E6D1C11613800CF5DED /* empyImage16_9.png in Resources */,
+				85C428731C119D3E0028FC21 /* LYCloseMeViewController.xib in Resources */,
 				ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
 				85F625A21C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib in Resources */,
@@ -4810,7 +4859,6 @@
 				15E240B61BB3A1FC0090D240 /* OrderDetailSectionBottomForDanPinView.xib in Resources */,
 				ADF88E641C102E4F00CF5DED /* huiseStar@3x.png in Resources */,
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
-				38E5D7771C1135FF004B49D2 /* Mine_selected@3x.png in Resources */,
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
 				85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */,
 				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
@@ -4911,6 +4959,7 @@
 				1559DD1A1BDB2B3C00F3FE9B /* CarBottomView.m in Sources */,
 				ADE103AF1BDE4C8E00D9EC38 /* ChoosePayController.m in Sources */,
 				AD92AEBC1BE50AD9009F2A34 /* AboutLieyu.m in Sources */,
+				85C428811C11B20B0028FC21 /* FirstPageData.m in Sources */,
 				15013AD11BBA161100061FAF /* ZSManageHttpTool.m in Sources */,
 				1559DD151BDB279700F3FE9B /* CarHeadView.m in Sources */,
 				15013AFC1BBA33BE00061FAF /* SDWebImageManager.m in Sources */,
@@ -5130,6 +5179,7 @@
 				151BB6D21BBB78E000E7A81C /* UzysAssetsPickerController.m in Sources */,
 				15F54A901BB030420020EB4C /* ChanPinListViewController.m in Sources */,
 				A2FD57701BAFE91F00CFFF92 /* FBTaoCanView.m in Sources */,
+				85C428721C119D3E0028FC21 /* LYCloseMeViewController.m in Sources */,
 				D7A6005D1BAC6CF50006A768 /* PlayTogetherViewController.m in Sources */,
 				15EA6DBF1BBE479A00620C9E /* ProductCategoryModel.m in Sources */,
 				AD92AEA81BE22A79009F2A34 /* UserTagModel.m in Sources */,
@@ -5224,6 +5274,7 @@
 				D761F0161BA5AED3000757B0 /* MJRefreshAutoGifFooter.m in Sources */,
 				15013AF81BBA33BE00061FAF /* SDWebImageCompat.m in Sources */,
 				152247B51BEB064600E68A2B /* IQBarButtonItem.m in Sources */,
+				85C428801C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m in Sources */,
 				D73652471BAEBF60002541CE /* PinKeModel.m in Sources */,
 				15013AF51BBA33BE00061FAF /* MKAnnotationView+WebCache.m in Sources */,
 				152247B31BEB064600E68A2B /* IQSegmentedNextPrevious.m in Sources */,
@@ -5252,6 +5303,7 @@
 				A20100E71BA94404009283D1 /* WQScrollCalendarWrapperView.m in Sources */,
 				38E5D6EF1C0F109F004B49D2 /* LPBuyInfoCell.m in Sources */,
 				15844BCE1BE1EF5000247FBC /* LYAddFriendViewController.m in Sources */,
+				85C428871C11D25D0028FC21 /* ContentViewTaocan.m in Sources */,
 				15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */,
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
 				15844BFD1BE2101200247FBC /* SaoYiSaoViewController.m in Sources */,
@@ -5277,6 +5329,7 @@
 				ADE103BB1BDFA5F200D9EC38 /* LYUserDetailController.m in Sources */,
 				151BB6BF1BBAB80900E7A81C /* DeckFullModel.m in Sources */,
 				15E240A11BB37EF60090D240 /* LYOrderDetailViewController.m in Sources */,
+				85C4282E1C116ED90028FC21 /* LYHotBarMenuDropView.m in Sources */,
 				AD92AEB81BE242A3009F2A34 /* LYTagTableViewController.m in Sources */,
 				D73652481BAEBF60002541CE /* TaoCanModel.m in Sources */,
 				15E240621BB1237E0090D240 /* BiaoQianChooseViewController.m in Sources */,
