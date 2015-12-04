@@ -23,7 +23,9 @@
 #import "LYCityChooseViewController.h"
 #import "LYHomeSearcherViewController.h"
 #import "LYHotJiuBarViewController.h"
-   
+#import "LYCloseMeViewController.h"
+//#import ""
+
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
 <
@@ -76,10 +78,7 @@ UITableViewDataSource,UITableViewDelegate,
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
 }
--(void)cityChange{
-//    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-//    [_cityBtn setTitle:delegate.citystr forState:0];
-}
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityChange" object:nil];
 }
@@ -283,11 +282,18 @@ UITableViewDataSource,UITableViewDelegate,
     }
 }
 
-- (IBAction)upClick:(id)sender {
-    [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
-}
 - (IBAction)aroundMeClick:(id)sender {
+    LYCloseMeViewController *closeMeVC = [[LYCloseMeViewController alloc]init];
     
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:NO];//其中，price为数组中的对象的属性，这个针对数组中存放对象比较更简洁方便
+//    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:&sortDescriptor count:1];
+//    NSArray
+//    [self.aryList sortUsingDescriptors:sortDescriptors];
+    
+
+    
+    closeMeVC.beerBarArray = self.aryList;
+    [self.navigationController pushViewController:closeMeVC animated:YES];
 }
 
 
@@ -434,28 +440,6 @@ UITableViewDataSource,UITableViewDelegate,
         [self.navigationController pushViewController:controller animated:YES];
     }
     
-}
-
-#pragma textfield delegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    return YES;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-
-
-}
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField; {
-    LYHomeSearchViewController *homeSearchViewController=[[LYHomeSearchViewController alloc]initWithNibName:@"LYHomeSearchViewController" bundle:nil];
-//    homeSearchViewController.delegate=self;
-    [self presentViewController:homeSearchViewController animated:false completion:^{
-        
-    }];
-    
-    return false;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView

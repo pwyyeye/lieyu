@@ -131,6 +131,9 @@
                     <rect key="frame" x="272" y="34" width="40" height="40"/>
                     <animations/>
                     <state key="normal" backgroundImage="share"/>
+                    <connections>
+                        <action selector="shareClick:" destination="-1" eventType="touchUpInside" id="Ary-OJ-QRn"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_stroke_normal" translatesAutoresizingMaskIntoConstraints="NO" id="pDz-kL-hrC">
                     <rect key="frame" x="225" y="40" width="18" height="16"/>
@@ -161,7 +164,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="96X-DT-GEW" id="HBL-mj-0Sl">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="219.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIi-JY-IS5">
@@ -391,7 +394,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwQ-ej-J52" id="Jfr-2l-B75">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="热门订座套餐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXA-Gg-EX9">
@@ -426,7 +429,7 @@
     <resources>
         <image name="Oval 1120" width="41" height="41"/>
         <image name="icon_eatdrinkspecial" width="28" height="28"/>
-        <image name="icon_huanhui_action" width="41" height="41"/>
+        <image name="icon_huanhui_action" width="29" height="18"/>
         <image name="icon_locate" width="11" height="14"/>
         <image name="icon_managers" width="28" height="28"/>
         <image name="icon_ordersits" width="28" height="28"/>

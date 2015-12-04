@@ -35,7 +35,7 @@
     NSURL *image = [NSURL URLWithString:imageUrl];
     [self.LPimage sd_setImageWithURL:image];
     self.LPName.text = name;
-    self.LPway.text = [NSString stringWithFormat:@"拼客方式:%@",way];
+    self.LPway.text = [NSString stringWithFormat:@"%@",way];
     self.LPprice.text = [NSString stringWithFormat:@"¥%@",price];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName:
                                      [NSNumber numberWithInteger:NSUnderlineStyleSingle]};

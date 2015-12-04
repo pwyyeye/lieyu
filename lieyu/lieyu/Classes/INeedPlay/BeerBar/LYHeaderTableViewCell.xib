@@ -42,6 +42,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="laBa" width="21" height="12"/>
+        <image name="laBa" width="24" height="24"/>
     </resources>
 </document>

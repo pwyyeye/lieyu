@@ -37,7 +37,7 @@
         [self addSubview:_contentLbl];
         
         _imageIcon = [[UIImageView alloc]init];
-        _imageIcon.backgroundColor = [UIColor redColor];
+//        _imageIcon.backgroundColor = [UIColor redColor];
         [self addSubview:_imageIcon];
         
         _contentLbl.font = [UIFont systemFontOfSize:[dict[@"fontSize"] floatValue]];

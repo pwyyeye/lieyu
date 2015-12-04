@@ -16,6 +16,8 @@
 #import "BiaoQianBtn.h"
 #import "TypeChooseCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "BeerBarDetailViewController.h"
+#import "JiuBaModel.h"
 
 #define PAGESIZE 20
 @interface LYHomeSearcherViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -45,7 +47,7 @@
     self.curPageIndex = 1;
     datalist=[[NSMutableArray alloc]init];
     self.tableView.rowHeight = 274;
-    
+    _searchBar.returnKeyType = UIReturnKeySearch;
 }
 
 #pragma mark 获取历史搜索数据
@@ -127,14 +129,21 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    if (!searchText.length) {
+    if (!searchBar.text.length) {
+        self.tableView.hidden = YES;
+        [self loadHisData];
+    }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    if (!searchBar.text.length) {
         self.tableView.hidden = YES;
         [self loadHisData];
         return;
     }
     [self.tableView setHidden:NO];
     _curPageIndex=1;
-    keyStr= searchText;
+    keyStr= searchBar.text;
     [self getData];
 }
 
@@ -182,6 +191,9 @@
          }
      }];
     
+}
+- (IBAction)historyClick:(UIButton *)sender {
+    _searchBar.text = sender.currentTitle;
 }
 
 - (void)loadItemList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
@@ -234,19 +246,26 @@
     return wineCell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    BeerBarDetailViewController *detailVC = [[BeerBarDetailViewController alloc]init];
+    JiuBaModel *model = [searchlist objectAtIndex:indexPath.row];
+    detailVC.beerBarId = @(model.barid);
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

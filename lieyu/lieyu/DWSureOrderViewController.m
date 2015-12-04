@@ -24,9 +24,10 @@
 #import "LYOrderWriteTableViewCell.h"
 #import "LYOrderInfoTableViewCell.h"
 #import "LYOrderManagerTableViewCell.h"
-//#import "LYTimeChoose.h"
+#import "TimePickerView.h"
+#import "LPAlertView.h"
 
-@interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate>
+@interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate,LPAlertViewDelegate>
 {
     TaoCanModel *taoCanModel;
     DWOredrNextCell *timeCell;
@@ -35,6 +36,8 @@
     NSArray *zsArr;
     NSString *reachtime;
     NSString *gotype;
+    TimePickerView *_timeView;
+    LYOrderWriteTableViewCell *_writeCell;
 }
 @end
 
@@ -43,6 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self deployCell];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -213,8 +217,8 @@
              */
             cell = [tableView dequeueReusableCellWithIdentifier:@"LYOrderWriteTableViewCell" forIndexPath:indexPath];
             if (cell) {
-                LYOrderWriteTableViewCell *writeCell = (LYOrderWriteTableViewCell *)cell;
-                [writeCell.btn_chooseTime addTarget:self action:@selector(choseTime) forControlEvents:UIControlEventTouchUpInside];
+                _writeCell = (LYOrderWriteTableViewCell *)cell;
+                [_writeCell.btn_chooseTime addTarget:self action:@selector(choseTime) forControlEvents:UIControlEventTouchUpInside];
             }
         }
             break;
@@ -257,10 +261,24 @@
 }
 
 - (void)choseTime{
-//    LYTimeChoose *timeChooseView = [[LYTimeChoose alloc]init];
-//    timeChooseView.frame = CGRectMake(0, 0, 320, 568);
-//    [timeChooseView deploy];
-//    [self.view addSubview:timeChooseView];
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    alertView.delegate = self;
+    _timeView = [[[NSBundle mainBundle]loadNibNamed:@"TimePickerView" owner:nil options:nil]firstObject];
+    _timeView.tag = 11;
+    //    [_timeView showTimeWithDate:self.defaultDate];
+    _timeView.timePicker.date = [NSDate date];
+    alertView.contentView = _timeView;
+    _timeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
+    [alertView show];
+}
+
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
+    if (!buttonIndex) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"MM月dd日 EEE HH:mm"];
+        NSString *dateString = [formatter stringFromDate:_timeView.timePicker.date];
+        [_writeCell.btn_showTime setTitle:dateString forState:UIControlStateNormal];
+    }
 }
 
 - (void)isResrve{

@@ -14,6 +14,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self setPercent];
 }
 
 - (void)setModel:(RecommendPackageModel *)model{
@@ -21,14 +22,31 @@
     self.label_name.text = model.title;
     self.label_price_now.text = [NSString stringWithFormat:@"¥%@",model.price];
     
-//    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-//    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];
-//    self.label_price_old.attributedText = attribtStr;
-    //self.label_price_old.text = [NSString stringWithFormat:@"¥%@",model.marketprice];
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",model.marketprice] attributes:attribtDic];
+    self.label_price_old.attributedText = attribtStr;
     self.label_buyCount.text = [NSString stringWithFormat:@"%@人购",model.buynum];
     [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl]];
+
     
-    NSString *percentStr =[NSString stringWithFormat:@"%@%@",model.rebate,@"%"];
+}
+
+- (void)setTaoCanModel:(TaoCanModel *)taoCanModel{
+    _taoCanModel = taoCanModel;
+    self.label_name.text = taoCanModel.title;
+    self.label_price_now.text = [NSString stringWithFormat:@"¥%.0f",taoCanModel.price];
+    
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",taoCanModel.marketprice] attributes:attribtDic];
+    NSLog(@"%@",attribtStr);
+    self.label_price_old.attributedText = attribtStr;
+    
+    self.label_buyCount.text = [NSString stringWithFormat:@"%d人购",taoCanModel.buynum];
+    [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:taoCanModel.linkUrl]];
+}
+
+- (void)setPercent{
+    NSString *percentStr =[NSString stringWithFormat:@"30%@",@"%"];
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:percentStr];
     [attributedStr addAttribute:NSFontAttributeName
      
@@ -36,17 +54,6 @@
      
                           range:NSMakeRange(2, 1.9)];
     self.label_percent.attributedText = attributedStr;
-}
-
-- (void)setTaoCanModel:(TaoCanModel *)taoCanModel{
-    _taoCanModel = taoCanModel;
-    self.label_name.text = taoCanModel.title;
-    self.label_price_now.text = [NSString stringWithFormat:@"¥%.0f",taoCanModel.price];
-    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",taoCanModel.marketprice] attributes:attribtDic];
-    self.label_price_old.attributedText = attribtStr;
-    self.label_buyCount.text = [NSString stringWithFormat:@"%d人购",taoCanModel.buynum];
-    [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:taoCanModel.linkUrl]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

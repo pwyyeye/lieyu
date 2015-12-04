@@ -11,7 +11,7 @@
 @implementation BarInfoTableViewCell
 
 - (void)awakeFromNib {
-    
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,14 +22,16 @@
 
 - (void)cellConfigure:(NSDictionary *)dict{
     int i;
+//    dict[@"stars"] = @"4";
+//    [dict setValue:@"4" forKey:@"stars"];
     NSArray *iconsArray = @[self.icon1,self.icon2,self.icon3,self.icon4,self.icon5];
     [_barImage sd_setImageWithURL:[NSURL URLWithString:dict[@"imageURL"]]];
     _barNameLbl.text = dict[@"barName"];
     for (i = 0; i < [dict[@"stars"] intValue]; i ++) {
-        ((UIImageView *)iconsArray[i]).image = [UIImage imageNamed:@"icon_lightStar"];
+        ((UIImageView *)iconsArray[i]).image = [UIImage imageNamed:@"starRed"];
     }
-    for(int j = i ; j < [dict[@"stars"] intValue]; j ++ ){
-        ((UIImageView *)iconsArray[j]).image = [UIImage imageNamed:@"icon_darkStar"];
+    for(int j = i ; j <= [dict[@"stars"] intValue]; j ++ ){
+        ((UIImageView *)iconsArray[j]).image = [UIImage imageNamed:@"starGray"];
     }
 }
 

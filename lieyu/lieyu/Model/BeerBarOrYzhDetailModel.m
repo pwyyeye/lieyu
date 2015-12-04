@@ -23,7 +23,7 @@
 +(BeerBarOrYzhDetailModel *)initFormDictionary:(NSDictionary *)dic
 {
     BeerBarOrYzhDetailModel * model = [BeerBarOrYzhDetailModel mj_objectWithKeyValues:dic];
-    
+    NSLog(@"--->%@",dic);
     return model;
 }
 

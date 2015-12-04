@@ -26,7 +26,10 @@
         [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:18] range:NSMakeRange(1, 4)];
     }
     _label_price.attributedText = attributedString;
-    _label_price_old.text = [NSString stringWithFormat:@"¥%@",model.marketprice];
+    
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",model.marketprice] attributes:attribtDic];
+    _label_price_old.attributedText = attribtStr;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

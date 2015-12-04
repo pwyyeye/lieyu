@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface LPAttentionViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *label1;
+@property (weak, nonatomic) IBOutlet UILabel *label2;
+@property (weak, nonatomic) IBOutlet UILabel *label3;
+@property (weak, nonatomic) IBOutlet UILabel *label4;
 
 @end

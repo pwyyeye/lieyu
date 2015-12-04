@@ -11,11 +11,25 @@
 #import "LYHotBarMenuViewController.h"
 #import "LYLMenuDropViewController.h"
 #import "LYHotBarMenuView.h"
+#import "ZSManageHttpTool.h"
+#import "JiuBaModel.h"
+#import "MJRefresh.h"
+#import "ProductCategoryModel.h"
+#import "MReqToPlayHomeList.h"
+#import "LYBaseViewController.h"
+#import "LYToPlayRestfulBusiness.h"
+#import "LYUserLocation.h"
+#import "LYHotBarMenuDropView.h"
+#define PAGESIZE 20
 
-@interface LYHotJiuBarViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LYHotJiuBarViewController ()<UITableViewDataSource,UITableViewDelegate,LYHotBarMenuDropDelegate>
+@property(nonatomic,strong)NSMutableArray *bannerList;
+@property(nonatomic,strong)NSMutableArray *newbannerList;
+@property(nonatomic,strong)NSMutableArray *aryList;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) LYLMenuDropViewController *menuDropVC;
 @property (nonatomic,strong) LYHotBarMenuViewController *menuVC;
+@property(nonatomic,assign) NSInteger curPageIndex;
 @end
 
 @implementation LYHotJiuBarViewController
@@ -25,39 +39,151 @@
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _menuDropVC = [[LYLMenuDropViewController alloc]init];
-   // [self setUpMenuVC];
 
-    LYHotBarMenuView *menuView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, 300, 40)];
+    LYHotBarMenuView *menuView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, 320, 40)];
     [menuView deploy];
-//    menuView.backgroundColor = [UIColor redColor];
+    menuView.delegate = self;
     [self.view addSubview:menuView];
+    self.curPageIndex = 1;
+    _aryList = [[NSMutableArray alloc]initWithCapacity:0];
+    [self getData];
 }
 
-/*
-- (void)setUpMenuVC{
-    _menuVC = [[LYHotBarMenuViewController alloc]init];
-    _menuVC.view.frame = CGRectMake(0, 64, 320, 40);
-    [self.view addSubview:_menuVC.view];
-    [_menuVC.btn_allPlace addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_menuVC.btn_music addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_menuVC.btn_aroundMe addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
-}
-*/
-- (void)setTableViewRefresh{
-    __weak LYHotJiuBarViewController *weakSelf = self;
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
-    } ];
+-(void)getData{
+    __weak LYHotJiuBarViewController * weakSelf = self;
+    //    __weak UITableView *tableView = self.tableView;
+    [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+     {
+         if (Req_Success == ermsg.state)
+         {
+             if (barList.count == PAGESIZE)
+             {
+                 weakSelf.curPageIndex = 2;
+                 weakSelf.tableView.footer.hidden = NO;
+             }
+             else
+             {
+                 weakSelf.tableView.footer.hidden = YES;
+             }
+         }
+     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+- (void)loadItemList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
+
+{
+    MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
+    LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
     
+    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
+    hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
+    hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
+    
+    NSString * mainType = nil;
+    if (self.entryType == BaseEntry_WineBar) {
+        mainType = @"酒吧";
+    }
+    else
+    {
+        mainType = @"夜总会";
+    }
+    
+#if 1
+    hList.bartype = mainType;
+    hList.subtype = @"清吧";
+    hList.need_page = @(1);
+    hList.p = @(_curPageIndex);
+    hList.per = @(PAGESIZE);
+#endif
+    
+    __weak __typeof(self)weakSelf = self;
+    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner)
+     {
+         if (ermsg.state == Req_Success)
+         {
+             if (weakSelf.curPageIndex == 1) {
+                 [weakSelf.aryList removeAllObjects];
+                 weakSelf.bannerList = bannerList.mutableCopy;
+                 //                [weakSelf.bannerList removeAllObjects];
+             }
+             
+             [weakSelf.aryList addObjectsFromArray:barList];
+             [weakSelf.tableView reloadData];
+         }
+         block !=nil? block(ermsg,bannerList,barList):nil;
+     }];
 }
+
+- (void)installFreshEvent
+{
+    
+    __weak LYHotJiuBarViewController * weakSelf = self;
+    //    __weak UITableView *tableView = self.tableView;
+    
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
+                             ^{
+                                 weakSelf.curPageIndex = 1;
+                                 [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+                                  {
+                                      if (Req_Success == ermsg.state)
+                                      {
+                                          if (barList.count == PAGESIZE)
+                                          {
+                                              weakSelf.curPageIndex = 2;
+                                              weakSelf.tableView.footer.hidden = NO;
+                                          }
+                                          else
+                                          {
+                                              weakSelf.tableView.footer.hidden = YES;
+                                          }
+                                          [weakSelf.tableView.header endRefreshing];
+                                      }
+                                  }];
+                             }];
+    
+    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
+            if (Req_Success == ermsg.state) {
+                if (barList.count == PAGESIZE)
+                {
+                    
+                    weakSelf.tableView.footer.hidden = NO;
+                }
+                else
+                {
+                    weakSelf.tableView.footer.hidden = YES;
+                }
+                weakSelf.curPageIndex ++;
+                [weakSelf.tableView.footer endRefreshing];
+            }
+            
+        }];
+    }];
+}
+
+
+- (void)setTableViewRefresh{
+    __weak LYHotJiuBarViewController * weakSelf = self;
+    //    __weak UITableView *tableView = self.tableView;
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
+                             ^{
+                                 weakSelf.curPageIndex = 1;
+                                
+                             }];
+    
+    
+    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        
+    }];
+}
+
+- (void)didClickHotBarMenuDropWithIndex:(NSInteger)index{
+    NSLog(@"------->%ld",index);
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return _aryList.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -78,73 +204,14 @@
             return menuCell;
       */ 
             LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
+    wineCell.jiuBaModel = _aryList[indexPath.row];
                         wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return wineCell;
        
   
 }
 
-//- (void)menuClick:(UIButton *)sender{
-//    _menuDropVC.view.frame = CGRectMake(0, 104, 320, 124);
-//    [self removeMenuDropViewWith:sender.currentTitle];
-//    if (sender.tag <= 3) {
-//        //下拉gaiwei 456
-//        [self.view addSubview:_menuDropVC.view];
-//        
-//        if ([sender.currentTitle isEqualToString:@"所有地区"]) {
-//            for (UIButton *button in _menuDropVC.btn_menuArray) {
-//                [button setTitle:@"激情夜店" forState:UIControlStateNormal];
-//            }
-//            [_menuVC.imageView_arrow_one setImage:[UIImage imageNamed:@"arrow drop down"]];
-//            sender.tag = 4;
-//        }else if([sender.currentTitle isEqualToString:@"音乐清吧"]){
-//            for (UIButton *button in _menuDropVC.btn_menuArray) {
-//                [button setTitle:@"音乐清吧" forState:UIControlStateNormal];
-//            }
-//            [_menuVC.imageView_arrow_two setImage:[UIImage imageNamed:@"arrow drop down"]];
-//            sender.tag = 5;
-//        }else{
-//            for (UIButton *button in _menuDropVC.btn_menuArray) {
-//                [button setTitle:@"所有地区" forState:UIControlStateNormal];
-//            }
-//            [_menuVC.imageView_arrow_three setImage:[UIImage imageNamed:@"arrow drop down"]];
-//            sender.tag = 6;
-//        }
-//        
-//    }else{
-//        //上回 gaiwei 123
-//        [_menuDropVC.view removeFromSuperview];
-//        
-//        if ([sender.currentTitle isEqualToString:@"所有地区"]) {
-//             [_menuVC.imageView_arrow_one setImage:[UIImage imageNamed:@"arrow drop up"]];
-//            sender.tag = 1;
-//        }else if([sender.currentTitle isEqualToString:@"音乐清吧"]){
-//            [_menuVC.imageView_arrow_two setImage:[UIImage imageNamed:@"arrow drop up"]];
-//            sender.tag = 2;
-//        }else{[_menuVC.imageView_arrow_three setImage:[UIImage imageNamed:@"arrow drop up"]];
-//            sender.tag = 3;
-//        }
-//    }
-//}
 
-//- (void)removeMenuDropViewWith:(NSString *)title{
-//    if ([title isEqualToString:@"所有地区"]) {
-//        [_menuVC.imageView_arrow_two setImage:[UIImage imageNamed:@"arrow drop up"]];
-//        [_menuVC.imageView_arrow_three setImage:[UIImage imageNamed:@"arrow drop up"]];
-//        _menuVC.btn_music.tag = 2;
-//        _menuVC.btn_aroundMe.tag = 3;
-//    }else if([title isEqualToString:@"音乐清吧"]){
-//        [_menuVC.imageView_arrow_one setImage:[UIImage imageNamed:@"arrow drop up"]];
-//        [_menuVC.imageView_arrow_three setImage:[UIImage imageNamed:@"arrow drop up"]];
-//        _menuVC.btn_allPlace.tag = 1;
-//        _menuVC.btn_aroundMe.tag = 3;
-//    }else{
-//        [_menuVC.imageView_arrow_one setImage:[UIImage imageNamed:@"arrow drop up"]];
-//        [_menuVC.imageView_arrow_two setImage:[UIImage imageNamed:@"arrow drop up"]];
-//        _menuVC.btn_allPlace.tag = 1;
-//        _menuVC.btn_music.tag = 2;
-//    }
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

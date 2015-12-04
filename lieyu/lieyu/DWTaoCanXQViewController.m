@@ -31,8 +31,12 @@
     [self getdata];
     // Do any additional setup after loading the view.
     [self setTableViewCell];
-    self.navigationController.navigationBarHidden = YES;
     [self createButton];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)createButton{

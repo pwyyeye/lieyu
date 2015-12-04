@@ -21,10 +21,19 @@
 #import "LPBuyViewController.h"
 #import "LYtimeChooseTimeController.h"
 #import "TimePickerView.h"
+#import "CommonShow.h"
+#import "LYUserLocation.h"
 
-@interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UITextFieldDelegate>
 
+@property (nonatomic, strong) BarInfoTableViewCell *barinfoCell;
+@property (nonatomic, strong) TaocanTableViewCell *taocanCell;
+@property (nonatomic, strong) AddressTableViewCell *addressCell;
 @property (nonatomic, strong) BitianTableViewCell *biTianCell;
+@property (nonatomic, strong) ContentTableViewCell *contentCell;
+@property (nonatomic, strong) LiuchengTableViewCell *liuchengCell;
+
+
 @property (nonatomic, strong) ContentView *contentView;
 @property (nonatomic, strong) TimePickerView *LPtimeView;
 
@@ -32,6 +41,10 @@
 
 @property (nonatomic, strong) NSString *defaultString;
 @property (nonatomic, strong) NSDate *defaultDate;
+@property (nonatomic, assign) CGFloat defaultPay;
+@property (nonatomic, assign) int defaultNumber;
+@property (nonatomic, assign) int defaultIndex;
+
 
 @end
 
@@ -46,11 +59,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)viewDidLoad {
@@ -65,6 +80,12 @@
     
     self.defaultString = @"请选择消费方式";
     self.defaultDate = [NSDate date];
+    self.defaultNumber = 1;
+    self.biTianCell.numTextField.keyboardType = UIKeyboardTypeNumberPad;
+    self.biTianCell.numTextField.returnKeyType = UIReturnKeyDone;
+    self.biTianCell.numTextField.delegate = self;
+    
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.showsVerticalScrollIndicator = NO;
@@ -73,29 +94,33 @@
                         @"AA付款",
                         @"自由付款"];
     [self.backBtn addTarget:self action:@selector(backForword) forControlEvents:UIControlEventTouchUpInside];
-    [self.shareBtn addTarget:self action:@selector(shareTaocan) forControlEvents:UIControlEventTouchUpInside];
-    [self.likeBtn addTarget:self action:@selector(likeTaocan) forControlEvents:UIControlEventTouchUpInside];
+//    [self.shareBtn addTarget:self action:@selector(shareTaocan) forControlEvents:UIControlEventTouchUpInside];
+//    [self.likeBtn addTarget:self action:@selector(likeTaocan) forControlEvents:UIControlEventTouchUpInside];
     [self getdata];
+    
 }
 
+#pragma 回退按钮
 - (void)backForword{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)shareTaocan{
-    NSLog(@"Share Success!");
-}
+//
+//- (void)shareTaocan{
+//    NSLog(@"Share Success!");
+//}
+//
+//- (void)likeTaocan{
+//    NSLog(@"Like Success!");
+//}
 
-- (void)likeTaocan{
-    NSLog(@"Like Success!");
-}
+//- (void)addStatusView{
+//    UIView *status = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
+//    status.backgroundColor = [UIColor purpleColor];
+//    [self.view addSubview:status];
+//}
 
-- (void)addStatusView{
-    UIView *status = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
-    status.backgroundColor = [UIColor purpleColor];
-    [self.view addSubview:status];
-}
-
+#pragma 页面进来获取数据
 - (void)getdata{
     NSDictionary *dic = @{@"smid":[NSNumber numberWithInt:self.smid]};
     __weak __typeof(self)weakSelf = self;
@@ -110,6 +135,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma tableView各个代理功能
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 6;
 }
@@ -131,13 +157,13 @@
             height = 60;
             break;
         case 3:
-            height = 184;
+            height = 195;
             break;
         case 4:
             height = 66 + 44 * (int)self.pinKeModel.goodsList.count;
             break;
         case 5:
-            height = 216;
+            height = 200;
             break;
         default:
             break;
@@ -147,43 +173,49 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 0){
-        BarInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"barInfo"];
-        if(!cell){
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"BarInfoTableViewCell" owner:nil options:nil]firstObject];
+        _barinfoCell = [tableView dequeueReusableCellWithIdentifier:@"barInfo"];
+        if(!_barinfoCell){
+            [tableView registerNib:[UINib nibWithNibName:@"BarInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"barInfo"];
+            _barinfoCell = [tableView dequeueReusableCellWithIdentifier:@"barInfo"];
         }
         if(self.pinKeModel){
             NSDictionary *dict = @{@"barName":self.pinKeModel.barinfo.barname,@"stars":@"4",@"imageURL":self.pinKeModel.banner[0]};
-            [cell cellConfigure:dict];
+            [_barinfoCell cellConfigure:dict];
         }
-        return cell;
+        return _barinfoCell;
     }else if(indexPath.section == 1){
-        TaocanTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"taocan"];
-        if(!cell){
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"TaocanTableViewCell" owner:nil options:nil]firstObject];
+        _taocanCell = [tableView dequeueReusableCellWithIdentifier:@"taocan"];
+        if(!_taocanCell){
+            [tableView registerNib:[UINib nibWithNibName:@"TaocanTableViewCell" bundle:nil] forCellReuseIdentifier:@"taocan"];
+            _taocanCell = [tableView dequeueReusableCellWithIdentifier:@"taocan"];
         }
         if(self.pinKeModel){
             NSDictionary *dict = @{
-                                   @"taocanInfo":self.pinKeModel.title,                           @"price":self.pinKeModel.price,
+                                   @"taocanInfo":self.pinKeModel.title,
+                                   @"price":self.pinKeModel.price,
                                    @"marketPrice":self.pinKeModel.marketprice,
                                    @"profit":self.pinKeModel.rebate};
-            cell.dict = dict;
-            [cell cellConfigure];
+            _taocanCell.dict = dict;
+            [_taocanCell cellConfigure];
         }
-        return cell;
+        return _taocanCell;
     }else if(indexPath.section == 2){
-        AddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"address"];
-        if(!cell){
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"AddressTableViewCell" owner:nil options:nil]firstObject];
+        _addressCell = [tableView dequeueReusableCellWithIdentifier:@"address"];
+        if(!_addressCell){
+            [tableView registerNib:[UINib nibWithNibName:@"AddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"address"];
+            _addressCell = [tableView dequeueReusableCellWithIdentifier:@"address"];
         }
         if(self.pinKeModel){
             NSLog(@"%@",self.pinKeModel.barinfo.address);
-            [cell cellConfigure:self.pinKeModel.barinfo.address];
+            [_addressCell cellConfigure:self.pinKeModel.barinfo.address];
+            [_addressCell.addressBtn addTarget:self action:@selector(daohang) forControlEvents:UIControlEventTouchUpInside];
         }
-        return cell;
+        return _addressCell;
     }else if(indexPath.section == 3){
         _biTianCell = [tableView dequeueReusableCellWithIdentifier:@"biTian"];
         if(!_biTianCell){
-            _biTianCell = [[[NSBundle mainBundle]loadNibNamed:@"BitianTableViewCell" owner:nil options:nil]firstObject];
+            [tableView registerNib:[UINib nibWithNibName:@"BitianTableViewCell" bundle:nil] forCellReuseIdentifier:@"biTian"];
+            _biTianCell = [tableView dequeueReusableCellWithIdentifier:@"biTian"];
             [_biTianCell.chooseTime addTarget:self action:@selector(chooseTimeForTaocan) forControlEvents:UIControlEventTouchUpInside];
             [_biTianCell.chooseWay addTarget:self action:@selector(chooseWayForTaocan) forControlEvents:UIControlEventTouchUpInside];
             [_biTianCell.addBtn addTarget:self action:@selector(addPeople) forControlEvents:UIControlEventTouchUpInside];
@@ -191,37 +223,89 @@
         }
         return _biTianCell;
     }else if(indexPath.section == 4){
-        ContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"content"];
-        if(!cell){
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"ContentTableViewCell" owner:nil options:nil]firstObject];
+        _contentCell = [tableView dequeueReusableCellWithIdentifier:@"content"];
+        if(!_contentCell){
+            [tableView registerNib:[UINib nibWithNibName:@"ContentTableViewCell" bundle:nil] forCellReuseIdentifier:@"content"];
+            _contentCell = [tableView dequeueReusableCellWithIdentifier:@"content"];
         }
         if(self.pinKeModel){
-            cell.goodList = self.pinKeModel.goodsList;
-            [cell cellConfigure];
+            _contentCell.goodList = self.pinKeModel.goodsList;
+            [_contentCell cellConfigure];
         }
-        return cell;
+        return _contentCell;
     }else{
-        LiuchengTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liucheng"];
-        if(!cell){
-            cell = [[[NSBundle mainBundle]loadNibNamed:@"LiuchengTableViewCell" owner:nil options:nil]firstObject];
+        _liuchengCell = [tableView dequeueReusableCellWithIdentifier:@"liucheng"];
+        if(!_liuchengCell){
+            [tableView registerNib:[UINib nibWithNibName:@"LiuchengTableViewCell" bundle:nil] forCellReuseIdentifier:@"liucheng"];
+            _liuchengCell = [tableView dequeueReusableCellWithIdentifier:@"liucheng"];
         }
-        return cell;
+        return _liuchengCell;
     }
 }
 
-#pragma 实现代理的方法
+#pragma 进入地图
+- (void)daohang{
+    NSDictionary *dic=@{@"title":self.pinKeModel.barinfo.barname,@"latitude":self.pinKeModel.barinfo.latitude,@"longitude":self.pinKeModel.barinfo.longitude};
+    [[LYUserLocation instance] daoHan:dic];
+}
+
+//
+//#pragma cellSelected
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if(indexPath.section == 2){
+//        NSDictionary *dic=@{@"title":self.pinKeModel.barinfo.barname,@"latitude":self.pinKeModel.barinfo.latitude,@"longitude":self.pinKeModel.barinfo.longitude};
+//        [[LYUserLocation instance] daoHan:dic];
+//    }
+//    else{
+//        NSLog(@"1212121");
+//    }
+//}
+
+
+#pragma 实现代理的方法，选择拼客方式
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
         for (int index = 0 ; index < _contentView.buttonStatusArray.count; index ++) {
             if([_contentView.buttonStatusArray[index] isEqualToString:@"1"]){
                 [self.biTianCell.chooseWay setTitle:self.labelArray[index] forState:UIControlStateNormal];
                 self.defaultString = self.labelArray[index];
+                self.defaultIndex = index;
+                if(index == 0){
+                    self.defaultPay = [self.pinKeModel.price floatValue];
+                }else if(index == 1){
+                    self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / [self.biTianCell.numTextField.text intValue];
+                }else{
+                    __weak __typeof(self)weakSelf = self;
+                    void (^chooseYourPay)(void) = ^(void){
+                        UIAlertView *customAlert = [[UIAlertView alloc]initWithTitle:@"请填写您要支付的金额" message:nil delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                        [customAlert setTintColor:RGBA(114, 5, 147, 1)];
+                        [customAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+                        UITextField *payField = [customAlert textFieldAtIndex:0];
+                        payField.keyboardType = UIKeyboardTypeNumberPad;
+                        payField.placeholder = @"金额请不少于100元";
+                        [customAlert show];
+                    };
+                    chooseYourPay();
+                }
             }
         }
         
     }
 }
 
+#pragma 填写支付金额
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == alertView.firstOtherButtonIndex) {
+        if ([[alertView textFieldAtIndex:0].text intValue] < 100) {
+            [CommonShow showMessage:@"对不起，发起人预付金额不可少于100元!"];
+        }else{
+            self.defaultIndex = 2;
+            self.defaultPay = [[alertView textFieldAtIndex:0].text intValue];
+        }
+    }
+}
+
+#pragma  选择消费时间
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
 //        for (int index = 0 ; index < _contentView.buttonStatusArray.count; index ++) {
@@ -238,13 +322,18 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.0001;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 8;
+    if(section == 5){
+        return -100;
+    }else{
+        return 8;
+    }
 }
 
+#pragma 选择消费时间
 - (void)chooseTimeForTaocan{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
     alertView.delegate = self;
@@ -257,6 +346,7 @@
     [alertView show];
 }
 
+#pragma 选择拼客方式
 - (void)chooseWayForTaocan{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
     alertView.delegate = self;
@@ -269,41 +359,86 @@
     [alertView show];
 }
 
+#pragma 加按钮点击
 - (void)addPeople{
-    
+    self.defaultNumber ++;
+//    self.biTianCell.numTextField.text = [NSString stringWithFormat:@"%d",self.defaultNumber];
+    [self.biTianCell.numTextField setText:[NSString stringWithFormat:@"%d",self.defaultNumber]];
+    if(self.defaultNumber > 1){
+        self.biTianCell.lessBtn.enabled = YES;
+//        [self.biTianCell.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
+        [self.biTianCell.lessBtn setImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
+    }
 }
 
+#pragma 减按钮点击
 - (void)lessPeople{
+    if(self.defaultNumber <= 1){
+        self.biTianCell.lessBtn.enabled = NO;
+        [self.biTianCell.lessBtn setBackgroundImage:[UIImage imageNamed:@"gray_less"] forState:UIControlStateNormal];
+    }else{
+        self.defaultNumber --;
+        [self.biTianCell.numTextField setText:[NSString stringWithFormat:@"%d",self.defaultNumber]];
+    }
+}
+
+
+#pragma textFieldDelegate代理方法
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+}// became first responder
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
     
 }
 
+#pragma 咨询猎娱
 - (IBAction)ZiXunLieyu:(UIButton *)sender {
 }
 
+#pragma 注意事项
 - (IBAction)ZhuYiShixiang:(UIButton *)sender {
     LPAttentionViewController *LPattentionVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPattention"];
     [self.navigationController pushViewController:LPattentionVC animated:YES];
 }
 
+#pragma 立即购买
 - (IBAction)BuyNow:(UIButton *)sender {
-    LPBuyViewController *LPBuyVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPBuyVC"];
-    LPBuyVC.pinkeModel = self.pinKeModel;
+    if([self.biTianCell.chooseTime.titleLabel.text isEqualToString:@"选择到店时间"] ||
+       [self.biTianCell.chooseWay.titleLabel.text isEqualToString:@"选择正确的拼客方式"]){
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"抱歉，请将信息填写完整!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show ];
+    }else{
+        LPBuyViewController *LPBuyVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPBuyVC"];
+        LPBuyVC.pinkeModel = self.pinKeModel;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yy年MM月dd日 EEE HH:mm"];
+        NSString *dateString = [formatter stringFromDate:self.defaultDate];
+        
+        if(self.defaultIndex == 1){
+            self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / self.defaultNumber;
+        }
+        
+        NSDictionary *dict = @{@"time":dateString,
+                               @"way":self.defaultString,
+                               @"money":[NSString stringWithFormat:@"%.2f",self.defaultPay],
+                               @"number":[NSString stringWithFormat:@"%d",self.defaultNumber],
+                               @"type":[NSString stringWithFormat:@"%d",self.defaultIndex]};
+        LPBuyVC.InfoDict = dict;
+        [self.navigationController pushViewController:LPBuyVC animated:YES];
+    }
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yy年MM月dd日 EEE HH:mm"];
-    NSString *dateString = [formatter stringFromDate:self.defaultDate];
     
-    NSDictionary *dict = @{@"time":dateString,
-                           @"way":self.defaultString,
-                           @"money":@"800",
-                           @"number":@"5"};
-    LPBuyVC.InfoDict = dict;
-    [self.navigationController pushViewController:LPBuyVC animated:YES];
 }
 
+
+#pragma 喜欢按钮
 - (IBAction)LikeClick:(UIButton *)sender {
+    
 }
 
+#pragma 分享按钮
 - (IBAction)ShareClick:(UIButton *)sender {
+    
 }
+
 @end

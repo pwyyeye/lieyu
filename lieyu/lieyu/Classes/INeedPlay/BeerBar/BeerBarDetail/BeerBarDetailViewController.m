@@ -11,6 +11,7 @@
 //#import "BeerBarDetailCell.h"
 //#import "PacketBarCell.h"
 #import "LYShareSnsView.h"
+#import "UMSocial.h"
 //#import "LYAdshowCell.h"
 #import "LYColors.h"
 #import "LYToPlayRestfulBusiness.h"
@@ -61,6 +62,7 @@
     {
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
+            NSLog(@"%@",self.beerBarDetail.description);
             [weakSelf.tableView reloadData];
         }
     }];
@@ -84,6 +86,7 @@
 
 - (void)setupViewStyles
 {
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYHeaderTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarTitleTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarPointTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarPointTableViewCell"];
@@ -205,9 +208,10 @@
                     
                 default:
                 {
-                    LYBarDesrcTableViewCell *barDescCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDesrcTableViewCell" forIndexPath:indexPath];
-                    barDescCell.label_content.text = self.beerBarDetail.announcement.content;
-                    barDescCell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                    LYBarDesrcTableViewCell *barDescCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDesrcTableViewCell" forIndexPath:indexPath];
+//                    barDescCell.label_content.text = self.beerBarDetail.announcement.content;
+//                    barDescCell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    
 //                    if (indexPath.row == 1 || indexPath.row == 5) {
 //                        barDescCell.imageView_content.hidden = YES;
 //                        barDescCell.label_content.text = self.beerBarDetail.announcement.content;
@@ -215,8 +219,16 @@
 //                        barDescCell.imageView_content.image = [UIImage imageNamed:@"jiuBarContent.jpg"];
 //                        barDescCell.label_content.hidden = YES;
 //                    }
+                    cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+                    UIWebView *webView = [[UIWebView alloc]init];
+                    NSLog(@"%@",self.beerBarDetail.description);
+                    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" /></head><body>%@<script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.description];
+                    CGFloat scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
                     
-                    return barDescCell;
+                    [webView setFrame:CGRectMake(0, 0, 320, scrollHeight)];
+                    [webView loadHTMLString:webStr baseURL:nil];
+                    [cell addSubview:webView];
+                    return cell;
                 }
                     break;
             }
@@ -340,6 +352,14 @@
         return h;
 }
 
+- (IBAction)shareClick:(id)sender {
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"507fcab25270157b37000010"
+                                      shareText:@"你要分享的文字"
+                                     shareImage:[UIImage imageNamed:@"icon.png"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,nil]
+                                       delegate:self];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

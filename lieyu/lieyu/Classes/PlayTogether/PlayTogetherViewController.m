@@ -60,6 +60,11 @@
     perCount=20;
     [self setupViewStyles];
     [self getDataForTogether];
+    [self getData];
+    // Do any additional setup after loading the view.
+}
+
+- (void)getData{
     __weak __typeof(self)weakSelf = self;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         pageCount=1;
@@ -78,6 +83,7 @@
 
     
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -297,6 +303,7 @@
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     [self getData:nowDic];
 }
+
 -(void)getDataForDistance{
     //    min_num=1(最低人数)
     //    max_num=2(最高人数)

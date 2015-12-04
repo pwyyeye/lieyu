@@ -39,6 +39,9 @@
                     <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="historyClick:" destination="-1" eventType="touchUpInside" id="mnI-ch-BZ5"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdP-m3-mnV">
                     <rect key="frame" x="16" y="124" width="88" height="27"/>
@@ -47,6 +50,9 @@
                     <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="historyClick:" destination="-1" eventType="touchUpInside" id="rbE-9v-1jS"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZT-fS-L5V">
                     <rect key="frame" x="16" y="169" width="88" height="27"/>
@@ -55,6 +61,9 @@
                     <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="historyClick:" destination="-1" eventType="touchUpInside" id="yus-Fu-aCr"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThU-6d-RUU">
                     <rect key="frame" x="116" y="169" width="88" height="27"/>
@@ -63,6 +72,9 @@
                     <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="historyClick:" destination="-1" eventType="touchUpInside" id="aC3-XS-xpJ"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ux9-4n-Mh5">
                     <rect key="frame" x="216" y="169" width="88" height="27"/>
@@ -71,6 +83,9 @@
                     <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="historyClick:" destination="-1" eventType="touchUpInside" id="VzJ-VH-QQv"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9r-Xp-1tw">
                     <rect key="frame" x="216" y="124" width="88" height="27"/>
@@ -79,6 +94,9 @@
                     <state key="normal">
                         <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="historyClick:" destination="-1" eventType="touchUpInside" id="BCR-uL-0Vg"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ol-N0-roY">
                     <rect key="frame" x="132" y="336" width="60" height="30"/>
