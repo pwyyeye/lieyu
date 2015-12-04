@@ -7,6 +7,7 @@
 //
 
 #import "LYMyOrderManageViewController.h"
+
 #import "LYUserHttpTool.h"
 #import "UIImage+GIF.h"
 #import "OrderInfoModel.h"
@@ -24,6 +25,8 @@
 #import "UMSocial.h"
 #import "UserModel.h"
 #import "ChoosePayController.h"
+#import "LYEvaluationController.h"
+
 @interface LYMyOrderManageViewController ()
 
 @end
@@ -52,9 +55,40 @@
     [self.kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
     dataList=[[NSMutableArray alloc]init];
     [self getMenuHrizontal];
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
-    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    [self getAllOrder];
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refreshData];
+    }];
+    //    [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    self.tableView.footer =[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self loadMoreData];
+    }];
+    
+//    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+//    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    
+    switch (_orderType) {
+        case 0:
+            [self getAllOrder];
+            break;
+        case 1:
+            [self getDaiFuKuan];
+            break;
+        case 2:
+            [self getDaiXiaoFei];
+            break;
+        case 3:
+            [self getDaiFanLi];
+            break;
+        case 4:
+            [self getDaiPingjia];
+            break;
+        case 5:
+            [self getTuiDan];
+            break;
+        default:
+            break;
+    }
+    
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -127,6 +161,17 @@
     
     [self getOrderWithDic:dic];
 }
+#pragma mark 获取待评价数据
+-(void)getDaiPingjia{
+    pageCount=1;
+    //    [dataList removeAllObjects];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"8"};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+    
+    [self getOrderWithDic:dic];
+}
+
+
 #pragma mark 获取待返利数据
 -(void)getDaiFanLi{
     pageCount=1;
@@ -191,7 +236,7 @@
 }
 #pragma mark 获取顶部菜单
 -(void)getMenuHrizontal{
-    NSArray *menuArrNew=@[@"订单",@"待付款",@"待消费",@"已返利",@"待返利",@"退款"];
+    NSArray *menuArrNew=@[@"订单",@"待付款",@"待消费",@"待返利",@"待评价",@"退款"];
     NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:5];
     for (int i=0; i<=menuArrNew.count-1; i++) {
         
@@ -222,7 +267,7 @@
     }
     
     if (mMenuHriZontal == nil) {
-        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:self.menuView.frame ButtonItems:barArr];
+        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:self.menuView.frame ButtonItems:barArr andOrderType:_orderType];
         mMenuHriZontal.delegate = self;
     }
     [self.view addSubview:mMenuHriZontal];
@@ -437,9 +482,17 @@
                 orderBottomView.secondBtn.tag=section;
             }else if(orderInfoModel.orderStatus==8 || orderInfoModel.orderStatus==9 ){
                 
+                
                 [orderBottomView.secondBtn setTitle:@"删除订单" forState:0];
                 [orderBottomView.secondBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.secondBtn.tag=section;
+            }
+            //订单为8 待评价
+            if (orderInfoModel.orderStatus==8) {
+                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.oneBtn.tag=section;
+                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.oneBtn setHidden:NO];
             }
         }else if(orderInfoModel.ordertype==1){
             //拼客
@@ -473,6 +526,15 @@
                 [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
                 orderBottomView.zsUserNameLal.text=orderInfoModel.username;
             }
+            
+            //订单为8 待评价
+            if (orderInfoModel.orderStatus==8&&isFaqi) {
+                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.oneBtn.tag=section;
+                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.oneBtn setHidden:NO];
+            }
+            
             if(orderInfoModel.orderStatus==0){
                 
                 if(isFaqi){
@@ -578,9 +640,19 @@
                 [orderBottomView.secondBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.secondBtn.tag=section;
             }
+            
+            //订单为8 待评价
+            if (orderInfoModel.orderStatus==8) {
+                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.oneBtn.tag=section;
+                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.oneBtn setHidden:NO];
+                [orderBottomView.oneBtn setSelected:YES];
+            }
         }
         
         
+
         
         return orderBottomView;
     }
@@ -848,14 +920,15 @@
             break;
         }
             
-        case 3:// 已返利
-        {
-            [self getYiFanLi];
-            break;
-        }
-        case 4:// 待返利
+        case 3:// 待返利
         {
             [self getDaiFanLi];
+            
+            break;
+        }
+        case 4:// 待评价
+        {
+            [self getDaiPingjia];
             break;
         }
         default://退款
@@ -977,6 +1050,16 @@
     
 
 }
+#pragma mark 立即评价
+- (void)gotoPingjia:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    orderInfoModel=dataList[sender.tag];
+    
+    LYEvaluationController *eva=[[LYEvaluationController alloc]initWithNibName:@"LYEvaluationController" bundle:nil];
+    eva.orderInfoModel=orderInfoModel;
+    [self.navigationController pushViewController:eva animated:YES];
+}
+
 #pragma mark 一定会去
 - (void)yiDinHuiQuAct:(UIButton *)sender{
     OrderInfoModel *orderInfoModel;

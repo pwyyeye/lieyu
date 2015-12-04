@@ -25,6 +25,8 @@
 //    [self.navigationItem setLeftBarButtonItem:item];
     
    // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
+    
+    _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
 }
 - (IBAction)goBackClick:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];

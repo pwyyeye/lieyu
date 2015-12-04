@@ -21,6 +21,7 @@
 @property(strong,nonatomic) id<LoginDelegate> delegate;
 
 - (IBAction)forgetPassWordAct:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btn_submit;
 - (IBAction)loginAct:(UIButton *)sender;
 - (IBAction)zhuceAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *passWordTex;

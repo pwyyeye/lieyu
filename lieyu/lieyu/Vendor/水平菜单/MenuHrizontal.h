@@ -16,6 +16,7 @@
 #define TITLEWIDTH @"titleWidth"
 #define TOTALWIDTH @"totalWidth"
 #define COUNTORDER @"countOrder"
+
 @protocol MenuHrizontalDelegate <NSObject>
 
 @optional
@@ -34,6 +35,7 @@
 @property (nonatomic,strong) NSArray *weekDateArr;
 #pragma mark 初始化菜单
 - (id)initWithFrame:(CGRect)frame ButtonItems:(NSArray *)aItemsArray;
+- (id)initWithFrame:(CGRect)frame ButtonItems:(NSArray *)aItemsArray andOrderType:(NSInteger) orderType;
 - (id)initWithFrameForTime:(CGRect)frame ButtonItems:(NSArray *)aItemsArray;
 @property (nonatomic,assign) NSInteger selectIndex;
 #pragma mark 选中某个button

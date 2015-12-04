@@ -21,6 +21,9 @@
 //订单统计
 #define LY_MY_ORDER_TTL @"lyOrderAction.do?action=expand"
 
+//订单评价
+#define LY_MY_ORDER_PINGJIA @"lyOrderEvaluationAction.do?action=add "
+
 //取消订单
 #define LY_MY_ORDER_CANCEL @"lyOrderAction.do?action=cancel"
 //一定会去

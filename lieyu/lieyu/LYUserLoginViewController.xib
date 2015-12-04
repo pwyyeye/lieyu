@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYUserLoginViewController">
             <connections>
                 <outlet property="btn_getBack" destination="cQS-T1-Wgn" id="Zqj-P3-fn6"/>
+                <outlet property="btn_submit" destination="UjU-uV-SLx" id="CzE-QX-Ken"/>
                 <outlet property="passWordTex" destination="udk-cZ-jda" id="kUP-UF-nLD"/>
                 <outlet property="userImageView" destination="xvr-qN-7Rm" id="nLu-NA-BOA"/>
                 <outlet property="userNameTex" destination="r2z-Mv-Y8t" id="fEo-vR-yqG"/>
@@ -59,7 +60,7 @@
                         <action selector="loginAct:" destination="-1" eventType="touchUpInside" id="2MN-6K-QTN"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="输入登录密码" placeholder="密码" minimumFontSize="17" id="udk-cZ-jda">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入登录密码" minimumFontSize="17" id="udk-cZ-jda">
                     <rect key="frame" x="30" y="315" width="273" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
@@ -110,7 +111,7 @@
                         <action selector="goBackClick:" destination="-1" eventType="touchUpInside" id="gTo-28-BKa"/>
                     </connections>
                 </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="输入手机号" minimumFontSize="17" id="r2z-Mv-Y8t">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" minimumFontSize="17" id="r2z-Mv-Y8t">
                     <rect key="frame" x="30" y="259" width="273" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
