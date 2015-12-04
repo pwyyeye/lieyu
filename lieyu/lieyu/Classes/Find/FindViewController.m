@@ -31,6 +31,10 @@
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    //适配7.0
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+        _tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    }
     datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
                @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
                @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},

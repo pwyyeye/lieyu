@@ -91,7 +91,11 @@ UITableViewDataSource,UITableViewDelegate,
     rc.origin.y = -20;
     _topView.frame = rc;
     [self.navigationController.navigationBar addSubview:_topView];
-    self.tableView.origin=CGPointMake(0, 0);
+    //ios 7.0适配
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
+    }
+
     
     [self getData];
 }
@@ -164,9 +168,9 @@ UITableViewDataSource,UITableViewDelegate,
     [super viewWillLayoutSubviews];
     
     //ios 7.0适配
-//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-//       self.tableView.contentInset = UIEdgeInsetsMake(64,  0,  0,  0);
-//    }
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+       self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
+    }
     
 
     if (self.navigationController.navigationBarHidden != NO) {

@@ -379,14 +379,14 @@
         [self.navigationController setNavigationBarHidden:NO];
 
     }
-//    //ios 7.0适配
-//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-//        NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
+    //ios 7.0适配
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+        NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
 //        if (self.tableView.contentInset.top==0 ||self.tableView.contentInset.top==128) {
-//            self.tableView.contentInset = UIEdgeInsetsMake(64,  0,  0,  0);
+            self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
 //        }
-//
-//    }
+
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated

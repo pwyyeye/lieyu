@@ -34,13 +34,15 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [super viewDidLoad];
     self.navigationController.delegate=self;
     if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-        self.edgesForExtendedLayout=UIRectEdgeAll;
+        self.automaticallyAdjustsScrollViewInsets =YES;
+        self.edgesForExtendedLayout=UIRectEdgeTop;
+        [self.navigationController setNavigationBarHidden:YES];
     }else{
         self.automaticallyAdjustsScrollViewInsets = YES;
         
         self.edgesForExtendedLayout=UIRectEdgeNone;
     }
+    self.title=@"我的";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -65,9 +67,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-//                self.collectionView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
-//    }
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+                self.collectionView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
+    }
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
 }
@@ -77,11 +79,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
-//-(void)viewWillLayoutSubviews{
-//    [super viewWillLayoutSubviews];
-//    [self.navigationController setNavigationBarHidden:YES];
-//    
-//}
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:YES];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
