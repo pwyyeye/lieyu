@@ -67,13 +67,17 @@
 -(void) prepareWeixinPayWithParams:(NSDictionary*)params
                           complete:(void (^)(NSDictionary *result))result;
 
-
 //一定会去
 -(void) sureMyOrder:(NSDictionary*)params
              complete:(void (^)(BOOL result))result;
 
 //获取订单统计状况
 -(void)getOrderTTL:(void (^)(OrderTTL* result))result;
+
+//订单评价
+-(void) addEvaluation:(NSDictionary*)params
+             complete:(void (^)(BOOL result))result;
+
 
 //好友列表
 -(void) getFriendsList:(NSDictionary*)params

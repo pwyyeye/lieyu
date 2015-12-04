@@ -25,6 +25,7 @@
 #import "UMSocial.h"
 #import "UserModel.h"
 #import "ChoosePayController.h"
+#import "LYEvaluationController.h"
 
 @interface LYMyOrderManageViewController ()
 
@@ -54,8 +55,16 @@
     [self.kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
     dataList=[[NSMutableArray alloc]init];
     [self getMenuHrizontal];
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
-    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refreshData];
+    }];
+    //    [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    self.tableView.footer =[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self loadMoreData];
+    }];
+    
+//    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+//    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     switch (_orderType) {
         case 0:
@@ -473,9 +482,17 @@
                 orderBottomView.secondBtn.tag=section;
             }else if(orderInfoModel.orderStatus==8 || orderInfoModel.orderStatus==9 ){
                 
+                
                 [orderBottomView.secondBtn setTitle:@"删除订单" forState:0];
                 [orderBottomView.secondBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.secondBtn.tag=section;
+            }
+            //订单为8 待评价
+            if (orderInfoModel.orderStatus==8) {
+                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.oneBtn.tag=section;
+                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.oneBtn setHidden:NO];
             }
         }else if(orderInfoModel.ordertype==1){
             //拼客
@@ -509,6 +526,15 @@
                 [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
                 orderBottomView.zsUserNameLal.text=orderInfoModel.username;
             }
+            
+            //订单为8 待评价
+            if (orderInfoModel.orderStatus==8&&isFaqi) {
+                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.oneBtn.tag=section;
+                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.oneBtn setHidden:NO];
+            }
+            
             if(orderInfoModel.orderStatus==0){
                 
                 if(isFaqi){
@@ -614,9 +640,19 @@
                 [orderBottomView.secondBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.secondBtn.tag=section;
             }
+            
+            //订单为8 待评价
+            if (orderInfoModel.orderStatus==8) {
+                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.oneBtn.tag=section;
+                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.oneBtn setHidden:NO];
+                [orderBottomView.oneBtn setSelected:YES];
+            }
         }
         
         
+
         
         return orderBottomView;
     }
@@ -1014,6 +1050,16 @@
     
 
 }
+#pragma mark 立即评价
+- (void)gotoPingjia:(UIButton *)sender{
+    OrderInfoModel *orderInfoModel;
+    orderInfoModel=dataList[sender.tag];
+    
+    LYEvaluationController *eva=[[LYEvaluationController alloc]initWithNibName:@"LYEvaluationController" bundle:nil];
+    eva.orderInfoModel=orderInfoModel;
+    [self.navigationController pushViewController:eva animated:YES];
+}
+
 #pragma mark 一定会去
 - (void)yiDinHuiQuAct:(UIButton *)sender{
     OrderInfoModel *orderInfoModel;

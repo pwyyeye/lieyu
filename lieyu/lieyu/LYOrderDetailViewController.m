@@ -23,7 +23,7 @@
 #import "LYUserHttpTool.h"
 #import <RongIMKit/RongIMKit.h>
 #import "OrderHandleButton.h"
-
+#import "LYEvaluationController.h"
 #import "UMSocial.h"
 @interface LYOrderDetailViewController ()
 
@@ -33,6 +33,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     aboutTitle=@"";
     aboutContent=@"";
     sectionNum=0;
@@ -1294,6 +1297,12 @@
     }
 
 }
+#pragma mark 立即评价
+- (void)gotoPingjia:(UIButton *)sender{
+    LYEvaluationController *eva=[[LYEvaluationController alloc] initWithNibName:@"LYEvaluationController" bundle:nil];
+    [self.navigationController pushViewController:eva animated:YES];
+}
+
 #pragma mark 删除订单
 -(void)shanChuDinDanAct:(UIButton *)sender{
     
