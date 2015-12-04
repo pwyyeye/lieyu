@@ -16,6 +16,7 @@
 #import "LPBuyManagerCell.h"
 
 #import "LYHomePageHttpTool.h"
+#import "ChoosePayController.h"
 
 //2.7.3 【0002】task=lyUsersVipStoreAction?action=list (已可用) 请求所有的专属经理列表
 //2.7.4 【R0002】反馈所有专属经理列表
@@ -34,15 +35,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.showsVerticalScrollIndicator = NO;
+//    self.tableView.scrollIndicatorInsets
+//    self.view.backgroundColor = [UIColor redColor];
+//    [self.view setBackgroundColor:RGBA(256, 256, 256, 1)];
+//    UIView *view = [[UIView alloc]initWithFrame:self.view.frame];
+//    view.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:view];
+    
+//    [view addSubview:self.tableView];
+//    [view addSubview:self.buyNowBtn];
+    
     self.title = @"确认拼客订单";
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = backBtn;
 //    NSLog(@"pinkeModel:%@",self.pinkeModel);
 //    NSLog(@"dictionary:%@",self.InfoDict);
-    if(self.pinkeModel.managerList.count == 0){
-        self.buyNowBtn.enabled = NO;
-        [self.buyNowBtn setBackgroundColor:[UIColor grayColor]];
-    }
+    
+    /*
+     进行能否购买的判断
+     */
+//    if(self.pinkeModel.managerList.count == 0){
+//        self.buyNowBtn.enabled = NO;
+//        [self.buyNowBtn setBackgroundColor:[UIColor grayColor]];
+//    }
     
 }
 
@@ -71,9 +87,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section == 0){
-        return 16;
-    }else if(section == 4){
+    if(section == 4){
         return 48;
     }else{
         return 0;
@@ -134,7 +148,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 0){
-        return 70;
+        return 86;
     }else if(indexPath.section == 1){
         return 40;
     }else if(indexPath.section == 2){
@@ -197,7 +211,7 @@
             UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.textLabel.font = [UIFont systemFontOfSize:14];
             cell.textLabel.textColor = RGBA(76, 76, 76, 1);
-            cell.textLabel.text = @"抱歉该套餐还没有专属经理，无法购买!";
+            cell.textLabel.text = @"抱歉，该套餐还没有专属经理，无法购买!";
             return cell;
         }
     }
@@ -218,5 +232,39 @@
 }
 
 - (IBAction)buyNowClick:(UIButton *)sender {
+    if(self.pinkeModel){
+        bool issel = false;
+        int userId=0;
+//        for (ZSDetailModel *detaiModel in zsArr) {
+//            if(detaiModel.issel){
+//                userId=detaiModel.userid;
+//                issel=true;
+//                break;
+//            }
+//        }
+//        if(!issel){
+//            [self showMessage:@"请选择专属经理!"];
+//            return;
+//        }
+        
+        NSDictionary *dic=@{@"pinkerid":[NSNumber numberWithInt:_pinkeModel.id],@"reachtime":self.InfoDict[@"time"],@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":self.InfoDict[@"number"],@"payamount":self.InfoDict[@"money"],@"pinkerType":self.InfoDict[@"type"]};
+        [[LYHomePageHttpTool shareInstance]setTogetherOrderInWithParams:dic complete:^(NSString *result) {
+            if(result){
+                //支付宝页面"data": "P130637201510181610220",
+                //result的值就是P130637201510181610220
+                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+                detailViewController.orderNo=result;
+                detailViewController.payAmount=[self.InfoDict[@"money"] doubleValue];
+                detailViewController.productName=self.pinkeModel.title;
+                detailViewController.productDescription=@"暂无";
+                self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+                
+                [self.navigationController pushViewController:detailViewController animated:YES];
+            }
+        }];
+        
+    }
+    
+
 }
 @end

@@ -11,12 +11,12 @@
 @implementation AddressTableViewCell
 
 - (void)awakeFromNib {
-    
+    self.selected = YES;
+    self.addressBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.frame.size.height);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 

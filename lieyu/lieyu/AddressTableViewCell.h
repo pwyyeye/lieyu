@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSString *Address;
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLbl;
+@property (weak, nonatomic) IBOutlet UIButton *addressBtn;
 
 - (void)cellConfigure:(NSString *)address;
 
