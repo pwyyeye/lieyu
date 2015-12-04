@@ -21,8 +21,9 @@
 #import "LPBuyViewController.h"
 #import "LYtimeChooseTimeController.h"
 #import "TimePickerView.h"
+#import "CommonShow.h"
 
-@interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) BitianTableViewCell *biTianCell;
 @property (nonatomic, strong) ContentView *contentView;
@@ -32,6 +33,10 @@
 
 @property (nonatomic, strong) NSString *defaultString;
 @property (nonatomic, strong) NSDate *defaultDate;
+@property (nonatomic, assign) CGFloat defaultPay;
+@property (nonatomic, assign) int defaultNumber;
+@property (nonatomic, assign) int defaultIndex;
+
 
 @end
 
@@ -57,8 +62,14 @@
 //       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
 //        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40);
 //    }
+    self.likeBtn.hidden = YES;
+    self.likeBtn.enabled = NO;
     self.defaultString = @"请选择消费方式";
     self.defaultDate = [NSDate date];
+    self.defaultNumber = 1;
+    self.biTianCell.numTextField.keyboardType = UIKeyboardTypeNumberPad;
+    self.biTianCell.numTextField.returnKeyType = UIReturnKeyDone;
+    self.biTianCell.numTextField.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.showsVerticalScrollIndicator = NO;
@@ -157,7 +168,8 @@
         }
         if(self.pinKeModel){
             NSDictionary *dict = @{
-                                   @"taocanInfo":self.pinKeModel.title,                           @"price":self.pinKeModel.price,
+                                   @"taocanInfo":self.pinKeModel.title,
+                                   @"price":self.pinKeModel.price,
                                    @"marketPrice":self.pinKeModel.marketprice,
                                    @"profit":self.pinKeModel.rebate};
             cell.dict = dict;
@@ -210,9 +222,36 @@
             if([_contentView.buttonStatusArray[index] isEqualToString:@"1"]){
                 [self.biTianCell.chooseWay setTitle:self.labelArray[index] forState:UIControlStateNormal];
                 self.defaultString = self.labelArray[index];
+                self.defaultIndex = index;
+                if(index == 0){
+                    self.defaultPay = [self.pinKeModel.price floatValue];
+                }else if(index == 1){
+                    self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / [self.biTianCell.numTextField.text intValue];
+                }else{
+                    __weak __typeof(self)weakSelf = self;
+                    void (^chooseYourPay)(void) = ^(void){
+                        UIAlertView *customAlert = [[UIAlertView alloc]initWithTitle:@"请填写您要支付的金额" message:nil delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                        [customAlert setTintColor:RGBA(114, 5, 147, 1)];
+                        [customAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+                        UITextField *payField = [customAlert textFieldAtIndex:0];
+                        payField.keyboardType = UIKeyboardTypeNumberPad;
+                        payField.placeholder = @"金额请不少于100元";
+                        [customAlert show];
+                    };
+                    chooseYourPay();
+                }
             }
         }
         
+    }
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == alertView.firstOtherButtonIndex) {
+        if ([[alertView textFieldAtIndex:0].text intValue] < 100) {
+            [CommonShow showMessage:@"对不起，发起人预付金额不可少于100元!"];
+        }
     }
 }
 
@@ -264,10 +303,26 @@
 }
 
 - (void)addPeople{
-    
+    self.defaultNumber ++;
+//    self.biTianCell.numTextField.text = [NSString stringWithFormat:@"%d",self.defaultNumber];
+    [self.biTianCell.numTextField setText:[NSString stringWithFormat:@"%d",self.defaultNumber]];
 }
 
 - (void)lessPeople{
+    self.defaultNumber --;
+//    self.biTianCell.numTextField.text = [NSString stringWithFormat:@"%d",self.defaultNumber];
+    [self.biTianCell.numTextField setText:[NSString stringWithFormat:@"%d",self.defaultNumber]];
+    if(self.defaultNumber <= 1){
+        self.biTianCell.lessBtn.enabled = NO;
+    }
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+}// became first responder
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
     
 }
 
@@ -280,24 +335,36 @@
 }
 
 - (IBAction)BuyNow:(UIButton *)sender {
-    LPBuyViewController *LPBuyVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPBuyVC"];
-    LPBuyVC.pinkeModel = self.pinKeModel;
+    if([self.biTianCell.chooseTime.titleLabel.text isEqualToString:@"选择到店时间"] ||
+       [self.biTianCell.chooseWay.titleLabel.text isEqualToString:@"选择正确的拼客方式"]){
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"抱歉，请将信息填写完整!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show ];
+    }else{
+        LPBuyViewController *LPBuyVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPBuyVC"];
+        LPBuyVC.pinkeModel = self.pinKeModel;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yy年MM月dd日 EEE HH:mm"];
+        NSString *dateString = [formatter stringFromDate:self.defaultDate];
+        
+        if(self.defaultIndex == 1){
+            self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / self.defaultNumber;
+        }
+        
+        NSDictionary *dict = @{@"time":dateString,
+                               @"way":self.defaultString,
+                               @"money":[NSString stringWithFormat:@"%.2f",self.defaultPay],
+                               @"number":[NSString stringWithFormat:@"%d",self.defaultNumber]};
+        LPBuyVC.InfoDict = dict;
+        [self.navigationController pushViewController:LPBuyVC animated:YES];
+    }
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yy年MM月dd日 EEE HH:mm"];
-    NSString *dateString = [formatter stringFromDate:self.defaultDate];
     
-    NSDictionary *dict = @{@"time":dateString,
-                           @"way":self.defaultString,
-                           @"money":@"800",
-                           @"number":@"5"};
-    LPBuyVC.InfoDict = dict;
-    [self.navigationController pushViewController:LPBuyVC animated:YES];
 }
 
 - (IBAction)LikeClick:(UIButton *)sender {
+    
 }
 
 - (IBAction)ShareClick:(UIButton *)sender {
+    
 }
 @end

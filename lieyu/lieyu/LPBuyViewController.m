@@ -197,7 +197,7 @@
             UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
             cell.textLabel.font = [UIFont systemFontOfSize:14];
             cell.textLabel.textColor = RGBA(76, 76, 76, 1);
-            cell.textLabel.text = @"抱歉该套餐还没有专属经理，无法购买";
+            cell.textLabel.text = @"抱歉该套餐还没有专属经理，无法购买!";
             return cell;
         }
     }

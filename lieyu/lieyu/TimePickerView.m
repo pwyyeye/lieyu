@@ -14,6 +14,7 @@
     self.timePicker.datePickerMode = UIDatePickerModeDateAndTime;
     self.timePicker.minimumDate = [NSDate date];
     self.timePicker.tintColor = [UIColor purpleColor];
+//    [self.timePicker setFrame:CGRectMake(20, 10, self.frame.size.width - 40, self.frame.size.height - 20)];
 }
 
 - (void)showTimeWithDate:(NSDate *)date{
