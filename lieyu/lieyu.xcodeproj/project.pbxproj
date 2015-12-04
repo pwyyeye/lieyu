@@ -2516,13 +2516,6 @@
 			name = IM;
 			sourceTree = "<group>";
 		};
-		15EA6DDA1BC16C7B00620C9E /* IM */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = IM;
-			sourceTree = "<group>";
-		};
 		15EB35201BD3394000BA6161 /* banner */ = {
 			isa = PBXGroup;
 			children = (
@@ -4257,8 +4250,8 @@
 		D761F0281BA5B90E000757B0 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				AD106BBF1C0E955A007F5FBA /* models */,
 				A2020D4C1BA661C00090B92A /* 专属经理 */,
+				AD106BBF1C0E955A007F5FBA /* models */,
 				A2020D4B1BA6612C0090B92A /* 个人信息 */,
 				AD106B881C0AEF16007F5FBA /* LYUserCenterController.h */,
 				AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */,
@@ -4279,7 +4272,6 @@
 			isa = PBXGroup;
 			children = (
 				A2020D421BA660640090B92A /* Base */,
-				15EA6DDA1BC16C7B00620C9E /* IM */,
 				D761F0281BA5B90E000757B0 /* Mine */,
 				D761F0271BA5B8D5000757B0 /* Find */,
 				D761F0251BA5B8A5000757B0 /* PlayTogether */,
