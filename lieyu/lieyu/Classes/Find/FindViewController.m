@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.edgesForExtendedLayout=UIRectEdgeBottom;
     isMes=false;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:RECEIVES_MESSAGE object:nil];
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -116,14 +117,14 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section==0||section==2){
-        return 1;
+    if(section==0){
+        return 3;
     }
-        return 2;
+        return 1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -131,28 +132,38 @@
     NSDictionary *dic;
     cell = [tableView dequeueReusableCellWithIdentifier:@"FindMenuCell" forIndexPath:indexPath];
     if(indexPath.section==0){
-        dic=[datalist objectAtIndex:0];
-        if(isMes){
-            [cell.messageImageView setHidden:NO];
-            
-        }else{
-            [cell.messageImageView setHidden:YES];
-        }
-    }
-    else if(indexPath.section==1){
+       
         if(indexPath.row==0){
-            dic=[datalist objectAtIndex:1];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 50.5, 290, 0.5)];
+            dic=[datalist objectAtIndex:0];
+            if(isMes){
+                [cell.messageImageView setHidden:NO];
+                
+            }else{
+                [cell.messageImageView setHidden:YES];
+            }
+            [[cell viewWithTag:100] removeFromSuperview];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, 320, 0.3)];
             lineLal.backgroundColor=RGB(199, 199, 199);
+            lineLal.tag=100;
+            [cell addSubview:lineLal];
+        }else if(indexPath.row==1){
+            dic=[datalist objectAtIndex:1];
+            [[cell viewWithTag:100] removeFromSuperview];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, 320, 0.3)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            lineLal.tag=100;
             [cell addSubview:lineLal];
         }else{
             dic=[datalist objectAtIndex:2];
         }
-        
-    }else{
+
+    }
+    else{
         if(indexPath.row==0){
+            [[cell viewWithTag:100] removeFromSuperview];
             dic=[datalist objectAtIndex:3];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 50.5, 290, 0.5)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, 320, 0.3)];
+            lineLal.tag=100;
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
         }else{
@@ -177,18 +188,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section==0){
-        if(isMes){
-            [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
-            isMes=false;
-        }
-        
-        LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
-        chat.title=@"最近联系";
-        [self.navigationController pushViewController:chat animated:YES];
-        [self.tableView reloadData];
-    }
-    else if(indexPath.section==1){
+      
         if(indexPath.row==0){
+            if(isMes){
+                [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
+                isMes=false;
+            }
+            
+            LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
+            chat.title=@"最近联系";
+            [self.navigationController pushViewController:chat animated:YES];
+        }else if(indexPath.row==1){
             //玩友列表
             LYMyFriendViewController *myFriendViewController=[[LYMyFriendViewController alloc]initWithNibName:@"LYMyFriendViewController" bundle:nil];
             [self.navigationController pushViewController:myFriendViewController animated:YES];
@@ -198,6 +208,7 @@
             [self.navigationController pushViewController:nearFriendViewController animated:YES];
             //附近玩客
         }
+        [self.tableView reloadData];
     }else{
         if(indexPath.row==0 && NO){
             //摇一摇

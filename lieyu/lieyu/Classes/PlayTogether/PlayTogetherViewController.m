@@ -48,6 +48,9 @@
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.frame = CGRectMake(0, 68, SCREEN_WIDTH, 370);
     }
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -56,6 +59,11 @@
     perCount=20;
     [self setupViewStyles];
     [self getDataForTogether];
+    [self getData];
+    // Do any additional setup after loading the view.
+}
+
+- (void)getData{
     __weak __typeof(self)weakSelf = self;
     self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         pageCount=1;
@@ -69,11 +77,8 @@
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [self getDataWithDicMore:nowDic];
     }];
-    // Do any additional setup after loading the view.
-    
-    
-    
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
