@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0D-na-PiH">
-                        <rect key="frame" x="175" y="47" width="46" height="16"/>
+                        <rect key="frame" x="175" y="47" width="49" height="16"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" red="1" green="0.25098039215686274" blue="0.25098039215686274" alpha="0.97999999999999998" colorSpace="calibratedRGB"/>
@@ -58,7 +58,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7L2-Tm-yRU">
-                        <rect key="frame" x="237" y="49" width="31" height="14"/>
+                        <rect key="frame" x="237" y="49" width="34" height="14"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,6 +72,7 @@
                 <outlet property="imageView_header" destination="q4d-GZ-Jot" id="611-su-2CR"/>
                 <outlet property="label_buyCount" destination="lAn-Wb-x2j" id="ipz-L1-COR"/>
                 <outlet property="label_name" destination="kA5-8W-NOw" id="Ccc-Qn-3Wc"/>
+                <outlet property="label_percent" destination="9r5-RV-hJd" id="ui8-1q-AJA"/>
                 <outlet property="label_price_now" destination="a0D-na-PiH" id="vkK-G9-cky"/>
                 <outlet property="label_price_old" destination="7L2-Tm-yRU" id="a0F-8Z-ZNd"/>
             </connections>

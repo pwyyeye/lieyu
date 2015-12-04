@@ -19,6 +19,13 @@
 #import "LYtimeChooseTimeController.h"
 #import "DWIsGoToViewController.h"
 #import "ChoosePayController.h"
+
+#import "LYDinWeiTableViewCell.h"
+#import "LYOrderWriteTableViewCell.h"
+#import "LYOrderInfoTableViewCell.h"
+#import "LYOrderManagerTableViewCell.h"
+//#import "LYTimeChoose.h"
+
 @interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate>
 {
     TaoCanModel *taoCanModel;
@@ -35,6 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self deployCell];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -42,11 +50,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(numChange) name:@"numChange" object:nil];
     // Do any additional setup after loading the view.
 }
+
+- (void)deployCell{
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYOrderWriteTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYOrderWriteTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYOrderInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYOrderInfoTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYOrderManagerTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYOrderManagerTableViewCell"];
+}
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"numChange" object:nil];
-    
-    
-    
 }
 -(void)numChange{
     int num = numCell.numLal.text.intValue;
@@ -62,61 +75,43 @@
         zsArr=taoCanModel.managerList;
         [_payBtn setTitle:[NSString stringWithFormat:@"马上支付（￥%.2f）",taoCanModel.price] forState:0];
         [weakSelf.tableView reloadData];
-        
     }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section==1){
-        return 6;
-        
-    }else if(section==2){
-        return zsArr.count;
-    }
-    else{
-        return 1;
-    }
+    return 1;
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if(taoCanModel){
-        return 4;
-    }else{
-        return 0;
-    }
-    
+    return zsArr.count + 3;
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(section==2){
-        return 34;
-    }else{
-        return 1;
+    if (section == 3) {
+        return 48;
     }
+    return 8;
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if(section!=2){
-        return [[UIView alloc] initWithFrame:CGRectZero];
-    }else{
-        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
-        view.backgroundColor=RGB(247, 247, 247);
-        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(15, 11, 200, 12)];
-        
-        label.text=@"选择我的专属经理";
-       
-        
-        label.font=[UIFont systemFontOfSize:12];
-        label.textColor=RGB(51, 51, 51);
-        [view addSubview:label];
-        return view;
-    }
-    
-    
-}
+
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    if(section!=2){
+//        return [[UIView alloc] initWithFrame:CGRectZero];
+//    }else{
+//        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
+//        view.backgroundColor=RGB(247, 247, 247);
+//        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(15, 11, 200, 12)];
+//        
+//        label.text=@"选择我的专属经理";
+//        label.font=[UIFont systemFontOfSize:12];
+//        label.textColor=RGB(51, 51, 51);
+//        [view addSubview:label];
+//        return view;
+//    }
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -125,111 +120,134 @@
     {
         case 0:
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"DWOrderTopCell" forIndexPath:indexPath];
+            
+            //            cell = [tableView dequeueReusableCellWithIdentifier:@"DWOrderTopCell" forIndexPath:indexPath];
+            //            if (cell) {
+            //               DWOrderTopCell * adCell = (DWOrderTopCell *)cell;
+            //                [adCell configureCell:taoCanModel];
+            //
+            //
+            //            }
+            
+            cell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
             if (cell) {
-                DWOrderTopCell * adCell = (DWOrderTopCell *)cell;
-                [adCell configureCell:taoCanModel];
-                
-                
+                LYDinWeiTableViewCell *dinCell = (LYDinWeiTableViewCell *)cell;
+                dinCell.taoCanModel = taoCanModel;
             }
+            //            LYDinWeiTableViewCell *dinCell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
+            //            //dinCell.taoCanModel = taoCanModel;
+            //            return dinCell;
         }
             break;
         case 1:
         {
-            
-            if(indexPath.row==0){
-                cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
-                if (cell) {
-                    LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
-                    titleInfoCell.titleLal.text=@"消费地址";
-                    titleInfoCell.delLal.text=taoCanModel.barinfo.barname;
-                    
-                }
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
-            }
-            if(indexPath.row==1){
-                cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
-                if (cell) {
-                    LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
-                    titleInfoCell.titleLal.text=@"具体地址";
-                    titleInfoCell.delLal.text=taoCanModel.barinfo.address;
-                    
-                }
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
-            }
-            if(indexPath.row==2){
-                cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
-                if (cell) {
-                    LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
-                    titleInfoCell.titleLal.text=@"消费日期";
-                    titleInfoCell.delLal.text=self.dateStr;
-                    
-                }
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
-            }
-            if(indexPath.row==3){
-                cell = [tableView dequeueReusableCellWithIdentifier:@"DWOredrNextCell" forIndexPath:indexPath];
-                if (cell) {
-                    timeCell = (DWOredrNextCell *)cell;
-                    timeCell.titleLal.text=@"选择到店时间";
-                    timeCell.delLal.text=@"到店时间";
-                    [timeCell.delLal setTextColor:[UIColor redColor]];
-                    
-                }
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
-            }
-            if(indexPath.row==4){
-                cell = [tableView dequeueReusableCellWithIdentifier:@"DWOredrNextCell" forIndexPath:indexPath];
-                if (cell) {
-                    typeCell = (DWOredrNextCell *)cell;
-                    typeCell.titleLal.text=@"消费状态";
-                    typeCell.delLal.text=@"选择正确消费状态";
-                    [typeCell.delLal setTextColor:[UIColor redColor]];
-                }
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
-            }
-            if(indexPath.row==5){
-                cell = [tableView dequeueReusableCellWithIdentifier:@"DWnumCell" forIndexPath:indexPath];
-                if (cell) {
-                    numCell = (DWnumCell *)cell;
-                    
-                }
+            /*
+             if(indexPath.row==0){
+             cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
+             if (cell) {
+             LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
+             titleInfoCell.titleLal.text=@"消费地址";
+             titleInfoCell.delLal.text=taoCanModel.barinfo.barname;
+             
+             }
+             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
+             lineLal.backgroundColor=RGB(199, 199, 199);
+             [cell addSubview:lineLal];
+             }
+             if(indexPath.row==1){
+             cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
+             if (cell) {
+             LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
+             titleInfoCell.titleLal.text=@"具体地址";
+             titleInfoCell.delLal.text=taoCanModel.barinfo.address;
+             
+             }
+             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
+             lineLal.backgroundColor=RGB(199, 199, 199);
+             [cell addSubview:lineLal];
+             }
+             if(indexPath.row==2){
+             cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
+             if (cell) {
+             LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
+             titleInfoCell.titleLal.text=@"消费日期";
+             titleInfoCell.delLal.text=self.dateStr;
+             
+             }
+             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
+             lineLal.backgroundColor=RGB(199, 199, 199);
+             [cell addSubview:lineLal];
+             }
+             if(indexPath.row==3){
+             cell = [tableView dequeueReusableCellWithIdentifier:@"DWOredrNextCell" forIndexPath:indexPath];
+             if (cell) {
+             timeCell = (DWOredrNextCell *)cell;
+             timeCell.titleLal.text=@"选择到店时间";
+             timeCell.delLal.text=@"到店时间";
+             [timeCell.delLal setTextColor:[UIColor redColor]];
+             
+             }
+             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
+             lineLal.backgroundColor=RGB(199, 199, 199);
+             [cell addSubview:lineLal];
+             }
+             if(indexPath.row==4){
+             cell = [tableView dequeueReusableCellWithIdentifier:@"DWOredrNextCell" forIndexPath:indexPath];
+             if (cell) {
+             typeCell = (DWOredrNextCell *)cell;
+             typeCell.titleLal.text=@"消费状态";
+             typeCell.delLal.text=@"选择正确消费状态";
+             [typeCell.delLal setTextColor:[UIColor redColor]];
+             }
+             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
+             lineLal.backgroundColor=RGB(199, 199, 199);
+             [cell addSubview:lineLal];
+             }
+             if(indexPath.row==5){
+             cell = [tableView dequeueReusableCellWithIdentifier:@"DWnumCell" forIndexPath:indexPath];
+             if (cell) {
+             numCell = (DWnumCell *)cell;
+             
+             }
+             }
+             */
+            cell = [tableView dequeueReusableCellWithIdentifier:@"LYOrderWriteTableViewCell" forIndexPath:indexPath];
+            if (cell) {
+                LYOrderWriteTableViewCell *writeCell = (LYOrderWriteTableViewCell *)cell;
+                [writeCell.btn_chooseTime addTarget:self action:@selector(choseTime) forControlEvents:UIControlEventTouchUpInside];
             }
         }
             break;
         case 2:
         {
-            ZSDetailModel *zsModel=zsArr[indexPath.row];
-            cell = [tableView dequeueReusableCellWithIdentifier:@"PTzsjlCell" forIndexPath:indexPath];
+            /*
+             ZSDetailModel *zsModel=zsArr[indexPath.row];
+             cell = [tableView dequeueReusableCellWithIdentifier:@"PTzsjlCell" forIndexPath:indexPath];
+             if (cell) {
+             PTzsjlCell * adCell = (PTzsjlCell *)cell;
+             [adCell configureCell:zsModel];
+             adCell.selBtn.tag=indexPath.row;
+             [adCell.selBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
+             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+             lineLal.backgroundColor=RGB(199, 199, 199);
+             [cell addSubview:lineLal];
+             }
+             */
+            cell = [tableView dequeueReusableCellWithIdentifier:@"LYOrderInfoTableViewCell" forIndexPath:indexPath];
             if (cell) {
-                PTzsjlCell * adCell = (PTzsjlCell *)cell;
-                [adCell configureCell:zsModel];
-                adCell.selBtn.tag=indexPath.row;
-                [adCell.selBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
+                LYOrderInfoTableViewCell *infoCell = (LYOrderInfoTableViewCell *)cell;
+                
             }
-
+            
         }
             break;
-        
+            
         default:
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"PTContactCell" forIndexPath:indexPath];
-            PTContactCell *contactCell = (PTContactCell *)cell;
-            [contactCell.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
-            [contactCell.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+            //            cell = [tableView dequeueReusableCellWithIdentifier:@"PTContactCell" forIndexPath:indexPath];
+            //            PTContactCell *contactCell = (PTContactCell *)cell;
+            //            [contactCell.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
+            //            [contactCell.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
         }
             break;
     }
@@ -238,32 +256,39 @@
     return cell;
 }
 
+- (void)choseTime{
+//    LYTimeChoose *timeChooseView = [[LYTimeChoose alloc]init];
+//    timeChooseView.frame = CGRectMake(0, 0, 320, 568);
+//    [timeChooseView deploy];
+//    [self.view addSubview:timeChooseView];
+}
+
+- (void)isResrve{
+    
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat h = 0.0f;
     switch (indexPath.section) {
         case 0:
         {
-            h = 88;
+            h = 70;
         }
             break;
         case 1:
         {
-            if(indexPath.row==5){
-                h = 59;
-            }else{
-                h=44;
-            }
+            h = 188;
         }
             break;
         case 2:
         {
-            h = 76;
+            h = 188;
         }
             break;
         default:
         {
-            h = 44;
+            h = 87;
         }
             break;
     }
@@ -350,14 +375,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 -(void)changeDate:(NSString *)timeStr{
     reachtime=timeStr;
     timeCell.delLal.text=reachtime;
@@ -382,7 +407,7 @@
             [self showMessage:@"请选择消费状态!"];
             return;
         }
-       
+        
         bool issel = false;
         int userId=0;
         for (ZSDetailModel *detaiModel in zsArr) {
@@ -400,7 +425,7 @@
         NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:taoCanModel.smid],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":numCell.numLal.text,@"consumptionStatus":gotype};
         [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
-//                [MyUtil showMessage:result];
+                //                [MyUtil showMessage:result];
                 //支付宝页面"data": "P130637201510181610220",
                 //result的值就是P130637201510181610220
                 ChoosePayController *detailViewController =[[ChoosePayController alloc] init];

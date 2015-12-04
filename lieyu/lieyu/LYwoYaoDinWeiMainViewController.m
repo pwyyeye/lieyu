@@ -18,7 +18,7 @@
 #import "DWTaoCanXQViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "LYDinWeiTableViewCell.h"
-@interface LYwoYaoDinWeiMainViewController ()
+@interface LYwoYaoDinWeiMainViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     JiuBaModel *jiubaModel;
 }
@@ -151,6 +151,10 @@
     return 8;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return LONG_LONG_MIN;
+}
+
 //-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 //{
 // 
@@ -183,11 +187,12 @@
     */
     LYDinWeiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
     RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.section];
-    cell.label_name.text = model.title;
-    cell.label_price_now.text = [NSString stringWithFormat:@"¥%@",model.price];
-    cell.label_price_old.text = [NSString stringWithFormat:@"¥%@",model.marketprice];
-    cell.label_buyCount.text = [NSString stringWithFormat:@"%@人购",model.buynum];
-    [cell.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl]];
+//    cell.label_name.text = model.title;
+//    cell.label_price_now.text = [NSString stringWithFormat:@"¥%@",model.price];
+//    cell.label_price_old.text = [NSString stringWithFormat:@"¥%@",model.marketprice];
+//    cell.label_buyCount.text = [NSString stringWithFormat:@"%@人购",model.buynum];
+//    [cell.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl]];
+    cell.model = model;
      cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
