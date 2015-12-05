@@ -59,4 +59,7 @@
 + (NSString *)getQiniuUrl:(NSString *)key width:(NSInteger)width andHeight:(NSInteger)height;
 
 + (NSString*)deviceString;
+
+//根据日期字符串 获取星座
++(NSString *)getAstroWithMonth:(NSString *)dateString;
 @end

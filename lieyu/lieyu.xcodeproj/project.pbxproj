@@ -614,6 +614,10 @@
 		ADF88EAD1C1197C400CF5DED /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF88E981C1197C400CF5DED /* UIScrollView+MJExtension.m */; };
 		ADF88EAE1C1197C400CF5DED /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF88E9A1C1197C400CF5DED /* UIScrollView+MJRefresh.m */; };
 		ADF88EAF1C1197C400CF5DED /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF88E9C1C1197C400CF5DED /* UIView+MJExtension.m */; };
+		ADF88EF61C12CCA900CF5DED /* alertbg.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF88EF31C12CCA900CF5DED /* alertbg.png */; };
+		ADF88EF71C12CCA900CF5DED /* alertbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF88EF41C12CCA900CF5DED /* alertbg@2x.png */; };
+		ADF88EF81C12CCA900CF5DED /* alertbg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADF88EF51C12CCA900CF5DED /* alertbg@3x.png */; };
+		ADF88F3C1C12E5F000CF5DED /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF88F3B1C12E5F000CF5DED /* KxMenu.m */; };
 		D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */; };
 		D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D8A1BAE8C3300915F37 /* PacketBarCell.m */; };
 		D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71E1D8B1BAE8C3300915F37 /* PacketBarCell.xib */; };
@@ -1752,6 +1756,11 @@
 		ADF88E9A1C1197C400CF5DED /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		ADF88E9B1C1197C400CF5DED /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		ADF88E9C1C1197C400CF5DED /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		ADF88EF31C12CCA900CF5DED /* alertbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alertbg.png; sourceTree = "<group>"; };
+		ADF88EF41C12CCA900CF5DED /* alertbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertbg@2x.png"; sourceTree = "<group>"; };
+		ADF88EF51C12CCA900CF5DED /* alertbg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertbg@3x.png"; sourceTree = "<group>"; };
+		ADF88F3A1C12E5F000CF5DED /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
+		ADF88F3B1C12E5F000CF5DED /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
 		D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarDetailCell.h; sourceTree = "<group>"; };
 		D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarDetailCell.m; sourceTree = "<group>"; };
 		D71E1D891BAE8C3300915F37 /* PacketBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketBarCell.h; sourceTree = "<group>"; };
@@ -4006,6 +4015,7 @@
 		ADE103C41BE0EBDC00D9EC38 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				ADF88EF21C12CC9F00CF5DED /* 发现 */,
 				ADF88E691C115FC600CF5DED /* 空态图 */,
 				ADF88E551C102E2D00CF5DED /* 我的 */,
 				38E5D6B51C0EA427004B49D2 /* 拼客 */,
@@ -4175,6 +4185,26 @@
 				ADF88E921C1197C400CF5DED /* MJRefreshStateHeader.m */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		ADF88EF21C12CC9F00CF5DED /* 发现 */ = {
+			isa = PBXGroup;
+			children = (
+				ADF88EF31C12CCA900CF5DED /* alertbg.png */,
+				ADF88EF41C12CCA900CF5DED /* alertbg@2x.png */,
+				ADF88EF51C12CCA900CF5DED /* alertbg@3x.png */,
+			);
+			name = "发现";
+			sourceTree = "<group>";
+		};
+		ADF88F391C12E5F000CF5DED /* KxMenu */ = {
+			isa = PBXGroup;
+			children = (
+				ADF88F3A1C12E5F000CF5DED /* KxMenu.h */,
+				ADF88F3B1C12E5F000CF5DED /* KxMenu.m */,
+			);
+			name = KxMenu;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		D729DB5C1BADB8AB005A9E60 /* BeerBar */ = {
@@ -4439,6 +4469,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				ADF88F391C12E5F000CF5DED /* KxMenu */,
 				ADF88E701C1197C400CF5DED /* MJRefresh */,
 				AD106B9C1C0DDEFF007F5FBA /* MJExtension */,
 				ADCDF7A71BF19A890040E9E3 /* UMessage_Sdk_1.2.0 */,
@@ -4654,6 +4685,7 @@
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
 				ADF88E601C102E4F00CF5DED /* hongseStar@2x.png in Resources */,
 				38E5D7AA1C113879004B49D2 /* purper_add@2x.png in Resources */,
+				ADF88EF81C12CCA900CF5DED /* alertbg@3x.png in Resources */,
 				A2020D611BA67E9E0090B92A /* disClosure@2x.png in Resources */,
 				38E5D6F51C0F10E7004B49D2 /* LPBuyManagerCell.xib in Resources */,
 				151BB6D31BBB78E000E7A81C /* UzysAssetsPickerController.xib in Resources */,
@@ -4697,6 +4729,7 @@
 				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
 				8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */,
 				15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */,
+				ADF88EF71C12CCA900CF5DED /* alertbg@2x.png in Resources */,
 				15E240C71BB3CAC20090D240 /* LYResetPasswordViewController.xib in Resources */,
 				38E5D6BD1C0EA458004B49D2 /* CustomBtn_unSelected.png in Resources */,
 				15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */,
@@ -4817,6 +4850,7 @@
 				ADD68E331BE10E400060E751 /* 4_retina.png in Resources */,
 				85EE803D1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib in Resources */,
 				ADF88E6F1C11613800CF5DED /* empyImage300.png in Resources */,
+				ADF88EF61C12CCA900CF5DED /* alertbg.png in Resources */,
 				ADF88EAB1C1197C400CF5DED /* MJRefresh.bundle in Resources */,
 				ADE103B11BDE4C8E00D9EC38 /* PayCell.xib in Resources */,
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
@@ -5285,6 +5319,7 @@
 				85F625861C0BDFC9002858C8 /* LYLMenuDropViewController.m in Sources */,
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
 				D748BC461BA1C280005AA996 /* LYDataStore.m in Sources */,
+				ADF88F3C1C12E5F000CF5DED /* KxMenu.m in Sources */,
 				15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */,
 				38E5D6E01C0F0E00004B49D2 /* LPBuyViewController.m in Sources */,
 				15EB35041BD1F4F900BA6161 /* PTTypeChooseCell.m in Sources */,

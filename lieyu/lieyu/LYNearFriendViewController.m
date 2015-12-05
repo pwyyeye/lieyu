@@ -12,6 +12,7 @@
 #import "LYMyFriendDetailViewController.h"
 #import "LYUserHttpTool.h"
 #import "LYUserLocation.h"
+#import "KxMenu.h"
 @interface LYNearFriendViewController ()
 {
     NSMutableArray *datalist;
@@ -124,6 +125,8 @@
 }
 #pragma mark - 更多
 -(void)moreAct:(id)sender{
+    UIBarButtonItem *barButton=(UIBarButtonItem *)sender;
+    /**
     _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
     [_bgView setTag:99999];
     [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
@@ -168,6 +171,36 @@
     [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
     [_bgView insertSubview:button aboveSubview:_bgView];
     button.backgroundColor=[UIColor clearColor];
+     */
+    
+    NSArray *menuItems =
+    @[
+      
+      [KxMenuItem menuItem:@"只看女生"
+                     image:nil
+                    target:nil
+                    action:@selector(seeGirlAct)],
+      
+      [KxMenuItem menuItem:@"只看男生"
+                     image:nil
+                    target:self
+                    action:@selector(seeBoyAct)],
+      
+      [KxMenuItem menuItem:@"查看全部"
+                     image:nil
+                    target:self
+                    action:@selector(seeAllAct)]
+
+      ];
+    
+    KxMenuItem *first = menuItems[0];
+    
+    first.alignment = NSTextAlignmentCenter;
+    
+    [KxMenu showMenuInView:self.view
+                  fromRect:CGRectMake(310, -40, 30, 30)
+                 menuItems:menuItems];
+    [KxMenu setTintColor:RGBA(114, 5, 147, 0.8)];
 }
 #pragma mark - 消失
 -(void)SetViewDisappear:(id)sender
