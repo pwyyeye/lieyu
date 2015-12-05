@@ -30,6 +30,7 @@
     [super viewDidLoad];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     _tableView.separatorColor=[UIColor clearColor];
     weekDateArr = [[NSMutableArray alloc]initWithCapacity:7];
     [self getweekDate];

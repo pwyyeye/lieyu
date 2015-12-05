@@ -1293,9 +1293,9 @@
 		85C4287D1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FirstPageData+CoreDataProperties.m"; sourceTree = "<group>"; };
 		85C4287E1C11B20B0028FC21 /* FirstPageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstPageData.h; sourceTree = "<group>"; };
 		85C4287F1C11B20B0028FC21 /* FirstPageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstPageData.m; sourceTree = "<group>"; };
-		85C428851C11D25D0028FC21 /* ContentViewTaocan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewTaocan.h; sourceTree = "<group>"; };
-		85C428861C11D25D0028FC21 /* ContentViewTaocan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewTaocan.m; sourceTree = "<group>"; };
-		85C428881C11D2710028FC21 /* ContentViewTaocan.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewTaocan.xib; sourceTree = "<group>"; };
+		85C428851C11D25D0028FC21 /* ContentViewTaocan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentViewTaocan.h; path = ../../../ContentViewTaocan.h; sourceTree = "<group>"; };
+		85C428861C11D25D0028FC21 /* ContentViewTaocan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentViewTaocan.m; path = ../../../ContentViewTaocan.m; sourceTree = "<group>"; };
+		85C428881C11D2710028FC21 /* ContentViewTaocan.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentViewTaocan.xib; path = ../../../ContentViewTaocan.xib; sourceTree = "<group>"; };
 		85EE802F1C0AF09B00958F76 /* LYHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHeaderTableViewCell.h; sourceTree = "<group>"; };
 		85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHeaderTableViewCell.m; sourceTree = "<group>"; };
 		85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -3081,9 +3081,6 @@
 				38E5D6F61C100A33004B49D2 /* TimePickerView.h */,
 				38E5D6F71C100A33004B49D2 /* TimePickerView.m */,
 				38E5D6F91C100B01004B49D2 /* TimePickerView.xib */,
-				85C428851C11D25D0028FC21 /* ContentViewTaocan.h */,
-				85C428861C11D25D0028FC21 /* ContentViewTaocan.m */,
-				85C428881C11D2710028FC21 /* ContentViewTaocan.xib */,
 			);
 			name = "自定义AlertView";
 			sourceTree = "<group>";
@@ -3189,6 +3186,9 @@
 				8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */,
 				85C4282C1C116ED90028FC21 /* LYHotBarMenuDropView.h */,
 				85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */,
+				85C428851C11D25D0028FC21 /* ContentViewTaocan.h */,
+				85C428861C11D25D0028FC21 /* ContentViewTaocan.m */,
+				85C428881C11D2710028FC21 /* ContentViewTaocan.xib */,
 			);
 			name = "热门酒吧";
 			path = "Classes/INeedPlay/热门酒吧";
