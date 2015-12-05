@@ -39,14 +39,16 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+    if (self.navigationController.navigationBarHidden == NO) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 }
 
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-//    if (self.navigationController.navigationBarHidden != NO) {
-//        [self.navigationController setNavigationBarHidden:NO];
+//    if (self.navigationController.navigationBarHidden == NO) {
+//        [self.navigationController setNavigationBarHidden:YES];
 //    }
 //
 

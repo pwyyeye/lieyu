@@ -25,12 +25,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.edgesForExtendedLayout=UIRectEdgeBottom;
     isMes=false;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:RECEIVES_MESSAGE object:nil];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
+    _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    //适配7.0
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+        _tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    }
     datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
                @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
                @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
@@ -86,6 +90,9 @@
         [_myTitle setText:@"发现"];
 //        self.navigationItem.titleView=titleText;
     [self.navigationController.navigationBar addSubview:_myTitle];
+    if (self.navigationController.navigationBarHidden != NO) {
+        [self.navigationController setNavigationBarHidden:NO];
+    }
 }
 
 - (void)viewWillLayoutSubviews

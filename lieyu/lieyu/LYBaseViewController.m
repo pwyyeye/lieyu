@@ -24,6 +24,12 @@
 //    self.navigationController.navigationBar.barTintColor=RGB(64,1,120);
     //若为yesnavigationBar背景 会有50％的透明
     self.navigationController.navigationBar.translucent = YES;
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+        self.navigationController.navigationBar.translucent = NO;
+            self.extendedLayoutIncludesOpaqueBars = NO;
+            self.modalPresentationCapturesStatusBarAppearance=NO;
+    }
+
     
     //修改的部分
     UIColor *_inputColor0 = RGBA(109, 0, 142,0.9);

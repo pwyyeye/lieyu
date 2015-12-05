@@ -74,13 +74,10 @@
 //       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
 //        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40);
 //    }
-//    _tableView.frame = CGRectMake(0, -44, SCREEN_WIDTH, SCREEN_HEIGHT - 40);
-    self.zixunBtn.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(151, 151, 151, 1));
-    self.zixunBtn.layer.borderWidth = 0.5;
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    self.likeBtn.hidden = YES;
-    self.likeBtn.enabled = NO;
     self.defaultString = @"请选择消费方式";
     self.defaultDate = [NSDate date];
     self.defaultNumber = 1;

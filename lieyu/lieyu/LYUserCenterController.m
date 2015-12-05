@@ -33,8 +33,17 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.delegate=self;
-//    self.automaticallyAdjustsScrollViewInsets = YES;
-
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+        self.automaticallyAdjustsScrollViewInsets =YES;
+        self.edgesForExtendedLayout=UIRectEdgeTop;
+        [self.navigationController setNavigationBarHidden:YES];
+    }else{
+        self.automaticallyAdjustsScrollViewInsets = YES;
+        
+        self.edgesForExtendedLayout=UIRectEdgeNone;
+    }
+    self.title=@"我的";
+    
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -58,18 +67,23 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+                self.collectionView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
+    }
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
 }
+
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
-//-(void)viewWillLayoutSubviews{
-//    [super viewWillLayoutSubviews];
-//    [self.navigationController setNavigationBarHidden:YES];
-//    
-//}
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:YES];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
