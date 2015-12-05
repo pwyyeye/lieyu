@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ZSDetailModel;
 
 @interface LYZSdetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
@@ -17,4 +18,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *scBtn;
 
+@property (nonatomic,strong) ZSDetailModel *zsModel;
 @end

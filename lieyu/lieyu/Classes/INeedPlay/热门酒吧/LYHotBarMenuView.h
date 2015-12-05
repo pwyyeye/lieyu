@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-@protocol LYHotBarMenuDropDelegate <NSObject>
+@protocol LYHotBarMenuViewDelegate <NSObject>
 
-- (void)didClickHotBarMenuDropWithIndex:(NSInteger)index;
+- (void)didClickHotBarMenuDropWithSectionButtonTitle:(NSString *)title dropButtonIndex:(NSInteger)index;
 
 @end
 
 @interface LYHotBarMenuView : UIView
-@property (nonatomic,unsafe_unretained) id<LYHotBarMenuDropDelegate> delegate;
-- (void)deploy;
+@property (nonatomic,unsafe_unretained) id<LYHotBarMenuViewDelegate> delegate;
+- (void)deployWithMiddleTitle:(NSString *)title ItemArray:(NSArray *)itemArray;
 @end

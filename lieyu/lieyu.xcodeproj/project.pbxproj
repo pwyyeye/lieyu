@@ -355,6 +355,9 @@
 		38E5D7AD1C113879004B49D2 /* purper_less@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D79E1C113879004B49D2 /* purper_less@2x.png */; };
 		38E5D7AE1C113879004B49D2 /* purper_less@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D79F1C113879004B49D2 /* purper_less@3x.png */; };
 		38E5D7B11C1144C4004B49D2 /* CommonShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D7B01C1144C4004B49D2 /* CommonShow.m */; };
+		853DB5ED1C12C19B004227BA /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 853DB5EC1C12C19B004227BA /* MenuButton.m */; };
+		853DB5F21C12FA08004227BA /* LYPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 853DB5F01C12FA08004227BA /* LYPayViewController.m */; };
+		853DB5F31C12FA08004227BA /* LYPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853DB5F11C12FA08004227BA /* LYPayViewController.xib */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
@@ -1269,6 +1272,11 @@
 		38E5D7B01C1144C4004B49D2 /* CommonShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonShow.m; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		853DB5EB1C12C19B004227BA /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
+		853DB5EC1C12C19B004227BA /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
+		853DB5EF1C12FA08004227BA /* LYPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPayViewController.h; sourceTree = "<group>"; };
+		853DB5F01C12FA08004227BA /* LYPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPayViewController.m; sourceTree = "<group>"; };
+		853DB5F11C12FA08004227BA /* LYPayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYPayViewController.xib; sourceTree = "<group>"; };
 		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
 		8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuView.m; sourceTree = "<group>"; };
 		85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementClassCell.h; sourceTree = "<group>"; };
@@ -1292,9 +1300,9 @@
 		85C4287D1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FirstPageData+CoreDataProperties.m"; sourceTree = "<group>"; };
 		85C4287E1C11B20B0028FC21 /* FirstPageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstPageData.h; sourceTree = "<group>"; };
 		85C4287F1C11B20B0028FC21 /* FirstPageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstPageData.m; sourceTree = "<group>"; };
-		85C428851C11D25D0028FC21 /* ContentViewTaocan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContentViewTaocan.h; path = ../../../ContentViewTaocan.h; sourceTree = "<group>"; };
-		85C428861C11D25D0028FC21 /* ContentViewTaocan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContentViewTaocan.m; path = ../../../ContentViewTaocan.m; sourceTree = "<group>"; };
-		85C428881C11D2710028FC21 /* ContentViewTaocan.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ContentViewTaocan.xib; path = ../../../ContentViewTaocan.xib; sourceTree = "<group>"; };
+		85C428851C11D25D0028FC21 /* ContentViewTaocan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewTaocan.h; sourceTree = "<group>"; };
+		85C428861C11D25D0028FC21 /* ContentViewTaocan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewTaocan.m; sourceTree = "<group>"; };
+		85C428881C11D2710028FC21 /* ContentViewTaocan.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewTaocan.xib; sourceTree = "<group>"; };
 		85EE802F1C0AF09B00958F76 /* LYHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHeaderTableViewCell.h; sourceTree = "<group>"; };
 		85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHeaderTableViewCell.m; sourceTree = "<group>"; };
 		85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -2205,6 +2213,7 @@
 		15A4CF3F1BD7602600C22C01 /* 确认订单 */ = {
 			isa = PBXGroup;
 			children = (
+				853DB5EE1C12F9D6004227BA /* 支付界面 */,
 				15A4CF4D1BD785CA00C22C01 /* 是否会去 */,
 				15A4CF431BD7677000C22C01 /* cell */,
 				15A4CF401BD7605200C22C01 /* DWSureOrderViewController.h */,
@@ -3080,6 +3089,9 @@
 				38E5D6F61C100A33004B49D2 /* TimePickerView.h */,
 				38E5D6F71C100A33004B49D2 /* TimePickerView.m */,
 				38E5D6F91C100B01004B49D2 /* TimePickerView.xib */,
+				85C428851C11D25D0028FC21 /* ContentViewTaocan.h */,
+				85C428861C11D25D0028FC21 /* ContentViewTaocan.m */,
+				85C428881C11D2710028FC21 /* ContentViewTaocan.xib */,
 			);
 			name = "自定义AlertView";
 			sourceTree = "<group>";
@@ -3167,6 +3179,16 @@
 			name = "套餐选择";
 			sourceTree = "<group>";
 		};
+		853DB5EE1C12F9D6004227BA /* 支付界面 */ = {
+			isa = PBXGroup;
+			children = (
+				853DB5EF1C12FA08004227BA /* LYPayViewController.h */,
+				853DB5F01C12FA08004227BA /* LYPayViewController.m */,
+				853DB5F11C12FA08004227BA /* LYPayViewController.xib */,
+			);
+			name = "支付界面";
+			sourceTree = "<group>";
+		};
 		855192651C0B30C4007B9949 /* 热门酒吧 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3185,9 +3207,8 @@
 				8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */,
 				85C4282C1C116ED90028FC21 /* LYHotBarMenuDropView.h */,
 				85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */,
-				85C428851C11D25D0028FC21 /* ContentViewTaocan.h */,
-				85C428861C11D25D0028FC21 /* ContentViewTaocan.m */,
-				85C428881C11D2710028FC21 /* ContentViewTaocan.xib */,
+				853DB5EB1C12C19B004227BA /* MenuButton.h */,
+				853DB5EC1C12C19B004227BA /* MenuButton.m */,
 			);
 			name = "热门酒吧";
 			path = "Classes/INeedPlay/热门酒吧";
@@ -4882,6 +4903,7 @@
 				15EB7C5B1BC6048100756153 /* gouGif.gif in Resources */,
 				15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */,
 				15E240A21BB37EF60090D240 /* LYOrderDetailViewController.xib in Resources */,
+				853DB5F31C12FA08004227BA /* LYPayViewController.xib in Resources */,
 				ADF88E6E1C11613800CF5DED /* empyImage120.png in Resources */,
 				38E5D7A91C113879004B49D2 /* purper_add.png in Resources */,
 				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
@@ -4986,6 +5008,7 @@
 				D71E1D911BAE8F3100915F37 /* BusinessPublicNoteCell.m in Sources */,
 				3879F2661C0D361000B72629 /* LiuchengTableViewCell.m in Sources */,
 				38E5D6E51C0F1018004B49D2 /* LPBuyTaocanCell.m in Sources */,
+				853DB5ED1C12C19B004227BA /* MenuButton.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
@@ -5098,6 +5121,7 @@
 				3879F24A1C0D325D00B72629 /* BarInfoTableViewCell.m in Sources */,
 				15013AF61BBA33BE00061FAF /* NSData+ImageContentType.m in Sources */,
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
+				853DB5F21C12FA08004227BA /* LYPayViewController.m in Sources */,
 				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
 				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,

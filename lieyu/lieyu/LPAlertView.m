@@ -7,6 +7,7 @@
 //
 
 #import "LPAlertView.h"
+
 @interface LPAlertView()
 @property (nonatomic, strong) UIView *backgroundView;
 
@@ -71,6 +72,10 @@
 }
 
 - (void)initContentView{
+    if (_isTaocanView) {
+        
+        return;
+    }
     _contentView = [[UIView alloc]init];
     _contentView.backgroundColor = [UIColor whiteColor];
     _contentView.layer.cornerRadius = 5.0;

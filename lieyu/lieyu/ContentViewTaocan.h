@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ContentViewTaocan : UIView
+@property (weak, nonatomic) IBOutlet UIImageView *image_remain;
+@property (weak, nonatomic) IBOutlet UIImageView *image_notRemain;
+@property (weak, nonatomic) IBOutlet UIButton *btn_sureRemain;
+@property (weak, nonatomic) IBOutlet UIButton *btn_notRemain;
 
 @end

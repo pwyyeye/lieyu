@@ -28,6 +28,8 @@
 #import "LYBarSpecialTableViewCell.h"
 #import "LYBarDescTitleTableViewCell.h"
 #import "LYBarDesrcTableViewCell.h"
+#import "LYUserHttpTool.h"
+
 @interface BeerBarDetailViewController ()
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -220,12 +222,18 @@
 //                        barDescCell.label_content.hidden = YES;
 //                    }
                     cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-                    UIWebView *webView = [[UIWebView alloc]init];
-                    NSLog(@"%@",self.beerBarDetail.description);
-                    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" /></head><body>%@<script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.description];
-                    CGFloat scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+                    UIWebView *oldWebView = (UIWebView *)[cell viewWithTag:100];
+                    if (oldWebView) {
+                        [oldWebView removeFromSuperview];
+                    }
                     
+                    UIWebView *webView = [[UIWebView alloc]init];
+                    webView.tag = 100;
+                    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" /></head><body>%@<script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.descriptions];
+                    CGFloat scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+                    [webView.scrollView setScrollEnabled:NO];
                     [webView setFrame:CGRectMake(0, 0, 320, scrollHeight)];
+                    webView.scalesPageToFit = YES;
                     [webView loadHTMLString:webStr baseURL:nil];
                     [cell addSubview:webView];
                     return cell;
@@ -358,7 +366,7 @@
                                       shareText:@"你要分享的文字"
                                      shareImage:[UIImage imageNamed:@"icon.png"]
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,nil]
-                                       delegate:self];
+                                       delegate:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -376,9 +384,15 @@
 //        taoCanXQViewController.dateStr=[dateFormatter stringFromDate:[NSDate new]];
 //        [self.navigationController pushViewController:taoCanXQViewController animated:YES];
 //    }
-    
-    
-    
+    if (indexPath.section == 2) {
+        [self daohang];
+    }
+}
+
+#pragma 进入地图
+- (void)daohang{
+    NSDictionary *dic=@{@"title":self.beerBarDetail.barname,@"latitude":self.beerBarDetail.latitude,@"longitude":self.beerBarDetail.longitude};
+    [[LYUserLocation instance] daoHan:dic];
 }
 
 - (void)dealloc
@@ -416,5 +430,14 @@
     myZSManageViewController.barid=_beerBarDetail.barid.intValue;
     myZSManageViewController.isBarVip=true;
     [self.navigationController pushViewController:myZSManageViewController animated:YES];
+}
+
+- (IBAction)soucangAct:(UIButton *)sender {
+    NSDictionary *dic=@{@"barid":self.beerBarDetail.barid};
+    [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
+        if(result){
+            [MyUtil showMessage:@"收藏成功"];
+        }
+    }];
 }
 @end

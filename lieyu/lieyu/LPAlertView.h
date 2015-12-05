@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @protocol LPAlertViewDelegate;
 
 @interface LPAlertView : UIView
@@ -14,6 +15,7 @@
 @property (nonatomic, strong) NSString *labelText;
 
 @property (nonatomic, strong) UIView *contentView;
+@property (nonatomic,unsafe_unretained) BOOL isTaocanView;
 @property (nonatomic, assign) id<LPAlertViewDelegate> delegate;
 
 - (instancetype)initWithDelegate:(id<LPAlertViewDelegate>) delegate buttonTitles:(NSString *)buttonTitles, ... NS_REQUIRES_NIL_TERMINATION;

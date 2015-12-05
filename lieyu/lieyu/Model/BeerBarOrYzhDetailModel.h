@@ -23,7 +23,7 @@
 @property(nonatomic,copy)NSString * barname;
 @property(nonatomic,strong)NSNumber * bartype;
 @property(nonatomic,copy)NSString * bartypename;
-@property (nonatomic,strong) NSString * description;
+@property (nonatomic,strong) NSString * descriptions;
 @property(nonatomic,copy)NSString * distance;
 @property(nonatomic,copy)NSString * environment_num;
 @property(nonatomic,strong)NSNumber *  fav_num;

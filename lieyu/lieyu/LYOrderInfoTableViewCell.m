@@ -7,6 +7,7 @@
 //
 
 #import "LYOrderInfoTableViewCell.h"
+#import "TaoCanModel.h"
 
 @implementation LYOrderInfoTableViewCell
 
@@ -18,6 +19,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setTaocanModel:(TaoCanModel *)taocanModel{
+    _taocanModel = taocanModel;
+    self.label_orderInfo.text = taocanModel.barinfo.barname;
+    self.label_orderAddress.text = taocanModel.barinfo.address;
 }
 
 @end
