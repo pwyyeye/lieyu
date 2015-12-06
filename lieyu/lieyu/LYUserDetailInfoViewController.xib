@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYUserDetailInfoViewController">
             <connections>
+                <outlet property="tableView" destination="dDy-bh-vxk" id="4D7-2v-hC4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,32 +16,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" selectionStyle="default" indentationWidth="10" rowHeight="170" translatesAutoresizingMaskIntoConstraints="NO" id="L7X-Cb-1zP">
-                    <rect key="frame" x="8" y="199" width="320" height="170"/>
-                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L7X-Cb-1zP" id="EF3-Ty-Xeu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="169"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cameraCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="S2a-j3-PWZ">
-                                <rect key="frame" x="135" y="54" width="61" height="61"/>
-                                <animations/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="精彩从头像开始" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6t-9L-86n">
-                                <rect key="frame" x="127" y="77" width="77" height="15"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <animations/>
-                    </tableViewCellContentView>
-                    <animations/>
-                </tableViewCell>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dDy-bh-vxk">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="DWc-4g-eHG"/>
+                        <outlet property="delegate" destination="-1" id="qLI-cs-pPd"/>
+                    </connections>
                 </tableView>
             </subviews>
             <animations/>
@@ -49,7 +32,4 @@
             <point key="canvasLocation" x="239" y="316"/>
         </view>
     </objects>
-    <resources>
-        <image name="cameraCircle.png" width="65" height="65"/>
-    </resources>
 </document>

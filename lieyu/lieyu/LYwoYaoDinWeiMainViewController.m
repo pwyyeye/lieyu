@@ -99,11 +99,6 @@
     self.navigationController.navigationBarHidden = NO;
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
-}
-
 #pragma mark 获取顶部菜单
 -(void)getMenuHrizontal{
     NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:7];

@@ -57,10 +57,6 @@
     // Do any additional setup after loading the view from its nib.
     self.scrollView.contentSize = CGSizeMake(320, 628.5 + 800);
     self.tableView.scrollEnabled = NO;
-    
-    
- 
-
 }
 
 - (void)loadBarDetail

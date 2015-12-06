@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet LYUserTagButton *button2;
 
 @property (weak, nonatomic) IBOutlet LYUserTagButton *button3;
+@property (weak, nonatomic) IBOutlet UIButton *btn_custom;
 
 @end

@@ -369,7 +369,6 @@
 		38E5D7EF1C12DF0C004B49D2 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7E91C12DF0C004B49D2 /* call.png */; };
 		38E5D7F01C12DF0C004B49D2 /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7EA1C12DF0C004B49D2 /* call@2x.png */; };
 		38E5D7F11C12DF0C004B49D2 /* call@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7EB1C12DF0C004B49D2 /* call@3x.png */; };
-		38E5D7F21C12DF0C004B49D2 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7EC1C12DF0C004B49D2 /* comment.png */; };
 		38E5D7F31C12DF0C004B49D2 /* comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7ED1C12DF0C004B49D2 /* comment@2x.png */; };
 		38E5D7F41C12DF0C004B49D2 /* comment@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7EE1C12DF0C004B49D2 /* comment@3x.png */; };
 		38E5D7F61C13355A004B49D2 /* PayMoney.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7F51C13355A004B49D2 /* PayMoney.xib */; };
@@ -412,15 +411,24 @@
 		85F5451C1C13DF5A0013B92B /* cameraCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545191C13DF5A0013B92B /* cameraCircle.png */; };
 		85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5451A1C13DF5A0013B92B /* cameraCircle@2x.png */; };
 		85F5451E1C13DF5A0013B92B /* cameraCircle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5451B1C13DF5A0013B92B /* cameraCircle@3x.png */; };
-		85F545221C13DF920013B92B /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5451F1C13DF920013B92B /* camera.png */; };
-		85F545231C13DF920013B92B /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545201C13DF920013B92B /* camera@2x.png */; };
-		85F545241C13DF920013B92B /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545211C13DF920013B92B /* camera@3x.png */; };
 		85F545291C13EB450013B92B /* LYUserDetailCameraTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545271C13EB450013B92B /* LYUserDetailCameraTableViewCell.m */; };
 		85F5452A1C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F545281C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib */; };
 		85F5452E1C13FAF50013B92B /* LYUserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F5452C1C13FAF50013B92B /* LYUserDetailTableViewCell.m */; };
 		85F5452F1C13FAF50013B92B /* LYUserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
 		85F545331C13FCD20013B92B /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
 		85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F545321C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib */; };
+		85F5453B1C1408040013B92B /* circleWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545351C1408040013B92B /* circleWhite.png */; };
+		85F5453C1C1408040013B92B /* circleWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545361C1408040013B92B /* circleWhite@2x.png */; };
+		85F5453D1C1408040013B92B /* circleWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545371C1408040013B92B /* circleWhite@3x.png */; };
+		85F5453E1C1408040013B92B /* circleWhiteSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545381C1408040013B92B /* circleWhiteSelect.png */; };
+		85F5453F1C1408040013B92B /* circleWhiteSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545391C1408040013B92B /* circleWhiteSelect@2x.png */; };
+		85F545401C1408040013B92B /* circleWhiteSelect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5453A1C1408040013B92B /* circleWhiteSelect@3x.png */; };
+		85F545461C14338D0013B92B /* biaoQianAdd.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545431C14338D0013B92B /* biaoQianAdd.png */; };
+		85F545471C14338D0013B92B /* biaoQianAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545441C14338D0013B92B /* biaoQianAdd@2x.png */; };
+		85F545481C14338D0013B92B /* biaoQianAdd@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545451C14338D0013B92B /* biaoQianAdd@3x.png */; };
+		85F5454C1C1454010013B92B /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545491C1454010013B92B /* camera.png */; };
+		85F5454D1C1454010013B92B /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5454A1C1454010013B92B /* camera@2x.png */; };
+		85F5454E1C1454010013B92B /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5454B1C1454010013B92B /* camera@3x.png */; };
 		85F625861C0BDFC9002858C8 /* LYLMenuDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625841C0BDFC9002858C8 /* LYLMenuDropViewController.m */; };
 		85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625851C0BDFC9002858C8 /* LYLMenuDropViewController.xib */; };
 		85F6258B1C0BE74E002858C8 /* LYHotBarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625891C0BE74E002858C8 /* LYHotBarMenuViewController.m */; };
@@ -1385,9 +1393,6 @@
 		85F545191C13DF5A0013B92B /* cameraCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraCircle.png; sourceTree = "<group>"; };
 		85F5451A1C13DF5A0013B92B /* cameraCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraCircle@2x.png"; sourceTree = "<group>"; };
 		85F5451B1C13DF5A0013B92B /* cameraCircle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraCircle@3x.png"; sourceTree = "<group>"; };
-		85F5451F1C13DF920013B92B /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
-		85F545201C13DF920013B92B /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
-		85F545211C13DF920013B92B /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@3x.png"; sourceTree = "<group>"; };
 		85F545261C13EB450013B92B /* LYUserDetailCameraTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserDetailCameraTableViewCell.h; sourceTree = "<group>"; };
 		85F545271C13EB450013B92B /* LYUserDetailCameraTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserDetailCameraTableViewCell.m; sourceTree = "<group>"; };
 		85F545281C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYUserDetailCameraTableViewCell.xib; sourceTree = "<group>"; };
@@ -1397,6 +1402,18 @@
 		85F545301C13FCD20013B92B /* LYUserDetailSexTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserDetailSexTableViewCell.h; sourceTree = "<group>"; };
 		85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserDetailSexTableViewCell.m; sourceTree = "<group>"; };
 		85F545321C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYUserDetailSexTableViewCell.xib; sourceTree = "<group>"; };
+		85F545351C1408040013B92B /* circleWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleWhite.png; sourceTree = "<group>"; };
+		85F545361C1408040013B92B /* circleWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleWhite@2x.png"; sourceTree = "<group>"; };
+		85F545371C1408040013B92B /* circleWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleWhite@3x.png"; sourceTree = "<group>"; };
+		85F545381C1408040013B92B /* circleWhiteSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleWhiteSelect.png; sourceTree = "<group>"; };
+		85F545391C1408040013B92B /* circleWhiteSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleWhiteSelect@2x.png"; sourceTree = "<group>"; };
+		85F5453A1C1408040013B92B /* circleWhiteSelect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circleWhiteSelect@3x.png"; sourceTree = "<group>"; };
+		85F545431C14338D0013B92B /* biaoQianAdd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biaoQianAdd.png; sourceTree = "<group>"; };
+		85F545441C14338D0013B92B /* biaoQianAdd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaoQianAdd@2x.png"; sourceTree = "<group>"; };
+		85F545451C14338D0013B92B /* biaoQianAdd@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaoQianAdd@3x.png"; sourceTree = "<group>"; };
+		85F545491C1454010013B92B /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		85F5454A1C1454010013B92B /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
+		85F5454B1C1454010013B92B /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@3x.png"; sourceTree = "<group>"; };
 		85F625831C0BDFC9002858C8 /* LYLMenuDropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLMenuDropViewController.h; sourceTree = "<group>"; };
 		85F625841C0BDFC9002858C8 /* LYLMenuDropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLMenuDropViewController.m; sourceTree = "<group>"; };
 		85F625851C0BDFC9002858C8 /* LYLMenuDropViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYLMenuDropViewController.xib; sourceTree = "<group>"; };
@@ -3359,6 +3376,7 @@
 		85F545121C13D8B80013B92B /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
+				85F545421C14337E0013B92B /* 标签 */,
 				85F545181C13DEDC0013B92B /* 填写个人信息 */,
 			);
 			name = "登录";
@@ -3367,9 +3385,15 @@
 		85F545181C13DEDC0013B92B /* 填写个人信息 */ = {
 			isa = PBXGroup;
 			children = (
-				85F5451F1C13DF920013B92B /* camera.png */,
-				85F545201C13DF920013B92B /* camera@2x.png */,
-				85F545211C13DF920013B92B /* camera@3x.png */,
+				85F545491C1454010013B92B /* camera.png */,
+				85F5454A1C1454010013B92B /* camera@2x.png */,
+				85F5454B1C1454010013B92B /* camera@3x.png */,
+				85F545351C1408040013B92B /* circleWhite.png */,
+				85F545361C1408040013B92B /* circleWhite@2x.png */,
+				85F545371C1408040013B92B /* circleWhite@3x.png */,
+				85F545381C1408040013B92B /* circleWhiteSelect.png */,
+				85F545391C1408040013B92B /* circleWhiteSelect@2x.png */,
+				85F5453A1C1408040013B92B /* circleWhiteSelect@3x.png */,
 				85F545191C13DF5A0013B92B /* cameraCircle.png */,
 				85F5451A1C13DF5A0013B92B /* cameraCircle@2x.png */,
 				85F5451B1C13DF5A0013B92B /* cameraCircle@3x.png */,
@@ -3391,6 +3415,16 @@
 				85F545321C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		85F545421C14337E0013B92B /* 标签 */ = {
+			isa = PBXGroup;
+			children = (
+				85F545431C14338D0013B92B /* biaoQianAdd.png */,
+				85F545441C14338D0013B92B /* biaoQianAdd@2x.png */,
+				85F545451C14338D0013B92B /* biaoQianAdd@3x.png */,
+			);
+			name = "标签";
 			sourceTree = "<group>";
 		};
 		85F625931C0C20A9002858C8 /* Cell */ = {
@@ -4815,9 +4849,11 @@
 				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
 				85F672BF1C09DCFB001BEE5B /* LYHomeSearchViewController.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
+				85F5453C1C1408040013B92B /* circleWhite@2x.png in Resources */,
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
 				38E5D7E61C12DC43004B49D2 /* icon_collect.png in Resources */,
 				15ED32791BE318A800E086A1 /* 5018.wav in Resources */,
+				85F5453F1C1408040013B92B /* circleWhiteSelect@2x.png in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
 				85F43BB01C11459400B04466 /* LYOrderManagerTableViewCell.xib in Resources */,
 				85F5451C1C13DF5A0013B92B /* cameraCircle.png in Resources */,
@@ -4832,6 +4868,7 @@
 				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
 				38E5D7BE1C128B7D004B49D2 /* Location@3x.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
+				85F5454D1C1454010013B92B /* camera@2x.png in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
 				15E240B11BB39DD40090D240 /* OrderDetailSectionBottomView.xib in Resources */,
 				A2020D801BA67FA40090B92A /* Fill20219@3x.png in Resources */,
@@ -4847,6 +4884,7 @@
 				15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */,
 				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
 				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
+				85F5453E1C1408040013B92B /* circleWhiteSelect.png in Resources */,
 				15E240D71BB3E8610090D240 /* MyPKfriendCell.xib in Resources */,
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
 				ADD68E311BE10E400060E751 /* 2_retina.png in Resources */,
@@ -4863,6 +4901,7 @@
 				15EB354F1BD4839D00BA6161 /* UMSnsAccountViewController.xib in Resources */,
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
+				85F545401C1408040013B92B /* circleWhiteSelect@3x.png in Resources */,
 				ADF88E661C102E4F00CF5DED /* pingjiaxiangji@2x.png in Resources */,
 				15E240631BB1237E0090D240 /* BiaoQianChooseViewController.xib in Resources */,
 				15844BCF1BE1EF5000247FBC /* LYAddFriendViewController.xib in Resources */,
@@ -4881,7 +4920,8 @@
 				15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */,
 				85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
-				85F545221C13DF920013B92B /* camera.png in Resources */,
+				85F545471C14338D0013B92B /* biaoQianAdd@2x.png in Resources */,
+				85F5454E1C1454010013B92B /* camera@3x.png in Resources */,
 				ADD68E2A1BE10E330060E751 /* 3@2x.png in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				ADF88E631C102E4F00CF5DED /* huiseStar@2x.png in Resources */,
@@ -4901,6 +4941,7 @@
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
 				15844BC91BE1CAEB00247FBC /* FindMenuTwoCell.xib in Resources */,
 				ADF88E541C1029F600CF5DED /* LYEvaluationController.xib in Resources */,
+				85F5453B1C1408040013B92B /* circleWhite.png in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
 				855192701C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib in Resources */,
 				38E5D7B81C128A74004B49D2 /* 拼客流程@3x.png in Resources */,
@@ -4924,7 +4965,6 @@
 				38E5D7A21C113879004B49D2 /* choose@3x.png in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
 				38E5D6BE1C0EA458004B49D2 /* CustomBtn_unSelected@2x.png in Resources */,
-				85F545231C13DF920013B92B /* camera@2x.png in Resources */,
 				85F5452F1C13FAF50013B92B /* LYUserDetailTableViewCell.xib in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
@@ -4948,6 +4988,7 @@
 				1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */,
 				38E5D7A61C113879004B49D2 /* gray_less.png in Resources */,
 				A2FD577E1BAFE97000CFFF92 /* FBTaoCanSectionBottom.xib in Resources */,
+				85F545461C14338D0013B92B /* biaoQianAdd.png in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				3879F2621C0D32EE00B72629 /* ContentTableViewCell.xib in Resources */,
 				ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */,
@@ -5005,7 +5046,6 @@
 				A2FD57631BAFE6C000CFFF92 /* CaoCanCell.xib in Resources */,
 				38E5D6C81C0EA4DF004B49D2 /* CustomBtn_Selected@3x.png in Resources */,
 				15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */,
-				85F545241C13DF920013B92B /* camera@3x.png in Resources */,
 				15E240961BB295090090D240 /* LYOrderBottomForFinishView.xib in Resources */,
 				A2020D761BA67FA40090B92A /* Fill2097@2x.png in Resources */,
 				38E5D7B61C128A74004B49D2 /* 拼客流程.png in Resources */,
@@ -5017,6 +5057,7 @@
 				15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */,
 				85F5451E1C13DF5A0013B92B /* cameraCircle@3x.png in Resources */,
 				85EE80381C0AF19600958F76 /* LYBarTitleTableViewCell.xib in Resources */,
+				85F545481C14338D0013B92B /* biaoQianAdd@3x.png in Resources */,
 				85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */,
 				ADD68E3F1BE10E7E0060E751 /* skip-btn@3x.png in Resources */,
 				3879F25D1C0D32D100B72629 /* BitianTableViewCell.xib in Resources */,
@@ -5034,6 +5075,7 @@
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
 				85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */,
 				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
+				85F5453D1C1408040013B92B /* circleWhite@3x.png in Resources */,
 				38E5D6EB1C0F106F004B49D2 /* LPBuyPriceCell.xib in Resources */,
 				85F5452A1C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
@@ -5041,6 +5083,7 @@
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
 				ADF88E611C102E4F00CF5DED /* hongseStar@3x.png in Resources */,
 				38E5D7C41C128C44004B49D2 /* triangle_down@3x.png in Resources */,
+				85F5454C1C1454010013B92B /* camera.png in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
 				15EE515B1BA7085C00464B74 /* ZSAlreadyPayedViewController.xib in Resources */,
 				38E5D7F31C12DF0C004B49D2 /* comment@2x.png in Resources */,
