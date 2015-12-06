@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol LYHotBarMenuViewDelegate <NSObject>
 
-- (void)didClickHotBarMenuDropWithSectionButtonTitle:(NSString *)title dropButtonIndex:(NSInteger)index;
+- (void)didClickHotBarMenuDropWithButtonSection:(NSInteger)section dropButtonIndex:(NSInteger)index;
 
 @end
 

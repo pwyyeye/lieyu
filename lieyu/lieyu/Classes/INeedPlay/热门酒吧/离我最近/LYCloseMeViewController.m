@@ -12,7 +12,7 @@
 
 @interface LYCloseMeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic,strong) NSMutableArray *dataArray;
 @end
 
 @implementation LYCloseMeViewController
@@ -24,7 +24,12 @@
     self.navigationItem.title = @"离我最近";
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
+    [_dataArray addObjectsFromArray:self.beerBarArray];
+   _dataArray = [[_dataArray sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.beerBarArray.count;
@@ -32,9 +37,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LYWineBarCell *cell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
-    cell.jiuBaModel = self.beerBarArray[indexPath.row];
+    cell.jiuBaModel = _dataArray[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSLog(@"------->%@",cell.jiuBaModel.distance);
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

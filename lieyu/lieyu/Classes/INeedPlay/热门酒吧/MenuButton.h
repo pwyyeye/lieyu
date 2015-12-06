@@ -9,4 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuButton : UIButton
+@property (nonatomic,unsafe_unretained) NSInteger section;
+
 @end
