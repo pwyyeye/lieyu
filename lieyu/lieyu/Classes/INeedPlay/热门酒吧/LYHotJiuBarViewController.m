@@ -168,8 +168,8 @@
 }
 
 #pragma 菜单代理
-- (void)didClickHotBarMenuDropWithSectionButtonTitle:(NSString *)title dropButtonIndex:(NSInteger)index{
-    NSLog(@"--->%@---->%ld",title,index);
+- (void)didClickHotBarMenuDropWithButtonSection:(NSInteger)section dropButtonIndex:(NSInteger)index{
+    NSLog(@"----------%ld---------%ld",section,index);
 }
 
 

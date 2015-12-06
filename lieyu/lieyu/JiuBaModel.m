@@ -15,4 +15,17 @@
              @"recommend_package" : @"RecommendPackageModel",
              };
 }
+
+//自定义排序方法
+-(NSComparisonResult)compareJiuBaModel:(JiuBaModel *)model{
+    //默认按年龄排序
+    NSComparisonResult result = [self.distance compare:model.distance];//注意:基本数据类型要进行数据转换
+    //如果年龄一样，就按照名字排序
+    if (result == NSOrderedSame) {
+        result = [self.barname compare:model.barname];
+    }
+    return result;
+}
+
+
 @end

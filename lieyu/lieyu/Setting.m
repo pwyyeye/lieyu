@@ -8,7 +8,7 @@
 
 #import "Setting.h"
 #import "LYUserHttpTool.h"
-#import "LYUserDetailController.h"
+#import "LYUserDetailInfoViewController.h"
 #import "AboutLieyu.h"
 @interface Setting ()
 
@@ -46,6 +46,11 @@
     [self.view addSubview:logoutButton];
 
     
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 -(void)logout{
@@ -126,7 +131,7 @@
     
     if (indexPath.row==0) {
 //        [self gotoAppStorePageRaisal:@""];//app评价地址
-        detailViewController=[[LYUserDetailController alloc] init];
+        detailViewController=[[LYUserDetailInfoViewController alloc] init];
     }else if (indexPath.row==1) {
         [USER_DEFAULT removeObjectForKey:@"user_name"];
         [USER_DEFAULT removeObjectForKey:@"user_pass"];

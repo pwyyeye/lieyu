@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *namelal;
 @property (weak, nonatomic) IBOutlet UILabel *delLal;
 @property (weak, nonatomic) IBOutlet UILabel *zhiwuLal;
+@property (weak, nonatomic) IBOutlet UILabel *age;
+@property (weak, nonatomic) IBOutlet UILabel *xingzuo;
 - (IBAction)sendMessageAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *setBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *sexImageView;

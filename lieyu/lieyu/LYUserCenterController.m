@@ -71,7 +71,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                 self.collectionView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
     }
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+    if (self.navigationController.navigationBarHidden==NO) {
+       [self.navigationController setNavigationBarHidden:YES];
+    }
+    
 }
 
 
@@ -79,10 +82,15 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:YES];
-    
+    if (self.navigationController.navigationBarHidden==NO) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -296,7 +304,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         //若该实例实现了viewWillDisappear方法，则调用
         if ([lastController respondsToSelector:@selector(viewWillDisappear:)])
         {
-//            [lastController viewWillDisappear:animated];
+            [lastController viewWillDisappear:animated];
         }
         
     }
@@ -305,6 +313,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     lastController = viewController;
     
 //    [viewController viewWillAppear:animated];
+    
+ 
 }
 
 @end

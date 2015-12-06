@@ -55,11 +55,11 @@
     [self.kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
     dataList=[[NSMutableArray alloc]init];
     [self getMenuHrizontal];
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refreshData];
     }];
     //    [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
-    self.tableView.footer =[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer =[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [self loadMoreData];
     }];
     
@@ -89,9 +89,23 @@
             break;
     }
     
-    
+    self.navigationController.navigationBarHidden=NO;
     // Do any additional setup after loading the view from its nib.
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    if (self.navigationController.navigationBar.hidden) {
+        self.navigationController.navigationBar.hidden=NO;
+//    }
+
+}
+//-(void)viewWillLayoutSubviews{
+//    [super viewWillLayoutSubviews];
+////    if (self.navigationController.navigationBar.hidden) {
+//        self.navigationController.navigationBar.hidden=NO;
+////    }
+//
+//}
 -(void)gotoBack{
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[ChoosePayController class]]) {
@@ -198,12 +212,12 @@
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
-        NSLog(@"****block%ld******",dataList.count);
+        NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
             [weakSelf.tableView setHidden:NO];
             [weakSelf.nodataView setHidden:YES];
             pageCount++;
-            [weakSelf.tableView.footer resetNoMoreData];
+            [weakSelf.tableView.mj_footer resetNoMoreData];
         }else{
             [weakSelf.tableView setHidden:YES];
             [weakSelf.nodataView setHidden:NO];
@@ -213,7 +227,7 @@
         
         
     }];
-    [weakSelf.tableView.header endRefreshing];
+    [weakSelf.tableView.mj_header endRefreshing];
     
 }
 #pragma mark 获取更多订单数据
@@ -225,13 +239,13 @@
             pageCount++;
             [weakSelf.tableView reloadData];
         }else{
-            [weakSelf.tableView.footer noticeNoMoreData];
+            [weakSelf.tableView.mj_footer noticeNoMoreData];
         }
         
         
         
     }];
-    [weakSelf.tableView.footer endRefreshing];
+    [weakSelf.tableView.mj_footer endRefreshing];
     
 }
 #pragma mark 获取顶部菜单
@@ -274,7 +288,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"*********numberOfRowsInSection%ld*******",dataList.count);
+    NSLog(@"*********numberOfRowsInSection%d*******",dataList.count);
     OrderInfoModel *orderInfoModel=dataList[section];
     if(orderInfoModel.ordertype==2){
         return orderInfoModel.goodslist.count;
@@ -287,7 +301,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"*********numberOfSectionsInTableView%ld*******",dataList.count);
+    NSLog(@"*********numberOfSectionsInTableView%d*******",dataList.count);
     return dataList.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -295,7 +309,7 @@
     return 68;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    NSLog(@"*********heightForFooterInSection%ld*******",dataList.count);
+    NSLog(@"*********heightForFooterInSection%d*******",dataList.count);
     OrderInfoModel *orderInfoModel=dataList[section];
     if( orderInfoModel.orderStatus == 7 || orderInfoModel.orderStatus == 3 || orderInfoModel.orderStatus == 4
        || orderInfoModel.orderStatus == 5 || orderInfoModel.orderStatus == 10){
@@ -306,7 +320,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    NSLog(@"*********viewForFooterInSection%ld*******",dataList.count);
+    NSLog(@"*********viewForFooterInSection%d*******",dataList.count);
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
     //orderstatus:
     //    0－未付款
@@ -592,7 +606,7 @@
                     [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                     orderBottomView.secondBtn.tag=section;
                 }else{
-                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
@@ -603,7 +617,7 @@
                     [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                     orderBottomView.secondBtn.tag=section;
                 }else{
-                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
@@ -662,7 +676,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSLog(@"*********viewForHeaderInSection%ld*******",dataList.count);
+    NSLog(@"*********viewForHeaderInSection%d*******",dataList.count);
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
     OrderInfoModel *orderInfoModel=dataList[section];
     
@@ -730,7 +744,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"*********cellForRowAtIndexPath%ld*******",dataList.count);
+    NSLog(@"*********cellForRowAtIndexPath%d*******",dataList.count);
     static NSString *CellIdentifier = @"OrderDetailCell";
     
     OrderDetailCell *cell = (OrderDetailCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];

@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     UINib *nib=[UINib nibWithNibName:@"LYTagTableViewCell" bundle:nil];
     
     [self.tableView registerNib:nib forCellReuseIdentifier:@"lyUserTagCell"];
@@ -32,7 +34,12 @@
         [self.tableView reloadData];
         NSLog(@"----pass-pass%@---",_dataArray);
     }];
-    
+    self.view.backgroundColor = RGBA(242, 242, 242, 1);
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +79,7 @@
     }
     return dataArr;
 }
+
 -(void)makeSure{
 
     NSMutableArray *array=[NSMutableArray new];
@@ -102,7 +110,7 @@
     return 1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 20;
+    return 57;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 37.5;
@@ -110,15 +118,20 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
-    view.backgroundColor=[UIColor whiteColor];
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 37)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, 64, 22)];
+    titleLabel.text = @"我的标签";
+    titleLabel.textColor = RGBA(31, 31, 31, 1);
+    titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    [view addSubview:titleLabel];
+    view.backgroundColor=[UIColor clearColor];
     return view;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     LYTagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"lyUserTagCell" forIndexPath:indexPath];
-    
+    cell.backgroundColor = RGBA(242, 242, 242, 1);
 //    static NSString *CellIdentifier = @"lyUserTagCell";
 //    LYTagTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
 //    cell=nil;
@@ -167,6 +180,10 @@
         [_tagButtons addObject:cell.button1];
         cell.button2.hidden=YES;
         cell.button3.hidden=YES;
+    }
+    
+    if (!indexPath.row) {
+        cell.btn_custom.hidden = YES;
     }
     
     //已选中标签设置为选中状态

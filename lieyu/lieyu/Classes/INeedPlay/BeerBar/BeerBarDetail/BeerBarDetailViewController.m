@@ -49,18 +49,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets=NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
-    [self setupViewStyles];
-    [self loadBarDetail];
+    
     // Do any additional setup after loading the view from its nib.
-    self.scrollView.contentSize = CGSizeMake(320, 628.5 + 800);
+    self.navigationController.navigationBarHidden=YES;
+    
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height);
     self.tableView.scrollEnabled = NO;
-    
-    
- 
-
 }
 
 - (void)loadBarDetail
@@ -71,29 +69,29 @@
     {
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
-            NSLog(@"%@",self.beerBarDetail.description);
+            NSLog(@"%@",self.beerBarDetail.descriptions);
             [weakSelf.tableView reloadData];
+            //加载webview
+            
             [self loadWebView];
         }
     }];
 }
 
 - (void)loadWebView{
-    UIWebView *webView = [[UIWebView alloc]init];
-
-    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" /></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.descriptions];
+    UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
+    
+    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.descriptions];
     NSLog(@"%@",webStr);
    //  CGFloat scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
     
     webView.delegate = self;
     [webView sizeToFit];
     [webView.scrollView setScrollEnabled:NO];
-    //  [_webView setFrame:CGRectMake(0, 628.5, 320, 0)];
     webView.scalesPageToFit = YES;
     [webView loadHTMLString:webStr baseURL:nil];
     [self.scrollView addSubview:webView];
 }
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -113,19 +111,56 @@
     [_tableView registerNib:[UINib nibWithNibName:@"LYHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYHeaderTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarTitleTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarPointTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarPointTableViewCell"];
-     [_tableView registerNib:[UINib nibWithNibName:@"LYBarSpecialTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarSpecialTableViewCell"];
-     [_tableView registerNib:[UINib nibWithNibName:@"LYBarDescTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDescTitleTableViewCell"];
-     [_tableView registerNib:[UINib nibWithNibName:@"LYBarDesrcTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDesrcTableViewCell"];
-
-//    LYShareSnsView * shareView = [LYShareSnsView loadFromNib];
-//    [self.view addSubview:shareView];
-//    CGPoint center = self.view.center;
-//    center.y = self.view.frame.size.height - 69-64;
-//    shareView.center = center;
+    [_tableView registerNib:[UINib nibWithNibName:@"LYBarSpecialTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarSpecialTableViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"LYBarDescTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDescTitleTableViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"LYBarDesrcTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDesrcTableViewCell"];
+    
+    //    LYShareSnsView * shareView = [LYShareSnsView loadFromNib];
+    //    [self.view addSubview:shareView];
+    //    CGPoint center = self.view.center;
+    //    center.y = self.view.frame.size.height - 69-64;
+    //    shareView.center = center;
     
     self.bottomBarView.backgroundColor = [LYColors tabbarBgColor];
     //_dyBarDetailH = [BeerBarDetailCell adjustCellHeight:nil];
 }
+
+
+
+#pragma mark-- webview delegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    //获取页面高度（像素）
+    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
+    float clientheight = [clientheight_str floatValue];
+    //设置到WebView上
+     webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
+    //获取WebView最佳尺寸（点）
+    CGSize frame = [webView sizeThatFits:webView.frame.size];
+    //获取内容实际高度（像素）
+//    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight;"];
+//    float height = [height_str floatValue];
+    //内容实际高度（像素）* 点和像素的比
+//    height = height * frame.height / clientheight;
+    //再次设置WebView高度（点）
+//    NSLog(@"--->%f",height);
+    webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, frame.height);
+    webView.backgroundColor = [UIColor redColor];
+    
+    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
+    
+    
+//  CGFloat offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
+//    
+//    NSLog(@"----pass-pass%f---",offsetHeight);
+//     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, offsetHeight+100);
+//    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
+    
+  
+
+}
+
+
+#pragma mark -- tableviewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -156,7 +191,7 @@
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
                 [bigArr addObject:dicTemp];
             }
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122)
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
                                                                   scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
 
             [headerCell addSubview:scroller];
@@ -212,22 +247,10 @@
             case 3:
         {
             LYBarSpecialTableViewCell *barSpecialCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarSpecialTableViewCell" forIndexPath:indexPath];
-            for (int i = 0;i < 4; i ++) {
-                UILabel *label = barSpecialCell.label_specialArray[i];
-                label.layer.cornerRadius = 2;
-                label.layer.borderWidth = 0.5;
-                label.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
-                //label.text = self.beerBarDetail.tese[i];
-                NSLog(@"-------%@",self.beerBarDetail.tese);
-            }
-            for (int i = 0;i < 2; i ++) {
-                UILabel *label = barSpecialCell.label_classArray[i];
-                label.layer.cornerRadius = 2;
-                label.layer.borderWidth = 0.5;
-                label.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
-                label.text = self.beerBarDetail.subtypename;
-            }
-                        barSpecialCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            [barSpecialCell configureCell:self.beerBarDetail];
+            
+                                   barSpecialCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return barSpecialCell;
         }
             break;
@@ -355,7 +378,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            return 271;
+            return 220;
         }
             break;
         case 1:
@@ -377,42 +400,13 @@
         default:
         {
             return 76;
-//            switch (indexPath.row) {
-//                case 0:
-//                {
-//                    return 76;
-//                }
-//                    break;
-//                    
-//                default:
-//                {
-//                    return 145 + 4;
-//                }
-//                    break;
-//            }
+
         }
             break;
     }
         return h;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
-    float clientheight = [clientheight_str floatValue];
-    //设置到WebView上
-   // webView.frame = CGRectMake(0, 0, self.view.frame.size.width, clientheight);
-    //获取WebView最佳尺寸（点）
-    CGSize frame = [webView sizeThatFits:webView.frame.size];
-    //获取内容实际高度（像素）
-    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-top'))  + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-bottom'))"];
-    float height = [height_str floatValue];
-    //内容实际高度（像素）* 点和像素的比
-    height = height * frame.height / clientheight;
-    //再次设置WebView高度（点）
-    NSLog(@"--->%f",height);
-  //  webView.frame = CGRectMake(0, 628.5, 320, height);
-    webView.backgroundColor = [UIColor redColor];
-}
 
 - (IBAction)shareClick:(id)sender {
     [UMSocialSnsService presentSnsIconSheetView:self
@@ -462,6 +456,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+#pragma mark-- 底部三个按钮方法
 
 - (IBAction)dianweiAct:(UIButton *)sender {
     LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];

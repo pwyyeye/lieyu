@@ -21,6 +21,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_HOMELIST  baseURL:LY_SERVER params:param success:^(id response)
     {
+        NSLog(@"------->%@",response);
         [app stopLoading];
         NSDictionary *dataDic = response[@"data"];
         NSMutableArray *bannerList = nil;

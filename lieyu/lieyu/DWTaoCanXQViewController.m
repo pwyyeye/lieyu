@@ -15,6 +15,8 @@
 #import "LYBarPointTableViewCell.h"
 #import "LYTaoCanContentTableViewCell.h"
 #import "LYTaoCanListTableViewCell.h"
+#import "LYUserHttpTool.h"
+
 @interface DWTaoCanXQViewController ()
 {
     TaoCanModel *taoCanModel;
@@ -61,9 +63,19 @@
 - (void)backClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+//- (void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//     [self.navigationController setNavigationBarHidden:NO];
+//}
 #pragma mark 收藏按钮action
 - (void)collectClick{
-    
+    NSDictionary *dic=@{@"barid":@(taoCanModel.barinfo.barid)};
+    [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
+        if(result){
+            [MyUtil showMessage:@"收藏成功"];
+        }
+    }];
 }
 
 - (void)shareClick{

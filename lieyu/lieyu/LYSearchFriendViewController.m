@@ -30,6 +30,7 @@
     _tableView.separatorColor=[UIColor clearColor];
     searchlist=[[NSMutableArray alloc]init];
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
+
     datalist=@[
 //               @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}
@@ -57,9 +58,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
+        tableView.separatorStyle = NO;
         
         WanYouInfoCell *cell = (WanYouInfoCell *)[_tableView dequeueReusableCellWithIdentifier:@"WanYouInfoCell"];
+    
         if (cell == nil) {
             NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"WanYouInfoCell" owner:self options:nil];
             cell = (WanYouInfoCell *)[nibArray objectAtIndex:0];
@@ -160,6 +162,13 @@
 {
     [self.searchDisplayController setActive:NO animated:YES];
     //[self.tableView reloadData];
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    if (![MyUtil isEmptyString:searchBar.text] ) {
+        [self searchBarSearchButtonClicked:searchBar];
+    }
+    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)nowsearchBar

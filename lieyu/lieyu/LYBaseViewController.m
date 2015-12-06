@@ -44,6 +44,13 @@
     layer.zPosition=-1;
     [self.navigationController.navigationBar.layer addSublayer:layer];
     
+//    CALayer *layer=[[CALayer alloc] init];
+//    layer.backgroundColor=RGB(114, 5, 147).CGColor;
+//    layer.zPosition=-1;
+//    [self.navigationController.navigationBar.layer addSublayer:layer];
+    
+//    [self.navigationController.navigationBar setBarTintColor:RGB(114, 5, 147)];
+    
     UIImage *bgImage=[UIImage imageNamed:@"navBarbg"];
  
 //    UIColor *color2=[UIColor colorWithPatternImage:bgImage];

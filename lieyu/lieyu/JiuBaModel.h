@@ -47,6 +47,7 @@
 @property (nonatomic, copy) NSString * distance;
 @property (nonatomic, copy) NSString * environment_num;
 @property(nonatomic,copy)NSString * fav_num;
+@property(nonatomic,copy) NSString *like_num; 
 @property (nonatomic, copy) NSString * barname;
 @property (nonatomic, copy) NSString * latitude;
 @property (nonatomic, copy) NSString * longitude;
@@ -57,4 +58,6 @@
 @property(nonatomic,copy)NSString * subtypename;
 @property NSInteger sectionNumber;
 @property BOOL rowSelected;
+
+-(NSComparisonResult)compareJiuBaModel:(JiuBaModel *)model;
 @end

@@ -110,36 +110,7 @@
         return [[_listContent objectAtIndex:section] count] ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil;
     }
 }
-/*
- -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
- {
- if (tableView != self.searchDisplayController.searchResultsTableView) {
- NSString *sectionTitle = [self tableView:tableView titleForHeaderInSection:section];
- if (sectionTitle == nil) {
- return nil;
- }
- 
- UILabel *label = [[UILabel alloc] init];
- label.frame = CGRectMake(20, 0, 320, 20);
- label.backgroundColor = [UIColor clearColor];
- label.textColor = [UIColor blackColor];
- label.shadowColor = [UIColor grayColor];
- label.shadowOffset = CGSizeMake(-1.0, 1.0);
- label.font = [UIFont boldSystemFontOfSize:20];
- label.textColor=[self colorWithHexString:@"#BDE2E5"];
- label.text = sectionTitle;
- 
- UIImageView *xiaxianView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 22,320, 3)];
- xiaxianView.image=[UIImage imageNamed:@"分割线-深"];
- UIView *view = [[UIView alloc] init];
- view.backgroundColor=[self colorWithHexString:@"#00000000"];
- [view addSubview:label];
- [view addSubview:xiaxianView];
- return view;
- }
- return nil;
- }
- */
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView)
@@ -314,36 +285,37 @@
 }
 #pragma mark - 更多
 -(void)moreAct:(id)sender{
-    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
-    [_bgView setTag:99999];
-    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
-    [_bgView setAlpha:1.0];
-    rightBtn.enabled=false;
-    [self.view addSubview:_bgView];
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LYZSeditView" owner:nil options:nil];
-    seditView= (LYZSeditView *)[nibView objectAtIndex:0];
-    seditView.top=SCREEN_HEIGHT;
-    [seditView.quxiaoBtn addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
-    [seditView.editListBtn setHidden:YES];
-    [seditView.shenqingBtn setImage:[UIImage imageNamed:@"addFriendIcon"] forState:0];
-    seditView.firstLal.text=@"添加好友";
-//    [seditView.editListBtn addTarget:self action:@selector(editZsAct:) forControlEvents:UIControlEventTouchDown];
-    [seditView.shenqingBtn addTarget:self action:@selector(addFriendAct:) forControlEvents:UIControlEventTouchDown];
-    [_bgView addSubview:seditView];
-    
-    [UIView beginAnimations:@"animationID" context:nil];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:seditView cache:NO];
-    seditView.top=SCREEN_HEIGHT-seditView.height-64;
-    [UIView commitAnimations];
-    
-    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame=CGRectMake(0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT-seditView.height-64);
-    [button setBackgroundColor:[UIColor clearColor]];
-    [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
-    [_bgView insertSubview:button aboveSubview:_bgView];
-    button.backgroundColor=[UIColor clearColor];
+    [self addFriendAct:nil];
+//    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
+//    [_bgView setTag:99999];
+//    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
+//    [_bgView setAlpha:1.0];
+//    rightBtn.enabled=false;
+//    [self.view addSubview:_bgView];
+//    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LYZSeditView" owner:nil options:nil];
+//    seditView= (LYZSeditView *)[nibView objectAtIndex:0];
+//    seditView.top=SCREEN_HEIGHT;
+//    [seditView.quxiaoBtn addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
+//    [seditView.editListBtn setHidden:YES];
+//    [seditView.shenqingBtn setImage:[UIImage imageNamed:@"addFriendIcon"] forState:0];
+//    seditView.firstLal.text=@"添加好友";
+////    [seditView.editListBtn addTarget:self action:@selector(editZsAct:) forControlEvents:UIControlEventTouchDown];
+//    [seditView.shenqingBtn addTarget:self action:@selector(addFriendAct:) forControlEvents:UIControlEventTouchDown];
+//    [_bgView addSubview:seditView];
+//    
+//    [UIView beginAnimations:@"animationID" context:nil];
+//    [UIView setAnimationDuration:0.3];
+//    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+//    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:seditView cache:NO];
+//    seditView.top=SCREEN_HEIGHT-seditView.height-64;
+//    [UIView commitAnimations];
+//    
+//    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+//    button.frame=CGRectMake(0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT-seditView.height-64);
+//    [button setBackgroundColor:[UIColor clearColor]];
+//    [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
+//    [_bgView insertSubview:button aboveSubview:_bgView];
+//    button.backgroundColor=[UIColor clearColor];
 }
 #pragma mark - 消失
 -(void)SetViewDisappear:(id)sender
