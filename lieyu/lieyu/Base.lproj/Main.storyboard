@@ -2451,7 +2451,7 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindMenuCell" rowHeight="51" id="4Yx-ie-pLJ" customClass="FindMenuCell">
-                                        <rect key="frame" x="0.0" y="50" width="320" height="51"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="320" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Yx-ie-pLJ" id="h35-uk-vqj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
@@ -2929,6 +2929,7 @@ AAAAAAAAPgAAAAAAAAAAAAAAAAAAFjc
         <image name="danxuan" width="22" height="22"/>
         <image name="danxuanSelected" width="22" height="22"/>
         <image name="disClosure.png" width="7" height="10"/>
+        <image name="fa" width="20" height="20"/>
         <image name="fab" width="72" height="80"/>
         <image name="flDown" width="64" height="31"/>
         <image name="flnormal" width="64" height="31"/>

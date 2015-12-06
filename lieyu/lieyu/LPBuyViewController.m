@@ -17,18 +17,23 @@
 
 #import "LYHomePageHttpTool.h"
 #import "ChoosePayController.h"
+#import "CommonShow.h"
+#import "PayMoney.h"
+#import "LPAlertView.h"
 
 //2.7.3 【0002】task=lyUsersVipStoreAction?action=list (已可用) 请求所有的专属经理列表
 //2.7.4 【R0002】反馈所有专属经理列表
 //2.7.7 【0004】task=lyUsersVipStoreAction?action=list (已可用) 请求用户收藏的专属经理列表
 //2.7.8 【R0004】反馈用户收藏的专属经理列表
 
-@interface LPBuyViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LPBuyViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate>
 @property (nonatomic, strong) LPBuyTaocanCell *buyTaocanCell;
 @property (nonatomic, strong) LPBuyPriceCell *buyPriceCell;
 @property (nonatomic, strong) LPBuyInfoCell *buyInfoCell;
 @property (nonatomic, strong) ContentTableViewCell *contentCell;
 @property (nonatomic, strong) LPBuyManagerCell *managerCell;
+
+@property (nonatomic, strong) PayMoney *payContent;
 @end
 
 @implementation LPBuyViewController
@@ -36,19 +41,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.showsVerticalScrollIndicator = NO;
-//    self.tableView.scrollIndicatorInsets
-//    self.view.backgroundColor = [UIColor redColor];
-//    [self.view setBackgroundColor:RGBA(256, 256, 256, 1)];
-//    UIView *view = [[UIView alloc]initWithFrame:self.view.frame];
-//    view.backgroundColor = [UIColor redColor];
-//    [self.view addSubview:view];
-    
-//    [view addSubview:self.tableView];
-//    [view addSubview:self.buyNowBtn];
+    self.tableView.bounces = NO;
     
     self.title = @"确认拼客订单";
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = backBtn;
+    
 //    NSLog(@"pinkeModel:%@",self.pinkeModel);
 //    NSLog(@"dictionary:%@",self.InfoDict);
     
@@ -138,7 +136,7 @@
             return 0;
             break;
         case 4:
-            return 16;
+            return 0;
             break;
         default:
             return 0;
@@ -157,9 +155,9 @@
         return 66 + 44 * (int)self.pinkeModel.goodsList.count;
     }else{
         if(self.pinkeModel.managerList.count == 0){
-            return 40;
+            return 56;
         }else{
-            return 87 * self.pinkeModel.managerList.count;
+            return 87 * self.pinkeModel.managerList.count + 16;
         }
     }
 }
@@ -179,6 +177,7 @@
             [tableView registerNib:[UINib nibWithNibName:@"LPBuyPriceCell" bundle:nil] forCellReuseIdentifier:@"buyPrice"];
             _buyPriceCell = [tableView dequeueReusableCellWithIdentifier:@"buyPrice"];
         }
+        [_buyPriceCell.payBtn addTarget:self action:@selector(payMoney) forControlEvents:UIControlEventTouchUpInside];
         float profit = [self.pinkeModel.price floatValue] * [self.pinkeModel.rebate floatValue];
         [_buyPriceCell cellConfigureWithPay:self.InfoDict[@"money"] andProfit:profit];
         return _buyPriceCell;
@@ -217,6 +216,43 @@
     }
 }
 
+- (void)payMoney{
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定",@"取消", nil];
+    _payContent = [[[NSBundle mainBundle]loadNibNamed:@"PayMoney" owner:nil options:nil]firstObject];
+    alertView.contentView = _payContent;
+    _payContent.frame = CGRectMake(10, SCREEN_HEIGHT - 270 , 300, 200);
+    [alertView show];
+}
+
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
+    if([((PayMoney *)alertView.contentView).textField.text integerValue] < 100){
+//        alertView sa
+    }
+}
+
+//#pragma 填写支付金额
+//- (void)payMoney{
+//    UIAlertView *customAlert = [[UIAlertView alloc]initWithTitle:@"请填写您要支付的金额" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        [customAlert setTintColor:RGBA(114, 5, 147, 1)];
+//        [customAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+//        UITextField *payField = [customAlert textFieldAtIndex:0];
+//        payField.keyboardType = UIKeyboardTypeNumberPad;
+//        payField.placeholder = @"金额请不少于100元";
+//        [customAlert show];
+//}
+//
+//#pragma 填写支付金额
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if (buttonIndex == alertView.firstOtherButtonIndex) {
+//        if ([[alertView textFieldAtIndex:0].text intValue] < 100) {
+//            [CommonShow showMessage:@"对不起，发起人预付金额不可少于100元!"];
+//            
+//        }else{
+////            self.defaultPay = [[alertView textFieldAtIndex:0].text intValue];
+//            [self.InfoDict setObject:[alertView textFieldAtIndex:0].text forKey:@"money"];
+//        }
+//    }
+//}
 
 - (void)imageClick{
     
@@ -233,7 +269,7 @@
 
 - (IBAction)buyNowClick:(UIButton *)sender {
     if(self.pinkeModel){
-        bool issel = false;
+//        bool issel = false;
         int userId=0;
 //        for (ZSDetailModel *detaiModel in zsArr) {
 //            if(detaiModel.issel){
@@ -247,11 +283,20 @@
 //            return;
 //        }
         
-        NSDictionary *dic=@{@"pinkerid":[NSNumber numberWithInt:_pinkeModel.id],@"reachtime":self.InfoDict[@"time"],@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":self.InfoDict[@"number"],@"payamount":self.InfoDict[@"money"],@"pinkerType":self.InfoDict[@"type"]};
+        NSDictionary *dic=@{
+            @"pinkerid":[NSNumber numberWithInt:_pinkeModel.id],
+            @"reachtime":self.InfoDict[@"time"],
+            @"checkuserid":[NSNumber numberWithInt:userId],
+            @"allnum":self.InfoDict[@"number"],
+            @"payamount":self.InfoDict[@"money"],
+            @"pinkerType":self.InfoDict[@"type"],
+            @"memo":@""};
+        NSLog(@"地产：%@",dic);
         [[LYHomePageHttpTool shareInstance]setTogetherOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
                 //支付宝页面"data": "P130637201510181610220",
                 //result的值就是P130637201510181610220
+                NSLog(@"result-------%@",result);
                 ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
                 detailViewController.orderNo=result;
                 detailViewController.payAmount=[self.InfoDict[@"money"] doubleValue];

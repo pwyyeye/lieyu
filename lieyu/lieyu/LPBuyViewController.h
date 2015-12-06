@@ -12,7 +12,7 @@
 @interface LPBuyViewController : UIViewController
 
 @property (nonatomic, strong) PinKeModel *pinkeModel;
-@property (nonatomic, strong) NSDictionary *InfoDict;
+@property (nonatomic, strong) NSMutableDictionary *InfoDict;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *buyNowBtn;

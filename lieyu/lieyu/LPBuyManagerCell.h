@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LPBuyManagerCell : UITableViewCell
+@interface LPBuyManagerCell : UITableViewCell<UITableViewDataSource,UITableViewDelegate>
+
+@property (nonatomic, strong) NSArray *managerList;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableVIew;
+
+- (void)cellConfigure;
 
 @end

@@ -13,10 +13,21 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLal;
 @property (weak, nonatomic) IBOutlet UILabel *biaoqianLal;
-@property (weak, nonatomic) IBOutlet UILabel *jiubaLal;
+//@property (weak, nonatomic) IBOutlet UILabel *jiubaLal;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *scBtn;
 
-@property (nonatomic,strong) ZSDetailModel *zsModel;
+@property (weak, nonatomic) IBOutlet UIImageView *iconStar1;
+@property (weak, nonatomic) IBOutlet UIImageView *iconStar2;
+@property (weak, nonatomic) IBOutlet UIImageView *iconStar3;
+@property (weak, nonatomic) IBOutlet UIImageView *iconStar4;
+@property (weak, nonatomic) IBOutlet UIImageView *iconStar5;
+
+@property (nonatomic, strong) NSArray *imagesArray;
+
+@property (nonatomic, strong) ZSDetailModel *zsModel;
+
+- (void)cellConfigure:(ZSDetailModel *)ZSModel;
+
 @end

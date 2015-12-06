@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.payBtn.enabled = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -21,7 +22,12 @@
 }
 
 - (void)cellConfigureWithPay:(NSString *)pay andProfit:(CGFloat)profit{
-    self.LPMoney.text = [NSString stringWithFormat:@"$%@",pay];
+    if([pay isEqualToString:@"-1.00"]){
+        self.LPMoney.text = @"请填写";
+    }else{
+        self.payBtn.enabled = NO;
+        self.LPMoney.text = [NSString stringWithFormat:@"$%@",pay];
+    }
     [self.LPProfit setTitle:[NSString stringWithFormat:@"返利¥%.2f",profit] forState:UIControlStateNormal];
 }
 

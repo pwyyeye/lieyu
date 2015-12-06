@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *marketPrice;
 @property (weak, nonatomic) IBOutlet UILabel *profit;
+@property (weak, nonatomic) IBOutlet UIImageView *TaocanImage;
 
 - (void)cellConfigure;
 
