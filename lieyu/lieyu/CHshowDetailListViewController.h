@@ -9,15 +9,15 @@
 #import "LYBaseViewController.h"
 #import "ShaiXuanBtn.h"
 @interface CHshowDetailListViewController : LYBaseViewController
-@property (weak, nonatomic) IBOutlet ShaiXuanBtn *btnItem4;
-@property (weak, nonatomic) IBOutlet ShaiXuanBtn *btnItem5;
-@property (weak, nonatomic) IBOutlet ShaiXuanBtn *btnItem3;
-@property (weak, nonatomic) IBOutlet ShaiXuanBtn *btnItem2;
-@property (weak, nonatomic) IBOutlet ShaiXuanBtn *btnItem1;
+@property (weak, nonatomic) IBOutlet ShaiXuanBtn *itemButton1;
+@property (weak, nonatomic) IBOutlet ShaiXuanBtn *itemButton2;
+@property (weak, nonatomic) IBOutlet ShaiXuanBtn *itemButton3;
+@property (weak, nonatomic) IBOutlet ShaiXuanBtn *itemButton4;
+@property (weak, nonatomic) IBOutlet ShaiXuanBtn *itemButton5;
 
-- (IBAction)change:(ShaiXuanBtn *)sender;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionview;
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (assign, nonatomic) int barid;
 @property (copy, nonatomic) NSString *barName;
 @end

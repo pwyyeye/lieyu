@@ -19,7 +19,7 @@
     }
     
     _priceLal.text=[NSString stringWithFormat:@"￥%@",model.price];
-    _flLal.text=[NSString stringWithFormat:@"再返利%.f%%",model.rebate*100];
+    _flLal.text=[NSString stringWithFormat:@"%.f元",[model.price floatValue] * model.rebate];
     [_goodsImageView setImageWithURL:[NSURL URLWithString:model.img_260]];
 }
 @end
