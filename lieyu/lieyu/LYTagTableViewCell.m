@@ -12,11 +12,16 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self.btn_custom setTitleColor:RGB(102, 102, 102) forState:UIControlStateNormal];
+    self.btn_custom.layer.masksToBounds=YES;
+    self.btn_custom.layer.cornerRadius=2;
+    self.btn_custom.layer.borderWidth=0.5;
+    self.btn_custom.layer.borderColor=RGB(233, 233, 233).CGColor;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LYUserDetailSexTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *btn_man;
+@property (weak, nonatomic) IBOutlet UIButton *btn_women;
 
 @end

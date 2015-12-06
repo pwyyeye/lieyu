@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface LYUserDetailTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *label_title;
+@property (weak, nonatomic) IBOutlet UIImageView *image_arrow;
+@property (weak, nonatomic) IBOutlet UITextField *textF_content;
 
 @end

@@ -37,13 +37,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ManagerInfoCell *managerInfo = [tableView dequeueReusableCellWithIdentifier:@""];
+    ManagerInfoCell *managerInfo = [tableView dequeueReusableCellWithIdentifier:@"managerInfo"];
     if(!managerInfo){
-        [tableView registerNib:[UINib nibWithNibName:@"" bundle:nil] forCellReuseIdentifier:@""];
-        managerInfo = [tableView dequeueReusableCellWithIdentifier:@""];
+        [tableView registerNib:[UINib nibWithNibName:@"ManagerInfoCell" bundle:nil] forCellReuseIdentifier:@"managerInfo"];
+        managerInfo = [tableView dequeueReusableCellWithIdentifier:@"managerInfo"];
     }
-//    managerInfo ce
+    managerInfo.zsDetail = self.managerList[indexPath.row];
+    [managerInfo cellConfigure:(int)indexPath.row];
+    if(indexPath.row == 0){
+        managerInfo.radioButon.selected = YES;
+    }
     return managerInfo;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 87;
 }
 
 @end

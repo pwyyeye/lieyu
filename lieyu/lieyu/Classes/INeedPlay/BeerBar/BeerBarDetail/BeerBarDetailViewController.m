@@ -59,17 +59,6 @@
     
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height);
     self.tableView.scrollEnabled = NO;
-    
-    self.scrollView.showsHorizontalScrollIndicator=NO;
-    self.scrollView.showsVerticalScrollIndicator=NO;
-    
-    
-    //初始化nib
-    [self setupViewStyles];
-    //加载远程数据
-    [self loadBarDetail];
- 
-
 }
 
 - (void)loadBarDetail

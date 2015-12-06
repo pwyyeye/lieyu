@@ -8,10 +8,19 @@
 
 #import "LYUserDetailTableViewCell.h"
 
+@interface LYUserDetailTableViewCell ()<UITextFieldDelegate>
+
+@end
+
 @implementation LYUserDetailTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    self.textF_content.delegate = self;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [textField setText:@""];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -19,5 +28,7 @@
 
     // Configure the view for the selected state
 }
+
+
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
+
 #ifndef lieyu_LYHomePageUrl_h
 #define lieyu_LYHomePageUrl_h
 //一起玩列表
@@ -13,6 +14,8 @@
 //一起玩列表详细
 #define LY_YIQIWAN_DETAIL @"togetherAction.do?action=custom"
 //从套餐转到订单确认
+
+//http:121.40.229.133:8001/lieyu/togetherneedAction.do?action=expand
 #define LY_YIQIWAN_DOORDER @"togetherneedAction.do?action=expand"
 //录入拼客订单
 #define LY_YIQIWAN_INORDER @"pinkerOrderAction.do?action=add"

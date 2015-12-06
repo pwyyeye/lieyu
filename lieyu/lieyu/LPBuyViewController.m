@@ -27,6 +27,8 @@
 //2.7.8 【R0004】反馈用户收藏的专属经理列表
 
 @interface LPBuyViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate>
+@property (nonatomic, strong) NSArray *managerList;
+
 @property (nonatomic, strong) LPBuyTaocanCell *buyTaocanCell;
 @property (nonatomic, strong) LPBuyPriceCell *buyPriceCell;
 @property (nonatomic, strong) LPBuyInfoCell *buyInfoCell;
@@ -46,7 +48,7 @@
     self.title = @"确认拼客订单";
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = backBtn;
-    
+    [self getAllManagers];
 //    NSLog(@"pinkeModel:%@",self.pinkeModel);
 //    NSLog(@"dictionary:%@",self.InfoDict);
     
@@ -69,7 +71,13 @@
 //}
 
 - (void)getAllManagers{
-    
+    NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:self.smid]};
+    __weak __typeof(self)weakSelf = self;
+    [[LYHomePageHttpTool shareInstance]getTogetherOrderWithParams:dic block:^(PinKeModel *result) {
+        _pinkeModel = result;
+        _managerList = _pinkeModel.managerList;
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (void)backClick{
@@ -154,10 +162,10 @@
     }else if(indexPath.section == 3){
         return 66 + 44 * (int)self.pinkeModel.goodsList.count;
     }else{
-        if(self.pinkeModel.managerList.count == 0){
+        if(self.managerList.count == 0){
             return 56;
         }else{
-            return 87 * self.pinkeModel.managerList.count + 16;
+            return 87 * self.managerList.count + 16;
         }
     }
 }
@@ -169,7 +177,9 @@
             [tableView registerNib:[UINib nibWithNibName:@"LPBuyTaocanCell" bundle:nil] forCellReuseIdentifier:@"buyTaocan"];
             _buyTaocanCell = [tableView dequeueReusableCellWithIdentifier:@"buyTaocan"];
         }
-        [_buyTaocanCell cellConfigureWithImage:self.pinkeModel.linkUrl name:self.pinkeModel.title way:self.InfoDict[@"way"] price:self.pinkeModel.price marketPrice:self.pinkeModel.marketprice];
+        if(self.pinkeModel){
+            [_buyTaocanCell cellConfigureWithImage:self.pinkeModel.linkUrl name:self.pinkeModel.title way:self.InfoDict[@"way"] price:self.pinkeModel.price marketPrice:self.pinkeModel.marketprice];
+        }
         return _buyTaocanCell;
     }else if(indexPath.section == 1){
         _buyPriceCell = [tableView dequeueReusableCellWithIdentifier:@"buyPrice"];
@@ -177,9 +187,11 @@
             [tableView registerNib:[UINib nibWithNibName:@"LPBuyPriceCell" bundle:nil] forCellReuseIdentifier:@"buyPrice"];
             _buyPriceCell = [tableView dequeueReusableCellWithIdentifier:@"buyPrice"];
         }
-        [_buyPriceCell.payBtn addTarget:self action:@selector(payMoney) forControlEvents:UIControlEventTouchUpInside];
-        float profit = [self.pinkeModel.price floatValue] * [self.pinkeModel.rebate floatValue];
-        [_buyPriceCell cellConfigureWithPay:self.InfoDict[@"money"] andProfit:profit];
+        if(self.pinkeModel){
+            [_buyPriceCell.payBtn addTarget:self action:@selector(payMoney) forControlEvents:UIControlEventTouchUpInside];
+            float profit = [self.pinkeModel.price floatValue] * [self.pinkeModel.rebate floatValue];
+            [_buyPriceCell cellConfigureWithPay:self.InfoDict[@"money"] andProfit:profit];
+        }
         return _buyPriceCell;
     }else if(indexPath.section == 2){
         _buyInfoCell = [tableView dequeueReusableCellWithIdentifier:@"buyInfo"];
@@ -187,7 +199,9 @@
             [tableView registerNib:[UINib nibWithNibName:@"LPBuyInfoCell" bundle:nil] forCellReuseIdentifier:@"buyInfo"];
             _buyInfoCell = [tableView dequeueReusableCellWithIdentifier:@"buyInfo"];
         }
-        [_buyInfoCell cellConfigureWithName:self.pinkeModel.barinfo.barname Address:self.pinkeModel.barinfo.address Time:self.InfoDict[@"time"] Number:self.InfoDict[@"number"]];
+        if(self.pinkeModel){
+            [_buyInfoCell cellConfigureWithName:self.pinkeModel.barinfo.barname Address:self.pinkeModel.barinfo.address Time:self.InfoDict[@"time"] Number:self.InfoDict[@"number"]];
+        }
         return _buyInfoCell;
     }else if(indexPath.section == 3){
         _contentCell = [tableView dequeueReusableCellWithIdentifier:@"content"];
@@ -195,8 +209,10 @@
             [tableView registerNib:[UINib nibWithNibName:@"ContentTableViewCell" bundle:nil] forCellReuseIdentifier:@"content"];
             _contentCell = [tableView dequeueReusableCellWithIdentifier:@"content"];
         }
-        _contentCell.goodList = self.pinkeModel.goodsList;
-        [_contentCell cellConfigure];
+        if(self.pinkeModel){
+            _contentCell.goodList = self.pinkeModel.goodsList;
+            [_contentCell cellConfigure];
+        }
         return _contentCell;
     }else{
         if(self.pinkeModel.managerList.count){
@@ -205,6 +221,8 @@
                 [tableView registerNib:[UINib nibWithNibName:@"LPBuyManagerCell" bundle:nil] forCellReuseIdentifier:@"buyManager"];
                 _managerCell = [tableView dequeueReusableCellWithIdentifier:@"buyManager"];
             }
+            _managerCell.managerList = self.managerList;
+            [_managerCell cellConfigure];
             return _managerCell;
         }else{
             UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -218,15 +236,27 @@
 
 - (void)payMoney{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定",@"取消", nil];
+    alertView.delegate = self;
     _payContent = [[[NSBundle mainBundle]loadNibNamed:@"PayMoney" owner:nil options:nil]firstObject];
+    _payContent.tag = 13;
+    _payContent.textField.keyboardType = UIKeyboardTypeNumberPad;
     alertView.contentView = _payContent;
     _payContent.frame = CGRectMake(10, SCREEN_HEIGHT - 270 , 300, 200);
     [alertView show];
 }
 
-- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
-    if([((PayMoney *)alertView.contentView).textField.text integerValue] < 100){
-//        alertView sa
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexPayMoney:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        if([((PayMoney *)alertView.contentView).textField.text intValue] < 100){
+            ((PayMoney *)alertView.contentView).warningLabel.textColor = [UIColor redColor];
+            ((PayMoney *)alertView.contentView).textField.text = @"";
+        }else{
+            [alertView hide];
+            [self.InfoDict setValue:((PayMoney *)alertView.contentView).textField.text forKey:@"money"];
+            self.buyPriceCell.LPMoney.text = [NSString stringWithFormat:@"¥%@",self.InfoDict[@"money"]];
+        }
+    }else{
+        [alertView hide];
     }
 }
 

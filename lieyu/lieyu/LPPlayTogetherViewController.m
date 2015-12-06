@@ -413,7 +413,8 @@
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"抱歉，请将信息填写完整!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show ];
     }else{
         LPBuyViewController *LPBuyVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPBuyVC"];
-        LPBuyVC.pinkeModel = self.pinKeModel;
+//        LPBuyVC.pinkeModel = self.pinKeModel;
+        LPBuyVC.smid = self.pinKeModel.smid;
 //        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
 //        [formatter setDateFormat:@"yy年MM月dd日 EEE HH:mm"];
 //        NSString *dateString = [formatter stringFromDate:self.defaultDate];
