@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BeerBarOrYzhDetailModel.h"
 @interface LYBarSpecialTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *label_specialArray;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *label_classArray;
+
+@property (weak, nonatomic) IBOutlet UILabel *typeBtn1;
+@property (weak, nonatomic) IBOutlet UILabel *typeBtn2;
+
+@property (weak, nonatomic) IBOutlet UILabel *teseBtn1;
+@property (weak, nonatomic) IBOutlet UILabel *teseBtn2;
+@property (weak, nonatomic) IBOutlet UILabel *teseBtn3;
+@property (weak, nonatomic) IBOutlet UILabel *teseBtn4;
+
+
+- (void)configureCell:(BeerBarOrYzhDetailModel *)model;
 
 @end
