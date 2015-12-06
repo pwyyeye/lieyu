@@ -622,8 +622,8 @@ typedef enum {
 
   
     CGFloat R0 = 0.267, G0 = 0.303, B0 = 0.335;
-   // CGFloat R1 = 0.040, G1 = 0.040, B1 = 0.040;
-    CGFloat R1 = 0.267, G1 = 0.303, B1 = 0.335;
+    CGFloat R1 = 0.040, G1 = 0.040, B1 = 0.040;
+   // CGFloat R1 = 0.267, G1 = 0.303, B1 = 0.335;
     UIColor *tintColor = [KxMenu tintColor];
     if (tintColor) {
         
@@ -719,7 +719,7 @@ typedef enum {
     const CGRect bodyFrame = {X0, Y0, X1 - X0, Y1 - Y0};
     
     UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:bodyFrame
-                                                          cornerRadius:8];
+                                                          cornerRadius:2];
         
     const CGFloat locations[] = {0, 1};
     const CGFloat components[] = {

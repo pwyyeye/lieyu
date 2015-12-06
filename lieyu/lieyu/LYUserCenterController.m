@@ -79,6 +79,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     [self.navigationController setNavigationBarHidden:YES];
@@ -304,7 +308,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     //将当前要显示的view设置为lastController，在下次view切换调用本方法时，会执行viewWillDisappear
     lastController = viewController;
     
-//    [viewController viewWillAppear:animated];
+    [viewController viewWillAppear:animated];
+    
+ 
 }
 
 @end

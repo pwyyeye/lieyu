@@ -32,6 +32,7 @@
     datalist =[[NSMutableArray alloc]init];
     filteredListContent=[[NSMutableArray alloc]init];
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
+    
     [self getData];
     // Do any additional setup after loading the view from its nib.
 }
@@ -198,7 +199,7 @@
     first.alignment = NSTextAlignmentCenter;
     
     [KxMenu showMenuInView:self.view
-                  fromRect:CGRectMake(310, -40, 30, 30)
+                  fromRect:CGRectMake(SCREEN_WIDTH-105, 10-64, 100, 50)
                  menuItems:menuItems];
     [KxMenu setTintColor:RGBA(114, 5, 147, 0.8)];
 }
