@@ -390,6 +390,20 @@
 		85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F43BA71C11459400B04466 /* LYOrderInfoTableViewCell.xib */; };
 		85F43BAF1C11459400B04466 /* LYOrderManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F43BA91C11459400B04466 /* LYOrderManagerTableViewCell.m */; };
 		85F43BB01C11459400B04466 /* LYOrderManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F43BAA1C11459400B04466 /* LYOrderManagerTableViewCell.xib */; };
+		85F545161C13DE000013B92B /* LYUserDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545141C13DE000013B92B /* LYUserDetailInfoViewController.m */; };
+		85F545171C13DE000013B92B /* LYUserDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F545151C13DE000013B92B /* LYUserDetailInfoViewController.xib */; };
+		85F5451C1C13DF5A0013B92B /* cameraCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545191C13DF5A0013B92B /* cameraCircle.png */; };
+		85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5451A1C13DF5A0013B92B /* cameraCircle@2x.png */; };
+		85F5451E1C13DF5A0013B92B /* cameraCircle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5451B1C13DF5A0013B92B /* cameraCircle@3x.png */; };
+		85F545221C13DF920013B92B /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5451F1C13DF920013B92B /* camera.png */; };
+		85F545231C13DF920013B92B /* camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545201C13DF920013B92B /* camera@2x.png */; };
+		85F545241C13DF920013B92B /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F545211C13DF920013B92B /* camera@3x.png */; };
+		85F545291C13EB450013B92B /* LYUserDetailCameraTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545271C13EB450013B92B /* LYUserDetailCameraTableViewCell.m */; };
+		85F5452A1C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F545281C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib */; };
+		85F5452E1C13FAF50013B92B /* LYUserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F5452C1C13FAF50013B92B /* LYUserDetailTableViewCell.m */; };
+		85F5452F1C13FAF50013B92B /* LYUserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
+		85F545331C13FCD20013B92B /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
+		85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F545321C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib */; };
 		85F625861C0BDFC9002858C8 /* LYLMenuDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625841C0BDFC9002858C8 /* LYLMenuDropViewController.m */; };
 		85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625851C0BDFC9002858C8 /* LYLMenuDropViewController.xib */; };
 		85F6258B1C0BE74E002858C8 /* LYHotBarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625891C0BE74E002858C8 /* LYHotBarMenuViewController.m */; };
@@ -1330,6 +1344,24 @@
 		85F43BA81C11459400B04466 /* LYOrderManagerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYOrderManagerTableViewCell.h; sourceTree = "<group>"; };
 		85F43BA91C11459400B04466 /* LYOrderManagerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYOrderManagerTableViewCell.m; sourceTree = "<group>"; };
 		85F43BAA1C11459400B04466 /* LYOrderManagerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYOrderManagerTableViewCell.xib; sourceTree = "<group>"; };
+		85F545131C13DE000013B92B /* LYUserDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserDetailInfoViewController.h; sourceTree = "<group>"; };
+		85F545141C13DE000013B92B /* LYUserDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserDetailInfoViewController.m; sourceTree = "<group>"; };
+		85F545151C13DE000013B92B /* LYUserDetailInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYUserDetailInfoViewController.xib; sourceTree = "<group>"; };
+		85F545191C13DF5A0013B92B /* cameraCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraCircle.png; sourceTree = "<group>"; };
+		85F5451A1C13DF5A0013B92B /* cameraCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraCircle@2x.png"; sourceTree = "<group>"; };
+		85F5451B1C13DF5A0013B92B /* cameraCircle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraCircle@3x.png"; sourceTree = "<group>"; };
+		85F5451F1C13DF920013B92B /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		85F545201C13DF920013B92B /* camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@2x.png"; sourceTree = "<group>"; };
+		85F545211C13DF920013B92B /* camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera@3x.png"; sourceTree = "<group>"; };
+		85F545261C13EB450013B92B /* LYUserDetailCameraTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserDetailCameraTableViewCell.h; sourceTree = "<group>"; };
+		85F545271C13EB450013B92B /* LYUserDetailCameraTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserDetailCameraTableViewCell.m; sourceTree = "<group>"; };
+		85F545281C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYUserDetailCameraTableViewCell.xib; sourceTree = "<group>"; };
+		85F5452B1C13FAF50013B92B /* LYUserDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserDetailTableViewCell.h; sourceTree = "<group>"; };
+		85F5452C1C13FAF50013B92B /* LYUserDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserDetailTableViewCell.m; sourceTree = "<group>"; };
+		85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYUserDetailTableViewCell.xib; sourceTree = "<group>"; };
+		85F545301C13FCD20013B92B /* LYUserDetailSexTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserDetailSexTableViewCell.h; sourceTree = "<group>"; };
+		85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserDetailSexTableViewCell.m; sourceTree = "<group>"; };
+		85F545321C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYUserDetailSexTableViewCell.xib; sourceTree = "<group>"; };
 		85F625831C0BDFC9002858C8 /* LYLMenuDropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYLMenuDropViewController.h; sourceTree = "<group>"; };
 		85F625841C0BDFC9002858C8 /* LYLMenuDropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYLMenuDropViewController.m; sourceTree = "<group>"; };
 		85F625851C0BDFC9002858C8 /* LYLMenuDropViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYLMenuDropViewController.xib; sourceTree = "<group>"; };
@@ -3271,6 +3303,43 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		85F545121C13D8B80013B92B /* 登录 */ = {
+			isa = PBXGroup;
+			children = (
+				85F545181C13DEDC0013B92B /* 填写个人信息 */,
+			);
+			name = "登录";
+			sourceTree = "<group>";
+		};
+		85F545181C13DEDC0013B92B /* 填写个人信息 */ = {
+			isa = PBXGroup;
+			children = (
+				85F5451F1C13DF920013B92B /* camera.png */,
+				85F545201C13DF920013B92B /* camera@2x.png */,
+				85F545211C13DF920013B92B /* camera@3x.png */,
+				85F545191C13DF5A0013B92B /* cameraCircle.png */,
+				85F5451A1C13DF5A0013B92B /* cameraCircle@2x.png */,
+				85F5451B1C13DF5A0013B92B /* cameraCircle@3x.png */,
+			);
+			name = "填写个人信息";
+			sourceTree = "<group>";
+		};
+		85F545251C13E6B30013B92B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				85F545261C13EB450013B92B /* LYUserDetailCameraTableViewCell.h */,
+				85F545271C13EB450013B92B /* LYUserDetailCameraTableViewCell.m */,
+				85F545281C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib */,
+				85F5452B1C13FAF50013B92B /* LYUserDetailTableViewCell.h */,
+				85F5452C1C13FAF50013B92B /* LYUserDetailTableViewCell.m */,
+				85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */,
+				85F545301C13FCD20013B92B /* LYUserDetailSexTableViewCell.h */,
+				85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */,
+				85F545321C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		85F625931C0C20A9002858C8 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -3834,6 +3903,7 @@
 		AD92AEAE1BE2359A009F2A34 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				85F545251C13E6B30013B92B /* Cell */,
 				AD92AEAF1BE235D9009F2A34 /* LYUserTagButton.h */,
 				AD92AEB01BE235D9009F2A34 /* LYUserTagButton.m */,
 				AD92AEA91BE23521009F2A34 /* LYTagTableViewCell.h */,
@@ -3994,6 +4064,9 @@
 				ADE103B41BDF286A00D9EC38 /* Setting.m */,
 				ADE103B91BDFA5F200D9EC38 /* LYUserDetailController.h */,
 				ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */,
+				85F545131C13DE000013B92B /* LYUserDetailInfoViewController.h */,
+				85F545141C13DE000013B92B /* LYUserDetailInfoViewController.m */,
+				85F545151C13DE000013B92B /* LYUserDetailInfoViewController.xib */,
 				AD92AEB61BE242A3009F2A34 /* LYTagTableViewController.h */,
 				AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */,
 				AD92AEB91BE50AD9009F2A34 /* AboutLieyu.h */,
@@ -4017,6 +4090,7 @@
 		ADE103C31BE0EBCC00D9EC38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				85F545121C13D8B80013B92B /* 登录 */,
 				AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */,
 				AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */,
 				ADE103C41BE0EBDC00D9EC38 /* images */,
@@ -4679,6 +4753,7 @@
 				38E5D6F51C0F10E7004B49D2 /* LPBuyManagerCell.xib in Resources */,
 				151BB6D31BBB78E000E7A81C /* UzysAssetsPickerController.xib in Resources */,
 				15B866901BE0B04C002E2BB6 /* MyMessageListViewController.xib in Resources */,
+				85F545171C13DE000013B92B /* LYUserDetailInfoViewController.xib in Resources */,
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
 				15EB35491BD4839D00BA6161 /* UMSCommentDetailController.xib in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
@@ -4689,6 +4764,7 @@
 				15ED32791BE318A800E086A1 /* 5018.wav in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
 				85F43BB01C11459400B04466 /* LYOrderManagerTableViewCell.xib in Resources */,
+				85F5451C1C13DF5A0013B92B /* cameraCircle.png in Resources */,
 				38E5D6DC1C0EFBA2004B49D2 /* leftBackItem@3x.png in Resources */,
 				38E5D6BF1C0EA458004B49D2 /* CustomBtn_unSelected@3x.png in Resources */,
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
@@ -4696,6 +4772,7 @@
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
 				AD0080941BEA4F4F00937CFF /* lieyuIcon@3x.png in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
+				85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */,
 				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
@@ -4711,6 +4788,7 @@
 				AD92AEAD1BE23521009F2A34 /* LYTagTableViewCell.xib in Resources */,
 				ADD68E381BE10E550060E751 /* 1@3x.png in Resources */,
 				15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */,
+				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
 				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
 				15E240D71BB3E8610090D240 /* MyPKfriendCell.xib in Resources */,
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
@@ -4743,6 +4821,7 @@
 				15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */,
 				85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
+				85F545221C13DF920013B92B /* camera.png in Resources */,
 				ADD68E2A1BE10E330060E751 /* 3@2x.png in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				ADF88E631C102E4F00CF5DED /* huiseStar@2x.png in Resources */,
@@ -4781,6 +4860,8 @@
 				38E5D7A21C113879004B49D2 /* choose@3x.png in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
 				38E5D6BE1C0EA458004B49D2 /* CustomBtn_unSelected@2x.png in Resources */,
+				85F545231C13DF920013B92B /* camera@2x.png in Resources */,
+				85F5452F1C13FAF50013B92B /* LYUserDetailTableViewCell.xib in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
@@ -4861,6 +4942,7 @@
 				A2FD57631BAFE6C000CFFF92 /* CaoCanCell.xib in Resources */,
 				38E5D6C81C0EA4DF004B49D2 /* CustomBtn_Selected@3x.png in Resources */,
 				15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */,
+				85F545241C13DF920013B92B /* camera@3x.png in Resources */,
 				15E240961BB295090090D240 /* LYOrderBottomForFinishView.xib in Resources */,
 				A2020D761BA67FA40090B92A /* Fill2097@2x.png in Resources */,
 				15E240A71BB381610090D240 /* OrderDetailHeadView.xib in Resources */,
@@ -4869,6 +4951,7 @@
 				85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */,
 				3879F2581C0D32B900B72629 /* TaocanTableViewCell.xib in Resources */,
 				15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */,
+				85F5451E1C13DF5A0013B92B /* cameraCircle@3x.png in Resources */,
 				85EE80381C0AF19600958F76 /* LYBarTitleTableViewCell.xib in Resources */,
 				85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */,
 				ADD68E3F1BE10E7E0060E751 /* skip-btn@3x.png in Resources */,
@@ -4888,6 +4971,7 @@
 				85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */,
 				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
 				38E5D6EB1C0F106F004B49D2 /* LPBuyPriceCell.xib in Resources */,
+				85F5452A1C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
 				15E184891BB5214F00681BB2 /* LYChooseJiuBaViewController.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
@@ -5126,6 +5210,7 @@
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
 				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,
 				15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */,
+				85F545161C13DE000013B92B /* LYUserDetailInfoViewController.m in Sources */,
 				D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */,
 				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
 				15E184741BB4EB7A00681BB2 /* LYZSdetailCell.m in Sources */,
@@ -5198,6 +5283,7 @@
 				15E240711BB2478B0090D240 /* TuiJianShangJiaViewController.m in Sources */,
 				15FD2A971BD5DD7A00D66920 /* FindMenuCell.m in Sources */,
 				15A4CF3B1BD7309500C22C01 /* LYTitleInfoCell.m in Sources */,
+				85F545291C13EB450013B92B /* LYUserDetailCameraTableViewCell.m in Sources */,
 				15CC31E21BEB2C5B00DDD03F /* FMDatabasePool.m in Sources */,
 				151BB6D41BBB78E000E7A81C /* UzysAssetsViewCell.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
@@ -5309,11 +5395,13 @@
 				85F625861C0BDFC9002858C8 /* LYLMenuDropViewController.m in Sources */,
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
 				D748BC461BA1C280005AA996 /* LYDataStore.m in Sources */,
+				85F545331C13FCD20013B92B /* LYUserDetailSexTableViewCell.m in Sources */,
 				15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */,
 				38E5D6E01C0F0E00004B49D2 /* LPBuyViewController.m in Sources */,
 				15EB35041BD1F4F900BA6161 /* PTTypeChooseCell.m in Sources */,
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
 				1559DD0A1BDA2A1200F3FE9B /* LYCarListViewController.m in Sources */,
+				85F5452E1C13FAF50013B92B /* LYUserDetailTableViewCell.m in Sources */,
 				1559DD061BDA254600F3FE9B /* CarInfoModel.m in Sources */,
 				152247B71BEB064600E68A2B /* IQToolbar.m in Sources */,
 				A2020D591BA6781B0090B92A /* FunctionListCell.m in Sources */,

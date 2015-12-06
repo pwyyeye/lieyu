@@ -41,6 +41,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
     self.navigationItem.title = @"所有套餐";
 }
+
 #pragma mark 获取七天日期
 -(void)getweekDate{
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -97,6 +98,12 @@
     [super viewWillLayoutSubviews];
     self.navigationController.navigationBarHidden = NO;
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 #pragma mark 获取顶部菜单
 -(void)getMenuHrizontal{
     NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:7];
@@ -139,10 +146,9 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
         return 1;
-   
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return jiubaModel.recommend_package.count;
