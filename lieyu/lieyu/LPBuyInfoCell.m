@@ -21,9 +21,13 @@
 }
 
 - (void)cellConfigureWithName:(NSString *)name Address:(NSString *)address Time:(NSString *)time Number:(NSString *)number{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yy年MM月dd日 EEE HH:mm"];
+    NSString *dateString = [formatter stringFromDate:time];
     self.LPBarName.text = name;
     self.LPAddress.text = address;
-    self.LPTime.text = time;
+    self.LPTime.text = dateString;
     self.LPNumber.text = [NSString stringWithFormat:@"拼客%@人",number];
 }
 

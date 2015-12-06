@@ -82,7 +82,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 104;
+    return 130;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -97,14 +97,10 @@
 //    NSUInteger row = [indexPath row];
     
     ZSDetailModel * detailModel=zsList[indexPath.row];
-    cell.nameLal.text=detailModel.userName;
-    cell.biaoqianLal.text=detailModel.introduction;
-    cell.jiubaLal.text=detailModel.usernick;
+    NSLog(@"ZSJL:%@",detailModel);
     [cell.messageBtn addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
-    cell.messageBtn.tag=indexPath.row;
-    cell.phoneBtn.tag=indexPath.row;
-    cell.scBtn.tag=indexPath.row;
-    [cell.userImageView setImageWithURL:[NSURL URLWithString:detailModel.avatar_img]];
+    
+    [cell cellConfigure:detailModel];
     [cell.phoneBtn addTarget:self action:@selector(callPhone:) forControlEvents:UIControlEventTouchUpInside];
     [cell.scBtn setHidden:!_isBarVip];
     [cell.scBtn  addTarget:self action:@selector(scAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -218,6 +214,7 @@
 }
 #pragma mark -收藏
 -(void)scAct:(UIButton *)sender{
+    NSLog(@"shoucang");
     ZSDetailModel * detailModel=zsList[sender.tag];
     NSDictionary *dic=@{@"vipUserid":[NSNumber numberWithInt:detailModel.userid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
     [[LYHomePageHttpTool shareInstance] scVipWithParams:dic complete:^(BOOL result) {

@@ -13,7 +13,7 @@
 #import "BitianTableViewCell.h"
 #import "ContentTableViewCell.h"
 #import "LiuchengTableViewCell.h"
-
+#import "UMSocial.h"
 
 #import "LYHomePageHttpTool.h"
 #import "ContentView.h"
@@ -24,7 +24,7 @@
 #import "CommonShow.h"
 #import "LYUserLocation.h"
 
-@interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UITextFieldDelegate>
+@interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UITextFieldDelegate,UMSocialUIDelegate>
 
 @property (nonatomic, strong) BarInfoTableViewCell *barinfoCell;
 @property (nonatomic, strong) TaocanTableViewCell *taocanCell;
@@ -70,21 +70,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
-//       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-//        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40);
-//    }
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
+       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 100);
+    }
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.defaultString = @"请选择消费方式";
     self.defaultDate = [NSDate date];
-    self.defaultNumber = 1;
+    self.defaultNumber = 2;
     self.biTianCell.numTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.biTianCell.numTextField.returnKeyType = UIReturnKeyDone;
     self.biTianCell.numTextField.delegate = self;
     
+    self.likeBtn.enabled = NO;
+    self.likeBtn.hidden = YES;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -194,7 +196,8 @@
                                    @"taocanInfo":self.pinKeModel.title,
                                    @"price":self.pinKeModel.price,
                                    @"marketPrice":self.pinKeModel.marketprice,
-                                   @"profit":self.pinKeModel.rebate};
+                                   @"profit":self.pinKeModel.rebate,
+                                   @"image":@""};
             _taocanCell.dict = dict;
             [_taocanCell cellConfigure];
         }
@@ -275,17 +278,18 @@
                 }else if(index == 1){
                     self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / [self.biTianCell.numTextField.text intValue];
                 }else{
-                    __weak __typeof(self)weakSelf = self;
-                    void (^chooseYourPay)(void) = ^(void){
-                        UIAlertView *customAlert = [[UIAlertView alloc]initWithTitle:@"请填写您要支付的金额" message:nil delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                        [customAlert setTintColor:RGBA(114, 5, 147, 1)];
-                        [customAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-                        UITextField *payField = [customAlert textFieldAtIndex:0];
-                        payField.keyboardType = UIKeyboardTypeNumberPad;
-                        payField.placeholder = @"金额请不少于100元";
-                        [customAlert show];
-                    };
-                    chooseYourPay();
+//                    __weak __typeof(self)weakSelf = self;
+//                    void (^chooseYourPay)(void) = ^(void){
+//                        UIAlertView *customAlert = [[UIAlertView alloc]initWithTitle:@"请填写您要支付的金额" message:nil delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//                        [customAlert setTintColor:RGBA(114, 5, 147, 1)];
+//                        [customAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+//                        UITextField *payField = [customAlert textFieldAtIndex:0];
+//                        payField.keyboardType = UIKeyboardTypeNumberPad;
+//                        payField.placeholder = @"金额请不少于100元";
+//                        [customAlert show];
+//                    };
+//                    chooseYourPay();
+                    self.defaultPay = -1;
                 }
             }
         }
@@ -293,17 +297,17 @@
     }
 }
 
-#pragma 填写支付金额
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == alertView.firstOtherButtonIndex) {
-        if ([[alertView textFieldAtIndex:0].text intValue] < 100) {
-            [CommonShow showMessage:@"对不起，发起人预付金额不可少于100元!"];
-        }else{
-            self.defaultIndex = 2;
-            self.defaultPay = [[alertView textFieldAtIndex:0].text intValue];
-        }
-    }
-}
+//#pragma 填写支付金额
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if (buttonIndex == alertView.firstOtherButtonIndex) {
+//        if ([[alertView textFieldAtIndex:0].text intValue] < 100) {
+//            [CommonShow showMessage:@"对不起，发起人预付金额不可少于100元!"];
+//        }else{
+//            self.defaultIndex = 2;
+//            self.defaultPay = [[alertView textFieldAtIndex:0].text intValue];
+//        }
+//    }
+//}
 
 #pragma  选择消费时间
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
@@ -336,7 +340,7 @@
 #pragma 选择消费时间
 - (void)chooseTimeForTaocan{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
-    alertView.delegate = self;
+//    alertView.delegate = self;
     _LPtimeView = [[[NSBundle mainBundle]loadNibNamed:@"TimePickerView" owner:nil options:nil]firstObject];
     _LPtimeView.tag = 11;
 //    [_timeView showTimeWithDate:self.defaultDate];
@@ -364,7 +368,7 @@
     self.defaultNumber ++;
 //    self.biTianCell.numTextField.text = [NSString stringWithFormat:@"%d",self.defaultNumber];
     [self.biTianCell.numTextField setText:[NSString stringWithFormat:@"%d",self.defaultNumber]];
-    if(self.defaultNumber > 1){
+    if(self.defaultNumber > 2){
         self.biTianCell.lessBtn.enabled = YES;
 //        [self.biTianCell.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
         [self.biTianCell.lessBtn setImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
@@ -373,7 +377,7 @@
 
 #pragma 减按钮点击
 - (void)lessPeople{
-    if(self.defaultNumber <= 1){
+    if(self.defaultNumber <= 2){
         self.biTianCell.lessBtn.enabled = NO;
         [self.biTianCell.lessBtn setBackgroundImage:[UIImage imageNamed:@"gray_less"] forState:UIControlStateNormal];
     }else{
@@ -410,20 +414,23 @@
     }else{
         LPBuyViewController *LPBuyVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPBuyVC"];
         LPBuyVC.pinkeModel = self.pinKeModel;
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yy年MM月dd日 EEE HH:mm"];
-        NSString *dateString = [formatter stringFromDate:self.defaultDate];
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//        [formatter setDateFormat:@"yy年MM月dd日 EEE HH:mm"];
+//        NSString *dateString = [formatter stringFromDate:self.defaultDate];
         
         if(self.defaultIndex == 1){
             self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / self.defaultNumber;
         }
         
-        NSDictionary *dict = @{@"time":dateString,
+        
+        NSDictionary *dict = @{@"time":self.defaultDate,
                                @"way":self.defaultString,
                                @"money":[NSString stringWithFormat:@"%.2f",self.defaultPay],
                                @"number":[NSString stringWithFormat:@"%d",self.defaultNumber],
                                @"type":[NSString stringWithFormat:@"%d",self.defaultIndex]};
-        LPBuyVC.InfoDict = dict;
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:dict];
+        
+        LPBuyVC.InfoDict = dictionary;
         [self.navigationController pushViewController:LPBuyVC animated:YES];
     }
     
@@ -438,7 +445,38 @@
 
 #pragma 分享按钮
 - (IBAction)ShareClick:(UIButton *)sender {
-    
+//    
+    NSString *string=@"大家一起来看看～猎娱不错啊! http://www.lie98.com\n";
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+    [UMSocialSnsService presentSnsController:self
+                                appKey:UmengAppkey
+                                shareText:string
+                                shareImage:[UIImage imageNamed:self.pinKeModel.banner[0]]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
+                                delegate:self];
 }
+
+- (BOOL)isDirectShareInIconActionSheet{
+    return NO;
+}
+
+- (BOOL)closeOauthWebViewController:(UINavigationController *)navigationCtroller socialControllerService:(UMSocialControllerService *)socialControllerService{
+//    UIViewController *view1 = [[UIViewController alloc]init];
+//    view1.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    view1.view.backgroundColor = [UIColor redColor];
+//    [self.navigationController pushViewController:view1 animated:YES];
+    return YES;
+}
+
+//- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response{
+//    
+//}
+
+//- (void)didCloseUIViewController:(UMSViewControllerType)fromViewControllerType{
+//    UIViewController *view1 = [[UIViewController alloc]init];
+//    view1.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    view1.view.backgroundColor = [UIColor redColor];
+//    [self.navigationController pushViewController:view1 animated:YES];
+//}
 
 @end

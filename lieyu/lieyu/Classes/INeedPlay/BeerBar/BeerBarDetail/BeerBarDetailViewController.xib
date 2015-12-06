@@ -164,7 +164,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="96X-DT-GEW" id="HBL-mj-0Sl">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="219.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIi-JY-IS5">
@@ -394,7 +394,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwQ-ej-J52" id="Jfr-2l-B75">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="热门订座套餐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXA-Gg-EX9">

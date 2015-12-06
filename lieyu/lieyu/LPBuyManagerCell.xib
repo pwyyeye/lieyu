@@ -15,15 +15,35 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kS1-k3-YFe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idk-od-cp4">
+                        <rect key="frame" x="0.0" y="55" width="320" height="16"/>
+                        <animations/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <animations/>
             </tableViewCellContentView>
             <animations/>
+            <connections>
+                <outlet property="tableVIew" destination="kS1-k3-YFe" id="mlr-fh-TFS"/>
+            </connections>
             <point key="canvasLocation" x="281" y="296.5"/>
         </tableViewCell>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LSv-zS-eMx">
+            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <animations/>
+            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="525" y="513.5"/>
+        </label>
     </objects>
 </document>

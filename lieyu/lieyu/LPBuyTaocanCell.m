@@ -33,9 +33,14 @@
 
 - (void)cellConfigureWithImage:(NSString *)imageUrl name:(NSString *)name way:(NSString *)way price:(NSString *)price marketPrice:(NSString *)marketPrice{
     NSURL *image = [NSURL URLWithString:imageUrl];
-    [self.LPimage sd_setImageWithURL:image];
+    [self.LPimage sd_setImageWithURL:image placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     self.LPName.text = name;
-    self.LPway.text = [NSString stringWithFormat:@"%@",way];
+//    if([way isEqualToString:@"自由付款"]){
+//        self.LPway.textColor = [UIColor redColor];
+//        self.LPway.text = @"请填写预付金额";
+//    }else{
+        self.LPway.text = way;
+//    }
     self.LPprice.text = [NSString stringWithFormat:@"¥%@",price];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName:
                                      [NSNumber numberWithInteger:NSUnderlineStyleSingle]};

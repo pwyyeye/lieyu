@@ -28,6 +28,9 @@
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",self.dict[@"marketPrice"]] attributes:attribtDic];
     self.marketPrice.attributedText = attribtStr;
     self.profit.text = [NSString stringWithFormat:@"返利%.2f％",[self.dict[@"profit"] floatValue] * 100 ];
+    if(![self.dict[@"image"] isEqualToString:@""]){
+        [self.TaocanImage sd_setImageWithURL:[NSURL URLWithString:self.dict[@"image"]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    }
 }
 
 @end
