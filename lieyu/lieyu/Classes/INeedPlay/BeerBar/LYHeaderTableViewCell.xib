@@ -14,10 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="304"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfF-bO-cZM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="231"/>
-                        <animations/>
-                    </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="laBa" translatesAutoresizingMaskIntoConstraints="NO" id="SMf-Q5-5oE">
                         <rect key="frame" x="27" y="245" width="21" height="12"/>
                         <animations/>
@@ -35,7 +31,6 @@
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outlet property="imageView_header" destination="zfF-bO-cZM" id="f8a-hJ-TGa"/>
                 <outlet property="label_laBa" destination="E4U-Xs-aaT" id="riB-pp-3gE"/>
             </connections>
             <point key="canvasLocation" x="300" y="501.5"/>

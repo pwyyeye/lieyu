@@ -23,16 +23,19 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = RGBA(76, 76, 76, 1);
-        label.frame = CGRectMake( i%3 * 95 + 10, i/3 * 50 + 40, 80, 40);
+        label.frame = CGRectMake( i%3 * 100 + 10, i/3 * 50 + 40, 100, 40);
         NSString *str;
         if (i%3 == 0) {
             str = model.name;
         }else if(i%3 == 1){
             str = [NSString stringWithFormat:@"1%@",model.unit];
+            label.textAlignment = NSTextAlignmentCenter;
         }else{
             str = [NSString stringWithFormat:@"¥%@",model.price];
             label.textColor = RGBA(114, 5, 147, 1);
+            label.textAlignment = NSTextAlignmentRight;
         }
+        label.backgroundColor = [UIColor redColor];
         label.text = str;
         [self addSubview:label];
     }

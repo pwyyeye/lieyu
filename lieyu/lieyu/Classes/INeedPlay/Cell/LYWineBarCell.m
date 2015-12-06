@@ -40,7 +40,12 @@
     [_label_descr setText:jiuBaModel.subtitle];
     [_label_price setText:[NSString stringWithFormat:@"¥%@起",jiuBaModel.lowest_consumption]];
     [_label_point setText:jiuBaModel.address];
-    [_label_star_count setText:jiuBaModel.star_num];
+    if ([jiuBaModel.star_num integerValue]) {
+        [_label_star_count setText:jiuBaModel.star_num];
+    }else{
+        [_label_star_count setText:@"0"];
+    }
+    [_label_zang_count setText:jiuBaModel.fav_num];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

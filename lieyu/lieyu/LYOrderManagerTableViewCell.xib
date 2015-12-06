@@ -64,6 +64,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="starGray" width="14" height="13"/>
+        <image name="starGray" width="29" height="18"/>
     </resources>
 </document>

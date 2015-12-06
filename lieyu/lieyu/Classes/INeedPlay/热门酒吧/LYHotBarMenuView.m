@@ -8,6 +8,12 @@
 
 #import "LYHotBarMenuView.h"
 #import "LYHotBarMenuDropView.h"
+#import "MenuButton.h"
+
+@interface LYHotBarMenuView()
+@property (nonatomic,strong) NSArray *itemArray;
+@property (nonatomic,copy) NSString *title;
+@end
 
 @implementation LYHotBarMenuView
 {
@@ -15,8 +21,9 @@
     NSMutableArray *_btnArray;
 }
 
-- (void)deploy{
-    NSArray *titleArray = @[@"所有地区",@"音乐清吧",@"离我最近"];
+- (void)deployWithMiddleTitle:(NSString *)title ItemArray:(NSArray *)itemArray{
+  //  self.backgroundColor = [UIColor redColor];
+    NSArray *titleArray = @[@"所有地区",title,@"离我最近"];
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0; i < 3; i ++) {
         UIButton *menuBtn = [[UIButton alloc]init];
@@ -37,29 +44,35 @@
         lineView.backgroundColor = RGBA(204, 204, 204, 1);
         [self addSubview:lineView];
     }
-    _dropMenuView = [[LYHotBarMenuDropView alloc]init];
-    _dropMenuView.backgroundColor = [UIColor whiteColor];
-    _dropMenuView.frame = CGRectMake(0, 40, 320, 124);
-    [_dropMenuView deploy];
-    for (UIButton *dropBtn in _dropMenuView.btnArray) {
-        [dropBtn addTarget:self action:@selector(dropClick:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    _itemArray = itemArray;
+    _title = title;
 }
 
-- (void)dropClick:(UIButton *)button{
-    if ([_delegate respondsToSelector:@selector(didClickHotBarMenuDropWithIndex:)]) {
-        [_delegate didClickHotBarMenuDropWithIndex:button.tag];
+- (void)dropClick:(MenuButton *)button{
+    if ([_delegate respondsToSelector:@selector(didClickHotBarMenuDropWithSectionButtonTitle:dropButtonIndex:)]) {
+        UIButton *menuBtn = (UIButton *)[self viewWithTag:4];
+        if (menuBtn) {
+            for (MenuButton *btn in _dropMenuView.btnArray) {
+                btn.selected = NO;
+                if ([btn.currentTitle isEqual:button.currentTitle]) {
+                    NSLog(@"-%@-----------%@",btn.currentTitle,button.currentTitle);
+                    btn.selected = YES;
+                    
+                }
+            }
+            [_delegate didClickHotBarMenuDropWithSectionButtonTitle:menuBtn.currentTitle dropButtonIndex:button.tag];
+        }
     }
 }
 
 - (void)menuClick:(UIButton *)button{
-    [_dropMenuView removeFromSuperview];
+    [self hide];
     UIButton *allPlace_btn = _btnArray[0];
     UIButton *music_btn = _btnArray[1];
     UIButton *aroundMe_btn = _btnArray[2];
     if ([button.currentTitle isEqualToString:@"所有地区"]) {
         if (button.tag == 1) {
-            [self addSubview:_dropMenuView];
+            [self showWithSmallArray:_itemArray[0]];
             [button setImage:[UIImage imageNamed:@"arrow drop down"] forState:UIControlStateNormal];
             button.tag = 4;
         }else {
@@ -70,11 +83,25 @@
         aroundMe_btn.tag = 3;
         [music_btn setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
         [aroundMe_btn setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
-    }else if([button.currentTitle isEqualToString:@"音乐清吧"]){
-        if (button.tag == 2) {
-            [self addSubview:_dropMenuView];
+    }else if([button.currentTitle isEqualToString:@"离我最近"]){
+        if (button.tag == 3) {
+            [self showWithSmallArray:_itemArray[2]];
             [button setImage:[UIImage imageNamed:@"arrow drop down"] forState:UIControlStateNormal];
-            button.tag = 5;
+            button.tag = 4;
+        }else {
+            button.tag = 3;
+            [button setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
+            [self hide];
+        }
+        allPlace_btn.tag = 1;
+        music_btn.tag = 2;
+        [allPlace_btn setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
+        [music_btn setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
+    }else{
+        if (button.tag == 2) {
+            [self showWithSmallArray:_itemArray[1]];
+            [button setImage:[UIImage imageNamed:@"arrow drop down"] forState:UIControlStateNormal];
+            button.tag = 4;
         }else {
             button.tag = 2;
             [button setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
@@ -83,20 +110,32 @@
         aroundMe_btn.tag = 3;
         [allPlace_btn setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
         [aroundMe_btn setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
-    }else{
-        if (button.tag == 3) {
-            [self addSubview:_dropMenuView];
-            [button setImage:[UIImage imageNamed:@"arrow drop down"] forState:UIControlStateNormal];
-            button.tag = 6;
-        }else {
-            button.tag = 3;
-            [button setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
-        }
-        allPlace_btn.tag = 1;
-        music_btn.tag = 2;
-        [allPlace_btn setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
-        [music_btn setImage:[UIImage imageNamed:@"arrow drop up"] forState:UIControlStateNormal];
     }
+}
+
+- (void)showWithSmallArray:(NSArray *)smallArray{
+    NSInteger dropHeight = (smallArray.count)/3 * 62;
+    if (smallArray.count%3) {
+        dropHeight =  dropHeight + 62;
+    }
+
+    self.frame = CGRectMake(0, 64, 320, dropHeight + 40);
+    _dropMenuView = [[LYHotBarMenuDropView alloc]init];
+    _dropMenuView.backgroundColor = [UIColor whiteColor];
+    _dropMenuView.frame = CGRectMake(0, 40, 320,dropHeight );
+    [_dropMenuView deployWithItemArrayWith:smallArray];
+    for (MenuButton *dropBtn in _dropMenuView.btnArray) {
+        [dropBtn addTarget:self action:@selector(dropClick:) forControlEvents:UIControlEventTouchUpInside];
+        if ([dropBtn.currentTitle isEqualToString:_title]) {
+            dropBtn.selected = YES;
+        }
+    }
+    [self addSubview:_dropMenuView];
+}
+
+- (void)hide{
+    self.frame = CGRectMake(0, 64, 320, 40);
+    [_dropMenuView removeFromSuperview];
 }
 
 

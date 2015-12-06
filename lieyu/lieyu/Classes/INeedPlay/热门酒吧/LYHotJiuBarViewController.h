@@ -12,4 +12,5 @@
 @interface LYHotJiuBarViewController : UIViewController
 @property(nonatomic,assign)BaseEntry entryType;
 @property(nonatomic,copy)NSString *cityStr;
+@property (nonatomic,copy) NSString *middleStr;
 @end

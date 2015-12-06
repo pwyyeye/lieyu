@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *payBtn;
 @property (copy, nonatomic) NSString *dateStr;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,strong) NSDate *_dateChoose;
 @end

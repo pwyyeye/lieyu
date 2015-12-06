@@ -43,6 +43,7 @@ UITableViewDataSource,UITableViewDelegate,
 @property(nonatomic,weak) IBOutlet UITextField * searchTextField;
 //@property(nonatomic,weak) IBOutlet UITabBarItem * tabBarItem;
 @property(nonatomic,assign) NSInteger curPageIndex;
+@property (nonatomic,strong) NSArray *hotJiuBarTitle;
 @end
 
 @implementation HomePageINeedPlayViewController
@@ -76,7 +77,8 @@ UITableViewDataSource,UITableViewDelegate,
     [self.tableView registerNib:[UINib nibWithNibName:@"LYHotRecommandCell" bundle:nil]  forCellReuseIdentifier:@"hotCell"];
      [self.tableView registerNib:[UINib nibWithNibName:@"LYAmusementClassCell" bundle:nil] forCellReuseIdentifier:@"LYAmusementClassCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
+    
+    _hotJiuBarTitle = @[@"激情夜店",@"文艺清吧",@"音乐清吧",@"ktv"];
 }
 
 -(void)dealloc{
@@ -369,7 +371,7 @@ UITableViewDataSource,UITableViewDelegate,
             amuseCell.scrollView.alwaysBounceVertical = NO;
             amuseCell.selectionStyle = UITableViewCellSelectionStyleNone;
             for (UIButton *btn in amuseCell.buttonArray) {
-                [btn addTarget:self action:@selector(hotJiuClick) forControlEvents:UIControlEventTouchUpInside];
+                [btn addTarget:self action:@selector(hotJiuClick:) forControlEvents:UIControlEventTouchUpInside];
             }
             return amuseCell;
         }
@@ -378,7 +380,7 @@ UITableViewDataSource,UITableViewDelegate,
         {
             
             LYHotRecommandCell *hotCell = [tableView dequeueReusableCellWithIdentifier:@"hotCell" forIndexPath:indexPath];
-            
+            hotCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return hotCell;
         }
             break;
@@ -396,8 +398,9 @@ UITableViewDataSource,UITableViewDelegate,
   return cell;
 }
 
-- (void)hotJiuClick{
+- (void)hotJiuClick:(UIButton *)button{
     LYHotJiuBarViewController *hotJiuBarVC = [[LYHotJiuBarViewController alloc]init];
+    hotJiuBarVC.middleStr = _hotJiuBarTitle[button.tag];
     [self.navigationController pushViewController:hotJiuBarVC animated:YES];
 }
 

@@ -27,6 +27,8 @@
     [super viewDidLoad];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     _tableView.separatorColor=[UIColor clearColor];
     [self getdata];
     // Do any additional setup after loading the view.
@@ -34,8 +36,8 @@
     [self createButton];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -48,10 +50,12 @@
     UIButton *collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(216, 30, 40, 40)];
     [collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
     [collectBtn addTarget:self action:@selector(collectClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:collectBtn];
     
     UIButton *shareBtn = [[UIButton alloc]initWithFrame:CGRectMake(272, 30, 40, 40)];
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:shareBtn];
 }
 
 - (void)backClick{
@@ -94,14 +98,12 @@
     }else{
         return 0;
     }
-    
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (!section) {
-        return LONG_LONG_MIN;
+        return 0.0001;
     }
     return 8;
 }

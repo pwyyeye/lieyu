@@ -13,5 +13,5 @@
 @interface LYHotBarMenuDropView : UIView
 
 @property (nonatomic,strong) NSMutableArray *btnArray;
-- (void)deploy;
+- (void)deployWithItemArrayWith:(NSArray *)itemArray;
 @end

@@ -42,14 +42,6 @@
                         <color key="textColor" red="0.29803921570000003" green="0.29803921570000003" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jian2" translatesAutoresizingMaskIntoConstraints="NO" id="PvM-LC-Mzh">
-                        <rect key="frame" x="174" y="143" width="32" height="32"/>
-                        <animations/>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="jia2" translatesAutoresizingMaskIntoConstraints="NO" id="oNm-tg-Dhs">
-                        <rect key="frame" x="277" y="144" width="32" height="32"/>
-                        <animations/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7i-a4-qMI">
                         <rect key="frame" x="215" y="143" width="48" height="32"/>
                         <animations/>
@@ -83,15 +75,31 @@
                             <color key="titleColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J9E-XV-SQt">
+                        <rect key="frame" x="174" y="143" width="32" height="32"/>
+                        <animations/>
+                        <state key="normal" backgroundImage="jian2"/>
+                        <connections>
+                            <action selector="jianAct:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0CO-Vz-S8A"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMI-if-Okl">
+                        <rect key="frame" x="277" y="144" width="32" height="32"/>
+                        <animations/>
+                        <state key="normal" backgroundImage="jia2"/>
+                        <connections>
+                            <action selector="jiaAct:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Qeu-DN-d0x"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outlet property="btn_add" destination="oNm-tg-Dhs" id="LnB-ju-DfJ"/>
+                <outlet property="btn_add" destination="cMI-if-Okl" id="UIA-iY-Ksk"/>
                 <outlet property="btn_chooseTime" destination="Dhs-0E-GAO" id="eW6-co-gsz"/>
                 <outlet property="btn_isReserve" destination="mGn-AW-Rxm" id="3ec-fK-OyF"/>
-                <outlet property="btn_minus" destination="PvM-LC-Mzh" id="qES-bP-Bf7"/>
+                <outlet property="btn_minus" destination="J9E-XV-SQt" id="VZO-gz-QrN"/>
                 <outlet property="btn_showTaocan" destination="mS1-74-Zei" id="Dh9-qk-2nV"/>
                 <outlet property="btn_showTime" destination="8f9-ez-aO3" id="2cW-3r-V92"/>
                 <outlet property="label_count" destination="z7i-a4-qMI" id="oxh-yX-jlF"/>

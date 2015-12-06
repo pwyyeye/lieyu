@@ -19,6 +19,7 @@
 #import "LYtimeChooseTimeController.h"
 #import "DWIsGoToViewController.h"
 #import "ChoosePayController.h"
+#import "LYZSdetailCell.h"
 
 #import "LYDinWeiTableViewCell.h"
 #import "LYOrderWriteTableViewCell.h"
@@ -26,6 +27,7 @@
 #import "LYOrderManagerTableViewCell.h"
 #import "TimePickerView.h"
 #import "LPAlertView.h"
+#import "ContentViewTaocan.h"
 
 @interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate,LPAlertViewDelegate>
 {
@@ -38,6 +40,8 @@
     NSString *gotype;
     TimePickerView *_timeView;
     LYOrderWriteTableViewCell *_writeCell;
+    ContentViewTaocan *view_taocan;
+    NSInteger count;
 }
 @end
 
@@ -46,6 +50,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self deployCell];
+    count = 1;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.automaticallyAdjustsScrollViewInsets = NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
@@ -55,18 +61,25 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)deployCell{
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYOrderWriteTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYOrderWriteTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYOrderInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYOrderInfoTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYOrderManagerTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYOrderManagerTableViewCell"];
+     [self.tableView registerNib:[UINib nibWithNibName:@"LPBuyManagerCell" bundle:nil] forCellReuseIdentifier:@"buyManager"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYZSdetailCell" bundle:nil] forCellReuseIdentifier:@"LYZSdetailCell"];
 }
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"numChange" object:nil];
 }
 -(void)numChange{
-    int num = numCell.numLal.text.intValue;
+    int num = _writeCell.label_count.text.intValue;
     
     [_payBtn setTitle:[NSString stringWithFormat:@"马上支付（￥%.2f）",taoCanModel.price*num] forState:0];
 }
@@ -100,22 +113,33 @@
     return 8;
 }
 
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    if(section!=2){
-//        return [[UIView alloc] initWithFrame:CGRectZero];
-//    }else{
-//        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
-//        view.backgroundColor=RGB(247, 247, 247);
-//        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(15, 11, 200, 12)];
-//        
-//        label.text=@"选择我的专属经理";
-//        label.font=[UIFont systemFontOfSize:12];
-//        label.textColor=RGB(51, 51, 51);
-//        [view addSubview:label];
-//        return view;
-//    }
-//}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(section == 3){
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 48)];
+        view.backgroundColor = RGBA(246, 246, 246, 1);
+        
+        UIImageView *iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 30, 30)];
+        iconImage.image = [UIImage imageNamed:@"LPmanager"];
+        [view addSubview:iconImage];
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(50, 15, 200, 20)];
+        label.text = @"选择我的VIP专属经理";
+        label.textColor = RGBA(26, 26, 26, 1);
+        label.font = [UIFont systemFontOfSize:16];
+        [view addSubview:label];
+        
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 250, 30)];
+        button.backgroundColor = [UIColor clearColor];
+       // [button addTarget:self action:@selector(selectedManager) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:button];
+        
+        return view;
+    }
+    return nil;
+}
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -219,6 +243,7 @@
             if (cell) {
                 _writeCell = (LYOrderWriteTableViewCell *)cell;
                 [_writeCell.btn_chooseTime addTarget:self action:@selector(choseTime) forControlEvents:UIControlEventTouchUpInside];
+                [_writeCell.btn_isReserve addTarget:self action:@selector(isResrve) forControlEvents:UIControlEventTouchUpInside];
             }
         }
             break;
@@ -239,8 +264,12 @@
              */
             cell = [tableView dequeueReusableCellWithIdentifier:@"LYOrderInfoTableViewCell" forIndexPath:indexPath];
             if (cell) {
-                LYOrderInfoTableViewCell *infoCell = (LYOrderInfoTableViewCell *)cell;
                 
+
+                
+                LYOrderInfoTableViewCell *infoCell = (LYOrderInfoTableViewCell *)cell;
+                infoCell.taocanModel = taoCanModel;
+                infoCell.label_order_date.text = self.dateStr;
             }
             
         }
@@ -252,6 +281,13 @@
             //            PTContactCell *contactCell = (PTContactCell *)cell;
             //            [contactCell.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
             //            [contactCell.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+            ZSDetailModel *zsModel=zsArr[indexPath.row];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"LYZSdetailCell" forIndexPath:indexPath];
+            if (cell) {
+                LYZSdetailCell *zsCell = (LYZSdetailCell *)cell;
+                zsCell.zsModel = zsModel;
+            }
+            
         }
             break;
     }
@@ -275,14 +311,35 @@
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
     if (!buttonIndex) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"MM月dd日 EEE HH:mm"];
+        [formatter setDateFormat:@"HH:mm"];
         NSString *dateString = [formatter stringFromDate:_timeView.timePicker.date];
         [_writeCell.btn_showTime setTitle:dateString forState:UIControlStateNormal];
+        reachtime = dateString;
     }
 }
 
 - (void)isResrve{
-    
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    alertView.delegate = self;
+    view_taocan = [[[NSBundle mainBundle] loadNibNamed:@"ContentViewTaocan" owner:nil options:nil] firstObject];
+    view_taocan.tag = 12;
+    alertView.contentView = view_taocan;
+    _timeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
+    [alertView show];
+}
+
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
+    NSString *remainStr = nil;
+    if (((ContentViewTaocan *)alertView.contentView).image_remain.tag == 3) {
+        //确定预留
+        gotype = @"一定会去";
+        remainStr = @"确定预留";
+    }else{
+        //不确定预留
+        gotype = @"不一定会去";
+        remainStr = @"暂不预留";
+    }
+    [_writeCell.btn_showTaocan setTitle:remainStr forState:UIControlStateNormal];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -316,25 +373,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==1){
-        if(indexPath.row==3){
-            LYtimeChooseTimeController *timeChooseTimeController=[[LYtimeChooseTimeController alloc]initWithNibName:@"LYtimeChooseTimeController" bundle:nil];
-            timeChooseTimeController.title=@"时间选择";
-            NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-            [formatter setDateFormat:@"yyyy-MM-dd"];
-            NSDate *dateTemp=[formatter dateFromString:_dateStr];
-            timeChooseTimeController.nowDate=dateTemp;
-            timeChooseTimeController.type=1;
-            timeChooseTimeController.delegate=self;
-            [self.navigationController pushViewController:timeChooseTimeController animated:YES];
-        }
-        if (indexPath.row==4) {
-            DWIsGoToViewController *isGoToViewController=[[DWIsGoToViewController alloc]initWithNibName:@"DWIsGoToViewController" bundle:nil];
-            isGoToViewController.title=@"是否会去";
-            isGoToViewController.delegate=self;
-            [self.navigationController pushViewController:isGoToViewController animated:YES];
-        }
-    }
+//    if(indexPath.section==1){
+//        if(indexPath.row==3){
+//            LYtimeChooseTimeController *timeChooseTimeController=[[LYtimeChooseTimeController alloc]initWithNibName:@"LYtimeChooseTimeController" bundle:nil];
+//            timeChooseTimeController.title=@"时间选择";
+//            NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+//            [formatter setDateFormat:@"yyyy-MM-dd"];
+//            NSDate *dateTemp=[formatter dateFromString:_dateStr];
+//            timeChooseTimeController.nowDate=dateTemp;
+//            timeChooseTimeController.type=1;
+//            timeChooseTimeController.delegate=self;
+//            [self.navigationController pushViewController:timeChooseTimeController animated:YES];
+//        }
+//        if (indexPath.row==4) {
+//            DWIsGoToViewController *isGoToViewController=[[DWIsGoToViewController alloc]initWithNibName:@"DWIsGoToViewController" bundle:nil];
+//            isGoToViewController.title=@"是否会去";
+//            isGoToViewController.delegate=self;
+//            [self.navigationController pushViewController:isGoToViewController animated:YES];
+//        }
+//    }
     //        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     //        [self.navigationController pushViewController:controller animated:YES];
     
@@ -448,7 +505,7 @@
                 //result的值就是P130637201510181610220
                 ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
                 detailViewController.orderNo=result;
-                int num = numCell.numLal.text.intValue;
+                int num = _writeCell.label_count.text.intValue;
                 detailViewController.payAmount=taoCanModel.price*num;
                 detailViewController.productName=taoCanModel.title;
                 detailViewController.productDescription=@"暂无";
