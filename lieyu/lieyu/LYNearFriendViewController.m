@@ -95,6 +95,19 @@
         if([customerModel.sex isEqualToString:@"1"]){
             cell.sexImageView.image=[UIImage imageNamed:@"manIcon"];
         }
+        if(customerModel.tag.count>0){
+            NSMutableString *mytags=[[NSMutableString alloc] init];
+            for (int i=0; i<customerModel.tag.count; i++) {
+                if (i==customerModel.tag.count-1) {
+                    [mytags appendString:[customerModel.tag[i] objectForKey:@"tagName"]];
+                }else{
+                    [mytags appendString:[customerModel.tag[i] objectForKey:@"tagName"]];
+                    [mytags appendString:@","];
+                }
+            }
+
+            cell.miaosuLal.text=mytags;
+        }
         UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
         lineLal.backgroundColor=RGB(199, 199, 199);
         [cell addSubview:lineLal];
@@ -126,7 +139,6 @@
 }
 #pragma mark - 更多
 -(void)moreAct:(id)sender{
-    UIBarButtonItem *barButton=(UIBarButtonItem *)sender;
     /**
     _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
     [_bgView setTag:99999];
@@ -173,35 +185,43 @@
     [_bgView insertSubview:button aboveSubview:_bgView];
     button.backgroundColor=[UIColor clearColor];
      */
-    
+    if (_isShow) {
+        [KxMenu dismissMenu];
+        _isShow=NO;
+        return;
+    }
+    _isShow=YES;
     NSArray *menuItems =
     @[
       
       [KxMenuItem menuItem:@"只看女生"
-                     image:nil
-                    target:nil
+                     image:[UIImage imageNamed:@"seeGirls"]
+                    target:self
                     action:@selector(seeGirlAct)],
       
       [KxMenuItem menuItem:@"只看男生"
-                     image:nil
+                     image:[UIImage imageNamed:@"seeBoys"]
                     target:self
                     action:@selector(seeBoyAct)],
       
       [KxMenuItem menuItem:@"查看全部"
-                     image:nil
+                     image:[UIImage imageNamed:@"seeAll"]
                     target:self
                     action:@selector(seeAllAct)]
 
       ];
     
-    KxMenuItem *first = menuItems[0];
+//    KxMenuItem *first = menuItems[0];
     
-    first.alignment = NSTextAlignmentCenter;
+//    first.alignment = NSTextAlignmentCenter;
+    
+    [KxMenu setTintColor:RGBA(114, 5, 147, 0.8)];
+    [KxMenu setTitleFont:[UIFont italicSystemFontOfSize:13]];
     
     [KxMenu showMenuInView:self.view
-                  fromRect:CGRectMake(SCREEN_WIDTH-105, 10-64, 100, 50)
+                  fromRect:CGRectMake(SCREEN_WIDTH-75, 0, 100,0)
                  menuItems:menuItems];
-    [KxMenu setTintColor:RGBA(114, 5, 147, 0.8)];
+    
 }
 #pragma mark - 消失
 -(void)SetViewDisappear:(id)sender
@@ -227,6 +247,7 @@
 }
 #pragma mark - 只看男孩
 -(void)seeBoyAct{
+    _isShow=NO;
     [filteredListContent removeAllObjects];
     for (CustomerModel *model in datalist) {
         if([model.sex isEqualToString:@"1"]){
@@ -238,6 +259,7 @@
 }
 #pragma mark - 只看女孩
 -(void)seeGirlAct{
+    _isShow=NO;
     [filteredListContent removeAllObjects];
     for (CustomerModel *model in datalist) {
         if([model.sex isEqualToString:@"0"]){
@@ -249,6 +271,7 @@
 }
 #pragma mark - 看全部
 -(void)seeAllAct{
+    _isShow=NO;
     [filteredListContent removeAllObjects];
     [filteredListContent addObjectsFromArray:datalist];
     [self SetViewDisappear:nil];

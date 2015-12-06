@@ -307,7 +307,7 @@
  *
  *  @return 星座名称
  */
-+(NSString *)getAstroWithMonth:(NSString *)dateString
++(NSString *)getAstroWithBirthday:(NSString *)dateString
 {
     
     if ([MyUtil isEmptyString:dateString]) {
@@ -351,5 +351,41 @@
     result=[NSString stringWithFormat:@"%@",[astroString substringWithRange:NSMakeRange(month*2-(day < [[astroFormat substringWithRange:NSMakeRange((month-1), 1)] intValue] - (-19))*2,2)]];
     
     return [NSString stringWithFormat:@"%@座",result];
+}
+
+
+//根据日期来计算年龄
+
+
++ (NSString*)getAgefromDate:(NSString *)birthday{
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //用[NSDate date]可以获取系统当前时间
+    NSDate *date = [dateFormatter dateFromString:birthday];
+    
+    NSDate *myDate = date;
+    
+    
+    NSDate *nowDate = [NSDate date];
+    
+    
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    
+    unsigned int unitFlags = NSYearCalendarUnit;
+    
+    
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:myDate toDate:nowDate options:0];
+    
+    
+    int year = [comps year];
+    
+    
+    return [NSString stringWithFormat:@"%d",year];
+    
+    
 }
 @end

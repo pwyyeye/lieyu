@@ -61,5 +61,8 @@
 + (NSString*)deviceString;
 
 //根据日期字符串 获取星座
-+(NSString *)getAstroWithMonth:(NSString *)dateString;
++(NSString *)getAstroWithBirthday:(NSString *)dateString;
+
+//根据生日获取年龄
++ (NSString*)getAgefromDate:(NSString *)birthday;
 @end

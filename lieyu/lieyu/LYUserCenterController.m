@@ -71,7 +71,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                 self.collectionView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
     }
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+    if (self.navigationController.navigationBarHidden==NO) {
+       [self.navigationController setNavigationBarHidden:YES];
+    }
+    
 }
 
 
@@ -85,8 +88,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:YES];
-    
+    if (self.navigationController.navigationBarHidden==NO) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

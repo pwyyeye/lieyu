@@ -56,6 +56,8 @@
 @property(nonatomic,copy)NSString * phone;
 @property(nonatomic,retain)NSArray * tag;
 @property(nonatomic,retain)NSArray *userTag;
+@property(strong,nonatomic) NSString *age;
+@property(strong,nonatomic) NSString *birthday;
 @property NSInteger sectionNumber;
 @property BOOL rowSelected;
 @end

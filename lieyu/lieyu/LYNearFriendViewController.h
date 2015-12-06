@@ -11,5 +11,5 @@
 #import "LYZSeditView.h"
 @interface LYNearFriendViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property(assign,nonatomic) BOOL isShow;
 @end

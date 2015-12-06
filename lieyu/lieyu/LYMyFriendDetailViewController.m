@@ -23,7 +23,28 @@
     self.userImageView.layer.masksToBounds =YES;
     
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
+    if(_customerModel.tag.count>0){
+        NSMutableString *mytags=[[NSMutableString alloc] init];
+        for (int i=0; i<_customerModel.tag.count; i++) {
+            if (i==_customerModel.tag.count-1) {
+                [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]];
+            }else{
+                [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]];
+                [mytags appendString:@","];
+            }
+        }
+        
+        _zhiwuLal.text=mytags;
+    }
     
+    if (![MyUtil isEmptyString:_customerModel.age]) {
+        _age.text=_customerModel.age;
+    }
+    
+    if (![MyUtil isEmptyString:_customerModel.birthday]) {
+        _xingzuo.text=[MyUtil getAstroWithBirthday:_customerModel.birthday];
+        _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
+    }
     
     if([_type isEqualToString:@"0"]){
         self.namelal.text=_customerModel.friendName;
@@ -37,6 +58,7 @@
             
 //            _zhiwuLal.text=_customerModel.tag.firstObject;
         }
+       
     }else if([_type isEqualToString:@"4"]){
         self.namelal.text=_customerModel.name;
         [_setBtn setTitle:@"打招呼" forState:0];
