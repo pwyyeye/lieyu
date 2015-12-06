@@ -30,6 +30,8 @@
     [super viewDidLoad];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     _tableView.separatorColor=[UIColor clearColor];
     weekDateArr = [[NSMutableArray alloc]initWithCapacity:7];
     [self getweekDate];
@@ -91,8 +93,8 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
     self.navigationController.navigationBarHidden = NO;
 }
 #pragma mark 获取顶部菜单
@@ -242,16 +244,4 @@
     [self getdata];
 }
 
-- (IBAction)soucangAct:(UIButton *)sender {
-    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:jiubaModel.barid]};
-    [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
-        if(result){
-            [MyUtil showMessage:@"收藏成功"];
-        }
-    }];
-}
-
-- (IBAction)backAct:(UIButton *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 @end

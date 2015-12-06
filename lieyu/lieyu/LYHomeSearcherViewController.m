@@ -119,6 +119,7 @@
 - (void)setHistory{
     for (int i = 0; i < hisSerchArr.count;i ++) {
         UIButton *button = _btnHistoryArray[i];
+        button.layer.borderWidth = 0.5;
         button.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
         button.layer.cornerRadius = 1.8;
         button.layer.masksToBounds = YES;

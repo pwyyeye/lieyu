@@ -18,4 +18,22 @@
 }
 */
 
+- (void)awakeFromNib{
+    self.frame = CGRectMake(10, 250, 300, 250);
+}
+- (IBAction)sureClick:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    if (button.tag == 1) {
+        [self.image_remain setImage:[UIImage imageNamed:@"CustomBtn_Selected.png"]];
+        [self.image_notRemain setImage:[UIImage imageNamed:@"CustomBtn_unSelected.png"]];
+        self.image_remain.tag = 3;
+        self.image_notRemain.tag = 1;
+    }else if(button.tag == 2){
+        [self.image_remain setImage:[UIImage imageNamed:@"CustomBtn_unSelected.png"]];
+        [self.image_notRemain setImage:[UIImage imageNamed:@"CustomBtn_Selected.png"]];
+        self.image_notRemain.tag = 3;
+        self.image_remain.tag = 0;
+    }
+}
+
 @end

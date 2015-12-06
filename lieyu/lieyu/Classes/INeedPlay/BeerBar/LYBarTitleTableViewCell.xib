@@ -19,7 +19,7 @@
                         <animations/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWU-Mz-0LT">
-                        <rect key="frame" x="79" y="8" width="64" height="18"/>
+                        <rect key="frame" x="79" y="8" width="150" height="18"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>

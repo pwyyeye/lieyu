@@ -25,11 +25,11 @@
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CustomBtn_unSelected.png" translatesAutoresizingMaskIntoConstraints="NO" id="NUY-dg-jHf">
+                <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CustomBtn_Selected.png" translatesAutoresizingMaskIntoConstraints="NO" id="NUY-dg-jHf">
                     <rect key="frame" x="40" y="60" width="20" height="20"/>
                     <animations/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CustomBtn_unSelected.png" translatesAutoresizingMaskIntoConstraints="NO" id="r5G-7u-Oa1">
+                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CustomBtn_unSelected.png" translatesAutoresizingMaskIntoConstraints="NO" id="r5G-7u-Oa1">
                     <rect key="frame" x="40" y="101" width="20" height="20"/>
                     <animations/>
                 </imageView>
@@ -58,14 +58,35 @@
                     <rect key="frame" x="27" y="139" width="246" height="97"/>
                     <animations/>
                 </imageView>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ng-wI-bi1">
+                    <rect key="frame" x="40" y="96" width="257" height="35"/>
+                    <animations/>
+                    <connections>
+                        <action selector="sureClick:" destination="kYG-Dp-4ty" eventType="touchUpInside" id="x1O-Ue-TDl"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNC-rj-gwD">
+                    <rect key="frame" x="40" y="52" width="257" height="35"/>
+                    <animations/>
+                    <connections>
+                        <action selector="sureClick:" destination="kYG-Dp-4ty" eventType="touchUpInside" id="A85-ay-FYp"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outlet property="btn_notRemain" destination="5Ng-wI-bi1" id="wLN-1e-ybf"/>
+                <outlet property="btn_sureRemain" destination="pNC-rj-gwD" id="QCv-xD-qxV"/>
+                <outlet property="image_notRemain" destination="r5G-7u-Oa1" id="XZ1-EP-Z7x"/>
+                <outlet property="image_remain" destination="NUY-dg-jHf" id="kJR-lz-gcz"/>
+            </connections>
             <point key="canvasLocation" x="208" y="381"/>
         </view>
     </objects>
     <resources>
+        <image name="CustomBtn_Selected.png" width="21" height="21"/>
         <image name="CustomBtn_unSelected.png" width="21" height="21"/>
         <image name="kazuoyuliu" width="246" height="97"/>
     </resources>

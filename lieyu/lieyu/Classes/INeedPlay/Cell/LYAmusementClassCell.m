@@ -40,8 +40,12 @@
 - (void)pageClick:(UIButton *)buton{
     if (!buton.tag) {
         [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+        [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"chevron right copy"] forState:UIControlStateNormal];
+        [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"chevron right"] forState:UIControlStateNormal];
     }else{
         [self.scrollView setContentOffset:CGPointMake(320, 0) animated:YES];
+        [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"arrowLeftHight"] forState:UIControlStateNormal];
+        [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"arrowRitht"] forState:UIControlStateNormal];
     }
 }
 

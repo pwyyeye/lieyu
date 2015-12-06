@@ -17,13 +17,56 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dc6-TL-iUe">
-                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n7G-gA-Omx">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="290"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Re-2V-IAV">
+                            <rect key="frame" x="40" y="60" width="96" height="30"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="11" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="一定会去" image="CustomBtn_Selected.png">
+                                <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" title="一定会去" image="radioYDSel"/>
+                            <connections>
+                                <action selector="checkAct:" destination="-1" eventType="touchUpInside" id="TGe-lh-uGZ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbb-9T-Z8p">
+                            <rect key="frame" x="40" y="101" width="96" height="30"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <inset key="titleEdgeInsets" minX="11" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="暂不预留" image="CustomBtn_unSelected.png">
+                                <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" title="不一定会去" image="radioYDSel"/>
+                            <connections>
+                                <action selector="checkAct:" destination="-1" eventType="touchUpInside" id="fAn-QW-elc"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请选择是否卡座预留" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxb-8a-vCz">
+                            <rect key="frame" x="60" y="11" width="180" height="26"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kazuoyuliu" translatesAutoresizingMaskIntoConstraints="NO" id="vDo-4p-5kh">
+                            <rect key="frame" x="27" y="139" width="246" height="97"/>
+                            <animations/>
+                        </imageView>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dc6-TL-iUe">
+                    <rect key="frame" x="93" y="375" width="134" height="49"/>
                     <animations/>
                     <color key="backgroundColor" red="0.13725490200000001" green="0.65098039220000004" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="49" id="DCk-MN-NYv"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="确定">
                         <color key="titleColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -33,88 +76,15 @@
                         <action selector="sureAct:" destination="-1" eventType="touchUpInside" id="nmq-N5-vCO"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n7G-gA-Omx">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="一定会去的状态：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6B-KX-Gfo">
-                            <rect key="frame" x="16" y="63" width="103" height="21"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Re-2V-IAV">
-                            <rect key="frame" x="35" y="18" width="96" height="30"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="11" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="一定会去" image="radioYD">
-                                <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" title="一定会去" image="radioYDSel"/>
-                            <connections>
-                                <action selector="checkAct:" destination="-1" eventType="touchUpInside" id="TGe-lh-uGZ"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbb-9T-Z8p">
-                            <rect key="frame" x="189" y="18" width="96" height="30"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="11" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" title="不一定会去" image="radioYD">
-                                <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" title="不一定会去" image="radioYDSel"/>
-                            <connections>
-                                <action selector="checkAct:" destination="-1" eventType="touchUpInside" id="fAn-QW-elc"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请您在规定的预约时间内到您所选购的商品地点消费，如果您已超过预约时间，无法消费，需取消订单，我们将会收取您的20%***费（100元封顶）多有不便，敬请谅解！" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="war-ix-onH">
-                            <rect key="frame" x="16" y="87" width="288" height="47"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="不一定会去的状态：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJ5-Lp-R5H">
-                    <rect key="frame" x="16" y="158" width="111" height="21"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.为了确保你退款不扣除卡座占用费，您可以选择不一定去。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySB-yi-kik">
-                    <rect key="frame" x="16" y="181" width="288" height="34"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
-                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2.不一定去可以给您一定的确认缓冲时间，予以您确定前做好确定会去准备。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jm2-ld-jEh">
-                    <rect key="frame" x="16" y="210" width="288" height="47"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="italicSystem" pointSize="11"/>
-                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <animations/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="Dc6-TL-iUe" secondAttribute="trailing" id="2tp-MI-VyN"/>
-                <constraint firstItem="Dc6-TL-iUe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XM0-qJ-DbE"/>
-                <constraint firstAttribute="bottom" secondItem="Dc6-TL-iUe" secondAttribute="bottom" id="e7U-3E-iHf"/>
-            </constraints>
             <point key="canvasLocation" x="316" y="272"/>
         </view>
     </objects>
     <resources>
-        <image name="radioYD" width="19" height="19"/>
+        <image name="CustomBtn_Selected.png" width="21" height="21"/>
+        <image name="CustomBtn_unSelected.png" width="21" height="21"/>
+        <image name="kazuoyuliu" width="21" height="21"/>
         <image name="radioYDSel" width="19" height="19"/>
     </resources>
 </document>

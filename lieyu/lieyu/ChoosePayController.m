@@ -10,14 +10,14 @@
 #import "LYMyOrderManageViewController.h"
 #import "SingletonTenpay.h"
 @interface ChoosePayController ()
-
+@property (nonatomic,strong) NSMutableArray *btnArray;
 @end
 
 @implementation ChoosePayController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    [self initWithStyle:UITableViewStyleGrouped];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -27,13 +27,14 @@
 //    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
-    self.title=@"选择支付方式";
+    self.title=@"支付方式";
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
     _data=@[
             @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
            @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
             ];
+    _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +59,7 @@
 //    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
 //    delegate.navigationController.navigationItem.backBarButtonItem=item;
     [self.navigationController pushViewController:detailViewController animated:YES];
-   
+
     
 }
 
@@ -66,20 +67,38 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    if (!section) {
+        return 1;
+    }
     return _data.count;
 }
 
--
-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 70;
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (!indexPath.section) {
+        return 60;
+    }
+    return 80;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (!section) {
+        return 8;
+    }else{
+        return 36.5;
+    }
+}
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    if (section) {
+//        UIView *view = [[UIView alloc]init];
+//        view.frame = CGRectMake(0, 0, <#CGFloat width#>, <#CGFloat height#>)
+//    }
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
@@ -121,27 +140,66 @@
             }
         }];
     }
-   
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PayCell *cell = [[PayCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"paycell"];
-
-    NSDictionary *dic= _data[indexPath.row];
-    cell.textLabel.text=[dic objectForKey:@"payname"];
-    cell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:11];
-    cell.textLabel.textColor=RGB(51, 51, 51);
     
-    cell.detailTextLabel.text=[dic objectForKey:@"paydetail"];
-    cell.detailTextLabel.font= [UIFont systemFontOfSize:11];
-    cell.detailTextLabel.textColor=RGB(128, 128, 128);
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-    cell.imageView.image=[UIImage imageNamed:[dic objectForKey:@"payicon"]];
+    switch (indexPath.section) {
+        case 0:
+        {
+            UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+            cell.textLabel.text = @"总需支付";
+            cell.detailTextLabel.text = @"1000";
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+            break;
+        case 1:
+        {
+            UITableViewCell *payCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"payCell"];
+            if (!payCell) {
+                payCell = [tableView dequeueReusableCellWithIdentifier:@"payCell"];
+            }
+            payCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            NSDictionary *dic= _data[indexPath.row];
+            payCell.textLabel.text=[dic objectForKey:@"payname"];
+            payCell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:16];
+            payCell.textLabel.textColor=RGB(26, 26, 26);
+            
+            payCell.detailTextLabel.text=[dic objectForKey:@"paydetail"];
+            payCell.detailTextLabel.font= [UIFont systemFontOfSize:14];
+            payCell.detailTextLabel.textColor=RGB(102, 101, 102);
+            payCell.imageView.image=[UIImage imageNamed:[dic objectForKey:@"payicon"]];
+            
+            UIButton *selectBtn = [[UIButton alloc]initWithFrame:CGRectMake(289,30, 20, 20)];
+            selectBtn.backgroundColor = [UIColor redColor];
+            if (!indexPath.row) {
+                [selectBtn setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected.png"] forState:UIControlStateNormal];
+            }else{
+                [selectBtn setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected.png"] forState:UIControlStateNormal];
+            }
+            selectBtn.tag = indexPath.row;
+            [selectBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
+            [payCell addSubview:selectBtn];
+            [_btnArray addObject:selectBtn];
+            
+            return payCell;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    return nil;
+}
 
-    // Configure the cell...
-    
-    return cell;
+- (void)selectClick:(UIButton *)button{
+            NSLog(@"--->%ld",_btnArray.count);
+    for (UIButton *btn in _btnArray) {
+        [btn setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected.png"] forState:UIControlStateNormal];
+    }
+    [button setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected.png"] forState:UIControlStateNormal];
 }
 
 
