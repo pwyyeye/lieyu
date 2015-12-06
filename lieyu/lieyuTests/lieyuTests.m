@@ -48,4 +48,11 @@
     NSLog(@"----pass-pass%@---",URL);
 }
 
+- (void)testXingzuo{
+//    NSString *xingzuo =[MyUtil getAstroWithMonth:@"1986-09-01"];
+//    NSLog(@"----pass-xingzuo%@---",xingzuo);
+//    XCTAssert(YES, @"Pass");
+    
+}
+
 @end

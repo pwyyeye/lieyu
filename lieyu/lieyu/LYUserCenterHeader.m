@@ -16,6 +16,33 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [self loadData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
+     
+    //设置背景色
+    UIImageView *bgImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headBgColor"]];
+    bgImage.frame=self.headView.bounds;
+    bgImage.contentMode=UIViewContentModeScaleToFill;
+    
+    
+    [self.headView addSubview:bgImage];
+   
+    [self.headView bringSubviewToFront:_age];
+    [self.headView bringSubviewToFront:_userNick];
+    [self.headView bringSubviewToFront:_avatar_img];
+    [self.headView bringSubviewToFront:_tags];
+    [self.headView bringSubviewToFront:_btnMessage];
+    [self.headView bringSubviewToFront:_btnSetting];
+    
+    self.avatar_img.layer.borderColor=RGB(176,143,199).CGColor; //要设置的颜色
+    self.avatar_img.layer.borderWidth=2.5;
+    
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loadUserInfo" object:nil];
+}
+-(void)loadData{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if (app.userModel) {
         //设置头像
@@ -47,26 +74,7 @@
         _userNick.text=app.userModel.usernick;
     }
     
- 
 
-    //设置背景色
-    UIImageView *bgImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headBgColor"]];
-    bgImage.frame=self.headView.bounds;
-    bgImage.contentMode=UIViewContentModeScaleToFill;
-    
-    
-    [self.headView addSubview:bgImage];
-   
-    [self.headView bringSubviewToFront:_age];
-    [self.headView bringSubviewToFront:_userNick];
-    [self.headView bringSubviewToFront:_avatar_img];
-    [self.headView bringSubviewToFront:_tags];
-    [self.headView bringSubviewToFront:_btnMessage];
-    [self.headView bringSubviewToFront:_btnSetting];
-    
-    self.avatar_img.layer.borderColor=RGB(176,143,199).CGColor; //要设置的颜色
-    self.avatar_img.layer.borderWidth=2.5;
-    
 }
 
 -(void)updateConstraints{

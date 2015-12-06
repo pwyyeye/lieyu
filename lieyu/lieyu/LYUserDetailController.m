@@ -59,6 +59,7 @@
     [[LYUserHttpTool shareInstance] saveUserInfo:[userInfo copy] complete:^(BOOL result) {
         if (result) {
             [MyUtil showMessage:@"修改成功！"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             if (isNeed) {
                 [self.tableView reloadData];
             }

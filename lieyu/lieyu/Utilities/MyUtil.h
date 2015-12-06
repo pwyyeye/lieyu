@@ -59,4 +59,10 @@
 + (NSString *)getQiniuUrl:(NSString *)key width:(NSInteger)width andHeight:(NSInteger)height;
 
 + (NSString*)deviceString;
+
+//根据日期字符串 获取星座
++(NSString *)getAstroWithBirthday:(NSString *)dateString;
+
+//根据生日获取年龄
++ (NSString*)getAgefromDate:(NSString *)birthday;
 @end
