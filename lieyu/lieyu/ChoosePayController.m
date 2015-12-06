@@ -14,10 +14,10 @@
 @end
 
 @implementation ChoosePayController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    [self initWithStyle:UITableViewStyleGrouped];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -27,7 +27,7 @@
 //    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
-    self.title=@"选择支付方式";
+    self.title=@"支付方式";
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
     _data=@[
@@ -84,6 +84,21 @@
     }
     return 80;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (!section) {
+        return 8;
+    }else{
+        return 36.5;
+    }
+}
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    if (section) {
+//        UIView *view = [[UIView alloc]init];
+//        view.frame = CGRectMake(0, 0, <#CGFloat width#>, <#CGFloat height#>)
+//    }
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:

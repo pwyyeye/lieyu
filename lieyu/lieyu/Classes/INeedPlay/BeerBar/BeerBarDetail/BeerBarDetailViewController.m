@@ -30,12 +30,13 @@
 #import "LYBarDesrcTableViewCell.h"
 #import "LYUserHttpTool.h"
 
-@interface BeerBarDetailViewController ()
+@interface BeerBarDetailViewController ()<UIWebViewDelegate>
 
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
 //@property(nonatomic,strong)IBOutlet BeerBarDetailCell *barDetailCell;
 @property(nonatomic,strong)IBOutlet UITableViewCell *orderTotalCell;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property(nonatomic,weak)IBOutlet UIView *bottomBarView;
 @property(nonatomic,assign)CGFloat dyBarDetailH;
@@ -54,6 +55,12 @@
     [self setupViewStyles];
     [self loadBarDetail];
     // Do any additional setup after loading the view from its nib.
+    self.scrollView.contentSize = CGSizeMake(320, 628.5 + 800);
+    self.tableView.scrollEnabled = NO;
+    
+    
+ 
+
 }
 
 - (void)loadBarDetail
@@ -66,14 +73,28 @@
             weakSelf.beerBarDetail = detailItem;
             NSLog(@"%@",self.beerBarDetail.description);
             [weakSelf.tableView reloadData];
+            [self loadWebView];
         }
     }];
 }
 
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
+- (void)loadWebView{
+    UIWebView *webView = [[UIWebView alloc]init];
+
+    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" /></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.descriptions];
+    NSLog(@"%@",webStr);
+   //  CGFloat scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
     
+    webView.delegate = self;
+    [webView sizeToFit];
+    [webView.scrollView setScrollEnabled:NO];
+    //  [_webView setFrame:CGRectMake(0, 628.5, 320, 0)];
+    webView.scalesPageToFit = YES;
+    [webView loadHTMLString:webStr baseURL:nil];
+    [self.scrollView addSubview:webView];
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -113,9 +134,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 4) {
-        return 10;
-    }
     return 1;
 }
 
@@ -127,9 +145,25 @@
         case 0:
         {
             LYHeaderTableViewCell *headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
-            [headerCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.banners[0]]];
+            //[headerCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.banners[0]]];
             headerCell.label_laBa.text = self.beerBarDetail.announcement.content;
+            
+            
+            NSMutableArray *bigArr=[[NSMutableArray alloc]init];
+            for (NSString *iconStr in self.beerBarDetail.banners) {
+                NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
+                [dicTemp setObject:iconStr forKey:@"ititle"];
+                [dicTemp setObject:@"" forKey:@"mainHeading"];
+                [bigArr addObject:dicTemp];
+            }
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122)
+                                                                  scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
+
+            [headerCell addSubview:scroller];
+
+            
             headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             return headerCell;
 
         }
@@ -197,19 +231,19 @@
             return barSpecialCell;
         }
             break;
+        case 4:
+        {
+            LYBarDescTitleTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTitleTableViewCell" forIndexPath:indexPath];
+            barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return barDescTitleCell;
+            
+        }
+            break;
         default:
         {
-            switch (indexPath.row) {
-                case 0:
-                {
-                    LYBarDescTitleTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTitleTableViewCell" forIndexPath:indexPath];
-                    barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    return barDescTitleCell;
-                }
-                    break;
+            
+            
                     
-                default:
-                {
 //                    LYBarDesrcTableViewCell *barDescCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDesrcTableViewCell" forIndexPath:indexPath];
 //                    barDescCell.label_content.text = self.beerBarDetail.announcement.content;
 //                    barDescCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -221,25 +255,26 @@
 //                        barDescCell.imageView_content.image = [UIImage imageNamed:@"jiuBarContent.jpg"];
 //                        barDescCell.label_content.hidden = YES;
 //                    }
-                    cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-                    UIWebView *oldWebView = (UIWebView *)[cell viewWithTag:100];
-                    if (oldWebView) {
-                        [oldWebView removeFromSuperview];
-                    }
                     
-                    UIWebView *webView = [[UIWebView alloc]init];
-                    webView.tag = 100;
-                    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" /></head><body>%@<script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.descriptions];
-                    CGFloat scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-                    [webView.scrollView setScrollEnabled:NO];
-                    [webView setFrame:CGRectMake(0, 0, 320, scrollHeight)];
-                    webView.scalesPageToFit = YES;
-                    [webView loadHTMLString:webStr baseURL:nil];
-                    [cell addSubview:webView];
-                    return cell;
-                }
-                    break;
-            }
+//                    cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+//                    UIWebView *oldWebView = (UIWebView *)[cell viewWithTag:100];
+//                    if (oldWebView) {
+//                        [oldWebView removeFromSuperview];
+//                    }
+//                    
+//                    UIWebView *webView = [[UIWebView alloc]init];
+//                    webView.tag = 100;
+//                    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" /></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.descriptions];
+//                   // CGFloat scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
+//                    webView.delegate = self;
+//                    [webView sizeToFit];
+//                    [webView.scrollView setScrollEnabled:NO];
+//                    [webView setFrame:CGRectMake(0, 0, 320, 100)];
+//                    webView.scalesPageToFit = YES;
+//                    [webView loadHTMLString:webStr baseURL:nil];
+//                    [cell addSubview:webView];
+//                    return cell;
+            
             
 //            NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
 //            
@@ -284,13 +319,13 @@
 //            cellFrame.size.height=lal.size.height+20;
 //            
 //            [cell setFrame:cellFrame];
-
+        }
             break;
 
     }
     return cell;
 }
-}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -341,23 +376,42 @@
             
         default:
         {
-            switch (indexPath.row) {
-                case 0:
-                {
-                    return 76;
-                }
-                    break;
-                    
-                default:
-                {
-                    return 145 + 4;
-                }
-                    break;
-            }
+            return 76;
+//            switch (indexPath.row) {
+//                case 0:
+//                {
+//                    return 76;
+//                }
+//                    break;
+//                    
+//                default:
+//                {
+//                    return 145 + 4;
+//                }
+//                    break;
+//            }
         }
             break;
     }
         return h;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
+    float clientheight = [clientheight_str floatValue];
+    //设置到WebView上
+   // webView.frame = CGRectMake(0, 0, self.view.frame.size.width, clientheight);
+    //获取WebView最佳尺寸（点）
+    CGSize frame = [webView sizeThatFits:webView.frame.size];
+    //获取内容实际高度（像素）
+    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-top'))  + parseInt(window.getComputedStyle(document.getElementsByTagName('body')[0]).getPropertyValue('margin-bottom'))"];
+    float height = [height_str floatValue];
+    //内容实际高度（像素）* 点和像素的比
+    height = height * frame.height / clientheight;
+    //再次设置WebView高度（点）
+    NSLog(@"--->%f",height);
+  //  webView.frame = CGRectMake(0, 628.5, 320, height);
+    webView.backgroundColor = [UIColor redColor];
 }
 
 - (IBAction)shareClick:(id)sender {

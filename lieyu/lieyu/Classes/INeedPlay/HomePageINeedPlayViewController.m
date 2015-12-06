@@ -382,7 +382,7 @@ UITableViewDataSource,UITableViewDelegate,
         {
             
             LYHotRecommandCell *hotCell = [tableView dequeueReusableCellWithIdentifier:@"hotCell" forIndexPath:indexPath];
-            
+            hotCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return hotCell;
         }
             break;

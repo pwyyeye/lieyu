@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeerBarDetailViewController">
             <connections>
                 <outlet property="bottomBarView" destination="XXg-kz-6Dv" id="eWy-zu-845"/>
+                <outlet property="scrollView" destination="qCV-au-nay" id="dDM-Wm-44C"/>
                 <outlet property="tableView" destination="0kO-Cg-bvf" id="OWs-wS-3cI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,15 +18,21 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-Cg-bvf">
-                    <rect key="frame" x="0.0" y="-22" width="320" height="531"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qCV-au-nay">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="501"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-Cg-bvf">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="629"/>
+                            <animations/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="YLh-nG-mzE"/>
+                                <outlet property="delegate" destination="-1" id="aZW-RJ-9cZ"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="YLh-nG-mzE"/>
-                        <outlet property="delegate" destination="-1" id="aZW-RJ-9cZ"/>
-                    </connections>
-                </tableView>
+                </scrollView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upX-mq-Ypr" userLabel="back">
                     <rect key="frame" x="10" y="34" width="40" height="40"/>
                     <animations/>
@@ -137,12 +144,8 @@
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="0kO-Cg-bvf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-22" id="Mvn-iJ-Qj6"/>
-                <constraint firstAttribute="trailing" secondItem="0kO-Cg-bvf" secondAttribute="trailing" id="d5r-qP-JRT"/>
                 <constraint firstAttribute="trailing" secondItem="XXg-kz-6Dv" secondAttribute="trailing" id="eRr-nn-ocI"/>
                 <constraint firstItem="XXg-kz-6Dv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gH6-l7-VwN"/>
-                <constraint firstItem="XXg-kz-6Dv" firstAttribute="top" secondItem="0kO-Cg-bvf" secondAttribute="bottom" id="mVu-3p-Ts3"/>
-                <constraint firstItem="0kO-Cg-bvf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rPr-OO-fDs"/>
                 <constraint firstAttribute="bottom" secondItem="XXg-kz-6Dv" secondAttribute="bottom" id="vvK-ta-CX6"/>
             </constraints>
             <point key="canvasLocation" x="112" y="89"/>
@@ -415,7 +418,7 @@
     </objects>
     <resources>
         <image name="icon_eatdrinkspecial" width="28" height="28"/>
-        <image name="icon_huanhui_action" width="24" height="24"/>
+        <image name="icon_huanhui_action" width="20" height="20"/>
         <image name="icon_locate" width="11" height="14"/>
         <image name="icon_managers" width="28" height="28"/>
         <image name="icon_ordersits" width="28" height="28"/>
