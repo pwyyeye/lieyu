@@ -223,10 +223,12 @@
     _payContent.frame = CGRectMake(10, SCREEN_HEIGHT - 270 , 300, 200);
     [alertView show];
 }
-//
-//- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
-//    if(alertView)
-//}
+
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
+    if([((PayMoney *)alertView.contentView).textField.text integerValue] < 100){
+//        alertView sa
+    }
+}
 
 //#pragma 填写支付金额
 //- (void)payMoney{

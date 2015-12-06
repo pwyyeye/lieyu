@@ -23,12 +23,13 @@
 }
 
 - (void)cellConfigure:(ZSDetailModel *)ZSModel{
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:ZSModel.avatar_img] placeholderImage:[UIImage imageNamed:@""]];
-    self.nameLal.text = ZSModel.usernick;
-    self.biaoqianLal.text = ZSModel.introduction;
-    for (UIImageView *image in _imagesArray) {
-        [image setImage:[UIImage imageNamed:@"icon_star"]];
-    }
+    NSLog(@"%@",ZSModel);
+//    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:ZSModel.avatar_img] placeholderImage:[UIImage imageNamed:@""]];
+//    self.nameLal.text = ZSModel.usernick;
+//    self.biaoqianLal.text = ZSModel.introduction;
+//    for (UIImageView *image in _imagesArray) {
+//        [image setImage:[UIImage imageNamed:@"icon_star"]];
+//    }
 }
 
 @end

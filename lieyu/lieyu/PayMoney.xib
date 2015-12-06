@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PayMoney">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -21,12 +21,6 @@
                     <color key="textColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTI-8Q-O3I">
-                    <rect key="frame" x="61" y="60" width="198" height="30"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="！发起人预支付金额不可少于100元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAW-Gy-QGe">
                     <rect key="frame" x="87" y="100" width="223" height="21"/>
                     <animations/>
@@ -38,6 +32,12 @@
                     <color key="textColor" red="0.36862745099999999" green="0.0" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NTI-8Q-O3I">
+                    <rect key="frame" x="61" y="60" width="198" height="30"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -51,6 +51,10 @@
                 <constraint firstItem="kAW-Gy-QGe" firstAttribute="top" secondItem="NTI-8Q-O3I" secondAttribute="bottom" constant="10" id="o0w-re-2TJ"/>
                 <constraint firstItem="deG-MC-gLj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="rRv-f3-O2Q"/>
             </constraints>
+            <connections>
+                <outlet property="textField" destination="NTI-8Q-O3I" id="w3i-JD-0sz"/>
+                <outlet property="warningLabel" destination="kAW-Gy-QGe" id="qNf-MZ-nCX"/>
+            </connections>
             <point key="canvasLocation" x="347" y="180"/>
         </view>
     </objects>

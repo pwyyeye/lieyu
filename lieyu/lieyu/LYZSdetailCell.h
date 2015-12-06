@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZSDetailModel.h"
+@class ZSDetailModel;
 
 @interface LYZSdetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconStar5;
 
 @property (nonatomic, strong) NSArray *imagesArray;
+
+@property (nonatomic, strong) ZSDetailModel *zsModel;
 
 - (void)cellConfigure:(ZSDetailModel *)ZSModel;
 

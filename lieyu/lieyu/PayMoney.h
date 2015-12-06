@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PayMoney : UIView
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 
 @end
