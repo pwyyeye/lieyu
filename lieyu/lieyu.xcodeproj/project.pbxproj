@@ -369,7 +369,6 @@
 		38E5D7EF1C12DF0C004B49D2 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7E91C12DF0C004B49D2 /* call.png */; };
 		38E5D7F01C12DF0C004B49D2 /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7EA1C12DF0C004B49D2 /* call@2x.png */; };
 		38E5D7F11C12DF0C004B49D2 /* call@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7EB1C12DF0C004B49D2 /* call@3x.png */; };
-		38E5D7F21C12DF0C004B49D2 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7EC1C12DF0C004B49D2 /* comment.png */; };
 		38E5D7F31C12DF0C004B49D2 /* comment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7ED1C12DF0C004B49D2 /* comment@2x.png */; };
 		38E5D7F41C12DF0C004B49D2 /* comment@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7EE1C12DF0C004B49D2 /* comment@3x.png */; };
 		38E5D7F61C13355A004B49D2 /* PayMoney.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7F51C13355A004B49D2 /* PayMoney.xib */; };
@@ -419,7 +418,6 @@
 		85F5452A1C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F545281C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib */; };
 		85F5452E1C13FAF50013B92B /* LYUserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F5452C1C13FAF50013B92B /* LYUserDetailTableViewCell.m */; };
 		85F5452F1C13FAF50013B92B /* LYUserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
-		85F545331C13FCD20013B92B /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
 		85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F545321C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib */; };
 		85F625861C0BDFC9002858C8 /* LYLMenuDropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F625841C0BDFC9002858C8 /* LYLMenuDropViewController.m */; };
 		85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F625851C0BDFC9002858C8 /* LYLMenuDropViewController.xib */; };
