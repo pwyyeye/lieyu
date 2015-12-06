@@ -12,10 +12,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="实际应付款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLh-NF-NCu">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际应付款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLh-NF-NCu">
                         <rect key="frame" x="8" y="8" width="96" height="24"/>
                         <animations/>
                         <constraints>
@@ -44,8 +44,8 @@
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7O-Oe-u0X">
-                        <rect key="frame" x="124" y="12" width="42" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7O-Oe-u0X">
+                        <rect key="frame" x="124" y="5" width="42" height="30"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="pHV-TO-AP1"/>
@@ -54,24 +54,34 @@
                         <color key="textColor" red="0.98431372549999996" green="0.1450980392" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gp8-2f-MwR">
+                        <rect key="frame" x="124" y="5" width="42" height="30"/>
+                        <animations/>
+                    </button>
                 </subviews>
                 <animations/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="mSh-Jf-dze" secondAttribute="bottom" id="0WF-ch-XB6"/>
                     <constraint firstAttribute="bottomMargin" secondItem="lLh-NF-NCu" secondAttribute="bottom" id="FaZ-Mb-7Rk"/>
+                    <constraint firstItem="z7O-Oe-u0X" firstAttribute="bottom" secondItem="Gp8-2f-MwR" secondAttribute="bottom" id="S8G-y3-OK8"/>
                     <constraint firstItem="lLh-NF-NCu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Sux-Ch-SMi"/>
+                    <constraint firstItem="z7O-Oe-u0X" firstAttribute="trailing" secondItem="Gp8-2f-MwR" secondAttribute="trailing" id="Yft-ZT-Rwr"/>
                     <constraint firstItem="z7O-Oe-u0X" firstAttribute="centerY" secondItem="lLh-NF-NCu" secondAttribute="centerY" id="aUZ-06-xzQ"/>
                     <constraint firstItem="mSh-Jf-dze" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="fc9-I3-ga7"/>
+                    <constraint firstItem="z7O-Oe-u0X" firstAttribute="top" secondItem="Gp8-2f-MwR" secondAttribute="top" id="mT1-fh-NiI"/>
                     <constraint firstItem="z7O-Oe-u0X" firstAttribute="leading" secondItem="lLh-NF-NCu" secondAttribute="trailing" constant="20" id="uKr-UR-x1M"/>
                     <constraint firstAttribute="trailing" secondItem="mSh-Jf-dze" secondAttribute="trailing" id="yN3-eW-zFk"/>
                     <constraint firstItem="lLh-NF-NCu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="z1l-gh-rjU"/>
+                    <constraint firstItem="z7O-Oe-u0X" firstAttribute="leading" secondItem="Gp8-2f-MwR" secondAttribute="leading" id="zTg-FO-mkg"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
                 <outlet property="LPMoney" destination="z7O-Oe-u0X" id="wVA-JE-iRu"/>
                 <outlet property="LPProfit" destination="mSh-Jf-dze" id="fPA-wa-moH"/>
+                <outlet property="payBtn" destination="Gp8-2f-MwR" id="wBL-Z8-BhG"/>
             </connections>
+            <point key="canvasLocation" x="89" y="413"/>
         </tableViewCell>
     </objects>
 </document>

@@ -22,7 +22,7 @@
 }
 
 - (void)cellConfigure{
-    NSLog(@"%@",self.goodList);
+//    NSLog(@"%@",self.goodList);
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.scrollEnabled = NO;

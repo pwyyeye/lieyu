@@ -315,7 +315,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S3L-3U-YyM">
-                                <rect key="frame" x="106" y="528" width="1" height="40"/>
+                                <rect key="frame" x="105.5" y="528" width="1" height="40"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -361,13 +361,10 @@
                                     <action selector="BuyNow:" destination="fvS-oF-oUI" eventType="touchUpInside" id="rmF-f7-xgW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PW4-9z-TYt">
-                                <rect key="frame" x="112" y="524" width="104" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PW4-9z-TYt">
+                                <rect key="frame" x="106" y="527" width="106.5" height="40.5"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="MxA-Fg-uAA"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <inset key="imageEdgeInsets" minX="-5" minY="3" maxX="5" maxY="3"/>
                                 <state key="normal" title="注意事项" image="icon_zhuyi">

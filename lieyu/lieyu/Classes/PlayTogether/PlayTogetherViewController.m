@@ -48,7 +48,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-47);
+        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-107);
     }
 
     

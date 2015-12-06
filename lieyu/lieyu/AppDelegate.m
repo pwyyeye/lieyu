@@ -91,6 +91,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         NSLog(@"该启动事件不包含来自融云的推送服务");
     }
 
+    
     //设置友盟社会化组件appkey
     [UMSocialData setAppKey:UmengAppkey];
     
@@ -106,6 +107,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [self startLocation];
+    
     
     
     //友盟推送

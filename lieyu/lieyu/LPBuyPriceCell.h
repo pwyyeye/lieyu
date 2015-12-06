@@ -11,6 +11,7 @@
 @interface LPBuyPriceCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *LPMoney;
 @property (weak, nonatomic) IBOutlet UIButton *LPProfit;
+@property (weak, nonatomic) IBOutlet UIButton *payBtn;
 
 - (void)cellConfigureWithPay:(NSString *)pay andProfit:(CGFloat)profit;
 

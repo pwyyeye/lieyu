@@ -97,8 +97,6 @@ UITableViewDataSource,UITableViewDelegate,
     if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
         self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
     }
-
-    
     [self getData];
 }
 
