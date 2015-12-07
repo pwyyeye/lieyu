@@ -18,7 +18,7 @@
 }
 
 - (void)contentViewChooseBtn{
-    if([_defaultString isEqualToString:@"自由付款"] || [_defaultString isEqualToString:@"请选择消费方式"]){
+    if([_defaultString isEqualToString:@"自由付款"] || [_defaultString isEqualToString:@"选择正确的拼客方式"]){
         [self.radioButton3 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];
     }else if([_defaultString isEqualToString:@"AA付款"]){
         [self.radioButton2 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];

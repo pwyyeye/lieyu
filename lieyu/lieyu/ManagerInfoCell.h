@@ -12,6 +12,9 @@
 //#import "zs"
 
 @interface ManagerInfoCell : UITableViewCell
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UIButton *iconImage;
 @property (weak, nonatomic) IBOutlet UIButton *name;
 @property (weak, nonatomic) IBOutlet UIImageView *star1;
@@ -24,10 +27,10 @@
 @property (nonatomic, strong) ZSDetailModel *zsDetail;
 
 @property (nonatomic, strong) NSArray *starsArray;
-
-@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
-
-- (IBAction)selectManager:(UIButton *)sender;
+//
+//@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
+//
+//- (IBAction)selectManager:(UIButton *)sender;
 - (void)cellConfigureWithImage:(NSString *)imageUrl name:(NSString *)name stars:(NSString *)stars;
 - (void)cellConfigure:(int)index;
 @end

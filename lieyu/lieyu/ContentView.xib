@@ -106,7 +106,7 @@
                     </constraints>
                     <state key="normal" image="CustomBtn_unSelected.png"/>
                 </button>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y35-sw-bXc">
+                <button opaque="NO" tag="3" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y35-sw-bXc">
                     <rect key="frame" x="64" y="215" width="21" height="22"/>
                     <animations/>
                     <constraints>

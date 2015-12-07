@@ -18,22 +18,23 @@
     if(self.radioButon.selected == YES){
         [self.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
     }else{
-        [self.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected"] forState:UIControlStateNormal];
+        [self.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected"] forState:UIControlStateSelected];
     }
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//
+//    // Configure the view for the selected state
+//}
 
 //- (IBAction)selectManager:(UIButton *)sender {
 //    [self.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
 //}
 
 - (void)cellConfigureWithImage:(NSString *)imageUrl name:(NSString *)name stars:(NSString *)stars{
-    [self.iconImage.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+    NSLog(@"imageUrl:%@",imageUrl);
+    [self.iconImage.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [self.name setTitle:name forState:UIControlStateNormal];
     int i;
     for(i = 0 ; i < [stars intValue] ; i ++){
@@ -45,6 +46,7 @@
 }
 
 - (void)cellConfigure:(int)index{
+    [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:self.zsDetail.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [self.iconImage.imageView sd_setImageWithURL:[NSURL URLWithString:self.zsDetail.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [self.name setTitle:self.zsDetail.usernick forState:UIControlStateNormal];
     int i;
@@ -54,9 +56,6 @@
     for (int j = i ; j < 5; j ++) {
         ((UIImageView *)self.starsArray[j]).image = [UIImage imageNamed:@"starGray"];
     }
-    self.selectBtn.tag = index;
-    self.radioButon.tag = index;
-    [self.radioButon addTarget:self action:@selector(selectManager:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

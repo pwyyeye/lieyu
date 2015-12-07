@@ -94,7 +94,7 @@
                 <constraint firstItem="3FT-0h-F4T" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="z5y-ny-JTJ"/>
                 <constraint firstItem="f2z-JH-g99" firstAttribute="centerY" secondItem="zSe-ya-uKE" secondAttribute="centerY" id="zwj-hk-00b"/>
             </constraints>
-            <point key="canvasLocation" x="306" y="242"/>
+            <point key="canvasLocation" x="367" y="1"/>
         </view>
     </objects>
     <resources>

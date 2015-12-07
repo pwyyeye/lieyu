@@ -13,13 +13,13 @@
 #import "LPBuyPriceCell.h"
 #import "LPBuyInfoCell.h"
 #import "ContentTableViewCell.h"
-#import "LPBuyManagerCell.h"
 
 #import "LYHomePageHttpTool.h"
 #import "ChoosePayController.h"
 #import "CommonShow.h"
 #import "PayMoney.h"
 #import "LPAlertView.h"
+#import "ZSDetailModel.h"
 
 //2.7.3 【0002】task=lyUsersVipStoreAction?action=list (已可用) 请求所有的专属经理列表
 //2.7.4 【R0002】反馈所有专属经理列表
@@ -35,6 +35,7 @@
 @property (nonatomic, strong) ContentTableViewCell *contentCell;
 @property (nonatomic, strong) LPBuyManagerCell *managerCell;
 
+
 @property (nonatomic, strong) PayMoney *payContent;
 @end
 
@@ -49,8 +50,6 @@
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = backBtn;
     [self getAllManagers];
-//    NSLog(@"pinkeModel:%@",self.pinkeModel);
-//    NSLog(@"dictionary:%@",self.InfoDict);
     
     /*
      进行能否购买的判断
@@ -69,7 +68,7 @@
 //        
 //    }];
 //}
-
+#pragma 获取数据
 - (void)getAllManagers{
     NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:self.smid]};
     __weak __typeof(self)weakSelf = self;
@@ -84,6 +83,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma tableview的各个代理事件
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 5;
 }
@@ -123,10 +123,6 @@
         return view;
     }
     return nil;
-}
-
-- (void)selectedManager{
-    NSLog(@"ninini");
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -222,6 +218,7 @@
                 _managerCell = [tableView dequeueReusableCellWithIdentifier:@"buyManager"];
             }
             _managerCell.managerList = self.managerList;
+            _managerCell.delegate = self;
             [_managerCell cellConfigure];
             return _managerCell;
         }else{
@@ -234,6 +231,23 @@
     }
 }
 
+#pragma delegate处理事件
+- (void)selectManager:(int)index{
+    ZSDetailModel *zsDetail = _managerList[index];
+    if([zsDetail.isFull isEqualToString:@"1"]){
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"该经理的卡座已满,请选择其他专属经理!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+        return;
+    }
+    zsDetail.issel = true;
+    for (int i = 0 ; i < _managerList.count; i ++) {
+        ZSDetailModel *zsModelTemp = _managerList[i];
+        if(i != index){
+            zsModelTemp.issel = false;
+        }
+    }
+}
+
+#pragma 付钱按钮，选择预付金额
 - (void)payMoney{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定",@"取消", nil];
     alertView.delegate = self;
@@ -244,7 +258,7 @@
     _payContent.frame = CGRectMake(10, SCREEN_HEIGHT - 270 , 300, 200);
     [alertView show];
 }
-
+#pragma 填完金额后的代理事件
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexPayMoney:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
         if([((PayMoney *)alertView.contentView).textField.text intValue] < 100){
@@ -299,20 +313,23 @@
 
 - (IBAction)buyNowClick:(UIButton *)sender {
     if(self.pinkeModel){
-//        bool issel = false;
+        bool issel = false;
         int userId=0;
-//        for (ZSDetailModel *detaiModel in zsArr) {
-//            if(detaiModel.issel){
-//                userId=detaiModel.userid;
-//                issel=true;
-//                break;
-//            }
-//        }
-//        if(!issel){
-//            [self showMessage:@"请选择专属经理!"];
-//            return;
-//        }
-        
+        for (ZSDetailModel *detaiModel in _managerList) {
+            if(detaiModel.issel){
+                userId=detaiModel.userid;
+                issel=true;
+                break;
+            }
+        }
+        if(!issel){
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择专属经理!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+            return;
+        }
+        if([self.InfoDict[@"money"] isEqualToString:@"-1"]){
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写预付金额!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
+            return;
+        }
         NSDictionary *dic=@{
             @"pinkerid":[NSNumber numberWithInt:_pinkeModel.id],
             @"reachtime":self.InfoDict[@"time"],
@@ -321,7 +338,6 @@
             @"payamount":self.InfoDict[@"money"],
             @"pinkerType":self.InfoDict[@"type"],
             @"memo":@""};
-        NSLog(@"地产：%@",dic);
         [[LYHomePageHttpTool shareInstance]setTogetherOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
                 //支付宝页面"data": "P130637201510181610220",

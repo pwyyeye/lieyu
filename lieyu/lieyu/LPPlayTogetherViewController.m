@@ -78,9 +78,12 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    self.defaultString = @"请选择消费方式";
+    self.defaultString = @"选择正确的拼客方式";
+    self.defaultPay = -2;
     self.defaultDate = [NSDate date];
     self.defaultNumber = 2;
+    self.defaultIndex = -1;
+    
     self.biTianCell.numTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.biTianCell.numTextField.returnKeyType = UIReturnKeyDone;
     self.biTianCell.numTextField.delegate = self;
@@ -272,12 +275,12 @@
             if([_contentView.buttonStatusArray[index] isEqualToString:@"1"]){
                 [self.biTianCell.chooseWay setTitle:self.labelArray[index] forState:UIControlStateNormal];
                 self.defaultString = self.labelArray[index];
-                self.defaultIndex = index;
-                if(index == 0){
-                    self.defaultPay = [self.pinKeModel.price floatValue];
-                }else if(index == 1){
-                    self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / [self.biTianCell.numTextField.text intValue];
-                }else{
+                self.defaultIndex = index;//作为已选方式的判断以及后期参数
+//                if(index == 0){
+//                    self.defaultPay = [self.pinKeModel.price floatValue];
+//                }else if(index == 1){
+//                    self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / [self.biTianCell.numTextField.text intValue];
+//                }else{
 //                    __weak __typeof(self)weakSelf = self;
 //                    void (^chooseYourPay)(void) = ^(void){
 //                        UIAlertView *customAlert = [[UIAlertView alloc]initWithTitle:@"请填写您要支付的金额" message:nil delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -289,8 +292,8 @@
 //                        [customAlert show];
 //                    };
 //                    chooseYourPay();
-                    self.defaultPay = -1;
-                }
+//                    self.defaultPay = 0;
+//                }
             }
         }
         
@@ -321,7 +324,7 @@
             NSString *dateString = [formatter stringFromDate:self.defaultDate];
             [self.biTianCell.chooseTime setTitle:dateString forState:UIControlStateNormal];
 //        }
-        
+        self.defaultPay = -1;//作为已选时间的条件以及后期将要改变的参数
     }
 }
 
@@ -408,9 +411,10 @@
 
 #pragma 立即购买
 - (IBAction)BuyNow:(UIButton *)sender {
-    if([self.biTianCell.chooseTime.titleLabel.text isEqualToString:@"选择到店时间"] ||
-       [self.biTianCell.chooseWay.titleLabel.text isEqualToString:@"选择正确的拼客方式"]){
-        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"抱歉，请将信息填写完整!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show ];
+    if(self.defaultIndex == -1){
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"抱歉，请选择正确的拼客方式!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show ];
+    }else if(self.defaultPay == -2){
+        [[[UIAlertView alloc]initWithTitle:@"提示" message:@"抱歉，请选择到店时间!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show ];
     }else{
         LPBuyViewController *LPBuyVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPBuyVC"];
 //        LPBuyVC.pinkeModel = self.pinKeModel;
@@ -421,6 +425,10 @@
         
         if(self.defaultIndex == 1){
             self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / self.defaultNumber;
+        }else if (self.defaultIndex == 0){
+            self.defaultPay = [self.pinKeModel.price floatValue];
+        }else if(self.defaultIndex == 2){
+            self.defaultPay = -1;
         }
         
         

@@ -366,7 +366,6 @@
 		38E5D7001C103E17004B49D2 /* LPmanager@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6FD1C103E17004B49D2 /* LPmanager@2x.png */; };
 		38E5D7011C103E17004B49D2 /* LPmanager@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6FE1C103E17004B49D2 /* LPmanager@3x.png */; };
 		38E5D7051C1044F3004B49D2 /* ManagerInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D7031C1044F3004B49D2 /* ManagerInfoCell.m */; };
-		38E5D7061C1044F3004B49D2 /* ManagerInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7041C1044F3004B49D2 /* ManagerInfoCell.xib */; };
 		38E5D7591C113445004B49D2 /* triangle_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7531C113445004B49D2 /* triangle_up.png */; };
 		38E5D75A1C113445004B49D2 /* triangle_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7541C113445004B49D2 /* triangle_up@2x.png */; };
 		38E5D75B1C113445004B49D2 /* triangle_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7551C113445004B49D2 /* triangle_up@3x.png */; };
@@ -408,6 +407,9 @@
 		38E5D7F61C13355A004B49D2 /* PayMoney.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D7F51C13355A004B49D2 /* PayMoney.xib */; };
 		38E5D7F91C13356F004B49D2 /* PayMoney.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D7F81C13356F004B49D2 /* PayMoney.m */; };
 		38E5D7FA1C13DFA1004B49D2 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 853DB5EC1C12C19B004227BA /* MenuButton.m */; };
+		38E72B451C15239A002EFBDD /* ManagerInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B441C15239A002EFBDD /* ManagerInfoCell.xib */; };
+		38E72B4E1C153446002EFBDD /* CHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E72B4C1C153446002EFBDD /* CHViewController.m */; };
+		38E72B4F1C153446002EFBDD /* CHViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B4D1C153446002EFBDD /* CHViewController.xib */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
@@ -1350,7 +1352,6 @@
 		38E5D6FE1C103E17004B49D2 /* LPmanager@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LPmanager@3x.png"; sourceTree = "<group>"; };
 		38E5D7021C1044F3004B49D2 /* ManagerInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerInfoCell.h; sourceTree = "<group>"; };
 		38E5D7031C1044F3004B49D2 /* ManagerInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerInfoCell.m; sourceTree = "<group>"; };
-		38E5D7041C1044F3004B49D2 /* ManagerInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerInfoCell.xib; sourceTree = "<group>"; };
 		38E5D7531C113445004B49D2 /* triangle_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle_up.png; sourceTree = "<group>"; };
 		38E5D7541C113445004B49D2 /* triangle_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triangle_up@2x.png"; sourceTree = "<group>"; };
 		38E5D7551C113445004B49D2 /* triangle_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triangle_up@3x.png"; sourceTree = "<group>"; };
@@ -1395,6 +1396,10 @@
 		38E5D7F51C13355A004B49D2 /* PayMoney.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayMoney.xib; sourceTree = "<group>"; };
 		38E5D7F71C13356F004B49D2 /* PayMoney.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayMoney.h; sourceTree = "<group>"; };
 		38E5D7F81C13356F004B49D2 /* PayMoney.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayMoney.m; sourceTree = "<group>"; };
+		38E72B441C15239A002EFBDD /* ManagerInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerInfoCell.xib; sourceTree = "<group>"; };
+		38E72B4B1C153446002EFBDD /* CHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHViewController.h; sourceTree = "<group>"; };
+		38E72B4C1C153446002EFBDD /* CHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHViewController.m; sourceTree = "<group>"; };
+		38E72B4D1C153446002EFBDD /* CHViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHViewController.xib; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		853DB5EB1C12C19B004227BA /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
@@ -2416,6 +2421,9 @@
 				15A4CF541BD86AEC00C22C01 /* CHshowDetailListViewController.h */,
 				15A4CF551BD86AEC00C22C01 /* CHshowDetailListViewController.m */,
 				381A01C71C141EE300592485 /* CHshowDetailListViewController.xib */,
+				38E72B4B1C153446002EFBDD /* CHViewController.h */,
+				38E72B4C1C153446002EFBDD /* CHViewController.m */,
+				38E72B4D1C153446002EFBDD /* CHViewController.xib */,
 			);
 			name = "吃喝专场";
 			sourceTree = "<group>";
@@ -3344,7 +3352,7 @@
 				38E5D6F31C0F10E7004B49D2 /* LPBuyManagerCell.xib */,
 				38E5D7021C1044F3004B49D2 /* ManagerInfoCell.h */,
 				38E5D7031C1044F3004B49D2 /* ManagerInfoCell.m */,
-				38E5D7041C1044F3004B49D2 /* ManagerInfoCell.xib */,
+				38E72B441C15239A002EFBDD /* ManagerInfoCell.xib */,
 			);
 			name = "立即购买";
 			sourceTree = "<group>";
@@ -5218,6 +5226,7 @@
 				AD106B9B1C0BE898007F5FBA /* LYUserCenterFooter.xib in Resources */,
 				15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */,
 				ADD68E3A1BE10E550060E751 /* 3@3x.png in Resources */,
+				38E72B451C15239A002EFBDD /* ManagerInfoCell.xib in Resources */,
 				381A01F41C144E1B00592485 /* shoppingCar_High.png in Resources */,
 				15E240C11BB3A9AA0090D240 /* LYUserLoginViewController.xib in Resources */,
 				A2FD576C1BAFE85900CFFF92 /* PinKeCell.xib in Resources */,
@@ -5227,6 +5236,7 @@
 				15E240B61BB3A1FC0090D240 /* OrderDetailSectionBottomForDanPinView.xib in Resources */,
 				ADF88E641C102E4F00CF5DED /* huiseStar@3x.png in Resources */,
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
+				38E72B4F1C153446002EFBDD /* CHViewController.xib in Resources */,
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
 				389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */,
 				85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */,
@@ -5265,7 +5275,6 @@
 				389C01081C1488F000FE9412 /* seeGirls.png in Resources */,
 				15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */,
 				AD92AE9D1BE1D339009F2A34 /* lieyu_default_male@2x.png in Resources */,
-				38E5D7061C1044F3004B49D2 /* ManagerInfoCell.xib in Resources */,
 				15ED32731BE2F49800E086A1 /* YaoYiYaoViewController.xib in Resources */,
 				A2F9DA931BABD62F009DEAF3 /* OrderBottomForCCView.xib in Resources */,
 				38E5D7AE1C113879004B49D2 /* purper_less@3x.png in Resources */,
@@ -5366,6 +5375,7 @@
 				38E5D6E51C0F1018004B49D2 /* LPBuyTaocanCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
+				38E72B4E1C153446002EFBDD /* CHViewController.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
 				15013B021BBA33BF00061FAF /* UIImageView+HighlightedWebCache.m in Sources */,
 				ADF88EAC1C1197C400CF5DED /* MJRefreshConst.m in Sources */,
