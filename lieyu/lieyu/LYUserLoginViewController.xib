@@ -131,7 +131,7 @@
     </objects>
     <resources>
         <image name="MineBG" width="120" height="120"/>
-        <image name="MineBigBG" width="84" height="84"/>
+        <image name="MineBigBG" width="24" height="24"/>
         <image name="btn_back2" width="16" height="16"/>
         <image name="login" width="304" height="54"/>
         <image name="textFieldLong" width="304" height="54"/>

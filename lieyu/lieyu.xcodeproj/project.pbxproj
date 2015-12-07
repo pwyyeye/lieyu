@@ -1404,6 +1404,11 @@
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		853DB5EB1C12C19B004227BA /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
 		853DB5EC1C12C19B004227BA /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
+		853E3A121C15232A0088CD86 /* bartypeslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bartypeslistModel.h; sourceTree = "<group>"; };
+		853E3A131C15232A0088CD86 /* bartypeslistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bartypeslistModel.m; sourceTree = "<group>"; };
+		853E3A161C152A750088CD86 /* bigPlace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigPlace.png; sourceTree = "<group>"; };
+		853E3A171C152A750088CD86 /* middlePlace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = middlePlace.png; sourceTree = "<group>"; };
+		853E3A181C152A750088CD86 /* smallPlace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smallPlace.png; sourceTree = "<group>"; };
 		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
 		8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuView.m; sourceTree = "<group>"; };
 		85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementClassCell.h; sourceTree = "<group>"; };
@@ -3414,6 +3419,16 @@
 			name = "拼客流程";
 			sourceTree = "<group>";
 		};
+		853E3A151C152A600088CD86 /* 默认图片 */ = {
+			isa = PBXGroup;
+			children = (
+				853E3A161C152A750088CD86 /* bigPlace.png */,
+				853E3A171C152A750088CD86 /* middlePlace.png */,
+				853E3A181C152A750088CD86 /* smallPlace.png */,
+			);
+			name = "默认图片";
+			sourceTree = "<group>";
+		};
 		855192651C0B30C4007B9949 /* 热门酒吧 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3499,6 +3514,7 @@
 		85F545121C13D8B80013B92B /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
+				853E3A151C152A600088CD86 /* 默认图片 */,
 				85F545421C14337E0013B92B /* 标签 */,
 				85F545181C13DEDC0013B92B /* 填写个人信息 */,
 			);
@@ -4611,6 +4627,8 @@
 				D7A1D4331BC2CE0900BCE47C /* RecommendPackageModel.m */,
 				15B866301BDDF9F1002E2BB6 /* TeseModel.h */,
 				15B866311BDDF9F1002E2BB6 /* TeseModel.m */,
+				853E3A121C15232A0088CD86 /* bartypeslistModel.h */,
+				853E3A131C15232A0088CD86 /* bartypeslistModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4999,6 +5017,7 @@
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
+				853E3A191C152A750088CD86 /* bigPlace.png in Resources */,
 				AD0080941BEA4F4F00937CFF /* lieyuIcon@3x.png in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */,
@@ -5084,6 +5103,7 @@
 				38E5D7AC1C113879004B49D2 /* purper_less.png in Resources */,
 				38E5D6CE1C0EA5C8004B49D2 /* ContentView.xib in Resources */,
 				15FD2A9D1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib in Resources */,
+				853E3A1A1C152A750088CD86 /* middlePlace.png in Resources */,
 				38E5D7F01C12DF0C004B49D2 /* call@2x.png in Resources */,
 				A2F9DA841BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib in Resources */,
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
@@ -5122,6 +5142,7 @@
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
+				853E3A1B1C152A750088CD86 /* smallPlace.png in Resources */,
 				38E5D7E81C12DC43004B49D2 /* icon_collect@3x.png in Resources */,
 				3879F26F1C0D557400B72629 /* DetailTableViewCell.xib in Resources */,
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
@@ -5561,6 +5582,7 @@
 				152247B41BEB064600E68A2B /* IQTextView.m in Sources */,
 				A2F9DA631BAA5621009DEAF3 /* OrderInfoModel.m in Sources */,
 				15E240711BB2478B0090D240 /* TuiJianShangJiaViewController.m in Sources */,
+				853E3A141C15232A0088CD86 /* bartypeslistModel.m in Sources */,
 				15FD2A971BD5DD7A00D66920 /* FindMenuCell.m in Sources */,
 				15A4CF3B1BD7309500C22C01 /* LYTitleInfoCell.m in Sources */,
 				85F545291C13EB450013B92B /* LYUserDetailCameraTableViewCell.m in Sources */,
