@@ -28,6 +28,9 @@
 #define KTV @"ktv"
 
 @interface LYHotJiuBarViewController ()<UITableViewDataSource,UITableViewDelegate,LYHotBarMenuViewDelegate>
+{
+    NSString *_subidStr;
+}
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -47,7 +50,8 @@
     LYHotBarMenuView *menuView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, 320, 40)];
     menuView.delegate = self;
     NSArray *array1 = @[@"闵行区",@"浦东",@"宝山",@"徐汇",@"地区五",@"地区六",@"地区七"];
-        NSArray *array2 = @[@"激情夜店",@"文艺清吧",@"音乐清吧",@"ktv"];
+        NSArray *array2 = _titleArray;
+    
         NSArray *array3 = @[@"离我最近",@"h"];
     [menuView deployWithMiddleTitle:_middleStr ItemArray:@[array1,array2,array3]];
     [self.view addSubview:menuView];
@@ -86,25 +90,28 @@
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
     
-    NSString * mainType = nil;
-    if (self.entryType == BaseEntry_WineBar) {
-        mainType = @"酒吧";
-    }
-    else
-    {
-        mainType = @"夜总会";
-    }
+//    NSString * mainType = nil;
+//    if (self.entryType == BaseEntry_WineBar) {
+//        mainType = @"酒吧";
+//    }
+//    else
+//    {
+//        mainType = @"夜总会";
+//    }
     
-#if 1
-    hList.bartype = mainType;
-    hList.subtype = @"闹吧";
+//#if 1
+   // hList.bartype = mainType;
+    
+   
+    
+    hList.subids = _subidStr;
     hList.need_page = @(1);
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
-#endif
+//#endif
     
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner)
+    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner,NSMutableArray *bartypeslist)
      {
          if (ermsg.state == Req_Success)
          {
@@ -170,6 +177,47 @@
 #pragma 菜单代理
 - (void)didClickHotBarMenuDropWithButtonSection:(NSInteger)section dropButtonIndex:(NSInteger)index{
     NSLog(@"----------%ld---------%ld",section,index);
+    switch (section) {
+        case 1:
+        {
+            
+            switch (index) {
+                case 0:
+                {
+                    _subidStr = @(1);
+                   
+                }
+                    break;
+                case 1:
+                {
+                    _subidStr = @(2);
+                    
+                }
+                    break;
+                case 2:
+                {
+                    _subidStr = @(5);
+                    
+                }
+                    break;
+                case 3:
+                {
+                    _subidStr = @(5);
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+             [self getData];
+        }
+            break;
+            
+        default:
+            break;
+    }
+   
 }
 
 
@@ -195,11 +243,9 @@
             return menuCell;
       */ 
             LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
-            wineCell.jiuBaModel = _aryList[indexPath.row];
+            wineCell.jiuBaModel = _aryList[indexPath.section];
             wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return wineCell;
-       
-  
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -17,5 +17,6 @@
 @property(nonatomic,strong)NSString *bartype;
 @property(nonatomic,strong)NSString *subtype;
 @property(nonatomic,strong)NSString *barname;
+@property (nonatomic,copy) NSString *subids;
 
 @end

@@ -8,10 +8,11 @@
 
 #import "LYToPlayRestfulBusiness.h"
 #import "JiuBaModel.h"
+#import "bartypeslistModel.h"
 
 @implementation LYToPlayRestfulBusiness
 
-- (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList,NSArray *newbanner))block
+- (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist))block
 {
     NSDictionary * param = [reqParam keyValues];
     if (param == nil) {
@@ -21,27 +22,29 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_HOMELIST  baseURL:LY_SERVER params:param success:^(id response)
     {
-        NSLog(@"------->%@",response);
         [app stopLoading];
         NSDictionary *dataDic = response[@"data"];
         NSMutableArray *bannerList = nil;
         NSMutableArray * barlist = nil;
         NSArray *newbanner = nil;
+        NSMutableArray *bartypeslist = nil;
         LYErrorMessage * erMsg = [LYErrorMessage instanceWithDictionary:response];
         if (erMsg.state == Req_Success)
         {
             bannerList = [dataDic valueForKey:@"banner"];
             barlist = [dataDic valueForKey:@"barlist"];
             newbanner=[dataDic valueForKey:@"newbanner"];
+            bartypeslist = [dataDic valueForKey:@"bartypeslist"];
+            bartypeslist = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:bartypeslist]];
             barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:barlist]];
         }
         
-        block(erMsg,bannerList,barlist,newbanner);
+        block(erMsg,bannerList,barlist,newbanner,bartypeslist);
     } failure:^(NSError *err)
     {
         [app stopLoading];
         LYErrorMessage * erMsg = [LYErrorMessage instanceWithError:err];
-        block(erMsg,nil,nil,nil);
+        block(erMsg,nil,nil,nil,nil);
     }];
 
 }
