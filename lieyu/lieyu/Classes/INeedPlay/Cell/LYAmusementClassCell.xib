@@ -120,10 +120,10 @@
                 <outlet property="label_line_middle" destination="40d-7b-DOI" id="c8k-Yf-UdU"/>
                 <outlet property="label_title" destination="g5a-mL-5zq" id="O7P-So-IOL"/>
                 <outlet property="scrollView" destination="QKI-Sx-1gS" id="xWU-Mr-UmZ"/>
-                <outletCollection property="buttonArray" destination="4cY-QH-nH8" id="tKP-CI-bem"/>
-                <outletCollection property="buttonArray" destination="IBU-SE-djO" id="CYq-2W-woO"/>
-                <outletCollection property="buttonArray" destination="TbJ-6R-S3d" id="AN1-jA-xpz"/>
-                <outletCollection property="buttonArray" destination="18h-Bf-SG7" id="ZUc-AM-d4e"/>
+                <outletCollection property="buttonArray" destination="4cY-QH-nH8" collectionClass="NSMutableArray" id="tKP-CI-bem"/>
+                <outletCollection property="buttonArray" destination="IBU-SE-djO" collectionClass="NSMutableArray" id="CYq-2W-woO"/>
+                <outletCollection property="buttonArray" destination="TbJ-6R-S3d" collectionClass="NSMutableArray" id="AN1-jA-xpz"/>
+                <outletCollection property="buttonArray" destination="18h-Bf-SG7" collectionClass="NSMutableArray" id="ZUc-AM-d4e"/>
             </connections>
             <point key="canvasLocation" x="466" y="387"/>
         </tableViewCell>

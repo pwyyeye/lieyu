@@ -9,7 +9,13 @@
 #import "ChoosePayController.h"
 #import "LYMyOrderManageViewController.h"
 #import "SingletonTenpay.h"
+#import "PayButton.h"
+
 @interface ChoosePayController ()
+{
+    UITableViewCell *_payCell;
+    NSInteger _selectIndex;
+}
 @property (nonatomic,strong) NSMutableArray *btnArray;
 @end
 
@@ -35,6 +41,58 @@
            @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
             ];
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
+    [self createPayButton];//创建支付按钮
+}
+
+- (void)createPayButton{
+    UIButton *payBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 500, 304, 52)];
+    [payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
+    payBtn.layer.cornerRadius = 4;
+    payBtn.layer.masksToBounds = YES;
+    [payBtn setTitle:@"确认支付" forState:UIControlStateNormal];
+    [payBtn setTitleColor:RGBA(255, 255, 255, 1) forState:UIControlStateNormal];
+    [payBtn.titleLabel setFont:[UIFont systemFontOfSize:20]];
+    [payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:payBtn];
+}
+
+#pragma mark 支付按钮
+- (void)payClick{
+    NSLog(@"----pass-_orderNo%@---",_orderNo);
+    if ([MyUtil isEmptyString:_orderNo]) {
+        return;
+    }
+    if (_payAmount==0) {
+        return;
+    }
+    if ([MyUtil isEmptyString:_productName]) {
+        return;
+    }
+    if ([MyUtil isEmptyString:_productDescription]) {
+        return;
+    }
+    
+    if (_selectIndex == 2l) {//支付宝
+        AlipayOrder *order=[[AlipayOrder alloc] init];
+        //
+        order.tradeNO = _orderNo; //订单ID（由商家自行制定）
+        order.productName = _productName; //商品标题
+        order.productDescription = _productDescription; //商品描述
+        order.amount = [NSString stringWithFormat:@"%.2f",_payAmount];
+        //    order.amount=[NSString stringWithFormat:@"%.2f",0.01];
+        
+        SingletonAlipay *alipay=[SingletonAlipay singletonAlipay];
+        alipay.delegate=self;
+        [alipay payOrder:order];
+    }else{//微信
+        SingletonTenpay *tenpay=[SingletonTenpay singletonTenpay];
+        
+        [tenpay preparePay:@{@"orderNo":_orderNo,@"payAmount":[NSString stringWithFormat:@"%.0f",_payAmount*100],@"productDescription":_productName} complete:^(BaseReq *result) {
+            if (result) {
+                [tenpay onReq:result];
+            }
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +158,7 @@
 //    }
 //}
 
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
@@ -141,7 +200,8 @@
         }];
     }
 }
-
+*/
+ 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.section) {
@@ -149,42 +209,42 @@
         {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
             cell.textLabel.text = @"总需支付";
-            cell.detailTextLabel.text = @"1000";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"¥%.2f",_payAmount];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
             break;
         case 1:
         {
-            UITableViewCell *payCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"payCell"];
-            if (!payCell) {
-                payCell = [tableView dequeueReusableCellWithIdentifier:@"payCell"];
+            _payCell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"payCell"];
+            if (!_payCell) {
+                _payCell = [tableView dequeueReusableCellWithIdentifier:@"payCell"];
             }
-            payCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            _payCell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             NSDictionary *dic= _data[indexPath.row];
-            payCell.textLabel.text=[dic objectForKey:@"payname"];
-            payCell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:16];
-            payCell.textLabel.textColor=RGB(26, 26, 26);
+            _payCell.textLabel.text=[dic objectForKey:@"payname"];
+            _payCell.textLabel.font= [UIFont fontWithName:@"Helvetica-Bold" size:16];
+            _payCell.textLabel.textColor=RGB(26, 26, 26);
             
-            payCell.detailTextLabel.text=[dic objectForKey:@"paydetail"];
-            payCell.detailTextLabel.font= [UIFont systemFontOfSize:14];
-            payCell.detailTextLabel.textColor=RGB(102, 101, 102);
-            payCell.imageView.image=[UIImage imageNamed:[dic objectForKey:@"payicon"]];
+            _payCell.detailTextLabel.text=[dic objectForKey:@"paydetail"];
+            _payCell.detailTextLabel.font= [UIFont systemFontOfSize:14];
+            _payCell.detailTextLabel.textColor=RGB(102, 101, 102);
+            _payCell.imageView.image=[UIImage imageNamed:[dic objectForKey:@"payicon"]];
             
-            UIButton *selectBtn = [[UIButton alloc]initWithFrame:CGRectMake(289,30, 20, 20)];
-            selectBtn.backgroundColor = [UIColor redColor];
+            PayButton *selectBtn = [[PayButton alloc]initWithFrame:CGRectMake(289,30, 20, 20)];
             if (!indexPath.row) {
-                [selectBtn setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected.png"] forState:UIControlStateNormal];
+                selectBtn.isSelect = YES;
             }else{
-                [selectBtn setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected.png"] forState:UIControlStateNormal];
+                selectBtn.isSelect = NO;
             }
+            selectBtn.tag = indexPath.row + 1;
             selectBtn.tag = indexPath.row;
             [selectBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
-            [payCell addSubview:selectBtn];
+            [_payCell addSubview:selectBtn];
             [_btnArray addObject:selectBtn];
             
-            return payCell;
+            return _payCell;
         }
             break;
             
@@ -194,12 +254,13 @@
     return nil;
 }
 
-- (void)selectClick:(UIButton *)button{
+- (void)selectClick:(PayButton *)button{
             NSLog(@"--->%ld",_btnArray.count);
-    for (UIButton *btn in _btnArray) {
-        [btn setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected.png"] forState:UIControlStateNormal];
+    _selectIndex = button.tag;
+    for (PayButton *btn in _btnArray) {
+        btn.isSelect = NO;
     }
-    [button setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected.png"] forState:UIControlStateNormal];
+    button.isSelect = YES;
 }
 
 

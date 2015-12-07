@@ -232,11 +232,7 @@
         }
         taglist.selectedArray=mod.tags;
         [self.navigationController pushViewController:taglist animated:YES];
-    
     }
-    
-    
-    
 }
 
 

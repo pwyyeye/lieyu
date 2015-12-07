@@ -28,9 +28,9 @@
     // Configure the view for the selected state
 }
 
-//- (IBAction)selectManager:(UIButton *)sender {
-//    [self.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
-//}
+- (IBAction)selectManager:(UIButton *)sender {
+    [self.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
+}
 
 - (void)cellConfigureWithImage:(NSString *)imageUrl name:(NSString *)name stars:(NSString *)stars{
     [self.iconImage.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];

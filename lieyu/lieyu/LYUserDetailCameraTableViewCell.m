@@ -14,7 +14,7 @@
     // Initialization code
     NSString *str = @"精彩从头像开始";
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:str];
-    [attributedStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11] range:NSMakeRange(3, 4)];
+    [attributedStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11] range:NSMakeRange(3, 2.99)];
     self.label_title.attributedText = attributedStr;
     
     self.btn_userImage.layer.cornerRadius = 61/2.0;

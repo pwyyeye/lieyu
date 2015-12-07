@@ -128,14 +128,12 @@
     
     [sectionView deployWithMiddleTitle:@"音乐清吧" ItemArray:@[array1,array2,array3]];
     [self.view addSubview:sectionView];
-    [sectionView bringSubviewToFront:self.view];
 }
 
-- (void)didClickHotBarMenuDropWithSectionButtonTitle:(NSString *)title dropButtonIndex:(NSInteger)index{
-    if([title isEqualToString:@"所有地区"]){
-        
-    }
+- (void)didClickHotBarMenuDropWithButtonSection:(NSInteger)section dropButtonIndex:(NSInteger)index{
+    NSLog(@"-->%ld---%ld",section,index);
 }
+
 
 //- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 //    [_sectionView removeFromSuperview];

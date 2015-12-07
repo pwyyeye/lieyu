@@ -24,7 +24,7 @@
     
     self.label_lineTop.frame = CGRectMake(0, 0, 320, 0.5);
     self.label_line_middle.frame = CGRectMake(0, 44.5, 320, 0.5);
-    self.label_line_bottom.bounds = CGRectMake(0, 0, 320, 0.5);
+    self.label_line_bottom.bounds = CGRectMake(0, 0, 320, 0.2);
     self.label_line_bottom.hidden = YES;
     
     for (UIButton *btn in _buttonArray) {

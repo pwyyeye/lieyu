@@ -13,12 +13,19 @@
 #import "LYUserHttpTool.h"
 #import "HTTPController.h"
 #import "LPAlertView.h"
-#import "TimePickerView.h"
+#import "BirthdayPickerView.h"
 #import "LYTagTableViewController.h"
+#import "UserTagModel.h"
+#import "UIButton+WebCache.h"
 
-@interface LYUserDetailInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LPAlertViewDelegate>
+@interface LYUserDetailInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LPAlertViewDelegate,LYUserTagSelectedDelegate>
 {
     LYUserDetailCameraTableViewCell *_selectcedCell;
+    LYUserDetailTableViewCell *_nickCell;
+    LYUserDetailSexTableViewCell *_sexCell;
+    LYUserDetailTableViewCell *_birthCell;
+     LYUserDetailTableViewCell *_tagCell;
+    NSDate *_chooseBirthDate;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -34,8 +41,14 @@
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 431);
     }
-    self.title=@"填写完整人信息";
+    self.title=@"填写完整信息";
     [self setSeparator];//设置tableView分割线
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
+    [_selectcedCell addGestureRecognizer:tapGes];
+}
+
+- (void)tapGes{
+    [_nickCell.textF_content endEditing:NO];
 }
 
 - (void)setSeparator{
@@ -76,43 +89,87 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = nil;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;//获取当前用户信息
     if (!indexPath.row) {//头像
         _selectcedCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailCameraTableViewCell" forIndexPath:indexPath];
+        [_selectcedCell.btn_userImage sd_setBackgroundImageWithURL:[NSURL URLWithString:mod.avatar_img] forState:UIControlStateNormal];
         [_selectcedCell.btn_userImage addTarget:self action:@selector(chooseImage) forControlEvents:UIControlEventTouchUpInside];
+        _selectcedCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _selectcedCell;
     }else if(indexPath.row == 1){//昵称
-        cell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailTableViewCell" forIndexPath:indexPath];
-        if (cell) {
-            LYUserDetailTableViewCell *detailCell = (LYUserDetailTableViewCell *)cell;
-            detailCell.image_arrow.hidden = YES;
+        _nickCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailTableViewCell" forIndexPath:indexPath];
+            _nickCell.image_arrow.hidden = YES;
+        if (mod.usernick.length){
+            _nickCell.textF_content.text = mod.usernick;
+            _nickCell.textF_content.textColor = RGBA(114, 5, 145, 1);
         }
+        _nickCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return _nickCell;
+        
     }else if(indexPath.row == 2){//性别
-        cell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailSexTableViewCell" forIndexPath:indexPath];
-        
-        
+        _sexCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailSexTableViewCell" forIndexPath:indexPath];
+            if (!mod.gender.integerValue) {
+                [_sexCell.btn_man setImage:[UIImage imageNamed:@"circleWhite"] forState:UIControlStateNormal];
+                [_sexCell.btn_women setImage:[UIImage imageNamed:@"circleWhiteSelect"] forState:UIControlStateNormal];
+                _sexCell.btn_women.tag = 3;
+                _sexCell.btn_man.tag = 0;
+            }
+        _sexCell.selectionStyle = UITableViewCellSelectionStyleNone;
+         return _sexCell;
     }else if(indexPath.row == 3){//生日
-        cell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailTableViewCell" forIndexPath:indexPath];
-        if (cell) {
-            LYUserDetailTableViewCell *detailCell = (LYUserDetailTableViewCell *)cell;
-            detailCell.label_title.text = @"生日";
-            detailCell.textF_content.enabled = NO;
-            detailCell.textF_content.text = @"选择生日";
+        _birthCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailTableViewCell" forIndexPath:indexPath];
+
+        
+            _birthCell.label_title.text = @"生日";
+            _birthCell.textF_content.enabled = NO;
+            _birthCell.textF_content.text = @"选择生日";
+            if (mod.birthday.length) {
+                _birthCell.textF_content.text = mod.birthday;
+                _birthCell.textF_content.textColor = RGBA(114, 5, 145, 1);
         }
-    }else if(indexPath.row == 4){//身份
-        cell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailTableViewCell" forIndexPath:indexPath];
-        if (cell) {
-            LYUserDetailTableViewCell *detailCell = (LYUserDetailTableViewCell *)cell;
-            detailCell.label_title.text = @"标签";
-            detailCell.textF_content.enabled = NO;
-            detailCell.textF_content.text = @"选择标签";
-        }
+        _birthCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return _birthCell;
+    }else if(indexPath.row == 4){//标签
+        _tagCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailTableViewCell" forIndexPath:indexPath];
+            _tagCell.label_title.text = @"标签";
+            _tagCell.textF_content.enabled = NO;
+            _tagCell.textF_content.text = @"选择标签";
+            if (mod.tags.count) {
+                if (mod.tags.count == 1) {
+                    _tagCell.textF_content.text = ((UserTagModel *) mod.tags[0]).tagname;
+                }else{
+                    NSString *tagNames=@"";
+                for (int i = 1;i < mod.tags.count ; i ++) {
+                    UserTagModel *usertag = mod.tags[i];
+                    if (!tagNames.length) {
+                        tagNames = ((UserTagModel *) mod.tags[0]).tagname;
+
+                    }
+                    tagNames = [NSString stringWithFormat:@"%@,%@",tagNames,usertag.tagname];
+                        
+                        NSLog(@"---->%@",usertag.tagname);
+                    }
+                    _tagCell.textF_content.text=tagNames;
+                }
+                _tagCell.textF_content.textColor = RGBA(114, 5, 145, 1);
+            }
+        _tagCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return _tagCell;
     }else {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         UIButton *sureBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 47, 300, 52)];
-        sureBtn.backgroundColor = [UIColor redColor];
+        [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sureBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
+        sureBtn.layer.cornerRadius = 4;
+        sureBtn.layer.masksToBounds = YES;
+        [sureBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
+        [sureBtn addTarget:self action:@selector(sureClick) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:sureBtn];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, LONG_LONG_MAX);
     return cell;
     
 }
@@ -140,6 +197,61 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;
+    if (indexPath.row == 3) {//选择生日
+        LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消",@"确定",nil];
+        
+        BirthdayPickerView *timeView = [[[NSBundle mainBundle] loadNibNamed:@"BirthdayPickerView" owner:nil options:nil] firstObject];
+        timeView.tag = 11;
+        timeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
+        alertView.contentView = timeView;
+        [alertView show];
+    }else if (indexPath.row == 4){
+        //标签
+        LYTagTableViewController *tagVC = [[LYTagTableViewController alloc]init];
+        tagVC.delegate = self;
+        for (UserTagModel *tag in mod.tags) {
+            if (tag.id==0) {
+                tag.id=tag.tagid;
+            }
+            if ([MyUtil isEmptyString:tag.name]) {
+                tag.name=tag.tagname;
+            }
+            
+        }
+        tagVC.selectedArray=mod.tags;
+        [self.navigationController pushViewController:tagVC animated:YES];
+    }
+}
+
+#pragma mark LYUserTagSelectedDelegate
+- (void)userTagSelected:(NSMutableArray *)usertags{
+    NSString *tagids=@"";
+    NSString *tagNames=@"";
+    for (UserTagModel *usertag in usertags) {
+        if ([tagids isEqualToString:@""]) {
+            tagids=[NSString stringWithFormat:@"%d",usertag.id];
+            tagNames=[NSString stringWithFormat:@"%@",usertag.name];
+        }else{
+            tagids=[NSString stringWithFormat:@"%@,%d",tagids,usertag.id];
+            tagNames=[NSString stringWithFormat:@"%@,%@",tagNames,usertag.name];
+        }
+        
+    }
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    UserModel *mod= app.userModel;
+    
+    mod.tags=[usertags copy];
+    
+    _tagCell.textF_content.text=tagNames;
+    NSMutableDictionary *userinfo=[NSMutableDictionary new];
+    [userinfo setObject:tagids forKey:@"tag"];
+    [self savaUserInfo:userinfo needReload:NO];
+}
+
+
 #pragma mark - 保存用户信息
 -(void)savaUserInfo:(NSMutableDictionary *)userInfo needReload:(BOOL)isNeed{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -149,12 +261,10 @@
         if (result) {
             [MyUtil showMessage:@"修改成功！"];
             if (isNeed) {
-                [self.tableView reloadData];
+              //  [self.tableView reloadData];
             }
-            
         }
     }];
-    
 }
 
 #pragma mark 选择头像
@@ -252,27 +362,45 @@
     }];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 3) {//选择生日
-        LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消",@"确定",nil];
-        
-        TimePickerView *timeView = [[[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil] firstObject];
-        timeView.tag = 11;
-        timeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
-        alertView.contentView = timeView;
-        [alertView show];
-    }else if (indexPath.row == 4){
-        //标签
-        LYTagTableViewController *tagVC = [[LYTagTableViewController alloc]init];
-        [self.navigationController pushViewController:tagVC animated:YES];
-    }
-}
 
 #pragma mark LPAlertViewDelegate
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
-    
+    _chooseBirthDate = ((BirthdayPickerView *)alertView.contentView).datePicker.date;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    _birthCell.textF_content.text = [formatter stringFromDate:_chooseBirthDate];
 }
 
+
+-(void)sureClick{
+    
+//    if (customType==0) {
+//        NSDate *select  = [_datePicker date];
+    
+    NSMutableDictionary *userinfo=[NSMutableDictionary new];
+    
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *date = [dateFormatter stringFromDate:_chooseBirthDate];
+    if (date){
+    [userinfo setObject:date forKey:@"birthday"];
+    }
+    
+    [userinfo setObject:_nickCell.textF_content.text forKey:@"usernick"];
+    
+    NSNumber *sexNum;
+    if (_sexCell.btn_man.tag == 3) {
+        sexNum = @(1);
+    }else if(_sexCell.btn_women.tag == 3){
+        sexNum = @(0);
+    }
+    [userinfo setObject:[NSString stringWithFormat:@"%@",sexNum] forKey:@"gender"];
+    
+    [self savaUserInfo:userinfo needReload:YES];
+    
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
