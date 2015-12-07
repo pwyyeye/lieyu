@@ -20,10 +20,10 @@
 }
 
 - (IBAction)sexClick:(UIButton *)sender {
+     [sender setImage:[UIImage imageNamed:@"circleWhiteSelect"] forState:UIControlStateNormal];
     switch (sender.tag) {
         case 0:
         {
-            [self.btn_man setImage:[UIImage imageNamed:@"circleWhiteSelect"] forState:UIControlStateNormal];
             [self.btn_women setImage:[UIImage imageNamed:@"circleWhite"] forState:UIControlStateNormal];
             self.btn_women.tag = 1;
         }
@@ -31,7 +31,6 @@
         case 1:
         {
             [self.btn_man setImage:[UIImage imageNamed:@"circleWhite"] forState:UIControlStateNormal];
-            [self.btn_women setImage:[UIImage imageNamed:@"circleWhiteSelect"] forState:UIControlStateNormal];
             self.btn_man.tag = 0;
         }
             break;
