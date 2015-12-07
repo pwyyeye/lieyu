@@ -203,9 +203,23 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 3:
         {
+           
+            [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+            [UMSocialSnsService presentSnsIconSheetView:self
+                                                 appKey:UmengAppkey
+                                              shareText:@"猎娱带你玩转酒吧夜店，无需再担心隐形消费，遇到酒托，所有商家均严格筛选认证，明码标价，尊享专属VIP经理一对一服务，喝酒消费更有超额返利等你来拿！https://itunes.apple.com/us/app/lie-yu-ye-sheng-huo-yu-le/id1056569271?l=zh&ls=1&mt=8"
+                                             shareImage:[UIImage imageNamed:@"lieyuIcon"]
+                                        shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,UMShareToEmail,nil]
+                                               delegate:nil];
         }
-        case 4:// 购物车
+        case 4:// 反馈
         {
+            RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
+            conversationVC.conversationType = ConversationType_PRIVATE;
+            conversationVC.targetId = @"KEFU144946169476221";
+            conversationVC.userName = @"猎娱客服";
+            conversationVC.title = @"猎娱客服";
+            [self.navigationController pushViewController:conversationVC animated:YES];
         }
         case 5:// 信息中心
         {
@@ -306,6 +320,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         {
             [lastController viewWillDisappear:animated];
         }
+        
         
     }
     

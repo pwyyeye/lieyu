@@ -9,7 +9,7 @@
 #import "LYBaseViewController.h"
 #import "NeedHideNavigationBar.h"
 #import "MenuHrizontal.h"
-@interface LYwoYaoDinWeiMainViewController : LYBaseViewController<NeedHideNavigationBar,MenuHrizontalDelegate>
+@interface LYwoYaoDinWeiMainViewController : UIViewController<MenuHrizontalDelegate>
 {
     MenuHrizontal *mMenuHriZontal;
     NSMutableArray *weekDateArr;

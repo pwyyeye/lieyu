@@ -8,7 +8,7 @@
 
 #import "LYBaseViewController.h"
 
-@interface DWTaoCanXQViewController : LYBaseViewController
+@interface DWTaoCanXQViewController : UIViewController
 - (IBAction)queryAct:(UIButton *)sender;
 - (IBAction)warnAct:(UIButton *)sender;
 - (IBAction)payAct:(UIButton *)sender;

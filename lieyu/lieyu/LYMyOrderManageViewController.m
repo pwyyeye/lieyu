@@ -55,9 +55,12 @@
     [self.kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
     dataList=[[NSMutableArray alloc]init];
     [self getMenuHrizontal];
+    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refreshData];
     }];
+    MJRefreshNormalHeader *header=(MJRefreshNormalHeader *)self.tableView.mj_header;
+    header.lastUpdatedTimeLabel.hidden = YES;
     //    [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.tableView.mj_footer =[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [self loadMoreData];
@@ -90,12 +93,13 @@
     }
     
     self.navigationController.navigationBarHidden=NO;
+    self.automaticallyAdjustsScrollViewInsets=NO;
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 //    if (self.navigationController.navigationBar.hidden) {
-        self.navigationController.navigationBar.hidden=NO;
+//        self.navigationController.navigationBar.hidden=NO;
 //    }
 
 }
