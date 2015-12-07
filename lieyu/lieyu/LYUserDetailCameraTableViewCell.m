@@ -19,7 +19,6 @@
     
     self.btn_userImage.layer.cornerRadius = 61/2.0;
     self.btn_userImage.layer.masksToBounds = YES;
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

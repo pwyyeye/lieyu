@@ -24,7 +24,7 @@
 #import "LYHomeSearcherViewController.h"
 #import "LYHotJiuBarViewController.h"
 #import "LYCloseMeViewController.h"
-//#import ""
+#import "bartypeslistModel.h"
 
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
@@ -41,7 +41,7 @@ UITableViewDataSource,UITableViewDelegate,
 @property(nonatomic,weak) IBOutlet UIButton * myFllowButton;
 @property(nonatomic,weak) IBOutlet UITableView * tableView;
 @property(nonatomic,weak) IBOutlet UITextField * searchTextField;
-//@property(nonatomic,weak) IBOutlet UITabBarItem * tabBarItem;
+@property (nonatomic,strong) NSArray *bartypeslistArray;
 @property(nonatomic,assign) NSInteger curPageIndex;
 @property (nonatomic,strong) NSArray *hotJiuBarTitle;
 @end
@@ -147,7 +147,7 @@ UITableViewDataSource,UITableViewDelegate,
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList,NSArray *newbanner) {
+    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist) {
         if (ermsg.state == Req_Success)
         {
             if (weakSelf.curPageIndex == 1) {
@@ -155,6 +155,7 @@ UITableViewDataSource,UITableViewDelegate,
                 //                [weakSelf.bannerList removeAllObjects];
                 weakSelf.bannerList = bannerList.mutableCopy;
                 weakSelf.newbannerList = newbanner.mutableCopy;
+                weakSelf.bartypeslistArray = bartypeslist;
             }
             [self.aryList addObjectsFromArray:barList.mutableCopy] ;
             [self.tableView reloadData];
@@ -366,9 +367,9 @@ UITableViewDataSource,UITableViewDelegate,
             break;
         case 1:
         {
+            
           LYAmusementClassCell *amuseCell =[tableView dequeueReusableCellWithIdentifier:@"LYAmusementClassCell" forIndexPath:indexPath];
-            amuseCell.scrollView.contentSize = CGSizeMake(640, 0);
-            amuseCell.scrollView.alwaysBounceVertical = NO;
+            amuseCell.bartypeArray = self.bartypeslistArray;
             amuseCell.selectionStyle = UITableViewCellSelectionStyleNone;
             for (UIButton *btn in amuseCell.buttonArray) {
                 [btn addTarget:self action:@selector(hotJiuClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -400,7 +401,14 @@ UITableViewDataSource,UITableViewDelegate,
 
 - (void)hotJiuClick:(UIButton *)button{
     LYHotJiuBarViewController *hotJiuBarVC = [[LYHotJiuBarViewController alloc]init];
-    hotJiuBarVC.middleStr = _hotJiuBarTitle[button.tag];
+    NSMutableArray *titleArray = [[NSMutableArray alloc]initWithCapacity:0];
+    for (int i = 0;  i < self.bartypeslistArray.count; i ++) {
+        bartypeslistModel *bartypeModel = self.bartypeslistArray[i];
+        [titleArray addObject:bartypeModel.name];
+    }
+    
+    hotJiuBarVC.titleArray = titleArray;
+    hotJiuBarVC.middleStr = titleArray[button.tag];
     [self.navigationController pushViewController:hotJiuBarVC animated:YES];
 }
 

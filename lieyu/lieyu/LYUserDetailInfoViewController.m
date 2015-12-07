@@ -32,7 +32,7 @@
     [self registeTableViewCell];
     //self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-        _tableView.bounds = CGRectMake(0, 0, 320, 431);
+        _tableView.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 431);
     }
     self.title=@"填写完整人信息";
     [self setSeparator];//设置tableView分割线
@@ -63,8 +63,10 @@
 #pragma mark 注册单元格
 - (void)registeTableViewCell{
     [self.tableView registerNib:[UINib nibWithNibName:@"LYUserDetailCameraTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYUserDetailCameraTableViewCell"];
-     [self.tableView registerNib:[UINib nibWithNibName:@"LYUserDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYUserDetailTableViewCell"];
-     [self.tableView registerNib:[UINib nibWithNibName:@"LYUserDetailSexTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYUserDetailSexTableViewCell"];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYUserDetailTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LYUserDetailTableViewCell"];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYUserDetailSexTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYUserDetailSexTableViewCell"];
 }
 
 #pragma mark UITableViewDelegate&UITableViewDataSource
@@ -107,7 +109,7 @@
     }else {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         UIButton *sureBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 47, 300, 52)];
-        
+        sureBtn.backgroundColor = [UIColor redColor];
         [cell addSubview:sureBtn];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

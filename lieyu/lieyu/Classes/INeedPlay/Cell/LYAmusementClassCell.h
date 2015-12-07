@@ -20,7 +20,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *label_line_bottom;
 
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonArray;
-
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSMutableArray *buttonArray;
+@property (nonatomic,strong) NSArray *bartypeArray;
 
 @end

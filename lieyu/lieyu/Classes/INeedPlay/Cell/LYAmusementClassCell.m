@@ -8,6 +8,9 @@
 
 #import "LYAmusementClassCell.h"
 #import "LYHotJiuBarViewController.h"
+#import "bartypeslistModel.h"
+#import "UIButton+WebCache.h"
+
 @interface LYAmusementClassCell()<UIScrollViewDelegate>
 
 @end
@@ -57,6 +60,27 @@
         [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"chevron right copy"] forState:UIControlStateNormal];
         [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"chevron right"] forState:UIControlStateNormal];
     }
+}
+
+- (void)setBartypeArray:(NSArray *)bartypeArray{
+    _bartypeArray = bartypeArray;
+    for (int i = 0; i < bartypeArray.count; i ++) {
+        if (i == 1 || i == 2 || i == 3|| i == 0) {
+            break;
+        }
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(8 + i%(bartypeArray.count) * (150 + 10) , 8, 150, 150)];
+        btn.tag = i;
+        [self.buttonArray addObject:btn];
+        [self addSubview:btn];
+    }
+    
+    for (int i = 0; i < bartypeArray.count; i ++) {
+        UIButton *btn = self.buttonArray[i];
+        bartypeslistModel *bartypeModel = bartypeArray[i];
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:bartypeModel.imageurl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"middlePlace"]];
+    }
+    _scrollView.contentSize = CGSizeMake(bartypeArray.count * SCREEN_WIDTH/2.0, 0);
+    _scrollView.alwaysBounceVertical = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

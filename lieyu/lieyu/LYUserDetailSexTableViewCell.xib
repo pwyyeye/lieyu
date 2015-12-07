@@ -30,7 +30,7 @@
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
-                            <action selector="sexClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CDy-cO-Aju"/>
+                            <action selector="sexClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="81f-be-gUd"/>
                         </connections>
                     </button>
                     <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6q3-W7-19k">
@@ -42,7 +42,7 @@
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
-                            <action selector="sexClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Cme-RL-glR"/>
+                            <action selector="sexClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BA8-ed-npc"/>
                         </connections>
                     </button>
                 </subviews>
@@ -50,8 +50,8 @@
             </tableViewCellContentView>
             <animations/>
             <connections>
-                <outlet property="btn_man" destination="ZLG-Zn-GcW" id="1vh-GA-29H"/>
-                <outlet property="btn_women" destination="6q3-W7-19k" id="MYT-nV-n5W"/>
+                <outlet property="btn_man" destination="ZLG-Zn-GcW" id="GBn-xP-9fi"/>
+                <outlet property="btn_women" destination="6q3-W7-19k" id="fIy-YJ-Z1b"/>
             </connections>
             <point key="canvasLocation" x="219" y="459.5"/>
         </tableViewCell>
