@@ -20,8 +20,10 @@
 #import "LPSelectButton.h"
 #import "LPPlayTogetherViewController.h"
 
+#import "LYHotBarMenuView.h"
+
 @interface PlayTogetherViewController
-()<ShaiXuanDelegate,UITableViewDelegate,UITableViewDataSource>
+()<ShaiXuanDelegate,UITableViewDelegate,UITableViewDataSource,LYHotBarMenuViewDelegate>
 {
     NSMutableArray *dataList;
     int pageCount;
@@ -37,6 +39,10 @@
 @property (nonatomic, strong) NSArray *buttonsArray;
 @property (nonatomic, strong) UIView *selectView;
 @property (nonatomic, strong) NSArray *itemsArray;
+
+//@property (nonatomic, strong) NSMutableArray *areaArray;
+//@property (nonatomic, strong) NSMutableArray *typeArray;
+//@property (nonatomic, strong) NSMutableArray *distanceArray;
 
 @end
 
@@ -61,6 +67,7 @@
     [self setupViewStyles];
     [self getDataForTogether];
     [self getData];
+    [self setMenuView];
     // Do any additional setup after loading the view.
 }
 
@@ -108,78 +115,101 @@
  *author:WTT
  */
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+- (void)setMenuView{
+    LYHotBarMenuView *sectionView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
+    sectionView.backgroundColor = [UIColor whiteColor];
+    sectionView.delegate = self;
+    NSArray *array1 = @[@"所有地区",@"青浦区",@"宝山区",@"浦东新区",@"徐汇区",@"静安区",@"闵行区"];
+    NSArray *array2 = @[@"激情夜店",@"文艺静吧",@"音乐清吧",@"KTV"];
+    NSArray *array3 = @[@"离我最近",@"评价最高"];
+//    _areaArray = [[NSMutableArray array]initWithArray:array1];
+//    _typeArray = [[NSMutableArray array]initWithArray:array2];
+//    _distanceArray = [[NSMutableArray array]initWithArray:array3];
+    
+    [sectionView deployWithMiddleTitle:@"音乐清吧" ItemArray:@[array1,array2,array3]];
+    [self.view addSubview:sectionView];
+    [sectionView bringSubviewToFront:self.view];
+}
+
+- (void)didClickHotBarMenuDropWithSectionButtonTitle:(NSString *)title dropButtonIndex:(NSInteger)index{
+    if([title isEqualToString:@"所有地区"]){
+        
+    }
+}
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 //    [_sectionView removeFromSuperview];
 //    _sectionView=nil;
-    UIView *sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    sectionView.backgroundColor = [UIColor whiteColor];
-    NSArray *arrayKeys = @[@"fontName",@"fontSize",@"textColor",@"content",@"imageW",@"imageH",@"imageUnSelectedName",@"imageSelectedName"];
-    NSArray *array1 = @[@"FZLTXHK",@"14",RGBA(30, 30, 30, 1),@"所有地区",@"24",@"24",@"triangle_down",@"triangle_up"];
-    NSArray *array2 = @[@"FZLTXHK",@"14",[UIColor colorWithRed:30 green:30 blue:30 alpha:1],@"音乐清吧",@"24",@"24",@"triangle_down",@"triangle_up"];
-    NSArray *array3 = @[@"FZLTXHK",@"14",[UIColor colorWithRed:30 green:30 blue:30 alpha:1],@"离我最近",@"24",@"24",@"triangle_down",@"triangle_up"];
-    NSDictionary *dict1 = [NSDictionary dictionaryWithObjects:array1 forKeys:arrayKeys];
-    NSDictionary *dict2 = [NSDictionary dictionaryWithObjects:array2 forKeys:arrayKeys];
-    NSDictionary *dict3 = [NSDictionary dictionaryWithObjects:array3 forKeys:arrayKeys];
-    
-    UIView *partView1 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3, 13, 0.5, 14)];
-    partView1.backgroundColor = RGBA(204, 204, 204, 1);
-    [sectionView addSubview:partView1];
-    
-    UIView *partView2 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3 * 2, 13, 0.5, 14)];
-    partView2.backgroundColor = RGBA(204, 204, 204, 1);
-    [sectionView addSubview:partView2];
 
-    LPSelectButton *button1 = [[LPSelectButton alloc]initWithFrame:CGRectMake(0, 0, 319/3, 40) AndDictionary:dict1];
-    button1.tag = 1;
-    LPSelectButton *button2 = [[LPSelectButton alloc]initWithFrame:CGRectMake(319/3, 0, 319/3, 40) AndDictionary:dict2];
-    button2.tag = 2;
-    LPSelectButton *button3 = [[LPSelectButton alloc]initWithFrame:CGRectMake(319/3 * 2, 0, 319/3, 40) AndDictionary:dict3];
-    button3.tag = 3;
     
-    [button1 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
-    [button2 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
-    [button3 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+//    NSArray *arrayKeys = @[@"fontName",@"fontSize",@"textColor",@"content",@"imageW",@"imageH",@"imageUnSelectedName",@"imageSelectedName"];
+//    NSArray *array1 = @[@"FZLTXHK",@"14",RGBA(30, 30, 30, 1),@"所有地区",@"24",@"24",@"triangle_down",@"triangle_up"];
+//    NSArray *array2 = @[@"FZLTXHK",@"14",[UIColor colorWithRed:30 green:30 blue:30 alpha:1],@"音乐清吧",@"24",@"24",@"triangle_down",@"triangle_up"];
+//    NSArray *array3 = @[@"FZLTXHK",@"14",[UIColor colorWithRed:30 green:30 blue:30 alpha:1],@"离我最近",@"24",@"24",@"triangle_down",@"triangle_up"];
+//    NSDictionary *dict1 = [NSDictionary dictionaryWithObjects:array1 forKeys:arrayKeys];
+//    NSDictionary *dict2 = [NSDictionary dictionaryWithObjects:array2 forKeys:arrayKeys];
+//    NSDictionary *dict3 = [NSDictionary dictionaryWithObjects:array3 forKeys:arrayKeys];
+//    
+//    UIView *partView1 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3, 13, 0.5, 14)];
+//    partView1.backgroundColor = RGBA(204, 204, 204, 1);
+//    [sectionView addSubview:partView1];
+//    
+//    UIView *partView2 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3 * 2, 13, 0.5, 14)];
+//    partView2.backgroundColor = RGBA(204, 204, 204, 1);
+//    [sectionView addSubview:partView2];
+//
+//    LPSelectButton *button1 = [[LPSelectButton alloc]initWithFrame:CGRectMake(0, 0, 319/3, 40) AndDictionary:dict1];
+//    button1.tag = 1;
+//    LPSelectButton *button2 = [[LPSelectButton alloc]initWithFrame:CGRectMake(319/3, 0, 319/3, 40) AndDictionary:dict2];
+//    button2.tag = 2;
+//    LPSelectButton *button3 = [[LPSelectButton alloc]initWithFrame:CGRectMake(319/3 * 2, 0, 319/3, 40) AndDictionary:dict3];
+//    button3.tag = 3;
+//    
+//    [button1 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+//    [button2 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+//    [button3 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    self.buttonsArray = [[NSArray alloc]initWithObjects:button1, button2, button3, nil];
+//    
+//    [sectionView addSubview:button1];
+//    [sectionView  addSubview:button2];
+//    [sectionView addSubview:button3];
     
-    self.buttonsArray = [[NSArray alloc]initWithObjects:button1, button2, button3, nil];
-    
-    [sectionView addSubview:button1];
-    [sectionView  addSubview:button2];
-    [sectionView addSubview:button3];
-    
-    return sectionView;
-}
+//    return sectionView;
+//}
 //,@[@"宝山区",@"嘉定区",@"黄浦区",@"青浦区",@"闵行区",@"奉贤区",@"金山区",@"松江区",@"南汇区"]
 //,@[@"音乐清吧",@"激情夜店",@"文艺静吧",@"舞动KTV"]
 //,@[@"1公里以内",@"5公里以内",@"10公里以内",@"20公里以内"]
-- (void)changeSelection:(LPSelectButton *)button{
-    for (LPSelectButton *btn in _buttonsArray) {
-        if(btn.tag == button.tag){
-            if(btn.selected == YES){
-                btn.selected = NO;
-                btn.imageIcon.image = [UIImage imageNamed:@"triangle_down"];
-            }else{
-                btn.selected = YES;
-                btn.imageIcon.image = [UIImage imageNamed:@"triangle_up"];
-            }
-        }else{
-            btn.imageIcon.image = [UIImage imageNamed:@"triangle_down"];
-            btn.selected = NO;
-        }
-    }
-    if(self.selectView == nil){
-        self.selectView = [[UIView alloc]init];
-        self.itemsArray =
-  @[
-    @[@"宝山区",@"嘉定区",@"黄浦区",@"青浦区",@"闵行区",@"奉贤区",@"金山区",@"松江区",@"南汇区"],
-    @[@"音乐清吧",@"激情夜店",@"文艺静吧",@"舞动KTV"],
-    @[@"离我最近",@"1公里以内",@"5公里以内",@"10公里以内",@"20公里以内"]
-  ];
-        
-    }
-//    [self.selectView removeFromSuperview];
-    NSArray *array = self.itemsArray[button.tag - 1];
-    [self showSelectView:array];
-}
+
+//- (void)changeSelection:(LPSelectButton *)button{
+//    for (LPSelectButton *btn in _buttonsArray) {
+//        if(btn.tag == button.tag){
+//            if(btn.selected == YES){
+//                btn.selected = NO;
+//                btn.imageIcon.image = [UIImage imageNamed:@"triangle_down"];
+//            }else{
+//                btn.selected = YES;
+//                btn.imageIcon.image = [UIImage imageNamed:@"triangle_up"];
+//            }
+//        }else{
+//            btn.imageIcon.image = [UIImage imageNamed:@"triangle_down"];
+//            btn.selected = NO;
+//        }
+//    }
+//    if(self.selectView == nil){
+//        self.selectView = [[UIView alloc]init];
+//        self.itemsArray =
+//  @[
+//    @[@"宝山区",@"嘉定区",@"黄浦区",@"青浦区",@"闵行区",@"奉贤区",@"金山区",@"松江区",@"南汇区"],
+//    @[@"音乐清吧",@"激情夜店",@"文艺静吧",@"舞动KTV"],
+//    @[@"离我最近",@"1公里以内",@"5公里以内",@"10公里以内",@"20公里以内"]
+//  ];
+//        
+//    }
+////    [self.selectView removeFromSuperview];
+//    NSArray *array = self.itemsArray[button.tag - 1];
+//    [self showSelectView:array];
+//}
 
 - (void)showSelectView:(NSArray *)array{
     

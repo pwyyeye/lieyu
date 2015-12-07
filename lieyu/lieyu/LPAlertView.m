@@ -108,11 +108,15 @@
     if(_delegate && _contentView.tag == 12){
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
         [_delegate LPAlertView:self clickedButtonAtIndexWhenWay:index];
+        [self hide];
     }else if(_delegate && _contentView.tag == 11){
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
         [_delegate LPAlertView:self clickedButtonAtIndexWhenTime:index];
+        [self hide];
+    }else if(_delegate && _contentView.tag == 13){//填写预支付金额
+        NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
+        [_delegate LPAlertView:self clickedButtonAtIndexPayMoney:index];
     }
-    [self hide];
 }
 
 - (void)show{

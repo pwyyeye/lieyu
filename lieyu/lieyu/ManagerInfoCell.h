@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ManagerInfoCell.h"
+#import "ZSDetailModel.h"
 //#import "zs"
 
 @interface ManagerInfoCell : UITableViewCell
@@ -20,8 +21,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *star5;
 @property (weak, nonatomic) IBOutlet UIButton *radioButon;
 
+@property (nonatomic, strong) ZSDetailModel *zsDetail;
+
 @property (nonatomic, strong) NSArray *starsArray;
 
-- (void)cellConfigureWithImage:(NSString *)imageUrl name:(NSString *)name stars:(NSString *)stars;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 
+- (IBAction)selectManager:(UIButton *)sender;
+- (void)cellConfigureWithImage:(NSString *)imageUrl name:(NSString *)name stars:(NSString *)stars;
+- (void)cellConfigure:(int)index;
 @end

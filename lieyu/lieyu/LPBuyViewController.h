@@ -10,6 +10,7 @@
 #import "PinKeModel.h"
 
 @interface LPBuyViewController : UIViewController
+@property (nonatomic, assign) int smid;
 
 @property (nonatomic, strong) PinKeModel *pinkeModel;
 @property (nonatomic, strong) NSMutableDictionary *InfoDict;
