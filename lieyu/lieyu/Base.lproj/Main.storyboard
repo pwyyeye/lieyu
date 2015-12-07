@@ -17,7 +17,7 @@
                                 <rect key="frame" x="280" y="36" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
-                                <state key="normal" image="B7137439-2824-4DCC-A45D-0739B017DF63">
+                                <state key="normal" image="236F4F35-7A5E-4823-875C-A962F1A88B6F">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -2155,7 +2155,7 @@
                                                     <rect key="frame" x="0.0" y="455" width="320" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="猎娱承诺返利金额会予以15个工作日发放个人账户中" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DMo-ql-dH3" userLabel="desc">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="猎娱承诺返利金额会予以3个工作日发放个人账户中" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DMo-ql-dH3" userLabel="desc">
                                                             <rect key="frame" x="8" y="5" width="299" height="26"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <animations/>
@@ -2818,7 +2818,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="B7137439-2824-4DCC-A45D-0739B017DF63" width="22" height="22">
+        <image name="236F4F35-7A5E-4823-875C-A962F1A88B6F" width="22" height="22">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

@@ -52,6 +52,10 @@ UITableViewDataSource,UITableViewDelegate,
 {
     
     [super viewDidLoad];
+//    self.navigationController.delegate=self;
+    [self.navigationController setNavigationBarHidden:NO];
+    self.automaticallyAdjustsScrollViewInsets=NO;
+    
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.height=431;
     }
@@ -97,7 +101,30 @@ UITableViewDataSource,UITableViewDelegate,
     if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
         self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
     }
+    [self.navigationController.navigationBar bringSubviewToFront:_topView];
     [self getData];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    //ios 7.0适配
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
+    }
+    
+    
+    if (self.navigationController.navigationBarHidden != NO) {
+        [self.navigationController setNavigationBarHidden:NO];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_topView removeFromSuperview];
 }
 
 - (IBAction)cityChangeClick:(UIButton *)sender {
@@ -164,26 +191,7 @@ UITableViewDataSource,UITableViewDelegate,
     }];
 }
 
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-    //ios 7.0适配
-    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-       self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
-    }
-    
 
-    if (self.navigationController.navigationBarHidden != NO) {
-        [self.navigationController setNavigationBarHidden:NO];
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [_topView removeFromSuperview];
-}
 
 - (void)initialize
 {
@@ -508,5 +516,31 @@ UITableViewDataSource,UITableViewDelegate,
     // Pass the selected object to the new view controller.
 }
 */
+
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    //    [self.navigationController setNavigationBarHidden:NO];
+    //每次当navigation中的界面切换，设为空。本次赋值只在程序初始化时执行一次
+    static UIViewController *lastController = nil;
+    
+    //若上个view不为空
+    if (lastController != nil)
+    {
+        //若该实例实现了viewWillDisappear方法，则调用
+        if ([lastController respondsToSelector:@selector(viewWillDisappear:)])
+        {
+            [lastController viewWillDisappear:animated];
+        }
+        
+        
+    }
+    
+    //将当前要显示的view设置为lastController，在下次view切换调用本方法时，会执行viewWillDisappear
+    lastController = viewController;
+    
+//        [viewController viewWillAppear:animated];
+    
+    
+}
 
 @end

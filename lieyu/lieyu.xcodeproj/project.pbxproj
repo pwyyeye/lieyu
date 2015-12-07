@@ -409,7 +409,6 @@
 		38E5D7F91C13356F004B49D2 /* PayMoney.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D7F81C13356F004B49D2 /* PayMoney.m */; };
 		38E5D7FA1C13DFA1004B49D2 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 853DB5EC1C12C19B004227BA /* MenuButton.m */; };
 		853E3A141C15232A0088CD86 /* bartypeslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A131C15232A0088CD86 /* bartypeslistModel.m */; };
-		853E3A191C152A750088CD86 /* bigPlace.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A161C152A750088CD86 /* bigPlace.png */; };
 		853E3A1A1C152A750088CD86 /* middlePlace.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A171C152A750088CD86 /* middlePlace.png */; };
 		853E3A1B1C152A750088CD86 /* smallPlace.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A181C152A750088CD86 /* smallPlace.png */; };
 		853E3A211C154DFF0088CD86 /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
@@ -609,6 +608,9 @@
 		AD8899D91B9AFE62007BCC7C /* lieyuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899D81B9AFE62007BCC7C /* lieyuTests.m */; };
 		AD8FAB5A1C153DCC00C45F1A /* lieyuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8FAB581C153DCC00C45F1A /* lieyuIcon@2x.png */; };
 		AD8FAB5B1C153DCC00C45F1A /* lieyuIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8FAB591C153DCC00C45F1A /* lieyuIcon@3x.png */; };
+		AD8FAB5D1C1570F600C45F1A /* libHCSStarRatingView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8FAB5C1C1570F600C45F1A /* libHCSStarRatingView.a */; };
+		AD8FAB601C15921500C45F1A /* mjRefresh.gif in Resources */ = {isa = PBXBuildFile; fileRef = AD8FAB5E1C15921500C45F1A /* mjRefresh.gif */; };
+		AD8FAB611C15921500C45F1A /* mjRefresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8FAB5F1C15921500C45F1A /* mjRefresh@2x.png */; };
 		AD92AE9C1BE1D339009F2A34 /* lieyu_default_female@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD92AE9A1BE1D339009F2A34 /* lieyu_default_female@2x.png */; };
 		AD92AE9D1BE1D339009F2A34 /* lieyu_default_male@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD92AE9B1BE1D339009F2A34 /* lieyu_default_male@2x.png */; };
 		AD92AEA81BE22A79009F2A34 /* UserTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEA71BE22A79009F2A34 /* UserTagModel.m */; };
@@ -1716,6 +1718,9 @@
 		AD8899D81B9AFE62007BCC7C /* lieyuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lieyuTests.m; sourceTree = "<group>"; };
 		AD8FAB581C153DCC00C45F1A /* lieyuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@2x.png"; sourceTree = "<group>"; };
 		AD8FAB591C153DCC00C45F1A /* lieyuIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@3x.png"; sourceTree = "<group>"; };
+		AD8FAB5C1C1570F600C45F1A /* libHCSStarRatingView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHCSStarRatingView.a; path = "Pods/../build/Debug-iphoneos/libHCSStarRatingView.a"; sourceTree = "<group>"; };
+		AD8FAB5E1C15921500C45F1A /* mjRefresh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mjRefresh.gif; sourceTree = "<group>"; };
+		AD8FAB5F1C15921500C45F1A /* mjRefresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mjRefresh@2x.png"; sourceTree = "<group>"; };
 		AD92AE9A1BE1D339009F2A34 /* lieyu_default_female@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyu_default_female@2x.png"; sourceTree = "<group>"; };
 		AD92AE9B1BE1D339009F2A34 /* lieyu_default_male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyu_default_male@2x.png"; sourceTree = "<group>"; };
 		AD92AEA61BE22A79009F2A34 /* UserTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTagModel.h; sourceTree = "<group>"; };
@@ -2036,6 +2041,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD8FAB5D1C1570F600C45F1A /* libHCSStarRatingView.a in Frameworks */,
 				AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */,
 				AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */,
 				15844C091BE22A8800247FBC /* QuartzCore.framework in Frameworks */,
@@ -2651,6 +2657,8 @@
 				15E2407F1BB279CB0090D240 /* LYMyOrderManageViewController.h */,
 				15E240801BB279CB0090D240 /* LYMyOrderManageViewController.m */,
 				15E240811BB279CB0090D240 /* LYMyOrderManageViewController.xib */,
+				AD8FAB5E1C15921500C45F1A /* mjRefresh.gif */,
+				AD8FAB5F1C15921500C45F1A /* mjRefresh@2x.png */,
 				15EB7C5A1BC6048100756153 /* gouGif.gif */,
 			);
 			name = "我的订单";
@@ -3951,6 +3959,7 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD8FAB5C1C1570F600C45F1A /* libHCSStarRatingView.a */,
 				AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */,
 				15844C081BE22A8800247FBC /* QuartzCore.framework */,
 				15844C061BE22A8100247FBC /* CoreVideo.framework */,
@@ -5058,6 +5067,7 @@
 				15EB354C1BD4839D00BA6161 /* UMShareEditViewController.xib in Resources */,
 				15EB354F1BD4839D00BA6161 /* UMSnsAccountViewController.xib in Resources */,
 				381A01D41C14228E00592485 /* AddCar_red@2x.png in Resources */,
+				AD8FAB611C15921500C45F1A /* mjRefresh@2x.png in Resources */,
 				381A01D11C14228E00592485 /* AddCar_gray@2x.png in Resources */,
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
@@ -5072,6 +5082,7 @@
 				A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */,
 				AD92AEBD1BE50AD9009F2A34 /* AboutLieyu.xib in Resources */,
 				15EB35461BD4839D00BA6161 /* UMSocialLocalizable.strings in Resources */,
+				AD8FAB601C15921500C45F1A /* mjRefresh.gif in Resources */,
 				381A01C61C140DE500592485 /* INeedYou@3x.png in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
 				85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */,
@@ -5931,6 +5942,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/lieyu/Vendor/ZBarSDK",
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -5976,6 +5988,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/lieyu/Vendor/ZBarSDK",
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

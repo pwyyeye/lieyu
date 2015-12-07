@@ -211,6 +211,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                                              shareImage:[UIImage imageNamed:@"lieyuIcon"]
                                         shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,UMShareToEmail,nil]
                                                delegate:nil];
+            break;
         }
         case 4:// 反馈
         {
@@ -220,10 +221,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.userName = @"猎娱客服";
             conversationVC.title = @"猎娱客服";
             [self.navigationController pushViewController:conversationVC animated:YES];
+            break;
         }
         case 5:// 信息中心
         {
-
+            break;
         }
             
         default://推荐商户
