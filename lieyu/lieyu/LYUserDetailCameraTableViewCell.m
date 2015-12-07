@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     // Initialization code
     NSString *str = @"精彩从头像开始";
-    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:str];
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:str];  
     [attributedStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11] range:NSMakeRange(3, 4)];
     self.label_title.attributedText = attributedStr;
     
