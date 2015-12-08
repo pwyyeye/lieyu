@@ -58,11 +58,11 @@
              if (barList.count == PAGESIZE)
              {
                  weakSelf.curPageIndex = 2;
-                 weakSelf.tableView.footer.hidden = NO;
+                 weakSelf.tableView.mj_footer.hidden = NO;
              }
              else
              {
-                 weakSelf.tableView.footer.hidden = YES;
+                 weakSelf.tableView.mj_footer.hidden = YES;
              }
 //             [weakSelf.tableView.header endRefreshing];
          }
@@ -165,7 +165,7 @@
     __weak BearBarListViewController * weakSelf = self;
 //    __weak UITableView *tableView = self.tableView;
 
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:
             ^{
                 weakSelf.curPageIndex = 1;
         [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
@@ -175,35 +175,40 @@
                 if (barList.count == PAGESIZE)
                 {
                     weakSelf.curPageIndex = 2;
-                    weakSelf.tableView.footer.hidden = NO;
+                    weakSelf.tableView.mj_footer.hidden = NO;
                 }
                 else
                 {
-                    weakSelf.tableView.footer.hidden = YES;
+                    weakSelf.tableView.mj_footer.hidden = YES;
                 }
-                [weakSelf.tableView.header endRefreshing];
+                [weakSelf.tableView.mj_header endRefreshing];
             }
         }];
     }];
-    
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
+    [self initMJRefeshHeaderForGif:header];
+    self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
                 if (barList.count == PAGESIZE)
                 {
                     
-                    weakSelf.tableView.footer.hidden = NO;
+                    weakSelf.tableView.mj_footer.hidden = NO;
                 }
                 else
                 {
-                    weakSelf.tableView.footer.hidden = YES;
+                    weakSelf.tableView.mj_footer.hidden = YES;
                 }
                 weakSelf.curPageIndex ++;
-                [weakSelf.tableView.footer endRefreshing];
+                [weakSelf.tableView.mj_footer endRefreshing];
             }
 
         }];
     }];
+    
+    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
+    
 }
 
 - (void)setupViewStyles

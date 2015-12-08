@@ -180,7 +180,7 @@
         //判断是否登录如果未登录 则进入登录页面
         NSNumber *status=[responseObject objectForKey:@"status"];
         NSLog(@"----pass-httprequest header%@---",operation.request);
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
         if([status integerValue] == -1){
             
@@ -206,7 +206,7 @@
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 //        [app stopLoading];
         
         //[mi_statusbar setHidden:YES];
@@ -266,7 +266,7 @@
         //[indicator stopAnimating];
         
         //[alertView dismissWithClickedButtonIndex:0 animated:YES];
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 //        [app stopLoading];
 
         NSLog(@"Error: %@", error);
@@ -347,7 +347,7 @@
         [requestOperation waitUntilFinished];
         NSDictionary *responseObject=[requestOperation responseObject];
         NSNumber *status=[responseObject objectForKey:@"status"];
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
         if([status integerValue] == -1){
 //            
