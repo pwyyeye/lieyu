@@ -23,11 +23,6 @@
     _btn_star.layer.masksToBounds = YES;
     _btn_star.layer.borderWidth = 0.5;
     _btn_star.layer.borderColor = RGBACOLOR(255, 255, 255, 0.5).CGColor;
-    
-    NSString *perscent = [NSString stringWithFormat:@"30%@",@"%"];
-    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:perscent];
-    [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:11] range:NSMakeRange(2, 1.99)];
-    _label_fanli_percent.attributedText = attributedStr;
 }
 
 - (void)setJiuBaModel:(JiuBaModel *)jiuBaModel{
@@ -48,6 +43,17 @@
         [_label_star_count setText:@"0"];
     }
     [_label_zang_count setText:jiuBaModel.like_num];
+    
+    NSString *perscent = [NSString stringWithFormat:@"%@%@",jiuBaModel.rebate,@"%"];
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:perscent];
+    NSInteger location;
+    if (perscent.integerValue < 10) {
+        location = 1;
+    }else{
+        location = 2;
+    }
+    [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:11] range:NSMakeRange(location, 1)];
+    _label_fanli_percent.attributedText = attributedStr;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -57,6 +57,7 @@
 @property(nonatomic,copy)NSString * subtitle;
 @property(nonatomic,copy)NSString * subtypename;
 @property NSInteger sectionNumber;
+@property (nonatomic,copy) NSString *rebate;
 @property BOOL rowSelected;
 
 -(NSComparisonResult)compareJiuBaModel:(JiuBaModel *)model;

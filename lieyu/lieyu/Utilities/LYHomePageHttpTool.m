@@ -545,6 +545,7 @@
         if ([code isEqualToString:@"1"]) {
             result(YES);
             [MyUtil showMessage:message];
+            [app stopLoading];
         }else{
             result(NO);
             [app stopLoading];
