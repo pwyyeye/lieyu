@@ -641,6 +641,7 @@
 		ADB164D41C16BBF7000BAD3C /* MineBigBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */; };
 		ADB164D51C16BBF9000BAD3C /* MineBigBG@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3C1C15D1440088CD86 /* MineBigBG@2x.jpg */; };
 		ADB164D61C16BBFB000BAD3C /* MineBigBG@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3D1C15D1440088CD86 /* MineBigBG@3x.jpg */; };
+		ADB164D71C16BECD000BAD3C /* BirthdayPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A331C15BC520088CD86 /* BirthdayPickerView.xib */; };
 		ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */; };
 		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
 		ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
@@ -5387,6 +5388,7 @@
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
 				389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */,
 				85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */,
+				ADB164D71C16BECD000BAD3C /* BirthdayPickerView.xib in Resources */,
 				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
 				85F5453D1C1408040013B92B /* circleWhite@3x.png in Resources */,
 				38E5D6EB1C0F106F004B49D2 /* LPBuyPriceCell.xib in Resources */,
