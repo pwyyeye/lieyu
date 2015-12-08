@@ -13,10 +13,10 @@
 #import "LYUserHttpTool.h"
 #import "HTTPController.h"
 #import "LPAlertView.h"
-#import "BirthdayPickerView.h"
 #import "LYTagTableViewController.h"
 #import "UserTagModel.h"
 #import "UIButton+WebCache.h"
+#import "TimePickerView.h"
 
 @interface LYUserDetailInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LPAlertViewDelegate,LYUserTagSelectedDelegate>
 {
@@ -203,7 +203,9 @@
     if (indexPath.row == 3) {//选择生日
         LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消",@"确定",nil];
         
-        BirthdayPickerView *timeView = [[[NSBundle mainBundle] loadNibNamed:@"BirthdayPickerView" owner:nil options:nil] firstObject];
+        TimePickerView *timeView = [[[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil] firstObject];
+        timeView.timePicker.datePickerMode = UIDatePickerModeDate;
+        timeView.timePicker.minimumDate = [NSDate dateWithTimeIntervalSince1970:0];
         timeView.tag = 11;
         timeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
         alertView.contentView = timeView;
@@ -365,10 +367,12 @@
 
 #pragma mark LPAlertViewDelegate
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
-    _chooseBirthDate = ((BirthdayPickerView *)alertView.contentView).datePicker.date;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    _birthCell.textF_content.text = [formatter stringFromDate:_chooseBirthDate];
+    if(buttonIndex == 1){
+        _chooseBirthDate = ((TimePickerView *)alertView.contentView).timePicker.date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        _birthCell.textF_content.text = [formatter stringFromDate:_chooseBirthDate];
+    }
 }
 
 

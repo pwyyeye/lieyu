@@ -447,6 +447,7 @@
 		85589CB81C16D41D000E342E /* SingletonRegiste.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CB71C16D41D000E342E /* SingletonRegiste.m */; };
 		85589CC31C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */; };
 		85589CC41C16EF7C000E342E /* BeerBarLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CC21C16EF7C000E342E /* BeerBarLike.m */; };
+		85589D511C17289B000E342E /* sorry.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85589D501C17289B000E342E /* sorry.gif */; };
 		85C4282E1C116ED90028FC21 /* LYHotBarMenuDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */; };
 		85C428721C119D3E0028FC21 /* LYCloseMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428701C119D3E0028FC21 /* LYCloseMeViewController.m */; };
 		85C428731C119D3E0028FC21 /* LYCloseMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428711C119D3E0028FC21 /* LYCloseMeViewController.xib */; };
@@ -659,7 +660,6 @@
 		ADB164D41C16BBF7000BAD3C /* MineBigBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */; };
 		ADB164D51C16BBF9000BAD3C /* MineBigBG@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3C1C15D1440088CD86 /* MineBigBG@2x.jpg */; };
 		ADB164D61C16BBFB000BAD3C /* MineBigBG@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3D1C15D1440088CD86 /* MineBigBG@3x.jpg */; };
-		ADB164D71C16BECD000BAD3C /* BirthdayPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A331C15BC520088CD86 /* BirthdayPickerView.xib */; };
 		ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */; };
 		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
 		ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
@@ -1475,9 +1475,6 @@
 		853E3A251C1582A40088CD86 /* purpleBtnBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purpleBtnBG@3x.png"; sourceTree = "<group>"; };
 		853E3A291C15B6050088CD86 /* PayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayButton.h; sourceTree = "<group>"; };
 		853E3A2A1C15B6050088CD86 /* PayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayButton.m; sourceTree = "<group>"; };
-		853E3A301C15BC400088CD86 /* BirthdayPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayPickerView.h; sourceTree = "<group>"; };
-		853E3A311C15BC400088CD86 /* BirthdayPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayPickerView.m; sourceTree = "<group>"; };
-		853E3A331C15BC520088CD86 /* BirthdayPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayPickerView.xib; sourceTree = "<group>"; };
 		853E3A351C15D08B0088CD86 /* getYZM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = getYZM.png; sourceTree = "<group>"; };
 		853E3A361C15D08B0088CD86 /* getYZM@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getYZM@2x.png"; sourceTree = "<group>"; };
 		853E3A371C15D08B0088CD86 /* getYZM@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getYZM@3x.png"; sourceTree = "<group>"; };
@@ -1519,6 +1516,7 @@
 		85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BeerBarLike+CoreDataProperties.m"; sourceTree = "<group>"; };
 		85589CC11C16EF7C000E342E /* BeerBarLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarLike.h; sourceTree = "<group>"; };
 		85589CC21C16EF7C000E342E /* BeerBarLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarLike.m; sourceTree = "<group>"; };
+		85589D501C17289B000E342E /* sorry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sorry.gif; sourceTree = "<group>"; };
 		85C4282C1C116ED90028FC21 /* LYHotBarMenuDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuDropView.h; sourceTree = "<group>"; };
 		85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuDropView.m; sourceTree = "<group>"; };
 		85C4286F1C119D3E0028FC21 /* LYCloseMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCloseMeViewController.h; sourceTree = "<group>"; };
@@ -3429,9 +3427,6 @@
 				38E5D6F61C100A33004B49D2 /* TimePickerView.h */,
 				38E5D6F71C100A33004B49D2 /* TimePickerView.m */,
 				38E5D6F91C100B01004B49D2 /* TimePickerView.xib */,
-				853E3A301C15BC400088CD86 /* BirthdayPickerView.h */,
-				853E3A311C15BC400088CD86 /* BirthdayPickerView.m */,
-				853E3A331C15BC520088CD86 /* BirthdayPickerView.xib */,
 				85C428851C11D25D0028FC21 /* ContentViewTaocan.h */,
 				85C428861C11D25D0028FC21 /* ContentViewTaocan.m */,
 				85C428881C11D2710028FC21 /* ContentViewTaocan.xib */,
@@ -3551,6 +3546,7 @@
 			isa = PBXGroup;
 			children = (
 				853E3A161C152A750088CD86 /* bigPlace.png */,
+				85589D501C17289B000E342E /* sorry.gif */,
 				853E3A171C152A750088CD86 /* middlePlace.png */,
 				853E3A181C152A750088CD86 /* smallPlace.png */,
 			);
@@ -5279,6 +5275,7 @@
 				ADB164C81C167733000BAD3C /* refresh1.png in Resources */,
 				381A01C61C140DE500592485 /* INeedYou@3x.png in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
+				85589D511C17289B000E342E /* sorry.gif in Resources */,
 				85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */,
 				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
 				A2FD57801BAFE97000CFFF92 /* FBTaoCanSectionHead.xib in Resources */,
@@ -5482,7 +5479,6 @@
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
 				389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */,
 				85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */,
-				ADB164D71C16BECD000BAD3C /* BirthdayPickerView.xib in Resources */,
 				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
 				85F5453D1C1408040013B92B /* circleWhite@3x.png in Resources */,
 				38E5D6EB1C0F106F004B49D2 /* LPBuyPriceCell.xib in Resources */,
