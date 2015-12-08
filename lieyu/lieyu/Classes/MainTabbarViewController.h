@@ -11,5 +11,7 @@
 #import "LYUserLoginViewController.h"
 
 @interface MainTabbarViewController: UITabBarController<LoginDelegate>
+
 @property(assign,nonatomic) NSInteger lastSelectIndex;
+
 @end
