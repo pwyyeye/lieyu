@@ -22,6 +22,8 @@
 
 #import "LYHotBarMenuView.h"
 
+#import "MenuButton.h"
+
 @interface PlayTogetherViewController
 ()<ShaiXuanDelegate,UITableViewDelegate,UITableViewDataSource,LYHotBarMenuViewDelegate>
 {
@@ -127,7 +129,7 @@
     sectionView.delegate = self;
     NSArray *array1 = @[@"所有地区",@"青浦区",@"宝山区",@"浦东新区",@"徐汇区",@"静安区",@"闵行区"];
     NSArray *array2 = @[@"激情夜店",@"文艺静吧",@"音乐清吧",@"KTV"];
-    NSArray *array3 = @[@"离我最近",@"评价最高"];
+    NSArray *array3 = @[@"离我最近",@"人均最高",@"人均最低",@"返利最高"];
 //    _areaArray = [[NSMutableArray array]initWithArray:array1];
 //    _typeArray = [[NSMutableArray array]initWithArray:array2];
 //    _distanceArray = [[NSMutableArray array]initWithArray:array3];
