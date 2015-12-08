@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daG-Gk-NtN">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daG-Gk-NtN">
                                 <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-TZ-Lf7">
@@ -2275,7 +2275,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="8" translatesAutoresizingMaskIntoConstraints="NO" id="hlY-4O-L0H">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="8" translatesAutoresizingMaskIntoConstraints="NO" id="hlY-4O-L0H">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2414,6 +2414,9 @@
                                 <state key="normal" title="猎娱客服" image="icon_zixun_normal">
                                     <color key="titleColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="LYkefu:" destination="1a9-8m-xGU" eventType="touchUpInside" id="9a5-rN-YKy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpR-k3-z4N">
                                 <rect key="frame" x="80" y="524" width="80" height="44"/>
@@ -2425,6 +2428,9 @@
                                 <state key="normal" title="购物车" image="shoppingCar_High.png">
                                     <color key="titleColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="showShopCar:" destination="1a9-8m-xGU" eventType="touchUpInside" id="ur7-ah-5eG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBB-6F-Uxl">
                                 <rect key="frame" x="160" y="524" width="80" height="44"/>
@@ -2434,6 +2440,9 @@
                                 <state key="normal" title="加入购物车">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="AddToShopCar:" destination="1a9-8m-xGU" eventType="touchUpInside" id="7md-GO-J86"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3W-Iz-fil">
                                 <rect key="frame" x="240" y="524" width="80" height="44"/>
@@ -2443,6 +2452,9 @@
                                 <state key="normal" title="立即下单">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="buyNow:" destination="1a9-8m-xGU" eventType="touchUpInside" id="7zB-PB-Z46"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -2454,17 +2466,21 @@
                             <constraint firstItem="jpR-k3-z4N" firstAttribute="height" secondItem="Xae-wX-bJI" secondAttribute="height" id="7p4-dw-k32"/>
                             <constraint firstItem="Xae-wX-bJI" firstAttribute="leading" secondItem="Nz2-Ll-1oz" secondAttribute="leading" id="MSY-gY-sTB"/>
                             <constraint firstItem="lJO-qB-lcG" firstAttribute="top" secondItem="aBB-6F-Uxl" secondAttribute="bottom" id="Mze-d7-JIr"/>
+                            <constraint firstItem="hlY-4O-L0H" firstAttribute="top" secondItem="Nz2-Ll-1oz" secondAttribute="top" id="QIk-5N-WiT"/>
                             <constraint firstItem="jpR-k3-z4N" firstAttribute="centerY" secondItem="Xae-wX-bJI" secondAttribute="centerY" id="REs-gc-tYk"/>
                             <constraint firstItem="aBB-6F-Uxl" firstAttribute="centerY" secondItem="Xae-wX-bJI" secondAttribute="centerY" id="UaQ-hl-WvD"/>
                             <constraint firstItem="lJO-qB-lcG" firstAttribute="top" secondItem="jpR-k3-z4N" secondAttribute="bottom" id="aIY-ev-hvN"/>
                             <constraint firstItem="O3W-Iz-fil" firstAttribute="leading" secondItem="aBB-6F-Uxl" secondAttribute="trailing" id="agj-U6-80R"/>
                             <constraint firstItem="jpR-k3-z4N" firstAttribute="width" secondItem="Xae-wX-bJI" secondAttribute="width" id="blT-Bw-Jsa"/>
                             <constraint firstItem="aBB-6F-Uxl" firstAttribute="width" secondItem="Xae-wX-bJI" secondAttribute="width" id="cGe-rU-TWo"/>
+                            <constraint firstAttribute="trailing" secondItem="hlY-4O-L0H" secondAttribute="trailing" id="crK-Zf-Mmm"/>
                             <constraint firstItem="aBB-6F-Uxl" firstAttribute="height" secondItem="Xae-wX-bJI" secondAttribute="height" id="eR1-6f-l82"/>
                             <constraint firstAttribute="trailing" secondItem="O3W-Iz-fil" secondAttribute="trailing" id="eYK-w2-mJO"/>
                             <constraint firstItem="aBB-6F-Uxl" firstAttribute="leading" secondItem="jpR-k3-z4N" secondAttribute="trailing" id="hEW-2L-afu"/>
                             <constraint firstItem="O3W-Iz-fil" firstAttribute="width" secondItem="Xae-wX-bJI" secondAttribute="width" id="lMF-yT-jwk"/>
                             <constraint firstItem="O3W-Iz-fil" firstAttribute="centerY" secondItem="Xae-wX-bJI" secondAttribute="centerY" id="pGI-U1-vXb"/>
+                            <constraint firstItem="hlY-4O-L0H" firstAttribute="leading" secondItem="Nz2-Ll-1oz" secondAttribute="leading" id="rB8-XY-OwD"/>
+                            <constraint firstItem="O3W-Iz-fil" firstAttribute="top" secondItem="hlY-4O-L0H" secondAttribute="bottom" id="ymd-vL-2HE"/>
                             <constraint firstItem="lJO-qB-lcG" firstAttribute="top" secondItem="Xae-wX-bJI" secondAttribute="bottom" id="zzE-XA-2bp"/>
                         </constraints>
                     </view>

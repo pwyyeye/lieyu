@@ -9,15 +9,18 @@
 #import "LYBaseViewController.h"
 #import "NeedHideNavigationBar.h"
 #import "CHChooseNumView.h"
-@interface CHJiuPinDetailViewController : UIViewController{
+@interface CHJiuPinDetailViewController : LYBaseViewController{
     UIView  *_bgView;
     CHChooseNumView * numView;
     UIButton *surebutton;
 }
 - (IBAction)backAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
-- (IBAction)showShopCar:(UIButton *)sender;
-- (IBAction)AddToShopCar:(UIButton *)sender;
+- (IBAction)showShopCar:(UIButton *)sender;//进入购物车
+- (IBAction)AddToShopCar:(UIButton *)sender;//加入购物车
+- (IBAction)LYkefu:(UIButton *)sender;//猎娱客服
+- (IBAction)buyNow:(UIButton *)sender;//立即下单
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) int shopid;
 @end

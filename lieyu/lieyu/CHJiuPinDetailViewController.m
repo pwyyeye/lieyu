@@ -16,8 +16,10 @@
 #import "LYUserLocation.h"
 
 #import "AddressTableViewCell.h"
+#import "LPAlertView.h"
+#import "ChooseNumber.h"
 
-@interface CHJiuPinDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface CHJiuPinDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate>
 {
     CheHeModel *chiHeModel;
 }
@@ -26,6 +28,8 @@
 @property (nonatomic, strong) AddressTableViewCell *addressCell;
 @property (nonatomic, strong) CHPorTypeCell *typeCell;
 @property (nonatomic, strong) PTShowIntroductionsCell *showCell;
+
+@property (nonatomic, strong) ChooseNumber *chooseNumView;
 
 @end
 
@@ -43,13 +47,13 @@
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     [self getdata];
-    [self.navigationController.navigationBar setHidden:YES];
+//    [self.navigationController.navigationBar setHidden:YES];
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    [self.navigationController.navigationBar setHidden:YES];
-//}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+}
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -145,6 +149,7 @@
             lal1.backgroundColor=[UIColor clearColor];
             lal1.textColor= RGB(51, 51, 51);
             lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+            lal1.text = @"店家发货的设计开发和肯德基啊是否健康的好办法靠近阿斯顿打开了哈风 等级分拉开；放大看哈付款，大方经典款拉链大码，方面，下放劳动啥回复的好风景，你都发空间很大的反馈；了解大陆凤凰健康的好你们， 。，点击放大是否看见大家都快乐的";
             lal1.lineBreakMode = NSLineBreakByWordWrapping;
             [cell.contentView addSubview:lal1];
         }
@@ -178,116 +183,12 @@
     [[LYUserLocation instance] daoHan:dic];
 }
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell *cell = nil;
-//    switch (indexPath.section)
-//    {
-//        case 0:
-//        {
-//            cell = [tableView dequeueReusableCellWithIdentifier:@"danpinCell" forIndexPath:indexPath];
-//            if (cell) {
-//                CHTopDetailCell * topDetailCell = (CHTopDetailCell *)cell;
-//                [topDetailCell configureCell:chiHeModel];
-//            }
-//        }
-//            break;
-//        case 1:
-//        {
-//            
-//            if(indexPath.row==0){
-//                cell = [tableView dequeueReusableCellWithIdentifier:@"CHBarCell" forIndexPath:indexPath];
-//                if (cell) {
-//                    CHBarCell * barCell = (CHBarCell *)cell;
-//                    [barCell configureCell:chiHeModel.barinfo];
-//                    
-//                }
-//                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 71.5, 290, 0.5)];
-//                lineLal.backgroundColor=RGB(199, 199, 199);
-//                [cell addSubview:lineLal];
-//            }
-//            if(indexPath.row==1){
-//                NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
-//                
-//                if (cell == nil)
-//                {
-//                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
-//                    cell.accessoryType = UITableViewCellAccessoryNone;
-//                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//                    cell.backgroundColor=[UIColor whiteColor];
-//                    UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(15, 10, 320-30, 25)];
-//                    [lal1 setTag:1];
-//                    lal1.textAlignment=NSTextAlignmentLeft;
-//                    lal1.font=[UIFont systemFontOfSize:12];
-//                    lal1.backgroundColor=[UIColor clearColor];
-//                    lal1.textColor= RGB(51, 51, 51);
-//                    lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
-//                    lal1.lineBreakMode=UILineBreakModeWordWrap;
-//                    [cell.contentView addSubview:lal1];
-//                    
-//                }
-//                
-//                
-//                UILabel *lal = (UILabel*)[cell viewWithTag:1];
-//                NSString *title=[NSString stringWithFormat:@"产品说明：\n     %@",chiHeModel.introduction];
-//                
-//                //高度固定不折行，根据字的多少计算label的宽度
-//                
-//                CGSize size = [title sizeWithFont:lal.font
-//                                constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
-//                                    lineBreakMode:NSLineBreakByWordWrapping];
-//                //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-//                //根据计算结果重新设置UILabel的尺寸
-//                lal.height=size.height;
-//                lal.text=title;
-//                CGRect cellFrame = [cell frame];
-//                cellFrame.origin=CGPointMake(0, 0);
-//                cellFrame.size.width=SCREEN_WIDTH;
-//                cellFrame.size.height=lal.size.height+20;
-//                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, lal.size.height+20-0.5, 290, 0.5)];
-//                lineLal.backgroundColor=RGB(199, 199, 199);
-//                [cell addSubview:lineLal];
-//                [cell setFrame:cellFrame];
-//                
-//                
-//                
-//                
-//                
-//                
-//            }
-//            if(indexPath.row==2){
-//                cell = [tableView dequeueReusableCellWithIdentifier:@"CHPorTypeCell" forIndexPath:indexPath];
-//                if (cell) {
-//                    CHPorTypeCell * porTypeCell = (CHPorTypeCell *)cell;
-//                    [porTypeCell.typeBtn setTitle:chiHeModel.category forState:0];
-//                    [porTypeCell.brandBtn setTitle:chiHeModel.brand forState:0];
-//                    
-//                }
-////                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
-////                lineLal.backgroundColor=RGB(199, 199, 199);
-////                [cell addSubview:lineLal];
-//            }
-//            
-//        }
-//            break;
-//        
-//            
-//        default:
-//        {
-//            cell = [tableView dequeueReusableCellWithIdentifier:@"PTShowIntroductionsCell" forIndexPath:indexPath];
-//        }
-//            break;
-//    }
-//    
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    return cell;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat h = 0.0f;
     if(indexPath.section == 0){
-        h = 466;
+        h = 438;
     }else if(indexPath.section == 1){
         h = 60;
     }else if(indexPath.section == 2){
@@ -318,52 +219,32 @@
 }
 
 
-#pragma mark -购物车
-- (IBAction)showShopCar:(UIButton *)sender {
-    LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
-    carListViewController.title=@"购物车";
-    [self.navigationController pushViewController:carListViewController animated:YES];
-}
+
 #pragma mark -添加购物车
 - (IBAction)AddToShopCar:(UIButton *)sender {
-    //数量选择
-    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
-    [_bgView setTag:99999];
-    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
-    [_bgView setAlpha:1.0];
-    [self.view addSubview:_bgView];
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"CHChooseNumView" owner:nil options:nil];
-    numView= (CHChooseNumView *)[nibView objectAtIndex:0];
-    numView.top=-numView.height;
-    [_bgView addSubview:numView];
-    //确定按钮
-    surebutton=[UIButton buttonWithType:UIButtonTypeCustom];
-    surebutton.frame=CGRectMake(0 ,SCREEN_HEIGHT, SCREEN_WIDTH,45 );
-    [surebutton setBackgroundColor:RGB(35, 166, 116)];
-    [surebutton setTitle:@"确定" forState:0];
-    [surebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [surebutton.titleLabel setFont:[UIFont systemFontOfSize:16]];
-    [surebutton addTarget:self action:@selector(sureAct:) forControlEvents:UIControlEventTouchDown];
-    [_bgView insertSubview:surebutton aboveSubview:_bgView];
-    
-    
-    [UIView beginAnimations:@"animationID" context:nil];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:numView cache:NO];
-    numView.top=0;
-    surebutton.top=SCREEN_HEIGHT-45;
-    [UIView commitAnimations];
-    
-    
-    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-//    button.backgroundColor=[UIColor redColor];
-    button.frame=CGRectMake(0 ,numView.top+numView.height, SCREEN_WIDTH, SCREEN_HEIGHT-numView.top-45-numView.height);
-    [button setBackgroundColor:[UIColor clearColor]];
-    [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
-    [_bgView insertSubview:button aboveSubview:_bgView];
-//    button.backgroundColor=[UIColor clearColor];
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    alertView.delegate = self;
+    _chooseNumView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseNumber" owner:nil options:nil]firstObject];
+    _chooseNumView.tag = 14;
+    _chooseNumView.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20, 250);
+    alertView.contentView = _chooseNumView;
+    [alertView show];
 }
+
+#pragma  选择数量后上传
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        NSDictionary *dic=@{@"product_id":[NSNumber numberWithInt:chiHeModel.id],
+                            @"quantity":_chooseNumView.numberField.text};
+        [[LYHomePageHttpTool shareInstance] addCarWithParams:dic block:^(BOOL result) {
+            if (result) {
+                [MyUtil showMessage:@"添加购物车成功!"];
+            }
+        }];
+    }
+    [alertView hide];
+}
+
 #pragma  mark 消失
 -(void)SetViewDisappear:(id)sender{
     
@@ -386,6 +267,7 @@
     }
     
 }
+#pragma 选择数量后点击确定加入购物车
 -(void)sureAct:(id)sender{
     [self SetViewDisappear:nil];
     NSDictionary *dic=@{@"product_id":[NSNumber numberWithInt:chiHeModel.id],@"quantity":numView.numLal.text};
@@ -396,6 +278,29 @@
     }];
     
 }
+
+#pragma mark -购物车
+- (IBAction)showShopCar:(UIButton *)sender {
+    LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
+    carListViewController.title=@"购物车";
+    [self.navigationController pushViewController:carListViewController animated:YES];
+}
+
+#pragma  猎娱客服
+- (IBAction)LYkefu:(UIButton *)sender {
+    RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
+    conversationVC.conversationType = ConversationType_PRIVATE;
+    conversationVC.targetId = @"KEFU144946169476221";
+    conversationVC.userName = @"猎娱客服";
+    conversationVC.title = @"猎娱客服";
+    [self.navigationController pushViewController:conversationVC animated:YES];
+
+}
+#pragma 立即下单
+- (IBAction)buyNow:(UIButton *)sender {
+}
+
+#pragma 返回按钮
 - (IBAction)backAct:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

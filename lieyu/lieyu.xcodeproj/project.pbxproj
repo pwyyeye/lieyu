@@ -343,6 +343,8 @@
 		389C01081C1488F000FE9412 /* seeGirls.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FF1C1488EF00FE9412 /* seeGirls.png */; };
 		389C01091C1488F000FE9412 /* seeGirls@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C01001C1488EF00FE9412 /* seeGirls@2x.png */; };
 		389C010A1C1488F000FE9412 /* seeGirls@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C01011C1488EF00FE9412 /* seeGirls@3x.png */; };
+		38D876431C16E95300E2F284 /* ChooseNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D876421C16E95300E2F284 /* ChooseNumber.m */; };
+		38D876451C16E97500E2F284 /* ChooseNumber.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D876441C16E97500E2F284 /* ChooseNumber.xib */; };
 		38E5D6BD1C0EA458004B49D2 /* CustomBtn_unSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6B71C0EA458004B49D2 /* CustomBtn_unSelected.png */; };
 		38E5D6BE1C0EA458004B49D2 /* CustomBtn_unSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6B81C0EA458004B49D2 /* CustomBtn_unSelected@2x.png */; };
 		38E5D6BF1C0EA458004B49D2 /* CustomBtn_unSelected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6B91C0EA458004B49D2 /* CustomBtn_unSelected@3x.png */; };
@@ -652,7 +654,6 @@
 		ADB164CE1C167733000BAD3C /* refresh7.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164C61C167733000BAD3C /* refresh7.png */; };
 		ADB164CF1C167733000BAD3C /* refresh8.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164C71C167733000BAD3C /* refresh8.png */; };
 		ADB164D11C167A13000BAD3C /* mjRefresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164D01C167A13000BAD3C /* mjRefresh@2x.png */; };
-		ADB164D21C16BBB6000BAD3C /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
 		ADB164D31C16BBBF000BAD3C /* LYUserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
 		ADB164D41C16BBF7000BAD3C /* MineBigBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */; };
 		ADB164D51C16BBF9000BAD3C /* MineBigBG@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3C1C15D1440088CD86 /* MineBigBG@2x.jpg */; };
@@ -1361,6 +1362,9 @@
 		389C00FF1C1488EF00FE9412 /* seeGirls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeGirls.png; sourceTree = "<group>"; };
 		389C01001C1488EF00FE9412 /* seeGirls@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeGirls@2x.png"; sourceTree = "<group>"; };
 		389C01011C1488EF00FE9412 /* seeGirls@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeGirls@3x.png"; sourceTree = "<group>"; };
+		38D876411C16E95300E2F284 /* ChooseNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseNumber.h; sourceTree = "<group>"; };
+		38D876421C16E95300E2F284 /* ChooseNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseNumber.m; sourceTree = "<group>"; };
+		38D876441C16E97500E2F284 /* ChooseNumber.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseNumber.xib; sourceTree = "<group>"; };
 		38E5D6B71C0EA458004B49D2 /* CustomBtn_unSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomBtn_unSelected.png; sourceTree = "<group>"; };
 		38E5D6B81C0EA458004B49D2 /* CustomBtn_unSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CustomBtn_unSelected@2x.png"; sourceTree = "<group>"; };
 		38E5D6B91C0EA458004B49D2 /* CustomBtn_unSelected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CustomBtn_unSelected@3x.png"; sourceTree = "<group>"; };
@@ -3423,6 +3427,9 @@
 				38E5D7F71C13356F004B49D2 /* PayMoney.h */,
 				38E5D7F81C13356F004B49D2 /* PayMoney.m */,
 				38E5D7F51C13355A004B49D2 /* PayMoney.xib */,
+				38D876411C16E95300E2F284 /* ChooseNumber.h */,
+				38D876421C16E95300E2F284 /* ChooseNumber.m */,
+				38D876441C16E97500E2F284 /* ChooseNumber.xib */,
 			);
 			name = "自定义AlertView";
 			sourceTree = "<group>";
@@ -5273,6 +5280,7 @@
 				381A01C81C141EE300592485 /* CHshowDetailListViewController.xib in Resources */,
 				ADD68E2B1BE10E330060E751 /* 4@2x.png in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
+				38D876451C16E97500E2F284 /* ChooseNumber.xib in Resources */,
 				ADB164CE1C167733000BAD3C /* refresh7.png in Resources */,
 				15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */,
 				1559DCF21BD9C7E200F3FE9B /* CHChooseNumView.xib in Resources */,
@@ -5873,6 +5881,7 @@
 				152247B61BEB064600E68A2B /* IQTitleBarButtonItem.m in Sources */,
 				A2F9DA6A1BAA58B1009DEAF3 /* DetailCell.m in Sources */,
 				15EA6DC21BBE47C400620C9E /* BrandModel.m in Sources */,
+				38D876431C16E95300E2F284 /* ChooseNumber.m in Sources */,
 				1559DCFE1BD9E1C800F3FE9B /* CHPorTypeCell.m in Sources */,
 				1559DCF81BD9E16600F3FE9B /* CHTopDetailCell.m in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
@@ -5899,7 +5908,6 @@
 				15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */,
 				38E72B561C15A18E002EFBDD /* ChiHeViewController.m in Sources */,
 				38E5D6E01C0F0E00004B49D2 /* LPBuyViewController.m in Sources */,
-				ADB164D21C16BBB6000BAD3C /* LYUserDetailSexTableViewCell.m in Sources */,
 				15EB35041BD1F4F900BA6161 /* PTTypeChooseCell.m in Sources */,
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
 				1559DD0A1BDA2A1200F3FE9B /* LYCarListViewController.m in Sources */,

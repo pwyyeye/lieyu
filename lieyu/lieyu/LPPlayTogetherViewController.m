@@ -392,6 +392,12 @@
 
 #pragma 咨询猎娱
 - (IBAction)ZiXunLieyu:(UIButton *)sender {
+    RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
+    conversationVC.conversationType = ConversationType_PRIVATE;
+    conversationVC.targetId = @"KEFU144946169476221";
+    conversationVC.userName = @"猎娱客服";
+    conversationVC.title = @"猎娱客服";
+    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
 #pragma 注意事项

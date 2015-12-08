@@ -8,43 +8,65 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CarHeadView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqN-YQ-vJX">
-                    <rect key="frame" x="15" y="11" width="17" height="17"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqN-YQ-vJX">
+                    <rect key="frame" x="13" y="13" width="17" height="17"/>
                     <animations/>
-                    <state key="normal" image="danxuan">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="ElJ-0l-Dv7"/>
+                        <constraint firstAttribute="width" constant="17" id="jQU-c4-8IE"/>
+                    </constraints>
+                    <state key="normal" image="CustomBtn_unSelected.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected" image="danxuanSelected"/>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-w7-qRa">
-                    <rect key="frame" x="46" y="9" width="22" height="22"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-w7-qRa">
+                    <rect key="frame" x="38" y="8" width="28" height="28"/>
                     <animations/>
                     <color key="backgroundColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="28" id="Icw-N0-E72"/>
+                    </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dinwei" translatesAutoresizingMaskIntoConstraints="NO" id="eTb-MX-HBr">
-                    <rect key="frame" x="158" y="14" width="12" height="13"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒吧名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9d6-Vi-yDc">
+                    <rect key="frame" x="76" y="15" width="76" height="14"/>
                     <animations/>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9d6-Vi-yDc">
-                    <rect key="frame" x="76" y="14" width="74" height="12"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="HbR-cH-raF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A93-0v-3pJ">
-                    <rect key="frame" x="172" y="14" width="140" height="12"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A93-0v-3pJ">
+                    <rect key="frame" x="160" y="15" width="150" height="14"/>
                     <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="ieR-Pr-uTE"/>
+                        <constraint firstAttribute="height" constant="14" id="r3n-mN-9ob"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="A93-0v-3pJ" firstAttribute="leading" secondItem="9d6-Vi-yDc" secondAttribute="trailing" constant="8" id="2DA-Wu-GH0"/>
+                <constraint firstItem="hqN-YQ-vJX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="E8K-su-ai0"/>
+                <constraint firstAttribute="trailing" secondItem="A93-0v-3pJ" secondAttribute="trailing" constant="10" id="Ib8-l9-yxB"/>
+                <constraint firstItem="H9M-w7-qRa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="MZP-Ng-KRH"/>
+                <constraint firstItem="H9M-w7-qRa" firstAttribute="leading" secondItem="hqN-YQ-vJX" secondAttribute="trailing" constant="8" id="Mi1-ar-yAT"/>
+                <constraint firstItem="9d6-Vi-yDc" firstAttribute="centerY" secondItem="H9M-w7-qRa" secondAttribute="centerY" id="TWx-cU-xvR"/>
+                <constraint firstItem="A93-0v-3pJ" firstAttribute="centerY" secondItem="9d6-Vi-yDc" secondAttribute="centerY" id="acn-9S-Mlx"/>
+                <constraint firstItem="9d6-Vi-yDc" firstAttribute="leading" secondItem="H9M-w7-qRa" secondAttribute="trailing" constant="10" id="iHX-2j-3ZF"/>
+                <constraint firstAttribute="bottom" secondItem="H9M-w7-qRa" secondAttribute="bottom" constant="8" id="jwd-yg-9mQ"/>
+                <constraint firstItem="hqN-YQ-vJX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="13" id="qk2-r8-0iM"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -55,12 +77,11 @@
                 <outlet property="jiubarImageView" destination="H9M-w7-qRa" id="Ea2-EZ-Lvk"/>
                 <outlet property="selBtn" destination="hqN-YQ-vJX" id="4Ub-bj-i6j"/>
             </connections>
-            <point key="canvasLocation" x="345" y="259.25"/>
+            <point key="canvasLocation" x="345" y="259"/>
         </view>
     </objects>
     <resources>
-        <image name="danxuan" width="22" height="22"/>
+        <image name="CustomBtn_unSelected.png" width="21" height="21"/>
         <image name="danxuanSelected" width="22" height="22"/>
-        <image name="dinwei" width="10" height="12"/>
     </resources>
 </document>
