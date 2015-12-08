@@ -25,7 +25,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="拼客" translatesAutoresizingMaskIntoConstraints="NO" id="Psa-C1-aiS">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="拼客流程.png" translatesAutoresizingMaskIntoConstraints="NO" id="Psa-C1-aiS">
                         <rect key="frame" x="10" y="45" width="300" height="155"/>
                         <animations/>
                         <constraints>
@@ -47,6 +47,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="拼客" width="304" height="155"/>
+        <image name="拼客流程.png" width="304" height="155"/>
     </resources>
 </document>

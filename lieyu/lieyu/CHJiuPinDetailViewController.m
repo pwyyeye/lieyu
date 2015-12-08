@@ -14,10 +14,19 @@
 #import "CHPorTypeCell.h"
 #import "LYCarListViewController.h"
 #import "LYUserLocation.h"
-@interface CHJiuPinDetailViewController ()
+
+#import "AddressTableViewCell.h"
+
+@interface CHJiuPinDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     CheHeModel *chiHeModel;
 }
+
+@property (nonatomic, strong) CHTopDetailCell *danpinCell;
+@property (nonatomic, strong) AddressTableViewCell *addressCell;
+@property (nonatomic, strong) CHPorTypeCell *typeCell;
+@property (nonatomic, strong) PTShowIntroductionsCell *showCell;
+
 @end
 
 @implementation CHJiuPinDetailViewController
@@ -41,189 +50,237 @@
     }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if(section==1){
-        return 3;
-        
-    }else{
-        return 1;
-    }
-    
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+#pragma tableView的各个代理方法实现
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(chiHeModel){
-        return 3;
+        return 5;
     }else{
         return 0;
     }
-    
-    
-}
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if(section==2){
-        return 34;
-    }else{
-        return 1;
-    }
-}
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if(section!=2){
-        return [[UIView alloc] initWithFrame:CGRectZero];
-    }else{
-        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
-        view.backgroundColor=RGB(247, 247, 247);
-        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(15, 11, 200, 12)];
-        
-        label.text=@"酒水消费流程";
-        
-        
-        label.font=[UIFont systemFontOfSize:12];
-        label.textColor=RGB(51, 51, 51);
-        [view addSubview:label];
-        return view;
-    }
-    
-    
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    return 0;
+}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    if(section!=2){
+//        return [[UIView alloc] initWithFrame:CGRectZero];
+//    }else{
+//        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
+//        view.backgroundColor=RGB(247, 247, 247);
+//        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(15, 11, 200, 12)];
+//        
+//        label.text=@"酒水消费流程";
+//        
+//        
+//        label.font=[UIFont systemFontOfSize:12];
+//        label.textColor=RGB(51, 51, 51);
+//        [view addSubview:label];
+//        return view;
+//    }
+//}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = nil;
-    switch (indexPath.section)
-    {
-        case 0:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"CHTopDetailCell" forIndexPath:indexPath];
-            if (cell) {
-                CHTopDetailCell * topDetailCell = (CHTopDetailCell *)cell;
-                [topDetailCell configureCell:chiHeModel];
-                
-                
-            }
+    if(indexPath.section == 0){
+        _danpinCell = [tableView dequeueReusableCellWithIdentifier:@"danpinCell"];
+        if(!_danpinCell){
+            [tableView registerNib:[UINib nibWithNibName:@"DanPinCell" bundle:nil] forCellReuseIdentifier:@"danpinCell"];
+            _danpinCell = [tableView dequeueReusableCellWithIdentifier:@"danpinCell"];
         }
-            break;
-        case 1:
+        [_danpinCell configureCell:chiHeModel];
+        _danpinCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return _danpinCell;
+    }else if(indexPath.section == 1){
+        _addressCell = [tableView dequeueReusableCellWithIdentifier:@"address"];
+        if(!_addressCell){
+            [tableView registerNib:[UINib nibWithNibName:@"AddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"address"];
+            _addressCell = [tableView dequeueReusableCellWithIdentifier:@"address"];
+        }
+        [_addressCell cellConfigure:chiHeModel.barinfo.address];
+        [_addressCell.addressBtn addTarget:self action:@selector(daohang) forControlEvents:UIControlEventTouchUpInside];
+        return _addressCell;
+    }else if(indexPath.section == 2){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"CHPorTypeCell" forIndexPath:indexPath];
+        if (cell) {
+            CHPorTypeCell * porTypeCell = (CHPorTypeCell *)cell;
+            [porTypeCell.typeBtn setTitle:chiHeModel.category forState:0];
+            [porTypeCell.brandBtn setTitle:chiHeModel.brand forState:0];
+        }
+        return cell;
+    }else if(indexPath.section == 3){
+        NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
+        if (cell == nil)
         {
-            
-            if(indexPath.row==0){
-                cell = [tableView dequeueReusableCellWithIdentifier:@"CHBarCell" forIndexPath:indexPath];
-                if (cell) {
-                    CHBarCell * barCell = (CHBarCell *)cell;
-                    [barCell configureCell:chiHeModel.barinfo];
-                    
-                }
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 71.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
-            }
-            if(indexPath.row==1){
-                NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
-                
-                if (cell == nil)
-                {
-                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
-                    cell.accessoryType = UITableViewCellAccessoryNone;
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.backgroundColor=[UIColor whiteColor];
-                    UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(15, 10, 320-30, 25)];
-                    [lal1 setTag:1];
-                    lal1.textAlignment=NSTextAlignmentLeft;
-                    lal1.font=[UIFont systemFontOfSize:12];
-                    lal1.backgroundColor=[UIColor clearColor];
-                    lal1.textColor= RGB(51, 51, 51);
-                    lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
-                    lal1.lineBreakMode=UILineBreakModeWordWrap;
-                    [cell.contentView addSubview:lal1];
-                    
-                }
-                
-                
-                UILabel *lal = (UILabel*)[cell viewWithTag:1];
-                NSString *title=[NSString stringWithFormat:@"产品说明：\n     %@",chiHeModel.introduction];
-                
-                //高度固定不折行，根据字的多少计算label的宽度
-                
-                CGSize size = [title sizeWithFont:lal.font
-                                constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
-                                    lineBreakMode:NSLineBreakByWordWrapping];
-                //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-                //根据计算结果重新设置UILabel的尺寸
-                lal.height=size.height;
-                lal.text=title;
-                CGRect cellFrame = [cell frame];
-                cellFrame.origin=CGPointMake(0, 0);
-                cellFrame.size.width=SCREEN_WIDTH;
-                cellFrame.size.height=lal.size.height+20;
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, lal.size.height+20-0.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
-                [cell setFrame:cellFrame];
-                
-                
-                
-                
-                
-                
-            }
-            if(indexPath.row==2){
-                cell = [tableView dequeueReusableCellWithIdentifier:@"CHPorTypeCell" forIndexPath:indexPath];
-                if (cell) {
-                    CHPorTypeCell * porTypeCell = (CHPorTypeCell *)cell;
-                    [porTypeCell.typeBtn setTitle:chiHeModel.category forState:0];
-                    [porTypeCell.brandBtn setTitle:chiHeModel.brand forState:0];
-                    
-                }
-//                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor=[UIColor whiteColor];
+            UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(15, 10, 320-30, 25)];
+            [lal1 setTag:1];
+            lal1.textAlignment=NSTextAlignmentLeft;
+            lal1.font=[UIFont systemFontOfSize:12];
+            lal1.backgroundColor=[UIColor clearColor];
+            lal1.textColor= RGB(51, 51, 51);
+            lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+            lal1.lineBreakMode = NSLineBreakByWordWrapping;
+            [cell.contentView addSubview:lal1];
+        }
+        UILabel *lal = (UILabel*)[cell viewWithTag:1];
+        NSString *title=[NSString stringWithFormat:@"产品说明：\n     %@",chiHeModel.introduction];
+        //高度固定不折行，根据字的多少计算label的宽度
+        CGSize size = [title sizeWithFont:lal.font
+                        constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
+                            lineBreakMode:NSLineBreakByWordWrapping];
+        //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+        //根据计算结果重新设置UILabel的尺寸
+        lal.height=size.height;
+        lal.text=title;
+        CGRect cellFrame = [cell frame];
+        cellFrame.origin=CGPointMake(0, 0);
+        cellFrame.size.width=SCREEN_WIDTH;
+        cellFrame.size.height=lal.size.height+20;
+        UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, lal.size.height+20-0.5, 290, 0.5)];
+        lineLal.backgroundColor=RGB(199, 199, 199);
+        [cell addSubview:lineLal];
+        [cell setFrame:cellFrame];
+        return cell;
+    }else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"PTShowIntroductionsCell" forIndexPath:indexPath];
+        return cell;
+    }
+}
+
+- (void)daohang{
+    NSDictionary *dic=@{@"title":chiHeModel.barinfo.barname,@"latitude":chiHeModel.barinfo.latitude,@"longitude":chiHeModel.barinfo.longitude};
+    [[LYUserLocation instance] daoHan:dic];
+}
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell *cell = nil;
+//    switch (indexPath.section)
+//    {
+//        case 0:
+//        {
+//            cell = [tableView dequeueReusableCellWithIdentifier:@"danpinCell" forIndexPath:indexPath];
+//            if (cell) {
+//                CHTopDetailCell * topDetailCell = (CHTopDetailCell *)cell;
+//                [topDetailCell configureCell:chiHeModel];
+//            }
+//        }
+//            break;
+//        case 1:
+//        {
+//            
+//            if(indexPath.row==0){
+//                cell = [tableView dequeueReusableCellWithIdentifier:@"CHBarCell" forIndexPath:indexPath];
+//                if (cell) {
+//                    CHBarCell * barCell = (CHBarCell *)cell;
+//                    [barCell configureCell:chiHeModel.barinfo];
+//                    
+//                }
+//                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 71.5, 290, 0.5)];
 //                lineLal.backgroundColor=RGB(199, 199, 199);
 //                [cell addSubview:lineLal];
-            }
-            
-        }
-            break;
-        
-            
-        default:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"PTShowIntroductionsCell" forIndexPath:indexPath];
-        }
-            break;
-    }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
-}
+//            }
+//            if(indexPath.row==1){
+//                NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
+//                
+//                if (cell == nil)
+//                {
+//                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
+//                    cell.accessoryType = UITableViewCellAccessoryNone;
+//                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                    cell.backgroundColor=[UIColor whiteColor];
+//                    UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(15, 10, 320-30, 25)];
+//                    [lal1 setTag:1];
+//                    lal1.textAlignment=NSTextAlignmentLeft;
+//                    lal1.font=[UIFont systemFontOfSize:12];
+//                    lal1.backgroundColor=[UIColor clearColor];
+//                    lal1.textColor= RGB(51, 51, 51);
+//                    lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
+//                    lal1.lineBreakMode=UILineBreakModeWordWrap;
+//                    [cell.contentView addSubview:lal1];
+//                    
+//                }
+//                
+//                
+//                UILabel *lal = (UILabel*)[cell viewWithTag:1];
+//                NSString *title=[NSString stringWithFormat:@"产品说明：\n     %@",chiHeModel.introduction];
+//                
+//                //高度固定不折行，根据字的多少计算label的宽度
+//                
+//                CGSize size = [title sizeWithFont:lal.font
+//                                constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
+//                                    lineBreakMode:NSLineBreakByWordWrapping];
+//                //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
+//                //根据计算结果重新设置UILabel的尺寸
+//                lal.height=size.height;
+//                lal.text=title;
+//                CGRect cellFrame = [cell frame];
+//                cellFrame.origin=CGPointMake(0, 0);
+//                cellFrame.size.width=SCREEN_WIDTH;
+//                cellFrame.size.height=lal.size.height+20;
+//                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, lal.size.height+20-0.5, 290, 0.5)];
+//                lineLal.backgroundColor=RGB(199, 199, 199);
+//                [cell addSubview:lineLal];
+//                [cell setFrame:cellFrame];
+//                
+//                
+//                
+//                
+//                
+//                
+//            }
+//            if(indexPath.row==2){
+//                cell = [tableView dequeueReusableCellWithIdentifier:@"CHPorTypeCell" forIndexPath:indexPath];
+//                if (cell) {
+//                    CHPorTypeCell * porTypeCell = (CHPorTypeCell *)cell;
+//                    [porTypeCell.typeBtn setTitle:chiHeModel.category forState:0];
+//                    [porTypeCell.brandBtn setTitle:chiHeModel.brand forState:0];
+//                    
+//                }
+////                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+////                lineLal.backgroundColor=RGB(199, 199, 199);
+////                [cell addSubview:lineLal];
+//            }
+//            
+//        }
+//            break;
+//        
+//            
+//        default:
+//        {
+//            cell = [tableView dequeueReusableCellWithIdentifier:@"PTShowIntroductionsCell" forIndexPath:indexPath];
+//        }
+//            break;
+//    }
+//    
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    return cell;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat h = 0.0f;
-    switch (indexPath.section) {
-        case 0:
-        {
-            h = 493;
-        }
-            break;
-        case 1:
-        {
-            if(indexPath.row==0){
-                h = 72;
-            }else if(indexPath.row==1){
-                UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-                return cell.frame.size.height;
-            }else{
-                h=76;
-            }
-        }
-            break;
-        
-        default:
-        {
-            h = 162;
-        }
-            break;
+    if(indexPath.section == 0){
+        h = 466;
+    }else if(indexPath.section == 1){
+        h = 60;
+    }else if(indexPath.section == 2){
+        h = 76;
+    }else if (indexPath.section == 3){
+        UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+        return cell.frame.size.height;
+    }else{
+        h = 162;
     }
     return h;
 }
@@ -238,7 +295,6 @@
             [[LYUserLocation instance] daoHan:dic];
         }
     }
-    //CheHeModel
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -255,13 +311,13 @@
 }
 */
 #pragma mark -购物车
-- (IBAction)shopCarAct:(UIButton *)sender {
+- (IBAction)showShopCar:(UIButton *)sender {
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
     [self.navigationController pushViewController:carListViewController animated:YES];
 }
 #pragma mark -添加购物车
-- (IBAction)addCarAct:(UIButton *)sender {
+- (IBAction)AddToShopCar:(UIButton *)sender {
     //数量选择
     _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
     [_bgView setTag:99999];

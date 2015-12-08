@@ -57,7 +57,6 @@
         _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-107);
     }
 
-    
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -73,20 +72,27 @@
 
 - (void)getData{
     __weak __typeof(self)weakSelf = self;
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    
+    
+    
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         pageCount=1;
         
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [weakSelf getData:nowDic];
     }];
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
+    [self initMJRefeshHeaderForGif:header];
+    
+    self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [self getDataWithDicMore:nowDic];
     }];
+    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
     // Do any additional setup after loading the view.
-    
 
     
 }
@@ -135,80 +141,6 @@
 }
 
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    [_sectionView removeFromSuperview];
-//    _sectionView=nil;
-
-    
-//    NSArray *arrayKeys = @[@"fontName",@"fontSize",@"textColor",@"content",@"imageW",@"imageH",@"imageUnSelectedName",@"imageSelectedName"];
-//    NSArray *array1 = @[@"FZLTXHK",@"14",RGBA(30, 30, 30, 1),@"所有地区",@"24",@"24",@"triangle_down",@"triangle_up"];
-//    NSArray *array2 = @[@"FZLTXHK",@"14",[UIColor colorWithRed:30 green:30 blue:30 alpha:1],@"音乐清吧",@"24",@"24",@"triangle_down",@"triangle_up"];
-//    NSArray *array3 = @[@"FZLTXHK",@"14",[UIColor colorWithRed:30 green:30 blue:30 alpha:1],@"离我最近",@"24",@"24",@"triangle_down",@"triangle_up"];
-//    NSDictionary *dict1 = [NSDictionary dictionaryWithObjects:array1 forKeys:arrayKeys];
-//    NSDictionary *dict2 = [NSDictionary dictionaryWithObjects:array2 forKeys:arrayKeys];
-//    NSDictionary *dict3 = [NSDictionary dictionaryWithObjects:array3 forKeys:arrayKeys];
-//    
-//    UIView *partView1 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3, 13, 0.5, 14)];
-//    partView1.backgroundColor = RGBA(204, 204, 204, 1);
-//    [sectionView addSubview:partView1];
-//    
-//    UIView *partView2 = [[UIView alloc]initWithFrame:CGRectMake(319 / 3 * 2, 13, 0.5, 14)];
-//    partView2.backgroundColor = RGBA(204, 204, 204, 1);
-//    [sectionView addSubview:partView2];
-//
-//    LPSelectButton *button1 = [[LPSelectButton alloc]initWithFrame:CGRectMake(0, 0, 319/3, 40) AndDictionary:dict1];
-//    button1.tag = 1;
-//    LPSelectButton *button2 = [[LPSelectButton alloc]initWithFrame:CGRectMake(319/3, 0, 319/3, 40) AndDictionary:dict2];
-//    button2.tag = 2;
-//    LPSelectButton *button3 = [[LPSelectButton alloc]initWithFrame:CGRectMake(319/3 * 2, 0, 319/3, 40) AndDictionary:dict3];
-//    button3.tag = 3;
-//    
-//    [button1 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
-//    [button2 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
-//    [button3 addTarget:self action:@selector(changeSelection:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    self.buttonsArray = [[NSArray alloc]initWithObjects:button1, button2, button3, nil];
-//    
-//    [sectionView addSubview:button1];
-//    [sectionView  addSubview:button2];
-//    [sectionView addSubview:button3];
-    
-//    return sectionView;
-//}
-//,@[@"宝山区",@"嘉定区",@"黄浦区",@"青浦区",@"闵行区",@"奉贤区",@"金山区",@"松江区",@"南汇区"]
-//,@[@"音乐清吧",@"激情夜店",@"文艺静吧",@"舞动KTV"]
-//,@[@"1公里以内",@"5公里以内",@"10公里以内",@"20公里以内"]
-
-//- (void)changeSelection:(LPSelectButton *)button{
-//    for (LPSelectButton *btn in _buttonsArray) {
-//        if(btn.tag == button.tag){
-//            if(btn.selected == YES){
-//                btn.selected = NO;
-//                btn.imageIcon.image = [UIImage imageNamed:@"triangle_down"];
-//            }else{
-//                btn.selected = YES;
-//                btn.imageIcon.image = [UIImage imageNamed:@"triangle_up"];
-//            }
-//        }else{
-//            btn.imageIcon.image = [UIImage imageNamed:@"triangle_down"];
-//            btn.selected = NO;
-//        }
-//    }
-//    if(self.selectView == nil){
-//        self.selectView = [[UIView alloc]init];
-//        self.itemsArray =
-//  @[
-//    @[@"宝山区",@"嘉定区",@"黄浦区",@"青浦区",@"闵行区",@"奉贤区",@"金山区",@"松江区",@"南汇区"],
-//    @[@"音乐清吧",@"激情夜店",@"文艺静吧",@"舞动KTV"],
-//    @[@"离我最近",@"1公里以内",@"5公里以内",@"10公里以内",@"20公里以内"]
-//  ];
-//        
-//    }
-////    [self.selectView removeFromSuperview];
-//    NSArray *array = self.itemsArray[button.tag - 1];
-//    [self showSelectView:array];
-//}
-
 - (void)showSelectView:(NSArray *)array{
     
     int rows = (int)array.count / 3;
@@ -244,7 +176,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -271,6 +203,7 @@
 #pragma mark 获取更多一起玩数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{
     __weak __typeof(self)weakSelf = self;
+
     [[LYHomePageHttpTool shareInstance]getTogetherListWithParams:dic block:^(NSMutableArray *result) {
         if(result.count>0){
             [dataList addObjectsFromArray:result];
@@ -279,9 +212,6 @@
         }else{
             [weakSelf.tableView.mj_footer noticeNoMoreData];
         }
-        
-        
-        
     }];
     [weakSelf.tableView.mj_footer endRefreshing];
     

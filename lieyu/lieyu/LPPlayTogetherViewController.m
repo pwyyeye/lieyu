@@ -249,24 +249,19 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
+
 #pragma 进入地图
 - (void)daohang{
     NSDictionary *dic=@{@"title":self.pinKeModel.barinfo.barname,@"latitude":self.pinKeModel.barinfo.latitude,@"longitude":self.pinKeModel.barinfo.longitude};
     [[LYUserLocation instance] daoHan:dic];
 }
-
-//
-//#pragma cellSelected
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if(indexPath.section == 2){
-//        NSDictionary *dic=@{@"title":self.pinKeModel.barinfo.barname,@"latitude":self.pinKeModel.barinfo.latitude,@"longitude":self.pinKeModel.barinfo.longitude};
-//        [[LYUserLocation instance] daoHan:dic];
-//    }
-//    else{
-//        NSLog(@"1212121");
-//    }
-//}
-
 
 #pragma 实现代理的方法，选择拼客方式
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
@@ -326,10 +321,6 @@
 //        }
         self.defaultPay = -1;//作为已选时间的条件以及后期将要改变的参数
     }
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
