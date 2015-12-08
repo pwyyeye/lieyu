@@ -83,19 +83,28 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //判断用户是否已经喜欢过
-    NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
-    [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
-        if (!result) {
-            
-        }
-    }];
+//    if (self.beerBarDetail) {
+//        //判断用户是否已经喜欢过
+//        NSLog(@"----pass-pass%@---",self.beerBarDetail);
+//        
+//        NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
+//        [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
+//            if (!result) {
+//                
+//            }
+//        }];
+//    }
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden=YES;
     
+}
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden=NO;
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
@@ -111,7 +120,7 @@
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
             weakSelf.label_count.text = detailItem.like_num;
-            NSLog(@"-------->%ld",detailItem.recommend_package.count);
+            NSLog(@"-------->%d",detailItem.recommend_package.count);
             if(!detailItem.recommend_package.count){
                 _bottomBarView.hidden = YES;
                 _scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
