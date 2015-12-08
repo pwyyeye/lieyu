@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MineBigBG" id="v45-lu-qgO">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MineBigBG.jpg" id="v45-lu-qgO">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <animations/>
@@ -131,7 +131,7 @@
     </objects>
     <resources>
         <image name="MineBG" width="120" height="120"/>
-        <image name="MineBigBG" width="304" height="54"/>
+        <image name="MineBigBG.jpg" width="320" height="567"/>
         <image name="btn_back2" width="16" height="16"/>
         <image name="login" width="304" height="54"/>
         <image name="textFieldLong" width="304" height="54"/>

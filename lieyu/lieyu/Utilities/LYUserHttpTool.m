@@ -743,13 +743,9 @@
             [app stopLoading];
             [MyUtil showMessage:message];
         }
-        
-        
     } failure:^(NSError *err) {
         [app stopLoading];
         result(NO);
-        
-        
     }];
 }
 #pragma mark 删除收藏酒吧

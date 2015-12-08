@@ -418,9 +418,14 @@
 		853E3A271C1582A40088CD86 /* purpleBtnBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A241C1582A40088CD86 /* purpleBtnBG@2x.png */; };
 		853E3A281C1582A40088CD86 /* purpleBtnBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A251C1582A40088CD86 /* purpleBtnBG@3x.png */; };
 		853E3A2B1C15B6050088CD86 /* PayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A2A1C15B6050088CD86 /* PayButton.m */; };
-		853E3A2F1C15BB1C0088CD86 /* MineBigBG@.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A2E1C15BB1C0088CD86 /* MineBigBG@.jpg */; };
 		853E3A321C15BC400088CD86 /* BirthdayPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A311C15BC400088CD86 /* BirthdayPickerView.m */; };
 		853E3A341C15BC520088CD86 /* BirthdayPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A331C15BC520088CD86 /* BirthdayPickerView.xib */; };
+		853E3A381C15D08B0088CD86 /* getYZM.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A351C15D08B0088CD86 /* getYZM.png */; };
+		853E3A391C15D08B0088CD86 /* getYZM@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A361C15D08B0088CD86 /* getYZM@2x.png */; };
+		853E3A3A1C15D08B0088CD86 /* getYZM@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A371C15D08B0088CD86 /* getYZM@3x.png */; };
+		853E3A3E1C15D1440088CD86 /* MineBigBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */; };
+		853E3A3F1C15D1440088CD86 /* MineBigBG@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3C1C15D1440088CD86 /* MineBigBG@2x.jpg */; };
+		853E3A401C15D1440088CD86 /* MineBigBG@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3D1C15D1440088CD86 /* MineBigBG@3x.jpg */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
@@ -1422,10 +1427,15 @@
 		853E3A251C1582A40088CD86 /* purpleBtnBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purpleBtnBG@3x.png"; sourceTree = "<group>"; };
 		853E3A291C15B6050088CD86 /* PayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayButton.h; sourceTree = "<group>"; };
 		853E3A2A1C15B6050088CD86 /* PayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayButton.m; sourceTree = "<group>"; };
-		853E3A2E1C15BB1C0088CD86 /* MineBigBG@.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MineBigBG@.jpg"; sourceTree = "<group>"; };
 		853E3A301C15BC400088CD86 /* BirthdayPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BirthdayPickerView.h; sourceTree = "<group>"; };
 		853E3A311C15BC400088CD86 /* BirthdayPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthdayPickerView.m; sourceTree = "<group>"; };
 		853E3A331C15BC520088CD86 /* BirthdayPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BirthdayPickerView.xib; sourceTree = "<group>"; };
+		853E3A351C15D08B0088CD86 /* getYZM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = getYZM.png; sourceTree = "<group>"; };
+		853E3A361C15D08B0088CD86 /* getYZM@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getYZM@2x.png"; sourceTree = "<group>"; };
+		853E3A371C15D08B0088CD86 /* getYZM@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getYZM@3x.png"; sourceTree = "<group>"; };
+		853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MineBigBG.jpg; sourceTree = "<group>"; };
+		853E3A3C1C15D1440088CD86 /* MineBigBG@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MineBigBG@2x.jpg"; sourceTree = "<group>"; };
+		853E3A3D1C15D1440088CD86 /* MineBigBG@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MineBigBG@3x.jpg"; sourceTree = "<group>"; };
 		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
 		8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuView.m; sourceTree = "<group>"; };
 		85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementClassCell.h; sourceTree = "<group>"; };
@@ -3531,7 +3541,9 @@
 		85F545121C13D8B80013B92B /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
-				853E3A2E1C15BB1C0088CD86 /* MineBigBG@.jpg */,
+				853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */,
+				853E3A3C1C15D1440088CD86 /* MineBigBG@2x.jpg */,
+				853E3A3D1C15D1440088CD86 /* MineBigBG@3x.jpg */,
 				853E3A151C152A600088CD86 /* 默认图片 */,
 				85F545421C14337E0013B92B /* 标签 */,
 				85F545181C13DEDC0013B92B /* 填写个人信息 */,
@@ -4339,6 +4351,9 @@
 		ADE103C31BE0EBCC00D9EC38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				853E3A351C15D08B0088CD86 /* getYZM.png */,
+				853E3A361C15D08B0088CD86 /* getYZM@2x.png */,
+				853E3A371C15D08B0088CD86 /* getYZM@3x.png */,
 				85F545121C13D8B80013B92B /* 登录 */,
 				AD0080911BEA4F4F00937CFF /* lieyuIcon@2x.png */,
 				AD0080921BEA4F4F00937CFF /* lieyuIcon@3x.png */,
@@ -5085,6 +5100,7 @@
 				AD0080931BEA4F4F00937CFF /* lieyuIcon@2x.png in Resources */,
 				15EB354C1BD4839D00BA6161 /* UMShareEditViewController.xib in Resources */,
 				15EB354F1BD4839D00BA6161 /* UMSnsAccountViewController.xib in Resources */,
+				853E3A381C15D08B0088CD86 /* getYZM.png in Resources */,
 				853E3A341C15BC520088CD86 /* BirthdayPickerView.xib in Resources */,
 				381A01D41C14228E00592485 /* AddCar_red@2x.png in Resources */,
 				381A01D11C14228E00592485 /* AddCar_gray@2x.png in Resources */,
@@ -5149,6 +5165,7 @@
 				85F625981C0C20C6002858C8 /* LYDinWeiTableViewCell.xib in Resources */,
 				381A01ED1C14301A00592485 /* fanli@3x.png in Resources */,
 				38E5D7A81C113879004B49D2 /* gray_less@3x.png in Resources */,
+				853E3A3F1C15D1440088CD86 /* MineBigBG@2x.jpg in Resources */,
 				38E5D6C61C0EA4DF004B49D2 /* CustomBtn_Selected.png in Resources */,
 				38E5D7C91C128D20004B49D2 /* shareView.xib in Resources */,
 				15E240831BB279CB0090D240 /* LYMyOrderManageViewController.xib in Resources */,
@@ -5196,6 +5213,7 @@
 				381A01D51C14228E00592485 /* AddCar_red@3x.png in Resources */,
 				ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */,
 				85EE804C1C0AF82D00958F76 /* LYBarDesrcTableViewCell.xib in Resources */,
+				853E3A401C15D1440088CD86 /* MineBigBG@3x.jpg in Resources */,
 				15EB7C751BD0A0DB00756153 /* LYShaiXuanViewController.xib in Resources */,
 				3879F2531C0D329600B72629 /* AddressTableViewCell.xib in Resources */,
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
@@ -5204,6 +5222,7 @@
 				ADF88E621C102E4F00CF5DED /* huiseStar.png in Resources */,
 				85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */,
 				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
+				853E3A3A1C15D08B0088CD86 /* getYZM@3x.png in Resources */,
 				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
 				38E5D7AD1C113879004B49D2 /* purper_less@2x.png in Resources */,
 				ADD68E281BE10E330060E751 /* 1@2x.png in Resources */,
@@ -5212,6 +5231,7 @@
 				85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */,
 				38E5D6C71C0EA4DF004B49D2 /* CustomBtn_Selected@2x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
+				853E3A3E1C15D1440088CD86 /* MineBigBG.jpg in Resources */,
 				15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */,
 				38E5D7A31C113879004B49D2 /* gray_add.png in Resources */,
 				381A01DE1C14229F00592485 /* more_purper@3x.png in Resources */,
@@ -5238,6 +5258,7 @@
 				15E240D21BB3D5940090D240 /* LYRegistrationViewController.xib in Resources */,
 				15EB354A1BD4839D00BA6161 /* UMSCommentInputController.xib in Resources */,
 				38E5D6FF1C103E17004B49D2 /* LPmanager.png in Resources */,
+				853E3A391C15D08B0088CD86 /* getYZM@2x.png in Resources */,
 				15E2407D1BB2521C0090D240 /* CollectionCell.xib in Resources */,
 				38E5D7A01C113879004B49D2 /* choose.png in Resources */,
 				15E1847F1BB4FF0900681BB2 /* LYZSeditView.xib in Resources */,
@@ -5317,7 +5338,6 @@
 				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
 				15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */,
 				381A01E11C14229F00592485 /* more_white@3x.png in Resources */,
-				853E3A2F1C15BB1C0088CD86 /* MineBigBG@.jpg in Resources */,
 				38E5D7BC1C128B7D004B49D2 /* Location.png in Resources */,
 				ADF88E671C102E4F00CF5DED /* pingjiaxiangji@3x.png in Resources */,
 				389C01081C1488F000FE9412 /* seeGirls.png in Resources */,
