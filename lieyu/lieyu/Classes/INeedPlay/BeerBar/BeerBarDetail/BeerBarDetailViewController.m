@@ -40,8 +40,11 @@
 //@property(nonatomic,strong)IBOutlet BeerBarDetailCell *barDetailCell;
 @property(nonatomic,strong)IBOutlet UITableViewCell *orderTotalCell;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *label_count;
+@property (weak, nonatomic) IBOutlet UIImageView *image_like;
 
 @property(nonatomic,weak)IBOutlet UIView *bottomBarView;
+@property (weak, nonatomic) IBOutlet UIButton *btn_like;
 @property(nonatomic,assign)CGFloat dyBarDetailH;
 
 @property(nonatomic,strong) BeerBarOrYzhDetailModel *beerBarDetail;
@@ -65,8 +68,12 @@
     
     self.scrollView.showsVerticalScrollIndicator=NO;
     self.scrollView.showsHorizontalScrollIndicator=NO;
-    [self setupViewStyles];
-    [self loadBarDetail];
+    [self setupViewStyles];                                                     //tableView registe cell
+    [self loadBarDetail];                                                       //load data
+    
+    //喜欢按钮圆角
+    self.btn_like.layer.cornerRadius = CGRectGetWidth(self.btn_like.frame)/2.0;
+    self.btn_like.layer.masksToBounds = YES;
 }
 
 - (void)loadBarDetail
@@ -77,7 +84,12 @@
     {
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
-            NSLog(@"%@",self.beerBarDetail.descriptions);
+            weakSelf.label_count.text = detailItem.like_num;
+            NSLog(@"-------->%ld",detailItem.recommend_package.count);
+            if(!detailItem.recommend_package.count){
+                _bottomBarView.hidden = YES;
+                _scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }
             [weakSelf.tableView reloadData];
             //加载webview
             
@@ -86,6 +98,7 @@
     }];
 }
 
+// load webView
 - (void)loadWebView{
     UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
     
@@ -107,11 +120,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark 返回按钮
 - (IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark 喜欢按钮
+- (IBAction)likeClick:(UIButton *)sender {
+    
+}
 
 - (void)setupViewStyles
 {
@@ -335,7 +353,7 @@
         return h;
 }
 
-
+#pragma mark 分享按钮
 - (IBAction)shareClick:(id)sender {
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UmengAppkey

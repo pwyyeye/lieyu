@@ -13,4 +13,6 @@
 @property(nonatomic,assign)BaseEntry entryType;
 @property(nonatomic,copy) NSMutableArray *titleArray;
 @property (nonatomic,copy) NSString *middleStr;
+@property (nonatomic,strong) NSArray *bartypeArray;
+@property (nonatomic,copy) NSString *subidStr;
 @end

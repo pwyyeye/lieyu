@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_buyCount;
 @property (weak, nonatomic) IBOutlet UILabel *label_price_now;
 @property (weak, nonatomic) IBOutlet UILabel *label_price_old;
-@property (nonatomic,strong) RecommendPackageModel *model;
 @property (weak, nonatomic) IBOutlet UILabel *label_percent;
+@property (nonatomic,strong) RecommendPackageModel *model;
 @property (nonatomic,strong) TaoCanModel *taoCanModel;
 @end

@@ -20,6 +20,7 @@
 #import "LYUserLocation.h"
 #import "LYHotBarMenuDropView.h"
 #import "BeerBarDetailViewController.h"
+#import "bartypeslistModel.h"
 
 #define PAGESIZE 20
 #define YEDIAN @"激情夜店"
@@ -28,9 +29,7 @@
 #define KTV @"ktv"
 
 @interface LYHotJiuBarViewController ()<UITableViewDataSource,UITableViewDelegate,LYHotBarMenuViewDelegate>
-{
-    NSString *_subidStr;
-}
+
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -105,6 +104,7 @@
    
     
     hList.subids = _subidStr;
+    
     hList.need_page = @(1);
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
@@ -177,39 +177,11 @@
 #pragma 菜单代理
 - (void)didClickHotBarMenuDropWithButtonSection:(NSInteger)section dropButtonIndex:(NSInteger)index{
     NSLog(@"----------%ld---------%ld",section,index);
+    bartypeslistModel *bartypeModel = self.bartypeArray[index];
     switch (section) {
-        case 1:
+        case 2:
         {
-            
-            switch (index) {
-                case 0:
-                {
-                    _subidStr = @(1);
-                   
-                }
-                    break;
-                case 1:
-                {
-                    _subidStr = @(2);
-                    
-                }
-                    break;
-                case 2:
-                {
-                    _subidStr = @(5);
-                    
-                }
-                    break;
-                case 3:
-                {
-                    _subidStr = @(5);
-                    
-                }
-                    break;
-                    
-                default:
-                    break;
-            }
+            _subidStr = bartypeModel.subids;
              [self getData];
         }
             break;
