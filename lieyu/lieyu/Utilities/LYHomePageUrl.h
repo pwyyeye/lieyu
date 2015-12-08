@@ -28,7 +28,8 @@
 #define LY_WOYAODINWEI_TAOCAN_INFO @"toPlayAction.do?action=save"
 //录入套餐订单
 #define LY_WOYAODINWEI_INORDER @"smOrderAction.do?action=add"
-
+//点赞
+#define LY_DIANZANG @"userPraisedAction.do?action=add"
 
 //吃喝专场
 //获取吃喝列表
