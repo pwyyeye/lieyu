@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) NSArray *starsArray;
 //
-//@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 //
 //- (IBAction)selectManager:(UIButton *)sender;
 - (void)cellConfigureWithImage:(NSString *)imageUrl name:(NSString *)name stars:(NSString *)stars;

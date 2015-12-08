@@ -237,9 +237,9 @@
             UIButton *selectBtn = [[UIButton alloc]initWithFrame:CGRectMake(289,30, 20, 20)];
             selectBtn.backgroundColor = [UIColor clearColor];
             if (!indexPath.row) {
-                selectBtn.isSelect = YES;
+                selectBtn.selected = YES;
             }else{
-                selectBtn.isSelect = NO;
+                selectBtn.selected = NO;
             }
             selectBtn.tag = indexPath.row + 1;
             selectBtn.tag = indexPath.row;
