@@ -92,11 +92,11 @@
         if(dataList.count>0){
             
             pageCount++;
-            [weakSelf.collectionview.footer resetNoMoreData];
+            [weakSelf.collectionview.mj_footer resetNoMoreData];
         }
         [weakSelf.collectionview reloadData];
     }];
-    [weakSelf.collectionview.header endRefreshing];
+    [weakSelf.collectionview.mj_header endRefreshing];
 }
 #pragma mark 获取更多数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{

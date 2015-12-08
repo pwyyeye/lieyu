@@ -106,7 +106,7 @@
     
 }
 -(void)kazuoChoose:(UISwitch *)sender{
-    NSLog(@"%ld**********",sender.tag);
+    NSLog(@"%d**********",sender.tag);
     DeckFullModel *deckFullModel=listArr[sender.tag];
     NSDictionary *dic=@{@"setDate":deckFullModel.deckDate,@"barid":[NSNumber numberWithInt:self.userModel.barid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
     if(deckFullModel.isFull==1){
