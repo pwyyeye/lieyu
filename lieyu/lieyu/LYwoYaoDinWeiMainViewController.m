@@ -143,6 +143,7 @@
 #pragma mark 获取数据
 -(void)getdata{
     NSDictionary *dic=@{@"barid":[NSString stringWithFormat:@"%d",self.barid],@"smdate":datePar};
+    NSLog(@"------>%@",dic);
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiDetailWithParams:dic block:^(JiuBaModel *result) {
         jiubaModel=result;
@@ -168,43 +169,11 @@
     return 0.0001;
 }
 
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-// 
-//    
-//    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"TaoCanTitleView" owner:nil options:nil];
-//    TaoCanTitleView *taoCanTitleView= (TaoCanTitleView *)[nibView objectAtIndex:0];
-//    taoCanTitleView.orderNumLal.text=[NSString stringWithFormat:@"%ld",jiubaModel.recommend_package.count];
-//    return taoCanTitleView;
-//    
-//    
-//}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-   
-
-    cell.delLal.text=[NSString stringWithFormat:@"[适合%@-%@人]",model.minnum,model.maxnum];
-    NSString *flTem=[NSString stringWithFormat:@"再返利%.f%%",model.rebate.doubleValue*100];
-    [cell.yjBtn setTitle:flTem forState:0];
-    cell.zhekouLal.text=[NSString stringWithFormat:@"￥%@",model.price];
-    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];
-    cell.moneyLal.attributedText=attribtStr;
-    NSString *str=model.linkUrl ;
-    [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:str]];
-    UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
-    lineLal.backgroundColor=RGB(199, 199, 199);
-    [cell addSubview:lineLal];
-   
-    */
     LYDinWeiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
+    NSLog(@"--------->%ld",jiubaModel.recommend_package.count);
     RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.section];
-//    cell.label_name.text = model.title;
-//    cell.label_price_now.text = [NSString stringWithFormat:@"¥%@",model.price];
-//    cell.label_price_old.text = [NSString stringWithFormat:@"¥%@",model.marketprice];
-//    cell.label_buyCount.text = [NSString stringWithFormat:@"%@人购",model.buynum];
-//    [cell.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl]];
     cell.model = model;
      cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

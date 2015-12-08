@@ -14,7 +14,6 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    [self setPercent];
 }
 
 - (void)setModel:(RecommendPackageModel *)model{
@@ -28,7 +27,14 @@
     self.label_buyCount.text = [NSString stringWithFormat:@"%@人购",model.buynum];
     [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl]];
 
-    
+    NSString *percentStr =[NSString stringWithFormat:@"%.0f%@",([self.model.rebate floatValue]) * 100,@"%"];
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:percentStr];
+    [attributedStr addAttribute:NSFontAttributeName
+     
+                          value:[UIFont systemFontOfSize:10]
+     
+                          range:NSMakeRange(2, 1.9)];
+    self.label_percent.attributedText = attributedStr;
 }
 
 - (void)setTaoCanModel:(TaoCanModel *)taoCanModel{
@@ -43,10 +49,9 @@
     
     self.label_buyCount.text = [NSString stringWithFormat:@"%d人购",taoCanModel.buynum];
     [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:taoCanModel.linkUrl]];
-}
-
-- (void)setPercent{
-    NSString *percentStr =[NSString stringWithFormat:@"30%@",@"%"];
+    
+    
+    NSString *percentStr =[NSString stringWithFormat:@"%.0f%@",(self.taoCanModel.rebate) * 100,@"%"];
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:percentStr];
     [attributedStr addAttribute:NSFontAttributeName
      
@@ -55,6 +60,8 @@
                           range:NSMakeRange(2, 1.9)];
     self.label_percent.attributedText = attributedStr;
 }
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

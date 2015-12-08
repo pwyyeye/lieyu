@@ -33,6 +33,7 @@
 @property(nonatomic,copy)NSNumber * lowest_consumption;
 @property(nonatomic,strong)NSArray *recommend_package;  //RecommendPackageModel
 @property(nonatomic,copy)NSString *star_num;
+@property (nonatomic,copy) NSString *like_num;
 @property(nonatomic,copy)NSString *subtitle;
 @property(nonatomic,strong)NSNumber *subtype;
 @property(nonatomic,copy)NSString *subtypename;

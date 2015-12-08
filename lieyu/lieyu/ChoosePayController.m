@@ -15,6 +15,7 @@
 {
     UITableViewCell *_payCell;
     NSInteger _selectIndex;
+    UIButton *_payBtn;
 }
 @property (nonatomic,strong) NSMutableArray *btnArray;
 @end
@@ -31,6 +32,14 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
 //    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
+       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-107);
+        _payBtn.frame = CGRectMake(8, 500 - 107 - 64, 304, 52);
+    }
+    
+    
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     self.title=@"支付方式";
@@ -45,15 +54,15 @@
 }
 
 - (void)createPayButton{
-    UIButton *payBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 500, 304, 52)];
-    [payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
-    payBtn.layer.cornerRadius = 4;
-    payBtn.layer.masksToBounds = YES;
-    [payBtn setTitle:@"确认支付" forState:UIControlStateNormal];
-    [payBtn setTitleColor:RGBA(255, 255, 255, 1) forState:UIControlStateNormal];
-    [payBtn.titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:payBtn];
+    _payBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 500 - 64, 304, 52)];
+    [_payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
+    _payBtn.layer.cornerRadius = 4;
+    _payBtn.layer.masksToBounds = YES;
+    [_payBtn setTitle:@"确认支付" forState:UIControlStateNormal];
+    [_payBtn setTitleColor:RGBA(255, 255, 255, 1) forState:UIControlStateNormal];
+    [_payBtn.titleLabel setFont:[UIFont systemFontOfSize:20]];
+    [_payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_payBtn];
 }
 
 #pragma mark 支付按钮
@@ -234,12 +243,12 @@
             _payCell.detailTextLabel.textColor=RGB(102, 101, 102);
             _payCell.imageView.image=[UIImage imageNamed:[dic objectForKey:@"payicon"]];
             
-            UIButton *selectBtn = [[UIButton alloc]initWithFrame:CGRectMake(289,30, 20, 20)];
+            PayButton *selectBtn = [[PayButton alloc]initWithFrame:CGRectMake(289,30, 20, 20)];
             selectBtn.backgroundColor = [UIColor clearColor];
             if (!indexPath.row) {
-                selectBtn.selected = YES;
+                selectBtn.isSelect = YES;
             }else{
-                selectBtn.selected = NO;
+                selectBtn.isSelect = NO;
             }
             selectBtn.tag = indexPath.row + 1;
             selectBtn.tag = indexPath.row;
