@@ -25,12 +25,13 @@
     int perCount;
     UIBarButtonItem *rightBtn;
     int goodsNumber;
-    NSString *chooseKey;
+    int chooseKey;
     NSMutableArray *biaoqianList;
 }
 
 @property (nonatomic, strong) NSArray *buttonsArray;
 @property (nonatomic, strong) UIView *MoreView;
+@property (nonatomic, assign) BOOL moreShow;
 
 @end
 
@@ -39,11 +40,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     [self.sxBtn1 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [self.sxBtn2 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [self.sxBtn3 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [self.sxBtn4 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [self.sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
+    
+    _moreShow = NO;
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
     self.navigationItem.rightBarButtonItem = rightItem;
@@ -54,7 +58,6 @@
     dataList = [[NSMutableArray alloc]init];
     pageCount = 1;
     goodsNumber = 1;
-    chooseKey = @"";
     self.buttonsArray = @[_sxBtn1,_sxBtn2,_sxBtn3,_sxBtn4];
     
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:@{@"barid":[NSString stringWithFormat:@"%d",self.barid]}];
@@ -248,13 +251,13 @@
         }
     }
     if(btn.tag == 100){
-        chooseKey = @"洋酒";
+        chooseKey = 1;
     }else if(btn.tag == 101){
-        chooseKey = @"红酒";
+        chooseKey = 2;
     }else if (btn.tag == 102){
-        chooseKey = @"啤酒";
+        chooseKey = 3;
     }else if(btn.tag == 103){
-        chooseKey = @"鸡尾酒";
+        chooseKey = 4;
     }else{
         
         [btn setBackgroundColor:[UIColor whiteColor]];
@@ -266,66 +269,52 @@
 }
 
 #pragma 选取好条件后进行筛选
-- (void)chooseWineBy:(NSString *)sortkey{
+- (void)chooseWineBy:(int)sortkey{
     pageCount=1;
     
     [nowDic removeObjectForKey:@"p"];
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-    [nowDic removeObjectForKey:@"sort"];
-    [nowDic setObject:sortkey forKey:@"sort"];
+    [nowDic removeObjectForKey:@"categoryid"];
+    [nowDic setObject:[NSString stringWithFormat:@"%d",sortkey] forKey:@"categoryid"];
     [self getData:nowDic];
-    NSLog(@"筛选出所有：%@",sortkey);
+    NSLog(@"筛选出所有：%d",sortkey);
 }
 
 #pragma 点击更多按钮弹出界面
 - (void)showMoreButtons{
+    if(_moreShow == NO){
+        _moreShow = YES;
+        
+    self.collectionView.userInteractionEnabled = NO;
+    
     _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, biaoqianList.count * 32 + (biaoqianList.count + 1) * 16)];
     [_MoreView setBackgroundColor:[UIColor whiteColor]];
     
     for(int i = 0 ; i < biaoqianList.count ; i ++){
         for(int j = 0 ; j < 3 ; j ++){
             UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake( 8 * (j + 1) + 96 * j, 16 * (i + 1) + 32 * i, 96, 32)];
-            button.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
-            button.layer.borderWidth = 1;
+            [button setBackgroundColor:RGBA(217, 217, 217, 1)];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            button.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(151, 151, 151, 1));
+            button.layer.borderWidth = 0.5;
             button.layer.cornerRadius = 3;
             button.layer.masksToBounds = YES;
-            [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
-            [button setTitle:@"香槟" forState:UIControlStateNormal];
-            [button setBackgroundColor:[UIColor whiteColor]];
-            [button setTag:81];
+            [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+            [button setTitle:((ProductCategoryModel *)biaoqianList[i][j]).name forState:UIControlStateNormal];
+            [button setTag:((ProductCategoryModel *)biaoqianList[i][j]).id];
             [button addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
             [_MoreView addSubview:button];
         }
     }
-    
-//    UIButton *button1 = [[UIButton alloc]initWithFrame:CGRectMake(8, 16, 96, 32)];
-//    button1.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor lightGrayColor]);
-//    button1.layer.borderWidth = 0.5;
-//    button1.layer.cornerRadius = 3;
-//    button1.layer.masksToBounds = YES;
-//    [button1 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
-////    [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-//    [button1 setTitle:@"香槟" forState:UIControlStateNormal];
-//    [button1 setBackgroundColor:[UIColor whiteColor]];
-//    [button1 setTag:81];
-//    [button1 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    UIButton *button2 = [[UIButton alloc]initWithFrame:CGRectMake(112, 16, 96, 32)];
-//    button2.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
-//    button2.layer.borderWidth = 0.5;
-//    button2.layer.cornerRadius = 3;
-//    button2.layer.masksToBounds = YES;
-//    [button2 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
-////    [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-//    [button2 setBackgroundColor:[UIColor whiteColor]];
-//    [button2 setTitle:@"其他" forState:UIControlStateNormal];
-//    [button2 setTag:82];
-//    [button2 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [_MoreView addSubview:button1];
-//    [_MoreView addSubview:button2];
-//    
-    [self.view addSubview:_MoreView];
+        [self.view addSubview:_MoreView];
+    }else{
+        _moreShow = NO;
+        [_sxBtn5 setTitle:@"" forState:UIControlStateNormal];
+        [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
+        [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
+        [_MoreView removeFromSuperview];
+        _collectionView.userInteractionEnabled = YES;
+    }
 }
 
 #pragma 点击更多界面中按钮后发生的事情
@@ -335,15 +324,16 @@
     [sender setBackgroundColor:RGBA(114, 5, 147, 1)];
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    [_sxBtn5 setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+//    [_sxBtn5 setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [_sxBtn5 setBackgroundColor:[UIColor whiteColor]];
     [_sxBtn5 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
     [_sxBtn5 setTitle:sender.titleLabel.text forState:UIControlStateNormal];
-    if(sender.tag == 81){
-        chooseKey = @"香槟";
-    }else if(sender.tag == 82){
-        chooseKey = @"其他";
-    }
+    
+    _moreShow = NO;
+    _collectionView.userInteractionEnabled = YES;
+    
+    chooseKey = (int)sender.tag;
+    
     [self chooseWineBy:chooseKey];
 }
 

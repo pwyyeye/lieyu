@@ -22,6 +22,8 @@
 
 #import "LYHotBarMenuView.h"
 
+#import "MenuButton.h"
+
 @interface PlayTogetherViewController
 ()<ShaiXuanDelegate,UITableViewDelegate,UITableViewDataSource,LYHotBarMenuViewDelegate>
 {
@@ -29,6 +31,10 @@
     int pageCount;
     int perCount;
     NSMutableDictionary *nowDic;
+    
+    NSArray *AddressArray;
+    NSArray *TypeArray;
+    NSArray *sortArray;
 }
 @property(nonatomic,weak) IBOutlet UIButton * allListButton;
 @property(nonatomic,weak) IBOutlet UIButton * nearDistanceButton;
@@ -125,19 +131,45 @@
     LYHotBarMenuView *sectionView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
     sectionView.backgroundColor = [UIColor whiteColor];
     sectionView.delegate = self;
-    NSArray *array1 = @[@"所有地区",@"青浦区",@"宝山区",@"浦东新区",@"徐汇区",@"静安区",@"闵行区"];
-    NSArray *array2 = @[@"激情夜店",@"文艺静吧",@"音乐清吧",@"KTV"];
-    NSArray *array3 = @[@"离我最近",@"评价最高"];
-//    _areaArray = [[NSMutableArray array]initWithArray:array1];
-//    _typeArray = [[NSMutableArray array]initWithArray:array2];
-//    _distanceArray = [[NSMutableArray array]initWithArray:array3];
+    AddressArray = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
+    TypeArray = @[@"所有种类",@"激情夜店",@"文艺静吧",@"音乐清吧",@"舞动KTV"];
+    sortArray = @[@"离我最近",@"人均最高",@"人均最低",@"返利最高"];
     
-    [sectionView deployWithMiddleTitle:@"音乐清吧" ItemArray:@[array1,array2,array3]];
+    [sectionView deployWithMiddleTitle:@"音乐清吧" ItemArray:@[AddressArray,TypeArray,sortArray]];
     [self.view addSubview:sectionView];
 }
 
-- (void)didClickHotBarMenuDropWithButtonSection:(NSInteger)section dropButtonIndex:(NSInteger)index{
-    NSLog(@"-->%ld---%ld",section,index);
+- (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButtonIndex:(NSInteger)index{
+    pageCount = 1;
+    [dataList removeAllObjects];
+    [nowDic removeObjectForKey:@"p"];
+    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+    if(button.section == 1){
+        [nowDic setObject:[AddressArray objectAtIndex:index] forKey:@"address"];
+    }else if (button.section == 2){
+        if(index == 0){
+            [nowDic removeObjectForKey:@"subids"];
+        }else if(index == 1){
+            [nowDic setObject:@"2" forKey:@"subids"];
+        }else if(index == 2){
+            [nowDic setObject:@"1" forKey:@"subids"];
+        }else if(index == 3){
+            [nowDic setObject:@"6,7" forKey:@"subids"];
+        }else{
+            [nowDic setObject:@"4,5" forKey:@"subids"];
+        }
+    }else{//sort= //pricedesc 人均最高，priceasc人均最低，rebatedesc返利最高
+        if(index == 0){
+            [nowDic removeObjectForKey:@"sort"];
+        }else if(index == 1){
+            [nowDic setObject:@"pricedesc" forKey:@"sort"];
+        }else if(index == 2){
+            [nowDic setObject:@"priceasc" forKey:@"sort"];
+        }else{
+            [nowDic setObject:@"rebatedesc" forKey:@"sort"];
+        }
+    }
+    [self getData:nowDic];
 }
 
 
@@ -425,6 +457,7 @@
     self.nearDistanceButton.selected=YES;
     [self getDataForDistance];
 }
+
 - (void)addCondition:(NSMutableArray *)arr{
     if(arr.count>0){
         pageCount=1;

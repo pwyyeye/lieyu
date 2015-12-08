@@ -33,13 +33,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40) ;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     [self getdata];
-
-    // Do any additional setup after loading the view.
+    
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+}
+
 #pragma mark 获取数据
 -(void)getdata{
     NSDictionary *dic=@{@"id":[NSString stringWithFormat:@"%d",self.shopid]};
@@ -301,15 +317,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 #pragma mark -购物车
 - (IBAction)showShopCar:(UIButton *)sender {
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];

@@ -14,14 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="465.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zW7-wo-m0V">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
-                        <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="320" id="0y3-qm-1dd"/>
-                        </constraints>
-                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单品名" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4TT-4A-yc8">
                         <rect key="frame" x="10" y="330" width="300" height="30"/>
                         <animations/>
@@ -75,6 +67,14 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zW7-wo-m0V">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                        <animations/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="320" id="0y3-qm-1dd"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <animations/>
                 <constraints>
@@ -107,9 +107,9 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="1cF-hF-k06"/>
-                        <exclude reference="27H-Zb-znt"/>
                         <exclude reference="92u-oz-WPx"/>
                         <exclude reference="bgT-Os-Axg"/>
+                        <exclude reference="27H-Zb-znt"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
