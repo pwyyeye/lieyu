@@ -55,14 +55,43 @@
     [actionSheet showInView:self.view];
 }
 #pragma mark --评价
+/**
+ "orderid":"订单ID",
+ "barstar":"评价类别 5 强烈推荐 4 很满意 3 满意 2 一般 1 差",
+ "managerstar":"评价类别 5 强烈推荐 4 很满意 3 满意 2 一般 1 差",
+ "message":"评价内容",
+ "imageurl":"评价时上传的图片地址",
+ "anonymous":"是否匿名评价",
+ "barid":"酒吧ID",
+ "vipuserid":"VIP专属经理ID"
+ */
 - (IBAction)pingjia:(id)sender {
     if (_isPickImage) {
         [HTTPController uploadImageToQiuNiu:_pingjiaImage.image complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             
             NSLog(@"----pass-评价图片上传%@---",key);
+            NSDictionary *dic=@{@"orderid":[NSString stringWithFormat:@"%d",_orderInfoModel.id],@"barstar":[NSString stringWithFormat:@"%d",(int)_barStar.value ],@"managerstar":[NSString stringWithFormat:@"%d",(int)_managerStar.value ],@"message":_contentText.text,@"imageurl":key,@"anonymous":@"0",@"barid":[NSString stringWithFormat:@"%d", _orderInfoModel.barinfo.id],@"vipuserid":[NSString stringWithFormat:@"%d",_orderInfoModel.checkuserid ]};
+            [[LYUserHttpTool shareInstance] addEvaluation:dic complete:^(BOOL result) {
+                if (result) {
+                    [MyUtil showMessage:@"评价成功！"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+            
+            NSLog(@"----pass-pingjia%@---",dic);
+            
         }];
     }else{
-    
+   
+        NSDictionary *dic=@{@"orderid":[NSString stringWithFormat:@"%d",_orderInfoModel.id],@"barstar":[NSString stringWithFormat:@"%d",(int)_barStar.value ],@"managerstar":[NSString stringWithFormat:@"%d",(int)_managerStar.value ],@"message":_contentText.text,@"imageurl":@"",@"anonymous":@"0",@"barid":[NSString stringWithFormat:@"%d", _orderInfoModel.barinfo.id],@"vipuserid":[NSString stringWithFormat:@"%d",_orderInfoModel.checkuserid ]};
+        [[LYUserHttpTool shareInstance] addEvaluation:dic complete:^(BOOL result) {
+            if (result) {
+                [MyUtil showMessage:@"评价成功！"];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+        }];
+         NSLog(@"----pass-pingjia2%@---",dic);
     }
     
 }

@@ -14,7 +14,7 @@
 #import "CityChooseButton.h"
 
 
-@interface HomePageINeedPlayViewController : LYBaseViewController<LYChooseCityDelegate>
+@interface HomePageINeedPlayViewController : LYBaseViewController<UINavigationControllerDelegate,LYChooseCityDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *cityBtn;
 

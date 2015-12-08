@@ -475,7 +475,7 @@
             nowB=@"已经消费";
             nextB=@"等待返利";
             aboutTitle=@"关于返利";
-            aboutContent=@"用户只需在线下单并消费成功，即可获得对应的订单返利。猎娱平台承若返利金额将会在15个工作日内汇到用户在猎娱平台支付的对应账户内。";
+            aboutContent=@"用户只需在线下单并消费成功，即可获得对应的订单返利。猎娱平台承若返利金额将会在3个工作日内汇到用户在猎娱平台支付的对应账户内。";
         }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
             sectionNum=2;
             nowB=@"已经返利";
@@ -545,7 +545,7 @@
                 nowB=@"已经消费";
                 nextB=@"等待返利";
                 aboutTitle=@"关于返利";
-                aboutContent=@"用户只需在线下单并消费成功，即可获得对应的订单返利。猎娱平台承若返利金额将会在15个工作日内汇到用户在猎娱平台支付的对应账户内。";
+                aboutContent=@"用户只需在线下单并消费成功，即可获得对应的订单返利。猎娱平台承若返利金额将会在3个工作日内汇到用户在猎娱平台支付的对应账户内。";
             }else{
                 sectionNum=2;
                 nowB=@"已经消费";
@@ -593,7 +593,7 @@
             nowB=@"已经消费";
             nextB=@"等待返利";
             aboutTitle=@"关于返利";
-            aboutContent=@"用户只需在线下单并消费成功，即可获得对应的订单返利。猎娱平台承若返利金额将会在15个工作日内汇到用户在猎娱平台支付的对应账户内。";
+            aboutContent=@"用户只需在线下单并消费成功，即可获得对应的订单返利。猎娱平台承若返利金额将会在3个工作日内汇到用户在猎娱平台支付的对应账户内。";
         }else if(_orderInfoModel.orderStatus==8 || _orderInfoModel.orderStatus==9){
             sectionNum=2;
             nowB=@"已经返利";
