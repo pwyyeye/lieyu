@@ -312,6 +312,7 @@
 		381A01F71C144E1B00592485 /* shoppingCar.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01F11C144E1B00592485 /* shoppingCar.png */; };
 		381A01F81C144E1B00592485 /* shoppingCar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01F21C144E1B00592485 /* shoppingCar@2x.png */; };
 		381A01F91C144E1B00592485 /* shoppingCar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01F31C144E1B00592485 /* shoppingCar@3x.png */; };
+		381FEFF41C166AB8002A47BA /* bartypeslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A131C15232A0088CD86 /* bartypeslistModel.m */; };
 		3879F2061C0BE19500B72629 /* LPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2051C0BE19500B72629 /* LPSelectButton.m */; };
 		3879F24A1C0D325D00B72629 /* BarInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2481C0D325D00B72629 /* BarInfoTableViewCell.m */; };
 		3879F24B1C0D325D00B72629 /* BarInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F2491C0D325D00B72629 /* BarInfoTableViewCell.xib */; };
@@ -410,7 +411,6 @@
 		38E72B451C15239A002EFBDD /* ManagerInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B441C15239A002EFBDD /* ManagerInfoCell.xib */; };
 		38E72B4E1C153446002EFBDD /* CHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E72B4C1C153446002EFBDD /* CHViewController.m */; };
 		38E72B4F1C153446002EFBDD /* CHViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B4D1C153446002EFBDD /* CHViewController.xib */; };
-		38E72B501C155287002EFBDD /* bartypeslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A131C15232A0088CD86 /* bartypeslistModel.m */; };
 		38E72B521C155FC7002EFBDD /* chiheDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B511C155FC7002EFBDD /* chiheDetailCollectionCell.xib */; };
 		38E72B561C15A18E002EFBDD /* ChiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E72B541C15A18E002EFBDD /* ChiHeViewController.m */; };
 		38E72B571C15A18E002EFBDD /* ChiHeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B551C15A18E002EFBDD /* ChiHeViewController.xib */; };
@@ -5038,10 +5038,8 @@
 				38E5D6DC1C0EFBA2004B49D2 /* leftBackItem@3x.png in Resources */,
 				38E5D6BF1C0EA458004B49D2 /* CustomBtn_unSelected@3x.png in Resources */,
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
-				853E3A221C154E7B0088CD86 /* LYUserDetailTableViewCell.xib in Resources */,
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
-				AD0080941BEA4F4F00937CFF /* lieyuIcon@3x.png in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */,
 				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
@@ -5389,7 +5387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38E72B501C155287002EFBDD /* bartypeslistModel.m in Sources */,
+				381FEFF41C166AB8002A47BA /* bartypeslistModel.m in Sources */,
 				38E5D7FA1C13DFA1004B49D2 /* MenuButton.m in Sources */,
 				AD106BC51C0EDDD5007F5FBA /* OrderTTL.m in Sources */,
 				3879F2701C0D786E00B72629 /* LYHotBarMenuView.m in Sources */,
