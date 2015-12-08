@@ -16,8 +16,8 @@
 }
 - (IBAction)backAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
-- (IBAction)shopCarAct:(UIButton *)sender;
-- (IBAction)addCarAct:(UIButton *)sender;
+- (IBAction)showShopCar:(UIButton *)sender;
+- (IBAction)AddToShopCar:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) int shopid;
 @end

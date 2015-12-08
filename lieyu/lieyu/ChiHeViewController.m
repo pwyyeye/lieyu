@@ -15,6 +15,8 @@
 #import "CHJiuPinDetailViewController.h"
 #import "LYCarListViewController.h"
 
+#import "ZSManageHttpTool.h"
+
 @interface ChiHeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     NSMutableArray *dataList;
@@ -24,6 +26,7 @@
     UIBarButtonItem *rightBtn;
     int goodsNumber;
     NSString *chooseKey;
+    NSMutableArray *biaoqianList;
 }
 
 @property (nonatomic, strong) NSArray *buttonsArray;
@@ -45,6 +48,9 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
     dataList = [[NSMutableArray alloc]init];
     pageCount = 1;
     goodsNumber = 1;
@@ -55,6 +61,7 @@
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     [nowDic setObject:@"20" forKey:@"per"];
     [self getData:nowDic];
+    [self geBiaoQianData];
     __weak __typeof(self)weakSelf = self;
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         pageCount=1;
@@ -68,6 +75,44 @@
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [self getDataWithDicMore:nowDic];
     }];
+}
+
+#pragma 获取酒品种类信息
+-(void)geBiaoQianData{
+    //获取酒水类型
+    [biaoqianList removeAllObjects];
+    __weak __typeof(self)weakSelf = self;
+    [[ZSManageHttpTool shareInstance] getProductCategoryListWithParams:nil block:^(NSMutableArray *result) {
+        biaoqianList = [weakSelf setRow:result];
+    }];
+}
+
+#pragma 将信息转为三列
+-(NSMutableArray *)setRow:(NSMutableArray *)arr{
+    int nowCount=1;
+    NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:3];
+    NSMutableArray *dataArr=[[NSMutableArray alloc]init];
+    for (int i = 4; i<arr.count; i++) {
+        ProductCategoryModel *productCategoryModel= arr[i];
+        
+        if(nowCount%3==0){
+            [pageArr addObject:productCategoryModel];
+            [dataArr addObject:pageArr];
+            pageArr=[[NSMutableArray alloc]initWithCapacity:3];
+        }else{
+            [pageArr addObject:productCategoryModel];
+            if(i==arr.count-1){
+                [dataArr addObject:pageArr];
+            }
+        }
+        nowCount++;
+    }
+    return dataArr;
+}
+
+#pragma  back按钮点击事件
+- (void)backClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma 展示购物车
@@ -93,7 +138,7 @@
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
         
-        NSLog(@"****block%d******",dataList.count);
+        NSLog(@"****block%ld******",dataList.count);
         if(dataList.count>0){
             
             pageCount++;
@@ -174,6 +219,7 @@
     CheHeModel *chiHeModel=dataList[indexPath.row];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     CHJiuPinDetailViewController *jiuPinDetailViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHJiuPinDetailViewController"];
+//    CHJiuPinDetailViewController *jiuPinDetailViewController = [[CHJiuPinDetailViewController alloc]init];
     jiuPinDetailViewController.title=@"套餐详情";
     jiuPinDetailViewController.shopid=chiHeModel.id;
     [self.navigationController pushViewController:jiuPinDetailViewController animated:YES];

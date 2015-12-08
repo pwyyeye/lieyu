@@ -24,17 +24,19 @@
 {
     
     //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
-    _barNameLal.text=model.fullname;
-    _priceLal.text=[NSString stringWithFormat:@"￥%@",model.price];
+    _danpinLbl.text = model.name;
+    _priceLbl.text=[NSString stringWithFormat:@"￥%@",model.price];
     if(model.marketprice){
         NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
         NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];
-        _markPriceLal.attributedText=attribtStr;
+        _marketPriceLbl.attributedText=attribtStr;
     }
-     NSString *flTem=[NSString stringWithFormat:@"再返利%.f%%",model.rebate*100];
-    _flLal.text=flTem;
-    NSString *uintStr=[NSString stringWithFormat:@"%@%@%@%@",model.num,model.unit,model.product_item.num,@"组"];
-    _unitLal.text=uintStr;
+     NSString *flTem=[NSString stringWithFormat:@"返利%.f%%",model.rebate*100];
+    _fanliLbl.text=flTem;
+    _saleLbl.text = [NSString stringWithFormat:@"已售%@人",model.sales];
+    _saleLbl.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor whiteColor]);
+    _saleLbl.layer.borderWidth = 0.5;
+    _saleLbl.layer.masksToBounds = YES;
     //banner
     NSMutableArray *bigArr=[[NSMutableArray alloc]init];
     
@@ -44,9 +46,8 @@
         [dicTemp setObject:@"" forKey:@"mainHeading"];
         [bigArr addObject:dicTemp];
     }
+    scroller = [[EScrollerView alloc]initWithFrameRect:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
-    scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, self.topView.frame.size.width, self.topView.frame.size.height)
-                                           scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
-    [self.topView addSubview:scroller];
+    [self.scrollView addSubview:scroller];
 }
 @end
