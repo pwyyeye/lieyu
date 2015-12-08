@@ -96,6 +96,7 @@
     if(![MyUtil isValidateTelephone:self.getPassWordTypeTex.text]){
         
         [self showMessage:@"请输入正确的手机格式!"];
+        return;
     }
     NSDictionary *dic=@{@"mobile":self.getPassWordTypeTex.text};
     [[LYUserHttpTool shareInstance] getResetYanZhengMa:dic complete:^(BOOL result) {
