@@ -19,14 +19,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets=NO;
     // Do any additional setup after loading the view from its nib.
     
 //    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
 //    [self.navigationItem setLeftBarButtonItem:item];
     
    // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
-    
+    [self.navigationController setNavigationBarHidden:YES];
+    _timer=[NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(wait) userInfo:nil repeats:YES];
+    [_timer setFireDate:[NSDate distantPast]];
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
+    
+}
+-(void)wait{
+    [self.navigationController setNavigationBarHidden:YES];
+    [_timer invalidate];
 }
 - (IBAction)goBackClick:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -41,7 +49,10 @@
     [super viewWillAppear:animated];
         [self.navigationController setNavigationBarHidden:YES];
 }
-
+//-(void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    [self.navigationController setNavigationBarHidden:YES];
+//}
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
@@ -88,7 +99,7 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [USER_DEFAULT setObject:self.userNameTex.text forKey:@"username"];
         [USER_DEFAULT setObject:self.passWordTex.text forKey:@"pass"];
 //      [self dismissViewControllerAnimated:YES completion:^{
