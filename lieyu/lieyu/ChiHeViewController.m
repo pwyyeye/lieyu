@@ -40,6 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     [self.sxBtn1 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [self.sxBtn2 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [self.sxBtn3 setBackgroundColor:RGBA(114, 5, 147, 1)];
