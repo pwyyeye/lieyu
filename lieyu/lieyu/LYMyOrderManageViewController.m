@@ -66,19 +66,15 @@
         [self refreshData];
     }];
     MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
-    header.lastUpdatedTimeLabel.hidden = YES;
-    header.stateLabel.hidden = YES;
-    // 设置普通状态的动画图片
-    [header setImages:@[[UIImage imageNamed:@"mjRefresh"]] forState:MJRefreshStateIdle];
-    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-    [header setImages:@[[UIImage imageNamed:@"mjRefresh.gif"]] forState:MJRefreshStatePulling];
-    // 设置正在刷新状态的动画图片
-    [header setImages:@[[UIImage imageNamed:@"mjRefresh.gif"]] forState:MJRefreshStateRefreshing];
+    [self initMJRefeshHeaderForGif:header];
     // 设置header
     //    [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
-    self.tableView.mj_footer =[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer =[MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [self loadMoreData];
     }];
+    
+    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
     
 //    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
 //    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];

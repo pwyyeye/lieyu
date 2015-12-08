@@ -213,7 +213,7 @@ UITableViewDataSource,UITableViewDelegate,
 {
     __weak HomePageINeedPlayViewController * weakSelf = self;
 //    __weak UITableView *tableView = self.tableView;
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:
                              ^{
                                  weakSelf.curPageIndex = 1;
                                  [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
@@ -233,7 +233,8 @@ UITableViewDataSource,UITableViewDelegate,
                                       }
                                   }];
                              }];
-
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
+    [self initMJRefeshHeaderForGif:header];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
