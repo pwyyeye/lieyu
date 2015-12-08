@@ -204,13 +204,13 @@
         }
     }
     if(btn.tag == 100){
-        chooseKey = @"洋酒";
+        chooseKey = @"葡萄酒";
     }else if(btn.tag == 101){
-        chooseKey = @"红酒";
-    }else if (btn.tag == 102){
         chooseKey = @"啤酒";
+    }else if (btn.tag == 102){
+        chooseKey = @"伏加特";
     }else if(btn.tag == 103){
-        chooseKey = @"鸡尾酒";
+        chooseKey = @"威士忌";
     }else{
         [btn setBackgroundColor:[UIColor whiteColor]];
         [btn setImage:[UIImage imageNamed:@"more_purper"] forState:UIControlStateNormal];
@@ -242,27 +242,29 @@
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, 64)];
     [view setBackgroundColor:[UIColor whiteColor]];
     
-    UIButton *button1 = [[UIButton alloc]initWithFrame:CGRectMake(8, 52, 96, 32)];
-    button1.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor lightGrayColor]);
-    button1.layer.borderWidth = 0.5;
-    button1.layer.cornerRadius = 3;
-    button1.layer.masksToBounds = YES;
-    [button1 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
-    [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [button1 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [button1 setTag:81];
-    [button1 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *button2 = [[UIButton alloc]initWithFrame:CGRectMake(112, 52, 96, 32)];
-    button2.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor lightGrayColor]);
-    button2.layer.borderWidth = 0.5;
-    button2.layer.cornerRadius = 3;
-    button2.layer.masksToBounds = YES;
-    [button2 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
-    [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [button2 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [button2 setTag:82];
-    [button2 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
+    //生成动态按钮
+//    UIButton *button1 = [[UIButton alloc]initWithFrame:CGRectMake(8, 52, 96, 32)];
+//    button1.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor lightGrayColor]);
+//    button1.layer.borderWidth = 0.5;
+//    button1.layer.cornerRadius = 3;
+//    button1.layer.masksToBounds = YES;
+//    [button1 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+//    [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//    [button1 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    [button1 setTag:81];
+//    [button1 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton *button2 = [[UIButton alloc]initWithFrame:CGRectMake(112, 52, 96, 32)];
+//    button2.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor lightGrayColor]);
+//    button2.layer.borderWidth = 0.5;
+//    button2.layer.cornerRadius = 3;
+//    button2.layer.masksToBounds = YES;
+//    [button2 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+//    [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//    [button2 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    [button2 setTag:82];
+//    [button2 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma 点击更多界面中按钮后发生的事情

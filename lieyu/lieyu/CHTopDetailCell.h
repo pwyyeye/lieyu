@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "EScrollerView.h"
+#import "CheHeModel.h"
 @interface CHTopDetailCell : UITableViewCell<LYTableViewCellLayout>{
     EScrollerView *scroller;
 }
-@property (weak, nonatomic) IBOutlet UILabel *markPriceLal;
-@property (weak, nonatomic) IBOutlet UIView *topView;
-@property (weak, nonatomic) IBOutlet UILabel *barNameLal;
-@property (weak, nonatomic) IBOutlet UILabel *priceLal;
-@property (weak, nonatomic) IBOutlet UILabel *flLal;
-@property (weak, nonatomic) IBOutlet UILabel *unitLal;
+@property (weak, nonatomic) IBOutlet UILabel *marketPriceLbl;
+@property (weak, nonatomic) IBOutlet UIView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *danpinLbl;
+@property (weak, nonatomic) IBOutlet UILabel *priceLbl;
+@property (weak, nonatomic) IBOutlet UILabel *fanliLbl;
+@property (weak, nonatomic) IBOutlet UILabel *saleLbl;
+
+- (void)configureCell:(CheHeModel*)model;
+
 @end
