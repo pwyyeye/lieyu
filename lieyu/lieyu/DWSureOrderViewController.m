@@ -28,6 +28,7 @@
 #import "TimePickerView.h"
 #import "LPAlertView.h"
 #import "ContentViewTaocan.h"
+#import "ManagerInfoCell.h"
 
 @interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate,LPAlertViewDelegate>
 {
@@ -73,6 +74,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"LYOrderManagerTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYOrderManagerTableViewCell"];
      [self.tableView registerNib:[UINib nibWithNibName:@"LPBuyManagerCell" bundle:nil] forCellReuseIdentifier:@"buyManager"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYZSdetailCell" bundle:nil] forCellReuseIdentifier:@"LYZSdetailCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ManagerInfoCell" bundle:nil] forCellReuseIdentifier:@"managerInfo"];
 }
 
 -(void)dealloc{
@@ -282,10 +284,12 @@
             //            [contactCell.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
             //            [contactCell.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
             ZSDetailModel *zsModel=zsArr[indexPath.row];
-            cell = [tableView dequeueReusableCellWithIdentifier:@"LYZSdetailCell" forIndexPath:indexPath];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"managerInfo" forIndexPath:indexPath];
             if (cell) {
-                LYZSdetailCell *zsCell = (LYZSdetailCell *)cell;
-                zsCell.zsModel = zsModel;
+                ManagerInfoCell *zsCell = (ManagerInfoCell *)cell;
+                zsCell.selectBtn.enabled = NO;
+                
+                [zsCell cellConfigureWithImage:zsModel.avatar_img name:zsModel.username stars:zsModel.servicestar];
             }
             
         }
@@ -332,11 +336,11 @@
     NSString *remainStr = nil;
     if (((ContentViewTaocan *)alertView.contentView).image_remain.tag == 3) {
         //确定预留
-        gotype = @"一定会去";
+        gotype = @"1";
         remainStr = @"确定预留";
     }else{
         //不确定预留
-        gotype = @"不一定会去";
+        gotype = @"0";
         remainStr = @"暂不预留";
     }
     [_writeCell.btn_showTaocan setTitle:remainStr forState:UIControlStateNormal];
@@ -413,6 +417,7 @@
     NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
     [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
 }
+
 #pragma mark 私聊
 -(void)siliaoAct:(UIButton *)sender{
     for (ZSDetailModel *zsDetailModel in zsArr) {

@@ -8,6 +8,10 @@
 
 #import "LYTagTableViewCell.h"
 
+@interface LYTagTableViewCell()<UIAlertViewDelegate>
+
+@end
+
 @implementation LYTagTableViewCell
 
 - (void)awakeFromNib {
@@ -19,6 +23,21 @@
     self.btn_custom.layer.borderColor=RGB(233, 233, 233).CGColor;
     
 }
+
+- (IBAction)customTagClick:(UIButton *)sender {
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"自定义标签" message:@"好的标枪会给你带来更多精彩" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex) {
+        if ([_delegate respondsToSelector:@selector(tagTableViewCellAlertViewClick)]) {
+            [_delegate tagTableViewCellAlertViewClick];
+        }
+    }
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

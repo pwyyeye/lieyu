@@ -47,7 +47,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    LYHotBarMenuView *menuView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, 320, 40)];
+    LYHotBarMenuView *menuView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
     menuView.delegate = self;
     NSArray *array1 = @[@"闵行区",@"浦东",@"宝山",@"徐汇",@"地区五",@"地区六",@"地区七"];
         NSArray *array2 = _titleArray;

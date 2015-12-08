@@ -8,7 +8,7 @@
 
 #import "LYTagTableViewController.h"
 #import "LYTagTableViewCell.h"
-@interface LYTagTableViewController ()
+@interface LYTagTableViewController ()<LYTagTablViewCellDelegate>
 
 @end
 
@@ -113,8 +113,10 @@
     return 57;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 1) {
+        return 75;
+    }
     return 37.5;
-    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -138,7 +140,7 @@
 //    if (cell == nil) {
 //        cell = [[LYTagTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"lyUserTagCell"];
 //    }
-    
+    cell.delegate = self;
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
     NSArray *cellArray=_dataArray[indexPath.row];
     if (cellArray.count==3) {
@@ -201,5 +203,9 @@
     return cell;
 }
 
+#pragma mark LYTagTableViewCellDelegate
+- (void)tagTableViewCellAlertViewClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

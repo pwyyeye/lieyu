@@ -8,6 +8,12 @@
 #import "LYUserTagButton.h"
 #import <UIKit/UIKit.h>
 
+@protocol LYTagTablViewCellDelegate <NSObject>
+
+- (void)tagTableViewCellAlertViewClick;
+
+@end
+
 @interface LYTagTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet LYUserTagButton *button1;
@@ -16,5 +22,5 @@
 
 @property (weak, nonatomic) IBOutlet LYUserTagButton *button3;
 @property (weak, nonatomic) IBOutlet UIButton *btn_custom;
-
+@property (nonatomic,unsafe_unretained) id<LYTagTablViewCellDelegate> delegate;
 @end
