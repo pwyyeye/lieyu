@@ -151,7 +151,7 @@
         {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
             cell.textLabel.text = @"总需支付";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%g",_payAmount];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%g 元",_payAmount];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -280,7 +280,6 @@
         
         
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        //    delegate.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
         
         UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
         delegate.navigationController.navigationItem.backBarButtonItem=item;

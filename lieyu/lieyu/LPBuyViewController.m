@@ -117,12 +117,16 @@
         
         UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 250, 30)];
         button.backgroundColor = [UIColor clearColor];
-        [button addTarget:self action:@selector(selectedManager) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(selectedVIPManager) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:button];
         
         return view;
     }
     return nil;
+}
+
+- (void)selectedVIPManager{
+    NSLog(@"1");
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -326,7 +330,7 @@
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请选择专属经理!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
             return;
         }
-        if([self.InfoDict[@"money"] isEqualToString:@"-1"]){
+        if([self.InfoDict[@"money"] isEqualToString:@"-1.00"]){
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写预付金额!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
             return;
         }

@@ -8,7 +8,7 @@
 
 #import "CHshowDetailListViewController.h"
 #import "LYHomePageHttpTool.h"
-#import "CHDetailCollectionCell.h"
+#import "chiheDetailCollectionCell.h"
 #import "MJRefresh.h"
 #import "CHShaiXuanViewController.h"
 #import "ProductCategoryModel.h"
@@ -122,8 +122,8 @@
 -(UICollectionViewCell *)collectionview:(UICollectionView *)collectionview cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * CellIdentifier = @"CHDetailCollectionCell";
-    CHDetailCollectionCell * cell = [collectionview dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.goodsImageView.image=nil;
+    chiheDetailCollectionCell * cell = [collectionview dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.goodImage.image=nil;
 //    cell.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(217, 217, 217, 217));
     cell.layer.borderColor = [[UIColor lightGrayColor]CGColor];
     cell.layer.borderWidth = 0.5;

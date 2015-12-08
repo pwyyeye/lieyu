@@ -457,12 +457,14 @@
 //    
     NSString *string=@"大家一起来看看～猎娱不错啊! http://www.lie98.com\n";
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-    [UMSocialSnsService presentSnsController:self
-                                appKey:UmengAppkey
-                                shareText:string
-                                shareImage:[UIImage imageNamed:self.pinKeModel.banner[0]]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
-                                delegate:self];
+//    [UMSocialSnsService presentSnsController:self
+//                                appKey:UmengAppkey
+//                                shareText:string
+//                                shareImage:self.barinfoCell.barImage.image
+//                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
+//                                delegate:self];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:self.barinfoCell.barImage.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil] delegate:self];
+    
 }
 
 - (BOOL)isDirectShareInIconActionSheet{

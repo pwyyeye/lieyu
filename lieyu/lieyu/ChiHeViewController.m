@@ -1,13 +1,12 @@
 //
-//  CHViewController.m
+//  ChiHeViewController.m
 //  lieyu
 //
 //  Created by 王婷婷 on 15/12/7.
 //  Copyright © 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "CHViewController.h"
-
+#import "ChiHeViewController.h"
 #import "LYHomePageHttpTool.h"
 #import "chiheDetailCollectionCell.h"
 #import "MJRefresh.h"
@@ -16,7 +15,7 @@
 #import "CHJiuPinDetailViewController.h"
 #import "LYCarListViewController.h"
 
-@interface CHViewController ()<CHShaiXuanDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface ChiHeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     NSMutableArray *dataList;
     NSMutableDictionary *nowDic;
@@ -28,65 +27,63 @@
 }
 
 @property (nonatomic, strong) NSArray *buttonsArray;
+@property (nonatomic, strong) UIView *MoreView;
 
 @end
 
-@implementation CHViewController
+@implementation ChiHeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.itemButton1.frame = CGRectMake(0, 64, 64, 36);
-//    
-//    self.collectionview.dataSource = self;
-//    self.collectionview.delegate = self;
-    [self.collectionview registerNib:[UINib nibWithNibName:@"chiheDetailCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"chiheCell"];
-    
-    [self.itemButton1 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [self.itemButton2 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [self.itemButton3 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [self.itemButton4 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [self.itemButton5 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+    [self.sxBtn1 setBackgroundColor:RGBA(114, 5, 147, 1)];
+    [self.sxBtn2 setBackgroundColor:RGBA(114, 5, 147, 1)];
+    [self.sxBtn3 setBackgroundColor:RGBA(114, 5, 147, 1)];
+    [self.sxBtn4 setBackgroundColor:RGBA(114, 5, 147, 1)];
+    [self.sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
     self.navigationItem.rightBarButtonItem = rightItem;
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick)];
-    self.navigationItem.leftBarButtonItem = leftItem;
     
     dataList = [[NSMutableArray alloc]init];
     pageCount = 1;
     goodsNumber = 1;
     chooseKey = @"";
-    self.buttonsArray = @[_itemButton1,_itemButton2,_itemButton3,_itemButton4];
+    self.buttonsArray = @[_sxBtn1,_sxBtn2,_sxBtn3,_sxBtn4];
     
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:@{@"barid":[NSString stringWithFormat:@"%d",self.barid]}];
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     [nowDic setObject:@"20" forKey:@"per"];
     [self getData:nowDic];
     __weak __typeof(self)weakSelf = self;
-    self.collectionview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         pageCount=1;
         
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [weakSelf getData:nowDic];
     }];
-    self.collectionview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [self getDataWithDicMore:nowDic];
     }];
-    _itemButton1.selected=true;
-
-}
-#pragma 返回按键点击事件
-- (void)backBtnClick{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma 展示购物车
+- (void)showcarAct{
+    LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
+    carListViewController.title=@"购物车";
+    [self.navigationController pushViewController:carListViewController animated:YES];
+}
 
-#pragma mark 获取数据
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma 获得数据
 -(void)getData:(NSDictionary *)dic{
     
     __weak __typeof(self)weakSelf = self;
@@ -96,125 +93,112 @@
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
         
+        NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
             
             pageCount++;
-            [weakSelf.collectionview.mj_footer resetNoMoreData];
+            [weakSelf.collectionView.mj_footer resetNoMoreData];
         }
-
-            [weakSelf.collectionview reloadData];
-        
+        [weakSelf.collectionView reloadData];
     }];
-    [weakSelf.collectionview.mj_header endRefreshing];
+    [weakSelf.collectionView.mj_header endRefreshing];
 }
-#pragma mark 获取更多数据
+
+#pragma 获得更多数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getCHListWithParams:dic block:^(NSMutableArray *result) {
         if(result.count>0){
             [dataList addObjectsFromArray:result];
             pageCount++;
-            [weakSelf.collectionview reloadData];
+            [weakSelf.collectionView reloadData];
         }else{
-            [weakSelf.collectionview.footer noticeNoMoreData];
+            [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
     
-    [weakSelf.collectionview.mj_footer endRefreshing];
+    [weakSelf.collectionView.mj_footer endRefreshing];
     
 }
 
-//定义展示的UIcollectionviewCell的个数
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    NSLog(@"section");
+    return 1;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    NSLog(@"--------------section:%d",dataList.count);
-    if(dataList.count > 0){
+    if(dataList.count){
         return dataList.count;
     }else{
         return 0;
     }
 }
 
-//定义展示的Section的个数
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    NSLog(@"--------------row:%d",dataList.count);
-    return 1;
-}
-
-
-
-
-
-//每个UIcollectionview展示的内容
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    NSLog(@"--------------indexPath:%@",indexPath);
-    if(dataList.count > 0){
-        static NSString * CellIdentifier = @"chiheCell";
-        chiheDetailCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-        if(!cell){
-            
-            cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-//            cell = [[[NSBundle mainBundle]loadNibNamed:@"chiheDetailCollectionCell" owner:nil options:nil]firstObject];
-        }
-        cell.goodImage.image=nil;
-        //    cell.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(217, 217, 217, 217));
-        cell.layer.borderColor = [[UIColor lightGrayColor]CGColor];
-        cell.layer.borderWidth = 0.5;
-        cell.layer.cornerRadius = 5.f;
-        cell.layer.masksToBounds = YES;
-        
-        CheHeModel *chiHeModel=dataList[indexPath.row];
-        chiHeModel.barname=self.barName;
-        [cell configureCell:chiHeModel];
-        return cell;
-    }else{
-        return nil;
+    NSLog(@"index");
+    static NSString * CellIdentifier = @"chiheCell";
+    chiheDetailCollectionCell * cell;
+    [collectionView registerNib:[UINib nibWithNibName:@"chiheDetailCollectionCell" bundle:nil] forCellWithReuseIdentifier:CellIdentifier];
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath ];
+    if(!cell){
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"chiheDetailCollectionCell" owner:nil options:nil]firstObject];
     }
+    cell.goodImage.image=nil;
+    //    cell.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(217, 217, 217, 217));
+    cell.layer.borderColor = [[UIColor lightGrayColor]CGColor];
+    cell.layer.borderWidth = 0.5;
+    cell.layer.cornerRadius = 5.f;
+    cell.layer.masksToBounds = YES;
+    cell.userInteractionEnabled = YES;
+    
+    CheHeModel *chiHeModel=dataList[indexPath.row];
+    chiHeModel.barname=self.barName;
+    [cell configureCell:chiHeModel];
+    return cell;
 }
 
 #pragma mark --UIcollectionviewDelegateFlowLayout
 //定义每个UIcollectionview 的大小
 - (CGSize)collectionview:(UICollectionView *)collectionview layout:(UICollectionViewLayout*)collectionviewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(152, 288);
+    return CGSizeMake(151, 288);
 }
 
-#pragma mark --UIcollectionviewDelegate
-//UIcollectionview被选中时调用的方法
--(void)collectionview:(UICollectionView *)collectionview didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(4, 4, 4, 4);
+}
+
+#pragma collectionview相应点击事件
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CheHeModel *chiHeModel=dataList[indexPath.row];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     CHJiuPinDetailViewController *jiuPinDetailViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHJiuPinDetailViewController"];
     jiuPinDetailViewController.title=@"套餐详情";
     jiuPinDetailViewController.shopid=chiHeModel.id;
     [self.navigationController pushViewController:jiuPinDetailViewController animated:YES];
-    
-    
+
 }
+
 //返回这个UIcollectionview是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionview shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
 
-#pragma 通过加号减号修改数量
-- (IBAction)changeType:(UIButton *)sender {
+- (IBAction)sxBtnClick:(ShaiXuanBtn *)sender {
     ShaiXuanBtn *btn=(ShaiXuanBtn*)sender;
     //    NSString *sortkey=@"";
     //    NSString *choosekey = @"";
     for (UIButton *button in _buttonsArray) {
         if(button.tag == btn.tag){
-            button.selected = YES;
+//            button.selected = YES;
             [button setBackgroundColor:[UIColor whiteColor]];
             [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
         }else{
-            button.selected = NO;
+//            button.selected = NO;
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [button setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+            [button setBackgroundColor:RGBA(114, 5, 147, 1)];
         }
     }
     if(btn.tag == 100){
@@ -226,17 +210,13 @@
     }else if(btn.tag == 103){
         chooseKey = @"鸡尾酒";
     }else{
+        
         [btn setBackgroundColor:[UIColor whiteColor]];
         [btn setImage:[UIImage imageNamed:@"more_purper"] forState:UIControlStateNormal];
+        [self showMoreButtons];
         return;
     }
     [self chooseWineBy:chooseKey];
-}
-
-- (IBAction)changeNumber:(UIButton *)sender {
-}
-
-- (IBAction)AddToShoppingCar:(UIButton *)sender {
 }
 
 #pragma 选取好条件后进行筛选
@@ -253,40 +233,50 @@
 
 #pragma 点击更多按钮弹出界面
 - (void)showMoreButtons{
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, 64)];
-    [view setBackgroundColor:[UIColor whiteColor]];
+    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 64)];
+    [_MoreView setBackgroundColor:[UIColor whiteColor]];
     
-    UIButton *button1 = [[UIButton alloc]initWithFrame:CGRectMake(8, 52, 96, 32)];
+    UIButton *button1 = [[UIButton alloc]initWithFrame:CGRectMake(8, 16, 96, 32)];
     button1.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor lightGrayColor]);
     button1.layer.borderWidth = 0.5;
     button1.layer.cornerRadius = 3;
     button1.layer.masksToBounds = YES;
     [button1 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
-    [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [button1 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [button1 setTitle:@"香槟" forState:UIControlStateNormal];
+    [button1 setBackgroundColor:[UIColor whiteColor]];
     [button1 setTag:81];
     [button1 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *button2 = [[UIButton alloc]initWithFrame:CGRectMake(112, 52, 96, 32)];
-    button2.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor lightGrayColor]);
+    UIButton *button2 = [[UIButton alloc]initWithFrame:CGRectMake(112, 16, 96, 32)];
+    button2.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
     button2.layer.borderWidth = 0.5;
     button2.layer.cornerRadius = 3;
     button2.layer.masksToBounds = YES;
     [button2 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
-    [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [button2 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+    [button2 setBackgroundColor:[UIColor whiteColor]];
+    [button2 setTitle:@"其他" forState:UIControlStateNormal];
     [button2 setTag:82];
     [button2 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_MoreView addSubview:button1];
+    [_MoreView addSubview:button2];
+    
+    [self.view addSubview:_MoreView];
 }
 
 #pragma 点击更多界面中按钮后发生的事情
 - (void)chooseType:(UIButton *)sender{
-    [sender setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+    [self.MoreView removeFromSuperview];
+    
+    [sender setBackgroundColor:RGBA(114, 5, 147, 1)];
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    [_itemButton5 setBackgroundColor:[UIColor whiteColor]];
-    [_itemButton5 setTitleColor:RGBA(114, 5, 147, 0.85) forState:UIControlStateNormal];
-    [_itemButton5 setTitle:sender.titleLabel.text forState:UIControlStateNormal];
+    [_sxBtn5 setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    [_sxBtn5 setBackgroundColor:[UIColor whiteColor]];
+    [_sxBtn5 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+    [_sxBtn5 setTitle:sender.titleLabel.text forState:UIControlStateNormal];
     if(sender.tag == 81){
         chooseKey = @"香槟";
     }else if(sender.tag == 82){
@@ -321,11 +311,6 @@
         }
     }
     [self getData:nowDic];
-}
--(void)showcarAct{
-    LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
-    carListViewController.title=@"购物车";
-    [self.navigationController pushViewController:carListViewController animated:YES];
 }
 
 
