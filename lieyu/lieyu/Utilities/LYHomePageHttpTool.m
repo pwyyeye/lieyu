@@ -532,8 +532,27 @@
     } failure:^(NSError *err) {
         [app stopLoading];
         result(NO);
-        
-        
+    }];
+}
+
+#pragma mark 给酒吧点赞
+- (void)likeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result{
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_DIANZANG baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            result(YES);
+            [MyUtil showMessage:message];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+    } failure:^(NSError *err) {
+          [app stopLoading];
+        result(NO);
     }];
 }
 @end

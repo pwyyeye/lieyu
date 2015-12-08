@@ -154,7 +154,8 @@
 }
 #pragma mark - 注册
 - (IBAction)zhuceAct:(UIButton *)sender {
-    LYRegistrationViewController *registrationViewController=[[LYRegistrationViewController alloc]initWithNibName:@"LYRegistrationViewController" bundle:nil];
+//    LYRegistrationViewController *registrationViewController=[[LYRegistrationViewController alloc]initWithNibName:@"LYRegistrationViewController" bundle:nil];
+    LYRegistrationViewController *registrationViewController = [LYRegistrationViewController shareRegist];
     registrationViewController.title=@"注册";
     registrationViewController.delegate=self;
     [self.navigationController pushViewController:registrationViewController animated:YES];
