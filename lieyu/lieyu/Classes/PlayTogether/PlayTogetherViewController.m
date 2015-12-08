@@ -46,9 +46,6 @@
 @property (nonatomic, strong) UIView *selectView;
 @property (nonatomic, strong) NSArray *itemsArray;
 
-//@property (nonatomic, strong) NSMutableArray *areaArray;
-//@property (nonatomic, strong) NSMutableArray *typeArray;
-//@property (nonatomic, strong) NSMutableArray *distanceArray;
 
 @end
 
