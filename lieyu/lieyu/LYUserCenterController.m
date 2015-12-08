@@ -320,7 +320,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         //若该实例实现了viewWillDisappear方法，则调用
         if ([lastController respondsToSelector:@selector(viewWillDisappear:)])
         {
-            [lastController viewWillDisappear:animated];
+//            [lastController viewWillDisappear:animated];
         }
         
         

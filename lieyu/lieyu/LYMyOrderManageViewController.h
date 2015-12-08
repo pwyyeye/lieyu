@@ -39,6 +39,8 @@ typedef NS_ENUM(NSInteger, LYOrderType) {
 
 @property(assign,nonatomic) LYOrderType orderType;
 
+
+
 - (IBAction)gohomeAct:(UIButton *)sender;
 
 @end

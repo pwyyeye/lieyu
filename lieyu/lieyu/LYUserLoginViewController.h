@@ -30,5 +30,7 @@
 - (IBAction)otherAct:(UIButton *)sender;
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btn_getBack;
+
+@property(strong,nonatomic) NSTimer *timer;
 - (void)autoLogin;
 @end
