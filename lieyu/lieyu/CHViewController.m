@@ -116,7 +116,7 @@
             pageCount++;
             [weakSelf.collectionview reloadData];
         }else{
-            [weakSelf.collectionview.footer noticeNoMoreData];
+            [weakSelf.collectionview.mj_footer noticeNoMoreData];
         }
     }];
     

@@ -32,7 +32,7 @@
     self.title=@"购物车";
     dataList=[[NSMutableArray alloc]init];
 //    [self getData];
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carnumChange) name:@"carnumChange" object:nil];
     // Do any additional setup after loading the view from its nib.
 }

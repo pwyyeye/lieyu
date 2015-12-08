@@ -314,7 +314,6 @@
 		381A01F91C144E1B00592485 /* shoppingCar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01F31C144E1B00592485 /* shoppingCar@3x.png */; };
 		381FEFF41C166AB8002A47BA /* bartypeslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A131C15232A0088CD86 /* bartypeslistModel.m */; };
 		381FEFFA1C1672EF002A47BA /* DanPinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 381FEFF81C1672EF002A47BA /* DanPinCell.xib */; };
-		381FEFFD1C16795E002A47BA /* DanPinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 381FEFFC1C16795E002A47BA /* DanPinViewController.m */; };
 		381FF0011C168755002A47BA /* icon_zixun_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 381FEFFE1C168755002A47BA /* icon_zixun_normal.png */; };
 		381FF0021C168755002A47BA /* icon_zixun_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381FEFFF1C168755002A47BA /* icon_zixun_normal@2x.png */; };
 		381FF0031C168755002A47BA /* icon_zixun_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381FF0001C168755002A47BA /* icon_zixun_normal@3x.png */; };
@@ -653,6 +652,12 @@
 		ADB164CE1C167733000BAD3C /* refresh7.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164C61C167733000BAD3C /* refresh7.png */; };
 		ADB164CF1C167733000BAD3C /* refresh8.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164C71C167733000BAD3C /* refresh8.png */; };
 		ADB164D11C167A13000BAD3C /* mjRefresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164D01C167A13000BAD3C /* mjRefresh@2x.png */; };
+		ADB164D21C16BBB6000BAD3C /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
+		ADB164D31C16BBBF000BAD3C /* LYUserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
+		ADB164D41C16BBF7000BAD3C /* MineBigBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */; };
+		ADB164D51C16BBF9000BAD3C /* MineBigBG@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3C1C15D1440088CD86 /* MineBigBG@2x.jpg */; };
+		ADB164D61C16BBFB000BAD3C /* MineBigBG@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3D1C15D1440088CD86 /* MineBigBG@3x.jpg */; };
+		ADB164D71C16BECD000BAD3C /* BirthdayPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A331C15BC520088CD86 /* BirthdayPickerView.xib */; };
 		ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */; };
 		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
 		ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
@@ -1319,8 +1324,6 @@
 		381A01F21C144E1B00592485 /* shoppingCar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoppingCar@2x.png"; sourceTree = "<group>"; };
 		381A01F31C144E1B00592485 /* shoppingCar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoppingCar@3x.png"; sourceTree = "<group>"; };
 		381FEFF81C1672EF002A47BA /* DanPinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DanPinCell.xib; sourceTree = "<group>"; };
-		381FEFFB1C16795E002A47BA /* DanPinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DanPinViewController.h; sourceTree = "<group>"; };
-		381FEFFC1C16795E002A47BA /* DanPinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DanPinViewController.m; sourceTree = "<group>"; };
 		381FEFFE1C168755002A47BA /* icon_zixun_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zixun_normal.png; sourceTree = "<group>"; };
 		381FEFFF1C168755002A47BA /* icon_zixun_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zixun_normal@2x.png"; sourceTree = "<group>"; };
 		381FF0001C168755002A47BA /* icon_zixun_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zixun_normal@3x.png"; sourceTree = "<group>"; };
@@ -2346,8 +2349,6 @@
 				381FEFF51C1672C5002A47BA /* cell */,
 				1559DCF31BD9D6AC00F3FE9B /* CHJiuPinDetailViewController.h */,
 				1559DCF41BD9D6AC00F3FE9B /* CHJiuPinDetailViewController.m */,
-				381FEFFB1C16795E002A47BA /* DanPinViewController.h */,
-				381FEFFC1C16795E002A47BA /* DanPinViewController.m */,
 			);
 			name = "吃喝明细";
 			sourceTree = "<group>";
@@ -5139,6 +5140,7 @@
 				15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */,
 				ADD68E391BE10E550060E751 /* 2@3x.png in Resources */,
 				D74C608C1BB6F0BF00A49598 /* BearBarListViewController.xib in Resources */,
+				ADB164D41C16BBF7000BAD3C /* MineBigBG.jpg in Resources */,
 				A2F9DA711BAA667D009DEAF3 /* OrderHeadView.xib in Resources */,
 				38E5D6DB1C0EFBA2004B49D2 /* leftBackItem@2x.png in Resources */,
 				ADD68E321BE10E400060E751 /* 3_retina.png in Resources */,
@@ -5205,6 +5207,7 @@
 				389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */,
 				15EB35671BD4840300BA6161 /* WeiboSDK.bundle in Resources */,
 				ADD68E291BE10E330060E751 /* 2@2x.png in Resources */,
+				ADB164D51C16BBF9000BAD3C /* MineBigBG@2x.jpg in Resources */,
 				15EB354B1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib in Resources */,
 				3879F24B1C0D325D00B72629 /* BarInfoTableViewCell.xib in Resources */,
 				38E5D7A11C113879004B49D2 /* choose@2x.png in Resources */,
@@ -5344,6 +5347,7 @@
 				85F545461C14338D0013B92B /* biaoQianAdd.png in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				3879F2621C0D32EE00B72629 /* ContentTableViewCell.xib in Resources */,
+				ADB164D31C16BBBF000BAD3C /* LYUserDetailTableViewCell.xib in Resources */,
 				381A01D51C14228E00592485 /* AddCar_red@3x.png in Resources */,
 				ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */,
 				85EE804C1C0AF82D00958F76 /* LYBarDesrcTableViewCell.xib in Resources */,
@@ -5449,6 +5453,7 @@
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
 				389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */,
 				85F6258C1C0BE74E002858C8 /* LYHotBarMenuViewController.xib in Resources */,
+				ADB164D71C16BECD000BAD3C /* BirthdayPickerView.xib in Resources */,
 				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
 				85F5453D1C1408040013B92B /* circleWhite@3x.png in Resources */,
 				38E5D6EB1C0F106F004B49D2 /* LPBuyPriceCell.xib in Resources */,
@@ -5476,6 +5481,7 @@
 				15E240A21BB37EF60090D240 /* LYOrderDetailViewController.xib in Resources */,
 				ADF88E6E1C11613800CF5DED /* empyImage120.png in Resources */,
 				38E5D7A91C113879004B49D2 /* purper_add.png in Resources */,
+				ADB164D61C16BBFB000BAD3C /* MineBigBG@3x.jpg in Resources */,
 				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
 				15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */,
 				381A01E11C14229F00592485 /* more_white@3x.png in Resources */,
@@ -5862,7 +5868,6 @@
 				153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
 				15A4CF5C1BD86CF800C22C01 /* ShaiXuanBtn.m in Sources */,
-				381FEFFD1C16795E002A47BA /* DanPinViewController.m in Sources */,
 				38E5D7051C1044F3004B49D2 /* ManagerInfoCell.m in Sources */,
 				15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */,
 				152247B61BEB064600E68A2B /* IQTitleBarButtonItem.m in Sources */,
@@ -5894,6 +5899,7 @@
 				15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */,
 				38E72B561C15A18E002EFBDD /* ChiHeViewController.m in Sources */,
 				38E5D6E01C0F0E00004B49D2 /* LPBuyViewController.m in Sources */,
+				ADB164D21C16BBB6000BAD3C /* LYUserDetailSexTableViewCell.m in Sources */,
 				15EB35041BD1F4F900BA6161 /* PTTypeChooseCell.m in Sources */,
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
 				1559DD0A1BDA2A1200F3FE9B /* LYCarListViewController.m in Sources */,

@@ -64,6 +64,12 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
     self.collectionView.bounces=NO;//遇到边框不反弹
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
+}
+-(void)loadData{
+    [self.collectionView reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -84,7 +90,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
 }
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];

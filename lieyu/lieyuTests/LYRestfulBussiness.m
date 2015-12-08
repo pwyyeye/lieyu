@@ -14,11 +14,11 @@ HttpOperatorProvider * httpClient = nil;
 
 +(void)queryDrinksAction:(NSNumber *)miniprice maxPrice:(NSNumber *)maxPrice minnum:(NSNumber *)minium maxnum:(NSNumber *)maxnum handle:(bNetReqResponse)rep
 {
-    NSDictionary  * param =
-        @{@"minprice":[miniprice stringValue],
-          @"maxprice":[miniprice stringValue],
-          @"minnum":[miniprice stringValue],
-          @"maxnum":[miniprice stringValue]                     };
+//    NSDictionary  * param =
+//        @{@"minprice":[miniprice stringValue],
+//          @"maxprice":[miniprice stringValue],
+//          @"minnum":[miniprice stringValue],
+//          @"maxnum":[miniprice stringValue]                     };
     httpClient  = [[HttpOperatorProvider alloc] initWithBaseUrl:URL init:^(NSObject *obj) {
         
     }];

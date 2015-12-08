@@ -9,7 +9,7 @@
 #import "LYBaseViewController.h"
 #import "NeedHideNavigationBar.h"
 #import "CHChooseNumView.h"
-@interface CHJiuPinDetailViewController : LYBaseViewController<NeedHideNavigationBar>{
+@interface CHJiuPinDetailViewController : UIViewController{
     UIView  *_bgView;
     CHChooseNumView * numView;
     UIButton *surebutton;
