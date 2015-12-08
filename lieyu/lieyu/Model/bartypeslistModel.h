@@ -13,5 +13,5 @@
 @property (nonatomic,copy) NSString *imageid;
 @property (nonatomic,copy) NSString *imageurl;
 @property (nonatomic,copy) NSString *name;
-@property (nonatomic,unsafe_unretained) NSInteger *subids;
+@property (nonatomic,copy) NSString *subids;
 @end

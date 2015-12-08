@@ -30,17 +30,18 @@
 #import "ContentViewTaocan.h"
 #import "ManagerInfoCell.h"
 
-@interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate,LPAlertViewDelegate>
+@interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate,LPAlertViewDelegate,UITableViewDelegate>
 {
     TaoCanModel *taoCanModel;
     DWOredrNextCell *timeCell;
     DWOredrNextCell *typeCell;
     DWnumCell *numCell;
+    ManagerInfoCell *_managerCell;
+    LYOrderWriteTableViewCell *_writeCell;
     NSArray *zsArr;
     NSString *reachtime;
     NSString *gotype;
     TimePickerView *_timeView;
-    LYOrderWriteTableViewCell *_writeCell;
     ContentViewTaocan *view_taocan;
     NSInteger count;
 }
@@ -113,6 +114,10 @@
         return 48;
     }
     return 8;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.00001;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -241,12 +246,11 @@
              }
              }
              */
-            cell = [tableView dequeueReusableCellWithIdentifier:@"LYOrderWriteTableViewCell" forIndexPath:indexPath];
-            if (cell) {
-                _writeCell = (LYOrderWriteTableViewCell *)cell;
+            _writeCell = [tableView dequeueReusableCellWithIdentifier:@"LYOrderWriteTableViewCell" forIndexPath:indexPath];
                 [_writeCell.btn_chooseTime addTarget:self action:@selector(choseTime) forControlEvents:UIControlEventTouchUpInside];
                 [_writeCell.btn_isReserve addTarget:self action:@selector(isResrve) forControlEvents:UIControlEventTouchUpInside];
-            }
+            _writeCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return _writeCell;
         }
             break;
         case 2:
@@ -284,14 +288,10 @@
             //            [contactCell.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
             //            [contactCell.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
             ZSDetailModel *zsModel=zsArr[indexPath.row];
-            cell = [tableView dequeueReusableCellWithIdentifier:@"managerInfo" forIndexPath:indexPath];
-            if (cell) {
-                ManagerInfoCell *zsCell = (ManagerInfoCell *)cell;
-                zsCell.selectBtn.enabled = NO;
-                
-                [zsCell cellConfigureWithImage:zsModel.avatar_img name:zsModel.username stars:zsModel.servicestar];
-            }
-            
+            _managerCell = [tableView dequeueReusableCellWithIdentifier:@"managerInfo" forIndexPath:indexPath];
+            [_managerCell cellConfigureWithImage:zsModel.avatar_img name:zsModel.username stars:zsModel.servicestar];
+            _managerCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return _managerCell;
         }
             break;
     }
@@ -318,7 +318,8 @@
         [formatter setDateFormat:@"HH:mm"];
         NSString *dateString = [formatter stringFromDate:_timeView.timePicker.date];
         [_writeCell.btn_showTime setTitle:dateString forState:UIControlStateNormal];
-        reachtime = dateString;
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        reachtime = [formatter stringFromDate:_timeView.timePicker.date];
     }
 }
 
@@ -399,24 +400,41 @@
     //        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     //        [self.navigationController pushViewController:controller animated:YES];
     
+    if (indexPath.section == 3) {
+        [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
+        ZSDetailModel *zsModel=zsArr[indexPath.row];
+        if([zsModel.isFull isEqualToString:@"1"]){
+            [self showMessage:@"该经理的卡座已满,请选择其他专属经理!"];
+            return;
+        }
+        zsModel.issel=true;
+        for (int i=0; i<zsArr.count; i++) {
+            ZSDetailModel *zsModelTemp=zsArr[i];
+            if(i!=indexPath.row){
+                zsModelTemp.issel=false;
+            }
+        }
+        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+        [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+    }
 }
 #pragma mark 选择专属经理
--(void)chooseZS:(UIButton *)sender{
-    ZSDetailModel *zsModel=zsArr[sender.tag];
-    if([zsModel.isFull isEqualToString:@"1"]){
-        [self showMessage:@"该经理的卡座已满,请选择其他专属经理!"];
-        return;
-    }
-    zsModel.issel=true;
-    for (int i=0; i<zsArr.count; i++) {
-        ZSDetailModel *zsModelTemp=zsArr[i];
-        if(i!=sender.tag){
-            zsModelTemp.issel=false;
-        }
-    }
-    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
-    [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-}
+//-(void)chooseZS:(UIButton *)sender{
+//    ZSDetailModel *zsModel=zsArr[sender.tag];
+//    if([zsModel.isFull isEqualToString:@"1"]){
+//        [self showMessage:@"该经理的卡座已满,请选择其他专属经理!"];
+//        return;
+//    }
+//    zsModel.issel=true;
+//    for (int i=0; i<zsArr.count; i++) {
+//        ZSDetailModel *zsModelTemp=zsArr[i];
+//        if(i!=sender.tag){
+//            zsModelTemp.issel=false;
+//        }
+//    }
+//    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+//    [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+//}
 
 #pragma mark 私聊
 -(void)siliaoAct:(UIButton *)sender{
@@ -502,7 +520,8 @@
             return;
         }
         
-        NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:taoCanModel.smid],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":numCell.numLal.text,@"consumptionStatus":gotype};
+        NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:taoCanModel.smid],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":_writeCell.label_count.text,@"consumptionStatus":gotype};
+        NSLog(@"dic_______________>%@",dic);
         [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
                 //                [MyUtil showMessage:result];

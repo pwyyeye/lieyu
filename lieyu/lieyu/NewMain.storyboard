@@ -1900,15 +1900,11 @@
                                     <outlet property="delegate" destination="Y3d-hz-Bdd" id="ccN-fV-Cnd"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1k-pl-qVL">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1k-pl-qVL">
                                 <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.96862745100000003" green="0.54117647059999996" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="OIE-c8-QRG"/>
-                                    <constraint firstAttribute="width" constant="320" id="dkq-Dt-a6x"/>
-                                </constraints>
-                                <state key="normal" title="马上支付">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="马上支付" backgroundImage="purpleBtnBG.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1919,9 +1915,6 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="LwC-F3-lc5" firstAttribute="top" secondItem="I1k-pl-qVL" secondAttribute="bottom" id="HVH-p2-GsE"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="payBtn" destination="I1k-pl-qVL" id="WnD-ec-JZi"/>
@@ -2511,6 +2504,7 @@
         <image name="jiageUp" width="64" height="31"/>
         <image name="jian2" width="32" height="32"/>
         <image name="phoneLv" width="19" height="19"/>
+        <image name="purpleBtnBG.png" width="2" height="54"/>
         <image name="shaixuan" width="64" height="31"/>
         <image name="shaixuanSel" width="64" height="31"/>
         <image name="share" width="20" height="20"/>

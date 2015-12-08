@@ -173,7 +173,7 @@
         NSDictionary *dataDic = response[@"data"];
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
-        
+        NSLog(@"---->%@",response);
         if ([code isEqualToString:@"1"]) {
             JiuBaModel *jiuBaModel=[JiuBaModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
@@ -266,9 +266,6 @@
         
     } failure:^(NSError *err) {
         [app stopLoading];
-        
-        
-        
     }];
     
 }

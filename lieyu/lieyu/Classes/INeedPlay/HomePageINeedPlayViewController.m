@@ -418,6 +418,8 @@ UITableViewDataSource,UITableViewDelegate,
     
     hotJiuBarVC.titleArray = titleArray;
     hotJiuBarVC.middleStr = titleArray[button.tag];
+    hotJiuBarVC.bartypeArray = self.bartypeslistArray;
+    hotJiuBarVC.subidStr = ((bartypeslistModel *)self.bartypeslistArray[button.tag]).subids;
     [self.navigationController pushViewController:hotJiuBarVC animated:YES];
 }
 
