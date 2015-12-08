@@ -8,11 +8,8 @@
 
 #import "BeerBarDetailViewController.h"
 #import "MacroDefinition.h"
-//#import "BeerBarDetailCell.h"
-//#import "PacketBarCell.h"
 #import "LYShareSnsView.h"
 #import "UMSocial.h"
-//#import "LYAdshowCell.h"
 #import "LYColors.h"
 #import "LYToPlayRestfulBusiness.h"
 #import "BeerBarOrYzhDetailModel.h"
@@ -30,25 +27,23 @@
 #import "LYBarDesrcTableViewCell.h"
 #import "LYUserHttpTool.h"
 #import "LYHomePageHttpTool.h"
-
 #import "CHViewController.h"
 #import "ChiHeViewController.h"
 
 @interface BeerBarDetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
+{
+    NSManagedObjectContext *_context;
+    NSString *_userid;
+}
 
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property (weak, nonatomic) IBOutlet UIImageView *image_layer;
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
-//@property(nonatomic,strong)IBOutlet BeerBarDetailCell *barDetailCell;
-@property(nonatomic,strong)IBOutlet UITableViewCell *orderTotalCell;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UILabel *label_count;
 @property (weak, nonatomic) IBOutlet UIImageView *image_like;
-
 @property(nonatomic,weak)IBOutlet UIView *bottomBarView;
 @property (weak, nonatomic) IBOutlet UIButton *btn_like;
 @property(nonatomic,assign)CGFloat dyBarDetailH;
-
 @property(nonatomic,strong) BeerBarOrYzhDetailModel *beerBarDetail;
 
 @end
@@ -61,40 +56,35 @@
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
+     self.tableView.scrollEnabled = NO;
     
-    // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBarHidden=YES;
     _scrollView.delegate = self;
-    
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height);
-    self.tableView.scrollEnabled = NO;
-    
     self.scrollView.showsVerticalScrollIndicator=NO;
     self.scrollView.showsHorizontalScrollIndicator=NO;
     [self setupViewStyles];                                                     //tableView registe cell
     [self loadBarDetail];                                                       //load data
+
+    self.image_layer.hidden = YES;
     
-    //喜欢按钮圆角
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    _context = app.managedObjectContext;
+    _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
+}
+//喜欢按钮圆角
+- (void)setUpBtn_like{
     self.btn_like.layer.cornerRadius = CGRectGetWidth(self.btn_like.frame)/2.0;
     self.btn_like.layer.masksToBounds = YES;
-    
-    self.image_layer.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    if (self.beerBarDetail) {
-//        //判断用户是否已经喜欢过
-//        NSLog(@"----pass-pass%@---",self.beerBarDetail);
-//        
-//        NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
-//        [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
-//            if (!result) {
-//                
-//            }
-//        }];
-//    }
-    
+    //判断用户是否已经喜欢过
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]]) {
+        //收藏过
+        [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -119,8 +109,6 @@
     {
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
-            weakSelf.label_count.text = detailItem.like_num;
-            NSLog(@"-------->%d",detailItem.recommend_package.count);
             if(!detailItem.recommend_package.count){
                 _bottomBarView.hidden = YES;
                 _scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -136,7 +124,7 @@
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - 64) {
+    if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - self.image_layer.size.height) {
         self.image_layer.hidden = NO;
     }else{
         self.image_layer.hidden = YES;
@@ -149,8 +137,6 @@
     UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
     
     NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.descriptions];
-    NSLog(@"%@",webStr);
-   //  CGFloat scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
     
     webView.delegate = self;
     [webView sizeToFit];
@@ -175,13 +161,20 @@
 #pragma mark 喜欢按钮
 - (IBAction)likeClick:(UIButton *)sender {
     NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
+    
+    __weak BeerBarDetailViewController *weakSelf = self;
     [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
         if (result) {
-            [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+            
+            [[NSUserDefaults standardUserDefaults] setObject:weakSelf.beerBarDetail.barid forKey:[NSString stringWithFormat:@"%@%@",_userid,weakSelf.beerBarDetail.barid]];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
         }
     }];
 }
 
+//注册单元格
 - (void)setupViewStyles
 {
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -191,12 +184,6 @@
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarSpecialTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarSpecialTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarDescTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDescTitleTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarDesrcTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDesrcTableViewCell"];
-    
-    //    LYShareSnsView * shareView = [LYShareSnsView loadFromNib];
-    //    [self.view addSubview:shareView];
-    //    CGPoint center = self.view.center;
-    //    center.y = self.view.frame.size.height - 69-64;
-    //    shareView.center = center;
     
     self.bottomBarView.backgroundColor = [LYColors tabbarBgColor];
     //_dyBarDetailH = [BeerBarDetailCell adjustCellHeight:nil];
@@ -257,7 +244,6 @@
         case 0:
         {
             LYHeaderTableViewCell *headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
-            //[headerCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.banners[0]]];
             headerCell.label_laBa.text = self.beerBarDetail.announcement.content;
             
             

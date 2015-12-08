@@ -53,7 +53,7 @@
 }
 
 - (void)dropClick:(MenuButton *)button{
-    if ([_delegate respondsToSelector:@selector(didClickHotBarMenuDropWithButton:dropButtonIndex:)]) {
+    if ([_delegate respondsToSelector:@selector(didClickHotBarMenuDropWithButton:dropButton:)]) {
         MenuButton *menuBtn = (MenuButton *)[self viewWithTag:4];
         if (menuBtn) {
             for (MenuButton *btn in _dropMenuView.btnArray) {
@@ -64,7 +64,7 @@
                     
                 }
             }
-            [_delegate didClickHotBarMenuDropWithButton:menuBtn dropButtonIndex:button.tag];
+            [_delegate didClickHotBarMenuDropWithButton:menuBtn dropButton:button];
             [menuBtn setTitle:button.currentTitle forState:UIControlStateNormal];
             _selectTitle = button.currentTitle;
             [self hideWithReset:YES];

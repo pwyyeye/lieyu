@@ -23,4 +23,5 @@
 @property (weak, nonatomic) IBOutlet UITextField *againPassWordTex;
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (nonatomic, weak) id <LYResetPasswordDelegate> delegate;
++ (LYResetPasswordViewController *)shareReset;
 @end

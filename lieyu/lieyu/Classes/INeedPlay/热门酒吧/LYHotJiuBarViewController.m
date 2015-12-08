@@ -51,7 +51,7 @@
 
     LYHotBarMenuView *menuView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
     menuView.delegate = self;
-    NSArray *array1 = @[@"所有地区",@"虹口区",@"普陀区",@"闵行区",@"浦东",@"宝山区",@"徐汇区",@"嘉定区",@"长宁区",@"松江区"];
+    NSArray *array1 = @[@"所有地区",@"虹口区",@"普陀区",@"闵行区",@"浦东区",@"宝山区",@"徐汇区",@"嘉定区",@"长宁区",@"松江区"];
     NSArray *array2 = _titleArray;
     NSArray *array3 = @[@"离我最近",@"人均最高",@"人均最低",@"返利最高"];
     [menuView deployWithMiddleTitle:_middleStr ItemArray:@[array1,array2,array3]];
@@ -106,7 +106,7 @@
    // hList.bartype = mainType;
     
    
-    hList.addressStr = _addressStr;
+    hList.address = _addressStr;
     hList.subids = _subidStr;
     hList.need_page = @(1);
     hList.p = @(_curPageIndex);
@@ -178,20 +178,20 @@
 }
 
 #pragma 菜单代理
-- (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButtonIndex:(NSInteger)index{
-    NSLog(@"----------%ld---------%ld",button.section,index);
+- (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButton:(MenuButton *)dropButton{
+
     
     switch (button.section) {
         case 2:
         {
-            bartypeslistModel *bartypeModel = self.bartypeArray[index];
+            bartypeslistModel *bartypeModel = self.bartypeArray[dropButton.tag];
             _subidStr = bartypeModel.subids;
            [self getData];
         }
             break;
         case 1:
         {
-            _addressStr = button.currentTitle;
+            _addressStr = dropButton.currentTitle;
              [self getData];
         }
             break;
@@ -201,7 +201,7 @@
             //2.人均最高
             //3.人均最低
             //4.返利最高
-            switch (index) {
+            switch (dropButton.tag) {
                 case 0:
                 {
                     _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];

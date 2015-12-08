@@ -152,7 +152,7 @@
 {
     __weak LYHomeSearcherViewController * weakSelf = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBaraCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
                 if (barList.count == PAGESIZE)
