@@ -1,12 +1,13 @@
 //
-//  CHshowDetailListViewController.m
+//  CHViewController.m
 //  lieyu
 //
-//  Created by 薛斯岐 on 15/10/22.
-//  Copyright (c) 2015年 狼族（上海）网络科技有限公司. All rights reserved.
+//  Created by 王婷婷 on 15/12/7.
+//  Copyright © 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "CHshowDetailListViewController.h"
+#import "CHViewController.h"
+
 #import "LYHomePageHttpTool.h"
 #import "chiheDetailCollectionCell.h"
 #import "MJRefresh.h"
@@ -14,7 +15,8 @@
 #import "ProductCategoryModel.h"
 #import "CHJiuPinDetailViewController.h"
 #import "LYCarListViewController.h"
-@interface CHshowDetailListViewController ()<CHShaiXuanDelegate>
+
+@interface CHViewController ()<CHShaiXuanDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
     NSMutableArray *dataList;
     NSMutableDictionary *nowDic;
@@ -29,10 +31,16 @@
 
 @end
 
-@implementation CHshowDetailListViewController
+@implementation CHViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    self.itemButton1.frame = CGRectMake(0, 64, 64, 36);
+//    
+//    self.collectionview.dataSource = self;
+//    self.collectionview.delegate = self;
+    [self.collectionview registerNib:[UINib nibWithNibName:@"chiheDetailCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"chiheCell"];
     
     [self.itemButton1 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
     [self.itemButton2 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
@@ -42,6 +50,9 @@
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick)];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     dataList = [[NSMutableArray alloc]init];
     pageCount = 1;
@@ -54,21 +65,27 @@
     [nowDic setObject:@"20" forKey:@"per"];
     [self getData:nowDic];
     __weak __typeof(self)weakSelf = self;
-    self.collectionview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.collectionview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         pageCount=1;
         
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [weakSelf getData:nowDic];
     }];
-    self.collectionview.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.collectionview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [self getDataWithDicMore:nowDic];
     }];
     _itemButton1.selected=true;
-    // Do any additional setup after loading the view from its nib.
+
 }
+#pragma 返回按键点击事件
+- (void)backBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 #pragma mark 获取数据
 -(void)getData:(NSDictionary *)dic{
     
@@ -79,15 +96,16 @@
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
         
-        NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
             
             pageCount++;
-            [weakSelf.collectionview.footer resetNoMoreData];
+            [weakSelf.collectionview.mj_footer resetNoMoreData];
         }
-        [weakSelf.collectionview reloadData];
+
+            [weakSelf.collectionview reloadData];
+        
     }];
-    [weakSelf.collectionview.header endRefreshing];
+    [weakSelf.collectionview.mj_header endRefreshing];
 }
 #pragma mark 获取更多数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{
@@ -102,50 +120,65 @@
         }
     }];
     
-    [weakSelf.collectionview.footer endRefreshing];
+    [weakSelf.collectionview.mj_footer endRefreshing];
     
 }
+
 //定义展示的UIcollectionviewCell的个数
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    if(dataList){
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    NSLog(@"--------------section:%d",dataList.count);
+    if(dataList.count > 0){
         return dataList.count;
+    }else{
+        return 0;
     }
-    return 0;
 }
+
 //定义展示的Section的个数
--(NSInteger)numberOfSectionsIncollectionview:(UICollectionView *)collectionview
-{
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    NSLog(@"--------------row:%d",dataList.count);
     return 1;
 }
+
+
+
+
+
 //每个UIcollectionview展示的内容
--(UICollectionViewCell *)collectionview:(UICollectionView *)collectionview cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString * CellIdentifier = @"CHDetailCollectionCell";
-    chiheDetailCollectionCell * cell = [collectionview dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.goodImage.image=nil;
-//    cell.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(217, 217, 217, 217));
-    cell.layer.borderColor = [[UIColor lightGrayColor]CGColor];
-    cell.layer.borderWidth = 0.5;
-    cell.layer.cornerRadius = 5.f;
-    cell.layer.masksToBounds = YES;
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    CheHeModel *chiHeModel=dataList[indexPath.row];
-    chiHeModel.barname=self.barName;
-    [cell configureCell:chiHeModel];
-    return cell;
+    NSLog(@"--------------indexPath:%@",indexPath);
+    if(dataList.count > 0){
+        static NSString * CellIdentifier = @"chiheCell";
+        chiheDetailCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+        if(!cell){
+            
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+//            cell = [[[NSBundle mainBundle]loadNibNamed:@"chiheDetailCollectionCell" owner:nil options:nil]firstObject];
+        }
+        cell.goodImage.image=nil;
+        //    cell.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(217, 217, 217, 217));
+        cell.layer.borderColor = [[UIColor lightGrayColor]CGColor];
+        cell.layer.borderWidth = 0.5;
+        cell.layer.cornerRadius = 5.f;
+        cell.layer.masksToBounds = YES;
+        
+        CheHeModel *chiHeModel=dataList[indexPath.row];
+        chiHeModel.barname=self.barName;
+        [cell configureCell:chiHeModel];
+        return cell;
+    }else{
+        return nil;
+    }
 }
+
 #pragma mark --UIcollectionviewDelegateFlowLayout
 //定义每个UIcollectionview 的大小
 - (CGSize)collectionview:(UICollectionView *)collectionview layout:(UICollectionViewLayout*)collectionviewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(151, 288);
+    return CGSizeMake(152, 288);
 }
-//定义每个UIcollectionview 的 margin
-//-(UIEdgeInsets)collectionview:(UIcollectionview *)collectionview layout:(UIcollectionviewLayout *)collectionviewLayout insetForSectionAtIndex:(NSInteger)section
-//{
-//    return UIEdgeInsetsMake(4, 4, 4, 0);
-//}
+
 #pragma mark --UIcollectionviewDelegate
 //UIcollectionview被选中时调用的方法
 -(void)collectionview:(UICollectionView *)collectionview didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -156,7 +189,7 @@
     jiuPinDetailViewController.title=@"套餐详情";
     jiuPinDetailViewController.shopid=chiHeModel.id;
     [self.navigationController pushViewController:jiuPinDetailViewController animated:YES];
-
+    
     
 }
 //返回这个UIcollectionview是否可以被选择
@@ -166,22 +199,12 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 #pragma 通过加号减号修改数量
 - (IBAction)changeType:(UIButton *)sender {
     ShaiXuanBtn *btn=(ShaiXuanBtn*)sender;
-//    NSString *sortkey=@"";
+    //    NSString *sortkey=@"";
     //    NSString *choosekey = @"";
     for (UIButton *button in _buttonsArray) {
         if(button.tag == btn.tag){
@@ -304,4 +327,6 @@
     carListViewController.title=@"购物车";
     [self.navigationController pushViewController:carListViewController animated:YES];
 }
+
+
 @end

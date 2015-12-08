@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol SelectManager<NSObject>
+
+- (void)selectManager:(int) index;
+
+@end
+
 
 @interface LPBuyManagerCell : UITableViewCell<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *managerList;
+
+@property (nonatomic, assign) id<SelectManager> delegate;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableVIew;
 

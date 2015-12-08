@@ -35,7 +35,17 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+    // Configure the view for the selected stat.
 }
+
+- (void)cellConfigure:(CheHeModel *)chiheModel{
+    _chiheModel = chiheModel;
+//    _imageView_header sd_setImageWithURL:[NSURL URLWithString:_chiheModel.] placeholderImage:<#(UIImage *)#>
+}
+
+
+
+
+
 
 @end

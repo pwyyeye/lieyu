@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请填写您需要支付的金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deG-MC-gLj">
-                    <rect key="frame" x="61" y="15" width="198" height="21"/>
+                    <rect key="frame" x="10" y="15" width="300" height="21"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="tQ7-a2-y0o"/>
@@ -42,10 +42,10 @@
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="deG-MC-gLj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="61" id="9Tu-mS-ss6"/>
+                <constraint firstItem="deG-MC-gLj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="9Tu-mS-ss6"/>
                 <constraint firstAttribute="trailing" secondItem="NTI-8Q-O3I" secondAttribute="trailing" constant="61" id="9ws-et-Gsh"/>
                 <constraint firstItem="NTI-8Q-O3I" firstAttribute="top" secondItem="deG-MC-gLj" secondAttribute="bottom" constant="24" id="Ucf-xe-S1p"/>
-                <constraint firstAttribute="trailing" secondItem="deG-MC-gLj" secondAttribute="trailing" constant="61" id="etj-bT-kZE"/>
+                <constraint firstAttribute="trailing" secondItem="deG-MC-gLj" secondAttribute="trailing" constant="10" id="etj-bT-kZE"/>
                 <constraint firstAttribute="trailing" secondItem="kAW-Gy-QGe" secondAttribute="trailing" constant="10" id="fvo-xm-CRX"/>
                 <constraint firstItem="NTI-8Q-O3I" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="61" id="ntO-D1-mgB"/>
                 <constraint firstItem="kAW-Gy-QGe" firstAttribute="top" secondItem="NTI-8Q-O3I" secondAttribute="bottom" constant="10" id="o0w-re-2TJ"/>

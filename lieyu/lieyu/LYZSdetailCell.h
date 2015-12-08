@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ZSDetailModel;
+#import "ZSDetailModel.h"
 
 @interface LYZSdetailCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;

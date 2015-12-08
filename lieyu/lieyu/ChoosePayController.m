@@ -108,17 +108,19 @@
 //            return;
 //        }
 //    }
-    UIViewController *detailViewController;
-    
-    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
     
 //    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
     
 //    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
 //    delegate.navigationController.navigationItem.backBarButtonItem=item;
-    [self.navigationController pushViewController:detailViewController animated:YES];
-
     
+    
+    //    UIViewController *detailViewController;
+    //
+    //    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//    [self.navigationController pushViewController:detailViewController animated:YES];
+
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source
@@ -209,7 +211,7 @@
         {
             UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
             cell.textLabel.text = @"总需支付";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"¥%.2f",_payAmount];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%g 元",_payAmount];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -232,11 +234,12 @@
             _payCell.detailTextLabel.textColor=RGB(102, 101, 102);
             _payCell.imageView.image=[UIImage imageNamed:[dic objectForKey:@"payicon"]];
             
-            PayButton *selectBtn = [[PayButton alloc]initWithFrame:CGRectMake(289,30, 20, 20)];
+            UIButton *selectBtn = [[UIButton alloc]initWithFrame:CGRectMake(289,30, 20, 20)];
+            selectBtn.backgroundColor = [UIColor clearColor];
             if (!indexPath.row) {
-                selectBtn.isSelect = YES;
+                selectBtn.selected = YES;
             }else{
-                selectBtn.isSelect = NO;
+                selectBtn.selected = NO;
             }
             selectBtn.tag = indexPath.row + 1;
             selectBtn.tag = indexPath.row;
@@ -339,7 +342,6 @@
         
         
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        //    delegate.navigationController.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
         
         UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
         delegate.navigationController.navigationItem.backBarButtonItem=item;

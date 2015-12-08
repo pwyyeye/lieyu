@@ -30,6 +30,9 @@
 #import "LYBarDesrcTableViewCell.h"
 #import "LYUserHttpTool.h"
 
+#import "CHViewController.h"
+#import "ChiHeViewController.h"
+
 @interface BeerBarDetailViewController ()<UIWebViewDelegate>
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -272,86 +275,6 @@
         }
             break;
         default:
-        {
-            
-            
-                    
-//                    LYBarDesrcTableViewCell *barDescCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDesrcTableViewCell" forIndexPath:indexPath];
-//                    barDescCell.label_content.text = self.beerBarDetail.announcement.content;
-//                    barDescCell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    
-//                    if (indexPath.row == 1 || indexPath.row == 5) {
-//                        barDescCell.imageView_content.hidden = YES;
-//                        barDescCell.label_content.text = self.beerBarDetail.announcement.content;
-//                    }else{
-//                        barDescCell.imageView_content.image = [UIImage imageNamed:@"jiuBarContent.jpg"];
-//                        barDescCell.label_content.hidden = YES;
-//                    }
-                    
-//                    cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-//                    UIWebView *oldWebView = (UIWebView *)[cell viewWithTag:100];
-//                    if (oldWebView) {
-//                        [oldWebView removeFromSuperview];
-//                    }
-//                    
-//                    UIWebView *webView = [[UIWebView alloc]init];
-//                    webView.tag = 100;
-//                    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" /></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.descriptions];
-//                   // CGFloat scrollHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
-//                    webView.delegate = self;
-//                    [webView sizeToFit];
-//                    [webView.scrollView setScrollEnabled:NO];
-//                    [webView setFrame:CGRectMake(0, 0, 320, 100)];
-//                    webView.scalesPageToFit = YES;
-//                    [webView loadHTMLString:webStr baseURL:nil];
-//                    [cell addSubview:webView];
-//                    return cell;
-            
-            
-//            NSString *kCustomCellID = @"QBPeoplePickerControllerCell";
-//            
-//                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCustomCellID] ;
-//                cell.accessoryType = UITableViewCellAccessoryNone;
-//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//                cell.backgroundColor=[UIColor whiteColor];
-//                UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
-//                [lal1 setTag:1];
-//                lal1.textAlignment=NSTextAlignmentLeft;
-//                lal1.font=[UIFont boldSystemFontOfSize:12];
-//                lal1.backgroundColor=[UIColor clearColor];
-//                lal1.textColor= RGB(128, 128, 128);
-//                lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
-//                lal1.lineBreakMode=UILineBreakModeWordWrap;
-//                [cell.contentView addSubview:lal1];
-//                
-//            }
-//            
-//            
-//            UILabel *lal = (UILabel*)[cell viewWithTag:1];
-//            NSString *title;
-//            if(_beerBarDetail.announcement){
-//               title=[NSString stringWithFormat:@"%@：\n     %@",_beerBarDetail.announcement.title,_beerBarDetail.announcement.content];
-//            }else{
-//                title=@"暂无公告";
-//            }
-//            
-//            
-//            //高度固定不折行，根据字的多少计算label的宽度
-//            
-//            CGSize size = [title sizeWithFont:lal.font
-//                            constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
-//                                lineBreakMode:NSLineBreakByWordWrapping];
-//            //        NSLog(@"size.width=%f, size.height=%f", size.width, size.height);
-//            //根据计算结果重新设置UILabel的尺寸
-//            lal.height=size.height;
-//            lal.text=title;
-//            CGRect cellFrame = [cell frame];
-//            cellFrame.origin=CGPointMake(0, 0);
-//            cellFrame.size.width=SCREEN_WIDTH;
-//            cellFrame.size.height=lal.size.height+20;
-//            
-//            [cell setFrame:cellFrame];
-        }
             break;
 
     }
@@ -428,19 +351,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if(indexPath.section==1){
-//        
-//        RecommendPackageModel * model = nil;
-//        model = indexPath.row < _beerBarDetail.recommend_package.count ?[_beerBarDetail.recommend_package objectAtIndex:indexPath.row]:nil;
-//        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
-//        DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
-//        taoCanXQViewController.title=@"套餐详情";
-//        taoCanXQViewController.smid=model.smid.intValue;
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-//        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//        taoCanXQViewController.dateStr=[dateFormatter stringFromDate:[NSDate new]];
-//        [self.navigationController pushViewController:taoCanXQViewController animated:YES];
-//    }
     if (indexPath.section == 2) {
         [self daohang];
     }
@@ -476,12 +386,11 @@
 }
 
 - (IBAction)chiHeAct:(UIButton *)sender {
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
-    CHshowDetailListViewController *showDetailListViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHshowDetailListViewController"];
-    showDetailListViewController.title=@"吃喝专场";
-    showDetailListViewController.barid=_beerBarDetail.barid.intValue;
-    showDetailListViewController.barName=_beerBarDetail.barname;
-    [self.navigationController pushViewController:showDetailListViewController animated:YES];
+    ChiHeViewController *CHDetailVC = [[ChiHeViewController alloc]initWithNibName:@"ChiHeViewController" bundle:[NSBundle mainBundle]];
+    CHDetailVC.title=@"吃喝专场";
+    CHDetailVC.barid=_beerBarDetail.barid.intValue;
+    CHDetailVC.barName=_beerBarDetail.barname;
+    [self.navigationController pushViewController:CHDetailVC animated:YES];
 }
 
 - (IBAction)zsliAct:(UIButton *)sender {
