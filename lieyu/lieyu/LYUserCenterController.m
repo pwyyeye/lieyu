@@ -131,10 +131,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     // Configure the cell
     cell.icon.image=nil;
     [cell.icon setContentMode:UIViewContentModeScaleAspectFit];
-    cell.icon.frame=CGRectMake(0, 15, 80, 50);
-    cell.text.frame=CGRectMake(0, 70, 80, 20);
+//    cell.icon.frame=CGRectMake(0, 15, 80, 30);
+//    cell.text.frame=CGRectMake(0, 70, 80, 20);
     
-     NSLog(@"----pass-------%@---", NSStringFromCGRect(cell.icon.frame));
+//     NSLog(@"----pass-------%@---", NSStringFromCGRect(cell.icon.frame));
     cell.text.text=@"";
     if (indexPath.row<6) {
         NSDictionary *dic=_data[indexPath.row];
