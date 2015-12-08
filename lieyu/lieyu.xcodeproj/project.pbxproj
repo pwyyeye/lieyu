@@ -636,6 +636,11 @@
 		ADB164CE1C167733000BAD3C /* refresh7.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164C61C167733000BAD3C /* refresh7.png */; };
 		ADB164CF1C167733000BAD3C /* refresh8.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164C71C167733000BAD3C /* refresh8.png */; };
 		ADB164D11C167A13000BAD3C /* mjRefresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164D01C167A13000BAD3C /* mjRefresh@2x.png */; };
+		ADB164D21C16BBB6000BAD3C /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
+		ADB164D31C16BBBF000BAD3C /* LYUserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
+		ADB164D41C16BBF7000BAD3C /* MineBigBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */; };
+		ADB164D51C16BBF9000BAD3C /* MineBigBG@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3C1C15D1440088CD86 /* MineBigBG@2x.jpg */; };
+		ADB164D61C16BBFB000BAD3C /* MineBigBG@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3D1C15D1440088CD86 /* MineBigBG@3x.jpg */; };
 		ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */; };
 		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
 		ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
@@ -5083,6 +5088,7 @@
 				15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */,
 				ADD68E391BE10E550060E751 /* 2@3x.png in Resources */,
 				D74C608C1BB6F0BF00A49598 /* BearBarListViewController.xib in Resources */,
+				ADB164D41C16BBF7000BAD3C /* MineBigBG.jpg in Resources */,
 				A2F9DA711BAA667D009DEAF3 /* OrderHeadView.xib in Resources */,
 				38E5D6DB1C0EFBA2004B49D2 /* leftBackItem@2x.png in Resources */,
 				ADD68E321BE10E400060E751 /* 3_retina.png in Resources */,
@@ -5110,7 +5116,6 @@
 				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
 				85F672BF1C09DCFB001BEE5B /* LYHomeSearchViewController.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
-				853E3A281C1582A40088CD86 /* purpleBtnBG@3x.png in Resources */,
 				ADB164D11C167A13000BAD3C /* mjRefresh@2x.png in Resources */,
 				85F5453C1C1408040013B92B /* circleWhite@2x.png in Resources */,
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
@@ -5146,6 +5151,7 @@
 				389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */,
 				15EB35671BD4840300BA6161 /* WeiboSDK.bundle in Resources */,
 				ADD68E291BE10E330060E751 /* 2@2x.png in Resources */,
+				ADB164D51C16BBF9000BAD3C /* MineBigBG@2x.jpg in Resources */,
 				15EB354B1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib in Resources */,
 				3879F24B1C0D325D00B72629 /* BarInfoTableViewCell.xib in Resources */,
 				38E5D7A11C113879004B49D2 /* choose@2x.png in Resources */,
@@ -5281,6 +5287,7 @@
 				85F545461C14338D0013B92B /* biaoQianAdd.png in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				3879F2621C0D32EE00B72629 /* ContentTableViewCell.xib in Resources */,
+				ADB164D31C16BBBF000BAD3C /* LYUserDetailTableViewCell.xib in Resources */,
 				381A01D51C14228E00592485 /* AddCar_red@3x.png in Resources */,
 				ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */,
 				85EE804C1C0AF82D00958F76 /* LYBarDesrcTableViewCell.xib in Resources */,
@@ -5407,6 +5414,7 @@
 				15E240A21BB37EF60090D240 /* LYOrderDetailViewController.xib in Resources */,
 				ADF88E6E1C11613800CF5DED /* empyImage120.png in Resources */,
 				38E5D7A91C113879004B49D2 /* purper_add.png in Resources */,
+				ADB164D61C16BBFB000BAD3C /* MineBigBG@3x.jpg in Resources */,
 				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
 				15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */,
 				381A01E11C14229F00592485 /* more_white@3x.png in Resources */,
@@ -5823,6 +5831,7 @@
 				15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */,
 				38E72B561C15A18E002EFBDD /* ChiHeViewController.m in Sources */,
 				38E5D6E01C0F0E00004B49D2 /* LPBuyViewController.m in Sources */,
+				ADB164D21C16BBB6000BAD3C /* LYUserDetailSexTableViewCell.m in Sources */,
 				15EB35041BD1F4F900BA6161 /* PTTypeChooseCell.m in Sources */,
 				D748BC591BA1C821005AA996 /* NSString+Expend.m in Sources */,
 				1559DD0A1BDA2A1200F3FE9B /* LYCarListViewController.m in Sources */,
