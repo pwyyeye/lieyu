@@ -21,14 +21,17 @@
 #import "LYHotBarMenuDropView.h"
 #import "BeerBarDetailViewController.h"
 #import "bartypeslistModel.h"
+#import "MenuButton.h"
 
 #define PAGESIZE 20
-#define YEDIAN @"激情夜店"
-#define WENYI @"文艺清吧"
-#define YINYUE @"音乐清吧"
-#define KTV @"ktv"
 
 @interface LYHotJiuBarViewController ()<UITableViewDataSource,UITableViewDelegate,LYHotBarMenuViewDelegate>
+{
+    NSString *_addressStr;
+    NSString *_pricedescStr;// 人均最高
+    NSString *_priceascStr;//人均最低
+    NSString *_rebatedescStr;//返利最高
+}
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
@@ -48,10 +51,9 @@
 
     LYHotBarMenuView *menuView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
     menuView.delegate = self;
-    NSArray *array1 = @[@"闵行区",@"浦东",@"宝山",@"徐汇",@"地区五",@"地区六",@"地区七"];
-        NSArray *array2 = _titleArray;
-    
-        NSArray *array3 = @[@"离我最近",@"h"];
+    NSArray *array1 = @[@"所有地区",@"虹口区",@"普陀区",@"闵行区",@"浦东",@"宝山区",@"徐汇区",@"嘉定区",@"长宁区",@"松江区"];
+    NSArray *array2 = _titleArray;
+    NSArray *array3 = @[@"离我最近",@"人均最高",@"人均最低",@"返利最高"];
     [menuView deployWithMiddleTitle:_middleStr ItemArray:@[array1,array2,array3]];
     [self.view addSubview:menuView];
     self.curPageIndex = 1;
@@ -102,9 +104,8 @@
    // hList.bartype = mainType;
     
    
-    
+    hList.addressStr = _addressStr;
     hList.subids = _subidStr;
-    
     hList.need_page = @(1);
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
@@ -175,21 +176,61 @@
 }
 
 #pragma 菜单代理
-- (void)didClickHotBarMenuDropWithButtonSection:(NSInteger)section dropButtonIndex:(NSInteger)index{
-    NSLog(@"----------%ld---------%ld",section,index);
-    bartypeslistModel *bartypeModel = self.bartypeArray[index];
-    switch (section) {
+- (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButtonIndex:(NSInteger)index{
+    NSLog(@"----------%ld---------%ld",button.section,index);
+    
+    switch (button.section) {
         case 2:
         {
+            bartypeslistModel *bartypeModel = self.bartypeArray[index];
             _subidStr = bartypeModel.subids;
+           [self getData];
+        }
+            break;
+        case 1:
+        {
+            _addressStr = button.currentTitle;
              [self getData];
         }
             break;
-            
+        case 3:
+        {
+            //1.离我最近
+            //2.人均最高
+            //3.人均最低
+            //4.返利最高
+            switch (index) {
+                case 0:
+                {
+                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
+                    [self.tableView reloadData];
+                }
+                    break;
+                case 1:
+                {
+                    
+                }
+                    break;
+                case 2:
+                {
+                    
+                }
+                    break;
+                case 3:
+                {
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+            break;
         default:
             break;
     }
-   
+    
 }
 
 

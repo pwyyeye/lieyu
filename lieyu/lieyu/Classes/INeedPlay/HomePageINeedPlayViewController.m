@@ -296,6 +296,7 @@ UITableViewDataSource,UITableViewDelegate,
     }
 }
 
+#pragma mark 离我最近
 - (IBAction)aroundMeClick:(id)sender {
     LYCloseMeViewController *closeMeVC = [[LYCloseMeViewController alloc]init];
     
