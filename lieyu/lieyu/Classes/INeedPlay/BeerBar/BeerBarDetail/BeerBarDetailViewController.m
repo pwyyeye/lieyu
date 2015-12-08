@@ -416,9 +416,9 @@
 - (IBAction)shareClick:(id)sender {
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UmengAppkey
-                                      shareText:@"你要分享的文字"
-                                     shareImage:[UIImage imageNamed:@"icon.png"]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,nil]
+                                      shareText:self.beerBarDetail.baricon
+                                     shareImage:self.beerBarDetail.baricon
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,UMShareToSms,UMShareToLWTimeline,nil]
                                        delegate:nil];
 }
 

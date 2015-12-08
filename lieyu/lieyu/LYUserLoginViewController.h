@@ -15,7 +15,7 @@
 
 @end
 
-@interface LYUserLoginViewController : LYBaseViewController
+@interface LYUserLoginViewController : UIViewController
 
 
 @property(strong,nonatomic) id<LoginDelegate> delegate;

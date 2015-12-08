@@ -19,20 +19,25 @@
     _step=60;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];
-    CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);
-    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-    [RGB(35, 166, 116) set];
-    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
-    UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [self.getYzmBtn setBackgroundImage:normalImg  forState:UIControlStateNormal];
-    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-    [RGB(199, 199, 199) set];
-    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
-    UIImage *selectedImg = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [self.getYzmBtn setBackgroundImage:selectedImg  forState:UIControlStateDisabled];
+   // CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);
+//    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
+//    [RGB(35, 166, 116) set];
+//    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
+//    UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    [self.getYzmBtn setBackgroundImage:normalImg  forState:UIControlStateNormal];
+//    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
+//    [RGB(199, 199, 199) set];
+//    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
+//    UIImage *selectedImg = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+   // [self.getYzmBtn setBackgroundImage:selectedImg  forState:UIControlStateDisabled];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,6 +126,16 @@
         
     }
     
+    
+}
+
+-(void)showMessage:(NSString*) message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:message message:nil delegate:nil  cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView setBackgroundColor:[UIColor clearColor]];
+    
+    //必须在这里调用show方法，否则indicator不在UIAlerView里面
+    [alertView show];
     
 }
 

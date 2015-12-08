@@ -39,9 +39,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if (self.navigationController.navigationBarHidden == NO) {
         [self.navigationController setNavigationBarHidden:YES];
-    }
 }
 
 - (void)viewWillLayoutSubviews
@@ -51,7 +49,7 @@
 //        [self.navigationController setNavigationBarHidden:YES];
 //    }
 //
-
+    self.navigationController.navigationBarHidden = YES;
     //self.userNameTex.layer.borderWidth = 0.5;
   //  self.userNameTex.layer.borderColor = RGBA(255,255,255, 0.2).CGColor;
    // self.userNameTex.layer.masksToBounds = YES;
@@ -113,6 +111,16 @@
         [self.navigationController popViewControllerAnimated:YES ];
 //        NSLog(result.username);
     }];
+}
+
+-(void)showMessage:(NSString*) message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:message message:nil delegate:nil  cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView setBackgroundColor:[UIColor clearColor]];
+    
+    //必须在这里调用show方法，否则indicator不在UIAlerView里面
+    [alertView show];
+    
 }
 #pragma mark - 自动登录
 - (void)autoLogin{
