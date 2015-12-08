@@ -618,8 +618,6 @@
 		AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD8899C91B9AFE61007BCC7C /* Images.xcassets */; };
 		AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */; };
 		AD8899D91B9AFE62007BCC7C /* lieyuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899D81B9AFE62007BCC7C /* lieyuTests.m */; };
-		AD8FAB5A1C153DCC00C45F1A /* lieyuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8FAB581C153DCC00C45F1A /* lieyuIcon@2x.png */; };
-		AD8FAB5B1C153DCC00C45F1A /* lieyuIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8FAB591C153DCC00C45F1A /* lieyuIcon@3x.png */; };
 		AD8FAB5D1C1570F600C45F1A /* libHCSStarRatingView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8FAB5C1C1570F600C45F1A /* libHCSStarRatingView.a */; };
 		AD8FAB601C15921500C45F1A /* mjRefresh.gif in Resources */ = {isa = PBXBuildFile; fileRef = AD8FAB5E1C15921500C45F1A /* mjRefresh.gif */; };
 		AD8FAB611C15921500C45F1A /* mjRefresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8FAB5F1C15921500C45F1A /* mjRefresh@2x.png */; };
@@ -633,6 +631,8 @@
 		AD92AEB81BE242A3009F2A34 /* LYTagTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEB71BE242A3009F2A34 /* LYTagTableViewController.m */; };
 		AD92AEBC1BE50AD9009F2A34 /* AboutLieyu.m in Sources */ = {isa = PBXBuildFile; fileRef = AD92AEBA1BE50AD9009F2A34 /* AboutLieyu.m */; };
 		AD92AEBD1BE50AD9009F2A34 /* AboutLieyu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD92AEBB1BE50AD9009F2A34 /* AboutLieyu.xib */; };
+		ADB164BD1C167095000BAD3C /* lieyuIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164BB1C167095000BAD3C /* lieyuIcon@2x.png */; };
+		ADB164BE1C167095000BAD3C /* lieyuIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164BC1C167095000BAD3C /* lieyuIcon@3x.png */; };
 		ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */; };
 		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
 		ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
@@ -1742,8 +1742,6 @@
 		AD8899D21B9AFE62007BCC7C /* lieyuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lieyuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899D71B9AFE62007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8899D81B9AFE62007BCC7C /* lieyuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lieyuTests.m; sourceTree = "<group>"; };
-		AD8FAB581C153DCC00C45F1A /* lieyuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@2x.png"; sourceTree = "<group>"; };
-		AD8FAB591C153DCC00C45F1A /* lieyuIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@3x.png"; sourceTree = "<group>"; };
 		AD8FAB5C1C1570F600C45F1A /* libHCSStarRatingView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHCSStarRatingView.a; path = "Pods/../build/Debug-iphoneos/libHCSStarRatingView.a"; sourceTree = "<group>"; };
 		AD8FAB5E1C15921500C45F1A /* mjRefresh.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mjRefresh.gif; sourceTree = "<group>"; };
 		AD8FAB5F1C15921500C45F1A /* mjRefresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mjRefresh@2x.png"; sourceTree = "<group>"; };
@@ -1763,6 +1761,8 @@
 		AD92AEB91BE50AD9009F2A34 /* AboutLieyu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutLieyu.h; sourceTree = "<group>"; };
 		AD92AEBA1BE50AD9009F2A34 /* AboutLieyu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutLieyu.m; sourceTree = "<group>"; };
 		AD92AEBB1BE50AD9009F2A34 /* AboutLieyu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutLieyu.xib; sourceTree = "<group>"; };
+		ADB164BB1C167095000BAD3C /* lieyuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@2x.png"; sourceTree = "<group>"; };
+		ADB164BC1C167095000BAD3C /* lieyuIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@3x.png"; sourceTree = "<group>"; };
 		ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.0.a; sourceTree = "<group>"; };
 		ADCDF7A91BF19A890040E9E3 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		ADCDF7AE1BF1A84F0040E9E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -4360,6 +4360,8 @@
 		ADE103C31BE0EBCC00D9EC38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ADB164BB1C167095000BAD3C /* lieyuIcon@2x.png */,
+				ADB164BC1C167095000BAD3C /* lieyuIcon@3x.png */,
 				853E3A351C15D08B0088CD86 /* getYZM.png */,
 				853E3A361C15D08B0088CD86 /* getYZM@2x.png */,
 				853E3A371C15D08B0088CD86 /* getYZM@3x.png */,
@@ -5089,7 +5091,6 @@
 				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
 				389C010A1C1488F000FE9412 /* seeGirls@3x.png in Resources */,
 				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
-				AD8FAB5A1C153DCC00C45F1A /* lieyuIcon@2x.png in Resources */,
 				85F5453E1C1408040013B92B /* circleWhiteSelect.png in Resources */,
 				15E240D71BB3E8610090D240 /* MyPKfriendCell.xib in Resources */,
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
@@ -5184,6 +5185,7 @@
 				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
 				85F672B31C097D48001BEE5B /* LYHotRecommandCell.xib in Resources */,
 				38E5D7E71C12DC43004B49D2 /* icon_collect@2x.png in Resources */,
+				ADB164BD1C167095000BAD3C /* lieyuIcon@2x.png in Resources */,
 				38E5D6FA1C100B01004B49D2 /* TimePickerView.xib in Resources */,
 				38E5D7A21C113879004B49D2 /* choose@3x.png in Resources */,
 				381A01F71C144E1B00592485 /* shoppingCar.png in Resources */,
@@ -5257,6 +5259,7 @@
 				38E5D7A71C113879004B49D2 /* gray_less@2x.png in Resources */,
 				ADD68E331BE10E400060E751 /* 4_retina.png in Resources */,
 				85EE803D1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib in Resources */,
+				ADB164BE1C167095000BAD3C /* lieyuIcon@3x.png in Resources */,
 				38E5D7C21C128C44004B49D2 /* triangle_down.png in Resources */,
 				ADF88E6F1C11613800CF5DED /* empyImage300.png in Resources */,
 				ADF88EAB1C1197C400CF5DED /* MJRefresh.bundle in Resources */,
@@ -5269,7 +5272,6 @@
 				15E2407D1BB2521C0090D240 /* CollectionCell.xib in Resources */,
 				38E5D7A01C113879004B49D2 /* choose.png in Resources */,
 				15E1847F1BB4FF0900681BB2 /* LYZSeditView.xib in Resources */,
-				AD8FAB5B1C153DCC00C45F1A /* lieyuIcon@3x.png in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
 				853E3A271C1582A40088CD86 /* purpleBtnBG@2x.png in Resources */,
 				15E2409B1BB296CF0090D240 /* OrderDetailCell.xib in Resources */,
