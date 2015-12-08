@@ -23,4 +23,6 @@
 @property(assign,nonatomic) int step;
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (nonatomic, weak) id <LYRegistrationDelegate> delegate;
+
++ (instancetype)shareRegist;
 @end

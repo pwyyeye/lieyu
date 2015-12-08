@@ -21,6 +21,7 @@
     // Initialization code
 //    self.scrollView.directionalLockEnabled = YES;
     self.scrollView.delegate = self;
+    self.label_line_blue.frame = CGRectMake(0, 0.5, CGRectGetWidth(self.label_line_blue.frame), CGRectGetHeight(self.label_line_blue.frame));
     
     self.label_lineTop.frame = CGRectMake(0, 0, 320, 0.5);
     self.label_line_middle.frame = CGRectMake(0, 44.5, 320, 0.5);

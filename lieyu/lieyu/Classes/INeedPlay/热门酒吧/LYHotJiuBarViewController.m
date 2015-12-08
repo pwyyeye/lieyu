@@ -59,6 +59,8 @@
     self.curPageIndex = 1;
     _aryList = [[NSMutableArray alloc]initWithCapacity:0];
     [self getData];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 -(void)getData{
