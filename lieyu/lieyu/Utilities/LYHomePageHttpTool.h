@@ -75,4 +75,7 @@
 //收藏专属经理
 -(void) scVipWithParams:(NSDictionary*)params
                       complete:(void (^)(BOOL result))result;
+
+//给酒吧点赞
+- (void)likeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result;
 @end

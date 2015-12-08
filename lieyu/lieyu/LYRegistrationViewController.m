@@ -13,6 +13,15 @@
 @end
 
 @implementation LYRegistrationViewController
+static LYRegistrationViewController *_registe;
+
++ (instancetype)shareRegist{
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            _registe = [[LYRegistrationViewController alloc]init];
+        });
+    return _registe;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,10 +45,15 @@
     */
     // Do any additional setup after loading the view from its nib.
 }
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 #pragma mark -定时器更新验证码按钮
 
 -(void)captchaWait{
-    
     if (_step==0) {
         self.getYzmBtn.enabled=YES;
         _step=60;
@@ -56,14 +70,14 @@
         [self.getYzmBtn setTitle:[NSString stringWithFormat:@"重新发送(%d)秒",_step] forState:UIControlStateNormal];
         
     }
-    
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(void)dealloc{
+    NSLog(@"--------------------->释放");
     [_timer invalidate];
 }
 /*
@@ -80,13 +94,14 @@
     
     if(![MyUtil isValidateTelephone:self.phoneTex.text]){
         
-        [self showMessage:@"请输入正确的手机格式!"];
+        [MyUtil showMessage:@"请输入正确的手机格式!"];
+        return;
     }
     NSDictionary *dic=@{@"mobile":self.phoneTex.text};
     [[LYUserHttpTool shareInstance] getYanZhengMa:dic complete:^(BOOL result) {
         if (result) {
             [_timer setFireDate:[NSDate distantPast]];
-          [self showMessage:@"验证码发送成功请输入短信中的验证码!"];
+          [MyUtil showMessage:@"验证码发送成功请输入短信中的验证码!"];
         }
     }];
     
@@ -95,23 +110,23 @@
 - (IBAction)zcAct:(UIButton *)sender {
     if(![MyUtil isValidateTelephone:self.phoneTex.text]){
         
-        [self showMessage:@"请输入正确的手机格式!"];
+        [MyUtil showMessage:@"请输入正确的手机格式!"];
         return;
     }
     if(self.yzmTex.text.length<1){
-        [self showMessage:@"请输入验证码!"];
+        [MyUtil showMessage:@"请输入验证码!"];
         return;
     }
     if(self.passWordTex.text.length<1){
-        [self showMessage:@"请输入密码!"];
+        [MyUtil showMessage:@"请输入密码!"];
         return;
     }
     if(self.againPassWordTex.text.length<1){
-        [self showMessage:@"请输入重置密码!"];
+        [MyUtil showMessage:@"请输入重置密码!"];
         return;
     }
     if(![self.againPassWordTex.text isEqualToString:self.passWordTex.text]){
-        [self showMessage:@"两次输入密码不一致!"];
+        [MyUtil showMessage:@"两次输入密码不一致!"];
         return;
     }
     NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text]};

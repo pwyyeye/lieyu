@@ -11,7 +11,7 @@
 - (void)registration;
 
 @end
-@interface LYRegistrationViewController : LYBaseViewController
+@interface LYRegistrationViewController : UIViewController
 - (IBAction)zcAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTex;
 @property (weak, nonatomic) IBOutlet UITextField *yzmTex;
@@ -23,4 +23,6 @@
 @property(assign,nonatomic) int step;
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (nonatomic, weak) id <LYRegistrationDelegate> delegate;
+
++ (instancetype)shareRegist;
 @end

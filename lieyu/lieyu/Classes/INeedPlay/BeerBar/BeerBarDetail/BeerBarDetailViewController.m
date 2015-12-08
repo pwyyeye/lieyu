@@ -29,6 +29,7 @@
 #import "LYBarDescTitleTableViewCell.h"
 #import "LYBarDesrcTableViewCell.h"
 #import "LYUserHttpTool.h"
+#import "LYHomePageHttpTool.h"
 
 #import "CHViewController.h"
 #import "ChiHeViewController.h"
@@ -80,9 +81,21 @@
     self.image_layer.hidden = YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //判断用户是否已经喜欢过
+    NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
+    [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
+        if (!result) {
+            
+        }
+    }];
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden=YES;
+    
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
@@ -152,7 +165,12 @@
 
 #pragma mark 喜欢按钮
 - (IBAction)likeClick:(UIButton *)sender {
-    
+    NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
+    [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
+        if (result) {
+            [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+        }
+    }];
 }
 
 - (void)setupViewStyles
