@@ -55,9 +55,26 @@
     [self.kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
     dataList=[[NSMutableArray alloc]init];
     [self getMenuHrizontal];
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    
+    
+   
+    
+
+    
+    
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self refreshData];
     }];
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    // 设置普通状态的动画图片
+    [header setImages:@[[UIImage imageNamed:@"mjRefresh"]] forState:MJRefreshStateIdle];
+    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    [header setImages:@[[UIImage imageNamed:@"mjRefresh.gif"]] forState:MJRefreshStatePulling];
+    // 设置正在刷新状态的动画图片
+    [header setImages:@[[UIImage imageNamed:@"mjRefresh.gif"]] forState:MJRefreshStateRefreshing];
+    // 设置header
     //    [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.tableView.mj_footer =[MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [self loadMoreData];
@@ -90,12 +107,13 @@
     }
     
     self.navigationController.navigationBarHidden=NO;
+    self.automaticallyAdjustsScrollViewInsets=NO;
     // Do any additional setup after loading the view from its nib.
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 //    if (self.navigationController.navigationBar.hidden) {
-        self.navigationController.navigationBar.hidden=NO;
+//        self.navigationController.navigationBar.hidden=NO;
 //    }
 
 }
@@ -369,11 +387,11 @@
                     orderBottomView.miaosuCenterLal.text=@"消费完成等待系统确定";
                 }else{
                     
-                    orderBottomView.miaosuCenterLal.text=@"猎娱承诺返利金额会予以15个工作日发放个人账户中";
+                    orderBottomView.miaosuCenterLal.text=@"猎娱承诺返利金额会予以3个工作日发放个人账户中";
                 }
             }else{
                 orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
-                orderBottomView.miaosuCenterLal.text=@"猎娱承诺返利金额会予以15个工作日发放个人账户中";
+                orderBottomView.miaosuCenterLal.text=@"猎娱承诺返利金额会予以3个工作日发放个人账户中";
             }
             
         }else{
@@ -547,6 +565,7 @@
                 orderBottomView.oneBtn.tag=section;
                 [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
                 [orderBottomView.oneBtn setHidden:NO];
+                orderBottomView.oneBtn.selected=YES;
             }
             
             if(orderInfoModel.orderStatus==0){

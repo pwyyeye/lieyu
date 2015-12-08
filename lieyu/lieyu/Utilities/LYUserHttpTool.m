@@ -481,7 +481,7 @@
           complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    
+    NSLog(@"----pass-LY_MY_ORDER_PINGJIA%@---",LY_MY_ORDER_PINGJIA);
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_PINGJIA baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
