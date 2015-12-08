@@ -445,6 +445,8 @@
 		85589CB41C16CAB3000E342E /* icon_like_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85589CB11C16CAB3000E342E /* icon_like_2@2x.png */; };
 		85589CB51C16CAB3000E342E /* icon_like_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85589CB21C16CAB3000E342E /* icon_like_2@3x.png */; };
 		85589CB81C16D41D000E342E /* SingletonRegiste.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CB71C16D41D000E342E /* SingletonRegiste.m */; };
+		85589CC31C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */; };
+		85589CC41C16EF7C000E342E /* BeerBarLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CC21C16EF7C000E342E /* BeerBarLike.m */; };
 		85C4282E1C116ED90028FC21 /* LYHotBarMenuDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */; };
 		85C428721C119D3E0028FC21 /* LYCloseMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428701C119D3E0028FC21 /* LYCloseMeViewController.m */; };
 		85C428731C119D3E0028FC21 /* LYCloseMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428711C119D3E0028FC21 /* LYCloseMeViewController.xib */; };
@@ -1505,6 +1507,10 @@
 		85589CB21C16CAB3000E342E /* icon_like_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_like_2@3x.png"; sourceTree = "<group>"; };
 		85589CB61C16D41D000E342E /* SingletonRegiste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonRegiste.h; sourceTree = "<group>"; };
 		85589CB71C16D41D000E342E /* SingletonRegiste.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonRegiste.m; sourceTree = "<group>"; };
+		85589CBF1C16EF7C000E342E /* BeerBarLike+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BeerBarLike+CoreDataProperties.h"; sourceTree = "<group>"; };
+		85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BeerBarLike+CoreDataProperties.m"; sourceTree = "<group>"; };
+		85589CC11C16EF7C000E342E /* BeerBarLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarLike.h; sourceTree = "<group>"; };
+		85589CC21C16EF7C000E342E /* BeerBarLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarLike.m; sourceTree = "<group>"; };
 		85C4282C1C116ED90028FC21 /* LYHotBarMenuDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuDropView.h; sourceTree = "<group>"; };
 		85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuDropView.m; sourceTree = "<group>"; };
 		85C4286F1C119D3E0028FC21 /* LYCloseMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCloseMeViewController.h; sourceTree = "<group>"; };
@@ -3613,6 +3619,10 @@
 		85C4287B1C11B1D80028FC21 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				85589CBF1C16EF7C000E342E /* BeerBarLike+CoreDataProperties.h */,
+				85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */,
+				85589CC11C16EF7C000E342E /* BeerBarLike.h */,
+				85589CC21C16EF7C000E342E /* BeerBarLike.m */,
 				85C4287C1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.h */,
 				85C4287D1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m */,
 				85C4287E1C11B20B0028FC21 /* FirstPageData.h */,
@@ -5597,6 +5607,7 @@
 				3879F2661C0D361000B72629 /* LiuchengTableViewCell.m in Sources */,
 				38E5D6E51C0F1018004B49D2 /* LPBuyTaocanCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
+				85589CC31C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
 				38E72B4E1C153446002EFBDD /* CHViewController.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
@@ -5709,6 +5720,7 @@
 				3879F24A1C0D325D00B72629 /* BarInfoTableViewCell.m in Sources */,
 				15013AF61BBA33BE00061FAF /* NSData+ImageContentType.m in Sources */,
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
+				85589CC41C16EF7C000E342E /* BeerBarLike.m in Sources */,
 				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
 				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,

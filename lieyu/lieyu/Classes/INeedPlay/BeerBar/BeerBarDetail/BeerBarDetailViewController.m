@@ -30,16 +30,20 @@
 #import "LYBarDesrcTableViewCell.h"
 #import "LYUserHttpTool.h"
 #import "LYHomePageHttpTool.h"
-
+#import <CoreData/CoreData.h>
 #import "CHViewController.h"
 #import "ChiHeViewController.h"
+#import "BeerBarLike+CoreDataProperties.h"
 
 @interface BeerBarDetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
+{
+    NSManagedObjectContext *_context;
+    NSNumber *_userid;
+}
 
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property (weak, nonatomic) IBOutlet UIImageView *image_layer;
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
-//@property(nonatomic,strong)IBOutlet BeerBarDetailCell *barDetailCell;
 @property(nonatomic,strong)IBOutlet UITableViewCell *orderTotalCell;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *label_count;
@@ -79,17 +83,19 @@
     self.btn_like.layer.masksToBounds = YES;
     
     self.image_layer.hidden = YES;
+    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    _context = app.managedObjectContext;
+    _userid = @(app.userModel.userid);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //判断用户是否已经喜欢过
-    NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
-    [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
-        if (!result) {
-            
-        }
-    }];
+//    NSFetchRequest *request = [[NSFetchRequest alloc]initWithEntityName:@"BeerBarLike"];
+//    NSPredicate *predic = [NSPredicate predicateWithFormat:@"isLike = YES"];
+//    NSArray *array = [_context executeFetchRequest:request error:nil];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -111,7 +117,6 @@
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
             weakSelf.label_count.text = detailItem.like_num;
-            NSLog(@"-------->%ld",detailItem.recommend_package.count);
             if(!detailItem.recommend_package.count){
                 _bottomBarView.hidden = YES;
                 _scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -166,9 +171,16 @@
 #pragma mark 喜欢按钮
 - (IBAction)likeClick:(UIButton *)sender {
     NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
+    
+    __weak BeerBarDetailViewController *weakSelf = self;
     [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
         if (result) {
-            [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+            BeerBarLike *beerModel = [NSEntityDescription insertNewObjectForEntityForName:@"BeerBarLike" inManagedObjectContext:_context];
+            beerModel.barid = weakSelf.beerBarDetail.barid;
+            beerModel.isLike = @(YES);
+            beerModel.userid = _userid;
+            if([_context save:nil]) NSLog(@"----->success");
         }
     }];
 }

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="BeerBarLike" representedClassName="BeerBarLike" syncable="YES">
+        <attribute name="barid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="isLike" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="FirstPageData" representedClassName="FirstPageData" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
     </entity>
     <elements>
         <element name="FirstPageData" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="BeerBarLike" positionX="-54" positionY="0" width="128" height="90"/>
     </elements>
 </model>
