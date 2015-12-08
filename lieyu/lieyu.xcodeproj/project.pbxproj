@@ -242,7 +242,6 @@
 		15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C4B1BC3785200756153 /* SetMealVOModel.m */; };
 		15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C4E1BC37A1A00756153 /* ProductVOModel.m */; };
 		15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C511BC3BE4D00756153 /* GoodsModel.m */; };
-		15EB7C5B1BC6048100756153 /* gouGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C5A1BC6048100756153 /* gouGif.gif */; };
 		15EB7C5E1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */; };
 		15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */; };
 		15EB7C681BCF3CAF00756153 /* LYPlayTogetherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB7C671BCF3CAF00756153 /* LYPlayTogetherCell.m */; };
@@ -742,6 +741,7 @@
 		ADFFA6911C16DFD400D9BD2A /* middlePlace.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A171C152A750088CD86 /* middlePlace.png */; };
 		ADFFA6921C16DFD600D9BD2A /* smallPlace.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A181C152A750088CD86 /* smallPlace.png */; };
 		ADFFA6931C16DFE900D9BD2A /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5454B1C1454010013B92B /* camera@3x.png */; };
+		ADFFA6951C1721D600D9BD2A /* gouGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = ADFFA6941C1721D600D9BD2A /* gouGif.gif */; };
 		D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */; };
 		D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D8A1BAE8C3300915F37 /* PacketBarCell.m */; };
 		D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71E1D8B1BAE8C3300915F37 /* PacketBarCell.xib */; };
@@ -1236,7 +1236,6 @@
 		15EB7C501BC3BE4D00756153 /* GoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsModel.h; sourceTree = "<group>"; };
 		15EB7C511BC3BE4D00756153 /* GoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsModel.m; sourceTree = "<group>"; };
 		15EB7C591BC5FD2C00756153 /* LYMineUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYMineUrl.h; sourceTree = "<group>"; };
-		15EB7C5A1BC6048100756153 /* gouGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gouGif.gif; sourceTree = "<group>"; };
 		15EB7C5C1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderDetailSectionBottomForTuiKuanPinView.h; sourceTree = "<group>"; };
 		15EB7C5D1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderDetailSectionBottomForTuiKuanPinView.m; sourceTree = "<group>"; };
 		15EB7C5F1BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailSectionBottomForTuiKuanPinView.xib; sourceTree = "<group>"; };
@@ -2025,6 +2024,7 @@
 		ADF88E9C1C1197C400CF5DED /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		ADF88F3A1C12E5F000CF5DED /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
 		ADF88F3B1C12E5F000CF5DED /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
+		ADFFA6941C1721D600D9BD2A /* gouGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gouGif.gif; sourceTree = "<group>"; };
 		D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarDetailCell.h; sourceTree = "<group>"; };
 		D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarDetailCell.m; sourceTree = "<group>"; };
 		D71E1D891BAE8C3300915F37 /* PacketBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketBarCell.h; sourceTree = "<group>"; };
@@ -2761,7 +2761,7 @@
 				15E2407F1BB279CB0090D240 /* LYMyOrderManageViewController.h */,
 				15E240801BB279CB0090D240 /* LYMyOrderManageViewController.m */,
 				15E240811BB279CB0090D240 /* LYMyOrderManageViewController.xib */,
-				15EB7C5A1BC6048100756153 /* gouGif.gif */,
+				ADFFA6941C1721D600D9BD2A /* gouGif.gif */,
 			);
 			name = "我的订单";
 			sourceTree = "<group>";
@@ -5333,6 +5333,7 @@
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
 				381A01D01C14228E00592485 /* AddCar_gray.png in Resources */,
 				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
+				ADFFA6951C1721D600D9BD2A /* gouGif.gif in Resources */,
 				85F672B31C097D48001BEE5B /* LYHotRecommandCell.xib in Resources */,
 				38E5D7E71C12DC43004B49D2 /* icon_collect@2x.png in Resources */,
 				ADB164BD1C167095000BAD3C /* lieyuIcon@2x.png in Resources */,
@@ -5501,7 +5502,6 @@
 				A2FD57761BAFE94400CFFF92 /* TaoCanMCell.xib in Resources */,
 				38E5D75B1C113445004B49D2 /* triangle_up@3x.png in Resources */,
 				389C01061C1488F000FE9412 /* seeBoys@2x.png in Resources */,
-				15EB7C5B1BC6048100756153 /* gouGif.gif in Resources */,
 				15EE51611BA708FF00464B74 /* ZSRefundViewController.xib in Resources */,
 				ADFFA68D1C16DFBA00D9BD2A /* purpleBtnBG@2x.png in Resources */,
 				15E240A21BB37EF60090D240 /* LYOrderDetailViewController.xib in Resources */,
