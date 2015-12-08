@@ -139,8 +139,9 @@
     [self.view addSubview:sectionView];
 }
 
-- (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButtonIndex:(NSInteger)index{
+- (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButton:(MenuButton *)dropButton{
     pageCount = 1;
+    NSInteger index = dropButton.tag;
     [dataList removeAllObjects];
     [nowDic removeObjectForKey:@"p"];
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];

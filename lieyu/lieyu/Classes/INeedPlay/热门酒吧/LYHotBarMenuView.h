@@ -11,7 +11,7 @@
 
 @protocol LYHotBarMenuViewDelegate <NSObject>
 
-- (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButtonIndex:(NSInteger)index;
+- (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButton:(MenuButton *)dropButton;
 
 @end
 

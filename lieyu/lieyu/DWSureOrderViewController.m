@@ -60,7 +60,6 @@
     _tableView.separatorColor=[UIColor clearColor];
     [self getdata];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(numChange) name:@"numChange" object:nil];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillLayoutSubviews{
@@ -270,9 +269,7 @@
              */
             cell = [tableView dequeueReusableCellWithIdentifier:@"LYOrderInfoTableViewCell" forIndexPath:indexPath];
             if (cell) {
-                
 
-                
                 LYOrderInfoTableViewCell *infoCell = (LYOrderInfoTableViewCell *)cell;
                 infoCell.taocanModel = taoCanModel;
                 infoCell.label_order_date.text = self.dateStr;

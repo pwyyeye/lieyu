@@ -77,7 +77,7 @@
 
 #pragma mark - 忘记密码
 - (IBAction)forgetPassWordAct:(UIButton *)sender {
-    LYResetPasswordViewController *resetPasswordViewController=[[LYResetPasswordViewController alloc]initWithNibName:@"LYResetPasswordViewController" bundle:nil];
+    LYResetPasswordViewController *resetPasswordViewController=[LYResetPasswordViewController shareReset];
     resetPasswordViewController.title=@"忘记密码";
     [self.navigationController pushViewController:resetPasswordViewController animated:YES];
 }

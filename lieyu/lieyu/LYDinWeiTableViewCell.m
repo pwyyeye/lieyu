@@ -44,20 +44,28 @@
     
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",taoCanModel.marketprice] attributes:attribtDic];
-    NSLog(@"%@",attribtStr);
     self.label_price_old.attributedText = attribtStr;
     
     self.label_buyCount.text = [NSString stringWithFormat:@"%d人购",taoCanModel.buynum];
     [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:taoCanModel.linkUrl]];
     
-    
-    NSString *percentStr =[NSString stringWithFormat:@"%.0f%@",(self.taoCanModel.rebate) * 100,@"%"];
+    CGFloat rebate = self.taoCanModel.rebate * 100;
+    NSString *percentStr =[NSString stringWithFormat:@"%.0f%@",rebate,@"%"];
+    NSLog(@"--------->%@",percentStr);
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:percentStr];
+    if (percentStr.integerValue <10) {
+        [attributedStr addAttribute:NSFontAttributeName
+         
+                              value:[UIFont systemFontOfSize:10]
+         
+                              range:NSMakeRange(1, 1)];
+    }else{
     [attributedStr addAttribute:NSFontAttributeName
      
                           value:[UIFont systemFontOfSize:10]
      
-                          range:NSMakeRange(2, 1.9)];
+                          range:NSMakeRange(2, 1)];
+    }
     self.label_percent.attributedText = attributedStr;
 }
 
