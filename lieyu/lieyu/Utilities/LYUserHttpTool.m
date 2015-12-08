@@ -950,4 +950,9 @@
         
     }];
 }
+
+#pragma mark 给酒吧点赞
+- (void)likeJiuBa:(NSDictionary *)params{
+//    [HTTPController requestWihtMethod:RequestMethodTypePost url: baseURL:<#(NSString *)#> params:<#(NSDictionary *)#> success:<#^(id response)success#> failure:<#^(NSError *err)failure#>]
+}
 @end

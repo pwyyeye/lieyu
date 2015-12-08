@@ -33,9 +33,10 @@
 #import "CHViewController.h"
 #import "ChiHeViewController.h"
 
-@interface BeerBarDetailViewController ()<UIWebViewDelegate>
+@interface BeerBarDetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 
 @property(nonatomic,strong)NSMutableArray *aryList;
+@property (weak, nonatomic) IBOutlet UIImageView *image_layer;
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
 //@property(nonatomic,strong)IBOutlet BeerBarDetailCell *barDetailCell;
 @property(nonatomic,strong)IBOutlet UITableViewCell *orderTotalCell;
@@ -62,6 +63,7 @@
     
     // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBarHidden=YES;
+    _scrollView.delegate = self;
     
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height);
     self.tableView.scrollEnabled = NO;
@@ -74,6 +76,8 @@
     //喜欢按钮圆角
     self.btn_like.layer.cornerRadius = CGRectGetWidth(self.btn_like.frame)/2.0;
     self.btn_like.layer.masksToBounds = YES;
+    
+    self.image_layer.hidden = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -101,6 +105,17 @@
         }
     }];
 }
+
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - 64) {
+        self.image_layer.hidden = NO;
+    }else{
+        self.image_layer.hidden = YES;
+    }
+}
+
 
 // load webView
 - (void)loadWebView{
