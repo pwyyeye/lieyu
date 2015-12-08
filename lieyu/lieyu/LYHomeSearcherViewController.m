@@ -152,25 +152,48 @@
 {
     __weak LYHomeSearcherViewController * weakSelf = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBaraCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
                 if (barList.count == PAGESIZE)
                 {
-                    weakSelf.tableView.footer.hidden = NO;
+                    weakSelf.tableView.mj_footer.hidden = NO;
                 }
                 else
                 {
-                    weakSelf.tableView.footer.hidden = YES;
+                    weakSelf.tableView.mj_footer.hidden = YES;
                 }
                 weakSelf.curPageIndex ++;
-                [self.tableView.footer endRefreshing];
+                [self.tableView.mj_footer endRefreshing];
             }
             
         }];
     }];
+    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
     
     
+}
+
+-(void)initMJRefeshHeaderForGif:(MJRefreshGifHeader *) header{
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    // 设置普通状态的动画图片
+    [header setImages:@[[UIImage imageNamed:@"mjRefresh"]] forState:MJRefreshStateIdle];
+    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    [header setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"]] forState:MJRefreshStatePulling];
+    // 设置正在刷新状态的动画图片
+    [header setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"]] forState:MJRefreshStateRefreshing];
+}
+
+-(void)initMJRefeshFooterForGif:(MJRefreshBackGifFooter *) footer{
+    
+    // 设置普通状态的动画图片
+    [footer setImages:@[[UIImage imageNamed:@"mjRefresh"]] forState:MJRefreshStateIdle];
+    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    [footer setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"]] forState:MJRefreshStatePulling];
+    // 设置正在刷新状态的动画图片
+    [footer setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"]] forState:MJRefreshStateRefreshing];
 }
 -(void)getData{
     __weak LYHomeSearcherViewController * weakSelf = self;

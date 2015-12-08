@@ -54,21 +54,30 @@
     [nowDic setObject:@"20" forKey:@"per"];
     [self getData:nowDic];
     __weak __typeof(self)weakSelf = self;
-    self.collectionview.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.collectionview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         pageCount=1;
         
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [weakSelf getData:nowDic];
     }];
-    self.collectionview.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.collectionview.mj_header;
+    [self initMJRefeshHeaderForGif:header];
+    
+    self.collectionview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [self getDataWithDicMore:nowDic];
     }];
+    
+    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.collectionview.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
+    
     _itemButton1.selected=true;
     // Do any additional setup after loading the view from its nib.
 }
+
+
 #pragma mark 获取数据
 -(void)getData:(NSDictionary *)dic{
     

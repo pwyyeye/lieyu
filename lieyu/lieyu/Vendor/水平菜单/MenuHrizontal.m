@@ -88,7 +88,7 @@
         UIImage *secImg = [lDic objectForKey:HEIGHTKEY];
         NSString *vTitleStr = [lDic objectForKey:TITLEKEY];
         float vButtonWidth = [[lDic objectForKey:TITLEWIDTH] floatValue];
-        NSString *countSumStr=[lDic objectForKey:COUNTORDER];
+//        NSString *countSumStr=[lDic objectForKey:COUNTORDER];
         UIButton *vButton = [UIButton buttonWithType:UIButtonTypeCustom];
         vButton.userInteractionEnabled=YES;
         

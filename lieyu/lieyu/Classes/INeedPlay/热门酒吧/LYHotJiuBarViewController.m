@@ -70,11 +70,11 @@
              if (barList.count == PAGESIZE)
              {
                  weakSelf.curPageIndex = 2;
-                 weakSelf.tableView.footer.hidden = NO;
+                 weakSelf.tableView.mj_footer.hidden = NO;
              }
              else
              {
-                 weakSelf.tableView.footer.hidden = YES;
+                 weakSelf.tableView.mj_footer.hidden = YES;
              }
          }
      }];
@@ -133,7 +133,7 @@
     
     __weak LYHotJiuBarViewController * weakSelf = self;
     //    __weak UITableView *tableView = self.tableView;
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:
                              ^{
                                  weakSelf.curPageIndex = 1;
                                  [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
@@ -143,31 +143,31 @@
                                           if (barList.count == PAGESIZE)
                                           {
                                               weakSelf.curPageIndex = 2;
-                                              weakSelf.tableView.footer.hidden = NO;
+                                              weakSelf.tableView.mj_footer.hidden = NO;
                                           }
                                           else
                                           {
-                                              weakSelf.tableView.footer.hidden = YES;
+                                              weakSelf.tableView.mj_footer.hidden = YES;
                                           }
-                                          [weakSelf.tableView.header endRefreshing];
+                                          [weakSelf.tableView.mj_header endRefreshing];
                                       }
                                   }];
                              }];
     
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
                 if (barList.count == PAGESIZE)
                 {
                     
-                    weakSelf.tableView.footer.hidden = NO;
+                    weakSelf.tableView.mj_footer.hidden = NO;
                 }
                 else
                 {
-                    weakSelf.tableView.footer.hidden = YES;
+                    weakSelf.tableView.mj_footer.hidden = YES;
                 }
                 weakSelf.curPageIndex ++;
-                [weakSelf.tableView.footer endRefreshing];
+                [weakSelf.tableView.mj_footer endRefreshing];
             }
             
         }];

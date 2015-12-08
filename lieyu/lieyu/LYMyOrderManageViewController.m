@@ -598,7 +598,7 @@
                 }else{
                     if(isfu){
                         
-                        [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                        [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
                         
                         

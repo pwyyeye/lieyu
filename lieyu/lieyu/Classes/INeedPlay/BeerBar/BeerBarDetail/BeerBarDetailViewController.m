@@ -73,6 +73,11 @@
     [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden=YES;
 }
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBarHidden=NO;
+}
 - (void)loadBarDetail
 {
     __weak __typeof(self ) weakSelf = self;

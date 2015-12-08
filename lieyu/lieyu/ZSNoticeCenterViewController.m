@@ -67,7 +67,7 @@
     
 }
 -(void)kazuoChoose:(UISwitch *)sender{
-    NSLog(@"*****%ld",sender.tag);
+    NSLog(@"*****%d",sender.tag);
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
