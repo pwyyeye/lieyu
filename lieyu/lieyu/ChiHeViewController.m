@@ -279,36 +279,52 @@
 
 #pragma 点击更多按钮弹出界面
 - (void)showMoreButtons{
-    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, 64)];
+    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, biaoqianList.count * 32 + (biaoqianList.count + 1) * 16)];
     [_MoreView setBackgroundColor:[UIColor whiteColor]];
     
-    UIButton *button1 = [[UIButton alloc]initWithFrame:CGRectMake(8, 16, 96, 32)];
-    button1.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor lightGrayColor]);
-    button1.layer.borderWidth = 0.5;
-    button1.layer.cornerRadius = 3;
-    button1.layer.masksToBounds = YES;
-    [button1 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
-//    [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [button1 setTitle:@"香槟" forState:UIControlStateNormal];
-    [button1 setBackgroundColor:[UIColor whiteColor]];
-    [button1 setTag:81];
-    [button1 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
+    for(int i = 0 ; i < biaoqianList.count ; i ++){
+        for(int j = 0 ; j < 3 ; j ++){
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake( 8 * (j + 1) + 96 * j, 16 * (i + 1) + 32 * i, 96, 32)];
+            button.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
+            button.layer.borderWidth = 1;
+            button.layer.cornerRadius = 3;
+            button.layer.masksToBounds = YES;
+            [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+            [button setTitle:@"香槟" forState:UIControlStateNormal];
+            [button setBackgroundColor:[UIColor whiteColor]];
+            [button setTag:81];
+            [button addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
+            [_MoreView addSubview:button];
+        }
+    }
     
-    UIButton *button2 = [[UIButton alloc]initWithFrame:CGRectMake(112, 16, 96, 32)];
-    button2.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
-    button2.layer.borderWidth = 0.5;
-    button2.layer.cornerRadius = 3;
-    button2.layer.masksToBounds = YES;
-    [button2 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
-//    [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [button2 setBackgroundColor:[UIColor whiteColor]];
-    [button2 setTitle:@"其他" forState:UIControlStateNormal];
-    [button2 setTag:82];
-    [button2 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_MoreView addSubview:button1];
-    [_MoreView addSubview:button2];
-    
+//    UIButton *button1 = [[UIButton alloc]initWithFrame:CGRectMake(8, 16, 96, 32)];
+//    button1.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor lightGrayColor]);
+//    button1.layer.borderWidth = 0.5;
+//    button1.layer.cornerRadius = 3;
+//    button1.layer.masksToBounds = YES;
+//    [button1 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+////    [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//    [button1 setTitle:@"香槟" forState:UIControlStateNormal];
+//    [button1 setBackgroundColor:[UIColor whiteColor]];
+//    [button1 setTag:81];
+//    [button1 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    UIButton *button2 = [[UIButton alloc]initWithFrame:CGRectMake(112, 16, 96, 32)];
+//    button2.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
+//    button2.layer.borderWidth = 0.5;
+//    button2.layer.cornerRadius = 3;
+//    button2.layer.masksToBounds = YES;
+//    [button2 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+////    [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//    [button2 setBackgroundColor:[UIColor whiteColor]];
+//    [button2 setTitle:@"其他" forState:UIControlStateNormal];
+//    [button2 setTag:82];
+//    [button2 addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [_MoreView addSubview:button1];
+//    [_MoreView addSubview:button2];
+//    
     [self.view addSubview:_MoreView];
 }
 
