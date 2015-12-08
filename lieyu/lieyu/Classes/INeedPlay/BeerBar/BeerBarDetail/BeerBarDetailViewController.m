@@ -106,11 +106,11 @@
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden=NO;
 }
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden=NO;
-}
+//-(void)viewDidDisappear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    self.navigationController.navigationBarHidden=NO;
+//}
 - (void)loadBarDetail
 {
     __weak __typeof(self ) weakSelf = self;
@@ -286,6 +286,11 @@
             LYBarTitleTableViewCell *barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             [barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon]];
             barTitleCell.label_name.text = self.beerBarDetail.barname;
+            if (![MyUtil isEmptyString:self.beerBarDetail.environment_num] ) {
+                barTitleCell.barStar.value=self.beerBarDetail.environment_num.floatValue;
+            }else{
+                barTitleCell.barStar.value=3.0;
+            }
             
             NSString *priceStr = [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
             NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:priceStr];

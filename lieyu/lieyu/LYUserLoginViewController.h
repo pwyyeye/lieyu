@@ -31,6 +31,8 @@
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btn_getBack;
 
+@property(assign,nonatomic) NSInteger step;
+
 @property(strong,nonatomic) NSTimer *timer;
 - (void)autoLogin;
 @end
