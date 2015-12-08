@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MenuButton;
+
 @protocol LYHotBarMenuViewDelegate <NSObject>
 
-- (void)didClickHotBarMenuDropWithButtonSection:(NSInteger)section dropButtonIndex:(NSInteger)index;
+- (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButtonIndex:(NSInteger)index;
 
 @end
 
