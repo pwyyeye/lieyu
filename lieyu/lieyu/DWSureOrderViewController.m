@@ -246,8 +246,10 @@
              }
              */
             _writeCell = [tableView dequeueReusableCellWithIdentifier:@"LYOrderWriteTableViewCell" forIndexPath:indexPath];
+            [_writeCell.btn_showTime addTarget:self action:@selector(choseTime) forControlEvents:UIControlEventTouchUpInside];
                 [_writeCell.btn_chooseTime addTarget:self action:@selector(choseTime) forControlEvents:UIControlEventTouchUpInside];
                 [_writeCell.btn_isReserve addTarget:self action:@selector(isResrve) forControlEvents:UIControlEventTouchUpInside];
+             [_writeCell.btn_showTaocan addTarget:self action:@selector(isResrve) forControlEvents:UIControlEventTouchUpInside];
             _writeCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return _writeCell;
         }
@@ -297,10 +299,12 @@
     return cell;
 }
 
+//选择时间
 - (void)choseTime{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
     alertView.delegate = self;
     _timeView = [[[NSBundle mainBundle]loadNibNamed:@"TimePickerView" owner:nil options:nil]firstObject];
+    _timeView.timePicker.datePickerMode = UIDatePickerModeTime;
     _timeView.tag = 11;
     //    [_timeView showTimeWithDate:self.defaultDate];
     _timeView.timePicker.date = [NSDate date];
@@ -331,6 +335,7 @@
 }
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
+    if (!buttonIndex) {
     NSString *remainStr = nil;
     if (((ContentViewTaocan *)alertView.contentView).image_remain.tag == 3) {
         //确定预留
@@ -342,6 +347,7 @@
         remainStr = @"暂不预留";
     }
     [_writeCell.btn_showTaocan setTitle:remainStr forState:UIControlStateNormal];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

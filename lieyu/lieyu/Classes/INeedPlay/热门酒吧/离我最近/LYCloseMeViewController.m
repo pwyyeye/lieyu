@@ -9,6 +9,7 @@
 #import "LYCloseMeViewController.h"
 #import "LYWineBarCell.h"
 #import "JiuBaModel.h"
+#import "BeerBarDetailViewController.h"
 
 @interface LYCloseMeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -39,12 +40,14 @@
     LYWineBarCell *cell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
     cell.jiuBaModel = _dataArray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSLog(@"------->%@",cell.jiuBaModel.distance);
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    JiuBaModel *jiuba = _dataArray[indexPath.row];
+    BeerBarDetailViewController *beerDetailVC = [[BeerBarDetailViewController alloc]init];
+    beerDetailVC.beerBarId = @(jiuba.barid);
+    [self.navigationController pushViewController:beerDetailVC animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

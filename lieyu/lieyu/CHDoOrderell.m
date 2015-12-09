@@ -11,9 +11,6 @@
 @implementation CHDoOrderell
 
 - (void)awakeFromNib {
-    self.danPinImageView.layer.masksToBounds =YES;
-    
-    self.danPinImageView.layer.cornerRadius =self.danPinImageView.frame.size.width/2;
     // Initialization code
 }
 
@@ -25,15 +22,14 @@
 - (void)configureCell:(CarModel*)model
 {
     carModel=model;
-    [_danPinImageView  setImageWithURL:[NSURL URLWithString:model.product.image]];
-    _nameLal.text=model.product.fullname;
-    _delLal.text=[NSString stringWithFormat:@"x%@(%@)",model.quantity,model.product.unit];
-    _zhekouLal.text=model.product.price;
+    [_goodImageView  setImageWithURL:[NSURL URLWithString:model.product.image] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    _goodNameLbl.text=model.product.fullname;
+    _numLbl.text=[NSString stringWithFormat:@"x%@(%@)",model.quantity,model.product.unit];
+    _priceLbl.text=model.product.price;
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.product.marketprice] attributes:attribtDic];
-    _moneyLal.attributedText=attribtStr;
+    _marketPriceLbl.attributedText=attribtStr;
     
-    NSString *flTem=[NSString stringWithFormat:@"再返利%.f%%",model.product.rebate.doubleValue*100];
-    [_yjBtn setTitle:flTem forState:0];
+    _presentLbl.text = [NSString stringWithFormat:@"%.f%%",model.product.rebate.doubleValue*100];
 }
 @end

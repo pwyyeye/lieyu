@@ -46,9 +46,6 @@
 @property (nonatomic, strong) UIView *selectView;
 @property (nonatomic, strong) NSArray *itemsArray;
 
-//@property (nonatomic, strong) NSMutableArray *areaArray;
-//@property (nonatomic, strong) NSMutableArray *typeArray;
-//@property (nonatomic, strong) NSMutableArray *distanceArray;
 
 @end
 
@@ -146,7 +143,11 @@
     [nowDic removeObjectForKey:@"p"];
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     if(button.section == 1){
-        [nowDic setObject:[AddressArray objectAtIndex:index] forKey:@"address"];
+        if(index == 0){
+            [nowDic removeObjectForKey:@"subids"];
+        }else{
+            [nowDic setObject:[AddressArray objectAtIndex:index] forKey:@"address"];
+        }
     }else if (button.section == 2){
         if(index == 0){
             [nowDic removeObjectForKey:@"subids"];
@@ -458,41 +459,41 @@
     self.nearDistanceButton.selected=YES;
     [self getDataForDistance];
 }
-
-- (void)addCondition:(NSMutableArray *)arr{
-    if(arr.count>0){
-        pageCount=1;
-        [dataList removeAllObjects];
-        [nowDic removeObjectForKey:@"p"];
-        [nowDic removeObjectForKey:@"minprice"];
-        [nowDic removeObjectForKey:@"maxprice"];
-        [nowDic removeObjectForKey:@"minnum"];
-        [nowDic removeObjectForKey:@"maxnum"];
-        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-        for (ProductCategoryModel *mode in arr) {
-            if(mode.type==0){
-                if([mode.minprice isEqualToString:@"10000"]){
-                    [nowDic setObject:mode.minprice forKey:@"minprice"];
-                }else{
-                    [nowDic setObject:mode.maxprice forKey:@"maxprice"];
-                    [nowDic setObject:mode.minprice forKey:@"minprice"];
-                }
-  
-            }else if(mode.type==1){
-                if([mode.minnum isEqualToString:@"15"]){
-                    [nowDic setObject:mode.minnum forKey:@"minnum"];
-                }else{
-                    [nowDic setObject:mode.maxnum forKey:@"maxnum"];
-                    [nowDic setObject:mode.minnum forKey:@"minnum"];
-                }
-            }
-        }
-        
-        
-        [self getData:nowDic];
-    }
-    
-}
+//
+//- (void)addCondition:(NSMutableArray *)arr{
+//    if(arr.count>0){
+//        pageCount=1;
+//        [dataList removeAllObjects];
+//        [nowDic removeObjectForKey:@"p"];
+//        [nowDic removeObjectForKey:@"minprice"];
+//        [nowDic removeObjectForKey:@"maxprice"];
+//        [nowDic removeObjectForKey:@"minnum"];
+//        [nowDic removeObjectForKey:@"maxnum"];
+//        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+//        for (ProductCategoryModel *mode in arr) {
+//            if(mode.type==0){
+//                if([mode.minprice isEqualToString:@"10000"]){
+//                    [nowDic setObject:mode.minprice forKey:@"minprice"];
+//                }else{
+//                    [nowDic setObject:mode.maxprice forKey:@"maxprice"];
+//                    [nowDic setObject:mode.minprice forKey:@"minprice"];
+//                }
+//  
+//            }else if(mode.type==1){
+//                if([mode.minnum isEqualToString:@"15"]){
+//                    [nowDic setObject:mode.minnum forKey:@"minnum"];
+//                }else{
+//                    [nowDic setObject:mode.maxnum forKey:@"maxnum"];
+//                    [nowDic setObject:mode.minnum forKey:@"minnum"];
+//                }
+//            }
+//        }
+//        
+//        
+//        [self getData:nowDic];
+//    }
+//    
+//}
 
 -(void)woYaoPin:(UIButton *)sender{
     PinKeModel *pinKeModel =[dataList objectAtIndex:sender.tag];

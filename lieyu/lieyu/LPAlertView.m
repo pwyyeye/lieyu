@@ -104,6 +104,7 @@
     }
 }
 
+#pragma 点击确定／取消按钮
 - (void)buttonWithPressed:(UIButton *)button{
     if(_delegate && _contentView.tag == 12){
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
@@ -116,6 +117,9 @@
     }else if(_delegate && _contentView.tag == 13){//填写预支付金额
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
         [_delegate LPAlertView:self clickedButtonAtIndexPayMoney:index];
+    }else if(_delegate && _contentView.tag == 14){//选择购买数量
+        NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
+        [_delegate LPAlertView:self clickedButtonAtIndexChooseNum:index];
     }
 }
 

@@ -31,10 +31,11 @@
     if(num <= 1){
         self.lessBtn.enabled = NO;
         [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"gray_less"] forState:UIControlStateNormal];
-    }else if(num >= 11){
-        self.addBtn.enabled = NO;
-        [self.addBtn setBackgroundImage:[UIImage imageNamed:@"gray_add"] forState:UIControlStateNormal];
     }
+//    else if(num >= 11){
+//        self.addBtn.enabled = NO;
+//        [self.addBtn setBackgroundImage:[UIImage imageNamed:@"gray_add"] forState:UIControlStateNormal];
+//    }
 }
 
 - (IBAction)AddToShoppingCarClick:(UIButton *)sender {

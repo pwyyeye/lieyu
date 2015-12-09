@@ -10,6 +10,7 @@
 #import "LYHotJiuBarViewController.h"
 #import "bartypeslistModel.h"
 #import "UIButton+WebCache.h"
+#define LINEHEIGHT 0.3
 
 @interface LYAmusementClassCell()<UIScrollViewDelegate>
 
@@ -21,12 +22,12 @@
     // Initialization code
 //    self.scrollView.directionalLockEnabled = YES;
     self.scrollView.delegate = self;
-    self.label_line_blue.frame = CGRectMake(0, 0.5, CGRectGetWidth(self.label_line_blue.frame), CGRectGetHeight(self.label_line_blue.frame));
+    self.label_line_blue.frame = CGRectMake(0, 0.2, CGRectGetWidth(self.label_line_blue.frame), CGRectGetHeight(self.label_line_blue.frame));
     
-    self.label_lineTop.frame = CGRectMake(0, 0, 320, 0.5);
-    self.label_line_middle.frame = CGRectMake(0, 44.5, 320, 0.5);
-    self.label_line_bottom.bounds = CGRectMake(0, 0, 320, 0.2);
-    self.label_line_bottom.hidden = YES;
+    _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, LINEHEIGHT);
+    _viewLineMiddle.frame = CGRectMake(0, 44.5, SCREEN_WIDTH, LINEHEIGHT);
+    _viewLineBottom.frame = CGRectMake(0, 211, SCREEN_WIDTH, LINEHEIGHT);
+   // self.label_line_bottom.hidden = YES;
     
     for (UIButton *btn in _buttonArray) {
         btn.layer.cornerRadius = 4;

@@ -8,14 +8,18 @@
 
 #import "LYWineBarCell.h"
 #import "JiuBaModel.h"
+#define LINEHEIGHT 0.5
 
 
 @implementation LYWineBarCell
 
 - (void)awakeFromNib {
     // Initialization code
-    _label_line_bottom.bounds = CGRectMake(0, 0, 320, 0.5);
-    _labl_line_top.bounds = CGRectMake(0, 0, 320, 0.5);
+    _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, LINEHEIGHT+1);
+    _viewLineBottom.frame = CGRectMake(0, 200, SCREEN_WIDTH, 0.5);
+    _viewLineBottom.backgroundColor = [UIColor redColor];
+    _viewLineBottom.hidden = YES;
+    _viewLineTop.hidden = YES;
     
     _btn_star.layer.cornerRadius = 2;
     _btn_zang.layer.cornerRadius = 2;

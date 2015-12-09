@@ -65,19 +65,20 @@
     [nowDic setObject:@"20" forKey:@"per"];
     [self getData:nowDic];
     [self geBiaoQianData];
-    __weak __typeof(self)weakSelf = self;
-    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        pageCount=1;
-        
-        [nowDic removeObjectForKey:@"p"];
-        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-        [weakSelf getData:nowDic];
-    }];
-    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [nowDic removeObjectForKey:@"p"];
-        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-        [self getDataWithDicMore:nowDic];
-    }];
+    
+//    __weak __typeof(self)weakSelf = self;
+//    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        pageCount=1;
+//        
+//        [nowDic removeObjectForKey:@"p"];
+//        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+//        [weakSelf getData:nowDic];
+//    }];
+//    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//        [nowDic removeObjectForKey:@"p"];
+//        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+//        [self getDataWithDicMore:nowDic];
+//    }];
 }
 
 #pragma 获取酒品种类信息
@@ -171,7 +172,9 @@
 
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    NSLog(@"section");
+    if(!dataList.count){
+        return 0;
+    }
     return 1;
 }
 
@@ -193,7 +196,6 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"chiheDetailCollectionCell" owner:nil options:nil]firstObject];
     }
     cell.goodImage.image=nil;
-    //    cell.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(217, 217, 217, 217));
     cell.layer.borderColor = [[UIColor lightGrayColor]CGColor];
     cell.layer.borderWidth = 0.5;
     cell.layer.cornerRadius = 5.f;
@@ -324,7 +326,6 @@
     [sender setBackgroundColor:RGBA(114, 5, 147, 1)];
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-//    [_sxBtn5 setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
     [_sxBtn5 setBackgroundColor:[UIColor whiteColor]];
     [_sxBtn5 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
     [_sxBtn5 setTitle:sender.titleLabel.text forState:UIControlStateNormal];

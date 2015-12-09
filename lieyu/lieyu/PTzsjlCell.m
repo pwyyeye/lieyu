@@ -13,9 +13,11 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.userImageView.layer.masksToBounds =YES;
+    self.managerAvatar.layer.masksToBounds =YES;
     
-    self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
+    self.managerAvatar.layer.cornerRadius =self.managerAvatar.frame.size.width/2;
+    
+    _starsArray = @[_icon1,_icon2,_icon3,_icon4,_icon5];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -28,13 +30,25 @@
     
     //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
     NSString *str=model.avatar_img ;
-    [_userImageView  setImageWithURL:[NSURL URLWithString:str]];
+    [_managerAvatar  setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     
-    _nameLal.text=model.usernick;
-    _ageLal.text=[NSString stringWithFormat:@"年龄：%@",model.age];
+    _managerName.text=model.usernick;
     
-    [self.selBtn setSelected:model.issel];
+    [self.selectBtn setSelected:model.issel];
     
+    int num;
+    if(!model.servicestar){
+        num = 3;
+    }else{
+        num = [model.servicestar intValue];
+    }
+    int i = 0 ;
+    for (i = 0 ; i < num; i ++) {
+        [_starsArray[i] setImage:[UIImage imageNamed:@"starRed"]];
+    }
+    for(int j = i ; j < 5; j ++){
+        [_starsArray[j] setImage:[UIImage imageNamed:@"starGray"]];
+    }
     
 }
 

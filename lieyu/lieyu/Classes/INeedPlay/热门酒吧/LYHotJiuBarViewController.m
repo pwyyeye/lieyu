@@ -33,6 +33,9 @@
     NSString *_priceascStr;//人均最低
     NSString *_rebatedescStr;//返利最高
     LYHotBarMenuView *_menuView;
+    UIView *_bgView;
+    UIImageView *_image_place;
+    UILabel *_label_place;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -58,6 +61,7 @@
     NSArray *array3 = @[@"离我最近",@"人均最高",@"人均最低",@"返利最高"];
     [_menuView deployWithMiddleTitle:_middleStr ItemArray:@[array1,array2,array3]];
     [self.view addSubview:_menuView];
+    
     self.curPageIndex = 1;
     _aryList = [[NSMutableArray alloc]initWithCapacity:0];
     [self getData];
@@ -129,29 +133,30 @@
              [weakSelf.aryList addObjectsFromArray:barList];
              [weakSelf.tableView reloadData];
              if (!weakSelf.aryList.count) {
-                 UIImageView *image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 191,105 , 119)];
-                 image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
-                 image_place.tag = 100;
-                 [weakSelf.view addSubview:image_place];
+                 _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_menuView.frame) , SCREEN_WIDTH,  SCREEN_HEIGHT - 64 - CGRectGetHeight(_menuView.frame))];
+                 _bgView.backgroundColor = RGBA(0, 0, 0, 0.4);
+                 _bgView.alpha = 0.2;
+                 _bgView.tag = 300;
+                 [weakSelf.view addSubview:_bgView];
                  
-                 UILabel *label_place = [[UILabel alloc]initWithFrame:CGRectMake(76, 310, 168, 22)];
-                 label_place.text = @"正在等待商家入住";
-                 label_place.textColor = RGBA(29, 32, 47, 1);
-                 label_place.font = [UIFont systemFontOfSize:14];
-                 label_place.tag = 200;
-                 label_place.textAlignment = NSTextAlignmentCenter;
-                 [weakSelf.view addSubview:label_place];
+                 _image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 191,105 , 119)];
+                 _image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
+                 _image_place.tag = 100;
+                 [weakSelf.view addSubview:_image_place];
                  
+                 _label_place = [[UILabel alloc]initWithFrame:CGRectMake(76, 310, 168, 22)];
+                 _label_place.text = @"正在等待商家入住";
+                 _label_place.textColor = RGBA(29, 32, 47, 1);
+                 _label_place.font = [UIFont systemFontOfSize:14];
+                 _label_place.tag = 200;
+                 _label_place.textAlignment = NSTextAlignmentCenter;
+                 [weakSelf.view addSubview:_label_place];
+                 
+                 [weakSelf.view bringSubviewToFront:_menuView];
              }else{
-                 UIImageView *imageView = [weakSelf.view viewWithTag:100];
-                 if (imageView) {
-                     [imageView removeFromSuperview];
-                 }
-                 UILabel *label = [weakSelf.view viewWithTag:200];
-                 if(label){
-                     [label removeFromSuperview];
-                 }
-
+                     [_bgView removeFromSuperview];
+                     [_image_place removeFromSuperview];
+                     [_label_place removeFromSuperview];
              }
          }
          block !=nil? block(ermsg,bannerList,barList):nil;

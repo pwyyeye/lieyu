@@ -50,6 +50,7 @@
            @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
             ];
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
+    _selectIndex = 1;
     [self createPayButton];//创建支付按钮
 }
 
@@ -81,7 +82,9 @@
         return;
     }
     
-    if (_selectIndex == 2l) {//支付宝
+    NSLog(@"------>%ld",_selectIndex);
+    
+    if (_selectIndex == 1l) {//支付宝
         AlipayOrder *order=[[AlipayOrder alloc] init];
         //
         order.tradeNO = _orderNo; //订单ID（由商家自行制定）
@@ -243,15 +246,15 @@
             _payCell.detailTextLabel.textColor=RGB(102, 101, 102);
             _payCell.imageView.image=[UIImage imageNamed:[dic objectForKey:@"payicon"]];
             
-            PayButton *selectBtn = [[PayButton alloc]initWithFrame:CGRectMake(289,30, 20, 20)];
-            selectBtn.backgroundColor = [UIColor clearColor];
+            PayButton *selectBtn = [[PayButton alloc]initWithFrame:CGRectMake(90,0, 230, 80)];
+//            [selectBtn setBackgroundColor:[UIColor redColor]];
             if (!indexPath.row) {
                 selectBtn.isSelect = YES;
             }else{
                 selectBtn.isSelect = NO;
             }
             selectBtn.tag = indexPath.row + 1;
-            selectBtn.tag = indexPath.row;
+
             [selectBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
             [_payCell addSubview:selectBtn];
             [_btnArray addObject:selectBtn];
@@ -267,7 +270,7 @@
 }
 
 - (void)selectClick:(PayButton *)button{
-            NSLog(@"--->%d",_btnArray.count);
+    NSLog(@"------>%ld",button.tag);
     _selectIndex = button.tag;
     for (PayButton *btn in _btnArray) {
         btn.isSelect = NO;

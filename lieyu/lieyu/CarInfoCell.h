@@ -19,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *moneyLal;
 @property (weak, nonatomic) IBOutlet UIButton *yjBtn;
 @property (weak, nonatomic) IBOutlet UITextField *numLal;
-- (IBAction)jiaAct:(UIButton *)sender;
-- (IBAction)jianAct:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UILabel *presentLbl;
+
+@property (weak, nonatomic) IBOutlet UIButton *lessbtn;
+
+
+- (IBAction)changeNum:(UIButton *)sender;
 @end
