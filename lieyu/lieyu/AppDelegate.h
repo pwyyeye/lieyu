@@ -36,6 +36,8 @@
 @property(strong,nonatomic) UINavigationController *navigationController;
 
 @property(strong,nonatomic) EAIntroView *intro;
+
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 -(void)doHeart;
@@ -43,5 +45,6 @@
 - (void)stopLoading;
 -(void)getImToken;
 -(void)connectWithToken;
+
 @end
 

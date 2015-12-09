@@ -31,6 +31,7 @@
     [super viewDidLoad];
     self.title=@"购物车";
     dataList=[[NSMutableArray alloc]init];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    [self getData];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carnumChange) name:@"carnumChange" object:nil];
@@ -42,9 +43,6 @@
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"carnumChange" object:nil];
-    
-    
-    
 }
 -(void)carnumChange{
     [self getData];
@@ -77,11 +75,11 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 38;
+    return 44;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
-    return 100;
+    return 60;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

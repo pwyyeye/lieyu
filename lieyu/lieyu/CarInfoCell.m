@@ -13,7 +13,7 @@
 @implementation CarInfoCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.lessbtn.enabled = NO;
     self.danPinImageView.layer.masksToBounds =YES;
     
     self.danPinImageView.layer.cornerRadius =self.danPinImageView.frame.size.width/2;
@@ -24,9 +24,21 @@
 
     // Configure the view for the selected state
 }
-- (IBAction)jiaAct:(UIButton *)sender {
+- (IBAction)changeNum:(UIButton *)sender {
     int count = self.numLal.text.intValue;
-    count++;
+    if(sender.tag == 1){
+        count --;
+        if(count <= 1){
+            _lessbtn.enabled = NO;
+            [_lessbtn setBackgroundImage:[UIImage imageNamed:@"gray_less"] forState:UIControlStateNormal];
+        }
+    }else if(sender.tag == 2){
+        count ++;
+        if(_lessbtn.enabled == NO){
+            _lessbtn.enabled = YES;
+            [_lessbtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
+        }
+    }
     NSDictionary *dic=@{@"ids":[NSString stringWithFormat:@"%d",carModel.id],@"quantitys":[NSString stringWithFormat:@"%d",count]};
     [[LYHomePageHttpTool shareInstance]updataCarNumWithParams:dic complete:^(BOOL result) {
         self.numLal.text=[NSString stringWithFormat:@"%d",count];
@@ -36,32 +48,27 @@
 
 }
 
-- (IBAction)jianAct:(UIButton *)sender {
-    int count = self.numLal.text.intValue;
-    if (count>1) {
-        count--;
-        NSDictionary *dic=@{@"ids":[NSString stringWithFormat:@"%d",carModel.id],@"quantitys":[NSString stringWithFormat:@"%d",count]};
-        [[LYHomePageHttpTool shareInstance]updataCarNumWithParams:dic complete:^(BOOL result) {
-            self.numLal.text=[NSString stringWithFormat:@"%d",count];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"carnumChange" object:nil];
-        }];
-    }
-    
-    
-}
 - (void)configureCell:(CarModel*)model
 {
     carModel=model;
-    [_danPinImageView  setImageWithURL:[NSURL URLWithString:model.product.image]];
+    [_danPinImageView sd_setImageWithURL:[NSURL URLWithString:model.product.image] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _nameLal.text=model.product.fullname;
-    _delLal.text=[NSString stringWithFormat:@"(%@)",model.product.unit];
+    _delLal.text=[NSString stringWithFormat:@"×(%@)",model.product.unit];
     _zhekouLal.text=model.product.price;
     _numLal.text=model.quantity;
+    if([_numLal.text intValue] > 1){
+        self.lessbtn.enabled = YES;
+        [self.lessbtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
+    }else{
+        self.lessbtn.enabled = NO;
+        [self.lessbtn setBackgroundImage:[UIImage imageNamed:@"gray_less"] forState:UIControlStateNormal];
+    }
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.product.marketprice] attributes:attribtDic];
     _moneyLal.attributedText=attribtStr;
     
-    NSString *flTem=[NSString stringWithFormat:@"再返利%.f%%",model.product.rebate.doubleValue*100];
-    [_yjBtn setTitle:flTem forState:0];
+//    NSString *flTem=[NSString stringWithFormat:@"再返利%.f%%",model.product.rebate.doubleValue*100];
+    _presentLbl.text = [NSString stringWithFormat:@"%.f%%",[model.product.rebate doubleValue]* 100];
+//    [_yjBtn setTitle:flTem forState:0];
 }
 @end

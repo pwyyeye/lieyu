@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChooseNumber">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择购买数量" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PZM-w2-xcw">
+                    <rect key="frame" x="10" y="15" width="300" height="21"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ScU-wS-aU1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <color key="textColor" red="0.36862745099999999" green="0.0" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iXQ-h5-2Tg">
+                    <rect key="frame" x="125" y="448" width="70" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="WOx-Qa-IIh"/>
+                        <constraint firstAttribute="width" constant="70" id="Xy1-KC-zQx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXx-MX-0QQ">
+                    <rect key="frame" x="83" y="448" width="30" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Q7i-fg-93v"/>
+                        <constraint firstAttribute="width" constant="30" id="e2Q-jv-DOj"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="gray_less.png"/>
+                    <connections>
+                        <action selector="lessBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="rhu-ee-SVc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odG-nZ-35Q">
+                    <rect key="frame" x="207" y="448" width="30" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="04h-vz-mvH"/>
+                        <constraint firstAttribute="height" constant="30" id="tif-W5-w4N"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="purper_add.png"/>
+                    <connections>
+                        <action selector="addBtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="cZU-rI-UwQ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="PZM-w2-xcw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="DWQ-Sw-TS9"/>
+                <constraint firstItem="odG-nZ-35Q" firstAttribute="leading" secondItem="iXQ-h5-2Tg" secondAttribute="trailing" constant="12" id="JcE-sz-iOk"/>
+                <constraint firstItem="iXQ-h5-2Tg" firstAttribute="leading" secondItem="ZXx-MX-0QQ" secondAttribute="trailing" constant="12" id="QgF-bW-gP2"/>
+                <constraint firstItem="odG-nZ-35Q" firstAttribute="centerY" secondItem="iXQ-h5-2Tg" secondAttribute="centerY" id="SmD-ay-fp8"/>
+                <constraint firstItem="PZM-w2-xcw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="T9Z-yu-eSZ"/>
+                <constraint firstItem="iXQ-h5-2Tg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="poE-PC-hP7"/>
+                <constraint firstItem="iXQ-h5-2Tg" firstAttribute="centerY" secondItem="ZXx-MX-0QQ" secondAttribute="centerY" id="vSt-49-ReF"/>
+                <constraint firstAttribute="bottom" secondItem="iXQ-h5-2Tg" secondAttribute="bottom" constant="90" id="vY5-yi-n0L"/>
+                <constraint firstAttribute="trailing" secondItem="PZM-w2-xcw" secondAttribute="trailing" constant="10" id="yZ7-P9-AFF"/>
+            </constraints>
+            <connections>
+                <outlet property="addBtn" destination="odG-nZ-35Q" id="4A0-Qi-NLX"/>
+                <outlet property="lessBtn" destination="ZXx-MX-0QQ" id="8SN-PV-34c"/>
+                <outlet property="numberField" destination="iXQ-h5-2Tg" id="0eM-Hs-OJc"/>
+            </connections>
+            <point key="canvasLocation" x="293" y="335"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gray_less.png" width="32" height="32"/>
+        <image name="purper_add.png" width="32" height="32"/>
+    </resources>
+</document>

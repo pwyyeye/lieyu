@@ -10,9 +10,16 @@
 
 @interface PTzsjlCell : UITableViewCell<LYTableViewCellLayout>
 
-@property (weak, nonatomic) IBOutlet UIImageView *userImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLal;
-@property (weak, nonatomic) IBOutlet UILabel *ageLal;
-@property (weak, nonatomic) IBOutlet UIButton *selBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *managerAvatar;
+@property (weak, nonatomic) IBOutlet UILabel *managerName;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
+
+@property (weak, nonatomic) IBOutlet UIImageView *icon1;
+@property (weak, nonatomic) IBOutlet UIImageView *icon2;
+@property (weak, nonatomic) IBOutlet UIImageView *icon3;
+@property (weak, nonatomic) IBOutlet UIImageView *icon4;
+@property (weak, nonatomic) IBOutlet UIImageView *icon5;
+
+@property (nonatomic, strong) NSArray *starsArray;
 
 @end
