@@ -11,12 +11,12 @@
 @interface CHDoOrderell : UITableViewCell<LYTableViewCellLayout>{
     CarModel *carModel;
 }
-@property (weak, nonatomic) IBOutlet UIImageView *danPinImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLal;
-@property (weak, nonatomic) IBOutlet UILabel *delLal;
-@property (weak, nonatomic) IBOutlet UILabel *zhekouLal;
-@property (weak, nonatomic) IBOutlet UILabel *moneyLal;
-@property (weak, nonatomic) IBOutlet UIButton *yjBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *goodImageView;
+@property (weak, nonatomic) IBOutlet UILabel *goodNameLbl;
+@property (weak, nonatomic) IBOutlet UILabel *numLbl;
+@property (weak, nonatomic) IBOutlet UILabel *priceLbl;
+@property (weak, nonatomic) IBOutlet UILabel *marketPriceLbl;
+@property (weak, nonatomic) IBOutlet UILabel *presentLbl;
 
 
 @end

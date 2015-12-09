@@ -37,5 +37,7 @@
 //        return;
 //    }
     self.numberField.text = [NSString stringWithFormat:@"%d",[self.numberField.text intValue] + 1];
+    self.lessBtn.enabled = YES;
+    [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
 }
 @end

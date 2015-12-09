@@ -65,19 +65,20 @@
     [nowDic setObject:@"20" forKey:@"per"];
     [self getData:nowDic];
     [self geBiaoQianData];
-    __weak __typeof(self)weakSelf = self;
-    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        pageCount=1;
-        
-        [nowDic removeObjectForKey:@"p"];
-        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-        [weakSelf getData:nowDic];
-    }];
-    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [nowDic removeObjectForKey:@"p"];
-        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-        [self getDataWithDicMore:nowDic];
-    }];
+    
+//    __weak __typeof(self)weakSelf = self;
+//    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        pageCount=1;
+//        
+//        [nowDic removeObjectForKey:@"p"];
+//        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+//        [weakSelf getData:nowDic];
+//    }];
+//    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+//        [nowDic removeObjectForKey:@"p"];
+//        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+//        [self getDataWithDicMore:nowDic];
+//    }];
 }
 
 #pragma 获取酒品种类信息
@@ -171,7 +172,9 @@
 
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    NSLog(@"section");
+    if(!dataList.count){
+        return 0;
+    }
     return 1;
 }
 

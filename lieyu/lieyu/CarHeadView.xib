@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqN-YQ-vJX">
-                    <rect key="frame" x="13" y="13" width="17" height="17"/>
+                    <rect key="frame" x="10" y="13" width="17" height="17"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="17" id="ElJ-0l-Dv7"/>
@@ -21,10 +21,10 @@
                     <state key="normal" image="CustomBtn_unSelected.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="selected" image="danxuanSelected"/>
+                    <state key="selected" image="CustomBtn_Selected.png"/>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-w7-qRa">
-                    <rect key="frame" x="38" y="8" width="28" height="28"/>
+                    <rect key="frame" x="35" y="8" width="28" height="28"/>
                     <animations/>
                     <color key="backgroundColor" red="0.78039215689999997" green="0.78039215689999997" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -32,7 +32,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒吧名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9d6-Vi-yDc">
-                    <rect key="frame" x="76" y="15" width="76" height="14"/>
+                    <rect key="frame" x="73" y="15" width="79" height="14"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="HbR-cH-raF"/>
@@ -41,7 +41,7 @@
                     <color key="textColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="right" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A93-0v-3pJ">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A93-0v-3pJ">
                     <rect key="frame" x="160" y="15" width="150" height="14"/>
                     <animations/>
                     <constraints>
@@ -65,7 +65,7 @@
                 <constraint firstItem="A93-0v-3pJ" firstAttribute="centerY" secondItem="9d6-Vi-yDc" secondAttribute="centerY" id="acn-9S-Mlx"/>
                 <constraint firstItem="9d6-Vi-yDc" firstAttribute="leading" secondItem="H9M-w7-qRa" secondAttribute="trailing" constant="10" id="iHX-2j-3ZF"/>
                 <constraint firstAttribute="bottom" secondItem="H9M-w7-qRa" secondAttribute="bottom" constant="8" id="jwd-yg-9mQ"/>
-                <constraint firstItem="hqN-YQ-vJX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="13" id="qk2-r8-0iM"/>
+                <constraint firstItem="hqN-YQ-vJX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="qk2-r8-0iM"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
@@ -77,11 +77,11 @@
                 <outlet property="jiubarImageView" destination="H9M-w7-qRa" id="Ea2-EZ-Lvk"/>
                 <outlet property="selBtn" destination="hqN-YQ-vJX" id="4Ub-bj-i6j"/>
             </connections>
-            <point key="canvasLocation" x="345" y="259"/>
+            <point key="canvasLocation" x="230" y="203"/>
         </view>
     </objects>
     <resources>
+        <image name="CustomBtn_Selected.png" width="21" height="21"/>
         <image name="CustomBtn_unSelected.png" width="21" height="21"/>
-        <image name="danxuanSelected" width="22" height="22"/>
     </resources>
 </document>

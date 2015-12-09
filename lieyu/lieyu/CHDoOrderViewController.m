@@ -27,7 +27,7 @@
     [super viewDidLoad];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
-    _tableView.separatorColor=[UIColor clearColor];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self getdata];
 
     // Do any additional setup after loading the view.
@@ -67,9 +67,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if(section==0){
-        return 38;
+        return 44;
     }else{
-        return 34;
+        return 42;
     }
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -86,20 +86,28 @@
         
         return headView;
     }else{
-        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
+        UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 42)];
         view.backgroundColor=RGB(247, 247, 247);
-        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(15, 11, 200, 12)];
         
-        label.text=@"选择我的VIP专属经理";
+        UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(16, 6, 30, 30)];
+        image.image = [UIImage imageNamed:@"LPmanager"];
+        [view addSubview:image];
         
-        
-        label.font=[UIFont systemFontOfSize:12];
+        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(56, 11, SCREEN_WIDTH - 56, 20)];
+        label.font=[UIFont systemFontOfSize:16];
         label.textColor=RGB(51, 51, 51);
         [view addSubview:label];
+        
+        if(carInfoModel.managerList.count){
+            label.text=@"选择我的VIP专属经理";
+            
+        }else{
+            label.text = @"该商品没有专属经理，无法购买!";
+            self.payBtn.enabled = NO;
+            [self.payBtn setBackgroundColor:[UIColor lightGrayColor]];
+        }
         return view;
     }
-    
-    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if(section==1){
@@ -129,14 +137,9 @@
             if (cell) {
                 CHDoOrderell * adCell = (CHDoOrderell *)cell;
                 [adCell configureCell:carModel];
-                
-                
             }
         }
-            break;
-        
-       
-            
+        break;
         default:
         {
             ZSDetailModel *zsModel=carInfoModel.managerList[indexPath.row];
@@ -144,11 +147,11 @@
             if (cell) {
                 PTzsjlCell * adCell = (PTzsjlCell *)cell;
                 [adCell configureCell:zsModel];
-                adCell.selBtn.tag=indexPath.row;
-                [adCell.selBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
-                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
-                lineLal.backgroundColor=RGB(199, 199, 199);
-                [cell addSubview:lineLal];
+                adCell.selectBtn.tag=indexPath.row;
+                [adCell.selectBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
+//                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+//                lineLal.backgroundColor=RGB(199, 199, 199);
+//                [cell addSubview:lineLal];
             }
         }
             break;
@@ -164,13 +167,13 @@
     switch (indexPath.section) {
         case 0:
         {
-            h = 81;
+            h = 87;
         }
             break;
         
         default:
         {
-            h = 76;
+            h = 87;
         }
             break;
     }
