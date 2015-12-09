@@ -25,7 +25,7 @@
 #import "LYHotJiuBarViewController.h"
 #import "LYCloseMeViewController.h"
 #import "bartypeslistModel.h"
-
+#import "HuoDongViewController.h"
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
 <
@@ -488,6 +488,16 @@ UITableViewDataSource,UITableViewDelegate,
         
         controller.beerBarId = linkid;
         [self.navigationController pushViewController:controller animated:YES];
+    }else if(ad_type.intValue ==2){
+        //有活动内容才跳转
+        if ([dic objectForKey:@"content"]) {
+            HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
+            huodong.content=[dic objectForKey:@"content"];
+            [self.navigationController pushViewController:huodong animated:YES];
+        }
+        
+        
+        
     }else if (ad_type.intValue ==3){
 //    套餐/3
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];

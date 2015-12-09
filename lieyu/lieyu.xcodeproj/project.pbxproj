@@ -742,6 +742,7 @@
 		ADFFA6921C16DFD600D9BD2A /* smallPlace.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A181C152A750088CD86 /* smallPlace.png */; };
 		ADFFA6931C16DFE900D9BD2A /* camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85F5454B1C1454010013B92B /* camera@3x.png */; };
 		ADFFA6951C1721D600D9BD2A /* gouGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = ADFFA6941C1721D600D9BD2A /* gouGif.gif */; };
+		ADFFA6991C17342F00D9BD2A /* HuoDongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADFFA6981C17342F00D9BD2A /* HuoDongViewController.m */; };
 		D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */; };
 		D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D71E1D8A1BAE8C3300915F37 /* PacketBarCell.m */; };
 		D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71E1D8B1BAE8C3300915F37 /* PacketBarCell.xib */; };
@@ -2025,6 +2026,8 @@
 		ADF88F3A1C12E5F000CF5DED /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
 		ADF88F3B1C12E5F000CF5DED /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
 		ADFFA6941C1721D600D9BD2A /* gouGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gouGif.gif; sourceTree = "<group>"; };
+		ADFFA6971C17342F00D9BD2A /* HuoDongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongViewController.h; sourceTree = "<group>"; };
+		ADFFA6981C17342F00D9BD2A /* HuoDongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongViewController.m; sourceTree = "<group>"; };
 		D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarDetailCell.h; sourceTree = "<group>"; };
 		D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarDetailCell.m; sourceTree = "<group>"; };
 		D71E1D891BAE8C3300915F37 /* PacketBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketBarCell.h; sourceTree = "<group>"; };
@@ -4690,6 +4693,15 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		ADFFA6961C1733C200D9BD2A /* 活动详情 */ = {
+			isa = PBXGroup;
+			children = (
+				ADFFA6971C17342F00D9BD2A /* HuoDongViewController.h */,
+				ADFFA6981C17342F00D9BD2A /* HuoDongViewController.m */,
+			);
+			name = "活动详情";
+			sourceTree = "<group>";
+		};
 		D729DB5C1BADB8AB005A9E60 /* BeerBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -4870,6 +4882,7 @@
 		D761F0241BA5B847000757B0 /* iNeedPaly */ = {
 			isa = PBXGroup;
 			children = (
+				ADFFA6961C1733C200D9BD2A /* 活动详情 */,
 				855192651C0B30C4007B9949 /* 热门酒吧 */,
 				ADF38F3F1BE8CD9C00A80B08 /* 定位 */,
 				15ED32851BE6F23100E086A1 /* 搜索 */,
@@ -5719,6 +5732,7 @@
 				85F625971C0C20C6002858C8 /* LYDinWeiTableViewCell.m in Sources */,
 				15E240671BB1243A0090D240 /* TypeChooseCell.m in Sources */,
 				15013AFF1BBA33BF00061FAF /* UIImage+GIF.m in Sources */,
+				ADFFA6991C17342F00D9BD2A /* HuoDongViewController.m in Sources */,
 				15844BC31BE1CA3200247FBC /* WanYouInfoCell.m in Sources */,
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,

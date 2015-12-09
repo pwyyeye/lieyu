@@ -78,7 +78,8 @@
         
     }
     CustomerModel * model =dataList[indexPath.section];
-    [cell.userImageView setImageWithURL:[NSURL URLWithString:model.avatar_img]];
+//    [cell.userImageView setImageWithURL:[NSURL URLWithString:model.avatar_img]];
+    [cell.userImageView setImageWithURL:[NSURL URLWithString:model.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     cell.titleLal.text=model.usernick;
     cell.detLal.text=model.message;
     
