@@ -315,6 +315,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+
+
 #pragma mark 立即支付
 - (IBAction)buyNowClick:(UIButton *)sender {
     if(self.pinkeModel){
