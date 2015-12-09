@@ -350,6 +350,9 @@
 		38D8764F1C170DB200E2F284 /* PayNow.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D8764C1C170DB200E2F284 /* PayNow.png */; };
 		38D876501C170DB200E2F284 /* PayNow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D8764D1C170DB200E2F284 /* PayNow@2x.png */; };
 		38D876511C170DB200E2F284 /* PayNow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D8764E1C170DB200E2F284 /* PayNow@3x.png */; };
+		38D876551C17DEA100E2F284 /* typeBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D876521C17DEA100E2F284 /* typeBorder.png */; };
+		38D876561C17DEA100E2F284 /* typeBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D876531C17DEA100E2F284 /* typeBorder@2x.png */; };
+		38D876571C17DEA100E2F284 /* typeBorder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D876541C17DEA100E2F284 /* typeBorder@3x.png */; };
 		38E5D6BD1C0EA458004B49D2 /* CustomBtn_unSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6B71C0EA458004B49D2 /* CustomBtn_unSelected.png */; };
 		38E5D6BE1C0EA458004B49D2 /* CustomBtn_unSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6B81C0EA458004B49D2 /* CustomBtn_unSelected@2x.png */; };
 		38E5D6BF1C0EA458004B49D2 /* CustomBtn_unSelected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E5D6B91C0EA458004B49D2 /* CustomBtn_unSelected@3x.png */; };
@@ -1388,6 +1391,9 @@
 		38D8764C1C170DB200E2F284 /* PayNow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PayNow.png; sourceTree = "<group>"; };
 		38D8764D1C170DB200E2F284 /* PayNow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PayNow@2x.png"; sourceTree = "<group>"; };
 		38D8764E1C170DB200E2F284 /* PayNow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PayNow@3x.png"; sourceTree = "<group>"; };
+		38D876521C17DEA100E2F284 /* typeBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typeBorder.png; sourceTree = "<group>"; };
+		38D876531C17DEA100E2F284 /* typeBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typeBorder@2x.png"; sourceTree = "<group>"; };
+		38D876541C17DEA100E2F284 /* typeBorder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typeBorder@3x.png"; sourceTree = "<group>"; };
 		38E5D6B71C0EA458004B49D2 /* CustomBtn_unSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomBtn_unSelected.png; sourceTree = "<group>"; };
 		38E5D6B81C0EA458004B49D2 /* CustomBtn_unSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CustomBtn_unSelected@2x.png"; sourceTree = "<group>"; };
 		38E5D6B91C0EA458004B49D2 /* CustomBtn_unSelected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CustomBtn_unSelected@3x.png"; sourceTree = "<group>"; };
@@ -3323,6 +3329,9 @@
 		381A01C91C14227F00592485 /* 吃喝专场 */ = {
 			isa = PBXGroup;
 			children = (
+				38D876521C17DEA100E2F284 /* typeBorder.png */,
+				38D876531C17DEA100E2F284 /* typeBorder@2x.png */,
+				38D876541C17DEA100E2F284 /* typeBorder@3x.png */,
 				38D8764C1C170DB200E2F284 /* PayNow.png */,
 				38D8764D1C170DB200E2F284 /* PayNow@2x.png */,
 				38D8764E1C170DB200E2F284 /* PayNow@3x.png */,
@@ -5313,6 +5322,7 @@
 				A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */,
 				AD92AEBD1BE50AD9009F2A34 /* AboutLieyu.xib in Resources */,
 				15EB35461BD4839D00BA6161 /* UMSocialLocalizable.strings in Resources */,
+				38D876561C17DEA100E2F284 /* typeBorder@2x.png in Resources */,
 				ADB164C81C167733000BAD3C /* refresh1.png in Resources */,
 				381A01C61C140DE500592485 /* INeedYou@3x.png in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
@@ -5461,6 +5471,7 @@
 				38E5D7A71C113879004B49D2 /* gray_less@2x.png in Resources */,
 				ADD68E331BE10E400060E751 /* 4_retina.png in Resources */,
 				85EE803D1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib in Resources */,
+				38D876571C17DEA100E2F284 /* typeBorder@3x.png in Resources */,
 				ADB164BE1C167095000BAD3C /* lieyuIcon@3x.png in Resources */,
 				38E5D7C21C128C44004B49D2 /* triangle_down.png in Resources */,
 				ADB164CC1C167733000BAD3C /* refresh5.png in Resources */,
@@ -5492,6 +5503,7 @@
 				38E5D7B61C128A74004B49D2 /* 拼客流程.png in Resources */,
 				15E240A71BB381610090D240 /* OrderDetailHeadView.xib in Resources */,
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
+				38D876551C17DEA100E2F284 /* typeBorder.png in Resources */,
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
 				85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */,
 				3879F2581C0D32B900B72629 /* TaocanTableViewCell.xib in Resources */,
@@ -6178,8 +6190,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6213,7 +6225,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d74e0b2-2a05-4526-a686-3a6f08400617";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -6224,8 +6236,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6259,7 +6271,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d74e0b2-2a05-4526-a686-3a6f08400617";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

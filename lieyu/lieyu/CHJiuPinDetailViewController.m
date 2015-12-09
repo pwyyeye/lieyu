@@ -28,7 +28,7 @@
 @property (nonatomic, strong) AddressTableViewCell *addressCell;
 @property (nonatomic, strong) CHPorTypeCell *typeCell;
 @property (nonatomic, strong) PTShowIntroductionsCell *showCell;
-
+@property (nonatomic, strong) RCPublicServiceChatViewController *conversationVC;
 @property (nonatomic, strong) ChooseNumber *chooseNumView;
 
 @end
@@ -142,19 +142,34 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor=[UIColor whiteColor];
-            UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(15, 10, 320-30, 25)];
+            UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(15, 37, 320-30, 25)];
             [lal1 setTag:1];
             lal1.textAlignment=NSTextAlignmentLeft;
-            lal1.font=[UIFont systemFontOfSize:12];
+            lal1.font=[UIFont systemFontOfSize:14];
             lal1.backgroundColor=[UIColor clearColor];
-            lal1.textColor= RGB(51, 51, 51);
+            lal1.textColor= RGB(76, 76, 76);
             lal1.numberOfLines = 0;  //必须定义这个属性，否则UILabel不会换行
-            lal1.text = @"店家发货的设计开发和肯德基啊是否健康的好办法靠近阿斯顿打开了哈风 等级分拉开；放大看哈付款，大方经典款拉链大码，方面，下放劳动啥回复的好风景，你都发空间很大的反馈；了解大陆凤凰健康的好你们， 。，点击放大是否看见大家都快乐的";
+//            lal1.text = @"店家发货的设计开发和肯德基啊是否健康的好办法靠近阿斯顿打开了哈风 等级分拉开；放大看哈付款，大方经典款拉链大码，方面，下放劳动啥回复的好风景，你都发空间很大的反馈；了解大陆凤凰健康的好你们， 。，点击放大是否看见大家都快乐的";
             lal1.lineBreakMode = NSLineBreakByWordWrapping;
             [cell.contentView addSubview:lal1];
         }
+        
+        UILabel *titleLbl = [[UILabel alloc]initWithFrame:CGRectMake(12, 8, 200, 21)];
+        titleLbl.text = @"产品说明:";
+        titleLbl.font = [UIFont fontWithName:@"Bold" size:18];
+        titleLbl.textColor = RGBA(51, 51, 51, 1);
+        [cell.contentView addSubview:titleLbl];
+        
         UILabel *lal = (UILabel*)[cell viewWithTag:1];
-        NSString *title=[NSString stringWithFormat:@"产品说明：\n     %@",chiHeModel.introduction];
+        
+        NSString *title = @"";
+        
+        if([chiHeModel.introduction isEqualToString:@""]){
+            title = [NSString stringWithFormat:@"%@非常好！",chiHeModel.fullname];
+        }else{
+            title = chiHeModel.introduction;
+        }
+        
         //高度固定不折行，根据字的多少计算label的宽度
         CGSize size = [title sizeWithFont:lal.font
                         constrainedToSize:CGSizeMake(lal.width, MAXFLOAT)
@@ -163,13 +178,14 @@
         //根据计算结果重新设置UILabel的尺寸
         lal.height=size.height;
         lal.text=title;
+    
         CGRect cellFrame = [cell frame];
         cellFrame.origin=CGPointMake(0, 0);
         cellFrame.size.width=SCREEN_WIDTH;
-        cellFrame.size.height=lal.size.height+20;
-        UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, lal.size.height+20-0.5, 290, 0.5)];
-        lineLal.backgroundColor=RGB(199, 199, 199);
-        [cell addSubview:lineLal];
+        cellFrame.size.height=lal.size.height + 50;
+//        UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, lal.size.height+ 61 -0.5, 290, 0.5)];
+//        lineLal.backgroundColor=RGB(199, 199, 199);
+//        [cell addSubview:lineLal];
         [cell setFrame:cellFrame];
         return cell;
     }else{
@@ -197,7 +213,7 @@
         UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
         return cell.frame.size.height;
     }else{
-        h = 162;
+        h = 200;
     }
     return h;
 }
@@ -288,14 +304,21 @@
 
 #pragma 猎娱客服
 - (IBAction)LYkefu:(UIButton *)sender {
-    RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
-    conversationVC.conversationType = ConversationType_PRIVATE;
-    conversationVC.targetId = @"KEFU144946169476221";
-    conversationVC.userName = @"猎娱客服";
-    conversationVC.title = @"猎娱客服";
-    [self.navigationController pushViewController:conversationVC animated:YES];
+    _conversationVC = [[RCPublicServiceChatViewController alloc] init];
+    _conversationVC.conversationType = ConversationType_PRIVATE;
+    _conversationVC.targetId = @"KEFU144946169476221";
+    _conversationVC.userName = @"猎娱客服";
+    _conversationVC.title = @"猎娱客服";
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick)];
+    _conversationVC.navigationItem.leftBarButtonItem = leftBtn;
+    [self.navigationController pushViewController:_conversationVC animated:YES];
 
 }
+
+- (void)backBtnClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma 立即下单
 - (IBAction)buyNow:(UIButton *)sender {
 }
