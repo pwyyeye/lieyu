@@ -48,33 +48,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="40d-7b-DOI">
-                        <rect key="frame" x="0.0" y="45" width="320" height="1"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1m6-yD-Guh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ec1-Xc-31H">
-                        <rect key="frame" x="0.0" y="211" width="320" height="1"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="QKI-Sx-1gS">
                         <rect key="frame" x="0.0" y="45" width="320" height="166"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -106,6 +79,24 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
+                    <view contentMode="scaleToFill" id="WXX-vk-ph3">
+                        <rect key="frame" x="0.0" y="211" width="320" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <view contentMode="scaleToFill" id="sHe-d7-bYQ">
+                        <rect key="frame" x="0.0" y="44" width="320" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <view contentMode="scaleToFill" id="YQw-wT-xgC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                 </subviews>
                 <animations/>
             </tableViewCellContentView>
@@ -114,12 +105,12 @@
                 <outlet property="button_page_left" destination="fSD-iA-44m" id="a6j-as-hIe"/>
                 <outlet property="button_page_right" destination="llJ-ab-NEN" id="2Tk-VF-IkG"/>
                 <outlet property="imageView_line_Three" destination="h6j-30-xcP" id="Nl9-3g-t3j"/>
-                <outlet property="label_lineTop" destination="1m6-yD-Guh" id="9lR-9M-yNQ"/>
                 <outlet property="label_line_blue" destination="Gcq-XA-cd1" id="gge-dM-mDV"/>
-                <outlet property="label_line_bottom" destination="ec1-Xc-31H" id="gKX-dJ-Sq4"/>
-                <outlet property="label_line_middle" destination="40d-7b-DOI" id="c8k-Yf-UdU"/>
                 <outlet property="label_title" destination="g5a-mL-5zq" id="O7P-So-IOL"/>
                 <outlet property="scrollView" destination="QKI-Sx-1gS" id="xWU-Mr-UmZ"/>
+                <outlet property="viewLineBottom" destination="WXX-vk-ph3" id="DO2-OY-kE8"/>
+                <outlet property="viewLineMiddle" destination="sHe-d7-bYQ" id="FDx-P4-scf"/>
+                <outlet property="viewLineTop" destination="YQw-wT-xgC" id="WRf-fz-fxR"/>
                 <outletCollection property="buttonArray" destination="4cY-QH-nH8" collectionClass="NSMutableArray" id="tKP-CI-bem"/>
                 <outletCollection property="buttonArray" destination="IBU-SE-djO" collectionClass="NSMutableArray" id="CYq-2W-woO"/>
                 <outletCollection property="buttonArray" destination="TbJ-6R-S3d" collectionClass="NSMutableArray" id="AN1-jA-xpz"/>

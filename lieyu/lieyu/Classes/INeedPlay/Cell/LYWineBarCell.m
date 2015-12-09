@@ -16,6 +16,7 @@
     // Initialization code
     _label_line_bottom.bounds = CGRectMake(0, 0, 320, 0.5);
     _labl_line_top.bounds = CGRectMake(0, 0, 320, 0.5);
+    _labl_line_top.hidden = YES;
     
     _btn_star.layer.cornerRadius = 2;
     _btn_zang.layer.cornerRadius = 2;
