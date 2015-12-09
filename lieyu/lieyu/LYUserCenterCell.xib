@@ -14,17 +14,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8E-qE-ghQ">
-                        <rect key="frame" x="0.0" y="50" width="80" height="20"/>
+                        <rect key="frame" x="0.0" y="48" width="80" height="22"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                         <color key="textColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cO4-bc-ycf">
-                        <rect key="frame" x="0.0" y="15" width="80" height="30"/>
+                        <rect key="frame" x="0.0" y="18" width="80" height="25"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="jR2-tU-q6E"/>
+                            <constraint firstAttribute="height" constant="25" id="jR2-tU-q6E"/>
                             <constraint firstAttribute="width" constant="80" id="ubj-45-DIO"/>
                         </constraints>
                     </imageView>
@@ -35,7 +35,7 @@
             <animations/>
             <constraints>
                 <constraint firstItem="T8E-qE-ghQ" firstAttribute="top" secondItem="cO4-bc-ycf" secondAttribute="bottom" constant="5" id="1Ec-ok-zX2"/>
-                <constraint firstItem="cO4-bc-ycf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="4M1-Lu-tKs"/>
+                <constraint firstItem="cO4-bc-ycf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="18" id="4M1-Lu-tKs"/>
                 <constraint firstItem="T8E-qE-ghQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8De-kx-kMP"/>
                 <constraint firstAttribute="trailing" secondItem="cO4-bc-ycf" secondAttribute="trailing" id="8eQ-qK-s6y"/>
                 <constraint firstItem="cO4-bc-ycf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="JAp-RO-sdV"/>
