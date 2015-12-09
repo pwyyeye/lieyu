@@ -16,6 +16,7 @@
     
     self.imageView_header.layer.cornerRadius = 2;
     self.imageView_header.layer.masksToBounds = YES;
+    _barStar.enabled=NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -23,10 +23,25 @@
         UILabel *label = [[UILabel alloc]init];
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = RGBA(76, 76, 76, 1);
-        label.frame = CGRectMake( i%3 * 100 + 10, i/3 * 50 + 40, 100, 40);
+
+        CGFloat offsetX;
+        CGFloat offsetZ;
+        if (i%3 == 0) {
+            offsetX = 30;
+        }else{
+            offsetX = 0;
+        }
+        if (i%3 == 1) {
+            offsetZ = 40;
+        }else{
+            offsetZ = 0;
+        }
+        label.frame = CGRectMake( i%3 * 100 + 10 + offsetZ, i/3 * 50 + 40, 100 + offsetX, 55);
         NSString *str;
         if (i%3 == 0) {
             str = model.name;
+            label.numberOfLines = 0;
+             label.font = [UIFont systemFontOfSize:12];
         }else if(i%3 == 1){
             str = [NSString stringWithFormat:@"1%@",model.unit];
             label.textAlignment = NSTextAlignmentCenter;

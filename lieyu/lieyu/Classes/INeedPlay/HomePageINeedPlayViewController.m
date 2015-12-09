@@ -25,7 +25,7 @@
 #import "LYHotJiuBarViewController.h"
 #import "LYCloseMeViewController.h"
 #import "bartypeslistModel.h"
-
+#import "HuoDongViewController.h"
 #define PAGESIZE 20
 @interface HomePageINeedPlayViewController ()
 <
@@ -358,7 +358,7 @@ UITableViewDataSource,UITableViewDelegate,
 {
     UITableViewCell *cell = nil;
     switch (indexPath.section) {
-        case 0:
+        case 0://广告
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             NSMutableArray *bigArr=[[NSMutableArray alloc]init];
@@ -372,12 +372,10 @@ UITableViewDataSource,UITableViewDelegate,
                                                                   scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
             scroller.delegate=self;
             [cell addSubview:scroller];
-            
         }
             break;
-        case 1:
+        case 1://娱乐分类
         {
-            
           LYAmusementClassCell *amuseCell =[tableView dequeueReusableCellWithIdentifier:@"LYAmusementClassCell" forIndexPath:indexPath];
             amuseCell.bartypeArray = self.bartypeslistArray;
             amuseCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -387,16 +385,15 @@ UITableViewDataSource,UITableViewDelegate,
             return amuseCell;
         }
             break;
-        case 2:
+        case 2://热门推荐
         {
-            
             LYHotRecommandCell *hotCell = [tableView dequeueReusableCellWithIdentifier:@"hotCell" forIndexPath:indexPath];
             hotCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return hotCell;
         }
             break;
         
-        default:
+        default://酒吧列表
         {
             LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
             wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -409,6 +406,7 @@ UITableViewDataSource,UITableViewDelegate,
   return cell;
 }
 
+//跳转热门酒吧界面
 - (void)hotJiuClick:(UIButton *)button{
     LYHotJiuBarViewController *hotJiuBarVC = [[LYHotJiuBarViewController alloc]init];
     NSMutableArray *titleArray = [[NSMutableArray alloc]initWithCapacity:0];
@@ -490,6 +488,16 @@ UITableViewDataSource,UITableViewDelegate,
         
         controller.beerBarId = linkid;
         [self.navigationController pushViewController:controller animated:YES];
+    }else if(ad_type.intValue ==2){
+        //有活动内容才跳转
+        if ([dic objectForKey:@"content"]) {
+            HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
+            huodong.content=[dic objectForKey:@"content"];
+            [self.navigationController pushViewController:huodong animated:YES];
+        }
+        
+        
+        
     }else if (ad_type.intValue ==3){
 //    套餐/3
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];

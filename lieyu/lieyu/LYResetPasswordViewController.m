@@ -13,6 +13,15 @@
 @end
 
 @implementation LYResetPasswordViewController
+static LYResetPasswordViewController *_reset;
+
++ (LYResetPasswordViewController *)shareReset{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _reset = [[LYResetPasswordViewController alloc]init];
+    });
+    return _reset;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

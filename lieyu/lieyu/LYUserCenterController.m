@@ -59,7 +59,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [self.collectionView registerNib:[UINib nibWithNibName:@"LYUserCenterFooter" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter"];
     //
 
-    _data=@[@{@"title":@"购物车",@"icon":@"userShopCart"},@{@"title":@"收藏",@"icon":@"userFav"},@{@"title":@"专属经理",@"icon":@"userManager"},@{@"title":@"我的推荐",@"icon":@"userTuijian"},@{@"title":@"帮助与反馈",@"icon":@"userHelp"},@{@"title":@"",@"icon":@""}];
+    _data=@[@{@"title":@"购物车",@"icon":@"userShopCart"},@{@"title":@"收藏",@"icon":@"userFav"},@{@"title":@"专属经理",@"icon":@"userManager"},@{@"title":@"推荐猎娱",@"icon":@"userTuijian"},@{@"title":@"帮助与反馈",@"icon":@"userHelp"},@{@"title":@"",@"icon":@""}];
  
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
@@ -125,9 +125,17 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     LYUserCenterCell *cell = (LYUserCenterCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
+    cell.icon.image=nil;
+    [cell.icon setContentMode:UIViewContentModeScaleAspectFit];
+//    cell.icon.frame=CGRectMake(0, 15, 80, 30);
+//    cell.text.frame=CGRectMake(0, 70, 80, 20);
+    
+//     NSLog(@"----pass-------%@---", NSStringFromCGRect(cell.icon.frame));
+    cell.text.text=@"";
     if (indexPath.row<6) {
         NSDictionary *dic=_data[indexPath.row];
         cell.icon.image=[UIImage imageNamed:[dic objectForKey:@"icon"]];

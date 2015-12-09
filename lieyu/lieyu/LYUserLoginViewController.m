@@ -27,17 +27,22 @@
     
    // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController setNavigationBarHidden:YES];
-    _timer=[NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(wait) userInfo:nil repeats:YES];
+    _timer=[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(wait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantPast]];
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
+    _step=1;
     
 }
 -(void)wait{
     [self.navigationController setNavigationBarHidden:YES];
-    [_timer invalidate];
+    if (_step==2) {
+        [_timer invalidate];
+    }
+    _step++;
 }
 - (IBAction)goBackClick:(id)sender {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,7 +82,7 @@
 
 #pragma mark - 忘记密码
 - (IBAction)forgetPassWordAct:(UIButton *)sender {
-    LYResetPasswordViewController *resetPasswordViewController=[[LYResetPasswordViewController alloc]initWithNibName:@"LYResetPasswordViewController" bundle:nil];
+    LYResetPasswordViewController *resetPasswordViewController=[LYResetPasswordViewController shareReset];
     resetPasswordViewController.title=@"忘记密码";
     [self.navigationController pushViewController:resetPasswordViewController animated:YES];
 }
