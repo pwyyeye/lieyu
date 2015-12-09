@@ -68,7 +68,7 @@
 //        
 //    }];
 //}
-#pragma 获取数据
+#pragma mark 获取数据
 - (void)getAllManagers{
     NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:self.smid]};
     __weak __typeof(self)weakSelf = self;
@@ -83,7 +83,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma tableview的各个代理事件
+#pragma mark tableview的各个代理事件
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 5;
 }
@@ -235,7 +235,7 @@
     }
 }
 
-#pragma delegate处理事件
+#pragma mark delegate处理事件
 - (void)selectManager:(int)index{
     ZSDetailModel *zsDetail = _managerList[index];
     if([zsDetail.isFull isEqualToString:@"1"]){
@@ -251,7 +251,7 @@
     }
 }
 
-#pragma 付钱按钮，选择预付金额
+#pragma mark 付钱按钮，选择预付金额
 - (void)payMoney{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定",@"取消", nil];
     alertView.delegate = self;
@@ -262,7 +262,7 @@
     _payContent.frame = CGRectMake(10, SCREEN_HEIGHT - 270 , 300, 200);
     [alertView show];
 }
-#pragma 填完金额后的代理事件
+#pragma mark 填完金额后的代理事件
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexPayMoney:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
         if([((PayMoney *)alertView.contentView).textField.text intValue] < 100){
@@ -315,6 +315,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark 立即支付
 - (IBAction)buyNowClick:(UIButton *)sender {
     if(self.pinkeModel){
         bool issel = false;
@@ -357,9 +358,6 @@
                 [self.navigationController pushViewController:detailViewController animated:YES];
             }
         }];
-        
     }
-    
-
 }
 @end

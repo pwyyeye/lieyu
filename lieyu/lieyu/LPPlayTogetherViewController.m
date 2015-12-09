@@ -105,7 +105,7 @@
     
 }
 
-#pragma 回退按钮
+#pragma mark  回退按钮
 - (void)backForword{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -125,7 +125,7 @@
 //    [self.view addSubview:status];
 //}
 
-#pragma 页面进来获取数据
+#pragma mark  页面进来获取数据
 - (void)getdata{
     NSDictionary *dic = @{@"smid":[NSNumber numberWithInt:self.smid]};
     __weak __typeof(self)weakSelf = self;
@@ -140,7 +140,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma tableView各个代理功能
+#pragma mark  tableView各个代理功能
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 6;
 }
@@ -257,13 +257,23 @@
     return 0;
 }
 
-#pragma 进入地图
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if(section == 5){
+        return -100;
+    }else{
+        return 8;
+    }
+}
+
+
+#pragma mark  进入地图
 - (void)daohang{
     NSDictionary *dic=@{@"title":self.pinKeModel.barinfo.barname,@"latitude":self.pinKeModel.barinfo.latitude,@"longitude":self.pinKeModel.barinfo.longitude};
     [[LYUserLocation instance] daoHan:dic];
 }
 
-#pragma 实现代理的方法，选择拼客方式
+#pragma mark  实现代理的方法，选择拼客方式
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
         for (int index = 0 ; index < _contentView.buttonStatusArray.count; index ++) {
@@ -295,7 +305,7 @@
     }
 }
 
-//#pragma 填写支付金额
+//#pragma mark  填写支付金额
 //- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 //    if (buttonIndex == alertView.firstOtherButtonIndex) {
 //        if ([[alertView textFieldAtIndex:0].text intValue] < 100) {
@@ -307,7 +317,7 @@
 //    }
 //}
 
-#pragma  选择消费时间
+#pragma mark   选择消费时间
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
 //        for (int index = 0 ; index < _contentView.buttonStatusArray.count; index ++) {
@@ -323,15 +333,7 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if(section == 5){
-        return -100;
-    }else{
-        return 8;
-    }
-}
-
-#pragma 选择消费时间
+#pragma mark  选择消费时间
 - (void)chooseTimeForTaocan{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
 //    alertView.delegate = self;
@@ -344,7 +346,7 @@
     [alertView show];
 }
 
-#pragma 选择拼客方式
+#pragma mark  选择拼客方式
 - (void)chooseWayForTaocan{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
     alertView.delegate = self;
@@ -357,7 +359,7 @@
     [alertView show];
 }
 
-#pragma 加按钮点击
+#pragma mark  加按钮点击
 - (void)addPeople{
     self.defaultNumber ++;
 //    self.biTianCell.numTextField.text = [NSString stringWithFormat:@"%d",self.defaultNumber];
@@ -369,7 +371,7 @@
     }
 }
 
-#pragma 减按钮点击
+#pragma mark  减按钮点击
 - (void)lessPeople{
     if(self.defaultNumber <= 2){
         self.biTianCell.lessBtn.enabled = NO;
@@ -381,7 +383,7 @@
 }
 
 
-#pragma textFieldDelegate代理方法
+#pragma mark  textFieldDelegate代理方法
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     
 }// became first responder
@@ -390,7 +392,7 @@
     
 }
 
-#pragma 咨询猎娱
+#pragma mark  咨询猎娱
 - (IBAction)ZiXunLieyu:(UIButton *)sender {
     RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
     conversationVC.conversationType = ConversationType_PRIVATE;
@@ -402,13 +404,13 @@
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
-#pragma 注意事项
+#pragma mark  mark  mark  注意事项
 - (IBAction)ZhuYiShixiang:(UIButton *)sender {
     LPAttentionViewController *LPattentionVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPattention"];
     [self.navigationController pushViewController:LPattentionVC animated:YES];
 }
 
-#pragma 立即购买
+#pragma mark  mark  立即购买
 - (IBAction)BuyNow:(UIButton *)sender {
     if(self.defaultIndex == -1){
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"抱歉，请选择正确的拼客方式!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show ];
@@ -446,12 +448,12 @@
 }
 
 
-#pragma 喜欢按钮
+#pragma mark  mark  喜欢按钮
 - (IBAction)LikeClick:(UIButton *)sender {
     
 }
 
-#pragma 分享按钮
+#pragma mark  mark  分享按钮
 - (IBAction)ShareClick:(UIButton *)sender {
 //    
     NSString *string=@"大家一起来看看～猎娱不错啊! http://www.lie98.com\n";
