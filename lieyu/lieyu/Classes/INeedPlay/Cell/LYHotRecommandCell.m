@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _label_line_bottom.frame = CGRectMake(0, 45, SCREEN_WIDTH, 0.3);
+    _viewLineBottom.frame = CGRectMake(0, 44, SCREEN_WIDTH, 0.3);
     _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0.2);
 }
 

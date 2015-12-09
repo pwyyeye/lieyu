@@ -265,6 +265,9 @@
     [[LYUserHttpTool shareInstance] saveUserInfo:[userInfo copy] complete:^(BOOL result) {
         if (result) {
             [MyUtil showMessage:@"修改成功！"];
+            app.userModel.gender = [NSString stringWithFormat:@"%d",_sexCell.btn_man.tag == 3 ? 1 : 0];
+            app.userModel.usernick = _nickCell.textF_content.text;
+            app.userModel.birthday = _birthCell.textF_content.text;
             if (isNeed) {
               //  [self.tableView reloadData];
             }

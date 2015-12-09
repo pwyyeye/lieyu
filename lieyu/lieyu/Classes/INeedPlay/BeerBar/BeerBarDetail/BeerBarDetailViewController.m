@@ -24,7 +24,7 @@
 #import "LYBarPointTableViewCell.h"
 #import "LYBarSpecialTableViewCell.h"
 #import "LYBarDescTitleTableViewCell.h"
-#import "LYBarDesrcTableViewCell.h"
+#import "LYBarDescTableViewCell.h"
 #import "LYUserHttpTool.h"
 #import "LYHomePageHttpTool.h"
 #import "CHViewController.h"
@@ -34,6 +34,7 @@
 {
     NSManagedObjectContext *_context;
     NSString *_userid;
+    UIWebView *_webView;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -101,6 +102,18 @@
 //    [super viewDidAppear:animated];
 //    self.navigationController.navigationBarHidden=NO;
 //}
+
+#pragma mart --约束
+-(void)updateViewConstraints{
+    [super updateViewConstraints];
+    if (self.beerBarDetail.recommend_package.count==0) {
+        _buttomViewHeight.constant=0;
+    }else{
+        _buttomViewHeight.constant=59;
+    }
+    
+}
+
 - (void)loadBarDetail
 {
     __weak __typeof(self ) weakSelf = self;
@@ -109,10 +122,8 @@
     {
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
-            if(!detailItem.recommend_package.count){
-                _bottomBarView.hidden = YES;
-                _scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            }
+            
+            [self updateViewConstraints];
             [weakSelf.tableView reloadData];
             //加载webview
             
@@ -120,8 +131,6 @@
         }
     }];
 }
-
-
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - self.image_layer.size.height) {
@@ -134,16 +143,16 @@
 
 // load webView
 - (void)loadWebView{
-    UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectZero];
     
     NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.beerBarDetail.descriptions];
     
-    webView.delegate = self;
-    [webView sizeToFit];
-    [webView.scrollView setScrollEnabled:NO];
-    webView.scalesPageToFit = YES;
-    [webView loadHTMLString:webStr baseURL:nil];
-    [self.scrollView addSubview:webView];
+    _webView.delegate = self;
+    [_webView sizeToFit];
+    [_webView.scrollView setScrollEnabled:NO];
+    _webView.scalesPageToFit = YES;
+    [_webView loadHTMLString:webStr baseURL:nil];
+    [self.scrollView addSubview:_webView];
 }
 
 
@@ -152,13 +161,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark 返回按钮
+#pragma mark --返回按钮
 - (IBAction)goBack:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark 喜欢按钮
+#pragma mark --喜欢按钮
 - (IBAction)likeClick:(UIButton *)sender {
     NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
     
@@ -183,7 +192,7 @@
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarPointTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarPointTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarSpecialTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarSpecialTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarDescTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDescTitleTableViewCell"];
-    [_tableView registerNib:[UINib nibWithNibName:@"LYBarDesrcTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDesrcTableViewCell"];
+    [_tableView registerClass:[LYBarDescTableViewCell class] forCellReuseIdentifier:@"LYBarDescTableViewCell"];
     
     self.bottomBarView.backgroundColor = [LYColors tabbarBgColor];
     //_dyBarDetailH = [BeerBarDetailCell adjustCellHeight:nil];
@@ -312,7 +321,7 @@
             return barPointCell;
         }
             break;
-            case 3:
+            case 3://酒吧特色
         {
             LYBarSpecialTableViewCell *barSpecialCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarSpecialTableViewCell" forIndexPath:indexPath];
             
@@ -324,7 +333,8 @@
             break;
         case 4:
         {
-            LYBarDescTitleTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTitleTableViewCell" forIndexPath:indexPath];
+            LYBarDescTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTableViewCell" forIndexPath:indexPath];
+            barDescTitleCell.title = self.beerBarDetail.subtitle;
             barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return barDescTitleCell;
             
