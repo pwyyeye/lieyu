@@ -543,48 +543,56 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     
     EAIntroPage *page1 = [EAIntroPage page];
     if (isRetina) {
-        page1.bgImage = [UIImage imageNamed:@"1_retina.png"];
+        page1.bgImage = [UIImage imageNamed:@"1_retina.jpg"];
     }else{
-        page1.bgImage = [UIImage imageNamed:@"1"];
+        page1.bgImage = [UIImage imageNamed:@"1.jpg"];
     }
     
     
     EAIntroPage *page2 = [EAIntroPage page];
     if (isRetina) {
-        page2.bgImage = [UIImage imageNamed:@"2_retina.png"];
+        page2.bgImage = [UIImage imageNamed:@"2_retina.jpg"];
     }else{
-        page2.bgImage = [UIImage imageNamed:@"2"];
+        page2.bgImage = [UIImage imageNamed:@"2.jpg"];
     }
     
     
     EAIntroPage *page3 = [EAIntroPage page];
     
     if (isRetina) {
-        page3.bgImage = [UIImage imageNamed:@"3_retina.png"];
+        page3.bgImage = [UIImage imageNamed:@"3_retina.jpg"];
     }else{
-        page3.bgImage = [UIImage imageNamed:@"3"];
+        page3.bgImage = [UIImage imageNamed:@"3.jpg"];
     }
     
     EAIntroPage *page4 = [EAIntroPage page];
     
     if (isRetina) {
-        page4.bgImage = [UIImage imageNamed:@"4_retina.png"];
+        page4.bgImage = [UIImage imageNamed:@"4_retina.jpg"];
     }else{
-        page4.bgImage = [UIImage imageNamed:@"4"];
+        page4.bgImage = [UIImage imageNamed:@"4.jpg"];
     }
     
+    EAIntroPage *page5 = [EAIntroPage page];
+    
+    if (isRetina) {
+        page5.bgImage = [UIImage imageNamed:@"5_retina.jpg"];
+    }else{
+        page5.bgImage = [UIImage imageNamed:@"5.jpg"];
+    }
+
     //    page4.titleImage = [UIImage imageNamed:@"skip-btn"];
     //
     //    page4.imgPositionY = SCREEN_HEIGHT-100;
     
-    page4.customView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-175, SCREEN_WIDTH, 40)];
-    _intro = [[EAIntroView alloc] initWithFrame:self.window.bounds andPages:@[page1,page2,page3,page4]];
+    page5.customView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-155, SCREEN_WIDTH, 40)];
+    _intro = [[EAIntroView alloc] initWithFrame:self.window.bounds andPages:@[page1,page2,page3,page4,page5]];
     
     UIButton *button=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-55, 0, 110, 40)];
     [button setBackgroundImage:[UIImage imageNamed:@"skip-btn"] forState:UIControlStateNormal];
     [button addTarget:_intro action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
-    [page4.customView addSubview:button];
-    [page4.customView bringSubviewToFront:button];//显示到最前面
+    [page5.customView addSubview:button];
+    [page5.customView bringSubviewToFront:button];//显示到最前面
     
     
     
