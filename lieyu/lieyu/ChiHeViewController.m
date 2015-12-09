@@ -20,6 +20,8 @@
 @interface ChiHeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     NSMutableArray *dataList;
+    NSMutableArray *goodsList;
+    
     NSMutableDictionary *nowDic;
     int pageCount;
     int perCount;
@@ -27,11 +29,16 @@
     int goodsNumber;
     int chooseKey;
     NSMutableArray *biaoqianList;
+    
+    UILabel *_badge;
 }
 
+//@property (nonatomic, strong) UILabel *badge;
 @property (nonatomic, strong) NSArray *buttonsArray;
 @property (nonatomic, strong) UIView *MoreView;
 @property (nonatomic, assign) BOOL moreShow;
+
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
 
 @end
 
@@ -39,7 +46,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     [self.sxBtn1 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [self.sxBtn2 setBackgroundColor:RGBA(114, 5, 147, 1)];
@@ -56,6 +62,8 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
     dataList = [[NSMutableArray alloc]init];
+    goodsList = [[NSMutableArray alloc]init];
+    
     pageCount = 1;
     goodsNumber = 1;
     self.buttonsArray = @[_sxBtn1,_sxBtn2,_sxBtn3,_sxBtn4];
@@ -64,24 +72,29 @@
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     [nowDic setObject:@"20" forKey:@"per"];
     [self getData:nowDic];
-    [self geBiaoQianData];
+//    [self geBiaoQianData];
     
-//    __weak __typeof(self)weakSelf = self;
-//    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        pageCount=1;
-//        
-//        [nowDic removeObjectForKey:@"p"];
-//        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-//        [weakSelf getData:nowDic];
-//    }];
-//    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//        [nowDic removeObjectForKey:@"p"];
-//        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-//        [self getDataWithDicMore:nowDic];
-//    }];
+    __weak __typeof(self)weakSelf = self;
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        pageCount=1;
+        
+        [nowDic removeObjectForKey:@"p"];
+        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+        [weakSelf getData:nowDic];
+    }];
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [nowDic removeObjectForKey:@"p"];
+        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+        [self getDataWithDicMore:nowDic];
+    }];
 }
 
-#pragma 获取酒品种类信息
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    _badge.hidden = YES;
+}
+
+#pragma mark 获取酒品种类信息
 -(void)geBiaoQianData{
     //获取酒水类型
     [biaoqianList removeAllObjects];
@@ -89,6 +102,41 @@
     [[ZSManageHttpTool shareInstance] getProductCategoryListWithParams:nil block:^(NSMutableArray *result) {
         biaoqianList = [weakSelf setRow:result];
     }];
+}
+
+#pragma mark 获取购物车数据
+-(void)getGoodsNum{
+    [[LYHomePageHttpTool shareInstance]getCarListWithParams:nil block:^(NSMutableArray *result) {
+        goodsList=[result mutableCopy];
+//        for (CarInfoModel *carInfoModel in goodsList) {
+//            carInfoModel.isSel=true;
+//            for (CarModel *carModel in carInfoModel.cartlist) {
+//                carModel.isSel=true;
+//            }
+//        }
+        [self setSuperScript:goodsList.count];
+    }];
+}
+
+#pragma mark 设置角标
+- (void)setSuperScript:(int)num{
+    if(num > 0){
+        _badge=[[UILabel alloc] init];
+        _badge.backgroundColor=[UIColor redColor];
+        _badge.font=[UIFont systemFontOfSize:8];
+        _badge.layer.masksToBounds=YES;
+        _badge.layer.cornerRadius=6;
+        _badge.textColor=[UIColor whiteColor];
+        _badge.textAlignment=NSTextAlignmentCenter;
+        //    CGRect frame=_rightItem.frame;
+        _badge.frame=CGRectMake(SCREEN_WIDTH - 17, 5, 12, 12);
+        if(num < 99){
+            _badge.text=[NSString stringWithFormat:@"%d",num];
+        }else{
+            _badge.text = @"99";
+        }
+        [self.navigationController.navigationBar addSubview:_badge];
+    }
 }
 
 #pragma 将信息转为三列
@@ -142,14 +190,19 @@
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
         
-        NSLog(@"****block%ld******",dataList.count);
+        NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
             
             pageCount++;
             [weakSelf.collectionView.mj_footer resetNoMoreData];
         }
         [weakSelf.collectionView reloadData];
+        if(!biaoqianList){
+            [self geBiaoQianData];
+        }
+        [self getGoodsNum];
     }];
+    
     [weakSelf.collectionView.mj_header endRefreshing];
 }
 
@@ -169,7 +222,6 @@
     [weakSelf.collectionView.mj_footer endRefreshing];
     
 }
-
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     if(!dataList.count){
@@ -238,6 +290,7 @@
 }
 
 - (IBAction)sxBtnClick:(ShaiXuanBtn *)sender {
+    
     ShaiXuanBtn *btn=(ShaiXuanBtn*)sender;
     //    NSString *sortkey=@"";
     //    NSString *choosekey = @"";
@@ -252,6 +305,9 @@
             [button setBackgroundColor:RGBA(114, 5, 147, 1)];
         }
     }
+    [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
+    [_sxBtn5 setTitle:@"" forState:UIControlStateNormal];
+    [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
     if(btn.tag == 100){
         chooseKey = 1;
     }else if(btn.tag == 101){
