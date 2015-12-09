@@ -308,6 +308,8 @@
                 }
             }
             barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            CGFloat fanliFloat = self.beerBarDetail.rebate * self.beerBarDetail.lowest_consumption.floatValue;
+            barTitleCell.label_fanli_num.text = [NSString stringWithFormat:@"¥%.0f",fanliFloat];
             return barTitleCell;
             
         }

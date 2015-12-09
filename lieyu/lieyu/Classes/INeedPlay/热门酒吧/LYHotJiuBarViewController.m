@@ -133,6 +133,11 @@
              [weakSelf.aryList addObjectsFromArray:barList];
              [weakSelf.tableView reloadData];
              if (!weakSelf.aryList.count) {
+                 
+                 [_bgView removeFromSuperview];
+                 [_image_place removeFromSuperview];
+                 [_label_place removeFromSuperview];
+                 
                  _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_menuView.frame) , SCREEN_WIDTH,  SCREEN_HEIGHT - 64 - CGRectGetHeight(_menuView.frame))];
                  _bgView.backgroundColor = RGBA(0, 0, 0, 0.4);
                  _bgView.alpha = 0.2;

@@ -38,6 +38,7 @@
 @property(nonatomic,strong)NSNumber *subtype;
 @property(nonatomic,copy)NSString *subtypename;
 @property(nonatomic,copy)NSArray *tese;
+@property (nonatomic,unsafe_unretained) CGFloat rebate;
 @property(nonatomic,copy)NSString *today_sm_buynum;
 
 +(BeerBarOrYzhDetailModel *)initFormDictionary:(NSDictionary *)dic;
