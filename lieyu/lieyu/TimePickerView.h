@@ -10,6 +10,7 @@
 
 @interface TimePickerView : UIView
 @property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+@property (weak, nonatomic) IBOutlet UILabel *label_title;
 
 - (void)showTimeWithDate:(NSDate *)date;
 

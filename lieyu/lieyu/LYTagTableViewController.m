@@ -113,7 +113,7 @@
     return 57;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 1) {
+    if (indexPath.row == _dataArray.count /3 + 1) {
         return 75;
     }
     return 37.5;
