@@ -464,6 +464,7 @@
 		85C428871C11D25D0028FC21 /* ContentViewTaocan.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428861C11D25D0028FC21 /* ContentViewTaocan.m */; };
 		85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428881C11D2710028FC21 /* ContentViewTaocan.xib */; };
 		85EC69FA1C17D4A10082AA3E /* sorry.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85EC69F91C17D4A10082AA3E /* sorry.gif */; };
+		85EC69FB1C17F71F0082AA3E /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
 		85EE80321C0AF09B00958F76 /* LYHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */; };
 		85EE80331C0AF09B00958F76 /* LYHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */; };
 		85EE80371C0AF19600958F76 /* LYBarTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80351C0AF19600958F76 /* LYBarTitleTableViewCell.m */; };
@@ -5966,6 +5967,7 @@
 				15E1847D1BB4FEF900681BB2 /* LYZSeditView.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
 				15EB35721BD495A700BA6161 /* CYTopShowCell.m in Sources */,
+				85EC69FB1C17F71F0082AA3E /* LYUserDetailSexTableViewCell.m in Sources */,
 				15EB7C681BCF3CAF00756153 /* LYPlayTogetherCell.m in Sources */,
 				D71E1D951BAE963900915F37 /* LYShareSnsView.m in Sources */,
 				15E240D11BB3D5940090D240 /* LYRegistrationViewController.m in Sources */,
