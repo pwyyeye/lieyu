@@ -12,13 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _label_line_bottom.frame = CGRectMake(0, 45, SCREEN_WIDTH, 0.4);
-    _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0.4);
-    
-    //_label_line_bottom.hidden = YES;
-    //_label_line_top.hidden = YES;
-   // _label_line_top.backgroundColor = [UIColor redColor];
-   // _label_line_bottom.backgroundColor= [UIColor redColor];
+    _label_line_bottom.frame = CGRectMake(0, 45, SCREEN_WIDTH, 0.3);
+    _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0.3);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
