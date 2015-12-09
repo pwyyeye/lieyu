@@ -361,6 +361,8 @@ UITableViewDataSource,UITableViewDelegate,
         case 0://广告
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            [[cell viewWithTag:1999] removeFromSuperview];
+            
             NSMutableArray *bigArr=[[NSMutableArray alloc]init];
             for (NSString *iconStr in self.bannerList) {
                 NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
@@ -369,8 +371,9 @@ UITableViewDataSource,UITableViewDelegate,
                 [bigArr addObject:dicTemp];
             }
             EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122)
-                                                                  scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
+                                                                  scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
             scroller.delegate=self;
+            scroller.tag=1999;
             [cell addSubview:scroller];
         }
             break;
