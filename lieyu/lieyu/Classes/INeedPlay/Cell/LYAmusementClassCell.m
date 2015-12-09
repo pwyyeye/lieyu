@@ -10,6 +10,7 @@
 #import "LYHotJiuBarViewController.h"
 #import "bartypeslistModel.h"
 #import "UIButton+WebCache.h"
+#define LINEHEIGHT 0.3
 
 @interface LYAmusementClassCell()<UIScrollViewDelegate>
 
@@ -23,9 +24,9 @@
     self.scrollView.delegate = self;
     self.label_line_blue.frame = CGRectMake(0, 0.2, CGRectGetWidth(self.label_line_blue.frame), CGRectGetHeight(self.label_line_blue.frame));
     
-    _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0.2);
-    _viewLineMiddle.frame = CGRectMake(0, 44.5, SCREEN_WIDTH, 0.5);
-    _viewLineBottom.frame = CGRectMake(0, 211, SCREEN_WIDTH, 0.5);
+    _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, LINEHEIGHT);
+    _viewLineMiddle.frame = CGRectMake(0, 44.5, SCREEN_WIDTH, LINEHEIGHT);
+    _viewLineBottom.frame = CGRectMake(0, 211, SCREEN_WIDTH, LINEHEIGHT);
    // self.label_line_bottom.hidden = YES;
     
     for (UIButton *btn in _buttonArray) {

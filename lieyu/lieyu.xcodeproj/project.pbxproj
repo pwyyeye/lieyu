@@ -454,13 +454,13 @@
 		85589CB81C16D41D000E342E /* SingletonRegiste.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CB71C16D41D000E342E /* SingletonRegiste.m */; };
 		85589CC31C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */; };
 		85589CC41C16EF7C000E342E /* BeerBarLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CC21C16EF7C000E342E /* BeerBarLike.m */; };
-		85589D511C17289B000E342E /* sorry.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85589D501C17289B000E342E /* sorry.gif */; };
 		85C4282E1C116ED90028FC21 /* LYHotBarMenuDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */; };
 		85C428721C119D3E0028FC21 /* LYCloseMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428701C119D3E0028FC21 /* LYCloseMeViewController.m */; };
 		85C428731C119D3E0028FC21 /* LYCloseMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428711C119D3E0028FC21 /* LYCloseMeViewController.xib */; };
 		85C428811C11B20B0028FC21 /* FirstPageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4287F1C11B20B0028FC21 /* FirstPageData.m */; };
 		85C428871C11D25D0028FC21 /* ContentViewTaocan.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428861C11D25D0028FC21 /* ContentViewTaocan.m */; };
 		85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428881C11D2710028FC21 /* ContentViewTaocan.xib */; };
+		85EC69FA1C17D4A10082AA3E /* sorry.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85EC69F91C17D4A10082AA3E /* sorry.gif */; };
 		85EE80321C0AF09B00958F76 /* LYHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */; };
 		85EE80331C0AF09B00958F76 /* LYHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */; };
 		85EE80371C0AF19600958F76 /* LYBarTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80351C0AF19600958F76 /* LYBarTitleTableViewCell.m */; };
@@ -1532,7 +1532,6 @@
 		85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BeerBarLike+CoreDataProperties.m"; sourceTree = "<group>"; };
 		85589CC11C16EF7C000E342E /* BeerBarLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarLike.h; sourceTree = "<group>"; };
 		85589CC21C16EF7C000E342E /* BeerBarLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarLike.m; sourceTree = "<group>"; };
-		85589D501C17289B000E342E /* sorry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sorry.gif; sourceTree = "<group>"; };
 		85C4282C1C116ED90028FC21 /* LYHotBarMenuDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuDropView.h; sourceTree = "<group>"; };
 		85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuDropView.m; sourceTree = "<group>"; };
 		85C4286F1C119D3E0028FC21 /* LYCloseMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCloseMeViewController.h; sourceTree = "<group>"; };
@@ -1545,6 +1544,7 @@
 		85C428851C11D25D0028FC21 /* ContentViewTaocan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewTaocan.h; sourceTree = "<group>"; };
 		85C428861C11D25D0028FC21 /* ContentViewTaocan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewTaocan.m; sourceTree = "<group>"; };
 		85C428881C11D2710028FC21 /* ContentViewTaocan.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewTaocan.xib; sourceTree = "<group>"; };
+		85EC69F91C17D4A10082AA3E /* sorry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sorry.gif; sourceTree = "<group>"; };
 		85EE802F1C0AF09B00958F76 /* LYHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHeaderTableViewCell.h; sourceTree = "<group>"; };
 		85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHeaderTableViewCell.m; sourceTree = "<group>"; };
 		85EE80311C0AF09B00958F76 /* LYHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -3573,8 +3573,8 @@
 		853E3A151C152A600088CD86 /* 默认图片 */ = {
 			isa = PBXGroup;
 			children = (
+				85EC69F91C17D4A10082AA3E /* sorry.gif */,
 				853E3A161C152A750088CD86 /* bigPlace.png */,
-				85589D501C17289B000E342E /* sorry.gif */,
 				853E3A171C152A750088CD86 /* middlePlace.png */,
 				853E3A181C152A750088CD86 /* smallPlace.png */,
 			);
@@ -5315,7 +5315,6 @@
 				ADB164C81C167733000BAD3C /* refresh1.png in Resources */,
 				381A01C61C140DE500592485 /* INeedYou@3x.png in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
-				85589D511C17289B000E342E /* sorry.gif in Resources */,
 				85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */,
 				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
 				A2FD57801BAFE97000CFFF92 /* FBTaoCanSectionHead.xib in Resources */,
@@ -5531,6 +5530,7 @@
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
 				15E184891BB5214F00681BB2 /* LYChooseJiuBaViewController.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
+				85EC69FA1C17D4A10082AA3E /* sorry.gif in Resources */,
 				ADF88E611C102E4F00CF5DED /* hongseStar@3x.png in Resources */,
 				38E5D7C41C128C44004B49D2 /* triangle_down@3x.png in Resources */,
 				85F5454C1C1454010013B92B /* camera.png in Resources */,

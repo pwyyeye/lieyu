@@ -18,11 +18,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_content;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_point;
 @property (weak, nonatomic) IBOutlet UILabel *label_point;
-@property (weak, nonatomic) IBOutlet UILabel *labl_line_top;
-@property (weak, nonatomic) IBOutlet UILabel *label_line_bottom;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_rectangle;
 @property (weak, nonatomic) IBOutlet UILabel *label_fanli;
 @property (weak, nonatomic) IBOutlet UILabel *label_fanli_percent;
+@property (weak, nonatomic) IBOutlet UIView *viewLineTop;
+@property (weak, nonatomic) IBOutlet UIView *viewLineBottom;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_star;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_zang;

@@ -20,10 +20,11 @@
 
 - (void)setIsSelect:(BOOL)isSelect{
     _isSelect = isSelect;
+    [self setImageEdgeInsets:UIEdgeInsetsMake(0, 180, 0, 0)];
     if (isSelect) {
-        [self setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected.png"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"CustomBtn_Selected.png"] forState:UIControlStateNormal];
     }else{
-        [self setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected.png"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"CustomBtn_unSelected.png"] forState:UIControlStateNormal];
     }
 }
 

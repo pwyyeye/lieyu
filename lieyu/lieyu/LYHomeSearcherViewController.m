@@ -48,6 +48,7 @@
     datalist=[[NSMutableArray alloc]init];
     self.tableView.rowHeight = 274;
     _searchBar.returnKeyType = UIReturnKeySearch;
+    self.tableView.tableFooterView = [[UIView alloc]init];
 }
 
 #pragma mark 获取历史搜索数据
@@ -137,6 +138,7 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [searchBar endEditing:NO];
     if (!searchBar.text.length) {
         self.tableView.hidden = YES;
         [self loadHisData];
@@ -260,7 +262,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return searchlist.count;
+    if(searchlist.count){
+        return searchlist.count;
+    }else {
+        return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
