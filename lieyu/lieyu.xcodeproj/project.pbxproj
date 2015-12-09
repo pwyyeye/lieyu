@@ -1498,9 +1498,6 @@
 		853E3A251C1582A40088CD86 /* purpleBtnBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purpleBtnBG@3x.png"; sourceTree = "<group>"; };
 		853E3A291C15B6050088CD86 /* PayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayButton.h; sourceTree = "<group>"; };
 		853E3A2A1C15B6050088CD86 /* PayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayButton.m; sourceTree = "<group>"; };
-		853E3A351C15D08B0088CD86 /* getYZM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = getYZM.png; sourceTree = "<group>"; };
-		853E3A361C15D08B0088CD86 /* getYZM@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getYZM@2x.png"; sourceTree = "<group>"; };
-		853E3A371C15D08B0088CD86 /* getYZM@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "getYZM@3x.png"; sourceTree = "<group>"; };
 		853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MineBigBG.jpg; sourceTree = "<group>"; };
 		853E3A3C1C15D1440088CD86 /* MineBigBG@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MineBigBG@2x.jpg"; sourceTree = "<group>"; };
 		853E3A3D1C15D1440088CD86 /* MineBigBG@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "MineBigBG@3x.jpg"; sourceTree = "<group>"; };
@@ -4531,9 +4528,6 @@
 			children = (
 				ADB164BB1C167095000BAD3C /* lieyuIcon@2x.png */,
 				ADB164BC1C167095000BAD3C /* lieyuIcon@3x.png */,
-				853E3A351C15D08B0088CD86 /* getYZM.png */,
-				853E3A361C15D08B0088CD86 /* getYZM@2x.png */,
-				853E3A371C15D08B0088CD86 /* getYZM@3x.png */,
 				ADE103C41BE0EBDC00D9EC38 /* images */,
 			);
 			name = Resources;
@@ -6210,7 +6204,7 @@
 					"$(SRCROOT)/lieyu",
 				);
 				INFOPLIST_FILE = lieyu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6256,7 +6250,7 @@
 					"$(SRCROOT)/lieyu",
 				);
 				INFOPLIST_FILE = lieyu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
