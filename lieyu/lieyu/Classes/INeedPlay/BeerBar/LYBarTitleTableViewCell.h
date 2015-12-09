@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageView_starArray;
 @property (weak, nonatomic) IBOutlet UILabel *label_price;
 @property (weak, nonatomic) IBOutlet UILabel *label_line;
+@property (weak, nonatomic) IBOutlet UILabel *label_fanli_num;
 
 @property (weak, nonatomic) IBOutlet HCSStarRatingView *barStar;
 @end

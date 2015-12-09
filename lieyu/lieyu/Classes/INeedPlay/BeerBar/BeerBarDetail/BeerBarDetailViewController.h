@@ -20,5 +20,6 @@
 - (IBAction)dianweiAct:(UIButton *)sender;
 - (IBAction)chiHeAct:(UIButton *)sender;
 - (IBAction)zsliAct:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomViewHeight;
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LYHotRecommandCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *label_line_bottom;
 @property (weak, nonatomic) IBOutlet UIView *viewLineTop;
+@property (weak, nonatomic) IBOutlet UIView *viewLineBottom;
 
 @end
