@@ -196,7 +196,6 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"chiheDetailCollectionCell" owner:nil options:nil]firstObject];
     }
     cell.goodImage.image=nil;
-    //    cell.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(217, 217, 217, 217));
     cell.layer.borderColor = [[UIColor lightGrayColor]CGColor];
     cell.layer.borderWidth = 0.5;
     cell.layer.cornerRadius = 5.f;
