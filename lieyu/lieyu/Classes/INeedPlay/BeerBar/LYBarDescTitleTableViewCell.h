@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LYBarDescTitleTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *label_descr;
+@property (weak, nonatomic) IBOutlet UIImageView *image_yinHao_left;
+@property (weak, nonatomic) IBOutlet UIImageView *image_yinHao_right;
+- (void)configneCellWith:(NSString *)title;
+
 
 @end

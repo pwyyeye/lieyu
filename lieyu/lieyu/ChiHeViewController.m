@@ -20,6 +20,8 @@
 @interface ChiHeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     NSMutableArray *dataList;
+    NSMutableArray *goodsList;
+    
     NSMutableDictionary *nowDic;
     int pageCount;
     int perCount;
@@ -27,19 +29,24 @@
     int goodsNumber;
     int chooseKey;
     NSMutableArray *biaoqianList;
+    
+    UILabel *_badge;
 }
 
+//@property (nonatomic, strong) UILabel *badge;
 @property (nonatomic, strong) NSArray *buttonsArray;
 @property (nonatomic, strong) UIView *MoreView;
 @property (nonatomic, assign) BOOL moreShow;
+
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
 
 @end
 
 @implementation ChiHeViewController
 
+#pragma mark viewdidload
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     [self.sxBtn1 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [self.sxBtn2 setBackgroundColor:RGBA(114, 5, 147, 1)];
@@ -56,6 +63,8 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
     dataList = [[NSMutableArray alloc]init];
+    goodsList = [[NSMutableArray alloc]init];
+    
     pageCount = 1;
     goodsNumber = 1;
     self.buttonsArray = @[_sxBtn1,_sxBtn2,_sxBtn3,_sxBtn4];
@@ -64,24 +73,30 @@
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     [nowDic setObject:@"20" forKey:@"per"];
     [self getData:nowDic];
-    [self geBiaoQianData];
+//    [self geBiaoQianData];
     
-//    __weak __typeof(self)weakSelf = self;
-//    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        pageCount=1;
-//        
-//        [nowDic removeObjectForKey:@"p"];
-//        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-//        [weakSelf getData:nowDic];
-//    }];
-//    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//        [nowDic removeObjectForKey:@"p"];
-//        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-//        [self getDataWithDicMore:nowDic];
-//    }];
+    __weak __typeof(self)weakSelf = self;
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        pageCount=1;
+        
+        [nowDic removeObjectForKey:@"p"];
+        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+        [weakSelf getData:nowDic];
+    }];
+    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [nowDic removeObjectForKey:@"p"];
+        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+        [self getDataWithDicMore:nowDic];
+    }];
 }
 
-#pragma 获取酒品种类信息
+#pragma mark viewwillDisappear
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    _badge.hidden = YES;
+}
+
+#pragma mark 获取酒品种类信息
 -(void)geBiaoQianData{
     //获取酒水类型
     [biaoqianList removeAllObjects];
@@ -91,7 +106,42 @@
     }];
 }
 
-#pragma 将信息转为三列
+#pragma mark 获取购物车数据
+-(void)getGoodsNum{
+    [[LYHomePageHttpTool shareInstance]getCarListWithParams:nil block:^(NSMutableArray *result) {
+        goodsList=[result mutableCopy];
+//        for (CarInfoModel *carInfoModel in goodsList) {
+//            carInfoModel.isSel=true;
+//            for (CarModel *carModel in carInfoModel.cartlist) {
+//                carModel.isSel=true;
+//            }
+//        }
+        [self setSuperScript:goodsList.count];
+    }];
+}
+
+#pragma mark 设置角标
+- (void)setSuperScript:(int)num{
+    if(num > 0){
+        _badge=[[UILabel alloc] init];
+        _badge.backgroundColor=[UIColor redColor];
+        _badge.font=[UIFont systemFontOfSize:8];
+        _badge.layer.masksToBounds=YES;
+        _badge.layer.cornerRadius=6;
+        _badge.textColor=[UIColor whiteColor];
+        _badge.textAlignment=NSTextAlignmentCenter;
+        //    CGRect frame=_rightItem.frame;
+        _badge.frame=CGRectMake(SCREEN_WIDTH - 17, 5, 12, 12);
+        if(num < 99){
+            _badge.text=[NSString stringWithFormat:@"%d",num];
+        }else{
+            _badge.text = @"99";
+        }
+        [self.navigationController.navigationBar addSubview:_badge];
+    }
+}
+
+#pragma mark 将信息转为三列
 -(NSMutableArray *)setRow:(NSMutableArray *)arr{
     int nowCount=1;
     NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:3];
@@ -114,12 +164,12 @@
     return dataArr;
 }
 
-#pragma  back按钮点击事件
+#pragma mark  back按钮点击事件
 - (void)backClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma 展示购物车
+#pragma mark 展示购物车
 - (void)showcarAct{
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
@@ -132,7 +182,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma 获得数据
+#pragma mark 获得数据
 -(void)getData:(NSDictionary *)dic{
     
     __weak __typeof(self)weakSelf = self;
@@ -142,18 +192,23 @@
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
         
-        NSLog(@"****block%ld******",dataList.count);
+        NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
             
             pageCount++;
             [weakSelf.collectionView.mj_footer resetNoMoreData];
         }
         [weakSelf.collectionView reloadData];
+        if(!biaoqianList){
+            [self geBiaoQianData];
+        }
+        [self getGoodsNum];
     }];
+    
     [weakSelf.collectionView.mj_header endRefreshing];
 }
 
-#pragma 获得更多数据
+#pragma mark 获得更多数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getCHListWithParams:dic block:^(NSMutableArray *result) {
@@ -170,7 +225,7 @@
     
 }
 
-
+#pragma mark collectionView的各个代理方法实现
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     if(!dataList.count){
         return 0;
@@ -219,7 +274,7 @@
     return UIEdgeInsetsMake(4, 4, 4, 4);
 }
 
-#pragma collectionview相应点击事件
+#pragma mark collectionview相应点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CheHeModel *chiHeModel=dataList[indexPath.row];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
@@ -231,13 +286,15 @@
 
 }
 
-//返回这个UIcollectionview是否可以被选择
+#pragma mark  返回这个UIcollectionview是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionview shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
 
+#pragma mark sxBtnClick
 - (IBAction)sxBtnClick:(ShaiXuanBtn *)sender {
+    
     ShaiXuanBtn *btn=(ShaiXuanBtn*)sender;
     //    NSString *sortkey=@"";
     //    NSString *choosekey = @"";
@@ -252,6 +309,9 @@
             [button setBackgroundColor:RGBA(114, 5, 147, 1)];
         }
     }
+    [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
+    [_sxBtn5 setTitle:@"" forState:UIControlStateNormal];
+    [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
     if(btn.tag == 100){
         chooseKey = 1;
     }else if(btn.tag == 101){
@@ -270,7 +330,7 @@
     [self chooseWineBy:chooseKey];
 }
 
-#pragma 选取好条件后进行筛选
+#pragma mark 选取好条件后进行筛选
 - (void)chooseWineBy:(int)sortkey{
     pageCount=1;
     
@@ -282,7 +342,7 @@
     NSLog(@"筛选出所有：%d",sortkey);
 }
 
-#pragma 点击更多按钮弹出界面
+#pragma mark 点击更多按钮弹出界面
 - (void)showMoreButtons{
     if(_moreShow == NO){
         _moreShow = YES;
@@ -319,7 +379,7 @@
     }
 }
 
-#pragma 点击更多界面中按钮后发生的事情
+#pragma mark 点击更多界面中按钮后发生的事情
 - (void)chooseType:(UIButton *)sender{
     [self.MoreView removeFromSuperview];
     

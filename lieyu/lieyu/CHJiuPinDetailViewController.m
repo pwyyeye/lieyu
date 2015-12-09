@@ -70,7 +70,7 @@
     }];
 }
 
-#pragma tableView的各个代理方法实现
+#pragma mark tableView的各个代理方法实现
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(chiHeModel){
         return 5;
@@ -193,7 +193,7 @@
         return cell;
     }
 }
-
+#pragma mark 进入导航页面
 - (void)daohang{
     NSDictionary *dic=@{@"title":chiHeModel.barinfo.barname,@"latitude":chiHeModel.barinfo.latitude,@"longitude":chiHeModel.barinfo.longitude};
     [[LYUserLocation instance] daoHan:dic];
@@ -247,7 +247,7 @@
     [alertView show];
 }
 
-#pragma  选择数量后上传
+#pragma mark 选择数量后上传
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
     if(buttonIndex == 0){
         NSDictionary *dic=@{@"product_id":[NSNumber numberWithInt:chiHeModel.id],
@@ -283,7 +283,7 @@
     }
     
 }
-#pragma 选择数量后点击确定加入购物车
+#pragma mark 选择数量后点击确定加入购物车
 -(void)sureAct:(id)sender{
     [self SetViewDisappear:nil];
     NSDictionary *dic=@{@"product_id":[NSNumber numberWithInt:chiHeModel.id],@"quantity":numView.numLal.text};
@@ -302,7 +302,7 @@
     [self.navigationController pushViewController:carListViewController animated:YES];
 }
 
-#pragma 猎娱客服
+#pragma mark 猎娱客服
 - (IBAction)LYkefu:(UIButton *)sender {
     _conversationVC = [[RCPublicServiceChatViewController alloc] init];
     _conversationVC.conversationType = ConversationType_PRIVATE;
@@ -319,11 +319,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma 立即下单
+#pragma mark 立即下单
 - (IBAction)buyNow:(UIButton *)sender {
 }
 
-#pragma 返回按钮
+#pragma mark 返回按钮
 - (IBAction)backAct:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

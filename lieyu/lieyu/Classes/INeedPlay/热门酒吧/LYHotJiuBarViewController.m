@@ -69,6 +69,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+#pragma mark 获取数据
 -(void)getData{
     __weak LYHotJiuBarViewController * weakSelf = self;
     //    __weak UITableView *tableView = self.tableView;
@@ -133,6 +134,11 @@
              [weakSelf.aryList addObjectsFromArray:barList];
              [weakSelf.tableView reloadData];
              if (!weakSelf.aryList.count) {
+                 
+                 [_bgView removeFromSuperview];
+                 [_image_place removeFromSuperview];
+                 [_label_place removeFromSuperview];
+                 
                  _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_menuView.frame) , SCREEN_WIDTH,  SCREEN_HEIGHT - 64 - CGRectGetHeight(_menuView.frame))];
                  _bgView.backgroundColor = RGBA(0, 0, 0, 0.4);
                  _bgView.alpha = 0.2;
@@ -209,7 +215,7 @@
     }];
 }
 
-#pragma 菜单代理
+#pragma mark 菜单代理
 - (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButton:(MenuButton *)dropButton{
 
     

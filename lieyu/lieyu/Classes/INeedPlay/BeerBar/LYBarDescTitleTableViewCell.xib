@@ -33,6 +33,11 @@
                 <animations/>
             </tableViewCellContentView>
             <animations/>
+            <connections>
+                <outlet property="image_yinHao_left" destination="Iag-gl-xCD" id="Ofd-wb-yqK"/>
+                <outlet property="image_yinHao_right" destination="ql6-FL-Euh" id="09H-2i-wCC"/>
+                <outlet property="label_descr" destination="Wce-qW-Q4S" id="Fg0-gA-wOW"/>
+            </connections>
             <point key="canvasLocation" x="431" y="392"/>
         </tableViewCell>
     </objects>
