@@ -102,6 +102,8 @@
         [tenpay preparePay:@{@"orderNo":_orderNo,@"payAmount":[NSString stringWithFormat:@"%.0f",_payAmount*100],@"productDescription":_productName} complete:^(BaseReq *result) {
             if (result) {
                 [tenpay onReq:result];
+            }else{
+                [MyUtil showMessage:@"无法调起微信支付！"];
             }
         }];
     }

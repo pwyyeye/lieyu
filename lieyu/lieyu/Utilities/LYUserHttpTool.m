@@ -529,6 +529,7 @@
         
     } failure:^(NSError *err) {
         NSLog(@"----pass-err%@---",err);
+        NSLog(@"----pass-err%@---",err.description);
         [app stopLoading];
         
         
