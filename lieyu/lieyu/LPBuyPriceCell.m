@@ -23,7 +23,7 @@
 
 - (void)cellConfigureWithPay:(NSString *)pay andProfit:(CGFloat)profit{
     if([pay isEqualToString:@"-1.00"]){
-        self.LPMoney.text = @"请填写";
+        self.LPMoney.text = @"点击填写";
     }else{
         self.payBtn.enabled = NO;
         self.LPMoney.text = [NSString stringWithFormat:@"$%@",pay];
