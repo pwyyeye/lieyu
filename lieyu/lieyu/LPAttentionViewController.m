@@ -96,6 +96,11 @@
     _label4.attributedText = attributeString4;*/
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)backClick{
     [self.navigationController popViewControllerAnimated:YES];
 }

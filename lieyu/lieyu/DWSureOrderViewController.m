@@ -43,6 +43,7 @@
     NSString *gotype;
     TimePickerView *_timeView;
     ContentViewTaocan *view_taocan;
+    NSInteger _selectIndex;
     NSInteger count;
 }
 @end
@@ -60,6 +61,7 @@
     _tableView.separatorColor=[UIColor clearColor];
     [self getdata];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(numChange) name:@"numChange" object:nil];
+    _selectIndex = 0;
 }
 
 - (void)viewWillLayoutSubviews{
@@ -290,6 +292,11 @@
             _managerCell = [tableView dequeueReusableCellWithIdentifier:@"managerInfo" forIndexPath:indexPath];
             [_managerCell cellConfigureWithImage:zsModel.avatar_img name:zsModel.username stars:zsModel.servicestar];
             _managerCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (_selectIndex == indexPath.row){
+                [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
+            }else{
+                [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected"] forState:UIControlStateNormal];
+            }
             return _managerCell;
         }
             break;
@@ -407,6 +414,7 @@
     if (indexPath.section == 3) {
         [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
         ZSDetailModel *zsModel=zsArr[indexPath.row];
+        _selectIndex = indexPath.row;
         if([zsModel.isFull isEqualToString:@"1"]){
             [self showMessage:@"该经理的卡座已满,请选择其他专属经理!"];
             return;
@@ -418,7 +426,8 @@
                 zsModelTemp.issel=false;
             }
         }
-        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+        
+        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:3];
         [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     }
 }

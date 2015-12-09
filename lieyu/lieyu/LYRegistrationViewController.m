@@ -8,6 +8,8 @@
 
 #import "LYRegistrationViewController.h"
 #import "LYUserHttpTool.h"
+#import "LYUserDetailInfoViewController.h"
+
 @interface LYRegistrationViewController ()
 
 @end
@@ -135,7 +137,9 @@ static LYRegistrationViewController *_registe;
             [_timer setFireDate:[NSDate distantPast]];
             
             [self.delegate registration];
-            [self.navigationController popViewControllerAnimated:YES];
+            
+            LYUserDetailInfoViewController *detailVC = [[LYUserDetailInfoViewController alloc]init];
+            [self.navigationController pushViewController:detailVC animated:YES];
         }
     }];
 }

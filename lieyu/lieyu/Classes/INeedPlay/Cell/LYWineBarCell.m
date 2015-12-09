@@ -48,7 +48,7 @@
     }
     [_label_zang_count setText:jiuBaModel.like_num];
     
-    NSString *perscent = [NSString stringWithFormat:@"%@%@",jiuBaModel.rebate,@"%"];
+    NSString *perscent = [NSString stringWithFormat:@"%ld%@",jiuBaModel.rebate.integerValue * 100,@"%"];
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:perscent];
     NSInteger location;
     if (perscent.integerValue < 10) {

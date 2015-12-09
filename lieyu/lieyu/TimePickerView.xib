@@ -21,8 +21,8 @@
                     </date>
                     <locale key="locale" localeIdentifier="zh_CN"/>
                 </datePicker>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择消费时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDu-z1-OC8">
-                    <rect key="frame" x="80" y="15" width="160" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="请选择消费时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDu-z1-OC8">
+                    <rect key="frame" x="66" y="17" width="189" height="21"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="cNw-PV-3PJ"/>
@@ -44,6 +44,7 @@
                 <constraint firstItem="yxt-he-VBX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zZZ-gh-xl6"/>
             </constraints>
             <connections>
+                <outlet property="label_title" destination="xDu-z1-OC8" id="Xkg-gK-kje"/>
                 <outlet property="timePicker" destination="yxt-he-VBX" id="pP2-jN-POd"/>
             </connections>
             <point key="canvasLocation" x="268" y="261"/>
