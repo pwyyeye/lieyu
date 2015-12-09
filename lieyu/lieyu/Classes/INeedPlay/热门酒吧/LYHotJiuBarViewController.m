@@ -69,6 +69,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+#pragma mark 获取数据
 -(void)getData{
     __weak LYHotJiuBarViewController * weakSelf = self;
     //    __weak UITableView *tableView = self.tableView;
@@ -209,7 +210,7 @@
     }];
 }
 
-#pragma 菜单代理
+#pragma mark 菜单代理
 - (void)didClickHotBarMenuDropWithButton:(MenuButton *)button dropButton:(MenuButton *)dropButton{
 
     

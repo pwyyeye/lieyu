@@ -44,6 +44,7 @@
 
 @implementation ChiHeViewController
 
+#pragma mark viewdidload
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -89,6 +90,7 @@
     }];
 }
 
+#pragma mark viewwillDisappear
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     _badge.hidden = YES;
@@ -139,7 +141,7 @@
     }
 }
 
-#pragma 将信息转为三列
+#pragma mark 将信息转为三列
 -(NSMutableArray *)setRow:(NSMutableArray *)arr{
     int nowCount=1;
     NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:3];
@@ -162,12 +164,12 @@
     return dataArr;
 }
 
-#pragma  back按钮点击事件
+#pragma mark  back按钮点击事件
 - (void)backClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma 展示购物车
+#pragma mark 展示购物车
 - (void)showcarAct{
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
@@ -180,7 +182,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma 获得数据
+#pragma mark 获得数据
 -(void)getData:(NSDictionary *)dic{
     
     __weak __typeof(self)weakSelf = self;
@@ -206,7 +208,7 @@
     [weakSelf.collectionView.mj_header endRefreshing];
 }
 
-#pragma 获得更多数据
+#pragma mark 获得更多数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getCHListWithParams:dic block:^(NSMutableArray *result) {
@@ -223,6 +225,7 @@
     
 }
 
+#pragma mark collectionView的各个代理方法实现
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     if(!dataList.count){
         return 0;
@@ -271,7 +274,7 @@
     return UIEdgeInsetsMake(4, 4, 4, 4);
 }
 
-#pragma collectionview相应点击事件
+#pragma mark collectionview相应点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CheHeModel *chiHeModel=dataList[indexPath.row];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
@@ -283,12 +286,13 @@
 
 }
 
-//返回这个UIcollectionview是否可以被选择
+#pragma mark  返回这个UIcollectionview是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionview shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
 
+#pragma mark sxBtnClick
 - (IBAction)sxBtnClick:(ShaiXuanBtn *)sender {
     
     ShaiXuanBtn *btn=(ShaiXuanBtn*)sender;
@@ -326,7 +330,7 @@
     [self chooseWineBy:chooseKey];
 }
 
-#pragma 选取好条件后进行筛选
+#pragma mark 选取好条件后进行筛选
 - (void)chooseWineBy:(int)sortkey{
     pageCount=1;
     
@@ -338,7 +342,7 @@
     NSLog(@"筛选出所有：%d",sortkey);
 }
 
-#pragma 点击更多按钮弹出界面
+#pragma mark 点击更多按钮弹出界面
 - (void)showMoreButtons{
     if(_moreShow == NO){
         _moreShow = YES;
@@ -375,7 +379,7 @@
     }
 }
 
-#pragma 点击更多界面中按钮后发生的事情
+#pragma mark 点击更多界面中按钮后发生的事情
 - (void)chooseType:(UIButton *)sender{
     [self.MoreView removeFromSuperview];
     
