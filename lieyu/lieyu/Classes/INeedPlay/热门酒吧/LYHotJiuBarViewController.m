@@ -58,6 +58,7 @@
     NSArray *array3 = @[@"离我最近",@"人均最高",@"人均最低",@"返利最高"];
     [_menuView deployWithMiddleTitle:_middleStr ItemArray:@[array1,array2,array3]];
     [self.view addSubview:_menuView];
+    
     self.curPageIndex = 1;
     _aryList = [[NSMutableArray alloc]initWithCapacity:0];
     [self getData];
@@ -129,6 +130,12 @@
              [weakSelf.aryList addObjectsFromArray:barList];
              [weakSelf.tableView reloadData];
              if (!weakSelf.aryList.count) {
+                 UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_menuView.frame) , SCREEN_WIDTH,  SCREEN_HEIGHT - 64 - CGRectGetHeight(_menuView.frame))];
+                 bgView.backgroundColor = RGBA(0, 0, 0, 0.4);
+                 bgView.alpha = 0.2;
+                 bgView.tag = 300;
+                 [weakSelf.view addSubview:bgView];
+                 
                  UIImageView *image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 191,105 , 119)];
                  image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
                  image_place.tag = 100;
@@ -142,6 +149,7 @@
                  label_place.textAlignment = NSTextAlignmentCenter;
                  [weakSelf.view addSubview:label_place];
                  
+                 [weakSelf.view bringSubviewToFront:_menuView];
              }else{
                  UIImageView *imageView = [weakSelf.view viewWithTag:100];
                  if (imageView) {
@@ -151,7 +159,10 @@
                  if(label){
                      [label removeFromSuperview];
                  }
-
+                 UIView *bgView = [weakSelf.view viewWithTag:300];
+                 if (bgView) {
+                     [bgView removeFromSuperview];
+                 }
              }
          }
          block !=nil? block(ermsg,bannerList,barList):nil;

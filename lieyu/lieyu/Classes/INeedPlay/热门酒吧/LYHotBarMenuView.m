@@ -59,7 +59,6 @@
             for (MenuButton *btn in _dropMenuView.btnArray) {
                 btn.selected = NO;
                 if ([btn.currentTitle isEqual:button.currentTitle]) {
-                    NSLog(@"-%@-----------%@",btn.currentTitle,button.currentTitle);
                     btn.selected = YES;
                     
                 }
@@ -123,15 +122,15 @@
 }
 
 - (void)showWithSmallArray:(NSArray *)smallArray{
-    NSInteger dropHeight = (smallArray.count)/3 * 62;
+    NSInteger dropHeight = (smallArray.count)/3 * 50 + 24;
     if (smallArray.count%3) {
-        dropHeight =  dropHeight + 62;
+        dropHeight =  dropHeight + 50;
     }
 
-    self.frame = CGRectMake(0, 64, 320, dropHeight + 40);
+    self.frame = CGRectMake(0, 64, SCREEN_WIDTH, dropHeight + self.frame.size.height);
     _dropMenuView = [[LYHotBarMenuDropView alloc]init];
     _dropMenuView.backgroundColor = [UIColor whiteColor];
-    _dropMenuView.frame = CGRectMake(0, 40, 320,dropHeight );
+    _dropMenuView.frame = CGRectMake(0, 40,SCREEN_WIDTH, dropHeight );
     [_dropMenuView deployWithItemArrayWith:smallArray];
     for (MenuButton *dropBtn in _dropMenuView.btnArray) {
         [dropBtn addTarget:self action:@selector(dropClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -140,10 +139,19 @@
         }
     }
     [self addSubview:_dropMenuView];
+    
+    UILabel *lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 0.5)];
+    lineLabel.backgroundColor = RGBA(230, 230, 230, 1);
+    lineLabel.tag = 100;
+    [self addSubview:lineLabel];
 }
 
 - (void)hideWithReset:(BOOL)reset{
     self.frame = CGRectMake(0, 64, 320, 40);
+    UILabel *lineLabel = [self viewWithTag:100];
+    if (lineLabel) {
+        [lineLabel removeFromSuperview];
+    }
     [_dropMenuView removeFromSuperview];
     if (reset) {
         UIButton *allPlace_btn = _btnArray[0];

@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *button_page_right;
 @property (weak, nonatomic) IBOutlet UILabel *label_line_middle;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *viewLineBottom;
+@property (weak, nonatomic) IBOutlet UIView *viewLineTop;
+@property (weak, nonatomic) IBOutlet UIView *viewLineMiddle;
 
 @property (weak, nonatomic) IBOutlet UILabel *label_line_bottom;
 
