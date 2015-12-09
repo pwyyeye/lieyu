@@ -133,7 +133,7 @@
                         </button>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" red="0.98823529409999999" green="0.16078431369999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="59" id="4dv-Af-Bdg"/>
                     </constraints>

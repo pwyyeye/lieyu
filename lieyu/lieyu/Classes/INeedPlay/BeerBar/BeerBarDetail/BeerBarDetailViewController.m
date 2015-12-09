@@ -174,7 +174,7 @@
     __weak BeerBarDetailViewController *weakSelf = self;
     [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
         if (result) {
-            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
             
             [[NSUserDefaults standardUserDefaults] setObject:weakSelf.beerBarDetail.barid forKey:[NSString stringWithFormat:@"%@%@",_userid,weakSelf.beerBarDetail.barid]];
             [[NSUserDefaults standardUserDefaults] synchronize];
