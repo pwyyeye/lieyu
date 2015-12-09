@@ -27,7 +27,6 @@
     _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, LINEHEIGHT);
     _viewLineMiddle.frame = CGRectMake(0, 44.5, SCREEN_WIDTH, LINEHEIGHT);
     _viewLineBottom.frame = CGRectMake(0, 211, SCREEN_WIDTH, LINEHEIGHT);
-   // self.label_line_bottom.hidden = YES;
     
     for (UIButton *btn in _buttonArray) {
         btn.layer.cornerRadius = 4;

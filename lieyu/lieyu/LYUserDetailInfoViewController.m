@@ -26,6 +26,7 @@
     LYUserDetailTableViewCell *_birthCell;
      LYUserDetailTableViewCell *_tagCell;
     NSDate *_chooseBirthDate;
+    NSString *_tagNames;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -139,18 +140,17 @@
                 if (mod.tags.count == 1) {
                     _tagCell.textF_content.text = ((UserTagModel *) mod.tags[0]).tagname;
                 }else{
-                    NSString *tagNames=@"";
                 for (int i = 1;i < mod.tags.count ; i ++) {
                     UserTagModel *usertag = mod.tags[i];
-                    if (!tagNames.length) {
-                        tagNames = ((UserTagModel *) mod.tags[0]).tagname;
+                    if (!_tagNames.length) {
+                        _tagNames = ((UserTagModel *) mod.tags[0]).tagname == nil ?((UserTagModel *) mod.tags[0]).name : ((UserTagModel *) mod.tags[0]).tagname;
 
                     }
-                    tagNames = [NSString stringWithFormat:@"%@,%@",tagNames,usertag.tagname];
+                    _tagNames = [NSString stringWithFormat:@"%@,%@",_tagNames,usertag.tagname == nil ? usertag.name : usertag.tagname];
                         
                         NSLog(@"---->%@",usertag.tagname);
                     }
-                    _tagCell.textF_content.text=tagNames;
+                    _tagCell.textF_content.text = _tagNames;
                 }
                 _tagCell.textF_content.textColor = RGBA(114, 5, 145, 1);
             }
@@ -225,7 +225,10 @@
         }
         tagVC.selectedArray=mod.tags;
         [self.navigationController pushViewController:tagVC animated:YES];
+    }else if (indexPath.row == 1){
+        return;
     }
+    [_nickCell.textF_content endEditing:NO];
 }
 
 #pragma mark LYUserTagSelectedDelegate
@@ -380,6 +383,11 @@
     
 //    if (customType==0) {
 //        NSDate *select  = [_datePicker date];
+    if (!_nickCell.textF_content.text.length) {
+        [MyUtil showMessage:@"昵称不能为空"];
+        [_nickCell.textF_content endEditing:NO];
+        return;
+    }
     
     NSMutableDictionary *userinfo=[NSMutableDictionary new];
     
@@ -401,8 +409,6 @@
     [userinfo setObject:[NSString stringWithFormat:@"%@",sexNum] forKey:@"gender"];
     
     [self savaUserInfo:userinfo needReload:YES];
-    
-    
     
 }
 
