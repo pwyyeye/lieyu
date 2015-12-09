@@ -305,6 +305,7 @@
     alertView.delegate = self;
     _timeView = [[[NSBundle mainBundle]loadNibNamed:@"TimePickerView" owner:nil options:nil]firstObject];
     _timeView.timePicker.datePickerMode = UIDatePickerModeTime;
+    _timeView.timePicker.minimumDate = [NSDate dateWithTimeIntervalSince1970:0];
     _timeView.tag = 11;
     //    [_timeView showTimeWithDate:self.defaultDate];
     _timeView.timePicker.date = [NSDate date];
