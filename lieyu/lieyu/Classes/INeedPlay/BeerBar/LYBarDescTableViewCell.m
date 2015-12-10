@@ -8,6 +8,7 @@
 
 #import "LYBarDescTableViewCell.h"
 
+
 @implementation LYBarDescTableViewCell
 
 - (void)awakeFromNib {
@@ -29,6 +30,21 @@
     _image_yinHao_right.image = [UIImage imageNamed:@"yinHaoRight"];
     [self addSubview:_image_yinHao_right];
     
+//    _label_left = [[UILabel alloc]initWithFrame:CGRectMake(0, 23, 25, 25)];
+//    _label_left.text = @"“";
+//    _label_left.backgroundColor = [UIColor redColor];
+//    _label_left.textAlignment = NSTextAlignmentCenter;
+//        _label_left.font = [UIFont boldSystemFontOfSize:30];
+//    [self addSubview:_label_left];
+//    
+//    _label_right = [[UILabel alloc]initWithFrame:CGRectMake(0, 23, 25, 25)];
+//    _label_right.text = @"”";
+//    _label_right.font = [UIFont boldSystemFontOfSize:30];
+//        _label_right.textAlignment = NSTextAlignmentCenter;
+//        _label_right.backgroundColor = [UIColor redColor];
+//    [self addSubview:_label_right];
+    
+    
     _label_descr = [[UILabel alloc]initWithFrame:CGRectMake(87, 8, 144, 48)];
     _label_descr.numberOfLines = 0;
     _label_descr.textAlignment = NSTextAlignmentCenter;
@@ -48,18 +64,17 @@
     _label_descr.center = CGPointMake(SCREEN_WIDTH/2.0, _label_descr.center.y);
  NSLog(@"---------->%@",NSStringFromCGRect(_label_descr.frame));
 
-    CGFloat maxWidth = SCREEN_WIDTH - 2 * (CGRectGetWidth(_image_yinHao_right.frame) + 12);
+    CGFloat maxWidth = SCREEN_WIDTH - 2 * (CGRectGetWidth(_image_yinHao_right.frame) + 18);
     if (strSize.width < maxWidth) {
          _label_descr.bounds = CGRectMake(0,0,strSize.width,48);
-
        
     }else {
         if(self.label_descr.frame.origin.x >1){
             _label_descr.bounds = CGRectMake(0, 0, maxWidth, CGRectGetHeight(_label_descr.frame));
         }
     }
-    _image_yinHao_left.frame = CGRectMake(self.label_descr.frame.origin.x - 24, self.image_yinHao_left.frame.origin.y, 24, 24);
-    _image_yinHao_right.frame = CGRectMake(CGRectGetMaxX(self.label_descr.frame), self.image_yinHao_left.frame.origin.y, 24, 24);
+    _image_yinHao_left.frame = CGRectMake(self.label_descr.frame.origin.x - 34, _image_yinHao_left.frame.origin.y, 24, 24);
+    _image_yinHao_right.frame = CGRectMake(CGRectGetMaxX(self.label_descr.frame) +10, _image_yinHao_left.frame.origin.y, 24, 24);
 }
 
 
