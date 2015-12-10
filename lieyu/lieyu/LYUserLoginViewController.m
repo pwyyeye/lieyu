@@ -156,8 +156,7 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
-        HomePageINeedPlayViewController *homeVC = [[HomePageINeedPlayViewController alloc]init];
-        [self.navigationController pushViewController:homeVC animated:YES];
+         [self.navigationController popToRootViewControllerAnimated:YES ];
     }];
 }
 #pragma mark - 注册

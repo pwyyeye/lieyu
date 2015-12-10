@@ -416,8 +416,12 @@
     
     [self savaUserInfo:userinfo needReload:YES];
     
+    
     LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
-    [self.navigationController pushViewController:loginVC animated:YES];
+    if (_isAutoLogin) {
+         [self.navigationController popToViewController:loginVC animated:YES];
+        _isAutoLogin = NO;
+    }
     [loginVC autoLogin];
 }
 
