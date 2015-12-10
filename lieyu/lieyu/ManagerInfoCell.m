@@ -47,7 +47,6 @@
     }
 }
 
-
 - (void)cellConfigure:(int)index{
     [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:self.zsDetail.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [self.iconImage.imageView sd_setImageWithURL:[NSURL URLWithString:self.zsDetail.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
