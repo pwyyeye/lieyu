@@ -30,6 +30,8 @@
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",model.marketprice] attributes:attribtDic];
     _label_price_old.attributedText = attribtStr;
+    
+    [self.btn_fanli setText:[NSString stringWithFormat:@"返利%.0f%@",model.rebate * 100,@"%"]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
