@@ -59,7 +59,10 @@
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
-
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 - (void)createButton{
     UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 30, 40, 40)];
     [backBtn setBackgroundImage:[UIImage imageNamed:@"icon_huanhui_action"] forState:UIControlStateNormal];

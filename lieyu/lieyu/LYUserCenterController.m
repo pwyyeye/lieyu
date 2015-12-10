@@ -235,6 +235,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试 
             conversationVC.userName = @"猎娱客服";
             conversationVC.title = @"猎娱客服";
+            
+            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:nil action:nil]];
             [self.navigationController pushViewController:conversationVC animated:YES];
             break;
         }
