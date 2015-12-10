@@ -56,6 +56,7 @@
 
     _menuView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
     _menuView.delegate = self;
+    self.navigationItem.title = _middleStr;
     NSArray *array1 = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     NSArray *array2 = _titleArray;
     NSArray *array3 = @[@"离我最近",@"人均最高",@"人均最低",@"返利最高"];
@@ -224,6 +225,7 @@
         {
             bartypeslistModel *bartypeModel = self.bartypeArray[dropButton.tag];
             _subidStr = bartypeModel.subids;
+            self.navigationItem.title = dropButton.currentTitle;
            [self getData];
         }
             break;
@@ -245,18 +247,20 @@
             switch (dropButton.tag) {
                 case 0:
                 {
-//                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
-//                    [self.tableView reloadData];
+                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
+                   [self.tableView reloadData];
                 }
                     break;
                 case 1:
                 {
-                    
+                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelGao:)] mutableCopy];
+                    [self.tableView reloadData];
                 }
                     break;
                 case 2:
                 {
-                    
+                      _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelDi:)] mutableCopy];
+                    [self.tableView reloadData];
                 }
                     break;
                 case 3:
@@ -267,6 +271,7 @@
                     
                 default:
                     break;
+                    
             }
         }
             break;

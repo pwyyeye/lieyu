@@ -206,6 +206,8 @@
         TimePickerView *timeView = [[[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil] firstObject];
         timeView.timePicker.datePickerMode = UIDatePickerModeDate;
         timeView.timePicker.minimumDate = [NSDate dateWithTimeIntervalSince1970:0];
+        timeView.timePicker.maximumDate = [NSDate date];
+        timeView.label_title.text = @"请选择出生年日";
         timeView.tag = 11;
         timeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
         alertView.contentView = timeView;

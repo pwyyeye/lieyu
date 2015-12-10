@@ -11,5 +11,6 @@
 @interface LYHeaderTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_header;
 @property (weak, nonatomic) IBOutlet UILabel *label_laBa;
+@property (weak, nonatomic) IBOutlet UIImageView *image_laBa;
 
 @end

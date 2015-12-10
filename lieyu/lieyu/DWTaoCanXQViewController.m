@@ -18,6 +18,7 @@
 #import "UMSocial.h"
 #import "LYUserHttpTool.h"
 #import "LYUserLocation.h"
+#import "LPAttentionViewController.h"
 
 @interface DWTaoCanXQViewController ()
 {
@@ -309,7 +310,8 @@
 
 #pragma mark - 注意事项
 - (IBAction)warnAct:(UIButton *)sender {
-    [MyUtil showMessage:@"1. 关于退款：若专属经理未确认留位前退款，则我们将全额退款；若专属经理确认给予您留位后退款，则退款需收20%卡座占用费（100元封顶）。由于占用卡位时间会对酒吧造成经济损失，所以敬请谅解！\n2.若有任何疑问？投诉和建议，欢迎拨打客户热线；\n3.商品图片为参考，具体以实物为准；\n4.客户热线：021-36512128"];
+    LPAttentionViewController *LPattentionVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPattention"];
+    [self.navigationController pushViewController:LPattentionVC animated:YES];
 }
 #pragma mark - 马上购买
 - (IBAction)payAct:(UIButton *)sender {

@@ -35,6 +35,11 @@
     NSManagedObjectContext *_context;
     NSString *_userid;
     UIWebView *_webView;
+    LYHeaderTableViewCell *_headerCell;
+    LYBarTitleTableViewCell *_barTitleCell;
+    NSInteger _timeCount;
+    CGSize _size;
+    NSTimer *_timer;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -53,6 +58,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+     [self loadBarDetail];                                                       //load data
+    
     self.automaticallyAdjustsScrollViewInsets=NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
@@ -65,13 +73,15 @@
     self.scrollView.showsVerticalScrollIndicator=NO;
     self.scrollView.showsHorizontalScrollIndicator=NO;
     [self setupViewStyles];                                                     //tableView registe cell
-    [self loadBarDetail];                                                       //load data
+   
 
     self.image_layer.hidden = YES;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _context = app.managedObjectContext;
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    
+ 
 }
 //喜欢按钮圆角
 - (void)setUpBtn_like{
@@ -81,6 +91,9 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if(_timer == nil){
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
+    }
     //判断用户是否已经喜欢过
     if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]]) {
         //收藏过
@@ -96,6 +109,10 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden=NO;
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
 }
 //-(void)viewDidDisappear:(BOOL)animated
 //{
@@ -123,11 +140,14 @@
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
             
-            [self updateViewConstraints];
+            [weakSelf updateViewConstraints];
             [weakSelf.tableView reloadData];
             //加载webview
             
-            [self loadWebView];
+            [weakSelf loadWebView];
+            if (_timer == nil){
+   _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
+            }  
         }
     }];
 }
@@ -252,8 +272,14 @@
     {
         case 0:
         {
-            LYHeaderTableViewCell *headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
-            headerCell.label_laBa.text = self.beerBarDetail.announcement.content;
+            _headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
+            NSLog(@"------->%@",self.beerBarDetail.announcement.content);
+            _size = [self.beerBarDetail.announcement.content boundingRectWithSize:CGSizeMake(MAXFLOAT, 18) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+            NSLog(@"------")
+            _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
+                                                                                                                                                                            
+                                                                                                                                                            
+            _headerCell.label_laBa.text = self.beerBarDetail.announcement.content;
             
             
             NSMutableArray *bigArr=[[NSMutableArray alloc]init];
@@ -266,25 +292,25 @@
             EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
                                                                   scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
 
-            [headerCell addSubview:scroller];
+            [_headerCell addSubview:scroller];
 
             
-            headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            return headerCell;
+            _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+            return _headerCell;
 
         }
             break;
         case 1:
         {
            
-            LYBarTitleTableViewCell *barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
-            [barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon]];
-            barTitleCell.label_name.text = self.beerBarDetail.barname;
+            _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
+            [_barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon]];
+            _barTitleCell.label_name.text = self.beerBarDetail.barname;
             if (![MyUtil isEmptyString:self.beerBarDetail.environment_num] ) {
-                barTitleCell.barStar.value=self.beerBarDetail.environment_num.floatValue;
+                _barTitleCell.barStar.value=self.beerBarDetail.environment_num.floatValue;
             }else{
-                barTitleCell.barStar.value=3.0;
+                _barTitleCell.barStar.value=3.0;
             }
             
             NSString *priceStr = [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
@@ -295,22 +321,22 @@
             }
             
             
-            barTitleCell.label_price.attributedText = attributedStr;
+            _barTitleCell.label_price.attributedText = attributedStr;
             
             for (int i = 0;i < 5;i ++) {
-                UIImageView *imageView = barTitleCell.imageView_starArray[i];
+                UIImageView *imageView = _barTitleCell.imageView_starArray[i];
                 imageView.image = [UIImage imageNamed:@"starGray"];
             }
             if ([self.beerBarDetail.star_num integerValue]) {
                 for (int y = 0; y < [self.beerBarDetail.star_num integerValue]; y++) {
-                    UIImageView *imageView = barTitleCell.imageView_starArray[y];
+                    UIImageView *imageView = _barTitleCell.imageView_starArray[y];
                     imageView.image = [UIImage imageNamed:@"starRed"];
                 }
             }
-            barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            _barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
             CGFloat fanliFloat = self.beerBarDetail.rebate * self.beerBarDetail.lowest_consumption.floatValue;
-            barTitleCell.label_fanli_num.text = [NSString stringWithFormat:@"¥%.0f",fanliFloat];
-            return barTitleCell;
+            _barTitleCell.label_fanli_num.text = [NSString stringWithFormat:@"¥%.0f起",fanliFloat];
+            return _barTitleCell;
             
         }
             break;
@@ -348,6 +374,20 @@
     }
     return cell;
 }
+
+- (void)onTime{
+    _timeCount ++;
+    _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH - _timeCount, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
+//    _headerCell.label_laBa.center = CGPointMake(_size.width/2.0 + SCREEN_WIDTH - _timeCount, _headerCell.label_laBa.center.y);
+    NSString *width = [NSString stringWithFormat:@"%.0f",_size.width];
+    if (_headerCell.label_laBa.frame.origin.x == -width.integerValue) {
+        _timeCount = 0;
+       _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
+    }
+    [_headerCell bringSubviewToFront:_headerCell.image_laBa];
+}
+
+
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -409,12 +449,16 @@
 
 #pragma mark 分享按钮
 - (IBAction)shareClick:(id)sender {
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:UmengAppkey
-                                      shareText:self.beerBarDetail.baricon
-                                     shareImage:self.beerBarDetail.baricon
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,UMShareToSms,UMShareToLWTimeline,nil]
-                                       delegate:nil];
+    NSString *string=@"大家一起来看看～猎娱不错啊! http://www.lie98.com\n";
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+    //    [UMSocialSnsService presentSnsController:self
+    //                                appKey:UmengAppkey
+    //                                shareText:string
+    //                                shareImage:self.barinfoCell.barImage.image
+    //                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
+    //                                delegate:self];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToSina,UMShareToWechatTimeline,UMShareToSms,nil] delegate:nil];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
