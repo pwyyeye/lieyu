@@ -365,7 +365,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
 //    [self performSelector:@selector(setCustomTitle:) withObject:@"一起玩" afterDelay:0.1];
 //    self.oriNavItems = [self.navigationController.navigationBar.items copy];
 //    [self.navigationController.navigationBar addSubview:_fillterButton];
