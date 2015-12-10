@@ -150,11 +150,15 @@
             //加载webview
             
             [weakSelf loadWebView];
-            if (_timer == nil){
-   _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
-            }  
+            [weakSelf setTimer];
         }
     }];
+}
+
+- (void)setTimer{
+    if (_timer == nil){
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
