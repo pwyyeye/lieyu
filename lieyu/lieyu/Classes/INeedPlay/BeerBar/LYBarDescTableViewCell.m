@@ -22,11 +22,11 @@
 }
 
 - (void)drawRect:(CGRect)rect{
-    _image_yinHao_left = [[UIImageView alloc]initWithFrame:CGRectMake(0, 23, 24, 24)];
+    _image_yinHao_left = [[UIImageView alloc]initWithFrame:CGRectMake(-40, 23, 24, 24)];
     _image_yinHao_left.image = [UIImage imageNamed:@"yinHao"];
     [self addSubview:_image_yinHao_left];
     
-    _image_yinHao_right = [[UIImageView alloc]initWithFrame:CGRectMake(0, 23, 24, 24)];
+    _image_yinHao_right = [[UIImageView alloc]initWithFrame:CGRectMake(-100, 23, 24, 24)];
     _image_yinHao_right.image = [UIImage imageNamed:@"yinHaoRight"];
     [self addSubview:_image_yinHao_right];
     

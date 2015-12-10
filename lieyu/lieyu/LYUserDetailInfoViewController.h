@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LYUserDetailInfoViewController : UIViewController
-
+@property (nonatomic,unsafe_unretained) BOOL isAutoLogin;
 @end

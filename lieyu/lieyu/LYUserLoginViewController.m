@@ -11,6 +11,8 @@
 #import "LYRegistrationViewController.h"
 #import "LYUserHttpTool.h"
 #import "UMessage.h"
+#import "HomePageINeedPlayViewController.h"
+
 @interface LYUserLoginViewController ()<LYRegistrationDelegate,LYResetPasswordDelegate>
 
 @end
@@ -154,7 +156,7 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
-       
+         [self.navigationController popToRootViewControllerAnimated:YES ];
     }];
 }
 #pragma mark - 注册

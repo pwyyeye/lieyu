@@ -55,7 +55,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.x > 300) {
-        [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"arrowLeftHight"] forState:UIControlStateNormal];
+        [self.button_page_left   setBackgroundImage:[UIImage imageNamed:@"arrowLeftHight"] forState:UIControlStateNormal];
         [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"arrowRitht"] forState:UIControlStateNormal];
     }else{
         [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"chevron right copy"] forState:UIControlStateNormal];
@@ -78,7 +78,7 @@
     for (int i = 0; i < bartypeArray.count; i ++) {
         UIButton *btn = self.buttonArray[i];
         bartypeslistModel *bartypeModel = bartypeArray[i];
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:bartypeModel.imageurl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"middlePlace"]];
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:bartypeModel.imageurl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     }
     _scrollView.contentSize = CGSizeMake(bartypeArray.count * SCREEN_WIDTH/2.0, 0);
     _scrollView.alwaysBounceVertical = NO;

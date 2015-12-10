@@ -430,6 +430,9 @@
 		38E72B571C15A18E002EFBDD /* ChiHeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B551C15A18E002EFBDD /* ChiHeViewController.xib */; };
 		85439AE61C08657F00DD4BE6 /* LYAmusementClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */; };
 		85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */; };
+		8547271A1C196BAB0048CEDC /* icon_collect_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 854727171C196BAB0048CEDC /* icon_collect_2.png */; };
+		8547271B1C196BAB0048CEDC /* icon_collect_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 854727181C196BAB0048CEDC /* icon_collect_2@2x.png */; };
+		8547271C1C196BAB0048CEDC /* icon_collect_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 854727191C196BAB0048CEDC /* icon_collect_2@3x.png */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
 		8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */; };
 		8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */; };
@@ -1515,6 +1518,9 @@
 		85439AE31C08657F00DD4BE6 /* LYAmusementClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementClassCell.h; sourceTree = "<group>"; };
 		85439AE41C08657F00DD4BE6 /* LYAmusementClassCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAmusementClassCell.m; sourceTree = "<group>"; };
 		85439AE51C08657F00DD4BE6 /* LYAmusementClassCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYAmusementClassCell.xib; sourceTree = "<group>"; };
+		854727171C196BAB0048CEDC /* icon_collect_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_collect_2.png; sourceTree = "<group>"; };
+		854727181C196BAB0048CEDC /* icon_collect_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect_2@2x.png"; sourceTree = "<group>"; };
+		854727191C196BAB0048CEDC /* icon_collect_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect_2@3x.png"; sourceTree = "<group>"; };
 		855192661C0B30E0007B9949 /* LYHotJiuBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotJiuBarViewController.h; sourceTree = "<group>"; };
 		855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotJiuBarViewController.m; sourceTree = "<group>"; };
 		855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotJiuBarViewController.xib; sourceTree = "<group>"; };
@@ -3644,6 +3650,9 @@
 		85589C791C16C65C000E342E /* 酒吧详情整改 */ = {
 			isa = PBXGroup;
 			children = (
+				854727171C196BAB0048CEDC /* icon_collect_2.png */,
+				854727181C196BAB0048CEDC /* icon_collect_2@2x.png */,
+				854727191C196BAB0048CEDC /* icon_collect_2@3x.png */,
 				85589CB01C16CAB3000E342E /* icon_like_2.png */,
 				85589CB11C16CAB3000E342E /* icon_like_2@2x.png */,
 				85589CB21C16CAB3000E342E /* icon_like_2@3x.png */,
@@ -5376,6 +5385,7 @@
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
 				ADFFA6CC1C181ED800D9BD2A /* refresh5@2x.png in Resources */,
 				38D876451C16E97500E2F284 /* ChooseNumber.xib in Resources */,
+				8547271B1C196BAB0048CEDC /* icon_collect_2@2x.png in Resources */,
 				15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */,
 				1559DCF21BD9C7E200F3FE9B /* CHChooseNumView.xib in Resources */,
 				1559DCE61BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib in Resources */,
@@ -5414,6 +5424,7 @@
 				381A01D01C14228E00592485 /* AddCar_gray.png in Resources */,
 				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
 				ADFFA6951C1721D600D9BD2A /* gouGif.gif in Resources */,
+				8547271A1C196BAB0048CEDC /* icon_collect_2.png in Resources */,
 				85F672B31C097D48001BEE5B /* LYHotRecommandCell.xib in Resources */,
 				38E5D7E71C12DC43004B49D2 /* icon_collect@2x.png in Resources */,
 				ADB164BD1C167095000BAD3C /* lieyuIcon@2x.png in Resources */,
@@ -5530,6 +5541,7 @@
 				38E5D6C81C0EA4DF004B49D2 /* CustomBtn_Selected@3x.png in Resources */,
 				15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */,
 				15E240961BB295090090D240 /* LYOrderBottomForFinishView.xib in Resources */,
+				8547271C1C196BAB0048CEDC /* icon_collect_2@3x.png in Resources */,
 				A2020D761BA67FA40090B92A /* Fill2097@2x.png in Resources */,
 				38E5D7B61C128A74004B49D2 /* 拼客流程.png in Resources */,
 				15E240A71BB381610090D240 /* OrderDetailHeadView.xib in Resources */,

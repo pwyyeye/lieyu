@@ -25,7 +25,7 @@
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",model.marketprice] attributes:attribtDic];
     self.label_price_old.attributedText = attribtStr;
     self.label_buyCount.text = [NSString stringWithFormat:@"%@人购",model.buynum];
-    [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl]];
+    [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
 
     NSString *percentStr =[NSString stringWithFormat:@"%.0f%@",([self.model.rebate floatValue]) * 100,@"%"];
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:percentStr];
@@ -47,7 +47,7 @@
     self.label_price_old.attributedText = attribtStr;
     
     self.label_buyCount.text = [NSString stringWithFormat:@"%d人购",taoCanModel.buynum];
-    [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:taoCanModel.linkUrl]];
+    [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:taoCanModel.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     
     CGFloat rebate = self.taoCanModel.rebate * 100;
     NSString *percentStr =[NSString stringWithFormat:@"%.0f%@",rebate,@"%"];

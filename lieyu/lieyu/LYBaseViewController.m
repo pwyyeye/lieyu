@@ -73,7 +73,7 @@
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
     
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
     
 //    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];

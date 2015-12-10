@@ -556,4 +556,26 @@
         result(NO);
     }];
 }
+
+#pragma mark 给酒吧取消点赞
+- (void)unLikeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result{
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QUXIAOZANG baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            result(YES);
+            [MyUtil showMessage:message];
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+    }];
+}
 @end

@@ -36,7 +36,7 @@
                     </subviews>
                     <animations/>
                 </scrollView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="navBarbg" translatesAutoresizingMaskIntoConstraints="NO" id="Jt1-L8-RY0">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="navBarbg" translatesAutoresizingMaskIntoConstraints="NO" id="Jt1-L8-RY0">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <animations/>
                 </imageView>
@@ -51,7 +51,7 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YpG-kG-1fJ">
                     <rect key="frame" x="176" y="30" width="24" height="24"/>
                     <animations/>
-                    <state key="normal" backgroundImage="icon_collect2.png"/>
+                    <state key="normal" backgroundImage="icon_collect_2.png"/>
                     <connections>
                         <action selector="soucangAct:" destination="-1" eventType="touchUpInside" id="rHP-IB-S1s"/>
                     </connections>
@@ -435,7 +435,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_collect2.png" width="24" height="24"/>
+        <image name="icon_collect_2.png" width="19" height="19"/>
         <image name="icon_eatdrinkspecial" width="28" height="28"/>
         <image name="icon_fanhui2.png" width="24" height="24"/>
         <image name="icon_like_2.png" width="24" height="24"/>

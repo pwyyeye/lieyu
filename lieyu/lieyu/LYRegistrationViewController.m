@@ -139,7 +139,9 @@ static LYRegistrationViewController *_registe;
             [self.delegate registration];
             
             LYUserDetailInfoViewController *detailVC = [[LYUserDetailInfoViewController alloc]init];
+            detailVC.isAutoLogin = YES;
             [self.navigationController pushViewController:detailVC animated:YES];
+            
         }
     }];
 }
