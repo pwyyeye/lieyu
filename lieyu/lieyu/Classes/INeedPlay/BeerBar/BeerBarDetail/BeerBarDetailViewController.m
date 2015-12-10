@@ -128,8 +128,10 @@
 #pragma mart --约束
 -(void)updateViewConstraints{
     [super updateViewConstraints];
+     NSLog(@"------->%ld",self.beerBarDetail.isSign);
     if (self.beerBarDetail.isSign==0) {
         _buttomViewHeight.constant=0;
+       
     }else{
         _buttomViewHeight.constant=59;
     }

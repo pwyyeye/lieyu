@@ -30,7 +30,7 @@
 @property(nonatomic,strong)NSNumber * id;
 @property(nonatomic,copy)NSString * latitude;
 @property(nonatomic,copy)NSString * longitude;
-@property (nonatomic,copy) NSString *isSign;//是否签约
+@property (nonatomic,unsafe_unretained) NSInteger isSign;//是否签约
 @property(nonatomic,copy)NSNumber * lowest_consumption;
 @property(nonatomic,strong)NSArray *recommend_package;  //RecommendPackageModel
 @property(nonatomic,copy)NSString *star_num;

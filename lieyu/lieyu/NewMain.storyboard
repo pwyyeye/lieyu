@@ -2700,7 +2700,7 @@
         <image name="icon_share2.png" width="32" height="32"/>
         <image name="icon_singleoption_highlightl" width="16" height="15"/>
         <image name="icon_singleoption_normal" width="15" height="15"/>
-        <image name="icon_star" width="14" height="14"/>
+        <image name="icon_star" width="15" height="15"/>
         <image name="icon_star_normal" width="20" height="20"/>
         <image name="icon_xinxi_normal1" width="19" height="17"/>
         <image name="icon_zhuyi" width="20" height="20"/>
