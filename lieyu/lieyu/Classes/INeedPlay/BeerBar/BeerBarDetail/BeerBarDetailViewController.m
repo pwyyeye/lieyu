@@ -331,8 +331,13 @@
             }else{
                 _barTitleCell.barStar.value=3.0;
             }
+            NSString *priceStr;
+            if (self.beerBarDetail.lowest_consumption==nil) {
+                 priceStr= [NSString stringWithFormat:@"¥%@起",@"    "];
+            }else{
+                 priceStr= [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
+            }
             
-            NSString *priceStr = [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
             NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
             [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(1, 3)];
             if ([self.beerBarDetail.lowest_consumption integerValue] > 999) {
