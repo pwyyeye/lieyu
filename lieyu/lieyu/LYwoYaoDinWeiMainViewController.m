@@ -40,6 +40,12 @@
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
     self.navigationItem.title = @"所有套餐";
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
+}
+
+- (void)gotoBack{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -183,7 +189,7 @@
 {
     NSDictionary *dic=weekDateArr[mMenuHriZontal.selectIndex];
     NSString *dataChoose=[dic objectForKey:@"date"];
-    RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.row];
+    RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.section];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
     taoCanXQViewController.title=@"套餐详情";

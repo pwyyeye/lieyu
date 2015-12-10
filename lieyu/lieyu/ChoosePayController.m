@@ -102,6 +102,8 @@
         [tenpay preparePay:@{@"orderNo":_orderNo,@"payAmount":[NSString stringWithFormat:@"%.0f",_payAmount*100],@"productDescription":_productName} complete:^(BaseReq *result) {
             if (result) {
                 [tenpay onReq:result];
+            }else{
+                [MyUtil showMessage:@"无法调起微信支付！"];
             }
         }];
     }
@@ -336,6 +338,7 @@
     }
     if ([[resultDic objectForKey:@"resultStatus"] longLongValue]==9000) {
            [MyUtil showMessage:@"支付成功！"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
     
       //  detailViewController.orderNoString=_orderNo;

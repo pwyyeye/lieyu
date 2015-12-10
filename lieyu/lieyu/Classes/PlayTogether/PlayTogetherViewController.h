@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LYBaseViewController.h"
 
-@interface PlayTogetherViewController : LYBaseViewController
+@interface PlayTogetherViewController : LYBaseViewController<UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(strong,nonatomic) UILabel *myTitle;
 

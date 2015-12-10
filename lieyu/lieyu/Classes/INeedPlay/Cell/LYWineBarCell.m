@@ -31,12 +31,12 @@
 
 - (void)setJiuBaModel:(JiuBaModel *)jiuBaModel{
     _jiuBaModel = jiuBaModel;
-    [_imageView_header sd_setImageWithURL:[NSURL URLWithString:jiuBaModel.baricon] placeholderImage:nil];
+    [_imageView_header sd_setImageWithURL:[NSURL URLWithString:jiuBaModel.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _imageView_header.layer.cornerRadius = _imageView_header.frame.size.width/2.0;
     _imageView_header.layer.masksToBounds = YES;
     [_label_jiuba setText:jiuBaModel.barname];
     if (jiuBaModel.banners.count) {
-        [_imageView_content sd_setImageWithURL:[NSURL URLWithString:jiuBaModel.banners[0]] placeholderImage:nil];
+        [_imageView_content sd_setImageWithURL:[NSURL URLWithString:jiuBaModel.banners[0]] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
     }
     [_label_descr setText:jiuBaModel.subtitle];
     [_label_price setText:[NSString stringWithFormat:@"¥%@起",jiuBaModel.lowest_consumption]];

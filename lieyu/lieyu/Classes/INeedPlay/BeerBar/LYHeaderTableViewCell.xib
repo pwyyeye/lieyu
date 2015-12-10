@@ -25,7 +25,7 @@
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FEd-Vv-5SM">
                         <rect key="frame" x="0.0" y="179" width="44" height="35"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="laBa" translatesAutoresizingMaskIntoConstraints="NO" id="SMf-Q5-5oE">
                         <rect key="frame" x="15" y="195" width="21" height="12"/>
@@ -39,10 +39,10 @@
                 <outlet property="image_laBa" destination="SMf-Q5-5oE" id="nNL-1r-M1S"/>
                 <outlet property="label_laBa" destination="E4U-Xs-aaT" id="riB-pp-3gE"/>
             </connections>
-            <point key="canvasLocation" x="298.5" y="480.5"/>
+            <point key="canvasLocation" x="422.5" y="477.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="laBa" width="20" height="20"/>
+        <image name="laBa" width="24" height="24"/>
     </resources>
 </document>

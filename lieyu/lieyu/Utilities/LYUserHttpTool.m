@@ -75,7 +75,7 @@
                       block:(void(^)(BOOL result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_LOGOUT baseURL:LY_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_LOGOUT baseURL:QINIU_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if ([code isEqualToString:@"1"]) {
@@ -166,6 +166,12 @@
         if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
+                
+//                mobile
+//                password
+                [[NSUserDefaults standardUserDefaults] setObject:params[@"mobile"] forKey:@"username"];
+                [[NSUserDefaults standardUserDefaults] setObject:params[@"password"] forKey:@"password"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             });
             [app stopLoading];
         }else{

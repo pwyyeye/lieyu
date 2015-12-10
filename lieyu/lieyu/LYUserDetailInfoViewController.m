@@ -17,6 +17,7 @@
 #import "UserTagModel.h"
 #import "UIButton+WebCache.h"
 #import "TimePickerView.h"
+#import "LYUserLoginViewController.h"
 
 @interface LYUserDetailInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LPAlertViewDelegate,LYUserTagSelectedDelegate>
 {
@@ -415,6 +416,13 @@
     
     [self savaUserInfo:userinfo needReload:YES];
     
+   
+    if (_isAutoLogin) {
+         LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+         [self.navigationController popToViewController:loginVC animated:YES];
+        _isAutoLogin = NO;
+        [loginVC autoLogin];
+    }
 }
 
 

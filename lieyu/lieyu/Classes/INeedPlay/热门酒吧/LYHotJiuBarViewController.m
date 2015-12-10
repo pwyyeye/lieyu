@@ -68,8 +68,13 @@
     [self getData];
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
 }
 
+- (void)gotoBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark 获取数据
 -(void)getData{
     __weak LYHotJiuBarViewController * weakSelf = self;

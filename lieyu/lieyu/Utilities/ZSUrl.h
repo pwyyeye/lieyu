@@ -33,7 +33,7 @@
 //登录
 #define LY_DL  @"accountAction.do?action=login"
 //登出
-#define LY_LOGOUT  @"accountAction.do?action=logout"
+#define LY_LOGOUT  @"osregisterAction.do?action=logout"
 
 /***个人中心设置－－－pwy***/
 //请求用户标签列表

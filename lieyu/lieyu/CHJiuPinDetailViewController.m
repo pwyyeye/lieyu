@@ -308,7 +308,7 @@
 #pragma mark 猎娱客服
 - (IBAction)LYkefu:(UIButton *)sender {
     _conversationVC = [[RCPublicServiceChatViewController alloc] init];
-    _conversationVC.conversationType = ConversationType_PRIVATE;
+    _conversationVC.conversationType = ConversationType_APPSERVICE;;
     _conversationVC.targetId = @"KEFU144946169476221";
     _conversationVC.userName = @"猎娱客服";
     _conversationVC.title = @"猎娱客服";

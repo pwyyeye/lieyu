@@ -12,6 +12,8 @@
 @property (strong, nonatomic)  UILabel *label_descr;
 @property (strong, nonatomic)  UIImageView *image_yinHao_left;
 @property (strong, nonatomic)  UIImageView *image_yinHao_right;
+@property (strong, nonatomic)  UILabel *label_left;
+@property (strong, nonatomic)  UILabel *label_right;
 @property (nonatomic,copy) NSString *title;
 
 @end

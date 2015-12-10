@@ -12,21 +12,6 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _teseBtn1.layer.cornerRadius = 2;
-    _teseBtn1.layer.borderWidth = 0.5;
-    _teseBtn1.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
-    
-    _teseBtn2.layer.cornerRadius = 2;
-    _teseBtn2.layer.borderWidth = 0.5;
-    _teseBtn2.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
-    
-    _teseBtn3.layer.cornerRadius = 2;
-    _teseBtn3.layer.borderWidth = 0.5;
-    _teseBtn3.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
-    
-    _teseBtn4.layer.cornerRadius = 2;
-    _teseBtn4.layer.borderWidth = 0.5;
-    _teseBtn4.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
     
     _typeBtn1.layer.cornerRadius = 2;
     _typeBtn1.layer.borderWidth = 0.5;
@@ -57,9 +42,12 @@
     }
     NSArray *teseArr=@[_teseBtn1,_teseBtn2,_teseBtn3,_teseBtn4];
     for (int i=0; i<model.tese.count; i++) {
+        UILabel *teseBtnTemp=teseArr[i];
         if(i<=teseArr.count){
             NSDictionary *dic=model.tese[i];
-            UILabel *teseBtnTemp=teseArr[i];
+            teseBtnTemp.layer.cornerRadius = 2;
+            teseBtnTemp.layer.borderWidth = 0.5;
+            teseBtnTemp.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
             [teseBtnTemp setHidden:NO];
             teseBtnTemp.text=[dic objectForKey:@"name"];
         }else{
