@@ -190,6 +190,7 @@
     taoCanXQViewController.smid=model.smid.intValue;
     taoCanXQViewController.dateStr=dataChoose;
     taoCanXQViewController.weekStr = [dic objectForKey:@"week"];
+    taoCanXQViewController.jiubaModel = jiubaModel;
     [self.navigationController pushViewController:taoCanXQViewController animated:YES];
 }
 
