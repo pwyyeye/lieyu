@@ -246,7 +246,7 @@
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
     conversationVC.targetId = detailModel.imUserId; // 接收者的 targetId，这里为举例。
     conversationVC.userName =detailModel.userName; // 接受者的 username，这里为举例。
-    conversationVC.title = detailModel.userName; // 会话的 title。
+    conversationVC.title = detailModel.usernick; // 会话的 title。
     
     // 把单聊视图控制器添加到导航栈。
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];

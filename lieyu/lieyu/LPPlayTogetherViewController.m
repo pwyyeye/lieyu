@@ -45,6 +45,9 @@
 @property (nonatomic, assign) int defaultNumber;
 @property (nonatomic, assign) int defaultIndex;
 
+@property (weak, nonatomic) IBOutlet UIView *headerBackground;
+@property (weak, nonatomic) IBOutlet UIButton *headerBackBtn;
+@property (weak, nonatomic) IBOutlet UIButton *headerShareBtn;
 
 @end
 
@@ -55,6 +58,15 @@
 //    statusview.view.backgroundColor = [UIColor purpleColor];
 //    return statusview;
 //}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - self.headerBackground.size.height) {
+        self.headerBackground.hidden = NO;
+    }else{
+        self.headerBackground.hidden = YES;
+    }
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -74,6 +86,11 @@
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 100);
     }
+    
+    [self.headerBackBtn addTarget:self action:@selector(backForword) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerShareBtn addTarget:self action:@selector(ShareClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.headerBackground.hidden = YES;
+    
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -464,7 +481,7 @@
 //                                shareImage:self.barinfoCell.barImage.image
 //                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
 //                                delegate:self];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:self.barinfoCell.barImage.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil] delegate:self];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:self.barinfoCell.barImage.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
     
 }
 

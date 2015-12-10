@@ -12,6 +12,10 @@
 
 @implementation chiheDetailCollectionCell
 
+- (void)awakeFromNib{
+    
+}
+
 - (IBAction)ChangeGoodsNumberClick:(UIButton *)sender{
     int num = [self.numField.text intValue];
     
@@ -43,9 +47,9 @@
     [[LYHomePageHttpTool shareInstance] addCarWithParams:dic block:^(BOOL result) {
         if (result) {
             [MyUtil showMessage:@"添加购物车成功!"];
+            [self.delegate refreshGoodsNum];
         }
     }];
-
 }
 
 -(void)configureCell:(CheHeModel *)model{
@@ -57,8 +61,17 @@
         _MarketPriceLbl.attributedText=attribtStr;
     }
     _numField.text = @"1";
+    _addToShoppingCarBtn.tag = model.id;
     _PriceLbl.text=[NSString stringWithFormat:@"￥%@",model.price];
-    _ProfitLbl.text=[NSString stringWithFormat:@"%.f元",[model.price floatValue] * model.rebate];
+    float profit = [model.price floatValue] * model.rebate ;
+    if(profit == 0){
+        _ProfitLbl.hidden = YES;
+        _fanliImage.hidden = YES;
+        _fanliLbl.hidden = YES;
+    }else{
+       _ProfitLbl.text=[NSString stringWithFormat:@"%.f元",profit];
+    }
+    
     [_goodImage sd_setImageWithURL:[NSURL URLWithString:model.img_260] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     self.lessBtn.enabled = NO;
 }

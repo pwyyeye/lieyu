@@ -33,7 +33,11 @@
     dataList=[[NSMutableArray alloc]init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    [self getData];
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
+    
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
+    MJRefreshGifHeader *header = (MJRefreshGifHeader *)self.tableView.mj_header;
+    [self initMJRefeshHeaderForGif:header];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carnumChange) name:@"carnumChange" object:nil];
     // Do any additional setup after loading the view from its nib.
 }
@@ -120,7 +124,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"*********cellForRowAtIndexPath%ld*******",dataList.count);
+    NSLog(@"*********cellForRowAtIndexPath%d*******",dataList.count);
     static NSString *CellIdentifier = @"CarInfoCell";
     
     CarInfoCell *cell = (CarInfoCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -166,7 +170,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         __weak __typeof(self)weakSelf = self;
         CarInfoModel *carInfoModel=dataList[indexPath.section];
@@ -177,6 +180,7 @@
                 
                 [MyUtil showMessage:@"删除成功"];
                 [weakSelf getData];
+                [self.numrefreshdelegate getNumLess];
             }
         }];
     }

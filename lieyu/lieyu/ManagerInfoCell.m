@@ -49,8 +49,14 @@
     [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:self.zsDetail.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [self.iconImage.imageView sd_setImageWithURL:[NSURL URLWithString:self.zsDetail.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [self.name setTitle:self.zsDetail.usernick forState:UIControlStateNormal];
+    int num ;
+    if(self.zsDetail.servicestar){
+        num = [self.zsDetail.servicestar intValue];
+    }else{
+        num = 5;
+    }
     int i;
-    for(i = 0 ; i < 4 ; i ++){
+    for(i = 0 ; i < num ; i ++){
         ((UIImageView *)self.starsArray[i]).image = [UIImage imageNamed:@"starRed"];
     }
     for (int j = i ; j < 5; j ++) {

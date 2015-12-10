@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ShaiXuanBtn.h"
+#import "chiheDetailCollectionCell.h"
+#import "chiheDetailCollectionCell.h"
+#import "LYBaseViewController.h"
 
-@interface ChiHeViewController : UIViewController
+@interface ChiHeViewController : LYBaseViewController<RefreshGoodsNum>
 
 @property (weak, nonatomic) IBOutlet ShaiXuanBtn *sxBtn1;
 @property (weak, nonatomic) IBOutlet ShaiXuanBtn *sxBtn2;
@@ -19,6 +22,7 @@
 
 @property (assign, nonatomic) int barid;
 @property (copy, nonatomic) NSString *barName;
+
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 

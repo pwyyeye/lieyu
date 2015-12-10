@@ -9,7 +9,10 @@
 #import "LYBaseViewController.h"
 #import "NeedHideNavigationBar.h"
 #import "CHChooseNumView.h"
-@interface CHJiuPinDetailViewController : LYBaseViewController{
+#import "chiheDetailCollectionCell.h"
+
+@interface CHJiuPinDetailViewController : LYBaseViewController<RefreshGoodsNum>
+{
     UIView  *_bgView;
     CHChooseNumView * numView;
     UIButton *surebutton;
@@ -20,6 +23,8 @@
 - (IBAction)AddToShopCar:(UIButton *)sender;//加入购物车
 - (IBAction)LYkefu:(UIButton *)sender;//猎娱客服
 - (IBAction)buyNow:(UIButton *)sender;//立即下单
+
+@property (nonatomic, assign) id<RefreshGoodsNum> refreshNumDelegate;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) int shopid;

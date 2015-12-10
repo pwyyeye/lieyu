@@ -38,7 +38,7 @@
     
     int num;
     if(!model.servicestar){
-        num = 3;
+        num = 5;
     }else{
         num = [model.servicestar intValue];
     }
