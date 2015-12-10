@@ -14,7 +14,13 @@
 #import "LYHomePageHttpTool.h"
 #import <RongIMKit/RongIMKit.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
-@interface MyZSManageViewController ()
+#import "UIImage+GIF.h"
+
+@interface MyZSManageViewController (){
+    UIView *_bigView;
+    UIImageView *_image_place;
+    UILabel *_label_place;
+}
 
 @end
 
@@ -60,12 +66,46 @@
         [[LYHomePageHttpTool shareInstance]getBarVipWithParams:dic block:^(NSMutableArray *result) {
             [zsList addObjectsFromArray:result];
             [weakSelf.tableView reloadData];
+            
+           
+            
         }];
     }else{
         NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:self.userModel.userid]};
         [[LYUserHttpTool shareInstance]getMyVipStore:dic block:^(NSMutableArray *result) {
             [zsList addObjectsFromArray:result];
             [weakSelf.tableView reloadData];
+            
+            if (!zsList.count) {
+                [_bigView removeFromSuperview];
+                [_image_place removeFromSuperview];
+                [_label_place removeFromSuperview];
+                
+                _bigView = [[UIView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(weakSelf.navigationController.navigationBar.frame) , SCREEN_WIDTH,  SCREEN_HEIGHT - 64 - CGRectGetHeight(weakSelf.navigationController.navigationBar.frame))];
+                _bigView.backgroundColor = RGBA(0, 0, 0, 0.4);
+                _bigView.alpha = 0.2;
+                _bigView.tag = 300;
+                [weakSelf.view addSubview:_bgView];
+                
+                _image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 191-64,105 , 119)];
+                _image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
+                _image_place.tag = 100;
+                [weakSelf.view addSubview:_image_place];
+                
+                _label_place = [[UILabel alloc]initWithFrame:CGRectMake(76, 310-64, 168, 22)];
+                _label_place.text = @"快快收藏专属经理吧";
+                _label_place.textColor = RGBA(29, 32, 47, 1);
+                _label_place.font = [UIFont systemFontOfSize:14];
+                _label_place.tag = 200;
+                _label_place.textAlignment = NSTextAlignmentCenter;
+                [weakSelf.view addSubview:_label_place];
+            }else{
+                [_bgView removeFromSuperview];
+                [_image_place removeFromSuperview];
+                [_label_place removeFromSuperview];
+            }
+
+            
         }];
     }
     

@@ -39,6 +39,7 @@
     // Do any additional setup after loading the view from its nib.
     searchlist = [[NSMutableArray alloc]initWithCapacity:0];
     _searchBar.delegate = self;
+    _searchBar.placeholder = @"搜索";
     [self setupViewStyles];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     self.tableView.hidden = YES;
@@ -49,9 +50,15 @@
     self.tableView.rowHeight = 274;
     _searchBar.returnKeyType = UIReturnKeySearch;
     self.tableView.tableFooterView = [[UIView alloc]init];
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    [self.navigationItem setLeftBarButtonItem:item];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    self.navigationItem.leftBarButtonItem = leftItem;
 }
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];

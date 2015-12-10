@@ -267,20 +267,20 @@
 }
 
 #pragma 点击更多界面中按钮后发生的事情
-- (void)chooseType:(UIButton *)sender{
-    [sender setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-    [_itemButton5 setBackgroundColor:[UIColor whiteColor]];
-    [_itemButton5 setTitleColor:RGBA(114, 5, 147, 0.85) forState:UIControlStateNormal];
-    [_itemButton5 setTitle:sender.titleLabel.text forState:UIControlStateNormal];
-    if(sender.tag == 81){
-        chooseKey = @"香槟";
-    }else if(sender.tag == 82){
-        chooseKey = @"其他";
-    }
-    [self chooseWineBy:chooseKey];
-}
+//- (void)chooseType:(UIButton *)sender{
+//    [sender setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    
+//    [_itemButton5 setBackgroundColor:[UIColor whiteColor]];
+//    [_itemButton5 setTitleColor:RGBA(114, 5, 147, 0.85) forState:UIControlStateNormal];
+//    [_itemButton5 setTitle:sender.titleLabel.text forState:UIControlStateNormal];
+//    if(sender.tag == 81){
+//        chooseKey = @"香槟";
+//    }else if(sender.tag == 82){
+//        chooseKey = @"其他";
+//    }
+//    [self chooseWineBy:chooseKey];
+//}
 
 - (void)addShaiXuan:(NSMutableArray *)arr{
     pageCount=1;

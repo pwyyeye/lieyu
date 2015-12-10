@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *icon5;
 
 @property (nonatomic, strong) NSArray *starsArray;
+@property (weak, nonatomic) IBOutlet UIButton *chooseBtn;
 
 @end

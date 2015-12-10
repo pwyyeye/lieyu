@@ -25,6 +25,7 @@
 @implementation LYCarListViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
     [self getData];
 }
 - (void)viewDidLoad {
@@ -116,15 +117,18 @@
     headView.barNameLal.text=carInfoModel.barinfo.barname;
     headView.addressLal.text=carInfoModel.barinfo.address;
     headView.selBtn.tag=section;
+    headView.chooseBtn.tag = section;
     [headView.selBtn setSelected:carInfoModel.isSel];
     [headView.selBtn addTarget:self action:@selector(sectionSel:) forControlEvents:UIControlEventTouchUpInside];
+    [headView.chooseBtn addTarget:self action:@selector(sectionSel:) forControlEvents:UIControlEventTouchUpInside];
+    
     return headView;
     
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"*********cellForRowAtIndexPath%d*******",dataList.count);
+    NSLog(@"*********cellForRowAtIndexPath%ld*******",dataList.count);
     static NSString *CellIdentifier = @"CarInfoCell";
     
     CarInfoCell *cell = (CarInfoCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -141,6 +145,7 @@
     [cell configureCell:carModel];
     [cell.selBtn setSelected:carModel.isSel];
     [cell.selBtn addTarget:self action:@selector(rowSel:event:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.chooseBtn addTarget:self action:@selector(rowSel:event:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
