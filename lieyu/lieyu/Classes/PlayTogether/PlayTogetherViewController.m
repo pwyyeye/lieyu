@@ -180,7 +180,6 @@
 
 
 - (void)showSelectView:(NSArray *)array{
-    
     int rows = (int)array.count / 3;
     self.selectView.frame = CGRectMake(0, 104, 320, 74 + 50 * (rows - 1 ));
     self.selectView.backgroundColor = [UIColor grayColor];
