@@ -228,7 +228,6 @@
     cell.pkBtn.tag=indexPath.row;
     [cell.pkBtn addTarget:self action:@selector(woYaoPin:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     return cell;
 }
 
@@ -308,6 +307,7 @@
     [weakSelf.tableView.mj_header endRefreshing];
     
 }
+
 -(void)getDataForTogether{
 //    min_num=1(最低人数)
 //    max_num=2(最高人数)
