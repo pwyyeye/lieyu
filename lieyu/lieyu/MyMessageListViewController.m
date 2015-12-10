@@ -131,6 +131,7 @@
                 
                 [MyUtil showMessage:@"已拒绝"];
                 [weakSelf getData];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             }
         }];
         
@@ -146,6 +147,7 @@
             
             [MyUtil showMessage:@"你们已成为朋友"];
             [weakSelf getData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         }
     }];
 }

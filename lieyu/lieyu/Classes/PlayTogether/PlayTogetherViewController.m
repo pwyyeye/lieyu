@@ -119,11 +119,11 @@
     
 //    self.tableView.contentInset = UIEdgeInsetsMake(40,  0,  0,  0);
 //    
-    if (self.tableView.contentInset.top==0) {
-        self.tableView.contentInset= UIEdgeInsetsMake(64,  0,  0,  0);
-    }else{
-        self.tableView.contentInset= UIEdgeInsetsMake(20,  0,  0,  0);
-    }
+//    if (self.tableView.contentInset.top==0) {
+//        self.tableView.contentInset= UIEdgeInsetsMake(64,  0,  0,  0);
+//    }else{
+//        self.tableView.contentInset= UIEdgeInsetsMake(20,  0,  0,  0);
+//    }
 }
 - (void)viewWillLayoutSubviews
 {
