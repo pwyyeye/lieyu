@@ -59,6 +59,15 @@
 //    return statusview;
 //}
 
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - self.headerBackground.size.height) {
+        self.headerBackground.hidden = NO;
+    }else{
+        self.headerBackground.hidden = YES;
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
@@ -472,7 +481,7 @@
 //                                shareImage:self.barinfoCell.barImage.image
 //                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
 //                                delegate:self];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:self.barinfoCell.barImage.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil] delegate:self];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:self.barinfoCell.barImage.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
     
 }
 

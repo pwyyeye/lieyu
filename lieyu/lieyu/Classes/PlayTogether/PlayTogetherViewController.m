@@ -330,6 +330,8 @@
     [self getData:nowDic];
 }
 
+
+
 -(void)getDataForDistance{
     //    min_num=1(最低人数)
     //    max_num=2(最高人数)
