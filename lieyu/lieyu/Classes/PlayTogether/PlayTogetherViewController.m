@@ -99,9 +99,6 @@
     }];
     MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
     [self initMJRefeshFooterForGif:footer];
-    // Do any additional setup after loading the view.
-
-    
 }
 
 
