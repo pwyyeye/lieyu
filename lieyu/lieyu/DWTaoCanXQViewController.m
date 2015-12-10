@@ -302,6 +302,7 @@
 
 
 - (IBAction)queryAct:(UIButton *)sender {
+    
     RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
     conversationVC.conversationType = ConversationType_APPSERVICE;
     conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试
