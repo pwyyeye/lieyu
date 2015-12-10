@@ -299,13 +299,14 @@
             _managerCell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (_selectIndex == indexPath.row){
                 [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
+                zsModel.issel = YES;
             }else{
                 [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected"] forState:UIControlStateNormal];
             }
             return _managerCell;
             }else{
                 cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-                cell.textLabel.text = @"暂无VIP专属经理，无法购买";
+                cell.textLabel.text = @"暂无VIP专属经理，无法购买!";
             }
         }
             break;
@@ -389,6 +390,9 @@
         default:
         {
             h = 87;
+            if (!zsArr.count) {
+                h = 40;
+            }
         }
             break;
     }
