@@ -8,6 +8,7 @@
 
 #import "ManagerInfoCell.h"
 #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 
 @implementation ManagerInfoCell
 
@@ -35,6 +36,7 @@
 - (void)cellConfigureWithImage:(NSString *)imageUrl name:(NSString *)name stars:(NSString *)stars{
     NSLog(@"imageUrl:%@",imageUrl);
     [self.iconImage.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    [self.iconImage sd_setBackgroundImageWithURL:[NSURL URLWithString:imageUrl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [self.name setTitle:name forState:UIControlStateNormal];
     int i;
     for(i = 0 ; i < [stars intValue] ; i ++){

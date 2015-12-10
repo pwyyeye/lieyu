@@ -7,6 +7,7 @@
 //
 
 #import "LYBaseViewController.h"
+@class JiuBaModel;
 
 @interface DWTaoCanXQViewController : UIViewController
 - (IBAction)queryAct:(UIButton *)sender;
@@ -16,4 +17,5 @@
 @property (assign, nonatomic) int smid;
 @property (copy, nonatomic) NSString *dateStr;
 @property (nonatomic,copy) NSString *weekStr;
+@property (nonatomic,strong) JiuBaModel *jiubaModel;
 @end

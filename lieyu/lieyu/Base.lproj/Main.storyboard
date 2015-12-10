@@ -62,7 +62,7 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LYPlayTogetherCell" rowHeight="146" id="Amg-Ka-Our" customClass="LYPlayTogetherCell">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="146"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="146"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Amg-Ka-Our" id="2N6-1h-1vd">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="145.5"/>

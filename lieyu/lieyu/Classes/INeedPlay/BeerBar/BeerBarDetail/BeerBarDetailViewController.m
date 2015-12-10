@@ -273,9 +273,7 @@
         case 0:
         {
             _headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
-            NSLog(@"------->%@",self.beerBarDetail.announcement.content);
             _size = [self.beerBarDetail.announcement.content boundingRectWithSize:CGSizeMake(MAXFLOAT, 18) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-            NSLog(@"------")
             _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
                                                                                                                                                                             
                                                                                                                                                             
