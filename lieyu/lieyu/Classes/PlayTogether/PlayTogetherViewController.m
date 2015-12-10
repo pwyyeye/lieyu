@@ -72,7 +72,7 @@
     dataList=[[NSMutableArray alloc]init];
     pageCount=1;
     perCount=20;
-    [self setupViewStyles];
+//    [self setupViewStyles];
     [self getDataForTogether];
     [self getData];
     [self setMenuView];
@@ -329,8 +329,6 @@
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     [self getData:nowDic];
 }
-
-
 
 -(void)getDataForDistance{
     //    min_num=1(最低人数)
