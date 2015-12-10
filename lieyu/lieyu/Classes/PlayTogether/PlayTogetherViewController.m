@@ -127,7 +127,6 @@
  imageSelectedName
  *author:WTT
  */
-
 - (void)setMenuView{
     sectionView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
     sectionView.backgroundColor = [UIColor whiteColor];
