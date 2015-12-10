@@ -56,7 +56,7 @@
 -(void)logout{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    [[LYUserHttpTool shareInstance] userLogOutWithParams:@{@"sessionid":app.s_app_id} block:^(BOOL result) {
+    [[LYUserHttpTool shareInstance] userLogOutWithParams:@{@"sessionid":app.s_app_id,@"id":[NSString stringWithFormat:@"%d",app.userModel.userid]} block:^(BOOL result) {
         if (result) {
             app.s_app_id=@"";
             app.userModel=nil;

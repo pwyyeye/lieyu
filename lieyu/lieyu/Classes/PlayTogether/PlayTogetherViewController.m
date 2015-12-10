@@ -26,7 +26,7 @@
 #import "UIImage+GIF.h"
 
 @interface PlayTogetherViewController
-()<ShaiXuanDelegate,UITableViewDelegate,UITableViewDataSource,LYHotBarMenuViewDelegate>
+()<UITableViewDelegate,UITableViewDataSource,LYHotBarMenuViewDelegate>
 {
     NSMutableArray *dataList;
     int pageCount;
@@ -59,13 +59,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.delegate=self;
     self.automaticallyAdjustsScrollViewInsets=YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-107);
     }
-
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -78,6 +78,89 @@
     [self setMenuView];
     // Do any additional setup after loading the view.
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //    [self performSelector:@selector(setCustomTitle:) withObject:@"一起玩" afterDelay:0.1];
+    //    self.oriNavItems = [self.navigationController.navigationBar.items copy];
+    //    [self.navigationController.navigationBar addSubview:_fillterButton];
+    //    CGRect rc = _fillterButton.frame;
+    //    rc.origin.x = 10;
+    //    rc.origin.y = 8;
+    //    _fillterButton.frame = rc;
+    
+    //    [self setCustomTitle:@"一起玩"];
+    _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
+    
+    _myTitle.backgroundColor = [UIColor clearColor];
+    _myTitle.textColor=[UIColor whiteColor];
+    _myTitle.textAlignment = NSTextAlignmentCenter;
+    [_myTitle setFont:[UIFont systemFontOfSize:16.0]];
+    [_myTitle setText:@"热门拼客"];
+    //        self.navigationItem.titleView=titleText;
+    [self.navigationController.navigationBar addSubview:_myTitle];
+    //    NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
+    //    //ios 7.0适配
+    //    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+    ////        if (self.tableView.contentInset.top==0||self.tableView.contentInset.top==44) {
+    //            self.tableView.contentInset = UIEdgeInsetsMake(64,  0,  0,  0);
+    //            self.tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-47);
+    ////        }
+    //
+    //
+    //    }
+    //   NSLog(@"----pass-self.tableView.contentInset.top2%f---",self.tableView.contentInset.top);
+    
+    
+    NSLog(@"----pass-pass11111    %@---",NSStringFromCGRect(_tableView.frame));
+    NSLog(@"----pass-pass22222    %@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
+    
+//    self.tableView.contentInset = UIEdgeInsetsMake(40,  0,  0,  0);
+//    
+//    if (self.tableView.contentInset.top==0) {
+//        self.tableView.contentInset= UIEdgeInsetsMake(64,  0,  0,  0);
+//    }else{
+//        self.tableView.contentInset= UIEdgeInsetsMake(20,  0,  0,  0);
+//    }
+}
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.automaticallyAdjustsScrollViewInsets=YES;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    if (self.navigationController.navigationBarHidden != NO ) {
+        [self.navigationController setNavigationBarHidden:NO];
+        
+    }
+    //ios 7.0适配
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+        NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
+        //        if (self.tableView.contentInset.top==0 ||self.tableView.contentInset.top==128) {
+        //        }
+        
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    //    [self setCustomTitle:@""];
+    
+    [_fillterButton removeFromSuperview];
+    [_myTitle removeFromSuperview];
+    _myTitle=nil;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [_fillterButton removeFromSuperview];
+    [_myTitle removeFromSuperview];
+    _myTitle=nil;
+}
+
+
 
 - (void)getData{
     __weak __typeof(self)weakSelf = self;
@@ -362,76 +445,6 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-//    [self performSelector:@selector(setCustomTitle:) withObject:@"一起玩" afterDelay:0.1];
-//    self.oriNavItems = [self.navigationController.navigationBar.items copy];
-//    [self.navigationController.navigationBar addSubview:_fillterButton];
-//    CGRect rc = _fillterButton.frame;
-//    rc.origin.x = 10;
-//    rc.origin.y = 8;
-//    _fillterButton.frame = rc;
-    
-//    [self setCustomTitle:@"一起玩"];
-    _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
-    
-    _myTitle.backgroundColor = [UIColor clearColor];
-    _myTitle.textColor=[UIColor whiteColor];
-    _myTitle.textAlignment = NSTextAlignmentCenter;
-    [_myTitle setFont:[UIFont systemFontOfSize:16.0]];
-    [_myTitle setText:@"热门拼客"];
-    //        self.navigationItem.titleView=titleText;
-    [self.navigationController.navigationBar addSubview:_myTitle];
-//    NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
-//    //ios 7.0适配
-//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-////        if (self.tableView.contentInset.top==0||self.tableView.contentInset.top==44) {
-//            self.tableView.contentInset = UIEdgeInsetsMake(64,  0,  0,  0);
-//            self.tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-47);
-////        }
-//
-//        
-//    }
-//   NSLog(@"----pass-self.tableView.contentInset.top2%f---",self.tableView.contentInset.top);
-
-}
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-
-    if (self.navigationController.navigationBarHidden != NO ) {
-        [self.navigationController setNavigationBarHidden:NO];
-
-    }
-    //ios 7.0适配
-    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-        NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
-//        if (self.tableView.contentInset.top==0 ||self.tableView.contentInset.top==128) {
-            self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
-//        }
-
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:YES];
-//    [self setCustomTitle:@""];
-
-    [_fillterButton removeFromSuperview];
-    [_myTitle removeFromSuperview];
-    _myTitle=nil;
-}
-
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    [_fillterButton removeFromSuperview];
-    [_myTitle removeFromSuperview];
-    _myTitle=nil;
-}
-
 - (IBAction)filterClick:(id)sender
 {
 
@@ -554,6 +567,31 @@
     LPPlayVC.title = @"我要拼客";
     LPPlayVC.smid = pinKeModel.smid;
     [self.navigationController pushViewController:LPPlayVC animated:YES];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    //    [self.navigationController setNavigationBarHidden:NO];
+    //每次当navigation中的界面切换，设为空。本次赋值只在程序初始化时执行一次
+    static UIViewController *lastController = nil;
+    
+    //若上个view不为空
+    if (lastController != nil)
+    {
+        //若该实例实现了viewWillDisappear方法，则调用
+        if ([lastController respondsToSelector:@selector(viewWillDisappear:)])
+        {
+            //            [lastController viewWillDisappear:animated];
+        }
+        
+        
+    }
+    
+    //将当前要显示的view设置为lastController，在下次view切换调用本方法时，会执行viewWillDisappear
+    lastController = viewController;
+    
+    //    [viewController viewWillAppear:animated];
+    
+    
 }
 
 @end

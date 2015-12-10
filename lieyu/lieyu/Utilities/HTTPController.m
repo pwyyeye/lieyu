@@ -27,7 +27,7 @@
     NSURL* baseURL = [NSURL URLWithString:baseStr];
     //获得请求管理者
     AFHTTPRequestOperationManager* mgr = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
-    
+//    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@[@"text/html",@"text/json"], nil];
 #ifdef ContentType
     mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:ContentType];
 #endif

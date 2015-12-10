@@ -190,8 +190,6 @@
     NSDictionary *dic=weekDateArr[mMenuHriZontal.selectIndex];
     NSString *dataChoose=[dic objectForKey:@"date"];
     RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.section];
-
-    
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
     taoCanXQViewController.title=@"套餐详情";
