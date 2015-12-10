@@ -23,6 +23,7 @@
 #import "LYHotBarMenuView.h"
 
 #import "MenuButton.h"
+#import "UIImage+GIF.h"
 
 @interface PlayTogetherViewController
 ()<ShaiXuanDelegate,UITableViewDelegate,UITableViewDataSource,LYHotBarMenuViewDelegate>
@@ -35,6 +36,8 @@
     NSArray *AddressArray;
     NSArray *TypeArray;
     NSArray *sortArray;
+    
+    LYHotBarMenuView *sectionView;
 }
 @property(nonatomic,weak) IBOutlet UIButton * allListButton;
 @property(nonatomic,weak) IBOutlet UIButton * nearDistanceButton;
@@ -46,6 +49,9 @@
 @property (nonatomic, strong) UIView *selectView;
 @property (nonatomic, strong) NSArray *itemsArray;
 
+@property (nonatomic, strong) UIView *bgView;
+@property (nonatomic, strong) UIImageView *image_place;
+@property (nonatomic, strong) UILabel *label_place;
 
 @end
 
@@ -75,8 +81,6 @@
 
 - (void)getData{
     __weak __typeof(self)weakSelf = self;
-    
-    
     
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         pageCount=1;
@@ -125,14 +129,14 @@
  */
 
 - (void)setMenuView{
-    LYHotBarMenuView *sectionView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
+    sectionView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
     sectionView.backgroundColor = [UIColor whiteColor];
     sectionView.delegate = self;
     AddressArray = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     TypeArray = @[@"所有种类",@"激情夜店",@"文艺静吧",@"音乐清吧",@"舞动KTV"];
     sortArray = @[@"离我最近",@"人均最高",@"人均最低",@"返利最高"];
     
-    [sectionView deployWithMiddleTitle:@"音乐清吧" ItemArray:@[AddressArray,TypeArray,sortArray]];
+    [sectionView deployWithMiddleTitle:@"所有种类" ItemArray:@[AddressArray,TypeArray,sortArray]];
     [self.view addSubview:sectionView];
 }
 
@@ -144,7 +148,7 @@
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     if(button.section == 1){
         if(index == 0){
-            [nowDic removeObjectForKey:@"subids"];
+            [nowDic removeObjectForKey:@"address"];
         }else{
             [nowDic setObject:[AddressArray objectAtIndex:index] forKey:@"address"];
         }
@@ -253,23 +257,53 @@
 
 #pragma mark 获取数据
 -(void)getData:(NSDictionary *)dic{
-    
+    NSLog(@"----------sctj:%@--------------",dic);
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getTogetherListWithParams:dic block:^(NSMutableArray *result) {
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
         
-        NSLog(@"****block%ld******",dataList.count);
+        NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
+            
+            [_bgView removeFromSuperview];
+            [_image_place removeFromSuperview];
+            [_label_place removeFromSuperview];
+            weakSelf.tableView.userInteractionEnabled = YES;
             
             pageCount++;
             [weakSelf.tableView.mj_footer resetNoMoreData];
+//            [weakSelf.tableView reloadData];
+        }else{
+            if(!_bgView){
+                _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0 , SCREEN_WIDTH,  weakSelf.tableView.height)];
+                _bgView.backgroundColor = RGBA(246, 246, 246, 1);
+                //            _bgView.alpha = 0.2;
+                _bgView.tag = 300;
+                
+                
+                _image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 87,105 , 119)];
+                _image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
+                _image_place.tag = 100;
+//                [_bgView addSubview:_image_place];
+                
+                _label_place = [[UILabel alloc]initWithFrame:CGRectMake(76, 240, 164, 22)];
+                _label_place.text = @"正在等待商家入驻";
+                _label_place.textColor = RGBA(29, 32, 47, 1);
+                _label_place.font = [UIFont systemFontOfSize:14];
+                _label_place.tag = 200;
+                _label_place.textAlignment = NSTextAlignmentCenter;
+//                [_bgView addSubview:_label_place];
+                
+                weakSelf.tableView.userInteractionEnabled = NO;
+            }
+            [_bgView addSubview:_label_place];
+            [_bgView addSubview:_image_place];
+            [weakSelf.tableView addSubview:_bgView];
+//            [weakSelf.view bringSubviewToFront:_sectionView];
         }
         [weakSelf.tableView reloadData];
-        
-        
-        
     }];
     [weakSelf.tableView.mj_header endRefreshing];
     

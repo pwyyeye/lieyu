@@ -33,12 +33,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.itemButton1 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [self.itemButton2 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [self.itemButton3 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [self.itemButton4 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
-    [self.itemButton5 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    
+//    [self.itemButton1 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    [self.itemButton2 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    [self.itemButton3 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    [self.itemButton4 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
+//    [self.itemButton5 setBackgroundColor:RGBA(114, 5, 147, 0.85)];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
     self.navigationItem.rightBarButtonItem = rightItem;
@@ -54,7 +54,7 @@
     [nowDic setObject:@"20" forKey:@"per"];
     [self getData:nowDic];
     __weak __typeof(self)weakSelf = self;
-    self.collectionview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.collectionview.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         pageCount=1;
         
         [nowDic removeObjectForKey:@"p"];
@@ -64,7 +64,7 @@
     MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.collectionview.mj_header;
     [self initMJRefeshHeaderForGif:header];
     
-    self.collectionview.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.collectionview.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [self getDataWithDicMore:nowDic];
@@ -74,7 +74,6 @@
     [self initMJRefeshFooterForGif:footer];
     
     _itemButton1.selected=true;
-    // Do any additional setup after loading the view from its nib.
 }
 
 

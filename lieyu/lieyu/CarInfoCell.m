@@ -14,9 +14,9 @@
 
 - (void)awakeFromNib {
     self.lessbtn.enabled = NO;
-    self.danPinImageView.layer.masksToBounds =YES;
-    
-    self.danPinImageView.layer.cornerRadius =self.danPinImageView.frame.size.width/2;
+//    self.danPinImageView.layer.masksToBounds =YES;
+//    
+//    self.danPinImageView.layer.cornerRadius =self.danPinImageView.frame.size.width/2;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

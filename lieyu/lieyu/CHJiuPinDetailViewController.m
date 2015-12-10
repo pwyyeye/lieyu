@@ -255,10 +255,12 @@
         [[LYHomePageHttpTool shareInstance] addCarWithParams:dic block:^(BOOL result) {
             if (result) {
                 [MyUtil showMessage:@"添加购物车成功!"];
+                [self.refreshNumDelegate getNumAdd];
             }
         }];
     }
     [alertView hide];
+    
 }
 
 #pragma  mark 消失
@@ -299,6 +301,7 @@
 - (IBAction)showShopCar:(UIButton *)sender {
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
+    carListViewController.numrefreshdelegate = self;
     [self.navigationController pushViewController:carListViewController animated:YES];
 }
 
