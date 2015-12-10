@@ -14,4 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *barNameLal;
 @property (weak, nonatomic) IBOutlet UILabel *addressLal;
 
+@property (weak, nonatomic) IBOutlet UIButton *chooseBtn;
+
+
 @end

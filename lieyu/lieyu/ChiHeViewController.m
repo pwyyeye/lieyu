@@ -15,6 +15,7 @@
 #import "LYCarListViewController.h"
 
 #import "UserModel.h"
+#import "UIImage+GIF.h"
 
 #import "ZSManageHttpTool.h"
 //#import "LYBaseViewController.h"
@@ -33,6 +34,9 @@
     NSMutableArray *biaoqianList;
     
     UILabel *_badge;
+    
+    UIImageView *kongImageView;
+    UILabel *kongLabel;
 }
 
 //@property (nonatomic, strong) UILabel *badge;
@@ -50,11 +54,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.sxBtn1 setBackgroundColor:RGBA(114, 5, 147, 1)];
-    [self.sxBtn2 setBackgroundColor:RGBA(114, 5, 147, 1)];
-    [self.sxBtn3 setBackgroundColor:RGBA(114, 5, 147, 1)];
-    [self.sxBtn4 setBackgroundColor:RGBA(114, 5, 147, 1)];
-    [self.sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
+//    [self.sxBtn1 setBackgroundColor:RGBA(114, 5, 147, 1)];
+//    [self.sxBtn2 setBackgroundColor:RGBA(114, 5, 147, 1)];
+//    [self.sxBtn3 setBackgroundColor:RGBA(114, 5, 147, 1)];
+//    [self.sxBtn4 setBackgroundColor:RGBA(114, 5, 147, 1)];
+//    [self.sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
     
     _moreShow = NO;
     
@@ -114,10 +118,24 @@
 -(void)geBiaoQianData{
     //获取酒水类型
     [biaoqianList removeAllObjects];
-    __weak __typeof(self)weakSelf = self;
+//    __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance] getProductCategoryListWithParams:nil block:^(NSMutableArray *result) {
-        biaoqianList = [weakSelf setRow:result];
+//        biaoqianList = [weakSelf setRow:result];
+        biaoqianList = [result mutableCopy];
+        [self setItemsData];
     }];
+}
+
+#pragma mark 设置标签栏数据
+- (void)setItemsData{
+    for (int i = 0 ; i < _buttonsArray.count; i ++) {
+        [((ShaiXuanBtn *)_buttonsArray[i]) setBackgroundColor:RGBA(114, 5, 147, 1)];
+        [((ShaiXuanBtn *)_buttonsArray[i]) setTitle:((ProductCategoryModel *)biaoqianList[i]).name forState:UIControlStateNormal];
+        [((ShaiXuanBtn *)_buttonsArray[i]) setTag:((ProductCategoryModel *)biaoqianList[i]).id];
+    }
+    [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
+    [_sxBtn5 setTag:105];
+//    [self setRow:biaoqianList];
 }
 
 #pragma mark 获取购物车数据
@@ -167,7 +185,7 @@
     int nowCount=1;
     NSMutableArray *pageArr=[[NSMutableArray alloc]initWithCapacity:3];
     NSMutableArray *dataArr=[[NSMutableArray alloc]init];
-    for (int i = 4; i<arr.count; i++) {
+    for (int i = 0; i<arr.count; i++) {
         ProductCategoryModel *productCategoryModel= arr[i];
         
         if(nowCount%3==0){
@@ -216,11 +234,23 @@
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
         
-        NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
-            
+            [kongImageView removeFromSuperview];
+            [kongLabel removeFromSuperview];
             pageCount++;
             [weakSelf.collectionView.mj_footer resetNoMoreData];
+        }else{//改种酒类为空
+            if(!kongImageView){
+                kongImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 100)/2, 120, 100, 120)];
+                [kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
+                kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(kongImageView.frame.origin.x - 20, 260, 170, 20)];
+                kongLabel.font = [UIFont systemFontOfSize:14];
+                kongLabel.textColor = RGBA(215, 215, 215, 1);
+                kongLabel.text = @"伦家还没有这种酒啦～";
+//                [kongImageView addSubview:kongLabel];
+            }
+            [self.view addSubview:kongLabel];
+            [self.view addSubview:kongImageView];
         }
         [weakSelf.collectionView reloadData];
         
@@ -351,20 +381,30 @@
     [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [_sxBtn5 setTitle:@"" forState:UIControlStateNormal];
     [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
-    if(btn.tag == 100){
-        chooseKey = 1;
-    }else if(btn.tag == 101){
-        chooseKey = 2;
-    }else if (btn.tag == 102){
-        chooseKey = 3;
-    }else if(btn.tag == 103){
-        chooseKey = 4;
-    }else{
-        
+//    if(btn.tag == 100){
+//        chooseKey = 1;
+//    }else if(btn.tag == 101){
+//        chooseKey = 2;
+//    }else if (btn.tag == 102){
+//        chooseKey = 3;
+//    }else if(btn.tag == 103){
+//        chooseKey = 4;
+//    }else{
+//        
+//        [btn setBackgroundColor:[UIColor whiteColor]];
+//        [btn setImage:[UIImage imageNamed:@"more_purper"] forState:UIControlStateNormal];
+//        [self showMoreButtons];
+//        return;
+//    }
+    if(btn.tag == 105){
         [btn setBackgroundColor:[UIColor whiteColor]];
         [btn setImage:[UIImage imageNamed:@"more_purper"] forState:UIControlStateNormal];
         [self showMoreButtons];
         return;
+    }else{
+        _moreShow = NO;
+        [_MoreView removeFromSuperview];
+        chooseKey = btn.tag;
     }
     [self chooseWineBy:chooseKey];
 }
@@ -387,13 +427,20 @@
         _moreShow = YES;
         
     self.collectionView.userInteractionEnabled = NO;
-    
-    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, biaoqianList.count * 32 + (biaoqianList.count + 1) * 16)];
+        int num;
+        if(biaoqianList.count == 4){
+            
+        }else{
+            num = (biaoqianList.count - 4) / 3;
+        }
+    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, num * 32 + (num + 1) * 16)];
     [_MoreView setBackgroundColor:[UIColor whiteColor]];
     
-    for(int i = 0 ; i < biaoqianList.count ; i ++){
-        for(int j = 0 ; j < 3 ; j ++){
-            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake( 8 * (j + 1) + 96 * j, 16 * (i + 1) + 32 * i, 96, 32)];
+    for(int i = 4 ; i < biaoqianList.count ; i ++){
+//        for(int j = 0 ; j < 3 ; j ++){
+        int row = (i - 4) / 3;
+        int lie = (i - 4) % 3;
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake( 8 * (lie + 1) + 96 * lie, 16 * (row + 1) + 32 * row, 96, 32)];
             [button setBackgroundColor:RGBA(217, 217, 217, 1)];
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             button.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(151, 151, 151, 1));
@@ -401,11 +448,11 @@
             button.layer.cornerRadius = 3;
             button.layer.masksToBounds = YES;
             [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
-            [button setTitle:((ProductCategoryModel *)biaoqianList[i][j]).name forState:UIControlStateNormal];
-            [button setTag:((ProductCategoryModel *)biaoqianList[i][j]).id];
-            [button addTarget:self action:@selector(chooseType:) forControlEvents:UIControlEventTouchUpInside];
+            [button setTitle:((ProductCategoryModel *)biaoqianList[i]).name forState:UIControlStateNormal];
+            [button setTag:((ProductCategoryModel *)biaoqianList[i]).id];
+            [button addTarget:self action:@selector(chooseTypes:) forControlEvents:UIControlEventTouchUpInside];
             [_MoreView addSubview:button];
-        }
+//        }
     }
         [self.view addSubview:_MoreView];
     }else{
@@ -419,7 +466,7 @@
 }
 
 #pragma mark 点击更多界面中按钮后发生的事情
-- (void)chooseType:(UIButton *)sender{
+- (void)chooseTypes:(UIButton *)sender{
     [self.MoreView removeFromSuperview];
     
     [sender setBackgroundColor:RGBA(114, 5, 147, 1)];

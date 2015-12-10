@@ -182,9 +182,6 @@
     }];
     MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
     [self initMJRefeshFooterForGif:footer];
-    // Do any additional setup after loading the view.
-
-    
 }
 
 
@@ -210,7 +207,6 @@
  imageSelectedName
  *author:WTT
  */
-
 - (void)setMenuView{
     sectionView = [[LYHotBarMenuView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 40)];
     sectionView.backgroundColor = [UIColor whiteColor];
@@ -261,9 +257,7 @@
     [self getData:nowDic];
 }
 
-
 - (void)showSelectView:(NSArray *)array{
-    
     int rows = (int)array.count / 3;
     self.selectView.frame = CGRectMake(0, 104, 320, 74 + 50 * (rows - 1 ));
     self.selectView.backgroundColor = [UIColor grayColor];
@@ -311,7 +305,6 @@
     cell.pkBtn.tag=indexPath.row;
     [cell.pkBtn addTarget:self action:@selector(woYaoPin:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     return cell;
 }
 
@@ -391,6 +384,7 @@
     [weakSelf.tableView.mj_header endRefreshing];
     
 }
+
 -(void)getDataForTogether{
 //    min_num=1(最低人数)
 //    max_num=2(最高人数)
@@ -439,11 +433,88 @@
     }
     [self getData:nowDic];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    [self performSelector:@selector(setCustomTitle:) withObject:@"一起玩" afterDelay:0.1];
+//    self.oriNavItems = [self.navigationController.navigationBar.items copy];
+//    [self.navigationController.navigationBar addSubview:_fillterButton];
+//    CGRect rc = _fillterButton.frame;
+//    rc.origin.x = 10;
+//    rc.origin.y = 8;
+//    _fillterButton.frame = rc;
+    
+//    [self setCustomTitle:@"一起玩"];
+    
+    self.tableView.frame = CGRectMake(0, 104, SCREEN_WIDTH, SCREEN_HEIGHT - 148);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    NSLog(@"------frame:%@------",NSStringFromCGRect(self.tableView.frame));
+    NSLog(@"------inset:%@------",NSStringFromUIEdgeInsets(self.tableView.contentInset));
+    
+    
+    
+    _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
+    
+    _myTitle.backgroundColor = [UIColor clearColor];
+    _myTitle.textColor=[UIColor whiteColor];
+    _myTitle.textAlignment = NSTextAlignmentCenter;
+    [_myTitle setFont:[UIFont systemFontOfSize:16.0]];
+    [_myTitle setText:@"热门拼客"];
+    //        self.navigationItem.titleView=titleText;
+    [self.navigationController.navigationBar addSubview:_myTitle];
+//    NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
+//    //ios 7.0适配
+//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+////        if (self.tableView.contentInset.top==0||self.tableView.contentInset.top==44) {
+//            self.tableView.contentInset = UIEdgeInsetsMake(64,  0,  0,  0);
+//            self.tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-47);
+////        }
+//
+//        
+//    }
+//   NSLog(@"----pass-self.tableView.contentInset.top2%f---",self.tableView.contentInset.top);
+
+}
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+
+    if (self.navigationController.navigationBarHidden != NO ) {
+        [self.navigationController setNavigationBarHidden:NO];
+
+    }
+    //ios 7.0适配
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+        NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
+//        if (self.tableView.contentInset.top==0 ||self.tableView.contentInset.top==128) {
+            self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
+//        }
+
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+//    [self setCustomTitle:@""];
+
+    [_fillterButton removeFromSuperview];
+    [_myTitle removeFromSuperview];
+    _myTitle=nil;
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [_fillterButton removeFromSuperview];
+    [_myTitle removeFromSuperview];
+    _myTitle=nil;
+}
 
 - (IBAction)filterClick:(id)sender
 {

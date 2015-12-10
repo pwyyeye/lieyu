@@ -9,7 +9,7 @@
 #import "LYBaseViewController.h"
 #import "chiheDetailCollectionCell.h"
 
-@interface LYCarListViewController : LYBaseViewController<RefreshGoodsNum>
+@interface LYCarListViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, assign) id<RefreshGoodsNum> numrefreshdelegate;

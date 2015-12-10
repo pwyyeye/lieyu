@@ -23,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *lessbtn;
 
+@property (weak, nonatomic) IBOutlet UIButton *chooseBtn;
 
 - (IBAction)changeNum:(UIButton *)sender;
 @end
