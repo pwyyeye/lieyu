@@ -128,7 +128,7 @@
 #pragma mart --约束
 -(void)updateViewConstraints{
     [super updateViewConstraints];
-    if (self.beerBarDetail.recommend_package.count==0) {
+    if (self.beerBarDetail.isSign==0) {
         _buttomViewHeight.constant=0;
     }else{
         _buttomViewHeight.constant=59;
@@ -548,6 +548,7 @@
             [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]];
             [[NSUserDefaults standardUserDefaults] synchronize];
+               [MyUtil showMessage:@"取消收藏成功"];
         }];
     }else{
     
