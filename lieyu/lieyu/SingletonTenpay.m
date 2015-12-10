@@ -49,6 +49,7 @@
                 //服务器端查询支付通知或查询API返回的结果再提示成功
                 NSLog(@"支付成功");
                 [MyUtil showMessage:@"支付成功！"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                 break;
             default:
                 NSLog(@"支付失败，retcode=%d",resp.errCode);
