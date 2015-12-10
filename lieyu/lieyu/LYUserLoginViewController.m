@@ -108,7 +108,7 @@
         [app getImToken];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [USER_DEFAULT setObject:self.userNameTex.text forKey:@"username"];
-        [USER_DEFAULT setObject:self.passWordTex.text forKey:@"pass"];
+        [USER_DEFAULT setObject:[MyUtil md5HexDigest:self.passWordTex.text] forKey:@"pass"];
 //      [self dismissViewControllerAnimated:YES completion:^{
 //          
 //      }];
@@ -156,7 +156,7 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
-        [self.navigationController popToRootViewControllerAnimated:YES ];
+//        [self.navigationController popToRootViewControllerAnimated:YES ];
     }];
 }
 #pragma mark - 注册

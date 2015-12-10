@@ -9,7 +9,7 @@
 #import "LYRegistrationViewController.h"
 #import "LYUserHttpTool.h"
 #import "LYUserDetailInfoViewController.h"
-
+#import "LYUserLoginViewController.h"
 @interface LYRegistrationViewController ()
 
 @end
@@ -137,9 +137,15 @@ static LYRegistrationViewController *_registe;
             [_timer setFireDate:[NSDate distantPast]];
             
             [self.delegate registration];
+            [USER_DEFAULT setObject:self.phoneTex.text forKey:@"username"];
+            [USER_DEFAULT setObject:[MyUtil md5HexDigest:self.passWordTex.text] forKey:@"pass"];
+            
+            LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+            [loginVC autoLogin];
             
             LYUserDetailInfoViewController *detailVC = [[LYUserDetailInfoViewController alloc]init];
             detailVC.isAutoLogin = YES;
+     
             [self.navigationController pushViewController:detailVC animated:YES];
             
         }

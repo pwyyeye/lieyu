@@ -62,12 +62,23 @@
         NSArray *tags=app.userModel.tags;
         NSMutableString *mytags=[[NSMutableString alloc] init];
         for (UserTagModel *tag in tags) {
-            if ([tag isEqual:tags.lastObject]) {
-                [mytags appendString:tag.tagname];
-            }else{
-                [mytags appendString:tag.tagname];
-                [mytags appendString:@","];
+            if (![MyUtil isEmptyString:tag.tagname]){
+                if ([tag isEqual:tags.lastObject]) {
+                    [mytags appendString:tag.tagname];
+                }else{
+                    [mytags appendString:tag.tagname];
+                    [mytags appendString:@","];
+                }
+            }else if(![MyUtil isEmptyString:tag.name]){
+                if ([tag isEqual:tags.lastObject]) {
+                    [mytags appendString:tag.name];
+                }else{
+                    [mytags appendString:tag.name];
+                    [mytags appendString:@","];
+                }
             }
+            
+            
             
         }
         [_tags setTitle:mytags forState:UIControlStateNormal];

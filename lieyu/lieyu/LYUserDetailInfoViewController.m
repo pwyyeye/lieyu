@@ -47,6 +47,12 @@
     [self setSeparator];//设置tableView分割线
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
     [_selectcedCell addGestureRecognizer:tapGes];
+    
+//    if (_isAutoLogin) {
+//        LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+//        _isAutoLogin = NO;
+//        [loginVC autoLogin];
+//    }
 }
 
 - (void)tapGes{
@@ -238,7 +244,11 @@
 - (void)userTagSelected:(NSMutableArray *)usertags{
     NSString *tagids=@"";
     NSString *tagNames=@"";
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
+    UserModel *mod= app.userModel;
     for (UserTagModel *usertag in usertags) {
+
         if ([tagids isEqualToString:@""]) {
             tagids=[NSString stringWithFormat:@"%d",usertag.id];
             tagNames=[NSString stringWithFormat:@"%@",usertag.name];
@@ -248,8 +258,7 @@
         }
         
     }
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    UserModel *mod= app.userModel;
+   
     
     mod.tags=[usertags copy];
     
@@ -267,10 +276,19 @@
     [userInfo setObject:[NSString stringWithFormat:@"%d",mod.userid] forKey:@"userid"];
     [[LYUserHttpTool shareInstance] saveUserInfo:[userInfo copy] complete:^(BOOL result) {
         if (result) {
-            [MyUtil showMessage:@"修改成功！"];
+//            [MyUtil showMessage:@"修改成功！"];
             app.userModel.gender = [NSString stringWithFormat:@"%d",_sexCell.btn_man.tag == 3 ? 1 : 0];
             app.userModel.usernick = _nickCell.textF_content.text;
             app.userModel.birthday = _birthCell.textF_content.text;
+            if (_chooseBirthDate) {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                NSString *date = [dateFormatter stringFromDate:_chooseBirthDate];
+                app.userModel.age=[MyUtil getAgefromDate:date];
+            }
+            
+            
+            
             if (isNeed) {
               //  [self.tableView reloadData];
             }
@@ -360,7 +378,7 @@
             
             [userinfo setObject:key forKey:@"avatar_img"];
             
-            [self savaUserInfo:userinfo needReload:YES];
+//            [self savaUserInfo:userinfo needReload:YES];
         }
     }];
 }
@@ -412,17 +430,16 @@
     }else if(_sexCell.btn_women.tag == 3){
         sexNum = @(0);
     }
+    
+    
     [userinfo setObject:[NSString stringWithFormat:@"%@",sexNum] forKey:@"gender"];
     
     [self savaUserInfo:userinfo needReload:YES];
     
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
    
-    if (_isAutoLogin) {
-         LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
-         [self.navigationController popToViewController:loginVC animated:YES];
-        _isAutoLogin = NO;
-        [loginVC autoLogin];
-    }
+   [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
 }
 
 
