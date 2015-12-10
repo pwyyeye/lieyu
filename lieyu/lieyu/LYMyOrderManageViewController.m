@@ -108,9 +108,9 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    if (self.navigationController.navigationBar.hidden) {
-//        self.navigationController.navigationBar.hidden=NO;
-//    }
+    if (self.navigationController.navigationBar.hidden) {
+        self.navigationController.navigationBar.hidden=NO;
+    }
 
 }
 //-(void)viewWillLayoutSubviews{

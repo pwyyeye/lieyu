@@ -94,6 +94,8 @@
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+        <string>alipay</string>
+        <string>alipayshare</string>
 	</array>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
