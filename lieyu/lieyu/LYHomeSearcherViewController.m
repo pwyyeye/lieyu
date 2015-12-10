@@ -51,18 +51,16 @@
     _searchBar.returnKeyType = UIReturnKeySearch;
     self.tableView.tableFooterView = [[UIView alloc]init];
     
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-    self.navigationItem.leftBarButtonItem = leftItem;
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
 }
-
-- (void)backForward{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 - (void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+
 #pragma mark 获取历史搜索数据
 -(void)loadHisData{
     NSFileManager *fileManager = [NSFileManager defaultManager];
