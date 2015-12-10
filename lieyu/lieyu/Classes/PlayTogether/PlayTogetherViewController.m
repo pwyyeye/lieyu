@@ -90,8 +90,8 @@
     //    rc.origin.x = 10;
     //    rc.origin.y = 8;
     //    _fillterButton.frame = rc;
-    
     //    [self setCustomTitle:@"一起玩"];
+    
     _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
     
     _myTitle.backgroundColor = [UIColor clearColor];
