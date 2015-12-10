@@ -9,6 +9,7 @@
 #import "Setting.h"
 #import "LYUserHttpTool.h"
 #import "LYUserDetailInfoViewController.h"
+#import "LYUserDetailController.h"
 #import "AboutLieyu.h"
 @interface Setting ()
 
@@ -131,7 +132,8 @@
     
     if (indexPath.row==0) {
 //        [self gotoAppStorePageRaisal:@""];//app评价地址
-        detailViewController=[[LYUserDetailInfoViewController alloc] init];
+//        detailViewController=[[LYUserDetailInfoViewController alloc] init];
+        detailViewController=[[LYUserDetailController alloc] init];
     }else if (indexPath.row==1) {
         [USER_DEFAULT removeObjectForKey:@"user_name"];
         [USER_DEFAULT removeObjectForKey:@"user_pass"];

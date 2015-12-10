@@ -66,7 +66,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     self.collectionView.bounces=NO;//遇到边框不反弹
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
+    
 }
 -(void)loadData{
     [self.collectionView reloadData];
