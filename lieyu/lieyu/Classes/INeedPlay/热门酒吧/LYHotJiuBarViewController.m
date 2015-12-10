@@ -310,7 +310,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    JiuBaModel *jiuBaModel = self.aryList[indexPath.row];
+    JiuBaModel *jiuBaModel = self.aryList[indexPath.section];
     BeerBarDetailViewController *detailVC = [[BeerBarDetailViewController alloc]init];
     detailVC.beerBarId = @(jiuBaModel.barid);
     [self.navigationController pushViewController:detailVC animated:YES];

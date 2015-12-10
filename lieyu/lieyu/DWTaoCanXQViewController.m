@@ -19,6 +19,7 @@
 #import "LYUserHttpTool.h"
 #import "LYUserLocation.h"
 #import "LPAttentionViewController.h"
+#import "JiuBaModel.h"
 
 @interface DWTaoCanXQViewController ()
 {
@@ -175,7 +176,7 @@
             }
              */
             LYBarPointTableViewCell *pointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
-            pointCell.label_point.text = taoCanModel.barinfo.address;
+            pointCell.label_point.text = _jiubaModel.address;
             pointCell.selectionStyle = UITableViewCellSelectionStyleNone;
             pointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return pointCell;
@@ -277,7 +278,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        NSDictionary *dic=@{@"title":taoCanModel.barinfo.barname,@"latitude":taoCanModel.barinfo.latitude,@"longitude":taoCanModel.barinfo.longitude};
+        NSDictionary *dic=@{@"title":_jiubaModel.barname,@"latitude":_jiubaModel.latitude,@"longitude":_jiubaModel.longitude};
         [[LYUserLocation instance] daoHan:dic];
     }
 }

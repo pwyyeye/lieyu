@@ -77,6 +77,7 @@
      [self.tableView registerNib:[UINib nibWithNibName:@"LPBuyManagerCell" bundle:nil] forCellReuseIdentifier:@"buyManager"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYZSdetailCell" bundle:nil] forCellReuseIdentifier:@"LYZSdetailCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"ManagerInfoCell" bundle:nil] forCellReuseIdentifier:@"managerInfo"];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
 -(void)dealloc{
@@ -106,6 +107,9 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (!zsArr.count) {
+        return 4;
+    }
     return zsArr.count + 3;
     
 }
@@ -132,7 +136,7 @@
         [view addSubview:iconImage];
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(50, 15, 200, 20)];
-        label.text = @"选择我的VIP专属经理";
+             label.text = @"选择我的VIP专属经理";
         label.textColor = RGBA(26, 26, 26, 1);
         label.font = [UIFont systemFontOfSize:16];
         [view addSubview:label];
@@ -288,16 +292,22 @@
             //            PTContactCell *contactCell = (PTContactCell *)cell;
             //            [contactCell.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
             //            [contactCell.phoneBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+            if(zsArr.count){
             ZSDetailModel *zsModel=zsArr[indexPath.row];
             _managerCell = [tableView dequeueReusableCellWithIdentifier:@"managerInfo" forIndexPath:indexPath];
             [_managerCell cellConfigureWithImage:zsModel.avatar_img name:zsModel.username stars:zsModel.servicestar];
             _managerCell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (_selectIndex == indexPath.row){
                 [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
+                zsModel.issel = YES;
             }else{
                 [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected"] forState:UIControlStateNormal];
             }
             return _managerCell;
+            }else{
+                cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+                cell.textLabel.text = @"暂无VIP专属经理，无法购买!";
+            }
         }
             break;
     }
@@ -380,6 +390,9 @@
         default:
         {
             h = 87;
+            if (!zsArr.count) {
+                h = 40;
+            }
         }
             break;
     }
