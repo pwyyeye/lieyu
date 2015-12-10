@@ -61,4 +61,6 @@
 @property BOOL rowSelected;
 
 -(NSComparisonResult)compareJiuBaModel:(JiuBaModel *)model;
+- (NSComparisonResult)compareJiuBaModelGao:(JiuBaModel *)modelGao;
+-(NSComparisonResult)compareJiuBaModelDi:(JiuBaModel *)modelDi;
 @end
