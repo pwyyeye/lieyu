@@ -158,17 +158,21 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="返利" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vmx-9U-Kxb">
                         <rect key="frame" x="284" y="19" width="32" height="21"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOA-79-uXL">
-                        <rect key="frame" x="283" y="48" width="34" height="21"/>
+                        <rect key="frame" x="280" y="48" width="40" height="21"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVh-h6-TET">
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="87"/>
+                        <animations/>
+                    </button>
                 </subviews>
                 <animations/>
                 <constraints>
@@ -196,6 +200,7 @@
             </tableViewCellContentView>
             <animations/>
             <connections>
+                <outlet property="chooseBtn" destination="tVh-h6-TET" id="t3t-jJ-pey"/>
                 <outlet property="danPinImageView" destination="fqm-8m-x2t" id="rVE-w3-olL"/>
                 <outlet property="delLal" destination="53Q-hd-wPC" id="G0U-un-EeK"/>
                 <outlet property="lessbtn" destination="7FV-3n-vvV" id="lSh-aw-lPG"/>

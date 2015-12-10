@@ -39,6 +39,7 @@
     // Do any additional setup after loading the view from its nib.
     searchlist = [[NSMutableArray alloc]initWithCapacity:0];
     _searchBar.delegate = self;
+    _searchBar.placeholder = @"搜索";
     [self setupViewStyles];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     self.tableView.hidden = YES;
@@ -49,6 +50,13 @@
     self.tableView.rowHeight = 274;
     _searchBar.returnKeyType = UIReturnKeySearch;
     self.tableView.tableFooterView = [[UIView alloc]init];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+}
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark 获取历史搜索数据

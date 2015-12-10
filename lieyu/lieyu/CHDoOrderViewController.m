@@ -148,6 +148,7 @@
                 PTzsjlCell * adCell = (PTzsjlCell *)cell;
                 [adCell configureCell:zsModel];
                 adCell.selectBtn.tag=indexPath.row;
+                [adCell.chooseBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
                 [adCell.selectBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
 //                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
 //                lineLal.backgroundColor=RGB(199, 199, 199);

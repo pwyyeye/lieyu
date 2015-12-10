@@ -36,7 +36,7 @@
                         <outlet property="delegate" destination="-1" id="Stx-VT-0fd"/>
                     </connections>
                 </collectionView>
-                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsN-Tv-T2I" customClass="ShaiXuanBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsN-Tv-T2I" customClass="ShaiXuanBtn">
                     <rect key="frame" x="0.0" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,7 +51,7 @@
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="r5l-Al-fd4"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACj-im-fEU" customClass="ShaiXuanBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACj-im-fEU" customClass="ShaiXuanBtn">
                     <rect key="frame" x="64" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,7 +63,7 @@
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="Z4h-Rs-5BU"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-1U-1uV" customClass="ShaiXuanBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-1U-1uV" customClass="ShaiXuanBtn">
                     <rect key="frame" x="128" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -75,7 +75,7 @@
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="Jzo-A0-AWV"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR0-ef-oAw" customClass="ShaiXuanBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR0-ef-oAw" customClass="ShaiXuanBtn">
                     <rect key="frame" x="192" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -87,7 +87,7 @@
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="fcR-3m-Ifu"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0u-qE-nUk" customClass="ShaiXuanBtn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0u-qE-nUk" customClass="ShaiXuanBtn">
                     <rect key="frame" x="256" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>

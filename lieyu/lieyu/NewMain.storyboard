@@ -2014,8 +2014,8 @@
                                                         <constraint firstAttribute="width" constant="70" id="ex1-J0-7Er"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="¥34000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjX-r1-jT8">
-                                                    <rect key="frame" x="153" y="55" width="53" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥34000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjX-r1-jT8">
+                                                    <rect key="frame" x="153.5" y="56.5" width="52.5" height="17"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="52" id="MOc-eb-0yg"/>
@@ -2046,7 +2046,7 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×(瓶)" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFv-FJ-dki">
-                                                    <rect key="frame" x="80" y="57" width="40" height="15"/>
+                                                    <rect key="frame" x="80" y="57" width="40" height="14.5"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="xeM-N1-hjk"/>
@@ -2197,6 +2197,14 @@
                                                         <constraint firstAttribute="width" constant="14" id="QB2-Y2-bIh"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1c-lb-dVd">
+                                                    <rect key="frame" x="233.5" y="0.0" width="86.5" height="86.5"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="86.5" id="8v8-6O-Rou"/>
+                                                        <constraint firstAttribute="height" constant="86.5" id="9kQ-mi-lgY"/>
+                                                    </constraints>
+                                                </button>
                                             </subviews>
                                             <animations/>
                                             <constraints>
@@ -2206,12 +2214,14 @@
                                                 <constraint firstItem="0Ze-2S-Vga" firstAttribute="leading" secondItem="T44-80-hSl" secondAttribute="trailing" constant="8" id="Aya-EF-DOw"/>
                                                 <constraint firstItem="axv-m5-OPb" firstAttribute="centerY" secondItem="m5h-Fw-xOj" secondAttribute="centerY" id="CkW-hG-lxf"/>
                                                 <constraint firstItem="T44-80-hSl" firstAttribute="top" secondItem="ICv-wk-7em" secondAttribute="top" constant="10" id="D3A-1Q-N8K"/>
+                                                <constraint firstAttribute="trailing" secondItem="C1c-lb-dVd" secondAttribute="trailing" id="D7E-8w-Vb4"/>
                                                 <constraint firstItem="Epk-zR-E4I" firstAttribute="leading" secondItem="mFR-Vy-rjQ" secondAttribute="trailing" constant="4" id="Lvg-hg-5Hd"/>
                                                 <constraint firstItem="mFR-Vy-rjQ" firstAttribute="centerY" secondItem="m5h-Fw-xOj" secondAttribute="centerY" id="Mff-sS-yOw"/>
                                                 <constraint firstItem="Epk-zR-E4I" firstAttribute="centerY" secondItem="m5h-Fw-xOj" secondAttribute="centerY" id="P0n-WZ-DK0"/>
                                                 <constraint firstItem="m5h-Fw-xOj" firstAttribute="leading" secondItem="0Ze-2S-Vga" secondAttribute="leading" id="Pin-jr-gRu"/>
                                                 <constraint firstAttribute="bottom" secondItem="m5h-Fw-xOj" secondAttribute="bottom" constant="19" id="Rwl-vU-FtY"/>
                                                 <constraint firstItem="1jT-DN-8W8" firstAttribute="centerY" secondItem="T44-80-hSl" secondAttribute="centerY" id="RyM-f4-vWN"/>
+                                                <constraint firstAttribute="bottom" secondItem="C1c-lb-dVd" secondAttribute="bottom" id="XoV-Tl-ga9"/>
                                                 <constraint firstItem="q2h-Wm-Qgq" firstAttribute="centerY" secondItem="m5h-Fw-xOj" secondAttribute="centerY" id="dbn-aH-AtV"/>
                                                 <constraint firstItem="q2h-Wm-Qgq" firstAttribute="leading" secondItem="axv-m5-OPb" secondAttribute="trailing" constant="4" id="fvV-JB-qQF"/>
                                                 <constraint firstItem="T44-80-hSl" firstAttribute="leading" secondItem="ICv-wk-7em" secondAttribute="leading" constant="16" id="iBS-wW-Fi5"/>
@@ -2223,6 +2233,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
+                                            <outlet property="chooseBtn" destination="C1c-lb-dVd" id="YTB-qP-C9e"/>
                                             <outlet property="icon1" destination="axv-m5-OPb" id="3Ki-gb-SbM"/>
                                             <outlet property="icon2" destination="q2h-Wm-Qgq" id="b18-Xe-hcu"/>
                                             <outlet property="icon3" destination="QgA-hO-obp" id="eEC-zd-srb"/>

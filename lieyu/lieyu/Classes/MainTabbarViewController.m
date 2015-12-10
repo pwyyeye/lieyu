@@ -107,12 +107,12 @@
     [super setSelectedIndex:selectedIndex];
 }
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    item.imageInsets = UIEdgeInsetsZero;
-    item.imageInsets = UIEdgeInsetsMake(-3, 0, 4, 0);
-    item.titlePositionAdjustment = UIOffsetMake(0, -5);
-}
+//- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+//{
+//    item.imageInsets = UIEdgeInsetsZero;
+//    item.imageInsets = UIEdgeInsetsMake(-3, 0, 4, 0);
+//    item.titlePositionAdjustment = UIOffsetMake(0, -5);
+//}
 
 /*
 #pragma mark - Navigation

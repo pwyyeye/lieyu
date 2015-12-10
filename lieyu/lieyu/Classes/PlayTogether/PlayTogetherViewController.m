@@ -375,6 +375,14 @@
 //    _fillterButton.frame = rc;
     
 //    [self setCustomTitle:@"一起玩"];
+    
+    self.tableView.frame = CGRectMake(0, 104, SCREEN_WIDTH, SCREEN_HEIGHT - 148);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    NSLog(@"------frame:%@------",NSStringFromCGRect(self.tableView.frame));
+    NSLog(@"------inset:%@------",NSStringFromUIEdgeInsets(self.tableView.contentInset));
+    
+    
+    
     _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
     
     _myTitle.backgroundColor = [UIColor clearColor];
