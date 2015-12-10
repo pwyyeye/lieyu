@@ -338,6 +338,7 @@
     }
     if ([[resultDic objectForKey:@"resultStatus"] longLongValue]==9000) {
            [MyUtil showMessage:@"支付成功！"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
     
       //  detailViewController.orderNoString=_orderNo;
