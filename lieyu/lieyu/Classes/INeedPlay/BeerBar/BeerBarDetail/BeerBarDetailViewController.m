@@ -92,7 +92,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if(_timer == nil){
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
     }
     //判断用户是否已经喜欢过
     if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]]) {
@@ -146,8 +146,8 @@
             
             [weakSelf loadWebView];
             if (_timer == nil){
-   _timer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
-            }
+   _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
+            }  
         }
     }];
 }

@@ -247,18 +247,20 @@
             switch (dropButton.tag) {
                 case 0:
                 {
-//                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
-//                    [self.tableView reloadData];
+                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
+                   [self.tableView reloadData];
                 }
                     break;
                 case 1:
                 {
-                    
+                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelGao:)] mutableCopy];
+                    [self.tableView reloadData];
                 }
                     break;
                 case 2:
                 {
-                    
+                      _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelDi:)] mutableCopy];
+                    [self.tableView reloadData];
                 }
                     break;
                 case 3:
@@ -269,6 +271,7 @@
                     
                 default:
                     break;
+                    
             }
         }
             break;
