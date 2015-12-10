@@ -101,7 +101,7 @@
    // }
     
     if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]]) {
-            [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+            [self.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
             
     }
 }
@@ -150,11 +150,15 @@
             //加载webview
             
             [weakSelf loadWebView];
-            if (_timer == nil){
-   _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
-            }  
+            [weakSelf setTimer];
         }
     }];
+}
+
+- (void)setTimer{
+    if (_timer == nil){
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -541,7 +545,7 @@
         
         [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
             //收藏过
-            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
+            [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];
@@ -549,7 +553,7 @@
     
     [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
         if(result){
-            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+            [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] setObject:self.beerBarDetail.barid forKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [MyUtil showMessage:@"收藏成功"];

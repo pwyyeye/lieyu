@@ -56,7 +56,6 @@
     NSArray *items= self.tabBar.items;
     UITabBarItem *item=[items objectAtIndex:2];
     item.badgeValue=nil;
-
 }
 
 - (void)setupViewStyles

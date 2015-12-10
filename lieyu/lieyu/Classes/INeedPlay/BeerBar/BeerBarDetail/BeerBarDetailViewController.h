@@ -16,6 +16,7 @@
     NeedHideNavigationBar
 >
 
+@property (weak, nonatomic) IBOutlet UIButton *btn_collect;
 @property(nonatomic,strong)NSNumber * beerBarId;
 - (IBAction)dianweiAct:(UIButton *)sender;
 - (IBAction)chiHeAct:(UIButton *)sender;

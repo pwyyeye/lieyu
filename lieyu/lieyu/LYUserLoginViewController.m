@@ -156,7 +156,7 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
-         [self.navigationController popToRootViewControllerAnimated:YES ];
+        [self.navigationController popToRootViewControllerAnimated:YES ];
     }];
 }
 #pragma mark - 注册
