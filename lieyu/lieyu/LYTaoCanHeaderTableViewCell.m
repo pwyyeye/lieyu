@@ -17,7 +17,10 @@
 
 - (void)setModel:(TaoCanModel *)model{
     _model = model;
-    [_imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl]];
+    if (model.banner) {
+        
+    [_imageView_header sd_setImageWithURL:[NSURL URLWithString:model.banner[0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    }
     _label_name.text = model.title;
     NSString *priceStr = [NSString stringWithFormat:@"¥%0.f/卡",model.price];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:priceStr];

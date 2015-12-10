@@ -140,6 +140,7 @@ static LYRegistrationViewController *_registe;
             
             LYUserDetailInfoViewController *detailVC = [[LYUserDetailInfoViewController alloc]init];
             [self.navigationController pushViewController:detailVC animated:YES];
+            
         }
     }];
 }

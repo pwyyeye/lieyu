@@ -30,6 +30,8 @@
 #define LY_WOYAODINWEI_INORDER @"smOrderAction.do?action=add"
 //点赞
 #define LY_DIANZANG @"userPraisedAction.do?action=add"
+//取消赞
+#define LY_QUXIAOZANG @"userPraisedAction.do?action=delete"
 
 //吃喝专场
 //获取吃喝列表

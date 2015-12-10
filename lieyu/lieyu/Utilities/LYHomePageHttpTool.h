@@ -78,4 +78,6 @@
 
 //给酒吧点赞
 - (void)likeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result;
+//给酒吧取消点赞
+- (void)unLikeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result;
 @end

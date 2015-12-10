@@ -166,6 +166,12 @@
         if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
+                
+//                mobile
+//                password
+                [[NSUserDefaults standardUserDefaults] setObject:params[@"mobile"] forKey:@"username"];
+                [[NSUserDefaults standardUserDefaults] setObject:params[@"password"] forKey:@"password"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
             });
             [app stopLoading];
         }else{

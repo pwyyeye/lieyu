@@ -18,7 +18,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"地址";
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
 }
+
+- (void)gotoBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)cityClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

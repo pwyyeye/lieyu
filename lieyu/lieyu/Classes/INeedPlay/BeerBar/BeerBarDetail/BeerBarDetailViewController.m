@@ -80,8 +80,6 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _context = app.managedObjectContext;
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    
- 
 }
 //喜欢按钮圆角
 - (void)setUpBtn_like{
@@ -91,28 +89,35 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if(_timer == nil){
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
-    }
+    
     //判断用户是否已经喜欢过
     if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]]) {
         //收藏过
         [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+    }
+    //if(_timer){
+        [_timer setFireDate:[NSDate distantPast]];
+        //_timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
+   // }
+    
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]]) {
+            [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+            
     }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     self.navigationController.navigationBarHidden=YES;
-    
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden=NO;
-    if (_timer) {
-        [_timer invalidate];
-        _timer = nil;
-    }
+    
+    [_timer setFireDate:[NSDate distantFuture]];
+    
+    
+    
 }
 //-(void)viewDidDisappear:(BOOL)animated
 //{
@@ -189,9 +194,18 @@
 
 #pragma mark --喜欢按钮
 - (IBAction)likeClick:(UIButton *)sender {
-    NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
-    
-    __weak BeerBarDetailViewController *weakSelf = self;
+     __weak BeerBarDetailViewController *weakSelf = self;
+     NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
+    //判断用户是否已经喜欢过
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]]) {
+        
+        [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
+            //收藏过
+            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]];
+             [[NSUserDefaults standardUserDefaults] synchronize];
+        }];
+    }else{
     [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
         if (result) {
             [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
@@ -201,6 +215,7 @@
 
         }
     }];
+    }
 }
 
 //注册单元格
@@ -303,7 +318,7 @@
         {
            
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
-            [_barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon]];
+            [_barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             _barTitleCell.label_name.text = self.beerBarDetail.barname;
             if (![MyUtil isEmptyString:self.beerBarDetail.environment_num] ) {
                 _barTitleCell.barStar.value=self.beerBarDetail.environment_num.floatValue;
@@ -376,6 +391,7 @@
 - (void)onTime{
     _timeCount ++;
     _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH - _timeCount, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
+    _headerCell.image_laBa.frame = CGRectMake(CGRectGetMinX(_headerCell.label_laBa.frame) - CGRectGetWidth(_headerCell.image_laBa.frame), CGRectGetMinY(_headerCell.image_laBa.frame), _headerCell.image_laBa.frame.size.width,_headerCell.image_laBa.frame.size.height );
 //    _headerCell.label_laBa.center = CGPointMake(_size.width/2.0 + SCREEN_WIDTH - _timeCount, _headerCell.label_laBa.center.y);
     NSString *width = [NSString stringWithFormat:@"%.0f",_size.width];
     if (_headerCell.label_laBa.frame.origin.x == -width.integerValue) {
@@ -384,9 +400,6 @@
     }
     [_headerCell bringSubviewToFront:_headerCell.image_laBa];
 }
-
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
@@ -462,6 +475,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 2) {
+//        _image_layer.userInteractionEnabled = NO;
         [self daohang];
     }
 }
@@ -474,6 +488,11 @@
 
 - (void)dealloc
 {
+    if (_timer) {
+        [_timer invalidate];
+        _timer = nil;
+    }
+
     NSLog(@"dealoc bardetail viewcontroller");
 }
 /*
@@ -512,11 +531,31 @@
 }
 
 - (IBAction)soucangAct:(UIButton *)sender {
+    
     NSDictionary *dic=@{@"barid":self.beerBarDetail.barid};
+    
+    
+    __weak BeerBarDetailViewController *weakSelf = self;
+    //判断用户是否已经收藏过
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]]) {
+        
+        [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
+            //收藏过
+            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }];
+    }else{
+    
     [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
         if(result){
+            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+            [[NSUserDefaults standardUserDefaults] setObject:self.beerBarDetail.barid forKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             [MyUtil showMessage:@"收藏成功"];
+            
         }
     }];
+    }
 }
 @end

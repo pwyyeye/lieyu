@@ -49,8 +49,13 @@
     self.tableView.rowHeight = 274;
     _searchBar.returnKeyType = UIReturnKeySearch;
     self.tableView.tableFooterView = [[UIView alloc]init];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    [self.navigationItem setLeftBarButtonItem:item];
 }
 
+- (void)gotoBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark 获取历史搜索数据
 -(void)loadHisData{
     NSFileManager *fileManager = [NSFileManager defaultManager];
