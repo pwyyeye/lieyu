@@ -8,14 +8,16 @@
 
 #import "ChiHeViewController.h"
 #import "LYHomePageHttpTool.h"
-#import "chiheDetailCollectionCell.h"
 #import "MJRefresh.h"
 #import "CHShaiXuanViewController.h"
 #import "ProductCategoryModel.h"
 #import "CHJiuPinDetailViewController.h"
 #import "LYCarListViewController.h"
 
+#import "UserModel.h"
+
 #import "ZSManageHttpTool.h"
+//#import "LYBaseViewController.h"
 
 @interface ChiHeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -76,24 +78,36 @@
 //    [self geBiaoQianData];
     
     __weak __typeof(self)weakSelf = self;
-    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         pageCount=1;
         
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [weakSelf getData:nowDic];
     }];
-    self.collectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.collectionView.mj_header;
+    [self initMJRefeshHeaderForGif:header];
+    
+    self.collectionView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [self getDataWithDicMore:nowDic];
     }];
+    MJRefreshBackGifFooter *footer = (MJRefreshBackGifFooter *)self.collectionView.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
 }
 
 #pragma mark viewwillDisappear
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    _badge.hidden = YES;
+//    _badge.hidden = YES;
+    [_badge setHidden:YES];
+}
+
+#pragma mark viewDidAppear
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [_badge setHidden:NO];
 }
 
 #pragma mark 获取酒品种类信息
@@ -116,13 +130,19 @@
 //                carModel.isSel=true;
 //            }
 //        }
-        [self setSuperScript:goodsList.count];
+//        [self setSuperScript:goodsList.count];
+        int num = 0 ;
+        for(int i = 0 ; i < goodsList.count ; i ++){
+            num = num + ((CarInfoModel *)goodsList[i]).cartlist.count;
+        }
+        [self setSuperScript:num];
     }];
 }
 
 #pragma mark 设置角标
 - (void)setSuperScript:(int)num{
     if(num > 0){
+        if(!_badge){
         _badge=[[UILabel alloc] init];
         _badge.backgroundColor=[UIColor redColor];
         _badge.font=[UIFont systemFontOfSize:8];
@@ -132,6 +152,7 @@
         _badge.textAlignment=NSTextAlignmentCenter;
         //    CGRect frame=_rightItem.frame;
         _badge.frame=CGRectMake(SCREEN_WIDTH - 17, 5, 12, 12);
+        }
         if(num < 99){
             _badge.text=[NSString stringWithFormat:@"%d",num];
         }else{
@@ -173,6 +194,7 @@
 - (void)showcarAct{
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
+    carListViewController.numrefreshdelegate = self;
     [self.navigationController pushViewController:carListViewController animated:YES];
 }
 
@@ -187,7 +209,9 @@
     
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getCHListWithParams:dic block:^(NSMutableArray *result) {
-        
+        if(((AppDelegate*)[[UIApplication sharedApplication] delegate]).userModel){
+            [self getGoodsNum];
+        }
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
@@ -199,10 +223,11 @@
             [weakSelf.collectionView.mj_footer resetNoMoreData];
         }
         [weakSelf.collectionView reloadData];
+        
         if(!biaoqianList){
             [self geBiaoQianData];
         }
-        [self getGoodsNum];
+        
     }];
     
     [weakSelf.collectionView.mj_header endRefreshing];
@@ -256,11 +281,25 @@
     cell.layer.cornerRadius = 5.f;
     cell.layer.masksToBounds = YES;
     cell.userInteractionEnabled = YES;
+    cell.delegate = self;
     
     CheHeModel *chiHeModel=dataList[indexPath.row];
     chiHeModel.barname=self.barName;
     [cell configureCell:chiHeModel];
     return cell;
+}
+
+#pragma mark 实现RefreshGoodsNum的代理方法
+- (void)refreshGoodsNum{
+    [self getGoodsNum];
+}
+
+- (void)getNumLess{
+    [self setSuperScript:[_badge.text intValue] - 1];
+}
+
+- (void)getNumAdd{
+    [self setSuperScript:[_badge.text intValue] + 1];
 }
 
 #pragma mark --UIcollectionviewDelegateFlowLayout
@@ -279,8 +318,8 @@
     CheHeModel *chiHeModel=dataList[indexPath.row];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     CHJiuPinDetailViewController *jiuPinDetailViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHJiuPinDetailViewController"];
-//    CHJiuPinDetailViewController *jiuPinDetailViewController = [[CHJiuPinDetailViewController alloc]init];
     jiuPinDetailViewController.title=@"套餐详情";
+    jiuPinDetailViewController.refreshNumDelegate = self;
     jiuPinDetailViewController.shopid=chiHeModel.id;
     [self.navigationController pushViewController:jiuPinDetailViewController animated:YES];
 
@@ -349,7 +388,7 @@
         
     self.collectionView.userInteractionEnabled = NO;
     
-    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, biaoqianList.count * 32 + (biaoqianList.count + 1) * 16)];
+    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, biaoqianList.count * 32 + (biaoqianList.count + 1) * 16)];
     [_MoreView setBackgroundColor:[UIColor whiteColor]];
     
     for(int i = 0 ; i < biaoqianList.count ; i ++){

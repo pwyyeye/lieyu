@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="ChiHeViewController" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ieN-Zf-EMT">
-                    <rect key="frame" x="0.0" y="36" width="320" height="532"/>
+                    <rect key="frame" x="0.0" y="36" width="320" height="468"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C37-Fj-r2t">
@@ -37,7 +37,7 @@
                     </connections>
                 </collectionView>
                 <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsN-Tv-T2I" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="0.0" y="64" width="64" height="36"/>
+                    <rect key="frame" x="0.0" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -52,7 +52,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACj-im-fEU" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="64" y="64" width="64" height="36"/>
+                    <rect key="frame" x="64" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -64,7 +64,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-1U-1uV" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="128" y="64" width="64" height="36"/>
+                    <rect key="frame" x="128" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -76,7 +76,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR0-ef-oAw" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="192" y="64" width="64" height="36"/>
+                    <rect key="frame" x="192" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -88,7 +88,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0u-qE-nUk" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="256" y="64" width="64" height="36"/>
+                    <rect key="frame" x="256" y="0.0" width="64" height="36"/>
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -106,20 +106,20 @@
                 <constraint firstItem="T0u-qE-nUk" firstAttribute="leading" secondItem="uR0-ef-oAw" secondAttribute="trailing" id="B8X-bC-q3Q"/>
                 <constraint firstItem="FsN-Tv-T2I" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BTV-BC-NTG"/>
                 <constraint firstAttribute="trailing" secondItem="T0u-qE-nUk" secondAttribute="trailing" id="BvW-FK-jhO"/>
-                <constraint firstItem="vfZ-1U-1uV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="DX5-ul-vkM"/>
-                <constraint firstItem="T0u-qE-nUk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="IZR-V3-UjW"/>
+                <constraint firstItem="vfZ-1U-1uV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DX5-ul-vkM"/>
+                <constraint firstItem="T0u-qE-nUk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="IZR-V3-UjW"/>
                 <constraint firstItem="uR0-ef-oAw" firstAttribute="leading" secondItem="vfZ-1U-1uV" secondAttribute="trailing" id="Jv9-t7-Dg0"/>
                 <constraint firstItem="T0u-qE-nUk" firstAttribute="width" secondItem="FsN-Tv-T2I" secondAttribute="width" id="OVH-iP-qK4"/>
                 <constraint firstItem="vfZ-1U-1uV" firstAttribute="width" secondItem="FsN-Tv-T2I" secondAttribute="width" id="V47-O2-HBB"/>
                 <constraint firstItem="uR0-ef-oAw" firstAttribute="width" secondItem="FsN-Tv-T2I" secondAttribute="width" id="ZdK-hq-UpQ"/>
                 <constraint firstItem="ACj-im-fEU" firstAttribute="height" secondItem="FsN-Tv-T2I" secondAttribute="height" id="ZuJ-b2-KhO"/>
-                <constraint firstItem="FsN-Tv-T2I" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="deD-zH-uRR"/>
+                <constraint firstItem="FsN-Tv-T2I" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="deD-zH-uRR"/>
                 <constraint firstItem="T0u-qE-nUk" firstAttribute="height" secondItem="FsN-Tv-T2I" secondAttribute="height" id="kco-dD-pYG"/>
                 <constraint firstItem="ACj-im-fEU" firstAttribute="width" secondItem="FsN-Tv-T2I" secondAttribute="width" id="kn7-JH-VaV"/>
                 <constraint firstItem="vfZ-1U-1uV" firstAttribute="leading" secondItem="ACj-im-fEU" secondAttribute="trailing" id="p4S-xG-Cn1"/>
                 <constraint firstItem="vfZ-1U-1uV" firstAttribute="height" secondItem="FsN-Tv-T2I" secondAttribute="height" id="wMq-U8-TcM"/>
-                <constraint firstItem="ACj-im-fEU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="x7g-mr-vSE"/>
-                <constraint firstItem="uR0-ef-oAw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="xZg-x4-nCc"/>
+                <constraint firstItem="ACj-im-fEU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="x7g-mr-vSE"/>
+                <constraint firstItem="uR0-ef-oAw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xZg-x4-nCc"/>
             </constraints>
             <point key="canvasLocation" x="252" y="46"/>
         </view>

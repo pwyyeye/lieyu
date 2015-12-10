@@ -15,8 +15,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="152" height="287"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="套餐名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loi-ON-iF8">
-                        <rect key="frame" x="16" y="7" width="120" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="套餐名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loi-ON-iF8">
+                        <rect key="frame" x="16" y="6" width="120" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="MqS-tM-Uhn"/>
@@ -60,8 +60,8 @@
                             <constraint firstAttribute="width" secondItem="1bj-jn-mzG" secondAttribute="height" multiplier="1:1" id="9sZ-aY-mht"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RuI-O3-4a6">
-                        <rect key="frame" x="18" y="210" width="28" height="28"/>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RuI-O3-4a6">
+                        <rect key="frame" x="18" y="209" width="28" height="28"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="28" id="iJN-61-PDY"/>
@@ -71,8 +71,8 @@
                             <action selector="ChangeGoodsNumberClick:" destination="NGu-7m-seR" eventType="touchUpInside" id="jfi-HV-AzW"/>
                         </connections>
                     </button>
-                    <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLh-Rw-ujw">
-                        <rect key="frame" x="107" y="210" width="28" height="28"/>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLh-Rw-ujw">
+                        <rect key="frame" x="107" y="209" width="28" height="28"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="ECl-Qc-c4G"/>
@@ -83,8 +83,8 @@
                             <action selector="ChangeGoodsNumberClick:" destination="NGu-7m-seR" eventType="touchUpInside" id="Pjt-nA-Zkm"/>
                         </connections>
                     </button>
-                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lyz-qi-0Ac">
-                        <rect key="frame" x="54" y="209" width="45" height="30"/>
+                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lyz-qi-0Ac">
+                        <rect key="frame" x="54" y="208" width="45" height="30"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="45" id="1PI-uA-4Zx"/>
@@ -93,16 +93,16 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                     </textField>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMj-I1-BV5">
-                        <rect key="frame" x="0.0" y="247" width="152" height="40"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMj-I1-BV5">
+                        <rect key="frame" x="0.0" y="246" width="152" height="41"/>
                         <animations/>
                         <state key="normal" backgroundImage="AddCar_red.png"/>
                         <connections>
-                            <action selector="AddToShoppingCarClick:" destination="NGu-7m-seR" eventType="touchUpInside" id="ODL-Xz-HSH"/>
+                            <action selector="AddToShoppingCarClick:" destination="NGu-7m-seR" eventType="touchUpInside" id="EvG-Em-Ge0"/>
                         </connections>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="fanli.png" translatesAutoresizingMaskIntoConstraints="NO" id="qSa-jf-HYd">
-                        <rect key="frame" x="0.0" y="50" width="71" height="45"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fanli.png" translatesAutoresizingMaskIntoConstraints="NO" id="qSa-jf-HYd">
+                        <rect key="frame" x="0.0" y="49" width="71" height="45"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="71" id="7Ox-Uf-OwL"/>
@@ -173,6 +173,8 @@
                 <outlet property="ProfitLbl" destination="6AU-rC-Rg0" id="QzB-bi-g96"/>
                 <outlet property="addBtn" destination="ZLh-Rw-ujw" id="4vZ-19-chr"/>
                 <outlet property="addToShoppingCarBtn" destination="rMj-I1-BV5" id="z4M-yn-vvl"/>
+                <outlet property="fanliImage" destination="qSa-jf-HYd" id="Gsm-lF-3dm"/>
+                <outlet property="fanliLbl" destination="I9F-Qq-oYs" id="fcf-Zk-ddp"/>
                 <outlet property="goodImage" destination="1bj-jn-mzG" id="acH-gu-wMa"/>
                 <outlet property="lessBtn" destination="RuI-O3-4a6" id="yNT-GN-tL0"/>
                 <outlet property="numField" destination="lyz-qi-0Ac" id="38G-1n-M92"/>

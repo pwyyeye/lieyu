@@ -45,6 +45,9 @@
 @property (nonatomic, assign) int defaultNumber;
 @property (nonatomic, assign) int defaultIndex;
 
+@property (weak, nonatomic) IBOutlet UIView *headerBackground;
+@property (weak, nonatomic) IBOutlet UIButton *headerBackBtn;
+@property (weak, nonatomic) IBOutlet UIButton *headerShareBtn;
 
 @end
 
@@ -74,6 +77,11 @@
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 100);
     }
+    
+    [self.headerBackBtn addTarget:self action:@selector(backForword) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerShareBtn addTarget:self action:@selector(ShareClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.headerBackground.hidden = YES;
+    
     
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
