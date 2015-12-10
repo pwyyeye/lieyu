@@ -514,7 +514,13 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [navigationController pushViewController:playTogetherPayViewController animated:YES];
         return YES;
     }else if([sourceApplication isEqualToString:@"com.tencent.xin"]){
-        return [WXApi handleOpenURL:url delegate:[SingletonTenpay singletonTenpay]];
+        //如果是微信分享回来 无参数
+        if([MyUtil isEmptyString:[url query]]){
+            return NO;
+        }else{//如果是微信支付回来 带参数
+            return [WXApi handleOpenURL:url delegate:[SingletonTenpay singletonTenpay]];
+        }
+        
     }else{
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
