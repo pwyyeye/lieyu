@@ -84,6 +84,7 @@
     _context = app.managedObjectContext;
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
 }
+
 //喜欢按钮圆角
 - (void)setUpBtn_like{
     self.btn_like.layer.cornerRadius = CGRectGetWidth(self.btn_like.frame)/2.0;
