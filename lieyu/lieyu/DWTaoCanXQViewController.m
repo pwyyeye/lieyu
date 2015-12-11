@@ -302,22 +302,14 @@
 
 
 - (IBAction)queryAct:(UIButton *)sender {
-//    RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
-//    conversationVC.conversationType = ConversationType_APPSERVICE;
-//    conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试
-//    conversationVC.userName = @"猎娱客服";
-//    conversationVC.title = @"猎娱客服";
-//    [self.navigationController pushViewController:conversationVC animated:YES];
-    
-    
     RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
     conversationVC.conversationType = ConversationType_APPSERVICE;
-    conversationVC.targetId = @"KEFU144946169476221";
+    conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试
     conversationVC.userName = @"猎娱客服";
     conversationVC.title = @"猎娱客服";
-//    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
-//    conversationVC.navigationItem.leftBarButtonItem = leftBtn;
     [self.navigationController pushViewController:conversationVC animated:YES];
+    
+    
 }
 
 #pragma mark - 注意事项
