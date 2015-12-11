@@ -47,6 +47,12 @@
     self.calendarLogic = [[WQCalendarLogic alloc] init];
     [self getTaoCanList];
     // Do any additional setup after loading the view from its nib.
+    [self.navigationController setNavigationBarHidden:YES];
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+    
 }
 #pragma mark -套餐列表
 -(void)getTaoCanList{

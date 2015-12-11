@@ -38,9 +38,9 @@
     [self.view bringSubviewToFront:_btn_allPlace];
     [self.view bringSubviewToFront:_btn_music];
     
-    for (UIView *view in self.view.subviews) {
-        NSLog(@"%@",view.class)
-    };
+//    for (UIView *view in self.view.subviews) {
+//        NSLog(@"%@",view.class);
+//    };
     // Do any additional setup after loading the view from its nib.
     _view_line.bounds = CGRectMake(0, 0, 320, 0.5);
     NSLog(@"--------->%@",NSStringFromCGRect(self.view.frame));

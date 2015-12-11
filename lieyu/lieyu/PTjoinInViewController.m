@@ -131,6 +131,9 @@
             if(pinKeModel.pinkerNeedPayAmount.doubleValue==0.0){
                 [_payBtn setTitle:@"免费参与" forState:UIControlStateNormal];
             }
+            if(pinKeModel.orderStatus!=0){
+                [_payBtn setTitle:@"人数已满" forState:UIControlStateNormal];
+            }
             
         }
             break;
