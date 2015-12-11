@@ -26,7 +26,7 @@
 #import "UMessage.h"
 #import "WXApi.h"
 #import "SingletonTenpay.h"
-
+#import <AVFoundation/AVFoundation.h>
 
 @interface AppDelegate ()
 <
@@ -63,6 +63,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     _navigationController= (UINavigationController *)self.window.rootViewController;
     _navigationController.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];
+    NSError *setCategoryErr=nil;
+    NSError *activationErr=nil;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
+    [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
+    
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
     //IM推送
@@ -376,6 +381,20 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    UIApplication *app=[UIApplication sharedApplication];
+    __block UIBackgroundTaskIdentifier bgTask;
+    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
+        if (bgTask!=UIBackgroundTaskInvalid) {
+            bgTask=UIBackgroundTaskInvalid;
+        }
+    }];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (bgTask!=UIBackgroundTaskInvalid) {
+            bgTask=UIBackgroundTaskInvalid;
+        }
+    });
+    
     [_timer setFireDate:[NSDate distantPast]];//开启
 }
 
@@ -394,6 +413,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 }
 #pragma mark - 心跳获取7牛key
 -(void)doHeart{
+    
+    NSLog(@"----pass-doheart%@---",@"1111111");
     //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     //    [app startLoading];
     [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
