@@ -20,11 +20,11 @@
                         <animations/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jbb-cC-Ftj">
-                        <rect key="frame" x="64" y="8" width="151" height="21"/>
+                        <rect key="frame" x="64" y="8" width="183" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -37,11 +37,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="spF-nA-dal">
-                        <rect key="frame" x="235" y="8" width="77" height="22"/>
+                        <rect key="frame" x="252" y="8" width="60" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                         <color key="textColor" red="1" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -165,7 +165,7 @@
         <image name="CommonIcon" width="84" height="84"/>
         <image name="Rectangle 601" width="67" height="42"/>
         <image name="bulePoint" width="14" height="20"/>
-        <image name="fire" width="32" height="32"/>
+        <image name="fire" width="20" height="20"/>
         <image name="icon_star" width="15" height="15"/>
         <image name="zang" width="15" height="13"/>
     </resources>

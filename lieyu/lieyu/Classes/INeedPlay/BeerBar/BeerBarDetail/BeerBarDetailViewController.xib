@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeerBarDetailViewController">
             <connections>
                 <outlet property="bottomBarView" destination="XXg-kz-6Dv" id="eWy-zu-845"/>
-                <outlet property="btn_collect" destination="YpG-kG-1fJ" id="OQa-3a-2du"/>
                 <outlet property="btn_like" destination="NZ2-1q-4oY" id="Inz-tx-YHh"/>
                 <outlet property="buttomViewHeight" destination="4dv-Af-Bdg" id="cAS-YF-4d9"/>
                 <outlet property="image_layer" destination="Jt1-L8-RY0" id="cUi-jE-4WZ"/>
@@ -23,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qCV-au-nay">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="501"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="507"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-Cg-bvf">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="629"/>
@@ -58,36 +57,36 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXg-kz-6Dv">
-                    <rect key="frame" x="0.0" y="509" width="320" height="59"/>
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="吃喝专场" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsd-L6-gAk">
-                            <rect key="frame" x="140" y="40" width="39" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="吃喝专场" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsd-L6-gAk">
+                            <rect key="frame" x="140" y="33" width="39" height="21"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                             <color key="textColor" red="0.4039215686" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="专属经理" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yf-FT-xLw">
-                            <rect key="frame" x="248" y="40" width="39" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="专属经理" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yf-FT-xLw">
+                            <rect key="frame" x="248" y="33" width="39" height="21"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                             <color key="textColor" red="0.4039215686" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_ordersits" translatesAutoresizingMaskIntoConstraints="NO" id="xws-AS-za4">
-                            <rect key="frame" x="35" y="7" width="36" height="36"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon_ordersits" translatesAutoresizingMaskIntoConstraints="NO" id="xws-AS-za4">
+                            <rect key="frame" x="35" y="4" width="31" height="31"/>
                             <animations/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_eatdrinkspecial" translatesAutoresizingMaskIntoConstraints="NO" id="o0O-IG-EY2">
-                            <rect key="frame" x="141" y="7" width="36" height="36"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon_eatdrinkspecial" translatesAutoresizingMaskIntoConstraints="NO" id="o0O-IG-EY2">
+                            <rect key="frame" x="141" y="4" width="31" height="31"/>
                             <animations/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_managers" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-Rq-0Gl">
-                            <rect key="frame" x="249" y="7" width="36" height="36"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="icon_managers" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-Rq-0Gl">
+                            <rect key="frame" x="249" y="4" width="31" height="31"/>
                             <animations/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我要订位" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzJ-km-gwt">
-                            <rect key="frame" x="34" y="40" width="39" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="我要订位" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzJ-km-gwt">
+                            <rect key="frame" x="31" y="33" width="39" height="21"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="9"/>
                             <color key="textColor" red="0.40392156862745099" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
@@ -120,7 +119,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-P8-Uou">
-                            <rect key="frame" x="214" y="0.0" width="106" height="59"/>
+                            <rect key="frame" x="214" y="0.0" width="106" height="49"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <inset key="titleEdgeInsets" minX="-34" minY="38" maxX="0.0" maxY="0.0"/>
@@ -136,7 +135,10 @@
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="59" id="4dv-Af-Bdg"/>
+                        <constraint firstItem="wsd-L6-gAk" firstAttribute="centerX" secondItem="o0O-IG-EY2" secondAttribute="centerX" id="3cK-fb-nuL"/>
+                        <constraint firstAttribute="height" constant="49" id="4dv-Af-Bdg"/>
+                        <constraint firstItem="8Yf-FT-xLw" firstAttribute="centerX" secondItem="7IA-Rq-0Gl" secondAttribute="centerX" id="Z5M-SW-xCG"/>
+                        <constraint firstItem="CzJ-km-gwt" firstAttribute="centerX" secondItem="xws-AS-za4" secondAttribute="centerX" id="rAc-Uf-Nq5"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSb-ZY-naX">
