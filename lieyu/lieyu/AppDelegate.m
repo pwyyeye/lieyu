@@ -44,6 +44,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     // Override point for customization after application launch.
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
 //    [UINavigationBar appearance];
     
 //    UIColor *_inputColor0 = RGB(109, 0, 142);
