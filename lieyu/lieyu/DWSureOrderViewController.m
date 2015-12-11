@@ -295,7 +295,9 @@
             if(zsArr.count){
             ZSDetailModel *zsModel=zsArr[indexPath.row];
             _managerCell = [tableView dequeueReusableCellWithIdentifier:@"managerInfo" forIndexPath:indexPath];
-            [_managerCell cellConfigureWithImage:zsModel.avatar_img name:zsModel.username stars:zsModel.servicestar];
+            [_managerCell cellConfigureWithImage:zsModel.avatar_img name:zsModel.usernick stars:zsModel.servicestar];
+                _managerCell.avatarImage.layer.cornerRadius = 10;//CGRectGetWidth(_managerCell.avatarImage.frame)/2.0;
+                _managerCell.avatarImage.layer.masksToBounds = YES;
             _managerCell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (_selectIndex == indexPath.row){
                 [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];

@@ -120,7 +120,7 @@
         _buttomViewHeight.constant=0;
        
     }else{
-        _buttomViewHeight.constant=59;
+        _buttomViewHeight.constant=49;
     }
     
 }
@@ -212,9 +212,11 @@
         
         [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
             //收藏过
+            if(result){
             [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey: LIKEKEY];
              [[NSUserDefaults standardUserDefaults] synchronize];
+            }
         }];
     }else{
     [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
@@ -331,7 +333,16 @@
            
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             [_barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+            
+            
+            CGSize nameSize = [self.beerBarDetail.barname boundingRectWithSize:CGSizeMake(150, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]} context:nil].size;
+            if (nameSize.height < 30) {
+                 _barTitleCell.label_name.text = [NSString stringWithFormat:@"%@\n",self.beerBarDetail.barname];
+            }else{
+            
             _barTitleCell.label_name.text = self.beerBarDetail.barname;
+            }
+            
             if (![MyUtil isEmptyString:self.beerBarDetail.environment_num] ) {
                 _barTitleCell.barStar.value=self.beerBarDetail.environment_num.floatValue;
             }else{
@@ -568,18 +579,14 @@
             [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:COLLECTKEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
-               [MyUtil showMessage:@"取消收藏成功"];
+               
         }];
     }else{
     
     [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
-        if(result){
             [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] setObject:self.beerBarDetail.barid forKey:COLLECTKEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [MyUtil showMessage:@"收藏成功"];
-            
-        }
     }];
     }
 }

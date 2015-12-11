@@ -185,14 +185,11 @@ UITableViewDataSource,UITableViewDelegate,
                 weakSelf.bartypeslistArray = bartypeslist;
             }
             [weakSelf.aryList addObjectsFromArray:barList.mutableCopy] ;
-            NSLog(@"---->%ld",weakSelf.aryList.count);
             [weakSelf.tableView reloadData];
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
     }];
 }
-
-
 
 - (void)initialize
 {

@@ -11,11 +11,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="86.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbM-EY-L9n">
-                        <rect key="frame" x="16" y="10" width="67" height="67"/>
+                        <rect key="frame" x="16" y="10" width="67" height="66"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="67" id="U3x-LC-dgN"/>
@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-2D-g0n">
-                        <rect key="frame" x="95" y="20" width="64" height="25"/>
+                        <rect key="frame" x="95" y="10" width="64" height="25"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="6aY-bI-fz5"/>
@@ -85,7 +85,7 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzv-kg-4GH">
-                        <rect key="frame" x="284" y="34" width="20" height="20"/>
+                        <rect key="frame" x="284" y="33" width="20" height="20"/>
                         <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="2i6-4t-D9q"/>
@@ -96,11 +96,17 @@
                         </state>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ppE-An-lPV">
-                        <rect key="frame" x="16" y="10" width="67" height="67"/>
+                        <rect key="frame" x="16" y="10" width="67" height="66"/>
                         <animations/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <real key="value" value="33.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQu-iL-QyW">
-                        <rect key="frame" x="263" y="0.0" width="57" height="86.5"/>
+                        <rect key="frame" x="263" y="0.0" width="57" height="87"/>
                         <animations/>
                     </button>
                 </subviews>
@@ -117,14 +123,14 @@
                     <constraint firstItem="FbW-2D-g0n" firstAttribute="leading" secondItem="gbM-EY-L9n" secondAttribute="trailing" constant="12" id="HYQ-nm-yDe"/>
                     <constraint firstAttribute="bottom" secondItem="gbM-EY-L9n" secondAttribute="bottom" constant="10" id="KPv-5j-64K"/>
                     <constraint firstItem="tEl-Ka-dGm" firstAttribute="leading" secondItem="gbM-EY-L9n" secondAttribute="trailing" constant="12" id="LOh-dF-Gdz"/>
-                    <constraint firstItem="FbW-2D-g0n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="MVv-tC-XKO"/>
+                    <constraint firstItem="FbW-2D-g0n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="MVv-tC-XKO"/>
                     <constraint firstItem="knd-R2-SYz" firstAttribute="leading" secondItem="qHl-Pn-4xx" secondAttribute="trailing" constant="8" id="NTd-kB-Hpi"/>
                     <constraint firstItem="z3l-i6-fN9" firstAttribute="leading" secondItem="jUp-yy-Okg" secondAttribute="trailing" constant="8" id="Tpd-lj-vHV"/>
                     <constraint firstItem="gbM-EY-L9n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Yzf-dJ-npS"/>
                     <constraint firstItem="knd-R2-SYz" firstAttribute="centerY" secondItem="tEl-Ka-dGm" secondAttribute="centerY" id="cEA-QC-mXo"/>
                     <constraint firstItem="REo-6q-mH3" firstAttribute="leading" secondItem="z3l-i6-fN9" secondAttribute="trailing" constant="8" id="iX9-d1-PeV"/>
                     <constraint firstItem="Dzv-kg-4GH" firstAttribute="centerY" secondItem="gbM-EY-L9n" secondAttribute="centerY" id="jtG-f5-L58"/>
-                    <constraint firstItem="tEl-Ka-dGm" firstAttribute="top" secondItem="FbW-2D-g0n" secondAttribute="bottom" constant="10" id="k4U-cC-Byf"/>
+                    <constraint firstItem="tEl-Ka-dGm" firstAttribute="top" secondItem="FbW-2D-g0n" secondAttribute="bottom" constant="20" id="k4U-cC-Byf"/>
                     <constraint firstItem="gbM-EY-L9n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="oJh-Rq-hSv"/>
                     <constraint firstItem="ppE-An-lPV" firstAttribute="top" secondItem="gbM-EY-L9n" secondAttribute="top" id="pJA-mI-jz9"/>
                     <constraint firstItem="qHl-Pn-4xx" firstAttribute="leading" secondItem="REo-6q-mH3" secondAttribute="trailing" constant="8" id="qEC-ct-RtN"/>
@@ -145,7 +151,7 @@
                 <outlet property="star4" destination="qHl-Pn-4xx" id="WIk-CY-U8n"/>
                 <outlet property="star5" destination="knd-R2-SYz" id="kma-Xy-03H"/>
             </connections>
-            <point key="canvasLocation" x="248" y="289.5"/>
+            <point key="canvasLocation" x="424" y="327.5"/>
         </tableViewCell>
     </objects>
     <resources>

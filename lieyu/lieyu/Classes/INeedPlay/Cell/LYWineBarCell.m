@@ -34,23 +34,36 @@
     [_imageView_header sd_setImageWithURL:[NSURL URLWithString:jiuBaModel.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _imageView_header.layer.cornerRadius = _imageView_header.frame.size.width/2.0;
     _imageView_header.layer.masksToBounds = YES;
-    [_label_jiuba setText:jiuBaModel.barname];
+    
+    
+    CGSize titleSize = [jiuBaModel.barname boundingRectWithSize:CGSizeMake(183, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:14]} context:nil].size;
+    if (titleSize.height > 22) {
+        [_label_jiuba setText:jiuBaModel.barname];
+        [_label_jiuba sizeToFit];
+    }else{
+        [_label_jiuba setText:jiuBaModel.barname];
+      //  [_label_jiuba sizeThatFits:CGSizeMake(183, 21)];
+    }
+    
+    
     if (jiuBaModel.banners.count) {
         [_imageView_content sd_setImageWithURL:[NSURL URLWithString:jiuBaModel.banners[0]] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
     }
     [_label_descr setText:jiuBaModel.subtitle];
     [_label_price setText:[NSString stringWithFormat:@"¥%@起",jiuBaModel.lowest_consumption]];
     
-    if(![MyUtil isEmptyString:jiuBaModel.distance] && jiuBaModel.distance.floatValue != 0.f){
     
-    if (jiuBaModel.distance.floatValue > 1000) {
-        [_label_point setText:[NSString stringWithFormat:@"距离您%.2f千米",jiuBaModel.distance.floatValue/1000]];
+    _label_point.text = jiuBaModel.address;
+    if(![MyUtil isEmptyString:jiuBaModel.distance] && jiuBaModel.distance.floatValue != 0.f){
+        CGFloat distanceStr = jiuBaModel.distance.floatValue * 1000;
+    if (distanceStr > 1000) {
+        [_label_distance setText:[NSString stringWithFormat:@"%.0f千米",distanceStr/1000]];
     }else{
-        [_label_point setText:[NSString stringWithFormat:@"距离您%.2f米",jiuBaModel.distance.floatValue]];
+        [_label_distance setText:[NSString stringWithFormat:@"%.0f米",distanceStr]];
     }
     }else{
         //wu zhi
-        [_label_point setText:jiuBaModel.address];
+       // [_label_distance setText:jiuBaModel.address];
     }
     
     

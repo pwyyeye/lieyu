@@ -45,7 +45,7 @@
 //    [self addSubview:_label_right];
     
     
-    _label_descr = [[UILabel alloc]initWithFrame:CGRectMake(87, 8, 144, 48)];
+    _label_descr = [[UILabel alloc]initWithFrame:CGRectMake(87, 10, 144, 48)];
     _label_descr.numberOfLines = 0;
     _label_descr.textAlignment = NSTextAlignmentCenter;
     _label_descr.font = [UIFont boldSystemFontOfSize:18];
