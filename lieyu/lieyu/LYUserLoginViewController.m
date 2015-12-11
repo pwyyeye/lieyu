@@ -150,7 +150,7 @@
     if([MyUtil isEmptyString:password]){
         return;
     }
-    NSDictionary *dic=@{@"username":username,@"password":[MyUtil md5HexDigest: password]};
+    NSDictionary *dic=@{@"username":username,@"password":password};
     [[LYUserHttpTool shareInstance] userAutoLoginWithParams:dic block:^(UserModel *result) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         app.s_app_id=result.token;

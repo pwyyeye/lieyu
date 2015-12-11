@@ -13,10 +13,8 @@
 @interface LPPlayTogetherViewController : UIViewController<LPAlertViewDelegate>
 
 @property (nonatomic, assign)int smid;
-//@property (nonatomic, strong) 
 
 @property (nonatomic, strong) PinKeModel *pinKeModel;
-
 
 @property (weak, nonatomic) IBOutlet UIButton *zixunBtn;
 @property (weak, nonatomic) IBOutlet UIButton *zhuyiBtn;
@@ -33,7 +31,5 @@
 - (IBAction)BuyNow:(UIButton *)sender;
 - (IBAction)LikeClick:(UIButton *)sender;
 - (IBAction)ShareClick:(UIButton *)sender;
-
-
 
 @end

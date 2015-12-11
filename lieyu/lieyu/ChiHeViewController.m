@@ -252,7 +252,7 @@
                 kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(kongImageView.frame.origin.x - 20, 260, 170, 20)];
                 kongLabel.font = [UIFont systemFontOfSize:14];
                 kongLabel.textColor = RGBA(215, 215, 215, 1);
-                kongLabel.text = @"伦家还没有这种酒啦～";
+                kongLabel.text = @"伦家还没有这种商品啦～";
 //                [kongImageView addSubview:kongLabel];
             }
             [self.view addSubview:kongLabel];

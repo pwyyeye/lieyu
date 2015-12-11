@@ -83,7 +83,7 @@
     
     
     //返回按钮
-    _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(20, 30, 40, 40)];
+    _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(15, 40, 40, 40)];
     [_btnBack setImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [_btnBack addTarget:self action:@selector(backAct:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:_btnBack];
@@ -97,6 +97,15 @@
     
     //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
+}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];

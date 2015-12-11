@@ -267,7 +267,7 @@
 //    height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
 //    NSLog(@"--->%f",height);
-    webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, frame.height);
+    webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, frame.height-50);
 //    webView.backgroundColor = [UIColor redColor];
     
     _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
