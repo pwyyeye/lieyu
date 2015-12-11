@@ -75,8 +75,9 @@
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height);
     self.scrollView.showsVerticalScrollIndicator=NO;
     self.scrollView.showsHorizontalScrollIndicator=NO;
-    [self setupViewStyles];
-    
+    [self setupViewStyles];                                                     //tableView registe cell
+    _scrollView.bounces = NO;
+
     self.image_layer.hidden = YES;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -91,7 +92,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden=YES;////////
+     [_timer setFireDate:[NSDate distantPast]];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
