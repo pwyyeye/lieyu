@@ -59,8 +59,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
 #pragma mark 获取历史搜索数据
 -(void)loadHisData{
     NSFileManager *fileManager = [NSFileManager defaultManager];
