@@ -44,7 +44,7 @@
                         <constraint firstAttribute="height" constant="36" id="qJq-ou-4fi"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="葡萄酒">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -56,7 +56,7 @@
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="啤酒">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -68,7 +68,7 @@
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="伏加特">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -80,7 +80,7 @@
                     <animations/>
                     <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="威士忌">
+                    <state key="normal">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>

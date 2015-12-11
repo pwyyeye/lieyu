@@ -401,6 +401,8 @@ UITableViewDataSource,UITableViewDelegate,
         {
             LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
             wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            wineCell.btn_star.userInteractionEnabled = NO;
+            wineCell.btn_zang.userInteractionEnabled = NO;
             JiuBaModel *jiuBaModel = self.aryList[indexPath.section - 3];
             wineCell.jiuBaModel = jiuBaModel;
             return wineCell;
