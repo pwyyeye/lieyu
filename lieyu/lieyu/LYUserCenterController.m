@@ -236,7 +236,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.userName = @"猎娱客服";
             conversationVC.title = @"猎娱客服";
             
-            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:nil action:nil]];
+            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+            conversationVC.navigationItem.leftBarButtonItem = leftBtn;
+            
             [self.navigationController pushViewController:conversationVC animated:YES];
             break;
         }
@@ -254,6 +256,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             //            break;
         }
     }
+}
+
+- (void)backForword{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //定义每个UICollectionView 的大小
