@@ -84,6 +84,7 @@
     _context = app.managedObjectContext;
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
 }
+
 //喜欢按钮圆角
 - (void)setUpBtn_like{
     self.btn_like.layer.cornerRadius = CGRectGetWidth(self.btn_like.frame)/2.0;
@@ -92,12 +93,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
      [_timer setFireDate:[NSDate distantPast]];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden=YES;
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -336,14 +337,16 @@
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             [_barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             
+
             
             CGSize nameSize = [self.beerBarDetail.barname boundingRectWithSize:CGSizeMake(150, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]} context:nil].size;
             if (nameSize.height < 30) {
-                 _barTitleCell.label_name.text = [NSString stringWithFormat:@"%@\n",self.beerBarDetail.barname];
-            }else{
+                    _barTitleCell.label_name.text = [NSString stringWithFormat:@"%@\n",self.beerBarDetail.barname];
+                }else{
             
-            _barTitleCell.label_name.text = self.beerBarDetail.barname;
-            }
+                    _barTitleCell.label_name.text = self.beerBarDetail.barname;
+                }
+            
             
             if (![MyUtil isEmptyString:self.beerBarDetail.environment_num] ) {
                 _barTitleCell.barStar.value=self.beerBarDetail.environment_num.floatValue;
@@ -505,7 +508,7 @@
     //                                shareImage:self.barinfoCell.barImage.image
     //                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
     //                                delegate:self];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToSina,UMShareToWechatTimeline,UMShareToSms,nil] delegate:nil];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
 
 }
 

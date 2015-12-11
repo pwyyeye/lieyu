@@ -27,8 +27,18 @@
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:ZSModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     self.nameLal.text = ZSModel.usernick;
     self.biaoqianLal.text = ZSModel.introduction;
-    for (UIImageView *image in _imagesArray) {
-        [image setImage:[UIImage imageNamed:@"icon_star"]];
+    int num ;
+    if([ZSModel.servicestar isEqualToString:@""]){
+        num = 5;
+    }else{
+        num = [ZSModel.servicestar intValue];
+    }
+    int i;
+    for(i = 0 ; i < num ; i ++){
+        [_imagesArray[i] setImage:[UIImage imageNamed:@"starRed"]];
+    }
+    for(int j = i ; j < 5 ; j ++){
+        [_imagesArray[j] setImage:[UIImage imageNamed:@"starGray"]];
     }
 }
 

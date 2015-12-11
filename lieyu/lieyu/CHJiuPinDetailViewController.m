@@ -294,14 +294,13 @@
             [MyUtil showMessage:@"添加购物车成功!"];
         }
     }];
-    
 }
 
 #pragma mark -购物车
 - (IBAction)showShopCar:(UIButton *)sender {
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
-    carListViewController.numrefreshdelegate = self;
+    
     [self.navigationController pushViewController:carListViewController animated:YES];
 }
 

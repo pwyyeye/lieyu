@@ -62,6 +62,9 @@
     
     _moreShow = NO;
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getNumLess) name:@"lessGood" object:nil];
+    
+    
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
@@ -435,7 +438,12 @@
         if(biaoqianList.count == 4){
             
         }else{
-            num = (int)(biaoqianList.count - 4) / 3 + 1;
+            if((int)(biaoqianList.count - 4) % 3){
+                num = (int)(biaoqianList.count - 4) / 3 + 1;
+            }
+            else{
+                num = (int)(biaoqianList.count - 4) / 3;
+            }
         }
     _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, num * 32 + (num + 1) * 16)];
     [_MoreView setBackgroundColor:[UIColor whiteColor]];
