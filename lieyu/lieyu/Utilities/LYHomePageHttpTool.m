@@ -537,45 +537,46 @@
 
 #pragma mark 给酒吧点赞
 - (void)likeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result{
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_DIANZANG baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if ([code isEqualToString:@"1"]) {
             result(YES);
-            [MyUtil showMessage:message];
-            [app stopLoading];
+            [MyUtil showPlaceMessage:message];
+//            [app stopLoading];
         }else{
             result(NO);
-            [app stopLoading];
-            [MyUtil showMessage:message];
+//            [app stopLoading];
+            [MyUtil showPlaceMessage:message];
         }
     } failure:^(NSError *err) {
-          [app stopLoading];
+//          [app stopLoading];
+        [MyUtil showPlaceMessage:@"点赞失败，请检查网络连接"];
         result(NO);
     }];
 }
 
 #pragma mark 给酒吧取消点赞
 - (void)unLikeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result{
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QUXIAOZANG baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if ([code isEqualToString:@"1"]) {
             result(YES);
-            [MyUtil showMessage:message];
-            [app stopLoading];
+            [MyUtil showPlaceMessage:message];
+//            [app stopLoading];
         }else{
             result(NO);
-            [app stopLoading];
-            [MyUtil showMessage:message];
+//            [app stopLoading];
+            [MyUtil showPlaceMessage:message];
         }
     } failure:^(NSError *err) {
-        [app stopLoading];
         result(NO);
+        [MyUtil showPlaceMessage:@"取消点赞失败，请检查网络连接"];
     }];
 }
 @end

@@ -65,4 +65,6 @@
 
 //根据生日获取年龄
 + (NSString*)getAgefromDate:(NSString *)birthday;
+
++ (void)showPlaceMessage:(NSString* )message;
 @end

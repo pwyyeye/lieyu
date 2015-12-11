@@ -178,7 +178,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LYDinWeiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
-    NSLog(@"--------->%ld",jiubaModel.recommend_package.count);
     RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.section];
     cell.model = model;
      cell.selectionStyle = UITableViewCellSelectionStyleNone;

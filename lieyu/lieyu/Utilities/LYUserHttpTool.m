@@ -733,8 +733,8 @@
 #pragma mark 收藏酒吧
 -(void) addMyBarWithParams:(NSDictionary*)params
                   complete:(void (^)(BOOL result))result{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    [app startLoading];
     
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_ADD baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -743,22 +743,24 @@
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
             });
-            [app stopLoading];
+//            [app stopLoading];
+            [MyUtil showPlaceMessage:message];
         }else{
             result(NO);
-            [app stopLoading];
-            [MyUtil showMessage:message];
+//            [app stopLoading];
+            [MyUtil showPlaceMessage:message];
         }
     } failure:^(NSError *err) {
-        [app stopLoading];
+//        [app stopLoading];
+          [MyUtil showPlaceMessage:@"点赞失败，请检查网络连接"];
         result(NO);
     }];
 }
 #pragma mark 删除收藏酒吧
 -(void) delMyBarWithParams:(NSDictionary*)params
                   complete:(void (^)(BOOL result))result{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    [app startLoading];
     
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_DEL baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -767,19 +769,18 @@
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
             });
-            [app stopLoading];
+            [MyUtil showPlaceMessage:message];
         }else{
             result(NO);
-            [app stopLoading];
-            [MyUtil showMessage:message];
+            [MyUtil showPlaceMessage:message];
         }
         
         
     } failure:^(NSError *err) {
-        [app stopLoading];
+//        [app stopLoading];
+        [MyUtil showPlaceMessage:@"取消点赞失败，请检查网络连接"];
         result(NO);
-        
-        
+     
     }];
 }
 #pragma mark 信息中心

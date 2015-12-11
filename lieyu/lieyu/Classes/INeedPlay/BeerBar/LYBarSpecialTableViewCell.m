@@ -8,18 +8,19 @@
 
 #import "LYBarSpecialTableViewCell.h"
 
+
 @implementation LYBarSpecialTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
     
     _typeBtn1.layer.cornerRadius = 2;
-    _typeBtn1.layer.borderWidth = 0.5;
-    _typeBtn1.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
+    _typeBtn1.layer.borderWidth = 0.3;
+    _typeBtn1.layer.borderColor = RGBA(0, 0, 0, .2).CGColor;
     
     _typeBtn2.layer.cornerRadius = 2;
-    _typeBtn2.layer.borderWidth = 0.5;
-    _typeBtn2.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
+    _typeBtn2.layer.borderWidth = 0.3;
+    _typeBtn2.layer.borderColor = RGBA(0, 0, 0, .2).CGColor;
 
 }
 
@@ -46,8 +47,8 @@
         if(i<=teseArr.count){
             NSDictionary *dic=model.tese[i];
             teseBtnTemp.layer.cornerRadius = 2;
-            teseBtnTemp.layer.borderWidth = 0.5;
-            teseBtnTemp.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
+            teseBtnTemp.layer.borderWidth = 0.3;
+            teseBtnTemp.layer.borderColor = RGBA(0, 0, 0, .2).CGColor;
             [teseBtnTemp setHidden:NO];
             teseBtnTemp.text=[dic objectForKey:@"name"];
         }else{

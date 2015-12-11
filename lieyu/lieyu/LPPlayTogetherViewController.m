@@ -91,7 +91,6 @@
     [self.headerShareBtn addTarget:self action:@selector(ShareClick:) forControlEvents:UIControlEventTouchUpInside];
     self.headerBackground.hidden = YES;
     
-    
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
     
@@ -108,6 +107,7 @@
     self.likeBtn.enabled = NO;
     self.likeBtn.hidden = YES;
     
+    self.tableView.bounces = NO;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.showsVerticalScrollIndicator = NO;

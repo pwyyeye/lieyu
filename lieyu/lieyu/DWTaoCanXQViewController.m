@@ -21,7 +21,7 @@
 #import "LPAttentionViewController.h"
 #import "JiuBaModel.h"
 
-@interface DWTaoCanXQViewController ()
+@interface DWTaoCanXQViewController ()<UITableViewDelegate>
 {
     TaoCanModel *taoCanModel;
     LYTaoCanHeaderTableViewCell *_headerCell;
@@ -32,6 +32,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -149,6 +152,11 @@
     }
     return 8;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.001;
+}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     return [[UIView alloc]init];
@@ -246,7 +254,7 @@
     switch (indexPath.section) {
         case 0://广告
         {
-            h = 466;
+            h = 462-8;
         }
             break;
         case 1:// 选项卡 ，酒吧或夜总会
@@ -318,8 +326,6 @@
   
     
     [self.navigationController pushViewController:conversationVC animated:YES];
-    
-    
 }
 
 

@@ -212,6 +212,17 @@
                                               otherButtonTitles:nil];
     [alertView show];
 }
+
++ (void)showPlaceMessage:(NSString* )message{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:nil];
+    [alertView show];
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        [alertView dismissWithClickedButtonIndex:0 animated:NO];
+    });
+}
 #pragma --mark 判断是否数字
 + (BOOL)isPureInt:(NSString*)string{
     NSScanner* scan = [NSScanner scannerWithString:string];
