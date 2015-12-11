@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeerBarDetailViewController">
             <connections>
                 <outlet property="bottomBarView" destination="XXg-kz-6Dv" id="eWy-zu-845"/>
+                <outlet property="btn_collect" destination="YpG-kG-1fJ" id="TQu-V7-5Nc"/>
                 <outlet property="btn_like" destination="NZ2-1q-4oY" id="Inz-tx-YHh"/>
                 <outlet property="buttomViewHeight" destination="4dv-Af-Bdg" id="cAS-YF-4d9"/>
                 <outlet property="image_layer" destination="Jt1-L8-RY0" id="cUi-jE-4WZ"/>
