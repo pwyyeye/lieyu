@@ -33,6 +33,7 @@
     _datePicker.datePickerMode=UIDatePickerModeDate;
     NSLocale *local=[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
     _datePicker.locale=local;
+    [_datePicker setMaximumDate:[NSDate date]];
 
 }
 

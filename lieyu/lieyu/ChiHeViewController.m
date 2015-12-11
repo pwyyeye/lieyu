@@ -281,9 +281,7 @@
             [weakSelf.collectionView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
-    
     [weakSelf.collectionView.mj_footer endRefreshing];
-    
 }
 
 #pragma mark collectionView的各个代理方法实现
