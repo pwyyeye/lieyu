@@ -62,6 +62,9 @@
     
     _moreShow = NO;
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getNumLess) name:@"lessGood" object:nil];
+    
+    
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
     self.navigationItem.rightBarButtonItem = rightItem;
     

@@ -301,7 +301,7 @@
 - (IBAction)showShopCar:(UIButton *)sender {
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
-    carListViewController.numrefreshdelegate = self;
+    
     [self.navigationController pushViewController:carListViewController animated:YES];
 }
 

@@ -185,7 +185,7 @@
                 
                 [MyUtil showMessage:@"删除成功"];
                 [weakSelf getData];
-                [self.numrefreshdelegate getNumLess];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"lessGood" object:nil];
             }
         }];
     }
