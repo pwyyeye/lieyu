@@ -224,7 +224,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                                                  appKey:UmengAppkey
                                               shareText:@"猎娱带你玩转酒吧夜店，无需再担心隐形消费，遇到酒托，所有商家均严格筛选认证，明码标价，尊享专属VIP经理一对一服务，喝酒消费更有超额返利等你来拿！https://itunes.apple.com/us/app/lie-yu-ye-sheng-huo-yu-le/id1056569271?l=zh&ls=1&mt=8"
                                              shareImage:[UIImage imageNamed:@"lieyuIcon"]
-                                        shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,UMShareToEmail,nil]
+                                        shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToWechatSession,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
                                                delegate:nil];
             break;
         }
@@ -235,6 +235,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试 
             conversationVC.userName = @"猎娱客服";
             conversationVC.title = @"猎娱客服";
+            
+            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:nil action:nil]];
             [self.navigationController pushViewController:conversationVC animated:YES];
             break;
         }

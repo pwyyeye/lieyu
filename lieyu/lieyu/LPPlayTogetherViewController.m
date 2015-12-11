@@ -127,7 +127,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//
 //- (void)shareTaocan{
 //    NSLog(@"Share Success!");
 //}

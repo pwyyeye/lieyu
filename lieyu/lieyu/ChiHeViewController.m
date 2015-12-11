@@ -437,7 +437,7 @@
         if(biaoqianList.count == 4){
             
         }else{
-            num = (biaoqianList.count - 4) / 3;
+            num = (int)(biaoqianList.count - 4) / 3 + 1;
         }
     _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, num * 32 + (num + 1) * 16)];
     [_MoreView setBackgroundColor:[UIColor whiteColor]];
