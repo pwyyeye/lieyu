@@ -925,7 +925,7 @@
         NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",orderInfoModel.checkUserMobile];
         if(orderInfoModel.ordertype==1){
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            if (!app.userModel.userid==orderInfoModel.userid) {
+            if (app.userModel.userid!=orderInfoModel.userid) {
                 str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",orderInfoModel.phone];
             }
         }
