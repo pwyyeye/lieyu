@@ -15,6 +15,7 @@
 #import <RongIMKit/RongIMKit.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UIImage+GIF.h"
+#import "LYUserLoginViewController.h"
 
 @interface MyZSManageViewController (){
     UIView *_bigView;
@@ -259,9 +260,7 @@
     NSDictionary *dic=@{@"vipUserid":[NSNumber numberWithInt:detailModel.userid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
     [[LYHomePageHttpTool shareInstance] scVipWithParams:dic complete:^(BOOL result) {
         if(result){
-            
             [MyUtil showMessage:@"收藏成功"];
-            
         }
     }];
 }
@@ -276,21 +275,30 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 
     }
-    //phoneNumber = "18369......"
 }
 #pragma mark -发消息
 - (void)sendMessage:(UIButton *)sender{
-    ZSDetailModel * detailModel=zsList[sender.tag];
+    //进行是否已登陆的判断
+    if(((AppDelegate*)[[UIApplication sharedApplication] delegate]).userModel){//已登陆
+        
+        ZSDetailModel * detailModel=zsList[sender.tag];
+        
+        RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+        conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+        conversationVC.targetId = detailModel.imUserId; // 接收者的 targetId，这里为举例。
+        conversationVC.userName =detailModel.userName; // 接受者的 username，这里为举例。
+        conversationVC.title = detailModel.usernick; // 会话的 title。
+        
+        conversationVC.navigationController.navigationBarHidden = NO;
+        
+        // 把单聊视图控制器添加到导航栈。
+        [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+        [self.navigationController pushViewController:conversationVC animated:YES];
+    }else{
+        LYUserLoginViewController *userLoginVC = [[LYUserLoginViewController alloc]initWithNibName:@"LYUserLoginViewController" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:userLoginVC animated:YES];
+    }
     
-    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
-    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-    conversationVC.targetId = detailModel.imUserId; // 接收者的 targetId，这里为举例。
-    conversationVC.userName =detailModel.userName; // 接受者的 username，这里为举例。
-    conversationVC.title = detailModel.usernick; // 会话的 title。
-    
-    // 把单聊视图控制器添加到导航栈。
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
-    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
