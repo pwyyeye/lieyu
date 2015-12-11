@@ -311,9 +311,20 @@
     conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试
     conversationVC.userName = @"猎娱客服";
     conversationVC.title = @"猎娱客服";
+    
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+    conversationVC.navigationItem.leftBarButtonItem = leftBtn;
+    
+  
+    
     [self.navigationController pushViewController:conversationVC animated:YES];
     
     
+}
+
+
+- (void)backForword{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - 注意事项
