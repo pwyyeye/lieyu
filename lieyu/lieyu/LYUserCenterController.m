@@ -218,7 +218,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 3:
         {
-           
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
             [UMSocialSnsService presentSnsIconSheetView:self
                                                  appKey:UmengAppkey
