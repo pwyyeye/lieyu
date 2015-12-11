@@ -578,8 +578,6 @@
         
         [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
             //收藏过
-            
-                
             [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:COLLECTKEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
@@ -588,12 +586,9 @@
     }else{
     
     [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
-
             [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
             [[NSUserDefaults standardUserDefaults] setObject:self.beerBarDetail.barid forKey:COLLECTKEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            
-       
     }];
     }
 }

@@ -32,5 +32,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_star;
 @property (weak, nonatomic) IBOutlet UIButton *btn_zang;
 
+@property (weak, nonatomic) IBOutlet UILabel *label_distance;
 @property (nonatomic,strong) JiuBaModel *jiuBaModel;
 @end

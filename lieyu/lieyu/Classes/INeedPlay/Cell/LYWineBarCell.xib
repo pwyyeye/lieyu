@@ -99,7 +99,7 @@
                         <animations/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zwd-J6-M24">
-                        <rect key="frame" x="32" y="245" width="278" height="18"/>
+                        <rect key="frame" x="32" y="245" width="208" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -134,6 +134,14 @@
                         <animations/>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nfl-tV-hM8">
+                        <rect key="frame" x="249" y="243" width="63" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <animations/>
             </tableViewCellContentView>
@@ -148,6 +156,7 @@
                 <outlet property="imageView_star" destination="W8q-Db-JcW" id="Xog-eh-3ao"/>
                 <outlet property="imageView_zang" destination="Q5m-lY-SGv" id="too-aX-2dw"/>
                 <outlet property="label_descr" destination="NTa-ks-mQw" id="HEs-2F-Z1f"/>
+                <outlet property="label_distance" destination="Nfl-tV-hM8" id="rtT-Ho-oGV"/>
                 <outlet property="label_fanli" destination="lUZ-A8-GUt" id="fN6-x2-m7T"/>
                 <outlet property="label_fanli_percent" destination="dFT-ur-aFH" id="Lq5-1d-vz8"/>
                 <outlet property="label_jiuba" destination="jbb-cC-Ftj" id="9dT-qm-4ws"/>
@@ -165,7 +174,7 @@
         <image name="CommonIcon" width="84" height="84"/>
         <image name="Rectangle 601" width="67" height="42"/>
         <image name="bulePoint" width="14" height="20"/>
-        <image name="fire" width="20" height="20"/>
+        <image name="fire" width="32" height="32"/>
         <image name="icon_star" width="15" height="15"/>
         <image name="zang" width="15" height="13"/>
     </resources>
