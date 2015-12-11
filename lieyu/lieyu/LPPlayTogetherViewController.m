@@ -91,7 +91,6 @@
     [self.headerShareBtn addTarget:self action:@selector(ShareClick:) forControlEvents:UIControlEventTouchUpInside];
     self.headerBackground.hidden = YES;
     
-    
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
     
