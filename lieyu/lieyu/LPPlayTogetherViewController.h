@@ -13,7 +13,6 @@
 @interface LPPlayTogetherViewController : UIViewController<LPAlertViewDelegate>
 
 @property (nonatomic, assign)int smid;
-//@property (nonatomic, strong) 
 
 @property (nonatomic, strong) PinKeModel *pinKeModel;
 
