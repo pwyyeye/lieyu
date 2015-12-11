@@ -17,7 +17,6 @@
 
 @property (nonatomic, strong) PinKeModel *pinKeModel;
 
-
 @property (weak, nonatomic) IBOutlet UIButton *zixunBtn;
 @property (weak, nonatomic) IBOutlet UIButton *zhuyiBtn;
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
