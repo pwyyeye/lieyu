@@ -381,11 +381,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    
-    if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
-        LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
-        [login autoLogin];
-    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
