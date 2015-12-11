@@ -184,8 +184,9 @@ UITableViewDataSource,UITableViewDelegate,
                 weakSelf.newbannerList = newbanner.mutableCopy;
                 weakSelf.bartypeslistArray = bartypeslist;
             }
-            [self.aryList addObjectsFromArray:barList.mutableCopy] ;
-            [self.tableView reloadData];
+            [weakSelf.aryList addObjectsFromArray:barList.mutableCopy] ;
+            NSLog(@"---->%ld",weakSelf.aryList.count);
+            [weakSelf.tableView reloadData];
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
     }];
