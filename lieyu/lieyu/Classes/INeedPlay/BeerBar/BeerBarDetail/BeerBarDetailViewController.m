@@ -75,9 +75,8 @@
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height);
     self.scrollView.showsVerticalScrollIndicator=NO;
     self.scrollView.showsHorizontalScrollIndicator=NO;
-    [self setupViewStyles];                                                     //tableView registe cell
-   
-
+    [self setupViewStyles];
+    
     self.image_layer.hidden = YES;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
