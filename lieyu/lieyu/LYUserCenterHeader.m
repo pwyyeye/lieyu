@@ -59,6 +59,10 @@
             _tags.hidden=NO;
         }
         [_age setTitle:[NSString stringWithFormat:@"%@岁",app.userModel.age]  forState:UIControlStateNormal];
+        if (![MyUtil isEmptyString:app.userModel.birthday]) {
+            [_age setTitle:[NSString stringWithFormat:@"%@岁",[MyUtil getAgefromDate:app.userModel.birthday]]  forState:UIControlStateNormal];
+            
+        }
         NSArray *tags=app.userModel.tags;
         NSMutableString *mytags=[[NSMutableString alloc] init];
         for (UserTagModel *tag in tags) {
