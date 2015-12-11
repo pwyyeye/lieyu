@@ -984,6 +984,8 @@
             [[LYUserHttpTool shareInstance]delMyOrder:dic complete:^(BOOL result) {
                 if(result){
                     [MyUtil showMessage:@"删除成功"];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+
                     [weakSelf refreshData];
                 }
             }];
@@ -1018,6 +1020,8 @@
             [[LYUserHttpTool shareInstance]delMyOrderByCanYu:dic complete:^(BOOL result) {
                 if(result){
                     [MyUtil showMessage:@"取消成功"];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+
                     [weakSelf refreshData];
                 }
             }];
@@ -1069,6 +1073,8 @@
             [[LYUserHttpTool shareInstance]cancelMyOrder:dic complete:^(BOOL result) {
                 if(result){
                     [MyUtil showMessage:@"取消订单成功"];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+
                     [weakSelf refreshData];
                 }
             }];
@@ -1086,6 +1092,7 @@
     
     LYEvaluationController *eva=[[LYEvaluationController alloc]initWithNibName:@"LYEvaluationController" bundle:nil];
     eva.orderInfoModel=orderInfoModel;
+    
     [self.navigationController pushViewController:eva animated:YES];
 }
 
@@ -1098,6 +1105,8 @@
     [[LYUserHttpTool shareInstance]sureMyOrder:dic complete:^(BOOL result) {
         if(result){
             [MyUtil showMessage:@"设置成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+
             [weakSelf refreshData];
         }
     }];
