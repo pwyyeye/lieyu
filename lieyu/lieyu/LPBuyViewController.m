@@ -58,7 +58,11 @@
 //        self.buyNowBtn.enabled = NO;
 //        [self.buyNowBtn setBackgroundColor:[UIColor grayColor]];
 //    }
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
 }
 
 //- (void)getUserManagers{
