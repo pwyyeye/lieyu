@@ -74,7 +74,7 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dFT-ur-aFH">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dFT-ur-aFH">
                         <rect key="frame" x="14" y="76" width="38" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <animations/>
@@ -166,7 +166,7 @@
         <image name="Rectangle 601" width="67" height="42"/>
         <image name="bulePoint" width="14" height="20"/>
         <image name="fire" width="32" height="32"/>
-        <image name="icon_star" width="14" height="14"/>
+        <image name="icon_star" width="15" height="15"/>
         <image name="zang" width="15" height="13"/>
     </resources>
 </document>

@@ -49,9 +49,20 @@
     [_label_zang_count setText:jiuBaModel.like_num];
     
     int fanli=jiuBaModel.rebate.floatValue * 100;
+    
+    if (!fanli) {
+        _label_fanli_percent.text = @"";
+        _label_fanli.hidden = YES;
+        _imageView_rectangle.hidden = YES;
+        return;
+    }
+    _imageView_rectangle.hidden = NO;
+    _label_fanli.hidden = NO;
+    
     NSString *perscent = [NSString stringWithFormat:@"%d%@",fanli,@"%"];
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:perscent];
     NSInteger location;
+    NSLog(@"--------%d---%ld----%@",fanli,perscent.integerValue,perscent);
     if (perscent.integerValue < 10) {
         location = 1;
     }else{

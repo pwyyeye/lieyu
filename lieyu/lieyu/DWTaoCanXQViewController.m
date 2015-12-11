@@ -59,7 +59,10 @@
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
-
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 - (void)createButton{
     UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 30, 40, 40)];
     [backBtn setBackgroundImage:[UIImage imageNamed:@"icon_huanhui_action"] forState:UIControlStateNormal];
@@ -302,13 +305,14 @@
 
 
 - (IBAction)queryAct:(UIButton *)sender {
-    
     RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
     conversationVC.conversationType = ConversationType_APPSERVICE;
     conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试
     conversationVC.userName = @"猎娱客服";
     conversationVC.title = @"猎娱客服";
     [self.navigationController pushViewController:conversationVC animated:YES];
+    
+    
 }
 
 #pragma mark - 注意事项
