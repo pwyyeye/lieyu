@@ -74,6 +74,8 @@
             [[LYUserHttpTool shareInstance] addEvaluation:dic complete:^(BOOL result) {
                 if (result) {
                     [MyUtil showMessage:@"评价成功！"];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+
                     [self.navigationController popViewControllerAnimated:YES];
                 }
             }];
@@ -87,6 +89,8 @@
         [[LYUserHttpTool shareInstance] addEvaluation:dic complete:^(BOOL result) {
             if (result) {
                 [MyUtil showMessage:@"评价成功！"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+
                 [self.navigationController popViewControllerAnimated:YES];
             }
             
