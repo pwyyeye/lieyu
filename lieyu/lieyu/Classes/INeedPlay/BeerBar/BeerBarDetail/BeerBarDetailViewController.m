@@ -30,6 +30,9 @@
 #import "CHViewController.h"
 #import "ChiHeViewController.h"
 
+#define COLLECTKEY /*@"USERCOLLECT"*/  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
+#define LIKEKEY /*@"USERLIKE"*/ [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
+
 @interface BeerBarDetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 {
     NSManagedObjectContext *_context;
@@ -90,20 +93,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    //判断用户是否已经喜欢过
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]]) {
-        //收藏过
-        [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
-    }
-    //if(_timer){
-        [_timer setFireDate:[NSDate distantPast]];
-        //_timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
-   // }
     
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]]) {
-            [self.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
-            
-    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -146,6 +136,24 @@
     {
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
+            
+            
+            //判断用户是否已经喜欢过
+            
+            NSLog(@"------>%@-------%@",[[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY],LIKEKEY);
+            if ([[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY]) {
+                //收藏过
+                [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+            }
+            //if(_timer){
+            [_timer setFireDate:[NSDate distantPast]];
+            //_timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
+            // }
+            
+            if ([[NSUserDefaults standardUserDefaults] valueForKey:COLLECTKEY]) {
+                [self.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+            }
+            
             
             [weakSelf updateViewConstraints];
             [weakSelf.tableView reloadData];
@@ -203,12 +211,12 @@
      __weak BeerBarDetailViewController *weakSelf = self;
      NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
     //判断用户是否已经喜欢过
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]]) {
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY]) {
         
         [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
             //收藏过
             [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey: LIKEKEY];
              [[NSUserDefaults standardUserDefaults] synchronize];
         }];
     }else{
@@ -216,9 +224,10 @@
         if (result) {
             [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
             
-            [[NSUserDefaults standardUserDefaults] setObject:weakSelf.beerBarDetail.barid forKey:[NSString stringWithFormat:@"%@%@",_userid,weakSelf.beerBarDetail.barid]];
+            [[NSUserDefaults standardUserDefaults] setObject:weakSelf.beerBarDetail.barid forKey:LIKEKEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
-
+            
+            NSLog(@"---->%@", [[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY]);
         }
     }];
     }
@@ -338,12 +347,19 @@
                  priceStr= [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
             }
             
+            NSInteger a = 0 ;
             NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
-            [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(1, 3)];
-            if ([self.beerBarDetail.lowest_consumption integerValue] > 999) {
-                 [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(1, 4)];
-            }
             
+            if ([self.beerBarDetail.lowest_consumption integerValue] > 9) {
+                a = 2;
+            }
+            if ([self.beerBarDetail.lowest_consumption integerValue] > 99){
+                a = 3;
+            }
+            if([self.beerBarDetail.lowest_consumption integerValue] > 999){
+                a = 4;
+            }
+            [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(1, a)];
             
             _barTitleCell.label_price.attributedText = attributedStr;
             
@@ -548,12 +564,12 @@
     
     __weak BeerBarDetailViewController *weakSelf = self;
     //判断用户是否已经收藏过
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]]) {
+    if ([[NSUserDefaults standardUserDefaults] valueForKey:COLLECTKEY]) {
         
         [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
             //收藏过
             [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:COLLECTKEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
                [MyUtil showMessage:@"取消收藏成功"];
         }];
@@ -562,7 +578,7 @@
     [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
         if(result){
             [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults] setObject:self.beerBarDetail.barid forKey:[NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]];
+            [[NSUserDefaults standardUserDefaults] setObject:self.beerBarDetail.barid forKey:COLLECTKEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [MyUtil showMessage:@"收藏成功"];
             
