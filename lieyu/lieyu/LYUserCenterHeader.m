@@ -112,8 +112,12 @@
             CGRect frame=_waitPay.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
             badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitPay];
+            badge.tag=100;
             [_waitPay addSubview:badge];
             
+        }else{
+            [[_waitPay viewWithTag:100] removeFromSuperview];
+        
         }
         if(orderTTL.waitConsumption>0){//待消费
             UILabel *badge=[[UILabel alloc] init];
@@ -126,7 +130,10 @@
             CGRect frame=_waitConsumption.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
             badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitConsumption];
+            badge.tag=101;
             [_waitConsumption addSubview:badge];
+        }else{
+            [[_waitConsumption viewWithTag:101] removeFromSuperview];
         }
         if (orderTTL.waitRebate>0){//待返利
             UILabel *badge=[[UILabel alloc] init];
@@ -139,7 +146,10 @@
             CGRect frame=_waitRebate.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
             badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitRebate];
+            badge.tag=102;
             [_waitRebate addSubview:badge];
+        }else{
+            [[_waitRebate viewWithTag:102] removeFromSuperview];
         }
         if(orderTTL.waitEvaluation>0){//待评价
             UILabel *badge=[[UILabel alloc] init];
@@ -152,7 +162,10 @@
             CGRect frame=_waitEvaluation.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
             badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitEvaluation];
+            badge.tag=103;
             [_waitEvaluation addSubview:badge];
+        }else{
+            [[_waitEvaluation viewWithTag:103] removeFromSuperview];
         }
         if (orderTTL.waitPayBack>0){//待退款
             UILabel *badge=[[UILabel alloc] init];
@@ -165,7 +178,10 @@
             CGRect frame=_waitPayBack.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
             badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitPayBack];
+            badge.tag=104;
             [_waitPayBack addSubview:badge];
+        }else{
+            [[_waitPayBack viewWithTag:104] removeFromSuperview];
         }
         if (orderTTL.messageNum>0) {//消息中心
             UILabel *badge=[[UILabel alloc] init];
@@ -178,8 +194,11 @@
             CGRect frame=_btnMessage.frame;
             badge.frame=CGRectMake(frame.size.width-6, -3, 12, 12);
             badge.text=[NSString stringWithFormat:@"%d",orderTTL.messageNum];
+            badge.tag=105;
             [_btnMessage insertSubview:badge aboveSubview:_btnMessage.titleLabel];
 
+        }else{
+            [[_btnMessage viewWithTag:105] removeFromSuperview];
         }
             
     }
