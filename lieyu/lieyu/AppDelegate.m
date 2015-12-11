@@ -45,7 +45,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 //    [UINavigationBar appearance];
     
 //    UIColor *_inputColor0 = RGB(109, 0, 142);

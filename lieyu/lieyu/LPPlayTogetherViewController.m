@@ -108,6 +108,7 @@
     self.likeBtn.enabled = NO;
     self.likeBtn.hidden = YES;
     
+    self.tableView.bounces = NO;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.showsVerticalScrollIndicator = NO;

@@ -21,6 +21,8 @@
     }else{
         [self.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected"] forState:UIControlStateSelected];
     }
+    self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.width / 2.0 ;
+    self.avatarImage.layer.masksToBounds = YES;
 }
 
 //- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
