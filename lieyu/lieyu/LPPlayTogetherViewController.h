@@ -32,6 +32,4 @@
 - (IBAction)LikeClick:(UIButton *)sender;
 - (IBAction)ShareClick:(UIButton *)sender;
 
-
-
 @end
