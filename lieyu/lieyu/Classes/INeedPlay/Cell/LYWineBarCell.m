@@ -40,7 +40,20 @@
     }
     [_label_descr setText:jiuBaModel.subtitle];
     [_label_price setText:[NSString stringWithFormat:@"¥%@起",jiuBaModel.lowest_consumption]];
-    [_label_point setText:jiuBaModel.address];
+    
+    if(![MyUtil isEmptyString:jiuBaModel.distance] && jiuBaModel.distance.floatValue != 0.f){
+    
+    if (jiuBaModel.distance.floatValue > 1000) {
+        [_label_point setText:[NSString stringWithFormat:@"距离您%.2f千米",jiuBaModel.distance.floatValue/1000]];
+    }else{
+        [_label_point setText:[NSString stringWithFormat:@"距离您%.2f米",jiuBaModel.distance.floatValue]];
+    }
+    }else{
+        //wu zhi
+        [_label_point setText:jiuBaModel.address];
+    }
+    
+    
     if ([jiuBaModel.fav_num integerValue]) {
         [_label_star_count setText:jiuBaModel.fav_num];
     }else{
