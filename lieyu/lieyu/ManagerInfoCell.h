@@ -26,6 +26,10 @@
 
 @property (nonatomic, strong) ZSDetailModel *zsDetail;
 
+
+@property (weak, nonatomic) IBOutlet UIButton *chooseBtn;
+
+
 @property (nonatomic, strong) NSArray *starsArray;
 //
 @property (weak, nonatomic) IBOutlet UIButton *selectBtn;

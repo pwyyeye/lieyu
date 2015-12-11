@@ -108,6 +108,12 @@
     [_badge setHidden:YES];
 }
 
+#pragma mark viewWillAppear
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 #pragma mark viewDidAppear
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

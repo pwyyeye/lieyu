@@ -11,10 +11,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="86.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbM-EY-L9n">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbM-EY-L9n">
                         <rect key="frame" x="16" y="10" width="67" height="67"/>
                         <animations/>
                         <constraints>
@@ -95,10 +95,14 @@
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ppE-An-lPV">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ppE-An-lPV">
                         <rect key="frame" x="16" y="10" width="67" height="67"/>
                         <animations/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQu-iL-QyW">
+                        <rect key="frame" x="263" y="0.0" width="57" height="86.5"/>
+                        <animations/>
+                    </button>
                 </subviews>
                 <animations/>
                 <constraints>
@@ -131,6 +135,7 @@
             <animations/>
             <connections>
                 <outlet property="avatarImage" destination="ppE-An-lPV" id="0Q5-KG-4Of"/>
+                <outlet property="chooseBtn" destination="UQu-iL-QyW" id="B8b-fI-uLA"/>
                 <outlet property="iconImage" destination="gbM-EY-L9n" id="eKK-l7-J9J"/>
                 <outlet property="name" destination="FbW-2D-g0n" id="QgL-Pa-VM3"/>
                 <outlet property="radioButon" destination="Dzv-kg-4GH" id="xSu-Gv-gYC"/>
