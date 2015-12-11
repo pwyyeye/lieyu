@@ -57,9 +57,9 @@
     if(![MyUtil isEmptyString:jiuBaModel.distance] && jiuBaModel.distance.floatValue != 0.f){
         CGFloat distanceStr = jiuBaModel.distance.floatValue * 1000;
     if (distanceStr > 1000) {
-        [_label_distance setText:[NSString stringWithFormat:@"%.2f千米",distanceStr/1000]];
+        [_label_distance setText:[NSString stringWithFormat:@"%.0f千米",distanceStr/1000]];
     }else{
-        [_label_distance setText:[NSString stringWithFormat:@"%.2f米",distanceStr]];
+        [_label_distance setText:[NSString stringWithFormat:@"%.0f米",distanceStr]];
     }
     }else{
         //wu zhi
