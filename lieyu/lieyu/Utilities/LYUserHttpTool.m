@@ -510,7 +510,34 @@
         
     }];
 }
-
+#pragma mark 添加评价商家回复
+-(void) addEvaluationReview:(NSDictionary*)params
+             complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    NSLog(@"----pass-LY_MY_ORDER_REVIEW%@---",LY_MY_ORDER_REVIEW);
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_REVIEW baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
 #pragma mark微信预支付
 -(void) prepareWeixinPayWithParams:(NSDictionary*)params
                           complete:(void (^)(NSDictionary *result))block{
