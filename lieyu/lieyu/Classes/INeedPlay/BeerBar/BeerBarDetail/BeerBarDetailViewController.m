@@ -324,7 +324,6 @@
 
             [_headerCell addSubview:scroller];
 
-            
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
 
             return _headerCell;

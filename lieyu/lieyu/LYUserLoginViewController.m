@@ -12,6 +12,7 @@
 #import "LYUserHttpTool.h"
 #import "UMessage.h"
 #import "HomePageINeedPlayViewController.h"
+#import "ChiHeViewController.h"
 
 @interface LYUserLoginViewController ()<LYRegistrationDelegate,LYResetPasswordDelegate>
 
@@ -43,8 +44,23 @@
     _step++;
 }
 - (IBAction)goBackClick:(id)sender {
-//    [self.navigationController popToRootViewControllerAnimated:YES];
+//    NSLog(@"-------pop:%@",self.popoverPresentationController);
+//    NSLog(@"-------pop:%@",self.parentViewController);
+//    NSLog(@"-------pop:%@",self.childViewControllers);
+//    NSLog(@"-------pop:%@",self.navigationController.childViewControllers);
+//    NSLog(@"-------pop:%d",self.navigationController.childViewControllers.count);
+//    NSLog(@"-------pop:%@",self.navigationController.childViewControllers);
+//
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[ChiHeViewController class]]) {
+            [self.navigationController popToViewController:controller animated:YES];
+            return;
+        }
+    }
+    
+    
     [self.navigationController popViewControllerAnimated:YES];
+//    if([self.navigationController.childViewControllers objectAtIndex:1])
 }
 
 - (void)didReceiveMemoryWarning {
