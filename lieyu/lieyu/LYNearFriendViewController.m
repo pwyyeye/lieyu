@@ -94,6 +94,8 @@
         }
         if([customerModel.sex isEqualToString:@"1"]){
             cell.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+        }else{
+            cell.sexImageView.image=[UIImage imageNamed:@"woman"];
         }
         if(customerModel.tag.count>0){
             NSMutableString *mytags=[[NSMutableString alloc] init];
@@ -262,7 +264,7 @@
     _isShow=NO;
     [filteredListContent removeAllObjects];
     for (CustomerModel *model in datalist) {
-        if([model.sex isEqualToString:@"0"]){
+        if([model.sex isEqualToString:@"0"]||[model.sex isEqualToString:@""]){
             [filteredListContent addObject:model];
         }
     }
@@ -274,6 +276,7 @@
     _isShow=NO;
     [filteredListContent removeAllObjects];
     [filteredListContent addObjectsFromArray:datalist];
+    [_tableView reloadData];
     [self SetViewDisappear:nil];
 }
 /*
