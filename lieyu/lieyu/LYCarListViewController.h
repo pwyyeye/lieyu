@@ -14,4 +14,6 @@
 
 @property (nonatomic, assign) id<RefreshGoodsNum> numrefreshdelegate;
 
+- (void)backToCHView;
+
 @end
