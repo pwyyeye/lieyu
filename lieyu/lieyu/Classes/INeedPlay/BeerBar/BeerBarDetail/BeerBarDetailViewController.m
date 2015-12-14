@@ -439,7 +439,7 @@
     }
     [_headerCell bringSubviewToFront:_headerCell.image_laBa];
 }
-
+      
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 0.001;
