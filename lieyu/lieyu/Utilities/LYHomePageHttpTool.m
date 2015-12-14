@@ -44,7 +44,6 @@
         [MyUtil showMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
-    
 }
 #pragma mark 一起玩列表详细
 -(void) getTogetherDetailWithParams:(NSDictionary*)params
