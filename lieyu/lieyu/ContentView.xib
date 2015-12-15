@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,7 +13,6 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择消费方式" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fB-SI-RAr">
                     <rect key="frame" x="80" y="10" width="140" height="28"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="140" id="3md-n0-m7a"/>
                         <constraint firstAttribute="height" constant="28" id="CvA-D8-vr7"/>
@@ -24,7 +23,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自由付款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpd-s8-D4t">
                     <rect key="frame" x="150" y="203" width="68" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="68" id="qbI-oZ-WTc"/>
                         <constraint firstAttribute="height" constant="21" id="xyi-rH-yyK"/>
@@ -35,7 +33,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(所有人AA付款)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AS9-4y-E0Y">
                     <rect key="frame" x="135" y="157" width="99" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="BEQ-sx-d2O"/>
                         <constraint firstAttribute="width" constant="99" id="tvP-lU-cf3"/>
@@ -46,7 +43,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AA付款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAk-Vc-MZ6">
                     <rect key="frame" x="156" y="133" width="56" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="56" id="268-1J-uB2"/>
                         <constraint firstAttribute="height" constant="21" id="BCC-mc-PFS"/>
@@ -57,7 +53,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我请客" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkY-QP-uxP">
                     <rect key="frame" x="157" y="63" width="55" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="55" id="ihG-Pb-gRH"/>
                         <constraint firstAttribute="height" constant="21" id="uov-OW-yhM"/>
@@ -68,7 +63,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(发起人全付款)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4K-8r-mzW">
                     <rect key="frame" x="137" y="87" width="94" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="SLV-0i-JxM"/>
                         <constraint firstAttribute="width" constant="94" id="oO3-4F-3oB"/>
@@ -79,7 +73,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(发起人最低付款¥100)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHg-kS-BXe">
                     <rect key="frame" x="114" y="227" width="141" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="c7r-39-RgV"/>
                         <constraint firstAttribute="width" constant="141" id="kOO-hj-Z7g"/>
@@ -90,7 +83,6 @@
                 </label>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJr-CT-Ozc">
                     <rect key="frame" x="64" y="74" width="21" height="22"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="GmX-TI-UJk"/>
                         <constraint firstAttribute="height" constant="22" id="l5K-Xi-YBc"/>
@@ -99,7 +91,6 @@
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2H-cL-tj3">
                     <rect key="frame" x="64" y="144" width="21" height="22"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="gNA-Iw-ewq"/>
                         <constraint firstAttribute="width" constant="21" id="wbZ-63-7Uc"/>
@@ -108,36 +99,31 @@
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y35-sw-bXc">
                     <rect key="frame" x="64" y="215" width="21" height="22"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="21" id="2Md-vF-rHp"/>
                         <constraint firstAttribute="height" constant="22" id="aEO-YE-cw3"/>
                     </constraints>
                     <state key="normal" image="CustomBtn_unSelected.png"/>
                 </button>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBN-Jy-uZU">
-                    <rect key="frame" x="20" y="63" width="280" height="45"/>
-                    <animations/>
-                    <connections>
-                        <action selector="BtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="SLT-ni-C16"/>
-                    </connections>
-                </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upG-fR-Kd6">
                     <rect key="frame" x="20" y="133" width="280" height="45"/>
-                    <animations/>
                     <connections>
                         <action selector="BtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="9Te-jn-hMu"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Xz-pN-z5Q">
                     <rect key="frame" x="20" y="203" width="280" height="45"/>
-                    <animations/>
                     <connections>
                         <action selector="BtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="7r7-Df-EPU"/>
                     </connections>
                 </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBN-Jy-uZU">
+                    <rect key="frame" x="20" y="63" width="280" height="45"/>
+                    <connections>
+                        <action selector="BtnClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="SLT-ni-C16"/>
+                    </connections>
+                </button>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="wHg-kS-BXe" firstAttribute="bottom" secondItem="3Xz-pN-z5Q" secondAttribute="bottom" id="4ZE-9X-1bL"/>

@@ -56,32 +56,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GDg-ii-JHp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Shape" translatesAutoresizingMaskIntoConstraints="NO" id="A0u-sv-bPQ">
-                                        <rect key="frame" x="10" y="32" width="14" height="20"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXg-6M-j3t">
-                                        <rect key="frame" x="10" y="32" width="54" height="20"/>
-                                        <state key="normal" title="上海"/>
-                                        <connections>
-                                            <action selector="cityChangeClick:" destination="xFR-IV-f12" eventType="touchUpInside" id="zXh-NE-nOF"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="猎娱" translatesAutoresizingMaskIntoConstraints="NO" id="4Hf-3H-vvQ">
-                                        <rect key="frame" x="135" y="30" width="51" height="25"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XJD-0Q-3S9">
-                                        <rect key="frame" x="288" y="30" width="24" height="24"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" backgroundImage="search"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vFc-vf-oBn">
-                                <rect key="frame" x="0.0" y="64" width="320" height="457"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="vFc-vf-oBn">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="xFR-IV-f12" id="1d3-37-Q3V"/>
@@ -97,14 +73,18 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vFc-vf-oBn" secondAttribute="trailing" id="Me7-aM-hx0"/>
+                            <constraint firstAttribute="bottom" secondItem="vFc-vf-oBn" secondAttribute="bottom" id="Zsv-bC-BoR"/>
+                            <constraint firstItem="vFc-vf-oBn" firstAttribute="leading" secondItem="4t4-fS-ga6" secondAttribute="leading" id="oSO-8A-Hav"/>
+                            <constraint firstItem="vFc-vf-oBn" firstAttribute="top" secondItem="faP-Zl-uQW" secondAttribute="bottom" id="tIu-v6-rZl"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="我要玩" id="49I-6a-yzM">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="cityBtn" destination="XJD-0Q-3S9" id="s7T-jr-xcw"/>
                         <outlet property="tableView" destination="vFc-vf-oBn" id="41h-m6-bkS"/>
-                        <outlet property="topView" destination="GDg-ii-JHp" id="P2l-WE-yHJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z3V-g7-0Kl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -131,7 +111,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="146"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jTw-0b-o2z" id="9QG-Dn-2Rw">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="145.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="145"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-P4-viZ">
@@ -172,7 +152,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-gz-LvB">
-                                                            <rect key="frame" x="0.0" y="96" width="320" height="0.5"/>
+                                                            <rect key="frame" x="0.0" y="96" width="320" height="1"/>
                                                             <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="QPE-P8-2a8">
@@ -251,10 +231,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindMenuCell" rowHeight="51" id="gKb-OT-apz" customClass="FindMenuCell">
-                                        <rect key="frame" x="0.0" y="49.5" width="320" height="51"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gKb-OT-apz" id="uNb-SO-p1w">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIj-qm-8wC">
@@ -339,9 +319,6 @@
     <resources>
         <image name="INeedYou" width="20" height="20"/>
         <image name="Location" width="20" height="20"/>
-        <image name="Shape" width="14" height="20"/>
         <image name="icon_liwozuijin.png" width="72" height="80"/>
-        <image name="search" width="24" height="24"/>
-        <image name="猎娱" width="20" height="20"/>
     </resources>
 </document>

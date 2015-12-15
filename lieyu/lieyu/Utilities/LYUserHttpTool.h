@@ -134,4 +134,9 @@
 //摇到的历史
 -(void) getYaoYiYaoHisFriendListWithParams:(NSDictionary*)params
                                   block:(void(^)(NSMutableArray* result)) block;
+//获取用户收藏的酒吧
++ (void)getUserCollectionJiuBarListWithCompelet:(void(^)(NSArray *array))compelte;
+
+//获取用户赞的酒吧
++ (void)getUserZangJiuBarListWithCompelet:(void(^)(NSArray *array))compelte;
 @end
