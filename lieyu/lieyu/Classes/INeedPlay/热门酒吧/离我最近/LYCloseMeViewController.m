@@ -58,10 +58,10 @@
     cell.jiuBaModel = _dataArray[indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-}    
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    JiuBaModel *jiuba = _dataArray[indexPath.row];
+    JiuBaModel *jiuba = _dataArray[indexPath.section];
     BeerBarDetailViewController *beerDetailVC = [[BeerBarDetailViewController alloc]init];
     beerDetailVC.beerBarId = @(jiuba.barid);
     [self.navigationController pushViewController:beerDetailVC animated:YES];

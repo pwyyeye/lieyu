@@ -38,23 +38,23 @@
     [((UIButton *)_buttonArray[3]) setBackgroundImage:[UIImage imageNamed:@"ktv.jpg"] forState:UIControlStateNormal];
     
     [self.button_page_left addTarget:self action:@selector(pageClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self.button_page_right addTarget:self action:@selector(pageClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.button_page_right addTarget:self action:@selector(pageClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)pageClick:(UIButton *)buton{
     if (!buton.tag) {
-        [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+        [self.scrollView setContentOffset:CGPointZero animated:YES];
         [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"chevron right copy"] forState:UIControlStateNormal];
         [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"chevron right"] forState:UIControlStateNormal];
     }else{
-        [self.scrollView setContentOffset:CGPointMake(320, 0) animated:YES];
+        [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH/2.f *(self.bartypeArray.count -2), 0) animated:YES];
         [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"arrowLeftHight"] forState:UIControlStateNormal];
         [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"arrowRitht"] forState:UIControlStateNormal];
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.x > 300) {
+    if (scrollView.contentOffset.x >= scrollView.contentSize.width - SCREEN_WIDTH) {
         [self.button_page_left   setBackgroundImage:[UIImage imageNamed:@"arrowLeftHight"] forState:UIControlStateNormal];
         [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"arrowRitht"] forState:UIControlStateNormal];
     }else{
