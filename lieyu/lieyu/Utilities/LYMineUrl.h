@@ -24,6 +24,9 @@
 //订单评价
 #define LY_MY_ORDER_PINGJIA @"lyOrderEvaluationAction.do?action=add"
 
+//订单评价商家回复
+#define LY_MY_ORDER_REVIEW @"lyOrderEvaluationAction.do?action=save"
+
 //取消订单
 #define LY_MY_ORDER_CANCEL @"lyOrderAction.do?action=cancel"
 //一定会去

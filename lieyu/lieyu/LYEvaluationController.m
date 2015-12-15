@@ -96,6 +96,10 @@
             
         }];
          NSLog(@"----pass-pingjia2%@---",dic);
+        
+//        [[LYUserHttpTool shareInstance] addEvaluationReview:@{@"evaluationid":@"13",@"message":_contentText.text} complete:^(BOOL result) {
+//            [MyUtil showMessage:@"回复成功！"];
+//        }];
     }
     
 }

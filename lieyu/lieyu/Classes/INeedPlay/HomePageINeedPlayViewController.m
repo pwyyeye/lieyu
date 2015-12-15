@@ -54,16 +54,16 @@ UITableViewDataSource,UITableViewDelegate,
     [super viewDidLoad];
 //    self.navigationController.delegate=self;
     [self.navigationController setNavigationBarHidden:NO];
-    self.automaticallyAdjustsScrollViewInsets=NO;
+//    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+//        _tableView.height=431-64;
+//    }
     
-    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-        _tableView.height=431;
-    }
+    _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.extendedLayoutIncludesOpaqueBars = NO;
-        self.modalPresentationCapturesStatusBarAppearance = NO;
+//        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.extendedLayoutIncludesOpaqueBars = NO;
+//        self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     
    // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
@@ -98,9 +98,9 @@ UITableViewDataSource,UITableViewDelegate,
     _topView.frame = rc;
     [self.navigationController.navigationBar addSubview:_topView];
     //ios 7.0适配
-    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
-    }
+//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+//        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
+//    }
     [self.navigationController.navigationBar bringSubviewToFront:_topView];
     [self getData];
     [self.navigationController setNavigationBarHidden:NO];
@@ -109,12 +109,6 @@ UITableViewDataSource,UITableViewDelegate,
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    
-    //ios 7.0适配
-    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
-    }
-    
     
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
@@ -317,7 +311,11 @@ UITableViewDataSource,UITableViewDelegate,
 
 #pragma mark UITableViewDataSoucre&UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.aryList.count + 3;
+    if (self.aryList.count) {
+        return self.aryList.count + 3;
+    }else{
+        return 0;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

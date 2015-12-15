@@ -124,8 +124,8 @@
 
 #pragma mark  回退按钮
 - (void)backForword{
-    NSLog(@"%@",self.navigationController.childViewControllers);
-//    [self.navigationController popViewControllerAnimated:YES];
+//    NSLog(@"%@",self.navigationController.childViewControllers);
+    [self.navigationController popViewControllerAnimated:YES];
 //    for (UIViewController *controller in self.navigationController.childViewControllers) {
 //        if(controller isKindOfClass:[])
 //    }

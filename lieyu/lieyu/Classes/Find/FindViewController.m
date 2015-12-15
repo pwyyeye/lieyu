@@ -26,15 +26,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     isMes=false;
+    self.automaticallyAdjustsScrollViewInsets=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:RECEIVES_MESSAGE object:nil];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
-    //适配7.0
-    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-        _tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
-    }
+  
     datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
                @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
                @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
@@ -93,6 +91,8 @@
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
+    NSLog(@"----pass-pass000000    %@---",NSStringFromCGRect(_tableView.frame));
+    NSLog(@"----pass-pass333333   %@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
 
 - (void)viewWillLayoutSubviews
@@ -204,6 +204,9 @@
             
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             chat.title=@"最近联系";
+            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+            chat.navigationItem.leftBarButtonItem = leftBtn;
+            
             [self.navigationController pushViewController:chat animated:YES];
         }else if(indexPath.row==1){
             //玩友列表
@@ -252,5 +255,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)backForword{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

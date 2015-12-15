@@ -78,7 +78,9 @@
 -(void) addEvaluation:(NSDictionary*)params
              complete:(void (^)(BOOL result))result;
 
-
+// 添加评价商家回复
+-(void) addEvaluationReview:(NSDictionary*)params
+                   complete:(void (^)(BOOL result))result;
 //好友列表
 -(void) getFriendsList:(NSDictionary*)params
                block:(void(^)(NSMutableArray* result)) block;

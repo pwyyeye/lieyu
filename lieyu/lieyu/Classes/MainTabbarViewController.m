@@ -28,9 +28,6 @@
 {
     [super viewDidLoad];
     [self setupViewStyles];
-//    self.locationManager = [[LYLocationManager alloc] init];
-//    [_locationManager beginUpdateLocation:kCLLocationAccuracyBest];
-//    _locationManager.locationDelegate = self;
     self.delegate=self;
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:RECEIVES_MESSAGE object:nil];
@@ -161,6 +158,9 @@
     if([MyUtil isEmptyString:app.s_app_id]){
         self.selectedIndex=0;
     }
+}
+-(void)layoutSublayersOfLayer:(CALayer *)layer{
+    [super layoutSublayersOfLayer:layer];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
