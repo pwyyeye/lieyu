@@ -62,11 +62,10 @@
     self.navigationController.delegate=self;
     self.automaticallyAdjustsScrollViewInsets=YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
-//    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
-//       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-//        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-107);
-//    }
-    _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-47-40);
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
+       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        self.tableView.bounds = CGRectMake(0, 0, SCREEN_WIDTH, self.tableView.frame.size.height - 47);
+    }
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -84,47 +83,17 @@
 {
     [super viewWillAppear:animated];
     
-    //    [self performSelector:@selector(setCustomTitle:) withObject:@"一起玩" afterDelay:0.1];
-    //    self.oriNavItems = [self.navigationController.navigationBar.items copy];
-    //    [self.navigationController.navigationBar addSubview:_fillterButton];
-    //    CGRect rc = _fillterButton.frame;
-    //    rc.origin.x = 10;
-    //    rc.origin.y = 8;
-    //    _fillterButton.frame = rc;
-    //    [self setCustomTitle:@"一起玩"];
-    
     _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
-    
     _myTitle.backgroundColor = [UIColor clearColor];
     _myTitle.textColor=[UIColor whiteColor];
     _myTitle.textAlignment = NSTextAlignmentCenter;
     [_myTitle setFont:[UIFont systemFontOfSize:16.0]];
     [_myTitle setText:@"热门拼客"];
-    //        self.navigationItem.titleView=titleText;
-    [self.navigationController.navigationBar addSubview:_myTitle];
-    //    NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
-    //    //ios 7.0适配
-    //    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-    ////        if (self.tableView.contentInset.top==0||self.tableView.contentInset.top==44) {
-    //            self.tableView.contentInset = UIEdgeInsetsMake(64,  0,  0,  0);
-    //            self.tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-47);
-    ////        }
-    //
-    //
-    //    }
-    //   NSLog(@"----pass-self.tableView.contentInset.top2%f---",self.tableView.contentInset.top);
     
+    [self.navigationController.navigationBar addSubview:_myTitle];
     
     NSLog(@"----pass-pass11111    %@---",NSStringFromCGRect(_tableView.frame));
     NSLog(@"----pass-pass22222    %@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
-    
-//    self.tableView.contentInset = UIEdgeInsetsMake(40,  0,  0,  0);
-//    
-//    if (self.tableView.contentInset.top==0) {
-//        self.tableView.contentInset= UIEdgeInsetsMake(64,  0,  0,  0);
-//    }else{
-//        self.tableView.contentInset= UIEdgeInsetsMake(20,  0,  0,  0);
-//    }
 }
 - (void)viewWillLayoutSubviews
 {
@@ -138,7 +107,6 @@
         NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
         //        if (self.tableView.contentInset.top==0 ||self.tableView.contentInset.top==128) {
         //        }
-        
     }
 }
 

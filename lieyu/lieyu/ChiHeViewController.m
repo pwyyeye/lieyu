@@ -64,6 +64,10 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getNumLess) name:@"lessGood" object:nil];
     
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
+       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        self.collectionView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 120);
+    }
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
     self.navigationItem.rightBarButtonItem = rightItem;

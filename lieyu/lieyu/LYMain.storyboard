@@ -123,7 +123,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="157" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OZ6-Fv-OFK">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="157" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OZ6-Fv-OFK">
                                 <rect key="frame" x="0.0" y="104" width="320" height="415"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -216,6 +216,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="OZ6-Fv-OFK" firstAttribute="leading" secondItem="rN7-19-ccx" secondAttribute="leading" id="Cvo-Sd-auc"/>
+                            <constraint firstItem="OZ6-Fv-OFK" firstAttribute="top" secondItem="n8j-8y-Ig6" secondAttribute="bottom" constant="40" id="aHy-Vc-S8u"/>
+                            <constraint firstItem="BdO-OL-gwm" firstAttribute="top" secondItem="OZ6-Fv-OFK" secondAttribute="bottom" id="hVa-t2-xob"/>
+                            <constraint firstAttribute="trailing" secondItem="OZ6-Fv-OFK" secondAttribute="trailing" id="qdW-xw-HLD"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="一起玩" id="onS-Tg-6TO">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
