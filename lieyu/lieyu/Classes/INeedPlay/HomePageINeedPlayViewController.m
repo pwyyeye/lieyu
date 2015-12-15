@@ -311,7 +311,11 @@ UITableViewDataSource,UITableViewDelegate,
 
 #pragma mark UITableViewDataSoucre&UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.aryList.count + 3;
+    if (self.aryList.count) {
+        return self.aryList.count + 3;
+    }else{
+        return 0;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
