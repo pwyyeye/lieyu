@@ -58,7 +58,7 @@
     cell.jiuBaModel = _dataArray[indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-}
+}    
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JiuBaModel *jiuba = _dataArray[indexPath.row];
