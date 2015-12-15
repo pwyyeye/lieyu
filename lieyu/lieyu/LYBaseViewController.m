@@ -24,25 +24,25 @@
 //    self.navigationController.navigationBar.barTintColor=RGB(64,1,120);
     //若为yesnavigationBar背景 会有50％的透明
     self.navigationController.navigationBar.translucent = YES;
-    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-        self.navigationController.navigationBar.translucent = NO;
-            self.extendedLayoutIncludesOpaqueBars = NO;
-            self.modalPresentationCapturesStatusBarAppearance=NO;
-    }
+//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
+//        self.navigationController.navigationBar.translucent = NO;
+//            self.extendedLayoutIncludesOpaqueBars = NO;
+//            self.modalPresentationCapturesStatusBarAppearance=NO;
+//    }
 
     
     //修改的部分
-    UIColor *_inputColor0 = RGBA(109, 0, 142,0.9);
-    UIColor *_inputColor1 = RGBA(64, 1, 120,0.9);
-    CGPoint _inputPoint0 = CGPointMake(0.5, 0);
-    CGPoint _inputPoint1 = CGPointMake(0.5, 1);
-    CAGradientLayer *layer = [CAGradientLayer new];
-    layer.colors = @[(__bridge id)_inputColor0.CGColor, (__bridge id)_inputColor1.CGColor];
-    layer.startPoint = _inputPoint0;
-    layer.endPoint = _inputPoint1;
-    layer.frame = CGRectMake(0, -20, 320, 64);
-    layer.zPosition=-1;
-    [self.navigationController.navigationBar.layer addSublayer:layer];
+//    UIColor *_inputColor0 = RGBA(109, 0, 142,0.9);
+//    UIColor *_inputColor1 = RGBA(64, 1, 120,0.9);
+//    CGPoint _inputPoint0 = CGPointMake(0.5, 0);
+//    CGPoint _inputPoint1 = CGPointMake(0.5, 1);
+//    CAGradientLayer *layer = [CAGradientLayer new];
+//    layer.colors = @[(__bridge id)_inputColor0.CGColor, (__bridge id)_inputColor1.CGColor];
+//    layer.startPoint = _inputPoint0;
+//    layer.endPoint = _inputPoint1;
+//    layer.frame = CGRectMake(0, -20, 320, 64);
+//    layer.zPosition=-1;
+//    [self.navigationController.navigationBar.layer addSublayer:layer];
     
 //    CALayer *layer=[[CALayer alloc] init];
 //    layer.backgroundColor=RGB(114, 5, 147).CGColor;
@@ -51,12 +51,12 @@
     
 //    [self.navigationController.navigationBar setBarTintColor:RGB(114, 5, 147)];
     
-    UIImage *bgImage=[UIImage imageNamed:@"navBarbg"];
+//    UIImage *bgImage=[UIImage imageNamed:@"navBarbg"];
  
 //    UIColor *color2=[UIColor colorWithPatternImage:bgImage];
 //    [self.navigationController.navigationBar setBarTintColor:RGB(255, 255, 255)];
     
-    [self.navigationController.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];
     
     
 //    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
@@ -102,6 +102,10 @@
 
     // Do any additional setup after loading the view.
 }
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+}
+
 -(void)showMessage:(NSString*) message
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:message message:nil delegate:nil  cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

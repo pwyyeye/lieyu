@@ -290,6 +290,7 @@ static DejalActivityView *dejalActivityView = nil;
 
 - (void)layoutSubviews;
 {
+    [super layoutSubviews];
     self.frame = [self enclosingFrame];
     
     // If we're animating a transform, don't lay out now, as can't use the frame property when transforming:
@@ -547,6 +548,7 @@ static DejalActivityView *dejalActivityView = nil;
 
 - (void)layoutSubviews;
 {
+    [super layoutSubviews];
     // If we're animating a transform, don't lay out now, as can't use the frame property when transforming:
     if (!CGAffineTransformIsIdentity(self.borderView.transform))
         return;

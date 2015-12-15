@@ -62,10 +62,11 @@
     self.navigationController.delegate=self;
     self.automaticallyAdjustsScrollViewInsets=YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
-       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-107);
-    }
+//    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
+//       [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+//        _tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-107);
+//    }
+    _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-47-40);
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -128,8 +129,6 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    self.automaticallyAdjustsScrollViewInsets=YES;
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     if (self.navigationController.navigationBarHidden != NO ) {
         [self.navigationController setNavigationBarHidden:NO];
         

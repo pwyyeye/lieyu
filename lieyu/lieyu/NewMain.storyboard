@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daG-Gk-NtN">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="daG-Gk-NtN">
                                 <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-TZ-Lf7">
@@ -248,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhD-FF-5nv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-764" y="1318"/>
+            <point key="canvasLocation" x="-482" y="1363"/>
         </scene>
         <!--Play Together View Controller-->
         <scene sceneID="tuA-Vk-j5V">
@@ -556,6 +556,7 @@
         <!--Play Together Main View Controller-->
         <scene sceneID="Thj-AB-kKh">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s0d-1f-GfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LYPlayTogetherMainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h90-SY-Y9n" customClass="LYPlayTogetherMainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hx8-nS-xNY"/>
@@ -887,400 +888,8 @@
                         <outlet property="tableView" destination="E99-9z-aIa" id="5wu-lg-NtQ"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s0d-1f-GfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="10" y="1363"/>
-        </scene>
-        <!--Play Together Pay View Controller-->
-        <scene sceneID="oUu-Id-gdE">
-            <objects>
-                <viewController storyboardIdentifier="LYPlayTogetherPayViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="H6b-rn-dWQ" customClass="LYPlayTogetherPayViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="e4o-2g-0pT"/>
-                        <viewControllerLayoutGuide type="bottom" id="mt6-di-JYX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="a4s-I7-6hz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="sOE-mh-MS9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="527"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTTaoCanDetailCell" rowHeight="84" id="grX-Ix-noJ" customClass="PTTaoCanDetailCell">
-                                        <rect key="frame" x="0.0" y="49.5" width="320" height="84"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="grX-Ix-noJ" id="U6O-al-sVS">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="83.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Udd-7m-e2E">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="107"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ff3-z2-qi8">
-                                                            <rect key="frame" x="15" y="15" width="60" height="60"/>
-                                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d94-Fo-dj3" userLabel="desc">
-                                                            <rect key="frame" x="83" y="54" width="79" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="0.050980392159999999" green="0.62352941179999999" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ba7-3G-9NL">
-                                                            <rect key="frame" x="221" y="59" width="91" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Y7-O1-I9H">
-                                                            <rect key="frame" x="221" y="30" width="91" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="0.99607843139999996" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAu-jp-j5k" userLabel="barname">
-                                                            <rect key="frame" x="83" y="15" width="203" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="jiuBaImageView" destination="ff3-z2-qi8" id="pHL-qa-ZLq"/>
-                                            <outlet property="jiubaLal" destination="d94-Fo-dj3" id="7gb-cj-yZJ"/>
-                                            <outlet property="marketprice" destination="Ba7-3G-9NL" id="e8f-GA-loR"/>
-                                            <outlet property="moneyLal" destination="3Y7-O1-I9H" id="oR3-om-dxH"/>
-                                            <outlet property="titleLal" destination="AAu-jp-j5k" id="wcR-AU-CGv"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTTypeChooseCell" rowHeight="76" id="cP8-Eo-6Zn" customClass="PTTypeChooseCell">
-                                        <rect key="frame" x="0.0" y="133.5" width="320" height="76"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cP8-Eo-6Zn" id="n6J-xS-iMB">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="75.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tC1-iT-aFR">
-                                                    <rect key="frame" x="146" y="10" width="83" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <inset key="titleEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <inset key="imageEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="AA付款" image="icon_singleoption_normal">
-                                                        <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="selected" title="AA付款" image="icon_singleoption_highlightl"/>
-                                                    <connections>
-                                                        <action selector="typeChooseAct:" destination="cP8-Eo-6Zn" eventType="touchUpInside" id="lo9-wz-QIO"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tt7-RX-zYF">
-                                                    <rect key="frame" x="233" y="10" width="83" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <inset key="titleEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <inset key="imageEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="自由付款" image="icon_singleoption_normal">
-                                                        <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="selected" title="自由付款" image="icon_singleoption_highlightl"/>
-                                                    <connections>
-                                                        <action selector="typeChooseAct:" destination="cP8-Eo-6Zn" eventType="touchUpInside" id="6Eu-h6-yrd"/>
-                                                    </connections>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="拼客方式：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ydu-BA-xeY">
-                                                    <rect key="frame" x="15" y="10" width="60" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bv1-dQ-YRb">
-                                                    <rect key="frame" x="57" y="10" width="83" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <inset key="titleEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <inset key="imageEdgeInsets" minX="-7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                    <state key="normal" title="我请客" image="icon_singleoption_normal">
-                                                        <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="selected" title="我请客" image="icon_singleoption_highlightl"/>
-                                                    <connections>
-                                                        <action selector="typeChooseAct:" destination="cP8-Eo-6Zn" eventType="touchUpInside" id="qcJ-1t-9ja"/>
-                                                    </connections>
-                                                </button>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sLE-2k-tfi">
-                                                    <rect key="frame" x="0.0" y="33" width="320" height="42"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="小伙伴您只要支付100元起就可以发起拼客啦！并且发起人将获得所有返利哦！赶紧行动！" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1r-Vx-UPH" userLabel="desc">
-                                                            <rect key="frame" x="13" y="8" width="295" height="26"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="aaBtn" destination="tC1-iT-aFR" id="nnu-vv-w57"/>
-                                            <outlet property="freePayBtn" destination="tt7-RX-zYF" id="nbr-CM-Y6f"/>
-                                            <outlet property="payAllBtn" destination="Bv1-dQ-YRb" id="bHS-Q2-QcC"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTChooseNumCell" rowHeight="64" id="3Tn-Vp-jNb" customClass="PTChooseNumCell">
-                                        <rect key="frame" x="0.0" y="209.5" width="320" height="64"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Tn-Vp-jNb" id="dJt-jv-iDb">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3x-qz-Cv3">
-                                                    <rect key="frame" x="95" y="15" width="34" height="34"/>
-                                                    <state key="normal" image="jian2">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="jianAct:" destination="3Tn-Vp-jNb" eventType="touchUpInside" id="Fz0-bB-B1g"/>
-                                                    </connections>
-                                                </button>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="2" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hnB-ci-Div">
-                                                    <rect key="frame" x="130" y="15" width="60" height="34"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S6b-uq-iMg">
-                                                    <rect key="frame" x="188" y="15" width="34" height="34"/>
-                                                    <state key="normal" image="jia3">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="jiaAct:" destination="3Tn-Vp-jNb" eventType="touchUpInside" id="Qxe-lX-fJw"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="numLal" destination="hnB-ci-Div" id="iig-6E-27P"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTPayAmoutCell" rowHeight="56" id="jS1-lk-pho" customClass="PTPayAmoutCell">
-                                        <rect key="frame" x="0.0" y="273.5" width="320" height="56"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jS1-lk-pho" id="er2-A9-aE5">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="55.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入你要支付的金额数值" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vrh-7h-mhc">
-                                                    <rect key="frame" x="15" y="17" width="157" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
-                                                    <connections>
-                                                        <action selector="exitEdit:" destination="jS1-lk-pho" eventType="editingDidEndOnExit" id="uhl-em-K0d"/>
-                                                    </connections>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3W-ht-qaU">
-                                                    <rect key="frame" x="15" y="43" width="157" height="1"/>
-                                                    <color key="backgroundColor" red="0.13725490200000001" green="0.65098039220000004" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbu-pk-kfK">
-                                                    <rect key="frame" x="186" y="14" width="120" height="30"/>
-                                                    <color key="backgroundColor" red="0.99607843139999996" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <state key="normal">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="flBtn" destination="fbu-pk-kfK" id="KJO-5Z-cA2"/>
-                                            <outlet property="payAmountTex" destination="vrh-7h-mhc" id="BG6-Ws-dSo"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTTimeChooseCell" id="Pye-1y-Y8D" customClass="PTTimeChooseCell">
-                                        <rect key="frame" x="0.0" y="329.5" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pye-1y-Y8D" id="49M-2v-xwJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择时间:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owX-vJ-Qlr">
-                                                    <rect key="frame" x="15" y="14" width="58" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请选择时间" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4J-23-rWJ">
-                                                    <rect key="frame" x="81" y="14" width="209" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="disClosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="2I1-yX-odm">
-                                                    <rect key="frame" x="297" y="21" width="5" height="8"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="timeChooselal" destination="S4J-23-rWJ" id="Ked-tm-Szh"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTAddressCell" id="rSB-uZ-rT6" customClass="PTAddressCell">
-                                        <rect key="frame" x="0.0" y="373.5" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rSB-uZ-rT6" id="Jdo-nt-oQZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="地点：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMX-BC-q5f">
-                                                    <rect key="frame" x="15" y="14" width="58" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="disClosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="XYk-Yh-IvB">
-                                                    <rect key="frame" x="297" y="21" width="5" height="8"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ya-5S-yvO">
-                                                    <rect key="frame" x="81" y="14" width="209" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="addresssLal" destination="9Ya-5S-yvO" id="wfC-bF-NAc"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="76" id="UFi-uI-sA6">
-                                        <rect key="frame" x="0.0" y="417.5" width="320" height="76"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UFi-uI-sA6" id="fOl-QM-wk5">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="75.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6tl-SC-RSk">
-                                                    <rect key="frame" x="15" y="12" width="51" height="51"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sna-SA-adl">
-                                                    <rect key="frame" x="89" y="12" width="150" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G33-LT-zO4">
-                                                    <rect key="frame" x="89" y="42" width="104" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNA-Ju-IvP">
-                                                    <rect key="frame" x="272" y="18" width="40" height="40"/>
-                                                    <state key="normal" image="danxuan">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="selected" image="danxuanSelected"/>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="ageLal" destination="G33-LT-zO4" id="9aL-dA-kTX"/>
-                                            <outlet property="nameLal" destination="sna-SA-adl" id="eCl-XH-eI1"/>
-                                            <outlet property="selBtn" destination="kNA-Ju-IvP" id="Kjb-DK-sXp"/>
-                                            <outlet property="userImageView" destination="6tl-SC-RSk" id="RFJ-Rl-0YD"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTContactCell" id="3eV-Wj-vU2" customClass="PTContactCell">
-                                        <rect key="frame" x="0.0" y="493.5" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3eV-Wj-vU2" id="ttO-WA-ufX">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ld1-A9-hHE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
-                                                    <state key="normal">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="il5-TE-cbW">
-                                                    <rect key="frame" x="160" y="0.0" width="160" height="44"/>
-                                                    <state key="normal">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="phoneLv" translatesAutoresizingMaskIntoConstraints="NO" id="tV1-WH-phg">
-                                                    <rect key="frame" x="206" y="14" width="18" height="16"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="电话" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ce9-pG-aGg">
-                                                    <rect key="frame" x="232" y="11" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_xinxi_normal1" translatesAutoresizingMaskIntoConstraints="NO" id="Pnc-Wf-AFA">
-                                                    <rect key="frame" x="46" y="14" width="18" height="16"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="私聊" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60d-RJ-nDG">
-                                                    <rect key="frame" x="72" y="11" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="phoneBtn" destination="il5-TE-cbW" id="uke-it-BsA"/>
-                                            <outlet property="siliaoBtn" destination="Ld1-A9-hHE" id="2dq-Ym-060"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="H6b-rn-dWQ" id="GAe-ml-wrY"/>
-                                    <outlet property="delegate" destination="H6b-rn-dWQ" id="eYB-Yk-TDR"/>
-                                </connections>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjG-bJ-qB3">
-                                <rect key="frame" x="0.0" y="527" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.13725490200000001" green="0.65098039220000004" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="7WN-GM-9bn"/>
-                                    <constraint firstAttribute="height" constant="41" id="gCV-dy-OsB"/>
-                                </constraints>
-                                <state key="normal" title="立即支付">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="payAct:" destination="H6b-rn-dWQ" eventType="touchUpInside" id="lWe-zH-dBa"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="mt6-di-JYX" firstAttribute="top" secondItem="MjG-bJ-qB3" secondAttribute="bottom" id="RYB-bR-dRH"/>
-                            <constraint firstItem="MjG-bJ-qB3" firstAttribute="top" secondItem="sOE-mh-MS9" secondAttribute="bottom" id="Usb-ei-t0g"/>
-                            <constraint firstItem="sOE-mh-MS9" firstAttribute="top" secondItem="e4o-2g-0pT" secondAttribute="bottom" id="XHU-cg-mFO"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="sOE-mh-MS9" id="HeK-DM-yLy"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vgA-z4-7EA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-388" y="1363"/>
         </scene>
         <!--Tjoin In View Controller-->
         <scene sceneID="1gA-2d-BZn">
@@ -2061,165 +1670,6 @@
             </objects>
             <point key="canvasLocation" x="-747" y="513"/>
         </scene>
-        <!--Hshow Detail List View Controller-->
-        <scene sceneID="ISv-SZ-JS5">
-            <objects>
-                <viewController storyboardIdentifier="CHshowDetailListViewController" id="QhU-2V-XzV" customClass="CHshowDetailListViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hRz-da-SGN"/>
-                        <viewControllerLayoutGuide type="bottom" id="uWf-MP-gcs"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ydM-D1-UAy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zss-Fz-FW8">
-                                <rect key="frame" x="5" y="9" width="320" height="31"/>
-                                <subviews>
-                                    <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlp-L4-HMf" customClass="ShaiXuanBtn">
-                                        <rect key="frame" x="0.0" y="0.0" width="64" height="34"/>
-                                        <state key="normal" image="默认">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted" image="默认"/>
-                                        <connections>
-                                            <action selector="change:" destination="QhU-2V-XzV" eventType="touchUpInside" id="Thq-tW-Ulz"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6WR-t0-nTg" customClass="ShaiXuanBtn">
-                                        <rect key="frame" x="128" y="0.0" width="64" height="34"/>
-                                        <state key="normal" image="xiaolianNormal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="xiaoliangDown"/>
-                                        <connections>
-                                            <action selector="change:" destination="QhU-2V-XzV" eventType="touchUpInside" id="7Y2-WN-AxB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wlV-WZ-2Yg" customClass="ShaiXuanBtn">
-                                        <rect key="frame" x="256" y="0.0" width="64" height="34"/>
-                                        <state key="normal" image="shaixuan">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="shaixuanSel"/>
-                                        <connections>
-                                            <action selector="change:" destination="QhU-2V-XzV" eventType="touchUpInside" id="hMs-6u-2dT"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="101" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cst-KB-faA" customClass="ShaiXuanBtn">
-                                        <rect key="frame" x="64" y="-1" width="64" height="34"/>
-                                        <state key="normal" image="jiageNormal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="jiageUp"/>
-                                        <connections>
-                                            <action selector="change:" destination="QhU-2V-XzV" eventType="touchUpInside" id="skX-Ar-C7M"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="103" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i43-Ty-QvH" customClass="ShaiXuanBtn">
-                                        <rect key="frame" x="192" y="0.0" width="64" height="34"/>
-                                        <state key="normal" image="flnormal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="flDown"/>
-                                        <connections>
-                                            <action selector="change:" destination="QhU-2V-XzV" eventType="touchUpInside" id="qIy-sU-OFG"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="CcA-V1-9le"/>
-                                    <constraint firstAttribute="height" constant="31" id="mKR-tC-hxe"/>
-                                </constraints>
-                            </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LWZ-4b-2fQ">
-                                <rect key="frame" x="0.0" y="48" width="320" height="523"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vsp-1K-pXM">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="9" minY="14" maxX="9" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CHDetailCollectionCell" id="lLQ-OT-ti6" customClass="CHDetailCollectionCell">
-                                        <rect key="frame" x="9" y="14" width="145" height="226"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="145" height="226"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8I6-Zg-HZN">
-                                                    <rect key="frame" x="0.0" y="15" width="146" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8g-sR-c1a">
-                                                    <rect key="frame" x="0.0" y="48" width="146" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.56862745098039214" green="0.56862745098039214" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_fanli2" translatesAutoresizingMaskIntoConstraints="NO" id="i9K-P9-hDM">
-                                                    <rect key="frame" x="27" y="74" width="93" height="27"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDH-bp-WCa">
-                                                    <rect key="frame" x="0.0" y="77" width="146" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3dH-Jj-3wK">
-                                                    <rect key="frame" x="25" y="113" width="97" height="97"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1B-86-xJi">
-                                                    <rect key="frame" x="0.0" y="34" width="146" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.99607843139999996" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <size key="customSize" width="145" height="226"/>
-                                        <connections>
-                                            <outlet property="flLal" destination="aDH-bp-WCa" id="AcY-uu-wos"/>
-                                            <outlet property="goodsImageView" destination="3dH-Jj-3wK" id="wXf-9d-JCx"/>
-                                            <outlet property="jiubaNameLal" destination="M8g-sR-c1a" id="Fq3-5x-Wda"/>
-                                            <outlet property="nameLal" destination="8I6-Zg-HZN" id="KTO-Ta-gMj"/>
-                                            <outlet property="priceLal" destination="Q1B-86-xJi" id="ccG-cy-KzC"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="QhU-2V-XzV" id="68X-u5-lrw"/>
-                                    <outlet property="delegate" destination="QhU-2V-XzV" id="kTa-ZK-0vB"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="hRz-da-SGN" firstAttribute="top" secondItem="Zss-Fz-FW8" secondAttribute="bottom" constant="-31" id="OSY-Rb-vbk"/>
-                            <constraint firstItem="uWf-MP-gcs" firstAttribute="top" secondItem="LWZ-4b-2fQ" secondAttribute="bottom" id="vfi-BV-tpF"/>
-                            <constraint firstItem="LWZ-4b-2fQ" firstAttribute="top" secondItem="Zss-Fz-FW8" secondAttribute="bottom" id="yM4-uB-W3k"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="btnItem1" destination="vlp-L4-HMf" id="J6F-fG-CZL"/>
-                        <outlet property="btnItem2" destination="Cst-KB-faA" id="37n-W5-8TR"/>
-                        <outlet property="btnItem3" destination="6WR-t0-nTg" id="2PX-Dr-Rrc"/>
-                        <outlet property="btnItem4" destination="i43-Ty-QvH" id="yoi-d1-Vja"/>
-                        <outlet property="btnItem5" destination="wlV-WZ-2Yg" id="gNA-v7-ed8"/>
-                        <outlet property="collectionView" destination="LWZ-4b-2fQ" id="FAK-bS-XO3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vjj-qa-aX6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="34" y="318"/>
-        </scene>
         <!--Jiu Pin Detail View Controller-->
         <scene sceneID="WwM-q0-UUK">
             <objects>
@@ -2439,19 +1889,14 @@
         <image name="CustomBtn_Selected.png" width="21" height="21"/>
         <image name="CustomBtn_unSelected.png" width="21" height="21"/>
         <image name="ZSyjbj" width="68" height="17"/>
-        <image name="bg_fanli2" width="94" height="28"/>
         <image name="danxuan" width="22" height="22"/>
         <image name="danxuanSelected" width="22" height="22"/>
         <image name="disClosure.png" width="7" height="10"/>
-        <image name="flDown" width="64" height="31"/>
-        <image name="flnormal" width="64" height="31"/>
         <image name="icon_fanhui2.png" width="32" height="32"/>
         <image name="icon_heart" width="14" height="12"/>
         <image name="icon_huanhui_action" width="20" height="20"/>
         <image name="icon_locate" width="11" height="14"/>
         <image name="icon_share2.png" width="32" height="32"/>
-        <image name="icon_singleoption_highlightl" width="16" height="15"/>
-        <image name="icon_singleoption_normal" width="15" height="15"/>
         <image name="icon_star" width="15" height="15"/>
         <image name="icon_star_normal" width="20" height="20"/>
         <image name="icon_xinxi_normal1" width="19" height="17"/>
@@ -2460,25 +1905,17 @@
         <image name="icon_zixun" width="20" height="20"/>
         <image name="icon_zixun_normal" width="20" height="20"/>
         <image name="jia2" width="32" height="32"/>
-        <image name="jia3" width="39" height="40"/>
-        <image name="jiageNormal" width="64" height="31"/>
-        <image name="jiageUp" width="64" height="31"/>
         <image name="jian2" width="32" height="32"/>
         <image name="phoneLv" width="19" height="19"/>
         <image name="purper_fanli" width="20" height="20"/>
         <image name="purpleBtnBG.png" width="2" height="54"/>
-        <image name="shaixuan" width="64" height="31"/>
-        <image name="shaixuanSel" width="64" height="31"/>
         <image name="share" width="20" height="20"/>
         <image name="shoppingCar_High.png" width="20" height="20"/>
         <image name="type" width="87" height="26"/>
         <image name="typeBorder.png" width="94" height="30"/>
         <image name="typeSelect" width="87" height="26"/>
-        <image name="xiaolianNormal" width="64" height="31"/>
-        <image name="xiaoliangDown" width="64" height="31"/>
         <image name="单品" width="375" height="191"/>
         <image name="套餐" width="304" height="156"/>
         <image name="拼客" width="304" height="155"/>
-        <image name="默认" width="64" height="31"/>
     </resources>
 </document>

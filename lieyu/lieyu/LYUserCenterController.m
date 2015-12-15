@@ -33,15 +33,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.delegate=self;
-    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-        self.automaticallyAdjustsScrollViewInsets =YES;
-        self.edgesForExtendedLayout=UIRectEdgeTop;
-        [self.navigationController setNavigationBarHidden:YES];
-    }else{
-        self.automaticallyAdjustsScrollViewInsets = YES;
-        
-        self.edgesForExtendedLayout=UIRectEdgeNone;
-    }
+
+    [self.navigationController setNavigationBarHidden:YES];
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    
+    self.edgesForExtendedLayout=UIRectEdgeNone;
     self.title=@"我的";
     
     // Uncomment the following line to preserve selection between presentations
@@ -74,9 +70,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-                self.collectionView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
-    }
     [super viewWillAppear:animated];
     if (self.navigationController.navigationBarHidden==NO) {
        [self.navigationController setNavigationBarHidden:YES];
@@ -188,8 +181,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
             LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
             carListViewController.title=@"购物车";
-            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            [app.navigationController pushViewController:carListViewController animated:YES];
+            [self.navigationController pushViewController:carListViewController animated:YES];
             break;
 
             
@@ -286,7 +278,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     UICollectionReusableView *headerView;
     if (kind==UICollectionElementKindSectionHeader) {
         headerView=[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader" forIndexPath:indexPath];
-        headerView.frame=CGRectMake(0, -20, SCREEN_WIDTH, 240);
+        headerView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 240);
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if (![MyUtil isEmptyString:app.s_app_id]) {
             [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
@@ -310,7 +302,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     //因为顶到电池栏 所以 height 小20像素
-        CGSize size = {SCREEN_WIDTH, 220};
+        CGSize size = {SCREEN_WIDTH, 240};
         return size;
 
 }
