@@ -144,7 +144,6 @@
     }
     [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [_sxBtn5 setTag:105];
-//    [self setRow:biaoqianList];
 }
 
 #pragma mark 获取购物车数据
