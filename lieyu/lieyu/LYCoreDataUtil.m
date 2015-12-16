@@ -86,14 +86,12 @@
     @finally {
         
     }
-    
     return YES;
 }
 
 #pragma mark  自定义查询
 - (NSArray *)getCoreData:(NSString *)entryName withPredicate:(NSPredicate *)predicate
 {
-    
     @try {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context =app.managedObjectContext;
@@ -121,7 +119,6 @@
     @catch (NSException *exception) {
         return nil;
     }
-    
 }
 
 #pragma mark （相对）单条件查询
@@ -137,7 +134,6 @@
         array=[self getCoreData:entryName withPredicate:nil];
     }
     return array;
-
 }
 
 #pragma mark （相对）单条件删除
@@ -171,7 +167,6 @@
     @catch (NSException *exception) {
         NSLog(@"----pass-deleteCoreData error:%@---",exception);
     }
-    
-
 }
+
 @end
