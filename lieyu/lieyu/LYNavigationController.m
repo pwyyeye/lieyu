@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationBar.translucent = NO;
+    self.navigationBar.translucent = YES;
     
     //修改的部分
     UIColor *_inputColor0 = RGBA(109, 0, 142,0.9);
@@ -39,11 +39,6 @@
     //返回的颜色
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     
-    //navigationBar的标题
-    //self.navigationItem.title=@"登录";
-    
-//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-//    [self.navigationItem setLeftBarButtonItem:item];
     
     //设置标题颜色
     
