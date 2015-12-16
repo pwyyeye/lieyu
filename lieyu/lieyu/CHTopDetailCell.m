@@ -25,7 +25,7 @@
     
     //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
     _danpinLbl.text = model.name;
-    _priceLbl.text=[NSString stringWithFormat:@"￥%@",model.price];
+    _priceLbl.text=[NSString stringWithFormat:@"￥%@／%@",model.price,model.unit];
     if(model.marketprice){
         NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
         NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.marketprice] attributes:attribtDic];

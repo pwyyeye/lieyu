@@ -45,6 +45,7 @@
     
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
+    _tableView.bounces = NO;
     _tableView.separatorColor=[UIColor clearColor];
     [self getdata];
 //    [self.navigationController.navigationBar setHidden:YES];
