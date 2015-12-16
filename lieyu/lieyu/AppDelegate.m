@@ -46,8 +46,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-    [core deleteCoreData:@"LYCache" withSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
+//    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+//    [core deleteCoreData:@"LYCache" withSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
 
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
