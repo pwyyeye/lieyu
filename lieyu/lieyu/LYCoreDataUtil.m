@@ -53,7 +53,7 @@
                 BOOL b=NO;
                 for (NSString *attr in attributes) {
                     if ([attr isEqualToString:key]) {
-                        b=YES
+                        b=YES;
                     }
                 }
                 if (b) {
@@ -172,5 +172,19 @@
     }
     
 
+}
+//删除本地sqllite数据库
+-(void)deleteLocalSQLLite{
+    NSString *pngDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *FileDir = [NSString stringWithFormat:@"%@/lieyu.sqlite", pngDir];
+    NSError *err;
+    [fileMgr createDirectoryAtPath:FileDir withIntermediateDirectories:YES attributes:nil error:&err];
+    BOOL bRet = [fileMgr fileExistsAtPath:FileDir];
+    if (bRet) {
+        //
+        NSError *err;
+        [fileMgr removeItemAtPath:FileDir error:&err];
+    }
 }
 @end
