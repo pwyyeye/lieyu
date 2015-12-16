@@ -22,4 +22,8 @@
 
 //删除
 -(void)deleteCoreData:(NSString *)entryName withSearchPara:(NSDictionary *)searchDic;
+
+//删除sqllite数据库
+-(void)deleteLocalSQLLite;
+
 @end

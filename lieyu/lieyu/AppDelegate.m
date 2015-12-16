@@ -48,6 +48,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
 //    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
 //    [core deleteCoreData:@"LYCache" withSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
+//    [core deleteLocalSQLLite];
 
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
