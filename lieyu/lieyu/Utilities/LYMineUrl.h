@@ -64,4 +64,11 @@
 #define LY_YAOYIYAO_LIST @"lyUserShakeAction.do?action=add"
 //摇到的历史
 #define LY_YAOHIS_LIST @"lyUserShakeAction.do?action=list"
+
+//获取用户收藏的酒吧
+#define LY_GETUSERCOLLECTJIUBAR @"userStoreAction.do?action=list"
+
+//获取用户赞的酒吧
+#define LY_GETUSERZANGJIUBA @"userPraisedAction.do?action=list"
+
 #endif

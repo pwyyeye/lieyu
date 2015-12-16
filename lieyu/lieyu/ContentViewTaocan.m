@@ -19,7 +19,7 @@
 */
 
 - (void)awakeFromNib{
-    self.frame = CGRectMake(10, 250, 300, 250);
+    self.frame = CGRectMake(10, SCREEN_HEIGHT - 370, SCREEN_WIDTH - 20, 300);
 }
 - (IBAction)sureClick:(id)sender {
     UIButton *button = (UIButton *)sender;

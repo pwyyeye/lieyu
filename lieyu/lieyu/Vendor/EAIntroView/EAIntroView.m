@@ -356,6 +356,7 @@
             }
         }
     }];
+ 
 }
 
 - (void)showPanelAtPageControl {
@@ -373,6 +374,12 @@
     }
     
     [self hideWithFadeOutDuration:0.3];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NEEDGETLIKE"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NEEDGETCOLLECT"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 }
 
 - (void)hideWithFadeOutDuration:(CGFloat)duration {

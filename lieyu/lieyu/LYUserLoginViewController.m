@@ -14,6 +14,9 @@
 #import "HomePageINeedPlayViewController.h"
 #import "ChiHeViewController.h"
 
+#define COLLECTKEY [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
+#define LIKEKEY [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
+
 @interface LYUserLoginViewController ()<LYRegistrationDelegate,LYResetPasswordDelegate>
 
 @end
@@ -140,11 +143,43 @@
         [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
             NSLog(@"----pass-addAlias%@---%@",responseObject,error);
         }];
-        
-        
-        [self.navigationController popViewControllerAnimated:YES ];
-//        NSLog(result.username);
+        [self getUserCollectJiuBaList];
+        [self getUserZangJiuBaList];
     }];
+    
+    
+    
+     [self.navigationController popViewControllerAnimated:YES ];
+}
+
+//从服务器获取用户是否收藏过酒吧
+- (void)getUserCollectJiuBaList{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NEEDGETLIKE"]) {
+        [LYUserHttpTool getUserCollectionJiuBarListWithCompelet:^(NSArray *array) {
+            NSLog(@"------->%d",array.count);
+            for (JiuBaModel *jiuBa in array) {
+                NSString *jiuBaId = [NSString stringWithFormat:@"%d",jiuBa.barid];
+                    [[NSUserDefaults standardUserDefaults] setObject:jiuBaId forKey:[NSString stringWithFormat:@"%@%@sc",[NSString stringWithFormat:@"%d",app.userModel.userid],jiuBaId]];
+            }
+            [[NSUserDefaults standardUserDefaults] synchronize];
+    }];
+}
+}
+
+//从服务器获取用户是否赞过酒吧
+- (void)getUserZangJiuBaList{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NEEDGETCOLLECT"]) {
+        [LYUserHttpTool getUserZangJiuBarListWithCompelet:^(NSArray *array) {
+             NSLog(@"------->%d",array.count);
+            for (JiuBaModel *jiuBa in array) {
+                NSString *jiuBaId = [NSString stringWithFormat:@"%d",jiuBa.barid];
+                [[NSUserDefaults standardUserDefaults] setObject:jiuBaId forKey:[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%d",app.userModel.userid],jiuBaId]];
+            }
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }];
+    }
 }
 
 -(void)showMessage:(NSString*) message

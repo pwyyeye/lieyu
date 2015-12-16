@@ -32,15 +32,16 @@
 UITableViewDataSource,UITableViewDelegate,
     EScrollerViewDelegate,
     UITextFieldDelegate
->//,SearchDelegate
+>{
+    UIButton *_cityChooseBtn;
+    UIButton *_searchBtn;
+    UIImageView *_titleImageView;
+}
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
 @property(nonatomic,strong)NSMutableArray *aryList;
-@property(nonatomic,strong) IBOutlet UIView * topView;
-@property(nonatomic,weak) IBOutlet UIButton * myFllowButton;
 @property(nonatomic,weak) IBOutlet UITableView * tableView;
-@property(nonatomic,weak) IBOutlet UITextField * searchTextField;
 @property (nonatomic,strong) NSArray *bartypeslistArray;
 @property(nonatomic,assign) NSInteger curPageIndex;
 @property (nonatomic,strong) NSArray *hotJiuBarTitle;
@@ -52,21 +53,18 @@ UITableViewDataSource,UITableViewDelegate,
 {
     
     [super viewDidLoad];
-//    self.navigationController.delegate=self;
     [self.navigationController setNavigationBarHidden:NO];
-//    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-//        _tableView.height=431-64;
-//    }
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
+        
+    }
     
-    _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-104);
+   // _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
 //        self.edgesForExtendedLayout = UIRectEdgeNone;
 //        self.extendedLayoutIncludesOpaqueBars = NO;
 //        self.modalPresentationCapturesStatusBarAppearance = NO;
     }
-    
-   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cityChange) name:@"cityChange" object:nil];
      self.curPageIndex = 1;
      self.aryList=[[NSMutableArray alloc]init];
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -74,15 +72,7 @@ UITableViewDataSource,UITableViewDelegate,
    [self initialize];
    [self setupViewStyles];
     
-//    // Do any additional setup after loading the view from its nib.
-//    
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYHotRecommandCell" bundle:nil]  forCellReuseIdentifier:@"hotCell"];
-     [self.tableView registerNib:[UINib nibWithNibName:@"LYAmusementClassCell" bundle:nil] forCellReuseIdentifier:@"LYAmusementClassCell"];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    _hotJiuBarTitle = @[@"激情夜店",@"文艺清吧",@"音乐清吧",@"ktv"];
 }
 
 -(void)dealloc{
@@ -92,18 +82,37 @@ UITableViewDataSource,UITableViewDelegate,
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    CGRect rc = _topView.frame;
-    rc.origin.x = 0;
-    rc.origin.y = -20;
-    _topView.frame = rc;
-    [self.navigationController.navigationBar addSubview:_topView];
+//    CGRect rc = _topView.frame;
+//    rc.origin.x = 0;
+//    rc.origin.y = -20;
+//    _topView.frame = rc;
+//    [self.navigationController.navigationBar addSubview:_topView];
     //ios 7.0适配
 //    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
 //        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
 //    }
-    [self.navigationController.navigationBar bringSubviewToFront:_topView];
     [self getData];
     [self.navigationController setNavigationBarHidden:NO];
+    
+    
+    _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(9.5, 12, 54, 20)];
+    [_cityChooseBtn setImage:[UIImage imageNamed:@"Shape"] forState:UIControlStateNormal];
+    [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
+    [_cityChooseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -8)];
+    _cityChooseBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:_cityChooseBtn];
+    
+    
+    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(288, 12, 24, 24)];
+    [_searchBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+    [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:_searchBtn];
+    
+    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(134.5, 9.5, 50.0, 24.6)];
+    _titleImageView.image = [UIImage imageNamed:@"猎娱"];
+    [self.navigationController.navigationBar addSubview:_titleImageView];
+    
 }
 
 - (void)viewWillLayoutSubviews
@@ -118,14 +127,20 @@ UITableViewDataSource,UITableViewDelegate,
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [_topView removeFromSuperview];
+    [self removeNavButtonAndImageView];
 }
 
-- (IBAction)cityChangeClick:(UIButton *)sender {
+- (void)removeNavButtonAndImageView{
+    [_titleImageView removeFromSuperview];
+    [_searchBtn removeFromSuperview];
+    [_cityChooseBtn removeFromSuperview];
+}
+
+- (void)cityChangeClick:(UIButton *)sender {
     LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
     [self.navigationController pushViewController:cityChooseVC animated:YES];
 }
-- (IBAction)searchClick:(UIButton *)sender {
+- (void)searchClick:(UIButton *)sender {
     LYHomeSearcherViewController *homeSearchVC = [[LYHomeSearcherViewController alloc]init];
     [self.navigationController pushViewController:homeSearchVC animated:YES];
 }
@@ -193,13 +208,13 @@ UITableViewDataSource,UITableViewDelegate,
 - (void)setupViewStyles
 {
    [self setupToViewStyles];
-    /*
-    UINib * adCellNib = [UINib nibWithNibName:@"LYAdshowCell" bundle:nil];
-    [self.tableView registerNib:adCellNib forCellReuseIdentifier:@"LYAdshowCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarInfoCell" bundle:nil] forCellReuseIdentifier:@"LYWineBarInfoCell"];
-   */
     [self installFreshEvent];
-
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYHotRecommandCell" bundle:nil]  forCellReuseIdentifier:@"hotCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LYAmusementClassCell" bundle:nil] forCellReuseIdentifier:@"LYAmusementClassCell"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 - (void)installFreshEvent
 {
@@ -250,31 +265,6 @@ UITableViewDataSource,UITableViewDelegate,
 - (void)setupToViewStyles
 {
 
-}
-
-//---TODO: add action
-
-- (IBAction)myFllowClick:(id)sender
-{
-    MyCollectionViewController *maintViewController=[[MyCollectionViewController alloc]initWithNibName:@"MyCollectionViewController" bundle:nil];
-    maintViewController.title=@"我的收藏";
-    [self.navigationController pushViewController:maintViewController animated:YES];
-}
-
-- (IBAction)beerBarClick:(id)sender
-{
-    BearBarListViewController * bearBarController  = [[BearBarListViewController alloc ] initWithNibName:@"BearBarListViewController" bundle:nil];
-    bearBarController.entryType = BaseEntry_WineBar;
-    bearBarController.cityStr=_cityBtn.titleLabel.text;
-    [self.navigationController pushViewController:bearBarController animated:YES];
-}
-
-
-- (IBAction)yzhClick:(id)sender
-{
-    BearBarListViewController * bearBarController  = [[BearBarListViewController alloc ] initWithNibName:@"BearBarListViewController" bundle:nil];
-    bearBarController.entryType = BaseEntry_Yzh;
-    [self.navigationController pushViewController:bearBarController animated:YES];
 }
 
 #pragma mark 选择区域
@@ -466,10 +456,6 @@ UITableViewDataSource,UITableViewDelegate,
     
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    [self.searchTextField resignFirstResponder];
-}
 #pragma mark 搜索代理
 - (void)addCondition:(JiuBaModel *)model{
     BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
