@@ -60,7 +60,7 @@ const CGFloat kArrowSize = 12.f;
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         self.opaque = NO;
-    }   
+    }
     return self;
 }
 
