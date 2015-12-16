@@ -164,8 +164,8 @@ UITableViewDataSource,UITableViewDelegate,
              //             [weakSelf.tableView.header endRefreshing];
          }
      }];
-    
 }
+
 - (void)loadHomeList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
 {
     MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
