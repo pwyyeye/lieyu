@@ -23,7 +23,11 @@
 - (void)configureCell:(KuCunModel *)good{
     self.wineName.text = good.name;
     self.wineNumber.text = [NSString stringWithFormat:@"%@%@",good.num,good.unit];
-    self.winePrice.text = [NSString stringWithFormat:@"¥%@",good.price];
+    if([good.num intValue] != 1){
+        self.winePrice.text = [NSString stringWithFormat:@"¥%g",[good.num intValue]*[good.price floatValue]];
+    }else{
+        self.winePrice.text = [NSString stringWithFormat:@"¥%@",good.price];
+    }
 }
 
 @end
