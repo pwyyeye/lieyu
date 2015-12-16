@@ -475,8 +475,6 @@
         LPBuyVC.InfoDict = dictionary;
         [self.navigationController pushViewController:LPBuyVC animated:YES];
     }
-    
-    
 }
 
 
