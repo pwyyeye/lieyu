@@ -27,7 +27,7 @@
 #import "RestfulConstant.h"
 #import "NSDictionary+YRSafeCategory.h"
 #import "MJRefresh.h"
-
+#import "LYCoreDataUtil.h"
 
 #endif /* lieyu_pch */
 

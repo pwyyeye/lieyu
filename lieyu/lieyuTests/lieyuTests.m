@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "LYRestfulBussiness.h"
-
+#import "LYCoreDataUtil.h"
+#import "LYCache.h"
 @interface lieyuTests : XCTestCase
 
 @end
@@ -52,6 +53,8 @@
 //    NSString *xingzuo =[MyUtil getAstroWithMonth:@"1986-09-01"];
 //    NSLog(@"----pass-xingzuo%@---",xingzuo);
 //    XCTAssert(YES, @"Pass");
+    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":@{@"key":@"value"},@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
     
 }
 

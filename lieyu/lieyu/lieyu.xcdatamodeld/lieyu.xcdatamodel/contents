@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
-    <entity name="BeerBarLike" representedClassName="BeerBarLike" syncable="YES">
-        <attribute name="barid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="isLike" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="userid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-    </entity>
-    <entity name="FirstPageData" representedClassName="FirstPageData" syncable="YES">
-        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="LYCache" representedClassName="LYCache" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lyCacheKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lyCacheValue" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FirstPageData" positionX="-63" positionY="-18" width="128" height="60"/>
-        <element name="BeerBarLike" positionX="-54" positionY="0" width="128" height="90"/>
+        <element name="LYCache" positionX="-63" positionY="-18" width="128" height="88"/>
     </elements>
 </model>

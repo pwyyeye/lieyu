@@ -106,11 +106,11 @@
             pageCount++;
             [weakSelf.collectionview reloadData];
         }else{
-            [weakSelf.collectionview.footer noticeNoMoreData];
+            [weakSelf.collectionview.mj_footer noticeNoMoreData];
         }
     }];
     
-    [weakSelf.collectionview.footer endRefreshing];
+    [weakSelf.collectionview.mj_footer endRefreshing];
     
 }
 //定义展示的UIcollectionviewCell的个数
