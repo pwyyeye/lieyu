@@ -53,7 +53,7 @@
                 BOOL b=NO;
                 for (NSString *attr in attributes) {
                     if ([attr isEqualToString:key]) {
-                        b=YES
+                        b=YES;
                     }
                 }
                 if (b) {
@@ -89,6 +89,7 @@
     
     return YES;
 }
+
 #pragma mark  自定义查询
 - (NSArray *)getCoreData:(NSString *)entryName withPredicate:(NSPredicate *)predicate
 {

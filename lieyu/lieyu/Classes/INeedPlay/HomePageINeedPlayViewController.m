@@ -26,7 +26,9 @@
 #import "LYCloseMeViewController.h"
 #import "bartypeslistModel.h"
 #import "HuoDongViewController.h"
+
 #define PAGESIZE 20
+
 @interface HomePageINeedPlayViewController ()
 <
 UITableViewDataSource,UITableViewDelegate,
