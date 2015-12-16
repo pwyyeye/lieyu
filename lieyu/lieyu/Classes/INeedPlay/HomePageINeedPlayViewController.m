@@ -58,6 +58,10 @@ UITableViewDataSource,UITableViewDelegate,
         _tableView.bounds=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     }
     
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSLog(@"=----------------------%@----------------------=",documentsDirectory);
+    
    // _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
@@ -161,7 +165,6 @@ UITableViewDataSource,UITableViewDelegate,
              {
                  weakSelf.tableView.mj_footer.hidden = YES;
              }
-             //             [weakSelf.tableView.header endRefreshing];
          }
      }];
 }
