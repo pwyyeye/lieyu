@@ -51,7 +51,7 @@
             label.textColor = RGBA(114, 5, 147, 1);
             label.textAlignment = NSTextAlignmentRight;
         }
-        label.text = str;
+        label.text = str;  
         [self addSubview:label];
     }
 }
