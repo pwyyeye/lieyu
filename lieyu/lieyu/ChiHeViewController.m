@@ -37,6 +37,8 @@
     
     UIImageView *kongImageView;
     UILabel *kongLabel;
+    
+    int num;
 }
 
 //@property (nonatomic, strong) UILabel *badge;
@@ -124,7 +126,9 @@
 #pragma mark viewDidAppear
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [_badge setHidden:NO];
+    if(num > 0){
+        [_badge setHidden:NO];
+    }
 }
 
 #pragma mark 获取酒品种类信息
@@ -161,7 +165,7 @@
 //            }
 //        }
 //        [self setSuperScript:goodsList.count];
-        int num = 0 ;
+        num = 0 ;
         for(int i = 0 ; i < goodsList.count ; i ++){
             num = num + ((CarInfoModel *)goodsList[i]).cartlist.count;
         }
@@ -170,25 +174,33 @@
 }
 
 #pragma mark 设置角标
-- (void)setSuperScript:(int)num{
-    if(num > 0){
-        if(!_badge){
-        _badge=[[UILabel alloc] init];
-        _badge.backgroundColor=[UIColor redColor];
-        _badge.font=[UIFont systemFontOfSize:8];
-        _badge.layer.masksToBounds=YES;
-        _badge.layer.cornerRadius=6;
-        _badge.textColor=[UIColor whiteColor];
-        _badge.textAlignment=NSTextAlignmentCenter;
-        //    CGRect frame=_rightItem.frame;
-        _badge.frame=CGRectMake(SCREEN_WIDTH - 17, 5, 12, 12);
-        }
-        if(num < 99){
-            _badge.text=[NSString stringWithFormat:@"%d",num];
+- (void)setSuperScript:(int)number{
+    NSLog(@"%@",self.navigationController.childViewControllers);
+    int count = self.navigationController.childViewControllers.count;
+    if(![[self.navigationController.childViewControllers objectAtIndex:count-1] isKindOfClass:[ChiHeViewController class]]){
+        [_badge setHidden:YES];
+    }else{
+        if(number > 0){
+            if(!_badge){
+                [_badge setHidden:NO];
+                _badge=[[UILabel alloc] init];
+                _badge.backgroundColor=[UIColor redColor];
+                _badge.font=[UIFont systemFontOfSize:8];
+                _badge.layer.masksToBounds=YES;
+                _badge.layer.cornerRadius=6;
+                _badge.textColor=[UIColor whiteColor];
+                _badge.textAlignment=NSTextAlignmentCenter;
+                _badge.frame=CGRectMake(SCREEN_WIDTH - 17, 5, 12, 12);
+            }
+            if(number < 99){
+                _badge.text=[NSString stringWithFormat:@"%d",number];
+            }else{
+                _badge.text = @"99+";
+            }
+            [self.navigationController.navigationBar addSubview:_badge];
         }else{
-            _badge.text = @"99";
+            [_badge setHidden:YES];
         }
-        [self.navigationController.navigationBar addSubview:_badge];
     }
 }
 
@@ -335,10 +347,12 @@
 }
 
 - (void)getNumLess{
+    num--;
     [self setSuperScript:[_badge.text intValue] - 1];
 }
 
 - (void)getNumAdd{
+    num++;
     [self setSuperScript:[_badge.text intValue] + 1];
 }
 
@@ -437,22 +451,21 @@
         _moreShow = YES;
         
     self.collectionView.userInteractionEnabled = NO;
-        int num;
+        int number;
         if(biaoqianList.count == 4){
             
         }else{
             if((int)(biaoqianList.count - 4) % 3){
-                num = (int)(biaoqianList.count - 4) / 3 + 1;
+                number = (int)(biaoqianList.count - 4) / 3 + 1;
             }
             else{
-                num = (int)(biaoqianList.count - 4) / 3;
+                number = (int)(biaoqianList.count - 4) / 3;
             }
         }
-    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, num * 32 + (num + 1) * 16)];
+    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, number * 32 + (number + 1) * 16)];
     [_MoreView setBackgroundColor:[UIColor whiteColor]];
     
     for(int i = 4 ; i < biaoqianList.count ; i ++){
-//        for(int j = 0 ; j < 3 ; j ++){
         int row = (i - 4) / 3;
         int lie = (i - 4) % 3;
             UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake( 8 * (lie + 1) + 96 * lie, 16 * (row + 1) + 32 * row, 96, 32)];
@@ -467,7 +480,6 @@
             [button setTag:((ProductCategoryModel *)biaoqianList[i]).id];
             [button addTarget:self action:@selector(chooseTypes:) forControlEvents:UIControlEventTouchUpInside];
             [_MoreView addSubview:button];
-//        }
     }
         [self.view addSubview:_MoreView];
     }else{

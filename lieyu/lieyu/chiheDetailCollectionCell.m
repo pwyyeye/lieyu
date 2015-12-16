@@ -69,7 +69,7 @@
         _fanliImage.hidden = YES;
         _fanliLbl.hidden = YES;
     }else{
-       _ProfitLbl.text=[NSString stringWithFormat:@"%.g元",profit];
+       _ProfitLbl.text=[NSString stringWithFormat:@"%.1f元",profit];
     }
     
     [_goodImage sd_setImageWithURL:[NSURL URLWithString:model.img_260] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
