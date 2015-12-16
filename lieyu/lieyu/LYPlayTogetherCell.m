@@ -35,7 +35,7 @@
 {
     NSLog(@"LP----model:%@",model);
     //--TODO: 需要根据 右边的，酒吧类型和特色 修改cell的展示
-    NSString *str=model.barinfo.baricon ;
+    NSString *str=model.linkUrl;
     [_pkIconImageView  setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     
     _introductionLal.text=model.title;
