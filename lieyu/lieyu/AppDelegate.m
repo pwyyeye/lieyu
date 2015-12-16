@@ -46,22 +46,15 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-//    [UINavigationBar appearance];
-    
-//    UIColor *_inputColor0 = RGB(109, 0, 142);
-//    UIColor *_inputColor1 = RGB(64, 1, 120);
-//    NSArray *colors = [NSArray arrayWithObjects:_inputColor0, _inputColor1, nil];
-//    CAGradientLayer *gradient = [CAGradientLayer layer];
-//    gradient.frame = self.navigationController.navigationBar.frame;
-//    gradient.colors = colors;
-//    [self.navigationController.navigationBar.layer insertSublayer:gradient atIndex:1];
+
     
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
 
     [self loadHisData];
     [self setupDataStore];
-//    [ZBarReaderView class];
+
+    
     _navigationController= (UINavigationController *)self.window.rootViewController;
     _navigationController.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];
