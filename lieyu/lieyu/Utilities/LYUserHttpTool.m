@@ -985,5 +985,36 @@
     }];
 }
 
+#pragma mark 获取用户收藏的酒吧
++ (void)getUserCollectionJiuBarListWithCompelet:(void(^)(NSArray *array))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GETUSERCOLLECTJIUBAR baseURL:LY_SERVER params:nil success:^(id response) {
+        NSLog(@"------>%@",response);
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if ([code isEqualToString:@"1"]) {
+            NSArray *jiubaArray = [JiuBaModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
+            compelte(jiubaArray);
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NEEDGETLIKE"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark 获取用户赞的酒吧
++ (void)getUserZangJiuBarListWithCompelet:(void(^)(NSArray *array))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GETUSERZANGJIUBA baseURL:LY_SERVER params:nil success:^(id response) {
+         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if ([code isEqualToString:@"1"]) {
+            NSArray *jiubaArray = [JiuBaModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
+            compelte(jiubaArray);
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NEEDGETCOLLECT"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
 
 @end

@@ -132,7 +132,6 @@
             [aSubview.layer removeAllAnimations];
         }
         [subview addSubview:self];
-        //
         [self showAlertAnimation];
     }
 }

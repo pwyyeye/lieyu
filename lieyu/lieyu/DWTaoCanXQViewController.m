@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+     _tableView.frame = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;

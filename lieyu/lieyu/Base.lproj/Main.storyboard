@@ -25,7 +25,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="146"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Amg-Ka-Our" id="2N6-1h-1vd">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="145.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="145"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bOH-b6-d7V">
@@ -66,7 +66,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kIW-hm-L7F">
-                                                            <rect key="frame" x="0.0" y="96" width="320" height="0.5"/>
+                                                            <rect key="frame" x="0.0" y="96" width="320" height="1"/>
                                                             <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="m4X-SE-Mjp">
@@ -182,10 +182,10 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindMenuCell" rowHeight="51" id="4Yx-ie-pLJ" customClass="FindMenuCell">
-                                        <rect key="frame" x="0.0" y="49.5" width="320" height="51"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Yx-ie-pLJ" id="h35-uk-vqj">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Uv-0I-YPF">
@@ -307,7 +307,6 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="tableView" destination="du5-ui-BBV" id="6pk-Pg-x0E"/>
-                        <outlet property="topView" destination="5So-V3-ojN" id="JgN-Wc-XoU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hP-fc-oMM" userLabel="First Responder" sceneMemberID="firstResponder"/>

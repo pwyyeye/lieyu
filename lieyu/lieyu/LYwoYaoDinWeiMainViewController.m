@@ -28,6 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _tableView.frame = CGRectMake(0, 64 + 50, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50);
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
