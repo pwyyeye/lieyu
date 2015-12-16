@@ -43,10 +43,11 @@
             label.numberOfLines = 0;
              label.font = [UIFont systemFontOfSize:12];
         }else if(i%3 == 1){
-            str = [NSString stringWithFormat:@"1%@",model.unit];
+            str = [NSString stringWithFormat:@"%@%@",model.num,model.unit];
             label.textAlignment = NSTextAlignmentCenter;
         }else{
-            str = [NSString stringWithFormat:@"¥%@",model.price];
+            NSString *priceTotle = [NSString stringWithFormat:@"%d",model.price.integerValue * model.num.integerValue];
+            str = [NSString stringWithFormat:@"¥%@",priceTotle];
             label.textColor = RGBA(114, 5, 147, 1);
             label.textAlignment = NSTextAlignmentRight;
         }

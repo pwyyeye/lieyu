@@ -40,6 +40,7 @@
     searchlist = [[NSMutableArray alloc]initWithCapacity:0];
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
+    self.navigationItem.title = @"搜索";
     [self setupViewStyles];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     self.tableView.hidden = YES;
