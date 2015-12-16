@@ -10,7 +10,7 @@
 #define LYCacheDefined_h
 
 //声明数据库 表及其字段 对应关系
-#define CACHE_TABLE_ATTRIBUTES @{@"INEED_PLAY_HOMEPAGE":@[@"createDate",@"lyCacheKey",@"lyCacheValue"]}
+#define CACHE_TABLE_ATTRIBUTES @{@"LYCache":@[@"createDate",@"lyCacheKey",@"lyCacheValue"]}
 
 //我要玩首页－－json缓存
 #define CACHE_INEED_PLAY_HOMEPAGE @"INEED_PLAY_HOMEPAGE"

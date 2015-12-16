@@ -14,8 +14,11 @@
 
 //保存
 - (BOOL)saveOrUpdateCoreData:(NSString *)entryName withParam:(NSDictionary *)dic andSearchPara:(NSDictionary *)searchDic;
-//查询
+//自定义条件查询
 - (NSArray *)getCoreData:(NSString *)entryName withPredicate:(NSPredicate *)predicate;
+
+//单条件查询
+- (NSArray *)getCoreData:(NSString *)entryName andSearchPara:(NSDictionary *)searchDic;
 
 //删除
 -(void)deleteCoreData:(NSString *)entryName withSearchPara:(NSDictionary *)searchDic;
