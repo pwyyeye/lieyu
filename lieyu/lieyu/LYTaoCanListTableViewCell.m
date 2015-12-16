@@ -51,7 +51,7 @@
             label.textColor = RGBA(114, 5, 147, 1);
             label.textAlignment = NSTextAlignmentRight;
         }
-        label.text = str;  
+        label.text = str;
         [self addSubview:label];
     }
 }
@@ -66,8 +66,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end
