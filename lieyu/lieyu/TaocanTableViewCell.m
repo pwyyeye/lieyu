@@ -22,7 +22,7 @@
 
 - (void)cellConfigure{
     self.TaocanInfo.text = self.dict[@"taocanInfo"];
-    self.priceLbl.text = [NSString stringWithFormat:@"¥%@/卡",self.dict[@"price"]];
+    self.priceLbl.text = [NSString stringWithFormat:@"¥%@/套",self.dict[@"price"]];
     NSDictionary *attribtDic = @{
                                  NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",self.dict[@"marketPrice"]] attributes:attribtDic];
