@@ -17,77 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
    // self.automaticallyAdjustsScrollViewInsets=0;
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
-//    self.navigationController.navigationBar.barTintColor=RGB(64,1,120);
-    //若为yesnavigationBar背景 会有50％的透明
-    self.navigationController.navigationBar.translucent = YES;
-//    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-//        self.navigationController.navigationBar.translucent = NO;
-//            self.extendedLayoutIncludesOpaqueBars = NO;
-//            self.modalPresentationCapturesStatusBarAppearance=NO;
-//    }
 
-    
-    //修改的部分
-//    UIColor *_inputColor0 = RGBA(109, 0, 142,0.9);
-//    UIColor *_inputColor1 = RGBA(64, 1, 120,0.9);
-//    CGPoint _inputPoint0 = CGPointMake(0.5, 0);
-//    CGPoint _inputPoint1 = CGPointMake(0.5, 1);
-//    CAGradientLayer *layer = [CAGradientLayer new];
-//    layer.colors = @[(__bridge id)_inputColor0.CGColor, (__bridge id)_inputColor1.CGColor];
-//    layer.startPoint = _inputPoint0;
-//    layer.endPoint = _inputPoint1;
-//    layer.frame = CGRectMake(0, -20, 320, 64);
-//    layer.zPosition=-1;
-//    [self.navigationController.navigationBar.layer addSublayer:layer];
-    
-//    CALayer *layer=[[CALayer alloc] init];
-//    layer.backgroundColor=RGB(114, 5, 147).CGColor;
-//    layer.zPosition=-1;
-//    [self.navigationController.navigationBar.layer addSublayer:layer];
-    
-//    [self.navigationController.navigationBar setBarTintColor:RGB(114, 5, 147)];
-    
-//    UIImage *bgImage=[UIImage imageNamed:@"navBarbg"];
- 
-//    UIColor *color2=[UIColor colorWithPatternImage:bgImage];
-//    [self.navigationController.navigationBar setBarTintColor:RGB(255, 255, 255)];
-    
-//    [self.navigationController.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];
-    
-    
-//    self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
-//    CAGradientLayer *gradient = [CAGradientLayer layer];
-//    gradient.frame = self.navigationController.navigationBar.frame;
-//    gradient.colors = [NSArray arrayWithObjects: RGB(109, 0, 142),RGB(64, 1, 120),nil];
-//    [self.navigationController.navigationBar.layer insertSublayer:gradient atIndex:0];
-    
-    
-    
-    //返回的颜色
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    
-    //navigationBar的标题
-    //self.navigationItem.title=@"登录";
-    
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
-    
-//    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [button setImage:buttonImage forState:UIControlStateNormal];
-//    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-//    [button addTarget:self action: @selector(gotoBack)
-//     forControlEvents:UIControlEventTouchUpInside];
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-//    [view addSubview:button];
-//    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
-//    self.navigationItem.leftBarButtonItem = customBarItem;
-    
-    
+
     //设置标题颜色
     
     UIColor * color = [UIColor whiteColor];
@@ -97,7 +33,7 @@
     self.navigationController.navigationBar.titleTextAttributes = dict;
     
     //设置电池状态栏为白色
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
 
     // Do any additional setup after loading the view.
