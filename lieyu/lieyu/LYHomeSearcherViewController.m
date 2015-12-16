@@ -216,11 +216,11 @@
              if (barList.count == PAGESIZE)
              {
                  weakSelf.curPageIndex = 2;
-                 weakSelf.tableView.footer.hidden = NO;
+                 weakSelf.tableView.mj_footer.hidden = NO;
              }
              else
              {
-                 weakSelf.tableView.footer.hidden = YES;
+                 weakSelf.tableView.mj_footer.hidden = YES;
              }
              //             [weakSelf.tableView.header endRefreshing];
          }

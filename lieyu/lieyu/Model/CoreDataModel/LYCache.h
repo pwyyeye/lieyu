@@ -1,8 +1,8 @@
 //
-//  BeerBarLike.h
+//  LYCache.h
 //  lieyu
 //
-//  Created by 狼族 on 15/12/8.
+//  Created by pwy on 15/12/16.
 //  Copyright © 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BeerBarLike : NSManagedObject
+@interface LYCache : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -19,4 +19,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "BeerBarLike+CoreDataProperties.h"
+#import "LYCache+CoreDataProperties.h"
