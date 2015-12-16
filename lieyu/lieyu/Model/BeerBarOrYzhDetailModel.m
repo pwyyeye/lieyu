@@ -13,7 +13,7 @@
 
 +(void)load
 {
-    [BeerBarOrYzhDetailModel setupObjectClassInArray:^NSDictionary *{
+    [BeerBarOrYzhDetailModel mj_setupObjectClassInArray:^NSDictionary *{
         return @{
                     @"recommend_package":@"RecommendPackageModel"
                 };

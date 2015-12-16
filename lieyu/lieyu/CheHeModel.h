@@ -80,7 +80,7 @@
 @property(nonatomic,copy)NSString  *price;
 @property(nonatomic,retain)NSArray *goodsList;
 @property(nonatomic,assign)double  money;
-@property(nonatomic,assign)double  rebate;
+@property(nonatomic,assign)float  rebate;
 @property(nonatomic,copy)NSString * modifydate;
 @property(nonatomic,copy)NSString * introduction;
 @property(nonatomic,assign)int smid;

@@ -455,15 +455,11 @@
 		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
 		855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */; };
 		85589C311C167E49000E342E /* PayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A2A1C15B6050088CD86 /* PayButton.m */; };
-		85589C321C167E4F000E342E /* PayButton.h in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A291C15B6050088CD86 /* PayButton.h */; };
 		85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
 		85589CB81C16D41D000E342E /* SingletonRegiste.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CB71C16D41D000E342E /* SingletonRegiste.m */; };
-		85589CC31C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */; };
-		85589CC41C16EF7C000E342E /* BeerBarLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CC21C16EF7C000E342E /* BeerBarLike.m */; };
 		85C4282E1C116ED90028FC21 /* LYHotBarMenuDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */; };
 		85C428721C119D3E0028FC21 /* LYCloseMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428701C119D3E0028FC21 /* LYCloseMeViewController.m */; };
 		85C428731C119D3E0028FC21 /* LYCloseMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428711C119D3E0028FC21 /* LYCloseMeViewController.xib */; };
-		85C428811C11B20B0028FC21 /* FirstPageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4287F1C11B20B0028FC21 /* FirstPageData.m */; };
 		85C428871C11D25D0028FC21 /* ContentViewTaocan.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428861C11D25D0028FC21 /* ContentViewTaocan.m */; };
 		85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428881C11D2710028FC21 /* ContentViewTaocan.xib */; };
 		85EC69FA1C17D4A10082AA3E /* sorry.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85EC69F91C17D4A10082AA3E /* sorry.gif */; };
@@ -728,6 +724,10 @@
 		ADF88EAE1C1197C400CF5DED /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF88E9A1C1197C400CF5DED /* UIScrollView+MJRefresh.m */; };
 		ADF88EAF1C1197C400CF5DED /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF88E9C1C1197C400CF5DED /* UIView+MJExtension.m */; };
 		ADF88F3C1C12E5F000CF5DED /* KxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF88F3B1C12E5F000CF5DED /* KxMenu.m */; };
+		ADF8E1BC1C2141C700943E4D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF8E1BB1C2141C700943E4D /* CoreData.framework */; };
+		ADF8E1C21C214ECB00943E4D /* LYCache+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF8E1BF1C214ECB00943E4D /* LYCache+CoreDataProperties.m */; };
+		ADF8E1C31C214ECB00943E4D /* LYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF8E1C11C214ECB00943E4D /* LYCache.m */; };
+		ADF8E1C81C21536400943E4D /* LYCoreDataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF8E1C71C21536400943E4D /* LYCoreDataUtil.m */; };
 		ADFFA68C1C16DFB800D9BD2A /* purpleBtnBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A231C1582A30088CD86 /* purpleBtnBG.png */; };
 		ADFFA68D1C16DFBA00D9BD2A /* purpleBtnBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A241C1582A40088CD86 /* purpleBtnBG@2x.png */; };
 		ADFFA68E1C16DFBD00D9BD2A /* purpleBtnBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A251C1582A40088CD86 /* purpleBtnBG@3x.png */; };
@@ -1549,19 +1549,11 @@
 		855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearcherViewController.xib; sourceTree = "<group>"; };
 		85589CB61C16D41D000E342E /* SingletonRegiste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonRegiste.h; sourceTree = "<group>"; };
 		85589CB71C16D41D000E342E /* SingletonRegiste.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonRegiste.m; sourceTree = "<group>"; };
-		85589CBF1C16EF7C000E342E /* BeerBarLike+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BeerBarLike+CoreDataProperties.h"; sourceTree = "<group>"; };
-		85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BeerBarLike+CoreDataProperties.m"; sourceTree = "<group>"; };
-		85589CC11C16EF7C000E342E /* BeerBarLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerBarLike.h; sourceTree = "<group>"; };
-		85589CC21C16EF7C000E342E /* BeerBarLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerBarLike.m; sourceTree = "<group>"; };
 		85C4282C1C116ED90028FC21 /* LYHotBarMenuDropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuDropView.h; sourceTree = "<group>"; };
 		85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuDropView.m; sourceTree = "<group>"; };
 		85C4286F1C119D3E0028FC21 /* LYCloseMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCloseMeViewController.h; sourceTree = "<group>"; };
 		85C428701C119D3E0028FC21 /* LYCloseMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCloseMeViewController.m; sourceTree = "<group>"; };
 		85C428711C119D3E0028FC21 /* LYCloseMeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYCloseMeViewController.xib; sourceTree = "<group>"; };
-		85C4287C1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FirstPageData+CoreDataProperties.h"; sourceTree = "<group>"; };
-		85C4287D1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FirstPageData+CoreDataProperties.m"; sourceTree = "<group>"; };
-		85C4287E1C11B20B0028FC21 /* FirstPageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstPageData.h; sourceTree = "<group>"; };
-		85C4287F1C11B20B0028FC21 /* FirstPageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstPageData.m; sourceTree = "<group>"; };
 		85C428851C11D25D0028FC21 /* ContentViewTaocan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewTaocan.h; sourceTree = "<group>"; };
 		85C428861C11D25D0028FC21 /* ContentViewTaocan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewTaocan.m; sourceTree = "<group>"; };
 		85C428881C11D2710028FC21 /* ContentViewTaocan.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewTaocan.xib; sourceTree = "<group>"; };
@@ -2044,6 +2036,14 @@
 		ADF88E9C1C1197C400CF5DED /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		ADF88F3A1C12E5F000CF5DED /* KxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxMenu.h; sourceTree = "<group>"; };
 		ADF88F3B1C12E5F000CF5DED /* KxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxMenu.m; sourceTree = "<group>"; };
+		ADF8E1BB1C2141C700943E4D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		ADF8E1BE1C214ECB00943E4D /* LYCache+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LYCache+CoreDataProperties.h"; sourceTree = "<group>"; };
+		ADF8E1BF1C214ECB00943E4D /* LYCache+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LYCache+CoreDataProperties.m"; sourceTree = "<group>"; };
+		ADF8E1C01C214ECB00943E4D /* LYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCache.h; sourceTree = "<group>"; };
+		ADF8E1C11C214ECB00943E4D /* LYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCache.m; sourceTree = "<group>"; };
+		ADF8E1C41C21504200943E4D /* LYCacheDefined.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYCacheDefined.h; sourceTree = "<group>"; };
+		ADF8E1C61C21536400943E4D /* LYCoreDataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCoreDataUtil.h; sourceTree = "<group>"; };
+		ADF8E1C71C21536400943E4D /* LYCoreDataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCoreDataUtil.m; sourceTree = "<group>"; };
 		ADFFA6941C1721D600D9BD2A /* gouGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = gouGif.gif; sourceTree = "<group>"; };
 		ADFFA6971C17342F00D9BD2A /* HuoDongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongViewController.h; sourceTree = "<group>"; };
 		ADFFA6981C17342F00D9BD2A /* HuoDongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongViewController.m; sourceTree = "<group>"; };
@@ -2191,6 +2191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADF8E1BC1C2141C700943E4D /* CoreData.framework in Frameworks */,
 				AD8FAB5D1C1570F600C45F1A /* libHCSStarRatingView.a in Frameworks */,
 				AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */,
 				AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */,
@@ -3690,16 +3691,13 @@
 		85C4287B1C11B1D80028FC21 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				85589CBF1C16EF7C000E342E /* BeerBarLike+CoreDataProperties.h */,
-				85589CC01C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m */,
-				85589CC11C16EF7C000E342E /* BeerBarLike.h */,
-				85589CC21C16EF7C000E342E /* BeerBarLike.m */,
-				85C4287C1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.h */,
-				85C4287D1C11B20B0028FC21 /* FirstPageData+CoreDataProperties.m */,
-				85C4287E1C11B20B0028FC21 /* FirstPageData.h */,
-				85C4287F1C11B20B0028FC21 /* FirstPageData.m */,
+				ADF8E1BE1C214ECB00943E4D /* LYCache+CoreDataProperties.h */,
+				ADF8E1BF1C214ECB00943E4D /* LYCache+CoreDataProperties.m */,
+				ADF8E1C01C214ECB00943E4D /* LYCache.h */,
+				ADF8E1C11C214ECB00943E4D /* LYCache.m */,
 			);
-			path = CoreDataModel;
+			name = CoreDataModel;
+			path = Model/CoreDataModel;
 			sourceTree = "<group>";
 		};
 		85EC6A041C186A090082AA3E /* 离我最近 */ = {
@@ -4177,6 +4175,7 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADF8E1BB1C2141C700943E4D /* CoreData.framework */,
 				AD8FAB5C1C1570F600C45F1A /* libHCSStarRatingView.a */,
 				AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */,
 				15844C081BE22A8800247FBC /* QuartzCore.framework */,
@@ -4764,6 +4763,25 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		ADF8E1BD1C214B9300943E4D /* LYCache */ = {
+			isa = PBXGroup;
+			children = (
+				ADF8E1C41C21504200943E4D /* LYCacheDefined.h */,
+				ADF8E1C51C2150AE00943E4D /* CacheUtils */,
+				85C4287B1C11B1D80028FC21 /* CoreDataModel */,
+			);
+			name = LYCache;
+			sourceTree = "<group>";
+		};
+		ADF8E1C51C2150AE00943E4D /* CacheUtils */ = {
+			isa = PBXGroup;
+			children = (
+				ADF8E1C61C21536400943E4D /* LYCoreDataUtil.h */,
+				ADF8E1C71C21536400943E4D /* LYCoreDataUtil.m */,
+			);
+			name = CacheUtils;
+			sourceTree = "<group>";
+		};
 		ADFFA6961C1733C200D9BD2A /* 活动详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4876,7 +4894,6 @@
 		D748BC751BA1CA69005AA996 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				85C4287B1C11B1D80028FC21 /* CoreDataModel */,
 				D748BC7C1BA1CB35005AA996 /* Base */,
 				D748BC761BA1CB0E005AA996 /* User.h */,
 				D748BC771BA1CB0E005AA996 /* User.m */,
@@ -4910,6 +4927,7 @@
 		D748BC801BA1CCE0005AA996 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				ADF8E1BD1C214B9300943E4D /* LYCache */,
 				AD198CBE1C00350900AA654D /* Tenpay */,
 				ADE103391BDE48CA00D9EC38 /* Alipay */,
 				D761F0291BA5B92D000757B0 /* Modules */,
@@ -5694,7 +5712,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */,
-				85589C321C167E4F000E342E /* PayButton.h in Sources */,
 				85589C311C167E49000E342E /* PayButton.m in Sources */,
 				381FEFF41C166AB8002A47BA /* bartypeslistModel.m in Sources */,
 				38E5D7FA1C13DFA1004B49D2 /* MenuButton.m in Sources */,
@@ -5704,7 +5721,6 @@
 				ADE103AF1BDE4C8E00D9EC38 /* ChoosePayController.m in Sources */,
 				85EC6A031C18109A0082AA3E /* LYBarDescTableViewCell.m in Sources */,
 				AD92AEBC1BE50AD9009F2A34 /* AboutLieyu.m in Sources */,
-				85C428811C11B20B0028FC21 /* FirstPageData.m in Sources */,
 				15013AD11BBA161100061FAF /* ZSManageHttpTool.m in Sources */,
 				1559DD151BDB279700F3FE9B /* CarHeadView.m in Sources */,
 				15013AFC1BBA33BE00061FAF /* SDWebImageManager.m in Sources */,
@@ -5729,7 +5745,6 @@
 				3879F2661C0D361000B72629 /* LiuchengTableViewCell.m in Sources */,
 				38E5D6E51C0F1018004B49D2 /* LPBuyTaocanCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
-				85589CC31C16EF7C000E342E /* BeerBarLike+CoreDataProperties.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
 				38E72B4E1C153446002EFBDD /* CHViewController.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
@@ -5738,6 +5753,7 @@
 				15EB35011BD1F4E000BA6161 /* PTTopCell.m in Sources */,
 				3879F2571C0D32B900B72629 /* TaocanTableViewCell.m in Sources */,
 				D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */,
+				ADF8E1C31C214ECB00943E4D /* LYCache.m in Sources */,
 				ADF88E9E1C1197C400CF5DED /* MJRefreshBackFooter.m in Sources */,
 				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
 				38E5D6D11C0EC2DA004B49D2 /* LPAlertView.m in Sources */,
@@ -5819,6 +5835,7 @@
 				A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */,
 				15013AFB1BBA33BE00061FAF /* SDWebImageDownloaderOperation.m in Sources */,
 				ADF38F421BE8D8B400A80B08 /* CityChooseButton.m in Sources */,
+				ADF8E1C81C21536400943E4D /* LYCoreDataUtil.m in Sources */,
 				A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */,
 				ADE103A91BDE4B2300D9EC38 /* AlipayOrder.m in Sources */,
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,
@@ -5843,7 +5860,6 @@
 				ADC66CE41C1FBB9900E597D9 /* LYNavigationController.m in Sources */,
 				15013AF61BBA33BE00061FAF /* NSData+ImageContentType.m in Sources */,
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
-				85589CC41C16EF7C000E342E /* BeerBarLike.m in Sources */,
 				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
 				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,
@@ -5913,6 +5929,7 @@
 				1559DCE51BD8C0EA00F3FE9B /* CHShaiXuanViewController.m in Sources */,
 				15FD2A9C1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m in Sources */,
 				ADF88EA61C1197C400CF5DED /* MJRefreshBackNormalFooter.m in Sources */,
+				ADF8E1C21C214ECB00943E4D /* LYCache+CoreDataProperties.m in Sources */,
 				15013B071BBA3BD000061FAF /* LYCommonHttpTool.m in Sources */,
 				15B8668A1BE09888002E2BB6 /* MyBarModel.m in Sources */,
 				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,

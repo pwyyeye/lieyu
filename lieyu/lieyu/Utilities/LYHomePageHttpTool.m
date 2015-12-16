@@ -69,8 +69,6 @@
         [MyUtil showMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
-
-
 }
 
 #pragma mark 一起玩确认订单

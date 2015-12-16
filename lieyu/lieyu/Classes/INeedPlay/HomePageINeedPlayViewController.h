@@ -13,7 +13,6 @@
 #import "LYAlert.h"
 #import "CityChooseButton.h"
 
-
 @interface HomePageINeedPlayViewController : LYBaseViewController<UINavigationControllerDelegate,LYChooseCityDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *cityBtn;

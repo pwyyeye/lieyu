@@ -55,7 +55,7 @@ UITableViewDataSource,UITableViewDelegate,
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-        
+        _tableView.bounds=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     }
     
    // _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-104);
