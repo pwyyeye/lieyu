@@ -28,18 +28,6 @@
 -(void) getTogetherListWithParams:(NSDictionary*)params block:(void(^)(NSMutableArray* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    
-    LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
-    NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
-    
-    if(dataArray.count && params[@"p"] == 1){
-        LYCache *cache = [dataArray objectAtIndex:0];
-        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:cache.lyCacheValue]];
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-            block(tempArr);
-        });
-        [app stopLoading];
-    }else{
         [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YIQIWAN_LIST baseURL:LY_SERVER params:params success:^(id response) {
             NSArray *dataList = response[@"data"];
             NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -47,11 +35,13 @@
             
             if ([code isEqualToString:@"1"]) {
                 NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:dataList]];
-                
                 //存储缓存讯息
                 LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
-                [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":dataList,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
-                
+                [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":tempArr,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+                //////////////////////////
+                NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+                LYCache *lycache = [dataArray objectAtIndex:0];
+                NSLog(@"%@",lycache.lyCacheValue);
                 
                 dispatch_async(dispatch_get_main_queue(), ^(void) {
                     block(tempArr);
@@ -65,7 +55,6 @@
             [MyUtil showMessage:@"获取数据失败！"];
             [app stopLoading];
         }];
-    }
 }
 #pragma mark 一起玩列表详细
 -(void) getTogetherDetailWithParams:(NSDictionary*)params

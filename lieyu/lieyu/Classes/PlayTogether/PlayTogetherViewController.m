@@ -24,6 +24,7 @@
 
 #import "MenuButton.h"
 #import "UIImage+GIF.h"
+#import "LYCache.h"
 
 @interface PlayTogetherViewController
 ()<UITableViewDelegate,UITableViewDataSource,LYHotBarMenuViewDelegate>
@@ -43,7 +44,7 @@
 @property(nonatomic,weak) IBOutlet UIButton * nearDistanceButton;
 @property(nonatomic,strong) IBOutlet UIButton * fillterButton;
 @property(nonatomic,strong) NSArray *oriNavItems;
-@property (nonatomic, strong) UIView *sectionView;
+//@property (nonatomic, strong) UIView *sectionView;
 
 @property (nonatomic, strong) NSArray *buttonsArray;
 @property (nonatomic, strong) UIView *selectView;
@@ -69,14 +70,27 @@
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
-    dataList=[[NSMutableArray alloc]init];
+    
     pageCount=1;
     perCount=20;
-//    [self setupViewStyles];
-    [self getDataForTogether];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount]};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+
+    LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+    NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+    if(dataArray.count){
+        
+        LYCache *lycache = [dataArray objectAtIndex:0];
+        NSLog(@"value:%@",lycache.lyCacheValue);
+        dataList = [[NSMutableArray alloc]initWithArray:lycache.lyCacheValue];
+        
+        NSLog(@"%@",dataList);
+        pageCount ++;
+    }else{
+        [self getDataForTogether];
+    }
     [self getData];
     [self setMenuView];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -145,6 +159,7 @@
     self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+        NSLog(@"%@",nowDic);
         [self getDataWithDicMore:nowDic];
     }];
     MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
@@ -284,7 +299,6 @@
 #pragma mark 获取更多一起玩数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{
     __weak __typeof(self)weakSelf = self;
-
     [[LYHomePageHttpTool shareInstance]getTogetherListWithParams:dic block:^(NSMutableArray *result) {
         if(result.count>0){
             [dataList addObjectsFromArray:result];
@@ -317,7 +331,6 @@
             
             pageCount++;
             [weakSelf.tableView.mj_footer resetNoMoreData];
-//            [weakSelf.tableView reloadData];
         }else{
             if(!_bgView){
                 _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0 , SCREEN_WIDTH,  weakSelf.tableView.height)];
