@@ -33,6 +33,7 @@
         if (searchDic!=nil && searchDic.count>0) {
             //查询数据中是否有该对象，若有则更新，否则新增
             NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ == '%@'",[searchDic allKeys].firstObject,[searchDic objectForKey:[searchDic allKeys].firstObject]]];
+            NSLog(@"---->%@",[NSString stringWithFormat:@"%@ == '%@'",[searchDic allKeys].firstObject,[searchDic objectForKey:[searchDic allKeys].firstObject]]);
             NSArray *array=[self getCoreData:entryName withPredicate:predicate];
             if (array!=nil&&array.count>0) {
                 contactInfo=(NSManagedObject *)array.firstObject;
