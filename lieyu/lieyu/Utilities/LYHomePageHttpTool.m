@@ -11,6 +11,9 @@
 #import "LYHomePageUrl.h"
 #import "ZSUrl.h"
 #import "ZSDetailModel.h"
+#import "LYCache.h"
+
+
 @implementation LYHomePageHttpTool
 + (LYHomePageHttpTool *)shareInstance
 {
@@ -25,25 +28,46 @@
 -(void) getTogetherListWithParams:(NSDictionary*)params block:(void(^)(NSMutableArray* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YIQIWAN_LIST baseURL:LY_SERVER params:params success:^(id response) {
-        NSArray *dataList = response[@"data"];
-        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
-        
-        if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:dataList]];
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
-                block(tempArr);
-            });
+    
+    LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+    NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+    
+    NSLog(@"-----------dataArray:%@---------",dataArray);
+    
+    if(dataArray.count){
+        LYCache *cache = [dataArray objectAtIndex:0];
+        NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:cache.lyCacheValue]];
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            block(tempArr);
+        });
+        [app stopLoading];
+    }else{
+        [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YIQIWAN_LIST baseURL:LY_SERVER params:params success:^(id response) {
+            NSArray *dataList = response[@"data"];
+            NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+            NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
             
-        }else{
-            [MyUtil showMessage:message];
-        }
-        [app stopLoading];
-    } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
-        [app stopLoading];
-    }];
+            if ([code isEqualToString:@"1"]) {
+                NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:dataList]];
+                
+                //存储缓存讯息
+                LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+                [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":dataList,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+                
+                
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    block(tempArr);
+                });
+                
+            }else{
+                [MyUtil showMessage:message];
+            }
+            [app stopLoading];
+        } failure:^(NSError *err) {
+            [MyUtil showMessage:@"获取数据失败！"];
+            [app stopLoading];
+        }];
+    }
 }
 #pragma mark 一起玩列表详细
 -(void) getTogetherDetailWithParams:(NSDictionary*)params
