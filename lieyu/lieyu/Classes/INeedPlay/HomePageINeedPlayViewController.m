@@ -216,7 +216,7 @@ UITableViewDataSource,UITableViewDelegate,
         block !=nil? block(ermsg,bannerList,barList):nil;
     }];
 }
-   
+      
 //从本地获取数据
 - (NSArray *)getDataFromLocal{
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE];
