@@ -68,10 +68,10 @@
             }
         }
         
-        NSArray *keys=[dic allKeys];
-        for (NSString *key in keys) {
-            [contactInfo setValue:[dic objectForKey:key] forKey:key];
-        }
+//        NSArray *keys=[dic allKeys];
+//        for (NSString *key in keys) {
+//            [contactInfo setValue:[dic objectForKey:key] forKey:key];
+//        }
         NSError *error;
         if(![context save:&error])
         {

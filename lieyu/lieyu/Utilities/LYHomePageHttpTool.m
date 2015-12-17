@@ -35,14 +35,11 @@
             
             if ([code isEqualToString:@"1"]) {
                 NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:dataList]];
-                //存储缓存讯息
-                LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
-                [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":tempArr,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
-                //////////////////////////
-                NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
-                LYCache *lycache = [dataArray objectAtIndex:0];
-                NSLog(@"%@",lycache.lyCacheValue);
-                
+                if([[params objectForKey:@"p"] intValue] == 1){
+                    //存储缓存讯息
+                    LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+                    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":dataList,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+                }
                 dispatch_async(dispatch_get_main_queue(), ^(void) {
                     block(tempArr);
                 });
@@ -52,7 +49,7 @@
             }
             [app stopLoading];
         } failure:^(NSError *err) {
-            [MyUtil showMessage:@"获取数据失败！"];
+//            [MyUtil showMessage:@"获取数据失败！"];
             [app stopLoading];
         }];
 }

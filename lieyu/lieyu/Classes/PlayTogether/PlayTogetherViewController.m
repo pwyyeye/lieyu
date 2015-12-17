@@ -71,6 +71,8 @@
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     
+    dataList=[[NSMutableArray alloc] init];
+    
     pageCount=1;
     perCount=20;
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount]};
@@ -82,7 +84,7 @@
         
         LYCache *lycache = [dataArray objectAtIndex:0];
         NSLog(@"value:%@",lycache.lyCacheValue);
-        dataList = [[NSMutableArray alloc]initWithArray:lycache.lyCacheValue];
+        dataList = [PinKeModel mj_objectArrayWithKeyValuesArray:lycache.lyCacheValue];
         
         NSLog(@"%@",dataList);
         pageCount ++;
@@ -317,9 +319,20 @@
     NSLog(@"----------sctj:%@--------------",dic);
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getTogetherListWithParams:dic block:^(NSMutableArray *result) {
+        
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
+        
+//        //存储缓存讯息
+//        LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+//        [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":arr,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+//        //////////////////////////
+//        NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+//        LYCache *lycache = [dataArray objectAtIndex:0];
+//        NSLog(@"%@",lycache.lyCacheValue);
+//        
+
         
         NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
@@ -610,10 +623,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PinKeModel *pinKeModel = [dataList objectAtIndex:indexPath.row];
-//    LYPlayTogetherMainViewController *playTogetherMainViewController = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
-//    playTogetherMainViewController.title = @"我要拼客";
-//    playTogetherMainViewController.smid = pinKeModel.smid;
-//    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
     LPPlayTogetherViewController *LPPlayVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPPlayVC"];
     LPPlayVC.title = @"我要拼客";
     LPPlayVC.smid = pinKeModel.smid;
