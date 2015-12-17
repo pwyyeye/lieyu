@@ -47,6 +47,9 @@
 + (BOOL)isPureInt:(NSString*)string;
 //弹出消息框来显示消息
 + (void)showMessage:(NSString* )message;
+//显示不需要确认的提示消息
++(void)showCleanMessage:(NSString *)message;
+
 //获取键值参数
 + (NSDictionary *) getKeyValue:(NSString *)string;
 //获取月份中文

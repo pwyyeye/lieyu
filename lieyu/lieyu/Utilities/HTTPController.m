@@ -52,6 +52,7 @@
                      success(responseObj);
                  }
              } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+                 [app stopLoading];
                  if (failure) {
                      failure(error);
                  }
@@ -76,6 +77,7 @@
                       success(responseObj);
                   }
               } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+                  [app stopLoading];
                   if (failure) {
                       failure(error);
                   }
