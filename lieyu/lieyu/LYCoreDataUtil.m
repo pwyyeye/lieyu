@@ -18,6 +18,7 @@
     });
     return instance;
 }
+
 #pragma mark 保存数据
 - (BOOL)saveOrUpdateCoreData:(NSString *)entryName withParam:(NSDictionary *)dic andSearchPara:(NSDictionary *)searchDic{
 
@@ -32,6 +33,7 @@
         if (searchDic!=nil && searchDic.count>0) {
             //查询数据中是否有该对象，若有则更新，否则新增
             NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"%@ == '%@'",[searchDic allKeys].firstObject,[searchDic objectForKey:[searchDic allKeys].firstObject]]];
+            NSLog(@"---->%@",[NSString stringWithFormat:@"%@ == '%@'",[searchDic allKeys].firstObject,[searchDic objectForKey:[searchDic allKeys].firstObject]]);
             NSArray *array=[self getCoreData:entryName withPredicate:predicate];
             if (array!=nil&&array.count>0) {
                 contactInfo=(NSManagedObject *)array.firstObject;
@@ -86,13 +88,12 @@
     @finally {
         
     }
-    
     return YES;
 }
+
 #pragma mark  自定义查询
 - (NSArray *)getCoreData:(NSString *)entryName withPredicate:(NSPredicate *)predicate
 {
-    
     @try {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         NSManagedObjectContext *context =app.managedObjectContext;
@@ -114,13 +115,11 @@
 //            NSLog(@"Team info : %@, %@\n", teamName, teamCity);
 //        }
         
-        
         return fetchedObjects;
     }
     @catch (NSException *exception) {
         return nil;
     }
-    
 }
 
 #pragma mark （相对）单条件查询
@@ -136,7 +135,6 @@
         array=[self getCoreData:entryName withPredicate:nil];
     }
     return array;
-
 }
 
 #pragma mark （相对）单条件删除
@@ -170,9 +168,8 @@
     @catch (NSException *exception) {
         NSLog(@"----pass-deleteCoreData error:%@---",exception);
     }
-    
-
 }
+
 //删除本地sqllite数据库
 -(void)deleteLocalSQLLite{
     NSString *pngDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -187,4 +184,5 @@
         [fileMgr removeItemAtPath:FileDir error:&err];
     }
 }
+
 @end
