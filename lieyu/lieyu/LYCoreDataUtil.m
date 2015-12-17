@@ -18,8 +18,7 @@
     });
     return instance;
 }
-
-#pragma mark 保存数据
+#pragma mark --保存数据
 - (BOOL)saveOrUpdateCoreData:(NSString *)entryName withParam:(NSDictionary *)dic andSearchPara:(NSDictionary *)searchDic{
 
     @try {
@@ -90,8 +89,7 @@
     }
     return YES;
 }
-
-#pragma mark  自定义查询
+#pragma mark  --自定义查询
 - (NSArray *)getCoreData:(NSString *)entryName withPredicate:(NSPredicate *)predicate
 {
     @try {
@@ -122,7 +120,7 @@
     }
 }
 
-#pragma mark （相对）单条件查询
+#pragma mark --（相对）单条件查询
 - (NSArray *)getCoreData:(NSString *)entryName andSearchPara:(NSDictionary *)searchDic{
     NSArray *array;
     //判断是否需要查询
@@ -137,7 +135,7 @@
     return array;
 }
 
-#pragma mark （相对）单条件删除
+#pragma mark --（相对）单条件删除
 -(void)deleteCoreData:(NSString *)entryName withSearchPara:(NSDictionary *)searchDic{
     @try {
         //获取上下文
@@ -169,8 +167,7 @@
         NSLog(@"----pass-deleteCoreData error:%@---",exception);
     }
 }
-
-//删除本地sqllite数据库
+#pragma mark -- 删除本地sqllite数据库
 -(void)deleteLocalSQLLite{
     NSString *pngDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     NSFileManager *fileMgr = [NSFileManager defaultManager];
