@@ -26,7 +26,12 @@
 #import "LYCloseMeViewController.h"
 #import "bartypeslistModel.h"
 #import "HuoDongViewController.h"
+#import "LYCacheDefined.h"
+#import "LYCache+CoreDataProperties.h"
+
+
 #define PAGESIZE 20
+
 @interface HomePageINeedPlayViewController ()
 <
 UITableViewDataSource,UITableViewDelegate,
@@ -146,6 +151,18 @@ UITableViewDataSource,UITableViewDelegate,
 }
 
 -(void)getData{
+    NSArray *array = [self getDataFromLocal];
+    if (array.count) {
+        NSDictionary *dataDic = ((LYCache *)array.firstObject).lyCacheValue;
+        self.aryList = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
+        self.bannerList = dataDic[@"banner"];
+        self.newbannerList = dataDic[@"newbanner"];
+        self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]] ;
+        [self.tableView reloadData];
+        return;
+    }
+    
+    
     __weak HomePageINeedPlayViewController * weakSelf = self;
     //    __weak UITableView *tableView = self.tableView;
     [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
@@ -162,9 +179,9 @@ UITableViewDataSource,UITableViewDelegate,
                  weakSelf.tableView.mj_footer.hidden = YES;
              }
              //             [weakSelf.tableView.header endRefreshing];
+    
          }
      }];
-    
 }
 - (void)loadHomeList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
 {
@@ -198,6 +215,12 @@ UITableViewDataSource,UITableViewDelegate,
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
     }];
+}
+      
+//从本地获取数据
+- (NSArray *)getDataFromLocal{
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE];
+  return  [[LYCoreDataUtil shareInstance]getCoreData:@"LYCache" withPredicate:pre];
 }
 
 - (void)initialize
@@ -267,16 +290,16 @@ UITableViewDataSource,UITableViewDelegate,
 
 }
 
-#pragma mark 选择区域
--(void)chooseButton:(UIButton *)sender andSelected:(BOOL)isSelected{
-    if (isSelected) {
-        _cityBtn.titleLabel.text=sender.titleLabel.text;
-        [_cityBtn setTitle:sender.titleLabel.text forState:UIControlStateNormal];
-        [self getData];
-        [_alertView removeFromSuperview];
-        _alertView=nil;
-    }
-}
+//#pragma mark 选择区域
+//-(void)chooseButton:(UIButton *)sender andSelected:(BOOL)isSelected{
+//    if (isSelected) {
+//        _cityBtn.titleLabel.text=sender.titleLabel.text;
+//        [_cityBtn setTitle:sender.titleLabel.text forState:UIControlStateNormal];
+//        [self getData];
+//        [_alertView removeFromSuperview];
+//        _alertView=nil;
+//    }
+//}
 
 #pragma mark 离我最近
 - (IBAction)aroundMeClick:(id)sender {
@@ -453,7 +476,6 @@ UITableViewDataSource,UITableViewDelegate,
         controller.beerBarId = @(model.barid);
         [self.navigationController pushViewController:controller animated:YES];
     }
-    
 }
 
 #pragma mark 搜索代理
