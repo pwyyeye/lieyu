@@ -150,7 +150,10 @@ UITableViewDataSource,UITableViewDelegate,
     [self.navigationController pushViewController:homeSearchVC animated:YES];
 }
 
+
+
 -(void)getData{
+
     NSArray *array = [self getDataFromLocal];
     if (array.count) {
         NSDictionary *dataDic = ((LYCache *)array.firstObject).lyCacheValue;

@@ -19,6 +19,8 @@
 @property(nonatomic,strong)NSString *barname;
 @property (nonatomic,copy) NSString *subids;
 
+@property (nonatomic,copy) NSString *titleStr;
+
 @property (nonatomic,copy)NSString *address;
 @property (nonatomic,copy)NSString *pricedescStr;// 人均最高
 @property (nonatomic,copy)NSString *priceascStr;//人均最低

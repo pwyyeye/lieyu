@@ -13,6 +13,8 @@
 
 - (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam pageIndex:(NSInteger)index results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist))block
 {
+    NSString *addStr = reqParam.address;
+    NSString *titleStr = reqParam.titleStr;
     NSDictionary * param = [reqParam mj_keyValues];
     if (param == nil) {
         return;
@@ -36,7 +38,12 @@
                 LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
                 [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
             }else{
-                
+                //存储娱乐分类讯息
+                if (!addStr.length) {
+                    NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_HOTJIUBA,titleStr];
+                    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+                    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":keyStr,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":keyStr}];
+                }
             }
             
             bannerList = [dataDic valueForKey:@"banner"];

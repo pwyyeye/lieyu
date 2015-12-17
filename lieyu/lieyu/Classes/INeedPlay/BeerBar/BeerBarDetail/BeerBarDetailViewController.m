@@ -30,8 +30,8 @@
 #import "CHViewController.h"
 #import "ChiHeViewController.h"
 
-#define COLLECTKEY /*@"USERCOLLECT"*/  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
-#define LIKEKEY /*@"USERLIKE"*/ [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
+#define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
+#define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 
 @interface BeerBarDetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 {
@@ -136,19 +136,12 @@
     {
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
-            
-            
             //判断用户是否已经喜欢过
-            
-            NSLog(@"------>%@-------%@",[[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY],LIKEKEY);
             if ([[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY]) {
                 //收藏过
                 [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
             }
-            //if(_timer){
             [_timer setFireDate:[NSDate distantPast]];
-            //_timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(onTime) userInfo:nil repeats:YES];
-            // }
             
             if ([[NSUserDefaults standardUserDefaults] valueForKey:COLLECTKEY]) {
                 [self.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
