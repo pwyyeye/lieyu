@@ -212,35 +212,16 @@ UITableViewDataSource,UITableViewDelegate,
             }
             [weakSelf.aryList addObjectsFromArray:barList.mutableCopy] ;
             [weakSelf.tableView reloadData];
-            
-            
-//            if (weakSelf.aryList.count && weakSelf.bannerList.count && weakSelf.newbannerList.count && weakSelf.bartypeslistArray.count) {
-//                NSLog(@"-->%ld-----%ld----%ld---->%ld",weakSelf.aryList.count,weakSelf.bannerList.count,weakSelf.newbannerList.count,weakSelf.bartypeslistArray.count);
-//                [self saveDataFormLocalWithArray:@[weakSelf.aryList,weakSelf.bannerList,weakSelf.newbannerList,weakSelf.bartypeslistArray]];
-//            }
-            
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
     }];
 }
 
+//从本地获取数据
 - (NSArray *)getDataFromLocal{
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE];
   return  [[LYCoreDataUtil shareInstance]getCoreData:@"LYCache" withPredicate:pre];
 }
-
-//从本地获取数据
-//- (void)saveDataFormLocalWithArray:(NSArray *)dataArray{
-//    
-//  
-//    
-//    NSDictionary *paramDic = @{@"createDate":[NSDate date],@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataArray};
-//  BOOL saveBool = [[LYCoreDataUtil shareInstance]saveOrUpdateCoreData:@"LYCache" withParam:paramDic andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
-//    NSLog(@"－－－－－>%d",saveBool);
-//    if (saveBool) {
-//        NSLog(@"---->sucess");
-//    }
-//}
 
 - (void)initialize
 {
