@@ -18,6 +18,7 @@
 //热门酒吧-- json缓存
 #define CACHE_HOTJIUBA @"HOTJIUBA"
 
-//
+//酒吧详情 --json缓存
+#define CACHE_JIUBADETAIL @"JIUBADETAIL"
 
 #endif /* LYCacheDefined_h */

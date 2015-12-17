@@ -118,7 +118,6 @@
 #pragma mart --约束
 -(void)updateViewConstraints{
     [super updateViewConstraints];
-     NSLog(@"------->%ld",self.beerBarDetail.isSign);
     if (self.beerBarDetail.isSign==0) {
         _buttomViewHeight.constant=0;
        
@@ -155,6 +154,11 @@
             [weakSelf loadWebView];
             [weakSelf setTimer];
         }
+    } failure:^(BeerBarOrYzhDetailModel *beerModel) {
+            //本地加载酒吧详情数据
+        weakSelf.beerBarDetail = beerModel;
+        [weakSelf.tableView reloadData];
+        [weakSelf loadWebView];
     }];
 }
 
