@@ -11,7 +11,7 @@
 #import "bartypeslistModel.h"
 @implementation LYToPlayRestfulBusiness
 
-- (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist))block
+- (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam pageIndex:(NSInteger)index results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist))block
 {
     NSDictionary * param = [reqParam mj_keyValues];
     if (param == nil) {
@@ -31,9 +31,13 @@
         if (erMsg.state == Req_Success)
         {
             
-            //存储缓存讯息
-            LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-            [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
+            if(index == 1){
+                //存储缓存讯息 首页
+                LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+                [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
+            }else{
+                
+            }
             
             bannerList = [dataDic valueForKey:@"banner"];
             barlist = [dataDic valueForKey:@"barlist"];

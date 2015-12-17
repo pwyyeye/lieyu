@@ -185,7 +185,7 @@ UITableViewDataSource,UITableViewDelegate,
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist) {
+    [bus getToPlayOnHomeList:hList pageIndex:1 results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist) {
         if (ermsg.state == Req_Success)
         {
             if (weakSelf.curPageIndex == 1) {

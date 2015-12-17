@@ -105,29 +105,15 @@
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
-    
-//    NSString * mainType = nil;
-//    if (self.entryType == BaseEntry_WineBar) {
-//        mainType = @"酒吧";
-//    }
-//    else
-//    {
-//        mainType = @"夜总会";
-//    }
-    
-//#if 1
-   // hList.bartype = mainType;
-    
-   
+
     hList.address = _addressStr;
     hList.subids = _subidStr;
     hList.need_page = @(1);
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
-//#endif
     
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner,NSMutableArray *bartypeslist)
+    [bus getToPlayOnHomeList:hList pageIndex:2 results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner,NSMutableArray *bartypeslist)
      {
          if (ermsg.state == Req_Success)
          {
