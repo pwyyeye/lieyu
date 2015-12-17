@@ -18,6 +18,7 @@
     });
     return instance;
 }
+
 #pragma mark 保存数据
 - (BOOL)saveOrUpdateCoreData:(NSString *)entryName withParam:(NSDictionary *)dic andSearchPara:(NSDictionary *)searchDic{
 
@@ -113,7 +114,6 @@
 //            NSLog(@"Team info : %@, %@\n", teamName, teamCity);
 //        }
         
-        
         return fetchedObjects;
     }
     @catch (NSException *exception) {
@@ -166,6 +166,21 @@
     }
     @catch (NSException *exception) {
         NSLog(@"----pass-deleteCoreData error:%@---",exception);
+    }
+}
+
+//删除本地sqllite数据库
+-(void)deleteLocalSQLLite{
+    NSString *pngDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    NSString *FileDir = [NSString stringWithFormat:@"%@/lieyu.sqlite", pngDir];
+    NSError *err;
+    [fileMgr createDirectoryAtPath:FileDir withIntermediateDirectories:YES attributes:nil error:&err];
+    BOOL bRet = [fileMgr fileExistsAtPath:FileDir];
+    if (bRet) {
+        //
+        NSError *err;
+        [fileMgr removeItemAtPath:FileDir error:&err];
     }
 }
 
