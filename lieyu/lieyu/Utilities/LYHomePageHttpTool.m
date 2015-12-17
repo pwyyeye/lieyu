@@ -32,9 +32,7 @@
     LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
     NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
     
-    NSLog(@"-----------dataArray:%@---------",dataArray);
-    
-    if(dataArray.count){
+    if(dataArray.count && params[@"p"] == 1){
         LYCache *cache = [dataArray objectAtIndex:0];
         NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:cache.lyCacheValue]];
         dispatch_async(dispatch_get_main_queue(), ^(void) {
