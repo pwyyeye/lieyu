@@ -52,6 +52,10 @@
                      success(responseObj);
                  }
              } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+                 [app stopLoading];
+                 if([error code]==-1009){
+                     [MyUtil showCleanMessage:@"无网络连接！"];
+                 }
                  if (failure) {
                      failure(error);
                  }
@@ -76,6 +80,10 @@
                       success(responseObj);
                   }
               } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+                  [app stopLoading];
+                  if([error code]==-1009){
+                      [MyUtil showCleanMessage:@"无网络连接！"];
+                  }
                   if (failure) {
                       failure(error);
                   }

@@ -11,6 +11,8 @@
 #import "LYUserDetailInfoViewController.h"
 #import "LYUserDetailController.h"
 #import "AboutLieyu.h"
+#import "SDImageCache.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 @interface Setting ()
 
 @end
@@ -137,6 +139,12 @@
     }else if (indexPath.row==1) {
         [USER_DEFAULT removeObjectForKey:@"user_name"];
         [USER_DEFAULT removeObjectForKey:@"user_pass"];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+        
+        [[SDImageCache sharedImageCache] clearDisk];
+        
+        [[LYCoreDataUtil shareInstance] deleteLocalSQLLite];
         [MyUtil showMessage:@"清除成功！"];
         
     }else if(indexPath.row==2){

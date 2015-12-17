@@ -41,7 +41,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+//        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }
@@ -66,7 +66,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }
@@ -92,7 +92,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 
@@ -182,7 +182,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
     
@@ -208,7 +208,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }
@@ -233,7 +233,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
     
@@ -287,7 +287,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }
@@ -312,7 +312,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }
@@ -365,7 +365,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }
@@ -422,7 +422,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }
@@ -501,7 +501,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showMessage:@"获取数据失败！"];
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }

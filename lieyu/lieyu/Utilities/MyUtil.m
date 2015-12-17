@@ -281,6 +281,7 @@
     return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%d/h/%d",encodeKey,width,height];
 }
 
+#pragma --mark 获取设备型号
 + (NSString*)deviceString
 {
     // 需要#import "sys/utsname.h"
@@ -318,6 +319,7 @@
  *
  *  @return 星座名称
  */
+#pragma --mark 根据生日计算星座
 +(NSString *)getAstroWithBirthday:(NSString *)dateString
 {
     
@@ -365,9 +367,7 @@
 }
 
 
-//根据日期来计算年龄
-
-
+#pragma --mark 根据日期来计算年龄
 + (NSString*)getAgefromDate:(NSString *)birthday{
     //实例化一个NSDateFormatter对象
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -399,4 +399,35 @@
     
     
 }
+
+#pragma --mark 弹出提示框 不需要确认 
++(void)showCleanMessage:(NSString *)message
+{
+    UIWindow * window = [UIApplication sharedApplication].keyWindow;
+    UIView *showview =  [[UIView alloc]init];
+    showview.backgroundColor = RGBA(114, 5, 147, 0.8);
+    showview.frame = CGRectMake(1, 1, 1, 1);
+    showview.alpha = 0.8f;
+    showview.layer.cornerRadius = 5.0f;
+    showview.layer.masksToBounds = YES;
+    [window addSubview:showview];
+    
+    UILabel *label = [[UILabel alloc]init];
+    CGSize LabelSize = [message sizeWithFont:[UIFont systemFontOfSize:17] constrainedToSize:CGSizeMake(290, 9000)];
+    label.frame = CGRectMake(10, 5, LabelSize.width, LabelSize.height);
+    label.text = message;
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = 1;
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont boldSystemFontOfSize:15];
+    label.numberOfLines=0;
+    [showview addSubview:label];
+    showview.frame = CGRectMake((CGRectGetWidth([UIScreen mainScreen].bounds) - LabelSize.width - 20)/2, CGRectGetWidth([UIScreen mainScreen].bounds) - 100, LabelSize.width+20, LabelSize.height+10);
+    [UIView animateWithDuration:2 animations:^{
+        showview.alpha = 0;
+    } completion:^(BOOL finished) {
+        [showview removeFromSuperview];
+    }];
+}
+
 @end
