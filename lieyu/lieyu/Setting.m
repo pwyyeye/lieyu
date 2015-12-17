@@ -144,6 +144,7 @@
         
         [[SDImageCache sharedImageCache] clearDisk];
         
+        [[LYCoreDataUtil shareInstance] deleteLocalSQLLite];
         [MyUtil showMessage:@"清除成功！"];
         
     }else if(indexPath.row==2){
