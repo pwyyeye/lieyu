@@ -5219,7 +5219,7 @@
 				TargetAttributes = {
 					AD8899B51B9AFE61007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = HTBQ4BN66Y;
+						DevelopmentTeam = 4C3H9RAR45;
 					};
 					AD8899D11B9AFE62007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
