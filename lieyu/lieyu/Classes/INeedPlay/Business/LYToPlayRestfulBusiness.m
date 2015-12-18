@@ -56,7 +56,7 @@
             bartypeslist = [dataDic valueForKey:@"bartypeslist"];
             bartypeslist = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:bartypeslist]];
             barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:barlist]];
-        }
+        }  
         
         block(erMsg,bannerList,barlist,newbanner,bartypeslist);
     } failure:^(NSError *err)
