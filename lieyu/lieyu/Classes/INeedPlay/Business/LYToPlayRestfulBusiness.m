@@ -9,10 +9,15 @@
 #import "LYToPlayRestfulBusiness.h"
 #import "JiuBaModel.h"
 #import "bartypeslistModel.h"
+#import "LYCache.h"
+#import "LYCoreDataUtil.h"
+
 @implementation LYToPlayRestfulBusiness
 
-- (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist))block
+- (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam pageIndex:(NSInteger)index results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist))block
 {
+    NSString *addStr = reqParam.address;
+    NSString *titleStr = reqParam.titleStr;
     NSDictionary * param = [reqParam mj_keyValues];
     if (param == nil) {
         return;
@@ -21,6 +26,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_HOMELIST  baseURL:LY_SERVER params:param success:^(id response)
     {
+        
         [app stopLoading];
         NSDictionary *dataDic = response[@"data"];
         NSMutableArray *bannerList = nil;
@@ -31,9 +37,18 @@
         if (erMsg.state == Req_Success)
         {
             
-            //存储缓存讯息
-            LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-            [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
+            if(index == 1){
+                //存储缓存讯息 首页
+                LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+                [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
+            }else{
+                //存储娱乐分类讯息
+                if (!addStr.length) {
+                    NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_HOTJIUBA,titleStr];
+                    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+                    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":keyStr,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":keyStr}];
+                }
+            }
             
             bannerList = [dataDic valueForKey:@"banner"];
             barlist = [dataDic valueForKey:@"barlist"];
@@ -53,8 +68,9 @@
 
 }
 
-- (void)getBearBarOrYzhDetail:(NSNumber *)itemId results:(void(^)(LYErrorMessage * erMsg,BeerBarOrYzhDetailModel * detailItem))block
+- (void)getBearBarOrYzhDetail:(NSNumber *)itemId results:(void(^)(LYErrorMessage * erMsg,BeerBarOrYzhDetailModel * detailItem))block failure:(void(^)(BeerBarOrYzhDetailModel *model))needLocal
 {
+    NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_JIUBADETAIL,itemId.stringValue];
     if (itemId == nil) {
         return;
     }
@@ -72,11 +88,22 @@
          if (erMsg.state == Req_Success)
          {
              model = [BeerBarOrYzhDetailModel initFormDictionary:dataDic];
+             
+             NSDictionary *param = @{@"lyCacheKey":keyStr,@"lyCacheValue":dataDic,@"createDate":[NSDate date]};
+             [[LYCoreDataUtil shareInstance] saveOrUpdateCoreData:@"LYCache" withParam:param andSearchPara:@{@"lyCacheKey":keyStr}];
          }
          
          block(erMsg,model);
      } failure:^(NSError *err)
      {
+         NSDictionary *paraDic = @{@"lyCacheKey":keyStr};
+         NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" andSearchPara:paraDic];
+         if(dataArray.count){
+         NSDictionary *dataDic = ((LYCache *)dataArray.firstObject).lyCacheValue;
+         BeerBarOrYzhDetailModel *beerModel = [BeerBarOrYzhDetailModel initFormDictionary:dataDic];
+         NSLog(@"-->%@--------%@",beerModel.barname,itemId);
+         needLocal(beerModel);
+         }
          [app stopLoading];
          LYErrorMessage * erMsg = [LYErrorMessage instanceWithError:err];
          block(erMsg,nil);

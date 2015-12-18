@@ -63,6 +63,10 @@ UITableViewDataSource,UITableViewDelegate,
         _tableView.bounds=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     }
     
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSLog(@"=----------------------%@----------------------=",documentsDirectory);
+    
    // _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
@@ -76,7 +80,7 @@ UITableViewDataSource,UITableViewDelegate,
     _tableView.showsVerticalScrollIndicator=NO;
    [self initialize];
    [self setupViewStyles];
-    
+        [self getData];
     
 }
 
@@ -96,7 +100,7 @@ UITableViewDataSource,UITableViewDelegate,
 //    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
 //        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
 //    }
-    [self getData];
+
     [self.navigationController setNavigationBarHidden:NO];
     
     
@@ -150,7 +154,10 @@ UITableViewDataSource,UITableViewDelegate,
     [self.navigationController pushViewController:homeSearchVC animated:YES];
 }
 
+
+
 -(void)getData{
+
     NSArray *array = [self getDataFromLocal];
     if (array.count) {
         NSDictionary *dataDic = ((LYCache *)array.firstObject).lyCacheValue;
@@ -178,11 +185,10 @@ UITableViewDataSource,UITableViewDelegate,
              {
                  weakSelf.tableView.mj_footer.hidden = YES;
              }
-             //             [weakSelf.tableView.header endRefreshing];
-    
          }
      }];
 }
+
 - (void)loadHomeList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
 {
     MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
@@ -194,13 +200,11 @@ UITableViewDataSource,UITableViewDelegate,
     if (![MyUtil isEmptyString:_cityBtn.titleLabel.text]) {
        hList.city = _cityBtn.titleLabel.text;
     }
-//    hList.city = [LYUserLocation instance].city;
-//    hList.bartype = @"酒吧/夜总会";
     hList.need_page = @(1);
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist) {
+    [bus getToPlayOnHomeList:hList pageIndex:1 results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist) {
         if (ermsg.state == Req_Success)
         {
             if (weakSelf.curPageIndex == 1) {

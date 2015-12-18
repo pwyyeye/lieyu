@@ -14,6 +14,6 @@
 
 //我要玩首页－－json缓存
 #define CACHE_INEED_PLAY_HOMEPAGE @"INEED_PLAY_HOMEPAGE"
-
+#define CACHE_PLAY_TOGETHER_HOMEPAGE @"PLAY_TOGETHER_HOMEPAGE"
 
 #endif /* LYCacheDefined_h */
