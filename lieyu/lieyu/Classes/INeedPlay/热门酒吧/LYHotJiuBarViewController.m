@@ -23,6 +23,7 @@
 #import "bartypeslistModel.h"
 #import "UIImage+GIF.h"
 #import "MenuButton.h"
+#import "LYCache.h"
 
 #define PAGESIZE 20
 
@@ -70,6 +71,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
+    [self installFreshEvent];
 }
 
 - (void)gotoBack{
@@ -77,6 +79,18 @@
 }
 #pragma mark 获取数据
 -(void)getData{
+    
+    if(!_addressStr.length){
+        NSArray *dataArray = [self getDataFromLocal];
+        if(dataArray.count){
+        NSDictionary *dataDic = ((LYCache *)dataArray.firstObject).lyCacheValue;
+        self.aryList = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]];
+        [self.tableView reloadData];
+        [self noGoodsViewWith:self.aryList];
+        return;
+        }
+    }
+    
     __weak LYHotJiuBarViewController * weakSelf = self;
     //    __weak UITableView *tableView = self.tableView;
     [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
@@ -95,6 +109,43 @@
          }
      }];
 }
+- (NSArray *)getDataFromLocal{
+      return  [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":[NSString stringWithFormat:@"%@%@",CACHE_HOTJIUBA,self.navigationItem.title]}];
+}
+
+//无商品时的界面
+- (void)noGoodsViewWith:(NSArray *)goodsArray{
+    if (!goodsArray.count) {
+        [_bgView removeFromSuperview];
+        [_image_place removeFromSuperview];
+        [_label_place removeFromSuperview];
+        
+        _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_menuView.frame) , SCREEN_WIDTH,  SCREEN_HEIGHT - 64 - CGRectGetHeight(_menuView.frame))];
+        _bgView.backgroundColor = RGBA(0, 0, 0, 0.4);
+        _bgView.alpha = 0.2;
+        _bgView.tag = 300;
+        [self.view addSubview:_bgView];
+        
+        _image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 191,105 , 119)];
+        _image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
+        _image_place.tag = 100;
+        [self.view addSubview:_image_place];
+        
+        _label_place = [[UILabel alloc]initWithFrame:CGRectMake(76, 310, 168, 22)];
+        _label_place.text = @"正在等待商家入住";
+        _label_place.textColor = RGBA(29, 32, 47, 1);
+        _label_place.font = [UIFont systemFontOfSize:14];
+        _label_place.tag = 200;
+        _label_place.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:_label_place];
+        
+        [self.view bringSubviewToFront:_menuView];
+    }else{
+        [_bgView removeFromSuperview];
+        [_image_place removeFromSuperview];
+        [_label_place removeFromSuperview];
+    }
+}
 
 - (void)loadItemList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
 
@@ -105,29 +156,16 @@
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
-    
-//    NSString * mainType = nil;
-//    if (self.entryType == BaseEntry_WineBar) {
-//        mainType = @"酒吧";
-//    }
-//    else
-//    {
-//        mainType = @"夜总会";
-//    }
-    
-//#if 1
-   // hList.bartype = mainType;
-    
-   
+
     hList.address = _addressStr;
     hList.subids = _subidStr;
     hList.need_page = @(1);
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
-//#endif
+    hList.titleStr = self.navigationItem.title;
     
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList:hList results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner,NSMutableArray *bartypeslist)
+    [bus getToPlayOnHomeList:hList pageIndex:2 results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner,NSMutableArray *bartypeslist)
      {
          if (ermsg.state == Req_Success)
          {
@@ -139,37 +177,7 @@
              
              [weakSelf.aryList addObjectsFromArray:barList];
              [weakSelf.tableView reloadData];
-             if (!weakSelf.aryList.count) {
-                 
-                 [_bgView removeFromSuperview];
-                 [_image_place removeFromSuperview];
-                 [_label_place removeFromSuperview];
-                 
-                 _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_menuView.frame) , SCREEN_WIDTH,  SCREEN_HEIGHT - 64 - CGRectGetHeight(_menuView.frame))];
-                 _bgView.backgroundColor = RGBA(0, 0, 0, 0.4);
-                 _bgView.alpha = 0.2;
-                 _bgView.tag = 300;
-                 [weakSelf.view addSubview:_bgView];
-                 
-                 _image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 191,105 , 119)];
-                 _image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
-                 _image_place.tag = 100;
-                 [weakSelf.view addSubview:_image_place];
-                 
-                 _label_place = [[UILabel alloc]initWithFrame:CGRectMake(76, 310, 168, 22)];
-                 _label_place.text = @"正在等待商家入住";
-                 _label_place.textColor = RGBA(29, 32, 47, 1);
-                 _label_place.font = [UIFont systemFontOfSize:14];
-                 _label_place.tag = 200;
-                 _label_place.textAlignment = NSTextAlignmentCenter;
-                 [weakSelf.view addSubview:_label_place];
-                 
-                 [weakSelf.view bringSubviewToFront:_menuView];
-             }else{
-                     [_bgView removeFromSuperview];
-                     [_image_place removeFromSuperview];
-                     [_label_place removeFromSuperview];
-             }
+             [weakSelf noGoodsViewWith:weakSelf.aryList];
          }
          block !=nil? block(ermsg,bannerList,barList):nil;
      }];
@@ -177,10 +185,9 @@
 
 - (void)installFreshEvent
 {
-    
     __weak LYHotJiuBarViewController * weakSelf = self;
     //    __weak UITableView *tableView = self.tableView;
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:
                              ^{
                                  weakSelf.curPageIndex = 1;
                                  [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
@@ -200,6 +207,8 @@
                                       }
                                   }];
                              }];
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
+    [self initMJRefeshHeaderForGif:header];
     
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
@@ -219,6 +228,27 @@
             
         }];
     }];
+}
+
+-(void)initMJRefeshHeaderForGif:(MJRefreshGifHeader *) header{
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    // 设置普通状态的动画图片
+    [header setImages:@[[UIImage imageNamed:@"mjRefresh"]] forState:MJRefreshStateIdle];
+    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    [header setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"],[UIImage imageNamed:@"refresh9"],[UIImage imageNamed:@"refresh10"],[UIImage imageNamed:@"refresh11"],[UIImage imageNamed:@"refresh12"]] forState:MJRefreshStatePulling];
+    // 设置正在刷新状态的动画图片
+    [header setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"],[UIImage imageNamed:@"refresh9"],[UIImage imageNamed:@"refresh10"],[UIImage imageNamed:@"refresh11"],[UIImage imageNamed:@"refresh12"]] forState:MJRefreshStateRefreshing];
+}
+
+-(void)initMJRefeshFooterForGif:(MJRefreshBackGifFooter *) footer{
+    
+    // 设置普通状态的动画图片
+    [footer setImages:@[[UIImage imageNamed:@"mjRefresh"]] forState:MJRefreshStateIdle];
+    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+    [footer setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"],[UIImage imageNamed:@"refresh9"],[UIImage imageNamed:@"refresh10"],[UIImage imageNamed:@"refresh11"],[UIImage imageNamed:@"refresh12"]] forState:MJRefreshStatePulling];
+    // 设置正在刷新状态的动画图片
+    [footer setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"],[UIImage imageNamed:@"refresh9"],[UIImage imageNamed:@"refresh10"],[UIImage imageNamed:@"refresh11"],[UIImage imageNamed:@"refresh12"]] forState:MJRefreshStateRefreshing];
 }
 
 #pragma mark 菜单代理
