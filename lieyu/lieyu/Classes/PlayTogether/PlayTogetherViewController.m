@@ -294,7 +294,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     return 148;
 }
 
@@ -311,7 +310,6 @@
         }
     }];
     [weakSelf.tableView.mj_footer endRefreshing];
-    
 }
 
 #pragma mark 获取数据
