@@ -14,11 +14,6 @@
 
 //我要玩首页－－json缓存
 #define CACHE_INEED_PLAY_HOMEPAGE @"INEED_PLAY_HOMEPAGE"
-
-//热门酒吧-- json缓存
-#define CACHE_HOTJIUBA @"HOTJIUBA"
-
-//酒吧详情 --json缓存
-#define CACHE_JIUBADETAIL @"JIUBADETAIL"
+#define CACHE_PLAY_TOGETHER_HOMEPAGE @"PLAY_TOGETHER_HOMEPAGE"
 
 #endif /* LYCacheDefined_h */

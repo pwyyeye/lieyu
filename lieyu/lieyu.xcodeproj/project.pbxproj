@@ -689,6 +689,11 @@
 		ADE103BB1BDFA5F200D9EC38 /* LYUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */; };
 		ADE103C11BE0EAAA00D9EC38 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103BE1BE0EAAA00D9EC38 /* EAIntroPage.m */; };
 		ADE103C21BE0EAAA00D9EC38 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103C01BE0EAAA00D9EC38 /* EAIntroView.m */; };
+		ADE2AD701C23ADDE00B0A54B /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE2AD6B1C23ADDE00B0A54B /* libmtasdk.a */; };
+		ADE2AD711C23ADDE00B0A54B /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = ADE2AD6F1C23ADDE00B0A54B /* ReleaseNotes.txt */; };
+		ADE2AD731C23AE5500B0A54B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE2AD721C23AE5500B0A54B /* libz.tbd */; };
+		ADE2AD751C23AE6600B0A54B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE2AD741C23AE6600B0A54B /* libsqlite3.tbd */; };
+		ADE2AD771C23AE8E00B0A54B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE2AD761C23AE8E00B0A54B /* Security.framework */; };
 		ADF38F421BE8D8B400A80B08 /* CityChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF38F411BE8D8B400A80B08 /* CityChooseButton.m */; };
 		ADF88E531C1029F600CF5DED /* LYEvaluationController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF88E511C1029F600CF5DED /* LYEvaluationController.m */; };
 		ADF88E541C1029F600CF5DED /* LYEvaluationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADF88E521C1029F600CF5DED /* LYEvaluationController.xib */; };
@@ -1979,6 +1984,14 @@
 		ADE103BE1BE0EAAA00D9EC38 /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
 		ADE103BF1BE0EAAA00D9EC38 /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
 		ADE103C01BE0EAAA00D9EC38 /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
+		ADE2AD6B1C23ADDE00B0A54B /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
+		ADE2AD6C1C23ADDE00B0A54B /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
+		ADE2AD6D1C23ADDE00B0A54B /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
+		ADE2AD6E1C23ADDE00B0A54B /* MTAFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAFeedback.h; sourceTree = "<group>"; };
+		ADE2AD6F1C23ADDE00B0A54B /* ReleaseNotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReleaseNotes.txt; sourceTree = "<group>"; };
+		ADE2AD721C23AE5500B0A54B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		ADE2AD741C23AE6600B0A54B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		ADE2AD761C23AE8E00B0A54B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		ADF38F401BE8D8B400A80B08 /* CityChooseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityChooseButton.h; sourceTree = "<group>"; };
 		ADF38F411BE8D8B400A80B08 /* CityChooseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityChooseButton.m; sourceTree = "<group>"; };
 		ADF88E501C1029F600CF5DED /* LYEvaluationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYEvaluationController.h; sourceTree = "<group>"; };
@@ -2191,6 +2204,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADE2AD771C23AE8E00B0A54B /* Security.framework in Frameworks */,
+				ADE2AD751C23AE6600B0A54B /* libsqlite3.tbd in Frameworks */,
+				ADE2AD731C23AE5500B0A54B /* libz.tbd in Frameworks */,
 				ADF8E1BC1C2141C700943E4D /* CoreData.framework in Frameworks */,
 				AD8FAB5D1C1570F600C45F1A /* libHCSStarRatingView.a in Frameworks */,
 				AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */,
@@ -2204,6 +2220,7 @@
 				ADD530411BDE1E9D002CF4D8 /* AlipaySDK.framework in Frameworks */,
 				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
 				AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */,
+				ADE2AD701C23ADDE00B0A54B /* libmtasdk.a in Frameworks */,
 				15EB35571BD483F500BA6161 /* libSocialSina.a in Frameworks */,
 				ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */,
 				15EB35471BD4839D00BA6161 /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
@@ -4175,6 +4192,9 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADE2AD761C23AE8E00B0A54B /* Security.framework */,
+				ADE2AD741C23AE6600B0A54B /* libsqlite3.tbd */,
+				ADE2AD721C23AE5500B0A54B /* libz.tbd */,
 				ADF8E1BB1C2141C700943E4D /* CoreData.framework */,
 				AD8FAB5C1C1570F600C45F1A /* libHCSStarRatingView.a */,
 				AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */,
@@ -4610,6 +4630,19 @@
 				ADFFA6B21C181B9900D9BD2A /* 5@3x.jpg */,
 			);
 			name = "引导页";
+			sourceTree = "<group>";
+		};
+		ADE2AD6A1C23ADDE00B0A54B /* MTA-sdk-1.4.8 */ = {
+			isa = PBXGroup;
+			children = (
+				ADE2AD6B1C23ADDE00B0A54B /* libmtasdk.a */,
+				ADE2AD6C1C23ADDE00B0A54B /* MTA.h */,
+				ADE2AD6D1C23ADDE00B0A54B /* MTAConfig.h */,
+				ADE2AD6E1C23ADDE00B0A54B /* MTAFeedback.h */,
+				ADE2AD6F1C23ADDE00B0A54B /* ReleaseNotes.txt */,
+			);
+			name = "MTA-sdk-1.4.8";
+			path = "mta-sdk-1.4.8";
 			sourceTree = "<group>";
 		};
 		ADF38F3F1BE8CD9C00A80B08 /* 定位 */ = {
@@ -5058,6 +5091,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				ADE2AD6A1C23ADDE00B0A54B /* MTA-sdk-1.4.8 */,
 				ADF88F391C12E5F000CF5DED /* KxMenu */,
 				ADF88E701C1197C400CF5DED /* MJRefresh */,
 				AD106B9C1C0DDEFF007F5FBA /* MJExtension */,
@@ -5541,6 +5575,7 @@
 				38E5D7A01C113879004B49D2 /* choose.png in Resources */,
 				15E1847F1BB4FF0900681BB2 /* LYZSeditView.xib in Resources */,
 				854727361C197E6B0048CEDC /* icon_fanhui2@2x.png in Resources */,
+				ADE2AD711C23ADDE00B0A54B /* ReleaseNotes.txt in Resources */,
 				854727351C197E6B0048CEDC /*  .png in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
 				ADFFA6CE1C181ED800D9BD2A /* refresh7@2x.png in Resources */,
@@ -6292,6 +6327,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/ZBarSDK",
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/lieyu/Vendor/mta-sdk-1.4.8",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -6338,6 +6374,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/ZBarSDK",
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/lieyu/Vendor/mta-sdk-1.4.8",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

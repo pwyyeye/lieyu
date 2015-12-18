@@ -24,6 +24,7 @@
 
 #import "MenuButton.h"
 #import "UIImage+GIF.h"
+#import "LYCache.h"
 
 @interface PlayTogetherViewController
 ()<UITableViewDelegate,UITableViewDataSource,LYHotBarMenuViewDelegate>
@@ -43,7 +44,7 @@
 @property(nonatomic,weak) IBOutlet UIButton * nearDistanceButton;
 @property(nonatomic,strong) IBOutlet UIButton * fillterButton;
 @property(nonatomic,strong) NSArray *oriNavItems;
-@property (nonatomic, strong) UIView *sectionView;
+//@property (nonatomic, strong) UIView *sectionView;
 
 @property (nonatomic, strong) NSArray *buttonsArray;
 @property (nonatomic, strong) UIView *selectView;
@@ -69,14 +70,29 @@
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
-    dataList=[[NSMutableArray alloc]init];
+    
+    dataList=[[NSMutableArray alloc] init];
+    
     pageCount=1;
     perCount=20;
-//    [self setupViewStyles];
-    [self getDataForTogether];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount]};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+
+    LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+    NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+    if(dataArray.count){
+        
+        LYCache *lycache = [dataArray objectAtIndex:0];
+        NSLog(@"value:%@",lycache.lyCacheValue);
+        dataList = [PinKeModel mj_objectArrayWithKeyValuesArray:lycache.lyCacheValue];
+        
+        NSLog(@"%@",dataList);
+        pageCount ++;
+    }else{
+        [self getDataForTogether];
+    }
     [self getData];
     [self setMenuView];
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -145,6 +161,7 @@
     self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+        NSLog(@"%@",nowDic);
         [self getDataWithDicMore:nowDic];
     }];
     MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
@@ -277,14 +294,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     return 148;
 }
 
 #pragma mark 获取更多一起玩数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{
     __weak __typeof(self)weakSelf = self;
-
     [[LYHomePageHttpTool shareInstance]getTogetherListWithParams:dic block:^(NSMutableArray *result) {
         if(result.count>0){
             [dataList addObjectsFromArray:result];
@@ -295,7 +310,6 @@
         }
     }];
     [weakSelf.tableView.mj_footer endRefreshing];
-    
 }
 
 #pragma mark 获取数据
@@ -303,9 +317,20 @@
     NSLog(@"----------sctj:%@--------------",dic);
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getTogetherListWithParams:dic block:^(NSMutableArray *result) {
+        
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
+        
+//        //存储缓存讯息
+//        LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+//        [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":arr,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+//        //////////////////////////
+//        NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+//        LYCache *lycache = [dataArray objectAtIndex:0];
+//        NSLog(@"%@",lycache.lyCacheValue);
+//        
+
         
         NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
@@ -317,7 +342,6 @@
             
             pageCount++;
             [weakSelf.tableView.mj_footer resetNoMoreData];
-//            [weakSelf.tableView reloadData];
         }else{
             if(!_bgView){
                 _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0 , SCREEN_WIDTH,  weakSelf.tableView.height)];
@@ -597,10 +621,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PinKeModel *pinKeModel = [dataList objectAtIndex:indexPath.row];
-//    LYPlayTogetherMainViewController *playTogetherMainViewController = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
-//    playTogetherMainViewController.title = @"我要拼客";
-//    playTogetherMainViewController.smid = pinKeModel.smid;
-//    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
     LPPlayTogetherViewController *LPPlayVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPPlayVC"];
     LPPlayVC.title = @"我要拼客";
     LPPlayVC.smid = pinKeModel.smid;

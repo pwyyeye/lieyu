@@ -25,12 +25,13 @@
 //    dict[@"stars"] = @"4";
 //    [dict setValue:@"4" forKey:@"stars"];
     NSArray *iconsArray = @[self.icon1,self.icon2,self.icon3,self.icon4,self.icon5];
-    [_barImage sd_setImageWithURL:[NSURL URLWithString:dict[@"imageURL"]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+//    [_barImage sd_setImageWithURL:[NSURL URLWithString:dict[@"imageURL"]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    [_barImage sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     _barNameLbl.text = dict[@"barName"];
     for (i = 0; i < [dict[@"stars"] intValue]; i ++) {
         ((UIImageView *)iconsArray[i]).image = [UIImage imageNamed:@"starRed"];
     }
-    for(int j = i ; j <= [dict[@"stars"] intValue]; j ++ ){
+    for(int j = i ; j < [dict[@"stars"] intValue]; j ++ ){
         ((UIImageView *)iconsArray[j]).image = [UIImage imageNamed:@"starGray"];
     }
 }

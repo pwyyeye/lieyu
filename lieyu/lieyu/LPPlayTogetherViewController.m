@@ -216,7 +216,18 @@
             _barinfoCell = [tableView dequeueReusableCellWithIdentifier:@"barInfo"];
         }
         if(self.pinKeModel){
-            NSDictionary *dict = @{@"barName":self.pinKeModel.barinfo.barname,@"stars":@"4",@"imageURL":self.pinKeModel.banner[0]};
+            NSString * star_num ;
+            if([self.pinKeModel.barinfo.star_num isEqualToString:@""]){
+                star_num = @"5";
+            }else{
+                star_num = self.pinKeModel.barinfo.star_num;
+            }
+            NSDictionary *dict;
+            if(self.pinKeModel.banner.count > 0){
+                dict = @{@"barName":self.pinKeModel.barinfo.barname,@"stars":star_num,@"imageURL":self.pinKeModel.banner[0]};
+            }else{
+                dict = @{@"barName":self.pinKeModel.barinfo.barname,@"stars":star_num};
+            }
             [_barinfoCell cellConfigure:dict];
         }
         return _barinfoCell;
