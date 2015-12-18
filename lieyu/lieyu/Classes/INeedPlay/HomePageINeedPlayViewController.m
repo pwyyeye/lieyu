@@ -76,7 +76,7 @@ UITableViewDataSource,UITableViewDelegate,
     _tableView.showsVerticalScrollIndicator=NO;
    [self initialize];
    [self setupViewStyles];
-    
+        [self getData];
     
 }
 
@@ -96,7 +96,7 @@ UITableViewDataSource,UITableViewDelegate,
 //    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
 //        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
 //    }
-    [self getData];
+
     [self.navigationController setNavigationBarHidden:NO];
     
     
@@ -197,8 +197,6 @@ UITableViewDataSource,UITableViewDelegate,
     if (![MyUtil isEmptyString:_cityBtn.titleLabel.text]) {
        hList.city = _cityBtn.titleLabel.text;
     }
-//    hList.city = [LYUserLocation instance].city;
-//    hList.bartype = @"酒吧/夜总会";
     hList.need_page = @(1);
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
