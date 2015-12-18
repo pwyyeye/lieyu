@@ -121,6 +121,12 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //友盟推送
     [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
     
+    
+    [MTA startWithAppkey:@"I9IU4CZP47CE"];
+    
+    //其它SDK内置启动MTA情况下需要调用下面方法,传入MTA_SDK_VERSION,并检 查返回值。
+//    [MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION];
+    
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
     {
