@@ -257,7 +257,7 @@
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
-        
+        self.collectionView.contentOffset = CGPointMake(0, 0);
         if(dataList.count>0){
             [kongImageView removeFromSuperview];
             [kongLabel removeFromSuperview];
@@ -442,7 +442,6 @@
     [nowDic removeObjectForKey:@"categoryid"];
     [nowDic setObject:[NSString stringWithFormat:@"%d",sortkey] forKey:@"categoryid"];
     [self getData:nowDic];
-    NSLog(@"筛选出所有：%d",sortkey);
 }
 
 #pragma mark 点击更多按钮弹出界面
