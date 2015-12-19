@@ -161,7 +161,6 @@
     self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-        NSLog(@"%@",nowDic);
         [self getDataWithDicMore:nowDic];
     }];
     MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
