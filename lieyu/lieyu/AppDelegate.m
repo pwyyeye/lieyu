@@ -124,6 +124,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     [MTA startWithAppkey:@"I9IU4CZP47CE"];
     
+    [[MTAConfig getInstance] setDebugEnable:TRUE];
+    
     //其它SDK内置启动MTA情况下需要调用下面方法,传入MTA_SDK_VERSION,并检 查返回值。
 //    [MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION];
     

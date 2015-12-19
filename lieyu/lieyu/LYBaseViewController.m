@@ -38,6 +38,26 @@
 
     // Do any additional setup after loading the view.
 }
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    
+    [super viewDidAppear:animated];
+    if (![MyUtil isEmptyString:self.title]) {
+        [MTA trackPageViewBegin:self.title];
+    }
+    
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (![MyUtil isEmptyString:self.title]) {
+        [MTA trackPageViewEnd:self.title];
+    }
+}
+
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
 }
