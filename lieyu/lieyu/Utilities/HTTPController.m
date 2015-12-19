@@ -247,7 +247,6 @@
         NSLog(@"----pass-httprequest header%@---",operation.request);
         //判断是否登录如果未登录 则进入登录页面
         NSNumber *status=[responseObject objectForKey:@"status"];
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
         if([status integerValue] == -1){
 //            

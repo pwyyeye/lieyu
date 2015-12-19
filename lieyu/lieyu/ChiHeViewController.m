@@ -176,7 +176,7 @@
 #pragma mark 设置角标
 - (void)setSuperScript:(int)number{
     NSLog(@"%@",self.navigationController.childViewControllers);
-    int count = self.navigationController.childViewControllers.count;
+    NSUInteger count = self.navigationController.childViewControllers.count;
     if(![[self.navigationController.childViewControllers objectAtIndex:count-1] isKindOfClass:[ChiHeViewController class]]){
         [_badge setHidden:YES];
     }else{
