@@ -77,7 +77,6 @@
             [self.imageView_arrow_three setImage:[UIImage imageNamed:@"arrow drop down"]];
             sender.tag = 6;
         }
-        
     }else{
         //上回 gaiwei 123
         [_menuDropVC.view removeFromSuperview];
@@ -91,7 +90,6 @@
             sender.tag = 3;
         }
     }
-    NSLog(@"------%ld",sender.tag);
 }
 
 - (void)removeMenuDropViewWith:(NSString *)title{

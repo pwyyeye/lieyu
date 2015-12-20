@@ -115,12 +115,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [self startLocation];
-    
-    
-    
+
     //友盟推送
     [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
-    
     
     [MTA startWithAppkey:@"I9IU4CZP47CE"];
     
@@ -172,7 +169,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //for log
     [UMessage setLogEnabled:YES];
     
-    
     //引导页启动
     if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         [self showIntroWithCrossDissolve];
@@ -180,10 +176,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         view.view=_intro;
         self.window.rootViewController=view;
     }
-    
-    
      return YES;
 }
+
 //开始定位
 -(void)startLocation{
     if (![CLLocationManager locationServicesEnabled])
@@ -191,11 +186,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     {
         [MyUtil showMessage:@"请开启定位服务!"];
         //提示开启定位服务
-        
         return ;
-        
     }
-    
     
     
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
@@ -203,7 +195,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
         
     {
-        
         if (!locationManager)
             
         {
@@ -276,6 +267,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     }];
     
 }
+
 #pragma mark 获取历史搜索数据
 -(void)loadHisData{
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -289,6 +281,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     }
     
 }
+
 #pragma mark 保存历史数据
 -(void)saveHisData{
 //    NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -304,7 +297,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 {
     [LYDataStore currentInstance];
 }
-
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
@@ -332,6 +324,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         }
     }
 }
+
 //注册用户通知设置
 - (void)application:(UIApplication *)application
 didRegisterUserNotificationSettings:
@@ -474,7 +467,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
     tokenIncorrect:^() {
         NSLog(@"Token 失效的状态处理");
-
                              // Token 失效的状态处理
     }];
 }
@@ -508,13 +500,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         }];
          completion(userInfo);
     }
-    
-    
-    
-    
-        
-    
-    
 }
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
@@ -558,9 +543,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         }];
         return YES;
     }
-    
-    
-    
 }
 
 - (void)application:(UIApplication *)application

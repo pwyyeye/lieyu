@@ -7,6 +7,9 @@
 //
 
 #import "LYCityChooseViewController.h"
+#define ADDRESSPAGE_MTA @"ADDRESSPAGE"
+#define ADDRESSPAGE_TIMEEVENT_MTA @"ADDRESSPAGE_TIMEEVENT"
+
 
 @interface LYCityChooseViewController ()
 
@@ -22,12 +25,26 @@
     [self.navigationItem setLeftBarButtonItem:item];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [MTA trackPageViewBegin:ADDRESSPAGE_MTA];
+    [MTA trackCustomEventBegin:LYTIMEEVENT_MTA args:@[ADDRESSPAGE_TIMEEVENT_MTA]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MTA trackPageViewEnd:ADDRESSPAGE_MTA];
+    [MTA trackCustomEventEnd:LYTIMEEVENT_MTA args:@[ADDRESSPAGE_TIMEEVENT_MTA]];
+}
+
 - (void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)cityClick:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+    [MTA trackCustomEvent:LYCLICK_MTA args:@[@"cityChoose"]];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
