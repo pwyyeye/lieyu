@@ -15,7 +15,6 @@
 #import "LYUserLocation.h"
 #import "JiuBaModel.h"
 #import "LYPlayTogetherMainViewController.h"
-#import "LYHomeSearchViewController.h"
 #import "DWTaoCanXQViewController.h"
 #import "MyCollectionViewController.h"
 #import "LYAmusementClassCell.h"
@@ -29,8 +28,9 @@
 #import "LYCacheDefined.h"
 #import "LYCache+CoreDataProperties.h"
 
-
 #define PAGESIZE 20
+#define HOMEPAGE_MTA @"HOMEPAGE"
+#define HOMEPAGE_TIMEEVENT_MTA @"HOMEPAGE_TIMEEVENT"
 
 @interface HomePageINeedPlayViewController ()
 <
@@ -56,16 +56,15 @@ UITableViewDataSource,UITableViewDelegate,
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
+    
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.bounds=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     }
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSLog(@"=----------------------%@----------------------=",documentsDirectory);
     
    // _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     
@@ -78,10 +77,8 @@ UITableViewDataSource,UITableViewDelegate,
      self.aryList=[[NSMutableArray alloc]init];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
-   [self initialize];
-   [self setupViewStyles];
-        [self getData];
-    
+    [self setupViewStyles];
+    [self getData];
 }
 
 -(void)dealloc{
@@ -100,10 +97,12 @@ UITableViewDataSource,UITableViewDelegate,
 //    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
 //        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
 //    }
-
     [self.navigationController setNavigationBarHidden:NO];
-    
-    
+    [self createNavButton];
+}
+
+#pragma mark 创建导航的按钮(选择城市和搜索)
+- (void)createNavButton{
     _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(9.5, 12, 54, 20)];
     [_cityChooseBtn setImage:[UIImage imageNamed:@"Shape"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
@@ -121,7 +120,6 @@ UITableViewDataSource,UITableViewDelegate,
     _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(134.5, 9.5, 50.0, 24.6)];
     _titleImageView.image = [UIImage imageNamed:@"猎娱"];
     [self.navigationController.navigationBar addSubview:_titleImageView];
-    
 }
 
 - (void)viewWillLayoutSubviews
@@ -133,31 +131,52 @@ UITableViewDataSource,UITableViewDelegate,
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [MTA trackPageViewBegin:HOMEPAGE_MTA];
+    [MTA trackCustomEventBegin:LYTIMEEVENT_MTA args:@[HOMEPAGE_TIMEEVENT_MTA]];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self removeNavButtonAndImageView];
+    [MTA trackPageViewEnd:HOMEPAGE_MTA];
+    [MTA trackCustomEventEnd:LYTIMEEVENT_MTA args:@[HOMEPAGE_TIMEEVENT_MTA]];
 }
 
+#pragma mark 移除导航的按钮和图片
 - (void)removeNavButtonAndImageView{
     [_titleImageView removeFromSuperview];
     [_searchBtn removeFromSuperview];
     [_cityChooseBtn removeFromSuperview];
 }
 
+//筛选，跳转，增加，删除，确认
+
+#pragma mark 选择城市action
 - (void)cityChangeClick:(UIButton *)sender {
     LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
     [self.navigationController pushViewController:cityChooseVC animated:YES];
+    
+  //  NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":HOMEPAGE_MTA,@"titleName":@"选择城市"};
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
 }
+
+- (NSDictionary *)createMTADctionaryWithActionName:(NSString *)actionName pageName:(NSString *)pageName titleName:(NSString *)titleName{
+    return @{@"actionName":actionName,@"pageName":pageName,@"titleName":titleName};
+}
+
+#pragma mark 搜索action
 - (void)searchClick:(UIButton *)sender {
     LYHomeSearcherViewController *homeSearchVC = [[LYHomeSearcherViewController alloc]init];
     [self.navigationController pushViewController:homeSearchVC animated:YES];
+    
+    [MTA trackCustomEvent:LYCLICK_MTA args:@[@"search_homePage"]];
 }
 
-
-
+#pragma mark 获取数据
 -(void)getData{
-
     NSArray *array = [self getDataFromLocal];
     if (array.count) {
         NSDictionary *dataDic = ((LYCache *)array.firstObject).lyCacheValue;
@@ -169,9 +188,7 @@ UITableViewDataSource,UITableViewDelegate,
         return;
     }
     
-    
     __weak HomePageINeedPlayViewController * weakSelf = self;
-    //    __weak UITableView *tableView = self.tableView;
     [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {
          if (Req_Success == ermsg.state)
@@ -221,20 +238,14 @@ UITableViewDataSource,UITableViewDelegate,
     }];
 }
       
-//从本地获取数据
+#pragma mark 本地获取数据
 - (NSArray *)getDataFromLocal{
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE];
   return  [[LYCoreDataUtil shareInstance]getCoreData:@"LYCache" withPredicate:pre];
 }
 
-- (void)initialize
-{
-    
-}
-
 - (void)setupViewStyles
 {
-   [self setupToViewStyles];
     [self installFreshEvent];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -243,10 +254,10 @@ UITableViewDataSource,UITableViewDelegate,
     [self.tableView registerNib:[UINib nibWithNibName:@"LYAmusementClassCell" bundle:nil] forCellReuseIdentifier:@"LYAmusementClassCell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
+
 - (void)installFreshEvent
 {
     __weak HomePageINeedPlayViewController * weakSelf = self;
-//    __weak UITableView *tableView = self.tableView;
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:
                              ^{
                                  weakSelf.curPageIndex = 1;
@@ -284,26 +295,9 @@ UITableViewDataSource,UITableViewDelegate,
                 weakSelf.curPageIndex ++;
                 [weakSelf.tableView.mj_footer endRefreshing];
             }
-            
         }];
     }];
 }
-
-- (void)setupToViewStyles
-{
-
-}
-
-//#pragma mark 选择区域
-//-(void)chooseButton:(UIButton *)sender andSelected:(BOOL)isSelected{
-//    if (isSelected) {
-//        _cityBtn.titleLabel.text=sender.titleLabel.text;
-//        [_cityBtn setTitle:sender.titleLabel.text forState:UIControlStateNormal];
-//        [self getData];
-//        [_alertView removeFromSuperview];
-//        _alertView=nil;
-//    }
-//}
 
 #pragma mark 离我最近
 - (IBAction)aroundMeClick:(id)sender {
@@ -314,10 +308,9 @@ UITableViewDataSource,UITableViewDelegate,
 //    NSArray
 //    [self.aryList sortUsingDescriptors:sortDescriptors];
     
-
-    
     closeMeVC.beerBarArray = self.aryList;
     [self.navigationController pushViewController:closeMeVC animated:YES];
+    [MTA trackCustomEvent:LYCLICK_MTA args:@[@"closeMe"]];
 }
 
 
@@ -424,32 +417,16 @@ UITableViewDataSource,UITableViewDelegate,
   return cell;
 }
 
-//跳转热门酒吧界面
-- (void)hotJiuClick:(UIButton *)button{
-    LYHotJiuBarViewController *hotJiuBarVC = [[LYHotJiuBarViewController alloc]init];
-    NSMutableArray *titleArray = [[NSMutableArray alloc]initWithCapacity:0];
-    for (int i = 0;  i < self.bartypeslistArray.count; i ++) {
-        bartypeslistModel *bartypeModel = self.bartypeslistArray[i];
-        [titleArray addObject:bartypeModel.name];
-    }
-    
-    hotJiuBarVC.titleArray = titleArray;
-    hotJiuBarVC.middleStr = titleArray[button.tag];
-    hotJiuBarVC.bartypeArray = self.bartypeslistArray;
-    hotJiuBarVC.subidStr = ((bartypeslistModel *)self.bartypeslistArray[button.tag]).subids;
-    [self.navigationController pushViewController:hotJiuBarVC animated:YES];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat h = 0.0f;
     switch (indexPath.section) {
-        case 0://广告
+        case 0:
         {
             h = 122.5 ;
         }
             break;
-        case 1:// 选项卡 ，酒吧或夜总会
+        case 1:
         {
             h = 211  ;
         }
@@ -469,7 +446,6 @@ UITableViewDataSource,UITableViewDelegate,
     return h;
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -479,7 +455,24 @@ UITableViewDataSource,UITableViewDelegate,
         JiuBaModel * model = [_aryList objectAtIndex:indexPath.section -3];
         controller.beerBarId = @(model.barid);
         [self.navigationController pushViewController:controller animated:YES];
+        [MTA trackCustomEvent:LYCLICK_MTA args:@[model.barname]];
     }
+}
+
+#pragma mark 跳转热门酒吧界面
+- (void)hotJiuClick:(UIButton *)button{
+    LYHotJiuBarViewController *hotJiuBarVC = [[LYHotJiuBarViewController alloc]init];
+    NSMutableArray *titleArray = [[NSMutableArray alloc]initWithCapacity:0];
+    for (int i = 0;  i < self.bartypeslistArray.count; i ++) {
+        bartypeslistModel *bartypeModel = self.bartypeslistArray[i];
+        [titleArray addObject:bartypeModel.name];
+    }
+    hotJiuBarVC.titleArray = titleArray;
+    hotJiuBarVC.middleStr = titleArray[button.tag];
+    hotJiuBarVC.bartypeArray = self.bartypeslistArray;
+    hotJiuBarVC.subidStr = ((bartypeslistModel *)self.bartypeslistArray[button.tag]).subids;
+    [self.navigationController pushViewController:hotJiuBarVC animated:YES];
+    [MTA trackCustomEvent:LYCLICK_MTA args:@[titleArray[button.tag]]];
 }
 
 #pragma mark 搜索代理
@@ -489,6 +482,7 @@ UITableViewDataSource,UITableViewDelegate,
     controller.beerBarId = @(model.barid);
     [self.navigationController pushViewController:controller animated:YES];
 }
+
 -(void)EScrollerViewDidClicked:(NSUInteger)index{
     NSDictionary *dic = _newbannerList [index];
     NSNumber *ad_type=[dic objectForKey:@"ad_type"];
@@ -541,7 +535,6 @@ UITableViewDataSource,UITableViewDelegate,
     // Pass the selected object to the new view controller.
 }
 */
-
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
     //    [self.navigationController setNavigationBarHidden:NO];

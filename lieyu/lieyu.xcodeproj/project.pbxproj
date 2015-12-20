@@ -256,7 +256,6 @@
 		15ED327F1BE336C400E086A1 /* YaoSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED327D1BE336C400E086A1 /* YaoSettingViewController.xib */; };
 		15ED32831BE336DC00E086A1 /* YaoHisListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED32811BE336DC00E086A1 /* YaoHisListViewController.m */; };
 		15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */; };
-		15ED32891BE6F2E800E086A1 /* LYHomeSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */; };
 		15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */; };
 		15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EE51461BA7063000464B74 /* ZSWaitPayViewController.m */; };
 		15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EE51471BA7063000464B74 /* ZSWaitPayViewController.xib */; };
@@ -523,7 +522,6 @@
 		85F672B81C099776001BEE5B /* LYWineBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672B61C099776001BEE5B /* LYWineBarCell.xib */; };
 		85F672BC1C09D7F8001BEE5B /* LYCityChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672BA1C09D7F8001BEE5B /* LYCityChooseViewController.m */; };
 		85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */; };
-		85F672BF1C09DCFB001BEE5B /* LYHomeSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672BE1C09DCFB001BEE5B /* LYHomeSearchViewController.xib */; };
 		A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */; };
 		A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */; };
 		A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100811BA7AFAB009283D1 /* LYProductslistViewController.m */; };
@@ -1290,8 +1288,6 @@
 		15ED32801BE336DC00E086A1 /* YaoHisListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YaoHisListViewController.h; sourceTree = "<group>"; };
 		15ED32811BE336DC00E086A1 /* YaoHisListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YaoHisListViewController.m; sourceTree = "<group>"; };
 		15ED32821BE336DC00E086A1 /* YaoHisListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YaoHisListViewController.xib; sourceTree = "<group>"; };
-		15ED32861BE6F2E800E086A1 /* LYHomeSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSearchViewController.h; sourceTree = "<group>"; };
-		15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSearchViewController.m; sourceTree = "<group>"; };
 		15EE513F1BA6E32E00464B74 /* ZSMyShopsManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSMyShopsManageViewController.h; sourceTree = "<group>"; };
 		15EE51411BA6E32E00464B74 /* ZSMyShopsManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSMyShopsManageViewController.xib; sourceTree = "<group>"; };
 		15EE51451BA7063000464B74 /* ZSWaitPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSWaitPayViewController.h; sourceTree = "<group>"; };
@@ -1649,7 +1645,6 @@
 		85F672B91C09D7F8001BEE5B /* LYCityChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCityChooseViewController.h; sourceTree = "<group>"; };
 		85F672BA1C09D7F8001BEE5B /* LYCityChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCityChooseViewController.m; sourceTree = "<group>"; };
 		85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYCityChooseViewController.xib; sourceTree = "<group>"; };
-		85F672BE1C09DCFB001BEE5B /* LYHomeSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearchViewController.xib; sourceTree = "<group>"; };
 		A20100741BA7ADCB009283D1 /* ZSReleaseMBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseMBViewController.h; sourceTree = "<group>"; };
 		A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleaseMBViewController.m; sourceTree = "<group>"; };
 		A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleaseMBViewController.xib; sourceTree = "<group>"; };
@@ -3171,9 +3166,6 @@
 		15ED32851BE6F23100E086A1 /* 搜索 */ = {
 			isa = PBXGroup;
 			children = (
-				15ED32861BE6F2E800E086A1 /* LYHomeSearchViewController.h */,
-				15ED32871BE6F2E800E086A1 /* LYHomeSearchViewController.m */,
-				85F672BE1C09DCFB001BEE5B /* LYHomeSearchViewController.xib */,
 				855536BC1C0A922200D296DA /* LYHomeSearcherViewController.h */,
 				855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */,
 				855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */,
@@ -5330,7 +5322,6 @@
 				15EB35491BD4839D00BA6161 /* UMSCommentDetailController.xib in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
 				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
-				85F672BF1C09DCFB001BEE5B /* LYHomeSearchViewController.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				38D876501C170DB200E2F284 /* PayNow@2x.png in Resources */,
 				ADFFA6911C16DFD400D9BD2A /* middlePlace.png in Resources */,
@@ -6031,7 +6022,6 @@
 				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				1559DD101BDA2A3E00F3FE9B /* CarInfoCell.m in Sources */,
-				15ED32891BE6F2E800E086A1 /* LYHomeSearchViewController.m in Sources */,
 				ADF88EA21C1197C400CF5DED /* MJRefreshAutoGifFooter.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
 				15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */,

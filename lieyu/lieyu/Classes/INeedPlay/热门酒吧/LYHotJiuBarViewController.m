@@ -74,12 +74,25 @@
     [self installFreshEvent];
 }
 
+//- (void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    [MTA trackPageViewBegin:ADDRESSPAGE_MTA];
+//    [MTA trackCustomEventBegin:LYTIMEEVENT_MTA args:@[ADDRESSPAGE_TIMEEVENT_MTA]];
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    [MTA trackPageViewEnd:ADDRESSPAGE_MTA];
+//    [MTA trackCustomEventEnd:LYTIMEEVENT_MTA args:@[ADDRESSPAGE_TIMEEVENT_MTA]];
+//}
+
 - (void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark 获取数据
 -(void)getData{
-    
     if(!_addressStr.length){
         NSArray *dataArray = [self getDataFromLocal];
         if(dataArray.count){
@@ -282,25 +295,91 @@
             switch (dropButton.tag) {
                 case 0:
                 {
-                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
+                    [ _aryList sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        JiuBaModel *a = (JiuBaModel *)obj1;
+                        JiuBaModel *b = (JiuBaModel *)obj2;
+                        NSLog(@"--->%@---->%@",a.lowest_consumption,b.lowest_consumption);
+                        float aNum = [a.distance floatValue];
+                        float bNum = [b.distance floatValue];
+                        if (aNum > bNum) {
+                            return NSOrderedDescending;
+                        }
+                        else if (aNum < bNum){
+                            return NSOrderedAscending;
+                        }
+                        else {
+                            return NSOrderedSame;
+                        }
+                    }];
                    [self.tableView reloadData];
+                    [self.tableView setContentOffset:CGPointZero animated:YES];
                 }
                     break;
                 case 1:
                 {
-                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelGao:)] mutableCopy];
+//                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelGao:)] mutableCopy];
+//                    [self.tableView reloadData];
+                    [ _aryList sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        JiuBaModel *a = (JiuBaModel *)obj1;
+                        JiuBaModel *b = (JiuBaModel *)obj2;
+                        NSLog(@"--->%@---->%@",a.lowest_consumption,b.lowest_consumption);
+                        int aNum = [a.lowest_consumption intValue];
+                        int bNum = [b.lowest_consumption intValue];
+                        if (aNum < bNum) {
+                            return NSOrderedDescending;
+                        }
+                        else if (aNum > bNum){
+                            return NSOrderedAscending;
+                        }
+                        else {
+                            return NSOrderedSame;
+                        }
+                    }];
                     [self.tableView reloadData];
+                                        [self.tableView setContentOffset:CGPointZero animated:YES];
                 }
                     break;
                 case 2:
                 {
-                      _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelDi:)] mutableCopy];
+                    [ _aryList sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        JiuBaModel *a = (JiuBaModel *)obj1;
+                        JiuBaModel *b = (JiuBaModel *)obj2;
+                        NSLog(@"--->%@---->%@",a.lowest_consumption,b.lowest_consumption);
+                        int aNum = [a.lowest_consumption intValue];
+                        int bNum = [b.lowest_consumption intValue];
+                        if (aNum > bNum) {
+                            return NSOrderedDescending;
+                        }
+                        else if (aNum < bNum){
+                            return NSOrderedAscending;
+                        }
+                        else {
+                            return NSOrderedSame;
+                        }
+                    }];
                     [self.tableView reloadData];
+                    [self.tableView setContentOffset:CGPointZero animated:YES];
                 }
                     break;
                 case 3:
                 {
-                    
+                    [ _aryList sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        JiuBaModel *a = (JiuBaModel *)obj1;
+                        JiuBaModel *b = (JiuBaModel *)obj2;
+                        float aNum = [a.rebate floatValue];
+                        float bNum = [b.rebate floatValue];
+                        if (aNum > bNum) {
+                            return NSOrderedDescending;
+                        }
+                        else if (aNum < bNum){
+                            return NSOrderedAscending;
+                        }
+                        else {
+                            return NSOrderedSame;
+                        }
+                    }];
+                    [self.tableView reloadData];
+                    [self.tableView setContentOffset:CGPointZero animated:YES];
                 }
                     break;
                     

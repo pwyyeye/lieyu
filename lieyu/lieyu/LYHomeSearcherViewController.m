@@ -20,6 +20,9 @@
 #import "JiuBaModel.h"
 
 #define PAGESIZE 20
+#define SEARCHPAGE_MTA @"SEARCHPAGE"
+#define SEARCHPAGE_TIMEEVENT_MTA @"SEARCHPAGE_TIMEEVENT"
+
 @interface LYHomeSearcherViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     NSArray *datalist;
@@ -56,6 +59,19 @@
     [self.navigationItem setLeftBarButtonItem:item];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [MTA trackPageViewBegin:SEARCHPAGE_MTA];
+    [MTA trackCustomEventBegin:LYTIMEEVENT_MTA args:@[SEARCHPAGE_TIMEEVENT_MTA]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MTA trackPageViewEnd:SEARCHPAGE_MTA];
+    [MTA trackCustomEventEnd:LYTIMEEVENT_MTA args:@[SEARCHPAGE_TIMEEVENT_MTA]];
+}
+
 - (void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -73,12 +89,13 @@
     }
     [self setHistory];
 }
+
 #pragma mark清空记录
 -(IBAction)delHisData:(UIButton *)sendid{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"删除历史记录" message:@"确定删除？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
     [alertView show];
-    
 }
+
 #pragma mark清空记录
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex==0){
@@ -97,6 +114,7 @@
         }
     }
 }
+
 #pragma mark 保存历史数据
 -(void)saveHisData:(NSString *)strKey{
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -123,7 +141,6 @@
         [hisRoute insertObject:strKey atIndex:0];
         [NSKeyedArchiver archiveRootObject:hisRoute toFile:filename];
     }
-    
 }
 
 - (void)setHistory{
@@ -157,6 +174,7 @@
     _curPageIndex=1;
     keyStr= searchBar.text;
     [self getData];
+    [MTA trackCustomEvent:LYCLICK_MTA args:@[@"searchKeyBorad"]];
 }
 
 - (void)setupViewStyles
@@ -182,8 +200,6 @@
     }];
     MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
     [self initMJRefeshFooterForGif:footer];
-    
-    
 }
 
 -(void)initMJRefeshHeaderForGif:(MJRefreshGifHeader *) header{
@@ -206,6 +222,7 @@
     // 设置正在刷新状态的动画图片
     [footer setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"],[UIImage imageNamed:@"refresh9"],[UIImage imageNamed:@"refresh10"],[UIImage imageNamed:@"refresh11"],[UIImage imageNamed:@"refresh12"]] forState:MJRefreshStateRefreshing];
 }
+
 -(void)getData{
     __weak LYHomeSearcherViewController * weakSelf = self;
     //    __weak UITableView *tableView = self.tableView;
@@ -225,23 +242,22 @@
              //             [weakSelf.tableView.header endRefreshing];
          }
      }];
-    
 }
+
 - (IBAction)historyClick:(UIButton *)sender {
     _searchBar.text = sender.currentTitle;
+    [MTA trackCustomEvent:LYCLICK_MTA args:@[[@"search" stringByAppendingString:sender.currentTitle]]];
+    [self searchBarSearchButtonClicked:_searchBar];
 }
 
 - (void)loadItemList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
-
 {
     MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
     LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
-    
     //    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     //    hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     //    hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
     //    hList.city = [LYUserLocation instance].city;
-    
     
 #if 1
     hList.barname = keyStr;
