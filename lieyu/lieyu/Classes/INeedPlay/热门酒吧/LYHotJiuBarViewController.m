@@ -297,23 +297,74 @@
                 {
                     _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
                    [self.tableView reloadData];
+                    [self.tableView setContentOffset:CGPointZero animated:YES];
                 }
                     break;
                 case 1:
                 {
-                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelGao:)] mutableCopy];
+//                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelGao:)] mutableCopy];
+//                    [self.tableView reloadData];
+                    [ _aryList sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        JiuBaModel *a = (JiuBaModel *)obj1;
+                        JiuBaModel *b = (JiuBaModel *)obj2;
+                        NSLog(@"--->%@---->%@",a.lowest_consumption,b.lowest_consumption);
+                        int aNum = [a.lowest_consumption intValue];
+                        int bNum = [b.lowest_consumption intValue];
+                        if (aNum < bNum) {
+                            return NSOrderedDescending;
+                        }
+                        else if (aNum > bNum){
+                            return NSOrderedAscending;
+                        }
+                        else {
+                            return NSOrderedSame;
+                        }
+                    }];
                     [self.tableView reloadData];
+                                        [self.tableView setContentOffset:CGPointZero animated:YES];
                 }
                     break;
                 case 2:
                 {
-                      _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModelDi:)] mutableCopy];
+                    [ _aryList sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        JiuBaModel *a = (JiuBaModel *)obj1;
+                        JiuBaModel *b = (JiuBaModel *)obj2;
+                        NSLog(@"--->%@---->%@",a.lowest_consumption,b.lowest_consumption);
+                        int aNum = [a.lowest_consumption intValue];
+                        int bNum = [b.lowest_consumption intValue];
+                        if (aNum > bNum) {
+                            return NSOrderedDescending;
+                        }
+                        else if (aNum < bNum){
+                            return NSOrderedAscending;
+                        }
+                        else {
+                            return NSOrderedSame;
+                        }
+                    }];
                     [self.tableView reloadData];
+                    [self.tableView setContentOffset:CGPointZero animated:YES];
                 }
                     break;
                 case 3:
                 {
-                    
+                    [ _aryList sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        JiuBaModel *a = (JiuBaModel *)obj1;
+                        JiuBaModel *b = (JiuBaModel *)obj2;
+                        float aNum = [a.rebate floatValue];
+                        float bNum = [b.rebate floatValue];
+                        if (aNum > bNum) {
+                            return NSOrderedDescending;
+                        }
+                        else if (aNum < bNum){
+                            return NSOrderedAscending;
+                        }
+                        else {
+                            return NSOrderedSame;
+                        }
+                    }];
+                    [self.tableView reloadData];
+                    [self.tableView setContentOffset:CGPointZero animated:YES];
                 }
                     break;
                     
