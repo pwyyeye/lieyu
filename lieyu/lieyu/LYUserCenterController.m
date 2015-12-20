@@ -76,11 +76,23 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }
     
 }
-
+-(void) viewDidAppear:(BOOL)animated
+{
+    
+    [super viewDidAppear:animated];
+    if (![MyUtil isEmptyString:self.title]) {
+        [MTA trackPageViewBegin:self.title];
+    }
+    
+    
+}
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    if (![MyUtil isEmptyString:self.title]) {
+        [MTA trackPageViewEnd:self.title];
+    }
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];

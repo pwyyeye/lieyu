@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PinKeModel.h"
 #import "LPAlertView.h"
-
-@interface LPPlayTogetherViewController : UIViewController<LPAlertViewDelegate>
+#import "LYBaseViewController.h"
+@interface LPPlayTogetherViewController : LYBaseViewController<LPAlertViewDelegate>
 
 @property (nonatomic, assign)int smid;
 

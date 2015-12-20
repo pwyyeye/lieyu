@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "NeedHideNavigationBar.h"
 #import "EScrollerView.h"
-@interface BeerBarDetailViewController : UIViewController
+#import "LYBaseViewController.h"
+@interface BeerBarDetailViewController : LYBaseViewController
 <
     UITableViewDelegate,
     UITableViewDataSource,

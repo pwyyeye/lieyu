@@ -219,7 +219,7 @@
                     [dibuView addSubview:btn2];
                     
                     UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
-                    btn1.backgroundColor=RGB(35, 166, 116);
+                    btn1.backgroundColor=RGB(94, 0, 131);
                     if(_orderInfoModel.pinkerList.count<_orderInfoModel.allnum.intValue){
                         [btn1 setTitle:@"邀请好友" forState:UIControlStateNormal];
                         [btn1 addTarget:self action:@selector(yaoQinAct:) forControlEvents:UIControlEventTouchUpInside];
