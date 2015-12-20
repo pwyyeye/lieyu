@@ -176,7 +176,7 @@
 #pragma mark 设置角标
 - (void)setSuperScript:(int)number{
     NSLog(@"%@",self.navigationController.childViewControllers);
-    int count = self.navigationController.childViewControllers.count;
+    NSUInteger count = self.navigationController.childViewControllers.count;
     if(![[self.navigationController.childViewControllers objectAtIndex:count-1] isKindOfClass:[ChiHeViewController class]]){
         [_badge setHidden:YES];
     }else{
@@ -257,7 +257,7 @@
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
-        
+        self.collectionView.contentOffset = CGPointMake(0, 0);
         if(dataList.count>0){
             [kongImageView removeFromSuperview];
             [kongLabel removeFromSuperview];
@@ -442,7 +442,6 @@
     [nowDic removeObjectForKey:@"categoryid"];
     [nowDic setObject:[NSString stringWithFormat:@"%d",sortkey] forKey:@"categoryid"];
     [self getData:nowDic];
-    NSLog(@"筛选出所有：%d",sortkey);
 }
 
 #pragma mark 点击更多按钮弹出界面

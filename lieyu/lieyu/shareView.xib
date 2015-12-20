@@ -108,7 +108,7 @@
         </view>
     </objects>
     <resources>
-        <image name="DuanXin.png" width="60" height="60"/>
+        <image name="DuanXin.png" width="6" height="192"/>
         <image name="FriendsCircle.png" width="60" height="60"/>
         <image name="WeChat.png" width="60" height="60"/>
         <image name="WeiBo.png" width="60" height="60"/>

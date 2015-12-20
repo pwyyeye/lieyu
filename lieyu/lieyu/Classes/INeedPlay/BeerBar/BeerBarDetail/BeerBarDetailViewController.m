@@ -496,14 +496,8 @@
 
 #pragma mark 分享按钮
 - (IBAction)shareClick:(id)sender {
-    NSString *string=@"大家一起来看看～猎娱不错啊! http://www.lie98.com\n";
+    NSString *string= [NSString stringWithFormat:@"大家一起来看看～%@不错啊!",self.beerBarDetail.barname];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-    //    [UMSocialSnsService presentSnsController:self
-    //                                appKey:UmengAppkey
-    //                                shareText:string
-    //                                shareImage:self.barinfoCell.barImage.image
-    //                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
-    //                                delegate:self];
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
 
 }

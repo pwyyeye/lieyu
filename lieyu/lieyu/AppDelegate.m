@@ -436,6 +436,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [login autoLogin];
     }
 }
+
 - (void)startLoading
 {
     [DejalBezelActivityView activityViewForView:self.window];
@@ -445,6 +446,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 {
     [DejalBezelActivityView removeViewAnimated:YES];
 }
+
 //获取IMToken
 -(void)getImToken{
     if(_userModel){
@@ -456,11 +458,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             [self connectWithToken];
         }];
     }
-    
-    
 }
-
-
 
 //IM连接服务器
 -(void)connectWithToken{

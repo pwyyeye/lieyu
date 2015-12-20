@@ -38,7 +38,9 @@
     
     //banner
     NSMutableArray *bigArr=[[NSMutableArray alloc]init];
-    
+    if (!model.banner.count){
+        return;
+    }
     for (NSString *iconStr in model.banner) {
         NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
         [dicTemp setObject:iconStr forKey:@"ititle"];
