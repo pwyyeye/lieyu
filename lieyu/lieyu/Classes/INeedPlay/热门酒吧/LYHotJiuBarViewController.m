@@ -295,7 +295,22 @@
             switch (dropButton.tag) {
                 case 0:
                 {
-                    _aryList = [[_aryList sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
+                    [ _aryList sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        JiuBaModel *a = (JiuBaModel *)obj1;
+                        JiuBaModel *b = (JiuBaModel *)obj2;
+                        NSLog(@"--->%@---->%@",a.lowest_consumption,b.lowest_consumption);
+                        float aNum = [a.distance floatValue];
+                        float bNum = [b.distance floatValue];
+                        if (aNum > bNum) {
+                            return NSOrderedDescending;
+                        }
+                        else if (aNum < bNum){
+                            return NSOrderedAscending;
+                        }
+                        else {
+                            return NSOrderedSame;
+                        }
+                    }];
                    [self.tableView reloadData];
                     [self.tableView setContentOffset:CGPointZero animated:YES];
                 }
