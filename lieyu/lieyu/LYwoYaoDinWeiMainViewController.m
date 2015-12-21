@@ -18,6 +18,8 @@
 #import "DWTaoCanXQViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "LYDinWeiTableViewCell.h"
+#define WOYAODINGWEIPAGE_MTA @"WOYAODINGWEIPAGE"
+
 @interface LYwoYaoDinWeiMainViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     JiuBaModel *jiubaModel;
@@ -31,7 +33,6 @@
     
     _tableView.frame = CGRectMake(0, 64 + 50, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50);
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -200,7 +201,8 @@
     taoCanXQViewController.dateStr=dataChoose;
     taoCanXQViewController.weekStr = [dic objectForKey:@"week"];
     taoCanXQViewController.jiubaModel = jiubaModel;
-    [self.navigationController pushViewController:taoCanXQViewController animated:YES];
+    [self.navigationController pushViewController:taoCanXQViewController animated:YES]; 
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:WOYAODINGWEIPAGE_MTA titleName:model.title]];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

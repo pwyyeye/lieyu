@@ -19,4 +19,6 @@
 
 -(void)initMJRefeshHeaderForGif:(MJRefreshGifHeader *) header;
 -(void)initMJRefeshFooterForGif:(MJRefreshBackGifFooter *) footer;
+
+- (NSDictionary *)createMTADctionaryWithActionName:(NSString *)actionName pageName:(NSString *)pageName titleName:(NSString *)titleName;
 @end

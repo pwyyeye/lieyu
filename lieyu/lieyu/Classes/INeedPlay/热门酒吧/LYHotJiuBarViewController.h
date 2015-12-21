@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HomePageEntryConstant.h"
+#import "LYBaseViewController.h"
 
-@interface LYHotJiuBarViewController : UIViewController
+@interface LYHotJiuBarViewController : LYBaseViewController
 @property(nonatomic,assign)BaseEntry entryType;
 @property(nonatomic,copy) NSMutableArray *titleArray;
 @property (nonatomic,copy) NSString *middleStr;

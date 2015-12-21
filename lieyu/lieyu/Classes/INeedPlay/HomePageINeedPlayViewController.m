@@ -170,9 +170,7 @@ UITableViewDataSource,UITableViewDelegate,
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"搜索"]];
 }
 
-- (NSDictionary *)createMTADctionaryWithActionName:(NSString *)actionName pageName:(NSString *)pageName titleName:(NSString *)titleName{
-    return @{@"actionName":actionName,@"pageName":pageName,@"titleName":titleName};
-}
+
 
 #pragma mark 获取数据
 -(void)getData{
@@ -470,7 +468,7 @@ UITableViewDataSource,UITableViewDelegate,
     hotJiuBarVC.bartypeArray = self.bartypeslistArray;
     hotJiuBarVC.subidStr = ((bartypeslistModel *)self.bartypeslistArray[button.tag]).subids;
     [self.navigationController pushViewController:hotJiuBarVC animated:YES];
-    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"热门酒吧"]];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:titleArray[button.tag]]];
 }
 
 #pragma mark 搜索代理

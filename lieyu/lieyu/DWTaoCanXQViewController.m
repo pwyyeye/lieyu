@@ -21,6 +21,8 @@
 #import "LPAttentionViewController.h"
 #import "JiuBaModel.h"
 
+#define TAOCANDETAILPAGE_MTA @"TAOCANDETAILPAGE"
+
 @interface DWTaoCanXQViewController ()<UITableViewDelegate>
 {
     TaoCanModel *taoCanModel;
@@ -102,6 +104,7 @@
             [MyUtil showMessage:@"收藏成功"];
         }
     }];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"收藏" pageName:TAOCANDETAILPAGE_MTA titleName:taoCanModel.barinfo.barname]];
 }
 
 - (void)shareClick{
@@ -114,7 +117,7 @@
     //                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
     //                                delegate:self];
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_headerCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
-    
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:TAOCANDETAILPAGE_MTA titleName:taoCanModel.barinfo.barname]];
 }
 
 - (void)setTableViewCell{
@@ -198,24 +201,13 @@
             break;
         case 2:
         {
-//            套餐时间
+            //套餐时间
             cell = [tableView dequeueReusableCellWithIdentifier:@"LYTitleInfoCell" forIndexPath:indexPath];
             if (cell) {
                 LYTitleInfoCell * titleInfoCell = (LYTitleInfoCell *)cell;
                 titleInfoCell.titleLal.text=@"套餐时间";
                 titleInfoCell.delLal.text= [NSString stringWithFormat:@"%@ %@",_dateStr,_weekStr];
             }
-            /*
-            NSArray *taocanArr=taoCanModel.goodsList;
-            cell = [tableView dequeueReusableCellWithIdentifier:@"PTTaoCanCell" forIndexPath:indexPath];
-            if (cell) {
-                PTTaoCanCell * taocanCell = (PTTaoCanCell *)cell;
-                [taocanCell configureCell:taocanArr[indexPath.row]];
-            }
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 43.5, 290, 0.5)];
-            lineLal.backgroundColor=RGB(199, 199, 199);
-            [cell addSubview:lineLal];
-             */
         }
             break;
         case 3://套餐内容
@@ -228,7 +220,6 @@
             break;
         case 4:
         {
-
             LYTaoCanContentTableViewCell *contentCell = [tableView dequeueReusableCellWithIdentifier:@"LYTaoCanContentTableViewCell" forIndexPath:indexPath];
             contentCell.label_desrc.text = taoCanModel.introduction;
             contentCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -294,6 +285,7 @@
     if (indexPath.section == 1) {
         NSDictionary *dic=@{@"title":_jiubaModel.barname,@"latitude":_jiubaModel.latitude,@"longitude":_jiubaModel.longitude};
         [[LYUserLocation instance] daoHan:dic];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"地图导航" pageName:TAOCANDETAILPAGE_MTA titleName:taoCanModel.barinfo.barname]];
     }
 }
 
@@ -313,8 +305,6 @@
 }
 */
 #pragma mark - 咨询
-
-
 - (IBAction)queryAct:(UIButton *)sender {
     RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
     conversationVC.conversationType = ConversationType_APPSERVICE;
@@ -324,12 +314,10 @@
     
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
     conversationVC.navigationItem.leftBarButtonItem = leftBtn;
-    
-  
-    
-    [self.navigationController pushViewController:conversationVC animated:YES];
-}
 
+    [self.navigationController pushViewController:conversationVC animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:TAOCANDETAILPAGE_MTA titleName:@"咨询猎娱"]];
+}
 
 - (void)backForword{
     [self.navigationController popViewControllerAnimated:YES];
@@ -339,6 +327,7 @@
 - (IBAction)warnAct:(UIButton *)sender {
     LPAttentionViewController *LPattentionVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPattention"];
     [self.navigationController pushViewController:LPattentionVC animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:TAOCANDETAILPAGE_MTA titleName:@"注意事项"]];
 }
 #pragma mark - 马上购买
 - (IBAction)payAct:(UIButton *)sender {
@@ -348,5 +337,6 @@
     sureOrderViewController.smid=taoCanModel.smid;
     sureOrderViewController.dateStr=self.dateStr;
     [self.navigationController pushViewController:sureOrderViewController animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:TAOCANDETAILPAGE_MTA titleName:@"确认订单"]];
 }
 @end
