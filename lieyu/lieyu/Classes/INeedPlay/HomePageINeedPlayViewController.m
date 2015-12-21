@@ -159,12 +159,7 @@ UITableViewDataSource,UITableViewDelegate,
     LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
     [self.navigationController pushViewController:cityChooseVC animated:YES];
     
-  //  NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":HOMEPAGE_MTA,@"titleName":@"选择城市"};
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
-}
-
-- (NSDictionary *)createMTADctionaryWithActionName:(NSString *)actionName pageName:(NSString *)pageName titleName:(NSString *)titleName{
-    return @{@"actionName":actionName,@"pageName":pageName,@"titleName":titleName};
 }
 
 #pragma mark 搜索action
@@ -172,7 +167,11 @@ UITableViewDataSource,UITableViewDelegate,
     LYHomeSearcherViewController *homeSearchVC = [[LYHomeSearcherViewController alloc]init];
     [self.navigationController pushViewController:homeSearchVC animated:YES];
     
-    [MTA trackCustomEvent:LYCLICK_MTA args:@[@"search_homePage"]];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"搜索"]];
+}
+
+- (NSDictionary *)createMTADctionaryWithActionName:(NSString *)actionName pageName:(NSString *)pageName titleName:(NSString *)titleName{
+    return @{@"actionName":actionName,@"pageName":pageName,@"titleName":titleName};
 }
 
 #pragma mark 获取数据
@@ -310,7 +309,7 @@ UITableViewDataSource,UITableViewDelegate,
     
     closeMeVC.beerBarArray = self.aryList;
     [self.navigationController pushViewController:closeMeVC animated:YES];
-    [MTA trackCustomEvent:LYCLICK_MTA args:@[@"closeMe"]];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"离我最近"]];
 }
 
 
@@ -451,11 +450,10 @@ UITableViewDataSource,UITableViewDelegate,
     
     if (indexPath.section >= 3) {
         BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
-    
         JiuBaModel * model = [_aryList objectAtIndex:indexPath.section -3];
         controller.beerBarId = @(model.barid);
         [self.navigationController pushViewController:controller animated:YES];
-        [MTA trackCustomEvent:LYCLICK_MTA args:@[model.barname]];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:model.barname]];
     }
 }
 
@@ -472,7 +470,7 @@ UITableViewDataSource,UITableViewDelegate,
     hotJiuBarVC.bartypeArray = self.bartypeslistArray;
     hotJiuBarVC.subidStr = ((bartypeslistModel *)self.bartypeslistArray[button.tag]).subids;
     [self.navigationController pushViewController:hotJiuBarVC animated:YES];
-    [MTA trackCustomEvent:LYCLICK_MTA args:@[titleArray[button.tag]]];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"热门酒吧"]];
 }
 
 #pragma mark 搜索代理
@@ -494,7 +492,9 @@ UITableViewDataSource,UITableViewDelegate,
         BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
         
         controller.beerBarId = linkid;
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图酒吧ID%@",linkid];
         [self.navigationController pushViewController:controller animated:YES];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }else if(ad_type.intValue ==2){
         //有活动内容才跳转
         if ([dic objectForKey:@"content"]) {
@@ -502,9 +502,7 @@ UITableViewDataSource,UITableViewDelegate,
             huodong.content=[dic objectForKey:@"content"];
             [self.navigationController pushViewController:huodong animated:YES];
         }
-        
-        
-        
+         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"活动"]];
     }else if (ad_type.intValue ==3){
 //    套餐/3
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
@@ -516,6 +514,8 @@ UITableViewDataSource,UITableViewDelegate,
         taoCanXQViewController.smid=linkid.intValue;
         taoCanXQViewController.dateStr=dateStr;
         [self.navigationController pushViewController:taoCanXQViewController animated:YES];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图套餐详情ID%@",linkid];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }else if (ad_type.intValue ==4){
 //    4：拼客
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
@@ -523,6 +523,8 @@ UITableViewDataSource,UITableViewDelegate,
         playTogetherMainViewController.title=@"我要拼客";
         playTogetherMainViewController.smid=linkid.intValue;
         [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图我要拼客ID%@",linkid];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }
     
 }
@@ -549,15 +551,12 @@ UITableViewDataSource,UITableViewDelegate,
         {
             [lastController viewWillDisappear:animated];
         }
-        
-        
     }
     
     //将当前要显示的view设置为lastController，在下次view切换调用本方法时，会执行viewWillDisappear
     lastController = viewController;
     
 //        [viewController viewWillAppear:animated];
-    
     
 }
 

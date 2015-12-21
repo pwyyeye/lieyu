@@ -46,8 +46,6 @@
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewBegin:self.title];
     }
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -71,6 +69,9 @@
     [alertView show];
     
 }
+
+
+
 -(void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
