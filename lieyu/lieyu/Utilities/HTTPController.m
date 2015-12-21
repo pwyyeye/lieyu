@@ -20,7 +20,7 @@
 {
     //添加userid
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    if (![MyUtil isEmptyString:app.s_app_id]) {
+    if (![MyUtil isEmptyString:app.s_app_id] && ![url isEqualToString:LY_DL]) {
         url = [NSString stringWithFormat:@"%@&SEM_LOGIN_TOKEN=%@",url,app.s_app_id];
     }
  

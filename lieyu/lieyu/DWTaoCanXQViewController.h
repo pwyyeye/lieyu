@@ -7,9 +7,10 @@
 //
 
 #import "LYBaseViewController.h"
+
 @class JiuBaModel;
 
-@interface DWTaoCanXQViewController : UIViewController
+@interface DWTaoCanXQViewController : LYBaseViewController
 - (IBAction)queryAct:(UIButton *)sender;
 - (IBAction)warnAct:(UIButton *)sender;
 - (IBAction)payAct:(UIButton *)sender;

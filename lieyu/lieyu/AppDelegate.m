@@ -66,10 +66,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     _navigationController= (UINavigationController *)self.window.rootViewController;
     _navigationController.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];
-    NSError *setCategoryErr=nil;
-    NSError *activationErr=nil;
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
-    [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
+    
+//    NSError *setCategoryErr=nil;
+//    NSError *activationErr=nil;
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
+//    [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
     
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
@@ -121,7 +122,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     [MTA startWithAppkey:@"I9IU4CZP47CE"];
     
-    [[MTAConfig getInstance] setDebugEnable:TRUE];
+    [[MTAConfig getInstance] setDebugEnable:NO];
     
     //其它SDK内置启动MTA情况下需要调用下面方法,传入MTA_SDK_VERSION,并检 查返回值。
 //    [MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION];
@@ -385,19 +386,19 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    UIApplication *app=[UIApplication sharedApplication];
-    __block UIBackgroundTaskIdentifier bgTask;
-    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
-        if (bgTask!=UIBackgroundTaskInvalid) {
-            bgTask=UIBackgroundTaskInvalid;
-        }
-    }];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (bgTask!=UIBackgroundTaskInvalid) {
-            bgTask=UIBackgroundTaskInvalid;
-        }
-    });
+//    UIApplication *app=[UIApplication sharedApplication];
+//    __block UIBackgroundTaskIdentifier bgTask;
+//    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
+//        if (bgTask!=UIBackgroundTaskInvalid) {
+//            bgTask=UIBackgroundTaskInvalid;
+//        }
+//    }];
+//    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        if (bgTask!=UIBackgroundTaskInvalid) {
+//            bgTask=UIBackgroundTaskInvalid;
+//        }
+//    });
     
     [_timer setFireDate:[NSDate distantPast]];//开启
 }
@@ -421,12 +422,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"----pass-doheart%@---",@"1111111");
     //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     //    [app startLoading];
-    [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
-        _qiniu_token=result;
-    }];
+    
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
+        
+        [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
+            _qiniu_token=result;
+        }];
     }
 }
 

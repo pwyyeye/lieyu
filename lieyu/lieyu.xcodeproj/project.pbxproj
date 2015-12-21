@@ -5245,7 +5245,7 @@
 				TargetAttributes = {
 					AD8899B51B9AFE61007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 4C3H9RAR45;
+						DevelopmentTeam = HTBQ4BN66Y;
 					};
 					AD8899D11B9AFE62007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
@@ -6304,7 +6304,7 @@
 					"$(SRCROOT)/lieyu",
 				);
 				INFOPLIST_FILE = lieyu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6351,7 +6351,7 @@
 					"$(SRCROOT)/lieyu",
 				);
 				INFOPLIST_FILE = lieyu/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

@@ -53,7 +53,7 @@
                       block:(void(^)(UserModel* result)) block{
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_DL baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+//        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         NSDictionary *dataDic = response[@"data"];
         UserModel *userModel=[UserModel mj_objectWithKeyValues:dataDic];
@@ -62,7 +62,7 @@
                 block(userModel);
             });
         }else{
-            [MyUtil showMessage:message];
+//            [MyUtil showMessage:message];
         }
         
     } failure:^(NSError *err) {

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ShaiXuanBtn.h"
+#import "LYBaseViewController.h"
 
-
-@interface CHViewController : UIViewController
+@interface CHViewController : LYBaseViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *itemButton1;
 @property (weak, nonatomic) IBOutlet UIButton *itemButton2;
