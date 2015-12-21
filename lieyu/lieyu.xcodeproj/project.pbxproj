@@ -423,8 +423,6 @@
 		38E5D7F91C13356F004B49D2 /* PayMoney.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5D7F81C13356F004B49D2 /* PayMoney.m */; };
 		38E5D7FA1C13DFA1004B49D2 /* MenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 853DB5EC1C12C19B004227BA /* MenuButton.m */; };
 		38E72B451C15239A002EFBDD /* ManagerInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B441C15239A002EFBDD /* ManagerInfoCell.xib */; };
-		38E72B4E1C153446002EFBDD /* CHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E72B4C1C153446002EFBDD /* CHViewController.m */; };
-		38E72B4F1C153446002EFBDD /* CHViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B4D1C153446002EFBDD /* CHViewController.xib */; };
 		38E72B521C155FC7002EFBDD /* chiheDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B511C155FC7002EFBDD /* chiheDetailCollectionCell.xib */; };
 		38E72B561C15A18E002EFBDD /* ChiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E72B541C15A18E002EFBDD /* ChiHeViewController.m */; };
 		38E72B571C15A18E002EFBDD /* ChiHeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B551C15A18E002EFBDD /* ChiHeViewController.xib */; };
@@ -1496,9 +1494,6 @@
 		38E5D7F71C13356F004B49D2 /* PayMoney.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayMoney.h; sourceTree = "<group>"; };
 		38E5D7F81C13356F004B49D2 /* PayMoney.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayMoney.m; sourceTree = "<group>"; };
 		38E72B441C15239A002EFBDD /* ManagerInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerInfoCell.xib; sourceTree = "<group>"; };
-		38E72B4B1C153446002EFBDD /* CHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHViewController.h; sourceTree = "<group>"; };
-		38E72B4C1C153446002EFBDD /* CHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHViewController.m; sourceTree = "<group>"; };
-		38E72B4D1C153446002EFBDD /* CHViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHViewController.xib; sourceTree = "<group>"; };
 		38E72B511C155FC7002EFBDD /* chiheDetailCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = chiheDetailCollectionCell.xib; sourceTree = "<group>"; };
 		38E72B531C15A18E002EFBDD /* ChiHeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiHeViewController.h; sourceTree = "<group>"; };
 		38E72B541C15A18E002EFBDD /* ChiHeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiHeViewController.m; sourceTree = "<group>"; };
@@ -2602,9 +2597,6 @@
 				15A4CF541BD86AEC00C22C01 /* CHshowDetailListViewController.h */,
 				15A4CF551BD86AEC00C22C01 /* CHshowDetailListViewController.m */,
 				381A01C71C141EE300592485 /* CHshowDetailListViewController.xib */,
-				38E72B4B1C153446002EFBDD /* CHViewController.h */,
-				38E72B4C1C153446002EFBDD /* CHViewController.m */,
-				38E72B4D1C153446002EFBDD /* CHViewController.xib */,
 				38E72B531C15A18E002EFBDD /* ChiHeViewController.h */,
 				38E72B541C15A18E002EFBDD /* ChiHeViewController.m */,
 				38E72B551C15A18E002EFBDD /* ChiHeViewController.xib */,
@@ -5628,7 +5620,6 @@
 				ADFFA6B71C181B9900D9BD2A /* 5@3x.jpg in Resources */,
 				ADF88E641C102E4F00CF5DED /* huiseStar@3x.png in Resources */,
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
-				38E72B4F1C153446002EFBDD /* CHViewController.xib in Resources */,
 				8547273B1C197E6B0048CEDC /* icon_like2.png in Resources */,
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
 				ADFFA6AA1C181B9100D9BD2A /* 2@2x.jpg in Resources */,
@@ -5781,7 +5772,6 @@
 				38E5D6E51C0F1018004B49D2 /* LPBuyTaocanCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
-				38E72B4E1C153446002EFBDD /* CHViewController.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
 				15013B021BBA33BF00061FAF /* UIImageView+HighlightedWebCache.m in Sources */,
 				ADF88EAC1C1197C400CF5DED /* MJRefreshConst.m in Sources */,

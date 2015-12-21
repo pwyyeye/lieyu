@@ -39,15 +39,12 @@
     // Do any additional setup after loading the view.
 }
 
--(void) viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    
     [super viewDidAppear:animated];
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewBegin:self.title];
     }
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
