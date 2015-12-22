@@ -4961,14 +4961,6 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		D748BC841BA1CD35005AA996 /* Register */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Register;
-			path = Classes/Register;
-			sourceTree = "<group>";
-		};
 		D74C60821BB69F6300A49598 /* RTLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5071,7 +5063,6 @@
 				D761F0271BA5B8D5000757B0 /* Find */,
 				D761F0251BA5B8A5000757B0 /* PlayTogether */,
 				D761F0241BA5B847000757B0 /* iNeedPaly */,
-				D748BC841BA1CD35005AA996 /* Register */,
 				D74714291BAD151400611579 /* MainTabbarViewController.h */,
 				D747142A1BAD151400611579 /* MainTabbarViewController.m */,
 				ADC66CE21C1FBB9900E597D9 /* LYNavigationController.h */,

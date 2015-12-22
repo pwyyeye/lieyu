@@ -74,6 +74,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     if (self.navigationController.navigationBarHidden==NO) {
        [self.navigationController setNavigationBarHidden:YES];
     }
+    [self.collectionView reloadData];
     
 }
 -(void) viewDidAppear:(BOOL)animated
@@ -225,7 +226,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
             [UMSocialSnsService presentSnsIconSheetView:self
                                                  appKey:UmengAppkey
-                                              shareText:@"猎娱带你玩转酒吧夜店，无需再担心隐形消费，遇到酒托，所有商家均严格筛选认证，明码标价，尊享专属VIP经理一对一服务，喝酒消费更有超额返利等你来拿！https://itunes.apple.com/us/app/lie-yu-ye-sheng-huo-yu-le/id1056569271?l=zh&ls=1&mt=8"
+                                              shareText:@"猎娱带你玩转酒吧夜店，无需再担心隐形消费，遇到酒托，所有商家均严格筛选认证，明码标价，尊享专属VIP经理一对一服务，喝酒消费更有超额返利等你来拿！http://www.lie98.com"
                                              shareImage:[UIImage imageNamed:@"lieyuIcon"]
                                         shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToWechatSession,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
                                                delegate:nil];

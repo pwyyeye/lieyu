@@ -143,13 +143,16 @@
         [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
             NSLog(@"----pass-addAlias%@---%@",responseObject,error);
         }];
+        
         [self getUserCollectJiuBaList];
         [self getUserZangJiuBaList];
+        
+        [self.navigationController popViewControllerAnimated:YES ];
     }];
     
     
     
-     [self.navigationController popViewControllerAnimated:YES ];
+    
 }
 
 //从服务器获取用户是否收藏过酒吧
