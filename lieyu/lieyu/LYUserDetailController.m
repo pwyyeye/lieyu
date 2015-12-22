@@ -242,10 +242,10 @@
     NSString *tagNames=@"";
     for (UserTagModel *usertag in usertags) {
         if ([tagids isEqualToString:@""]) {
-            tagids=[NSString stringWithFormat:@"%d",usertag.id];
+            tagids=[NSString stringWithFormat:@"%ld",usertag.id];
             tagNames=[NSString stringWithFormat:@"%@",usertag.name];
         }else{
-            tagids=[NSString stringWithFormat:@"%@,%d",tagids,usertag.id];
+            tagids=[NSString stringWithFormat:@"%@,%ld",tagids,usertag.id];
             tagNames=[NSString stringWithFormat:@"%@,%@",tagNames,usertag.name];
         }
     
@@ -364,9 +364,9 @@
         [userinfo setObject:date forKey:@"birthday"];
         [self savaUserInfo:userinfo needReload:YES];
     }else if(customType==1){
-        mod.gender=[NSString stringWithFormat:@"%d",_sex];
+        mod.gender=[NSString stringWithFormat:@"%ld",_sex];
         NSMutableDictionary *userinfo=[NSMutableDictionary new];
-        [userinfo setObject:[NSString stringWithFormat:@"%d",_sex] forKey:@"gender"];
+        [userinfo setObject:[NSString stringWithFormat:@"%ld",_sex] forKey:@"gender"];
         [self savaUserInfo:userinfo needReload:YES];
     }
     

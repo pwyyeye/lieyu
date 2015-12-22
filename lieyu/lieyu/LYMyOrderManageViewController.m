@@ -226,7 +226,6 @@
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
-        NSLog(@"****block%d******",dataList.count);
         if(dataList.count>0){
             [weakSelf.tableView setHidden:NO];
             [weakSelf.nodataView setHidden:YES];
@@ -302,7 +301,6 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"*********numberOfRowsInSection%d*******",dataList.count);
     OrderInfoModel *orderInfoModel=dataList[section];
     if(orderInfoModel.ordertype==2){
         return orderInfoModel.goodslist.count;
@@ -315,7 +313,6 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"*********numberOfSectionsInTableView%d*******",dataList.count);
     return dataList.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -323,7 +320,6 @@
     return 68;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    NSLog(@"*********heightForFooterInSection%d*******",dataList.count);
     OrderInfoModel *orderInfoModel=dataList[section];
     if( orderInfoModel.orderStatus == 7 || orderInfoModel.orderStatus == 3 || orderInfoModel.orderStatus == 4
        || orderInfoModel.orderStatus == 5 || orderInfoModel.orderStatus == 10){
@@ -334,7 +330,6 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    NSLog(@"*********viewForFooterInSection%d*******",dataList.count);
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
     //orderstatus:
     //    0－未付款
@@ -598,7 +593,7 @@
                 }else{
                     if(isfu){
                         
-                        [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                        [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
                         
                         
@@ -621,7 +616,7 @@
                     [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                     orderBottomView.secondBtn.tag=section;
                 }else{
-                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
@@ -632,7 +627,7 @@
                     [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                     orderBottomView.secondBtn.tag=section;
                 }else{
-                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
@@ -691,7 +686,6 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSLog(@"*********viewForHeaderInSection%d*******",dataList.count);
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
     OrderInfoModel *orderInfoModel=dataList[section];
     
@@ -759,7 +753,6 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"*********cellForRowAtIndexPath%d*******",dataList.count);
     static NSString *CellIdentifier = @"OrderDetailCell";
     
     OrderDetailCell *cell = (OrderDetailCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -888,7 +881,8 @@
             conversationVC.title =orderInfoModel.checkUserName; // 会话的 title。
             
             // 把单聊视图控制器添加到导航栈。
-            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }else{
             RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
@@ -898,7 +892,8 @@
             conversationVC.title =orderInfoModel.username; // 会话的 title。
             
             // 把单聊视图控制器添加到导航栈。
-            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }
     }else{
@@ -909,11 +904,18 @@
         conversationVC.title =orderInfoModel.checkUserName; // 会话的 title。
         
         // 把单聊视图控制器添加到导航栈。
-        [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+        conversationVC.navigationItem.leftBarButtonItem = left;
+        
         [self.navigationController pushViewController:conversationVC animated:YES];
     }
     
 }
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark 电话
 -(void)dianhuaAct:(OrderHandleButton *)sender{
     OrderInfoModel *orderInfoModel;

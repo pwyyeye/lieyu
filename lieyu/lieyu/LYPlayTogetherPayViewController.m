@@ -377,14 +377,17 @@
             conversationVC.title =zsDetailModel.usernick; // 会话的 title。
             
             // 把单聊视图控制器添加到导航栈。
-            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }
     }
-    
-    
-    
 }
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark 电话
 -(void)dianhuaAct:(UIButton *)sender{
     for (ZSDetailModel *zsDetailModel in zsArr) {

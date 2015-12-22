@@ -219,7 +219,7 @@
                     [dibuView addSubview:btn2];
                     
                     UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];
-                    btn1.backgroundColor=RGB(35, 166, 116);
+                    btn1.backgroundColor=RGB(94, 0, 131);
                     if(_orderInfoModel.pinkerList.count<_orderInfoModel.allnum.intValue){
                         [btn1 setTitle:@"邀请好友" forState:UIControlStateNormal];
                         [btn1 addTarget:self action:@selector(yaoQinAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -1393,9 +1393,17 @@
     conversationVC.title =_orderInfoModel.checkUserName; // 会话的 title。
     
     // 把单聊视图控制器添加到导航栈。
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    conversationVC.navigationItem.leftBarButtonItem = left;
+    
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
+
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark 电话
 -(void)dianhuaAct:(UIButton *)sender{
     
@@ -1420,8 +1428,11 @@
     conversationVC.title =pinkInfoModel.inmemberName; // 会话的 title。
     
     // 把单聊视图控制器添加到导航栈。
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    conversationVC.navigationItem.leftBarButtonItem = left;
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
+
 #pragma mark 电话
 -(void)dianhuaActForPK:(UIButton *)sender{
     

@@ -178,7 +178,7 @@
 #pragma mark 设置角标
 - (void)setSuperScript:(int)number{
     NSLog(@"%@",self.navigationController.childViewControllers);
-    int count = self.navigationController.childViewControllers.count;
+    NSUInteger count = self.navigationController.childViewControllers.count;
     if(![[self.navigationController.childViewControllers objectAtIndex:count-1] isKindOfClass:[ChiHeViewController class]]){
         [_badge setHidden:YES];
     }else{
@@ -236,7 +236,7 @@
 
 #pragma mark 展示购物车
 - (void)showcarAct{
-    NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"吃喝专场",@"titleName":@"进入购物车"};
+    NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"吃喝专场",@"titleName":@"进入购物车",@"value":self.barName};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
@@ -286,9 +286,7 @@
         if(!biaoqianList){
             [self geBiaoQianData];
         }
-        
     }];
-    
     [weakSelf.collectionView.mj_header endRefreshing];
 }
 
@@ -378,7 +376,7 @@
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     CHJiuPinDetailViewController *jiuPinDetailViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHJiuPinDetailViewController"];
     
-    NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"吃喝专场",@"titleName":@"进入单品详情"};
+    NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"吃喝专场",@"titleName":@"进入单品详情",@"value":chiHeModel.name};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
     jiuPinDetailViewController.title=@"单品详情";

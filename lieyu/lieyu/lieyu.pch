@@ -33,7 +33,10 @@
 #import "MTA.h"
 #import "MTAConfig.h"
 
-#endif /* lieyu_pch */
+#define LYCLICK_MTA @"LYI_NEED_PLAY_CLICK"
+#define LYTIMEEVENT_MTA @"LYI_NEED_PLAY_TIME"
 
+
+#endif /* lieyu_pch */
 
 

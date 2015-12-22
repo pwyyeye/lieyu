@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface LYCloseMeViewController : UIViewController
+#import "LYBaseViewController.h"
+@interface LYCloseMeViewController : LYBaseViewController
 @property (nonatomic,strong) NSMutableArray *beerBarArray;
 @end

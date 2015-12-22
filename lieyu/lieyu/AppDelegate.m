@@ -66,10 +66,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     _navigationController= (UINavigationController *)self.window.rootViewController;
     _navigationController.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];
-    NSError *setCategoryErr=nil;
-    NSError *activationErr=nil;
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
-    [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
+    
+//    NSError *setCategoryErr=nil;
+//    NSError *activationErr=nil;
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
+//    [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
     
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
@@ -115,16 +116,13 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     [self startLocation];
-    
-    
-    
+
     //友盟推送
     [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
     
-    
     [MTA startWithAppkey:@"I9IU4CZP47CE"];
     
-    [[MTAConfig getInstance] setDebugEnable:TRUE];
+    [[MTAConfig getInstance] setDebugEnable:NO];
     
     //其它SDK内置启动MTA情况下需要调用下面方法,传入MTA_SDK_VERSION,并检 查返回值。
 //    [MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION];
@@ -175,7 +173,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //for log
     [UMessage setLogEnabled:YES];
     
-    
     //引导页启动
     if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         [self showIntroWithCrossDissolve];
@@ -183,10 +180,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         view.view=_intro;
         self.window.rootViewController=view;
     }
-    
-    
      return YES;
 }
+
 //开始定位
 -(void)startLocation{
     if (![CLLocationManager locationServicesEnabled])
@@ -194,11 +190,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     {
         [MyUtil showMessage:@"请开启定位服务!"];
         //提示开启定位服务
-        
         return ;
-        
     }
-    
     
     
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
@@ -206,7 +199,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
         
     {
-        
         if (!locationManager)
             
         {
@@ -279,6 +271,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     }];
     
 }
+
 #pragma mark 获取历史搜索数据
 -(void)loadHisData{
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -292,6 +285,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     }
     
 }
+
 #pragma mark 保存历史数据
 -(void)saveHisData{
 //    NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -307,7 +301,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 {
     [LYDataStore currentInstance];
 }
-
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
@@ -335,6 +328,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         }
     }
 }
+
 //注册用户通知设置
 - (void)application:(UIApplication *)application
 didRegisterUserNotificationSettings:
@@ -395,19 +389,19 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    UIApplication *app=[UIApplication sharedApplication];
-    __block UIBackgroundTaskIdentifier bgTask;
-    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
-        if (bgTask!=UIBackgroundTaskInvalid) {
-            bgTask=UIBackgroundTaskInvalid;
-        }
-    }];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if (bgTask!=UIBackgroundTaskInvalid) {
-            bgTask=UIBackgroundTaskInvalid;
-        }
-    });
+//    UIApplication *app=[UIApplication sharedApplication];
+//    __block UIBackgroundTaskIdentifier bgTask;
+//    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
+//        if (bgTask!=UIBackgroundTaskInvalid) {
+//            bgTask=UIBackgroundTaskInvalid;
+//        }
+//    }];
+//    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        if (bgTask!=UIBackgroundTaskInvalid) {
+//            bgTask=UIBackgroundTaskInvalid;
+//        }
+//    });
     
     [_timer setFireDate:[NSDate distantPast]];//开启
 }
@@ -431,12 +425,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"----pass-doheart%@---",@"1111111");
     //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     //    [app startLoading];
-    [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
-        _qiniu_token=result;
-    }];
+    
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
+        
+        [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
+            _qiniu_token=result;
+        }];
     }
 }
 
@@ -457,7 +453,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
         [[LYCommonHttpTool shareInstance] getTokenByIMWithParams:dic block:^(NSString *result) {
             _im_token=result;
-            
             [self connectWithToken];
         }];
     }
@@ -477,7 +472,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
     tokenIncorrect:^() {
         NSLog(@"Token 失效的状态处理");
-
                              // Token 失效的状态处理
     }];
 }
@@ -511,13 +505,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         }];
          completion(userInfo);
     }
-    
-    
-    
-    
-        
-    
-    
 }
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
@@ -561,9 +548,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         }];
         return YES;
     }
-    
-    
-    
 }
 
 - (void)application:(UIApplication *)application

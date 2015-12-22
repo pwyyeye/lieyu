@@ -20,7 +20,7 @@
 {
     //添加userid
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    if (![MyUtil isEmptyString:app.s_app_id]) {
+    if (![MyUtil isEmptyString:app.s_app_id] && ![url isEqualToString:LY_DL]) {
         url = [NSString stringWithFormat:@"%@&SEM_LOGIN_TOKEN=%@",url,app.s_app_id];
     }
  
@@ -247,7 +247,6 @@
         NSLog(@"----pass-httprequest header%@---",operation.request);
         //判断是否登录如果未登录 则进入登录页面
         NSNumber *status=[responseObject objectForKey:@"status"];
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
         if([status integerValue] == -1){
 //            

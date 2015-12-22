@@ -365,24 +365,6 @@
         [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
     }
 }
-#pragma mark 选择专属经理
-//-(void)chooseZS:(UIButton *)sender{
-//    ZSDetailModel *zsModel=zsArr[sender.tag];
-//    if([zsModel.isFull isEqualToString:@"1"]){
-//        [self showMessage:@"该经理的卡座已满,请选择其他专属经理!"];
-//        return;
-//    }
-//    zsModel.issel=true;
-//    for (int i=0; i<zsArr.count; i++) {
-//        ZSDetailModel *zsModelTemp=zsArr[i];
-//        if(i!=sender.tag){
-//            zsModelTemp.issel=false;
-//        }
-//    }
-//    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
-//    [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-//}
-
 #pragma mark 私聊
 -(void)siliaoAct:(UIButton *)sender{
     for (ZSDetailModel *zsDetailModel in zsArr) {
@@ -394,14 +376,19 @@
             conversationVC.title =zsDetailModel.username; // 会话的 title。
             
             // 把单聊视图控制器添加到导航栈。
-            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+//            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+//            [self.navigationController pushViewController:conversationVC animated:YES];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }
     }
-    
-    
-    
 }
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark 电话
 -(void)dianhuaAct:(UIButton *)sender{
     for (ZSDetailModel *zsDetailModel in zsArr) {
@@ -471,7 +458,6 @@
         NSLog(@"dic_______________>%@",dic);
         [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
-                //                [MyUtil showMessage:result];
                 //支付宝页面"data": "P130637201510181610220",
                 //result的值就是P130637201510181610220
                 ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
@@ -481,11 +467,8 @@
                 detailViewController.productName=taoCanModel.title;
                 detailViewController.productDescription=@"暂无";
                 self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-                
                 [self.navigationController pushViewController:detailViewController animated:YES];
-                
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-
             }
         }];
         

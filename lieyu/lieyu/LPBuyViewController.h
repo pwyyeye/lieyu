@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "PinKeModel.h"
 #import "LPBuyManagerCell.h"
-
-@interface LPBuyViewController : UIViewController<SelectManager>
+#import "LYBaseViewController.h"
+@interface LPBuyViewController : LYBaseViewController<SelectManager>
 @property (nonatomic, assign) int smid;
 
 @property (nonatomic, strong) PinKeModel *pinkeModel;

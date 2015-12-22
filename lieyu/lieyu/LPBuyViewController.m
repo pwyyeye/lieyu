@@ -242,6 +242,11 @@
 #pragma mark delegate处理事件
 - (void)selectManager:(int)index{
     ZSDetailModel *zsDetail = _managerList[index];
+    
+    //统计专属经理的选择
+    NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"确认拼客订单",@"titleName":@"选择专属经理",@"value":zsDetail.userName};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     if([zsDetail.isFull isEqualToString:@"1"]){
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"该经理的卡座已满,请选择其他专属经理!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
         return;

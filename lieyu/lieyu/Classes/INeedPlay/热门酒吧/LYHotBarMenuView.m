@@ -36,6 +36,7 @@
         [menuBtn setTitleColor:RGBA(30, 30, 30, 1) forState:UIControlStateNormal];
         menuBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [menuBtn setTitle:titleArray[i] forState:UIControlStateNormal];
+        [menuBtn setAdjustsImageWhenHighlighted:NO];
         menuBtn.tag = i+1;
         menuBtn.section = i + 1;
         [menuBtn addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
