@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYBaseViewController.h"
 
-@interface LYHomeSearcherViewController : UIViewController
+@interface LYHomeSearcherViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnHistoryArray;
 @property (weak, nonatomic) IBOutlet UIButton *btnClearHistory;

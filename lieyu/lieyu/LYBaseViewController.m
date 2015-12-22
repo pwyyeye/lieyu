@@ -68,6 +68,11 @@
     [alertView show];
     
 }
+
+- (NSDictionary *)createMTADctionaryWithActionName:(NSString *)actionName pageName:(NSString *)pageName titleName:(NSString *)titleName{
+    return @{@"actionName":actionName,@"pageName":pageName,@"titleName":titleName};
+}
+
 -(void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }

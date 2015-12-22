@@ -31,6 +31,7 @@
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
+#define BEERBARDETAIL_MTA @"BEERBARDETAILPAGE"
 
 @interface BeerBarDetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 {
@@ -217,6 +218,7 @@
              [[NSUserDefaults standardUserDefaults] synchronize];
             }
         }];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"喜欢" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
     }else{
     [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
         if (result) {
@@ -224,9 +226,8 @@
             
             [[NSUserDefaults standardUserDefaults] setObject:weakSelf.beerBarDetail.barid forKey:LIKEKEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            NSLog(@"---->%@", [[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY]);
         }
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消喜欢" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
     }];
     }
 }
@@ -275,9 +276,6 @@
 //    NSLog(@"----pass-pass%f---",offsetHeight);
 //     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, offsetHeight+100);
 //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
-    
-  
-
 }
 
 
@@ -498,7 +496,7 @@
     NSString *string= [NSString stringWithFormat:@"大家一起来看看～%@酒吧不错啊!下载猎娱App即可优惠下单，还有超值返利。http://www.lie98.com",self.beerBarDetail.barname];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
-
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -506,6 +504,7 @@
     if (indexPath.section == 2) {
 //        _image_layer.userInteractionEnabled = NO;
         [self daohang];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"地图导航" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
     }
 }
 
@@ -541,6 +540,7 @@
     LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
     woYaoDinWeiMainViewController.barid=_beerBarDetail.barid.intValue;
     [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"我要订位"]];
 }
 
 - (IBAction)chiHeAct:(UIButton *)sender {
@@ -549,6 +549,7 @@
     CHDetailVC.barid=_beerBarDetail.barid.intValue;
     CHDetailVC.barName=_beerBarDetail.barname;
     [self.navigationController pushViewController:CHDetailVC animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"吃喝专场"]];
 }
 
 - (IBAction)zsliAct:(UIButton *)sender {
@@ -557,6 +558,7 @@
     myZSManageViewController.barid=_beerBarDetail.barid.intValue;
     myZSManageViewController.isBarVip=true;
     [self.navigationController pushViewController:myZSManageViewController animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"专属经理"]];
 }
 
 - (IBAction)soucangAct:(UIButton *)sender {
@@ -575,6 +577,7 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
                
         }];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"收藏" pageName:BEERBARDETAIL_MTA titleName:weakSelf.beerBarDetail.barname]];
     }else{
     
     [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
@@ -582,6 +585,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:self.beerBarDetail.barid forKey:COLLECTKEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
     }];
+         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消收藏" pageName:BEERBARDETAIL_MTA titleName:weakSelf.beerBarDetail.barname]];
     }
 }
 @end

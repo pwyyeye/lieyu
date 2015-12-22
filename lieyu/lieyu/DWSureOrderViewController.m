@@ -30,6 +30,8 @@
 #import "ContentViewTaocan.h"
 #import "ManagerInfoCell.h"
 
+#define SUREORDERPAGE_MTA @"SUREORDERPAGE"
+
 @interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate,LPAlertViewDelegate,UITableViewDelegate>
 {
     TaoCanModel *taoCanModel;
@@ -455,7 +457,6 @@
         }
         
         NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:taoCanModel.smid],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":_writeCell.label_count.text,@"consumptionStatus":gotype};
-        NSLog(@"dic_______________>%@",dic);
         [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
                 //支付宝页面"data": "P130637201510181610220",
@@ -469,6 +470,7 @@
                 self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
                 [self.navigationController pushViewController:detailViewController animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+                [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SUREORDERPAGE_MTA titleName:@"马上支付"]];
             }
         }];
         
