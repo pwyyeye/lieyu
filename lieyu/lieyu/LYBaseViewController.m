@@ -39,15 +39,12 @@
     // Do any additional setup after loading the view.
 }
 
--(void) viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    
     [super viewDidAppear:animated];
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewBegin:self.title];
     }
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -71,6 +68,11 @@
     [alertView show];
     
 }
+
+- (NSDictionary *)createMTADctionaryWithActionName:(NSString *)actionName pageName:(NSString *)pageName titleName:(NSString *)titleName{
+    return @{@"actionName":actionName,@"pageName":pageName,@"titleName":titleName};
+}
+
 -(void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }

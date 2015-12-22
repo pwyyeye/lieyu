@@ -191,6 +191,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 0://购物车
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"购物车"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
             carListViewController.title=@"购物车";
@@ -202,6 +205,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 1:// 收藏
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"收藏"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             MyCollectionViewController *maintViewController=[[MyCollectionViewController alloc]initWithNibName:@"MyCollectionViewController" bundle:nil];
             maintViewController.title=@"我的收藏";
@@ -212,6 +218,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 2:// 专属经理
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"专属经理"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
             myZSManageViewController.title=@"我的专属经理";
             myZSManageViewController.isBarVip=false;
@@ -223,6 +233,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 3:
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"我的主页面",@"titleName":@"分享"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
             [UMSocialSnsService presentSnsIconSheetView:self
                                                  appKey:UmengAppkey
@@ -234,6 +248,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         }
         case 4:// 反馈
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"客服"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
             conversationVC.conversationType = ConversationType_APPSERVICE;
             conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试 

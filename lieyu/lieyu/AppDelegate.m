@@ -126,6 +126,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     //其它SDK内置启动MTA情况下需要调用下面方法,传入MTA_SDK_VERSION,并检 查返回值。
 //    [MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION];
+//    if([MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION]){
+//        NSLog(@"MTA start");
+//    }
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
@@ -450,7 +453,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
         [[LYCommonHttpTool shareInstance] getTokenByIMWithParams:dic block:^(NSString *result) {
             _im_token=result;
-            
             [self connectWithToken];
         }];
     }

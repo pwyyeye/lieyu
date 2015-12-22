@@ -150,9 +150,6 @@
                 adCell.selectBtn.tag=indexPath.row;
                 [adCell.chooseBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
                 [adCell.selectBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
-//                UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
-//                lineLal.backgroundColor=RGB(199, 199, 199);
-//                [cell addSubview:lineLal];
             }
         }
             break;
@@ -191,8 +188,13 @@
 -(void)chooseZS:(UIButton *)sender{
     ZSDetailModel *zsModel=carInfoModel.managerList[sender.tag];
     zsModel.issel=true;
+    
+    //统计专属经理的受欢迎程度
+    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"确认订单",@"titleName":[NSString stringWithFormat:@"选择%@",zsModel.username]};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     for (int i=0; i<carInfoModel.managerList.count; i++) {
-        ZSDetailModel *zsModelTemp=carInfoModel.managerList[i];
+        ZSDetailModel *zsModelTemp = carInfoModel.managerList[i];
         if(i!=sender.tag){
             zsModelTemp.issel=false;
         }
@@ -203,9 +205,6 @@
 
 - (IBAction)payAct:(UIButton *)sender {
     if(carInfoModel){
-        
-        
-        
         bool issel = false;
         int userId=0;
         for (ZSDetailModel *detaiModel in carInfoModel.managerList) {
@@ -227,6 +226,7 @@
                 
                 //支付宝页面"data": "P130637201510181610220",
                 //result的值就是P130637201510181610220
+                
                 ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
                 detailViewController.orderNo=result;
                 detailViewController.payAmount=carInfoModel.all_info.all_amount.doubleValue;

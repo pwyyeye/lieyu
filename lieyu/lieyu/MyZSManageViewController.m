@@ -67,9 +67,6 @@
         [[LYHomePageHttpTool shareInstance]getBarVipWithParams:dic block:^(NSMutableArray *result) {
             [zsList addObjectsFromArray:result];
             [weakSelf.tableView reloadData];
-            
-           
-            
         }];
     }else{
         NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:self.userModel.userid]};
@@ -152,17 +149,15 @@
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     return @"删除";
 }
-//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return UITableViewCellEditingStyleDelete;
-//}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     if(_isBarVip){
         return NO;
     }
     return YES;
-    
-    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -177,16 +172,11 @@
                 [weakSelf getZSDetail];
             }
         }];
-        
     }
-    
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    
 }
 #pragma mark - 更多
 -(void)moreAct:(id)sender{
@@ -255,8 +245,12 @@
 }
 #pragma mark -收藏
 -(void)scAct:(UIButton *)sender{
-    NSLog(@"shoucang");
     ZSDetailModel * detailModel=zsList[sender.tag];
+    
+    //统计收藏的可能性
+    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"收藏",@"value":detailModel.userName};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     NSDictionary *dic=@{@"vipUserid":[NSNumber numberWithInt:detailModel.userid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
     [[LYHomePageHttpTool shareInstance] scVipWithParams:dic complete:^(BOOL result) {
         if(result){
@@ -270,6 +264,10 @@
 {
     ZSDetailModel * detailModel=zsList[sender.tag];
     
+    //统计打电话的可能性
+    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"打电话",@"value":detailModel.usernick};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     if( [MyUtil isPureInt:detailModel.mobile]){
         NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",detailModel.mobile];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
@@ -280,8 +278,11 @@
 - (void)sendMessage:(UIButton *)sender{
     //进行是否已登陆的判断
     if(((AppDelegate*)[[UIApplication sharedApplication] delegate]).userModel){//已登陆
-        
         ZSDetailModel * detailModel=zsList[sender.tag];
+        
+        //统计发消息的可能性
+        NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"发消息",@"value":detailModel.userName};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
         
         RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
@@ -292,7 +293,8 @@
         conversationVC.navigationController.navigationBarHidden = NO;
         
         // 把单聊视图控制器添加到导航栈。
-        [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+        conversationVC.navigationItem.leftBarButtonItem = left;
         [self.navigationController pushViewController:conversationVC animated:YES];
     }else{
         LYUserLoginViewController *userLoginVC = [[LYUserLoginViewController alloc]initWithNibName:@"LYUserLoginViewController" bundle:[NSBundle mainBundle]];
@@ -300,6 +302,11 @@
     }
     
 }
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

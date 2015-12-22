@@ -30,6 +30,8 @@
 #import "ContentViewTaocan.h"
 #import "ManagerInfoCell.h"
 
+#define SUREORDERPAGE_MTA @"SUREORDERPAGE"
+
 @interface DWSureOrderViewController ()<DateChooseDelegate,DateChoosegoTypeDelegate,LPAlertViewDelegate,UITableViewDelegate>
 {
     TaoCanModel *taoCanModel;
@@ -376,11 +378,19 @@
             conversationVC.title =zsDetailModel.username; // 会话的 title。
             
             // 把单聊视图控制器添加到导航栈。
-            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+//            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+//            [self.navigationController pushViewController:conversationVC animated:YES];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }
     }
 }
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark 电话
 -(void)dianhuaAct:(UIButton *)sender{
     for (ZSDetailModel *zsDetailModel in zsArr) {
@@ -447,7 +457,6 @@
         }
         
         NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:taoCanModel.smid],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":_writeCell.label_count.text,@"consumptionStatus":gotype};
-        NSLog(@"dic_______________>%@",dic);
         [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
                 //支付宝页面"data": "P130637201510181610220",
@@ -461,6 +470,7 @@
                 self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
                 [self.navigationController pushViewController:detailViewController animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+                [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SUREORDERPAGE_MTA titleName:@"马上支付"]];
             }
         }];
         

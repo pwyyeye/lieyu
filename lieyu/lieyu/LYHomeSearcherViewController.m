@@ -21,7 +21,6 @@
 
 #define PAGESIZE 20
 #define SEARCHPAGE_MTA @"SEARCHPAGE"
-#define SEARCHPAGE_TIMEEVENT_MTA @"SEARCHPAGE_TIMEEVENT"
 
 @interface LYHomeSearcherViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -41,6 +40,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     searchlist = [[NSMutableArray alloc]initWithCapacity:0];
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
     self.navigationItem.title = @"搜索";
@@ -61,15 +61,11 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [MTA trackPageViewBegin:SEARCHPAGE_MTA];
-    [MTA trackCustomEventBegin:LYTIMEEVENT_MTA args:@[SEARCHPAGE_TIMEEVENT_MTA]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MTA trackPageViewEnd:SEARCHPAGE_MTA];
-    [MTA trackCustomEventEnd:LYTIMEEVENT_MTA args:@[SEARCHPAGE_TIMEEVENT_MTA]];
 }
 
 - (void)gotoBack{
@@ -112,6 +108,7 @@
             btn.layer.cornerRadius = 0;
             [btn setTitle:@"" forState:UIControlStateNormal];
         }
+         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:SEARCHPAGE_MTA titleName:@"删除历史记录"]];
     }
 }
 
@@ -174,7 +171,7 @@
     _curPageIndex=1;
     keyStr= searchBar.text;
     [self getData];
-    [MTA trackCustomEvent:LYCLICK_MTA args:@[@"searchKeyBorad"]];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:SEARCHPAGE_MTA titleName:@"搜索"]];
 }
 
 - (void)setupViewStyles
@@ -246,8 +243,8 @@
 
 - (IBAction)historyClick:(UIButton *)sender {
     _searchBar.text = sender.currentTitle;
-    [MTA trackCustomEvent:LYCLICK_MTA args:@[[@"search" stringByAppendingString:sender.currentTitle]]];
     [self searchBarSearchButtonClicked:_searchBar];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"点击历史" pageName:SEARCHPAGE_MTA titleName:sender.currentTitle]];
 }
 
 - (void)loadItemList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
@@ -306,6 +303,7 @@
     JiuBaModel *model = [searchlist objectAtIndex:indexPath.row];
     detailVC.beerBarId = @(model.barid);
     [self.navigationController pushViewController:detailVC animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SEARCHPAGE_MTA titleName:model.barname]];
 }
 
 - (void)didReceiveMemoryWarning {

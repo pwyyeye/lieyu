@@ -77,8 +77,6 @@
 //    [self performSelector:@selector(setCustomTitle:) withObject:@"发现" afterDelay:0.1];
 
     [super viewWillAppear:animated];
-//    [self setCustomTitle:@"发现"];
-    
          _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
     
         _myTitle.backgroundColor = [UIColor clearColor];
@@ -202,6 +200,10 @@
                 isMes=false;
             }
             
+            //统计发现页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择最近联系"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             chat.title=@"最近联系";
             UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
@@ -210,9 +212,19 @@
             [self.navigationController pushViewController:chat animated:YES];
         }else if(indexPath.row==1){
             //玩友列表
+            
+            //统计发现页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择玩友列表"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             LYMyFriendViewController *myFriendViewController=[[LYMyFriendViewController alloc]initWithNibName:@"LYMyFriendViewController" bundle:nil];
             [self.navigationController pushViewController:myFriendViewController animated:YES];
         }else{
+            
+            //统计发现页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择附近的人"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             LYNearFriendViewController *nearFriendViewController=[[LYNearFriendViewController alloc]initWithNibName:@"LYNearFriendViewController" bundle:nil];
             nearFriendViewController.title=@"附近的人";
             [self.navigationController pushViewController:nearFriendViewController animated:YES];
@@ -220,7 +232,7 @@
         }
         [self.tableView reloadData];
     }else{
-        if(indexPath.row==0 && NO){
+        if(indexPath.row == 0 && NO){
             //摇一摇
             YaoYiYaoViewController *yaoYiYaoViewController;
             if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
@@ -237,6 +249,11 @@
             
         }else{
             //扫一扫
+            
+            //统计发现页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择扫一扫"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
             saoYiSaoViewController.title=@"扫一扫";
             [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];

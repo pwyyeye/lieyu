@@ -56,7 +56,7 @@
 -(void)getData{
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getCarListWithParams:nil block:^(NSMutableArray *result) {
-        [weakSelf.tableView.header endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
         [dataList removeAllObjects];
         dataList=[result mutableCopy];
         for (CarInfoModel *carInfoModel in dataList) {
@@ -67,7 +67,7 @@
         }
         [weakSelf.tableView reloadData];
     }];
-    [_tableView.header endRefreshing];
+    [_tableView.mj_header endRefreshing];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -128,7 +128,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"*********cellForRowAtIndexPath%ld*******",dataList.count);
+    NSLog(@"*********cellForRowAtIndexPath%d*******",dataList.count);
     static NSString *CellIdentifier = @"CarInfoCell";
     
     CarInfoCell *cell = (CarInfoCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -241,6 +241,11 @@
     CarInfoModel *carInfoModel=dataList[sender.tag];
     NSMutableString *ss=[[NSMutableString alloc]init];
     BOOL isChoose=false;
+    
+    //统计结算按钮的点击事件
+    NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"购物车",@"titleName":@"结算"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     for (int i=0;i< carInfoModel.cartlist.count ; i++) {
         CarModel *modelTemp =carInfoModel.cartlist[i];
         if(modelTemp.isSel){
@@ -250,7 +255,6 @@
                 [ss appendString:@","];
             }
         }
-        
     }
     if(!isChoose){
         [MyUtil showMessage:@"请勾选要购买的物品"];

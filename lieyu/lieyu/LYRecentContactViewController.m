@@ -34,6 +34,10 @@
     conversationVC.userName =model.conversationTitle;
     conversationVC.title = model.conversationTitle;
     [self.navigationController pushViewController:conversationVC animated:YES];
+    
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    conversationVC.navigationItem.leftBarButtonItem = left;
+    
 //    if (model.conversationModelType == RC_CONVERSATION_MODEL_TYPE_PUBLIC_SERVICE) {
 //        RCPublicServiceChatViewController *_conversationVC = [[RCPublicServiceChatViewController alloc] init];
 //        _conversationVC.conversationType = model.conversationType;
@@ -70,6 +74,10 @@
     
    
     
+}
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

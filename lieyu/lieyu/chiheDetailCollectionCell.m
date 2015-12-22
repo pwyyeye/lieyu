@@ -46,6 +46,8 @@
     NSDictionary *dic=@{@"product_id":[NSNumber numberWithInt:self.model.id],@"quantity":self.numField.text};
     [[LYHomePageHttpTool shareInstance] addCarWithParams:dic block:^(BOOL result) {
         if (result) {
+            NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"吃喝专场",@"titleName":@"加入购物车",@"value":self.model.fullname};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
             [MyUtil showMessage:@"添加购物车成功!"];
             [self.delegate refreshGoodsNum];
         }

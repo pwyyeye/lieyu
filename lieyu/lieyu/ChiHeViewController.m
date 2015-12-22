@@ -39,6 +39,8 @@
     UILabel *kongLabel;
     
     int num;
+    
+    NSString *buttonTitle;//筛选按钮的名称，即筛选的种类
 }
 
 //@property (nonatomic, strong) UILabel *badge;
@@ -234,6 +236,9 @@
 
 #pragma mark 展示购物车
 - (void)showcarAct{
+    NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"吃喝专场",@"titleName":@"进入购物车",@"value":self.barName};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
     carListViewController.numrefreshdelegate = self;
@@ -281,9 +286,7 @@
         if(!biaoqianList){
             [self geBiaoQianData];
         }
-        
     }];
-    
     [weakSelf.collectionView.mj_header endRefreshing];
 }
 
@@ -372,7 +375,11 @@
     CheHeModel *chiHeModel=dataList[indexPath.row];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
     CHJiuPinDetailViewController *jiuPinDetailViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHJiuPinDetailViewController"];
-    jiuPinDetailViewController.title=@"套餐详情";
+    
+    NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"吃喝专场",@"titleName":@"进入单品详情",@"value":chiHeModel.name};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
+    jiuPinDetailViewController.title=@"单品详情";
     jiuPinDetailViewController.refreshNumDelegate = self;
     jiuPinDetailViewController.shopid=chiHeModel.id;
     [self.navigationController pushViewController:jiuPinDetailViewController animated:YES];
@@ -387,17 +394,12 @@
 
 #pragma mark sxBtnClick
 - (IBAction)sxBtnClick:(ShaiXuanBtn *)sender {
-    
     ShaiXuanBtn *btn=(ShaiXuanBtn*)sender;
-    //    NSString *sortkey=@"";
-    //    NSString *choosekey = @"";
     for (UIButton *button in _buttonsArray) {
         if(button.tag == btn.tag){
-//            button.selected = YES;
             [button setBackgroundColor:[UIColor whiteColor]];
             [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
         }else{
-//            button.selected = NO;
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [button setBackgroundColor:RGBA(114, 5, 147, 1)];
         }
@@ -405,21 +407,6 @@
     [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
     [_sxBtn5 setTitle:@"" forState:UIControlStateNormal];
     [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
-//    if(btn.tag == 100){
-//        chooseKey = 1;
-//    }else if(btn.tag == 101){
-//        chooseKey = 2;
-//    }else if (btn.tag == 102){
-//        chooseKey = 3;
-//    }else if(btn.tag == 103){
-//        chooseKey = 4;
-//    }else{
-//        
-//        [btn setBackgroundColor:[UIColor whiteColor]];
-//        [btn setImage:[UIImage imageNamed:@"more_purper"] forState:UIControlStateNormal];
-//        [self showMoreButtons];
-//        return;
-//    }
     if(btn.tag == 105){
         [btn setBackgroundColor:[UIColor whiteColor]];
         [btn setImage:[UIImage imageNamed:@"more_purper"] forState:UIControlStateNormal];
@@ -430,6 +417,7 @@
         [_MoreView removeFromSuperview];
         chooseKey = btn.tag;
     }
+    buttonTitle = btn.titleLabel.text;
     [self chooseWineBy:chooseKey];
 }
 
@@ -441,6 +429,10 @@
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     [nowDic removeObjectForKey:@"categoryid"];
     [nowDic setObject:[NSString stringWithFormat:@"%d",sortkey] forKey:@"categoryid"];
+
+    NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"吃喝专场",@"titleName":buttonTitle};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     [self getData:nowDic];
 }
 
@@ -506,7 +498,7 @@
     _collectionView.userInteractionEnabled = YES;
     
     chooseKey = (int)sender.tag;
-    
+    buttonTitle = sender.titleLabel.text;
     [self chooseWineBy:chooseKey];
 }
 
