@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     self.title=@"活动详情";
     self.webView=[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
 ;
@@ -23,7 +24,20 @@
     self.scrollView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
 
     self.webView.delegate=self;
+    if (_content) {
+        [self loadData];
+    }else{
     
+    }
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)loadData{
     NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '310';imgs[i].style.height = 'auto';}</script></body>",self.content];
     
     self.webView.delegate = self;
@@ -33,14 +47,9 @@
     [self.webView loadHTMLString:webStr baseURL:nil];
     [self.scrollView addSubview:_webView];
     [self.view addSubview:self.scrollView];
-    // Do any additional setup after loading the view.
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
+}
 
 #pragma mark-- webview delegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView{

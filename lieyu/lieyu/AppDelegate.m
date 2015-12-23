@@ -31,6 +31,8 @@
 #import "LYCoreDataUtil.h"
 #import "LYCache.h"
 
+#import "HuoDongViewController.h"
+
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
@@ -380,6 +382,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
      }*/
     if ([userInfo objectForKey:@"aps"]&&[userInfo objectForKey:@"d"]) {
         [UMessage didReceiveRemoteNotification:userInfo];
+        if([userInfo objectForKey:@"activity"]){
+            HuoDongViewController *huodong =[[HuoDongViewController alloc] init];
+            [self.navigationController pushViewController:huodong animated:YES];
+        }
+        
     }else{//否则认为是im推送
         [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     }

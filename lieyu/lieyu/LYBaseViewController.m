@@ -34,9 +34,6 @@
     
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
-    
-
-    // Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated

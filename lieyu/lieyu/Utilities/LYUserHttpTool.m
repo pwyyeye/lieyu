@@ -33,8 +33,8 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         NSDictionary *dataDic = response[@"data"];
-        UserModel *userModel=[UserModel mj_objectWithKeyValues:dataDic];
         if ([code isEqualToString:@"1"]) {
+            UserModel *userModel=[UserModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(userModel);
             });
@@ -968,6 +968,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SAVE_USERINFO baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        NSLog(@"------>%@----->%@",code,message);
         if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);

@@ -9,35 +9,31 @@
 #import "LYTagTableViewCell.h"
 
 @interface LYTagTableViewCell()<UIAlertViewDelegate>
-
+@property (nonatomic,strong) NSArray *btnArray;
 @end
 
 @implementation LYTagTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    _btnArray = @[_button1,_button2,_button3];
     [self.btn_custom setTitleColor:RGB(102, 102, 102) forState:UIControlStateNormal];
     self.btn_custom.layer.masksToBounds=YES;
     self.btn_custom.layer.cornerRadius=2;
     self.btn_custom.layer.borderWidth=0.5;
     self.btn_custom.layer.borderColor=RGB(233, 233, 233).CGColor;
-    
-}
 
-- (IBAction)customTagClick:(UIButton *)sender {
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"自定义标签" message:@"好的标枪会给你带来更多精彩" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alertView show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex) {
-        if ([_delegate respondsToSelector:@selector(tagTableViewCellAlertViewClick)]) {
-            [_delegate tagTableViewCellAlertViewClick];
-        }
+    for (LYUserTagButton *tagBtn in _btnArray) {
+     [tagBtn addTarget:self action:@selector(selectedClick:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
+- (void)selectedClick:(UIButton *)button{
+    for (LYUserTagButton *tagBtn in _btnArray) {
+        tagBtn.selected = NO;
+    }
+    button.selected=YES;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
