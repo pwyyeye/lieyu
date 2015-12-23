@@ -7,7 +7,7 @@
 //
 
 #import "HuoDongViewController.h"
-
+#import "HTTPController.h"
 @interface HuoDongViewController ()
 
 @end
@@ -27,7 +27,7 @@
     if (_content) {
         [self loadData];
     }else{
-    
+        [self getData];
     }
     
 }
@@ -35,6 +35,41 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)getData{
+   
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_HOMELIST  baseURL:LY_SERVER params:@{@"bartype":@"0"} success:^(id response)
+     {
+         
+         [app stopLoading];
+         
+         NSString *errorcode = response[@"errorcode"];
+         if (errorcode.intValue==1) {
+             NSDictionary *dataDic = response[@"data"];
+             NSArray *newbanner=[dataDic objectForKey:@"newbanner"];
+             for (NSDictionary *dic in newbanner) {
+                 NSString *linkid=[dic objectForKey:@"linkid"];
+                 if ([dic objectForKey:@"linkid"]!=nil && _linkid==linkid.intValue) {
+                     _content=[dic objectForKey:@"content"];
+                     [self loadData];
+                 }
+             }
+         }else{
+         
+         }
+         
+         
+     } failure:^(NSError *err)
+     {
+         [app stopLoading];
+
+     }];
+    
+
 }
 
 -(void)loadData{

@@ -13,4 +13,5 @@
 @property(strong,nonatomic) UIWebView *webView;
 @property(strong,nonatomic) NSString *content;
 @property(strong,nonatomic) UIScrollView *scrollView;
+@property(assign,nonatomic) NSInteger linkid;
 @end
