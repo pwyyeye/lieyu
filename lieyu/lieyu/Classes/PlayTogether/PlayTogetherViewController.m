@@ -107,30 +107,22 @@
     [_myTitle setText:@"热门拼客"];
     
     [self.navigationController.navigationBar addSubview:_myTitle];
-    
-    NSLog(@"----pass-pass11111    %@---",NSStringFromCGRect(_tableView.frame));
-    NSLog(@"----pass-pass22222    %@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     if (self.navigationController.navigationBarHidden != NO ) {
         [self.navigationController setNavigationBarHidden:NO];
-        
     }
     //ios 7.0适配
     if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
         NSLog(@"----pass-self.tableView.contentInset.top%f---",self.tableView.contentInset.top);
-        //        if (self.tableView.contentInset.top==0 ||self.tableView.contentInset.top==128) {
-        //        }
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    //    [self setCustomTitle:@""];
-    
     [_fillterButton removeFromSuperview];
     [_myTitle removeFromSuperview];
     _myTitle=nil;
@@ -214,6 +206,11 @@
         }else{
             [nowDic setObject:[AddressArray objectAtIndex:index] forKey:@"address"];
         }
+        
+        //统计地点的筛选
+        NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"一起玩",@"titleName":@"地区",@"value":(nowDic[@"address"]) ? nowDic[@"address"] : @""};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+        
     }else if (button.section == 2){
         if(index == 0){
             [nowDic removeObjectForKey:@"subids"];
@@ -226,6 +223,11 @@
         }else{
             [nowDic setObject:@"4,5" forKey:@"subids"];
         }
+        
+        //统计种类的筛选
+        NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"一起玩",@"titleName":@"种类",@"value":(nowDic[@"subids"]) ? nowDic[@"subids"] : @""};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+        
     }else{//sort= //pricedesc 人均最高，priceasc人均最低，rebatedesc返利最高
         if(index == 0){
             [nowDic removeObjectForKey:@"sort"];
@@ -236,6 +238,10 @@
         }else{
             [nowDic setObject:@"rebatedesc" forKey:@"sort"];
         }
+        
+        //统计条件的筛选
+        NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"一起玩",@"titleName":@"条件",@"value":(nowDic[@"sort"]) ? nowDic[@"sort"] : @""};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     }
     [self getData:nowDic];
 }
@@ -529,10 +535,10 @@
 -(void)woYaoPin:(UIButton *)sender{
     PinKeModel *pinKeModel =[dataList objectAtIndex:sender.tag];
     UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
-//    LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
-//    playTogetherMainViewController.title=@"我要拼客";
-//    playTogetherMainViewController.smid=pinKeModel.smid;
-//    [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
+    
+    //统计点击拼客按钮的频率
+    NSDictionary *dict = @{@"actionName":@"点击",@"pageName":@"一起玩",@"titleName":@"我要拼客",@"value":pinKeModel.title};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
     LPPlayTogetherViewController *LPPlayVC = [stroyBoard instantiateViewControllerWithIdentifier:@"LPPlayVC"];
     LPPlayVC.title = @"我要拼客";
@@ -543,6 +549,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PinKeModel *pinKeModel = [dataList objectAtIndex:indexPath.row];
+    
+    //统计点击cell按钮的频率
+    NSDictionary *dict = @{@"actionName":@"点击",@"pageName":@"一起玩",@"titleName":@"cell拼客",@"value":pinKeModel.title};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     LPPlayTogetherViewController *LPPlayVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPPlayVC"];
     LPPlayVC.title = @"我要拼客";
     LPPlayVC.smid = pinKeModel.smid;

@@ -31,6 +31,8 @@
 #import "LYCoreDataUtil.h"
 #import "LYCache.h"
 
+#import "HuoDongViewController.h"
+
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
@@ -126,6 +128,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     //其它SDK内置启动MTA情况下需要调用下面方法,传入MTA_SDK_VERSION,并检 查返回值。
 //    [MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION];
+//    if([MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION]){
+//        NSLog(@"MTA start");
+//    }
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
@@ -373,6 +378,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
      }*/
     if ([userInfo objectForKey:@"aps"]&&[userInfo objectForKey:@"d"]) {
         [UMessage didReceiveRemoteNotification:userInfo];
+        if([userInfo objectForKey:@"activity"]){
+            HuoDongViewController *huodong =[[HuoDongViewController alloc] init];
+            [self.navigationController pushViewController:huodong animated:YES];
+        }
+        
     }else{//否则认为是im推送
         [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     }
@@ -450,7 +460,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
         [[LYCommonHttpTool shareInstance] getTokenByIMWithParams:dic block:^(NSString *result) {
             _im_token=result;
-            
             [self connectWithToken];
         }];
     }

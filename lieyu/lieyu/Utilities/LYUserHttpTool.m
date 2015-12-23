@@ -33,8 +33,8 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         NSDictionary *dataDic = response[@"data"];
-        UserModel *userModel=[UserModel mj_objectWithKeyValues:dataDic];
         if ([code isEqualToString:@"1"]) {
+            UserModel *userModel=[UserModel mj_objectWithKeyValues:dataDic];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(userModel);
             });

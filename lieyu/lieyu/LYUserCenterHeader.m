@@ -42,6 +42,7 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loadUserInfo" object:nil];
 }
+
 -(void)loadData{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if (app.userModel) {
@@ -229,12 +230,20 @@
 }
 
 - (IBAction)gotoSetting:(id)sender {
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"设置"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     Setting *setting =[[Setting alloc] init];
     [app.navigationController pushViewController:setting animated:YES];
 }
 
 - (IBAction)gotoMessageList:(id)sender {
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"信息中心"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     MyMessageListViewController *messageListViewController=[[MyMessageListViewController alloc]initWithNibName:@"MyMessageListViewController" bundle:nil];
     messageListViewController.title=@"信息中心";
@@ -242,26 +251,50 @@
 }
 
 - (IBAction)gotoOrderList:(id)sender {
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"全部订单"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     [self gotoMyOrderList:LYOrderTypeDefault];
 }
 
 - (IBAction)gotoWaitPayOrderList:(id)sender {
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"待付款"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     [self gotoMyOrderList:LYOrderTypeWaitPay];
 }
 
 - (IBAction)gotoWaitConsumptionOrderList:(id)sender {
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"待消费"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     [self gotoMyOrderList:LYOrderTypeWaitConsumption];
 }
 
 - (IBAction)gotoWaitRebateOrderList:(id)sender {
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"待返利"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     [self gotoMyOrderList:LYOrderTypeWaitRebate];
 }
 
 - (IBAction)gotoWaitEvaluationOrderList:(id)sender {
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"待评价"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     [self gotoMyOrderList:LYOrderTypeWaitEvaluation];
 }
 
 - (IBAction)gotoWaitPayBackOrderList:(id)sender {
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"待退款"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     [self gotoMyOrderList:LYOrderTypeWaitPayBack];
 }
 

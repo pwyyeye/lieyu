@@ -27,7 +27,6 @@
 #import "LYBarDescTableViewCell.h"
 #import "LYUserHttpTool.h"
 #import "LYHomePageHttpTool.h"
-#import "CHViewController.h"
 #import "ChiHeViewController.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]

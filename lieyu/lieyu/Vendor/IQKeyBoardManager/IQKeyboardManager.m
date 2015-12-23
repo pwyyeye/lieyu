@@ -1590,19 +1590,19 @@ void _IQShowLog(NSString *logString);
         //setInputAccessoryView: check   (Bug ID: #307)
         if ([textField respondsToSelector:@selector(setInputAccessoryView:)] && (![textField inputAccessoryView] || ([[textField inputAccessoryView] tag] == kIQPreviousNextButtonToolbarTag)))
         {
-            static UIView *doneToolbar = nil;
-            
-            if (doneToolbar == nil)
-            {
-                //Now adding textField placeholder text as title of IQToolbar  (Enhancement ID: #27)
-                [textField addDoneOnKeyboardWithTarget:self action:@selector(doneAction:) shouldShowPlaceholder:_shouldShowTextFieldPlaceholder];
-                doneToolbar = textField.inputAccessoryView;
-                doneToolbar.tag = kIQDoneButtonToolbarTag; //  (Bug ID: #78)
-            }
-            else
-            {
-                textField.inputAccessoryView = doneToolbar;
-            }
+//            static UIView *doneToolbar = nil;
+//            
+//            if (doneToolbar == nil)
+//            {
+//                //Now adding textField placeholder text as title of IQToolbar  (Enhancement ID: #27)
+//                [textField addDoneOnKeyboardWithTarget:self action:@selector(doneAction:) shouldShowPlaceholder:_shouldShowTextFieldPlaceholder];
+//                doneToolbar = textField.inputAccessoryView;
+//                doneToolbar.tag = kIQDoneButtonToolbarTag; //  (Bug ID: #78)
+//            }
+//            else
+//            {
+//                textField.inputAccessoryView = doneToolbar;
+//            }
         }
         
         if ([textField.inputAccessoryView isKindOfClass:[IQToolbar class]] && textField.inputAccessoryView.tag == kIQDoneButtonToolbarTag)
@@ -1813,20 +1813,20 @@ void _IQShowLog(NSString *logString);
 /**	doneAction. Resigning current textField. */
 -(void)doneAction:(IQBarButtonItem*)barButton
 {
-    //If user wants to play input Click sound. Then Play Input Click Sound.
-    if (_shouldPlayInputClicks)
-    {
-        [[UIDevice currentDevice] playInputClick];
-    }
-
-    UIView *textFieldRetain = _textFieldView;
-
-    BOOL isResignedFirstResponder = [self resignFirstResponder];
-    
-    if (isResignedFirstResponder == YES && textFieldRetain.doneInvocation)
-    {
-        [textFieldRetain.doneInvocation invoke];
-    }
+//    //If user wants to play input Click sound. Then Play Input Click Sound.
+//    if (_shouldPlayInputClicks)
+//    {
+//        [[UIDevice currentDevice] playInputClick];
+//    }
+//
+//    UIView *textFieldRetain = _textFieldView;
+//
+//    BOOL isResignedFirstResponder = [self resignFirstResponder];
+//    
+//    if (isResignedFirstResponder == YES && textFieldRetain.doneInvocation)
+//    {
+//        [textFieldRetain.doneInvocation invoke];
+//    }
 }
 
 #pragma mark - Tracking untracking

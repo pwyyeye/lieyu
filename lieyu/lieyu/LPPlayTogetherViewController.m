@@ -323,25 +323,12 @@
             if([_contentView.buttonStatusArray[index] isEqualToString:@"1"]){
                 [self.biTianCell.chooseWay setTitle:self.labelArray[index] forState:UIControlStateNormal];
                 self.defaultString = self.labelArray[index];
+                
+                //统计拼客方式的选择
+                NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"拼客详情",@"titleName":@"选择拼客方式",@"value":self.defaultString};
+                [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+                
                 self.defaultIndex = index;//作为已选方式的判断以及后期参数
-//                if(index == 0){
-//                    self.defaultPay = [self.pinKeModel.price floatValue];
-//                }else if(index == 1){
-//                    self.defaultPay = [self.pinKeModel.price floatValue] * 1.0 / [self.biTianCell.numTextField.text intValue];
-//                }else{
-//                    __weak __typeof(self)weakSelf = self;
-//                    void (^chooseYourPay)(void) = ^(void){
-//                        UIAlertView *customAlert = [[UIAlertView alloc]initWithTitle:@"请填写您要支付的金额" message:nil delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//                        [customAlert setTintColor:RGBA(114, 5, 147, 1)];
-//                        [customAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-//                        UITextField *payField = [customAlert textFieldAtIndex:0];
-//                        payField.keyboardType = UIKeyboardTypeNumberPad;
-//                        payField.placeholder = @"金额请不少于100元";
-//                        [customAlert show];
-//                    };
-//                    chooseYourPay();
-//                    self.defaultPay = 0;
-//                }
             }
         }
         
@@ -475,6 +462,11 @@
             self.defaultPay = -1;
         }
         
+        
+        
+        //统计拼客人数的选择
+        NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"拼客详情",@"titleName":@"确定拼客人数",@"value":[NSString stringWithFormat:@"%d",self.defaultNumber]};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
         
         NSDictionary *dict = @{@"time":self.defaultDate,
                                @"way":self.defaultString,

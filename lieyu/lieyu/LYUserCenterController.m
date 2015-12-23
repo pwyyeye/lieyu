@@ -77,6 +77,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     if (self.navigationController.navigationBarHidden==NO) {
        [self.navigationController setNavigationBarHidden:YES];
     }
+    [self.collectionView reloadData];
     
 }
 -(void) viewDidAppear:(BOOL)animated
@@ -191,6 +192,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 0://购物车
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"购物车"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
             carListViewController.title=@"购物车";
@@ -202,6 +206,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 1:// 收藏
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"收藏"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             MyCollectionViewController *maintViewController=[[MyCollectionViewController alloc]initWithNibName:@"MyCollectionViewController" bundle:nil];
             maintViewController.title=@"我的收藏";
@@ -212,6 +219,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 2:// 专属经理
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"专属经理"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
             myZSManageViewController.title=@"我的专属经理";
             myZSManageViewController.isBarVip=false;
@@ -223,10 +234,14 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         case 3:
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"我的主页面",@"titleName":@"分享"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
             [UMSocialSnsService presentSnsIconSheetView:self
                                                  appKey:UmengAppkey
-                                              shareText:@"猎娱带你玩转酒吧夜店，无需再担心隐形消费，遇到酒托，所有商家均严格筛选认证，明码标价，尊享专属VIP经理一对一服务，喝酒消费更有超额返利等你来拿！https://itunes.apple.com/us/app/lie-yu-ye-sheng-huo-yu-le/id1056569271?l=zh&ls=1&mt=8"
+                                              shareText:@"猎娱带你玩转酒吧夜店，无需再担心隐形消费，遇到酒托，所有商家均严格筛选认证，明码标价，尊享专属VIP经理一对一服务，喝酒消费更有超额返利等你来拿！http://www.lie98.com"
                                              shareImage:[UIImage imageNamed:@"lieyuIcon"]
                                         shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToWechatSession,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
                                                delegate:nil];
@@ -234,6 +249,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         }
         case 4:// 反馈
         {
+            //统计我的页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"客服"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
             conversationVC.conversationType = ConversationType_APPSERVICE;
             conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试 

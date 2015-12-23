@@ -253,6 +253,12 @@
     if(buttonIndex == 0){
         NSDictionary *dic=@{@"product_id":[NSNumber numberWithInt:chiHeModel.id],
                             @"quantity":_chooseNumView.numberField.text};
+        
+        
+        //统计从吃喝明细页面添加购物车
+        NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"吃喝明细",@"titleName":@"确认数量后加入购物车",@"value":chiHeModel.name};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+        
         [[LYHomePageHttpTool shareInstance] addCarWithParams:dic block:^(BOOL result) {
             if (result) {
                 [MyUtil showMessage:@"添加购物车成功!"];
@@ -289,6 +295,10 @@
 #pragma mark 选择数量后点击确定加入购物车
 -(void)sureAct:(id)sender{
     [self SetViewDisappear:nil];
+    //统计从吃喝明细页面添加购物车
+    NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"吃喝明细",@"titleName":@"加入购物车",@"value":chiHeModel.name};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     NSDictionary *dic=@{@"product_id":[NSNumber numberWithInt:chiHeModel.id],@"quantity":numView.numLal.text};
     [[LYHomePageHttpTool shareInstance] addCarWithParams:dic block:^(BOOL result) {
         if (result) {
@@ -301,6 +311,9 @@
 - (IBAction)showShopCar:(UIButton *)sender {
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
+    
+    NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"吃喝明细",@"titleName":@"进入购物车"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
     [self.navigationController pushViewController:carListViewController animated:YES];
 }

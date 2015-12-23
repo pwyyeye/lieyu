@@ -20,7 +20,7 @@
 #import "DWIsGoToViewController.h"
 #import "ChoosePayController.h"
 #import "LYZSdetailCell.h"
-
+#import "IQKeyboardManager.h"
 #import "LYDinWeiTableViewCell.h"
 #import "LYOrderWriteTableViewCell.h"
 #import "LYOrderInfoTableViewCell.h"
@@ -377,12 +377,22 @@
             conversationVC.userName =zsDetailModel.username; // 接受者的 username，这里为举例。
             conversationVC.title =zsDetailModel.username; // 会话的 title。
             
+            [IQKeyboardManager sharedManager].enable = NO;
+            
             // 把单聊视图控制器添加到导航栈。
-            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+//            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+//            [self.navigationController pushViewController:conversationVC animated:YES];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }
     }
 }
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark 电话
 -(void)dianhuaAct:(UIButton *)sender{
     for (ZSDetailModel *zsDetailModel in zsArr) {
