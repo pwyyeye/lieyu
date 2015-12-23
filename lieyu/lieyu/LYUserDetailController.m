@@ -284,9 +284,7 @@
 //    
 //    NSMutableDictionary *userinfo=[NSMutableDictionary new];
 //    [userinfo setObject:tagids forKey:@"tag"];
-    
 
-    
     
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         UserModel *mod= app.userModel;
