@@ -20,7 +20,7 @@
 #import "DWIsGoToViewController.h"
 #import "ChoosePayController.h"
 #import "LYZSdetailCell.h"
-
+#import "IQKeyboardManager.h"
 #import "LYDinWeiTableViewCell.h"
 #import "LYOrderWriteTableViewCell.h"
 #import "LYOrderInfoTableViewCell.h"
@@ -376,6 +376,8 @@
             conversationVC.targetId = zsDetailModel.imUserId; // 接收者的 targetId，这里为举例。
             conversationVC.userName =zsDetailModel.username; // 接受者的 username，这里为举例。
             conversationVC.title =zsDetailModel.username; // 会话的 title。
+            
+            [IQKeyboardManager sharedManager].enable = NO;
             
             // 把单聊视图控制器添加到导航栈。
 //            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];

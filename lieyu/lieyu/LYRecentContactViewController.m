@@ -7,7 +7,7 @@
 //
 
 #import "LYRecentContactViewController.h"
-
+#import "IQKeyboardManager.h"
 #import <RongIMKit/RongIMKit.h>
 //#import "RCDChatViewController.h"
 @interface LYRecentContactViewController ()
@@ -34,6 +34,8 @@
     conversationVC.userName =model.conversationTitle;
     conversationVC.title = model.conversationTitle;
     [self.navigationController pushViewController:conversationVC animated:YES];
+    
+    [IQKeyboardManager sharedManager].enable = NO;
     
     UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
     conversationVC.navigationItem.leftBarButtonItem = left;
