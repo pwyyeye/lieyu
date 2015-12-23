@@ -1813,20 +1813,20 @@ void _IQShowLog(NSString *logString);
 /**	doneAction. Resigning current textField. */
 -(void)doneAction:(IQBarButtonItem*)barButton
 {
-//    //If user wants to play input Click sound. Then Play Input Click Sound.
-//    if (_shouldPlayInputClicks)
-//    {
-//        [[UIDevice currentDevice] playInputClick];
-//    }
-//
-//    UIView *textFieldRetain = _textFieldView;
-//
-//    BOOL isResignedFirstResponder = [self resignFirstResponder];
-//    
-//    if (isResignedFirstResponder == YES && textFieldRetain.doneInvocation)
-//    {
-//        [textFieldRetain.doneInvocation invoke];
-//    }
+    //If user wants to play input Click sound. Then Play Input Click Sound.
+    if (_shouldPlayInputClicks)
+    {
+        [[UIDevice currentDevice] playInputClick];
+    }
+
+    UIView *textFieldRetain = _textFieldView;
+
+    BOOL isResignedFirstResponder = [self resignFirstResponder];
+    
+    if (isResignedFirstResponder == YES && textFieldRetain.doneInvocation)
+    {
+        [textFieldRetain.doneInvocation invoke];
+    }
 }
 
 #pragma mark - Tracking untracking

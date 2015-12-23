@@ -968,6 +968,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SAVE_USERINFO baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        NSLog(@"------>%@----->%@",code,message);
         if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
