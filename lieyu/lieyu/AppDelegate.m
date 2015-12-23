@@ -183,6 +183,10 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
      return YES;
 }
 
+- (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object{
+    NSLog(@"ndifadhfjkhsajkdfaygfhrajkfhdskfjhdkjads");
+}
+
 //开始定位
 -(void)startLocation{
     if (![CLLocationManager locationServicesEnabled])
