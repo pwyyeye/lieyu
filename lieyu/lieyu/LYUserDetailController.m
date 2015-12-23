@@ -9,9 +9,13 @@
 #import "LYUserDetailController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UserModel.h"
+#import "LYTagCollectionViewController.h"
 #import "LYTagTableViewController.h"
+#import "LYTagsViewController.h"
 
-@interface LYUserDetailController ()
+@interface LYUserDetailController ()<LYTagsViewControllerDelegate>{
+    NSString *_tagString;
+}
 
 @end
 
@@ -34,7 +38,7 @@
     NSLocale *local=[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
     _datePicker.locale=local;
     [_datePicker setMaximumDate:[NSDate date]];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,21 +141,42 @@
         
     }else if(indexPath.row==4){
         NSArray *tags=mod.tags;
-        NSString *tagname=@"";
-        if (tags.count==0) {
-            tagname=@"选择适合自己的标签";
-        }else{
-            for (UserTagModel *tag in tags) {
-                if ([tagname isEqualToString:@""]) {
-                    tagname= [NSString stringWithFormat:@"%@",[MyUtil isEmptyString:tag.name]?tag.tagname:tag.name];
+
+//        if (tags.count==0) {
+//            tagname=@"选择适合自己的标签";
+//        }else{
+//            for (UserTagModel *tag in tags) {
+//                if ([tagname isEqualToString:@""]) {
+//                    tagname= [NSString stringWithFormat:@"%@",[MyUtil isEmptyString:tag.name]?tag.tagname:tag.name];
+//                }else{
+//                    tagname= [NSString stringWithFormat:@"%@,%@",tagname,[MyUtil isEmptyString:tag.name]?tag.tagname:tag.name];
+//                }
+//                
+//            }
+//        }
+        NSMutableString *mytags=[[NSMutableString alloc] init];
+        for (UserTagModel *tag in tags) {
+            if (![MyUtil isEmptyString:tag.tagname]){
+                if ([tag isEqual:tags.lastObject]) {
+                    [mytags appendString:tag.tagname];
                 }else{
-                    tagname= [NSString stringWithFormat:@"%@,%@",tagname,[MyUtil isEmptyString:tag.name]?tag.tagname:tag.name];
+                    [mytags appendString:tag.tagname];
+                    [mytags appendString:@","];
                 }
-                
+            }else if(![MyUtil isEmptyString:tag.name]){
+                if ([tag isEqual:tags.lastObject]) {
+                    [mytags appendString:tag.name];
+                }else{
+                    [mytags appendString:tag.name];
+                    [mytags appendString:@","];
+                }
             }
+            
+            
+            
         }
-        label.text=tagname;
-        
+        label.text = mytags;
+        _tagString = mytags;
     }
     
     cell.tag=100+indexPath.row;
@@ -219,49 +244,61 @@
         [self showAlertView];
     }else if (indexPath.row==4){
         
-        LYTagTableViewController *taglist=[[LYTagTableViewController alloc] init];
+        LYTagsViewController *taglist=[[LYTagsViewController alloc] init];
         taglist.delegate=self;
-        //登录反馈的 id为tagid name 为tagname
-        for (UserTagModel *tag in mod.tags) {
-            if (tag.id==0) {
-                tag.id=tag.tagid;
-            }
-            if ([MyUtil isEmptyString:tag.name]) {
-                tag.name=tag.tagname;
-            }
-            
-        }
-        taglist.selectedArray=mod.tags;
+//        //登录反馈的 id为tagid name 为tagname
+//        for (UserTagModel *tag in mod.tags) {
+//            if (tag.id==0) {
+//                tag.id=tag.tagid;
+//            }
+//            if ([MyUtil isEmptyString:tag.name]) {
+//                tag.name=tag.tagname;
+//            }
+//            
+//        }
+//        taglist.selectedArray=mod.tags;
+        taglist.selectedTag = _tagString;
         [self.navigationController pushViewController:taglist animated:YES];
     }
 }
 
+-(void)userTagSelected:(UserTagModel *)usertag{
+//    NSString *tagids=@"";
+//    NSString *tagNames=@"";
+//    for (UserTagModel *usertag in usertags) {
+//        if ([tagids isEqualToString:@""]) {
+//            tagids=[NSString stringWithFormat:@"%ld",usertag.id];
+//            tagNames=[NSString stringWithFormat:@"%@",usertag.name];
+//        }else{
+//            tagids=[NSString stringWithFormat:@"%@,%ld",tagids,usertag.id];
+//            tagNames=[NSString stringWithFormat:@"%@,%@",tagNames,usertag.name];
+//        }
+//    }
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    UserModel *mod= app.userModel;
+//    
+//    mod.tags=[usertags copy];
+//    
+//    UILabel *label=[_selectcedCell viewWithTag:_selectcedCell.tag+100];
+//    label.text=tagNames;
+//    
+//    NSMutableDictionary *userinfo=[NSMutableDictionary new];
+//    [userinfo setObject:tagids forKey:@"tag"];
+    
 
--(void)userTagSelected:(NSMutableArray *)usertags{
-    NSString *tagids=@"";
-    NSString *tagNames=@"";
-    for (UserTagModel *usertag in usertags) {
-        if ([tagids isEqualToString:@""]) {
-            tagids=[NSString stringWithFormat:@"%ld",usertag.id];
-            tagNames=[NSString stringWithFormat:@"%@",usertag.name];
-        }else{
-            tagids=[NSString stringWithFormat:@"%@,%ld",tagids,usertag.id];
-            tagNames=[NSString stringWithFormat:@"%@,%@",tagNames,usertag.name];
-        }
     
-    }
+    
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    UserModel *mod= app.userModel;
+        UserModel *mod= app.userModel;
+        UILabel *label=[_selectcedCell viewWithTag:_selectcedCell.tag+100];
+        label.text=usertag.name;
     
-    mod.tags=[usertags copy];
-    
-    UILabel *label=[_selectcedCell viewWithTag:_selectcedCell.tag+100];
-    label.text=tagNames;
-    
-    NSMutableDictionary *userinfo=[NSMutableDictionary new];
-    [userinfo setObject:tagids forKey:@"tag"];
+        NSMutableDictionary *userinfo=[NSMutableDictionary new];
+        [userinfo setObject:[NSString stringWithFormat:@"%ld",usertag.id] forKey:@"tag"];
+    mod.tags = [@[usertag] copy];
     [self savaUserInfo:userinfo needReload:YES];
 }
+
 -(void)showAlertView{
     if (_alertView!=nil) {
         [_alertView removeFromSuperview];

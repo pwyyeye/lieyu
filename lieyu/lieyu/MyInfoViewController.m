@@ -19,6 +19,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "MyMessageListViewController.h"//我的消息列表
 #import "UserTagModel.h"
+#import "LYUserHttpTool.h"
 @interface MyInfoViewController ()
 {
     NSString *userType;
@@ -42,6 +43,8 @@
     [self getDataForShowList];
 
     // Do any additional setup after loading the view from its nib.
+    
+    
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -133,6 +136,8 @@
         }
         orderInfoLal.text=biaoTag;
     }
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    orderInfoLal.text = app.userModel.tag;
    
     orderInfoLal.textAlignment=NSTextAlignmentCenter;
     [view addSubview:orderInfoLal];

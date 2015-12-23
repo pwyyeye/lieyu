@@ -47,5 +47,6 @@
 @property(strong,nonatomic) NSString *age;
 @property(strong,nonatomic) NSString *birthday;
 @property(strong,nonatomic) NSArray *tags;
+@property (nonatomic,copy) NSString *tag;
 @property(nonatomic,assign)int barid;
 @end

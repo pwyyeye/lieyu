@@ -20,6 +20,7 @@
 #import "LYCarListViewController.h"//购物车
 #import "MyMessageListViewController.h"//我的消息列表
 #import "LYUserHttpTool.h"
+#import "UserModel.h"
 
 
 @interface LYUserCenterController ()
@@ -64,6 +65,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
     
+   
+    
 }
 -(void)loadData{
     [self.collectionView reloadData];
@@ -83,8 +86,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewBegin:self.title];
     }
-    
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

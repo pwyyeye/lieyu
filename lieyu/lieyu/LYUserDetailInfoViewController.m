@@ -250,10 +250,10 @@
     for (UserTagModel *usertag in usertags) {
 
         if ([tagids isEqualToString:@""]) {
-            tagids=[NSString stringWithFormat:@"%d",usertag.id];
+            tagids=[NSString stringWithFormat:@"%ld",usertag.id];
             tagNames=[NSString stringWithFormat:@"%@",usertag.name];
         }else{
-            tagids=[NSString stringWithFormat:@"%@,%d",tagids,usertag.id];
+            tagids=[NSString stringWithFormat:@"%@,%ld",tagids,usertag.id];
             tagNames=[NSString stringWithFormat:@"%@,%@",tagNames,usertag.name];
         }
         
