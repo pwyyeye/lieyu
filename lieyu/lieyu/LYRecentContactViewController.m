@@ -26,6 +26,7 @@
     self.conversationListTableView.tableFooterView = [UIView new];
     // Do any additional setup after loading the view.
 }
+
 -(void)onSelectedTableRow:(RCConversationModelType)conversationModelType conversationModel:(RCConversationModel *)model atIndexPath:(NSIndexPath *)indexPath
 {
     RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
