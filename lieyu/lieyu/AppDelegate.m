@@ -51,7 +51,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 //    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
 //    [core deleteCoreData:@"LYCache" withSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
 //    [core deleteLocalSQLLite];
-
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
@@ -182,7 +181,18 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         view.view=_intro;
         self.window.rootViewController=view;
     }
+    
+    //处理消息推送
+    if (launchOptions.count>0) {
+        NSDictionary * userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        [self takeNotification:userInfo];
+    }
+    
      return YES;
+}
+
+- (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object{
+    NSLog(@"ndifadhfjkhsajkdfaygfhrajkfhdskfjhdkjads");
 }
 
 //开始定位
@@ -376,18 +386,26 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
      d = uu04812144712755443811;
      p = 0;
      }*/
-    if ([userInfo objectForKey:@"aps"]&&[userInfo objectForKey:@"d"]) {
-        [UMessage didReceiveRemoteNotification:userInfo];
-        if([userInfo objectForKey:@"activity"]){
+    [self takeNotification:userInfo];
+    
+}
+
+#pragma --mark 消息推送处理
+-(void)takeNotification:(NSDictionary *)dic{
+    if ([dic objectForKey:@"aps"]&&[dic objectForKey:@"d"]) {
+        [UMessage didReceiveRemoteNotification:dic];
+        if([dic objectForKey:@"activity"]){
             HuoDongViewController *huodong =[[HuoDongViewController alloc] init];
+            NSString *linkid=[dic objectForKey:@"activity"];
+            huodong.linkid=linkid.integerValue;
             [self.navigationController pushViewController:huodong animated:YES];
         }
         
-    }else{//否则认为是im推送
+    }else if(dic.count>0){//否则认为是im推送
         [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     }
-    
 }
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

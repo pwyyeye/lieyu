@@ -137,6 +137,7 @@
     {
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
+            self.title=weakSelf.beerBarDetail.barname;
             //判断用户是否已经喜欢过
             if ([[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY]) {
                 //收藏过
