@@ -10,14 +10,7 @@
 #import "LYTagLabel.h"
 @class UserTagModel;
 
-@protocol LYTagCollectionViewCellDelegate <NSObject>
-
-- (void)selectedCellWith:(NSInteger)indexItem;
-
-@end
-
 @interface LYTagCollectionViewCell : UICollectionViewCell
 @property (nonatomic,strong) UILabel *tagLabel;
-@property (nonatomic,unsafe_unretained) id<LYTagCollectionViewCellDelegate> delegate;
-- (void)deployCellWith:(UserTagModel *)tagM index:(NSInteger)index selectedTagM:(UserTagModel *)selectedTagM;
+- (void)deployCellWith:(UserTagModel *)tagM selectedTagM:(UserTagModel *)selectedTagM;
 @end

@@ -43,6 +43,8 @@
     NSInteger _timeCount;
     CGSize _size;
     NSTimer *_timer;
+    CGFloat offSet;
+    EScrollerView *_scroller;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -175,7 +177,6 @@
         self.image_layer.hidden = YES;
     }
 }
-
 
 // load webView
 - (void)loadWebView{
@@ -313,10 +314,10 @@
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
                 [bigArr addObject:dicTemp];
             }
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
+            _scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0 , 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
                                                                   scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
 
-            [_headerCell addSubview:scroller];
+            [_headerCell addSubview:_scroller];
 
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
 

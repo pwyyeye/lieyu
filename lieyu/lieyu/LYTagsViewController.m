@@ -11,7 +11,7 @@
 #import "UserTagModel.h"
 #import "LYUserHttpTool.h"
 
-@interface LYTagsViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,LYTagCollectionViewCellDelegate>{
+@interface LYTagsViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>{
     NSArray *_dataArray;
     UserTagModel *_tagModel;
     NSInteger _indexItem;
@@ -26,7 +26,6 @@ static NSString *cellIdentifier = @"cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.view.backgroundColor = [UIColor whiteColor];
     [_collectionView registerClass:[LYTagCollectionViewCell class] forCellWithReuseIdentifier:cellIdentifier];
     UIBarButtonItem *rightItem=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(makeSure)];
     [self.navigationItem setRightBarButtonItem:rightItem];
@@ -54,13 +53,12 @@ static NSString *cellIdentifier = @"cell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LYTagCollectionViewCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    cell.delegate = self;
     UserTagModel *tagM = _dataArray[indexPath.row];
     UserTagModel *selectedTagM;
     if (_selectedTag.length) {
         selectedTagM.tagname = _selectedTag;
     }
-    [cell deployCellWith:tagM index:indexPath.item selectedTagM:selectedTagM];
+    [cell deployCellWith:tagM selectedTagM:selectedTagM];
 //    NSLog(@"--->%@----->%@",tagM.name,selectedTagM.tagname);
     if ([_selectedTag isEqualToString:tagM.name]) {
         cell.selected = YES;
@@ -98,14 +96,6 @@ static NSString *cellIdentifier = @"cell";
         desCell.selected = NO;
         _indexItem = -1;
     }
-}
-
-- (void)selectedCellWith:(NSInteger)indexItem{
-    _indexItem = indexItem;
-//    NSLog(@"-->%ld",indexItem);
-//    NSIndexPath *indexP = [NSIndexPath indexPathForItem:_indexItem inSection:0];
-////    LYTagCollectionViewCell *cell = (LYTagCollectionViewCell *)[_collectionView cellForItemAtIndexPath:indexPath];
-//    [self collectionView:_collectionView didSelectItemAtIndexPath:indexP];
 }
 
 -(void)makeSure{
