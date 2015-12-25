@@ -11,6 +11,8 @@
 #import "LYLocationManager.h"
 #import "LYUserLocation.h"
 #import <MapKit/MapKit.h>
+#import "UITabBarItem+CustomBadge.h"
+#import "LYUserLoginViewController.h"
 @interface MainTabbarViewController ()
 
 <
@@ -29,6 +31,9 @@
     [super viewDidLoad];
     [self setupViewStyles];
     self.delegate=self;
+    
+    [RCIM sharedRCIM].receiveMessageDelegate=self;
+    
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:RECEIVES_MESSAGE object:nil];
     
@@ -38,22 +43,64 @@
 }
 
 -(void)tabbarChagne{
-   NSArray *items = self.tabBar.items;
-   UITabBarItem *item=[items objectAtIndex:2];
-    if ([MyUtil isEmptyString:item.badgeValue]) {
-        item.badgeValue=[NSString stringWithFormat:@"%d",1];
+    //单独启动新线程
+    [NSThread detachNewThreadSelector:@selector(doChange) toTarget:self withObject:nil];
+}
+
+-(void)doChange{
+    NSArray *items = self.tabBar.items;
+    UITabBarItem *item=[items objectAtIndex:2];
+    
+//    if ([MyUtil isEmptyString:item.badgeValue]) {
+//        item.badgeValue=[NSString stringWithFormat:@"%d",1];
+//    }else{
+//        if (item.badgeValue.intValue<99) {
+//            item.badgeValue=[NSString stringWithFormat:@"%d",item.badgeValue.intValue+1];
+//        }
+//        
+//    }
+    NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
+    if (![MyUtil isEmptyString:count]) {
+        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue<99?count.intValue+1:99]  forKey:@"badgeValue"];
     }else{
-        item.badgeValue=[NSString stringWithFormat:@"%d",item.badgeValue.intValue+1];
+        [USER_DEFAULT setObject:@"1" forKey:@"badgeValue"];
     }
+    
+    if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"badgeValue"]]) {
+        item.badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
+    }else{
+        item.badgeValue=nil;
+    }
+    
+    
+
 }
 
 
-
 -(void)tabbarChagneComplete{
+    //单独启动新线程
+    [NSThread detachNewThreadSelector:@selector(doComplete) toTarget:self withObject:nil];
+
+}
+
+-(void)doComplete{
+    [USER_DEFAULT removeObjectForKey:@"badgeValue"];
     NSArray *items= self.tabBar.items;
     UITabBarItem *item=[items objectAtIndex:2];
     item.badgeValue=nil;
 }
+
+#pragma --mark IM消息接受
+- (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left{
+    NSLog(@"----pass-pass%@---%d",message,left);
+    if (self.selectedIndex!=2) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+    }
+    
+    
+}
+
+
 
 - (void)setupViewStyles
 {
@@ -120,6 +167,8 @@
 }
 */
 
+
+#pragma mark - tabBarController delegate
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
     self.lastSelectIndex=self.selectedIndex;
     return YES;
@@ -137,8 +186,7 @@
             [self.navigationController pushViewController:login animated:YES];
             
         }
-        
-        
+
     }
     
 }

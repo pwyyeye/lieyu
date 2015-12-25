@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="lfO-n6-zMf">
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="2048" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
@@ -34,10 +34,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="xFR-IV-f12" kind="relationship" relationship="viewControllers" id="eH1-zI-rB3"/>
-                        <segue destination="coA-OB-lmd" kind="relationship" relationship="viewControllers" id="ibg-Ay-I0C"/>
-                        <segue destination="cKJ-Em-xQV" kind="relationship" relationship="viewControllers" id="Hlf-7Y-97c"/>
-                        <segue destination="yPs-RX-H79" kind="relationship" relationship="viewControllers" id="OR8-W8-7xQ"/>
+                        <segue destination="xFR-IV-f12" kind="relationship" relationship="viewControllers" id="UYx-ZP-75Z"/>
+                        <segue destination="coA-OB-lmd" kind="relationship" relationship="viewControllers" id="hJU-Ru-cj1"/>
+                        <segue destination="cKJ-Em-xQV" kind="relationship" relationship="viewControllers" id="4nB-EJ-h78"/>
+                        <segue destination="yPs-RX-H79" kind="relationship" relationship="viewControllers" id="eo8-ZA-ct5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5v1-il-bzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -89,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z3V-g7-0Kl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-940" y="-8"/>
+            <point key="canvasLocation" x="-940" y="-7.9999999999999973"/>
         </scene>
         <!--PlayTogether-->
         <scene sceneID="5cx-X3-rMy">
@@ -212,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvR-7O-5aO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-533" y="-8"/>
+            <point key="canvasLocation" x="-533" y="-7.9999999999999973"/>
         </scene>
         <!--OnFindViewController-->
         <scene sceneID="nyY-dT-puG">
@@ -282,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0a-9w-6y8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-125" y="-8"/>
+            <point key="canvasLocation" x="-125" y="-7.9999999999999973"/>
         </scene>
         <!--我的-->
         <scene sceneID="stD-ho-yel">
@@ -319,7 +319,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xp6-6q-ihk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="262" y="-8"/>
+            <point key="canvasLocation" x="262" y="-7.9999999999999973"/>
         </scene>
     </scenes>
     <resources>

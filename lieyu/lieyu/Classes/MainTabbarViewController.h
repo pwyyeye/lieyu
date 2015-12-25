@@ -10,7 +10,8 @@
 #import "LYUserHttpTool.h"
 #import "LYUserLoginViewController.h"
 
-@interface MainTabbarViewController: UITabBarController<LoginDelegate>
+@interface MainTabbarViewController: UITabBarController<LoginDelegate,RCIMReceiveMessageDelegate>
+
 
 @property(assign,nonatomic) NSInteger lastSelectIndex;
 
