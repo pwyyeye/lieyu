@@ -67,6 +67,8 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
  */
 + (nonnull instancetype)sharedManager;
 
+@property (nonatomic, assign) BOOL isAdd;
+
 /**
  Enable/disable managing distance between keyboard and textField. Default is YES(Enabled when class loads in `+(void)load` method).
  */
@@ -292,6 +294,8 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
  Unavailable. Please use sharedManager method
  */
 + (nonnull instancetype)new NS_UNAVAILABLE;
+
+- (void)deleteDoneView;
 
 @end
 

@@ -101,10 +101,8 @@
     self.headerLbl.hidden = YES;
     self.headerBackBtn.hidden = YES;
     self.headerShareBtn.hidden = YES;
-//    self.headerLbl.hidden = YES;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.defaultString = @"选择正确的拼客方式";
     self.defaultPay = -2;

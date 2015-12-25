@@ -35,7 +35,7 @@
             
             if ([code isEqualToString:@"1"]) {
                 NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:dataList]];
-                if([[params objectForKey:@"p"] intValue] == 1){
+                if([[params objectForKey:@"p"] intValue] == 1 && params.count == 2){
                     //存储缓存讯息
                     LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
                     [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":dataList,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];

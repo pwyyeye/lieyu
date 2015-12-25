@@ -34,7 +34,11 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete) name:COMPLETE_MESSAGE object:nil];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:@"RCKitDispatchMessageNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
+}
+
+- (void)postANotification{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
 }
 
 -(void)tabbarChagne{
@@ -46,8 +50,6 @@
         item.badgeValue=[NSString stringWithFormat:@"%d",item.badgeValue.intValue+1];
     }
 }
-
-
 
 -(void)tabbarChagneComplete{
     NSArray *items= self.tabBar.items;

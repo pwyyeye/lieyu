@@ -293,6 +293,7 @@
         
         conversationVC.navigationController.navigationBarHidden = NO;
         [IQKeyboardManager sharedManager].enable = NO;
+        [IQKeyboardManager sharedManager].isAdd = YES;
         // 把单聊视图控制器添加到导航栈。
         UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
         conversationVC.navigationItem.leftBarButtonItem = left;
@@ -305,6 +306,8 @@
 }
 
 - (void)backForward{
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

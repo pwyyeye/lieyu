@@ -140,9 +140,8 @@
        
         if(indexPath.row==0){
             dic=[datalist objectAtIndex:0];
-            if(isMes){
+            if(isMes){//true
                 [cell.messageImageView setHidden:NO];
-                
             }else{
                 [cell.messageImageView setHidden:YES];
             }
