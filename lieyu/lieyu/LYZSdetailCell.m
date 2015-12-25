@@ -27,6 +27,9 @@
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:ZSModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     self.nameLal.text = ZSModel.usernick;
     self.biaoqianLal.text = ZSModel.introduction;
+    self.scBtn.tag = self.tag;
+    self.phoneBtn.tag = self.tag;
+    self.messageBtn.tag = self.tag;
     int num ;
     if([ZSModel.servicestar isEqualToString:@""]){
         num = 5;

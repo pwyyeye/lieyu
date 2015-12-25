@@ -39,7 +39,11 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete) name:COMPLETE_MESSAGE object:nil];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:@"RCKitDispatchMessageNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
+}
+
+- (void)postANotification{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
 }
 
 -(void)tabbarChagne{
@@ -71,11 +75,7 @@
     }else{
         item.badgeValue=nil;
     }
-    
-    
-
 }
-
 
 -(void)tabbarChagneComplete{
     //单独启动新线程

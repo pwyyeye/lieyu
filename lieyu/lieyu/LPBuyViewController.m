@@ -244,7 +244,7 @@
     ZSDetailModel *zsDetail = _managerList[index];
     
     //统计专属经理的选择
-    NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"确认拼客订单",@"titleName":@"选择专属经理",@"value":zsDetail.userName};
+    NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"确认拼客订单",@"titleName":@"选择专属经理",@"value":zsDetail.usernick};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
     
     if([zsDetail.isFull isEqualToString:@"1"]){
