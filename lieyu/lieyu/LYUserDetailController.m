@@ -9,9 +9,8 @@
 #import "LYUserDetailController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UserModel.h"
-#import "LYTagCollectionViewController.h"
-#import "LYTagTableViewController.h"
 #import "LYTagsViewController.h"
+#import "LYUserHttpTool.h"
 
 @interface LYUserDetailController ()<LYTagsViewControllerDelegate>{
     NSString *_tagString;
