@@ -38,7 +38,6 @@
     _tableView.separatorColor=RGB(237, 237, 237);
     _tableView.backgroundColor=RGB(237, 237, 237);
     self.view.backgroundColor=RGB(237, 237, 237);
-//    [self.tableView setHidden:YES];
     if(!_isBarVip){
         rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"more1"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
         [self.navigationItem setRightBarButtonItem:rightBtn];
@@ -112,10 +111,11 @@
 //    [self.tableView reloadData];
 }
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 1;
+    return [zsList  count];
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,7 +126,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return [zsList  count];
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -134,8 +134,8 @@
     
     LYZSdetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYZSdetailCell"];
 //    NSUInteger row = [indexPath row];
-    
-    ZSDetailModel * detailModel=zsList[indexPath.row];
+    cell.tag = indexPath.section;
+    ZSDetailModel * detailModel=zsList[indexPath.section];
     NSLog(@"ZSJL:%@",detailModel);
     [cell.messageBtn addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
     

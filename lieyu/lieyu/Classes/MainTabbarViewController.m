@@ -75,8 +75,7 @@
     }else{
         item.badgeValue=nil;
     }
-    
-    
+}
 
 -(void)tabbarChagneComplete{
     //单独启动新线程
