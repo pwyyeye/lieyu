@@ -13,13 +13,12 @@
 #import "LYUserHttpTool.h"
 #import "HTTPController.h"
 #import "LPAlertView.h"
-#import "LYTagTableViewController.h"
 #import "UserTagModel.h"
 #import "UIButton+WebCache.h"
 #import "TimePickerView.h"
 #import "LYUserLoginViewController.h"
 
-@interface LYUserDetailInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LPAlertViewDelegate,LYUserTagSelectedDelegate>
+@interface LYUserDetailInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LPAlertViewDelegate>
 {
     LYUserDetailCameraTableViewCell *_selectcedCell;
     LYUserDetailTableViewCell *_nickCell;
@@ -221,19 +220,19 @@
         [alertView show];
     }else if (indexPath.row == 4){
         //标签
-        LYTagTableViewController *tagVC = [[LYTagTableViewController alloc]init];
-        tagVC.delegate = self;
-        for (UserTagModel *tag in mod.tags) {
-            if (tag.id==0) {
-                tag.id=tag.tagid;
-            }
-            if ([MyUtil isEmptyString:tag.name]) {
-                tag.name=tag.tagname;
-            }
-            
-        }
-        tagVC.selectedArray=mod.tags;
-        [self.navigationController pushViewController:tagVC animated:YES];
+//        LYTagTableViewController *tagVC = [[LYTagTableViewController alloc]init];
+//        tagVC.delegate = self;
+//        for (UserTagModel *tag in mod.tags) {
+//            if (tag.id==0) {
+//                tag.id=tag.tagid;
+//            }
+//            if ([MyUtil isEmptyString:tag.name]) {
+//                tag.name=tag.tagname;
+//            }
+//            
+//        }
+//        tagVC.selectedArray=mod.tags;
+//        [self.navigationController pushViewController:tagVC animated:YES];
     }else if (indexPath.row == 1){
         return;
     }

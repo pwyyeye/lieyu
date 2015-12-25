@@ -247,9 +247,9 @@
 #pragma mark -收藏
 -(void)scAct:(UIButton *)sender{
     ZSDetailModel * detailModel=zsList[sender.tag];
-    
+    NSLog(@"----pass-pass%@---",detailModel);
     //统计收藏的可能性
-    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"收藏",@"value":detailModel.userName};
+    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"收藏",@"value":detailModel.username};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
     NSDictionary *dic=@{@"vipUserid":[NSNumber numberWithInt:detailModel.userid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
@@ -282,13 +282,13 @@
         ZSDetailModel * detailModel=zsList[sender.tag];
         
         //统计发消息的可能性
-        NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"发消息",@"value":detailModel.userName};
+        NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"发消息",@"value":detailModel.username};
         [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
         
         RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
         conversationVC.targetId = detailModel.imUserId; // 接收者的 targetId，这里为举例。
-        conversationVC.userName =detailModel.userName; // 接受者的 username，这里为举例。
+        conversationVC.userName =detailModel.usernick; // 接受者的 username，这里为举例。
         conversationVC.title = detailModel.usernick; // 会话的 title。
         
         conversationVC.navigationController.navigationBarHidden = NO;

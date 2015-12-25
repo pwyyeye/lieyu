@@ -26,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     isMes=false;
+    if ([USER_DEFAULT objectForKey:@"badgeValue"]) {
+        isMes=true;
+    }
     self.automaticallyAdjustsScrollViewInsets=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:RECEIVES_MESSAGE object:nil];
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -65,8 +68,11 @@
 }
 -(void)receivesMessage{
     isMes=true;
-    [_tableView reloadData];
+    //单独启动新线程
+    [NSThread detachNewThreadSelector:@selector(reloadData) toTarget:_tableView withObject:nil];
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -195,9 +201,11 @@
       
         if(indexPath.row==0){
             if(isMes){
-                [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
                 isMes=false;
             }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
+
             
             //统计发现页面的选择
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择最近联系"};

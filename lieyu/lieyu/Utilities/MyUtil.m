@@ -397,7 +397,7 @@
     NSDateComponents *comps = [calendar components:unitFlags fromDate:myDate toDate:nowDate options:0];
     
     
-    int year = [comps year];
+    int year = (int)[comps year];
     
     
     return [NSString stringWithFormat:@"%d",year];

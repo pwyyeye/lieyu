@@ -48,10 +48,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-//    [core deleteCoreData:@"LYCache" withSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
-//    [core deleteLocalSQLLite];
-
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
@@ -182,6 +178,15 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         view.view=_intro;
         self.window.rootViewController=view;
     }
+    
+    //处理消息推送
+    if (launchOptions.count>0) {
+        NSDictionary * userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        [self takeNotification:userInfo];
+    }
+    
+    //是否需要统计IM消息角标
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
      return YES;
 }
 
@@ -368,8 +373,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     NSLog(@"----pass-userInfo%@---",userInfo);
     
-    
-    
     //判断是否友盟消息推送 根据反馈信息
     /**
      userInfo{
@@ -380,18 +383,32 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
      d = uu04812144712755443811;
      p = 0;
      }*/
-    if ([userInfo objectForKey:@"aps"]&&[userInfo objectForKey:@"d"]) {
-        [UMessage didReceiveRemoteNotification:userInfo];
-        if([userInfo objectForKey:@"activity"]){
+    [self takeNotification:userInfo];
+    
+}
+
+#pragma --mark 消息推送处理
+-(void)takeNotification:(NSDictionary *)dic{
+    if ([dic objectForKey:@"aps"]&&[dic objectForKey:@"d"]) {
+        [UMessage didReceiveRemoteNotification:dic];
+        if([dic objectForKey:@"activity"]){
             HuoDongViewController *huodong =[[HuoDongViewController alloc] init];
+            NSString *linkid=[dic objectForKey:@"activity"];
+            huodong.linkid=linkid.integerValue;
             [self.navigationController pushViewController:huodong animated:YES];
         }
         
-    }else{//否则认为是im推送
+    }else if(dic.count>0){//否则认为是im推送
         [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+        NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
+        if (![MyUtil isEmptyString:count]) {
+            [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue<99?count.intValue+1:99]  forKey:@"badgeValue"];
+        }else{
+            [USER_DEFAULT setObject:@"1" forKey:@"badgeValue"];
+        }
     }
-    
 }
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

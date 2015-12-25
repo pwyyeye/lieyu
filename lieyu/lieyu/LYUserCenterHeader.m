@@ -112,7 +112,7 @@
             badge.textAlignment=NSTextAlignmentCenter;
             CGRect frame=_waitPay.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
-            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitPay];
+            badge.text=[NSString stringWithFormat:@"%ld",orderTTL.waitPay];
             badge.tag=100;
             [_waitPay addSubview:badge];
             
@@ -130,7 +130,7 @@
             badge.textAlignment=NSTextAlignmentCenter;
             CGRect frame=_waitConsumption.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
-            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitConsumption];
+            badge.text=[NSString stringWithFormat:@"%ld",orderTTL.waitConsumption];
             badge.tag=101;
             [_waitConsumption addSubview:badge];
         }else{
@@ -146,7 +146,7 @@
             badge.textAlignment=NSTextAlignmentCenter;
             CGRect frame=_waitRebate.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
-            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitRebate];
+            badge.text=[NSString stringWithFormat:@"%ld",orderTTL.waitRebate];
             badge.tag=102;
             [_waitRebate addSubview:badge];
         }else{
@@ -162,7 +162,7 @@
             badge.textAlignment=NSTextAlignmentCenter;
             CGRect frame=_waitEvaluation.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
-            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitEvaluation];
+            badge.text=[NSString stringWithFormat:@"%ld",orderTTL.waitEvaluation];
             badge.tag=103;
             [_waitEvaluation addSubview:badge];
         }else{
@@ -178,7 +178,7 @@
             badge.textAlignment=NSTextAlignmentCenter;
             CGRect frame=_waitPayBack.frame;
             badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
-            badge.text=[NSString stringWithFormat:@"%d",orderTTL.waitPayBack];
+            badge.text=[NSString stringWithFormat:@"%ld",orderTTL.waitPayBack];
             badge.tag=104;
             [_waitPayBack addSubview:badge];
         }else{
@@ -194,7 +194,7 @@
             badge.textAlignment=NSTextAlignmentCenter;
             CGRect frame=_btnMessage.frame;
             badge.frame=CGRectMake(frame.size.width-6, -3, 12, 12);
-            badge.text=[NSString stringWithFormat:@"%d",orderTTL.messageNum];
+            badge.text=[NSString stringWithFormat:@"%ld",orderTTL.messageNum];
             badge.tag=105;
             [_btnMessage insertSubview:badge aboveSubview:_btnMessage.titleLabel];
 
