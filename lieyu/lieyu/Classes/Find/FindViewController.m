@@ -31,6 +31,7 @@
     }
     self.automaticallyAdjustsScrollViewInsets=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:RECEIVES_MESSAGE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:COMPLETE_MESSAGE object:nil];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
@@ -67,11 +68,15 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:RECEIVES_MESSAGE object:nil];
 }
 -(void)receivesMessage{
-    isMes=true;
+//    isMes=true;
     //单独启动新线程
-    [NSThread detachNewThreadSelector:@selector(reloadData) toTarget:_tableView withObject:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 更UI
+        [_tableView reloadData];
+    });
+//    [NSThread detachNewThreadSelector:@selector(reloadData) toTarget:self.tableView withObject:nil];
+//    [_tableView reloadData];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -146,7 +151,7 @@
        
         if(indexPath.row==0){
             dic=[datalist objectAtIndex:0];
-            if(isMes){//true
+            if([USER_DEFAULT objectForKey:@"badgeValue"]){//true
                 [cell.messageImageView setHidden:NO];
             }else{
                 [cell.messageImageView setHidden:YES];
@@ -200,11 +205,11 @@
     if(indexPath.section==0){
       
         if(indexPath.row==0){
-            if(isMes){
+            if([USER_DEFAULT objectForKey:@"badgeValue"]==nil){
                 isMes=false;
             }
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
 
             
             //统计发现页面的选择

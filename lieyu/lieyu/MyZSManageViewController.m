@@ -292,6 +292,7 @@
         conversationVC.title = detailModel.usernick; // 会话的 title。
         
         conversationVC.navigationController.navigationBarHidden = NO;
+        [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
         [IQKeyboardManager sharedManager].enable = NO;
         [IQKeyboardManager sharedManager].isAdd = YES;
         // 把单聊视图控制器添加到导航栈。
@@ -308,6 +309,7 @@
 - (void)backForward{
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -37,9 +37,15 @@
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:RECEIVES_MESSAGE object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete) name:COMPLETE_MESSAGE object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete:) name:COMPLETE_MESSAGE object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
+    if([USER_DEFAULT objectForKey:@"badgeValue"]!=nil){
+        NSArray *items = self.tabBar.items;
+        UITabBarItem *item=[items objectAtIndex:2];
+        item.badgeValue=((NSString *)[USER_DEFAULT objectForKey:@"badgeValue"]);
+    }
+    
 }
 
 - (void)postANotification{
@@ -72,28 +78,55 @@
     
     if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"badgeValue"]]) {
         item.badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
+        [UIApplication sharedApplication].applicationIconBadgeNumber=item.badgeValue.integerValue;
     }else{
         item.badgeValue=nil;
+        [UIApplication sharedApplication].applicationIconBadgeNumber=0;
     }
+    
+    
 }
 
--(void)tabbarChagneComplete{
+-(void)tabbarChagneComplete:(NSNotification*) notification{
     //单独启动新线程
     [NSThread detachNewThreadSelector:@selector(doComplete) toTarget:self withObject:nil];
 
 }
 
 -(void)doComplete{
-    [USER_DEFAULT removeObjectForKey:@"badgeValue"];
+    NSString *delBadgeValue=[USER_DEFAULT objectForKey:@"delBadgeValue"];
+    NSString *badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
+    if (![MyUtil isEmptyString:badgeValue]) {
+        if (![MyUtil isEmptyString:delBadgeValue]) {
+            int result=badgeValue.intValue-delBadgeValue.intValue;
+            //比对已读和未读
+            result<=0?[USER_DEFAULT removeObjectForKey:@"badgeValue"]:[USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",result] forKey:@"badgeValue"];
+            [USER_DEFAULT removeObjectForKey:@"delBadgeValue"];
+        }
+        if ([USER_DEFAULT objectForKey:@"badgeValue"]) {
+             [UIApplication sharedApplication].applicationIconBadgeNumber=((NSString *)[USER_DEFAULT objectForKey:@"badgeValue"]).intValue;
+        }else{
+            [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+        }
+       
+    }else{
+        [USER_DEFAULT removeObjectForKey:@"badgeValue"];
+        [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+    }
+//    [USER_DEFAULT removeObjectForKey:@"badgeValue"];
+    
     NSArray *items= self.tabBar.items;
     UITabBarItem *item=[items objectAtIndex:2];
-    item.badgeValue=nil;
+    item.badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
+    
+    
 }
 
 #pragma --mark IM消息接受
 - (void)onRCIMReceiveMessage:(RCMessage *)message left:(int)left{
     NSLog(@"----pass-pass%@---%d",message,left);
-    if (self.selectedIndex!=2) {
+    NSString *needcount =[USER_DEFAULT objectForKey:@"needCountIM"];
+    if (![MyUtil isEmptyString:needcount] && needcount.intValue==1) {
         [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     }
     

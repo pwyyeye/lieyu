@@ -376,6 +376,7 @@
             conversationVC.targetId = zsDetailModel.imUserId; // 接收者的 targetId，这里为举例。
             conversationVC.userName =zsDetailModel.usernick; // 接受者的 username，这里为举例。
             conversationVC.title =zsDetailModel.usernick; // 会话的 title。
+            [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             // 把单聊视图控制器添加到导航栈。

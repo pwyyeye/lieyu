@@ -10,4 +10,5 @@
 
 @interface LYRecentContactViewController : RCConversationListViewController
 
+@property(assign,nonatomic) int unreadMessageCount;
 @end
