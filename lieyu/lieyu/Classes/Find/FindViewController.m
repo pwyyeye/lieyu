@@ -100,8 +100,7 @@
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
-    NSLog(@"----pass-pass000000    %@---",NSStringFromCGRect(_tableView.frame));
-    NSLog(@"----pass-pass333333   %@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
+
 }
 
 - (void)viewWillLayoutSubviews

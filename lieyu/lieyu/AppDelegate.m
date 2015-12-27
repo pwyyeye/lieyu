@@ -88,7 +88,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     }
     NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromLaunchOptions:launchOptions];
     if (pushServiceData) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
         NSLog(@"该启动事件包含来自融云的推送服务");
         for (id key in [pushServiceData allKeys]) {
             NSLog(@"%@", pushServiceData[key]);
@@ -388,20 +388,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 #pragma --mark 消息推送处理
 -(void)takeNotification:(NSDictionary *)dic{
-    if ([[UIApplication sharedApplication]
-         respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings
-                                                settingsForTypes:(UIUserNotificationTypeBadge |
-                                                                  UIUserNotificationTypeSound |
-                                                                  UIUserNotificationTypeAlert)
-                                                categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    } else {
-        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
-        UIRemoteNotificationTypeAlert |
-        UIRemoteNotificationTypeSound;
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
-    }
+   
     if ([dic objectForKey:@"aps"]&&[dic objectForKey:@"d"]) {
         [UMessage didReceiveRemoteNotification:dic];
         if([dic objectForKey:@"activity"]){
@@ -598,7 +585,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)application:(UIApplication *)application
 didReceiveLocalNotification:(UILocalNotification *)notification {
     //震动
-    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     AudioServicesPlaySystemSound(1007);
 }
