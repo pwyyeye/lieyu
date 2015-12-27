@@ -47,10 +47,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-//    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-//    [core deleteCoreData:@"LYCache" withSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
-//    [core deleteLocalSQLLite];
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
@@ -188,6 +184,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         [self takeNotification:userInfo];
     }
     
+    //是否需要统计IM消息角标
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
      return YES;
 }
 
@@ -374,8 +372,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     NSLog(@"----pass-userInfo%@---",userInfo);
     
-    
-    
     //判断是否友盟消息推送 根据反馈信息
     /**
      userInfo{
@@ -392,6 +388,20 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 #pragma --mark 消息推送处理
 -(void)takeNotification:(NSDictionary *)dic{
+    if ([[UIApplication sharedApplication]
+         respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings
+                                                settingsForTypes:(UIUserNotificationTypeBadge |
+                                                                  UIUserNotificationTypeSound |
+                                                                  UIUserNotificationTypeAlert)
+                                                categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    } else {
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeAlert |
+        UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+    }
     if ([dic objectForKey:@"aps"]&&[dic objectForKey:@"d"]) {
         [UMessage didReceiveRemoteNotification:dic];
         if([dic objectForKey:@"activity"]){
@@ -402,8 +412,18 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         }
         
     }else if(dic.count>0){//否则认为是im推送
-        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+//        NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
+//        if (![MyUtil isEmptyString:count]) {
+//            [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue<99?count.intValue+1:99]  forKey:@"badgeValue"];
+//            [UIApplication sharedApplication].applicationIconBadgeNumber=count.intValue;
+//        }else{
+//            [USER_DEFAULT setObject:@"1" forKey:@"badgeValue"];
+//            [UIApplication sharedApplication].applicationIconBadgeNumber=1;
+//        }
     }
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -428,7 +448,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //        }
 //    });
     
-    [_timer setFireDate:[NSDate distantPast]];//开启
+//    [_timer setFireDate:[NSDate distantPast]];//开启
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

@@ -24,9 +24,19 @@
     //设置tableView样式
     self.conversationListTableView.separatorColor = RGB(223, 223, 223);
     self.conversationListTableView.tableFooterView = [UIView new];
+    
+    _unreadMessageCount=0;
+ 
     // Do any additional setup after loading the view.
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //统计错误情况下 需要特殊处理
+    if (_unreadMessageCount==0) {
+        [USER_DEFAULT removeObjectForKey:@"badgeValue"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
+    }
+}
 -(void)onSelectedTableRow:(RCConversationModelType)conversationModelType conversationModel:(RCConversationModel *)model atIndexPath:(NSIndexPath *)indexPath
 {
     RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
@@ -36,10 +46,20 @@
     conversationVC.title = model.conversationTitle;
     [self.navigationController pushViewController:conversationVC animated:YES];
     
-    [IQKeyboardManager sharedManager].enable = NO;
+    //设置不需要统计角标
+    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+    NSInteger unread= model.unreadMessageCount;
+    if (unread) {
+        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",unread] forKey:@"delBadgeValue"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
+    }
     
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
     UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
     conversationVC.navigationItem.leftBarButtonItem = left;
+    
+    
     
 //    if (model.conversationModelType == RC_CONVERSATION_MODEL_TYPE_PUBLIC_SERVICE) {
 //        RCPublicServiceChatViewController *_conversationVC = [[RCPublicServiceChatViewController alloc] init];
@@ -79,13 +99,48 @@
     
 }
 
+- (void)willDisplayConversationTableCell:(RCConversationBaseCell *)cell atIndexPath:(NSIndexPath *)indexPath{
+    if (cell.model.unreadMessageCount>0) {
+        _unreadMessageCount+=cell.model.unreadMessageCount;
+    }
+
+}
+
 - (void)backForward{
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
     [self.navigationController popViewControllerAnimated:YES];
+    //设置需要统计角标
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+/**
+ *  收到新消息,用于刷新会话列表，如果派生类调用了父类方法，请不要再次调用refreshConversationTableViewIfNeeded，避免多次刷新
+ *  当收到多条消息时，会在最后一条消息时在内部调用refreshConversationTableViewIfNeeded
+ *
+ *  @param notification notification
+ */
+- (void)didReceiveMessageNotification:(NSNotification *)notification{
+    
+    NSLog(@"----pass-pass%@---",notification);
+//    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+}
+
+#pragma mark override
+/**
+ *  重写方法，通知更新未读消息数目，用于显示未读消息，当收到会话消息的时候，会触发一次。
+ */
+- (void)notifyUpdateUnreadMessageCount{
+//    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+    
+
+}
+
 
 @end

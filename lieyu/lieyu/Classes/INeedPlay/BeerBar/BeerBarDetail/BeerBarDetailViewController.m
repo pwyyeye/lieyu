@@ -270,7 +270,7 @@
     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, frame.height-50);
 //    webView.backgroundColor = [UIColor redColor];
     
-    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
+    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
     
     
 //  CGFloat offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];

@@ -38,7 +38,6 @@
     _tableView.separatorColor=RGB(237, 237, 237);
     _tableView.backgroundColor=RGB(237, 237, 237);
     self.view.backgroundColor=RGB(237, 237, 237);
-//    [self.tableView setHidden:YES];
     if(!_isBarVip){
         rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"more1"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
         [self.navigationItem setRightBarButtonItem:rightBtn];
@@ -112,10 +111,11 @@
 //    [self.tableView reloadData];
 }
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 1;
+    return [zsList  count];
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,7 +126,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return [zsList  count];
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -134,8 +134,8 @@
     
     LYZSdetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYZSdetailCell"];
 //    NSUInteger row = [indexPath row];
-    
-    ZSDetailModel * detailModel=zsList[indexPath.row];
+    cell.tag = indexPath.section;
+    ZSDetailModel * detailModel=zsList[indexPath.section];
     NSLog(@"ZSJL:%@",detailModel);
     [cell.messageBtn addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -247,9 +247,9 @@
 #pragma mark -收藏
 -(void)scAct:(UIButton *)sender{
     ZSDetailModel * detailModel=zsList[sender.tag];
-    
+    NSLog(@"----pass-pass%@---",detailModel);
     //统计收藏的可能性
-    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"收藏",@"value":detailModel.userName};
+    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"收藏",@"value":detailModel.username};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
     NSDictionary *dic=@{@"vipUserid":[NSNumber numberWithInt:detailModel.userid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
@@ -282,17 +282,19 @@
         ZSDetailModel * detailModel=zsList[sender.tag];
         
         //统计发消息的可能性
-        NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"发消息",@"value":detailModel.userName};
+        NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"发消息",@"value":detailModel.username};
         [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
         
         RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
         conversationVC.targetId = detailModel.imUserId; // 接收者的 targetId，这里为举例。
-        conversationVC.userName =detailModel.userName; // 接受者的 username，这里为举例。
+        conversationVC.userName =detailModel.usernick; // 接受者的 username，这里为举例。
         conversationVC.title = detailModel.usernick; // 会话的 title。
         
         conversationVC.navigationController.navigationBarHidden = NO;
+        [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
         [IQKeyboardManager sharedManager].enable = NO;
+        [IQKeyboardManager sharedManager].isAdd = YES;
         // 把单聊视图控制器添加到导航栈。
         UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
         conversationVC.navigationItem.leftBarButtonItem = left;
@@ -305,6 +307,9 @@
 }
 
 - (void)backForward{
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
