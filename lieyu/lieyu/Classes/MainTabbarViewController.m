@@ -149,8 +149,8 @@
 
 - (void)setupViewStyles
 {
-    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"Find_normal",@"Mine_normal"];
-    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"Find_selected",@"Mine_selected"];
+    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"biaoqian_wanyouquan_zhuangtai2",@"Find_normal",@"Mine_normal"];
+    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"biaoqian_wanyouquan_zhuangtai1",@"Find_selected",@"Mine_selected"];
 
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(114, 5, 147, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];

@@ -49,4 +49,5 @@
 @property(strong,nonatomic) NSArray *tags;
 @property (nonatomic,copy) NSString *tag;
 @property(nonatomic,assign)int barid;
+
 @end
