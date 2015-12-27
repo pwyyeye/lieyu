@@ -27,16 +27,16 @@
     }
     
     
-    
-    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
-    [_imageView_one addGestureRecognizer:tapGes];
+//    
+//    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
+//    [_imageView_one addGestureRecognizer:tapGes];
 }
 
 
 
 - (void)tapGes{
     if ([_delegate respondsToSelector:@selector(friendsImgOneCell:)]) {
-        [_delegate friendsImgOneCell:self ];
+      //  [_delegate friendsImgOneCell:self ];
     }
 }
 

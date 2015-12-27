@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYFriendsSendViewController">
             <connections>
+                <outlet property="btnArray" destination="aK9-M1-a86" id="eR5-IR-YZc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,29 +19,38 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ntn-O3-LY4">
                     <rect key="frame" x="0.0" y="64" width="600" height="235"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5l-kQ-LtL">
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5l-kQ-LtL">
                             <rect key="frame" x="87" y="155" width="70" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="70" id="GTn-pg-eGT"/>
                                 <constraint firstAttribute="width" constant="70" id="NGV-Vp-mLF"/>
                             </constraints>
                             <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="selectImageClick:" destination="-1" eventType="touchUpInside" id="Muf-tO-6Cw"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oQ-ND-pew">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oQ-ND-pew">
                             <rect key="frame" x="162" y="155" width="70" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="OmT-Jj-D0a"/>
                                 <constraint firstAttribute="height" constant="70" id="RJS-ga-NBa"/>
                             </constraints>
                             <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="selectImageClick:" destination="-1" eventType="touchUpInside" id="9M4-q9-sS3"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-M1-a86">
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-M1-a86">
                             <rect key="frame" x="237" y="155" width="70" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="EDI-co-rCn"/>
                                 <constraint firstAttribute="height" constant="70" id="swD-W2-hWC"/>
                             </constraints>
                             <state key="normal" backgroundImage="zengjia_icon"/>
+                            <connections>
+                                <action selector="selectImageClick:" destination="-1" eventType="touchUpInside" id="CsR-De-WFD"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dst-ZE-sbg">
                             <rect key="frame" x="12" y="155" width="70" height="70"/>
@@ -49,6 +59,9 @@
                                 <constraint firstAttribute="width" constant="70" id="jIz-qQ-fz1"/>
                             </constraints>
                             <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="selectImageClick:" destination="-1" eventType="touchUpInside" id="sPM-r5-Wbc"/>
+                            </connections>
                         </button>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="说说此刻的感受" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ebo-XF-JIi">
                             <rect key="frame" x="10" y="10" width="580" height="135"/>

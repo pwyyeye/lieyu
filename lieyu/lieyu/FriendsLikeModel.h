@@ -14,4 +14,5 @@
 @property (nonatomic,copy) NSString *messageId;
 @property (nonatomic,copy) NSString *type;
 @property (nonatomic,copy) NSString *userId;
+@property (nonatomic,copy) NSString *icon;
 @end
