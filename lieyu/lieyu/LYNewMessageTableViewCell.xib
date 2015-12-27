@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LYNewMessageTableViewCell" rowHeight="166" id="KGk-i7-Jjw" customClass="LYNewMessageTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="166"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="165"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yff-am-XDI">
+                        <rect key="frame" x="7" y="7" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="3Or-0C-ekK"/>
+                            <constraint firstAttribute="width" constant="36" id="gdX-Ex-UhB"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOj-3Y-C4m">
+                        <rect key="frame" x="53" y="44" width="197" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="WzT-4i-lCF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="窗前明月光我是郭德纲" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wvd-55-47P">
+                        <rect key="frame" x="256" y="11" width="57" height="39"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="39" id="8W6-00-4dV"/>
+                            <constraint firstAttribute="width" constant="57" id="Lkt-yk-zZX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z8a-dt-0iJ">
+                        <rect key="frame" x="53" y="7" width="193" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="9qU-QN-o8N"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <state key="normal" title="雨啊">
+                            <color key="titleColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcd-QF-qbC">
+                        <rect key="frame" x="53" y="27" width="193" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="d9T-e7-dae"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Wvd-55-47P" firstAttribute="leading" secondItem="Z8a-dt-0iJ" secondAttribute="trailing" constant="10" id="435-MB-mpz"/>
+                    <constraint firstItem="GOj-3Y-C4m" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="44" id="4Eh-en-DMp"/>
+                    <constraint firstAttribute="trailing" secondItem="GOj-3Y-C4m" secondAttribute="trailing" constant="70" id="9dl-87-poz"/>
+                    <constraint firstItem="Vcd-QF-qbC" firstAttribute="leading" secondItem="yff-am-XDI" secondAttribute="trailing" constant="10" id="Bok-Ms-N6A"/>
+                    <constraint firstItem="Z8a-dt-0iJ" firstAttribute="leading" secondItem="yff-am-XDI" secondAttribute="trailing" constant="10" id="FvK-kJ-wIx"/>
+                    <constraint firstItem="GOj-3Y-C4m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="53" id="HdB-99-nKX"/>
+                    <constraint firstItem="Vcd-QF-qbC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="27" id="Lxp-0b-scP"/>
+                    <constraint firstItem="yff-am-XDI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="Pro-UV-6Ne"/>
+                    <constraint firstItem="Wvd-55-47P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="V1p-mJ-ETJ"/>
+                    <constraint firstItem="Wvd-55-47P" firstAttribute="leading" secondItem="Vcd-QF-qbC" secondAttribute="trailing" constant="10" id="ana-3h-AYk"/>
+                    <constraint firstItem="Z8a-dt-0iJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="jtf-UL-TH2"/>
+                    <constraint firstItem="yff-am-XDI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="rDd-Ya-LcT"/>
+                    <constraint firstAttribute="trailing" secondItem="Wvd-55-47P" secondAttribute="trailing" constant="7" id="wdh-BZ-6fg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btn_headerImg" destination="yff-am-XDI" id="orU-GD-P5w"/>
+                <outlet property="btn_name" destination="Z8a-dt-0iJ" id="64N-ii-9ey"/>
+                <outlet property="label_message" destination="Vcd-QF-qbC" id="pmR-fW-fcJ"/>
+                <outlet property="label_myMessage" destination="Wvd-55-47P" id="byh-LA-tqd"/>
+                <outlet property="label_time" destination="GOj-3Y-C4m" id="OKT-NN-gSN"/>
+            </connections>
+            <point key="canvasLocation" x="402" y="463"/>
+        </tableViewCell>
+    </objects>
+</document>

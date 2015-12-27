@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="H3Y-rH-AKL" customClass="LYPictiureView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IXU-2j-Ssq">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="IXU-2j-Ssq" firstAttribute="leading" secondItem="H3Y-rH-AKL" secondAttribute="leading" id="9Ku-VW-9Yf"/>
+                <constraint firstAttribute="trailing" secondItem="IXU-2j-Ssq" secondAttribute="trailing" id="QAu-NN-Cmu"/>
+                <constraint firstItem="IXU-2j-Ssq" firstAttribute="top" secondItem="H3Y-rH-AKL" secondAttribute="top" id="YLB-wf-2iP"/>
+                <constraint firstAttribute="bottom" secondItem="IXU-2j-Ssq" secondAttribute="bottom" id="yhc-Xq-rvR"/>
+            </constraints>
+            <point key="canvasLocation" x="367" y="385"/>
+        </view>
+    </objects>
+</document>
