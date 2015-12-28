@@ -13,13 +13,19 @@
 @implementation LYFriendsCommentTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
+    _btn_headerImg.layer.masksToBounds = YES;
 }
 
 - (void)setCommentM:(FriendsCommentModel *)commentM{
     _commentM = commentM;
-//    _btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:commentM] forState:<#(UIControlState)#> placeholderImage:<#(UIImage *)#>
-    _label_comment.text = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
+    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:commentM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    NSString *string = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
+    [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentM.nickName.length + 1)];
+    
+    _label_comment.attributedText = attributedStr;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biaobai_icon" translatesAutoresizingMaskIntoConstraints="NO" id="oWY-Hw-95G">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biaobai_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="oWY-Hw-95G">
                         <rect key="frame" x="11" y="17" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="CuF-MO-LKv"/>
@@ -27,7 +27,6 @@
                             <constraint firstAttribute="height" constant="26" id="Eug-c2-lCq"/>
                             <constraint firstAttribute="width" constant="26" id="V6y-Fk-EAQ"/>
                         </constraints>
-                        <state key="normal" title="img"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLb-Qt-NKL">
                         <rect key="frame" x="71" y="11" width="26" height="26"/>
@@ -35,7 +34,6 @@
                             <constraint firstAttribute="height" constant="26" id="0ys-EF-Qdt"/>
                             <constraint firstAttribute="width" constant="26" id="Xio-v6-uhl"/>
                         </constraints>
-                        <state key="normal" title="img"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awr-dx-FPt">
                         <rect key="frame" x="107" y="11" width="26" height="26"/>
@@ -43,7 +41,6 @@
                             <constraint firstAttribute="height" constant="26" id="FfX-t7-qL8"/>
                             <constraint firstAttribute="width" constant="26" id="MJD-gf-qyG"/>
                         </constraints>
-                        <state key="normal" title="img"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4t-hB-qMt">
                         <rect key="frame" x="143" y="11" width="26" height="26"/>
@@ -51,7 +48,6 @@
                             <constraint firstAttribute="height" constant="26" id="EZF-TI-pcQ"/>
                             <constraint firstAttribute="width" constant="26" id="yX4-4N-8uq"/>
                         </constraints>
-                        <state key="normal" title="img"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dce-VK-K0o">
                         <rect key="frame" x="179" y="11" width="26" height="26"/>
@@ -59,7 +55,6 @@
                             <constraint firstAttribute="height" constant="26" id="Djn-EK-bQv"/>
                             <constraint firstAttribute="width" constant="26" id="G73-ox-zpk"/>
                         </constraints>
-                        <state key="normal" title="img"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSZ-bW-IXn">
                         <rect key="frame" x="215" y="11" width="26" height="26"/>
@@ -67,7 +62,6 @@
                             <constraint firstAttribute="width" constant="26" id="3t7-mW-e1h"/>
                             <constraint firstAttribute="height" constant="26" id="dkR-6M-9s1"/>
                         </constraints>
-                        <state key="normal" title="img"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vx-d8-aaB">
                         <rect key="frame" x="251" y="11" width="26" height="26"/>
@@ -75,7 +69,6 @@
                             <constraint firstAttribute="width" constant="26" id="8U7-tr-1bZ"/>
                             <constraint firstAttribute="height" constant="26" id="dJD-rl-gBB"/>
                         </constraints>
-                        <state key="normal" title="img"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1A-if-scO">
                         <rect key="frame" x="286" y="11" width="26" height="26"/>
@@ -84,7 +77,7 @@
                             <constraint firstAttribute="width" constant="26" id="mID-r3-Z3p"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="21"/>
-                        <state key="normal" backgroundImage="gengduo_icon">
+                        <state key="normal" backgroundImage="gengduo_icon.png">
                             <color key="titleColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -111,6 +104,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btn_more" destination="b1A-if-scO" id="ZyL-lY-aec"/>
                 <outletCollection property="btnArray" destination="yGY-v4-hg6" id="xqd-eJ-vqF"/>
                 <outletCollection property="btnArray" destination="uLb-Qt-NKL" id="Rvj-JO-8vw"/>
                 <outletCollection property="btnArray" destination="awr-dx-FPt" id="C89-jm-ghO"/>
@@ -123,7 +117,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="biaobai_icon" width="13" height="13"/>
-        <image name="gengduo_icon" width="27" height="27"/>
+        <image name="biaobai_icon.png" width="13" height="13"/>
+        <image name="gengduo_icon.png" width="27" height="27"/>
     </resources>
 </document>

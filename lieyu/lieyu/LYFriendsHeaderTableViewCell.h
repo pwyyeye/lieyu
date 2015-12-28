@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FriendsRecentModel;
 
 @interface LYFriendsHeaderTableViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIButton *btn_headerImg;
+@property (weak, nonatomic) IBOutlet UILabel *label_name;
+@property (weak, nonatomic) IBOutlet UILabel *label_content;
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewArray;
+@property (weak, nonatomic) IBOutlet UIButton *btn_like;
+@property (weak, nonatomic) IBOutlet UIButton *btn_comment;
+@property (weak, nonatomic) IBOutlet UILabel *label_time;
+@property (nonatomic,strong) FriendsRecentModel *recentM;
 @end

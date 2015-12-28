@@ -14,11 +14,15 @@
 //获取最新的玩友圈动态
 + (void)friendsGetRecentInfoWithParams:(NSDictionary *)params compelte:(void(^)(NSArray *dataArray))compelte;
 //获取我的的玩友圈动态
-+ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserMessageModel *))compelte;
++ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *))compelte;
 //获取我的的玩友圈消息
 + (void)friendsGetMyNewsMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserMessageModel *))compelte;
 //给别人玩友圈动态点赞
 + (void)friendsLikeMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool ))compelte;
 //给动态或者某人评论
 + (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
+//发布动态
++ (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
+//删除我的动态
++ (void)friendsDeleteMyMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
 @end

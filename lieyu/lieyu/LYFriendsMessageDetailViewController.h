@@ -7,7 +7,8 @@
 //
 
 #import "LYBaseViewController.h"
+@class FriendsRecentModel;
 
-@interface LYMessageDetailViewController : LYBaseViewController
-
+@interface LYFriendsMessageDetailViewController : LYBaseViewController
+@property (nonatomic,strong) FriendsRecentModel *recentM;
 @end

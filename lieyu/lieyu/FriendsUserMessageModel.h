@@ -15,6 +15,5 @@
 @property (nonatomic,copy) NSString *attendNum;
 @property (nonatomic,copy) NSString *liked;
 @property (nonatomic,strong) NSArray *moments;
-
-+(FriendsUserMessageModel *)initFormDictionary:(NSDictionary *)dic;
++(NSArray *)initFormNSArray:(NSArray *)arr;
 @end

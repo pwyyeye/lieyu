@@ -11,5 +11,6 @@
 
 @interface LYFriendsLikeTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
+@property (weak, nonatomic) IBOutlet UIButton *btn_more;
 @property (nonatomic,strong) FriendsRecentModel *recentM;
 @end
