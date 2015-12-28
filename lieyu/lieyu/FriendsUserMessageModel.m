@@ -18,10 +18,16 @@
     }];
 }
 
-+(FriendsUserMessageModel *)initFormDictionary:(NSDictionary *)dic
+//+(FriendsUserMessageModel *)initFormDictionary:(NSDictionary *)dic
+//{
+//    FriendsUserMessageModel * model = [FriendsUserMessageModel mj_objectWithKeyValues:dic];
+//    return model;
+//}
+
++(NSArray *)initFormNSArray:(NSArray *)arr
 {
-    FriendsUserMessageModel * model = [FriendsUserMessageModel mj_objectWithKeyValues:dic];
-    return model;
+    NSArray * array = [FriendsUserMessageModel mj_objectArrayWithKeyValuesArray:arr];
+    return array;
 }
 
 @end

@@ -7,11 +7,13 @@
 //
 
 #import "LYFriendsSendViewController.h"
+#import "LYFriendsHttpTool.h"
 
 @interface LYFriendsSendViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     NSMutableArray *_imageArray;
 }
-@property (weak, nonatomic) IBOutlet UIButton *btnArray;
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
 
 @end
 
@@ -19,11 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
+
     [self setupAllProperty];
-    
-    
 }
 
 - (void)setupAllProperty{
@@ -31,10 +30,16 @@
     UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 34, 10, 24, 24)];
     [sendBtn setBackgroundImage:[UIImage imageNamed:@"daohang_fabu"] forState:UIControlStateNormal];
     [sendBtn addTarget:self action:@selector(sendClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:sendBtn];
 }
 
 - (void)sendClick{
-    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    NSDictionary *paraDic = @{@"userId":userIdStr,@"city":@"安徽",@"location":@"芜湖",@"type":@"0",@"message":@"哈哈哈测试",@"attachType":@"0",@"attach":@"www.baidu.com"};
+    [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
+        
+    }];
 }
 
 - (IBAction)selectImageClick:(UIButton *)sender {
@@ -49,11 +54,17 @@
 
 #pragma mark - UIImagePickerControllerDelegate,UINavigationControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    UIImage *image = info[UIImagePickerControllerEditedImage];
-    [_imageArray addObject:image];
-//    for (int i = 0; i < ; <#increment#>) {
-//        <#statements#>
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+//    [_imageArray addObject:image];
+    UIButton *btn = _btnArray[0];
+    [btn setBackgroundImage:image forState:UIControlStateNormal];
+    
+//    for (int i = 0; i < _imageArray.count; i ++) {
+//        UIButton *btn = _btnArray[i];
+//        [btn setBackgroundImage:_imageArray[i] forState:UIControlStateNormal];
 //    }
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

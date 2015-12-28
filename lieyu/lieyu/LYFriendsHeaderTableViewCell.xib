@@ -118,6 +118,18 @@
                     <constraint firstAttribute="trailing" secondItem="d7y-5G-C4Q" secondAttribute="trailing" constant="10" id="zUb-Yh-FM8"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="btn_comment" destination="Wcm-L6-JBc" id="eY6-h3-r2B"/>
+                <outlet property="btn_headerImg" destination="lna-ap-7HB" id="JDh-lU-SmQ"/>
+                <outlet property="btn_like" destination="uQu-U8-jlQ" id="Fu1-r5-yje"/>
+                <outlet property="label_content" destination="2G8-LU-zdS" id="xUu-cj-lfF"/>
+                <outlet property="label_name" destination="d7y-5G-C4Q" id="0de-97-hoX"/>
+                <outlet property="label_time" destination="3gX-gj-NPE" id="dT8-gl-cUv"/>
+                <outletCollection property="imageViewArray" destination="gKA-S5-WDu" id="GMb-de-bZl"/>
+                <outletCollection property="imageViewArray" destination="sAv-wu-oVI" id="xLm-Qx-jUQ"/>
+                <outletCollection property="imageViewArray" destination="gHP-Tl-gHo" id="VCx-3h-5LF"/>
+                <outletCollection property="imageViewArray" destination="6lA-Os-dlQ" id="Vwx-kL-Klx"/>
+            </connections>
             <point key="canvasLocation" x="361" y="506.5"/>
         </tableViewCell>
     </objects>

@@ -20,7 +20,6 @@
                             <constraint firstAttribute="height" constant="36" id="aIU-j2-jM3"/>
                             <constraint firstAttribute="width" constant="36" id="ivk-iF-UIy"/>
                         </constraints>
-                        <state key="normal" title="头"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pH5-Po-Wwa">
                         <rect key="frame" x="53" y="10" width="36" height="20"/>

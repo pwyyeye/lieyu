@@ -30,12 +30,12 @@
     }];
 }
 
-//获取我的的玩友圈动态
-+ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserMessageModel *))compelte{
+//获取指定用户的玩友圈动态
++ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_User baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
-        FriendsUserMessageModel *userModel = [FriendsUserMessageModel initFormDictionary:dictionary];
-        compelte(userModel);
+        NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[FriendsRecentModel mj_objectArrayWithKeyValuesArray:dictionary[@"items"]]];
+        compelte(array);
     }failure:^(NSError *err) {
         
     }];
@@ -49,6 +49,8 @@
         
     }];
 }
+
+
 
 //给别人玩友圈动态点赞
 + (void)friendsLikeMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
@@ -68,4 +70,32 @@
     }];
 }
 
+//发布动态
++ (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Send baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"------->%@",response[@"message"]);
+    }failure:^(NSError *err) {
+         
+     }];
+}
+
+//删除我的动态
++ (void)friendsDeleteMyMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_DeleteMyMessage baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"------->%@",response[@"message"]);
+        compelte(YES);
+    }failure:^(NSError *err) {
+        
+    }];
+}
+
+//获取动态评论
++ (void)friendsGetMessageDetailAllCommentsWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_AllComments baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"------->%@",response[@"message"]);
+        compelte(YES);
+    }failure:^(NSError *err) {
+        
+    }];
+}
 @end

@@ -14,7 +14,11 @@
 @implementation LYFriendsLikeTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    for (UIButton *btn in _btnArray) {
+        btn.layer.cornerRadius = CGRectGetHeight(btn.frame) / 2.f;
+        btn.layer.masksToBounds = YES;
+    }
 }
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{

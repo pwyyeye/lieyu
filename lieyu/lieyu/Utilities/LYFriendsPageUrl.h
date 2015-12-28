@@ -23,4 +23,13 @@
 //给动态或者某人评论
 #define LY_Friends_Comment @"lyMomentsCommentAction.do?action=add"
 
+//发布动态
+#define LY_Friends_Send @"lyMomentsAction.do?action=add"
+
+//删除我的动态
+#define LY_Friends_DeleteMyMessage @"lyMomentsAction.do?action=delete"
+
+//获取所有评论
+#define LY_Friends_AllComments @"lyMomentsCommentAction.do?action=list"
+
 #endif /* LYFriendsPageUrl_h */

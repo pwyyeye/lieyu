@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dizhi_icon" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dizhi_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
                         <rect key="frame" x="7" y="13" width="13" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="13" id="eD2-ol-lep"/>
@@ -28,7 +28,7 @@
                             <constraint firstAttribute="height" constant="18" id="SXG-I7-BIM"/>
                             <constraint firstAttribute="width" constant="44" id="z5C-ZU-iMi"/>
                         </constraints>
-                        <state key="normal" backgroundImage="haoyou_biaobai"/>
+                        <state key="normal" backgroundImage="haoyou_biaobai.png"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETK-xZ-gYL">
                         <rect key="frame" x="269" y="14" width="44" height="18"/>
@@ -36,10 +36,10 @@
                             <constraint firstAttribute="width" constant="44" id="TFM-8e-fes"/>
                             <constraint firstAttribute="height" constant="18" id="zCd-Xf-9I5"/>
                         </constraints>
-                        <state key="normal" backgroundImage="haoyou_pinglun"/>
+                        <state key="normal" backgroundImage="haoyou_pinglun.png"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFq-hw-xAl">
-                        <rect key="frame" x="30" y="15" width="151" height="21"/>
+                        <rect key="frame" x="30" y="14" width="151" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="IFe-Yf-YtR"/>
                         </constraints>
@@ -54,14 +54,19 @@
                     <constraint firstItem="DFq-hw-xAl" firstAttribute="leading" secondItem="vZ1-l2-3kw" secondAttribute="trailing" constant="10" id="DWF-PG-dl9"/>
                     <constraint firstItem="XLc-dG-9ra" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="Geh-1q-L6R"/>
                     <constraint firstItem="vZ1-l2-3kw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="LOl-QO-gM9"/>
-                    <constraint firstItem="DFq-hw-xAl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="NVd-X6-W2a"/>
-                    <constraint firstItem="DFq-hw-xAl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="NhX-CR-rFE"/>
+                    <constraint firstItem="DFq-hw-xAl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="NVd-X6-W2a"/>
+                    <constraint firstItem="DFq-hw-xAl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="NhX-CR-rFE"/>
                     <constraint firstItem="XLc-dG-9ra" firstAttribute="leading" secondItem="DFq-hw-xAl" secondAttribute="trailing" constant="29" id="Wt6-9t-lPR"/>
                     <constraint firstItem="ETK-xZ-gYL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="g1V-s0-AVj"/>
                     <constraint firstAttribute="trailing" secondItem="DFq-hw-xAl" secondAttribute="trailing" constant="139" id="iqP-Mm-SJU"/>
                     <constraint firstItem="DFq-hw-xAl" firstAttribute="leading" secondItem="vZ1-l2-3kw" secondAttribute="trailing" constant="10" id="w9G-Y8-Y56"/>
                     <constraint firstItem="ETK-xZ-gYL" firstAttribute="leading" secondItem="XLc-dG-9ra" secondAttribute="trailing" constant="15" id="zLy-gB-rCn"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="NVd-X6-W2a"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="btn_comment" destination="ETK-xZ-gYL" id="UpP-nd-nDE"/>
@@ -72,8 +77,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="dizhi_icon" width="13" height="20"/>
-        <image name="haoyou_biaobai" width="44" height="18"/>
-        <image name="haoyou_pinglun" width="44" height="18"/>
+        <image name="dizhi_icon.png" width="13" height="20"/>
+        <image name="haoyou_biaobai.png" width="44" height="18"/>
+        <image name="haoyou_pinglun.png" width="44" height="18"/>
     </resources>
 </document>

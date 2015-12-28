@@ -27,6 +27,8 @@
 #import "LYFriendsCommentView.h"
 #import "IQKeyboardManager.h"
 #import "LYFriendsSendViewController.h"
+#import "LYFriendsToUserMessageViewController.h"
+#import "LYFriendsMessageDetailViewController.h"
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsImgOneCellID @"LYFriendsImgOneTableViewCell"
@@ -161,21 +163,21 @@
 
 #pragma mark - 获取最新我的数据
 - (void)getDataMys{
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"start":@"0",@"limit":@"10"};
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"start":@"0",@"limit":@"10",@"frientId":_useridStr};
          __block LYFriendsViewController *weakSelf = self;
-    [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserMessageModel *userModel) {
-        if(userModel != nil && userModel.moments.count != 0){
+    [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
+        if(dataArray.count){
             if(_dataArray.count == 1){
-                    [_dataArray addObject:userModel.moments];
+                    [_dataArray addObject:dataArray];
                 }else{
-                    [_dataArray replaceObjectAtIndex:1 withObject:userModel.moments];
+                    [_dataArray replaceObjectAtIndex:1 withObject:dataArray];
                 }
         }else{
             NSArray *array = [NSArray array];
             [_dataArray addObject:array];
         }
         [weakSelf reloadTableViewAndSetUpProperty];
-        [weakSelf addTableViewHeaderWith:userModel];
+        [weakSelf addTableViewHeader];
     }];
 }
 
@@ -210,14 +212,13 @@
 }
 
 #pragma mark - 添加表头
-- (void)addTableViewHeaderWith:(FriendsUserMessageModel *)model{
-    if (model != nil) {
-        return;
-    }
+- (void)addTableViewHeader{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
     _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 277);
-    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:model.avatar_img] forState:UIControlStateNormal ];
-//    _headerView.label_name.text = model.usernick;
+    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] forState:UIControlStateNormal ];
+    _headerView.label_name.text = app.userModel.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_newMessage addTarget:self action:@selector(newClick) forControlEvents:UIControlEventTouchUpInside];
@@ -313,7 +314,20 @@
         
     }];
 }
-
+#pragma mark － 删除我的评论
+- (void)deleteClick:(UIButton *)button{
+    NSMutableArray *array = _dataArray[_index];
+    FriendsRecentModel *recentM = array[button.tag];
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
+    __block LYFriendsViewController *weakSelf = self;
+    [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
+        if (result) {
+            [array removeObjectAtIndex:button.tag];
+            [weakSelf.tableView deleteSections:[NSIndexSet indexSetWithIndex:button.tag] withRowAnimation:UITableViewRowAnimationTop];
+            
+        }
+    }];
+}
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     switch (buttonIndex) {
@@ -343,8 +357,12 @@
 
 
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [picker dismissViewControllerAnimated:YES completion:nil];
+#pragma mark - 更多赞
+- (void)likeMoreClick:(UIButton *)button{
+    FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+    LYFriendsMessageDetailViewController *messageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+    messageDetailVC.recentM = recentM;
+    [self.navigationController pushViewController:messageDetailVC animated:YES];
 }
 
 #pragma mark - UITableViewDelegate&UITableViewDataSource
@@ -361,8 +379,10 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(_dataArray.count){
         NSArray *array = ((NSArray *)_dataArray[_index]);
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         return array.count;
     }else{
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         return 0;
     }
 }
@@ -376,6 +396,10 @@
                 {
                     LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
                     nameCell.recentM = recentM;
+                    nameCell.btn_delete.tag = indexPath.section;
+                    [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
+                    nameCell.btn_headerImg.tag = indexPath.section;
+                    [nameCell.btn_headerImg addTarget:self action:@selector(pushUserMessagePage:) forControlEvents:UIControlEventTouchUpInside];
                     if (!_index) {
                         nameCell.btn_delete.hidden = YES;
                     }else{
@@ -448,6 +472,8 @@
                 {
                     if(recentM.likeList.count){
                         LYFriendsLikeTableViewCell *likeCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsLikeCellID forIndexPath:indexPath];
+                        likeCell.btn_more.tag = indexPath.section;
+                        [likeCell.btn_more addTarget:self action:@selector(likeMoreClick:) forControlEvents:UIControlEventTouchUpInside];
                         likeCell.recentM = recentM;
                         return likeCell;}
                     else{
@@ -458,7 +484,7 @@
                     break;
                 case 10:
                 {
-                    if (recentM.commentList.count >= 6) {
+                    if (recentM.commentNum.integerValue >= 6) {
                         LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
                         allCommentCell.recentM = recentM;
                         return allCommentCell;
@@ -481,20 +507,21 @@
                 }
                     break;
             }
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *arr = _dataArray[_index];
     FriendsRecentModel *recentM = arr[indexPath.section];
     switch (indexPath.row) {
-        case 0:
+        case 0://头像和动态
         {
-             return 111;
+            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+                                                                                                                                                     
+             return 62 + size.height;
         }
             break;
             
-        case 1:
+        case 1://图片
         {
             return 320;
         }
@@ -504,23 +531,31 @@
             return recentM.lyMomentsAttachList.count > 2 ? 105 : 0;
         }
             break;
-        case 3:
+        case 3://地址
         {
             return 45;
         }
             break;
-        case 4:
+        case 4://评论
         {
-
-            NSInteger count = recentM.likeNum.integerValue;
-            return count == 0? 0 : 46;
+             NSInteger count = recentM.likeNum.integerValue;
+            return count == 0 ? 0 : 46;
         }
             break;
         
             
         default:
         {
-            return 50;
+            FriendsCommentModel *commentM = recentM.commentList[indexPath.section];
+            NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
+            CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGFloat height;
+            if (size.height < 36) {
+                height = 36;
+            }else {
+                height = size.height + 10;
+            }
+            return height;
         }
             break;
     }
@@ -596,15 +631,47 @@
     }
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    UITouch *touch = [touches anyObject];
-    CGPoint point = [touch locationInView:self.view];
-    NSLog(@"-->%@",NSStringFromCGPoint(point));
+#pragma mark - 点击头像跳转到指定用户界面
+- (void)pushUserMessagePage:(UIButton *)button{
+    FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
+    friendsUserMegVC.friendsId = recentM.userId;
+    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
 }
 
 
 - (NSString *)stringFromImageViewFrame:(CGRect)imgFrame{
     return NSStringFromCGRect(imgFrame);
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+        {
+             cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+        }
+            break;
+        case 1:
+        {
+            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+        }
+            break;
+        case 2:
+        {
+            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+        }
+            break;
+        case 3:
+        {
+            cell.separatorInset = UIEdgeInsetsMake(0, 7, 0, 7);
+        }
+            break;
+        default:
+        {
+            cell.separatorInset = UIEdgeInsetsMake(0, 35, 0, 7);
+        }
+            break;
+    }
 }
 
 #pragma mark - LYFriendsImgOneTableViewCellDelegate
