@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="187" id="KGk-i7-Jjw" customClass="LYFriendsCommentDetailTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="187"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="186"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IDY-1z-6u4">
+                        <rect key="frame" x="7" y="0.0" width="306" height="186"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pinglun_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Of5-6m-7Qa">
+                                <rect key="frame" x="8" y="17" width="12" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="12" id="BBr-BP-6cE"/>
+                                    <constraint firstAttribute="height" constant="11" id="QEu-nQ-74Q"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uww-Cm-PKj">
+                                <rect key="frame" x="28" y="10" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="SSa-Bg-Ww8"/>
+                                    <constraint firstAttribute="width" constant="26" id="sbV-p2-bgt"/>
+                                </constraints>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixc-qx-Ci2">
+                                <rect key="frame" x="64" y="10" width="235" height="172"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Uww-Cm-PKj" firstAttribute="top" secondItem="IDY-1z-6u4" secondAttribute="top" constant="10" id="Ulw-Aq-A72"/>
+                            <constraint firstItem="Of5-6m-7Qa" firstAttribute="leading" secondItem="IDY-1z-6u4" secondAttribute="leading" constant="8" id="VQC-cc-A5w"/>
+                            <constraint firstAttribute="bottom" secondItem="Ixc-qx-Ci2" secondAttribute="bottom" constant="4" id="iSB-vL-qQE"/>
+                            <constraint firstItem="Ixc-qx-Ci2" firstAttribute="leading" secondItem="Uww-Cm-PKj" secondAttribute="trailing" constant="10" id="ief-kD-Cou"/>
+                            <constraint firstItem="Uww-Cm-PKj" firstAttribute="leading" secondItem="Of5-6m-7Qa" secondAttribute="trailing" constant="8" id="lLZ-0d-1z2"/>
+                            <constraint firstItem="Of5-6m-7Qa" firstAttribute="top" secondItem="IDY-1z-6u4" secondAttribute="top" constant="17" id="nvG-G5-orj"/>
+                            <constraint firstAttribute="trailing" secondItem="Ixc-qx-Ci2" secondAttribute="trailing" constant="7" id="oUK-XA-NZs"/>
+                            <constraint firstItem="Ixc-qx-Ci2" firstAttribute="top" secondItem="IDY-1z-6u4" secondAttribute="top" constant="10" id="y3x-vA-iqQ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="IDY-1z-6u4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="Qpe-S0-Tgs"/>
+                    <constraint firstAttribute="trailing" secondItem="IDY-1z-6u4" secondAttribute="trailing" constant="7" id="VWv-3A-ZKO"/>
+                    <constraint firstAttribute="bottom" secondItem="IDY-1z-6u4" secondAttribute="bottom" id="i90-sw-oWu"/>
+                    <constraint firstItem="IDY-1z-6u4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="idf-Gl-Osb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btn_headerImg" destination="Uww-Cm-PKj" id="7ti-5d-hSc"/>
+                <outlet property="imageView_comment" destination="Of5-6m-7Qa" id="TdZ-Ry-dAk"/>
+                <outlet property="label_comment" destination="Ixc-qx-Ci2" id="9Pb-7P-EWg"/>
+            </connections>
+            <point key="canvasLocation" x="467" y="468.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="pinglun_icon.png" width="12" height="11"/>
+    </resources>
+</document>

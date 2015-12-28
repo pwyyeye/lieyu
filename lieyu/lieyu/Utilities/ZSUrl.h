@@ -10,11 +10,11 @@
 #define lieyu_ZSUrl_h
 //服务器
 
-//#define LY_SERVER @"http://121.40.229.133:8001/lieyu/"
-//#define QINIU_SERVER @"http://121.40.229.133:8001/portal/"
-//
-#define LY_SERVER @"http://www.lie98.com/lieyu/"
-#define QINIU_SERVER @"http://www.lie98.com/portal/"
+#define LY_SERVER @"http://121.40.229.133:8001/lieyu/"
+#define QINIU_SERVER @"http://121.40.229.133:8001/portal/"
+
+//#define LY_SERVER @"http://www.lie98.com/lieyu/"
+//#define QINIU_SERVER @"http://www.lie98.com/portal/"
 //URL地址
 //IMtoken
 #define LY_IMTOKEN  @"friendAction.do?action=custom"

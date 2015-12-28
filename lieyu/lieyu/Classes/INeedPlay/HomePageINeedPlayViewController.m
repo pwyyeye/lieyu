@@ -278,7 +278,7 @@ UITableViewDataSource,UITableViewDelegate,
     MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
     [self initMJRefeshHeaderForGif:header];
     
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
                 if (barList.count == PAGESIZE)
@@ -294,6 +294,8 @@ UITableViewDataSource,UITableViewDelegate,
             }
         }];
     }];
+    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
 }
 
 #pragma mark 离我最近
