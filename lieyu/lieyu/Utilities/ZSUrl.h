@@ -10,11 +10,11 @@
 #define lieyu_ZSUrl_h
 //服务器
 
-//#define LY_SERVER @"http://121.40.229.133:8001/lieyu/"
-//#define QINIU_SERVER @"http://121.40.229.133:8001/portal/"
+#define LY_SERVER @"http://121.40.229.133:8001/lieyu/"
+#define QINIU_SERVER @"http://121.40.229.133:8001/portal/"
 
-#define LY_SERVER @"http://www.lie98.com/lieyu/"
-#define QINIU_SERVER @"http://www.lie98.com/portal/"
+//#define LY_SERVER @"http://www.lie98.com/lieyu/"
+//#define QINIU_SERVER @"http://www.lie98.com/portal/"
 //URL地址
 //IMtoken
 #define LY_IMTOKEN  @"friendAction.do?action=custom"
@@ -34,6 +34,10 @@
 #define LY_DL  @"accountAction.do?action=login"
 //登出
 #define LY_LOGOUT  @"osregisterAction.do?action=logout"
+
+//是否强制更新
+#define LY_FORCED_UPDATE  @"toPlayAction.do?action=delete"
+
 
 /***个人中心设置－－－pwy***/
 //请求用户标签列表

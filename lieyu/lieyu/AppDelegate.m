@@ -449,6 +449,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
     
     [_timer setFireDate:[NSDate distantPast]];//开启
+    
+    [self forcedUpdate];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 #pragma mark - 心跳获取7牛key
@@ -662,6 +664,37 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     [USER_DEFAULT setObject:@"NO" forKey:@"firstUseApp"];
     self.window.rootViewController=_navigationController;
     
+}
+
+
+#pragma --mark 是否强制更新
+
+-(void)forcedUpdate{
+    [[LYUserHttpTool shareInstance] getAppUpdateStatus:nil complete:^(BOOL result) {
+        if (result) {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@""
+                                   
+                                                            message:@"有新版本，点击确定更新！"
+                                   
+                                                           delegate:self
+                                   
+                                                  cancelButtonTitle:nil
+                                   
+                                                  otherButtonTitles:@"确定",nil];
+            
+            [alert show];
+        }
+    }];
+    
+}
+
+#pragma mark - alert 代理
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"----pass-%ld---",buttonIndex);
+    if(buttonIndex==0){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id1056569271"]];
+    }
+    [alertView show];
 }
 
 

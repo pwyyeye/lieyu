@@ -22,6 +22,10 @@
 -(void) userAutoLoginWithParams:(NSDictionary*)params
                           block:(void(^)(UserModel* result)) block;
 
+//是否强制更新
+-(void) getAppUpdateStatus:(NSDictionary*)params
+                          complete:(void (^)(BOOL result))result;
+
 //登出
 -(void) userLogOutWithParams:(NSDictionary*)params
                        block:(void(^)(BOOL result)) block;
