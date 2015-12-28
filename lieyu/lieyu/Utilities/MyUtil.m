@@ -327,7 +327,6 @@
 #pragma --mark 根据生日计算星座
 +(NSString *)getAstroWithBirthday:(NSString *)dateString
 {
-    
     if ([MyUtil isEmptyString:dateString]) {
         return @"";
     }
