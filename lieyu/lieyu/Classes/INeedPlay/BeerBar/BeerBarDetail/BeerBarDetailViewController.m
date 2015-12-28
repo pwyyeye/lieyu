@@ -85,6 +85,15 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _context = app.managedObjectContext;
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    
+    
+    _webView = [[UIWebView alloc]initWithFrame:CGRectZero];
+    _webView.delegate = self;
+    [_webView sizeToFit];
+    [_webView.scrollView setScrollEnabled:NO];
+    _webView.scalesPageToFit = YES;
+    [self.scrollView addSubview:_webView];
+
 }
 
 //喜欢按钮圆角
@@ -181,16 +190,18 @@
 
 // load webView
 - (void)loadWebView{
-    _webView = [[UIWebView alloc]initWithFrame:CGRectZero];
     
     NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '303';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",self.beerBarDetail.descriptions];
     
-    _webView.delegate = self;
-    [_webView sizeToFit];
-    [_webView.scrollView setScrollEnabled:NO];
-    _webView.scalesPageToFit = YES;
-    [_webView loadHTMLString:webStr baseURL:nil];
-    [self.scrollView addSubview:_webView];
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        // 更UI
+        [_webView loadHTMLString:webStr baseURL:nil];
+//    });
+    
+    
+    
+    
 }
 
 
