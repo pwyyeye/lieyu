@@ -471,6 +471,7 @@
 		853C4C9C1C312AA100D48BA2 /* haoyou_biaobai.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C4C991C312AA100D48BA2 /* haoyou_biaobai.png */; };
 		853C4C9D1C312AA100D48BA2 /* haoyou_biaobai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C4C9A1C312AA100D48BA2 /* haoyou_biaobai@2x.png */; };
 		853C4C9E1C312AA100D48BA2 /* haoyou_biaobai@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C4C9B1C312AA100D48BA2 /* haoyou_biaobai@3x.png */; };
+		853C4CBE1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C4CBD1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m */; };
 		8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */; };
 		8540B6631C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */; };
 		8540B6671C2CE18700F16463 /* LYFriendsImgOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6651C2CE18700F16463 /* LYFriendsImgOneTableViewCell.m */; };
@@ -1633,6 +1634,8 @@
 		853C4C991C312AA100D48BA2 /* haoyou_biaobai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haoyou_biaobai.png; sourceTree = "<group>"; };
 		853C4C9A1C312AA100D48BA2 /* haoyou_biaobai@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haoyou_biaobai@2x.png"; sourceTree = "<group>"; };
 		853C4C9B1C312AA100D48BA2 /* haoyou_biaobai@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haoyou_biaobai@3x.png"; sourceTree = "<group>"; };
+		853C4CBC1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsImgTableViewCell.h; sourceTree = "<group>"; };
+		853C4CBD1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsImgTableViewCell.m; sourceTree = "<group>"; };
 		853DB5EB1C12C19B004227BA /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
 		853DB5EC1C12C19B004227BA /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
 		853E3A121C15232A0088CD86 /* bartypeslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bartypeslistModel.h; sourceTree = "<group>"; };
@@ -3920,6 +3923,8 @@
 				8540B65F1C2CD8E200F16463 /* LYFriendsNameTableViewCell.h */,
 				8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */,
 				8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */,
+				853C4CBC1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.h */,
+				853C4CBD1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m */,
 				8540B6641C2CE18700F16463 /* LYFriendsImgOneTableViewCell.h */,
 				8540B6651C2CE18700F16463 /* LYFriendsImgOneTableViewCell.m */,
 				8540B6661C2CE18700F16463 /* LYFriendsImgOneTableViewCell.xib */,
@@ -6340,6 +6345,7 @@
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
 				15FD2AA11BD5EC8900D66920 /* TimeButton.m in Sources */,
+				853C4CBE1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m in Sources */,
 				15E240581BB101340090D240 /* ZSAddStocksViewController.m in Sources */,
 				15E240AF1BB39DC50090D240 /* OrderDetailSectionBottomView.m in Sources */,
 				15A4CF571BD86AEC00C22C01 /* CHshowDetailListViewController.m in Sources */,
