@@ -40,12 +40,13 @@
         NSInteger count = 2;
         _scrollView.contentSize = CGSizeMake(count * SCREEN_WIDTH, 0);
         _imageViewArray = [[NSMutableArray alloc]init];
+        
         for (int i = 0; i < count; i ++) {
            // FriendsPicAndVideoModel *pvModel = urlArray[i];
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,(SCREEN_HEIGHT - SCREEN_WIDTH)/2.f, SCREEN_WIDTH, SCREEN_WIDTH)];
             NSLog(@"---->%@",NSStringFromCGRect(imageView.frame));
             imageView.backgroundColor = [UIColor redColor];
-           // [imageView sd_setImageWithURL:[NSURL URLWithString:pvModel.imageLink] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+           // [imageView sd_setImageWithURL:[NSURL URLWithString:pvModel.imageLink] ];
             [_scrollView addSubview:imageView];
             [_imageViewArray addObject:imageView];
             imageView.userInteractionEnabled = YES;

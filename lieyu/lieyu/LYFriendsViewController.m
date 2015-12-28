@@ -24,6 +24,9 @@
 #import "UIImageView+WebCache.h"
 #import "LYFriendsMessageViewController.h"
 #import "LYPictiureView.h"
+#import "LYFriendsCommentView.h"
+#import "IQKeyboardManager.h"
+#import "LYFriendsSendViewController.h"
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsImgOneCellID @"LYFriendsImgOneTableViewCell"
@@ -35,11 +38,12 @@
 #define LYFriendsAllCommentCellID @"LYFriendsAllCommentTableViewCell"
 #define LYFriendsCellID @"cell"
 
-@interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,LYFriendsImgOneTableViewCellDelegate>{
+@interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,LYFriendsImgOneTableViewCellDelegate,UITextFieldDelegate>{
     UIButton *_friendsBtn;
     UIButton *_myBtn;
     UILabel *_myBadge;
     UIButton *_carmerBtn;
+    CGFloat _friendBtnAlpha,_myBtnAlpha;
     NSMutableArray *_dataArray;
     NSInteger _index;//0 表示玩友圈界面 1表示我的界面
     LYFriendsUserHeaderView *_headerView;
@@ -48,6 +52,10 @@
     NSInteger _section;//点击的section
     NSInteger _imgIndex;//点击的第几个imgview
     NSString *_useridStr;
+    NSString *_likeStr;
+    UIView *_bigView;
+    LYFriendsCommentView *_commentView;
+    NSInteger _commentBtnTag;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -61,7 +69,7 @@
 
     [self setupAllProperty];//设置全局属性
     [self setupTableView];
-   
+  
     
 }
 
@@ -114,16 +122,20 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self getDataFriends];
+    _index = 0;
+ [IQKeyboardManager sharedManager].enable = NO;
     [self setupNavMenuView];
+      [self getDataFriends];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self removeNavMenuView];
+    [IQKeyboardManager sharedManager].enable = YES;
 }
 
 - (void)removeNavMenuView{
+//    _friendsBtn.alpha =
     [_friendsBtn removeFromSuperview];
     [_myBadge removeFromSuperview];
     [_myBtn removeFromSuperview];
@@ -133,9 +145,8 @@
 
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataFriends{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSString *userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    NSDictionary *paraDic = @{@"userId":userid,@"start":@"1",@"limit":@"10"};
+       __block LYFriendsViewController *weakSelf = self;
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"start":@"0",@"limit":@"10"};
     [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSArray *dataArray) {
         if(dataArray.count){
             if(!_dataArray.count){
@@ -143,27 +154,43 @@
             }else{
                 [_dataArray replaceObjectAtIndex:0 withObject:dataArray];
             }
-            [self.tableView reloadData];
+            [weakSelf reloadTableViewAndSetUpProperty];
         }
     }];
 }
 
 #pragma mark - 获取最新我的数据
 - (void)getDataMys{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSString *userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    NSDictionary *paraDic = @{@"userId":userid,@"start":@"0",@"limit":@"10"};
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"start":@"0",@"limit":@"10"};
+         __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserMessageModel *userModel) {
-        if(userModel != nil){
-        if(_dataArray.count == 1){
-            [_dataArray addObject:userModel.moments];
+        if(userModel != nil && userModel.moments.count != 0){
+            if(_dataArray.count == 1){
+                    [_dataArray addObject:userModel.moments];
+                }else{
+                    [_dataArray replaceObjectAtIndex:1 withObject:userModel.moments];
+                }
         }else{
-            [_dataArray replaceObjectAtIndex:1 withObject:userModel.moments];
+            NSArray *array = [NSArray array];
+            [_dataArray addObject:array];
         }
-        [self.tableView reloadData];
-            [self addTableViewHeaderWith:userModel];
-        }
+        [weakSelf reloadTableViewAndSetUpProperty];
+        [weakSelf addTableViewHeaderWith:userModel];
     }];
+}
+
+#pragma mark － 刷新表
+- (void)reloadTableViewAndSetUpProperty{
+    [self.tableView reloadData];
+    if(!((NSArray *)_dataArray[_index]).count){
+        return;
+    }
+    FriendsRecentModel *recentM = _dataArray[_index][_section];
+    if ([recentM.liked isEqualToString:@"0"]) {
+        _likeStr = @"0";
+    }else{
+        _likeStr = @"1";
+    }
 }
 
 #pragma mark - 玩友圈action
@@ -180,14 +207,16 @@
     _friendsBtn.alpha = 0.5;
     _myBtn.alpha = 1;
     [self getDataMys];
-    
 }
 
 #pragma mark - 添加表头
 - (void)addTableViewHeaderWith:(FriendsUserMessageModel *)model{
+    if (model != nil) {
+        return;
+    }
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
     _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 277);
-    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:model.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:model.avatar_img] forState:UIControlStateNormal ];
 //    _headerView.label_name.text = model.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     self.tableView.tableHeaderView = _headerView;
@@ -231,33 +260,78 @@
 }
 
 #pragma mark - 表白action
-- (void)likeClick{
-    FriendsRecentModel *recentM = _dataArray[_index][_section];
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":recentM.liked};
+- (void)likeFriendsClick:(UIButton *)button{
+      FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
+    __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
-        
+        if (result) {
+            if([_likeStr isEqualToString:@"1"]){
+                _likeStr = @"0";
+            }else{
+                _likeStr = @"1";
+            }
+        }
     }];
 }
 
 #pragma mark - 评论action
-- (void)commentClick{
+- (void)commentClick:(UIButton *)button{
+    _bigView = [[UIView alloc]init];
+    _bigView.frame = self.view.bounds;
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
+    [_bigView addGestureRecognizer:tapGes];
+    [self.view addSubview:_bigView];
     
+    _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 49);
+    _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
+    _commentView.bgView.layer.borderWidth = 0.5;
+    [_bigView addSubview:_commentView];
+    
+    [_commentView.textField becomeFirstResponder];
+    _commentView.textField.delegate = self;
+    _commentBtnTag = button.tag;
+    
+    [UIView animateWithDuration:.25 animations:^{
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 49 - 52, SCREEN_WIDTH, 49);
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)bigViewGes{
+    [_bigView removeFromSuperview];
+}
+
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    [_bigView removeFromSuperview];
+    FriendsRecentModel *recentM = _dataArray[_index][_commentBtnTag];
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":@"",@"comment":_commentView.textField.text};
+    [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl) {
+        
+    }];
 }
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     switch (buttonIndex) {
-        case 1://拍照
+        case 0://拍照
         {
             
         }
             break;
-        case 2://相册
+        case 1://相册
         {
+            LYFriendsSendViewController *friendSendVC = [[LYFriendsSendViewController alloc]init];
+            [self showViewController:friendSendVC sender:nil];
+            
+           
             
         }
             break;
-        case 3://短视频
+        case 2://短视频
         {
             
         }
@@ -265,6 +339,12 @@
         default:
             break;
     }
+}
+
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDelegate&UITableViewDataSource
@@ -356,8 +436,10 @@
                 {
                     LYFriendsAddressTableViewCell *addressCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAddressCellID forIndexPath:indexPath];
                     addressCell.recentM = recentM;
-                    [addressCell.btn_like addTarget:self action:@selector(likeClick) forControlEvents:UIControlEventTouchUpInside];
-                    [addressCell.btn_comment addTarget:self action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
+                    addressCell.btn_like.tag = indexPath.section;
+                    addressCell.btn_comment.tag = indexPath.section;
+                    [addressCell.btn_like addTarget:self action:@selector(likeFriendsClick:) forControlEvents:UIControlEventTouchUpInside];
+                    [addressCell.btn_comment addTarget:self action:@selector(commentClick:) forControlEvents:UIControlEventTouchUpInside];
                     return addressCell;
                 }
                     break;
@@ -366,7 +448,7 @@
                 {
                     if(recentM.likeList.count){
                         LYFriendsLikeTableViewCell *likeCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsLikeCellID forIndexPath:indexPath];
-                        //                likeCell.recentM = recentM;
+                        likeCell.recentM = recentM;
                         return likeCell;}
                     else{
                         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCellID forIndexPath:indexPath];
@@ -429,7 +511,9 @@
             break;
         case 4:
         {
-            return recentM.likeList.count == 0? 0 : 46;
+
+            NSInteger count = recentM.likeNum.integerValue;
+            return count == 0? 0 : 46;
         }
             break;
         
@@ -445,12 +529,78 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _section = indexPath.section;
+    FriendsRecentModel *recentM = _dataArray[_index][_section];
     if(indexPath.row == 1 || indexPath.row == 2){
         
+        [_oldFrameArray removeAllObjects];
+        switch (recentM.lyMomentsAttachList.count) {
+            case 1:
+            {
+                LYFriendsImgOneTableViewCell *imgoneCell = (LYFriendsImgOneTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:_section]];
+                CGRect rect1 = [imgoneCell.imageView_one convertRect:imgoneCell.imageView_one.frame toView:self.view];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect1]];
+                _imgIndex = 1;
+            }
+                break;
+            case 2:
+            {
+                LYFriendsImgTwoTableViewCell *imgtwoCell = (LYFriendsImgTwoTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:_section]];
+                CGRect rect1 = [imgtwoCell.imageView_one convertRect:imgtwoCell.imageView_one.frame toView:self.view];
+                CGRect rect2 = [imgtwoCell.imageView_two convertRect:imgtwoCell.imageView_one.frame toView:self.view];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect1]];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect2]];
+                
+                _imgIndex = 1;
+            }
+                break;
+            case 3:
+            {
+                LYFriendsImgOneTableViewCell *imgoneCell = (LYFriendsImgOneTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:_section]];
+                CGRect rect1 = [imgoneCell.imageView_one convertRect:imgoneCell.imageView_one.frame toView:self.view];
+                
+                LYFriendsImgTwoTableViewCell *imgtwoCell = (LYFriendsImgTwoTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
+                CGRect rect2 = [imgtwoCell.imageView_one convertRect:imgtwoCell.imageView_one.frame toView:self.view];
+                CGRect rect3 = [imgtwoCell.imageView_two convertRect:imgtwoCell.imageView_one.frame toView:self.view];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect1]];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect2]];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect3]];
+                 _imgIndex = 1;
+            }
+                break;
+            case 4:
+            {
+                LYFriendsImgOneTableViewCell *imgoneCell = (LYFriendsImgOneTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:_section]];
+                CGRect rect1 = [imgoneCell.imageView_one convertRect:imgoneCell.imageView_one.frame toView:self.view];
+                
+                LYFriendsThreeTableViewCell *imgThreeCell = (LYFriendsThreeTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
+                CGRect rect2 = [imgThreeCell.imageView_one convertRect:imgThreeCell.imageView_one.frame toView:self.view];
+                CGRect rect3 = [imgThreeCell.imageView_two convertRect:imgThreeCell.imageView_one.frame toView:self.view];
+                CGRect rect4 = [imgThreeCell.imageView_three convertRect:imgThreeCell.imageView_one.frame toView:self.view];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect1]];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect2]];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect3]];
+                [_oldFrameArray addObject:[self stringFromImageViewFrame:rect4]];
+                 _imgIndex = 1;
+            }
+                break;
+            default:{
+                return;
+            }
+                break;
+        }
         
+        LYPictiureView *picView = [[LYPictiureView alloc]initWithFrame:self.view.bounds urlArray:recentM.lyMomentsAttachList oldFrame:_oldFrameArray with:_imgIndex];
+        picView.backgroundColor = [UIColor blackColor];
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [app.window addSubview:picView];
     }
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self.view];
+    NSLog(@"-->%@",NSStringFromCGPoint(point));
+}
 
 
 - (NSString *)stringFromImageViewFrame:(CGRect)imgFrame{
@@ -459,61 +609,7 @@
 
 #pragma mark - LYFriendsImgOneTableViewCellDelegate
 - (void)friendsImgOneCell:(LYFriendsImgOneTableViewCell *)imgOneCell{
-    FriendsRecentModel *recentM = _dataArray[_index][_section];
-    [_oldFrameArray removeAllObjects];
-    switch (recentM.lyMomentsAttachList.count) {
-        case 1:
-        {
-            LYFriendsImgOneTableViewCell *imgoneCell = (LYFriendsImgOneTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:_section]];
-            CGRect rect1 = [imgoneCell.imageView_one convertRect:imgoneCell.imageView_one.frame toView:self.view];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect1]];
-        }
-            break;
-        case 2:
-        {
-            LYFriendsImgTwoTableViewCell *imgtwoCell = (LYFriendsImgTwoTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:_section]];
-            CGRect rect1 = [imgtwoCell.imageView_one convertRect:imgtwoCell.imageView_one.frame toView:self.view];
-            CGRect rect2 = [imgtwoCell.imageView_two convertRect:imgtwoCell.imageView_one.frame toView:self.view];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect1]];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect2]];
-        }
-            break;
-        case 3:
-        {
-            LYFriendsImgOneTableViewCell *imgoneCell = (LYFriendsImgOneTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:_section]];
-            CGRect rect1 = [imgoneCell.imageView_one convertRect:imgoneCell.imageView_one.frame toView:self.view];
-            
-            LYFriendsImgTwoTableViewCell *imgtwoCell = (LYFriendsImgTwoTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
-            CGRect rect2 = [imgtwoCell.imageView_one convertRect:imgtwoCell.imageView_one.frame toView:self.view];
-            CGRect rect3 = [imgtwoCell.imageView_two convertRect:imgtwoCell.imageView_one.frame toView:self.view];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect1]];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect2]];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect3]];
-        }
-            break;
-        case 4:
-        {
-            LYFriendsImgOneTableViewCell *imgoneCell = (LYFriendsImgOneTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:_section]];
-            CGRect rect1 = [imgoneCell.imageView_one convertRect:imgoneCell.imageView_one.frame toView:self.view];
-            
-            LYFriendsThreeTableViewCell *imgThreeCell = (LYFriendsThreeTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
-            CGRect rect2 = [imgThreeCell.imageView_one convertRect:imgThreeCell.imageView_one.frame toView:self.view];
-            CGRect rect3 = [imgThreeCell.imageView_two convertRect:imgThreeCell.imageView_one.frame toView:self.view];
-            CGRect rect4 = [imgThreeCell.imageView_three convertRect:imgThreeCell.imageView_one.frame toView:self.view];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect1]];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect2]];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect3]];
-            [_oldFrameArray addObject:[self stringFromImageViewFrame:rect4]];
-        }
-            break;
-        default:
-            break;
-    }
-
-    LYPictiureView *picView = [[LYPictiureView alloc]initWithFrame:self.view.bounds urlArray:recentM.lyMomentsAttachList oldFrame:_oldFrameArray with:1];
-    picView.backgroundColor = [UIColor blackColor];
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app.window addSubview:picView];
+   
 }
 
 

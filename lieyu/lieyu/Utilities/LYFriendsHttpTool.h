@@ -19,4 +19,6 @@
 + (void)friendsGetMyNewsMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserMessageModel *))compelte;
 //给别人玩友圈动态点赞
 + (void)friendsLikeMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool ))compelte;
+//给动态或者某人评论
++ (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
 @end

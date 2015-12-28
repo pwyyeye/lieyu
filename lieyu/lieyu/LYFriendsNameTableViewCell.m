@@ -24,6 +24,10 @@
     [_btn_name setTitle:recentM.usernick forState:UIControlStateNormal];
     [_label_time setText:recentM.date];
     [_label_content setText:recentM.message];
+    
+    _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
+    NSLog(@"---->%@",[MyUtil getAstroWithBirthday:recentM.birthday]);
+//    _label_work
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

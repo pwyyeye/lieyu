@@ -16,14 +16,17 @@
 
 //获取最新的玩友圈动态
 + (void)friendsGetRecentInfoWithParams:(NSDictionary *)params compelte:(void(^)(NSArray *dataArray))compelte{
-
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Recent baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
         NSArray *itemsArray = dictionary[@"items"];
         NSArray *array = [FriendsRecentModel initFormNSArray:itemsArray];
         compelte(array);
+        [app stopLoading];
     } failure:^(NSError *err) {
         [MyUtil showMessage:@"请求失败"];
+        [app stopLoading];
     }];
 }
 
@@ -50,9 +53,19 @@
 //给别人玩友圈动态点赞
 + (void)friendsLikeMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Like baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"-->%@",response);
+        NSLog(@"-->%@",response[@"message"]);
+        compelte(YES);
     } failure:^(NSError *err) {
         
     }];
 }
+//给动态或者某人评论
++ (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Comment baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"------>%@",response[@"message"]);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
 @end

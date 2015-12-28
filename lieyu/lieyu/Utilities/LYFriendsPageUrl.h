@@ -19,4 +19,8 @@
 
 //给别人玩友圈动态点赞
 #define LY_Friends_Like @"lyMomentLikeAction.do?action=add"
+
+//给动态或者某人评论
+#define LY_Friends_Comment @"lyMomentsCommentAction.do?action=add"
+
 #endif /* LYFriendsPageUrl_h */

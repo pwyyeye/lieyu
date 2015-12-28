@@ -9,6 +9,7 @@
 #import "LYFriendsLikeTableViewCell.h"
 #import "FriendsRecentModel.h"
 #import "UIButton+WebCache.h"
+#import "FriendsLikeModel.h"
 
 @implementation LYFriendsLikeTableViewCell
 
@@ -18,10 +19,11 @@
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
-    NSArray *array = recentM.commentList;
+    NSArray *array = recentM.likeList;
     for (int i = 0; i<array.count; i++ ) {
         UIButton *btn = _btnArray[i];
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:array[i]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        FriendsLikeModel *likeModel = array[i];
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     }
 }
 
