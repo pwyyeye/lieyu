@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view alpha="0.29999999999999999" contentMode="scaleToFill" id="Jid-Jd-gBY" customClass="LYFriendsChangeImageMenuView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4h-jz-fgz">
+                    <rect key="frame" x="0.0" y="600" width="600" height="95"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unF-I6-ejR">
+                            <rect key="frame" x="8" y="0.0" width="584" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="1id-40-lss"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Au0-F1-Sbp">
+                            <rect key="frame" x="8" y="50" width="584" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="SzP-DR-L0w"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="95" id="0Be-bN-QaS"/>
+                        <constraint firstItem="Au0-F1-Sbp" firstAttribute="top" secondItem="unF-I6-ejR" secondAttribute="bottom" constant="5" id="55o-oa-4v8"/>
+                        <constraint firstItem="Au0-F1-Sbp" firstAttribute="leading" secondItem="B4h-jz-fgz" secondAttribute="leading" constant="8" id="Njj-f3-dYd"/>
+                        <constraint firstAttribute="trailing" secondItem="unF-I6-ejR" secondAttribute="trailing" constant="8" id="Uvr-l4-MM3"/>
+                        <constraint firstAttribute="bottom" secondItem="Au0-F1-Sbp" secondAttribute="bottom" id="gdV-F6-0Em"/>
+                        <constraint firstItem="unF-I6-ejR" firstAttribute="leading" secondItem="B4h-jz-fgz" secondAttribute="leading" constant="8" id="ghE-mW-aaV"/>
+                        <constraint firstAttribute="trailing" secondItem="Au0-F1-Sbp" secondAttribute="trailing" constant="8" id="rws-Rt-XxY"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="B4h-jz-fgz" firstAttribute="leading" secondItem="Jid-Jd-gBY" secondAttribute="leading" id="6OR-h7-XV0"/>
+                <constraint firstAttribute="trailing" secondItem="B4h-jz-fgz" secondAttribute="trailing" id="C2d-V5-MSt"/>
+                <constraint firstAttribute="bottom" secondItem="B4h-jz-fgz" secondAttribute="bottom" constant="-95" id="fl7-Kq-q3i"/>
+            </constraints>
+            <connections>
+                <outlet property="menuView" destination="B4h-jz-fgz" id="TXd-W8-50b"/>
+                <outlet property="menuViewConstraint" destination="fl7-Kq-q3i" id="888-eh-r1Q"/>
+            </connections>
+            <point key="canvasLocation" x="794" y="443"/>
+        </view>
+    </objects>
+</document>

@@ -22,7 +22,6 @@
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
-//    FriendsPicAndVideoModel *pvModel = recentM.lyMomentsAttachList[
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:recentM.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empy120"]];
     _label_name.text = recentM.usernick;
     _label_content.text = recentM.message;

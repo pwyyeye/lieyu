@@ -7,6 +7,9 @@
 //
 
 #import "LYFriendsLikeDetailTableViewCell.h"
+#import "FriendsRecentModel.h"
+#import "FriendsCommentModel.h"
+#import "UIButton+WebCache.h"
 
 @implementation LYFriendsLikeDetailTableViewCell
 
@@ -16,6 +19,16 @@
     for (UIButton *btn in _btnArray) {
         btn.layer.cornerRadius = CGRectGetHeight(btn.frame) / 2.f;
         btn.layer.masksToBounds = YES;
+    }
+}
+
+- (void)setRecentM:(FriendsRecentModel *)recentM{
+    _recentM = recentM;
+    NSArray *array = recentM.commentList;
+    for (int  i = 0; i < recentM.commentNum.integerValue; i ++) {
+        UIButton *btn = _btnArray[i];
+        FriendsCommentModel *commentModel = array[i];
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:commentModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     }
 }
 

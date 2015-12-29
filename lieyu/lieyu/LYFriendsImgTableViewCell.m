@@ -20,12 +20,13 @@
     _recentModel = recentModel;
     NSArray *array = recentModel.lyMomentsAttachList;
     _btnArray = [[NSMutableArray alloc]init];
-    [_btnArray removeAllObjects];
+   
     switch (array.count) {
         case 1:
         {
             FriendsPicAndVideoModel *pvModel = array[0];
             UIButton *btn_imgOne = [[UIButton alloc]initWithFrame:self.bounds];
+            btn_imgOne.adjustsImageWhenHighlighted = NO;
             [btn_imgOne sd_setBackgroundImageWithURL:[NSURL URLWithString:pvModel.imageLink] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             [self addSubview:btn_imgOne];
             [_btnArray addObject:btn_imgOne];
@@ -38,25 +39,63 @@
                 FriendsPicAndVideoModel *pvModel = array[i];
                 UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i%2 *(btnW + 2) , 0, btnW, btnW)];
                 [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pvModel.imageLink] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+                btn.adjustsImageWhenHighlighted = NO;
                 [self addSubview:btn];
                 [_btnArray addObject:btn];
             }
         }
             break;
-        case 3:
-        {
-            
-        }
-            break;
-        case 4:
-        {
-            
-        }
-            break;
+        
             
         default:
+        {
+            NSInteger count = 0;
+            CGFloat btnW = 0.0;
+            switch (recentModel.lyMomentsAttachList.count) {
+                case 3:
+                {
+                    count = 3;
+                    btnW = (SCREEN_WIDTH - 2) / 2.f;
+                }
+                    break;
+                case 4:
+                {
+                    count = 4;
+                    btnW = (SCREEN_WIDTH - 6) / 3.f;
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            for(int i = 0 ; i< count ; i ++ ){
+                FriendsPicAndVideoModel *pvModel = array[i];
+                UIButton *btn = nil;
+                switch (i) {
+                    case 0:
+                    {
+                        btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
+                    }
+                        break;
+                        
+                    default:
+                    {
+                        btn = [[UIButton alloc]initWithFrame:CGRectMake((i - 1)%3 *(btnW + 2) , SCREEN_WIDTH + 2, btnW, btnW)];
+                    }
+                        break;
+                        
+                }
+                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pvModel.imageLink] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+                btn.adjustsImageWhenHighlighted = NO;
+                [self addSubview:btn];
+                [_btnArray addObject:btn];
+            }
+        }
             break;
     }
+
+
 }
 
 - (void)drawRect:(CGRect)rect{
