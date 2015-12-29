@@ -42,7 +42,7 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
     if([USER_DEFAULT objectForKey:@"badgeValue"]!=nil){
         NSArray *items = self.tabBar.items;
-        UITabBarItem *item=[items objectAtIndex:2];
+        UITabBarItem *item=[items objectAtIndex:3];
         item.badgeValue=((NSString *)[USER_DEFAULT objectForKey:@"badgeValue"]);
     }
     
@@ -63,7 +63,7 @@
 
 -(void)doChange{
     NSArray *items = self.tabBar.items;
-    UITabBarItem *item=[items objectAtIndex:2];
+    UITabBarItem *item=[items objectAtIndex:3];
     
 //    if ([MyUtil isEmptyString:item.badgeValue]) {
 //        item.badgeValue=[NSString stringWithFormat:@"%d",1];
@@ -102,7 +102,7 @@
     NSString *delBadgeValue=[USER_DEFAULT objectForKey:@"delBadgeValue"];
     NSString *badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
     NSArray *items= self.tabBar.items;
-    UITabBarItem *item=[items objectAtIndex:2];
+    UITabBarItem *item=[items objectAtIndex:3];
     
     if (![MyUtil isEmptyString:badgeValue]) {//判断角标是否存在 －－存在
         //减去已读角标
@@ -220,7 +220,7 @@
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     NSLog(@"----pass-tabBarController%d---",self.selectedIndex);
-    if (self.selectedIndex==2||self.selectedIndex==3) {
+    if (self.selectedIndex==2||self.selectedIndex==3||self.selectedIndex==4) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if([MyUtil isEmptyString:app.s_app_id]){
             LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
