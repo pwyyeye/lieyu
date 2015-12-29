@@ -88,7 +88,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     }
     NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromLaunchOptions:launchOptions];
     if (pushServiceData) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
         NSLog(@"该启动事件包含来自融云的推送服务");
         for (id key in [pushServiceData allKeys]) {
             NSLog(@"%@", pushServiceData[key]);
@@ -388,20 +388,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 #pragma --mark 消息推送处理
 -(void)takeNotification:(NSDictionary *)dic{
-    if ([[UIApplication sharedApplication]
-         respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings
-                                                settingsForTypes:(UIUserNotificationTypeBadge |
-                                                                  UIUserNotificationTypeSound |
-                                                                  UIUserNotificationTypeAlert)
-                                                categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    } else {
-        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
-        UIRemoteNotificationTypeAlert |
-        UIRemoteNotificationTypeSound;
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
-    }
+   
     if ([dic objectForKey:@"aps"]&&[dic objectForKey:@"d"]) {
         [UMessage didReceiveRemoteNotification:dic];
         if([dic objectForKey:@"activity"]){
@@ -462,6 +449,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }
     
     [_timer setFireDate:[NSDate distantPast]];//开启
+    
+    [self forcedUpdate];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 #pragma mark - 心跳获取7牛key
@@ -598,7 +587,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)application:(UIApplication *)application
 didReceiveLocalNotification:(UILocalNotification *)notification {
     //震动
-    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     AudioServicesPlaySystemSound(1007);
 }
@@ -675,6 +664,37 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     [USER_DEFAULT setObject:@"NO" forKey:@"firstUseApp"];
     self.window.rootViewController=_navigationController;
     
+}
+
+
+#pragma --mark 是否强制更新
+
+-(void)forcedUpdate{
+    [[LYUserHttpTool shareInstance] getAppUpdateStatus:nil complete:^(BOOL result) {
+        if (result) {
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@""
+                                   
+                                                            message:@"有新版本，点击确定更新！"
+                                   
+                                                           delegate:self
+                                   
+                                                  cancelButtonTitle:nil
+                                   
+                                                  otherButtonTitles:@"确定",nil];
+            
+            [alert show];
+        }
+    }];
+    
+}
+
+#pragma mark - alert 代理
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"----pass-%ld---",buttonIndex);
+    if(buttonIndex==0){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id1056569271"]];
+    }
+    [alertView show];
 }
 
 

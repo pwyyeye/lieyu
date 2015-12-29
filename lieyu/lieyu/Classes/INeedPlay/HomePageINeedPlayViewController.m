@@ -27,6 +27,7 @@
 #import "HuoDongViewController.h"
 #import "LYCacheDefined.h"
 #import "LYCache+CoreDataProperties.h"
+#import "LYUserHttpTool.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -80,6 +81,9 @@ UITableViewDataSource,UITableViewDelegate,
     [self setupViewStyles];
     [self getData];
 }
+
+
+
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityChange" object:nil];

@@ -35,6 +35,10 @@
 //登出
 #define LY_LOGOUT  @"osregisterAction.do?action=logout"
 
+//是否强制更新
+#define LY_FORCED_UPDATE  @"toPlayAction.do?action=delete"
+
+
 /***个人中心设置－－－pwy***/
 //请求用户标签列表
 #define LY_GETUSERTAGS  @"brandAction.do?action=custom"
