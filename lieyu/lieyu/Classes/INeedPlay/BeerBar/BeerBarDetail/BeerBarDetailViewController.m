@@ -74,7 +74,7 @@
     
     self.navigationController.navigationBarHidden=YES;
     _scrollView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height+1500);
     self.scrollView.showsVerticalScrollIndicator=NO;
     self.scrollView.showsHorizontalScrollIndicator=NO;
     [self setupViewStyles];                                                     //tableView registe cell
@@ -87,7 +87,7 @@
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectZero];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, 1500)];
     _webView.delegate = self;
     [_webView sizeToFit];
     [_webView.scrollView setScrollEnabled:NO];

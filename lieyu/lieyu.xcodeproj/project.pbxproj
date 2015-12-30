@@ -716,6 +716,33 @@
 		A2FD578E1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A2FD578C1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m */; };
 		A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */; };
 		AD078C411C2BAF7700A056D1 /* UITabBarItem+CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = AD078C401C2BAF7700A056D1 /* UITabBarItem+CustomBadge.m */; };
+		AD078C451C33CD5A00A056D1 /* add5.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C421C33CD5A00A056D1 /* add5.png */; };
+		AD078C461C33CD5A00A056D1 /* add5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C431C33CD5A00A056D1 /* add5@2x.png */; };
+		AD078C471C33CD5A00A056D1 /* add5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C441C33CD5A00A056D1 /* add5@3x.png */; };
+		AD078C4B1C33CD8200A056D1 /* icon_fujinwangke_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C481C33CD8200A056D1 /* icon_fujinwangke_normal.png */; };
+		AD078C4C1C33CD8200A056D1 /* icon_fujinwangke_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C491C33CD8200A056D1 /* icon_fujinwangke_normal@2x.png */; };
+		AD078C4D1C33CD8200A056D1 /* icon_fujinwangke_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C4A1C33CD8200A056D1 /* icon_fujinwangke_normal@3x.png */; };
+		AD078C511C33CD8E00A056D1 /* icon_saoyisao_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C4E1C33CD8E00A056D1 /* icon_saoyisao_normal.png */; };
+		AD078C521C33CD8E00A056D1 /* icon_saoyisao_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C4F1C33CD8E00A056D1 /* icon_saoyisao_normal@2x.png */; };
+		AD078C531C33CD8E00A056D1 /* icon_saoyisao_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C501C33CD8E00A056D1 /* icon_saoyisao_normal@3x.png */; };
+		AD078C571C33CDA200A056D1 /* icon_wanyouliebiao_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C541C33CDA200A056D1 /* icon_wanyouliebiao_normal.png */; };
+		AD078C581C33CDA200A056D1 /* icon_wanyouliebiao_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C551C33CDA200A056D1 /* icon_wanyouliebiao_normal@2x.png */; };
+		AD078C591C33CDA200A056D1 /* icon_wanyouliebiao_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C561C33CDA200A056D1 /* icon_wanyouliebiao_normal@3x.png */; };
+		AD078C5D1C33CDAF00A056D1 /* icon_yaoyiyao_window.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C5A1C33CDAF00A056D1 /* icon_yaoyiyao_window.png */; };
+		AD078C5E1C33CDAF00A056D1 /* icon_yaoyiyao_window@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C5B1C33CDAF00A056D1 /* icon_yaoyiyao_window@2x.png */; };
+		AD078C5F1C33CDAF00A056D1 /* icon_yaoyiyao_window@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C5C1C33CDAF00A056D1 /* icon_yaoyiyao_window@3x.png */; };
+		AD078C631C33CDB700A056D1 /* icon_yaoyiyao_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C601C33CDB700A056D1 /* icon_yaoyiyao_normal.png */; };
+		AD078C641C33CDB700A056D1 /* icon_yaoyiyao_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C611C33CDB700A056D1 /* icon_yaoyiyao_normal@2x.png */; };
+		AD078C651C33CDB700A056D1 /* icon_yaoyiyao_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C621C33CDB700A056D1 /* icon_yaoyiyao_normal@3x.png */; };
+		AD078C691C33CDC100A056D1 /* icon_yaoyiyao_windowxia.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C661C33CDC100A056D1 /* icon_yaoyiyao_windowxia.png */; };
+		AD078C6A1C33CDC100A056D1 /* icon_yaoyiyao_windowxia@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C671C33CDC100A056D1 /* icon_yaoyiyao_windowxia@2x.png */; };
+		AD078C6B1C33CDC100A056D1 /* icon_yaoyiyao_windowxia@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C681C33CDC100A056D1 /* icon_yaoyiyao_windowxia@3x.png */; };
+		AD078C6F1C33CDDE00A056D1 /* icon_zuijinglianxi_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C6C1C33CDDE00A056D1 /* icon_zuijinglianxi_normal.png */; };
+		AD078C701C33CDDE00A056D1 /* icon_zuijinglianxi_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C6D1C33CDDE00A056D1 /* icon_zuijinglianxi_normal@2x.png */; };
+		AD078C711C33CDDE00A056D1 /* icon_zuijinglianxi_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C6E1C33CDDE00A056D1 /* icon_zuijinglianxi_normal@3x.png */; };
+		AD078C751C33CDE800A056D1 /* iphoneIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C721C33CDE800A056D1 /* iphoneIcon.png */; };
+		AD078C761C33CDE800A056D1 /* iphoneIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C731C33CDE800A056D1 /* iphoneIcon@2x.png */; };
+		AD078C771C33CDE800A056D1 /* iphoneIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C741C33CDE800A056D1 /* iphoneIcon@3x.png */; };
 		AD106B8B1C0AEF16007F5FBA /* LYUserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */; };
 		AD106B901C0AF044007F5FBA /* LYUserCenterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B8E1C0AF044007F5FBA /* LYUserCenterHeader.m */; };
 		AD106B911C0AF044007F5FBA /* LYUserCenterHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD106B8F1C0AF044007F5FBA /* LYUserCenterHeader.xib */; };
@@ -2023,6 +2050,33 @@
 		A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleasePackagesViewController.xib; sourceTree = "<group>"; };
 		AD078C3F1C2BAF7700A056D1 /* UITabBarItem+CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+CustomBadge.h"; sourceTree = "<group>"; };
 		AD078C401C2BAF7700A056D1 /* UITabBarItem+CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+CustomBadge.m"; sourceTree = "<group>"; };
+		AD078C421C33CD5A00A056D1 /* add5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add5.png; sourceTree = "<group>"; };
+		AD078C431C33CD5A00A056D1 /* add5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add5@2x.png"; sourceTree = "<group>"; };
+		AD078C441C33CD5A00A056D1 /* add5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add5@3x.png"; sourceTree = "<group>"; };
+		AD078C481C33CD8200A056D1 /* icon_fujinwangke_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_fujinwangke_normal.png; sourceTree = "<group>"; };
+		AD078C491C33CD8200A056D1 /* icon_fujinwangke_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_fujinwangke_normal@2x.png"; sourceTree = "<group>"; };
+		AD078C4A1C33CD8200A056D1 /* icon_fujinwangke_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_fujinwangke_normal@3x.png"; sourceTree = "<group>"; };
+		AD078C4E1C33CD8E00A056D1 /* icon_saoyisao_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_saoyisao_normal.png; sourceTree = "<group>"; };
+		AD078C4F1C33CD8E00A056D1 /* icon_saoyisao_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_saoyisao_normal@2x.png"; sourceTree = "<group>"; };
+		AD078C501C33CD8E00A056D1 /* icon_saoyisao_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_saoyisao_normal@3x.png"; sourceTree = "<group>"; };
+		AD078C541C33CDA200A056D1 /* icon_wanyouliebiao_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wanyouliebiao_normal.png; sourceTree = "<group>"; };
+		AD078C551C33CDA200A056D1 /* icon_wanyouliebiao_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_wanyouliebiao_normal@2x.png"; sourceTree = "<group>"; };
+		AD078C561C33CDA200A056D1 /* icon_wanyouliebiao_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_wanyouliebiao_normal@3x.png"; sourceTree = "<group>"; };
+		AD078C5A1C33CDAF00A056D1 /* icon_yaoyiyao_window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_yaoyiyao_window.png; sourceTree = "<group>"; };
+		AD078C5B1C33CDAF00A056D1 /* icon_yaoyiyao_window@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_yaoyiyao_window@2x.png"; sourceTree = "<group>"; };
+		AD078C5C1C33CDAF00A056D1 /* icon_yaoyiyao_window@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_yaoyiyao_window@3x.png"; sourceTree = "<group>"; };
+		AD078C601C33CDB700A056D1 /* icon_yaoyiyao_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_yaoyiyao_normal.png; sourceTree = "<group>"; };
+		AD078C611C33CDB700A056D1 /* icon_yaoyiyao_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_yaoyiyao_normal@2x.png"; sourceTree = "<group>"; };
+		AD078C621C33CDB700A056D1 /* icon_yaoyiyao_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_yaoyiyao_normal@3x.png"; sourceTree = "<group>"; };
+		AD078C661C33CDC100A056D1 /* icon_yaoyiyao_windowxia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_yaoyiyao_windowxia.png; sourceTree = "<group>"; };
+		AD078C671C33CDC100A056D1 /* icon_yaoyiyao_windowxia@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_yaoyiyao_windowxia@2x.png"; sourceTree = "<group>"; };
+		AD078C681C33CDC100A056D1 /* icon_yaoyiyao_windowxia@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_yaoyiyao_windowxia@3x.png"; sourceTree = "<group>"; };
+		AD078C6C1C33CDDE00A056D1 /* icon_zuijinglianxi_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zuijinglianxi_normal.png; sourceTree = "<group>"; };
+		AD078C6D1C33CDDE00A056D1 /* icon_zuijinglianxi_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zuijinglianxi_normal@2x.png"; sourceTree = "<group>"; };
+		AD078C6E1C33CDDE00A056D1 /* icon_zuijinglianxi_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zuijinglianxi_normal@3x.png"; sourceTree = "<group>"; };
+		AD078C721C33CDE800A056D1 /* iphoneIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneIcon.png; sourceTree = "<group>"; };
+		AD078C731C33CDE800A056D1 /* iphoneIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneIcon@2x.png"; sourceTree = "<group>"; };
+		AD078C741C33CDE800A056D1 /* iphoneIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneIcon@3x.png"; sourceTree = "<group>"; };
 		AD106B881C0AEF16007F5FBA /* LYUserCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserCenterController.h; sourceTree = "<group>"; };
 		AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserCenterController.m; sourceTree = "<group>"; };
 		AD106B8D1C0AF044007F5FBA /* LYUserCenterHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserCenterHeader.h; sourceTree = "<group>"; };
@@ -3683,6 +3737,33 @@
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				AD078C721C33CDE800A056D1 /* iphoneIcon.png */,
+				AD078C731C33CDE800A056D1 /* iphoneIcon@2x.png */,
+				AD078C741C33CDE800A056D1 /* iphoneIcon@3x.png */,
+				AD078C6C1C33CDDE00A056D1 /* icon_zuijinglianxi_normal.png */,
+				AD078C6D1C33CDDE00A056D1 /* icon_zuijinglianxi_normal@2x.png */,
+				AD078C6E1C33CDDE00A056D1 /* icon_zuijinglianxi_normal@3x.png */,
+				AD078C661C33CDC100A056D1 /* icon_yaoyiyao_windowxia.png */,
+				AD078C671C33CDC100A056D1 /* icon_yaoyiyao_windowxia@2x.png */,
+				AD078C681C33CDC100A056D1 /* icon_yaoyiyao_windowxia@3x.png */,
+				AD078C601C33CDB700A056D1 /* icon_yaoyiyao_normal.png */,
+				AD078C611C33CDB700A056D1 /* icon_yaoyiyao_normal@2x.png */,
+				AD078C621C33CDB700A056D1 /* icon_yaoyiyao_normal@3x.png */,
+				AD078C5A1C33CDAF00A056D1 /* icon_yaoyiyao_window.png */,
+				AD078C5B1C33CDAF00A056D1 /* icon_yaoyiyao_window@2x.png */,
+				AD078C5C1C33CDAF00A056D1 /* icon_yaoyiyao_window@3x.png */,
+				AD078C541C33CDA200A056D1 /* icon_wanyouliebiao_normal.png */,
+				AD078C551C33CDA200A056D1 /* icon_wanyouliebiao_normal@2x.png */,
+				AD078C561C33CDA200A056D1 /* icon_wanyouliebiao_normal@3x.png */,
+				AD078C4E1C33CD8E00A056D1 /* icon_saoyisao_normal.png */,
+				AD078C4F1C33CD8E00A056D1 /* icon_saoyisao_normal@2x.png */,
+				AD078C501C33CD8E00A056D1 /* icon_saoyisao_normal@3x.png */,
+				AD078C481C33CD8200A056D1 /* icon_fujinwangke_normal.png */,
+				AD078C491C33CD8200A056D1 /* icon_fujinwangke_normal@2x.png */,
+				AD078C4A1C33CD8200A056D1 /* icon_fujinwangke_normal@3x.png */,
+				AD078C421C33CD5A00A056D1 /* add5.png */,
+				AD078C431C33CD5A00A056D1 /* add5@2x.png */,
+				AD078C441C33CD5A00A056D1 /* add5@3x.png */,
 				389C00F91C1488EF00FE9412 /* seeAll.png */,
 				389C00FA1C1488EF00FE9412 /* seeAll@2x.png */,
 				389C00FB1C1488EF00FE9412 /* seeAll@3x.png */,
@@ -5813,6 +5894,7 @@
 				1559DD111BDA2A3E00F3FE9B /* CarInfoCell.xib in Resources */,
 				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
 				8550E7211C302A33001FF2DE /* daohang_fabu@2x.png in Resources */,
+				AD078C4B1C33CD8200A056D1 /* icon_fujinwangke_normal.png in Resources */,
 				A2020D621BA67E9E0090B92A /* disClosure@3x.png in Resources */,
 				85EE80331C0AF09B00958F76 /* LYHeaderTableViewCell.xib in Resources */,
 				ADFFA6B31C181B9900D9BD2A /* 1@3x.jpg in Resources */,
@@ -5836,6 +5918,7 @@
 				85F545171C13DE000013B92B /* LYUserDetailInfoViewController.xib in Resources */,
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
 				15EB35491BD4839D00BA6161 /* UMSCommentDetailController.xib in Resources */,
+				AD078C531C33CD8E00A056D1 /* icon_saoyisao_normal@3x.png in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
 				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
 				38AA7CBE1C31597700D9BCE8 /* YBImgPickerViewController.xib in Resources */,
@@ -5845,6 +5928,7 @@
 				ADFFA6911C16DFD400D9BD2A /* middlePlace.png in Resources */,
 				85F5453C1C1408040013B92B /* circleWhite@2x.png in Resources */,
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
+				AD078C651C33CDB700A056D1 /* icon_yaoyiyao_normal@3x.png in Resources */,
 				38E5D7E61C12DC43004B49D2 /* icon_collect.png in Resources */,
 				15ED32791BE318A800E086A1 /* 5018.wav in Resources */,
 				380385DE1C327C19007C8DC0 /* play.png in Resources */,
@@ -5856,6 +5940,7 @@
 				85F43BB01C11459400B04466 /* LYOrderManagerTableViewCell.xib in Resources */,
 				85F5451C1C13DF5A0013B92B /* cameraCircle.png in Resources */,
 				853C4C4F1C31189E00D48BA2 /* LYFriendsCommentDetailTableViewCell.xib in Resources */,
+				AD078C5D1C33CDAF00A056D1 /* icon_yaoyiyao_window.png in Resources */,
 				38E5D6DC1C0EFBA2004B49D2 /* leftBackItem@3x.png in Resources */,
 				381FEFFA1C1672EF002A47BA /* DanPinCell.xib in Resources */,
 				38E5D6BF1C0EA458004B49D2 /* CustomBtn_unSelected@3x.png in Resources */,
@@ -5886,12 +5971,14 @@
 				A2020D801BA67FA40090B92A /* Fill20219@3x.png in Resources */,
 				389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */,
 				15EB35671BD4840300BA6161 /* WeiboSDK.bundle in Resources */,
+				AD078C631C33CDB700A056D1 /* icon_yaoyiyao_normal.png in Resources */,
 				ADB164D51C16BBF9000BAD3C /* MineBigBG@2x.jpg in Resources */,
 				15EB354B1BD4839D00BA6161 /* UMSCommentInputControlleriPad.xib in Resources */,
 				3879F24B1C0D325D00B72629 /* BarInfoTableViewCell.xib in Resources */,
 				853C4C731C311A6D00D48BA2 /* fabudongtai_xuanzedizhi@2x.png in Resources */,
 				38E5D7A11C113879004B49D2 /* choose@2x.png in Resources */,
 				A20100841BA7AFAB009283D1 /* LYProductslistViewController.xib in Resources */,
+				AD078C4C1C33CD8200A056D1 /* icon_fujinwangke_normal@2x.png in Resources */,
 				1559DD0B1BDA2A1200F3FE9B /* LYCarListViewController.xib in Resources */,
 				8540B6841C2CED9100F16463 /* LYFriendsCommentTableViewCell.xib in Resources */,
 				AD92AEAD1BE23521009F2A34 /* LYTagTableViewCell.xib in Resources */,
@@ -5911,6 +5998,7 @@
 				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
 				8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */,
 				15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */,
+				AD078C691C33CDC100A056D1 /* icon_yaoyiyao_windowxia.png in Resources */,
 				15E240C71BB3CAC20090D240 /* LYResetPasswordViewController.xib in Resources */,
 				38E5D6BD1C0EA458004B49D2 /* CustomBtn_unSelected.png in Resources */,
 				15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */,
@@ -5939,6 +6027,7 @@
 				15EB35461BD4839D00BA6161 /* UMSocialLocalizable.strings in Resources */,
 				38D876561C17DEA100E2F284 /* typeBorder@2x.png in Resources */,
 				381A01C61C140DE500592485 /* INeedYou@3x.png in Resources */,
+				AD078C4D1C33CD8200A056D1 /* icon_fujinwangke_normal@3x.png in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
 				380385DD1C327C19007C8DC0 /* play .png in Resources */,
 				85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */,
@@ -5947,6 +6036,7 @@
 				853C4C3F1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib in Resources */,
 				854727471C19C6CA0048CEDC /* icon_collect_2.png in Resources */,
 				ADF88E5F1C102E4F00CF5DED /* hongseStar.png in Resources */,
+				AD078C581C33CDA200A056D1 /* icon_wanyouliebiao_normal@2x.png in Resources */,
 				38E5D7F41C12DF0C004B49D2 /* comment@3x.png in Resources */,
 				15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */,
 				85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */,
@@ -5956,6 +6046,7 @@
 				389C01071C1488F000FE9412 /* seeBoys@3x.png in Resources */,
 				381A01EB1C14301A00592485 /* fanli.png in Resources */,
 				381A01F61C144E1B00592485 /* shoppingCar_High@3x.png in Resources */,
+				AD078C451C33CD5A00A056D1 /* add5.png in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				ADF88E631C102E4F00CF5DED /* huiseStar@2x.png in Resources */,
 				15E184841BB51A9500681BB2 /* LYZSApplicationViewController.xib in Resources */,
@@ -5967,7 +6058,9 @@
 				15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */,
 				1559DCF21BD9C7E200F3FE9B /* CHChooseNumView.xib in Resources */,
 				1559DCE61BD8C0EA00F3FE9B /* CHShaiXuanViewController.xib in Resources */,
+				AD078C521C33CD8E00A056D1 /* icon_saoyisao_normal@2x.png in Resources */,
 				38E5D7AC1C113879004B49D2 /* purper_less.png in Resources */,
+				AD078C5E1C33CDAF00A056D1 /* icon_yaoyiyao_window@2x.png in Resources */,
 				38E5D6CE1C0EA5C8004B49D2 /* ContentView.xib in Resources */,
 				854727371C197E6B0048CEDC /* icon_fanhui2@3x.png in Resources */,
 				15FD2A9D1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.xib in Resources */,
@@ -6006,6 +6099,7 @@
 				38E5D75A1C113445004B49D2 /* triangle_up@2x.png in Resources */,
 				15EE514F1BA7069F00464B74 /* ZSReservedSeatViewController.xib in Resources */,
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
+				AD078C761C33CDE800A056D1 /* iphoneIcon@2x.png in Resources */,
 				8540B67F1C2CE89900F16463 /* LYFriendsLikeTableViewCell.xib in Resources */,
 				85EC6A091C186A170082AA3E /* icon_liwozuijin@2x.png in Resources */,
 				853C4C971C311AE200D48BA2 /* pinglun_icon@2x.png in Resources */,
@@ -6014,6 +6108,7 @@
 				853C4C8B1C311AAD00D48BA2 /* gengduo_icon@2x.png in Resources */,
 				ADFFA6951C1721D600D9BD2A /* gouGif.gif in Resources */,
 				85F672B31C097D48001BEE5B /* LYHotRecommandCell.xib in Resources */,
+				AD078C711C33CDDE00A056D1 /* icon_zuijinglianxi_normal@3x.png in Resources */,
 				38E5D7E71C12DC43004B49D2 /* icon_collect@2x.png in Resources */,
 				ADB164BD1C167095000BAD3C /* lieyuIcon@2x.png in Resources */,
 				853C4C6E1C311A5C00D48BA2 /* zengjia_icon@3x.png in Resources */,
@@ -6025,6 +6120,7 @@
 				38E5D6BE1C0EA458004B49D2 /* CustomBtn_unSelected@2x.png in Resources */,
 				ADFFA6B51C181B9900D9BD2A /* 3@3x.jpg in Resources */,
 				854727381C197E6B0048CEDC /* icon_like_2.png in Resources */,
+				AD078C511C33CD8E00A056D1 /* icon_saoyisao_normal.png in Resources */,
 				381A01F51C144E1B00592485 /* shoppingCar_High@2x.png in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
@@ -6068,11 +6164,13 @@
 				ADFFA6901C16DFD100D9BD2A /* bigPlace.png in Resources */,
 				15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */,
 				ADF88E621C102E4F00CF5DED /* huiseStar.png in Resources */,
+				AD078C6B1C33CDC100A056D1 /* icon_yaoyiyao_windowxia@3x.png in Resources */,
 				85439AE71C08657F00DD4BE6 /* LYAmusementClassCell.xib in Resources */,
 				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
 				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
 				38AA7CBC1C31597700D9BCE8 /* YBimgPickerView.bundle in Resources */,
 				38E5D7AD1C113879004B49D2 /* purper_less@2x.png in Resources */,
+				AD078C591C33CDA200A056D1 /* icon_wanyouliebiao_normal@3x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
 				38E5D6E61C0F1018004B49D2 /* LPBuyTaocanCell.xib in Resources */,
 				85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */,
@@ -6110,13 +6208,16 @@
 				ADB164BE1C167095000BAD3C /* lieyuIcon@3x.png in Resources */,
 				38E5D7C21C128C44004B49D2 /* triangle_down.png in Resources */,
 				ADFFA6CB1C181ED800D9BD2A /* refresh4@2x.png in Resources */,
+				AD078C5F1C33CDAF00A056D1 /* icon_yaoyiyao_window@3x.png in Resources */,
 				ADF88E6F1C11613800CF5DED /* empyImage300.png in Resources */,
 				ADF88EAB1C1197C400CF5DED /* MJRefresh.bundle in Resources */,
 				ADE103B11BDE4C8E00D9EC38 /* PayCell.xib in Resources */,
 				A2020D511BA662140090B92A /* ZSMaintViewController.xib in Resources */,
+				AD078C771C33CDE800A056D1 /* iphoneIcon@3x.png in Resources */,
 				15E240D21BB3D5940090D240 /* LYRegistrationViewController.xib in Resources */,
 				15EB354A1BD4839D00BA6161 /* UMSCommentInputController.xib in Resources */,
 				38E5D6FF1C103E17004B49D2 /* LPmanager.png in Resources */,
+				AD078C471C33CD5A00A056D1 /* add5@3x.png in Resources */,
 				15E2407D1BB2521C0090D240 /* CollectionCell.xib in Resources */,
 				ADFFA6D11C181ED800D9BD2A /* refresh10@2x.png in Resources */,
 				38E5D7A01C113879004B49D2 /* choose.png in Resources */,
@@ -6135,6 +6236,7 @@
 				381FF0011C168755002A47BA /* icon_zixun_normal.png in Resources */,
 				A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */,
 				38E5D7AB1C113879004B49D2 /* purper_add@3x.png in Resources */,
+				AD078C751C33CDE800A056D1 /* iphoneIcon.png in Resources */,
 				AD92AE9C1BE1D339009F2A34 /* lieyu_default_female@2x.png in Resources */,
 				ADFFA6D01C181ED800D9BD2A /* refresh9@2x.png in Resources */,
 				854CC98D1C32624D00A6CA60 /* LYChangeImageViewController.xib in Resources */,
@@ -6179,6 +6281,7 @@
 				381A01D31C14228E00592485 /* AddCar_red.png in Resources */,
 				A2FD57651BAFE6C000CFFF92 /* CheHeCell.xib in Resources */,
 				85F6259D1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.xib in Resources */,
+				AD078C571C33CDA200A056D1 /* icon_wanyouliebiao_normal.png in Resources */,
 				15E240B61BB3A1FC0090D240 /* OrderDetailSectionBottomForDanPinView.xib in Resources */,
 				38D8764A1C1703B600E2F284 /* purper_fanli@2x.png in Resources */,
 				ADFFA6B71C181B9900D9BD2A /* 5@3x.jpg in Resources */,
@@ -6202,9 +6305,12 @@
 				853C4C911C311AC100D48BA2 /* haoyou_pinglun@2x.png in Resources */,
 				85F5452A1C13EB450013B92B /* LYUserDetailCameraTableViewCell.xib in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
+				AD078C641C33CDB700A056D1 /* icon_yaoyiyao_normal@2x.png in Resources */,
 				15E184891BB5214F00681BB2 /* LYChooseJiuBaViewController.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
 				853C4C791C311A8000D48BA2 /* biaobai_icon@2x.png in Resources */,
+				AD078C701C33CDDE00A056D1 /* icon_zuijinglianxi_normal@2x.png in Resources */,
+				AD078C461C33CD5A00A056D1 /* add5@2x.png in Resources */,
 				85EC69FA1C17D4A10082AA3E /* sorry.gif in Resources */,
 				ADF88E611C102E4F00CF5DED /* hongseStar@3x.png in Resources */,
 				ADFFA6AC1C181B9100D9BD2A /* 4@2x.jpg in Resources */,
@@ -6234,6 +6340,7 @@
 				ADB164D61C16BBFB000BAD3C /* MineBigBG@3x.jpg in Resources */,
 				8547273F1C197E6B0048CEDC /* icon_share2@2x.png in Resources */,
 				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
+				AD078C6F1C33CDDE00A056D1 /* icon_zuijinglianxi_normal.png in Resources */,
 				15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */,
 				381A01E11C14229F00592485 /* more_white@3x.png in Resources */,
 				38E5D7BC1C128B7D004B49D2 /* Location.png in Resources */,
