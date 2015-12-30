@@ -68,11 +68,15 @@
     UIView *_bigView;
     LYFriendsCommentView *_commentView;//弹出的评论框
     NSInteger _commentBtnTag;
-        LYFriendsSendViewController *friendsSendVC;
+    BOOL _friendsBtnSelect;//是否选择了导航栏上玩友圈按钮
+    NSInteger _pageStartCountFriends;//开始的数量
+    NSInteger _pageStartCountMys;//开始的数量
+    NSInteger _pageCount;//每页数
+    LYFriendsSendViewController *friendsSendVC;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, assign) int pageCount;
+@property (nonatomic, assign) int pagesCount;
 @property (nonatomic, strong) NSString *typeOfImagePicker;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) NSMutableDictionary *notificationDict;
@@ -85,12 +89,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    self.pageCount = 4;
+    self.pagesCount = 4;
     
     _notificationDict = [[NSMutableDictionary alloc]init];
     
     [self setupAllProperty];//设置全局属性
     [self setupTableView];
+    [self setupTableViewFresh];//配置表的刷新和加载
 }
 
 - (void)setupAllProperty{
@@ -377,30 +382,30 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FriendSendViewDidLoad) name:@"FriendSendViewDidLoad" object:nil];
 }
 
-#pragma mark actionsheet代理
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
-        [self takePhotoActionClick];
-    }else if(buttonIndex == 1){
-        [self photosActionClick];
-    }else{
-        [self filmingActionClick];
-    }
-}
+//#pragma mark actionsheet代理
+//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if (buttonIndex == 0) {
+//        [self takePhotoActionClick];
+//    }else if(buttonIndex == 1){
+//        [self photosActionClick];
+//    }else{
+//        [self filmingActionClick];
+//    }
+//}
 
 #pragma mark 选择完后根据点击的按钮进行操作
 - (void)photosActionClick{
-    if(self.pageCount <= 0){
+    if(self.pagesCount <= 0){
         return;//给出提示
     }
     _typeOfImagePicker = @"photos";
     YBImgPickerViewController *ybImagePicker = [[YBImgPickerViewController alloc]init];
-    ybImagePicker.photoCount = self.pageCount;
+    ybImagePicker.photoCount = self.pagesCount;
     [ybImagePicker showInViewContrller:self choosenNum:0 delegate:self];
 }
 
 - (void)takePhotoActionClick{
-    if(self.pageCount <= 0){
+    if(self.pagesCount <= 0){
         return;//给出提示
     }
     _typeOfImagePicker = @"takePhoto";
@@ -408,7 +413,7 @@
 }
 
 - (void)filmingActionClick{
-    if(self.pageCount < 4){
+    if(self.pagesCount < 4){
         return;//给出提示
     }
     _typeOfImagePicker = @"filming";
@@ -537,6 +542,107 @@
           //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
         }
     }];
+}
+
+#pragma mark - 查看图片
+- (void)checkImageClick:(UIButton *)button{
+     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSLog(@"--->%ld",button.tag);
+    NSMutableArray *oldFrameArray = [[NSMutableArray alloc]init];
+    [oldFrameArray removeAllObjects];
+    NSInteger index = 0;
+    NSInteger section = 0;
+    NSArray *urlArray = nil;
+    switch (button.tag % 4) {
+        case 1://点一个按钮
+        {
+            section = (button.tag + 3) /4  - 1;
+            index = 0;
+        }
+            break;
+        case 2:
+        {
+            NSLog(@"-->%ld",(button.tag + 2) /4);
+            section = (button.tag + 2) /4  - 1;
+            NSLog(@"---->%ld",section);
+            index = 1;
+            
+            
+        }
+            break;
+        case 3:
+        {
+            section = (button.tag + 1) /4  - 1;
+            index = 2;
+        }
+            break;
+        case 0:
+        {
+            section = button.tag /4  - 1;
+            index = 3;
+        }
+            break;
+        default:
+            break;
+    }
+    urlArray = ((FriendsRecentModel *)_dataArray[_index][section]).lyMomentsAttachList;
+    LYFriendsImgTableViewCell *imgCell = (LYFriendsImgTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:section]];
+    for (UIButton *btn in imgCell.btnArray) {
+        CGRect rect = [imgCell convertRect:btn.frame toView:app.window];
+        [oldFrameArray addObject:NSStringFromCGRect(rect)];
+    }
+    
+    LYPictiureView *picView = [[LYPictiureView alloc]initWithFrame:self.view.bounds urlArray:urlArray oldFrame:oldFrameArray with:index];
+    picView.backgroundColor = [UIColor blackColor];
+   
+    [app.window addSubview:picView];
+}
+
+
+#pragma mark － 删除我的评论
+- (void)deleteClick:(UIButton *)button{
+    NSMutableArray *array = _dataArray[_index];
+    FriendsRecentModel *recentM = array[button.tag];
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
+    __block LYFriendsViewController *weakSelf = self;
+    [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
+        if (result) {
+            [array removeObjectAtIndex:button.tag];
+            NSLog(@"----->%ld-------%ld",button.tag,array.count)    ;
+            [weakSelf.tableView reloadData];
+            //[weakSelf.tableView deleteSections:[NSIndexSet indexSetWithIndex:button.tag] withRowAnimation:UITableViewRowAnimationTop];
+        }
+    }];
+}
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(actionSheet.tag == 200){
+        switch (buttonIndex) {
+            case 0://更该相册封面
+            {
+                LYChangeImageViewController *changeImageVC = [[LYChangeImageViewController alloc]init];
+                [self.navigationController pushViewController:changeImageVC animated:YES];
+                [changeImageVC setPassImage:^(UIImage *image) {
+                    _headerView.ImageView_bg.image = image;
+                    NSData *imageData = UIImagePNGRepresentation(image);
+                    [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"FriendUserBgImage"];
+                }];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }else {
+        if (buttonIndex == 0)
+        {
+            [self takePhotoActionClick];
+        }else if(buttonIndex == 1){
+            [self photosActionClick];
+        }else{
+            [self filmingActionClick];
+        }
+    }
 }
 
 #pragma mark - 更多赞

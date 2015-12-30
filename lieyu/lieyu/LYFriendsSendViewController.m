@@ -9,13 +9,20 @@
 #import "LYFriendsSendViewController.h"
 #import "LYFriendsHttpTool.h"
 #import <CoreLocation/CoreLocation.h>
-#import "LYFriendsChooseLocationViewController.h"
+#import "HTTPController.h"
 
 #define IMGwidth ( [UIScreen mainScreen].bounds.size.width - 20 ) / 3
 
 @interface LYFriendsSendViewController ()<UIImagePickerControllerDelegate,UITextViewDelegate>
-
+{
+    int qiniuPages;
+    AppDelegate *app;
+}
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+//@property (nonatomic, strong) NSMutableArray *shangchuanArray;
+@property (nonatomic, strong) NSMutableString *shangchuanString;
+@property (nonatomic, strong) NSMutableString *city;
+@property (nonatomic, strong) NSMutableString *location;
 
 @end
 
@@ -30,6 +37,12 @@
     
     self.fodderArray = [[NSMutableArray alloc]init];
     self.imageViewArray = [[NSMutableArray alloc]init];
+    self.shangchuanString = [[NSMutableString alloc]init];
+    self.location = [[NSMutableString alloc]init];
+    self.city = [[NSMutableString alloc]init];
+    
+    app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    self.title = @"发布动态";
     self.textView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -61,32 +74,87 @@
 
 #pragma mark 上传玩友圈,待修改
 - (void)sendClick{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    if(_isVedio){//是视频
-        NSData *data = [NSData dataWithContentsOfFile:self.mediaUrl];
-        NSDictionary *paraDic = @{@"userId":userIdStr,@"city":@"安徽",@"location":@"芜湖",@"type":@"0",@"message":self.textView.text,@"attachType":@"1",@"attach":data};
-        [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
-            
+    [self.textView resignFirstResponder];
+    [app startLoading];
+    //上传视频或者图片到七牛
+    if(_isVedio){
+        if([self.mediaUrl isEqualToString:@""]){
+            [self showMessage:@"请添加照片或视频，把美好分享！"];
+            [app stopLoading];
+        }
+        [HTTPController uploadFileToQiuNiu:self.mediaUrl complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+            if(![MyUtil isEmptyString:key]){
+                [self sendTrends:key];
+            }else{
+                
+            }
         }];
-
     }else{
-        //将imageviewArray转换成data类型
-        NSDictionary *paraDic = @{@"userId":userIdStr,@"city":@"安徽",@"location":@"芜湖",@"type":@"0",@"message":@"哈哈哈测试",@"attachType":@"0",@"attach":@"www.baidu.com"};
-        [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
-            
-        }];
+        if(self.fodderArray.count <= 0){
+            [self showMessage:@"请添加照片或视频，把美好分享！"];
+            [app stopLoading];
+        }
+        for(int i = 0 ; i < self.fodderArray.count; i ++){
+            [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                if(![MyUtil isEmptyString:key]){
+                    qiniuPages ++;
+                    [self.shangchuanString appendString:key];
+                    [self.shangchuanString appendString:@","];
+                    if(qiniuPages == self.fodderArray.count){
+                        [self.shangchuanString deleteCharactersInRange:NSMakeRange([self.shangchuanString length]-1, 1)];
+                        [self sendTrends:self.shangchuanString];
+                        
+                    }
+                }else{
+                    
+                }
+            }];
+        }
     }
 }
+
+- (void)sendTrends:(NSString *)string{
+    
+    NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    NSDictionary *paraDic;
+    if(_isVedio){
+        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.textView.text,@"attachType":@"1",@"attach":string};
+    }else{
+        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.textView.text,@"attachType":@"0",@"attach":string};
+    }
+    [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
+        if(result){
+            [app stopLoading];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [app stopLoading];
+            [self showMessage:@"抱歉，发布失败!"];
+        }
+    }];
+}
+
 
 - (IBAction)selectImageClick:(UIButton *)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册",@"短视频", nil];
     [actionSheet showInView:self.view];
 }
 
+#pragma mark 选择地址信息
 - (IBAction)selectLocation:(UIButton *)sender{
     LYFriendsChooseLocationViewController *chooseLocationVC = [[LYFriendsChooseLocationViewController alloc]init];
+    chooseLocationVC.delegate = self;
     [self.navigationController pushViewController:chooseLocationVC animated:YES];
+}
+
+#pragma mark delegate
+- (void)getLocationInfo:(NSString *)city Location:(NSString *)location{
+    if([city isEqualToString:@""]){
+        [self.locationBtn setTitle:@"不显示位置" forState:UIControlStateNormal];
+    }else{
+        [self.locationBtn setTitle:location forState:UIControlStateNormal];
+    }
+    self.city = [[NSMutableString alloc]initWithString:city];
+    self.location = [[NSMutableString alloc]initWithString:location];
 }
 
 #pragma mark actionsheet的代理方法
@@ -157,6 +225,7 @@
     self.pageCount = self.pageCount - (int)imageArray.count;
     [self.fodderArray addObjectsFromArray:imageArray];
     //界面刷新，重新排版
+    [app startLoading];
     [self interfaceLayout];
 }
 
@@ -193,10 +262,12 @@
             button.enabled = NO;
             imageView.tag = self.initCount + 100;
             self.addButton.hidden = YES;
+            
         }else{
             imageView.tag = self.initCount;
         }
     }
+    [app stopLoading];
 }
 
 #pragma mark imagePickerController代理事件
@@ -207,6 +278,7 @@
 
 #pragma mark imagePickerController具体事件实现
 - (void)imagePickerSpecificOperation:(NSDictionary<NSString *,id> *)info{
+    [app startLoading];
     if ([_typeOfImagePicker isEqualToString:@"takePhoto"]) {//如果是拍照
         UIImage *image;
         //如果允许编辑则获得编辑后的照片，否则获取原始照片
@@ -221,6 +293,7 @@
     }else if([_typeOfImagePicker isEqualToString:@"filming"]){//如果是录制视频
         NSURL *url=[info objectForKey:UIImagePickerControllerMediaURL];//视频路径
         NSString *urlStr=[url path];
+//        [app startLoading];
         if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(urlStr)) {
             //保存视频到相簿，注意也可以使用ALAssetsLibrary来保存
             UISaveVideoAtPathToSavedPhotosAlbum(urlStr, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);//保存视频到相簿
@@ -314,7 +387,8 @@
             [_player.view removeFromSuperview];
             UIButton *btn = [self.view viewWithTag:301];
             [btn removeFromSuperview];
-            _isVedio = NO;/////////////////////////////////////////////////////////
+            _isVedio = NO;
+            self.mediaUrl = [[NSMutableString alloc]initWithString:@""];
         }
         self.addButton.hidden = NO;
         self.addButton.frame = CGRectMake(12.5, 155, 70, 70);

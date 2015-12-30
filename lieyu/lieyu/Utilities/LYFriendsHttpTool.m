@@ -82,9 +82,11 @@
 + (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Send baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------->%@",response[@"message"]);
-       
+       dispatch_async(dispatch_get_main_queue(), ^{
+           compelte(YES);
+       });
     }failure:^(NSError *err) {
-         
+        compelte(NO);
      }];
 }
 

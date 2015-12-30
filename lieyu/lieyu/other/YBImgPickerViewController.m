@@ -48,8 +48,8 @@ static NSString * const tableReuseIdentifier = @"tableCell";
     self = [self initWithNibName:@"YBImgPickerViewController" bundle:nil];
     nav = [[UINavigationController alloc] initWithRootViewController:self];
     //修改界面的navigationbar的颜色
-    nav.navigationBar.backgroundColor = [UIColor purpleColor];
-    
+    [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"YBimgPickerView.bundle/Mask"] forBarMetrics:UIBarMetricsDefault];
+    nav.navigationBar.translucent = NO;
     tableData = [[NSMutableArray alloc]init];
     colletionData = [[NSMutableArray alloc]init];
     originImgData = [[NSMutableArray alloc]init];
@@ -86,7 +86,9 @@ static NSString * const tableReuseIdentifier = @"tableCell";
     [titleBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -35, 0, 0)];
     [titleBtn addTarget:self action:@selector(showTableView) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationItem.titleView addSubview:titleBtn];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"YBimgPickerView.bundle/arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(hide)];
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(hide)];
+    [leftBtn setTintColor:[UIColor whiteColor]];
+    self.navigationItem.leftBarButtonItem = leftBtn;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"完成 %ld/%ld",(long)choosenCount,(long)self.photoCount] style:UIBarButtonItemStyleDone target:self action:@selector(save)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -369,7 +371,7 @@ static NSString * const tableReuseIdentifier = @"tableCell";
         [UIView animateWithDuration:0.45 animations:^{
             for(NSLayoutConstraint * constraint in myTableView.superview.constraints){
                 if (constraint.firstItem == myTableView && constraint.firstAttribute == NSLayoutAttributeTop) {
-                    constraint.constant = 64 + 5;
+                    constraint.constant = 5;
                 }
             }
             backView.alpha = 1;
@@ -380,7 +382,7 @@ static NSString * const tableReuseIdentifier = @"tableCell";
             [UIView animateWithDuration:0.35 animations:^{
                 for(NSLayoutConstraint * constraint in myTableView.superview.constraints){
                     if (constraint.firstItem == myTableView && constraint.firstAttribute == NSLayoutAttributeTop) {
-                        constraint.constant = 64;
+                        constraint.constant = 0;
                     }
                 }
                 [self.view layoutIfNeeded];

@@ -10,8 +10,10 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "YBImgPickerViewController.h"
 #import "preview.h"
+#import "LYFriendsChooseLocationViewController.h"
 
-@interface LYFriendsSendViewController : LYBaseViewController<UIActionSheetDelegate,UINavigationControllerDelegate,YBImgPickerViewControllerDelegate>
+@interface LYFriendsSendViewController : LYBaseViewController<UIActionSheetDelegate,UINavigationControllerDelegate,YBImgPickerViewControllerDelegate,PullLocationInfo>
+
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;
 

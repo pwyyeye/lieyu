@@ -444,6 +444,8 @@
 		38E72B521C155FC7002EFBDD /* chiheDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B511C155FC7002EFBDD /* chiheDetailCollectionCell.xib */; };
 		38E72B561C15A18E002EFBDD /* ChiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E72B541C15A18E002EFBDD /* ChiHeViewController.m */; };
 		38E72B571C15A18E002EFBDD /* ChiHeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B551C15A18E002EFBDD /* ChiHeViewController.xib */; };
+		38EE91A01C33DF3E00361D07 /* MenuHrizontal.h in Sources */ = {isa = PBXBuildFile; fileRef = 15EFEF821BA99CD5004739A2 /* MenuHrizontal.h */; };
+		38EE91A21C3405C500361D07 /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE91A11C3405C500361D07 /* AMapSearchKit.framework */; };
 		8518066A1C2E284100006804 /* FriendsCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 851806691C2E284100006804 /* FriendsCommentModel.m */; };
 		8518066D1C2E28F500006804 /* FriendsLikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8518066C1C2E28F500006804 /* FriendsLikeModel.m */; };
 		851806701C2E295200006804 /* FriendsPicAndVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8518066F1C2E295200006804 /* FriendsPicAndVideoModel.m */; };
@@ -1621,6 +1623,7 @@
 		38E72B531C15A18E002EFBDD /* ChiHeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiHeViewController.h; sourceTree = "<group>"; };
 		38E72B541C15A18E002EFBDD /* ChiHeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChiHeViewController.m; sourceTree = "<group>"; };
 		38E72B551C15A18E002EFBDD /* ChiHeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiHeViewController.xib; sourceTree = "<group>"; };
+		38EE91A11C3405C500361D07 /* AMapSearchKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapSearchKit.framework; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		851806681C2E284100006804 /* FriendsCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsCommentModel.h; sourceTree = "<group>"; };
@@ -2446,6 +2449,7 @@
 				AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */,
 				AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */,
 				15844C091BE22A8800247FBC /* QuartzCore.framework in Frameworks */,
+				38EE91A21C3405C500361D07 /* AMapSearchKit.framework in Frameworks */,
 				15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */,
 				15844C051BE22A7500247FBC /* CoreMedia.framework in Frameworks */,
 				15844C031BE22A6900247FBC /* AVFoundation.framework in Frameworks */,
@@ -5584,6 +5588,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				38EE91A11C3405C500361D07 /* AMapSearchKit.framework */,
 				AD078C3E1C2BAF5E00A056D1 /* UITabBarItem-CustomBadge */,
 				ADE2AD6A1C23ADDE00B0A54B /* MTA-sdk-1.4.8 */,
 				ADF88F391C12E5F000CF5DED /* KxMenu */,
@@ -6306,6 +6311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38EE91A01C33DF3E00361D07 /* MenuHrizontal.h in Sources */,
 				85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */,
 				85589C311C167E49000E342E /* PayButton.m in Sources */,
 				381FEFF41C166AB8002A47BA /* bartypeslistModel.m in Sources */,
@@ -6896,6 +6902,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lieyu/Vendor",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/lieyu/Vendor/LBS.amap",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -6943,6 +6950,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lieyu/Vendor",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/lieyu/Vendor/LBS.amap",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

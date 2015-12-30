@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYBaseViewController.h"
 
-@interface LYFriendsChooseLocationViewController : UIViewController
+@protocol PullLocationInfo <NSObject>
+
+- (void)getLocationInfo:(NSString *)city Location:(NSString *)location;
+
+@end
+
+@interface LYFriendsChooseLocationViewController : LYBaseViewController
 
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, assign) id<PullLocationInfo> delegate;
 @end
