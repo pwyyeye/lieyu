@@ -30,6 +30,10 @@
 #import "LYFriendsToUserMessageViewController.h"
 #import "LYFriendsMessageDetailViewController.h"
 
+#import "YBImgPickerViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
+
+
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsImgOneCellID @"LYFriendsImgOneTableViewCell"
 #define LYFriendsImgTwoCellID @"LYFriendsImgTwoTableViewCell"
@@ -40,7 +44,9 @@
 #define LYFriendsAllCommentCellID @"LYFriendsAllCommentTableViewCell"
 #define LYFriendsCellID @"cell"
 
-@interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,LYFriendsImgOneTableViewCellDelegate,UITextFieldDelegate>{
+@interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,LYFriendsImgOneTableViewCellDelegate,UITextFieldDelegate,YBImgPickerViewControllerDelegate,
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate>{
     UIButton *_friendsBtn;
     UIButton *_myBtn;
     UILabel *_myBadge;
@@ -58,8 +64,14 @@
     UIView *_bigView;
     LYFriendsCommentView *_commentView;
     NSInteger _commentBtnTag;
+        LYFriendsSendViewController *friendsSendVC;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, assign) int pageCount;
+@property (nonatomic, strong) NSString *typeOfImagePicker;
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) NSMutableDictionary *notificationDict;
 
 @end
 
@@ -69,10 +81,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+    self.pageCount = 4;
+    
+    _notificationDict = [[NSMutableDictionary alloc]init];
+    
     [self setupAllProperty];//设置全局属性
     [self setupTableView];
-  
-    
 }
 
 - (void)setupAllProperty{
@@ -125,7 +139,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     _index = 0;
- [IQKeyboardManager sharedManager].enable = NO;
+   [IQKeyboardManager sharedManager].enable = NO;
     [self setupNavMenuView];
       [self getDataFriends];
 }
@@ -135,6 +149,8 @@
     [self removeNavMenuView];
     [IQKeyboardManager sharedManager].enable = YES;
 }
+
+
 
 - (void)removeNavMenuView{
 //    _friendsBtn.alpha =
@@ -254,17 +270,114 @@
     }
 }
 
+#pragma mark 发布动态
 - (void)carmerClick:(UIButton *)carmerClick{
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册",@"短视频", nil];
 
     [actionSheet showInView:self.view];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FriendSendViewDidLoad) name:@"FriendSendViewDidLoad" object:nil];
+}
+
+#pragma mark actionsheet代理
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        [self takePhotoActionClick];
+    }else if(buttonIndex == 1){
+        [self photosActionClick];
+    }else{
+        [self filmingActionClick];
+    }
+}
+
+#pragma mark 选择完后根据点击的按钮进行操作
+- (void)photosActionClick{
+    if(self.pageCount <= 0){
+        return;//给出提示
+    }
+    _typeOfImagePicker = @"photos";
+    YBImgPickerViewController *ybImagePicker = [[YBImgPickerViewController alloc]init];
+    ybImagePicker.photoCount = self.pageCount;
+    [ybImagePicker showInViewContrller:self choosenNum:0 delegate:self];
+}
+
+- (void)takePhotoActionClick{
+    if(self.pageCount <= 0){
+        return;//给出提示
+    }
+    _typeOfImagePicker = @"takePhoto";
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+- (void)filmingActionClick{
+    if(self.pageCount < 4){
+        return;//给出提示
+    }
+    _typeOfImagePicker = @"filming";
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
+}
+
+#pragma mark 选择拍照或拍摄后的操作
+- (UIImagePickerController *)imagePicker{
+    _imagePicker = [[UIImagePickerController alloc]init];
+    if([_typeOfImagePicker isEqualToString:@"takePhoto"]){//拍照
+        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//拍照
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
+        _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+    }else if([_typeOfImagePicker isEqualToString:@"filming"]){//小视频
+        _imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
+        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//摄影
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
+        _imagePicker.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
+        _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头模式
+        _imagePicker.videoMaximumDuration = 10;
+    }
+    _imagePicker.editing = YES;
+    _imagePicker.delegate = self;
+    return _imagePicker;
+}
+
+#pragma mark 选择玩照片后的操作
+- (void)YBImagePickerDidFinishWithImages:(NSArray *)imageArray{
+    friendsSendVC = [[LYFriendsSendViewController alloc]initWithNibName:@"LYFriendsSendViewController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:friendsSendVC animated:YES];
+    /**
+     */
+//        [self YBImagePickerDidFinishWithImages:imageArray];
+    [_notificationDict setObject:imageArray forKey:@"info"];
+}
+
+#pragma mark imagepicker的代理方法
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    friendsSendVC = [[LYFriendsSendViewController alloc]initWithNibName:@"LYFriendsSendViewController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:friendsSendVC animated:YES];
+    /**
+     */
+//    self.friendsSendVC.typeOfImagePicker = self.typeOfImagePicker;
+//    [self.friendsSendVC imagePickerSpecificOperation:info];
+//    _notificationDict = [[NSMutableDictionary alloc]init];
+    [_notificationDict setObject:info forKey:@"info"];
+}
+
+
+#pragma mark 等待下一个页面load以后再进行操作
+- (void)FriendSendViewDidLoad{
+    if([_typeOfImagePicker isEqualToString:@"photos"]){
+        [friendsSendVC YBImagePickerDidFinishWithImages:[_notificationDict objectForKey:@"info"]];
+    }else if ([_typeOfImagePicker isEqualToString:@"takePhoto"] || [_typeOfImagePicker isEqualToString:@"filming"]){
+        friendsSendVC.typeOfImagePicker = self.typeOfImagePicker;
+        [friendsSendVC imagePickerSpecificOperation:[_notificationDict objectForKey:@"info"]];
+    }
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
       FriendsRecentModel *recentM = _dataArray[_index][button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
-    __block LYFriendsViewController *weakSelf = self;
+//    __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (result) {
             if([_likeStr isEqualToString:@"1"]){
@@ -328,34 +441,6 @@
         }
     }];
 }
-#pragma mark - UIActionSheetDelegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    switch (buttonIndex) {
-        case 0://拍照
-        {
-            
-        }
-            break;
-        case 1://相册
-        {
-            LYFriendsSendViewController *friendSendVC = [[LYFriendsSendViewController alloc]init];
-            [self showViewController:friendSendVC sender:nil];
-            
-           
-            
-        }
-            break;
-        case 2://短视频
-        {
-            
-        }
-            break;
-        default:
-            break;
-    }
-}
-
-
 
 #pragma mark - 更多赞
 - (void)likeMoreClick:(UIButton *)button{
