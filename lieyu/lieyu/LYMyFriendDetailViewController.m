@@ -35,8 +35,22 @@
             }
         }
         
+        
         _zhiwuLal.text=mytags;
     }
+    if(_customerModel.tag.count==0 && _customerModel.userTag.count>0){
+         NSMutableString *mytags=[[NSMutableString alloc] init];
+        for (int i=0; i<_customerModel.userTag.count; i++) {
+            if (i==_customerModel.userTag.count-1) {
+                [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]];
+            }else{
+                [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]];
+                [mytags appendString:@","];
+            }
+        }
+        _zhiwuLal.text=mytags;
+    }
+    
     
     if (![MyUtil isEmptyString:_customerModel.age]) {
         _age.text=_customerModel.age;

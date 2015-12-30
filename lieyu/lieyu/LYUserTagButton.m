@@ -27,7 +27,7 @@
     [self setBackgroundImage:[MyUtil getImageFromColor:RGB(114, 5, 147)] forState:UIControlStateSelected];
     [self setBackgroundImage:[MyUtil getImageFromColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     
-  //  [self addTarget:self action:@selector(selectedClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addTarget:self action:@selector(selectedClick:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)selectedClick:(UIButton *)button{

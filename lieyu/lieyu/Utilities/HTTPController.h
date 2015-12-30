@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
                       params:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block
                      success:(void (^)(id response))success
                      failure:(void (^)(NSError* err))failure;
+
 +(void) requestWihtMethod:(RequestMethodType)methodType url : (NSString *)url
                   baseURL:(NSString*)baseStr
                    params:(NSDictionary *)params

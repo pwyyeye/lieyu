@@ -214,7 +214,7 @@
 - (void)headerImgClick:(UIButton *)button{
     
         CustomerModel *customerM = [[CustomerModel alloc]init];
-        customerM.
+//        customerM.
 }
 
 #pragma mark - 表白action
