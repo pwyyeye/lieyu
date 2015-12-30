@@ -48,7 +48,8 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
                   failure:(void (^)(NSError *err))failure;
 //七牛上传图片
 +(void)uploadImageToQiuNiu:(UIImage *)image complete:(QNUpCompletionHandler)completionHandler;
-
+//七牛上传文件
++(BOOL)uploadFileToQiuNiu:(NSString *)filePath complete:(QNUpCompletionHandler)completionHandler;
 
 @property (nonatomic, assign) id<HTTPControllerProtocol> delegate ;
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withUrlName:(NSString *)name;

@@ -357,7 +357,7 @@
             if (![MyUtil isEmptyString:self.beerBarDetail.environment_num] ) {
                 _barTitleCell.barStar.value=self.beerBarDetail.environment_num.floatValue;
             }else{
-                _barTitleCell.barStar.value=3.0;
+                _barTitleCell.barStar.value=5.0;
             }
             NSString *priceStr;
             if (self.beerBarDetail.lowest_consumption==nil) {
