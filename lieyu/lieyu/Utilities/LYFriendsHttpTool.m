@@ -11,17 +11,18 @@
 #import "LYFriendsPageUrl.h"
 #import "FriendsRecentModel.h"
 #import "FriendsUserMessageModel.h"
+#import "FriendsCommentModel.h"
 
 @implementation LYFriendsHttpTool
 
 //获取最新的玩友圈动态
-+ (void)friendsGetRecentInfoWithParams:(NSDictionary *)params compelte:(void(^)(NSArray *dataArray))compelte{
++ (void)friendsGetRecentInfoWithParams:(NSDictionary *)params compelte:(void(^)(NSMutableArray *dataArray))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Recent baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
         NSArray *itemsArray = dictionary[@"items"];
-        NSArray *array = [FriendsRecentModel initFormNSArray:itemsArray];
+        NSMutableArray *array = [[NSMutableArray alloc]initWithArray:[FriendsRecentModel initFormNSArray:itemsArray]];
         compelte(array);
         [app stopLoading];
     } failure:^(NSError *err) {
@@ -32,12 +33,16 @@
 
 //获取指定用户的玩友圈动态
 + (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *))compelte{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_User baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
-        NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[FriendsRecentModel mj_objectArrayWithKeyValuesArray:dictionary[@"items"]]];
+        NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[FriendsRecentModel mj_objectArrayWithKeyValuesArray:dictionary[@"moments"]]];
         compelte(array);
+        [app stopLoading];
     }failure:^(NSError *err) {
-        
+        [MyUtil showMessage:@"请求失败"];
+        [app stopLoading];
     }];
 }
 
@@ -65,6 +70,9 @@
 + (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Comment baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------>%@",response[@"message"]);
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            compelte(YES);
+        }
     } failure:^(NSError *err) {
         
     }];
@@ -74,6 +82,7 @@
 + (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Send baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------->%@",response[@"message"]);
+       
     }failure:^(NSError *err) {
          
      }];
@@ -90,10 +99,14 @@
 }
 
 //获取动态评论
-+ (void)friendsGetMessageDetailAllCommentsWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
++ (void)friendsGetMessageDetailAllCommentsWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *commentArray))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_AllComments baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------->%@",response[@"message"]);
-        compelte(YES);
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            NSArray *dataArray = response[@"data"][@"items"];
+            NSMutableArray *commentArray  = [[NSMutableArray alloc] initWithArray:[FriendsCommentModel mj_objectArrayWithKeyValuesArray:dataArray]];
+            compelte(commentArray);
+        }
     }failure:^(NSError *err) {
         
     }];

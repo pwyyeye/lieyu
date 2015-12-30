@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FriendsRecentModel;
 
 @interface LYFriendsLikeDetailTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
-
+@property (nonatomic,strong) FriendsRecentModel *recentM;
 @end

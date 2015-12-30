@@ -21,7 +21,7 @@
 #import "MyMessageListViewController.h"//我的消息列表
 #import "LYUserHttpTool.h"
 #import "UserModel.h"
-
+#import "IQKeyboardManager.h"
 
 @interface LYUserCenterController ()
 
@@ -69,7 +69,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
 }
 -(void)loadData{
-    [self.collectionView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 更UI
+        [self.collectionView reloadData];
+    });
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -258,7 +262,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试 
             conversationVC.userName = @"猎娱客服";
             conversationVC.title = @"猎娱客服";
-            
+            [IQKeyboardManager sharedManager].enable = NO;
+            [IQKeyboardManager sharedManager].isAdd = YES;
             UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
             conversationVC.navigationItem.leftBarButtonItem = leftBtn;
             
@@ -282,6 +287,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 
 - (void)backForword{
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -104,16 +104,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(section == 3) return zsArr.count;
     return 1;
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (!zsArr.count) {
         return 4;
-    }
-    return zsArr.count + 3;
-    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

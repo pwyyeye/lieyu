@@ -42,7 +42,7 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
     if([USER_DEFAULT objectForKey:@"badgeValue"]!=nil){
         NSArray *items = self.tabBar.items;
-        UITabBarItem *item=[items objectAtIndex:2];
+        UITabBarItem *item=[items objectAtIndex:3];
         item.badgeValue=((NSString *)[USER_DEFAULT objectForKey:@"badgeValue"]);
     }
     
@@ -54,12 +54,16 @@
 
 -(void)tabbarChagne{
     //单独启动新线程
-    [NSThread detachNewThreadSelector:@selector(doChange) toTarget:self withObject:nil];
+//    [NSThread detachNewThreadSelector:@selector(doChange) toTarget:self withObject:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // 更UI
+        [self doChange];
+    });
 }
 
 -(void)doChange{
     NSArray *items = self.tabBar.items;
-    UITabBarItem *item=[items objectAtIndex:2];
+    UITabBarItem *item=[items objectAtIndex:3];
     
 //    if ([MyUtil isEmptyString:item.badgeValue]) {
 //        item.badgeValue=[NSString stringWithFormat:@"%d",1];
@@ -71,14 +75,15 @@
 //    }
     NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
     if (![MyUtil isEmptyString:count]) {
-        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue<99?count.intValue+1:99]  forKey:@"badgeValue"];
+        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue+1]  forKey:@"badgeValue"];
     }else{
         [USER_DEFAULT setObject:@"1" forKey:@"badgeValue"];
     }
     
     if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"badgeValue"]]) {
-        item.badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
-        [UIApplication sharedApplication].applicationIconBadgeNumber=item.badgeValue.integerValue;
+        NSString *badgeValue=(NSString *)[USER_DEFAULT objectForKey:@"badgeValue"];
+        item.badgeValue=badgeValue.intValue>99?@"99":badgeValue;
+        [UIApplication sharedApplication].applicationIconBadgeNumber=badgeValue.intValue>99?99:badgeValue.intValue;
     }else{
         item.badgeValue=nil;
         [UIApplication sharedApplication].applicationIconBadgeNumber=0;
@@ -96,28 +101,35 @@
 -(void)doComplete{
     NSString *delBadgeValue=[USER_DEFAULT objectForKey:@"delBadgeValue"];
     NSString *badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
-    if (![MyUtil isEmptyString:badgeValue]) {
+    NSArray *items= self.tabBar.items;
+    UITabBarItem *item=[items objectAtIndex:3];
+    
+    if (![MyUtil isEmptyString:badgeValue]) {//判断角标是否存在 －－存在
+        //减去已读角标
         if (![MyUtil isEmptyString:delBadgeValue]) {
             int result=badgeValue.intValue-delBadgeValue.intValue;
             //比对已读和未读
             result<=0?[USER_DEFAULT removeObjectForKey:@"badgeValue"]:[USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",result] forKey:@"badgeValue"];
             [USER_DEFAULT removeObjectForKey:@"delBadgeValue"];
         }
+        
+        //根据计算结果算出新角标数量
         if ([USER_DEFAULT objectForKey:@"badgeValue"]) {
-             [UIApplication sharedApplication].applicationIconBadgeNumber=((NSString *)[USER_DEFAULT objectForKey:@"badgeValue"]).intValue;
+            NSString *badgeValue=(NSString *)[USER_DEFAULT objectForKey:@"badgeValue"];
+            //设置应用icon角标
+            [UIApplication sharedApplication].applicationIconBadgeNumber=badgeValue.intValue>99?99:badgeValue.intValue;
+            //设置发现角标
+            item.badgeValue=badgeValue.intValue>99?@"99":badgeValue;
         }else{
             [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+            item.badgeValue=nil;
         }
        
-    }else{
+    }else{//--不存在
         [USER_DEFAULT removeObjectForKey:@"badgeValue"];
         [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+        item.badgeValue=nil;
     }
-//    [USER_DEFAULT removeObjectForKey:@"badgeValue"];
-    
-    NSArray *items= self.tabBar.items;
-    UITabBarItem *item=[items objectAtIndex:2];
-    item.badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
     
     
 }
@@ -208,7 +220,7 @@
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     NSLog(@"----pass-tabBarController%d---",self.selectedIndex);
-    if (self.selectedIndex==2||self.selectedIndex==3) {
+    if (self.selectedIndex==2||self.selectedIndex==3||self.selectedIndex==4) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if([MyUtil isEmptyString:app.s_app_id]){
             LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];

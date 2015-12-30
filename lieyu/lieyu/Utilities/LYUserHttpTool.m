@@ -68,7 +68,39 @@
     } failure:^(NSError *err) {
     }];
 }
+#pragma mark - 获取远程版本 判断是否强制升级
+-(void) getAppUpdateStatus:(NSDictionary*)params
+                  complete:(void (^)(BOOL result))result{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FORCED_UPDATE baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if ([code isEqualToString:@"1"]) {
+            NSDictionary *dataDic = response[@"data"];
+            NSString *forced_update=[dataDic objectForKey:@"forced_update"];
+            NSString *version=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+            NSString *remote_version=[dataDic objectForKey:@"version"];
+            BOOL b=NO;
+            //对比班底
+            if (![MyUtil isEmptyString:remote_version]) {
+                if (version.floatValue!=remote_version.floatValue) {
+                    b=YES;
+                }
+            }
+            if (![MyUtil isEmptyString:forced_update]&&forced_update.intValue==1 &&b) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    result(YES);
+                });
+            }else{
+                result(NO);
+            }
+            
+        }else{
+            result(NO);
+        }
+    } failure:^(NSError *err) {
+    }];
 
+}
 
 #pragma mark - 登出
 -(void) userLogOutWithParams:(NSDictionary*)params
