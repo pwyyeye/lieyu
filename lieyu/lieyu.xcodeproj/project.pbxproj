@@ -471,6 +471,7 @@
 		853C4C9C1C312AA100D48BA2 /* haoyou_biaobai.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C4C991C312AA100D48BA2 /* haoyou_biaobai.png */; };
 		853C4C9D1C312AA100D48BA2 /* haoyou_biaobai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C4C9A1C312AA100D48BA2 /* haoyou_biaobai@2x.png */; };
 		853C4C9E1C312AA100D48BA2 /* haoyou_biaobai@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C4C9B1C312AA100D48BA2 /* haoyou_biaobai@3x.png */; };
+		853C4CBE1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C4CBD1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m */; };
 		8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */; };
 		8540B6631C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */; };
 		8540B6671C2CE18700F16463 /* LYFriendsImgOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6651C2CE18700F16463 /* LYFriendsImgOneTableViewCell.m */; };
@@ -512,6 +513,10 @@
 		8547274A1C19C6CA0048CEDC /* icon_collect2.png in Resources */ = {isa = PBXBuildFile; fileRef = 854727441C19C6CA0048CEDC /* icon_collect2.png */; };
 		8547274B1C19C6CA0048CEDC /* icon_collect2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 854727451C19C6CA0048CEDC /* icon_collect2@2x.png */; };
 		8547274C1C19C6CA0048CEDC /* icon_collect2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 854727461C19C6CA0048CEDC /* icon_collect2@3x.png */; };
+		854CC9851C325B8C00A6CA60 /* LYFriendsChangeImageMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 854CC9841C325B8C00A6CA60 /* LYFriendsChangeImageMenuView.m */; };
+		854CC9871C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854CC9861C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib */; };
+		854CC98C1C32624D00A6CA60 /* LYChangeImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 854CC98A1C32624D00A6CA60 /* LYChangeImageViewController.m */; };
+		854CC98D1C32624D00A6CA60 /* LYChangeImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 854CC98B1C32624D00A6CA60 /* LYChangeImageViewController.xib */; };
 		8550E70B1C2FC11C001FF2DE /* LYFriendsCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8550E70A1C2FC11C001FF2DE /* LYFriendsCommentView.m */; };
 		8550E70D1C2FC130001FF2DE /* LYFriendsCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8550E70C1C2FC130001FF2DE /* LYFriendsCommentView.xib */; };
 		8550E7131C301740001FF2DE /* LYFriendsMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8550E7111C301740001FF2DE /* LYFriendsMessageDetailViewController.m */; };
@@ -1633,6 +1638,8 @@
 		853C4C991C312AA100D48BA2 /* haoyou_biaobai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haoyou_biaobai.png; sourceTree = "<group>"; };
 		853C4C9A1C312AA100D48BA2 /* haoyou_biaobai@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haoyou_biaobai@2x.png"; sourceTree = "<group>"; };
 		853C4C9B1C312AA100D48BA2 /* haoyou_biaobai@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haoyou_biaobai@3x.png"; sourceTree = "<group>"; };
+		853C4CBC1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsImgTableViewCell.h; sourceTree = "<group>"; };
+		853C4CBD1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsImgTableViewCell.m; sourceTree = "<group>"; };
 		853DB5EB1C12C19B004227BA /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
 		853DB5EC1C12C19B004227BA /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
 		853E3A121C15232A0088CD86 /* bartypeslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bartypeslistModel.h; sourceTree = "<group>"; };
@@ -1705,6 +1712,12 @@
 		854727441C19C6CA0048CEDC /* icon_collect2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_collect2.png; sourceTree = "<group>"; };
 		854727451C19C6CA0048CEDC /* icon_collect2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@2x.png"; sourceTree = "<group>"; };
 		854727461C19C6CA0048CEDC /* icon_collect2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@3x.png"; sourceTree = "<group>"; };
+		854CC9831C325B8C00A6CA60 /* LYFriendsChangeImageMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsChangeImageMenuView.h; sourceTree = "<group>"; };
+		854CC9841C325B8C00A6CA60 /* LYFriendsChangeImageMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsChangeImageMenuView.m; sourceTree = "<group>"; };
+		854CC9861C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYFriendsChangeImageMenuView.xib; sourceTree = "<group>"; };
+		854CC9891C32624D00A6CA60 /* LYChangeImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYChangeImageViewController.h; sourceTree = "<group>"; };
+		854CC98A1C32624D00A6CA60 /* LYChangeImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYChangeImageViewController.m; sourceTree = "<group>"; };
+		854CC98B1C32624D00A6CA60 /* LYChangeImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYChangeImageViewController.xib; sourceTree = "<group>"; };
 		8550E7091C2FC11C001FF2DE /* LYFriendsCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsCommentView.h; sourceTree = "<group>"; };
 		8550E70A1C2FC11C001FF2DE /* LYFriendsCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsCommentView.m; sourceTree = "<group>"; };
 		8550E70C1C2FC130001FF2DE /* LYFriendsCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYFriendsCommentView.xib; sourceTree = "<group>"; };
@@ -3897,6 +3910,9 @@
 				8550E7091C2FC11C001FF2DE /* LYFriendsCommentView.h */,
 				8550E70A1C2FC11C001FF2DE /* LYFriendsCommentView.m */,
 				8550E70C1C2FC130001FF2DE /* LYFriendsCommentView.xib */,
+				854CC9831C325B8C00A6CA60 /* LYFriendsChangeImageMenuView.h */,
+				854CC9841C325B8C00A6CA60 /* LYFriendsChangeImageMenuView.m */,
+				854CC9861C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3904,6 +3920,7 @@
 		8540B65D1C2CD68C00F16463 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				854CC9881C32622400A6CA60 /* 更该相册封面 */,
 				853C4C401C30E2F400D48BA2 /* 好友动态 */,
 				8550E70F1C301719001FF2DE /* 消息详情 */,
 				8545385B1C2D3DD80020AC2C /* 消息 */,
@@ -3920,6 +3937,8 @@
 				8540B65F1C2CD8E200F16463 /* LYFriendsNameTableViewCell.h */,
 				8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */,
 				8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */,
+				853C4CBC1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.h */,
+				853C4CBD1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m */,
 				8540B6641C2CE18700F16463 /* LYFriendsImgOneTableViewCell.h */,
 				8540B6651C2CE18700F16463 /* LYFriendsImgOneTableViewCell.m */,
 				8540B6661C2CE18700F16463 /* LYFriendsImgOneTableViewCell.xib */,
@@ -3963,6 +3982,16 @@
 				8545385E1C2D3E1B0020AC2C /* LYFriendsMessageViewController.xib */,
 			);
 			name = "消息";
+			sourceTree = "<group>";
+		};
+		854CC9881C32622400A6CA60 /* 更该相册封面 */ = {
+			isa = PBXGroup;
+			children = (
+				854CC9891C32624D00A6CA60 /* LYChangeImageViewController.h */,
+				854CC98A1C32624D00A6CA60 /* LYChangeImageViewController.m */,
+				854CC98B1C32624D00A6CA60 /* LYChangeImageViewController.xib */,
+			);
+			name = "更该相册封面";
 			sourceTree = "<group>";
 		};
 		8550E70F1C301719001FF2DE /* 消息详情 */ = {
@@ -5784,6 +5813,7 @@
 				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
 				389C010A1C1488F000FE9412 /* seeGirls@3x.png in Resources */,
 				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
+				854CC9871C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib in Resources */,
 				85F5453E1C1408040013B92B /* circleWhiteSelect.png in Resources */,
 				15E240D71BB3E8610090D240 /* MyPKfriendCell.xib in Resources */,
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
@@ -6015,6 +6045,7 @@
 				38E5D7AB1C113879004B49D2 /* purper_add@3x.png in Resources */,
 				AD92AE9C1BE1D339009F2A34 /* lieyu_default_female@2x.png in Resources */,
 				ADFFA6D01C181ED800D9BD2A /* refresh9@2x.png in Resources */,
+				854CC98D1C32624D00A6CA60 /* LYChangeImageViewController.xib in Resources */,
 				15B866991BE0C183002E2BB6 /* MessageCell.xib in Resources */,
 				ADFFA6A01C181A7200D9BD2A /* 2_retina.jpg in Resources */,
 				A2FD57631BAFE6C000CFFF92 /* CaoCanCell.xib in Resources */,
@@ -6234,6 +6265,7 @@
 				ADF88E9E1C1197C400CF5DED /* MJRefreshBackFooter.m in Sources */,
 				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
 				38E5D6D11C0EC2DA004B49D2 /* LPAlertView.m in Sources */,
+				854CC9851C325B8C00A6CA60 /* LYFriendsChangeImageMenuView.m in Sources */,
 				A2FD577D1BAFE97000CFFF92 /* FBTaoCanSectionBottom.m in Sources */,
 				15E184961BB52CA200681BB2 /* JiuBaModel.m in Sources */,
 				1559DD031BDA24EB00F3FE9B /* CarModel.m in Sources */,
@@ -6340,6 +6372,7 @@
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
 				15FD2AA11BD5EC8900D66920 /* TimeButton.m in Sources */,
+				853C4CBE1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m in Sources */,
 				15E240581BB101340090D240 /* ZSAddStocksViewController.m in Sources */,
 				15E240AF1BB39DC50090D240 /* OrderDetailSectionBottomView.m in Sources */,
 				15A4CF571BD86AEC00C22C01 /* CHshowDetailListViewController.m in Sources */,
@@ -6481,6 +6514,7 @@
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
 				8518066A1C2E284100006804 /* FriendsCommentModel.m in Sources */,
 				3879F2521C0D329600B72629 /* AddressTableViewCell.m in Sources */,
+				854CC98C1C32624D00A6CA60 /* LYChangeImageViewController.m in Sources */,
 				85F6258B1C0BE74E002858C8 /* LYHotBarMenuViewController.m in Sources */,
 				15EB35071BD1F51200BA6161 /* PTTaoCanCell.m in Sources */,
 				851806701C2E295200006804 /* FriendsPicAndVideoModel.m in Sources */,

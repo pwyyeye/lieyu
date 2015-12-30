@@ -12,7 +12,7 @@
 
 @interface LYFriendsHttpTool : NSObject
 //获取最新的玩友圈动态
-+ (void)friendsGetRecentInfoWithParams:(NSDictionary *)params compelte:(void(^)(NSArray *dataArray))compelte;
++ (void)friendsGetRecentInfoWithParams:(NSDictionary *)params compelte:(void(^)(NSMutableArray *dataArray))compelte;
 //获取我的的玩友圈动态
 + (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *))compelte;
 //获取我的的玩友圈消息
@@ -25,4 +25,6 @@
 + (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
 //删除我的动态
 + (void)friendsDeleteMyMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
+//获取动态评论
++ (void)friendsGetMessageDetailAllCommentsWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *commentArray))compelte;
 @end

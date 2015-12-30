@@ -10,11 +10,19 @@
 #import "LYFriendsHeaderTableViewCell.h"
 #import "LYFriendsLikeDetailTableViewCell.h"
 #import "LYFriendsHttpTool.h"
+#import "FriendsRecentModel.h"
+#import "LYFriendsCommentDetailTableViewCell.h"
+#import "FriendsCommentModel.h"
 
 #define LYFriendsHeaderCellID @"LYFriendsHeaderTableViewCell"
 #define LYFriendsLikeDetailCellID @"LYFriendsLikeDetailTableViewCell"
+#define LYFriendsCommentDetailCellID @"LYFriendsCommentDetailTableViewCell"
 
 @interface LYFriendsMessageDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    NSMutableArray *_dataArray;
+    NSInteger _indexStart;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -31,24 +39,36 @@
 }
 
 - (void)setupAllProperty{
+    _indexStart = 1;
     [self getData];
+    self.tableView.tableFooterView = [[UIView alloc]init];
+    self.title = @"消息详情";
 }
 
 - (void)getData{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     __block LYFriendsMessageDetailViewController *weakSelf = self;
-
+    NSDictionary *paraDic = @{@"userId":userIdStr,@"messageId":_recentM.id};
+    [LYFriendsHttpTool friendsGetMessageDetailAllCommentsWithParams:paraDic compelte:^(NSMutableArray *commentArray) {
+        _dataArray = commentArray;
+         if(_dataArray.count)   [weakSelf.tableView reloadData];
+    }];
 }
 
 - (void)setupTableView{
-    NSArray *cellIDArray = @[LYFriendsHeaderCellID,LYFriendsLikeDetailCellID];
+    NSArray *cellIDArray = @[LYFriendsHeaderCellID,LYFriendsLikeDetailCellID,LYFriendsCommentDetailCellID];
     for (NSString *cellID in cellIDArray) {
         [self.tableView registerNib:[UINib nibWithNibName:cellID bundle:nil] forCellReuseIdentifier:cellID];
     }
 }
 
-#pragma mark -
+#pragma mark - UITableViewDataSource,UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    NSInteger likeCount ;
+    likeCount = _recentM.likeNum.integerValue == 0 ? 0 : 1;
+    NSLog(@"---->%ld",_dataArray.count);
+    return 1 + likeCount + _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -61,11 +81,33 @@
             return headerCell;
         }
             break;
-            
+
         default:{
-        
-            LYFriendsLikeDetailTableViewCell *likeCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsLikeDetailCellID forIndexPath:indexPath];
-            return likeCell;
+            
+            if(_recentM.likeNum.integerValue){
+                _indexStart = 2;
+                if (indexPath.row == 1) {
+                LYFriendsLikeDetailTableViewCell *likeCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsLikeDetailCellID forIndexPath:indexPath];
+                likeCell.recentM = _recentM;
+                return likeCell;
+                }
+            }
+            
+            FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
+            LYFriendsCommentDetailTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCommentDetailCellID forIndexPath:indexPath];
+            commentCell.imageView_comment.hidden = YES;
+            if (_indexStart == 1) {
+                if (indexPath.row == 1) {
+                    commentCell.imageView_comment.hidden = NO;
+                }
+            }else{
+                if (indexPath.row == 2) {
+                    commentCell.imageView_comment.hidden = NO;
+                }
+            }
+            commentCell.commentModel = commentModel;
+            return commentCell;
+            
         }
             break;
     }
@@ -74,13 +116,46 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
-        case 0:
-            return 189;
+        case 0:{
+            CGSize size = [_recentM.message boundingRectWithSize:CGSizeMake(260, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11]} context:nil].size;
+            return 129 + size.height;
+            }
             break;
-
             
         default:
-            return 82;
+            if (_recentM.commentNum.integerValue) {
+                _indexStart = 2;
+                if (indexPath.row == 1) {
+                    return  _recentM.commentNum.integerValue <= 8 ? 42 : 82;
+                }
+            }
+            NSLog(@"------>%ld",indexPath.row);
+            FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
+            NSString *string = [NSString stringWithFormat:@"%@:%@",commentModel.nickName,commentModel.comment];
+            CGSize size = [string boundingRectWithSize:CGSizeMake(235, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            return size.height >= 34 ? size.height + 14 : 34;
+            break;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+        {
+            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+        }
+            break;
+            
+        default:
+        {
+            if (_recentM.likeNum.integerValue) {
+                if(indexPath.row == 1){
+                    cell.separatorInset = UIEdgeInsetsMake(0, 14, 0, 14);
+                    return;
+                }
+            }
+            cell.separatorInset = UIEdgeInsetsMake(0, 34, 0, 14);
+        }
             break;
     }
 }

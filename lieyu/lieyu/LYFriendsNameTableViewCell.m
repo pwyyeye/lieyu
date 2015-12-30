@@ -15,6 +15,8 @@
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    _label_constellation.hidden = YES;
+    _label_work.hidden = YES;
 }
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{
@@ -26,7 +28,8 @@
     [_label_time setText:recentM.date];
     [_label_content setText:recentM.message];
     
-    _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
+    if([MyUtil getAstroWithBirthday:recentM.birthday]) _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
+    
     NSLog(@"---->%@",[MyUtil getAstroWithBirthday:recentM.birthday]);
 //    _label_work
 }
