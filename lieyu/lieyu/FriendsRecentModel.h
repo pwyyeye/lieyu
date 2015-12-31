@@ -24,7 +24,7 @@
 @property (nonatomic,copy) NSString *imUserId;
 @property (nonatomic,copy) NSString *introduction;
 @property (nonatomic,copy) NSString *isAttention;
-@property (nonatomic,strong) NSArray *likeList;
+@property (nonatomic,strong) NSMutableArray *likeList;
 @property (nonatomic,copy) NSString *likeNum;
 @property (nonatomic,copy) NSString *liked;
 @property (nonatomic,copy) NSString *location;
@@ -34,5 +34,6 @@
 @property (nonatomic,copy) NSString *userId;
 @property (nonatomic,copy) NSString *username;
 @property (nonatomic,copy) NSString *usernick;
+@property (nonatomic,copy) NSString *friends_img;
 +(NSArray *)initFormNSArray:(NSArray *)arr;
 @end

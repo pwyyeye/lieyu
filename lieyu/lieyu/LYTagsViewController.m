@@ -30,6 +30,7 @@ static NSString *cellIdentifier = @"cell";
     UIBarButtonItem *rightItem=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(makeSure)];
     [self.navigationItem setRightBarButtonItem:rightItem];
     [self getData];
+    self.title = @"我的标签";
 }
 
 - (void)getData{

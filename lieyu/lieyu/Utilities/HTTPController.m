@@ -384,6 +384,7 @@
     }
 
 }
+
 //七牛上传图片
 +(void)uploadImageToQiuNiu:(UIImage *)image complete:(QNUpCompletionHandler)completionHandler{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];

@@ -21,7 +21,7 @@
                             <constraint firstAttribute="width" constant="12" id="fqZ-T8-UX7"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-dc-DES">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-dc-DES" customClass="LYFriendsCommentButton">
                         <rect key="frame" x="35" y="5" width="26" height="26"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="26" id="40D-ui-XM1"/>
@@ -47,7 +47,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="btn_headerImg" destination="hDf-dc-DES" id="bj6-Lm-s9Y"/>
+                <outlet property="btn_headerImg" destination="hDf-dc-DES" id="ghn-hb-aEz"/>
                 <outlet property="imageV_comment" destination="og9-JM-rfO" id="7XX-AF-0Pe"/>
                 <outlet property="label_comment" destination="2a1-5q-Rjt" id="tDd-uh-bWN"/>
             </connections>

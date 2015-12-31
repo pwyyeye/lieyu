@@ -32,6 +32,8 @@
 #import "LYFriendsImgTableViewCell.h"
 #import "LYFriendsChangeImageMenuView.h"
 #import "LYChangeImageViewController.h"
+#import "LYFriendsCommentButton.h"
+#import "FriendsLikeModel.h"
 
 #import "YBImgPickerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
@@ -72,7 +74,11 @@
     NSInteger _pageStartCountFriends;//开始的数量
     NSInteger _pageStartCountMys;//开始的数量
     NSInteger _pageCount;//每页数
-    LYFriendsSendViewController *friendsSendVC;
+    BOOL _isFriendsPageUpLoad;//是否玩友圈上拉加载
+    BOOL _isMysPageUpLoad;//是否我的圈上拉加载
+    NSString *_userBgImageUrl;//用户上传的个人背景图
+    NSInteger _indexRow;//表的那一行
+    BOOL _isCommentToUser;//是否对用户评论
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -110,6 +116,7 @@
     _pageCount = 10;
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self getDataFriends];
+      
 }
 
 - (void)setupTableView{
@@ -147,12 +154,14 @@
         switch (_index) {
             case 0:
             {
+                _isFriendsPageUpLoad = YES;
                 [self getDataFriends];
             }
                 break;
                 
             default:
             {
+               _isMysPageUpLoad = YES;
                 [self getDataMys];
             }
                 break;
@@ -196,10 +205,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    _index = 0;
-   [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].enable = NO;
     [self setupNavMenuView];
     
+    if(_dataArray.count){
+    if(((NSArray *)_dataArray[_index]).count) [self.tableView reloadData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -239,9 +250,11 @@
                     [muArr addObjectsFromArray:dataArray];
                 }
             }
-            [weakSelf reloadTableViewAndSetUpProperty];
-             _pageStartCountFriends ++;
+        }else{
+            if(_isFriendsPageUpLoad)  [MyUtil showPlaceMessage:@"暂无更多数据,赶紧去点击头像，添加好友，随时相约!"]; _isFriendsPageUpLoad = NO;
         }
+        [weakSelf reloadTableViewAndSetUpProperty];
+        _pageStartCountFriends ++;
     }];
 }
 
@@ -268,6 +281,7 @@
         }else{
             NSArray *array = [NSArray array];
             [_dataArray addObject:array];
+            if(_isMysPageUpLoad) [MyUtil showPlaceMessage:@"暂无更多数据,去看看玩友圈最新动态!"]; _isMysPageUpLoad = NO;
         }
         [weakSelf reloadTableViewAndSetUpProperty];
         [weakSelf addTableViewHeader];
@@ -313,7 +327,7 @@
 - (void)addTableViewHeader{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
-    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 277);
+    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 277 + 140);
     [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] forState:UIControlStateNormal ];
     _headerView.label_name.text = app.userModel.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
@@ -323,8 +337,8 @@
     [self updateViewConstraints];
     
     NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
-    _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
-    
+    if(imageData)    _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
+    else [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",@"http://source.lie98.com/",_userBgImageUrl]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     _headerView.ImageView_bg.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseBgImage)];
     [_headerView.ImageView_bg addGestureRecognizer:tapGes];
@@ -479,22 +493,41 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
       FriendsRecentModel *recentM = _dataArray[_index][button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
 //    __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
-        if (result) {
-            if([_likeStr isEqualToString:@"1"]){
-                _likeStr = @"0";
-            }else{
-                _likeStr = @"1";
+        if([_likeStr isEqualToString:@"1"]){
+            _likeStr = @"0";
+        }else{
+            _likeStr = @"1";
+        }
+        if (result) {//点赞成功
+            FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
+            likeModel.icon = app.userModel.avatar_img;
+            likeModel.userId = _useridStr;
+            [recentM.likeList insertObject:likeModel atIndex:0];
+        }else{
+            for (FriendsLikeModel *likeM in recentM.likeList) {
+                if ([likeM.userId isEqualToString:_useridStr]) {
+                    [recentM.likeList removeObject:likeM];
+                }
             }
         }
+        [weakSelf.tableView reloadData];
     }];
 }
 
 #pragma mark - 评论action
 - (void)commentClick:(UIButton *)button{
+    _commentBtnTag = button.tag;
+    _isCommentToUser = NO;
+    [self createCommentView];
+}
+
+#pragma mark － 创建commentView
+- (void)createCommentView{
     _bigView = [[UIView alloc]init];
     _bigView.frame = self.view.bounds;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
@@ -509,7 +542,6 @@
     
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
-    _commentBtnTag = button.tag;
     
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 49 - 52, SCREEN_WIDTH, 49);
@@ -520,28 +552,44 @@
 
 - (void)bigViewGes{
     [_bigView removeFromSuperview];
+    
 }
 
 #pragma mark - UITextFieldDelegate
-- (void)textFieldDidEndEditing:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [_bigView removeFromSuperview];
-    if(!_commentView.textField.text.length) return;
-    FriendsRecentModel *recentM = _dataArray[_index][_commentBtnTag];
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":@"",@"comment":_commentView.textField.text};
+    [textField endEditing:YES];
+    if(!_commentView.textField.text.length) return NO;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    FriendsRecentModel *recentM = nil;
+    NSString *toUserId = nil;
+    if (_isCommentToUser) {
+        recentM = _dataArray[_index][_section];
+        FriendsCommentModel *commentModel = recentM.commentList[_indexRow - 4];
+        toUserId = commentModel.userId;
+    }else{
+        recentM = _dataArray[_index][_commentBtnTag];
+        toUserId = @"";
+    }
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl) {
         if (resutl) {
             NSLog(@"--->%ld",recentM.commentList.count + 2);
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
-            commentModel.icon = recentM.avatar_img;
-            commentModel.nickName = recentM.usernick;
+            commentModel.icon = app.userModel.avatar_img;
+            commentModel.nickName = app.userModel.usernick;
+            commentModel.userId = _useridStr;
+            if(toUserId.length) commentModel.toUserId = toUserId;
+            else commentModel.toUserId = @"0";
             [recentM.commentList addObject:commentModel];
             NSLog(@"------%ld->%ld",_commentBtnTag,recentM.commentList.count + 2);
-            [weakSelf.tableView reloadData];
           //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
+            [weakSelf.tableView reloadData];
         }
     }];
+    return YES;
 }
 
 #pragma mark - 查看图片
@@ -599,7 +647,7 @@
 }
 
 
-#pragma mark － 删除我的评论
+#pragma mark － 删除我的动态
 - (void)deleteClick:(UIButton *)button{
     NSMutableArray *array = _dataArray[_index];
     FriendsRecentModel *recentM = array[button.tag];
@@ -622,8 +670,9 @@
             {
                 LYChangeImageViewController *changeImageVC = [[LYChangeImageViewController alloc]init];
                 [self.navigationController pushViewController:changeImageVC animated:YES];
-                [changeImageVC setPassImage:^(UIImage *image) {
+                [changeImageVC setPassImage:^(NSString *imageurl,UIImage *image) {
                     _headerView.ImageView_bg.image = image;
+                    _userBgImageUrl = imageurl;
                     NSData *imageData = UIImagePNGRepresentation(image);
                     [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"FriendUserBgImage"];
                 }];
@@ -633,21 +682,109 @@
             default:
                 break;
         }
-    }else {
-        if (buttonIndex == 0)
-        {
-            [self takePhotoActionClick];
-        }else if(buttonIndex == 1){
-            [self photosActionClick];
-        }else{
-            [self filmingActionClick];
+    }else if(actionSheet.tag == 100){
+        switch (buttonIndex) {
+            case 0://拍照
+            {
+                
+            }
+                break;
+            case 1://相册
+            {
+                LYFriendsSendViewController *friendSendVC = [[LYFriendsSendViewController alloc]init];
+                [self showViewController:friendSendVC sender:nil];
+                
+            }
+                break;
+            case 2://短视频
+            {
+                
+            }
+                break;
+            default:
+                break;
         }
+    }else if(actionSheet.tag == 300){
+        if (!buttonIndex) {//删除我的评论
+            NSLog(@"---->%ld-----",((NSArray *)_dataArray).count);
+            FriendsRecentModel *recetnM = _dataArray[_index][_section];
+            NSLog(@"---->%ld-----%ld",_indexRow,recetnM.commentList.count);
+            FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
+//            NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.};
+//            [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
+//                
+//            }];
+        }
+    }
+}
+
+#pragma mark - 赞的人头像
+- (void)zangBtnClick:(UIButton *)button{
+    NSInteger section = -1;
+    NSInteger i = -1;
+    switch (button.tag%7) {
+        case 1:
+        {
+            section = (button.tag + 6) / 7  - 1;
+            i = 0;
+        }
+            break;
+        case 2:
+        {
+            section = (button.tag + 5) / 7 - 1;
+             i = 1;
+        }
+            break;
+        case 3:
+        {
+            section = (button.tag + 4) / 7 - 1;
+             i = 2;
+        }
+            break;
+        case 4:
+        {
+            section = (button.tag + 3) / 7 - 1;
+             i = 3;
+        }
+            break;
+        case 5:
+        {
+            section = (button.tag + 2) / 7 - 1;
+             i = 4;
+        }
+            break;
+        case 6:
+        {
+            section = (button.tag + 1) / 7 - 1;
+             i = 5;
+        }
+            break;
+        case 0:
+        {
+            section = button.tag / 7 - 1;
+             i = 6;
+        }
+             break;
+    }
+    if(section >=0 && i>=0){
+    FriendsRecentModel *recentM = _dataArray[_index][section];
+    FriendsLikeModel *likeM = recentM.likeList[i];
+    LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
+    messageVC.friendsId = likeM.userId;
+    [self.navigationController pushViewController:messageVC animated:YES];
     }
 }
 
 #pragma mark - 更多赞
 - (void)likeMoreClick:(UIButton *)button{
-    FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+    [self pushFriendsMessageDetailVCWithIndex:button.tag];
+}
+
+
+
+#pragma mark － 跳转消息详情页面
+- (void)pushFriendsMessageDetailVCWithIndex:(NSInteger)index{
+    FriendsRecentModel *recentM = _dataArray[_index][index];
     LYFriendsMessageDetailViewController *messageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
     messageDetailVC.recentM = recentM;
     [self.navigationController pushViewController:messageDetailVC animated:YES];
@@ -761,6 +898,12 @@
                         likeCell.btn_more.tag = indexPath.section;
                         [likeCell.btn_more addTarget:self action:@selector(likeMoreClick:) forControlEvents:UIControlEventTouchUpInside];
                         likeCell.recentM = recentM;
+                        for (int i = 0; i< likeCell.btnArray.count; i ++) {
+                            UIButton *btn = likeCell.btnArray[i];
+                            btn.tag = likeCell.btnArray.count * (indexPath.section + 1) - 7 + i +1;
+                            [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+                        }
+                        if(recentM.likeList.count <= 8) likeCell.btn_more.hidden = YES;
                         return likeCell;
                     }
                     else{
@@ -769,7 +912,7 @@
                     }
                 }
                     break;
-                case 9:
+                case 9://无赞时为评论 有赞为赞
                 {
                     if (recentM.commentNum.integerValue >= 6) {
                         LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
@@ -792,6 +935,9 @@
                     }else{
                         commentCell.imageV_comment.hidden = YES;
                     }
+                    commentCell.btn_headerImg.tag = indexPath.section;
+                    commentCell.btn_headerImg.indexTag = indexPath.row;
+                    [commentCell.btn_headerImg addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
                     commentCell.commentM = commentModel;
                     return commentCell;
                 }
@@ -843,7 +989,7 @@
             break;
         case 3://评论
         {
-             NSInteger count = recentM.likeNum.integerValue;
+             NSInteger count = recentM.likeList.count;
             return count == 0 ? 0 : 46;
         }
             break;
@@ -870,13 +1016,38 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _section = indexPath.section;
+    FriendsRecentModel *recentM = _dataArray[_index][indexPath.section];
+    if (indexPath.row >= 4 && indexPath.row <= 8) {
+        _indexRow = indexPath.row;
+        FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
+        if (![commetnM.userId isEqualToString:_useridStr]) {//我发的评论
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
+            actionSheet.tag = 300;
+            [actionSheet showInView:self.view];
+        }else{//别人发的评论
+            _isCommentToUser = YES;
+            [self createCommentView];
+        }
+    }else if(indexPath.row == 9){
+        [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+    }
 }
 
 #pragma mark - 点击头像跳转到指定用户界面
 - (void)pushUserMessagePage:(UIButton *)button{
     FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+//    if([recentM.userId isEqualToString:_useridStr]) return;
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsUserMegVC.friendsId = recentM.userId;
+    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
+}
+
+#pragma mark － 评论点击头像跳转到指定用户界面
+- (void)pushUserPage:(LYFriendsCommentButton *)button{
+    FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+    FriendsCommentModel *commentModel = recentM.commentList[button.indexTag - 4];
+    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
+    friendsUserMegVC.friendsId = commentModel.userId;
     [self.navigationController pushViewController:friendsUserMegVC animated:YES];
 }
 

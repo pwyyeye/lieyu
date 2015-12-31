@@ -29,6 +29,9 @@
 //删除我的动态
 #define LY_Friends_DeleteMyMessage @"lyMomentsAction.do?action=delete"
 
+//删除我的评论
+#define LY_Friends_DeleteMyComment @"lyMomentCommentAction.do?action=delete"
+
 //获取所有评论
 #define LY_Friends_AllComments @"lyMomentCommentAction.do?action=list"
 

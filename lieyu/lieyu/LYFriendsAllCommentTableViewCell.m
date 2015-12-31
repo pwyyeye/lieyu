@@ -18,7 +18,7 @@
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
-    _label_commentCount.text = [NSString stringWithFormat:@"查看全部%@条评论...",recentM.commentNum];
+    _label_commentCount.text = [NSString stringWithFormat:@"查看全部%ld条评论...",recentM.commentList.count];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
