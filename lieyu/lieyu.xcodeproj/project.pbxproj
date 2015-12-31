@@ -489,7 +489,6 @@
 		853C4C9D1C312AA100D48BA2 /* haoyou_biaobai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C4C9A1C312AA100D48BA2 /* haoyou_biaobai@2x.png */; };
 		853C4C9E1C312AA100D48BA2 /* haoyou_biaobai@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C4C9B1C312AA100D48BA2 /* haoyou_biaobai@3x.png */; };
 		853C4CBE1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C4CBD1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m */; };
-		853D3AAC1C34C97D00B4FEAD /* LYZSApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184811BB51A9500681BB2 /* LYZSApplicationViewController.m */; };
 		853D3AB21C34CCC200B4FEAD /* LYFriendsChooseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 853D3AB11C34CCC200B4FEAD /* LYFriendsChooseLocationViewController.m */; };
 		853D3AB31C34CED500B4FEAD /* AMapSearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EE91A11C3405C500361D07 /* AMapSearchKit.framework */; };
 		8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */; };
@@ -741,6 +740,8 @@
 		AD078C751C33CDE800A056D1 /* iphoneIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C721C33CDE800A056D1 /* iphoneIcon.png */; };
 		AD078C761C33CDE800A056D1 /* iphoneIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C731C33CDE800A056D1 /* iphoneIcon@2x.png */; };
 		AD078C771C33CDE800A056D1 /* iphoneIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C741C33CDE800A056D1 /* iphoneIcon@3x.png */; };
+		AD078C8B1C34D17E00A056D1 /* LYZSApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD078C8A1C34D17E00A056D1 /* LYZSApplicationViewController.m */; };
+		AD078C8D1C34D24C00A056D1 /* LYChooseJiuBaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184861BB5214F00681BB2 /* LYChooseJiuBaViewController.m */; };
 		AD106B8B1C0AEF16007F5FBA /* LYUserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */; };
 		AD106B901C0AF044007F5FBA /* LYUserCenterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B8E1C0AF044007F5FBA /* LYUserCenterHeader.m */; };
 		AD106B911C0AF044007F5FBA /* LYUserCenterHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD106B8F1C0AF044007F5FBA /* LYUserCenterHeader.xib */; };
@@ -1204,8 +1205,6 @@
 		15E1847B1BB4FEF900681BB2 /* LYZSeditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYZSeditView.h; sourceTree = "<group>"; };
 		15E1847C1BB4FEF900681BB2 /* LYZSeditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYZSeditView.m; sourceTree = "<group>"; };
 		15E1847E1BB4FF0900681BB2 /* LYZSeditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYZSeditView.xib; sourceTree = "<group>"; };
-		15E184801BB51A9500681BB2 /* LYZSApplicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYZSApplicationViewController.h; sourceTree = "<group>"; };
-		15E184811BB51A9500681BB2 /* LYZSApplicationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYZSApplicationViewController.m; sourceTree = "<group>"; };
 		15E184821BB51A9500681BB2 /* LYZSApplicationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYZSApplicationViewController.xib; sourceTree = "<group>"; };
 		15E184851BB5214F00681BB2 /* LYChooseJiuBaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYChooseJiuBaViewController.h; sourceTree = "<group>"; };
 		15E184861BB5214F00681BB2 /* LYChooseJiuBaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYChooseJiuBaViewController.m; sourceTree = "<group>"; };
@@ -2077,6 +2076,8 @@
 		AD078C721C33CDE800A056D1 /* iphoneIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneIcon.png; sourceTree = "<group>"; };
 		AD078C731C33CDE800A056D1 /* iphoneIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneIcon@2x.png"; sourceTree = "<group>"; };
 		AD078C741C33CDE800A056D1 /* iphoneIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphoneIcon@3x.png"; sourceTree = "<group>"; };
+		AD078C8A1C34D17E00A056D1 /* LYZSApplicationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYZSApplicationViewController.m; sourceTree = "<group>"; };
+		AD078C8C1C34D1B700A056D1 /* LYZSApplicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYZSApplicationViewController.h; sourceTree = "<group>"; };
 		AD106B881C0AEF16007F5FBA /* LYUserCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserCenterController.h; sourceTree = "<group>"; };
 		AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYUserCenterController.m; sourceTree = "<group>"; };
 		AD106B8D1C0AF044007F5FBA /* LYUserCenterHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYUserCenterHeader.h; sourceTree = "<group>"; };
@@ -3023,8 +3024,8 @@
 				15E1846B1BB4DCF100681BB2 /* MyZSManageViewController.h */,
 				15E1846C1BB4DCF100681BB2 /* MyZSManageViewController.m */,
 				15E1846D1BB4DCF100681BB2 /* MyZSManageViewController.xib */,
-				15E184801BB51A9500681BB2 /* LYZSApplicationViewController.h */,
-				15E184811BB51A9500681BB2 /* LYZSApplicationViewController.m */,
+				AD078C8C1C34D1B700A056D1 /* LYZSApplicationViewController.h */,
+				AD078C8A1C34D17E00A056D1 /* LYZSApplicationViewController.m */,
 				15E184821BB51A9500681BB2 /* LYZSApplicationViewController.xib */,
 				15E184851BB5214F00681BB2 /* LYChooseJiuBaViewController.h */,
 				15E184861BB5214F00681BB2 /* LYChooseJiuBaViewController.m */,
@@ -6420,7 +6421,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				853D3AAC1C34C97D00B4FEAD /* LYZSApplicationViewController.m in Sources */,
 				85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */,
 				85589C311C167E49000E342E /* PayButton.m in Sources */,
 				381FEFF41C166AB8002A47BA /* bartypeslistModel.m in Sources */,
@@ -6705,6 +6705,7 @@
 				A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */,
 				15EB35781BD495ED00BA6161 /* CYInfoCell.m in Sources */,
 				85F625A61C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m in Sources */,
+				AD078C8B1C34D17E00A056D1 /* LYZSApplicationViewController.m in Sources */,
 				AD106BBA1C0DDEFF007F5FBA /* NSObject+MJClass.m in Sources */,
 				D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */,
 				15EB351F1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m in Sources */,
@@ -6750,6 +6751,7 @@
 				15013AFE1BBA33BF00061FAF /* UIButton+WebCache.m in Sources */,
 				15EB7C791BD0DB9400756153 /* LYPlayTogetherMainViewController.m in Sources */,
 				D73652421BAEBF44002541CE /* KuCunModel.m in Sources */,
+				AD078C8D1C34D24C00A056D1 /* LYChooseJiuBaViewController.m in Sources */,
 				15A4CF3E1BD7321C00C22C01 /* DWTaoCanXQViewController.m in Sources */,
 				ADF88EA51C1197C400CF5DED /* MJRefreshBackGifFooter.m in Sources */,
 				152247B11BEB064600E68A2B /* IQKeyboardManager.m in Sources */,
