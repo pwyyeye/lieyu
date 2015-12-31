@@ -10,6 +10,7 @@
 #import "FriendsRecentModel.h"
 #import "FriendsCommentModel.h"
 #import "UIButton+WebCache.h"
+#import "FriendsLikeModel.h"
 
 @implementation LYFriendsLikeDetailTableViewCell
 
@@ -24,17 +25,19 @@
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
-    NSArray *array = recentM.commentList;
-    for (int  i = 0; i < recentM.commentNum.integerValue; i ++) {
+    NSArray *array = recentM.likeList;
+    for (int  i = 0; i < recentM.likeList.count; i ++) {
+        if(i >= 16) return;
         UIButton *btn = _btnArray[i];
-        FriendsCommentModel *commentModel = array[i];
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:commentModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+//        btn.tag = i;
+        FriendsLikeModel *likeM = array[i];
+//        NSLog(@"------>%ld------%@",array.count,commentModel.icon);
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 

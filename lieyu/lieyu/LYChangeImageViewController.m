@@ -8,6 +8,7 @@
 
 #import "LYChangeImageViewController.h"
 #import "LYFriendsViewController.h"
+#import "HttpController.h"
 
 @interface LYChangeImageViewController ()<UITableViewDataSource,UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -76,9 +77,14 @@
 //                [self.navigationController popToViewController:vc animated:YES];
 //            }
 //        }
-        _bgImage = image;
-        [self.navigationController popViewControllerAnimated:YES];
-        _passImage(image);
+        
+        [HTTPController uploadImageToQiuNiu:image complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+            _bgImage = image;
+            [self.navigationController popViewControllerAnimated:YES];
+            _passImage(key,image);
+        }];
+        
+        
     }];
 }
 

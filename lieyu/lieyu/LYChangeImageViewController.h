@@ -10,5 +10,5 @@
 
 @interface LYChangeImageViewController : LYBaseViewController
 @property (nonatomic,strong) UIImage *bgImage;
-@property (nonatomic,copy) void(^passImage)(UIImage *);
+@property (nonatomic,copy) void(^passImage)(NSString * ,UIImage *);
 @end

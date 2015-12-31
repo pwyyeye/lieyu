@@ -21,17 +21,25 @@
 - (void)setCommentM:(FriendsCommentModel *)commentM{
     _commentM = commentM;
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:commentM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-    NSString *string = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
+    NSString *string = nil;
+    if([commentM.toUserId isEqualToString:@"0"]) {
+        string = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
+    }
+    else {
+        string = [NSString stringWithFormat:@"回复%@:%@",commentM.nickName,commentM.comment];
+    }
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
-    [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentM.nickName.length + 1)];
-    
+    if([commentM.toUserId isEqualToString:@"0"]) {
+        [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentM.nickName.length + 1)];
+    }else{
+         [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(2, commentM.nickName.length + 1)];
+    }
     _label_comment.attributedText = attributedStr;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end

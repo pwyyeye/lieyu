@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 @class FriendsRecentModel;
 
+@protocol LYFriendsHeaderTableViewCellDelegate <NSObject>
+
+- (void)friendsHeaderCellImageView:(UIImageView *)imgView;
+
+@end
+
 @interface LYFriendsHeaderTableViewCell : UITableViewCell
+@property (nonatomic,unsafe_unretained) id<LYFriendsHeaderTableViewCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *btn_headerImg;
 @property (weak, nonatomic) IBOutlet UILabel *label_name;
 @property (weak, nonatomic) IBOutlet UILabel *label_content;

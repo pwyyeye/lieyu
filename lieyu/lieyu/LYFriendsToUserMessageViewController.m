@@ -27,6 +27,7 @@
 #import "LYFriendsCommentView.h"
 #import "IQKeyboardManager.h"
 #import "LYFriendsMessageDetailViewController.h"
+#import "LYMyFriendDetailViewController.h"
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsImgOneCellID @"LYFriendsImgOneTableViewCell"
@@ -172,6 +173,9 @@
     __block LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
         _dataArray = dataArray;
+        for (FriendsRecentModel *r in _dataArray) {
+            NSLog(@"--->%@",r.usernick);
+        }
         [weakSelf reloadTableViewAndSetUpProperty];
         [weakSelf addTableViewHeader];
         _pageStartCount ++;
@@ -196,14 +200,19 @@
 
 #pragma mark - 添加表头
 - (void)addTableViewHeader{
+    FriendsRecentModel *recentM = nil;
+    if(_dataArray.count) {
+        recentM = _dataArray[0];
+    }
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
-    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 220);
-    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] forState:UIControlStateNormal ];
-    _headerView.label_name.text = app.userModel.usernick;
+    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 360);
+    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:recentM.avatar_img] forState:UIControlStateNormal];
+    _headerView.label_name.text = recentM.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     _headerView.btn_newMessage.hidden = YES;
+    [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:recentM.friends_img] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_header addTarget:self action:@selector(headerImgClick:) forControlEvents:UIControlEventTouchUpInside];
     [self updateViewConstraints];
@@ -212,9 +221,21 @@
 
 
 - (void)headerImgClick:(UIButton *)button{
+    if(_dataArray.count) {   FriendsRecentModel *recentM = _dataArray[0];
+    CustomerModel *customerM = [[CustomerModel alloc]init];
+        customerM.icon = recentM.avatar_img;
+        customerM.sex = [recentM.gender isEqualToString:@"0"] ? @"男" : @"女";
+        customerM.username = recentM.usernick;
+        customerM.message = recentM.introduction;
+        customerM.age = [MyUtil getAgefromDate:recentM.birthday];
+        customerM.userid = recentM.userId.intValue;
     
-        CustomerModel *customerM = [[CustomerModel alloc]init];
-        customerM.
+    LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    friendDetailViewController.title=@"详细信息";
+    friendDetailViewController.type=@"0";
+    friendDetailViewController.customerModel =customerM;
+    [self.navigationController pushViewController:friendDetailViewController animated:YES];
+    }
 }
 
 #pragma mark - 表白action
