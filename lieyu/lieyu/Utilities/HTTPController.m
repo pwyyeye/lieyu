@@ -405,6 +405,34 @@
     }
 }
 
+//七牛上传文件
++(BOOL)uploadFileToQiuNiu:(NSString *)filePath complete:(QNUpCompletionHandler)completionHandler{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if(app.qiniu_token){
+        @try {
+            QNUploadManager *upManager = [[QNUploadManager alloc] init];
+            QNUploadOption *op=[[QNUploadOption alloc] initWithMime:nil progressHandler:nil params:nil checkCrc:NO cancellationSignal:nil];
+            
+            NSString *fileName = [NSString stringWithFormat:@"lieyu_ios_%@_%@%@",[MyUtil getNumberFormatDate:[NSDate date]], [MyUtil randomStringWithLength:8],[filePath lastPathComponent]];
+            
+            //上传代码
+            
+            NSData *data =[NSData dataWithContentsOfFile:filePath];
+  
+            [upManager putData:data key:fileName token:app.qiniu_token complete:(QNUpCompletionHandler)completionHandler  option:op];
+            return YES;
+        }
+        @catch (NSException *exception) {
+            NSLog(@"----pass-uploadFileToQiuNiu error >%@---",exception);
+            return NO;
+        }
+        @finally {
+            
+        }
+        
+    }
+}
+
 //弹出消息框来显示消息
 void ShowMessage(NSString* message)
 {

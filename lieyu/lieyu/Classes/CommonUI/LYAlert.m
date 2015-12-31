@@ -63,13 +63,13 @@
             _btn_cancel=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
             [_btn_cancel setTitle:@"取消" forState:UIControlStateNormal];
             _btn_cancel.titleLabel.font=[UIFont systemFontOfSize:15];
-            [_btn_cancel setTitleColor:RGB(35, 166, 116) forState:UIControlStateNormal];
+            [_btn_cancel setTitleColor:RGB(114, 5, 147) forState:UIControlStateNormal];
             [_btn_cancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
         }
         
         if(_btn_ok==nil){
             _btn_ok=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, 0, 80, 50)];
-            [_btn_ok setTitleColor:RGB(35, 166, 116) forState:UIControlStateNormal];
+            [_btn_ok setTitleColor:RGB(114, 5, 147) forState:UIControlStateNormal];
             [_btn_ok setTitle:@"确定" forState:UIControlStateNormal];
             _btn_ok.titleLabel.font=[UIFont systemFontOfSize:15];
             [_btn_ok addTarget:self action:@selector(ok) forControlEvents:UIControlEventTouchUpInside];
