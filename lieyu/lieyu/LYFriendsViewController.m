@@ -79,6 +79,7 @@
     NSString *_userBgImageUrl;//用户上传的个人背景图
     NSInteger _indexRow;//表的那一行
     BOOL _isCommentToUser;//是否对用户评论
+    LYFriendsSendViewController *friendsSendVC;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -496,7 +497,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
       FriendsRecentModel *recentM = _dataArray[_index][button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
-//    __block LYFriendsViewController *weakSelf = self;
+    __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if([_likeStr isEqualToString:@"1"]){
             _likeStr = @"0";

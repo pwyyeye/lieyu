@@ -93,10 +93,13 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Send baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------->%@",response[@"message"]);
-         [MyUtil showPlaceMessage:response[@"message"]];
+       dispatch_async(dispatch_get_main_queue(), ^{
+           compelte(YES);
+       });
         [app stopLoading];
     }failure:^(NSError *err) {
         [app stopLoading];
+        compelte(NO);
      }];
 }
 
