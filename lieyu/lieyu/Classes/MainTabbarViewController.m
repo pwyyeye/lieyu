@@ -13,6 +13,7 @@
 #import <MapKit/MapKit.h>
 #import "UITabBarItem+CustomBadge.h"
 #import "LYUserLoginViewController.h"
+#import "LYFriendsHttpTool.h"
 @interface MainTabbarViewController ()
 
 <
@@ -47,6 +48,8 @@
     }
     
 }
+
+
 
 - (void)postANotification{
     [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];

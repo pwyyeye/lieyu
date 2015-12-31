@@ -163,6 +163,18 @@
     
 }
 
+#pragma mark - 点赞的人的头像跳转到个人动态
+- (void)zangBtnClick:(UIButton *)button{
+    NSInteger index = button.tag % 16;
+    NSInteger section = (button.tag - index)/16;
+    if(index > _recentM.likeList.count) return;
+    if(section >=0 && index>=0){
+        FriendsLikeModel *likeM = _recentM.likeList[index - 1];
+        LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
+        messageVC.friendsId = likeM.userId;
+        [self.navigationController pushViewController:messageVC animated:YES];
+    }
+}
 
 
 #pragma mark - UITextFieldDelegate
@@ -229,8 +241,9 @@
                 likeCell.recentM = _recentM;
                     for (int i = 0; i< likeCell.btnArray.count; i ++) {
                         UIButton *btn = likeCell.btnArray[i];
+                        btn.tag = likeCell.btnArray.count * indexPath.section  + i + 1;
+                        NSLog(@"---->%ld",btn.tag);
                         [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-                        btn.tag = likeCell.btnArray.count * (indexPath.section + 1) - 7 + i +1;
                     }
                 return likeCell;
                 }
@@ -267,7 +280,7 @@
                 return;
             }
         }
-        if ([_recentM.userId isEqualToString:_useridStr]) {
+        if (![_recentM.userId isEqualToString:_useridStr]) {
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
             [actionSheet showInView:self.view];
         }else{
@@ -339,7 +352,7 @@
 }
 #pragma mark - 跳转到指定用户动态页
 - (void)puUserMessagePageClick:(UIButton *)button{
-    FriendsCommentModel *commentModel = _recentM.commentList[button.tag];
+    FriendsCommentModel *commentModel = _dataArray[button.tag];
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsUserMegVC.friendsId = commentModel.userId;
     [self.navigationController pushViewController:friendsUserMegVC animated:YES];

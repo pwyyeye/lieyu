@@ -61,7 +61,9 @@
             
         case 1:
         {
+           if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
             pickerCtl.sourceType = UIImagePickerControllerSourceTypeCamera;
+           else pickerCtl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
     }
     [self presentViewController:pickerCtl animated:YES completion:^{
