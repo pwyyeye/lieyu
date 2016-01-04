@@ -9,6 +9,7 @@
 #import "LYChangeImageViewController.h"
 #import "LYFriendsViewController.h"
 #import "HttpController.h"
+#import "LYFriendsHttpTool.h"
 
 @interface LYChangeImageViewController ()<UITableViewDataSource,UITableViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,6 +22,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    self.title = @"选择更该方式";
+    self.tableView.tableFooterView = [[UIView alloc]init];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -81,9 +84,15 @@
 //        }
         
         [HTTPController uploadImageToQiuNiu:image complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-            _bgImage = image;
-            [self.navigationController popViewControllerAnimated:YES];
-            _passImage(key,image);
+            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+            NSDictionary *paraDic = @{@"userId":userIdStr,@"background":key};
+            [LYFriendsHttpTool friendsChangeBGImageWithParams:paraDic compelte:^(bool result) {
+                if (result) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                    _passImage(key,image);
+                }
+            }];
         }];
         
         

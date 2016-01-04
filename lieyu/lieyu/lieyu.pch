@@ -34,8 +34,7 @@
 #import "MTA.h"
 #import "MTAConfig.h"
 
-#define LYCLICK_MTA @"LYI_NEED_PLAY_CLICK"
-#define LYTIMEEVENT_MTA @"LYI_NEED_PLAY_TIME"
+#define LYCLICK_MTA @"LYClickEvent"
 
 
 #endif /* lieyu_pch */

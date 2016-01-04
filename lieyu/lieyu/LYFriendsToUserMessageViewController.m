@@ -26,11 +26,10 @@
 #import "LYFriendsMessageDetailViewController.h"
 #import "LYMyFriendDetailViewController.h"
 #import "FriendsLikeModel.h"
+#import "FriendsPicAndVideoModel.h"
+#import "FriendsUserInfoModel.h"
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
-#define LYFriendsImgOneCellID @"LYFriendsImgOneTableViewCell"
-#define LYFriendsImgTwoCellID @"LYFriendsImgTwoTableViewCell"
-#define LYFriendsImgThreeCellID @"LYFriendsThreeTableViewCell"
 #define LYFriendsAddressCellID @"LYFriendsAddressTableViewCell"
 #define LYFriendsLikeCellID @"LYFriendsLikeTableViewCell"
 #define LYFriendsCommentCellID @"LYFriendsCommentTableViewCell"
@@ -51,7 +50,7 @@
     LYFriendsCommentView *_commentView;
     BOOL _isCommentToUser;
     NSInteger _indexRow;
-
+    FriendsUserInfoModel *_userInfo;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -85,19 +84,18 @@
     _pageCount = 10;
     [self getData];
     self.title = @"好友动态";
+    self.tableView.tableFooterView = [[UIView alloc]init];
 }
 
 
 - (void)setupTableView{
-    NSArray *array = @[LYFriendsNameCellID,LYFriendsImgOneCellID,LYFriendsImgTwoCellID,LYFriendsImgThreeCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID];
+    NSArray *array = @[LYFriendsNameCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID];
     for (NSString *cellIdentifer in array) {
         [self.tableView registerNib:[UINib nibWithNibName:cellIdentifer bundle:nil] forCellReuseIdentifier:cellIdentifer];
     }
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:LYFriendsCellID];
     [self.tableView registerClass:[LYFriendsImgTableViewCell class] forCellReuseIdentifier:LYFriendsImgCellID];
 }
-
-
 
 #pragma mark - 查看图片
 - (void)checkImageClick:(UIButton *)button{
@@ -140,14 +138,15 @@
         default:
             break;
     }
-    urlArray = ((FriendsRecentModel *)_dataArray[section]).lyMomentsAttachList;
+    urlArray = [((FriendsPicAndVideoModel *)((FriendsRecentModel *)_dataArray[section]).lyMomentsAttachList[0]).imageLink componentsSeparatedByString:@","];
     LYFriendsImgTableViewCell *imgCell = (LYFriendsImgTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:section]];
     for (UIButton *btn in imgCell.btnArray) {
         CGRect rect = [imgCell convertRect:btn.frame toView:app.window];
         [oldFrameArray addObject:NSStringFromCGRect(rect)];
     }
     
-    LYPictiureView *picView = [[LYPictiureView alloc]initWithFrame:self.view.bounds urlArray:urlArray oldFrame:oldFrameArray with:index];
+    
+    LYPictiureView *picView = [[LYPictiureView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) urlArray:urlArray oldFrame:oldFrameArray with:index];
     picView.backgroundColor = [UIColor blackColor];
     
     [app.window addSubview:picView];
@@ -174,13 +173,14 @@
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_friendsId};
     __block LYFriendsToUserMessageViewController *weakSelf = self;
-    [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
+    [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
         _dataArray = dataArray;
         for (FriendsRecentModel *r in _dataArray) {
             NSLog(@"--->%@",r.usernick);
         }
         [weakSelf reloadTableViewAndSetUpProperty];
         [weakSelf addTableViewHeader];
+        _userInfo = userInfo;
         _pageStartCount ++;
     }];
 }
@@ -204,33 +204,26 @@
     }
     FriendsRecentModel *recentM = _dataArray[_section];
     if ([recentM.liked isEqualToString:@"0"]) {
-        _likeStr = @"0";
-    }else{
         _likeStr = @"1";
+    }else{
+        _likeStr = @"0";
     }
 }
 
 #pragma mark - 添加表头
 - (void)addTableViewHeader{
-    FriendsRecentModel *recentM = nil;
-    if(_dataArray.count) {
-        recentM = _dataArray[0];
-    }
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
     _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 360);
-    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:recentM.avatar_img] forState:UIControlStateNormal];
-    _headerView.label_name.text = recentM.usernick;
+    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:_userInfo.avatar_img] forState:UIControlStateNormal];
+    _headerView.label_name.text = _userInfo.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     _headerView.btn_newMessage.hidden = YES;
-    [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:recentM.friends_img] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_header addTarget:self action:@selector(headerImgClick:) forControlEvents:UIControlEventTouchUpInside];
     [self updateViewConstraints];
 }
-
-
 
 - (void)headerImgClick:(UIButton *)button{
     if(_dataArray.count) {   FriendsRecentModel *recentM = _dataArray[0];
@@ -452,7 +445,8 @@
             
         case 1://图片
         {
-            switch (recentM.lyMomentsAttachList.count) {
+            NSArray *urlArray = [((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink componentsSeparatedByString:@","];
+            switch (urlArray.count) {
                 case 1:
                 {
                     return SCREEN_WIDTH;

@@ -562,6 +562,7 @@
 		85C428731C119D3E0028FC21 /* LYCloseMeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428711C119D3E0028FC21 /* LYCloseMeViewController.xib */; };
 		85C428871C11D25D0028FC21 /* ContentViewTaocan.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428861C11D25D0028FC21 /* ContentViewTaocan.m */; };
 		85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428881C11D2710028FC21 /* ContentViewTaocan.xib */; };
+		85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */; };
 		85EC69FA1C17D4A10082AA3E /* sorry.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85EC69F91C17D4A10082AA3E /* sorry.gif */; };
 		85EC69FB1C17F71F0082AA3E /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
 		85EC6A031C18109A0082AA3E /* LYBarDescTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC6A021C18109A0082AA3E /* LYBarDescTableViewCell.m */; };
@@ -1825,6 +1826,8 @@
 		85C428851C11D25D0028FC21 /* ContentViewTaocan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewTaocan.h; sourceTree = "<group>"; };
 		85C428861C11D25D0028FC21 /* ContentViewTaocan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewTaocan.m; sourceTree = "<group>"; };
 		85C428881C11D2710028FC21 /* ContentViewTaocan.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewTaocan.xib; sourceTree = "<group>"; };
+		85C8F2321C3A4DE700288844 /* FriendsUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsUserInfoModel.h; sourceTree = "<group>"; };
+		85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsUserInfoModel.m; sourceTree = "<group>"; };
 		85EC69F91C17D4A10082AA3E /* sorry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sorry.gif; sourceTree = "<group>"; };
 		85EC6A011C18109A0082AA3E /* LYBarDescTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarDescTableViewCell.h; sourceTree = "<group>"; };
 		85EC6A021C18109A0082AA3E /* LYBarDescTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarDescTableViewCell.m; sourceTree = "<group>"; };
@@ -4041,6 +4044,8 @@
 				851806721C2E374600006804 /* FriendsUserMessageModel.m */,
 				853D3AB41C350B3300B4FEAD /* FriendsNewsModel.h */,
 				853D3AB51C350B3300B4FEAD /* FriendsNewsModel.m */,
+				85C8F2321C3A4DE700288844 /* FriendsUserInfoModel.h */,
+				85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -6472,6 +6477,7 @@
 				15E184961BB52CA200681BB2 /* JiuBaModel.m in Sources */,
 				1559DD031BDA24EB00F3FE9B /* CarModel.m in Sources */,
 				AD106BB51C0DDEFF007F5FBA /* MJExtensionConst.m in Sources */,
+				85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */,
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
 				15EB350D1BD1F63F00BA6161 /* PTChooseNumCell.m in Sources */,

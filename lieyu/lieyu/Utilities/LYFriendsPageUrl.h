@@ -37,7 +37,10 @@
 
 //获取最新消息
 #define LY_Friends_NewMessage @"lyMomentsAction.do?action=login"
-
+//获取最新消息明细
 #define LY_Friends_NewMessageDetail @"lyMomentsAction.do?action=expand"
+
+//更改玩友圈背景图片
+#define LY_Friends_ChangeBGImage @"lyuserAction.do?action=custom"
 
 #endif /* LYFriendsPageUrl_h */
