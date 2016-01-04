@@ -278,7 +278,12 @@
 
 + (NSString *)getQiniuUrl:(NSString *)key width:(NSInteger)width andHeight:(NSInteger)height{
     NSString *encodeKey=[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%d/h/%d",encodeKey,width,height];
+    if(width>0&&height>0){
+        return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%d/h/%d",encodeKey,width,height];
+    }else{
+        return [NSString stringWithFormat:@"http://source.lie98.com/%@",encodeKey];
+
+    }
 }
 
 #pragma --mark 获取设备型号
