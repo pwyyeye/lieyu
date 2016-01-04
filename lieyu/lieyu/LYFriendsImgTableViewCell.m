@@ -27,7 +27,7 @@
             FriendsPicAndVideoModel *pvModel = array[0];
             UIButton *btn_imgOne = [[UIButton alloc]initWithFrame:self.bounds];
             btn_imgOne.adjustsImageWhenHighlighted = NO;
-            [btn_imgOne sd_setBackgroundImageWithURL:[NSURL URLWithString:pvModel.imageLink] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+            [btn_imgOne sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:pvModel.imageLink width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             [self addSubview:btn_imgOne];
             [_btnArray addObject:btn_imgOne];
         }
@@ -38,7 +38,7 @@
             for (int i = 0; i < 2; i ++) {
                 FriendsPicAndVideoModel *pvModel = array[i];
                 UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i%2 *(btnW + 2) , 0, btnW, btnW)];
-                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pvModel.imageLink] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:pvModel.imageLink width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
                 btn.adjustsImageWhenHighlighted = NO;
                 [self addSubview:btn];
                 [_btnArray addObject:btn];
@@ -86,7 +86,7 @@
                         break;
                         
                 }
-                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pvModel.imageLink] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:pvModel.imageLink width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
                 btn.adjustsImageWhenHighlighted = NO;
                 [self addSubview:btn];
                 [_btnArray addObject:btn];

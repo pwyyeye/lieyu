@@ -8,9 +8,6 @@
 
 #import "LYFriendsToUserMessageViewController.h"
 #import "LYFriendsNameTableViewCell.h"
-#import "LYFriendsImgOneTableViewCell.h"
-#import "LYFriendsImgTwoTableViewCell.h"
-#import "LYFriendsThreeTableViewCell.h"
 #import "LYFriendsAddressTableViewCell.h"
 #import "LYFriendsLikeTableViewCell.h"
 #import "LYFriendsCommentTableViewCell.h"
@@ -245,8 +242,9 @@
         customerM.age = [MyUtil getAgefromDate:recentM.birthday];
         customerM.userid = recentM.userId.intValue;
     
-        CustomerModel *customerM = [[CustomerModel alloc]init];
+//        CustomerModel *customerM = [[CustomerModel alloc]init];
 //        customerM.
+    }
 }
 
 #pragma mark - 表白action
