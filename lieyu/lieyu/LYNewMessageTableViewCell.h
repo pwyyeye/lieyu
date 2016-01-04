@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FriendsNewsModel;
 
 @interface LYNewMessageTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *btn_headerImg;
@@ -15,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_time;
 @property (weak, nonatomic) IBOutlet UILabel *label_myMessage;
 
+@property (nonatomic,strong) FriendsNewsModel *friendsNesM;
 @end

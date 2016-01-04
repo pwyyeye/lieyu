@@ -12,6 +12,7 @@
 #import "FriendsRecentModel.h"
 #import "FriendsUserMessageModel.h"
 #import "FriendsCommentModel.h"
+#import "FriendsNewsModel.h"
 
 @implementation LYFriendsHttpTool
 
@@ -141,4 +142,33 @@
     }];
 }
 
+//获取最新消息
++ (void)friendsGetFriendsMessageNotificationWithParams:(NSDictionary *)params compelte:(void (^)(NSString *,NSString*))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_NewMessage baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"------->%@",response);
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            NSArray *array = response[@"data"];
+            if(!array.count) return;
+            NSDictionary *dic = array[0];
+            compelte(dic[@"results"],dic[@"icon"]);
+        }
+    }failure:^(NSError *err) {
+        
+    }];
+}
+
+//获取最新消息明细
++ (void)friendsGetFriendsMessageNotificationDetailWithParams:(NSDictionary *)params compelte:(void (^)(NSArray *))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_NewMessageDetail baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"------->%@",response);
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            NSDictionary *dic = response[@"data"];
+            NSArray *array = dic[@"items"];
+            NSArray *dataArray = [FriendsNewsModel mj_objectArrayWithKeyValuesArray:array];
+            compelte(dataArray);
+        }
+    }failure:^(NSError *err) {
+        
+    }];
+}
 @end
