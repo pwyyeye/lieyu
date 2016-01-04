@@ -13,7 +13,7 @@
 
 #define IMGwidth ( [UIScreen mainScreen].bounds.size.width - 20 ) / 3
 
-@interface LYFriendsSendViewController ()<UIImagePickerControllerDelegate,UITextViewDelegate>
+@interface LYFriendsSendViewController ()<UIImagePickerControllerDelegate,UITextViewDelegate,UIAlertViewDelegate>
 {
     int qiniuPages;
     AppDelegate *app;
@@ -70,6 +70,15 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     self.textView.text = @"";
     [self.textView becomeFirstResponder];
+}
+- (void)gotoBack{
+    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定放弃本次编辑？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil]show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1){
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark 上传玩友圈,待修改
