@@ -344,7 +344,6 @@
     _friendsBtnSelect = YES;
     [self getDataFriends];
     [self removeTableViewHeader];
-    [self.tableView setContentOffset:CGPointZero animated:YES];
 }
 
 #pragma mark - 我的action
@@ -354,7 +353,6 @@
     _myBtn.alpha = 1;
     _friendsBtnSelect = NO;
     [self getDataMys];
-    [self.tableView setContentOffset:CGPointZero animated:YES];
 }
 
 #pragma mark - 添加表头
