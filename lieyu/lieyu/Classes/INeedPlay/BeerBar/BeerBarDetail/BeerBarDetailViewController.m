@@ -74,7 +74,7 @@
     
     self.navigationController.navigationBarHidden=YES;
     _scrollView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height+1500);
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height+2500);
     self.scrollView.showsVerticalScrollIndicator=NO;
     self.scrollView.showsHorizontalScrollIndicator=NO;
     [self setupViewStyles];                                                     //tableView registe cell
@@ -87,7 +87,7 @@
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, 1500)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, 2500)];
     _webView.delegate = self;
     [_webView sizeToFit];
     [_webView.scrollView setScrollEnabled:NO];
@@ -278,7 +278,7 @@
 //    height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
 //    NSLog(@"--->%f",height);
-    webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, frame.height-50);
+    webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, frame.height);
 //    webView.backgroundColor = [UIColor redColor];
     
     _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
