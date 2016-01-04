@@ -245,8 +245,12 @@
         customerM.age = [MyUtil getAgefromDate:recentM.birthday];
         customerM.userid = recentM.userId.intValue;
     
-        CustomerModel *customerM = [[CustomerModel alloc]init];
-//        customerM.
+    LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    friendDetailViewController.title=@"详细信息";
+    friendDetailViewController.type=@"0";
+    friendDetailViewController.customerModel =customerM;
+    [self.navigationController pushViewController:friendDetailViewController animated:YES];
+    }
 }
 
 #pragma mark - 表白action

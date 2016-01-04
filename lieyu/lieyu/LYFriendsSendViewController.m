@@ -96,6 +96,7 @@
                 [self sendTrends:key];
             }else{
                 
+                
             }
         }];
     }else{
