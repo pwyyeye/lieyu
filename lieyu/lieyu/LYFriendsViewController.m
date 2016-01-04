@@ -34,6 +34,7 @@
 #import "FriendsLikeModel.h"
 #import "FriendsPicAndVideoModel.h"
 #import "FriendsUserInfoModel.h"
+#import "MJRefresh.h"
 
 #import "YBImgPickerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
@@ -79,7 +80,7 @@
     NSInteger _indexRow;//表的那一行
     BOOL _isCommentToUser;//是否对用户评论
     LYFriendsSendViewController *friendsSendVC;
-        MPMoviePlayerController *_player;
+//        MPMoviePlayerViewController *_player;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -274,7 +275,8 @@
                     [muArr addObjectsFromArray:dataArray];
                 }
         }else{
-            if(_isFriendsPageUpLoad)  [MyUtil showPlaceMessage:@"暂无更多数据"]; _isFriendsPageUpLoad = NO;
+            if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+            _isFriendsPageUpLoad = NO;
         }
         _index = 0;
         [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
@@ -302,7 +304,11 @@
         }else{
 //            NSArray *array = [NSArray array];
 //            [_dataArray addObject:array];
-            if(_isMysPageUpLoad) [MyUtil showPlaceMessage:@"暂无更多数据"]; _isMysPageUpLoad = NO;
+            if(_isMysPageUpLoad){
+                
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            _isMysPageUpLoad = NO;
         }
         _index = 1;
         [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
@@ -1084,14 +1090,33 @@
     
 //    NSString *str = @"http://7xn0lq.com2.z0.glb.qiniucdn.com/我的影片1.mp4";
 //    NSURL *urlString = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    if (!_player) {
-        _player = [[MPMoviePlayerController alloc]initWithContentURL:url];
-    }
-    _player.controlStyle = MPMovieControlStyleDefault;
-    _player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    [self.view addSubview:_player.view];
-    [_player prepareToPlay];
+    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
+//    _player.scalingMode = MPMovieScalingModeAspectFit;
+//    _player.controlStyle = MPMovieControlStyleFullscreen;
+//    _player.repeatMode = NO;
+    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    [_player setFullscreen:YES];
+   // UIWindow *window = [UIApplication sharedApplication].delegate.window;
+//    [window addSubview:_player.view];
+    [self presentMoviePlayerViewControllerAnimated:player];
+    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exit) name:MPMoviePlayerDidExitFullscreenNotification object:nil];
 }
+
+- (void)exit{
+    //[_player.view removeFromSuperview];
+}
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
