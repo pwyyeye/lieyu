@@ -33,6 +33,20 @@
     }
     _label_time.text = [NSString stringWithFormat:@"%@\n%@",recentM.date,recentM.location];
     
+    for (int i = 0; i< recentM.lyMomentsAttachList.count ; i ++) {
+        UIImageView *imgView = _imageViewArray[i];
+        imgView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesClick:)];
+        [imgView addGestureRecognizer:tapGes];
+    }
+    
+}
+
+- (void)tapGesClick:(UITapGestureRecognizer *)ges{
+    UIImageView *imgView = (UIImageView *)ges.view;
+    if([_delegate respondsToSelector:@selector(friendsHeaderCellImageView:)]){
+        [_delegate friendsHeaderCellImageView:imgView];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

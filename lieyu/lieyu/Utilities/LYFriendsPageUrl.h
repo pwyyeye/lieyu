@@ -29,7 +29,15 @@
 //删除我的动态
 #define LY_Friends_DeleteMyMessage @"lyMomentsAction.do?action=delete"
 
+//删除我的评论
+#define LY_Friends_DeleteMyComment @"lyMomentCommentAction.do?action=delete"
+
 //获取所有评论
 #define LY_Friends_AllComments @"lyMomentCommentAction.do?action=list"
+
+//获取最新消息
+#define LY_Friends_NewMessage @"lyMomentsAction.do?action=login"
+
+#define LY_Friends_NewMessageDetail @"lyMomentsAction.do?action=expand"
 
 #endif /* LYFriendsPageUrl_h */

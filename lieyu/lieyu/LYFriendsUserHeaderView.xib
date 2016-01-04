@@ -12,20 +12,20 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dyb-Vu-Cgj">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="180" id="Yme-jp-aVd"/>
+                        <constraint firstAttribute="height" constant="240" id="Yme-jp-aVd"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oa7-CH-Hdo">
-                    <rect key="frame" x="530" y="150" width="60" height="60"/>
+                    <rect key="frame" x="530" y="210" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="Atj-f7-GZo"/>
                         <constraint firstAttribute="height" constant="60" id="N5e-Cb-ARE"/>
                     </constraints>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vdgdasgfdg" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGf-wq-5JP">
-                    <rect key="frame" x="10" y="157" width="510" height="18"/>
+                    <rect key="frame" x="10" y="217" width="510" height="18"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="QFQ-ZC-dty"/>
@@ -35,7 +35,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmT-g3-WP3">
-                    <rect key="frame" x="99" y="225" width="402" height="34"/>
+                    <rect key="frame" x="99" y="285" width="402" height="34"/>
                     <color key="backgroundColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="TWs-ho-Rfq"/>
@@ -52,7 +52,7 @@
             <constraints>
                 <constraint firstItem="gmT-g3-WP3" firstAttribute="leading" secondItem="c0B-5u-B0e" secondAttribute="leading" constant="99" id="3zf-Kw-q2i"/>
                 <constraint firstAttribute="trailing" secondItem="gmT-g3-WP3" secondAttribute="trailing" constant="99" id="7ku-o3-dcT"/>
-                <constraint firstItem="VGf-wq-5JP" firstAttribute="top" secondItem="c0B-5u-B0e" secondAttribute="top" constant="157" id="7lX-cU-GlH"/>
+                <constraint firstItem="VGf-wq-5JP" firstAttribute="top" secondItem="c0B-5u-B0e" secondAttribute="top" constant="217" id="7lX-cU-GlH"/>
                 <constraint firstItem="VGf-wq-5JP" firstAttribute="leading" secondItem="c0B-5u-B0e" secondAttribute="leading" constant="10" id="Bua-uc-0it"/>
                 <constraint firstItem="Oa7-CH-Hdo" firstAttribute="leading" secondItem="VGf-wq-5JP" secondAttribute="trailing" constant="10" id="Tju-nO-hnr"/>
                 <constraint firstAttribute="trailing" secondItem="Dyb-Vu-Cgj" secondAttribute="trailing" id="Tzx-3O-ndw"/>

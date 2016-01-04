@@ -220,7 +220,7 @@
     [alertView show];
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{
-        [alertView dismissWithClickedButtonIndex:0 animated:NO];
+            [alertView dismissWithClickedButtonIndex:0 animated:NO];
     });
 }
 #pragma --mark 判断是否数字

@@ -7,12 +7,23 @@
 //
 
 #import "LYNewMessageTableViewCell.h"
+#import "FriendsNewsModel.h"
 
 @implementation LYNewMessageTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame) / 2.f;
+    _btn_headerImg.layer.masksToBounds = YES;
+}
+
+- (void)setFriendsNesM:(FriendsNewsModel *)friendsNesM{
+    _friendsNesM = friendsNesM;
+    [_btn_name setTitle:friendsNesM.usernick forState:UIControlStateNormal];
+    _label_message.text = friendsNesM.comment;
+    _label_myMessage.text = friendsNesM.message;
+    _label_time.text = friendsNesM.date;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

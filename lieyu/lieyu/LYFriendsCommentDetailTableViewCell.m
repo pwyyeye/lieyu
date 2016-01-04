@@ -22,9 +22,18 @@
 - (void)setCommentModel:(FriendsCommentModel *)commentModel{
     _commentModel = commentModel;
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:commentModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-    NSString *string = [NSString stringWithFormat:@"%@:%@",commentModel.nickName,commentModel.comment];
+    NSString *string = nil;
+    if ([commentModel.toUserId isEqualToString:@"0"]) {
+        string = [NSString stringWithFormat:@"%@:%@",commentModel.nickName,commentModel.comment];
+    }else{
+        string = [NSString stringWithFormat:@"回复%@:%@",commentModel.nickName,commentModel.comment];
+    }
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
-    [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentModel.nickName.length + 1)];
+        if ([commentModel.toUserId isEqualToString:@"0"]) {
+            [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentModel.nickName.length + 1)];
+        }else{
+            [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(2, commentModel.nickName.length + 1)];
+        }
     
     _label_comment.attributedText = attributedStr;
 }

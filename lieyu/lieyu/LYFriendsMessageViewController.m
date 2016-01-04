@@ -13,6 +13,9 @@
 #define LYFriendsNewMessage @"LYNewMessageTableViewCell"
 
 @interface LYFriendsMessageViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    NSArray *_dataArray;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -23,31 +26,42 @@
     [super viewDidLoad];
     [self getData];
     [self setupTableViewCell];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
 - (void)setupTableViewCell{
+    self.title =@"消息";
     [self.tableView registerNib:[UINib nibWithNibName:LYFriendsNewMessage bundle:nil] forCellReuseIdentifier:LYFriendsNewMessage];
 }
 
 - (void)getData{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *userId = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    NSDictionary *paraDic = @{@"userId":userId,@"messageId":@""};
-    [LYFriendsHttpTool friendsGetMyNewsMessageWithParams:paraDic compelte:^(FriendsUserMessageModel *messageModel) {
-        
+    NSDictionary *paraDic = @{@"userId":userId};
+    __block LYFriendsMessageViewController *weakSelf = self;
+    [LYFriendsHttpTool friendsGetFriendsMessageNotificationDetailWithParams:paraDic compelte:^(NSArray *dataArray) {
+        _dataArray = dataArray;
+        [weakSelf.tableView reloadData];
     }];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
+    LYNewMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNewMessage forIndexPath:indexPath];
+    FriendsNewsModel *friendNewM = _dataArray[indexPath.row];
+    cell.friendsNesM = friendNewM;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 64;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    FriendsNewsModel *friendNewM = _dataArray[indexPath.row];
 }
 
 - (void)didReceiveMemoryWarning {

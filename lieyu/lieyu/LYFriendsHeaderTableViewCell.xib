@@ -44,14 +44,14 @@
                             <constraint firstAttribute="width" constant="56" id="etk-6U-Uij"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sAv-wu-oVI">
+                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sAv-wu-oVI">
                         <rect key="frame" x="114" y="47" width="56" height="56"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="56" id="2vN-Mt-jtQ"/>
                             <constraint firstAttribute="width" constant="56" id="d6A-n2-FiP"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gHP-Tl-gHo">
+                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gHP-Tl-gHo">
                         <rect key="frame" x="175" y="47" width="56" height="56"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="56" id="DqM-mV-FSn"/>
@@ -74,7 +74,7 @@
                         </constraints>
                         <state key="normal" backgroundImage="haoyou_biaobai.png"/>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6lA-Os-dlQ">
+                    <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6lA-Os-dlQ">
                         <rect key="frame" x="236" y="47" width="56" height="56"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="56" id="g9f-KQ-jRn"/>

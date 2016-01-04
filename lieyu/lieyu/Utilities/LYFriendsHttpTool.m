@@ -12,6 +12,7 @@
 #import "FriendsRecentModel.h"
 #import "FriendsUserMessageModel.h"
 #import "FriendsCommentModel.h"
+#import "FriendsNewsModel.h"
 
 @implementation LYFriendsHttpTool
 
@@ -34,6 +35,7 @@
 //获取指定用户的玩友圈动态
 + (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSLog(@"------>%@",params);
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_User baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
@@ -61,9 +63,17 @@
 + (void)friendsLikeMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Like baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"-->%@",response[@"message"]);
-        compelte(YES);
-    } failure:^(NSError *err) {
+        if([response[@"message"] isEqualToString:@"取消点赞成功"]){
+            [MyUtil showPlaceMessage:@"点赞成功"];
+            compelte(YES);
+        }else{
+            [MyUtil showPlaceMessage:@"取消点赞成功"];
+            compelte(NO);
+        }
         
+        
+    } failure:^(NSError *err) {
+         [MyUtil showPlaceMessage:@"操作失败,请检查网络连接"];
     }];
 }
 //给动态或者某人评论
@@ -74,18 +84,22 @@
             compelte(YES);
         }
     } failure:^(NSError *err) {
-        
+         [MyUtil showPlaceMessage:@"操作失败,请检查网络连接"];
     }];
 }
 
 //发布动态
 + (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Send baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------->%@",response[@"message"]);
        dispatch_async(dispatch_get_main_queue(), ^{
            compelte(YES);
        });
+        [app stopLoading];
     }failure:^(NSError *err) {
+        [app stopLoading];
         compelte(NO);
      }];
 }
@@ -95,6 +109,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_DeleteMyMessage baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------->%@",response[@"message"]);
         compelte(YES);
+        [MyUtil showPlaceMessage:response[@"message"]];
     }failure:^(NSError *err) {
         
     }];
@@ -102,12 +117,55 @@
 
 //获取动态评论
 + (void)friendsGetMessageDetailAllCommentsWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *commentArray))compelte{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_AllComments baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------->%@",response[@"message"]);
         if ([response[@"errorcode"] isEqualToString:@"1"]) {
             NSArray *dataArray = response[@"data"][@"items"];
             NSMutableArray *commentArray  = [[NSMutableArray alloc] initWithArray:[FriendsCommentModel mj_objectArrayWithKeyValuesArray:dataArray]];
             compelte(commentArray);
+        }
+        [app stopLoading];
+    }failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+//删除我的评论
++ (void)friendsDeleteMyCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_DeleteMyComment baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"------->%@",response[@"message"]);
+        compelte(YES);
+    }failure:^(NSError *err) {
+        
+    }];
+}
+
+//获取最新消息
++ (void)friendsGetFriendsMessageNotificationWithParams:(NSDictionary *)params compelte:(void (^)(NSString *,NSString*))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_NewMessage baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"------->%@",response);
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            NSArray *array = response[@"data"];
+            if(!array.count) return;
+            NSDictionary *dic = array[0];
+            compelte(dic[@"results"],dic[@"icon"]);
+        }
+    }failure:^(NSError *err) {
+        
+    }];
+}
+
+//获取最新消息明细
++ (void)friendsGetFriendsMessageNotificationDetailWithParams:(NSDictionary *)params compelte:(void (^)(NSArray *))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_NewMessageDetail baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"------->%@",response);
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            NSDictionary *dic = response[@"data"];
+            NSArray *array = dic[@"items"];
+            NSArray *dataArray = [FriendsNewsModel mj_objectArrayWithKeyValuesArray:array];
+            compelte(dataArray);
         }
     }failure:^(NSError *err) {
         

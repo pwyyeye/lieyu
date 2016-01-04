@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYFriendsCommentButton.h"
 @class FriendsCommentModel;
 
 @interface LYFriendsCommentTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIButton *btn_headerImg;
+@property (weak, nonatomic) IBOutlet LYFriendsCommentButton *btn_headerImg;
 @property (weak, nonatomic) IBOutlet UILabel *label_comment;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV_comment;
 @property (nonatomic,strong) FriendsCommentModel *commentM;
