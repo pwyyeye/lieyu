@@ -99,7 +99,7 @@
     [self setupAllProperty];//设置全局属性
     [self setupTableView];
     [self setupTableViewFresh];//配置表的刷新和加载
-    [self getFriendsNewMessage];
+   // [self getFriendsNewMessage];
 }
 
 - (void)getFriendsNewMessage{
@@ -281,7 +281,7 @@
                 }
             }
         }else{
-            if(_isFriendsPageUpLoad)  [MyUtil showPlaceMessage:@"暂无更多数据,赶紧去点击头像，添加好友，随时相约!"]; _isFriendsPageUpLoad = NO;
+            if(_isFriendsPageUpLoad)  [MyUtil showPlaceMessage:@"暂无更多数据"]; _isFriendsPageUpLoad = NO;
         }
         [weakSelf reloadTableViewAndSetUpProperty];
         _pageStartCountFriends ++;
@@ -311,7 +311,7 @@
         }else{
             NSArray *array = [NSArray array];
             [_dataArray addObject:array];
-            if(_isMysPageUpLoad) [MyUtil showPlaceMessage:@"暂无更多数据,去看看玩友圈最新动态!"]; _isMysPageUpLoad = NO;
+            if(_isMysPageUpLoad) [MyUtil showPlaceMessage:@"暂无更多数据"]; _isMysPageUpLoad = NO;
         }
         [weakSelf reloadTableViewAndSetUpProperty];
         [weakSelf addTableViewHeader];
@@ -613,6 +613,7 @@
             commentModel.userId = _useridStr;
             if(toUserId.length) commentModel.toUserId = toUserId;
             else commentModel.toUserId = @"0";
+            if(recentM.commentList.count == 5) [recentM.commentList removeObjectAtIndex:0];
             [recentM.commentList addObject:commentModel];
             NSLog(@"------%ld->%ld",_commentBtnTag,recentM.commentList.count + 2);
           //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
@@ -751,50 +752,6 @@
 - (void)zangBtnClick:(UIButton *)button{
     NSInteger i = button.tag % 7;
     NSInteger section = (button.tag - i) / 7 ;
-//    switch (button.tag%7) {
-//        case 1:
-//        {
-//            section =
-//            i = 0;
-//        }
-//            break;
-//        case 2:
-//        {
-//            section = (button.tag + 5) / 7 - 1;
-//             i = 1;
-//        }
-//            break;
-//        case 3:
-//        {
-//            section = (button.tag + 4) / 7 - 1;
-//             i = 2;
-//        }
-//            break;
-//        case 4:
-//        {
-//            section = (button.tag + 3) / 7 - 1;
-//             i = 3;
-//        }
-//            break;
-//        case 5:
-//        {
-//            section = (button.tag + 2) / 7 - 1;
-//             i = 4;
-//        }
-//            break;
-//        case 6:
-//        {
-//            section = (button.tag + 1) / 7 - 1;
-//             i = 5;
-//        }
-//            break;
-//        case 0:
-//        {
-//            section = button.tag / 7 - 1;
-//             i = 6;
-//        }
-//             break;
-//    }
     if(section >=0 && i>=0){
     FriendsRecentModel *recentM = _dataArray[_index][section];
         if(i > recentM.likeList.count) return;
@@ -809,8 +766,6 @@
 - (void)likeMoreClick:(UIButton *)button{
     [self pushFriendsMessageDetailVCWithIndex:button.tag];
 }
-
-
 
 #pragma mark － 跳转消息详情页面
 - (void)pushFriendsMessageDetailVCWithIndex:(NSInteger)index{
