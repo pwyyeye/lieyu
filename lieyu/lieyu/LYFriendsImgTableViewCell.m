@@ -20,14 +20,15 @@
     _recentModel = recentModel;
     NSArray *array = recentModel.lyMomentsAttachList;
     _btnArray = [[NSMutableArray alloc]init];
-   
-    switch (array.count) {
+    FriendsPicAndVideoModel *pvModel = array[0];
+    NSArray *urlArray = [pvModel.imageLink componentsSeparatedByString:@","];
+    NSLog(@"%@",urlArray);
+    switch (urlArray.count) {
         case 1:
         {
-            FriendsPicAndVideoModel *pvModel = array[0];
             UIButton *btn_imgOne = [[UIButton alloc]initWithFrame:self.bounds];
             btn_imgOne.adjustsImageWhenHighlighted = NO;
-            [btn_imgOne sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:pvModel.imageLink width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+            [btn_imgOne sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[0] width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             [self addSubview:btn_imgOne];
             [_btnArray addObject:btn_imgOne];
         }
@@ -36,9 +37,9 @@
         {
             CGFloat btnW = (SCREEN_WIDTH - 2) / 2.f;
             for (int i = 0; i < 2; i ++) {
-                FriendsPicAndVideoModel *pvModel = array[i];
+                
                 UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i%2 *(btnW + 2) , 0, btnW, btnW)];
-                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:pvModel.imageLink width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
                 btn.adjustsImageWhenHighlighted = NO;
                 [self addSubview:btn];
                 [_btnArray addObject:btn];
@@ -51,7 +52,7 @@
         {
             NSInteger count = 0;
             CGFloat btnW = 0.0;
-            switch (recentModel.lyMomentsAttachList.count) {
+            switch (urlArray.count) {
                 case 3:
                 {
                     count = 3;
@@ -70,7 +71,6 @@
             }
             
             for(int i = 0 ; i< count ; i ++ ){
-                FriendsPicAndVideoModel *pvModel = array[i];
                 UIButton *btn = nil;
                 switch (i) {
                     case 0:
@@ -86,7 +86,7 @@
                         break;
                         
                 }
-                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:pvModel.imageLink width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
                 btn.adjustsImageWhenHighlighted = NO;
                 [self addSubview:btn];
                 [_btnArray addObject:btn];
@@ -96,10 +96,6 @@
     }
 
 
-}
-
-- (void)drawRect:(CGRect)rect{
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

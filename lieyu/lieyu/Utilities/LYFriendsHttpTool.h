@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 @class FriendsRecentModel;
 @class FriendsUserMessageModel;
+@class FriendsUserInfoModel;
 
 @interface LYFriendsHttpTool : NSObject
 //获取最新的玩友圈动态
 + (void)friendsGetRecentInfoWithParams:(NSDictionary *)params compelte:(void(^)(NSMutableArray *dataArray))compelte;
 //获取我的的玩友圈动态
-+ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *))compelte;
++ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte;
 //获取我的的玩友圈消息
 + (void)friendsGetMyNewsMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserMessageModel *))compelte;
 //给别人玩友圈动态点赞
@@ -33,4 +34,6 @@
 + (void)friendsGetFriendsMessageNotificationWithParams:(NSDictionary *)params compelte:(void (^)(NSString *,NSString*))compelte;
 //获取最新消息明细
 + (void)friendsGetFriendsMessageNotificationDetailWithParams:(NSDictionary *)params compelte:(void (^)(NSArray *))compelte;
+//更改玩友圈背景图片
++ (void)friendsChangeBGImageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
 @end

@@ -32,6 +32,8 @@
 #import "LYChangeImageViewController.h"
 #import "LYFriendsCommentButton.h"
 #import "FriendsLikeModel.h"
+#import "FriendsPicAndVideoModel.h"
+#import "FriendsUserInfoModel.h"
 
 #import "YBImgPickerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
@@ -99,18 +101,18 @@
     [self setupAllProperty];//设置全局属性
     [self setupTableView];
     [self setupTableViewFresh];//配置表的刷新和加载
-   // [self getFriendsNewMessage];
+    [self getFriendsNewMessage];
 }
 
 - (void)getFriendsNewMessage{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
-    NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    NSDictionary *paraDic = @{@"userId":userIdStr};
+    NSDictionary *paraDic = @{@"userId":_useridStr};
 //    __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
         NSLog(@"---->%@------%@",reslults,icon);
-        _myBadge.text = reslults;
+//        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
+        if(!reslults.integerValue) _myBadge.hidden = YES;
         [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal];
         [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 330);
@@ -249,8 +251,6 @@
     [IQKeyboardManager sharedManager].enable = YES;
 }
 
-
-
 - (void)removeNavMenuView{
 //    _friendsBtn.alpha =
     [_friendsBtn removeFromSuperview];
@@ -295,8 +295,9 @@
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
     NSLog(@"----->%@",paraDic);
          __block LYFriendsViewController *weakSelf = self;
-    [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
+    [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
         NSLog(@"----->%ld",dataArray.count);
+        _userBgImageUrl = userInfo.friends_img;
         if(dataArray.count){
             if(_dataArray.count == 1){
                     [_dataArray addObject:dataArray];
@@ -329,9 +330,9 @@
     }
     FriendsRecentModel *recentM = _dataArray[_index][_section];
     if ([recentM.liked isEqualToString:@"0"]) {
-        _likeStr = @"0";
-    }else{
         _likeStr = @"1";
+    }else{
+        _likeStr = @"0";
     }
 }
 
@@ -343,7 +344,9 @@
     _friendsBtnSelect = YES;
     [self getDataFriends];
     [self removeTableViewHeader];
+    [self.tableView setContentOffset:CGPointZero animated:YES];
 }
+
 #pragma mark - 我的action
 - (void)myClick:(UIButton *)myBtn{
     _index = 1;
@@ -351,6 +354,7 @@
     _myBtn.alpha = 1;
     _friendsBtnSelect = NO;
     [self getDataMys];
+    [self.tableView setContentOffset:CGPointZero animated:YES];
 }
 
 #pragma mark - 添加表头
@@ -368,7 +372,7 @@
     
     NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
     if(imageData)    _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
-    else [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",@"http://source.lie98.com/",_userBgImageUrl]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    else [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     _headerView.ImageView_bg.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseBgImage)];
     [_headerView.ImageView_bg addGestureRecognizer:tapGes];
@@ -664,7 +668,7 @@
         default:
             break;
     }
-    urlArray = ((FriendsRecentModel *)_dataArray[_index][section]).lyMomentsAttachList;
+    urlArray = [((FriendsPicAndVideoModel *)((FriendsRecentModel *)_dataArray[_index][section]).lyMomentsAttachList[0]).imageLink componentsSeparatedByString:@","];
     LYFriendsImgTableViewCell *imgCell = (LYFriendsImgTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:section]];
     for (UIButton *btn in imgCell.btnArray) {
         CGRect rect = [imgCell convertRect:btn.frame toView:app.window];
@@ -860,7 +864,8 @@
                     return imgCell;
                     }else{
                         LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
-                        
+                        videoCell.btn_play.tag = indexPath.section;
+                        [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                         return videoCell;
                     }
                 }
@@ -946,7 +951,8 @@
             
         case 1://图片
         {
-            switch (recentM.lyMomentsAttachList.count) {
+            NSArray *urlArray = [((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink componentsSeparatedByString:@","];
+            switch (urlArray.count) {
                 case 1:
                 {
                     return SCREEN_WIDTH;
@@ -1075,6 +1081,11 @@
         }
             break;
     }
+}
+
+#pragma mark - 视频播放
+- (void)playVideo:(UIButton *)button{
+    
 }
 
 
