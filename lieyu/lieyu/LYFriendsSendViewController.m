@@ -49,14 +49,13 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FriendSendViewDidLoad" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
     
 }
 
@@ -67,6 +66,10 @@
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
 //}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
+}
 
 - (void)setupAllProperty{
 //    _imageArray = [[NSMutableArray alloc]init];
@@ -362,6 +365,7 @@
 - (void)tapClick:(UITapGestureRecognizer *)sender{
     [self.navigationController.navigationBar setHidden:YES];
 //    if(!_subView){
+    self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
         _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
         _subView.frame = CGRectMake(0, -64, SCREEN_WIDTH, SCREEN_HEIGHT);
         [_subView.button addTarget:self action:@selector(imageSelectClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -374,11 +378,11 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willexitfull) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterfull) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
         if(_notFirstOpen){
-            _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//            _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         }
         NSLog(@"%@",NSStringFromCGRect(_subView.frame));
         _player.view.frame = CGRectMake(0, (SCREEN_HEIGHT - SCREEN_WIDTH) / 2, SCREEN_WIDTH, SCREEN_WIDTH);
-        _player.controlStyle = MPMovieControlStyleFullscreen;
+        _player.controlStyle =MPMovieControlStyleEmbedded;// MPMovieControlStyleFullscreen;
         _player.shouldAutoplay = YES;
         _player.repeatMode = NO;
         _player.scalingMode = MPMovieScalingModeAspectFit;
@@ -422,6 +426,9 @@
 #pragma mark 隐藏预览图层
 - (void)hideSubView:(UITapGestureRecognizer *)sender{
     [self.navigationController.navigationBar setHidden:NO];
+    
+    NSLog(@"----pass-1>%@ ---",NSStringFromCGRect(self.view.frame));
+    self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
     if(_subView.button.selected == NO){
         NSLog(@"delete %d picture",(int)_subView.tag);
         [self.fodderArray removeObjectAtIndex:_subView.tag - 1];
