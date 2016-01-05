@@ -66,9 +66,9 @@
     _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
     if ([_recentM.liked isEqualToString:@"0"]) {
-        _likeStr = @"0";
-    }else{
         _likeStr = @"1";
+    }else{
+        _likeStr = @"0";
     }
 }
 

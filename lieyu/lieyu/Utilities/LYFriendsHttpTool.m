@@ -13,6 +13,7 @@
 #import "FriendsUserMessageModel.h"
 #import "FriendsCommentModel.h"
 #import "FriendsNewsModel.h"
+#import "FriendsUserInfoModel.h"
 
 @implementation LYFriendsHttpTool
 
@@ -33,14 +34,15 @@
 }
 
 //获取指定用户的玩友圈动态
-+ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *))compelte{
++ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSLog(@"------>%@",params);
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_User baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
         NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[FriendsRecentModel mj_objectArrayWithKeyValuesArray:dictionary[@"moments"]]];
-        compelte(array);
+        FriendsUserInfoModel *userInfo = [FriendsUserInfoModel mj_objectWithKeyValues:dictionary];
+        compelte(userInfo, array);
         [app stopLoading];
     }failure:^(NSError *err) {
         [MyUtil showMessage:@"请求失败"];
@@ -64,13 +66,11 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Like baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"-->%@",response[@"message"]);
         if([response[@"message"] isEqualToString:@"取消点赞成功"]){
-            [MyUtil showPlaceMessage:@"点赞成功"];
-            compelte(YES);
-        }else{
-            [MyUtil showPlaceMessage:@"取消点赞成功"];
             compelte(NO);
+        }else{
+            compelte(YES);
         }
-        
+        [MyUtil showCleanMessage:response[@"message"]];
         
     } failure:^(NSError *err) {
          [MyUtil showPlaceMessage:@"操作失败,请检查网络连接"];
@@ -169,6 +169,20 @@
         }
     }failure:^(NSError *err) {
         
+    }];
+}
+//更改玩友圈背景图片
++ (void)friendsChangeBGImageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_ChangeBGImage baseURL:LY_SERVER params:params success:^(id response) {
+        [app stopLoading];
+        NSLog(@"------->%@",response);
+          if ([response[@"errorcode"] isEqual:@"1"]) {
+              compelte(YES);
+          }
+    } failure:^(NSError *err) {
+         [app stopLoading];
     }];
 }
 @end

@@ -135,16 +135,12 @@ UITableViewDataSource,UITableViewDelegate,
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [MTA trackPageViewBegin:HOMEPAGE_MTA];
-    [MTA trackCustomEventBegin:LYTIMEEVENT_MTA args:@[HOMEPAGE_TIMEEVENT_MTA]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self removeNavButtonAndImageView];
-    [MTA trackPageViewEnd:HOMEPAGE_MTA];
-    [MTA trackCustomEventEnd:LYTIMEEVENT_MTA args:@[HOMEPAGE_TIMEEVENT_MTA]];
 }
 
 #pragma mark 移除导航的按钮和图片

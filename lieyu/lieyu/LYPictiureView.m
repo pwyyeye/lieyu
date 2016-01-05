@@ -35,7 +35,7 @@
         _oldFrameArr = oldFrame;
         _scrollView = [[UIScrollView alloc]initWithFrame:frame];
         _scrollView.delegate = self;
-        self.alpha = 0.5;
+        self.backgroundColor = RGBA(255, 255, 255, 0);
         [self addSubview:_scrollView];
         _scrollView.frame = frame;
         NSInteger count = urlArray.count;
@@ -43,15 +43,14 @@
         _imageViewArray = [[NSMutableArray alloc]init];
         
         for (int i = 0; i < count; i ++) {
-            FriendsPicAndVideoModel *pvModel = urlArray[i];
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,(SCREEN_HEIGHT - SCREEN_WIDTH)/2.f, SCREEN_WIDTH, SCREEN_WIDTH)];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:pvModel.imageLink] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             [_scrollView addSubview:imageView];
             [_imageViewArray addObject:imageView];
             imageView.userInteractionEnabled = YES;
             
             imageView.center = CGPointMake(SCREEN_WIDTH *i + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
-            imageView.contentMode = UIViewContentModeScaleAspectFit;
+            //imageView.contentMode = UIViewContentModeScaleAspectFill;
             
             UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
             [imageView addGestureRecognizer:tapGes];
@@ -61,7 +60,6 @@
         _scrollView.pagingEnabled = YES;
         
         UIImageView *imgView = _imageViewArray[index];
-//        imgView.alpha = 0;
         CGRect rect = CGRectFromString(oldFrame[index]);
         imgView.frame = CGRectMake(rect.origin.x + SCREEN_WIDTH * index, rect.origin.y, rect.size.width, rect.size.height);
         NSLog(@"--%ld--->%@",index,NSStringFromCGRect(imgView.frame));
@@ -69,7 +67,7 @@
             imgView.alpha = 1;
             imgView.bounds = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_WIDTH);
             imgView.center = CGPointMake(SCREEN_WIDTH *index + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
-            self.alpha = 1;
+            self.backgroundColor = RGBA(255, 255, 255, 1);
         }];
         _voidIndex = index;
         
@@ -90,8 +88,7 @@
     [UIView animateWithDuration:.5 animations:^{
         CGRect rect = CGRectFromString(_oldFrameArr[_index]);
         imgView.frame = CGRectMake(rect.origin.x + SCREEN_WIDTH * _index, rect.origin.y, rect.size.width, rect.size.height);
-//        imgView.alpha = 0;
-        self.alpha = 0;
+        self.backgroundColor = RGBA(255, 255, 255, 0);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
