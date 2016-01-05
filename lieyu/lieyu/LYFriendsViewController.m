@@ -517,7 +517,6 @@
         friendsSendVC.typeOfImagePicker = self.typeOfImagePicker;
         [friendsSendVC imagePickerSpecificOperation:[_notificationDict objectForKey:@"info"]];
     }
-    
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
