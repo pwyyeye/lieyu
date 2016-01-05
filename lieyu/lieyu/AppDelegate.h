@@ -18,7 +18,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,EAIntroDelegate,UIAlertViewDelegate>
 {
     CLLocationManager *locationManager;
-    
 }
  
 @property (strong, nonatomic) UIWindow *window;
