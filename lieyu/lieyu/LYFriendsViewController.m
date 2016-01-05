@@ -317,13 +317,13 @@
                     NSMutableArray *muArr = _dataArray[_index];
                     [muArr addObjectsFromArray:dataArray];
                 }
+            _index = 0;
+            [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
+            _pageStartCountFriends ++;
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
         }
-        _index = 0;
-        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
-        _pageStartCountFriends ++;
     }];
 }
 
@@ -344,18 +344,19 @@
                         NSMutableArray *muArr = _dataArray[_index];
                         [muArr addObjectsFromArray:dataArray];
                     }
+            _index = 1;
+            [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
+            _pageStartCountMys ++;
         }else{
 //            NSArray *array = [NSArray array];
 //            [_dataArray addObject:array];
             if(_isMysPageUpLoad){
-                
+//                weakSelf.tableView.mj_footer.hidden = YES;
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             }
             _isMysPageUpLoad = NO;
         }
-        _index = 1;
-        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
-         _pageStartCountMys ++;
+        
     }];
 }
 

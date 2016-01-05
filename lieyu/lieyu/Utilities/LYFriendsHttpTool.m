@@ -176,7 +176,7 @@
 + (void)friendsChangeBGImageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_ChangeBGImage baseURL:LY_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SAVE_USERINFO baseURL:LY_SERVER params:params success:^(id response) {
         [app stopLoading];
         NSLog(@"------->%@",response);
           if ([response[@"errorcode"] isEqual:@"1"]) {
