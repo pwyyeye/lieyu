@@ -18,4 +18,5 @@
 @property (nonatomic,copy) NSString *nickName;
 @property (nonatomic,copy) NSString *toUserId;
 @property (nonatomic,copy) NSString *userId;
+@property (nonatomic,copy) NSString *commentId;
 @end

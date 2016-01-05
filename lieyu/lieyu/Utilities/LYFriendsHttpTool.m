@@ -135,8 +135,9 @@
 //删除我的评论
 + (void)friendsDeleteMyCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_DeleteMyComment baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"------->%@",response[@"message"]);
-        compelte(YES);
+          if ([response[@"errorcode"] isEqualToString:@"1"]) {
+              compelte(YES);
+          }
     }failure:^(NSError *err) {
         
     }];

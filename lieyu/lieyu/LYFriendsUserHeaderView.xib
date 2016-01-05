@@ -34,7 +34,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmT-g3-WP3">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmT-g3-WP3">
                     <rect key="frame" x="99" y="285" width="402" height="34"/>
                     <color key="backgroundColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -47,6 +47,13 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ees-e1-KfQ">
+                    <rect key="frame" x="107" y="289" width="26" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="26" id="F3T-4C-w1j"/>
+                        <constraint firstAttribute="height" constant="26" id="ns9-3f-Vhw"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -57,8 +64,10 @@
                 <constraint firstItem="Oa7-CH-Hdo" firstAttribute="leading" secondItem="VGf-wq-5JP" secondAttribute="trailing" constant="10" id="Tju-nO-hnr"/>
                 <constraint firstAttribute="trailing" secondItem="Dyb-Vu-Cgj" secondAttribute="trailing" id="Tzx-3O-ndw"/>
                 <constraint firstItem="Dyb-Vu-Cgj" firstAttribute="leading" secondItem="c0B-5u-B0e" secondAttribute="leading" id="Zsj-Dm-Qc7"/>
+                <constraint firstItem="ees-e1-KfQ" firstAttribute="top" secondItem="Dyb-Vu-Cgj" secondAttribute="bottom" constant="49" id="dDN-JT-0Yk"/>
                 <constraint firstItem="Oa7-CH-Hdo" firstAttribute="top" secondItem="Dyb-Vu-Cgj" secondAttribute="bottom" constant="-30" id="k0e-af-vuP"/>
                 <constraint firstAttribute="trailing" secondItem="Oa7-CH-Hdo" secondAttribute="trailing" constant="10" id="lgz-Ce-bQ8"/>
+                <constraint firstItem="ees-e1-KfQ" firstAttribute="leading" secondItem="c0B-5u-B0e" secondAttribute="leading" constant="107" id="p9V-uk-UOh"/>
                 <constraint firstItem="gmT-g3-WP3" firstAttribute="top" secondItem="Dyb-Vu-Cgj" secondAttribute="bottom" constant="45" id="rgD-Dp-VwH"/>
                 <constraint firstItem="Dyb-Vu-Cgj" firstAttribute="top" secondItem="c0B-5u-B0e" secondAttribute="top" id="xK1-IZ-ofd"/>
             </constraints>
@@ -66,6 +75,7 @@
                 <outlet property="ImageView_bg" destination="Dyb-Vu-Cgj" id="n1j-mH-S1f"/>
                 <outlet property="btn_header" destination="Oa7-CH-Hdo" id="u8M-TN-JbV"/>
                 <outlet property="btn_newMessage" destination="gmT-g3-WP3" id="5wO-55-XtM"/>
+                <outlet property="imageView_NewMessageIcon" destination="ees-e1-KfQ" id="v5R-1q-cYo"/>
                 <outlet property="label_name" destination="VGf-wq-5JP" id="FPo-fP-4K0"/>
             </connections>
             <point key="canvasLocation" x="304" y="298"/>
