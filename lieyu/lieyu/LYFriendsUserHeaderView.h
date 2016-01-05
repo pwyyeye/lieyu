@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_header;
 @property (weak, nonatomic) IBOutlet UILabel *label_name;
 @property (weak, nonatomic) IBOutlet UIButton *btn_newMessage;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView_NewMessageIcon;
 
 @end

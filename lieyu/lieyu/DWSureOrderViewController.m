@@ -213,6 +213,8 @@
             if(zsArr.count){
             ZSDetailModel *zsModel=zsArr[indexPath.row];
             _managerCell = [tableView dequeueReusableCellWithIdentifier:@"managerInfo" forIndexPath:indexPath];
+                _managerCell.chooseBtn.tag = indexPath.row;
+                [_managerCell.chooseBtn addTarget:self action:@selector(chooseZSManager:) forControlEvents:UIControlEventTouchUpInside];
             [_managerCell cellConfigureWithImage:zsModel.avatar_img name:zsModel.usernick stars:zsModel.servicestar];
                 _managerCell.avatarImage.layer.cornerRadius = 10;//CGRectGetWidth(_managerCell.avatarImage.frame)/2.0;
                 _managerCell.avatarImage.layer.masksToBounds = YES;
@@ -344,26 +346,33 @@
     //        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     //        [self.navigationController pushViewController:controller animated:YES];
     
-    if (indexPath.section == 3) {
-        [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
-        ZSDetailModel *zsModel=zsArr[indexPath.row];
-        _selectIndex = indexPath.row;
-        if([zsModel.isFull isEqualToString:@"1"]){
-            [self showMessage:@"该经理的卡座已满,请选择其他专属经理!"];
-            return;
-        }
-        zsModel.issel=true;
-        for (int i=0; i<zsArr.count; i++) {
-            ZSDetailModel *zsModelTemp=zsArr[i];
-            if(i!=indexPath.row){
-                zsModelTemp.issel=false;
-            }
-        }
-        
-        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:3];
-        [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
-    }
+//    if (indexPath.section == 3) {
+//        
+//        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:3];
+//        [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+//    }
 }
+
+- (void)chooseZSManager:(UIButton *)button{
+    [_managerCell.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateNormal];
+    ZSDetailModel *zsModel=zsArr[button.tag];
+//    _selectIndex = indexPath.row;
+    if([zsModel.isFull isEqualToString:@"1"]){
+        [self showMessage:@"该经理的卡座已满,请选择其他专属经理!"];
+        return;
+    }
+    zsModel.issel=true;
+    for (int i=0; i<zsArr.count; i++) {
+        ZSDetailModel *zsModelTemp=zsArr[i];
+        if(i!=button.tag){
+            zsModelTemp.issel=false;
+        }
+    }
+    _selectIndex = button.tag;
+    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:3];
+    [_tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
+}
+
 #pragma mark 私聊
 -(void)siliaoAct:(UIButton *)sender{
     for (ZSDetailModel *zsDetailModel in zsArr) {
@@ -450,6 +459,7 @@
         for (ZSDetailModel *detaiModel in zsArr) {
             if(detaiModel.issel){
                 userId=detaiModel.userid;
+                NSLog(@"--->%d",detaiModel.userid);
                 issel=true;
                 break;
             }

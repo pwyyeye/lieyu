@@ -30,6 +30,7 @@
 
 - (void)setupTableViewCell{
     self.title =@"消息";
+    self.tableView.tableFooterView = [[UIView alloc]init];
     [self.tableView registerNib:[UINib nibWithNibName:LYFriendsNewMessage bundle:nil] forCellReuseIdentifier:LYFriendsNewMessage];
 }
 
@@ -61,7 +62,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    FriendsNewsModel *friendNewM = _dataArray[indexPath.row];
+   // FriendsNewsModel *friendNewM = _dataArray[indexPath.row];
 }
 
 - (void)didReceiveMemoryWarning {

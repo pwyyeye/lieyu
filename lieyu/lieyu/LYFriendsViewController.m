@@ -53,20 +53,20 @@
 @interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UITextFieldDelegate,YBImgPickerViewControllerDelegate,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate>{
-    UIButton *_friendsBtn;
-    UIButton *_myBtn;
-    UILabel *_myBadge;
-    UIButton *_carmerBtn;
+    UIButton *_friendsBtn;//导航栏朋友圈按钮
+    UIButton *_myBtn;//导航栏我的按钮
+    UILabel *_myBadge;//我的按钮小红圈
+    UIButton *_carmerBtn;//发布动态按钮
     CGFloat _friendBtnAlpha,_myBtnAlpha;
     NSMutableArray *_dataArray;
     NSInteger _index;//0 表示玩友圈界面 1表示我的界面
     LYFriendsUserHeaderView *_headerView;
-    UIView *_vLine;
-    NSMutableArray *_oldFrameArray;//原来的frame
+    UIView *_vLine;//导航栏竖线
+    NSMutableArray *_oldFrameArray;//查看图片纪录原来的frame
     NSInteger _section;//点击的section
     NSInteger _imgIndex;//点击的第几个imgview
-    NSString *_useridStr;
-    NSString *_likeStr;
+    NSString *_useridStr;//当前用户id
+    NSString *_likeStr;//用户是否喜欢
     UIView *_bigView;
     LYFriendsCommentView *_commentView;//弹出的评论框
     NSInteger _commentBtnTag;
@@ -106,11 +106,12 @@
     [self getFriendsNewMessage];
 }
 
+#pragma mark - 获取我的未读消息数
 - (void)getFriendsNewMessage{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
     NSDictionary *paraDic = @{@"userId":_useridStr};
-    __block LYFriendsViewController *weakSelf = self;
+    //__block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
         NSLog(@"---->%@------%@",reslults,icon);
 //        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
@@ -130,34 +131,46 @@
     }];
 }
 
+#pragma mark - 设置全局属性
 - (void)setupAllProperty{
-    _myBadge.hidden = YES;
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0; i < 2; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         [_dataArray addObject:array];
     }
     _oldFrameArray = [[NSMutableArray alloc]init];
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
      _index = 0;
     _friendsBtnSelect = YES;
     _pageStartCountFriends = 0;
     _pageStartCountMys = 0;
     _pageCount = 10;
     self.tableView.tableFooterView = [[UIView alloc]init];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAndLoadData) name:@"loginAndLoadData" object:nil];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(app.userModel)  _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    else return;
     [self getDataFriendsWithSetContentOffSet:NO];
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageCountNotice:) name:@"MyFriendsMessageCount" object:nil];
 }
 
-- (void)messageCountNotice:(NSNotification *)note{
-    NSLog(@"--->%@",note);
-    UIView *view = _tableView.tableHeaderView;
-    CGRect frame = view.frame;
-    frame.size.height = frame.size.height + 54;
-    _tableView.tableHeaderView = view;
+#pragma mark - 登录后获取数据
+- (void)loginAndLoadData{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(app.userModel)  _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    else return;
+    [self getDataFriendsWithSetContentOffSet:NO];
+    self.navigationController.navigationBarHidden = NO;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginAndLoadData" object:nil];
 }
+
+//- (void)messageCountNotice:(NSNotification *)note{
+//    NSLog(@"--->%@",note);
+//    UIView *view = _tableView.tableHeaderView;
+//    CGRect frame = view.frame;
+//    frame.size.height = frame.size.height + 54;
+//    _tableView.tableHeaderView = view;
+//}
 
 //- (void)badgeValue:(NSNotification *)note{
 //    NSString *resluts = note.userInfo[@"results"];
@@ -165,6 +178,7 @@
 //    NSLog(@"->%@----%@",resluts,icon);
 //}
 
+#pragma mark - 配置表的cell
 - (void)setupTableView{
     NSArray *array = @[LYFriendsNameCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID,LYFriendsVideoCellID];
     for (NSString *cellIdentifer in array) {
@@ -174,6 +188,7 @@
     [self.tableView registerClass:[LYFriendsImgTableViewCell class] forCellReuseIdentifier:LYFriendsImgCellID];
 }
 
+#pragma mark - 配置表的刷新控件
 - (void)setupTableViewFresh{
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         switch (_index) {
@@ -216,7 +231,7 @@
     
 }
 
-//设置导航栏玩友圈和我的按钮及发布动态按钮
+#pragma mark - 设置导航栏玩友圈和我的按钮及发布动态按钮
 - (void)setupNavMenuView{
     _friendsBtn = [[UIButton alloc]initWithFrame:CGRectMake(101.5, 12, 42, 20)];
     [_friendsBtn setTitle:@"玩友圈" forState:UIControlStateNormal];
@@ -234,6 +249,7 @@
     else{
         _friendsBtn.alpha = 0.5;
     }
+    
     [_myBtn addTarget:self action:@selector(myClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_myBtn];
     
@@ -245,8 +261,8 @@
     _myBadge.backgroundColor = [UIColor redColor];
     _myBadge.layer.cornerRadius = CGRectGetWidth(_myBadge.frame) / 2.f;
     _myBadge.layer.masksToBounds = YES;
+    _myBadge.hidden = YES;
     [self.navigationController.navigationBar addSubview:_myBadge];
-    
     _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake(285.5, 10, 24, 24)];
     [_carmerBtn addTarget:self action:@selector(carmerClick:) forControlEvents:UIControlEventTouchUpInside];
     [_carmerBtn setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
@@ -256,10 +272,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
     [self setupNavMenuView];
-    
-//    if(_dataArray.count){
-//    if(((NSArray *)_dataArray[_index]).count) [self.tableView reloadData];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+//    NSArray *array = _dataArray[0];
+//    if(array.count){
+//        [self getDataFriendsWithSetContentOffSet:NO];
 //    }
 }
 
@@ -267,8 +286,10 @@
     [super viewWillDisappear:animated];
     [self removeNavMenuView];
     [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
 }
 
+#pragma mark - 移除导航栏的按钮
 - (void)removeNavMenuView{
 //    _friendsBtn.alpha =
     [_friendsBtn removeFromSuperview];
@@ -374,7 +395,6 @@
     _pageStartCountMys = 0;
 //    _index = 1;
     [self getDataMysWithSetContentOffSet:YES];
-    _myBadge.hidden = YES;
     [self addTableViewHeader];
 }
 
@@ -385,11 +405,13 @@
     if(_results.integerValue){
         _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339);
          _headerView.btn_newMessage.hidden = NO;
+        _myBadge.hidden = NO;
     }else{
         _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339 - 54);
          _headerView.btn_newMessage.hidden = YES;
+        _headerView.imageView_NewMessageIcon.hidden = YES;
     }
-    [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:_icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    [_headerView.imageView_NewMessageIcon sd_setImageWithURL:[NSURL URLWithString:_icon]  placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:UIControlStateNormal];
     [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] forState:UIControlStateNormal ];
     _headerView.label_name.text = app.userModel.usernick;
@@ -611,10 +633,11 @@
     _commentView.textField.delegate = self;
     
     [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 49 - 52, SCREEN_WIDTH, 49);
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {
         
     }];
+    _commentView.textField.returnKeyType = UIReturnKeyDone;
 }
 
 - (void)bigViewGes{
@@ -642,7 +665,6 @@
     __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl) {
         if (resutl) {
-            NSLog(@"--->%ld",recentM.commentList.count + 2);
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
             commentModel.icon = app.userModel.avatar_img;
@@ -652,7 +674,6 @@
             else commentModel.toUserId = @"0";
             if(recentM.commentList.count == 5) [recentM.commentList removeObjectAtIndex:0];
             [recentM.commentList addObject:commentModel];
-            NSLog(@"------%ld->%ld",_commentBtnTag,recentM.commentList.count + 2);
           //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
             [weakSelf.tableView reloadData];
         }
@@ -663,7 +684,6 @@
 #pragma mark - 查看图片
 - (void)checkImageClick:(UIButton *)button{
      AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSLog(@"--->%ld",button.tag);
     NSMutableArray *oldFrameArray = [[NSMutableArray alloc]init];
     [oldFrameArray removeAllObjects];
     NSInteger index = 0;
@@ -720,6 +740,7 @@
     NSMutableArray *array = _dataArray[_index];
     FriendsRecentModel *recentM = array[button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
+    NSLog(@"%@",paraDic);
     __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
         if (result) {
@@ -777,10 +798,16 @@
             FriendsRecentModel *recetnM = _dataArray[_index][_section];
             NSLog(@"---->%ld-----%ld",_indexRow,recetnM.commentList.count);
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
-//            NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.co};
-//            [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
-//                
-//            }];
+            NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
+            NSLog(@"%@",paraDic);
+            __block LYFriendsViewController *weakSelf = self;
+            [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
+                if(result){
+                    NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_index][_section]).commentList;
+                    [commentArr removeObjectAtIndex:_indexRow];
+                    [weakSelf.tableView reloadData];
+                }
+            }];
         }
     }
 }
@@ -1050,7 +1077,7 @@
     if (indexPath.row >= 4 && indexPath.row <= 8) {
         _indexRow = indexPath.row;
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
-        if (![commetnM.userId isEqualToString:_useridStr]) {//我发的评论
+        if ([commetnM.userId isEqualToString:_useridStr]) {//我发的评论
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
             actionSheet.tag = 300;
             [actionSheet showInView:self.view];
@@ -1086,31 +1113,32 @@
     return NSStringFromCGRect(imgFrame);
 }
 
+#pragma mark - 设置表的分割线
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
-        case 0:
-        {
-             cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
-        }
-            break;
-        case 1:
-        {
-            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
-        }
-            break;
+//        case 0:
+//        {
+//             cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+//        }
+//            break;
+//        case 1:
+//        {
+//            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+//        }
+//            break;
         case 2:
-        {
-            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
-        }
-            break;
-        case 3:
         {
             cell.separatorInset = UIEdgeInsetsMake(0, 7, 0, 7);
         }
             break;
-        default:
+        case 3:
         {
             cell.separatorInset = UIEdgeInsetsMake(0, 35, 0, 7);
+        }
+            break;
+        default:
+        {
+            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
         }
             break;
     }

@@ -69,11 +69,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
 }
 
 - (void)setupAllProperty{
@@ -175,12 +177,12 @@
     __block LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
         _dataArray = dataArray;
+        _userInfo = userInfo;
         for (FriendsRecentModel *r in _dataArray) {
             NSLog(@"--->%@",r.usernick);
         }
         [weakSelf reloadTableViewAndSetUpProperty];
         [weakSelf addTableViewHeader];
-        _userInfo = userInfo;
         _pageStartCount ++;
     }];
 }
@@ -521,6 +523,37 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+//        case 0:
+//        {
+//            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+//        }
+//            break;
+//        case 1:
+//        {
+//            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+//        }
+//            break;
+        case 2:
+        {
+            cell.separatorInset = UIEdgeInsetsMake(0, 7, 0, 7);
+        }
+            break;
+        case 3:
+        {
+            cell.separatorInset = UIEdgeInsetsMake(0, 35, 0, 7);
+        }
+            break;
+        default:
+        {
+            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
+        }
+            break;
+    }
+}
+
+
 #pragma mark － 创建commentView
 - (void)createCommentView{
     _bigView = [[UIView alloc]init];
@@ -539,7 +572,7 @@
     _commentView.textField.delegate = self;
     
     [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 49 - 52, SCREEN_WIDTH, 49);
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 129, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {
         
     }];

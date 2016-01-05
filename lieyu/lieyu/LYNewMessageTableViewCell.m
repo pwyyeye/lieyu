@@ -8,6 +8,7 @@
 
 #import "LYNewMessageTableViewCell.h"
 #import "FriendsNewsModel.h"
+#import "UIButton+WebCache.h"
 
 @implementation LYNewMessageTableViewCell
 
@@ -22,8 +23,18 @@
     _friendsNesM = friendsNesM;
     [_btn_name setTitle:friendsNesM.usernick forState:UIControlStateNormal];
     _label_message.text = friendsNesM.comment;
-    _label_myMessage.text = friendsNesM.message;
     _label_time.text = friendsNesM.date;
+    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:friendsNesM.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    
+    CGSize size = [friendsNesM.message boundingRectWithSize:CGSizeMake(57, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11]} context:nil].size;
+    if(size.height < 15){
+        _label_myMessage.text = [NSString stringWithFormat:@"%@\n\n",friendsNesM.message];
+    }else if(size.height > 15 && size.height <30 ){
+        _label_myMessage.text = [NSString stringWithFormat:@"%@\n",friendsNesM.message];
+    }else{
+        _label_myMessage.text = friendsNesM.message;
+    }
+    _label_myMessage.text = friendsNesM.message;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

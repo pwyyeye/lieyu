@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,14 +16,12 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbM-EY-L9n">
                         <rect key="frame" x="16" y="10" width="67" height="66"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="67" id="U3x-LC-dgN"/>
                         </constraints>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="服务指数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEl-Ka-dGm">
                         <rect key="frame" x="95" y="55" width="50" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="IbE-SM-4AJ"/>
                             <constraint firstAttribute="height" constant="21" id="UAQ-2F-3nh"/>
@@ -34,7 +32,6 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbW-2D-g0n">
                         <rect key="frame" x="95" y="10" width="64" height="25"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="6aY-bI-fz5"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="C6N-pg-FO2"/>
@@ -46,7 +43,6 @@
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="jUp-yy-Okg">
                         <rect key="frame" x="153" y="59" width="14" height="14"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="14" id="RMM-l6-3KQ"/>
                             <constraint firstAttribute="height" constant="14" id="qe5-Tc-xBC"/>
@@ -54,7 +50,6 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="z3l-i6-fN9">
                         <rect key="frame" x="175" y="59" width="14" height="14"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="9Od-0y-KDM"/>
                             <constraint firstAttribute="width" constant="14" id="gA2-UC-7IE"/>
@@ -62,7 +57,6 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="REo-6q-mH3">
                         <rect key="frame" x="197" y="59" width="14" height="14"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="14" id="L2Q-id-V0A"/>
                             <constraint firstAttribute="height" constant="14" id="udl-Y4-Qqp"/>
@@ -70,7 +64,6 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="qHl-Pn-4xx">
                         <rect key="frame" x="219" y="59" width="14" height="14"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="14" id="I7v-Mz-JHL"/>
                             <constraint firstAttribute="height" constant="14" id="Uac-TU-a7d"/>
@@ -78,7 +71,6 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRed" translatesAutoresizingMaskIntoConstraints="NO" id="knd-R2-SYz">
                         <rect key="frame" x="241" y="59" width="14" height="14"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="14" id="jJt-Lr-hbN"/>
                             <constraint firstAttribute="height" constant="14" id="vNg-9g-cij"/>
@@ -86,7 +78,6 @@
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzv-kg-4GH">
                         <rect key="frame" x="284" y="33" width="20" height="20"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="2i6-4t-D9q"/>
                             <constraint firstAttribute="width" constant="20" id="Q6c-gP-spd"/>
@@ -97,7 +88,6 @@
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ppE-An-lPV">
                         <rect key="frame" x="16" y="10" width="67" height="66"/>
-                        <animations/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <real key="value" value="33.5"/>
@@ -107,10 +97,8 @@
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQu-iL-QyW">
                         <rect key="frame" x="263" y="0.0" width="57" height="87"/>
-                        <animations/>
                     </button>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="qHl-Pn-4xx" firstAttribute="centerY" secondItem="tEl-Ka-dGm" secondAttribute="centerY" id="1F0-kl-PaC"/>
                     <constraint firstItem="z3l-i6-fN9" firstAttribute="centerY" secondItem="tEl-Ka-dGm" secondAttribute="centerY" id="1Pi-ZQ-WRh"/>
@@ -138,7 +126,6 @@
                     <constraint firstItem="jUp-yy-Okg" firstAttribute="centerY" secondItem="tEl-Ka-dGm" secondAttribute="centerY" id="xbF-tw-fT2"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="avatarImage" destination="ppE-An-lPV" id="0Q5-KG-4Of"/>
                 <outlet property="chooseBtn" destination="UQu-iL-QyW" id="B8b-fI-uLA"/>
