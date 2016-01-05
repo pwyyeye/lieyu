@@ -50,11 +50,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
      [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
 }
 
 - (void)setupAllProperty{

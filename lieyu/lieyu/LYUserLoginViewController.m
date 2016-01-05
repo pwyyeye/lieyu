@@ -148,6 +148,7 @@
         [self getUserZangJiuBaList];
         
         [self.navigationController popViewControllerAnimated:YES ];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
     }];
     
     

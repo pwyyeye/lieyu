@@ -10,6 +10,8 @@
 #import "LYFriendsHttpTool.h"
 #import <CoreLocation/CoreLocation.h>
 #import "HTTPController.h"
+#import <AVFoundation/AVFoundation.h>
+#import <Reachability.h>
 
 #define IMGwidth ( [UIScreen mainScreen].bounds.size.width - 20 ) / 3
 
@@ -17,6 +19,9 @@
 {
     int qiniuPages;
     AppDelegate *app;
+    
+    NSString *_mp4Quality;
+    NSString *_mp4Path;
 }
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 //@property (nonatomic, strong) NSMutableArray *shangchuanArray;
@@ -84,6 +89,7 @@
     }
 }
 
+#pragma mark 判断是否推出本次编辑
 - (void)gotoBack{
     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定放弃本次编辑？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil]show];
 }
@@ -94,28 +100,81 @@
     }
 }
 
+#pragma mark 判断网络连接状况
+- (int)configureNetworkConnect{
+    NetworkStatus netStatus = [[[Reachability alloc]init] currentReachabilityStatus];
+    switch (netStatus){
+        case NotReachable:
+            return 0;//没有网络连接
+            break;
+        case ReachableViaWWAN:
+            return 1;//数据流量
+            break;
+        case ReachableViaWiFi:
+            return 2;//Wi-Fi连接
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark 上传玩友圈,待修改
 - (void)sendClick{
     [self.textView resignFirstResponder];
-    [app startLoading];
+//    [app startLoading];
     //上传视频或者图片到七牛
     if(_isVedio){
         if([self.mediaUrl isEqualToString:@""]){
             [self showMessage:@"请添加照片或视频，把美好分享！"];
             [app stopLoading];
+            return;
         }
-        [HTTPController uploadFileToQiuNiu:self.mediaUrl complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-            if(![MyUtil isEmptyString:key]){
-                [self sendTrends:key];
-            }else{
-//                
-            }
-        }];
+        //////////////////////////
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+        AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:self.mediaUrl] options:nil];
+        NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+        if([self configureNetworkConnect] == 1){
+            //数据流量
+            _mp4Quality = AVAssetExportPresetLowQuality;
+        }else if([self configureNetworkConnect] == 2){
+            //wifi
+            _mp4Quality = AVAssetExportPresetHighestQuality;
+        }
+        if([compatiblePresets containsObject:_mp4Quality]){
+            AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset presetName:_mp4Quality];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
+            //将压缩得到的视频文件暂时保存在沙盒中，以时间命名，防止重复
+            _mp4Path = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4",[formatter stringFromDate:[NSDate date]]];
+            exportSession.outputURL = [NSURL fileURLWithPath:_mp4Path];
+            exportSession.outputFileType = AVFileTypeMPEG4;
+            [exportSession exportAsynchronouslyWithCompletionHandler:^{
+                switch (exportSession.status) {
+                    case AVAssetExportSessionStatusCompleted:
+                        [MyUtil showCleanMessage:@"视频压缩成功！"];
+                        //将新的视频地址赋给 mediaUrl
+                        self.mediaUrl = [[NSMutableString alloc]initWithString:_mp4Path];
+                        [self sendFilesToQiniu];
+                        break;
+                    case AVAssetExportSessionStatusFailed:
+                        [MyUtil showCleanMessage:@"视频上传失败！"];
+                        break;
+                    default:
+                        break;
+                }
+            }];
+        }
+        
     }else{
         if(self.fodderArray.count <= 0){
             [self showMessage:@"请添加照片或视频，把美好分享！"];
             [app stopLoading];
+            return;
         }
+        /////////////////////////
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
         for(int i = 0 ; i < self.fodderArray.count; i ++){
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                 if(![MyUtil isEmptyString:key]){
@@ -135,6 +194,17 @@
     }
 }
 
+#pragma mark 上传文件到七牛
+- (void)sendFilesToQiniu{
+    [HTTPController uploadFileToQiuNiu:self.mediaUrl complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+        if(![MyUtil isEmptyString:key]){
+            [self sendTrends:key];
+        }else{
+            //
+        }
+    }];
+}
+
 - (void)sendTrends:(NSString *)string{
     
     NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -146,11 +216,14 @@
     }
     [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
         if(result){
-            [app stopLoading];
-            [self.navigationController popViewControllerAnimated:YES];
+//            [app stopLoading];
+//            [self.navigationController popViewControllerAnimated:YES];
+//            [self showMessage:@"恭喜，发布成功!"];
+            [MyUtil showCleanMessage:@"恭喜，发布成功!"];
         }else{
-            [app stopLoading];
-            [self showMessage:@"抱歉，发布失败!"];
+//            [app stopLoading];
+//            [self showMessage:@"抱歉，发布失败!"];
+            [MyUtil showCleanMessage:@"抱歉，发布失败!"];
         }
     }];
 }
@@ -193,7 +266,7 @@
 #pragma mark 点击三个按键的相应处理方法
 - (void)photosActionClick{
     if(self.pageCount <= 0){
-        [self showMessage:@"抱歉，无法再添加照片"];
+        [MyUtil showCleanMessage:@"抱歉，无法再添加照片"];
         return;//给出提示
     }
     YBImgPickerViewController *ybImagePicker = [[YBImgPickerViewController alloc]init];
@@ -203,7 +276,7 @@
 
 - (void)takePhotoActionClick{
     if(self.pageCount <= 0){
-        [self showMessage:@"抱歉，无法再添加照片"];
+        [MyUtil showCleanMessage:@"抱歉，无法再添加照片"];
         return;//给出提示
     }
     _typeOfImagePicker = @"takePhoto";
@@ -212,7 +285,7 @@
 
 - (void)filmingActionClick{
     if(self.pageCount < 4){
-        [self showMessage:@"抱歉，无法再添加视频"];
+        [MyUtil showCleanMessage:@"抱歉，无法再添加视频"];
         return;//给出提示
     }
     _typeOfImagePicker = @"filming";
@@ -233,8 +306,13 @@
         _imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//摄影
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
-        _imagePicker.videoQuality = UIImagePickerControllerQualityType640x480;
+        if([self configureNetworkConnect] == 1){
+            _imagePicker.videoQuality = UIImagePickerControllerQualityTypeLow;
+        }else if([self configureNetworkConnect] == 2){
+            _imagePicker.videoQuality = UIImagePickerControllerQualityTypeHigh;
+        }
         _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头模式
+        
         _imagePicker.videoMaximumDuration = 10;
     }
     _imagePicker.editing = YES;

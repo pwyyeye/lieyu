@@ -19,6 +19,9 @@
     
     _btn_newMessage.layer.cornerRadius = 4;
     _btn_newMessage.layer.masksToBounds = YES;
+    
+    _imageView_NewMessageIcon.layer.cornerRadius = CGRectGetHeight(_imageView_NewMessageIcon.frame) / 2.f;
+    _imageView_NewMessageIcon.layer.masksToBounds = YES;
 }
 
 

@@ -29,6 +29,7 @@
                     <constraint firstItem="Hr1-n5-fhe" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="qBj-0X-sTi"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="label_commentCount" destination="Hr1-n5-fhe" id="g19-Zd-cRs"/>
             </connections>
