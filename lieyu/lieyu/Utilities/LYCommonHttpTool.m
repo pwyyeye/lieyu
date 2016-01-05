@@ -30,6 +30,21 @@
 //        NSLog(err.domain);
     }];
 }
+
+-(void)getMediaTokenByqiNiuWithParams:(NSDictionary*)params
+                           block:(void(^)(NSString* result)) block{
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_QINIU_MEDIA_TOKEN baseURL:QINIU_SERVER  params:params success:^(id response) {
+        
+        NSString *token=response[@"data"];
+        
+        block(token);
+        
+    } failure:^(NSError *err) {
+        //        NSLog(err.domain);
+    }];
+}
+
+
 // 获取IMtoken
 -(void) getTokenByIMWithParams:(NSDictionary*)params
                          block:(void(^)(NSString* result)) block{

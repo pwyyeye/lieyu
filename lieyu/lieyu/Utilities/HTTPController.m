@@ -419,7 +419,7 @@
             
             NSData *data =[NSData dataWithContentsOfFile:filePath];
   
-            [upManager putData:data key:fileName token:app.qiniu_token complete:(QNUpCompletionHandler)completionHandler  option:op];
+            [upManager putData:data key:fileName token:app.qiniu_media_token complete:(QNUpCompletionHandler)completionHandler  option:op];
             return YES;
         }
         @catch (NSException *exception) {

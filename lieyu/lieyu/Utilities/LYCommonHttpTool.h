@@ -17,4 +17,7 @@
 // 获取IMtoken
 -(void) getTokenByIMWithParams:(NSDictionary*)params
                             block:(void(^)(NSString* result)) block;
+// 获取7牛视频上传token
+-(void)getMediaTokenByqiNiuWithParams:(NSDictionary*)params
+                                block:(void(^)(NSString* result)) block;
 @end

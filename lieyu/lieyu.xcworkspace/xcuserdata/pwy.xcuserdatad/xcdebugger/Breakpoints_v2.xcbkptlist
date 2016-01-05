@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lieyu/LYFriendsSendViewController.m"
-            timestampString = "473663676.594489"
+            timestampString = "473678161.764506"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "-tapClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lieyu/LYFriendsSendViewController.m"
-            timestampString = "473663400.403229"
+            filePath = "lieyu/Utilities/HTTPController.m"
+            timestampString = "473678493.442969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "356"
-            endingLineNumber = "356"
-            landmarkName = "-mediaPlayerThumbnailRequestFinished:"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
+            landmarkName = "+uploadFileToQiuNiu:complete:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
