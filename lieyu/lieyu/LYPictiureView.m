@@ -71,8 +71,12 @@
         }];
         _voidIndex = index;
         
+        _pageCtl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, 0, 190, 37)];
+        _pageCtl.center = CGPointMake(self.center.x, SCREEN_HEIGHT - 15 - _pageCtl.frame.size.height/2.f);
+        [self addSubview:_pageCtl];
+        _pageCtl.numberOfPages = count;
+        _pageCtl.currentPage = index;
     }
-    
     
     
     return self;
@@ -81,6 +85,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     _index = (scrollView.contentOffset.x / SCREEN_WIDTH);
     NSLog(@"----%ld",_index);
+    _pageCtl.currentPage = _index;
 }
 
 - (void)tapGes{

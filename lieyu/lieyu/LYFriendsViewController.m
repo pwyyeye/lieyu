@@ -34,9 +34,11 @@
 #import "FriendsLikeModel.h"
 #import "FriendsPicAndVideoModel.h"
 #import "FriendsUserInfoModel.h"
+#import "MJRefresh.h"
 
 #import "YBImgPickerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
@@ -78,6 +80,8 @@
     NSInteger _indexRow;//表的那一行
     BOOL _isCommentToUser;//是否对用户评论
     LYFriendsSendViewController *friendsSendVC;
+        NSString *_results;//新消息条数
+        NSString *_icon;//新消息头像
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -93,11 +97,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
     self.pagesCount = 4;
     
     _notificationDict = [[NSMutableDictionary alloc]init];
-    
     [self setupAllProperty];//设置全局属性
     [self setupTableView];
     [self setupTableViewFresh];//配置表的刷新和加载
@@ -108,21 +110,33 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
     NSDictionary *paraDic = @{@"userId":_useridStr};
-//    __block LYFriendsViewController *weakSelf = self;
+    __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
         NSLog(@"---->%@------%@",reslults,icon);
 //        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
-        if(!reslults.integerValue) _myBadge.hidden = YES;
-        [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal];
+        if(reslults.integerValue){
+            _myBadge.hidden = NO;
+            _headerView.btn_newMessage.hidden = NO;
+        }
+        [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
-       _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 330);
+        
+        
+
         _headerView.btn_newMessage.hidden = NO;
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"MyFriendsMessageCount" object:weakSelf userInfo:@{@"count":reslults,@"icon":icon}];
+        _results = reslults;
+        _icon = icon;
     }];
 }
 
 - (void)setupAllProperty{
+    _myBadge.hidden = YES;
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
+    for (int i = 0; i < 2; i ++) {
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        [_dataArray addObject:array];
+    }
     _oldFrameArray = [[NSMutableArray alloc]init];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -132,17 +146,17 @@
     _pageStartCountMys = 0;
     _pageCount = 10;
     self.tableView.tableFooterView = [[UIView alloc]init];
-    [self getDataFriends];
+    [self getDataFriendsWithSetContentOffSet:NO];
     
-//    [[NSNotificationCenter defaultCenter] addObserverForName:@"MyFriendsMessageCount" object:nil queue:[NSOperationQueue mainQueue]  usingBlock:^(NSNotification * _Nonnull note) {
-//        NSString *resluts = note.userInfo[@"results"];
-//        NSString *icon = note.userInfo[@"icon"];
-//        NSLog(@"->%@----%@",resluts,icon);
-//        _myBadge.text = resluts;
-//    }];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(badgeValue:) name:@"MyFriendsMessageCount" object:nil];
-//      
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageCountNotice:) name:@"MyFriendsMessageCount" object:nil];
+}
+
+- (void)messageCountNotice:(NSNotification *)note{
+    NSLog(@"--->%@",note);
+    UIView *view = _tableView.tableHeaderView;
+    CGRect frame = view.frame;
+    frame.size.height = frame.size.height + 54;
+    _tableView.tableHeaderView = view;
 }
 
 //- (void)badgeValue:(NSNotification *)note{
@@ -166,14 +180,14 @@
             case 0:
             {
                 _pageStartCountFriends = 0;
-                [self getDataFriends];
+                [self getDataFriendsWithSetContentOffSet:NO];
             }
                 break;
                 
             default:
             {
                 _pageStartCountMys = 0;
-                [self getDataMys];
+                [self getDataMysWithSetContentOffSet:NO];
             }
                 break;
         }
@@ -187,14 +201,14 @@
             case 0:
             {
                 _isFriendsPageUpLoad = YES;
-                [self getDataFriends];
+                [self getDataFriendsWithSetContentOffSet:NO];
             }
                 break;
                 
             default:
             {
                _isMysPageUpLoad = YES;
-                [self getDataMys];
+                [self getDataMysWithSetContentOffSet:NO];
             }
                 break;
         }
@@ -214,8 +228,12 @@
     _myBtn = [[UIButton alloc]initWithFrame:CGRectMake(176, 12, 42, 20)];
     [_myBtn setTitle:@"我的" forState:UIControlStateNormal];
     _myBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    if(_friendsBtnSelect) _myBtn.alpha = 0.5;
-    else _friendsBtn.alpha = 0.5;
+    if(_friendsBtnSelect) {
+        _myBtn.alpha = 0.5;
+    }
+    else{
+        _friendsBtn.alpha = 0.5;
+    }
     [_myBtn addTarget:self action:@selector(myClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_myBtn];
     
@@ -240,9 +258,9 @@
     [IQKeyboardManager sharedManager].enable = NO;
     [self setupNavMenuView];
     
-    if(_dataArray.count){
-    if(((NSArray *)_dataArray[_index]).count) [self.tableView reloadData];
-    }
+//    if(_dataArray.count){
+//    if(((NSArray *)_dataArray[_index]).count) [self.tableView reloadData];
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -258,10 +276,12 @@
     [_myBtn removeFromSuperview];
     [_carmerBtn removeFromSuperview];
     [_vLine removeFromSuperview];
+    _myBtn = nil;
+    _friendsBtn = nil;
 }
 
 #pragma mark - 获取最新玩友圈数据
-- (void)getDataFriends{
+- (void)getDataFriendsWithSetContentOffSet:(BOOL)need{
        __block LYFriendsViewController *weakSelf = self;
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountFriends * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
@@ -270,26 +290,24 @@
     [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
         NSLog(@"---->%ld",dataArray.count);
         if(dataArray.count){
-            if(!_dataArray.count){
-                [_dataArray addObject:dataArray];//第一次加载
-            }else{
                 if(_pageStartCountFriends == 0){
                     [_dataArray replaceObjectAtIndex:0 withObject:dataArray];
                 }else {
                     NSMutableArray *muArr = _dataArray[_index];
                     [muArr addObjectsFromArray:dataArray];
                 }
-            }
         }else{
-            if(_isFriendsPageUpLoad)  [MyUtil showPlaceMessage:@"暂无更多数据"]; _isFriendsPageUpLoad = NO;
+            if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+            _isFriendsPageUpLoad = NO;
         }
-        [weakSelf reloadTableViewAndSetUpProperty];
+        _index = 0;
+        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
         _pageStartCountFriends ++;
     }];
 }
 
 #pragma mark - 获取最新我的数据
-- (void)getDataMys{
+- (void)getDataMysWithSetContentOffSet:(BOOL)need{
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountMys * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
@@ -299,30 +317,31 @@
         NSLog(@"----->%ld",dataArray.count);
         _userBgImageUrl = userInfo.friends_img;
         if(dataArray.count){
-            if(_dataArray.count == 1){
-                    [_dataArray addObject:dataArray];
-                }else{
                     if(_pageStartCountMys == 0){
                         [_dataArray replaceObjectAtIndex:1 withObject:dataArray];
                     }else{
                         NSMutableArray *muArr = _dataArray[_index];
                         [muArr addObjectsFromArray:dataArray];
                     }
-                }
         }else{
-            NSArray *array = [NSArray array];
-            [_dataArray addObject:array];
-            if(_isMysPageUpLoad) [MyUtil showPlaceMessage:@"暂无更多数据"]; _isMysPageUpLoad = NO;
+//            NSArray *array = [NSArray array];
+//            [_dataArray addObject:array];
+            if(_isMysPageUpLoad){
+                
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+            _isMysPageUpLoad = NO;
         }
-        [weakSelf reloadTableViewAndSetUpProperty];
-        [weakSelf addTableViewHeader];
+        _index = 1;
+        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
          _pageStartCountMys ++;
     }];
 }
 
 #pragma mark － 刷新表
-- (void)reloadTableViewAndSetUpProperty{
+- (void)reloadTableViewAndSetUpPropertyneedSetContentOffset:(BOOL)need{
     [self.tableView reloadData];
+     if(need)  [self.tableView setContentOffset:CGPointZero animated:YES];
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     if(!((NSArray *)_dataArray[_index]).count){
@@ -338,28 +357,40 @@
 
 #pragma mark - 玩友圈action
 - (void)friendsClick:(UIButton *)friendsBtn{
-    _index = 0;
+//    _index = 0;
     _friendsBtn.alpha = 1;
     _myBtn.alpha = 0.5;
     _friendsBtnSelect = YES;
-    [self getDataFriends];
+    _pageStartCountFriends = 0;
+    [self getDataFriendsWithSetContentOffSet:YES];
     [self removeTableViewHeader];
 }
 
 #pragma mark - 我的action
 - (void)myClick:(UIButton *)myBtn{
-    _index = 1;
     _friendsBtn.alpha = 0.5;
     _myBtn.alpha = 1;
     _friendsBtnSelect = NO;
-    [self getDataMys];
+    _pageStartCountMys = 0;
+//    _index = 1;
+    [self getDataMysWithSetContentOffSet:YES];
+    _myBadge.hidden = YES;
+    [self addTableViewHeader];
 }
 
 #pragma mark - 添加表头
 - (void)addTableViewHeader{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
-    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 330 - 48);
+    if(_results.integerValue){
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339);
+         _headerView.btn_newMessage.hidden = NO;
+    }else{
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339 - 54);
+         _headerView.btn_newMessage.hidden = YES;
+    }
+    [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:_icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:UIControlStateNormal];
     [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] forState:UIControlStateNormal ];
     _headerView.label_name.text = app.userModel.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
@@ -404,8 +435,13 @@
 
 #pragma mark - 新消息action
 - (void)newClick{
+    _results = @"";
+    _icon = @"";
     LYFriendsMessageViewController *messageVC = [[LYFriendsMessageViewController alloc]init];
     [self.navigationController pushViewController:messageVC animated:YES];
+    
+    [self removeTableViewHeader];
+    [self addTableViewHeader];
 }
 
 #pragma mark - 拍照action
@@ -519,7 +555,6 @@
         friendsSendVC.typeOfImagePicker = self.typeOfImagePicker;
         [friendsSendVC imagePickerSpecificOperation:[_notificationDict objectForKey:@"info"]];
     }
-    
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
@@ -742,7 +777,7 @@
             FriendsRecentModel *recetnM = _dataArray[_index][_section];
             NSLog(@"---->%ld-----%ld",_indexRow,recetnM.commentList.count);
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
-//            NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.};
+//            NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.co};
 //            [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
 //                
 //            }];
@@ -1083,7 +1118,36 @@
 
 #pragma mark - 视频播放
 - (void)playVideo:(UIButton *)button{
+    NSArray *array = _dataArray[_index];
+    FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)((FriendsRecentModel *)array[button.tag]).lyMomentsAttachList[0];
+    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
     
+//    NSString *str = @"http://7xn0lq.com2.z0.glb.qiniucdn.com/我的影片1.mp4";
+//    NSURL *urlString = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
+//    _player.scalingMode = MPMovieScalingModeAspectFit;
+//    _player.controlStyle = MPMovieControlStyleFullscreen;
+//    _player.repeatMode = NO;
+    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    [_player setFullscreen:YES];
+   // UIWindow *window = [UIApplication sharedApplication].delegate.window;
+//    [window addSubview:_player.view];
+    [self presentMoviePlayerViewControllerAnimated:player];
+    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exit) name:MPMoviePlayerDidExitFullscreenNotification object:nil];
+}
+
+- (void)exit{
+    //[_player.view removeFromSuperview];
+}
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 

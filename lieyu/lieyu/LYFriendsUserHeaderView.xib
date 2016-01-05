@@ -43,12 +43,12 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <inset key="titleEdgeInsets" minX="26" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="1条新消息" image="gengduo_icon.png">
+                    <state key="normal" title="1条新消息">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="gmT-g3-WP3" firstAttribute="leading" secondItem="c0B-5u-B0e" secondAttribute="leading" constant="99" id="3zf-Kw-q2i"/>
                 <constraint firstAttribute="trailing" secondItem="gmT-g3-WP3" secondAttribute="trailing" constant="99" id="7ku-o3-dcT"/>
@@ -71,7 +71,4 @@
             <point key="canvasLocation" x="304" y="298"/>
         </view>
     </objects>
-    <resources>
-        <image name="gengduo_icon.png" width="27" height="27"/>
-    </resources>
 </document>

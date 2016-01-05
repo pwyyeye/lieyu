@@ -14,14 +14,31 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IXU-2j-Ssq">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="YvS-8G-taH">
+                    <rect key="frame" x="205" y="548" width="190" height="37"/>
+                    <color key="backgroundColor" red="0.53725490196078429" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="190" id="i8r-Zf-fds"/>
+                        <constraint firstAttribute="height" constant="37" id="txn-1d-J6o"/>
+                    </constraints>
+                    <color key="currentPageIndicatorTintColor" red="0.53725490196078429" green="0.54889366610738255" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </pageControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="YvS-8G-taH" firstAttribute="centerY" secondItem="H3Y-rH-AKL" secondAttribute="centerY" id="2ew-Cb-u9R"/>
                 <constraint firstItem="IXU-2j-Ssq" firstAttribute="leading" secondItem="H3Y-rH-AKL" secondAttribute="leading" id="9Ku-VW-9Yf"/>
+                <constraint firstItem="YvS-8G-taH" firstAttribute="centerX" secondItem="H3Y-rH-AKL" secondAttribute="centerX" id="IzK-DF-9nu"/>
                 <constraint firstAttribute="trailing" secondItem="IXU-2j-Ssq" secondAttribute="trailing" id="QAu-NN-Cmu"/>
                 <constraint firstItem="IXU-2j-Ssq" firstAttribute="top" secondItem="H3Y-rH-AKL" secondAttribute="top" id="YLB-wf-2iP"/>
+                <constraint firstAttribute="bottom" secondItem="YvS-8G-taH" secondAttribute="bottom" constant="15" id="nMP-9n-teH"/>
                 <constraint firstAttribute="bottom" secondItem="IXU-2j-Ssq" secondAttribute="bottom" id="yhc-Xq-rvR"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="2ew-Cb-u9R"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="367" y="385"/>
         </view>
     </objects>
