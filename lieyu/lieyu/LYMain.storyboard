@@ -244,7 +244,7 @@
                             <constraint firstAttribute="trailing" secondItem="Ogw-2i-4cW" secondAttribute="trailing" id="r0m-cS-9UX"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="gj5-MV-kpe"/>
+                    <tabBarItem key="tabBarItem" title="玩友圈" id="gj5-MV-kpe"/>
                     <connections>
                         <outlet property="tableView" destination="Ogw-2i-4cW" id="32q-ju-07b"/>
                         <outlet property="tableview_top" destination="ivg-q2-8XR" id="Rcp-OA-jHR"/>

@@ -10,5 +10,6 @@
 
 @interface LYPictiureView : UIView
 @property (strong, nonatomic)  UIScrollView *scrollView;
+@property (strong, nonatomic)  UIPageControl *pageCtl;
 - (instancetype)initWithFrame:(CGRect)frame urlArray:(NSArray *)urlArray oldFrame:(NSArray *)oldFrame with:(NSInteger)index;
 @end
