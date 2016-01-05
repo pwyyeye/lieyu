@@ -80,7 +80,8 @@
     NSInteger _indexRow;//表的那一行
     BOOL _isCommentToUser;//是否对用户评论
     LYFriendsSendViewController *friendsSendVC;
-//        MPMoviePlayerViewController *_player;
+        NSString *_results;//新消息条数
+        NSString *_icon;//新消息头像
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -109,16 +110,23 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
     NSDictionary *paraDic = @{@"userId":_useridStr};
-//    __block LYFriendsViewController *weakSelf = self;
+    __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
         NSLog(@"---->%@------%@",reslults,icon);
 //        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
-        if(reslults.integerValue) _myBadge.hidden = NO;
+        if(reslults.integerValue){
+            _myBadge.hidden = NO;
+            _headerView.btn_newMessage.hidden = NO;
+        }
         [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
-       _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339);
+        
+        
+
         _headerView.btn_newMessage.hidden = NO;
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"MyFriendsMessageCount" object:weakSelf userInfo:@{@"count":reslults,@"icon":icon}];
+        _results = reslults;
+        _icon = icon;
     }];
 }
 
@@ -140,7 +148,15 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     [self getDataFriendsWithSetContentOffSet:NO];
     
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageCountNotice:) name:@"MyFriendsMessageCount" object:nil];
+}
 
+- (void)messageCountNotice:(NSNotification *)note{
+    NSLog(@"--->%@",note);
+    UIView *view = _tableView.tableHeaderView;
+    CGRect frame = view.frame;
+    frame.size.height = frame.size.height + 54;
+    _tableView.tableHeaderView = view;
 }
 
 //- (void)badgeValue:(NSNotification *)note{
@@ -212,8 +228,12 @@
     _myBtn = [[UIButton alloc]initWithFrame:CGRectMake(176, 12, 42, 20)];
     [_myBtn setTitle:@"我的" forState:UIControlStateNormal];
     _myBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    if(_friendsBtnSelect) _myBtn.alpha = 0.5;
-    else _friendsBtn.alpha = 0.5;
+    if(_friendsBtnSelect) {
+        _myBtn.alpha = 0.5;
+    }
+    else{
+        _friendsBtn.alpha = 0.5;
+    }
     [_myBtn addTarget:self action:@selector(myClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_myBtn];
     
@@ -256,6 +276,8 @@
     [_myBtn removeFromSuperview];
     [_carmerBtn removeFromSuperview];
     [_vLine removeFromSuperview];
+    _myBtn = nil;
+    _friendsBtn = nil;
 }
 
 #pragma mark - 获取最新玩友圈数据
@@ -360,7 +382,15 @@
 - (void)addTableViewHeader{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
-    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339 - 54);
+    if(_results.integerValue){
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339);
+         _headerView.btn_newMessage.hidden = NO;
+    }else{
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339 - 54);
+         _headerView.btn_newMessage.hidden = YES;
+    }
+    [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:_icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:UIControlStateNormal];
     [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] forState:UIControlStateNormal ];
     _headerView.label_name.text = app.userModel.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
@@ -405,8 +435,13 @@
 
 #pragma mark - 新消息action
 - (void)newClick{
+    _results = @"";
+    _icon = @"";
     LYFriendsMessageViewController *messageVC = [[LYFriendsMessageViewController alloc]init];
     [self.navigationController pushViewController:messageVC animated:YES];
+    
+    [self removeTableViewHeader];
+    [self addTableViewHeader];
 }
 
 #pragma mark - 拍照action

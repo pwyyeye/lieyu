@@ -48,7 +48,7 @@
                     </state>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="gmT-g3-WP3" firstAttribute="leading" secondItem="c0B-5u-B0e" secondAttribute="leading" constant="99" id="3zf-Kw-q2i"/>
                 <constraint firstAttribute="trailing" secondItem="gmT-g3-WP3" secondAttribute="trailing" constant="99" id="7ku-o3-dcT"/>
