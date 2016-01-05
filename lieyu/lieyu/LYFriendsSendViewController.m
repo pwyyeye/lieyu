@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSMutableString *shangchuanString;
 @property (nonatomic, strong) NSMutableString *city;
 @property (nonatomic, strong) NSMutableString *location;
+@property (nonatomic, assign) BOOL notFirstOpen;
 
 @end
 
@@ -45,20 +46,29 @@
     self.title = @"发布动态";
     self.textView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars = NO;
+    self.modalPresentationCapturesStatusBarAppearance = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
     
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FriendSendViewDidLoad" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
+}
+
+//- (void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
+//}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
 }
 
 - (void)setupAllProperty{
@@ -68,9 +78,12 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
-    self.textView.text = @"";
-    [self.textView becomeFirstResponder];
+    if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+        self.textView.text = @"";
+        [self.textView becomeFirstResponder];
+    }
 }
+
 - (void)gotoBack{
     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定放弃本次编辑？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil]show];
 }
@@ -95,7 +108,7 @@
             if(![MyUtil isEmptyString:key]){
                 [self sendTrends:key];
             }else{
-                
+//                
             }
         }];
     }else{
@@ -220,7 +233,7 @@
         _imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//摄影
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
-        _imagePicker.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
+        _imagePicker.videoQuality = UIImagePickerControllerQualityType640x480;
         _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头模式
         _imagePicker.videoMaximumDuration = 10;
     }
@@ -243,6 +256,7 @@
     for (UIImageView *imageView in self.imageViewArray) {
         [imageView removeFromSuperview];
     }
+    self.addButton.frame = CGRectMake(10, self.addButton.frame.origin.y, 70, 70);
     for (int i = 0 ; i < self.fodderArray.count; i ++) {
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5 * (i % 4 ) + 12.5 + 70 * (i % 4), 155 , 70, 70)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -287,6 +301,7 @@
 
 #pragma mark imagePickerController具体事件实现
 - (void)imagePickerSpecificOperation:(NSDictionary<NSString *,id> *)info{
+    
     [app startLoading];
     if ([_typeOfImagePicker isEqualToString:@"takePhoto"]) {//如果是拍照
         UIImage *image;
@@ -298,16 +313,27 @@
         }
         NSArray *imageArray = @[image];
         [self YBImagePickerDidFinishWithImages:imageArray];
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);//保存到相簿
+//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);//保存到相簿
     }else if([_typeOfImagePicker isEqualToString:@"filming"]){//如果是录制视频
         NSURL *url=[info objectForKey:UIImagePickerControllerMediaURL];//视频路径
         NSString *urlStr=[url path];
-//        [app startLoading];
-        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(urlStr)) {
-            //保存视频到相簿，注意也可以使用ALAssetsLibrary来保存
-            UISaveVideoAtPathToSavedPhotosAlbum(urlStr, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);//保存视频到相簿
-        }
+        
+//        if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(urlStr)) {
+////            保存视频到相簿，注意也可以使用ALAssetsLibrary来保存
+//            UISaveVideoAtPathToSavedPhotosAlbum(urlStr, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);//保存视频到相簿
+//        }
+        
+        [self didFinifhFilming:urlStr];
+        
     }
+}
+
+- (void)didFinifhFilming:(NSString *)videoPath{
+    self.mediaUrl = [[NSMutableString alloc]initWithString:videoPath];
+    NSURL *url=[NSURL fileURLWithPath:self.mediaUrl];
+    self.player = [[MPMoviePlayerController alloc]initWithContentURL:url];
+    self.player.shouldAutoplay = NO;
+    [self.player requestThumbnailImagesAtTimes:@[@0.1] timeOption:MPMovieTimeOptionExact];
 }
 
 #pragma mark 视频保存后的回调
@@ -339,6 +365,7 @@
 - (void)tapClick:(UITapGestureRecognizer *)sender{
     [self.navigationController.navigationBar setHidden:YES];
 //    if(!_subView){
+    self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
         _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
         _subView.frame = CGRectMake(0, -64, SCREEN_WIDTH, SCREEN_HEIGHT);
         [_subView.button addTarget:self action:@selector(imageSelectClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -347,11 +374,15 @@
         [_subView addGestureRecognizer:tapgesture];
 //    }
     if(sender.view.tag > 100){
+        [_subView.imageView removeFromSuperview];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willexitfull) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterfull) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
+        if(_notFirstOpen){
+//            _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        }
+        NSLog(@"%@",NSStringFromCGRect(_subView.frame));
         _player.view.frame = CGRectMake(0, (SCREEN_HEIGHT - SCREEN_WIDTH) / 2, SCREEN_WIDTH, SCREEN_WIDTH);
-        NSLog(@"%@",NSStringFromCGRect(self.subView.frame));
-        _player.controlStyle = MPMovieControlStyleEmbedded;
+        _player.controlStyle =MPMovieControlStyleEmbedded;// MPMovieControlStyleFullscreen;
         _player.shouldAutoplay = YES;
         _player.repeatMode = NO;
         _player.scalingMode = MPMovieScalingModeAspectFit;
@@ -368,8 +399,16 @@
     }
 }
 
+- (void)willEnterfull{
+//    self.subView.frame = CGRectMake(0, -64, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    _notFirstOpen = YES;
+    NSLog(@"%@",NSStringFromCGRect(_subView.frame));
+}
+
 - (void)willexitfull{
     self.subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//    self.subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     NSLog(@"%@",NSStringFromCGRect(self.subView.frame));
 }
 
@@ -387,6 +426,9 @@
 #pragma mark 隐藏预览图层
 - (void)hideSubView:(UITapGestureRecognizer *)sender{
     [self.navigationController.navigationBar setHidden:NO];
+    
+    NSLog(@"----pass-1>%@ ---",NSStringFromCGRect(self.view.frame));
+    self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
     if(_subView.button.selected == NO){
         NSLog(@"delete %d picture",(int)_subView.tag);
         [self.fodderArray removeObjectAtIndex:_subView.tag - 1];
