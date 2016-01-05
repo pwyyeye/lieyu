@@ -43,9 +43,6 @@
     self.city = [[NSMutableString alloc]init];
     
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
-    
     self.title = @"发布动态";
     self.textView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -59,17 +56,17 @@
     [super viewDidAppear:animated];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FriendSendViewDidLoad" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
     
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
-}
+//- (void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
+//}
 
 - (void)setupAllProperty{
 //    _imageArray = [[NSMutableArray alloc]init];
@@ -83,6 +80,7 @@
         [self.textView becomeFirstResponder];
     }
 }
+
 - (void)gotoBack{
     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定放弃本次编辑？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil]show];
 }
@@ -107,8 +105,7 @@
             if(![MyUtil isEmptyString:key]){
                 [self sendTrends:key];
             }else{
-                
-                
+//                
             }
         }];
     }else{
@@ -233,7 +230,7 @@
         _imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//摄影
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
-        _imagePicker.videoQuality = UIImagePickerControllerQualityTypeLow;
+        _imagePicker.videoQuality = UIImagePickerControllerQualityType640x480;
         _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头模式
         _imagePicker.videoMaximumDuration = 10;
     }
@@ -381,7 +378,7 @@
         }
         NSLog(@"%@",NSStringFromCGRect(_subView.frame));
         _player.view.frame = CGRectMake(0, (SCREEN_HEIGHT - SCREEN_WIDTH) / 2, SCREEN_WIDTH, SCREEN_WIDTH);
-        _player.controlStyle = MPMovieControlStyleEmbedded;
+        _player.controlStyle = MPMovieControlStyleFullscreen;
         _player.shouldAutoplay = YES;
         _player.repeatMode = NO;
         _player.scalingMode = MPMovieScalingModeAspectFit;
