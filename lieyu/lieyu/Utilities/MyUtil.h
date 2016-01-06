@@ -79,4 +79,7 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 + (NSString*)getAgefromDate:(NSString *)birthday;
 
 + (void)showPlaceMessage:(NSString* )message;
+
+//判断当前网络状况
++ (int)configureNetworkConnect;
 @end
