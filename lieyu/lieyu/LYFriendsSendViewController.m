@@ -102,7 +102,7 @@
 
 #pragma mark 判断网络连接状况
 - (int)configureNetworkConnect{
-    NetworkStatus netStatus = [[[Reachability alloc]init] currentReachabilityStatus];
+    NetworkStatus netStatus = [[Reachability reachabilityWithHostName:@"www.lie98.com"] currentReachabilityStatus];
     switch (netStatus){
         case NotReachable:
             return 0;//没有网络连接
@@ -132,27 +132,33 @@
         //////////////////////////
         [self.navigationController popToRootViewControllerAnimated:YES];
         
-        AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:self.mediaUrl] options:nil];
+        AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
         NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
-        if([self configureNetworkConnect] == 1){
+        int status=[self configureNetworkConnect];
+        if(status == 1){
             //数据流量
             _mp4Quality = AVAssetExportPresetLowQuality;
-        }else if([self configureNetworkConnect] == 2){
+        }else if(status == 2){
             //wifi
             _mp4Quality = AVAssetExportPresetHighestQuality;
+        }else{
+            [MyUtil showCleanMessage:@"无网络链接！"];
+            return;
         }
         if([compatiblePresets containsObject:_mp4Quality]){
             AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset presetName:_mp4Quality];
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
             [formatter setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
             //将压缩得到的视频文件暂时保存在沙盒中，以时间命名，防止重复
-            _mp4Path = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4",[formatter stringFromDate:[NSDate date]]];
+            _mp4Path = [NSString stringWithFormat:@"%@/%@.mp4",
+                       [NSHomeDirectory() stringByAppendingString:@"/tmp"],
+                       [formatter stringFromDate:[NSDate date]]];
             exportSession.outputURL = [NSURL fileURLWithPath:_mp4Path];
             exportSession.outputFileType = AVFileTypeMPEG4;
             [exportSession exportAsynchronouslyWithCompletionHandler:^{
                 switch (exportSession.status) {
                     case AVAssetExportSessionStatusCompleted:
-                        [MyUtil showCleanMessage:@"视频压缩成功！"];
+//                        [MyUtil showCleanMessage:@"视频压缩成功！"];
                         //将新的视频地址赋给 mediaUrl
                         self.mediaUrl = [[NSMutableString alloc]initWithString:_mp4Path];
                         [self sendFilesToQiniu];
@@ -216,10 +222,12 @@
     }
     [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
         if(result){
-//            [app stopLoading];
-//            [self.navigationController popViewControllerAnimated:YES];
-//            [self showMessage:@"恭喜，发布成功!"];
             [MyUtil showCleanMessage:@"恭喜，发布成功!"];
+            //发布成功后删除该文件
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            if([fileManager fileExistsAtPath:self.mediaUrl]){
+                [fileManager removeItemAtPath:self.mediaUrl error:nil];
+            }
         }else{
 //            [app stopLoading];
 //            [self showMessage:@"抱歉，发布失败!"];

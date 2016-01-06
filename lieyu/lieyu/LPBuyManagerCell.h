@@ -15,7 +15,9 @@
 
 
 @interface LPBuyManagerCell : UITableViewCell<UITableViewDataSource,UITableViewDelegate>
-
+{
+    BOOL notFirstLayout;
+}
 @property (nonatomic, strong) NSArray *managerList;
 
 @property (nonatomic, assign) id<SelectManager> delegate;
