@@ -1,4 +1,4 @@
-//
+ //
 //  LYChangeImageViewController.m
 //  lieyu
 //
@@ -86,8 +86,8 @@
         [HTTPController uploadImageToQiuNiu:image complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
             NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-            NSLog(@"----->%@",[MyUtil getQiniuUrl:key width:0 andHeight:0]);
-            NSDictionary *paraDic = @{@"userId":userIdStr,@"friends_img":[MyUtil getQiniuUrl:key width:0 andHeight:0]};
+            NSLog(@"----->%@",[MyUtil getQiniuUrl:key width:SCREEN_WIDTH andHeight:180]);
+            NSDictionary *paraDic = @{@"userId":userIdStr,@"friends_img":key};
             [LYFriendsHttpTool friendsChangeBGImageWithParams:paraDic compelte:^(bool result) {
                 if (result) {
                     [self.navigationController popViewControllerAnimated:YES];
@@ -95,8 +95,6 @@
                 }
             }];
         }];
-        
-        
     }];
 }
 

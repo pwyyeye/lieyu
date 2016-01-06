@@ -90,9 +90,13 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="passWord" translatesAutoresizingMaskIntoConstraints="NO" id="aYT-Jv-A2a">
                     <rect key="frame" x="20" y="267" width="22" height="22"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giJ-N8-FTm">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giJ-N8-FTm">
                     <rect key="frame" x="10" y="504" width="300" height="52"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="52" id="4zB-Zk-0xe"/>
+                        <constraint firstAttribute="width" constant="300" id="bo8-Ad-sWY"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="注册" backgroundImage="purpleBtnBG.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -104,6 +108,11 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="giJ-N8-FTm" secondAttribute="bottom" constant="12" id="1Pt-wj-LzX"/>
+                <constraint firstAttribute="trailing" secondItem="giJ-N8-FTm" secondAttribute="trailing" constant="10" id="NgW-6X-yvb"/>
+                <constraint firstItem="giJ-N8-FTm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="qwE-ky-ddd"/>
+            </constraints>
             <point key="canvasLocation" x="323" y="284"/>
         </view>
     </objects>

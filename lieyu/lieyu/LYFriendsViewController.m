@@ -638,7 +638,6 @@
     } completion:^(BOOL finished) {
         
     }];
-    _commentView.textField.returnKeyType = UIReturnKeyDone;
 }
 
 - (void)bigViewGes{
@@ -925,7 +924,9 @@
                     return imgCell;
                     }else{
                         LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
+                        NSLog(@"------>%@",((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink);
                         videoCell.btn_play.tag = indexPath.section;
+                        //videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:<#(nonnull NSString *)#>] placeholderImage:<#(UIImage *)#>
                         [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                         return videoCell;
                     }
