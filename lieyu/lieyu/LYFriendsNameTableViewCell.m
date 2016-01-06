@@ -28,10 +28,15 @@
     [_label_time setText:recentM.date];
     [_label_content setText:recentM.message];
     
-    if([MyUtil getAstroWithBirthday:recentM.birthday]) _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
+    if([MyUtil getAstroWithBirthday:recentM.birthday]){
+        _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
+        _label_constellation.hidden = NO;
+    }
     
-    NSLog(@"---->%@",[MyUtil getAstroWithBirthday:recentM.birthday]);
-//    _label_work
+//    if(
+    
+   // NSLog(@"---->%@-------%@",[MyUtil getAstroWithBirthday:recentM.birthday],[MyUtil getAstroWithBirthday:@"2010-1-1"]);
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

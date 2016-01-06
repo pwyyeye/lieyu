@@ -467,6 +467,10 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
             _qiniu_token=result;
         }];
+        
+        [[LYCommonHttpTool shareInstance] getMediaTokenByqiNiuWithParams:nil block:^(NSString *result) {
+            _qiniu_media_token=result;
+        }];
     }
 }
 

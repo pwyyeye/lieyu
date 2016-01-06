@@ -317,13 +317,13 @@
                     NSMutableArray *muArr = _dataArray[_index];
                     [muArr addObjectsFromArray:dataArray];
                 }
+            _index = 0;
+            [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
+            _pageStartCountFriends ++;
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
         }
-        _index = 0;
-        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
-        _pageStartCountFriends ++;
     }];
 }
 
@@ -344,18 +344,19 @@
                         NSMutableArray *muArr = _dataArray[_index];
                         [muArr addObjectsFromArray:dataArray];
                     }
+            _index = 1;
+            [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
+            _pageStartCountMys ++;
         }else{
 //            NSArray *array = [NSArray array];
 //            [_dataArray addObject:array];
             if(_isMysPageUpLoad){
-                
+//                weakSelf.tableView.mj_footer.hidden = YES;
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             }
             _isMysPageUpLoad = NO;
         }
-        _index = 1;
-        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
-         _pageStartCountMys ++;
+        
     }];
 }
 
@@ -637,7 +638,6 @@
     } completion:^(BOOL finished) {
         
     }];
-    _commentView.textField.returnKeyType = UIReturnKeyDone;
 }
 
 - (void)bigViewGes{
@@ -751,6 +751,7 @@
         }
     }];
 }
+
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(actionSheet.tag == 200){
@@ -924,7 +925,11 @@
                     return imgCell;
                     }else{
                         LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
+                        NSString *urlStr = ((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink;
+                        NSLog(@"------>%@",((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink);
                         videoCell.btn_play.tag = indexPath.section;
+                        [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                        NSLog(@"-----%@---->%@",[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0],((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink);
                         [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                         return videoCell;
                     }
@@ -1148,7 +1153,8 @@
 - (void)playVideo:(UIButton *)button{
     NSArray *array = _dataArray[_index];
     FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)((FriendsRecentModel *)array[button.tag]).lyMomentsAttachList[0];
-    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0]);
+    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
     
 //    NSString *str = @"http://7xn0lq.com2.z0.glb.qiniucdn.com/我的影片1.mp4";
 //    NSURL *urlString = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];

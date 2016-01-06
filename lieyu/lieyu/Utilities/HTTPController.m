@@ -408,7 +408,7 @@
 //七牛上传文件
 +(BOOL)uploadFileToQiuNiu:(NSString *)filePath complete:(QNUpCompletionHandler)completionHandler{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    if(app.qiniu_token){
+    if(app.qiniu_media_token){
         @try {
             QNUploadManager *upManager = [[QNUploadManager alloc] init];
             QNUploadOption *op=[[QNUploadOption alloc] initWithMime:nil progressHandler:nil params:nil checkCrc:NO cancellationSignal:nil];
@@ -419,7 +419,7 @@
             
             NSData *data =[NSData dataWithContentsOfFile:filePath];
   
-            [upManager putData:data key:fileName token:app.qiniu_token complete:(QNUpCompletionHandler)completionHandler  option:op];
+            [upManager putData:data key:fileName token:app.qiniu_media_token complete:(QNUpCompletionHandler)completionHandler  option:op];
             return YES;
         }
         @catch (NSException *exception) {
