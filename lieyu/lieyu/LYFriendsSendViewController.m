@@ -300,7 +300,9 @@
         if(status == 1){
             _imagePicker.videoQuality = UIImagePickerControllerQualityTypeLow;
         }else if(status == 2){
-            _imagePicker.videoQuality = UIImagePickerControllerQualityTypeHigh;
+//            _imagePicker.videoQuality = UIImagePickerControllerQualityTypeMedium;
+            _imagePicker.videoQuality = UIImagePickerControllerQualityType640x480;
+            
         }else{
             [MyUtil showCleanMessage:@"网络无连接！"];
             return nil;
