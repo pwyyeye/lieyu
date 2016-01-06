@@ -8,6 +8,10 @@
 
 #import "MyUtil.h"
 #import "sys/utsname.h"
+
+
+
+
 @implementation MyUtil
 
 +(MyUtil *)shareUtil{
@@ -284,6 +288,32 @@
         return [NSString stringWithFormat:@"http://source.lie98.com/%@",encodeKey];
 
     }
+}
+
+#pragma --mark 获取7牛media访问链接
+
++ (NSString *)getQiniuUrl:(NSString *)key mediaType:(QiNiuUploadTpye)qiNiuUploadTpye width:(NSInteger)width andHeight:(NSInteger)height{
+    NSString *encodeKey=[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    switch (qiNiuUploadTpye) {
+        case QiNiuUploadTpyeDefault:
+            if(width>0&&height>0){
+                return [NSString stringWithFormat:@"http://media.lie98.com/%@.jpg?imageView2/0/w/%d/h/%d",encodeKey,width,height];
+            }else{
+                return [NSString stringWithFormat:@"http://media.lie98.com/%@.jgp",encodeKey];
+                
+            }
+            break;
+        case QiNiuUploadTpyeMedia:
+            return [NSString stringWithFormat:@"http://media.lie98.com/%@.mp4",encodeKey];
+            break;
+        case QiNiuUploadTpyeSmallMedia:
+            return [NSString stringWithFormat:@"http://media.lie98.com/%@_s.mp4",encodeKey];
+            break;
+        default:
+            return @"";
+            break;
+    }
+    
 }
 
 #pragma --mark 获取设备型号

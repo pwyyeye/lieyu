@@ -3975,8 +3975,8 @@
 		38EE91A31C3BE09C00361D07 /* AppleAPI */ = {
 			isa = PBXGroup;
 			children = (
-				38EE91A41C3BE0A800361D07 /* Reachability.m */,
 				38EE91A51C3BE0A800361D07 /* Reachability.h */,
+				38EE91A41C3BE0A800361D07 /* Reachability.m */,
 			);
 			name = AppleAPI;
 			sourceTree = "<group>";

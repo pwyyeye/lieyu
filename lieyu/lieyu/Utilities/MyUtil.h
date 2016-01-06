@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonDigest.h>
+
+typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
+{
+    //以下是枚举成员
+    QiNiuUploadTpyeDefault = 0,//默认图片
+    QiNiuUploadTpyeMedia = 1,//媒体资源
+    QiNiuUploadTpyeSmallMedia = 2,//小媒体资源
+};
 @interface MyUtil : NSObject
 
 +(MyUtil *)shareUtil;
@@ -60,7 +68,8 @@
 + (NSString *)randomStringWithLength:(int)len;
 //获取7牛全链接
 + (NSString *)getQiniuUrl:(NSString *)key width:(NSInteger)width andHeight:(NSInteger)height;
-
+//获取7牛全链接
++ (NSString *)getQiniuUrl:(NSString *)key mediaType:(QiNiuUploadTpye)qiNiuUploadTpye width:(NSInteger)width andHeight:(NSInteger)height;
 + (NSString*)deviceString;
 
 //根据日期字符串 获取星座
