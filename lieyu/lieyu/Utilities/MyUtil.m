@@ -299,7 +299,7 @@
             if(width>0&&height>0){
                 return [NSString stringWithFormat:@"http://media.lie98.com/%@.jpg?imageView2/0/w/%d/h/%d",encodeKey,width,height];
             }else{
-                return [NSString stringWithFormat:@"http://media.lie98.com/%@.jgp",encodeKey];
+                return [NSString stringWithFormat:@"http://media.lie98.com/%@.jpg",encodeKey];
                 
             }
             break;
