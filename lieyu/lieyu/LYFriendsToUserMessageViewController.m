@@ -228,17 +228,18 @@
 }
 
 - (void)headerImgClick:(UIButton *)button{
-    if(_dataArray.count) {   FriendsRecentModel *recentM = _dataArray[0];
-    CustomerModel *customerM = [[CustomerModel alloc]init];
-        customerM.icon = recentM.avatar_img;
-        customerM.sex = [recentM.gender isEqualToString:@"0"] ? @"男" : @"女";
-        customerM.username = recentM.usernick;
-        customerM.message = recentM.introduction;
-        customerM.age = [MyUtil getAgefromDate:recentM.birthday];
-        customerM.userid = recentM.userId.intValue;
-    
-//        CustomerModel *customerM = [[CustomerModel alloc]init];
-//        customerM.
+    if(_dataArray.count) {
+        CustomerModel *customerM = [[CustomerModel alloc]init];
+        customerM.avatar_img = _userInfo.avatar_img;
+        customerM.sex = [_userInfo.gender isEqualToString:@"0"] ? @"男" : @"女";
+        customerM.usernick = _userInfo.usernick;
+        customerM.message = _userInfo.introduction;
+        customerM.age = [MyUtil getAgefromDate:_userInfo.birthday];
+        customerM.userid = _userInfo.userId.intValue;
+//        customerM.distance = _userInfo.
+        LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
+        friendDetailVC.customerModel = customerM;
+        [self.navigationController pushViewController:friendDetailVC animated:YES];
     }
 }
 

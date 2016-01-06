@@ -81,20 +81,18 @@
     return self;
 }
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
-    return _imageViewArray[_index];
-}
-
-//- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
-//    if (scale == 0.f) {
-//        scrollView
-//    }
+//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+//    return _imageViewArray[_index];
 //}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView{
-    NSLog(@"-----%f--->%@",scrollView.zoomScale,NSStringFromCGSize(scrollView.contentSize));
-    
-}
+//
+//- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
+//    
+//}
+//
+//- (void)scrollViewDidZoom:(UIScrollView *)scrollView{
+//    NSLog(@"-----%f--->%@",scrollView.zoomScale,NSStringFromCGSize(scrollView.contentSize));
+//    
+//}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     _index = (scrollView.contentOffset.x / SCREEN_WIDTH);

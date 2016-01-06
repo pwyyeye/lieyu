@@ -364,6 +364,8 @@
 - (void)reloadTableViewAndSetUpPropertyneedSetContentOffset:(BOOL)need{
     [self.tableView reloadData];
      if(need)  [self.tableView setContentOffset:CGPointZero animated:YES];
+    if(_index) [self addTableViewHeader];
+    else [self removeTableViewHeader];
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     if(!((NSArray *)_dataArray[_index]).count){
@@ -385,7 +387,7 @@
     _friendsBtnSelect = YES;
     _pageStartCountFriends = 0;
     [self getDataFriendsWithSetContentOffSet:YES];
-    [self removeTableViewHeader];
+//    [self removeTableViewHeader];
 }
 
 #pragma mark - 我的action
@@ -396,7 +398,7 @@
     _pageStartCountMys = 0;
 //    _index = 1;
     [self getDataMysWithSetContentOffSet:YES];
-    [self addTableViewHeader];
+//    [self addTableViewHeader];
 }
 
 #pragma mark - 添加表头
@@ -674,6 +676,7 @@
             else commentModel.toUserId = @"0";
             if(recentM.commentList.count == 5) [recentM.commentList removeObjectAtIndex:0];
             [recentM.commentList addObject:commentModel];
+            recentM.commentNum = [NSString stringWithFormat:@"%ld",recentM.commentNum.intValue+1];
           //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
             [weakSelf.tableView reloadData];
         }
