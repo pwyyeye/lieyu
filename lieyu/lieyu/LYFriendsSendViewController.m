@@ -100,24 +100,6 @@
     }
 }
 
-#pragma mark 判断网络连接状况
-- (int)configureNetworkConnect{
-    NetworkStatus netStatus = [[Reachability reachabilityWithHostName:@"www.lie98.com"] currentReachabilityStatus];
-    switch (netStatus){
-        case NotReachable:
-            return 0;//没有网络连接
-            break;
-        case ReachableViaWWAN:
-            return 1;//数据流量
-            break;
-        case ReachableViaWiFi:
-            return 2;//Wi-Fi连接
-            break;
-        default:
-            break;
-    }
-}
-
 #pragma mark 上传玩友圈,待修改
 - (void)sendClick{
     [self.textView resignFirstResponder];
@@ -134,7 +116,7 @@
         
         AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
         NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
-        int status=[self configureNetworkConnect];
+        int status = [MyUtil configureNetworkConnect];
         if(status == 1){
             //数据流量
             _mp4Quality = AVAssetExportPresetLowQuality;
@@ -314,10 +296,14 @@
         _imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//摄影
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
-        if([self configureNetworkConnect] == 1){
+        int status = [MyUtil configureNetworkConnect];
+        if(status == 1){
             _imagePicker.videoQuality = UIImagePickerControllerQualityTypeLow;
-        }else if([self configureNetworkConnect] == 2){
+        }else if(status == 2){
             _imagePicker.videoQuality = UIImagePickerControllerQualityTypeHigh;
+        }else{
+            [MyUtil showCleanMessage:@"网络无连接！"];
+            return nil;
         }
         _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头模式
         
