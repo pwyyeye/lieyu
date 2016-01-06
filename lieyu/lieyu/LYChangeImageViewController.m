@@ -86,7 +86,8 @@
         [HTTPController uploadImageToQiuNiu:image complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
             NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-            NSDictionary *paraDic = @{@"userId":userIdStr,@"background":key};
+            NSLog(@"----->%@",[MyUtil getQiniuUrl:key width:0 andHeight:0]);
+            NSDictionary *paraDic = @{@"userId":userIdStr,@"friends_img":[MyUtil getQiniuUrl:key width:0 andHeight:0]};
             [LYFriendsHttpTool friendsChangeBGImageWithParams:paraDic compelte:^(bool result) {
                 if (result) {
                     [self.navigationController popViewControllerAnimated:YES];
