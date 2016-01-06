@@ -71,6 +71,7 @@
             <connections>
                 <outlet property="btn_comment" destination="ETK-xZ-gYL" id="UpP-nd-nDE"/>
                 <outlet property="btn_like" destination="XLc-dG-9ra" id="lr6-FO-YkB"/>
+                <outlet property="imgView_location" destination="vZ1-l2-3kw" id="l2C-Ll-gRJ"/>
                 <outlet property="label_address" destination="DFq-hw-xAl" id="oyG-CH-XvP"/>
             </connections>
             <point key="canvasLocation" x="247" y="271"/>

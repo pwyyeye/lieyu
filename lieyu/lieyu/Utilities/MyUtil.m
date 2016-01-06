@@ -486,4 +486,37 @@
     }
 }
 
+#pragma mark - 时间转换为昨天，前天，今天等。。。。
++ (NSString *)calculateDateFromNowWith:(NSString *)dateString{
+    NSDateFormatter *dateFmter = [[NSDateFormatter alloc]init];
+    [dateFmter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFmter dateFromString:dateString];
+    //
+    [dateFmter setDateFormat:@"HH:mm:ss"];
+    //    NSLog(@"-------->%@",[dateFmter stringFromDate:date]);
+    //    NSString *str = [dateFmter stringFromDate:date];
+    //    NSLog(@"------>%@",str);
+    NSString *dateStringPart = [dateFmter stringFromDate:date];
+    
+    NSInteger preTime = [date timeIntervalSince1970];
+    NSDate* dat = [NSDate date];
+    NSTimeInterval now= [dat timeIntervalSince1970]*1;
+    NSInteger today = now / (24*3600);
+    NSInteger yestoday = preTime / (24*3600);
+    NSInteger iDiff = today - yestoday;
+    NSString *strDiff = nil;
+    
+    if(iDiff == 0) {
+        strDiff= [NSString stringWithFormat:@"今天"];
+    }else if (iDiff == 1) {
+        strDiff = [NSString stringWithFormat:@"昨天"];
+    }else if (iDiff == 2) {
+        strDiff = [NSString stringWithFormat:@"前天"];
+    }else if (iDiff >= 3 ) {
+        [dateFmter setDateFormat:@"yy-MM-dd"];
+        strDiff = [dateFmter stringFromDate:date];
+    }
+    return [NSString stringWithFormat:@"%@ %@",strDiff,dateStringPart];
+}
+
 @end

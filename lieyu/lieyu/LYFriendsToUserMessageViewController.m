@@ -613,6 +613,7 @@
             if(toUserId.length) commentModel.toUserId = toUserId;
             else commentModel.toUserId = @"0";
             [recentM.commentList addObject:commentModel];
+            recentM.commentNum = [NSString stringWithFormat:@"%ld",recentM.commentNum.integerValue + 1];
             NSLog(@"------%ld->%ld",_commentBtnTag,recentM.commentList.count + 2);
             //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
             [weakSelf.tableView reloadData];

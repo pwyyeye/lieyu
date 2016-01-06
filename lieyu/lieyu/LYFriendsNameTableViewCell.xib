@@ -22,12 +22,12 @@
                         </constraints>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pH5-Po-Wwa">
-                        <rect key="frame" x="53" y="10" width="36" height="20"/>
+                        <rect key="frame" x="53" y="10" width="30" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="M07-2w-ZDq"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="name">
+                        <state key="normal" title="于啊">
                             <color key="titleColor" red="0.5607843137254902" green="0.0078431372549019607" blue="0.76470588235294112" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -41,8 +41,8 @@
                         <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDA-11-w3k">
-                        <rect key="frame" x="131" y="10" width="30" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDA-11-w3k">
+                        <rect key="frame" x="125" y="15" width="30" height="15"/>
                         <color key="backgroundColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="MHm-gw-Dns"/>
@@ -52,8 +52,8 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luc-9F-P2m">
-                        <rect key="frame" x="99" y="10" width="30" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luc-9F-P2m">
+                        <rect key="frame" x="93" y="15" width="30" height="15"/>
                         <color key="backgroundColor" red="0.5607843137254902" green="0.0078431372549019607" blue="0.76470588235294112" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="WQI-tp-YW5"/>
@@ -86,7 +86,7 @@
                     <constraint firstItem="wDA-11-w3k" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="2" id="2gc-EW-hhz"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="3uJ-DZ-Ee6"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="mUG-zY-dHD" secondAttribute="bottom" constant="10" id="6EE-xc-rp0"/>
-                    <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="7f5-Iy-2EK"/>
+                    <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="7f5-Iy-2EK"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="pH5-Po-Wwa" secondAttribute="trailing" constant="10" id="8nT-ea-KML"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="8q9-8y-GSh"/>
                     <constraint firstItem="lM4-4y-ffP" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="2" id="9hQ-lw-8QI"/>
@@ -95,10 +95,10 @@
                     <constraint firstItem="pH5-Po-Wwa" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="10" id="QRF-Cc-Xe2"/>
                     <constraint firstItem="pH5-Po-Wwa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="RC2-3K-NM1"/>
                     <constraint firstItem="wDA-11-w3k" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="2" id="YB0-on-ZaW"/>
-                    <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="luc-9F-P2m" secondAttribute="bottom" constant="29" id="ZVI-li-LhP"/>
+                    <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="luc-9F-P2m" secondAttribute="bottom" constant="24" id="ZVI-li-LhP"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="e3o-98-IHy"/>
                     <constraint firstItem="7Rw-eO-sKU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="lQB-Zj-3uX"/>
-                    <constraint firstItem="wDA-11-w3k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="nG1-Gm-IRf"/>
+                    <constraint firstItem="wDA-11-w3k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="nG1-Gm-IRf"/>
                     <constraint firstAttribute="trailing" secondItem="7Rw-eO-sKU" secondAttribute="trailing" constant="7" id="qPa-oc-FyU"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="mUG-zY-dHD" secondAttribute="bottom" constant="10" id="vhQ-aO-XT8"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="pH5-Po-Wwa" secondAttribute="trailing" constant="10" id="xy8-48-fON"/>
