@@ -53,6 +53,7 @@
     [self.avatarImage sd_setImageWithURL:[NSURL URLWithString:self.zsDetail.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [self.iconImage.imageView sd_setImageWithURL:[NSURL URLWithString:self.zsDetail.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [self.name setTitle:self.zsDetail.usernick forState:UIControlStateNormal];
+    self.radioButon.selected = self.zsDetail.issel;
     int num ;
     if([self.zsDetail.servicestar isEqualToString:@""]){
         num = 5;
