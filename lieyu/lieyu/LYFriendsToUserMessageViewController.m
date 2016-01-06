@@ -216,7 +216,7 @@
 - (void)addTableViewHeader{
     
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
-    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 360);
+    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339 - 54);
     [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:_userInfo.avatar_img] forState:UIControlStateNormal];
     _headerView.label_name.text = _userInfo.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];

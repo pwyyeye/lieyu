@@ -35,6 +35,7 @@
         _oldFrameArr = oldFrame;
         _scrollView = [[UIScrollView alloc]initWithFrame:frame];
         _scrollView.delegate = self;
+        _scrollView.maximumZoomScale = 2.0;
         self.backgroundColor = RGBA(255, 255, 255, 0);
         [self addSubview:_scrollView];
         _scrollView.frame = frame;
@@ -77,9 +78,22 @@
         _pageCtl.numberOfPages = count;
         _pageCtl.currentPage = index;
     }
-    
-    
     return self;
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return _imageViewArray[_index];
+}
+
+//- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
+//    if (scale == 0.f) {
+//        scrollView
+//    }
+//}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView{
+    NSLog(@"-----%f--->%@",scrollView.zoomScale,NSStringFromCGSize(scrollView.contentSize));
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

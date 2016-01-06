@@ -172,6 +172,7 @@
         
     }];
 }
+
 //更改玩友圈背景图片
 + (void)friendsChangeBGImageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -186,4 +187,5 @@
          [app stopLoading];
     }];
 }
+
 @end
