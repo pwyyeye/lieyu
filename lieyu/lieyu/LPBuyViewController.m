@@ -27,6 +27,9 @@
 //2.7.8 【R0004】反馈用户收藏的专属经理列表
 
 @interface LPBuyViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate>
+{
+    BOOL notFirstLayout;
+}
 @property (nonatomic, strong) NSArray *managerList;
 
 @property (nonatomic, strong) LPBuyTaocanCell *buyTaocanCell;
@@ -243,10 +246,6 @@
 - (void)selectManager:(int)index{
     ZSDetailModel *zsDetail = _managerList[index];
     
-    //统计专属经理的选择
-    NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"确认拼客订单",@"titleName":@"选择专属经理",@"value":zsDetail.usernick};
-    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
-    
     if([zsDetail.isFull isEqualToString:@"1"]){
         [[[UIAlertView alloc]initWithTitle:@"提示" message:@"该经理的卡座已满,请选择其他专属经理!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
         return;
@@ -331,6 +330,11 @@
         int userId=0;
         for (ZSDetailModel *detaiModel in _managerList) {
             if(detaiModel.issel){
+                
+                //统计专属经理的选择
+                NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"确认拼客订单",@"titleName":@"选择专属经理",@"value":detaiModel.username};
+                [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+                
                 userId=detaiModel.userid;
                 issel=true;
                 break;

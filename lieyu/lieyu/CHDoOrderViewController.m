@@ -18,6 +18,7 @@
 @interface CHDoOrderViewController ()
 {
     CarInfoModel *carInfoModel;
+    BOOL notFirstLayout;
 }
 @end
 
@@ -40,7 +41,6 @@
         carInfoModel=result;
         [_payBtn setTitle:[NSString stringWithFormat:@"马上支付（￥%@）",carInfoModel.all_info.all_amount] forState:0];
         [weakSelf.tableView reloadData];
-        
     }];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -143,18 +143,22 @@
         default:
         {
             ZSDetailModel *zsModel=carInfoModel.managerList[indexPath.row];
+            if(indexPath.row == 0 && !notFirstLayout){
+                zsModel.issel = true;
+                notFirstLayout = YES;
+            }
             cell = [tableView dequeueReusableCellWithIdentifier:@"PTzsjlCell" forIndexPath:indexPath];
             if (cell) {
                 PTzsjlCell * adCell = (PTzsjlCell *)cell;
                 [adCell configureCell:zsModel];
-                adCell.selectBtn.tag=indexPath.row;
+                adCell.selectBtn.tag = indexPath.row;
+                adCell.chooseBtn.tag = indexPath.row;
                 [adCell.chooseBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
                 [adCell.selectBtn addTarget:self action:@selector(chooseZS:) forControlEvents:UIControlEventTouchUpInside];
             }
         }
             break;
     }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -189,10 +193,6 @@
     ZSDetailModel *zsModel=carInfoModel.managerList[sender.tag];
     zsModel.issel=true;
     
-    //统计专属经理的受欢迎程度
-    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"确认订单",@"titleName":[NSString stringWithFormat:@"选择%@",zsModel.username]};
-    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
-    
     for (int i=0; i<carInfoModel.managerList.count; i++) {
         ZSDetailModel *zsModelTemp = carInfoModel.managerList[i];
         if(i!=sender.tag){
@@ -209,6 +209,9 @@
         int userId=0;
         for (ZSDetailModel *detaiModel in carInfoModel.managerList) {
             if(detaiModel.issel){
+                //统计专属经理的受欢迎程度
+                NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"确认订单",@"titleName":[NSString stringWithFormat:@"选择%@",detaiModel.username]};
+                [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
                 userId=detaiModel.userid;
                 issel=true;
                 break;

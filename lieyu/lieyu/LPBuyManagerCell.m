@@ -42,14 +42,15 @@
         [tableView registerNib:[UINib nibWithNibName:@"ManagerInfoCell" bundle:nil] forCellReuseIdentifier:@"managerInfo"];
         managerInfo = [tableView dequeueReusableCellWithIdentifier:@"managerInfo"];
     }
+    if(indexPath.row == 0 && !notFirstLayout){
+        ((ZSDetailModel *)self.managerList[indexPath.row]).issel = true;
+        notFirstLayout = YES;
+    }
     managerInfo.zsDetail = self.managerList[indexPath.row];
     [managerInfo cellConfigure:(int)indexPath.row];
     managerInfo.chooseBtn.tag = indexPath.row;
+    
     [managerInfo.chooseBtn addTarget:self action:@selector(chooseBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//    if(indexPath.row == 0){
-//        managerInfo.radioButon.selected = YES;
-//        [managerInfo.radioButon setImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateSelected];
-//    }
     return managerInfo;
 }
 
@@ -58,7 +59,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self showButtonImage:self];
+//    [self showButtonImage:self];
 }
 
 - (void)chooseBtnClick:(UIButton *)sender{
@@ -68,16 +69,17 @@
 
 
 - (void)changeButtonImage:(NSIndexPath *)indexPath{
-    for(int i = 0 ; i < self.managerList.count ; i ++){
-        ManagerInfoCell *manager = [self.tableVIew cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        if(indexPath.row == i && indexPath.section == 0){
-            manager.radioButon.selected = YES;
-            [manager.radioButon setImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateSelected];
-        }else{
-            manager.radioButon.selected = NO;
-            [manager.radioButon setImage:[UIImage imageNamed:@"CustomBtn_unSelected"] forState:UIControlStateNormal];
-        }
-    }
+//    for(int i = 0 ; i < self.managerList.count ; i ++){
+//        ManagerInfoCell *manager = [self.tableVIew cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+//        if(indexPath.row == i && indexPath.section == 0){
+//            manager.radioButon.selected = YES;
+//            [manager.radioButon setImage:[UIImage imageNamed:@"CustomBtn_Selected"] forState:UIControlStateSelected];
+//        }else{
+//            manager.radioButon.selected = NO;
+//            [manager.radioButon setImage:[UIImage imageNamed:@"CustomBtn_unSelected"] forState:UIControlStateNormal];
+//        }
+//    }
+    [self.tableVIew reloadData];
     [self.delegate selectManager:(int)indexPath.row];
 }
 
