@@ -297,7 +297,7 @@
     switch (qiNiuUploadTpye) {
         case QiNiuUploadTpyeDefault:
             if(width>0&&height>0){
-                return [NSString stringWithFormat:@"http://media.lie98.com/%@.jpg?imageView2/0/w/%d/h/%d",encodeKey,width,height];
+                return [NSString stringWithFormat:@"http://media.lie98.com/%@.jpg?imageView2/0/w/%ld/h/%ld",encodeKey,width,height];
             }else{
                 return [NSString stringWithFormat:@"http://media.lie98.com/%@.jgp",encodeKey];
                 
