@@ -8,7 +8,7 @@
 
 #import "MyUtil.h"
 #import "sys/utsname.h"
-
+#import <Reachability.h>
 
 
 
@@ -467,6 +467,23 @@
     } completion:^(BOOL finished) {
         [showview removeFromSuperview];
     }];
+}
+
++ (int)configureNetworkConnect{
+    NetworkStatus netStatus = [[Reachability reachabilityWithHostName:@"www.lie98.com"] currentReachabilityStatus];
+    switch (netStatus){
+        case NotReachable:
+            return 0;//没有网络连接
+            break;
+        case ReachableViaWWAN:
+            return 1;//数据流量
+            break;
+        case ReachableViaWiFi:
+            return 2;//Wi-Fi连接
+            break;
+        default:
+            break;
+    }
 }
 
 @end
