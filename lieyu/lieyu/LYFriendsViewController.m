@@ -657,13 +657,14 @@
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __block LYFriendsViewController *weakSelf = self;
-    [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl) {
+    [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
             commentModel.icon = app.userModel.avatar_img;
             commentModel.nickName = app.userModel.usernick;
             commentModel.userId = _useridStr;
+            commentModel.commentId = commentId;
             if(toUserId.length) commentModel.toUserId = toUserId;
             else commentModel.toUserId = @"0";
             if(recentM.commentList.count == 5) [recentM.commentList removeObjectAtIndex:0];

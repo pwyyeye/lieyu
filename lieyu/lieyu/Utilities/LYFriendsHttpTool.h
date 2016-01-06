@@ -21,7 +21,7 @@
 //给别人玩友圈动态点赞
 + (void)friendsLikeMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool ))compelte;
 //给动态或者某人评论
-+ (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
++ (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool,NSString *))compelte;
 //发布动态
 + (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
 //删除我的动态
