@@ -511,9 +511,8 @@
     if (indexPath.row >= 4 && indexPath.row <= 8) {
         _indexRow = indexPath.row;
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
-        if (![commetnM.userId isEqualToString:_useridStr]) {//我发的评论
+        if ([commetnM.userId isEqualToString:_useridStr]) {//我发的评论
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
-            actionSheet.tag = 300;
             [actionSheet showInView:self.view];
         }else{//别人发的评论
             _isCommentToUser = YES;
@@ -521,6 +520,25 @@
         }
     }else if(indexPath.row == 9){
         //[self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(!buttonIndex){
+            FriendsRecentModel *recetnM = _dataArray[_section];
+            FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
+            NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
+            __block LYFriendsToUserMessageViewController *weakSelf = self;
+            [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
+                if(result){
+                    NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_section]).commentList;
+                    NSLog(@"------>%@------%ld",commentArr,_indexRow);
+                    [commentArr removeObjectAtIndex:_indexRow - 4];
+                    recetnM.commentNum = [NSString stringWithFormat:@"%ld",recetnM.commentNum.integerValue - 1];
+                    [weakSelf.tableView reloadData];
+                }
+            }];
     }
 }
 
@@ -602,19 +620,19 @@
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __block LYFriendsToUserMessageViewController *weakSelf = self;
-    [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl) {
+    [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
             NSLog(@"--->%ld",recentM.commentList.count + 2);
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
             commentModel.icon = app.userModel.avatar_img;
+            commentModel.commentId = commentId;
             commentModel.nickName = app.userModel.usernick;
             commentModel.userId = _useridStr;
             if(toUserId.length) commentModel.toUserId = toUserId;
             else commentModel.toUserId = @"0";
             [recentM.commentList addObject:commentModel];
             recentM.commentNum = [NSString stringWithFormat:@"%ld",recentM.commentNum.integerValue + 1];
-            NSLog(@"------%ld->%ld",_commentBtnTag,recentM.commentList.count + 2);
             //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
             [weakSelf.tableView reloadData];
         }

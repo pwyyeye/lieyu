@@ -35,6 +35,7 @@
 #import "FriendsPicAndVideoModel.h"
 #import "FriendsUserInfoModel.h"
 #import "MJRefresh.h"
+#import "ISEmojiView.h"
 
 #import "YBImgPickerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
@@ -52,7 +53,7 @@
 
 @interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UITextFieldDelegate,YBImgPickerViewControllerDelegate,
     UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate>{
+    UINavigationControllerDelegate,ISEmojiViewDelegate>{
     UIButton *_friendsBtn;//导航栏朋友圈按钮
     UIButton *_myBtn;//导航栏我的按钮
     UILabel *_myBadge;//我的按钮小红圈
@@ -626,6 +627,7 @@
     
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
+    [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, 49);
@@ -637,6 +639,26 @@
 - (void)bigViewGes{
     [_bigView removeFromSuperview];
     
+}
+
+- (void)emotionClick:(UIButton *)button{
+    button.selected = !button.selected;
+    if(button.selected){
+    [_commentView.textField endEditing:YES];
+    ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
+    emojiView.delegate = self;
+    emojiView.inputView = _commentView.textField;
+    _commentView.textField.inputView = emojiView;
+    [_commentView.textField becomeFirstResponder];
+    }else{
+        [_commentView.textField endEditing:YES];
+        _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        [_commentView.textField becomeFirstResponder];
+    }
+}
+
+-(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
+    _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -797,7 +819,9 @@
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
                     NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_index][_section]).commentList;
-                    [commentArr removeObjectAtIndex:_indexRow];
+                    NSLog(@"------>%@------%ld",commentArr,_indexRow);
+                    [commentArr removeObjectAtIndex:_indexRow - 4];
+                    recetnM.commentNum = [NSString stringWithFormat:@"%ld",recetnM.commentNum.integerValue - 1];
                     [weakSelf.tableView reloadData];
                 }
             }];
