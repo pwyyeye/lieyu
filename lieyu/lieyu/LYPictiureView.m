@@ -45,7 +45,8 @@
         
         for (int i = 0; i < count; i ++) {
             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,(SCREEN_HEIGHT - SCREEN_WIDTH)/2.f, SCREEN_WIDTH, SCREEN_WIDTH)];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:SCREEN_WIDTH andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
             [_scrollView addSubview:imageView];
             [_imageViewArray addObject:imageView];
             imageView.userInteractionEnabled = YES;
@@ -81,20 +82,18 @@
     return self;
 }
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
-    return _imageViewArray[_index];
-}
-
-//- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
-//    if (scale == 0.f) {
-//        scrollView
-//    }
+//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+//    return _imageViewArray[_index];
 //}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView{
-    NSLog(@"-----%f--->%@",scrollView.zoomScale,NSStringFromCGSize(scrollView.contentSize));
-    
-}
+//
+//- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
+//    
+//}
+//
+//- (void)scrollViewDidZoom:(UIScrollView *)scrollView{
+//    NSLog(@"-----%f--->%@",scrollView.zoomScale,NSStringFromCGSize(scrollView.contentSize));
+//    
+//}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     _index = (scrollView.contentOffset.x / SCREEN_WIDTH);

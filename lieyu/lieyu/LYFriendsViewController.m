@@ -35,6 +35,7 @@
 #import "FriendsPicAndVideoModel.h"
 #import "FriendsUserInfoModel.h"
 #import "MJRefresh.h"
+#import "ISEmojiView.h"
 
 #import "YBImgPickerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
@@ -52,7 +53,7 @@
 
 @interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UITextFieldDelegate,YBImgPickerViewControllerDelegate,
     UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate>{
+    UINavigationControllerDelegate,ISEmojiViewDelegate>{
     UIButton *_friendsBtn;//导航栏朋友圈按钮
     UIButton *_myBtn;//导航栏我的按钮
     UILabel *_myBadge;//我的按钮小红圈
@@ -307,9 +308,8 @@
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountFriends * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr};
-    NSLog(@"---->%@",paraDic);
     [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
-        NSLog(@"---->%ld",dataArray.count);
+        _index = 0;
         if(dataArray.count){
                 if(_pageStartCountFriends == 0){
                     [_dataArray replaceObjectAtIndex:0 withObject:dataArray];
@@ -317,13 +317,12 @@
                     NSMutableArray *muArr = _dataArray[_index];
                     [muArr addObjectsFromArray:dataArray];
                 }
-            _index = 0;
-            [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
             _pageStartCountFriends ++;
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
         }
+        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
     }];
 }
 
@@ -332,11 +331,10 @@
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountMys * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
-    NSLog(@"----->%@",paraDic);
          __block LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
-        NSLog(@"----->%ld",dataArray.count);
         _userBgImageUrl = userInfo.friends_img;
+        _index = 1;
         if(dataArray.count){
                     if(_pageStartCountMys == 0){
                         [_dataArray replaceObjectAtIndex:1 withObject:dataArray];
@@ -344,19 +342,14 @@
                         NSMutableArray *muArr = _dataArray[_index];
                         [muArr addObjectsFromArray:dataArray];
                     }
-            _index = 1;
-            [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
             _pageStartCountMys ++;
         }else{
-//            NSArray *array = [NSArray array];
-//            [_dataArray addObject:array];
             if(_isMysPageUpLoad){
-//                weakSelf.tableView.mj_footer.hidden = YES;
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             }
             _isMysPageUpLoad = NO;
         }
-        
+        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
     }];
 }
 
@@ -364,6 +357,8 @@
 - (void)reloadTableViewAndSetUpPropertyneedSetContentOffset:(BOOL)need{
     [self.tableView reloadData];
      if(need)  [self.tableView setContentOffset:CGPointZero animated:YES];
+    if(_index) [self addTableViewHeader];
+    else [self removeTableViewHeader];
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     if(!((NSArray *)_dataArray[_index]).count){
@@ -385,7 +380,7 @@
     _friendsBtnSelect = YES;
     _pageStartCountFriends = 0;
     [self getDataFriendsWithSetContentOffSet:YES];
-    [self removeTableViewHeader];
+//    [self removeTableViewHeader];
 }
 
 #pragma mark - 我的action
@@ -396,7 +391,7 @@
     _pageStartCountMys = 0;
 //    _index = 1;
     [self getDataMysWithSetContentOffSet:YES];
-    [self addTableViewHeader];
+//    [self addTableViewHeader];
 }
 
 #pragma mark - 添加表头
@@ -632,6 +627,7 @@
     
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
+    [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, 49);
@@ -643,6 +639,26 @@
 - (void)bigViewGes{
     [_bigView removeFromSuperview];
     
+}
+
+- (void)emotionClick:(UIButton *)button{
+    button.selected = !button.selected;
+    if(button.selected){
+    [_commentView.textField endEditing:YES];
+    ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
+    emojiView.delegate = self;
+    emojiView.inputView = _commentView.textField;
+    _commentView.textField.inputView = emojiView;
+    [_commentView.textField becomeFirstResponder];
+    }else{
+        [_commentView.textField endEditing:YES];
+        _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        [_commentView.textField becomeFirstResponder];
+    }
+}
+
+-(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
+    _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -663,17 +679,19 @@
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __block LYFriendsViewController *weakSelf = self;
-    [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl) {
+    [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
             commentModel.icon = app.userModel.avatar_img;
             commentModel.nickName = app.userModel.usernick;
             commentModel.userId = _useridStr;
+            commentModel.commentId = commentId;
             if(toUserId.length) commentModel.toUserId = toUserId;
             else commentModel.toUserId = @"0";
             if(recentM.commentList.count == 5) [recentM.commentList removeObjectAtIndex:0];
             [recentM.commentList addObject:commentModel];
+            recentM.commentNum = [NSString stringWithFormat:@"%ld",recentM.commentNum.intValue+1];
           //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
             [weakSelf.tableView reloadData];
         }
@@ -698,12 +716,8 @@
             break;
         case 2:
         {
-            NSLog(@"-->%ld",(button.tag + 2) /4);
             section = (button.tag + 2) /4  - 1;
-            NSLog(@"---->%ld",section);
             index = 1;
-            
-            
         }
             break;
         case 3:
@@ -805,7 +819,9 @@
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
                     NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_index][_section]).commentList;
-                    [commentArr removeObjectAtIndex:_indexRow];
+                    NSLog(@"------>%@------%ld",commentArr,_indexRow);
+                    [commentArr removeObjectAtIndex:_indexRow - 4];
+                    recetnM.commentNum = [NSString stringWithFormat:@"%ld",recetnM.commentNum.integerValue - 1];
                     [weakSelf.tableView reloadData];
                 }
             }];
@@ -1154,37 +1170,27 @@
     NSArray *array = _dataArray[_index];
     FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)((FriendsRecentModel *)array[button.tag]).lyMomentsAttachList[0];
     NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0]);
-    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
-    
-//    NSString *str = @"http://7xn0lq.com2.z0.glb.qiniucdn.com/我的影片1.mp4";
-//    NSURL *urlString = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
+    QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
+    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
     MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
-//    _player.scalingMode = MPMovieScalingModeAspectFit;
-//    _player.controlStyle = MPMovieControlStyleFullscreen;
-//    _player.repeatMode = NO;
     player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-//    [_player setFullscreen:YES];
-   // UIWindow *window = [UIApplication sharedApplication].delegate.window;
-//    [window addSubview:_player.view];
-    [self presentMoviePlayerViewControllerAnimated:player];
     player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
     player.moviePlayer.scalingMode = MPMovieScalingModeNone;
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exit) name:MPMoviePlayerDidExitFullscreenNotification object:nil];
+    [self presentMoviePlayerViewControllerAnimated:player];
 }
 
-- (void)exit{
-    //[_player.view removeFromSuperview];
-}
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskPortrait;
+- (BOOL)shouldAutorotate{
+    return YES;
 }
 
-
+//- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
+//    return UIInterfaceOrientationMaskLandscape;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

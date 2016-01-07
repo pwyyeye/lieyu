@@ -195,7 +195,7 @@
     NSLog(@"----->%@----%@------------%@",_useridStr,_recentM.id,_commentView.textField.text);
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __block LYFriendsMessageDetailViewController *weakSelf = self;
-    [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl) {
+    [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
             NSLog(@"--->%ld",_recentM.commentList.count + 2);
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
@@ -203,9 +203,11 @@
             commentModel.icon = app.userModel.avatar_img;
             commentModel.nickName = app.userModel.usernick;
             commentModel.userId = _useridStr;
+            commentModel.commentId = commentId;
             if(toUserId.length) commentModel.toUserId = toUserId;
             else commentModel.toUserId = @"0";
             [_dataArray addObject:commentModel];
+            _recentM.commentNum = [NSString stringWithFormat:@"%ld",_recentM.commentNum.intValue+1];
             //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
             [weakSelf.tableView reloadData];
         }
@@ -343,13 +345,17 @@
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (!buttonIndex) {//删除我的评论
-        NSLog(@"---->%ld-----",((NSArray *)_dataArray).count);
-//        NSLog(@"---->%ld-----%ld",_indexRow,recetnM.commentList.count);
-        FriendsCommentModel *commentM = _recentM.commentList[_indexRow - _indexStart];
-        //            NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.};
-        //            [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
-        //
-        //            }];
+        FriendsCommentModel *commentM = _recentM.commentList[_indexRow - 4];
+        NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
+        __block LYFriendsMessageDetailViewController *weakSelf = self;
+        [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
+            if(result){
+                NSMutableArray *commentArr = _recentM.commentList;
+                [commentArr removeObjectAtIndex:_indexRow - 4];
+                _recentM.commentNum = [NSString stringWithFormat:@"%ld",_recentM.commentNum.integerValue - 1];
+                [weakSelf.tableView reloadData];
+            }
+        }];
     }
 }
 #pragma mark - 跳转到指定用户动态页
