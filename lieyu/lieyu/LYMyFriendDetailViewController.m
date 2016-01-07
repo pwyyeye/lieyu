@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+    self.title = @"个人信息";
     self.userImageView.layer.masksToBounds =YES;
     
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;

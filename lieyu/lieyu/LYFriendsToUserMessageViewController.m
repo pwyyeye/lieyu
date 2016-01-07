@@ -236,9 +236,10 @@
         customerM.message = _userInfo.introduction;
         customerM.age = [MyUtil getAgefromDate:_userInfo.birthday];
         customerM.userid = _userInfo.userId.intValue;
-//        customerM.distance = _userInfo.
         LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
         friendDetailVC.customerModel = customerM;
+        FriendsRecentModel *recentM = _dataArray[0];
+        friendDetailVC.type = recentM.type;
         [self.navigationController pushViewController:friendDetailVC animated:YES];
     }
 }
