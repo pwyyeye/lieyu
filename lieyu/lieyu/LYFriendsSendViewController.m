@@ -89,13 +89,16 @@
     }
 }
 
-#pragma mark 判断是否推出本次编辑
+#pragma mark 判断是否退出本次编辑
 - (void)gotoBack{
+    
     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定放弃本次编辑？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil]show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
+        //退出编辑界面之后删除视频文件
+        [self deleteFile:self.mediaUrl];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -206,16 +209,20 @@
         if(result){
             [MyUtil showCleanMessage:@"恭喜，发布成功!"];
             //发布成功后删除该文件
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            if([fileManager fileExistsAtPath:self.mediaUrl]){
-                [fileManager removeItemAtPath:self.mediaUrl error:nil];
-            }
+            [self deleteFile:self.mediaUrl];
         }else{
 //            [app stopLoading];
 //            [self showMessage:@"抱歉，发布失败!"];
             [MyUtil showCleanMessage:@"抱歉，发布失败!"];
         }
     }];
+}
+
+- (void)deleteFile:(NSString *)filePath{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if([fileManager fileExistsAtPath:filePath]){
+        [fileManager removeItemAtPath:filePath error:nil];
+    }
 }
 
 
@@ -513,6 +520,8 @@
             UIButton *btn = [self.view viewWithTag:301];
             [btn removeFromSuperview];
             _isVedio = NO;
+            //取消视频选择后删除文件并且将路径置空
+            [self deleteFile:self.mediaUrl];
             self.mediaUrl = [[NSMutableString alloc]initWithString:@""];
         }
         self.addButton.hidden = NO;
