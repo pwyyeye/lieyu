@@ -35,5 +35,6 @@
 @property (nonatomic,copy) NSString *username;
 @property (nonatomic,copy) NSString *usernick;
 @property (nonatomic,copy) NSString *friends_img;
+@property (nonatomic,copy) NSArray *tags;
 +(NSArray *)initFormNSArray:(NSArray *)arr;
 @end

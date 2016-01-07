@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_address;
 @property (weak, nonatomic) IBOutlet UIButton *btn_like;
 @property (weak, nonatomic) IBOutlet UIButton *btn_comment;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView_location;
 @property (nonatomic,strong) FriendsRecentModel *recentM;
 @end

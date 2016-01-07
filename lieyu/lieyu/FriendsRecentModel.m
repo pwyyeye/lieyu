@@ -11,6 +11,7 @@
 #import "FriendsCommentModel.h"
 #import "FriendsLikeModel.h"
 #import "FriendsPicAndVideoModel.h"
+#import "FriendsTagModel.h"
 
 @implementation FriendsRecentModel
 
@@ -18,7 +19,7 @@
 +(void)load
 {
     [FriendsRecentModel mj_setupObjectClassInArray:^NSDictionary *{
-        return @{@"commentList":@"FriendsCommentModel",@"lyMomentsAttachList":@"FriendsPicAndVideoModel",@"likeList":@"FriendsLikeModel"
+        return @{@"commentList":@"FriendsCommentModel",@"lyMomentsAttachList":@"FriendsPicAndVideoModel",@"likeList":@"FriendsLikeModel",@"tags":@"FriendsTagModel"
                  };
     }];
 }

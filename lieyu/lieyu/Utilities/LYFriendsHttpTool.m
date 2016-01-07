@@ -77,11 +77,11 @@
     }];
 }
 //给动态或者某人评论
-+ (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
++ (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool,NSString *))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Comment baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------>%@",response[@"message"]);
         if ([response[@"errorcode"] isEqualToString:@"1"]) {
-            compelte(YES);
+            compelte(YES,response[@"data"][@"commentId"]);
         }
     } failure:^(NSError *err) {
          [MyUtil showPlaceMessage:@"操作失败,请检查网络连接"];
@@ -187,5 +187,7 @@
          [app stopLoading];
     }];
 }
+
+
 
 @end

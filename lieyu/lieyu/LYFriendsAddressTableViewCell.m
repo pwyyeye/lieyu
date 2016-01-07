@@ -19,6 +19,7 @@
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
     _label_address.text = recentM.location;
+    if(!_label_address.text.length) _imgView_location.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

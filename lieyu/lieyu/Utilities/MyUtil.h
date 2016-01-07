@@ -82,4 +82,7 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 
 //判断当前网络状况
 + (int)configureNetworkConnect;
+
+//pragma mark - 时间转换为昨天，前天，今天等。。。。
++ (NSString *)calculateDateFromNowWith:(NSString *)dateString;
 @end

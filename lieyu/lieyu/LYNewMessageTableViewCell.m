@@ -23,7 +23,7 @@
     _friendsNesM = friendsNesM;
     [_btn_name setTitle:friendsNesM.usernick forState:UIControlStateNormal];
     _label_message.text = friendsNesM.comment;
-    _label_time.text = friendsNesM.date;
+    _label_time.text = [MyUtil calculateDateFromNowWith:friendsNesM.date];
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:friendsNesM.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     
     CGSize size = [friendsNesM.message boundingRectWithSize:CGSizeMake(57, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11]} context:nil].size;
@@ -34,7 +34,6 @@
     }else{
         _label_myMessage.text = friendsNesM.message;
     }
-    _label_myMessage.text = friendsNesM.message;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
