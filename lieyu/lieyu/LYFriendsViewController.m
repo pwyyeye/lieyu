@@ -669,13 +669,16 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = nil;
     NSString *toUserId = nil;
+    NSString *toUserNickName = nil;
     if (_isCommentToUser) {
         recentM = _dataArray[_index][_section];
         FriendsCommentModel *commentModel = recentM.commentList[_indexRow - 4];
         toUserId = commentModel.userId;
+        toUserNickName = commentModel.nickName;
     }else{
         recentM = _dataArray[_index][_commentBtnTag];
         toUserId = @"";
+        toUserNickName = @"";
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __block LYFriendsViewController *weakSelf = self;
@@ -687,12 +690,18 @@
             commentModel.nickName = app.userModel.usernick;
             commentModel.userId = _useridStr;
             commentModel.commentId = commentId;
-            if(toUserId.length) commentModel.toUserId = toUserId;
-            else commentModel.toUserId = @"0";
+            if(toUserId.length) {
+                commentModel.toUserId = toUserId;
+                commentModel.toUserNickName = toUserNickName;
+            }
+            else {
+                commentModel.toUserId = @"0";
+                commentModel.toUserNickName = @"";
+            }
             if(recentM.commentList.count == 5) [recentM.commentList removeObjectAtIndex:0];
             [recentM.commentList addObject:commentModel];
-            recentM.commentNum = [NSString stringWithFormat:@"%ld",recentM.commentNum.intValue+1];
-          //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
+            recentM.commentNum = [NSString stringWithFormat:@"%ld",recentM.commentNum.intValue + 1];
+          // [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
             [weakSelf.tableView reloadData];
         }
     }];
@@ -821,6 +830,7 @@
                     NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_index][_section]).commentList;
                     NSLog(@"------>%@------%ld",commentArr,_indexRow);
                     [commentArr removeObjectAtIndex:_indexRow - 4];
+                    NSLog(@"----->%@",commentArr);
                     recetnM.commentNum = [NSString stringWithFormat:@"%ld",recetnM.commentNum.integerValue - 1];
                     [weakSelf.tableView reloadData];
                 }
@@ -861,7 +871,13 @@
     NSArray *array = (NSArray *)_dataArray[_index];
     FriendsRecentModel *recentM = array[section];
     if (recentM.commentNum.integerValue >= 6) {
-        return 10;
+        NSLog(@"--->%ld",section);
+        return 5 + recentM.commentList.count;
+//        if(recentM.commentList.count == 5){
+//            return 10;
+//        }else{
+//            return 5 + recentM.commentList.count;
+//        }
     }else{
         return 4 + recentM.commentList.count;
     }
@@ -1000,7 +1016,12 @@
                     }
                 }
                     
-                default:{ //评论 4-9
+                default:{ //评论 4-8
+                    if(indexPath.row - 4 > recentM.commentList.count - 1) {
+                        LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
+                        allCommentCell.recentM = recentM;
+                        return allCommentCell;
+                    }
                     FriendsCommentModel *commentModel = recentM.commentList[indexPath.row - 4];
                     LYFriendsCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCommentCellID forIndexPath:indexPath];
                     if (indexPath.row == 4) {
@@ -1055,7 +1076,6 @@
             
         }
             break;
-            break;
         case 2://地址
         {
             return 45;
@@ -1075,6 +1095,7 @@
             
         default://评论
         {
+            if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             NSLog(@"-----%ld-->%ld",recentM.commentList.count,indexPath.row);
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];

@@ -23,7 +23,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chevron right" translatesAutoresizingMaskIntoConstraints="NO" id="CMy-9s-szJ">
                         <rect key="frame" x="286" y="14" width="24" height="24"/>
                     </imageView>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="八字以内" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bhb-fM-Ye7">
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="八字以内" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bhb-fM-Ye7">
                         <rect key="frame" x="80" y="17" width="188" height="18"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

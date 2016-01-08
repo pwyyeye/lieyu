@@ -147,7 +147,6 @@ static LYRegistrationViewController *_registe;
             detailVC.isAutoLogin = YES;
      
             [self.navigationController pushViewController:detailVC animated:YES];
-            
         }
     }];
 }

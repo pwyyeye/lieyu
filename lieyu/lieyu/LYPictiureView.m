@@ -78,6 +78,8 @@
         [self addSubview:_pageCtl];
         _pageCtl.numberOfPages = count;
         _pageCtl.currentPage = index;
+        
+        if(count == 1) _pageCtl.hidden = YES;
     }
     return self;
 }
