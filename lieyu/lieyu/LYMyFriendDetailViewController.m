@@ -61,9 +61,10 @@
         _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
     }
     
+    self.namelal.text=_customerModel.usernick;
+    [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img]];
     if([_type isEqualToString:@"0"]){
         self.namelal.text=_customerModel.friendName;
-        [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.icon]];
         if (_customerModel.sex.integerValue==0) {
             self.sexImageView.image=[UIImage imageNamed:@"woman"];
         }else{
@@ -83,7 +84,7 @@
         }
     }else{
         [_setBtn setTitle:@"打招呼" forState:0];
-        self.namelal.text=_customerModel.usernick;
+        
         self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
         if (_customerModel.distance.doubleValue>1000) {
             self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];

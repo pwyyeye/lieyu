@@ -26,13 +26,13 @@
         string = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
     }
     else {
-        string = [NSString stringWithFormat:@"回复%@:%@",commentM.nickName,commentM.comment];
+        string = [NSString stringWithFormat:@"回复%@:%@",commentM.toUserNickName,commentM.comment];
     }
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
     if([commentM.toUserId isEqualToString:@"0"]) {
         [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentM.nickName.length + 1)];
     }else{
-         [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(2, commentM.nickName.length + 1)];
+         [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(2, commentM.toUserNickName.length + 1)];
     }
     _label_comment.attributedText = attributedStr;
 }

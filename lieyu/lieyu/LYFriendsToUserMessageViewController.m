@@ -174,6 +174,7 @@
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCount * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_friendsId};
+    NSLog(@"----->%@",paraDic);
     __block LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
         _dataArray = dataArray;
@@ -228,7 +229,6 @@
 }
 
 - (void)headerImgClick:(UIButton *)button{
-    if(_dataArray.count) {
         CustomerModel *customerM = [[CustomerModel alloc]init];
         customerM.avatar_img = _userInfo.avatar_img;
         customerM.sex = [_userInfo.gender isEqualToString:@"0"] ? @"男" : @"女";
@@ -238,10 +238,11 @@
         customerM.userid = _userInfo.userId.intValue;
         LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
         friendDetailVC.customerModel = customerM;
+    if(_dataArray.count) {
         FriendsRecentModel *recentM = _dataArray[0];
-        friendDetailVC.type = recentM.type;
-        [self.navigationController pushViewController:friendDetailVC animated:YES];
+        friendDetailVC.type = [NSString stringWithFormat:@"%@",recentM.type];
     }
+        [self.navigationController pushViewController:friendDetailVC animated:YES];
 }
 
 #pragma mark - 表白action
@@ -306,7 +307,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     FriendsRecentModel *recentM = _dataArray[section];
     if (recentM.commentNum.integerValue >= 6) {
-        return 10;
+        return 5 + recentM.commentList.count;
     }else{
         return 4 + recentM.commentList.count;
     }
@@ -419,6 +420,11 @@
         }
             
         default:{ //评论 4-9
+            if(indexPath.row - 4 > recentM.commentList.count - 1) {
+                LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
+                allCommentCell.recentM = recentM;
+                return allCommentCell;
+            }
             FriendsCommentModel *commentModel = recentM.commentList[indexPath.row - 4];
             LYFriendsCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCommentCellID forIndexPath:indexPath];
             if (indexPath.row == 4) {
@@ -491,6 +497,7 @@
         default:
         {
             NSLog(@"-----%ld-->%ld",recentM.commentList.count,indexPath.row);
+            if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
             CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
@@ -611,13 +618,16 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = nil;
     NSString *toUserId = nil;
+    NSString *toUserNickName = nil;
     if (_isCommentToUser) {
         recentM = _dataArray[_section];
         FriendsCommentModel *commentModel = recentM.commentList[_indexRow - 4];
         toUserId = commentModel.userId;
+        toUserNickName = commentModel.nickName;
     }else{
         recentM = _dataArray[_commentBtnTag];
         toUserId = @"";
+        toUserNickName = @"";
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __block LYFriendsToUserMessageViewController *weakSelf = self;
@@ -630,8 +640,12 @@
             commentModel.commentId = commentId;
             commentModel.nickName = app.userModel.usernick;
             commentModel.userId = _useridStr;
-            if(toUserId.length) commentModel.toUserId = toUserId;
+            if(toUserId.length){ commentModel.toUserId = toUserId;
+                commentModel.toUserNickName = toUserNickName;
+            }
             else commentModel.toUserId = @"0";
+            
+            if(recentM.commentList.count == 5) [recentM.commentList removeObjectAtIndex:0];
             [recentM.commentList addObject:commentModel];
             recentM.commentNum = [NSString stringWithFormat:@"%ld",recentM.commentNum.integerValue + 1];
             //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
