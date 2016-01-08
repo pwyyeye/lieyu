@@ -38,7 +38,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *userId = [NSString stringWithFormat:@"%d",app.userModel.userid];
     NSDictionary *paraDic = @{@"userId":userId};
-    __block LYFriendsMessageViewController *weakSelf = self;
+    __weak LYFriendsMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationDetailWithParams:paraDic compelte:^(NSArray *dataArray) {
         _dataArray = dataArray;
         [weakSelf.tableView reloadData];

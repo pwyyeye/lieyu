@@ -175,7 +175,7 @@
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_friendsId};
     NSLog(@"----->%@",paraDic);
-    __block LYFriendsToUserMessageViewController *weakSelf = self;
+    __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
         _dataArray = dataArray;
         _userInfo = userInfo;
@@ -250,7 +250,7 @@
    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = _dataArray[button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
-    __block LYFriendsToUserMessageViewController *weakSelf = self;
+    __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
             if([_likeStr isEqualToString:@"1"]){
                 _likeStr = @"0";
@@ -449,7 +449,7 @@
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             
-            return 62 + size.height;
+            return 62 + 13;
         }
             break;
             
@@ -477,7 +477,6 @@
             }
             
         }
-            break;
             break;
         case 2://地址
         {
@@ -537,7 +536,7 @@
             FriendsRecentModel *recetnM = _dataArray[_section];
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
-            __block LYFriendsToUserMessageViewController *weakSelf = self;
+            __weak LYFriendsToUserMessageViewController *weakSelf = self;
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
                     NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_section]).commentList;
@@ -630,7 +629,7 @@
         toUserNickName = @"";
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
-    __block LYFriendsToUserMessageViewController *weakSelf = self;
+    __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
             NSLog(@"--->%ld",recentM.commentList.count + 2);

@@ -71,7 +71,6 @@
             self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
         }
         if (_customerModel.tag.count>0) {
-            
 //            _zhiwuLal.text=_customerModel.tag.firstObject;
         }
        

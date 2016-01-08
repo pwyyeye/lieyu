@@ -112,7 +112,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
     NSDictionary *paraDic = @{@"userId":_useridStr};
-    //__block LYFriendsViewController *weakSelf = self;
+    //__weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
         NSLog(@"---->%@------%@",reslults,icon);
 //        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
@@ -304,7 +304,7 @@
 
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataFriendsWithSetContentOffSet:(BOOL)need{
-       __block LYFriendsViewController *weakSelf = self;
+       __weak LYFriendsViewController *weakSelf = self;
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountFriends * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr};
@@ -331,7 +331,7 @@
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountMys * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
-         __block LYFriendsViewController *weakSelf = self;
+         __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
         _userBgImageUrl = userInfo.friends_img;
         _index = 1;
@@ -581,7 +581,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
       FriendsRecentModel *recentM = _dataArray[_index][button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
-    __block LYFriendsViewController *weakSelf = self;
+    __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if([_likeStr isEqualToString:@"1"]){
             _likeStr = @"0";
@@ -681,7 +681,7 @@
         toUserNickName = @"";
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
-    __block LYFriendsViewController *weakSelf = self;
+    __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
@@ -764,7 +764,7 @@
     FriendsRecentModel *recentM = array[button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
     NSLog(@"%@",paraDic);
-    __block LYFriendsViewController *weakSelf = self;
+    __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
         if (result) {
             [array removeObjectAtIndex:button.tag];
@@ -824,13 +824,11 @@
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
             NSLog(@"%@",paraDic);
-            __block LYFriendsViewController *weakSelf = self;
+            __weak LYFriendsViewController *weakSelf = self;
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
                     NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_index][_section]).commentList;
-                    NSLog(@"------>%@------%ld",commentArr,_indexRow);
                     [commentArr removeObjectAtIndex:_indexRow - 4];
-                    NSLog(@"----->%@",commentArr);
                     recetnM.commentNum = [NSString stringWithFormat:@"%ld",recetnM.commentNum.integerValue - 1];
                     [weakSelf.tableView reloadData];
                 }
@@ -873,11 +871,6 @@
     if (recentM.commentNum.integerValue >= 6) {
         NSLog(@"--->%ld",section);
         return 5 + recentM.commentList.count;
-//        if(recentM.commentList.count == 5){
-//            return 10;
-//        }else{
-//            return 5 + recentM.commentList.count;
-//        }
     }else{
         return 4 + recentM.commentList.count;
     }
@@ -1047,7 +1040,7 @@
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
                                                                                                                                                      
-             return 62 + size.height;
+             return 62 + 13;
         }
             break;
             
@@ -1116,6 +1109,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _section = indexPath.section;
     FriendsRecentModel *recentM = _dataArray[_index][indexPath.section];
+    if(indexPath.row == 0){
+        [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+    }
     if (indexPath.row >= 4 && indexPath.row <= 8) {
         _indexRow = indexPath.row;
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
