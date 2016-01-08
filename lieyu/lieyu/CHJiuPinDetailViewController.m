@@ -166,7 +166,7 @@
         NSString *title = @"";
         
         if([chiHeModel.introduction isEqualToString:@""]){
-            title = [NSString stringWithFormat:@"%@非常好！",chiHeModel.fullname];
+            title = [NSString stringWithFormat:@"图片仅供参考，具体以实物为准！",chiHeModel.fullname];
         }else{
             title = chiHeModel.introduction;
         }
