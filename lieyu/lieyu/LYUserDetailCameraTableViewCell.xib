@@ -38,6 +38,6 @@
     </objects>
     <resources>
         <image name="camera.png" width="61" height="61"/>
-        <image name="cameraCircle.png" width="65" height="65"/>
+        <image name="cameraCircle.png" width="16" height="16"/>
     </resources>
 </document>

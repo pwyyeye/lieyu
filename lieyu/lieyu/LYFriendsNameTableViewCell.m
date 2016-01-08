@@ -35,7 +35,7 @@
     [_label_time setText:[MyUtil calculateDateFromNowWith:recentM.date]];
     [_label_content setText:recentM.message];
     
-    if([MyUtil getAstroWithBirthday:recentM.birthday]){
+    if([MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){
         _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
         _label_constellation.hidden = NO;
     }

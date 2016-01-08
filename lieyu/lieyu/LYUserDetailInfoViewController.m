@@ -17,8 +17,10 @@
 #import "UIButton+WebCache.h"
 #import "TimePickerView.h"
 #import "LYUserLoginViewController.h"
+#import "LYTagsViewController.h"
+#import "UserTagModel.h"
 
-@interface LYUserDetailInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LPAlertViewDelegate>
+@interface LYUserDetailInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LPAlertViewDelegate,LYTagsViewControllerDelegate>
 {
     LYUserDetailCameraTableViewCell *_selectcedCell;
     LYUserDetailTableViewCell *_nickCell;
@@ -27,6 +29,8 @@
      LYUserDetailTableViewCell *_tagCell;
     NSDate *_chooseBirthDate;
     NSString *_tagNames;
+    UIImage *_imageIcon;
+    UserTagModel *_userTag;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -107,21 +111,21 @@
     }else if(indexPath.row == 1){//昵称
         _nickCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailTableViewCell" forIndexPath:indexPath];
             _nickCell.image_arrow.hidden = YES;
-        if (mod.usernick.length){
-            _nickCell.textF_content.text = mod.usernick;
-            _nickCell.textF_content.textColor = RGBA(114, 5, 145, 1);
-        }
+//        if (mod.usernick.length){
+//            _nickCell.textF_content.text = mod.usernick;
+//            _nickCell.textF_content.textColor = RGBA(114, 5, 145, 1);
+//        }
         _nickCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _nickCell;
         
     }else if(indexPath.row == 2){//性别
         _sexCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailSexTableViewCell" forIndexPath:indexPath];
-            if (!mod.gender.integerValue) {
-                [_sexCell.btn_man setImage:[UIImage imageNamed:@"circleWhite"] forState:UIControlStateNormal];
-                [_sexCell.btn_women setImage:[UIImage imageNamed:@"circleWhiteSelect"] forState:UIControlStateNormal];
-                _sexCell.btn_women.tag = 3;
-                _sexCell.btn_man.tag = 0;
-            }
+//            if (!mod.gender.integerValue) {
+//                [_sexCell.btn_man setImage:[UIImage imageNamed:@"circleWhiteSelect"] forState:UIControlStateNormal];
+//                [_sexCell.btn_women setImage:[UIImage imageNamed:@"circleWhite"] forState:UIControlStateNormal];
+//                _sexCell.btn_women.tag = 0;
+//                _sexCell.btn_man.tag = 3;
+//            }
         _sexCell.selectionStyle = UITableViewCellSelectionStyleNone;
          return _sexCell;
     }else if(indexPath.row == 3){//生日
@@ -233,13 +237,27 @@
 //        }
 //        tagVC.selectedArray=mod.tags;
 //        [self.navigationController pushViewController:tagVC animated:YES];
+        LYTagsViewController *tagsVC = [[LYTagsViewController alloc]init];
+         tagsVC.delegate=self;
+        [self.navigationController pushViewController:tagsVC animated:YES];
     }else if (indexPath.row == 1){
         return;
     }
     [_nickCell.textF_content endEditing:NO];
 }
 
+- (void)userTagSelected:(UserTagModel *)usertag{
+//    UILabel *label=[_selectcedCell viewWithTag:_selectcedCell.tag+100];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UserModel *mod = app.userModel;
+    _tagCell.textF_content.text=usertag.name;
+    
+    _userTag = usertag;
+    mod.tags = [@[usertag] copy];
+}
+
 #pragma mark LYUserTagSelectedDelegate
+/*
 - (void)userTagSelected:(NSMutableArray *)usertags{
     NSString *tagids=@"";
     NSString *tagNames=@"";
@@ -266,7 +284,7 @@
     [userinfo setObject:tagids forKey:@"tag"];
     [self savaUserInfo:userinfo needReload:NO];
 }
-
+*/
 
 #pragma mark - 保存用户信息
 -(void)savaUserInfo:(NSMutableDictionary *)userInfo needReload:(BOOL)isNeed{
@@ -275,10 +293,12 @@
     [userInfo setObject:[NSString stringWithFormat:@"%d",mod.userid] forKey:@"userid"];
     [[LYUserHttpTool shareInstance] saveUserInfo:[userInfo copy] complete:^(BOOL result) {
         if (result) {
-//            [MyUtil showMessage:@"修改成功！"];
+            [MyUtil showMessage:@"修改成功！"];
             app.userModel.gender = [NSString stringWithFormat:@"%d",_sexCell.btn_man.tag == 3 ? 1 : 0];
             app.userModel.usernick = _nickCell.textF_content.text;
             app.userModel.birthday = _birthCell.textF_content.text;
+            app.userModel.age = [MyUtil getAgefromDate:_birthCell.textF_content.text];
+            NSLog(@"----->%@------%@-----%@----%@",app.userModel.gender,app.userModel.usernick,app.userModel.birthday,app.userModel.avatar_img);
             if (_chooseBirthDate) {
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -286,7 +306,7 @@
                 app.userModel.age=[MyUtil getAgefromDate:date];
             }
             
-            
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             
             if (isNeed) {
               //  [self.tableView reloadData];
@@ -356,7 +376,7 @@
     
     // UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];//原始图
     UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];
-    
+    _imageIcon = image;
     UIGraphicsBeginImageContext(CGSizeMake(200, 200));  //size 为CGSize类型，即你所需要的图片尺寸
     
     [image drawInRect:CGRectMake(0, 0, 200, 200)];
@@ -377,10 +397,12 @@
             
             [userinfo setObject:key forKey:@"avatar_img"];
             
-//            [self savaUserInfo:userinfo needReload:YES];
+           
         }
     }];
 }
+
+
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
@@ -412,6 +434,11 @@
         return;
     }
     
+    if(_imageIcon == nil){
+        [MyUtil showMessage:@"请选择头像"];
+      return;
+    }
+    
     NSMutableDictionary *userinfo=[NSMutableDictionary new];
     
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -419,6 +446,9 @@
         NSString *date = [dateFormatter stringFromDate:_chooseBirthDate];
     if (date){
     [userinfo setObject:date forKey:@"birthday"];
+    }else{
+        [MyUtil showMessage:@"请选择生日"];
+        return;
     }
     
     [userinfo setObject:_nickCell.textF_content.text forKey:@"usernick"];
@@ -428,17 +458,27 @@
         sexNum = @(1);
     }else if(_sexCell.btn_women.tag == 3){
         sexNum = @(0);
+    }else{
+        [MyUtil showMessage:@"请选择性别"];
+        return;
     }
     
+    if([MyUtil isEmptyString:_userTag.name]){
+        [MyUtil showMessage:@"请选择标签"];
+        return;
+    }
     
     [userinfo setObject:[NSString stringWithFormat:@"%@",sexNum] forKey:@"gender"];
+    
+    [userinfo setObject:[NSString stringWithFormat:@"%ld",_userTag.id] forKey:@"tag"];
+    NSLog(@"-----%@---->%@",_userTag.tagname,userinfo);
     
     [self savaUserInfo:userinfo needReload:YES];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 
    
-   [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+   
 }
 
 

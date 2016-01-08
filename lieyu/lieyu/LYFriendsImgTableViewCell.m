@@ -28,7 +28,7 @@
         {
             UIButton *btn_imgOne = [[UIButton alloc]initWithFrame:self.bounds];
             btn_imgOne.adjustsImageWhenHighlighted = NO;
-            [btn_imgOne sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[0] width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+            [btn_imgOne sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[0] width:0 andHeight:0]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             btn_imgOne.imageView.contentMode = UIViewContentModeScaleAspectFill;
             [self addSubview:btn_imgOne];
             [_btnArray addObject:btn_imgOne];
@@ -40,7 +40,7 @@
             for (int i = 0; i < 2; i ++) {
                 
                 UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i%2 *(btnW + 2) , 0, btnW, btnW)];
-                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:SCREEN_WIDTH andHeight:SCREEN_WIDTH]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+                [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                 btn.adjustsImageWhenHighlighted = NO;
                             btn.imageView.contentMode = UIViewContentModeScaleAspectFill;
                 [self addSubview:btn];
@@ -74,28 +74,32 @@
             
             for(int i = 0 ; i< count ; i ++ ){
                 UIButton *btn = nil;
-//                UIImageView *imgView = nil;
+                UIImageView *imgView = nil;
+                NSInteger picWidth = 0;
                 switch (i) {
                     case 0:
                     {
                         btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
-//                        imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
+                        imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH)];
+                        picWidth = 0;
                     }
                         break;
                         
                     default:
                     {
                         btn = [[UIButton alloc]initWithFrame:CGRectMake((i - 1)%3 *(btnW + 2) , SCREEN_WIDTH + 2, btnW, btnW)];
-//                        imgView = [[UIImageView alloc]initWithFrame:CGRectMake((i - 1)%3 *(btnW + 2) , SCREEN_WIDTH + 2, btnW, btnW)];
+                        imgView = [[UIImageView alloc]initWithFrame:CGRectMake((i - 1)%3 *(btnW + 2) , SCREEN_WIDTH + 2, btnW, btnW)];
+                        picWidth = 450;
                     }
                         break;
                         
                 }
 //                imgView.userInteractionEnabled = YES;
-//                imgView.clipsToBounds = YES;
-                [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] forState:UIControlStateNormal  placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-//                btn.imageView.contentMode = UIViewContentModeCenter;
-//                imgView.contentMode = UIViewContentModeScaleAspectFill;
+                imgView.clipsToBounds = YES;
+                [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                //[imgView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]]   placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+                btn.imageView.contentMode = UIViewContentModeScaleAspectFill;
+                imgView.contentMode = UIViewContentModeScaleAspectFill;
 //                btn.contentMode = UIViewContentModeScaleAspectFill;
                 btn.adjustsImageWhenHighlighted = NO;
 //                [self addSubview:imgView];
