@@ -61,7 +61,11 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FriendSendViewDidLoad" object:nil];
-    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self deleteFile:@""];
 }
 
 //- (void)viewWillDisappear:(BOOL)animated{
@@ -98,6 +102,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
         //退出编辑界面之后删除视频文件
+        [self.textView resignFirstResponder];
         [self deleteFile:self.mediaUrl];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -106,6 +111,10 @@
 #pragma mark 上传玩友圈,待修改
 - (void)sendClick{
     [self.textView resignFirstResponder];
+    if(self.textView.text.length >= 800){
+        [MyUtil showCleanMessage:@"输入内容过长！"];
+        return;
+    }
 //    [app startLoading];
     //上传视频或者图片到七牛
     if(_isVedio){
@@ -164,8 +173,9 @@
             return;
         }
         /////////////////////////
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
         
+        [self.textView resignFirstResponder];
         for(int i = 0 ; i < self.fodderArray.count; i ++){
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                 if(![MyUtil isEmptyString:key]){
@@ -219,9 +229,15 @@
 }
 
 - (void)deleteFile:(NSString *)filePath{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if([fileManager fileExistsAtPath:filePath]){
-        [fileManager removeItemAtPath:filePath error:nil];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
+    NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
+    NSLog(@"%@",contents);
+    NSEnumerator *e = [contents objectEnumerator];
+    NSString *filename;
+    while (filename = [e nextObject]) {
+        filename = [NSString stringWithFormat:@"/%@",filename];
+        [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
     }
 }
 
@@ -509,7 +525,7 @@
     [self.navigationController.navigationBar setHidden:NO];
     
     NSLog(@"----pass-1>%@ ---",NSStringFromCGRect(self.view.frame));
-    self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
     if(_subView.button.selected == NO){
         NSLog(@"delete %d picture",(int)_subView.tag);
         [self.fodderArray removeObjectAtIndex:_subView.tag - 1];
