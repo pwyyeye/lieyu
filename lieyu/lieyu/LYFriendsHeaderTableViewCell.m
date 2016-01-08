@@ -45,7 +45,7 @@
         }
 
     }
-    _label_time.text = [NSString stringWithFormat:@"%@\n%@",recentM.date,recentM.location];
+    _label_time.text = [NSString stringWithFormat:@"%@\n%@",[MyUtil calculateDateFromNowWith:recentM.date],recentM.location];
     
     
     for (int i = 0; i< urlArray.count ; i ++) {
@@ -54,7 +54,6 @@
         UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesClick:)];
         [imgView addGestureRecognizer:tapGes];
     }
-    
 }
 
 - (void)tapGesClick:(UITapGestureRecognizer *)ges{
