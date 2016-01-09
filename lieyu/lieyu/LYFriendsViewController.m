@@ -112,9 +112,8 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
     NSDictionary *paraDic = @{@"userId":_useridStr};
-    //__block LYFriendsViewController *weakSelf = self;
+    //__weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
-        NSLog(@"---->%@------%@",reslults,icon);
 //        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
         if(reslults.integerValue){
             _myBadge.hidden = NO;
@@ -166,7 +165,6 @@
 }
 
 //- (void)messageCountNotice:(NSNotification *)note{
-//    NSLog(@"--->%@",note);
 //    UIView *view = _tableView.tableHeaderView;
 //    CGRect frame = view.frame;
 //    frame.size.height = frame.size.height + 54;
@@ -176,7 +174,6 @@
 //- (void)badgeValue:(NSNotification *)note{
 //    NSString *resluts = note.userInfo[@"results"];
 //    NSString *icon = note.userInfo[@"icon"];
-//    NSLog(@"->%@----%@",resluts,icon);
 //}
 
 #pragma mark - 配置表的cell
@@ -304,7 +301,7 @@
 
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataFriendsWithSetContentOffSet:(BOOL)need{
-       __block LYFriendsViewController *weakSelf = self;
+       __weak LYFriendsViewController *weakSelf = self;
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountFriends * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr};
@@ -318,6 +315,7 @@
                     [muArr addObjectsFromArray:dataArray];
                 }
             _pageStartCountFriends ++;
+            [self.tableView.mj_footer endRefreshing];
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
@@ -331,7 +329,7 @@
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountMys * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
-         __block LYFriendsViewController *weakSelf = self;
+         __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
         _userBgImageUrl = userInfo.friends_img;
         _index = 1;
@@ -343,6 +341,7 @@
                         [muArr addObjectsFromArray:dataArray];
                     }
             _pageStartCountMys ++;
+            [self.tableView.mj_footer endRefreshing];
         }else{
             if(_isMysPageUpLoad){
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -360,7 +359,7 @@
     if(_index) [self addTableViewHeader];
     else [self removeTableViewHeader];
     [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
+    
     if(!((NSArray *)_dataArray[_index]).count){
         return;
     }
@@ -581,7 +580,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
       FriendsRecentModel *recentM = _dataArray[_index][button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
-    __block LYFriendsViewController *weakSelf = self;
+    __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if([_likeStr isEqualToString:@"1"]){
             _likeStr = @"0";
@@ -681,7 +680,7 @@
         toUserNickName = @"";
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
-    __block LYFriendsViewController *weakSelf = self;
+    __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
@@ -763,12 +762,10 @@
     NSMutableArray *array = _dataArray[_index];
     FriendsRecentModel *recentM = array[button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
-    NSLog(@"%@",paraDic);
-    __block LYFriendsViewController *weakSelf = self;
+    __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
         if (result) {
             [array removeObjectAtIndex:button.tag];
-            NSLog(@"----->%ld-------%ld",button.tag,array.count)    ;
             [weakSelf.tableView reloadData];
             //[weakSelf.tableView deleteSections:[NSIndexSet indexSetWithIndex:button.tag] withRowAnimation:UITableViewRowAnimationTop];
         }
@@ -818,19 +815,14 @@
         }
     }else if(actionSheet.tag == 300){
         if (!buttonIndex) {//删除我的评论
-            NSLog(@"---->%ld-----",((NSArray *)_dataArray).count);
             FriendsRecentModel *recetnM = _dataArray[_index][_section];
-            NSLog(@"---->%ld-----%ld",_indexRow,recetnM.commentList.count);
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
-            NSLog(@"%@",paraDic);
-            __block LYFriendsViewController *weakSelf = self;
+            __weak LYFriendsViewController *weakSelf = self;
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
                     NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_index][_section]).commentList;
-                    NSLog(@"------>%@------%ld",commentArr,_indexRow);
                     [commentArr removeObjectAtIndex:_indexRow - 4];
-                    NSLog(@"----->%@",commentArr);
                     recetnM.commentNum = [NSString stringWithFormat:@"%ld",recetnM.commentNum.integerValue - 1];
                     [weakSelf.tableView reloadData];
                 }
@@ -871,13 +863,7 @@
     NSArray *array = (NSArray *)_dataArray[_index];
     FriendsRecentModel *recentM = array[section];
     if (recentM.commentNum.integerValue >= 6) {
-        NSLog(@"--->%ld",section);
         return 5 + recentM.commentList.count;
-//        if(recentM.commentList.count == 5){
-//            return 10;
-//        }else{
-//            return 5 + recentM.commentList.count;
-//        }
     }else{
         return 4 + recentM.commentList.count;
     }
@@ -958,10 +944,8 @@
                     }else{
                         LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
                         NSString *urlStr = ((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink;
-                        NSLog(@"------>%@",((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink);
                         videoCell.btn_play.tag = indexPath.section;
                         [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
-                        NSLog(@"-----%@---->%@",[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0],((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink);
                         [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                         return videoCell;
                     }
@@ -1047,7 +1031,7 @@
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
                                                                                                                                                      
-             return 62 + size.height;
+             return 62 + 13;
         }
             break;
             
@@ -1096,7 +1080,6 @@
         default://评论
         {
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
-            NSLog(@"-----%ld-->%ld",recentM.commentList.count,indexPath.row);
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
             CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
@@ -1116,6 +1099,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _section = indexPath.section;
     FriendsRecentModel *recentM = _dataArray[_index][indexPath.section];
+    if(indexPath.row == 0){
+        [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+    }
     if (indexPath.row >= 4 && indexPath.row <= 8) {
         _indexRow = indexPath.row;
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
@@ -1190,7 +1176,6 @@
 - (void)playVideo:(UIButton *)button{
     NSArray *array = _dataArray[_index];
     FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)((FriendsRecentModel *)array[button.tag]).lyMomentsAttachList[0];
-    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0]);
 //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
     QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
     NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
