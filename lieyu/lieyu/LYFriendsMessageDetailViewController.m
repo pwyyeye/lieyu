@@ -105,7 +105,6 @@
 #pragma mark - 表白action
 - (void)likeFriendsClick{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSLog(@"---->%@------%@--------%@",_useridStr,_recentM.id,_likeStr);
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"type":_likeStr};
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
@@ -198,7 +197,6 @@
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
-            NSLog(@"--->%ld",_recentM.commentList.count + 2);
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
             commentModel.icon = app.userModel.avatar_img;
@@ -247,13 +245,11 @@
                     for (int i = 0; i< likeCell.btnArray.count; i ++) {
                         UIButton *btn = likeCell.btnArray[i];
                         btn.tag = likeCell.btnArray.count * indexPath.section  + i + 1;
-                        NSLog(@"---->%ld",btn.tag);
                         [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                     }
                 return likeCell;
                 }
             }
-            NSLog(@"---->%ld-----%ld----%ld",indexPath.row,_indexStart, _dataArray.count);
             FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
             LYFriendsCommentDetailTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCommentDetailCellID forIndexPath:indexPath];
             commentCell.btn_headerImg.tag = indexPath.row - _indexStart;
@@ -312,7 +308,6 @@
                     return  _recentM.likeList.count <= 8 ? 42 : 82;
                 }
             }
-            NSLog(@"------>%ld-----%ld",indexPath.row,_dataArray.count);
             FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
             NSString *string = [NSString stringWithFormat:@"%@:%@",commentModel.nickName,commentModel.comment];
             CGSize size = [string boundingRectWithSize:CGSizeMake(235, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
@@ -378,14 +373,12 @@
     LYFriendsHeaderTableViewCell *headerCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     for (UIImageView *imgViewCell in headerCell.imageViewArray) {
         NSString *oldFrame = NSStringFromCGRect([headerCell convertRect:imgViewCell.frame toView:app.window]);
-        NSLog(@"---->%@",oldFrame);
         [oldFrameArray addObject:oldFrame];
     }
     
     
 
     FriendsPicAndVideoModel *pvM = _recentM.lyMomentsAttachList[0];
-    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0]);
     //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
     if([_recentM.attachType isEqualToString:@"1"]){
     QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;

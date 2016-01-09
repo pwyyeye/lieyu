@@ -114,7 +114,6 @@
     NSDictionary *paraDic = @{@"userId":_useridStr};
     //__weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
-        NSLog(@"---->%@------%@",reslults,icon);
 //        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
         if(reslults.integerValue){
             _myBadge.hidden = NO;
@@ -166,7 +165,6 @@
 }
 
 //- (void)messageCountNotice:(NSNotification *)note{
-//    NSLog(@"--->%@",note);
 //    UIView *view = _tableView.tableHeaderView;
 //    CGRect frame = view.frame;
 //    frame.size.height = frame.size.height + 54;
@@ -176,7 +174,6 @@
 //- (void)badgeValue:(NSNotification *)note{
 //    NSString *resluts = note.userInfo[@"results"];
 //    NSString *icon = note.userInfo[@"icon"];
-//    NSLog(@"->%@----%@",resluts,icon);
 //}
 
 #pragma mark - 配置表的cell
@@ -318,6 +315,7 @@
                     [muArr addObjectsFromArray:dataArray];
                 }
             _pageStartCountFriends ++;
+            [self.tableView.mj_footer endRefreshing];
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
@@ -343,6 +341,7 @@
                         [muArr addObjectsFromArray:dataArray];
                     }
             _pageStartCountMys ++;
+            [self.tableView.mj_footer endRefreshing];
         }else{
             if(_isMysPageUpLoad){
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -360,7 +359,7 @@
     if(_index) [self addTableViewHeader];
     else [self removeTableViewHeader];
     [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
+    
     if(!((NSArray *)_dataArray[_index]).count){
         return;
     }
@@ -763,12 +762,10 @@
     NSMutableArray *array = _dataArray[_index];
     FriendsRecentModel *recentM = array[button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
-    NSLog(@"%@",paraDic);
     __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
         if (result) {
             [array removeObjectAtIndex:button.tag];
-            NSLog(@"----->%ld-------%ld",button.tag,array.count)    ;
             [weakSelf.tableView reloadData];
             //[weakSelf.tableView deleteSections:[NSIndexSet indexSetWithIndex:button.tag] withRowAnimation:UITableViewRowAnimationTop];
         }
@@ -818,12 +815,9 @@
         }
     }else if(actionSheet.tag == 300){
         if (!buttonIndex) {//删除我的评论
-            NSLog(@"---->%ld-----",((NSArray *)_dataArray).count);
             FriendsRecentModel *recetnM = _dataArray[_index][_section];
-            NSLog(@"---->%ld-----%ld",_indexRow,recetnM.commentList.count);
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
-            NSLog(@"%@",paraDic);
             __weak LYFriendsViewController *weakSelf = self;
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
@@ -869,7 +863,6 @@
     NSArray *array = (NSArray *)_dataArray[_index];
     FriendsRecentModel *recentM = array[section];
     if (recentM.commentNum.integerValue >= 6) {
-        NSLog(@"--->%ld",section);
         return 5 + recentM.commentList.count;
     }else{
         return 4 + recentM.commentList.count;
@@ -951,10 +944,8 @@
                     }else{
                         LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
                         NSString *urlStr = ((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink;
-                        NSLog(@"------>%@",((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink);
                         videoCell.btn_play.tag = indexPath.section;
                         [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
-                        NSLog(@"-----%@---->%@",[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0],((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink);
                         [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                         return videoCell;
                     }
@@ -1089,7 +1080,6 @@
         default://评论
         {
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
-            NSLog(@"-----%ld-->%ld",recentM.commentList.count,indexPath.row);
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
             CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
@@ -1186,7 +1176,6 @@
 - (void)playVideo:(UIButton *)button{
     NSArray *array = _dataArray[_index];
     FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)((FriendsRecentModel *)array[button.tag]).lyMomentsAttachList[0];
-    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0]);
 //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
     QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
     NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
