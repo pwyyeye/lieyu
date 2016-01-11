@@ -255,7 +255,7 @@
     _vLine.backgroundColor = RGBA(255, 255, 255, 0.5);
     [self.navigationController.navigationBar addSubview:_vLine];
 
-    _myBadge = [[UILabel alloc]initWithFrame:CGRectMake(209, 10, 13, 13)];
+    _myBadge = [[UILabel alloc]initWithFrame:CGRectMake(209, 10, 10, 10)];
     _myBadge.backgroundColor = [UIColor redColor];
     _myBadge.layer.cornerRadius = CGRectGetWidth(_myBadge.frame) / 2.f;
     _myBadge.layer.masksToBounds = YES;
@@ -649,10 +649,19 @@
     emojiView.inputView = _commentView.textField;
     _commentView.textField.inputView = emojiView;
     [_commentView.textField becomeFirstResponder];
+    [UIView animateWithDuration:.1 animations:^{
+        CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(emojiView.frame);
+        _commentView.frame = CGRectMake(0,y , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+        NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
+    }];
     }else{
         [_commentView.textField endEditing:YES];
         _commentView.textField.inputView = UIKeyboardAppearanceDefault;
         [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+           // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+            _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
+        }];
     }
 }
 

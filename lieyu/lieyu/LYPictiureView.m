@@ -44,7 +44,7 @@
         _imageViewArray = [[NSMutableArray alloc]init];
         
         for (int i = 0; i < count; i ++) {
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,(SCREEN_HEIGHT - SCREEN_WIDTH)/2.f, SCREEN_WIDTH, SCREEN_WIDTH)];
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,(SCREEN_HEIGHT - SCREEN_WIDTH)/2.f, SCREEN_WIDTH, SCREEN_HEIGHT)];
             [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:SCREEN_WIDTH andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             [_scrollView addSubview:imageView];
@@ -67,7 +67,7 @@
         NSLog(@"--%ld--->%@",index,NSStringFromCGRect(imgView.frame));
         [UIView animateWithDuration:.5 animations:^{
             imgView.alpha = 1;
-            imgView.bounds = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_WIDTH);
+            imgView.bounds = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
             imgView.center = CGPointMake(SCREEN_WIDTH *index + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             self.backgroundColor = RGBA(255, 255, 255, 1);
         }];
@@ -80,8 +80,19 @@
         _pageCtl.currentPage = index;
         
         if(count == 1) _pageCtl.hidden = YES;
+        
+        UITapGestureRecognizer *scroll_tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(scroll_tapGes)];
+        [_scrollView addGestureRecognizer:scroll_tapGes];
     }
     return self;
+}
+
+- (void)scroll_tapGes{
+    [UIView animateWithDuration:.3 animations:^{
+        self.alpha = 0;
+    }completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
 
 //- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{

@@ -16,6 +16,8 @@
 - (void)drawRect:(CGRect)rect {
     _btn_header.layer.cornerRadius = CGRectGetHeight(_btn_header.frame) / 2.f;
     _btn_header.layer.masksToBounds = YES;
+    _btn_header.layer.borderColor = RGBA(0, 0, 0, 0.5).CGColor;
+    _btn_header.layer.borderWidth = 1;
     
     _btn_newMessage.layer.cornerRadius = 4;
     _btn_newMessage.layer.masksToBounds = YES;
