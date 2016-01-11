@@ -276,6 +276,11 @@
     */
 }
 
+#pragma mark - sendSuccess
+- (void)sendSucceed{
+    [self.tableView.mj_header beginRefreshing];
+}
+
 #pragma mark - 配置表的cell
 - (void)setupTableView{
     NSArray *array = @[LYFriendsNameCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID,LYFriendsVideoCellID];
