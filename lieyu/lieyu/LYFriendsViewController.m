@@ -177,7 +177,7 @@
 
 #pragma mark - 作为代理收取视频路径地址与截图
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content{
-  /*  self.mediaImage = image;
+    self.mediaImage = image;
     self.mediaUrl = mediaUrl;
     self.content = content;
     
@@ -205,12 +205,12 @@
     [arr1 insertObject:recentM atIndex:0];
     [arr2 insertObject:recentM atIndex:0];
     [self.tableView reloadData];
-   */
+   
 }
 
 #pragma mark - 作为代理接受返回的图片
 - (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content{
-   /* self.imageArray = imagesArray;
+    self.imageArray = imagesArray;
     self.content = content;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -273,7 +273,7 @@
     [arr1 insertObject:recentM atIndex:0];
     [arr2 insertObject:recentM atIndex:0];
     [self.tableView reloadData];
-    */
+    
 }
 
 #pragma mark - sendSuccess
@@ -522,6 +522,7 @@
         _headerView.imageView_NewMessageIcon.hidden = YES;
     }
     [_headerView.imageView_NewMessageIcon sd_setImageWithURL:[NSURL URLWithString:_icon]  placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    _headerView.imageView_NewMessageIcon.clipsToBounds = YES;
     [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:UIControlStateNormal];
     [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] forState:UIControlStateNormal ];
     _headerView.label_name.text = app.userModel.usernick;
@@ -997,8 +998,9 @@
     NSArray *array = (NSArray *)_dataArray[_index];
     FriendsRecentModel *recentM = array[section];
     if (recentM.commentNum.integerValue >= 6) {
-        return 5 + recentM.commentList.count;
+        return 5  + recentM.commentList.count;
     }else{
+        if(!recentM.commentList.count) return 5;
         return 4 + recentM.commentList.count;
     }
 }
@@ -1022,6 +1024,7 @@
                 case 0:
                 {
                     LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
+                    recentM.message = @"";
                     nameCell.recentM = recentM;
                     nameCell.btn_delete.tag = indexPath.section;
                     [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -1136,6 +1139,11 @@
                 }
                     
                 default:{ //评论 4-8
+                    if(!recentM.commentList.count){
+                        LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
+//                        allCommentCell.label_commentCount.textAlignment = NSTextAlignmentCenter;
+                        return allCommentCell;
+                    }
                     if(indexPath.row - 4 > recentM.commentList.count - 1) {
                         LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
                         allCommentCell.recentM = recentM;
@@ -1165,8 +1173,9 @@
         case 0://头像和动态
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            if(size.height >= 47) size.height = 47;
                                                                                                                                                      
-             return 62 + 13;
+             return 47 + size.height;
         }
             break;
             
@@ -1214,6 +1223,7 @@
             
         default://评论
         {
+            if(!recentM.commentList.count) return 36;
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
@@ -1238,6 +1248,7 @@
         [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
     }
     if (indexPath.row >= 4 && indexPath.row <= 8) {
+        if(!recentM.commentList.count) return;
         _indexRow = indexPath.row;
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
         if ([commetnM.userId isEqualToString:_useridStr]) {//我发的评论
@@ -1278,6 +1289,7 @@
 
 #pragma mark - 设置表的分割线
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    FriendsRecentModel *recentM = _dataArray[_index][indexPath.section];
     switch (indexPath.row) {
 //        case 0:
 //        {
@@ -1292,11 +1304,13 @@
         case 2:
         {
             cell.separatorInset = UIEdgeInsetsMake(0, 7, 0, 7);
+            if(!recentM.commentList.count && !recentM.likeList.count) cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
         }
             break;
         case 3:
         {
             cell.separatorInset = UIEdgeInsetsMake(0, 35, 0, 7);
+            if(!recentM.commentList.count) cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
         }
             break;
         default:

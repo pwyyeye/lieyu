@@ -50,7 +50,7 @@
                             <color key="titleColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcd-QF-qbC">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcd-QF-qbC">
                         <rect key="frame" x="53" y="27" width="193" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="d9T-e7-dae"/>
@@ -59,6 +59,13 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biaobai_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="6WR-pU-KBX">
+                        <rect key="frame" x="53" y="30" width="13" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="13" id="61E-RI-6F6"/>
+                            <constraint firstAttribute="height" constant="13" id="7fQ-TG-fAR"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Wvd-55-47P" firstAttribute="leading" secondItem="Z8a-dt-0iJ" secondAttribute="trailing" constant="10" id="435-MB-mpz"/>
@@ -68,10 +75,12 @@
                     <constraint firstItem="Z8a-dt-0iJ" firstAttribute="leading" secondItem="yff-am-XDI" secondAttribute="trailing" constant="10" id="FvK-kJ-wIx"/>
                     <constraint firstItem="GOj-3Y-C4m" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="53" id="HdB-99-nKX"/>
                     <constraint firstItem="Vcd-QF-qbC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="27" id="Lxp-0b-scP"/>
+                    <constraint firstItem="6WR-pU-KBX" firstAttribute="top" secondItem="Z8a-dt-0iJ" secondAttribute="bottom" constant="3" id="M8e-Zz-X44"/>
                     <constraint firstItem="yff-am-XDI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="Pro-UV-6Ne"/>
                     <constraint firstItem="Wvd-55-47P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="V1p-mJ-ETJ"/>
                     <constraint firstItem="Wvd-55-47P" firstAttribute="leading" secondItem="Vcd-QF-qbC" secondAttribute="trailing" constant="10" id="ana-3h-AYk"/>
                     <constraint firstItem="Z8a-dt-0iJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="jtf-UL-TH2"/>
+                    <constraint firstItem="6WR-pU-KBX" firstAttribute="leading" secondItem="yff-am-XDI" secondAttribute="trailing" constant="10" id="lxm-0M-1UE"/>
                     <constraint firstItem="yff-am-XDI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="rDd-Ya-LcT"/>
                     <constraint firstAttribute="trailing" secondItem="Wvd-55-47P" secondAttribute="trailing" constant="7" id="wdh-BZ-6fg"/>
                 </constraints>
@@ -79,6 +88,7 @@
             <connections>
                 <outlet property="btn_headerImg" destination="yff-am-XDI" id="orU-GD-P5w"/>
                 <outlet property="btn_name" destination="Z8a-dt-0iJ" id="64N-ii-9ey"/>
+                <outlet property="imageView_zang" destination="6WR-pU-KBX" id="vBr-1S-eDq"/>
                 <outlet property="label_message" destination="Vcd-QF-qbC" id="pmR-fW-fcJ"/>
                 <outlet property="label_myMessage" destination="Wvd-55-47P" id="byh-LA-tqd"/>
                 <outlet property="label_time" destination="GOj-3Y-C4m" id="OKT-NN-gSN"/>
@@ -86,4 +96,7 @@
             <point key="canvasLocation" x="402" y="463"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="biaobai_icon.png" width="13" height="13"/>
+    </resources>
 </document>
