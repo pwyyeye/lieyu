@@ -3809,16 +3809,16 @@
 		38AA7CC11C31597E00D9BCE8 /* other */ = {
 			isa = PBXGroup;
 			children = (
-				38AA7CB01C31597700D9BCE8 /* YBImgPickerTableViewCell.xib */,
-				38AA7CB11C31597700D9BCE8 /* YBImgPickerViewController.m */,
 				38AA7CB21C31597700D9BCE8 /* YBimgPickerView.bundle */,
-				38AA7CB31C31597700D9BCE8 /* YBImgPickerViewCell.xib */,
+				38AA7CB91C31597700D9BCE8 /* YBImgPickerViewController.h */,
+				38AA7CB11C31597700D9BCE8 /* YBImgPickerViewController.m */,
 				38AA7CB41C31597700D9BCE8 /* YBImgPickerViewController.xib */,
 				38AA7CB51C31597700D9BCE8 /* YBImgPickerTableViewCell.h */,
 				38AA7CB61C31597700D9BCE8 /* YBImgPickerTableViewCell.m */,
+				38AA7CB01C31597700D9BCE8 /* YBImgPickerTableViewCell.xib */,
 				38AA7CB71C31597700D9BCE8 /* YBImgPickerViewCell.h */,
 				38AA7CB81C31597700D9BCE8 /* YBImgPickerViewCell.m */,
-				38AA7CB91C31597700D9BCE8 /* YBImgPickerViewController.h */,
+				38AA7CB31C31597700D9BCE8 /* YBImgPickerViewCell.xib */,
 			);
 			name = other;
 			sourceTree = "<group>";

@@ -13,8 +13,8 @@
 #import "LYFriendsChooseLocationViewController.h"
 @protocol sendBackVedioAndImage <NSObject>
 
-- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image;
-- (void)sendImagesArray:(NSArray *)imagesArray;
+- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content;
+- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content;
 
 @end
 

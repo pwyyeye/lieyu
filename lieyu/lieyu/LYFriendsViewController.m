@@ -174,14 +174,16 @@
 //}
 
 #pragma mark - 作为代理收取视频路径地址与截图
-- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image{
+- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content{
     self.mediaImage = image;
     self.mediaUrl = mediaUrl;
+    self.content = content;
 }
 
 #pragma mark - 作为代理接受返回的图片
-- (void)sendImagesArray:(NSArray *)imagesArray{
+- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content{
     self.imageArray = imagesArray;
+    self.content = content;
 }
 
 #pragma mark - 配置表的cell
