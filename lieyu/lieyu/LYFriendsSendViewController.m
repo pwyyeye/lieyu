@@ -32,6 +32,8 @@
 @property (nonatomic, strong) NSMutableString *location;
 @property (nonatomic, assign) BOOL notFirstOpen;
 
+@property (nonatomic, strong) NSString *content;
+
 @end
 
 @implementation LYFriendsSendViewController
@@ -125,11 +127,13 @@
         
         [self.navigationController popToRootViewControllerAnimated:YES];
         if(self.delegate){
+            
             if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
-                [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:@""];
+                self.content = @"";
             }else{
-                [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:self.textView.text];
+                self.content = [[NSString alloc]initWithString:self.textView.text];
             }
+            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:self.content];
         }
         
         AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
@@ -181,10 +185,11 @@
         //点击发布按钮后将图片数组返回
         [self.navigationController popViewControllerAnimated:YES];
         if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
-            [self.delegate sendImagesArray:self.fodderArray andContent:@""];
+            self.content = @"";
         }else{
-            [self.delegate sendImagesArray:self.fodderArray andContent:self.textView.text];
+            self.content = [[NSString alloc]initWithString:self.textView.text];
         }
+        [self.delegate sendImagesArray:self.fodderArray andContent:self.content];
         [self.textView resignFirstResponder];
         for(int i = 0 ; i < self.fodderArray.count; i ++){
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
@@ -217,23 +222,22 @@
 }
 
 - (void)sendTrends:(NSString *)string{
-    
     NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     NSDictionary *paraDic;
     if(_isVedio){
-        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.textView.text,@"attachType":@"1",@"attach":string};
+        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"1",@"attach":string};
     }else{
-        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.textView.text,@"attachType":@"0",@"attach":string};
+        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"0",@"attach":string};
     }
-    [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
+    [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result, NSString *messageId) {
         if(result){
             [MyUtil showCleanMessage:@"恭喜，发布成功!"];
-            [self.delegate sendSucceed];
+            [self.delegate sendSucceed:messageId];
             //发布成功后删除该文件
-//            [self deleteFile:self.mediaUrl];
+            //            [self deleteFile:self.mediaUrl];
         }else{
-//            [app stopLoading];
-//            [self showMessage:@"抱歉，发布失败!"];
+            //            [app stopLoading];
+            //            [self showMessage:@"抱歉，发布失败!"];
             [MyUtil showCleanMessage:@"抱歉，发布失败!"];
         }
     }];
