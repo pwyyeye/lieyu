@@ -24,7 +24,6 @@
 #import "LYPictiureView.h"
 #import "LYFriendsCommentView.h"
 #import "IQKeyboardManager.h"
-#import "LYFriendsSendViewController.h"
 #import "LYFriendsToUserMessageViewController.h"
 #import "LYFriendsMessageDetailViewController.h"
 #import "LYFriendsImgTableViewCell.h"
@@ -121,8 +120,6 @@
         }
         [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
-        
-        
 
         _headerView.btn_newMessage.hidden = NO;
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"MyFriendsMessageCount" object:weakSelf userInfo:@{@"count":reslults,@"icon":icon}];
@@ -175,6 +172,17 @@
 //    NSString *resluts = note.userInfo[@"results"];
 //    NSString *icon = note.userInfo[@"icon"];
 //}
+
+#pragma mark - 作为代理收取视频路径地址与截图
+- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image{
+    self.mediaImage = image;
+    self.mediaUrl = mediaUrl;
+}
+
+#pragma mark - 作为代理接受返回的图片
+- (void)sendImagesArray:(NSArray *)imagesArray{
+    self.imageArray = imagesArray;
+}
 
 #pragma mark - 配置表的cell
 - (void)setupTableView{
@@ -543,6 +551,7 @@
 #pragma mark 选择玩照片后的操作
 - (void)YBImagePickerDidFinishWithImages:(NSArray *)imageArray{
     friendsSendVC = [[LYFriendsSendViewController alloc]initWithNibName:@"LYFriendsSendViewController" bundle:[NSBundle mainBundle]];
+    friendsSendVC.delegate = self;
     [self.navigationController pushViewController:friendsSendVC animated:YES];
     /**
      */
@@ -554,6 +563,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     [self dismissViewControllerAnimated:YES completion:nil];
     friendsSendVC = [[LYFriendsSendViewController alloc]initWithNibName:@"LYFriendsSendViewController" bundle:[NSBundle mainBundle]];
+    friendsSendVC.delegate = self;
     [self.navigationController pushViewController:friendsSendVC animated:YES];
     /**
      */
