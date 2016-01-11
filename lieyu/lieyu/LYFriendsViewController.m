@@ -386,17 +386,6 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
-    NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
-    NSLog(@"%@",contents);
-    NSEnumerator *e = [contents objectEnumerator];
-    NSString *filename;
-    while (filename = [e nextObject]) {
-        filename = [NSString stringWithFormat:@"/%@",filename];
-        [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
-    }
     [self removeNavMenuView];
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
