@@ -39,6 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupAllProperty];
+//    [self deleteFile:@""];
     
     self.pageCount = 4;
     self.initCount = 0;
@@ -64,7 +65,6 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FriendSendViewDidLoad" object:nil];
-    [self deleteFile:@""];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -77,7 +77,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
-    [self deleteFile:@""];
+//    [self deleteFile:@""];
 }
 
 - (void)setupAllProperty{
@@ -122,6 +122,7 @@
             return;
         }
         //点击发布按钮之后回到朋友圈页面并且传视频与截图给朋友圈页面
+        
         [self.navigationController popToRootViewControllerAnimated:YES];
         if(self.delegate){
             if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
@@ -227,6 +228,7 @@
     [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
         if(result){
             [MyUtil showCleanMessage:@"恭喜，发布成功!"];
+            [self.delegate sendSucceed];
             //发布成功后删除该文件
 //            [self deleteFile:self.mediaUrl];
         }else{
@@ -459,6 +461,7 @@
 
 #pragma mark 视频截屏后的方法
 - (void)mediaPlayerThumbnailRequestFinished:(NSNotification *)notification{
+//    NSLog(@"%@",notification.userInfo[MPMoviePlayerThumbnailImageKey]);
     mediaImage = notification.userInfo[MPMoviePlayerThumbnailImageKey];
     NSArray *imageArray = @[mediaImage];
     _isVedio = YES;

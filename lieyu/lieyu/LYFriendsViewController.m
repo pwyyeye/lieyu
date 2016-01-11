@@ -192,11 +192,11 @@
     recentM.birthday = app.userModel.birthday;
     recentM.message = content;
     recentM.liked = @"0";
-
+    recentM.isMeSendMessage = YES;
     
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     pvModel.imageLink = mediaUrl;
-    [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil  getQiniuUrl:[NSString stringWithFormat:@"myMediaPicture%ld",_saveImageAndVideoIndex] mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]]];
+    [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil  getQiniuUrl:mediaUrl mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]]];
     _saveImageAndVideoIndex ++;
     recentM.lyMomentsAttachList = @[pvModel];
     
@@ -380,6 +380,16 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
+    NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
+    NSLog(@"%@",contents);
+    NSEnumerator *e = [contents objectEnumerator];
+    NSString *filename;
+    while (filename = [e nextObject]) {
+        filename = [NSString stringWithFormat:@"/%@",filename];
+        [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
+    }
     [self removeNavMenuView];
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
@@ -1062,6 +1072,7 @@
                         LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
                         NSString *urlStr = ((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink;
                         videoCell.btn_play.tag = indexPath.section;
+                        NSLog(@"----->%@",[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]);
                         [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                         [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                         return videoCell;
@@ -1292,10 +1303,16 @@
 #pragma mark - 视频播放
 - (void)playVideo:(UIButton *)button{
     NSArray *array = _dataArray[_index];
-    FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)((FriendsRecentModel *)array[button.tag]).lyMomentsAttachList[0];
+    FriendsRecentModel *recentM = (FriendsRecentModel *)array[button.tag];
+    FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0];
 //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
     QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
+    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0]);
     NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+    if (recentM.isMeSendMessage){
+        url = [[NSURL alloc] initFileURLWithPath:pvM.imageLink];
+
+    }
     MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
     player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
