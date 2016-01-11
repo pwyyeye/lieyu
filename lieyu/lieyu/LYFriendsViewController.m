@@ -177,7 +177,7 @@
 
 #pragma mark - 作为代理收取视频路径地址与截图
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content{
-    self.mediaImage = image;
+  /*  self.mediaImage = image;
     self.mediaUrl = mediaUrl;
     self.content = content;
     
@@ -205,11 +205,12 @@
     [arr1 insertObject:recentM atIndex:0];
     [arr2 insertObject:recentM atIndex:0];
     [self.tableView reloadData];
+   */
 }
 
 #pragma mark - 作为代理接受返回的图片
 - (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content{
-    self.imageArray = imagesArray;
+   /* self.imageArray = imagesArray;
     self.content = content;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -272,6 +273,7 @@
     [arr1 insertObject:recentM atIndex:0];
     [arr2 insertObject:recentM atIndex:0];
     [self.tableView reloadData];
+    */
 }
 
 #pragma mark - 配置表的cell
