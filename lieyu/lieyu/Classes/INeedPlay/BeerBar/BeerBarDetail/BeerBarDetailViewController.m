@@ -343,15 +343,19 @@
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             [_barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             
-
-            
-            CGSize nameSize = [self.beerBarDetail.barname boundingRectWithSize:CGSizeMake(150, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]} context:nil].size;
-            if (nameSize.height < 30) {
+            if(self.beerBarDetail.barname){
+                CGSize nameSize = [self.beerBarDetail.barname boundingRectWithSize:CGSizeMake(150, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]} context:nil].size;
+                if (nameSize.height < 30) {
                     _barTitleCell.label_name.text = [NSString stringWithFormat:@"%@\n",self.beerBarDetail.barname];
                 }else{
-            
+                    //
                     _barTitleCell.label_name.text = self.beerBarDetail.barname;
                 }
+            }else{
+                _barTitleCell.label_name.text = @"";
+            }
+            
+            
             
             
             if (![MyUtil isEmptyString:self.beerBarDetail.environment_num] ) {
