@@ -223,6 +223,7 @@
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     _headerView.btn_newMessage.hidden = YES;
     [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    _headerView.ImageView_bg.clipsToBounds = YES;
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_header addTarget:self action:@selector(headerImgClick:) forControlEvents:UIControlEventTouchUpInside];
     [self updateViewConstraints];
@@ -309,6 +310,7 @@
     if (recentM.commentNum.integerValue >= 6) {
         return 5 + recentM.commentList.count;
     }else{
+        if(!recentM.commentList.count) return 5;
         return 4 + recentM.commentList.count;
     }
 }
@@ -420,6 +422,11 @@
         }
             
         default:{ //评论 4-9
+            if(!recentM.commentList.count){
+                LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
+                //                        allCommentCell.label_commentCount.textAlignment = NSTextAlignmentCenter;
+                return allCommentCell;
+            }
             if(indexPath.row - 4 > recentM.commentList.count - 1) {
                 LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
                 allCommentCell.recentM = recentM;
@@ -448,8 +455,9 @@
         case 0://头像和动态
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            if(size.height >= 47) size.height = 47;
             
-            return 62 + 13;
+            return 47 + size.height;
         }
             break;
             
@@ -495,6 +503,7 @@
             
         default:
         {
+            if(!recentM.commentList.count) return 36;
             NSLog(@"-----%ld-->%ld",recentM.commentList.count,indexPath.row);
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
@@ -516,6 +525,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FriendsRecentModel *recentM = _dataArray[indexPath.section];
     if (indexPath.row >= 4 && indexPath.row <= 8) {
+        if(!recentM.commentList.count) return;
         _indexRow = indexPath.row;
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
         if ([commetnM.userId isEqualToString:_useridStr]) {//我发的评论

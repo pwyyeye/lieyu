@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_message;
 @property (weak, nonatomic) IBOutlet UILabel *label_time;
 @property (weak, nonatomic) IBOutlet UILabel *label_myMessage;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView_zang;
 
 @property (nonatomic,strong) FriendsNewsModel *friendsNesM;
 @end
