@@ -80,9 +80,10 @@
     NSInteger _indexRow;//表的那一行
     BOOL _isCommentToUser;//是否对用户评论
     LYFriendsSendViewController *friendsSendVC;
-        NSString *_results;//新消息条数
-        NSString *_icon;//新消息头像
-        NSInteger _deleteMessageTag;//删除动态的btn的tag
+    NSString *_results;//新消息条数
+    NSString *_icon;//新消息头像
+    NSInteger _deleteMessageTag;//删除动态的btn的tag
+        NSInteger _saveImageAndVideoIndex;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -179,12 +180,98 @@
     self.mediaImage = image;
     self.mediaUrl = mediaUrl;
     self.content = content;
+    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    FriendsRecentModel *recentM = [[FriendsRecentModel alloc]init];
+    recentM.attachType = @"1";
+    recentM.username = app.userModel.username;
+    recentM.avatar_img = app.userModel.avatar_img;
+    NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
+    recentM.date = [dateFmt stringFromDate:[NSDate date]];
+    recentM.tags = app.userModel.tags;
+    recentM.birthday = app.userModel.birthday;
+    recentM.message = content;
+    recentM.liked = @"0";
+
+    
+    FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
+    pvModel.imageLink = mediaUrl;
+    [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil  getQiniuUrl:[NSString stringWithFormat:@"myMediaPicture%ld",_saveImageAndVideoIndex] mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]]];
+    _saveImageAndVideoIndex ++;
+    recentM.lyMomentsAttachList = @[pvModel];
+    
+    NSMutableArray *arr1 = _dataArray[0];
+    NSMutableArray *arr2 = _dataArray[1];
+    [arr1 insertObject:recentM atIndex:0];
+    [arr2 insertObject:recentM atIndex:0];
+    [self.tableView reloadData];
 }
 
 #pragma mark - 作为代理接受返回的图片
 - (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content{
     self.imageArray = imagesArray;
     self.content = content;
+    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    FriendsRecentModel *recentM = [[FriendsRecentModel alloc]init];
+    recentM.attachType = @"0";
+    recentM.usernick = app.userModel.usernick;
+    recentM.avatar_img = app.userModel.avatar_img;
+    recentM.id = @"-1";
+    NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
+    recentM.date = [dateFmt stringFromDate:[NSDate date]];
+    NSLog(@"---->%@",app.userModel.tags);
+    recentM.tags = app.userModel.tags;
+    
+    recentM.birthday = app.userModel.birthday;
+    recentM.message = content;
+    
+    FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
+    NSString *imageLink = nil;
+    NSString *appendLink = nil;
+    CGFloat picWidth = 0;
+    for (int i = 0;i < imagesArray.count;i ++) {
+        UIImage *image = imagesArray[i];
+     //   pvModel.imageLink = [pvModel.imageLink stringByAppendingString:[[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] stringByAppendingString:@","]];
+        
+        appendLink = [NSString stringWithFormat:@"myPicture%ld%d,",_saveImageAndVideoIndex,i];
+        if(i == imagesArray.count - 1) appendLink = [NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i];
+        NSLog(@"--->%@",imageLink);
+        if(!i) imageLink = appendLink;
+        else imageLink = [imageLink stringByAppendingString:appendLink];
+        NSLog(@"--->%@",imageLink);
+        
+        switch (imagesArray.count) {
+            case 1:
+            {
+                picWidth = 0;
+            }
+                break;
+            case 2:
+            {
+                picWidth = 450;
+            }
+                break;
+            default:{
+                if(!i) picWidth = 0;
+                else picWidth = 450;
+            }
+                break;
+        }
+        
+         [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil getQiniuUrl:[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] width:picWidth andHeight:picWidth]]];
+        _saveImageAndVideoIndex ++;
+        
+    }
+    pvModel.imageLink = imageLink;
+    NSLog(@"------>%@------%@",pvModel.imageLink,imageLink);
+    recentM.lyMomentsAttachList = @[pvModel];
+    
+    NSMutableArray *arr1 = _dataArray[0];
+    NSMutableArray *arr2 = _dataArray[1];
+    [arr1 insertObject:recentM atIndex:0];
+    [arr2 insertObject:recentM atIndex:0];
+    [self.tableView reloadData];
 }
 
 #pragma mark - 配置表的cell
