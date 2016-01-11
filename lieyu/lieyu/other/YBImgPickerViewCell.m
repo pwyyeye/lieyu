@@ -20,6 +20,8 @@
 - (void)setContentImg:(UIImage *)contentImg {
     if (contentImg) {
         _contentImg = contentImg;
+        self.mainImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.mainImageView.clipsToBounds = YES;
         self.mainImageView.image = _contentImg;
     }
 }
