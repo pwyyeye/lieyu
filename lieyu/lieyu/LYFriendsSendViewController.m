@@ -124,7 +124,11 @@
         //点击发布按钮之后回到朋友圈页面并且传视频与截图给朋友圈页面
         [self.navigationController popToRootViewControllerAnimated:YES];
         if(self.delegate){
-            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage];
+            if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+                [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:@""];
+            }else{
+                [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:self.textView.text];
+            }
         }
         
         AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
@@ -175,7 +179,11 @@
         }
         //点击发布按钮后将图片数组返回
         [self.navigationController popViewControllerAnimated:YES];
-        [self.delegate sendImagesArray:self.fodderArray];
+        if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+            [self.delegate sendImagesArray:self.fodderArray andContent:@""];
+        }else{
+            [self.delegate sendImagesArray:self.fodderArray andContent:self.textView.text];
+        }
         [self.textView resignFirstResponder];
         for(int i = 0 ; i < self.fodderArray.count; i ++){
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
