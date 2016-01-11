@@ -229,15 +229,15 @@
     }else{
         paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"0",@"attach":string};
     }
-    [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
+    [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result, NSString *messageId) {
         if(result){
             [MyUtil showCleanMessage:@"恭喜，发布成功!"];
-            [self.delegate sendSucceed];
+            [self.delegate sendSucceed:messageId];
             //发布成功后删除该文件
-//            [self deleteFile:self.mediaUrl];
+            //            [self deleteFile:self.mediaUrl];
         }else{
-//            [app stopLoading];
-//            [self showMessage:@"抱歉，发布失败!"];
+            //            [app stopLoading];
+            //            [self showMessage:@"抱歉，发布失败!"];
             [MyUtil showCleanMessage:@"抱歉，发布失败!"];
         }
     }];

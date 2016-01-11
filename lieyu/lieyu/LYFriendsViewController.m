@@ -193,6 +193,8 @@
     recentM.message = content;
     recentM.liked = @"0";
     recentM.isMeSendMessage = YES;
+    recentM.commentList = [[NSMutableArray alloc]init];
+    recentM.likeList = [[NSMutableArray alloc]init];
     
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     pvModel.imageLink = mediaUrl;
@@ -218,7 +220,9 @@
     recentM.attachType = @"0";
     recentM.usernick = app.userModel.usernick;
     recentM.avatar_img = app.userModel.avatar_img;
-    recentM.id = @"-1";
+    recentM.commentList = [[NSMutableArray alloc]init];
+    recentM.likeList = [[NSMutableArray alloc]init];
+    
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
     recentM.date = [dateFmt stringFromDate:[NSDate date]];
     NSLog(@"---->%@",app.userModel.tags);
@@ -277,8 +281,15 @@
 }
 
 #pragma mark - sendSuccess
-- (void)sendSucceed{
-    [self.tableView.mj_header beginRefreshing];
+- (void)sendSucceed:(NSString *)messageId{
+    for (int i = 0; i < 2; i ++) {
+         NSMutableArray *arr = _dataArray[i];
+        FriendsRecentModel *recentM = arr[0];
+        NSLog(@"---->%@",recentM.id);
+        recentM.id = [NSString stringWithFormat:@"%@",messageId];
+                NSLog(@"---->%@",recentM.id);
+    }
+    [self reloadTableViewAndSetUpPropertyneedSetContentOffset:YES];
 }
 
 #pragma mark - 配置表的cell
@@ -468,7 +479,7 @@
         return;
     }
     FriendsRecentModel *recentM = _dataArray[_index][_section];
-    if ([recentM.liked isEqualToString:@"0"]) {
+    if ([[NSString stringWithFormat:@"%@",recentM.liked] isEqualToString:@"0"]) {
         _likeStr = @"1";
     }else{
         _likeStr = @"0";
@@ -986,7 +997,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSArray *array = (NSArray *)_dataArray[_index];
     FriendsRecentModel *recentM = array[section];
-    if (recentM.commentNum.integerValue >= 6) {
+    if (recentM.commentNum.integerValue >= 1) {
         return 5  + recentM.commentList.count;
     }else{
         if(!recentM.commentList.count) return 5;
@@ -1023,6 +1034,9 @@
                         nameCell.btn_delete.hidden = YES;
                     }else{
                         nameCell.btn_delete.hidden = NO;
+                    }
+                    if([MyUtil isEmptyString:recentM.id]){
+                        nameCell.btn_delete.enabled = NO;
                     }
                     return nameCell;
                     
@@ -1087,6 +1101,13 @@
                     addressCell.btn_comment.tag = indexPath.section;
                     [addressCell.btn_like addTarget:self action:@selector(likeFriendsClick:) forControlEvents:UIControlEventTouchUpInside];
                     [addressCell.btn_comment addTarget:self action:@selector(commentClick:) forControlEvents:UIControlEventTouchUpInside];
+                    if([MyUtil isEmptyString:recentM.id]){
+                        addressCell.btn_comment.enabled = NO;
+                        addressCell.btn_like.enabled = NO;
+                    }else {
+                        addressCell.btn_comment.enabled = YES;
+                        addressCell.btn_like.enabled = YES;
+                    }
                     return addressCell;
                 }
                     break;
@@ -1114,7 +1135,7 @@
                     break;
                 case 9://无赞时为评论 有赞为赞
                 {
-                    if (recentM.commentNum.integerValue >= 6) {
+                    if (recentM.commentNum.integerValue >= 1) {
                         LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
                         allCommentCell.recentM = recentM;
                         return allCommentCell;
@@ -1131,6 +1152,7 @@
                     if(!recentM.commentList.count){
                         LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
 //                        allCommentCell.label_commentCount.textAlignment = NSTextAlignmentCenter;
+                        allCommentCell.label_commentCount.text = @"暂无评论";
                         return allCommentCell;
                     }
                     if(indexPath.row - 4 > recentM.commentList.count - 1) {
@@ -1234,11 +1256,17 @@
     _section = indexPath.section;
     FriendsRecentModel *recentM = _dataArray[_index][indexPath.section];
     if(indexPath.row == 0){
+        if([MyUtil isEmptyString:recentM.id]) return;
         [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
     }
     if (indexPath.row >= 4 && indexPath.row <= 8) {
         if(!recentM.commentList.count) return;
         _indexRow = indexPath.row;
+        if(indexPath.row - 4 == recentM.commentList.count)
+        {
+            [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+            return;
+        }
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
         if ([commetnM.userId isEqualToString:_useridStr]) {//我发的评论
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];

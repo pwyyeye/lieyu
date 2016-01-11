@@ -15,7 +15,7 @@
 
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content;
 - (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content;
-- (void)sendSucceed;//发布成功以后
+- (void)sendSucceed:(NSString *)messageId;//发布成功以后
 
 @end
 
