@@ -67,10 +67,12 @@
         NSLog(@"-->%@",response[@"message"]);
         if([response[@"message"] isEqualToString:@"取消点赞成功"]){
             compelte(NO);
+            [MyUtil showCleanMessage:@"取消表白成功"];
         }else{
             compelte(YES);
+            [MyUtil showCleanMessage:response[@"表白成功"]];
         }
-        [MyUtil showCleanMessage:response[@"message"]];
+        
         
     } failure:^(NSError *err) {
          [MyUtil showPlaceMessage:@"操作失败,请检查网络连接"];
