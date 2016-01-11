@@ -52,7 +52,7 @@
 
 @interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UITextFieldDelegate,YBImgPickerViewControllerDelegate,
     UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate,ISEmojiViewDelegate>{
+    UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage>{
     UIButton *_friendsBtn;//导航栏朋友圈按钮
     UIButton *_myBtn;//导航栏我的按钮
     UILabel *_myBadge;//我的按钮小红圈
@@ -82,6 +82,7 @@
     LYFriendsSendViewController *friendsSendVC;
         NSString *_results;//新消息条数
         NSString *_icon;//新消息头像
+        NSInteger _deleteMessageTag;//删除动态的btn的tag
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -778,17 +779,25 @@
 
 #pragma mark － 删除我的动态
 - (void)deleteClick:(UIButton *)button{
-    NSMutableArray *array = _dataArray[_index];
-    FriendsRecentModel *recentM = array[button.tag];
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
-    __weak LYFriendsViewController *weakSelf = self;
-    [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
-        if (result) {
-            [array removeObjectAtIndex:button.tag];
-            [weakSelf.tableView reloadData];
-            //[weakSelf.tableView deleteSections:[NSIndexSet indexSetWithIndex:button.tag] withRowAnimation:UITableViewRowAnimationTop];
-        }
-    }];
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"确定删除这条动态" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+    _deleteMessageTag = button.tag;
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex) {
+        NSMutableArray *array = _dataArray[_index];
+        FriendsRecentModel *recentM = array[_deleteMessageTag];
+        NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
+        __weak LYFriendsViewController *weakSelf = self;
+        [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
+            if (result) {
+                [array removeObjectAtIndex:_deleteMessageTag];
+                [weakSelf.tableView reloadData];
+            }
+        }];
+    }
 }
 
 #pragma mark - UIActionSheetDelegate
