@@ -11,6 +11,12 @@
 #import "YBImgPickerViewController.h"
 #import "preview.h"
 #import "LYFriendsChooseLocationViewController.h"
+@protocol sendBackVedioAndImage <NSObject>
+
+- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image;
+- (void)sendImagesArray:(NSArray *)imagesArray;
+
+@end
 
 @interface LYFriendsSendViewController : LYBaseViewController<UIActionSheetDelegate,UINavigationControllerDelegate,YBImgPickerViewControllerDelegate,PullLocationInfo>
 
@@ -30,6 +36,8 @@
 @property (nonatomic, strong) NSMutableArray *fodderArray;//删除素材时就删除这里面的元素
 @property (nonatomic, strong) NSMutableArray *imageViewArray;//imageView的所有元素
 @property (nonatomic, strong) NSMutableString *mediaUrl;
+
+@property (nonatomic, assign) id<sendBackVedioAndImage> delegate;
 
 - (void)imagePickerSpecificOperation:(NSDictionary<NSString *,id> *)info;
 - (void)YBImagePickerDidFinishWithImages:(NSArray *)imageArray;

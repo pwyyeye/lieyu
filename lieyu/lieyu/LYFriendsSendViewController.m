@@ -22,6 +22,8 @@
     
     NSString *_mp4Quality;
     NSString *_mp4Path;
+    
+    UIImage *mediaImage;
 }
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 //@property (nonatomic, strong) NSMutableArray *shangchuanArray;
@@ -55,33 +57,30 @@
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willexitfull) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterfull) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FriendSendViewDidLoad" object:nil];
+    [self deleteFile:@""];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
+}
+
+//退出程序以后删除tmp文件中所有内容
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
     [self deleteFile:@""];
 }
 
-//- (void)viewWillDisappear:(BOOL)animated{
-//    [super viewWillDisappear:animated];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
-//}
-
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
-}
-
 - (void)setupAllProperty{
-//    _imageArray = [[NSMutableArray alloc]init];
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"daohang_fabu"] style:UIBarButtonItemStylePlain target:self action:@selector(sendClick)];
     self.navigationItem.rightBarButtonItem = rightBtn;
 }
@@ -95,7 +94,6 @@
 
 #pragma mark 判断是否退出本次编辑
 - (void)gotoBack{
-    
     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定放弃本次编辑？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil]show];
 }
 
@@ -123,8 +121,11 @@
             [app stopLoading];
             return;
         }
-        //////////////////////////
+        //点击发布按钮之后回到朋友圈页面并且传视频与截图给朋友圈页面
         [self.navigationController popToRootViewControllerAnimated:YES];
+        if(self.delegate){
+            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage];
+        }
         
         AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
         NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
@@ -172,9 +173,9 @@
             [app stopLoading];
             return;
         }
-        /////////////////////////
+        //点击发布按钮后将图片数组返回
         [self.navigationController popViewControllerAnimated:YES];
-        
+        [self.delegate sendImagesArray:self.fodderArray];
         [self.textView resignFirstResponder];
         for(int i = 0 ; i < self.fodderArray.count; i ++){
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
@@ -219,7 +220,7 @@
         if(result){
             [MyUtil showCleanMessage:@"恭喜，发布成功!"];
             //发布成功后删除该文件
-            [self deleteFile:self.mediaUrl];
+//            [self deleteFile:self.mediaUrl];
         }else{
 //            [app stopLoading];
 //            [self showMessage:@"抱歉，发布失败!"];
@@ -450,8 +451,8 @@
 
 #pragma mark 视频截屏后的方法
 - (void)mediaPlayerThumbnailRequestFinished:(NSNotification *)notification{
-    UIImage *image = notification.userInfo[MPMoviePlayerThumbnailImageKey];
-    NSArray *imageArray = @[image];
+    mediaImage = notification.userInfo[MPMoviePlayerThumbnailImageKey];
+    NSArray *imageArray = @[mediaImage];
     _isVedio = YES;
     self.pageCount = 1;
     [self YBImagePickerDidFinishWithImages:imageArray];
@@ -472,8 +473,6 @@
 //    }
     if(sender.view.tag > 100){
         [_subView.imageView removeFromSuperview];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willexitfull) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterfull) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
         if(_notFirstOpen){
 //            _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         }
