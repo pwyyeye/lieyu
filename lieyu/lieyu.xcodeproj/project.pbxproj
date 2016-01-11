@@ -559,7 +559,6 @@
 		855192701C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */; };
 		85539EBA1C3DFE0B001031B6 /* ISEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85539EB91C3DFE0B001031B6 /* ISEmojiView.m */; };
 		85539EBC1C3E06BA001031B6 /* ISEmojiList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */; };
-		85539F001C3E181A001031B6 /* LYFriendsImgVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85539EFF1C3E181A001031B6 /* LYFriendsImgVTableViewCell.m */; };
 		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
 		855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */; };
 		85589C311C167E49000E342E /* PayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A2A1C15B6050088CD86 /* PayButton.m */; };
@@ -1832,8 +1831,6 @@
 		85539EB81C3DFE0B001031B6 /* ISEmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISEmojiView.h; sourceTree = "<group>"; };
 		85539EB91C3DFE0B001031B6 /* ISEmojiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISEmojiView.m; sourceTree = "<group>"; };
 		85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ISEmojiList.plist; sourceTree = "<group>"; };
-		85539EFE1C3E181A001031B6 /* LYFriendsImgVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsImgVTableViewCell.h; sourceTree = "<group>"; };
-		85539EFF1C3E181A001031B6 /* LYFriendsImgVTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsImgVTableViewCell.m; sourceTree = "<group>"; };
 		855536BC1C0A922200D296DA /* LYHomeSearcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSearcherViewController.h; sourceTree = "<group>"; };
 		855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSearcherViewController.m; sourceTree = "<group>"; };
 		855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearcherViewController.xib; sourceTree = "<group>"; };
@@ -4146,8 +4143,6 @@
 				8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */,
 				853C4CBC1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.h */,
 				853C4CBD1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m */,
-				85539EFE1C3E181A001031B6 /* LYFriendsImgVTableViewCell.h */,
-				85539EFF1C3E181A001031B6 /* LYFriendsImgVTableViewCell.m */,
 				853D3AB71C35331300B4FEAD /* LYFriendsVideoTableViewCell.h */,
 				853D3AB81C35331300B4FEAD /* LYFriendsVideoTableViewCell.m */,
 				853D3AB91C35331300B4FEAD /* LYFriendsVideoTableViewCell.xib */,
@@ -6588,7 +6583,6 @@
 				D74C608B1BB6F0BF00A49598 /* BearBarListViewController.m in Sources */,
 				15EE515A1BA7085C00464B74 /* ZSAlreadyPayedViewController.m in Sources */,
 				15E240BA1BB3A4CD0090D240 /* MyChooseZSCell.m in Sources */,
-				85539F001C3E181A001031B6 /* LYFriendsImgVTableViewCell.m in Sources */,
 				A2FD577F1BAFE97000CFFF92 /* FBTaoCanSectionHead.m in Sources */,
 				AD106BBC1C0DDEFF007F5FBA /* NSObject+MJKeyValue.m in Sources */,
 				8540B6891C2CF40B00F16463 /* LYFriendsSendViewController.m in Sources */,
