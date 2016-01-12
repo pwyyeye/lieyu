@@ -33,7 +33,12 @@
     _btn_headerImg.layer.masksToBounds = YES;
     [_btn_name setTitle:recentM.usernick forState:UIControlStateNormal];
     [_label_time setText:[MyUtil calculateDateFromNowWith:recentM.date]];
-    [_label_content setText:recentM.message];
+   
+//    if(recentM.message.length >26){
+//        [_label_content setText:[recentM.message substringToIndex:25]];
+//    }else{
+         [_label_content setText:recentM.message];
+//    }
     
     if([MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){
         _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];

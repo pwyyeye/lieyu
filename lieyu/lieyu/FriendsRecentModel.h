@@ -36,5 +36,6 @@
 @property (nonatomic,copy) NSString *usernick;
 @property (nonatomic,copy) NSString *friends_img;
 @property (nonatomic,copy) NSArray *tags;
+@property (nonatomic,unsafe_unretained) BOOL isMeSendMessage;
 +(NSArray *)initFormNSArray:(NSArray *)arr;
 @end

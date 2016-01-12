@@ -22,7 +22,12 @@
 - (void)setFriendsNesM:(FriendsNewsModel *)friendsNesM{
     _friendsNesM = friendsNesM;
     [_btn_name setTitle:friendsNesM.usernick forState:UIControlStateNormal];
-    _label_message.text = friendsNesM.comment;
+    if([friendsNesM.type isEqualToString:@"0"]){
+        _label_message.hidden = YES;
+    }else{
+        _label_message.text = friendsNesM.comment;
+        _imageView_zang.hidden = YES;
+    }
     _label_time.text = [MyUtil calculateDateFromNowWith:friendsNesM.date];
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:friendsNesM.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     

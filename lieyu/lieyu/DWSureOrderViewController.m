@@ -214,6 +214,8 @@
             ZSDetailModel *zsModel=zsArr[indexPath.row];
             _managerCell = [tableView dequeueReusableCellWithIdentifier:@"managerInfo" forIndexPath:indexPath];
                 _managerCell.chooseBtn.tag = indexPath.row;
+                _managerCell.selectBtn.tag = indexPath.row;
+                [_managerCell.selectBtn addTarget:self action:@selector(chooseZSManager:) forControlEvents:UIControlEventTouchUpInside];
                 [_managerCell.chooseBtn addTarget:self action:@selector(chooseZSManager:) forControlEvents:UIControlEventTouchUpInside];
             [_managerCell cellConfigureWithImage:zsModel.avatar_img name:zsModel.usernick stars:zsModel.servicestar];
                 _managerCell.avatarImage.layer.cornerRadius = 10;//CGRectGetWidth(_managerCell.avatarImage.frame)/2.0;
@@ -233,7 +235,6 @@
         }
             break;
     }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }

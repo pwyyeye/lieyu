@@ -18,12 +18,15 @@
 #import "LYFriendsCommentView.h"
 #import "FriendsLikeModel.h"
 #import "IQKeyboardManager.h"
+#import "FriendsPicAndVideoModel.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import "ISEmojiView.h"
 
 #define LYFriendsHeaderCellID @"LYFriendsHeaderTableViewCell"
 #define LYFriendsLikeDetailCellID @"LYFriendsLikeDetailTableViewCell"
 #define LYFriendsCommentDetailCellID @"LYFriendsCommentDetailTableViewCell"
 
-@interface LYFriendsMessageDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LYFriendsHeaderTableViewCellDelegate,UITextFieldDelegate,UIActionSheetDelegate>
+@interface LYFriendsMessageDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LYFriendsHeaderTableViewCellDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate>
 {
     NSMutableArray *_dataArray;
     NSInteger _indexStart;
@@ -77,7 +80,7 @@
 - (void)getData{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    __block LYFriendsMessageDetailViewController *weakSelf = self;
+    __weak LYFriendsMessageDetailViewController *weakSelf = self;
     NSDictionary *paraDic = @{@"userId":userIdStr,@"messageId":_recentM.id};
     [LYFriendsHttpTool friendsGetMessageDetailAllCommentsWithParams:paraDic compelte:^(NSMutableArray *commentArray) {
         _dataArray = commentArray;
@@ -103,9 +106,8 @@
 #pragma mark - 表白action
 - (void)likeFriendsClick{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSLog(@"---->%@------%@--------%@",_useridStr,_recentM.id,_likeStr);
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"type":_likeStr};
-    __block LYFriendsMessageDetailViewController *weakSelf = self;
+    __weak LYFriendsMessageDetailViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if([_likeStr isEqualToString:@"1"]){
             _likeStr = @"0";
@@ -152,14 +154,49 @@
     
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
+    [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 119 - 52, SCREEN_WIDTH, 49);
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {
         
     }];
 }
 
+- (void)emotionClick:(UIButton *)button{
+    button.selected = !button.selected;
+    if(button.selected){
+        [_commentView.textField endEditing:YES];
+        ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
+        emojiView.delegate = self;
+        emojiView.inputView = _commentView.textField;
+        _commentView.textField.inputView = emojiView;
+        [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+            CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(emojiView.frame);
+            _commentView.frame = CGRectMake(0,y - 60 , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+            NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
+        }];
+    }else{
+        [_commentView.textField endEditing:YES];
+        _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+            // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+            _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
+        }];
+    }
+}
+-(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
+    _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
+}
+
+- (void)emojiView:(ISEmojiView *)emojiView didPressDeleteButton:(UIButton *)deletebutton{
+    if (_commentView.textField.text.length > 0) {
+        NSRange lastRange = [_commentView.textField.text rangeOfComposedCharacterSequenceAtIndex:_commentView.textField.text.length-1];
+        _commentView.textField.text = [_commentView.textField.text substringToIndex:lastRange.location];
+    }
+}
 - (void)bigViewGes{
     [_bigView removeFromSuperview];
     
@@ -192,12 +229,10 @@
     }else{
         toUserId = @"";
     }
-    NSLog(@"----->%@----%@------------%@",_useridStr,_recentM.id,_commentView.textField.text);
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
-    __block LYFriendsMessageDetailViewController *weakSelf = self;
+    __weak LYFriendsMessageDetailViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
-            NSLog(@"--->%ld",_recentM.commentList.count + 2);
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
             commentModel.icon = app.userModel.avatar_img;
@@ -246,13 +281,11 @@
                     for (int i = 0; i< likeCell.btnArray.count; i ++) {
                         UIButton *btn = likeCell.btnArray[i];
                         btn.tag = likeCell.btnArray.count * indexPath.section  + i + 1;
-                        NSLog(@"---->%ld",btn.tag);
                         [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                     }
                 return likeCell;
                 }
             }
-            NSLog(@"---->%ld-----%ld----%ld",indexPath.row,_indexStart, _dataArray.count);
             FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
             LYFriendsCommentDetailTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCommentDetailCellID forIndexPath:indexPath];
             commentCell.btn_headerImg.tag = indexPath.row - _indexStart;
@@ -284,7 +317,7 @@
                 return;
             }
         }
-        if (![_recentM.userId isEqualToString:_useridStr]) {
+        if ([_recentM.userId isEqualToString:_useridStr]) {
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
             [actionSheet showInView:self.view];
         }else{
@@ -311,7 +344,6 @@
                     return  _recentM.likeList.count <= 8 ? 42 : 82;
                 }
             }
-            NSLog(@"------>%ld-----%ld",indexPath.row,_dataArray.count);
             FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
             NSString *string = [NSString stringWithFormat:@"%@:%@",commentModel.nickName,commentModel.comment];
             CGSize size = [string boundingRectWithSize:CGSizeMake(235, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
@@ -347,7 +379,7 @@
     if (!buttonIndex) {//删除我的评论
         FriendsCommentModel *commentM = _recentM.commentList[_indexRow - 4];
         NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
-        __block LYFriendsMessageDetailViewController *weakSelf = self;
+        __weak LYFriendsMessageDetailViewController *weakSelf = self;
         [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
             if(result){
                 NSMutableArray *commentArr = _recentM.commentList;
@@ -371,19 +403,33 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     NSArray *urlArray = _recentM.lyMomentsAttachList;
+    urlArray = [((FriendsPicAndVideoModel *)urlArray[0]).imageLink componentsSeparatedByString:@","];
     NSMutableArray *oldFrameArray = [[NSMutableArray alloc]init];
     
     LYFriendsHeaderTableViewCell *headerCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     for (UIImageView *imgViewCell in headerCell.imageViewArray) {
-        NSString *oldFrame = NSStringFromCGRect([headerCell convertRect:imgViewCell.frame toView:self.view]);
-        NSLog(@"---->%@",oldFrame);
+        NSString *oldFrame = NSStringFromCGRect([headerCell convertRect:imgViewCell.frame toView:app.window]);
         [oldFrameArray addObject:oldFrame];
     }
     
-    LYPictiureView *picView = [[LYPictiureView alloc]initWithFrame:self.view.bounds urlArray:urlArray oldFrame:oldFrameArray with:imgView.tag];
+    
+
+    FriendsPicAndVideoModel *pvM = _recentM.lyMomentsAttachList[0];
+    //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
+    if([_recentM.attachType isEqualToString:@"1"]){
+    QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
+    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
+    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
+    [self presentMoviePlayerViewControllerAnimated:player];
+    }else{
+    LYPictiureView *picView = [[LYPictiureView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) urlArray:urlArray oldFrame:oldFrameArray with:imgView.tag];
     picView.backgroundColor = [UIColor blackColor];
     
     [app.window addSubview:picView];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

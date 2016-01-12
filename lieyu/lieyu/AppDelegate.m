@@ -436,6 +436,16 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //    });
     
 //    [_timer setFireDate:[NSDate distantPast]];//开启
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
+    NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
+    NSLog(@"%@",contents);
+    NSEnumerator *e = [contents objectEnumerator];
+    NSString *filename;
+    while (filename = [e nextObject]) {
+        filename = [NSString stringWithFormat:@"/%@",filename];
+        [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

@@ -22,7 +22,6 @@
     _btnArray = [[NSMutableArray alloc]init];
     FriendsPicAndVideoModel *pvModel = array[0];
     NSArray *urlArray = [pvModel.imageLink componentsSeparatedByString:@","];
-    NSLog(@"%@",urlArray);
     switch (urlArray.count) {
         case 1:
         {
@@ -97,6 +96,7 @@
 //                imgView.userInteractionEnabled = YES;
                 imgView.clipsToBounds = YES;
                 [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                NSLog(@"---->%@",[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]);
                 //[imgView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]]   placeholderImage:[UIImage imageNamed:@"empyImage120"]];
                 btn.imageView.contentMode = UIViewContentModeScaleAspectFill;
                 imgView.contentMode = UIViewContentModeScaleAspectFill;

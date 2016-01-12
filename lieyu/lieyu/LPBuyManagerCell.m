@@ -24,8 +24,9 @@
 - (void)cellConfigure{
     self.tableVIew.dataSource = self;
     self.tableVIew.delegate = self;
+    
     self.tableVIew.scrollEnabled = NO;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+//    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -42,6 +43,7 @@
         [tableView registerNib:[UINib nibWithNibName:@"ManagerInfoCell" bundle:nil] forCellReuseIdentifier:@"managerInfo"];
         managerInfo = [tableView dequeueReusableCellWithIdentifier:@"managerInfo"];
     }
+    managerInfo.selectionStyle = UITableViewCellSelectionStyleNone;
     if(indexPath.row == 0 && !notFirstLayout){
         ((ZSDetailModel *)self.managerList[indexPath.row]).issel = true;
         notFirstLayout = YES;
@@ -56,10 +58,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 87;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    [self showButtonImage:self];
 }
 
 - (void)chooseBtnClick:(UIButton *)sender{

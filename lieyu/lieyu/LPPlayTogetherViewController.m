@@ -263,6 +263,7 @@
         if(!_biTianCell){
             [tableView registerNib:[UINib nibWithNibName:@"BitianTableViewCell" bundle:nil] forCellReuseIdentifier:@"biTian"];
             _biTianCell = [tableView dequeueReusableCellWithIdentifier:@"biTian"];
+            _biTianCell.numTextField.delegate = self;
             [_biTianCell.chooseTime addTarget:self action:@selector(chooseTimeForTaocan) forControlEvents:UIControlEventTouchUpInside];
             [_biTianCell.chooseWay addTarget:self action:@selector(chooseWayForTaocan) forControlEvents:UIControlEventTouchUpInside];
             [_biTianCell.addBtn addTarget:self action:@selector(addPeople) forControlEvents:UIControlEventTouchUpInside];
@@ -413,11 +414,11 @@
 
 #pragma mark  textFieldDelegate代理方法
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
+    self.biTianCell.numTextField.text = @"";
 }// became first responder
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    
+    self.defaultNumber = [self.biTianCell.numTextField.text intValue];
 }
 
 #pragma mark  咨询猎娱

@@ -23,7 +23,7 @@
 //给动态或者某人评论
 + (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool,NSString *))compelte;
 //发布动态
-+ (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
++ (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool,NSString *))compelte;
 //删除我的动态
 + (void)friendsDeleteMyMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
 //获取动态评论

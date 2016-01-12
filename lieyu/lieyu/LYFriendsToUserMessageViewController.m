@@ -28,6 +28,7 @@
 #import "FriendsLikeModel.h"
 #import "FriendsPicAndVideoModel.h"
 #import "FriendsUserInfoModel.h"
+#import "ISEmojiView.h"
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsAddressCellID @"LYFriendsAddressTableViewCell"
@@ -37,7 +38,7 @@
 #define LYFriendsImgCellID @"LYFriendsImgTableViewCell"
 #define LYFriendsCellID @"cell"
 
-@interface LYFriendsToUserMessageViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate>{
+@interface LYFriendsToUserMessageViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate>{
      NSString *_useridStr;
     NSMutableArray *_dataArray;
      LYFriendsUserHeaderView *_headerView;
@@ -175,7 +176,7 @@
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_friendsId};
     NSLog(@"----->%@",paraDic);
-    __block LYFriendsToUserMessageViewController *weakSelf = self;
+    __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
         _dataArray = dataArray;
         _userInfo = userInfo;
@@ -223,6 +224,7 @@
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     _headerView.btn_newMessage.hidden = YES;
     [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    _headerView.ImageView_bg.clipsToBounds = YES;
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_header addTarget:self action:@selector(headerImgClick:) forControlEvents:UIControlEventTouchUpInside];
     [self updateViewConstraints];
@@ -250,7 +252,7 @@
    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = _dataArray[button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
-    __block LYFriendsToUserMessageViewController *weakSelf = self;
+    __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
             if([_likeStr isEqualToString:@"1"]){
                 _likeStr = @"0";
@@ -306,9 +308,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     FriendsRecentModel *recentM = _dataArray[section];
-    if (recentM.commentNum.integerValue >= 6) {
+    if (recentM.commentNum.integerValue >= 1) {
         return 5 + recentM.commentList.count;
     }else{
+        if(!recentM.commentList.count) return 5;
         return 4 + recentM.commentList.count;
     }
 }
@@ -405,7 +408,7 @@
             
         case 9:
         {
-            if (recentM.commentNum.integerValue >= 6) {
+            if (recentM.commentNum.integerValue >= 1) {
                 LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
                 allCommentCell.recentM = recentM;
                 return allCommentCell;
@@ -420,6 +423,11 @@
         }
             
         default:{ //评论 4-9
+            if(!recentM.commentList.count){
+                LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
+                //                        allCommentCell.label_commentCount.textAlignment = NSTextAlignmentCenter;
+                return allCommentCell;
+            }
             if(indexPath.row - 4 > recentM.commentList.count - 1) {
                 LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
                 allCommentCell.recentM = recentM;
@@ -448,8 +456,9 @@
         case 0://头像和动态
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            if(size.height >= 47) size.height = 47;
             
-            return 62 + size.height;
+            return 47 + size.height;
         }
             break;
             
@@ -478,7 +487,6 @@
             
         }
             break;
-            break;
         case 2://地址
         {
             return 45;
@@ -496,6 +504,7 @@
             
         default:
         {
+            if(!recentM.commentList.count) return 36;
             NSLog(@"-----%ld-->%ld",recentM.commentList.count,indexPath.row);
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
@@ -517,7 +526,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FriendsRecentModel *recentM = _dataArray[indexPath.section];
     if (indexPath.row >= 4 && indexPath.row <= 8) {
+        if(!recentM.commentList.count) return;
         _indexRow = indexPath.row;
+        if(indexPath.row - 4 == recentM.commentList.count) {
+            [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+        }
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
         if ([commetnM.userId isEqualToString:_useridStr]) {//我发的评论
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
@@ -527,17 +540,23 @@
             [self createCommentView];
         }
     }else if(indexPath.row == 9){
-        //[self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+        [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
     }
 }
-
+#pragma mark － 跳转消息详情页面
+- (void)pushFriendsMessageDetailVCWithIndex:(NSInteger)index{
+    FriendsRecentModel *recentM = _dataArray[index];
+    LYFriendsMessageDetailViewController *messageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+    messageDetailVC.recentM = recentM;
+    [self.navigationController pushViewController:messageDetailVC animated:YES];
+}
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(!buttonIndex){
             FriendsRecentModel *recetnM = _dataArray[_section];
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
-            __block LYFriendsToUserMessageViewController *weakSelf = self;
+            __weak LYFriendsToUserMessageViewController *weakSelf = self;
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
                     NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_section]).commentList;
@@ -597,12 +616,47 @@
     
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
-    
+    [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
+//    SCREEN_HEIGHT - 249- 100 - 129
     [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 129, SCREEN_WIDTH, 49);
+        _commentView.frame = CGRectMake(0,  SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {
         
     }];
+}
+-(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
+    _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
+}
+
+- (void)emojiView:(ISEmojiView *)emojiView didPressDeleteButton:(UIButton *)deletebutton{
+    if (_commentView.textField.text.length > 0) {
+        NSRange lastRange = [_commentView.textField.text rangeOfComposedCharacterSequenceAtIndex:_commentView.textField.text.length-1];
+        _commentView.textField.text = [_commentView.textField.text substringToIndex:lastRange.location];
+    }
+}
+- (void)emotionClick:(UIButton *)button{
+    button.selected = !button.selected;
+    if(button.selected){
+        [_commentView.textField endEditing:YES];
+        ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
+        emojiView.delegate = self;
+        emojiView.inputView = _commentView.textField;
+        _commentView.textField.inputView = emojiView;
+        [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+            CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(emojiView.frame);
+            _commentView.frame = CGRectMake(0,y - 60 , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+            NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
+        }];
+    }else{
+        [_commentView.textField endEditing:YES];
+        _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+            // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+            _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
+        }];
+    }
 }
 
 - (void)bigViewGes{
@@ -630,7 +684,7 @@
         toUserNickName = @"";
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
-    __block LYFriendsToUserMessageViewController *weakSelf = self;
+    __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
             NSLog(@"--->%ld",recentM.commentList.count + 2);

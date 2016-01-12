@@ -67,10 +67,12 @@
         NSLog(@"-->%@",response[@"message"]);
         if([response[@"message"] isEqualToString:@"取消点赞成功"]){
             compelte(NO);
+            [MyUtil showCleanMessage:@"取消表白成功"];
         }else{
             compelte(YES);
+            [MyUtil showCleanMessage:@"表白成功"];
         }
-        [MyUtil showCleanMessage:response[@"message"]];
+        
         
     } failure:^(NSError *err) {
          [MyUtil showPlaceMessage:@"操作失败,请检查网络连接"];
@@ -89,18 +91,19 @@
 }
 
 //发布动态
-+ (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
++ (void)friendsSendMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool,NSString *))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app startLoading];
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Send baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"------->%@",response[@"message"]);
+        NSLog(@"------->%@---------%@",response[@"message"],response);
        dispatch_async(dispatch_get_main_queue(), ^{
-           compelte(YES);
+           compelte(YES,response[@"data"]);
        });
-        [app stopLoading];
+//        [app stopLoading];
     }failure:^(NSError *err) {
-        [app stopLoading];
-        compelte(NO);
+//        [app stopLoading];
+        compelte(NO,@"");
+        [MyUtil showPlaceMessage:@"操作失败,请检查网络连接"];
      }];
 }
 
@@ -117,18 +120,14 @@
 
 //获取动态评论
 + (void)friendsGetMessageDetailAllCommentsWithParams:(NSDictionary *)params compelte:(void (^)(NSMutableArray *commentArray))compelte{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_AllComments baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"------->%@",response[@"message"]);
         if ([response[@"errorcode"] isEqualToString:@"1"]) {
             NSArray *dataArray = response[@"data"][@"items"];
             NSMutableArray *commentArray  = [[NSMutableArray alloc] initWithArray:[FriendsCommentModel mj_objectArrayWithKeyValuesArray:dataArray]];
             compelte(commentArray);
         }
-        [app stopLoading];
     }failure:^(NSError *err) {
-        [app stopLoading];
+        [MyUtil showCleanMessage:@"获取数据失败"];
     }];
 }
 

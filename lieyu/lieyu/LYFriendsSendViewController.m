@@ -22,6 +22,8 @@
     
     NSString *_mp4Quality;
     NSString *_mp4Path;
+    
+    UIImage *mediaImage;
 }
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 //@property (nonatomic, strong) NSMutableArray *shangchuanArray;
@@ -30,6 +32,8 @@
 @property (nonatomic, strong) NSMutableString *location;
 @property (nonatomic, assign) BOOL notFirstOpen;
 
+@property (nonatomic, strong) NSString *content;
+
 @end
 
 @implementation LYFriendsSendViewController
@@ -37,6 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupAllProperty];
+//    [self deleteFile:@""];
     
     self.pageCount = 4;
     self.initCount = 0;
@@ -55,29 +60,29 @@
     self.extendedLayoutIncludesOpaqueBars = NO;
     self.modalPresentationCapturesStatusBarAppearance = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willexitfull) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterfull) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FriendSendViewDidLoad" object:nil];
-    
 }
 
-//- (void)viewWillDisappear:(BOOL)animated{
-//    [super viewWillDisappear:animated];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
-//}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
+}
 
+//退出程序以后删除tmp文件中所有内容
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
+//    [self deleteFile:@""];
 }
 
 - (void)setupAllProperty{
-//    _imageArray = [[NSMutableArray alloc]init];
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"daohang_fabu"] style:UIBarButtonItemStylePlain target:self action:@selector(sendClick)];
     self.navigationItem.rightBarButtonItem = rightBtn;
 }
@@ -91,13 +96,13 @@
 
 #pragma mark 判断是否退出本次编辑
 - (void)gotoBack{
-    
     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定放弃本次编辑？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil]show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
         //退出编辑界面之后删除视频文件
+        [self.textView resignFirstResponder];
         [self deleteFile:self.mediaUrl];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -106,6 +111,10 @@
 #pragma mark 上传玩友圈,待修改
 - (void)sendClick{
     [self.textView resignFirstResponder];
+    if(self.textView.text.length >= 800){
+        [MyUtil showCleanMessage:@"输入内容过长！"];
+        return;
+    }
 //    [app startLoading];
     //上传视频或者图片到七牛
     if(_isVedio){
@@ -114,8 +123,18 @@
             [app stopLoading];
             return;
         }
-        //////////////////////////
+        //点击发布按钮之后回到朋友圈页面并且传视频与截图给朋友圈页面
+        
         [self.navigationController popToRootViewControllerAnimated:YES];
+        if(self.delegate){
+            
+            if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+                self.content = @"";
+            }else{
+                self.content = [[NSString alloc]initWithString:self.textView.text];
+            }
+            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:self.content];
+        }
         
         AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
         NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
@@ -163,9 +182,15 @@
             [app stopLoading];
             return;
         }
-        /////////////////////////
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        
+        //点击发布按钮后将图片数组返回
+        [self.navigationController popViewControllerAnimated:YES];
+        if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+            self.content = @"";
+        }else{
+            self.content = [[NSString alloc]initWithString:self.textView.text];
+        }
+        [self.delegate sendImagesArray:self.fodderArray andContent:self.content];
+        [self.textView resignFirstResponder];
         for(int i = 0 ; i < self.fodderArray.count; i ++){
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                 if(![MyUtil isEmptyString:key]){
@@ -197,31 +222,37 @@
 }
 
 - (void)sendTrends:(NSString *)string{
-    
     NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     NSDictionary *paraDic;
     if(_isVedio){
-        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.textView.text,@"attachType":@"1",@"attach":string};
+        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"1",@"attach":string};
     }else{
-        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.textView.text,@"attachType":@"0",@"attach":string};
+        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"0",@"attach":string};
     }
-    [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result) {
+    [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result, NSString *messageId) {
         if(result){
             [MyUtil showCleanMessage:@"恭喜，发布成功!"];
+            [self.delegate sendSucceed:messageId];
             //发布成功后删除该文件
-            [self deleteFile:self.mediaUrl];
+            //            [self deleteFile:self.mediaUrl];
         }else{
-//            [app stopLoading];
-//            [self showMessage:@"抱歉，发布失败!"];
+            //            [app stopLoading];
+            //            [self showMessage:@"抱歉，发布失败!"];
             [MyUtil showCleanMessage:@"抱歉，发布失败!"];
         }
     }];
 }
 
 - (void)deleteFile:(NSString *)filePath{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    if([fileManager fileExistsAtPath:filePath]){
-        [fileManager removeItemAtPath:filePath error:nil];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
+    NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
+    NSLog(@"%@",contents);
+    NSEnumerator *e = [contents objectEnumerator];
+    NSString *filename;
+    while (filename = [e nextObject]) {
+        filename = [NSString stringWithFormat:@"/%@",filename];
+        [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
     }
 }
 
@@ -434,8 +465,9 @@
 
 #pragma mark 视频截屏后的方法
 - (void)mediaPlayerThumbnailRequestFinished:(NSNotification *)notification{
-    UIImage *image = notification.userInfo[MPMoviePlayerThumbnailImageKey];
-    NSArray *imageArray = @[image];
+//    NSLog(@"%@",notification.userInfo[MPMoviePlayerThumbnailImageKey]);
+    mediaImage = notification.userInfo[MPMoviePlayerThumbnailImageKey];
+    NSArray *imageArray = @[mediaImage];
     _isVedio = YES;
     self.pageCount = 1;
     [self YBImagePickerDidFinishWithImages:imageArray];
@@ -456,8 +488,6 @@
 //    }
     if(sender.view.tag > 100){
         [_subView.imageView removeFromSuperview];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willexitfull) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterfull) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
         if(_notFirstOpen){
 //            _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         }
@@ -509,7 +539,7 @@
     [self.navigationController.navigationBar setHidden:NO];
     
     NSLog(@"----pass-1>%@ ---",NSStringFromCGRect(self.view.frame));
-    self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
     if(_subView.button.selected == NO){
         NSLog(@"delete %d picture",(int)_subView.tag);
         [self.fodderArray removeObjectAtIndex:_subView.tag - 1];

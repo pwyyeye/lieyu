@@ -129,11 +129,10 @@ static NSString * const tableReuseIdentifier = @"tableCell";
     [self.view layoutIfNeeded];
 }
 - (void)getTableDate {
-    
     void (^assetsGroupsEnumerationBlock)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *assetsGroup, BOOL *stop) {
         if(assetsGroup) {
             [assetsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
-            NSMutableArray * isChoosenArray = [[NSMutableArray alloc]init];
+            NSMutableArray *isChoosenArray = [[NSMutableArray alloc]init];
             if(assetsGroup.numberOfAssets > 0) {
                 [tableData addObject:assetsGroup];
                 for (int i = 0; i<assetsGroup.numberOfAssets; i++) {
@@ -182,7 +181,7 @@ static NSString * const tableReuseIdentifier = @"tableCell";
             if (result) {
                 NSString *type=[result valueForProperty:ALAssetPropertyType];
                 if ([type isEqualToString:ALAssetTypePhoto]) {
-                    [colletionData addObject:[UIImage imageWithCGImage:[result thumbnail]]];
+                    [colletionData addObject:[UIImage imageWithCGImage:[result aspectRatioThumbnail]]];
                     [originImgData addObject:result];
                 }
                 [myCollectionView reloadData];
