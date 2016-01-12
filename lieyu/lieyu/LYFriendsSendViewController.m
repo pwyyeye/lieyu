@@ -237,7 +237,7 @@
     }
     [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result, NSString *messageId) {
         if(result){
-            [MyUtil showCleanMessage:@"恭喜，发布成功!"];
+//            [MyUtil showCleanMessage:@"恭喜，发布成功!"];
             [self.delegate sendSucceed:messageId];
             //发布成功后删除该文件
             //            [self deleteFile:self.mediaUrl];
