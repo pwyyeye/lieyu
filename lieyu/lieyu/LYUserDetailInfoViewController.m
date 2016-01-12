@@ -432,6 +432,10 @@
         [MyUtil showMessage:@"昵称不能为空"];
         [_nickCell.textF_content endEditing:NO];
         return;
+    }else if(_nickCell.textF_content.text.length >= 8){
+        [MyUtil showMessage:@"昵称不能超过八个字符"];
+        [_nickCell.textF_content endEditing:NO];
+        return;
     }
     
     if(_imageIcon == nil){
