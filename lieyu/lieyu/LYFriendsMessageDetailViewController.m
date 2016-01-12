@@ -20,12 +20,13 @@
 #import "IQKeyboardManager.h"
 #import "FriendsPicAndVideoModel.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "ISEmojiView.h"
 
 #define LYFriendsHeaderCellID @"LYFriendsHeaderTableViewCell"
 #define LYFriendsLikeDetailCellID @"LYFriendsLikeDetailTableViewCell"
 #define LYFriendsCommentDetailCellID @"LYFriendsCommentDetailTableViewCell"
 
-@interface LYFriendsMessageDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LYFriendsHeaderTableViewCellDelegate,UITextFieldDelegate,UIActionSheetDelegate>
+@interface LYFriendsMessageDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LYFriendsHeaderTableViewCellDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate>
 {
     NSMutableArray *_dataArray;
     NSInteger _indexStart;
@@ -153,14 +154,49 @@
     
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
+    [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 119 - 52, SCREEN_WIDTH, 49);
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {
         
     }];
 }
 
+- (void)emotionClick:(UIButton *)button{
+    button.selected = !button.selected;
+    if(button.selected){
+        [_commentView.textField endEditing:YES];
+        ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
+        emojiView.delegate = self;
+        emojiView.inputView = _commentView.textField;
+        _commentView.textField.inputView = emojiView;
+        [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+            CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(emojiView.frame);
+            _commentView.frame = CGRectMake(0,y - 60 , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+            NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
+        }];
+    }else{
+        [_commentView.textField endEditing:YES];
+        _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+            // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+            _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
+        }];
+    }
+}
+-(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
+    _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
+}
+
+- (void)emojiView:(ISEmojiView *)emojiView didPressDeleteButton:(UIButton *)deletebutton{
+    if (_commentView.textField.text.length > 0) {
+        NSRange lastRange = [_commentView.textField.text rangeOfComposedCharacterSequenceAtIndex:_commentView.textField.text.length-1];
+        _commentView.textField.text = [_commentView.textField.text substringToIndex:lastRange.location];
+    }
+}
 - (void)bigViewGes{
     [_bigView removeFromSuperview];
     

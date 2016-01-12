@@ -28,6 +28,7 @@
 #import "FriendsLikeModel.h"
 #import "FriendsPicAndVideoModel.h"
 #import "FriendsUserInfoModel.h"
+#import "ISEmojiView.h"
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsAddressCellID @"LYFriendsAddressTableViewCell"
@@ -37,7 +38,7 @@
 #define LYFriendsImgCellID @"LYFriendsImgTableViewCell"
 #define LYFriendsCellID @"cell"
 
-@interface LYFriendsToUserMessageViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate>{
+@interface LYFriendsToUserMessageViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate>{
      NSString *_useridStr;
     NSMutableArray *_dataArray;
      LYFriendsUserHeaderView *_headerView;
@@ -307,7 +308,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     FriendsRecentModel *recentM = _dataArray[section];
-    if (recentM.commentNum.integerValue >= 6) {
+    if (recentM.commentNum.integerValue >= 1) {
         return 5 + recentM.commentList.count;
     }else{
         if(!recentM.commentList.count) return 5;
@@ -407,7 +408,7 @@
             
         case 9:
         {
-            if (recentM.commentNum.integerValue >= 6) {
+            if (recentM.commentNum.integerValue >= 1) {
                 LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
                 allCommentCell.recentM = recentM;
                 return allCommentCell;
@@ -527,6 +528,9 @@
     if (indexPath.row >= 4 && indexPath.row <= 8) {
         if(!recentM.commentList.count) return;
         _indexRow = indexPath.row;
+        if(indexPath.row - 4 == recentM.commentList.count) {
+            [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+        }
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
         if ([commetnM.userId isEqualToString:_useridStr]) {//我发的评论
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
@@ -536,10 +540,16 @@
             [self createCommentView];
         }
     }else if(indexPath.row == 9){
-        //[self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+        [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
     }
 }
-
+#pragma mark － 跳转消息详情页面
+- (void)pushFriendsMessageDetailVCWithIndex:(NSInteger)index{
+    FriendsRecentModel *recentM = _dataArray[index];
+    LYFriendsMessageDetailViewController *messageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+    messageDetailVC.recentM = recentM;
+    [self.navigationController pushViewController:messageDetailVC animated:YES];
+}
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(!buttonIndex){
@@ -606,12 +616,47 @@
     
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
-    
+    [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
+//    SCREEN_HEIGHT - 249- 100 - 129
     [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 129, SCREEN_WIDTH, 49);
+        _commentView.frame = CGRectMake(0,  SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {
         
     }];
+}
+-(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
+    _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
+}
+
+- (void)emojiView:(ISEmojiView *)emojiView didPressDeleteButton:(UIButton *)deletebutton{
+    if (_commentView.textField.text.length > 0) {
+        NSRange lastRange = [_commentView.textField.text rangeOfComposedCharacterSequenceAtIndex:_commentView.textField.text.length-1];
+        _commentView.textField.text = [_commentView.textField.text substringToIndex:lastRange.location];
+    }
+}
+- (void)emotionClick:(UIButton *)button{
+    button.selected = !button.selected;
+    if(button.selected){
+        [_commentView.textField endEditing:YES];
+        ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
+        emojiView.delegate = self;
+        emojiView.inputView = _commentView.textField;
+        _commentView.textField.inputView = emojiView;
+        [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+            CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(emojiView.frame);
+            _commentView.frame = CGRectMake(0,y - 60 , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+            NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
+        }];
+    }else{
+        [_commentView.textField endEditing:YES];
+        _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+            // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+            _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
+        }];
+    }
 }
 
 - (void)bigViewGes{

@@ -747,7 +747,7 @@
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
     [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, 49);
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {
         
     }];
@@ -785,6 +785,13 @@
 
 -(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
     _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
+}
+
+- (void)emojiView:(ISEmojiView *)emojiView didPressDeleteButton:(UIButton *)deletebutton{
+    if (_commentView.textField.text.length > 0) {
+        NSRange lastRange = [_commentView.textField.text rangeOfComposedCharacterSequenceAtIndex:_commentView.textField.text.length-1];
+        _commentView.textField.text = [_commentView.textField.text substringToIndex:lastRange.location];
+    }
 }
 
 #pragma mark - UITextFieldDelegate

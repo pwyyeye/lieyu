@@ -14,14 +14,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPd-nu-1fz">
                     <rect key="frame" x="10" y="10" width="580" height="580"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcN-zi-6PG">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcN-zi-6PG">
                             <rect key="frame" x="552" y="4" width="20" height="20"/>
-                            <color key="backgroundColor" red="0.22307571308724833" green="0.29574769295302011" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="09S-7F-gNE"/>
                                 <constraint firstAttribute="width" constant="20" id="XUJ-re-clw"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" backgroundImage="biaoqing_icon.png">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ulo-To-XW2">
                             <rect key="frame" x="543" y="6" width="1" height="568"/>
@@ -65,4 +68,7 @@
             <point key="canvasLocation" x="379" y="358"/>
         </view>
     </objects>
+    <resources>
+        <image name="biaoqing_icon.png" width="21" height="21"/>
+    </resources>
 </document>
