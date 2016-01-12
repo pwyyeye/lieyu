@@ -42,17 +42,20 @@
         NSInteger count = urlArray.count;
         _scrollView.contentSize = CGSizeMake(count * SCREEN_WIDTH, 0);
         _imageViewArray = [[NSMutableArray alloc]init];
-        
+
         for (int i = 0; i < count; i ++) {
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,(SCREEN_HEIGHT - SCREEN_WIDTH)/2.f, SCREEN_WIDTH, SCREEN_HEIGHT)];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:SCREEN_WIDTH andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+//            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,(SCREEN_HEIGHT - SCREEN_WIDTH)/2.f, SCREEN_WIDTH, SCREEN_HEIGHT)];
+             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,0, SCREEN_WIDTH, SCREEN_WIDTH)];
+//            imageView.backgroundColor = [uic]
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+            NSLog(@"---->%@",[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]);
             imageView.contentMode = UIViewContentModeScaleAspectFit;
+            imageView.clipsToBounds = YES;
             [_scrollView addSubview:imageView];
             [_imageViewArray addObject:imageView];
             imageView.userInteractionEnabled = YES;
             
             imageView.center = CGPointMake(SCREEN_WIDTH *i + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
-            //imageView.contentMode = UIViewContentModeScaleAspectFill;
             
             UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
             [imageView addGestureRecognizer:tapGes];
@@ -64,12 +67,17 @@
         UIImageView *imgView = _imageViewArray[index];
         CGRect rect = CGRectFromString(oldFrame[index]);
         imgView.frame = CGRectMake(rect.origin.x + SCREEN_WIDTH * index, rect.origin.y, rect.size.width, rect.size.height);
-        NSLog(@"--%ld--->%@",index,NSStringFromCGRect(imgView.frame));
+        
         [UIView animateWithDuration:.5 animations:^{
             imgView.alpha = 1;
             imgView.bounds = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
             imgView.center = CGPointMake(SCREEN_WIDTH *index + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             self.backgroundColor = RGBA(255, 255, 255, 1);
+        } completion:^(BOOL finished) {
+            for (UIImageView *imgView_ce in _imageViewArray) {
+               // imgView_ce.contentMode = UIViewContentModeScaleAspectFit;
+                imgView_ce.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+            }
         }];
         _voidIndex = index;
         
@@ -88,7 +96,7 @@
 }
 
 - (void)scroll_tapGes{
-    [UIView animateWithDuration:.3 animations:^{
+    [UIView animateWithDuration:.5 animations:^{
         self.alpha = 0;
     }completion:^(BOOL finished) {
         [self removeFromSuperview];

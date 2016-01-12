@@ -190,6 +190,18 @@
     }];
 }
 
-
-
+//根据动态id获取动态
++ (void)friendsGetAMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsRecentModel *))compelte{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_GetAMessage baseURL:LY_SERVER params:params success:^(id response) {
+        [app stopLoading];
+        if ([response[@"errorcode"] isEqual:@"1"]) {
+          FriendsRecentModel *mod = [FriendsRecentModel initFromNSDictionary:response[@"data"]];
+            compelte(mod);
+        }
+    }failure:^(NSError *err) {
+                [app stopLoading];
+    }];
+}
 @end

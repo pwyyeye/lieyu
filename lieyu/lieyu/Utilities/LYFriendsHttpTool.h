@@ -36,4 +36,6 @@
 + (void)friendsGetFriendsMessageNotificationDetailWithParams:(NSDictionary *)params compelte:(void (^)(NSArray *))compelte;
 //更改玩友圈背景图片
 + (void)friendsChangeBGImageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte;
+//根据动态id获取动态
++ (void)friendsGetAMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsRecentModel *))compelte;
 @end

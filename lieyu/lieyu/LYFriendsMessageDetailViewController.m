@@ -242,8 +242,13 @@
             commentModel.nickName = app.userModel.usernick;
             commentModel.userId = _useridStr;
             commentModel.commentId = commentId;
-            if(toUserId.length) commentModel.toUserId = toUserId;
-            else commentModel.toUserId = @"0";
+            if(toUserId.length){
+                commentModel.toUserId = toUserId;
+                commentModel.toUserNickName = _recentM.usernick;
+            }else
+            {
+                commentModel.toUserId = @"0";
+            }
             [_dataArray addObject:commentModel];
             _recentM.commentNum = [NSString stringWithFormat:@"%ld",_recentM.commentNum.intValue+1];
             //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];

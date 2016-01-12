@@ -97,7 +97,9 @@
                 }
 //                imgView.userInteractionEnabled = YES;
                 imgView.clipsToBounds = YES;
-                if( recentModel.isMeSendMessage ) picWidth = 0;
+                if( recentModel.isMeSendMessage ){
+                    picWidth = 0;
+                }
                 [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                 NSLog(@"---->%@",[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]);
                 //[imgView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]]   placeholderImage:[UIImage imageNamed:@"empyImage120"]];

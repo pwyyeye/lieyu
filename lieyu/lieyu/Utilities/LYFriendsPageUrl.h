@@ -43,4 +43,7 @@
 //更改玩友圈背景图片
 #define LY_Friends_ChangeBGImage @"lyuserAction.do?action=custom"
 
+//根据动态id获取动态
+#define LY_Friends_GetAMessage @"lyMomentsAction.do?action=importExcel"
+
 #endif /* LYFriendsPageUrl_h */
