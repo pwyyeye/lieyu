@@ -537,7 +537,7 @@
     [self updateViewConstraints];
     
     NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
-    if(imageData)    _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
+    if(!_userBgImageUrl)    _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
     else [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpeg"]];
     _headerView.ImageView_bg.clipsToBounds = YES;
     _headerView.ImageView_bg.userInteractionEnabled = YES;
@@ -759,20 +759,21 @@
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardDidShowNotification object:nil];
+  //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardAnimation object:nil];
     
-    
-    [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
-    } completion:^(BOOL finished) {
-        
-    }];
+//    [UIView animateWithDuration:.25 animations:^{
+//        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
+//    } completion:^(BOOL finished) {
+//        
+//    }];
 }
 
 - (void)keyBorderApearce:(NSNotification *)note{
 
 //    NSString *keybordHeight = note.userInfo[@"UIKeyboardFrameEndUserInfoKey"];
-//    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT -((NSString *)note[@"userInfo"][@"UIKeyboardFrameEndUserInfoKey"]).float, SCREEN_WIDTH, 49);
+    CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height, SCREEN_WIDTH, 49);
 }
 
 - (void)bigViewGes{
@@ -783,6 +784,10 @@
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
+        _commentView.btn_send_cont_width.constant = 30;
+        [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
+        [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self updateViewConstraints];
     [_commentView.textField endEditing:YES];
     ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
     emojiView.delegate = self;
@@ -797,12 +802,20 @@
     }else{
         [_commentView.textField endEditing:YES];
         _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        _commentView.btn_send_cont_width.constant = 0;
+         [_commentView.btn_send setTitle:@"" forState:UIControlStateNormal];
+        [self updateViewConstraints];
         [_commentView.textField becomeFirstResponder];
         [UIView animateWithDuration:.1 animations:^{
            // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
             _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
         }];
     }
+    
+}
+
+- (void)sendMessageClick:(UIButton *)button{
+    [self textFieldShouldReturn:_commentView.textField];
 }
 
 -(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
@@ -1063,7 +1076,7 @@
                     }else{
                         nameCell.btn_delete.hidden = NO;
                     }
-                    if([MyUtil isEmptyString:recentM.id]){
+                    if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){
                         nameCell.btn_delete.enabled = NO;
                     }
                     return nameCell;

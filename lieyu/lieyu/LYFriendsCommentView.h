@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *btn_emotion;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIButton *btn_send;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btn_send_cont_width;
 
 @end
