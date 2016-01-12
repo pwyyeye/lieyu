@@ -73,6 +73,12 @@ static NSString * const tableReuseIdentifier = @"tableCell";
     [myTableView registerNib:[UINib nibWithNibName:@"YBImgPickerTableViewCell" bundle:nil] forCellReuseIdentifier:tableReuseIdentifier];
     
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    NSLog(@"dfdsa");
+}
+
 - (void)initDefaultView {
     //naviegationBar
     self.view.frame = [UIScreen mainScreen].bounds;
@@ -181,7 +187,7 @@ static NSString * const tableReuseIdentifier = @"tableCell";
             if (result) {
                 NSString *type=[result valueForProperty:ALAssetPropertyType];
                 if ([type isEqualToString:ALAssetTypePhoto]) {
-                    [colletionData addObject:[UIImage imageWithCGImage:[result aspectRatioThumbnail]]];
+                    [colletionData addObject:[UIImage imageWithCGImage:[result thumbnail]]];
                     [originImgData addObject:result];
                 }
                 [myCollectionView reloadData];
@@ -210,8 +216,20 @@ static NSString * const tableReuseIdentifier = @"tableCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     YBImgPickerViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:colletionReuseIdentifier forIndexPath:indexPath];
-    cell.contentImg = [colletionData objectAtIndex:indexPath.item];
     NSArray * isChoosenArray = [isChoosenDic objectForKey:[group valueForProperty:ALAssetsGroupPropertyName]];
+    
+//    __weak typeof(cell)weakCell = cell;
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        weakCell.isChoosenImgHidden = NO;
+//        weakCell.isChoosen = [[isChoosenArray objectAtIndex:indexPath.item]boolValue];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            weakCell.contentImg = [colletionData objectAtIndex:indexPath.item];
+//        });
+//    });
+    
+    
+    
+    cell.contentImg = [colletionData objectAtIndex:indexPath.item];
 //    if (indexPath.item != 0) {
         cell.isChoosenImgHidden = NO;
         cell.isChoosen = [[isChoosenArray objectAtIndex:indexPath.item]boolValue];

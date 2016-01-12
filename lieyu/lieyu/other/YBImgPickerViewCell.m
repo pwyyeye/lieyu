@@ -19,12 +19,23 @@
 }
 - (void)setContentImg:(UIImage *)contentImg {
     if (contentImg) {
+        __weak typeof(self) weakself = self;
         _contentImg = contentImg;
-        self.mainImageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.mainImageView.clipsToBounds = YES;
-        self.mainImageView.image = _contentImg;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            weakself.mainImageView.image = nil;
+            weakself.mainImageView.contentMode = UIViewContentModeScaleAspectFill;
+            weakself.mainImageView.clipsToBounds = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+            
+                weakself.mainImageView.image = _contentImg;
+            });
+        });
+//        self.mainImageView.contentMode = UIViewContentModeScaleAspectFill;
+//        self.mainImageView.clipsToBounds = YES;
+//        self.mainImageView.image = _contentImg;
     }
 }
+
 - (void)setIsChoosen:(BOOL)isChoosen {
     _isChoosen = isChoosen;
     [UIView animateWithDuration:0.2 animations:^{
