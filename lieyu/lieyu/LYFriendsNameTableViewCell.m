@@ -40,7 +40,8 @@
          [_label_content setText:recentM.message];
 //    }
     
-    if([MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){
+    NSLog(@"-------->%@----->%@------>%ld",[MyUtil getAstroWithBirthday:recentM.birthday],recentM.birthday,[MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]);
+    if(![MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){
         _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
         _label_constellation.hidden = NO;
     }

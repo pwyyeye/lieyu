@@ -376,14 +376,14 @@
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSInteger count = _recentM.likeList.count == 0 ? 1 : 2;
     if (!buttonIndex) {//删除我的评论
-        FriendsCommentModel *commentM = _recentM.commentList[_indexRow - 4];
+        FriendsCommentModel *commentM = _dataArray[_indexRow - count];
         NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
         __weak LYFriendsMessageDetailViewController *weakSelf = self;
         [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
             if(result){
-                NSMutableArray *commentArr = _recentM.commentList;
-                [commentArr removeObjectAtIndex:_indexRow - 4];
+                [_dataArray removeObjectAtIndex:_indexRow - count];
                 _recentM.commentNum = [NSString stringWithFormat:@"%ld",_recentM.commentNum.integerValue - 1];
                 [weakSelf.tableView reloadData];
             }
