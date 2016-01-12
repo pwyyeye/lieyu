@@ -348,9 +348,15 @@
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"请填写预付金额!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil]show];
             return;
         }
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSString *dateString = [formatter stringFromDate:self.InfoDict[@"time"]];
+        
+        
         NSDictionary *dic=@{
             @"pinkerid":[NSNumber numberWithInt:_pinkeModel.id],
-            @"reachtime":self.InfoDict[@"time"],
+            @"reachtime":dateString,
             @"checkuserid":[NSNumber numberWithInt:userId],
             @"allnum":self.InfoDict[@"number"],
             @"payamount":self.InfoDict[@"money"],

@@ -11,17 +11,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <datePicker contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="yxt-he-VBX">
-                    <rect key="frame" x="0.0" y="60" width="320" height="498"/>
-                    <color key="backgroundColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="tintColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
-                    <date key="date" timeIntervalSinceReferenceDate="470814135.55527002">
-                        <!--2015-12-03 05:42:15 +0000-->
-                    </date>
-                    <locale key="locale" localeIdentifier="zh_CN"/>
-                </datePicker>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="请选择消费时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDu-z1-OC8">
-                    <rect key="frame" x="66" y="17" width="189" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择消费时间" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDu-z1-OC8">
+                    <rect key="frame" x="80" y="15" width="160" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="cNw-PV-3PJ"/>
                     </constraints>
@@ -29,6 +20,15 @@
                     <color key="textColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <datePicker contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="yxt-he-VBX">
+                    <rect key="frame" x="0.0" y="60" width="320" height="498"/>
+                    <color key="backgroundColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="0.36470588240000001" green="0.0" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <date key="date" timeIntervalSinceReferenceDate="470814135.55527002">
+                        <!--2015-12-03 05:42:15 +0000-->
+                    </date>
+                    <locale key="locale" localeIdentifier="zh"/>
+                </datePicker>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

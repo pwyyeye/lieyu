@@ -11,7 +11,8 @@
 #define item_Size CGSizeMake(itemHeight , itemHeight)
 //#define rightItemTitle [NSString stringWithFormat:@"完成 %ld/%ld",(long)choosenCount,(long)self.photoCount]
 #define tableCellH 70
-#define tableH MIN(CGRectGetWidth([UIScreen mainScreen].bounds) - 64, tableCellH * tableData.count);
+#define tableH MIN(CGRectGetHeight([UIScreen mainScreen].bounds) - 64, tableCellH * tableData.count);
+//#define tableH tableCellH * tableData.count
 
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "YBImgPickerViewController.h"
