@@ -14,8 +14,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPd-nu-1fz">
                     <rect key="frame" x="10" y="10" width="580" height="580"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcN-zi-6PG">
-                            <rect key="frame" x="545" y="0.0" width="33" height="24"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcN-zi-6PG">
+                            <rect key="frame" x="546" y="0.0" width="21" height="580"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" image="biaoqing_icon.png">
@@ -23,44 +23,55 @@
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ulo-To-XW2">
-                            <rect key="frame" x="543" y="6" width="1" height="568"/>
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Ulo-To-XW2">
+                            <rect key="frame" x="537" y="6" width="1" height="568"/>
                             <color key="backgroundColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="GB4-c9-joB"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2k-3O-csD">
+                            <rect key="frame" x="572" y="0.0" width="3" height="580"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="3" id="fPX-8A-Rr6"/>
+                            </constraints>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  评论" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDJ-i7-gbH">
+                            <rect key="frame" x="0.0" y="0.0" width="537" height="580"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Ulo-To-XW2" secondAttribute="bottom" constant="6" id="3JY-8r-PC1"/>
-                        <constraint firstItem="VcN-zi-6PG" firstAttribute="leading" secondItem="Ulo-To-XW2" secondAttribute="trailing" constant="5" id="QIE-Uw-fDA"/>
-                        <constraint firstItem="VcN-zi-6PG" firstAttribute="top" secondItem="DPd-nu-1fz" secondAttribute="top" id="QM4-dn-xhW"/>
-                        <constraint firstAttribute="bottom" secondItem="VcN-zi-6PG" secondAttribute="bottom" id="Tr9-NL-5gx"/>
-                        <constraint firstAttribute="trailing" secondItem="VcN-zi-6PG" secondAttribute="trailing" constant="5" id="aQQ-Qt-Jd6"/>
+                        <constraint firstItem="t2k-3O-csD" firstAttribute="top" secondItem="DPd-nu-1fz" secondAttribute="top" id="NAH-1u-kVH"/>
+                        <constraint firstItem="t2k-3O-csD" firstAttribute="leading" secondItem="VcN-zi-6PG" secondAttribute="trailing" constant="5" id="NGN-o0-HUd"/>
+                        <constraint firstItem="fDJ-i7-gbH" firstAttribute="leading" secondItem="DPd-nu-1fz" secondAttribute="leading" id="NiM-g4-mlY"/>
+                        <constraint firstItem="VcN-zi-6PG" firstAttribute="leading" secondItem="Ulo-To-XW2" secondAttribute="trailing" constant="8" id="RuH-Y0-TM6"/>
+                        <constraint firstItem="VcN-zi-6PG" firstAttribute="top" secondItem="DPd-nu-1fz" secondAttribute="top" id="TFP-KX-fXF"/>
+                        <constraint firstAttribute="bottom" secondItem="VcN-zi-6PG" secondAttribute="bottom" id="WPY-HQ-Zd2"/>
+                        <constraint firstItem="fDJ-i7-gbH" firstAttribute="top" secondItem="DPd-nu-1fz" secondAttribute="top" id="Wq3-zW-YPT"/>
                         <constraint firstItem="Ulo-To-XW2" firstAttribute="top" secondItem="DPd-nu-1fz" secondAttribute="top" constant="6" id="cAn-Ns-Jv6"/>
+                        <constraint firstAttribute="trailing" secondItem="t2k-3O-csD" secondAttribute="trailing" constant="5" id="ofr-PA-jeV"/>
+                        <constraint firstAttribute="bottom" secondItem="fDJ-i7-gbH" secondAttribute="bottom" id="pOf-iw-3ds"/>
+                        <constraint firstAttribute="bottom" secondItem="t2k-3O-csD" secondAttribute="bottom" id="r9g-5e-D5K"/>
+                        <constraint firstItem="Ulo-To-XW2" firstAttribute="leading" secondItem="fDJ-i7-gbH" secondAttribute="trailing" id="srh-qs-r6f"/>
                     </constraints>
                 </view>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  评论" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDJ-i7-gbH">
-                    <rect key="frame" x="10" y="10" width="530" height="580"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="send"/>
-                </textField>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.070000000000000007" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="DPd-nu-1fz" firstAttribute="leading" secondItem="wpO-CU-Ge9" secondAttribute="leading" constant="10" id="2dz-MU-8bj"/>
-                <constraint firstItem="fDJ-i7-gbH" firstAttribute="top" secondItem="wpO-CU-Ge9" secondAttribute="top" constant="10" id="6o6-xe-cxL"/>
                 <constraint firstAttribute="trailing" secondItem="DPd-nu-1fz" secondAttribute="trailing" constant="10" id="8wR-Md-O8s"/>
-                <constraint firstAttribute="trailing" secondItem="fDJ-i7-gbH" secondAttribute="trailing" constant="60" id="KI1-nB-K5f"/>
-                <constraint firstAttribute="bottom" secondItem="fDJ-i7-gbH" secondAttribute="bottom" constant="10" id="NYw-qU-MVl"/>
                 <constraint firstItem="DPd-nu-1fz" firstAttribute="top" secondItem="wpO-CU-Ge9" secondAttribute="top" constant="10" id="R2c-cS-N3H"/>
-                <constraint firstItem="fDJ-i7-gbH" firstAttribute="leading" secondItem="wpO-CU-Ge9" secondAttribute="leading" constant="10" id="lXJ-Ny-MWj"/>
                 <constraint firstAttribute="bottom" secondItem="DPd-nu-1fz" secondAttribute="bottom" constant="10" id="wJy-Yu-L4Q"/>
             </constraints>
             <connections>
                 <outlet property="bgView" destination="DPd-nu-1fz" id="FZO-cn-FIm"/>
                 <outlet property="btn_emotion" destination="VcN-zi-6PG" id="bpl-aS-JzY"/>
+                <outlet property="btn_send" destination="t2k-3O-csD" id="sFf-oV-SbL"/>
+                <outlet property="btn_send_cont_width" destination="fPX-8A-Rr6" id="nLc-dd-id1"/>
                 <outlet property="textField" destination="fDJ-i7-gbH" id="Akn-8P-lhB"/>
             </connections>
             <point key="canvasLocation" x="318" y="416"/>

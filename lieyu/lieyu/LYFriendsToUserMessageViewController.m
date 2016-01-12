@@ -632,6 +632,12 @@
         
     }];
 }
+
+- (void)sendMessageClick:(UIButton *)button{
+    [self textFieldShouldReturn:_commentView.textField];
+}
+
+
 -(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
     _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
 }
@@ -645,6 +651,10 @@
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
+        _commentView.btn_send_cont_width.constant = 30;
+        [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
+        [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self updateViewConstraints];
         [_commentView.textField endEditing:YES];
         ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
         emojiView.delegate = self;
@@ -657,6 +667,9 @@
             NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
         }];
     }else{
+        _commentView.btn_send_cont_width.constant = 0;
+        [_commentView.btn_send setTitle:@"" forState:UIControlStateNormal];
+        [self updateViewConstraints];
         [_commentView.textField endEditing:YES];
         _commentView.textField.inputView = UIKeyboardAppearanceDefault;
         [_commentView.textField becomeFirstResponder];
