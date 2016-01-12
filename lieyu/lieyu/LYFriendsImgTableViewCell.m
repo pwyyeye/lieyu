@@ -36,10 +36,12 @@
         case 2:
         {
             CGFloat btnW = (SCREEN_WIDTH - 2) / 2.f;
+            NSInteger picWidth = 450;
+            if (recentModel.isMeSendMessage) picWidth = 0;
             for (int i = 0; i < 2; i ++) {
                 
                 UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i%2 *(btnW + 2) , 0, btnW, btnW)];
-                [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                 btn.adjustsImageWhenHighlighted = NO;
                             btn.imageView.contentMode = UIViewContentModeScaleAspectFill;
                 [self addSubview:btn];
@@ -95,6 +97,7 @@
                 }
 //                imgView.userInteractionEnabled = YES;
                 imgView.clipsToBounds = YES;
+                if( recentModel.isMeSendMessage ) picWidth = 0;
                 [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                 NSLog(@"---->%@",[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]);
                 //[imgView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]]   placeholderImage:[UIImage imageNamed:@"empyImage120"]];

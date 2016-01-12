@@ -176,7 +176,7 @@
 //}
 
 #pragma mark - 作为代理收取视频路径地址与截图
-- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content{
+- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location{
     self.mediaImage = image;
     self.mediaUrl = mediaUrl;
     self.content = content;
@@ -195,6 +195,7 @@
     recentM.isMeSendMessage = YES;
     recentM.commentList = [[NSMutableArray alloc]init];
     recentM.likeList = [[NSMutableArray alloc]init];
+    recentM.location = location;
     
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     pvModel.imageLink = mediaUrl;
@@ -211,7 +212,7 @@
 }
 
 #pragma mark - 作为代理接受返回的图片
-- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content{
+- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location{
     self.imageArray = imagesArray;
     self.content = content;
     
@@ -222,6 +223,7 @@
     recentM.avatar_img = app.userModel.avatar_img;
     recentM.commentList = [[NSMutableArray alloc]init];
     recentM.likeList = [[NSMutableArray alloc]init];
+    recentM.location = location;
     
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
     [dateFmt setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
@@ -247,25 +249,25 @@
         else imageLink = [imageLink stringByAppendingString:appendLink];
         NSLog(@"--->%@",imageLink);
         
-        switch (imagesArray.count) {
-            case 1:
-            {
-                picWidth = 0;
-            }
-                break;
-            case 2:
-            {
-                picWidth = 450;
-            }
-                break;
-            default:{
-                if(!i) picWidth = 0;
-                else picWidth = 450;
-            }
-                break;
-        }
+//        switch (imagesArray.count) {
+//            case 1:
+//            {
+//                picWidth = 0;
+//            }
+//                break;
+//            case 2:
+//            {
+//                picWidth = 450;
+//            }
+//                break;
+//            default:{
+//                if(!i) picWidth = 0;
+//                else picWidth = 450;
+//            }
+//                break;
+//        }
         
-         [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil getQiniuUrl:[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] width:picWidth andHeight:picWidth]]];
+         [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil getQiniuUrl:[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] width:0 andHeight:0]]];
         _saveImageAndVideoIndex ++;
         
     }

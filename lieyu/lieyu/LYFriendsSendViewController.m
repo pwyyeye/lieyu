@@ -84,7 +84,8 @@
 }
 
 - (void)setupAllProperty{
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"daohang_fabu"] style:UIBarButtonItemStylePlain target:self action:@selector(sendClick)];
+//    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"daohang_fabu"] style:UIBarButtonItemStylePlain target:self action:@selector(sendClick)];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(sendClick)];
     self.navigationItem.rightBarButtonItem = rightBtn;
 }
 
