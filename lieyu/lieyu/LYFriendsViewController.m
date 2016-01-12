@@ -478,7 +478,7 @@
     else [self removeTableViewHeader];
     [self.tableView.mj_header endRefreshing];
     
-    if(!((NSArray *)_dataArray[_index]).count){
+    if(!((NSArray *)_dataArray[_index]).count || _section >= 10){
         return;
     }
     FriendsRecentModel *recentM = _dataArray[_index][_section];
@@ -1199,9 +1199,12 @@
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
            // if(size.height >= 47) size.height = 47;
             if(![MyUtil isEmptyString:recentM.message]) {
-                size.height = 15 + size.height;
+                if(size.height >= 47 ) size.height = 47;
+                size.height = 10 + size.height;
+            }else{
+                size.height = 0;
             }
-             return 50 + size.height ;
+             return 55 + size.height ;
         }
             break;
             
@@ -1255,7 +1258,7 @@
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
             CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             CGFloat height;
-            if (size.height + 10< 36) {
+            if (size.height + 10 < 36) {
                 height = 36;
             }else {
                 height = size.height + 15;

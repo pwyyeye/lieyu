@@ -314,7 +314,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _indexRow = indexPath.row;
-    FriendsCommentModel *commentM = _dataArray[indexPath.row];
+    NSInteger likeCount ;
+    likeCount = _recentM.likeList.count == 0 ? 1 : 2;
+    FriendsCommentModel *commentM = _dataArray[indexPath.row - likeCount];
     if (indexPath.row >= 1) {
         if (indexPath.row == 1) {
             if (_recentM.likeList.count) {
