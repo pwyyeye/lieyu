@@ -391,6 +391,9 @@
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
+    if(self.navigationController.navigationBarHidden == YES){
+        self.navigationController.navigationBarHidden = NO;
+    }
     [self setupNavMenuView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -703,31 +706,32 @@
     LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
     cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-      FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+      FriendsRecentModel *recentModel = _dataArray[_index][button.tag];
     NSString *likeStr = nil;
-    if ([[NSString stringWithFormat:@"%@",recentM.liked] isEqual:@"0"]) {//未表白过
+    if ([[NSString stringWithFormat:@"%@",recentModel.liked] isEqual:@"0"]) {//未表白过
         likeStr = @"1";
     }else{
         likeStr = @"0";
     }
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":likeStr};
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentModel.id,@"type":likeStr};
     
     __weak LYFriendsViewController *weakSelf = self;
+    NSLog(@"---->%ld-----%@",recentModel.likeList.count,recentModel);
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (result) {//点赞成功
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
             likeModel.icon = app.userModel.avatar_img;
             likeModel.userId = _useridStr;
-            NSMutableArray *array = recentM.likeList;
-            [array insertObject:likeModel atIndex:0];
-            recentM.liked = @"1";
+//            NSMutableArray *array = recentM.likeList;
+            [recentModel.likeList insertObject:likeModel atIndex:0];
+            recentModel.liked = @"1";
         }else{
-            for (FriendsLikeModel *likeM in recentM.likeList) {
+            for (FriendsLikeModel *likeM in recentModel.likeList) {
                 if ([likeM.userId isEqualToString:_useridStr]) {
-                    [recentM.likeList removeObject:likeM];
+                    [recentModel.likeList removeObject:likeM];
                 }
             }
-                recentM.liked = @"0";
+                recentModel.liked = @"0";
         }
         [weakSelf.tableView reloadData];
         cell.btn_like.enabled = YES;
@@ -738,6 +742,7 @@
 - (void)commentClick:(UIButton *)button{
     _commentBtnTag = button.tag;
     _isCommentToUser = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [self createCommentView];
 }
 
@@ -751,7 +756,7 @@
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 49);
-    _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
+    _commentView.bgView.layer.borderColor = RGBA(0,0,0, .5).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
     
@@ -759,7 +764,7 @@
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardDidShowNotification object:nil];
+   
   //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardAnimation object:nil];
     
 //    [UIView animateWithDuration:.25 animations:^{
@@ -773,7 +778,10 @@
 
 //    NSString *keybordHeight = note.userInfo[@"UIKeyboardFrameEndUserInfoKey"];
     CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
-    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height, SCREEN_WIDTH, 49);
+    [UIView animateWithDuration:.25 animations:^{
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
+        NSLog(@"--->%@------->%@",NSStringFromCGRect(rect),NSStringFromCGRect(_commentView.frame));
+    }];
 }
 
 - (void)bigViewGes{
