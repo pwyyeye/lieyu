@@ -249,6 +249,8 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
+    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
+    cell.btn_like.enabled = NO;
    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = _dataArray[button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
@@ -272,6 +274,7 @@
             }
         }
         [weakSelf.tableView reloadData];
+        cell.btn_like.enabled = YES;
     }];
 }
 
@@ -511,7 +514,7 @@
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
             CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             CGFloat height;
-            if (size.height < 36) {
+            if (size.height + 10 < 36) {
                 height = 36;
             }else {
                 height = size.height + 10;
