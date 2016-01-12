@@ -224,12 +224,13 @@
     recentM.likeList = [[NSMutableArray alloc]init];
     
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
+    [dateFmt setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     recentM.date = [dateFmt stringFromDate:[NSDate date]];
-    NSLog(@"---->%@",app.userModel.tags);
+    NSLog(@"---->%@",[dateFmt stringFromDate:[NSDate date]]);
     recentM.tags = app.userModel.tags;
     
     recentM.birthday = app.userModel.birthday;
-    recentM.message = content;
+    recentM.message = [NSString stringWithFormat:@"%@",content];
     
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     NSString *imageLink = nil;
@@ -1035,7 +1036,6 @@
                 case 0:
                 {
                     LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
-                    recentM.message = @"";
                     nameCell.recentM = recentM;
                     nameCell.btn_delete.tag = indexPath.section;
                     [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -1195,9 +1195,11 @@
         case 0://头像和动态
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-            if(size.height >= 47) size.height = 47;
-                                                                                                                                                     
-             return 47 + size.height;
+           // if(size.height >= 47) size.height = 47;
+            if(![MyUtil isEmptyString:recentM.message]) {
+                size.height = 15 + size.height;
+            }
+             return 50 + size.height ;
         }
             break;
             

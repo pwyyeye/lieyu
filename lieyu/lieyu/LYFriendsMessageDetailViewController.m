@@ -105,6 +105,8 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick{
+    LYFriendsHeaderTableViewCell *cell = (LYFriendsHeaderTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"type":_likeStr};
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
@@ -128,6 +130,7 @@
             }
             _indexStart = 1;
         }
+        cell.btn_like.enabled = YES;
         [weakSelf.tableView reloadData];
     }];
 }
