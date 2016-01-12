@@ -180,8 +180,10 @@
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
         _dataArray = dataArray;
         _userInfo = userInfo;
-        for (FriendsRecentModel *r in _dataArray) {
-            NSLog(@"--->%@",r.usernick);
+        if(_pageStartCount == 0) {
+            _dataArray = dataArray;
+        }else{
+            [_dataArray addObjectsFromArray:dataArray];
         }
         [weakSelf reloadTableViewAndSetUpProperty];
         [weakSelf addTableViewHeader];

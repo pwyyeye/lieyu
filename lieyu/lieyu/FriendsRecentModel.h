@@ -38,4 +38,5 @@
 @property (nonatomic,copy) NSArray *tags;
 @property (nonatomic,unsafe_unretained) BOOL isMeSendMessage;
 +(NSArray *)initFormNSArray:(NSArray *)arr;
++ (FriendsRecentModel *)initFromNSDictionary:(NSDictionary *)dic;
 @end

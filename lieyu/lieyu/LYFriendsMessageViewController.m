@@ -10,6 +10,7 @@
 #import "LYNewMessageTableViewCell.h"
 #import "LYFriendsHttpTool.h"
 #import "LYFriendsMessageDetailViewController.h"
+#import "FriendsNewsModel.h"
 
 #define LYFriendsNewMessage @"LYNewMessageTableViewCell"
 
@@ -64,7 +65,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FriendsNewsModel *friendNewM = _dataArray[indexPath.row];
-    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSDictionary *dic = @{@"userId":[NSString stringWithFormat:@"%d",app.userModel.userid],@"messageId":friendNewM.messageId};
+    [LYFriendsHttpTool friendsGetAMessageWithParams:dic compelte:^(FriendsRecentModel *recentM) {
+        LYFriendsMessageDetailViewController *friendDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+        friendDetailVC.recentM = recentM;
+        [self.navigationController pushViewController:friendDetailVC animated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

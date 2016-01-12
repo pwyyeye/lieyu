@@ -759,14 +759,14 @@
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardDidShowNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardDidShowNotification object:nil];
     
     
-//    [UIView animateWithDuration:.25 animations:^{
-//        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
-//    } completion:^(BOOL finished) {
-//        
-//    }];
+    [UIView animateWithDuration:.25 animations:^{
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)keyBorderApearce:(NSNotification *)note{

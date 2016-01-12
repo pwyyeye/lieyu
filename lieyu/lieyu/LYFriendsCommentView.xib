@@ -44,10 +44,10 @@
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  评论" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDJ-i7-gbH">
                     <rect key="frame" x="10" y="10" width="530" height="580"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="send"/>
                 </textField>
             </subviews>
-            <color key="backgroundColor" red="0.89411764705882346" green="0.67843137254901964" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.070000000000000007" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="DPd-nu-1fz" firstAttribute="leading" secondItem="wpO-CU-Ge9" secondAttribute="leading" constant="10" id="2dz-MU-8bj"/>
                 <constraint firstItem="fDJ-i7-gbH" firstAttribute="top" secondItem="wpO-CU-Ge9" secondAttribute="top" constant="10" id="6o6-xe-cxL"/>

@@ -30,4 +30,9 @@
     return model;
 }
 
++ (FriendsRecentModel *)initFromNSDictionary:(NSDictionary *)dic{
+    FriendsRecentModel *mod = [FriendsRecentModel mj_objectWithKeyValues:dic];
+    return mod;
+}
+
 @end
