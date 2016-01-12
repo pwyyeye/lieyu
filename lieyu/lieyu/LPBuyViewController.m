@@ -350,7 +350,7 @@
         }
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString *dateString = [formatter stringFromDate:self.InfoDict[@"time"]];
         
         

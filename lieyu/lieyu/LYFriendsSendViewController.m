@@ -134,7 +134,9 @@
             }else{
                 self.content = [[NSString alloc]initWithString:self.textView.text];
             }
-            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:self.content];
+            //地址返回
+            NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
+            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:self.content andLocation:location];
         }
         
         AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
@@ -190,7 +192,9 @@
         }else{
             self.content = [[NSString alloc]initWithString:self.textView.text];
         }
-        [self.delegate sendImagesArray:self.fodderArray andContent:self.content];
+        //地址返回
+        NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
+        [self.delegate sendImagesArray:self.fodderArray andContent:self.content andLocation:location];
         [self.textView resignFirstResponder];
         for(int i = 0 ; i < self.fodderArray.count; i ++){
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
