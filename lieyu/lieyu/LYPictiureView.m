@@ -14,6 +14,7 @@
     NSMutableArray *_imageViewArray;
     NSArray *_oldFrameArr;
     NSInteger _voidIndex;//第几个按钮
+    UIActionSheet *_sheet;
 }
 
 @end
@@ -61,7 +62,7 @@
             [imageView addGestureRecognizer:tapGes];
             
             UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(savePicture:)];
-            longPress.minimumPressDuration = 1;
+//            longPress.minimumPressDuration = 1;
             [imageView addGestureRecognizer:longPress];
             
         }
@@ -128,16 +129,19 @@
 }
 
 - (void)savePicture:(UILongPressGestureRecognizer *)longPress{
-    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"保存到手机" otherButtonTitles:nil, nil];
-    [sheet showInView:self];
+    if(!_sheet){
+        _sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"保存到手机" otherButtonTitles:nil, nil];
+        [_sheet showInView:self];
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 1){
+    if(buttonIndex == 0){
         UIImageView *imageView = _imageViewArray[_index];
         UIImageWriteToSavedPhotosAlbum([imageView image], nil, nil, nil);
         [MyUtil showCleanMessage:@"保存成功！"];
     }
+        _sheet = nil;
 }
 
 - (void)tapGes{

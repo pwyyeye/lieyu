@@ -304,6 +304,7 @@ static NSString * const tableReuseIdentifier = @"tableCell";
     cell.backgroundColor = tableView.backgroundColor;
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self getCollectionData:indexPath.row];
     [self showTableView];
