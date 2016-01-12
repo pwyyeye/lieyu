@@ -35,9 +35,12 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="3" id="fPX-8A-Rr6"/>
                             </constraints>
+                            <state key="normal">
+                                <color key="titleColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  评论" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDJ-i7-gbH">
-                            <rect key="frame" x="0.0" y="0.0" width="537" height="580"/>
+                            <rect key="frame" x="2" y="0.0" width="535" height="580"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="send"/>
                         </textField>
@@ -47,7 +50,7 @@
                         <constraint firstAttribute="bottom" secondItem="Ulo-To-XW2" secondAttribute="bottom" constant="6" id="3JY-8r-PC1"/>
                         <constraint firstItem="t2k-3O-csD" firstAttribute="top" secondItem="DPd-nu-1fz" secondAttribute="top" id="NAH-1u-kVH"/>
                         <constraint firstItem="t2k-3O-csD" firstAttribute="leading" secondItem="VcN-zi-6PG" secondAttribute="trailing" constant="5" id="NGN-o0-HUd"/>
-                        <constraint firstItem="fDJ-i7-gbH" firstAttribute="leading" secondItem="DPd-nu-1fz" secondAttribute="leading" id="NiM-g4-mlY"/>
+                        <constraint firstItem="fDJ-i7-gbH" firstAttribute="leading" secondItem="DPd-nu-1fz" secondAttribute="leading" constant="2" id="NiM-g4-mlY"/>
                         <constraint firstItem="VcN-zi-6PG" firstAttribute="leading" secondItem="Ulo-To-XW2" secondAttribute="trailing" constant="8" id="RuH-Y0-TM6"/>
                         <constraint firstItem="VcN-zi-6PG" firstAttribute="top" secondItem="DPd-nu-1fz" secondAttribute="top" id="TFP-KX-fXF"/>
                         <constraint firstAttribute="bottom" secondItem="VcN-zi-6PG" secondAttribute="bottom" id="WPY-HQ-Zd2"/>
