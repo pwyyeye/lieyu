@@ -9,6 +9,7 @@
 #import "LYFriendsMessageViewController.h"
 #import "LYNewMessageTableViewCell.h"
 #import "LYFriendsHttpTool.h"
+#import "LYFriendsMessageDetailViewController.h"
 
 #define LYFriendsNewMessage @"LYNewMessageTableViewCell"
 
@@ -62,7 +63,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-   // FriendsNewsModel *friendNewM = _dataArray[indexPath.row];
+    FriendsNewsModel *friendNewM = _dataArray[indexPath.row];
+    
 }
 
 - (void)didReceiveMemoryWarning {

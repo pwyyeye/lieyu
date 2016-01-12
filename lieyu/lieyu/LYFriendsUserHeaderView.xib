@@ -23,6 +23,10 @@
                         <constraint firstAttribute="width" constant="60" id="Atj-f7-GZo"/>
                         <constraint firstAttribute="height" constant="60" id="N5e-Cb-ARE"/>
                     </constraints>
+                    <size key="titleShadowOffset" width="0.0" height="2.2250738585072014e-308"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vdgdasgfdg" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGf-wq-5JP">
                     <rect key="frame" x="10" y="217" width="510" height="18"/>

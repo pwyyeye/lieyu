@@ -4022,7 +4022,6 @@
 			children = (
 				853C4C3B1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.h */,
 				853C4C3C1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.m */,
-				853C4C3D1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib */,
 			);
 			name = "好友动态";
 			sourceTree = "<group>";
@@ -4128,6 +4127,7 @@
 				854CC9861C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib */,
 				85138DFB1C33A49500BD6F6C /* LYFriendsCommentButton.h */,
 				85138DFC1C33A49500BD6F6C /* LYFriendsCommentButton.m */,
+				853C4C3D1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";

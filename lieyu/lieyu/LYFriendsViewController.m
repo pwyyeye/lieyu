@@ -224,6 +224,7 @@
     recentM.commentList = [[NSMutableArray alloc]init];
     recentM.likeList = [[NSMutableArray alloc]init];
     recentM.location = location;
+    recentM.isMeSendMessage = YES;
     
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
     [dateFmt setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
@@ -478,15 +479,15 @@
     else [self removeTableViewHeader];
     [self.tableView.mj_header endRefreshing];
     
-    if(!((NSArray *)_dataArray[_index]).count || _section >= 10){
-        return;
-    }
-    FriendsRecentModel *recentM = _dataArray[_index][_section];
-    if ([[NSString stringWithFormat:@"%@",recentM.liked] isEqualToString:@"0"]) {
-        _likeStr = @"1";
-    }else{
-        _likeStr = @"0";
-    }
+//    if(!((NSArray *)_dataArray[_index]).count || _section >= 10){
+//        return;
+//    }
+//    FriendsRecentModel *recentM = _dataArray[_index][_section];
+//    if ([[NSString stringWithFormat:@"%@",recentM.liked] isEqualToString:@"0"]) {
+//        _likeStr = @"1";
+//    }else{
+//        _likeStr = @"0";
+//    }
 }
 
 #pragma mark - 玩友圈action
@@ -703,25 +704,30 @@
     cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
       FriendsRecentModel *recentM = _dataArray[_index][button.tag];
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
+    NSString *likeStr = nil;
+    if ([[NSString stringWithFormat:@"%@",recentM.liked] isEqual:@"0"]) {//未表白过
+        likeStr = @"1";
+    }else{
+        likeStr = @"0";
+    }
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":likeStr};
+    
     __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
-        if([_likeStr isEqualToString:@"1"]){
-            _likeStr = @"0";
-        }else{
-            _likeStr = @"1";
-        }
         if (result) {//点赞成功
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
             likeModel.icon = app.userModel.avatar_img;
             likeModel.userId = _useridStr;
-            [recentM.likeList insertObject:likeModel atIndex:0];
+            NSMutableArray *array = recentM.likeList;
+            [array insertObject:likeModel atIndex:0];
+            recentM.liked = @"1";
         }else{
             for (FriendsLikeModel *likeM in recentM.likeList) {
                 if ([likeM.userId isEqualToString:_useridStr]) {
                     [recentM.likeList removeObject:likeM];
                 }
             }
+                recentM.liked = @"0";
         }
         [weakSelf.tableView reloadData];
         cell.btn_like.enabled = YES;
@@ -753,11 +759,20 @@
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
-    } completion:^(BOOL finished) {
-        
-    }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardDidShowNotification object:nil];
+    
+    
+//    [UIView animateWithDuration:.25 animations:^{
+//        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+}
+
+- (void)keyBorderApearce:(NSNotification *)note{
+
+//    NSString *keybordHeight = note.userInfo[@"UIKeyboardFrameEndUserInfoKey"];
+//    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT -((NSString *)note[@"userInfo"][@"UIKeyboardFrameEndUserInfoKey"]).float, SCREEN_WIDTH, 49);
 }
 
 - (void)bigViewGes{

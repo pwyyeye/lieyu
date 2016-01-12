@@ -44,7 +44,7 @@
                 _label_constellation.hidden = YES;
     }
     CGSize size = [((FriendsTagModel *)recentM.tags[0]).tagname boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size;
-    self.label_work_contraint_width.constant = size.width;
+    self.label_work_contraint_width.constant = size.width + 5;
     [self updateConstraints];
     
     if(recentM.tags.count){
