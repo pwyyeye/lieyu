@@ -223,7 +223,7 @@
     _headerView.label_name.text = _userInfo.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     _headerView.btn_newMessage.hidden = YES;
-    [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpeg"]];
     _headerView.ImageView_bg.clipsToBounds = YES;
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_header addTarget:self action:@selector(headerImgClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -583,7 +583,7 @@
 //            break;
         case 2:
         {
-            cell.separatorInset = UIEdgeInsetsMake(0, 7, 0, 7);
+            cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
         }
             break;
         case 3:
