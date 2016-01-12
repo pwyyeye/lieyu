@@ -27,7 +27,7 @@
     for (int i = 0; i<array.count; i++ ) {
         UIButton *btn = _btnArray[i];
         FriendsLikeModel *likeModel = array[i];
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     }
 }
 

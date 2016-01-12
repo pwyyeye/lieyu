@@ -428,6 +428,7 @@
         default:{ //评论 4-9
             if(!recentM.commentList.count){
                 LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
+                allCommentCell.label_commentCount.text = @"暂无评论";
                 //                        allCommentCell.label_commentCount.textAlignment = NSTextAlignmentCenter;
                 return allCommentCell;
             }
@@ -459,9 +460,11 @@
         case 0://头像和动态
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-            if(size.height >= 47) size.height = 47;
-            
-            return 47 + size.height;
+          //  if(size.height >= 47) size.height = 47;
+            if(![MyUtil isEmptyString:recentM.message]) {
+                size.height = 15 + size.height;
+            }
+            return 50 + size.height;
         }
             break;
             
@@ -517,7 +520,7 @@
             if (size.height + 10 < 36) {
                 height = 36;
             }else {
-                height = size.height + 10;
+                height = size.height + 15;
             }
             return height;
         }

@@ -314,13 +314,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _indexRow = indexPath.row;
+    FriendsCommentModel *commentM = _dataArray[indexPath.row];
     if (indexPath.row >= 1) {
         if (indexPath.row == 1) {
             if (_recentM.likeList.count) {
                 return;
             }
         }
-        if ([_recentM.userId isEqualToString:_useridStr]) {
+        if ([commentM.userId isEqualToString:_useridStr]) {
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
             [actionSheet showInView:self.view];
         }else{
