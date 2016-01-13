@@ -746,6 +746,10 @@
         toUserId = @"";
         toUserNickName = @"";
     }
+    if(_commentView.textField.text.length > 200) {
+        [MyUtil showCleanMessage:@"内容太多，200字以内"];
+        return NO;
+    }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {

@@ -276,13 +276,18 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *toUserId = nil;
     NSString *toUserNick = nil;
+    NSInteger likeCount = _recentM.likeList.count == 0? 1 : 2;
     if (_isCommentToUser) {
-        FriendsCommentModel *commentModel = _dataArray[_indexRow - _indexStart];
+        FriendsCommentModel *commentModel = _dataArray[_indexRow - likeCount];
         toUserId = commentModel.userId;
         toUserNick = commentModel.nickName;
     }else{
         toUserId = @"";
         toUserNick = @"";
+    }
+    if(_commentView.textField.text.length > 200) {
+        [MyUtil showCleanMessage:@"内容太多，200字以内"];
+        return NO;
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
@@ -374,6 +379,7 @@
     _indexRow = indexPath.row;
     NSInteger likeCount ;
     likeCount = _recentM.likeList.count == 0 ? 1 : 2;
+    if(likeCount == 2 && indexPath.row == 1) return;
     FriendsCommentModel *commentM = _dataArray[indexPath.row - likeCount];
     if (indexPath.row >= 1) {
         if (indexPath.row == 1) {
