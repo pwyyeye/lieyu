@@ -442,6 +442,7 @@
                     [muArr addObjectsFromArray:dataArray];
                 }
             _pageStartCountFriends ++;
+            [weakSelf.tableView setContentOffset:CGPointZero animated:NO];
             [self.tableView.mj_footer endRefreshing];
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
