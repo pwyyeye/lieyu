@@ -29,6 +29,8 @@
 #import "FriendsPicAndVideoModel.h"
 #import "FriendsUserInfoModel.h"
 #import "ISEmojiView.h"
+#import "LYFriendsVideoTableViewCell.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsAddressCellID @"LYFriendsAddressTableViewCell"
@@ -36,6 +38,8 @@
 #define LYFriendsCommentCellID @"LYFriendsCommentTableViewCell"
 #define LYFriendsAllCommentCellID @"LYFriendsAllCommentTableViewCell"
 #define LYFriendsImgCellID @"LYFriendsImgTableViewCell"
+#define LYFriendsVideoCellID @"LYFriendsVideoTableViewCell"
+
 #define LYFriendsCellID @"cell"
 
 @interface LYFriendsToUserMessageViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate>{
@@ -92,7 +96,7 @@
 
 
 - (void)setupTableView{
-    NSArray *array = @[LYFriendsNameCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID];
+    NSArray *array = @[LYFriendsNameCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID,LYFriendsVideoCellID];
     for (NSString *cellIdentifer in array) {
         [self.tableView registerNib:[UINib nibWithNibName:cellIdentifer bundle:nil] forCellReuseIdentifier:cellIdentifer];
     }
@@ -178,7 +182,7 @@
     NSLog(@"----->%@",paraDic);
     __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
-        _dataArray = dataArray;
+        if(dataArray.count){
         _userInfo = userInfo;
         if(_pageStartCount == 0) {
             _dataArray = dataArray;
@@ -188,6 +192,10 @@
         [weakSelf reloadTableViewAndSetUpProperty];
         [weakSelf addTableViewHeader];
         _pageStartCount ++;
+            [self.tableView.mj_footer endRefreshing];
+        }else {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
     }];
 }
 
@@ -204,16 +212,6 @@
 - (void)reloadTableViewAndSetUpProperty{
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
-    if(!((NSArray *)_dataArray).count){
-        return;
-    }
-    FriendsRecentModel *recentM = _dataArray[_section];
-    if ([recentM.liked isEqualToString:@"0"]) {
-        _likeStr = @"1";
-    }else{
-        _likeStr = @"0";
-    }
 }
 
 #pragma mark - 添加表头
@@ -251,29 +249,34 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
-    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
+    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
     cell.btn_like.enabled = NO;
    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = _dataArray[button.tag];
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
+    NSString *likeStr = nil;
+    NSLog(@"---->%@",recentM.liked);
+    if ([[NSString stringWithFormat:@"%@",recentM.liked] isEqual:@"0"]) {//未表白过
+        likeStr = @"1";
+    }else{
+        likeStr = @"0";
+    }
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":likeStr};
     __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
-            if([_likeStr isEqualToString:@"1"]){
-                _likeStr = @"0";
-            }else{
-                _likeStr = @"1";
-            }
         if (result) {//点赞成功
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
             likeModel.icon = app.userModel.avatar_img;
             likeModel.userId = _useridStr;
             [recentM.likeList insertObject:likeModel atIndex:0];
+            recentM.liked = @"1";
         }else{
-            for (FriendsLikeModel *likeM in recentM.likeList) {
+            for (int i = 0; i< recentM.likeList.count;i ++) {
+                FriendsLikeModel *likeM = recentM.likeList[i];
                 if ([likeM.userId isEqualToString:_useridStr]) {
                     [recentM.likeList removeObject:likeM];
                 }
             }
+            recentM.liked = @"0";
         }
         [weakSelf.tableView reloadData];
         cell.btn_like.enabled = YES;
@@ -285,6 +288,16 @@
     _commentBtnTag = button.tag;
     _isCommentToUser = NO;
     [self createCommentView];
+}
+
+- (void)keyBorderApearce:(NSNotification *)note{
+    
+    //    NSString *keybordHeight = note.userInfo[@"UIKeyboardFrameEndUserInfoKey"];
+    CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    [UIView animateWithDuration:.25 animations:^{
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
+        NSLog(@"--->%@------->%@",NSStringFromCGRect(rect),NSStringFromCGRect(_commentView.frame));
+    }];
 }
 
 
@@ -339,6 +352,7 @@
             break;
         case 1:
         {
+            if([recentM.attachType isEqualToString:@"0"]){
             LYFriendsImgTableViewCell *imgCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsImgCellID forIndexPath:indexPath];
             if (imgCell.btnArray.count) {
                 for (UIButton *btn in imgCell.btnArray) {
@@ -375,6 +389,16 @@
                 }
             }
             return imgCell;
+            
+        }else{
+            LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
+            NSString *urlStr = ((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink;
+            videoCell.btn_play.tag = indexPath.section;
+            [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+            [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+            return videoCell;
+        }
+
         }
             break;
         case 2://地址
@@ -463,8 +487,16 @@
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
           //  if(size.height >= 47) size.height = 47;
+//            if(![MyUtil isEmptyString:recentM.message]) {
+//                if(size.height >= 47 ) size.height = 47;
+//            if(![MyUtil isEmptyString:recentM.message]) {
+//                size.height = 15 + size.height;
+//            }
             if(![MyUtil isEmptyString:recentM.message]) {
-                size.height = 15 + size.height;
+                if(size.height >= 47 ) size.height = 47;
+                size.height = 10 + size.height;
+            }else{
+                size.height = 0;
             }
             return 50 + size.height;
         }
@@ -610,6 +642,7 @@
 
 #pragma mark － 创建commentView
 - (void)createCommentView{
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
     _bigView = [[UIView alloc]init];
     _bigView.frame = self.view.bounds;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
@@ -640,6 +673,7 @@
 
 -(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
     _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
+    
 }
 
 - (void)emojiView:(ISEmojiView *)emojiView didPressDeleteButton:(UIButton *)deletebutton{
@@ -675,7 +709,7 @@
         [_commentView.textField becomeFirstResponder];
         [UIView animateWithDuration:.1 animations:^{
             // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
-            _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
+           // _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
         }];
     }
 }
@@ -730,6 +764,36 @@
     return YES;
 }
 
+#pragma mark - 视频播放
+- (void)playVideo:(UIButton *)button{
+    FriendsRecentModel *recentM = _dataArray[button.tag];
+    FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0];
+    //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
+    QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
+    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0]);
+    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+    if (recentM.isMeSendMessage){
+        url = [[NSURL alloc] initFileURLWithPath:pvM.imageLink];
+        
+    }
+    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
+    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
+    [self presentMoviePlayerViewControllerAnimated:player];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (BOOL)shouldAutorotate{
+    return YES;
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

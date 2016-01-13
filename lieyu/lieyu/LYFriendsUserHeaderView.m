@@ -15,9 +15,19 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     _btn_header.layer.cornerRadius = CGRectGetHeight(_btn_header.frame) / 2.f;
+////    _btn_header.layer.cornerRadius = 5;
     _btn_header.layer.masksToBounds = YES;
-    _btn_header.layer.borderColor = RGBA(255, 255,255, 0.5).CGColor;
-    _btn_header.layer.borderWidth = 1;
+//    _btn_header.clipsToBounds = YES;
+//    _btn_header.layer.borderColor = RGBA(0, 0, 0, 0.5).CGColor;
+//    _btn_header.layer.borderWidth = 2;
+//    
+//    _btn_header.layer.shadowColor = [[UIColor blackColor]CGColor];
+//    _btn_header.layer.shadowOpacity = 0.8;
+//    _btn_header.layer.shadowOffset = CGSizeMake(0, 10);
+//    _btn_header.layer.masksToBounds = NO;
+//    _btn_header.layer.shadowRadius = 10;
+//    _btn_header.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_btn_header.bounds cornerRadius:80].CGPath;
+//    _btn_header.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_btn_header.bounds cornerRadius:30].CGPath;
     
 //    _btn_header.layer.shadowColor = [UIColor blackColor].CGColor;
 //    _btn_header.layer.shadowOffset = CGSizeMake(10, 10);

@@ -123,7 +123,8 @@
             [_recentM.likeList insertObject:likeModel atIndex:0];
             _indexStart = 2;
         }else{
-            for (FriendsLikeModel *likeM in _recentM.likeList) {
+            for (int i = 0; i< _recentM.likeList.count;i ++) {
+                FriendsLikeModel *likeM = _recentM.likeList[i];
                 if ([likeM.userId isEqualToString:_useridStr]) {
                     [_recentM.likeList removeObject:likeM];
                 }
@@ -138,11 +139,13 @@
 #pragma mark - 评论action
 - (void)commentClick{
     _isCommentToUser = NO;
+  
     [self createCommentView];
 }
 
 #pragma mark － 创建commentView
 - (void)createCommentView{
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
     _bigView = [[UIView alloc]init];
     _bigView.frame = self.view.bounds;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
@@ -193,13 +196,23 @@
         [_commentView.textField becomeFirstResponder];
         [UIView animateWithDuration:.1 animations:^{
             // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
-            _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
+           // _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
         }];
     }
 }
 
 - (void)sendMessageClick:(UIButton *)button{
     [self textFieldShouldReturn:_commentView.textField];
+}
+
+- (void)keyBorderApearce:(NSNotification *)note{
+    
+    //    NSString *keybordHeight = note.userInfo[@"UIKeyboardFrameEndUserInfoKey"];
+    CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    [UIView animateWithDuration:.25 animations:^{
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
+        NSLog(@"--->%@------->%@",NSStringFromCGRect(rect),NSStringFromCGRect(_commentView.frame));
+    }];
 }
 
 -(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
@@ -238,11 +251,14 @@
     if(!_commentView.textField.text.length) return NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *toUserId = nil;
+    NSString *toUserNick = nil;
     if (_isCommentToUser) {
         FriendsCommentModel *commentModel = _dataArray[_indexRow - _indexStart];
         toUserId = commentModel.userId;
+        toUserNick = commentModel.nickName;
     }else{
         toUserId = @"";
+        toUserNick = @"";
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
@@ -256,7 +272,7 @@
             commentModel.commentId = commentId;
             if(toUserId.length){
                 commentModel.toUserId = toUserId;
-                commentModel.toUserNickName = _recentM.usernick;
+                commentModel.toUserNickName = toUserNick;   
             }else
             {
                 commentModel.toUserId = @"0";
@@ -330,6 +346,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(!indexPath.row) return;
     _indexRow = indexPath.row;
     NSInteger likeCount ;
     likeCount = _recentM.likeList.count == 0 ? 1 : 2;
@@ -453,6 +470,10 @@
     
     [app.window addSubview:picView];
     }
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {

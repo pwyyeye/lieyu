@@ -9,11 +9,12 @@
 #import "LYPictiureView.h"
 #import "FriendsPicAndVideoModel.h"
 
-@interface LYPictiureView ()<UIScrollViewDelegate>{
+@interface LYPictiureView ()<UIScrollViewDelegate,UIActionSheetDelegate>{
     NSInteger _index;//滑动到第几个图片
     NSMutableArray *_imageViewArray;
     NSArray *_oldFrameArr;
     NSInteger _voidIndex;//第几个按钮
+    UIActionSheet *_sheet;
 }
 
 @end
@@ -59,6 +60,11 @@
             
             UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
             [imageView addGestureRecognizer:tapGes];
+            
+            UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(savePicture:)];
+//            longPress.minimumPressDuration = 1;
+            [imageView addGestureRecognizer:longPress];
+            
         }
         
         _scrollView.contentOffset = CGPointMake(SCREEN_WIDTH * index, 0);
@@ -120,6 +126,22 @@
     _index = (scrollView.contentOffset.x / SCREEN_WIDTH);
     NSLog(@"----%ld",_index);
     _pageCtl.currentPage = _index;
+}
+
+- (void)savePicture:(UILongPressGestureRecognizer *)longPress{
+    if(!_sheet){
+        _sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"保存到手机" otherButtonTitles:nil, nil];
+        [_sheet showInView:self];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        UIImageView *imageView = _imageViewArray[_index];
+        UIImageWriteToSavedPhotosAlbum([imageView image], nil, nil, nil);
+        [MyUtil showCleanMessage:@"保存成功！"];
+    }
+        _sheet = nil;
 }
 
 - (void)tapGes{

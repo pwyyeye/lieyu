@@ -21,12 +21,12 @@
 
 - (void)setCommentModel:(FriendsCommentModel *)commentModel{
     _commentModel = commentModel;
-    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:commentModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:commentModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     NSString *string = nil;
     if ([commentModel.toUserId isEqualToString:@"0"]) {
         string = [NSString stringWithFormat:@"%@:%@",commentModel.nickName,commentModel.comment];
     }else{
-        string = [NSString stringWithFormat:@"回复%@:%@",commentModel.nickName,commentModel.comment];
+        string = [NSString stringWithFormat:@"回复%@:%@",commentModel.toUserNickName,commentModel.comment];
     }
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
         if ([commentModel.toUserId isEqualToString:@"0"]) {
