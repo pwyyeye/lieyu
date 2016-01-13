@@ -29,7 +29,7 @@
         _imageView_zang.hidden = YES;
     }
     _label_time.text = [MyUtil calculateDateFromNowWith:friendsNesM.date];
-    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:friendsNesM.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:friendsNesM.likeUserIcon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     
     CGSize size = [friendsNesM.message boundingRectWithSize:CGSizeMake(57, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11]} context:nil].size;
     if(size.height < 15){

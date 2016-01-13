@@ -170,11 +170,19 @@
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    if(_isCommentToUser){
+        NSInteger likeCount = _recentM.likeList.count == 0 ? 1:2;
+        FriendsCommentModel *commentM = _recentM.commentList[_indexRow - likeCount];
+        _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
+    }
+    
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {
         
     }];
+    
+    
 }
 
 - (void)emotionClick:(UIButton *)button{

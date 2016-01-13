@@ -131,6 +131,14 @@
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"MyFriendsMessageCount" object:weakSelf userInfo:@{@"count":reslults,@"icon":icon}];
         _results = reslults;
         _icon = icon;
+        if(_results) _myBadge.hidden = NO;
+        if(_results.integerValue && _index == 1){
+            NSLog(@"---->%@",_results);
+            _myBadge.hidden = NO;
+            [self removeTableViewHeader];
+            [self addTableViewHeader];
+            //  [self.tableView reloadData];
+        }
     }];
 }
 
@@ -166,17 +174,13 @@
 
 - (void)getRecentMessage{
     if(!_timer){
-        _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
     }
 }
 
 - (void)onTimer{
     [self getFriendsNewMessage];
-    if(_results.integerValue && _index == 1){
-        [self removeTableViewHeader];
-        [self addTableViewHeader];
-        [self.tableView reloadData];
-    }
+    
 }
 
 #pragma mark - 登录后获取数据
@@ -785,6 +789,8 @@
 #pragma mark － 创建commentView
 - (void)createCommentView{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    
     _bigView = [[UIView alloc]init];
     _bigView.frame = self.view.bounds;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
@@ -800,8 +806,11 @@
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-   
+    if(_isCommentToUser){
+        FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_index][_section];
+        FriendsCommentModel *commentM = recentM.commentList[_indexRow - 4];
+        _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
+    }
   //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardAnimation object:nil];
     
 //    [UIView animateWithDuration:.25 animations:^{
