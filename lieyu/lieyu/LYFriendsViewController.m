@@ -564,6 +564,7 @@
         _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339 - 54);
          _headerView.btn_newMessage.hidden = YES;
         _headerView.imageView_NewMessageIcon.hidden = YES;
+        _myBadge.hidden = YES;
     }
     [_headerView.imageView_NewMessageIcon sd_setImageWithURL:[NSURL URLWithString:_icon]  placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _headerView.imageView_NewMessageIcon.clipsToBounds = YES;
