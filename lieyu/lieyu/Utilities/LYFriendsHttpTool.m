@@ -112,7 +112,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_DeleteMyMessage baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"------->%@",response[@"message"]);
         compelte(YES);
-        [MyUtil showPlaceMessage:response[@"message"]];
+        [MyUtil showCleanMessage:@"删除成功"];
     }failure:^(NSError *err) {
         
     }];
