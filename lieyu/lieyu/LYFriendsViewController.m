@@ -447,7 +447,7 @@
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
         }
-        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
+        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:NO];
     }];
 }
 
