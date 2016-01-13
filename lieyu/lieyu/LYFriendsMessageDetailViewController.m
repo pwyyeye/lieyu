@@ -105,6 +105,8 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick{
+    LYFriendsHeaderTableViewCell *cell = (LYFriendsHeaderTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"type":_likeStr};
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
@@ -128,6 +130,7 @@
             }
             _indexStart = 1;
         }
+        cell.btn_like.enabled = YES;
         [weakSelf.tableView reloadData];
     }];
 }
@@ -166,6 +169,10 @@
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
+        _commentView.btn_send_cont_width.constant = 30;
+        [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
+        [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self updateViewConstraints];
         [_commentView.textField endEditing:YES];
         ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
         emojiView.delegate = self;
@@ -178,6 +185,9 @@
             NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
         }];
     }else{
+        _commentView.btn_send_cont_width.constant = 0;
+        [_commentView.btn_send setTitle:@"" forState:UIControlStateNormal];
+        [self updateViewConstraints];
         [_commentView.textField endEditing:YES];
         _commentView.textField.inputView = UIKeyboardAppearanceDefault;
         [_commentView.textField becomeFirstResponder];
@@ -187,6 +197,11 @@
         }];
     }
 }
+
+- (void)sendMessageClick:(UIButton *)button{
+    [self textFieldShouldReturn:_commentView.textField];
+}
+
 -(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
     _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
 }
@@ -239,8 +254,13 @@
             commentModel.nickName = app.userModel.usernick;
             commentModel.userId = _useridStr;
             commentModel.commentId = commentId;
-            if(toUserId.length) commentModel.toUserId = toUserId;
-            else commentModel.toUserId = @"0";
+            if(toUserId.length){
+                commentModel.toUserId = toUserId;
+                commentModel.toUserNickName = _recentM.usernick;
+            }else
+            {
+                commentModel.toUserId = @"0";
+            }
             [_dataArray addObject:commentModel];
             _recentM.commentNum = [NSString stringWithFormat:@"%ld",_recentM.commentNum.intValue+1];
             //  [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
@@ -311,13 +331,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _indexRow = indexPath.row;
+    NSInteger likeCount ;
+    likeCount = _recentM.likeList.count == 0 ? 1 : 2;
+    FriendsCommentModel *commentM = _dataArray[indexPath.row - likeCount];
     if (indexPath.row >= 1) {
         if (indexPath.row == 1) {
             if (_recentM.likeList.count) {
                 return;
             }
         }
-        if ([_recentM.userId isEqualToString:_useridStr]) {
+        if ([commentM.userId isEqualToString:_useridStr]) {
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
             [actionSheet showInView:self.view];
         }else{
@@ -376,14 +399,14 @@
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSInteger count = _recentM.likeList.count == 0 ? 1 : 2;
     if (!buttonIndex) {//删除我的评论
-        FriendsCommentModel *commentM = _recentM.commentList[_indexRow - 4];
+        FriendsCommentModel *commentM = _dataArray[_indexRow - count];
         NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
         __weak LYFriendsMessageDetailViewController *weakSelf = self;
         [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
             if(result){
-                NSMutableArray *commentArr = _recentM.commentList;
-                [commentArr removeObjectAtIndex:_indexRow - 4];
+                [_dataArray removeObjectAtIndex:_indexRow - count];
                 _recentM.commentNum = [NSString stringWithFormat:@"%ld",_recentM.commentNum.integerValue - 1];
                 [weakSelf.tableView reloadData];
             }

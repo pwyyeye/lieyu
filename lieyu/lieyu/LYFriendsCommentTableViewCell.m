@@ -20,7 +20,7 @@
 
 - (void)setCommentM:(FriendsCommentModel *)commentM{
     _commentM = commentM;
-    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:commentM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:commentM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     NSString *string = nil;
     if([commentM.toUserId isEqualToString:@"0"]) {
         string = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];

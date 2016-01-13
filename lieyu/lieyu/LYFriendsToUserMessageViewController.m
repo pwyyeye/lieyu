@@ -180,8 +180,10 @@
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
         _dataArray = dataArray;
         _userInfo = userInfo;
-        for (FriendsRecentModel *r in _dataArray) {
-            NSLog(@"--->%@",r.usernick);
+        if(_pageStartCount == 0) {
+            _dataArray = dataArray;
+        }else{
+            [_dataArray addObjectsFromArray:dataArray];
         }
         [weakSelf reloadTableViewAndSetUpProperty];
         [weakSelf addTableViewHeader];
@@ -223,7 +225,7 @@
     _headerView.label_name.text = _userInfo.usernick;
     _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     _headerView.btn_newMessage.hidden = YES;
-    [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpeg"]];
     _headerView.ImageView_bg.clipsToBounds = YES;
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_header addTarget:self action:@selector(headerImgClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -249,6 +251,8 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
+    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
+    cell.btn_like.enabled = NO;
    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = _dataArray[button.tag];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
@@ -272,6 +276,7 @@
             }
         }
         [weakSelf.tableView reloadData];
+        cell.btn_like.enabled = YES;
     }];
 }
 
@@ -425,6 +430,7 @@
         default:{ //评论 4-9
             if(!recentM.commentList.count){
                 LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
+                allCommentCell.label_commentCount.text = @"暂无评论";
                 //                        allCommentCell.label_commentCount.textAlignment = NSTextAlignmentCenter;
                 return allCommentCell;
             }
@@ -456,9 +462,11 @@
         case 0://头像和动态
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-            if(size.height >= 47) size.height = 47;
-            
-            return 47 + size.height;
+          //  if(size.height >= 47) size.height = 47;
+            if(![MyUtil isEmptyString:recentM.message]) {
+                size.height = 15 + size.height;
+            }
+            return 50 + size.height;
         }
             break;
             
@@ -511,10 +519,10 @@
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
             CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             CGFloat height;
-            if (size.height < 36) {
+            if (size.height + 10 < 36) {
                 height = 36;
             }else {
-                height = size.height + 10;
+                height = size.height + 15;
             }
             return height;
         }
@@ -583,7 +591,7 @@
 //            break;
         case 2:
         {
-            cell.separatorInset = UIEdgeInsetsMake(0, 7, 0, 7);
+            cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
         }
             break;
         case 3:
@@ -624,6 +632,12 @@
         
     }];
 }
+
+- (void)sendMessageClick:(UIButton *)button{
+    [self textFieldShouldReturn:_commentView.textField];
+}
+
+
 -(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
     _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
 }
@@ -637,6 +651,10 @@
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
+        _commentView.btn_send_cont_width.constant = 30;
+        [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
+        [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self updateViewConstraints];
         [_commentView.textField endEditing:YES];
         ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
         emojiView.delegate = self;
@@ -649,6 +667,9 @@
             NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
         }];
     }else{
+        _commentView.btn_send_cont_width.constant = 0;
+        [_commentView.btn_send setTitle:@"" forState:UIControlStateNormal];
+        [self updateViewConstraints];
         [_commentView.textField endEditing:YES];
         _commentView.textField.inputView = UIKeyboardAppearanceDefault;
         [_commentView.textField becomeFirstResponder];

@@ -16,8 +16,6 @@
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    _label_constellation.hidden = YES;
-    _label_work.hidden = YES;
     
     _label_constellation.layer.cornerRadius = 2;
     _label_constellation.layer.masksToBounds = YES;
@@ -37,18 +35,35 @@
 //    if(recentM.message.length >26){
 //        [_label_content setText:[recentM.message substringToIndex:25]];
 //    }else{
-         [_label_content setText:recentM.message];
-//    }
     
-    if([MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){
+    
+    if(![MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){
         _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
         _label_constellation.hidden = NO;
+    }else{
+                _label_constellation.hidden = YES;
     }
+    CGSize size = [((FriendsTagModel *)recentM.tags[0]).tagname boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size;
+    self.label_work_contraint_width.constant = size.width + 5;
+    [self updateConstraints];
     
     if(recentM.tags.count){
         _label_work.text = ((FriendsTagModel *)recentM.tags[0]).tagname;
         _label_work.hidden = NO;
+    }else {
+        _label_work.hidden = YES;
     }
+    
+    if(recentM.message != nil){
+        [_label_content setText:recentM.message];
+    }else{
+        _label_content.text = @" ";
+    }
+}
+
+- (void)updateConstraints{
+    [super updateConstraints];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

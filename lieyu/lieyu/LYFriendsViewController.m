@@ -176,7 +176,7 @@
 //}
 
 #pragma mark - 作为代理收取视频路径地址与截图
-- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content{
+- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location{
     self.mediaImage = image;
     self.mediaUrl = mediaUrl;
     self.content = content;
@@ -195,6 +195,7 @@
     recentM.isMeSendMessage = YES;
     recentM.commentList = [[NSMutableArray alloc]init];
     recentM.likeList = [[NSMutableArray alloc]init];
+    recentM.location = location;
     
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     pvModel.imageLink = mediaUrl;
@@ -211,7 +212,7 @@
 }
 
 #pragma mark - 作为代理接受返回的图片
-- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content{
+- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location{
     self.imageArray = imagesArray;
     self.content = content;
     
@@ -222,14 +223,17 @@
     recentM.avatar_img = app.userModel.avatar_img;
     recentM.commentList = [[NSMutableArray alloc]init];
     recentM.likeList = [[NSMutableArray alloc]init];
+    recentM.location = location;
+    recentM.isMeSendMessage = YES;
     
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
+    [dateFmt setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     recentM.date = [dateFmt stringFromDate:[NSDate date]];
-    NSLog(@"---->%@",app.userModel.tags);
+    NSLog(@"---->%@",[dateFmt stringFromDate:[NSDate date]]);
     recentM.tags = app.userModel.tags;
     
     recentM.birthday = app.userModel.birthday;
-    recentM.message = content;
+    recentM.message = [NSString stringWithFormat:@"%@",content];
     
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     NSString *imageLink = nil;
@@ -246,25 +250,25 @@
         else imageLink = [imageLink stringByAppendingString:appendLink];
         NSLog(@"--->%@",imageLink);
         
-        switch (imagesArray.count) {
-            case 1:
-            {
-                picWidth = 0;
-            }
-                break;
-            case 2:
-            {
-                picWidth = 450;
-            }
-                break;
-            default:{
-                if(!i) picWidth = 0;
-                else picWidth = 450;
-            }
-                break;
-        }
+//        switch (imagesArray.count) {
+//            case 1:
+//            {
+//                picWidth = 0;
+//            }
+//                break;
+//            case 2:
+//            {
+//                picWidth = 450;
+//            }
+//                break;
+//            default:{
+//                if(!i) picWidth = 0;
+//                else picWidth = 450;
+//            }
+//                break;
+//        }
         
-         [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil getQiniuUrl:[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] width:picWidth andHeight:picWidth]]];
+         [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil getQiniuUrl:[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] width:0 andHeight:0]]];
         _saveImageAndVideoIndex ++;
         
     }
@@ -387,6 +391,9 @@
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
+    if(self.navigationController.navigationBarHidden == YES){
+        self.navigationController.navigationBarHidden = NO;
+    }
     [self setupNavMenuView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -475,15 +482,15 @@
     else [self removeTableViewHeader];
     [self.tableView.mj_header endRefreshing];
     
-    if(!((NSArray *)_dataArray[_index]).count){
-        return;
-    }
-    FriendsRecentModel *recentM = _dataArray[_index][_section];
-    if ([[NSString stringWithFormat:@"%@",recentM.liked] isEqualToString:@"0"]) {
-        _likeStr = @"1";
-    }else{
-        _likeStr = @"0";
-    }
+//    if(!((NSArray *)_dataArray[_index]).count || _section >= 10){
+//        return;
+//    }
+//    FriendsRecentModel *recentM = _dataArray[_index][_section];
+//    if ([[NSString stringWithFormat:@"%@",recentM.liked] isEqualToString:@"0"]) {
+//        _likeStr = @"1";
+//    }else{
+//        _likeStr = @"0";
+//    }
 }
 
 #pragma mark - 玩友圈action
@@ -533,8 +540,9 @@
     [self updateViewConstraints];
     
     NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
-    if(imageData)    _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
-    else [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    if(!_userBgImageUrl)    _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
+    else [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpeg"]];
+    _headerView.ImageView_bg.clipsToBounds = YES;
     _headerView.ImageView_bg.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseBgImage)];
     [_headerView.ImageView_bg addGestureRecognizer:tapGes];
@@ -695,29 +703,38 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
+    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
+    cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-      FriendsRecentModel *recentM = _dataArray[_index][button.tag];
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
+      FriendsRecentModel *recentModel = _dataArray[_index][button.tag];
+    NSString *likeStr = nil;
+    if ([[NSString stringWithFormat:@"%@",recentModel.liked] isEqual:@"0"]) {//未表白过
+        likeStr = @"1";
+    }else{
+        likeStr = @"0";
+    }
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentModel.id,@"type":likeStr};
+    
     __weak LYFriendsViewController *weakSelf = self;
+    NSLog(@"---->%ld-----%@",recentModel.likeList.count,recentModel);
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
-        if([_likeStr isEqualToString:@"1"]){
-            _likeStr = @"0";
-        }else{
-            _likeStr = @"1";
-        }
         if (result) {//点赞成功
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
             likeModel.icon = app.userModel.avatar_img;
             likeModel.userId = _useridStr;
-            [recentM.likeList insertObject:likeModel atIndex:0];
+//            NSMutableArray *array = recentM.likeList;
+            [recentModel.likeList insertObject:likeModel atIndex:0];
+            recentModel.liked = @"1";
         }else{
-            for (FriendsLikeModel *likeM in recentM.likeList) {
+            for (FriendsLikeModel *likeM in recentModel.likeList) {
                 if ([likeM.userId isEqualToString:_useridStr]) {
-                    [recentM.likeList removeObject:likeM];
+                    [recentModel.likeList removeObject:likeM];
                 }
             }
+                recentModel.liked = @"0";
         }
         [weakSelf.tableView reloadData];
+        cell.btn_like.enabled = YES;
     }];
 }
 
@@ -725,6 +742,7 @@
 - (void)commentClick:(UIButton *)button{
     _commentBtnTag = button.tag;
     _isCommentToUser = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
     [self createCommentView];
 }
 
@@ -738,7 +756,7 @@
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 49);
-    _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
+    _commentView.bgView.layer.borderColor = RGBA(0,0,0, .5).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
     
@@ -746,10 +764,23 @@
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
+   
+  //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardAnimation object:nil];
+    
+//    [UIView animateWithDuration:.25 animations:^{
+//        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+}
+
+- (void)keyBorderApearce:(NSNotification *)note{
+
+//    NSString *keybordHeight = note.userInfo[@"UIKeyboardFrameEndUserInfoKey"];
+    CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     [UIView animateWithDuration:.25 animations:^{
-        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
-    } completion:^(BOOL finished) {
-        
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
+        NSLog(@"--->%@------->%@",NSStringFromCGRect(rect),NSStringFromCGRect(_commentView.frame));
     }];
 }
 
@@ -761,6 +792,10 @@
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
+        _commentView.btn_send_cont_width.constant = 30;
+        [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
+        [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self updateViewConstraints];
     [_commentView.textField endEditing:YES];
     ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
     emojiView.delegate = self;
@@ -775,12 +810,20 @@
     }else{
         [_commentView.textField endEditing:YES];
         _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        _commentView.btn_send_cont_width.constant = 0;
+         [_commentView.btn_send setTitle:@"" forState:UIControlStateNormal];
+        [self updateViewConstraints];
         [_commentView.textField becomeFirstResponder];
         [UIView animateWithDuration:.1 animations:^{
            // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
             _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
         }];
     }
+    
+}
+
+- (void)sendMessageClick:(UIButton *)button{
+    [self textFieldShouldReturn:_commentView.textField];
 }
 
 -(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
@@ -1031,7 +1074,6 @@
                 case 0:
                 {
                     LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
-                    recentM.message = @"";
                     nameCell.recentM = recentM;
                     nameCell.btn_delete.tag = indexPath.section;
                     [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -1042,7 +1084,7 @@
                     }else{
                         nameCell.btn_delete.hidden = NO;
                     }
-                    if([MyUtil isEmptyString:recentM.id]){
+                    if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){
                         nameCell.btn_delete.enabled = NO;
                     }
                     return nameCell;
@@ -1191,9 +1233,14 @@
         case 0://头像和动态
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-            if(size.height >= 47) size.height = 47;
-                                                                                                                                                     
-             return 47 + size.height;
+           // if(size.height >= 47) size.height = 47;
+            if(![MyUtil isEmptyString:recentM.message]) {
+                if(size.height >= 47 ) size.height = 47;
+                size.height = 10 + size.height;
+            }else{
+                size.height = 0;
+            }
+             return 55 + size.height ;
         }
             break;
             
@@ -1247,10 +1294,10 @@
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
             CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             CGFloat height;
-            if (size.height < 36) {
+            if (size.height + 10 < 36) {
                 height = 36;
             }else {
-                height = size.height + 10;
+                height = size.height + 15;
             }
             return height;
         }
@@ -1292,6 +1339,10 @@
 - (void)pushUserMessagePage:(UIButton *)button{
     FriendsRecentModel *recentM = _dataArray[_index][button.tag];
 //    if([recentM.userId isEqualToString:_useridStr]) return;
+    if([recentM.userId isEqualToString:_useridStr]) {
+        [self myClick:nil];
+        return;
+    }
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsUserMegVC.friendsId = recentM.userId;
     [self.navigationController pushViewController:friendsUserMegVC animated:YES];
@@ -1301,6 +1352,10 @@
 - (void)pushUserPage:(LYFriendsCommentButton *)button{
     FriendsRecentModel *recentM = _dataArray[_index][button.tag];
     FriendsCommentModel *commentModel = recentM.commentList[button.indexTag - 4];
+    if([commentModel.userId isEqualToString:_useridStr]) {
+        [self myClick:nil];
+        return;
+    }
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsUserMegVC.friendsId = commentModel.userId;
     [self.navigationController pushViewController:friendsUserMegVC animated:YES];
@@ -1327,7 +1382,7 @@
 //            break;
         case 2:
         {
-            cell.separatorInset = UIEdgeInsetsMake(0, 7, 0, 7);
+            cell.separatorInset = UIEdgeInsetsMake(0, -100, 0, 0);
             if(!recentM.commentList.count && !recentM.likeList.count) cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
         }
             break;

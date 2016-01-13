@@ -18,9 +18,15 @@
     _btn_header.layer.masksToBounds = YES;
     _btn_header.layer.borderColor = RGBA(255, 255,255, 0.5).CGColor;
     _btn_header.layer.borderWidth = 1;
-    _btn_header.layer.shadowColor = RGBA(0, 0, 0, 0.5).CGColor;
-    _btn_header.layer.shadowOffset = CGSizeMake(10, 10);
-    _btn_header.layer.shadowRadius = 10;
+    
+//    _btn_header.layer.shadowColor = [UIColor blackColor].CGColor;
+//    _btn_header.layer.shadowOffset = CGSizeMake(10, 10);
+//    _btn_header.layer.shadowOpacity = 0.8;
+//    _btn_header.layer.shadowRadius = 20;
+//    
+//    _label_name.layer.shadowOffset = CGSizeMake(10, 10);
+//    _label_name.layer.shadowColor = [UIColor blackColor].CGColor;
+//    _label_name.layer.shadowRadius = 1;
     
     _btn_newMessage.layer.cornerRadius = 4;
     _btn_newMessage.layer.masksToBounds = YES;

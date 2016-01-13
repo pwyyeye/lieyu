@@ -416,6 +416,11 @@
         return;
     }
     
+    if(tf.text.length >= 8) {
+        [MyUtil showCleanMessage:@"昵称不能超过八个字符"];
+        return;
+    }
+    
     NSLog(@"----pass-pass%@---",tf.text);
     _modifyNick=tf.text;
     
