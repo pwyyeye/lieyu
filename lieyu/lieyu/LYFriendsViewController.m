@@ -187,8 +187,10 @@
     FriendsRecentModel *recentM = [[FriendsRecentModel alloc]init];
     recentM.attachType = @"1";
     recentM.username = app.userModel.username;
+    recentM.usernick = app.userModel.usernick;
     recentM.avatar_img = app.userModel.avatar_img;
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
+    [dateFmt setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     recentM.date = [dateFmt stringFromDate:[NSDate date]];
     recentM.tags = app.userModel.tags;
     recentM.birthday = app.userModel.birthday;
