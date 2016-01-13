@@ -182,20 +182,20 @@
     NSLog(@"----->%@",paraDic);
     __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
-        if(dataArray.count){
         _userInfo = userInfo;
+        if(dataArray.count){
         if(_pageStartCount == 0) {
             _dataArray = dataArray;
         }else{
             [_dataArray addObjectsFromArray:dataArray];
         }
         [weakSelf reloadTableViewAndSetUpProperty];
-        [weakSelf addTableViewHeader];
         _pageStartCount ++;
             [self.tableView.mj_footer endRefreshing];
         }else {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
+        [weakSelf addTableViewHeader];
     }];
 }
 
