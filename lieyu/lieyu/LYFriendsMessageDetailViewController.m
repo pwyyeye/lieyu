@@ -172,7 +172,10 @@
     
     if(_isCommentToUser){
         NSInteger likeCount = _recentM.likeList.count == 0 ? 1:2;
-        FriendsCommentModel *commentM = _recentM.commentList[_indexRow - likeCount];
+//        for (FriendsCommentModel *com in _recentM.commentList) {
+//            NSLog(@"--->%@",com.comment);
+//        }
+        FriendsCommentModel *commentM = _dataArray[_indexRow - likeCount];
         _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
     }
     
