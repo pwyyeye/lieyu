@@ -1004,7 +1004,15 @@
             
             NSString *str=pinkInfoModel.inmenberAvatar_img ;
             [cell.pkUserimageView  setImageWithURL:[NSURL URLWithString:str]];
-            cell.pkNameLal.text=pinkInfoModel.inmemberName;
+            NSString *inmemberName;
+            if(pinkInfoModel.paymentStatus==1&&pinkInfoModel.price.doubleValue==0.0){
+                inmemberName=[NSString stringWithFormat:@"%@(免费)",pinkInfoModel.inmemberName];
+            }else if(pinkInfoModel.paymentStatus==1&&pinkInfoModel.price.doubleValue>0.0){
+                inmemberName=[NSString stringWithFormat:@"%@(已付款)",pinkInfoModel.inmemberName];
+            }else{
+                inmemberName=[NSString stringWithFormat:@"%@(待付款)",pinkInfoModel.inmemberName];
+            }
+            cell.pkNameLal.text=inmemberName;
             if(userId!=pinkInfoModel.inmember){
                 [cell.siliaoBtn setHidden:NO];
                 [cell.phoneBtn setHidden:NO];
