@@ -448,9 +448,9 @@
 		38F0FE7F1C4692C30070092D /* biaobai_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE791C4692C30070092D /* biaobai_icon.png */; };
 		38F0FE801C4692C30070092D /* biaobai_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7A1C4692C30070092D /* biaobai_icon@2x.png */; };
 		38F0FE811C4692C30070092D /* biaobai_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7B1C4692C30070092D /* biaobai_icon@3x.png */; };
-		38F0FE821C4692C30070092D /* haoyou_biaobai copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7C1C4692C30070092D /* haoyou_biaobai copy.png */; };
-		38F0FE831C4692C30070092D /* haoyou_biaobai copy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7D1C4692C30070092D /* haoyou_biaobai copy@2x.png */; };
-		38F0FE841C4692C30070092D /* haoyou_biaobai copy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7E1C4692C30070092D /* haoyou_biaobai copy@3x.png */; };
+		38F0FE821C4692C30070092D /* haoyou_biaobai.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7C1C4692C30070092D /* haoyou_biaobai.png */; };
+		38F0FE831C4692C30070092D /* haoyou_biaobai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7D1C4692C30070092D /* haoyou_biaobai@2x.png */; };
+		38F0FE841C4692C30070092D /* haoyou_biaobai@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7E1C4692C30070092D /* haoyou_biaobai@3x.png */; };
 		85028A5B1C3D0E7100B07BBD /* FriendsTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85028A5A1C3D0E7100B07BBD /* FriendsTagModel.m */; };
 		85138DFD1C33A49500BD6F6C /* LYFriendsCommentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 85138DFC1C33A49500BD6F6C /* LYFriendsCommentButton.m */; };
 		8518066A1C2E284100006804 /* FriendsCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 851806691C2E284100006804 /* FriendsCommentModel.m */; };
@@ -1672,9 +1672,9 @@
 		38F0FE791C4692C30070092D /* biaobai_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biaobai_icon.png; sourceTree = "<group>"; };
 		38F0FE7A1C4692C30070092D /* biaobai_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaobai_icon@2x.png"; sourceTree = "<group>"; };
 		38F0FE7B1C4692C30070092D /* biaobai_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaobai_icon@3x.png"; sourceTree = "<group>"; };
-		38F0FE7C1C4692C30070092D /* haoyou_biaobai copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haoyou_biaobai copy.png"; sourceTree = "<group>"; };
-		38F0FE7D1C4692C30070092D /* haoyou_biaobai copy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haoyou_biaobai copy@2x.png"; sourceTree = "<group>"; };
-		38F0FE7E1C4692C30070092D /* haoyou_biaobai copy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haoyou_biaobai copy@3x.png"; sourceTree = "<group>"; };
+		38F0FE7C1C4692C30070092D /* haoyou_biaobai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = haoyou_biaobai.png; sourceTree = "<group>"; };
+		38F0FE7D1C4692C30070092D /* haoyou_biaobai@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haoyou_biaobai@2x.png"; sourceTree = "<group>"; };
+		38F0FE7E1C4692C30070092D /* haoyou_biaobai@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "haoyou_biaobai@3x.png"; sourceTree = "<group>"; };
 		5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		85028A591C3D0E7100B07BBD /* FriendsTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTagModel.h; sourceTree = "<group>"; };
@@ -4053,9 +4053,9 @@
 				38F0FE791C4692C30070092D /* biaobai_icon.png */,
 				38F0FE7A1C4692C30070092D /* biaobai_icon@2x.png */,
 				38F0FE7B1C4692C30070092D /* biaobai_icon@3x.png */,
-				38F0FE7C1C4692C30070092D /* haoyou_biaobai copy.png */,
-				38F0FE7D1C4692C30070092D /* haoyou_biaobai copy@2x.png */,
-				38F0FE7E1C4692C30070092D /* haoyou_biaobai copy@3x.png */,
+				38F0FE7C1C4692C30070092D /* haoyou_biaobai.png */,
+				38F0FE7D1C4692C30070092D /* haoyou_biaobai@2x.png */,
+				38F0FE7E1C4692C30070092D /* haoyou_biaobai@3x.png */,
 				853C4C871C311AAD00D48BA2 /* gengduo_icon.png */,
 				853C4C881C311AAD00D48BA2 /* gengduo_icon@2x.png */,
 				853C4C891C311AAD00D48BA2 /* gengduo_icon@3x.png */,
@@ -6018,7 +6018,7 @@
 				85F5453C1C1408040013B92B /* circleWhite@2x.png in Resources */,
 				853DBD941C3B55E500EAE60E /* biaoqian_wanyouquan_zhuangtai2@3x.png in Resources */,
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
-				38F0FE841C4692C30070092D /* haoyou_biaobai copy@3x.png in Resources */,
+				38F0FE841C4692C30070092D /* haoyou_biaobai@3x.png in Resources */,
 				381D1E971C453F1A0039687C /* shadow@2x.png in Resources */,
 				AD078C651C33CDB700A056D1 /* icon_yaoyiyao_normal@3x.png in Resources */,
 				38E5D7E61C12DC43004B49D2 /* icon_collect.png in Resources */,
@@ -6206,7 +6206,7 @@
 				ADB164BD1C167095000BAD3C /* lieyuIcon@2x.png in Resources */,
 				853C4C6E1C311A5C00D48BA2 /* zengjia_icon@3x.png in Resources */,
 				38E5D6FA1C100B01004B49D2 /* TimePickerView.xib in Resources */,
-				38F0FE821C4692C30070092D /* haoyou_biaobai copy.png in Resources */,
+				38F0FE821C4692C30070092D /* haoyou_biaobai.png in Resources */,
 				38E5D7A21C113879004B49D2 /* choose@3x.png in Resources */,
 				381A01F71C144E1B00592485 /* shoppingCar.png in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
@@ -6346,7 +6346,7 @@
 				A2FD57631BAFE6C000CFFF92 /* CaoCanCell.xib in Resources */,
 				38E5D6C81C0EA4DF004B49D2 /* CustomBtn_Selected@3x.png in Resources */,
 				15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */,
-				38F0FE831C4692C30070092D /* haoyou_biaobai copy@2x.png in Resources */,
+				38F0FE831C4692C30070092D /* haoyou_biaobai@2x.png in Resources */,
 				15E240961BB295090090D240 /* LYOrderBottomForFinishView.xib in Resources */,
 				A2020D761BA67FA40090B92A /* Fill2097@2x.png in Resources */,
 				853C4C7F1C311A8F00D48BA2 /* daohang_xiangji@2x.png in Resources */,
