@@ -172,7 +172,10 @@
     
     if(_isCommentToUser){
         NSInteger likeCount = _recentM.likeList.count == 0 ? 1:2;
-        FriendsCommentModel *commentM = _recentM.commentList[_indexRow - likeCount];
+//        for (FriendsCommentModel *com in _recentM.commentList) {
+//            NSLog(@"--->%@",com.comment);
+//        }
+        FriendsCommentModel *commentM = _dataArray[_indexRow - likeCount];
         _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
     }
     
@@ -209,6 +212,7 @@
         [self updateViewConstraints];
         [_commentView.textField endEditing:YES];
         _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        [_commentView.textField reloadInputViews];
         [_commentView.textField becomeFirstResponder];
         [UIView animateWithDuration:.1 animations:^{
             // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));

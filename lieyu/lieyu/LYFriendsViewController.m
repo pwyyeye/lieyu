@@ -175,7 +175,7 @@
 
 - (void)getRecentMessage{
     if(!_timer){
-        _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
     }
 }
 
