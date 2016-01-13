@@ -111,8 +111,8 @@
 
 #pragma mark - 获取我的未读消息数
 - (void)getFriendsNewMessage{
-    _results = nil;
-    _icon = nil;
+    _results = @"";
+    _icon = @"";
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
     NSDictionary *paraDic = @{@"userId":_useridStr};
@@ -127,11 +127,12 @@
 //        [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
         
 
-        _headerView.btn_newMessage.hidden = NO;
+        //_headerView.btn_newMessage.hidden = NO;
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"MyFriendsMessageCount" object:weakSelf userInfo:@{@"count":reslults,@"icon":icon}];
         _results = reslults;
         _icon = icon;
         if(_results) _myBadge.hidden = NO;
+        else _myBadge.hidden = YES;
         if(_results.integerValue && _index == 1){
             NSLog(@"---->%@",_results);
             _myBadge.hidden = NO;
@@ -174,7 +175,7 @@
 
 - (void)getRecentMessage{
     if(!_timer){
-        _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
     }
 }
 
@@ -546,7 +547,7 @@
     _myBtn.alpha = 1;
     _friendsBtnSelect = NO;
     _pageStartCountMys = 0;
-    _myBadge.hidden = YES;
+    //_myBadge.hidden = YES;
 //    _index = 1;
     [self getDataMysWithSetContentOffSet:YES];
 //    [self addTableViewHeader];
