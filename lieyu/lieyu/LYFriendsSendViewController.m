@@ -72,8 +72,8 @@
 }
 
 //- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    UITouch *touch = [[event touchesForView:self.textView]anyObject];
-//    if ([self.textView isFirstResponder] && [touch view] == self.textView) {
+//    UITouch *touch = [touches anyObject];
+//    if ([self.textView isFirstResponder] && [touch view] != self.textView) {
 //        [self.textView resignFirstResponder];
 //    }
 //    [super touchesBegan:touches withEvent:event];
@@ -138,7 +138,7 @@
         [self.textView setReturnKeyType:UIReturnKeyDone];
 //        [self.textView setKeyboardAppearance:UIKeyboardAppearanceAlert];
     }
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+//    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 //    self.returnHandler = [[IQKeyboardReturnKeyHandler alloc]initWithViewController:self];
 //    self.returnHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
@@ -151,15 +151,16 @@
 
 #pragma mark 判断是否退出本次编辑
 - (void)gotoBack{
+    if([self.textView isFirstResponder]){
+        [self.textView resignFirstResponder];
+    }
     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确定放弃本次编辑？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil]show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
         //退出编辑界面之后删除视频文件
-        if([self.textView isFirstResponder]){
-            [self.textView resignFirstResponder];
-        }
+        
         [self deleteFile:self.mediaUrl];
         [self.navigationController popViewControllerAnimated:YES];
     }
