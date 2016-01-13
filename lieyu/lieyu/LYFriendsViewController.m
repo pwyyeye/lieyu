@@ -84,6 +84,7 @@
     NSString *_icon;//新消息头像
     NSInteger _deleteMessageTag;//删除动态的btn的tag
         NSInteger _saveImageAndVideoIndex;
+        NSTimer *_timer;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -110,18 +111,21 @@
 
 #pragma mark - 获取我的未读消息数
 - (void)getFriendsNewMessage{
+    _results = nil;
+    _icon = nil;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
     NSDictionary *paraDic = @{@"userId":_useridStr};
     //__weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
 //        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
-        if(reslults.integerValue){
-            _myBadge.hidden = NO;
-            _headerView.btn_newMessage.hidden = NO;
-        }
-        [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-        [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
+//        if(reslults.integerValue){
+//            _myBadge.hidden = NO;
+//            _headerView.btn_newMessage.hidden = NO;
+//        }
+//       // [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+//        [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
+        
 
         _headerView.btn_newMessage.hidden = NO;
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"MyFriendsMessageCount" object:weakSelf userInfo:@{@"count":reslults,@"icon":icon}];
@@ -157,6 +161,22 @@
     [self getDataFriendsWithSetContentOffSet:NO];
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageCountNotice:) name:@"MyFriendsMessageCount" object:nil];
+    [self getRecentMessage];
+}
+
+- (void)getRecentMessage{
+    if(!_timer){
+        _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)onTimer{
+    [self getFriendsNewMessage];
+    if(_results.integerValue && _index == 1){
+        [self removeTableViewHeader];
+        [self addTableViewHeader];
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - 登录后获取数据

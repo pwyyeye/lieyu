@@ -100,9 +100,12 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
         self.textView.text = @"";
+    }
+    if([self.textView isFirstResponder]){
+        [self.textView resignFirstResponder];
+    }else{
         [self.textView becomeFirstResponder];
     }
-    
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     self.returnHandler = [[IQKeyboardReturnKeyHandler alloc]initWithViewController:self];
     self.returnHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;
@@ -132,7 +135,7 @@
 - (void)sendClick{
     [self.textView resignFirstResponder];
     if(self.textView.text.length >= 800){
-        [MyUtil showCleanMessage:@"输入内容过长！"];
+        [MyUtil showCleanMessage:@"内容过长，限800字！"];
         return;
     }
 //    [app startLoading];
@@ -423,6 +426,8 @@
             [self.view addSubview:button];
             button.enabled = NO;
             imageView.tag = self.initCount + 100;
+            //添加按钮消失时，textview面积增加
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width, self.textView.frame.size.height + 80);
             self.addButton.hidden = YES;
             
         }else{
@@ -581,6 +586,8 @@
             [self deleteFile:self.mediaUrl];
             self.mediaUrl = [[NSMutableString alloc]initWithString:@""];
         }
+        //显示添加按钮时，textview面积减小
+        self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width, self.textView.frame.size.height + 80);
         self.addButton.hidden = NO;
         self.addButton.frame = CGRectMake(12.5, 155, 70, 70);
         self.pageCount ++;
