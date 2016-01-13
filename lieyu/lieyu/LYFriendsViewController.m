@@ -130,8 +130,14 @@
     }];
 }
 
+- (void)reloadTableViewData{
+    [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadTableViewData" object:nil];
+}
+
 #pragma mark - 设置全局属性
 - (void)setupAllProperty{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData) name:@"reloadTableView" object:nil];
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0; i < 2; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
