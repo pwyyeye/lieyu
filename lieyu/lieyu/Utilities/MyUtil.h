@@ -85,4 +85,6 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 
 //pragma mark - 时间转换为昨天，前天，今天等。。。。
 + (NSString *)calculateDateFromNowWith:(NSString *)dateString;
+
++ (void)showLikePlaceMessage:(NSString* )message;
 @end
