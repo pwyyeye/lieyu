@@ -1004,7 +1004,15 @@
             
             NSString *str=pinkInfoModel.inmenberAvatar_img ;
             [cell.pkUserimageView  setImageWithURL:[NSURL URLWithString:str]];
-            cell.pkNameLal.text=pinkInfoModel.inmemberName;
+            NSString *inmemberName;
+            if(pinkInfoModel.paymentStatus==1&&pinkInfoModel.price.doubleValue==0.0){
+                inmemberName=[NSString stringWithFormat:@"%@(免费)",pinkInfoModel.inmemberName];
+            }else if(pinkInfoModel.paymentStatus==1&&pinkInfoModel.price.doubleValue>0.0){
+                inmemberName=[NSString stringWithFormat:@"%@(已付款)",pinkInfoModel.inmemberName];
+            }else{
+                inmemberName=[NSString stringWithFormat:@"%@(待付款)",pinkInfoModel.inmemberName];
+            }
+            cell.pkNameLal.text=inmemberName;
             if(userId!=pinkInfoModel.inmember){
                 [cell.siliaoBtn setHidden:NO];
                 [cell.phoneBtn setHidden:NO];
@@ -1412,12 +1420,9 @@
 
 #pragma mark 电话
 -(void)dianhuaAct:(UIButton *)sender{
-    
-    
-    
-    
+    AppDelegate * app=(AppDelegate *)[UIApplication sharedApplication].delegate;
     if( [MyUtil isPureInt:_orderInfoModel.checkUserMobile]){
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",app.userModel.userid==  _orderInfoModel.userid?_orderInfoModel.checkUserMobile:_orderInfoModel.phone];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
     }
