@@ -272,7 +272,7 @@
             commentModel.commentId = commentId;
             if(toUserId.length){
                 commentModel.toUserId = toUserId;
-                commentModel.toUserNickName = toUserNick;
+                commentModel.toUserNickName = toUserNick;   
             }else
             {
                 commentModel.toUserId = @"0";
