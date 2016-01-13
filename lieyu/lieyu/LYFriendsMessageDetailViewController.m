@@ -156,6 +156,7 @@
    //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
     _bigView = [[UIView alloc]init];
     _bigView.frame = self.view.bounds;
+    NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
     [_bigView addGestureRecognizer:tapGes];
     [self.view addSubview:_bigView];

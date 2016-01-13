@@ -792,13 +792,14 @@
 #pragma mark － 创建commentView
 - (void)createCommentView{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
     
     _bigView = [[UIView alloc]init];
-    _bigView.frame = self.view.bounds;
+    _bigView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
     [_bigView addGestureRecognizer:tapGes];
-    [self.view addSubview:_bigView];
+    [window addSubview:_bigView];
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 49);
