@@ -29,6 +29,8 @@
 #import "FriendsPicAndVideoModel.h"
 #import "FriendsUserInfoModel.h"
 #import "ISEmojiView.h"
+#import "LYFriendsVideoTableViewCell.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsAddressCellID @"LYFriendsAddressTableViewCell"
@@ -36,6 +38,8 @@
 #define LYFriendsCommentCellID @"LYFriendsCommentTableViewCell"
 #define LYFriendsAllCommentCellID @"LYFriendsAllCommentTableViewCell"
 #define LYFriendsImgCellID @"LYFriendsImgTableViewCell"
+#define LYFriendsVideoCellID @"LYFriendsVideoTableViewCell"
+
 #define LYFriendsCellID @"cell"
 
 @interface LYFriendsToUserMessageViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate>{
@@ -92,7 +96,7 @@
 
 
 - (void)setupTableView{
-    NSArray *array = @[LYFriendsNameCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID];
+    NSArray *array = @[LYFriendsNameCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID,LYFriendsVideoCellID];
     for (NSString *cellIdentifer in array) {
         [self.tableView registerNib:[UINib nibWithNibName:cellIdentifer bundle:nil] forCellReuseIdentifier:cellIdentifer];
     }
@@ -251,7 +255,7 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
-    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:_section]];
+    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
     cell.btn_like.enabled = NO;
    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = _dataArray[button.tag];
@@ -354,6 +358,7 @@
             break;
         case 1:
         {
+            if([recentM.attachType isEqualToString:@"0"]){
             LYFriendsImgTableViewCell *imgCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsImgCellID forIndexPath:indexPath];
             if (imgCell.btnArray.count) {
                 for (UIButton *btn in imgCell.btnArray) {
@@ -390,6 +395,16 @@
                 }
             }
             return imgCell;
+            
+        }else{
+            LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
+            NSString *urlStr = ((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink;
+            videoCell.btn_play.tag = indexPath.section;
+            [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+            [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+            return videoCell;
+        }
+
         }
             break;
         case 2://地址
@@ -478,8 +493,16 @@
         {
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
           //  if(size.height >= 47) size.height = 47;
+//            if(![MyUtil isEmptyString:recentM.message]) {
+//                if(size.height >= 47 ) size.height = 47;
+//            if(![MyUtil isEmptyString:recentM.message]) {
+//                size.height = 15 + size.height;
+//            }
             if(![MyUtil isEmptyString:recentM.message]) {
-                size.height = 15 + size.height;
+                if(size.height >= 47 ) size.height = 47;
+                size.height = 10 + size.height;
+            }else{
+                size.height = 0;
             }
             return 50 + size.height;
         }
@@ -747,6 +770,32 @@
     return YES;
 }
 
+#pragma mark - 视频播放
+- (void)playVideo:(UIButton *)button{
+    FriendsRecentModel *recentM = _dataArray[button.tag];
+    FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0];
+    //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
+    QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
+    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0]);
+    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+    if (recentM.isMeSendMessage){
+        url = [[NSURL alloc] initFileURLWithPath:pvM.imageLink];
+        
+    }
+    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
+    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
+    [self presentMoviePlayerViewControllerAnimated:player];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
+- (BOOL)shouldAutorotate{
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
