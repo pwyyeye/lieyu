@@ -84,6 +84,7 @@
     NSString *_icon;//新消息头像
     NSInteger _deleteMessageTag;//删除动态的btn的tag
         NSInteger _saveImageAndVideoIndex;
+        NSTimer *_timer;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -110,28 +111,45 @@
 
 #pragma mark - 获取我的未读消息数
 - (void)getFriendsNewMessage{
+    _results = nil;
+    _icon = nil;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
     NSDictionary *paraDic = @{@"userId":_useridStr};
     //__weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
 //        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
-        if(reslults.integerValue){
-            _myBadge.hidden = NO;
-            _headerView.btn_newMessage.hidden = NO;
-        }
-        [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-        [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
+//        if(reslults.integerValue){
+//            _myBadge.hidden = NO;
+//            _headerView.btn_newMessage.hidden = NO;
+//        }
+//       // [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+//        [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
+        
 
         _headerView.btn_newMessage.hidden = NO;
         //[[NSNotificationCenter defaultCenter] postNotificationName:@"MyFriendsMessageCount" object:weakSelf userInfo:@{@"count":reslults,@"icon":icon}];
         _results = reslults;
         _icon = icon;
+        if(_results) _myBadge.hidden = NO;
+        if(_results.integerValue && _index == 1){
+            NSLog(@"---->%@",_results);
+            _myBadge.hidden = NO;
+            [self removeTableViewHeader];
+            [self addTableViewHeader];
+            //  [self.tableView reloadData];
+        }
     }];
+}
+
+- (void)reloadTableViewData{
+    [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadTableViewData" object:nil];
 }
 
 #pragma mark - 设置全局属性
 - (void)setupAllProperty{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData) name:@"reloadTableView" object:nil];
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0; i < 2; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
@@ -151,6 +169,18 @@
     [self getDataFriendsWithSetContentOffSet:NO];
     
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageCountNotice:) name:@"MyFriendsMessageCount" object:nil];
+    [self getRecentMessage];
+}
+
+- (void)getRecentMessage{
+    if(!_timer){
+        _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)onTimer{
+    [self getFriendsNewMessage];
+    
 }
 
 #pragma mark - 登录后获取数据
@@ -187,8 +217,10 @@
     FriendsRecentModel *recentM = [[FriendsRecentModel alloc]init];
     recentM.attachType = @"1";
     recentM.username = app.userModel.username;
+    recentM.usernick = app.userModel.usernick;
     recentM.avatar_img = app.userModel.avatar_img;
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
+    [dateFmt setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     recentM.date = [dateFmt stringFromDate:[NSDate date]];
     recentM.tags = app.userModel.tags;
     recentM.birthday = app.userModel.birthday;
@@ -440,12 +472,13 @@
                     [muArr addObjectsFromArray:dataArray];
                 }
             _pageStartCountFriends ++;
+            [weakSelf.tableView setContentOffset:CGPointZero animated:NO];
             [self.tableView.mj_footer endRefreshing];
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
         }
-        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
+        [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:NO];
     }];
 }
 
@@ -756,6 +789,8 @@
 #pragma mark － 创建commentView
 - (void)createCommentView{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    
     _bigView = [[UIView alloc]init];
     _bigView.frame = self.view.bounds;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
@@ -771,8 +806,11 @@
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-   
+    if(_isCommentToUser){
+        FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_index][_section];
+        FriendsCommentModel *commentM = recentM.commentList[_indexRow - 4];
+        _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
+    }
   //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardAnimation object:nil];
     
 //    [UIView animateWithDuration:.25 animations:^{
@@ -1145,7 +1183,7 @@
                         [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                         [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                         return videoCell;
-                    }
+                    }   
                 }
                     break;
               

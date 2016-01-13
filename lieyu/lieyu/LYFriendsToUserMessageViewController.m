@@ -659,6 +659,13 @@
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
 //    SCREEN_HEIGHT - 249- 100 - 129
+    
+    if(_isCommentToUser){
+        FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_section];
+        FriendsCommentModel *commentM = recentM.commentList[_indexRow - 4];
+        _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
+    }
+    
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0,  SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {

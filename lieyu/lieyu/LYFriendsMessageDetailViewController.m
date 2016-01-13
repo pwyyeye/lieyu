@@ -108,20 +108,27 @@
     LYFriendsHeaderTableViewCell *cell = (LYFriendsHeaderTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"type":_likeStr};
+    NSString *likeStr = nil;
+    if ([[NSString stringWithFormat:@"%@",_recentM.liked] isEqual:@"0"]) {//未表白过
+        likeStr = @"1";
+    }else{
+        likeStr = @"0";
+    }
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"type":likeStr};
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
-        if([_likeStr isEqualToString:@"1"]){
-            _likeStr = @"0";
-        }else{
-            _likeStr = @"1";
-        }
+//        if([_likeStr isEqualToString:@"1"]){
+//            _likeStr = @"0";
+//        }else{
+//            _likeStr = @"1";
+//        }
         if (result) {//点赞成功
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
             likeModel.icon = app.userModel.avatar_img;
             likeModel.userId = _useridStr;
             [_recentM.likeList insertObject:likeModel atIndex:0];
             _indexStart = 2;
+            _recentM.liked = @"1";
         }else{
             for (int i = 0; i< _recentM.likeList.count;i ++) {
                 FriendsLikeModel *likeM = _recentM.likeList[i];
@@ -130,6 +137,7 @@
                 }
             }
             _indexStart = 1;
+                        _recentM.liked = @"0";
         }
         cell.btn_like.enabled = YES;
         [weakSelf.tableView reloadData];
@@ -162,11 +170,19 @@
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     
+    if(_isCommentToUser){
+        NSInteger likeCount = _recentM.likeList.count == 0 ? 1:2;
+        FriendsCommentModel *commentM = _recentM.commentList[_indexRow - likeCount];
+        _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
+    }
+    
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, 49);
     } completion:^(BOOL finished) {
         
     }];
+    
+    
 }
 
 - (void)emotionClick:(UIButton *)button{
@@ -474,6 +490,7 @@
 
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTableView" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
