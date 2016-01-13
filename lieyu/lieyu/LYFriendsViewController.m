@@ -1435,6 +1435,10 @@
     return YES;
 }
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
 //- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
 //    return UIInterfaceOrientationMaskLandscape;
 //}
