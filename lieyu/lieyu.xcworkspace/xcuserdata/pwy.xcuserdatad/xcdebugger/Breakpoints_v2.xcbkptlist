@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lieyu/LYOrderDetailViewController.m"
-            timestampString = "470884452.137028"
+            timestampString = "474385468.595529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1302"
-            endingLineNumber = "1302"
+            startingLineNumber = "1310"
+            endingLineNumber = "1310"
             landmarkName = "-gotoPingjia:"
             landmarkType = "5">
          </BreakpointContent>
