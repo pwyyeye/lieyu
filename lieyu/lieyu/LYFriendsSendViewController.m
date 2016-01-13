@@ -77,9 +77,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if(self.textView.isFirstResponder){
-        [self.textView resignFirstResponder];
-    }
+//    if(self.textView.isFirstResponder){
+//        [self.textView resignFirstResponder];
+//    }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
 }
 
