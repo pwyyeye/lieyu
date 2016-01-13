@@ -58,9 +58,14 @@
     self.city = [[NSMutableString alloc]init];
     
     
-    [IQKeyboardManager sharedManager].enable = NO;
     
+    [IQKeyboardManager sharedManager].enable = NO;
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    [self.textView setReturnKeyType:UIReturnKeyDone];
+    
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    
     self.title = @"发布动态";
     self.textView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -85,16 +90,22 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FriendSendViewDidLoad" object:nil];
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-//    if(self.textView.isFirstResponder){
-//        [self.textView resignFirstResponder];
-//    }
+    
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
 }
 
 //退出程序以后删除tmp文件中所有内容
 -(void)dealloc{
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
@@ -106,15 +117,6 @@
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(sendClick)];
     self.navigationItem.rightBarButtonItem = rightBtn;
 }
-
-- (void)textViewFirstResponder:(UITapGestureRecognizer *)gesture{
-    if([self.textView isFirstResponder]){
-        [self.textView resignFirstResponder];
-    }else{
-        [self.textView becomeFirstResponder];
-    }
-}
-
 
 - (void)textViewDidChange:(UITextView *)textView{
     if(textView == self.textView){
@@ -137,19 +139,17 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
         self.textView.text = @"";
-        [self.textView becomeFirstResponder];
-        [self.textView setReturnKeyType:UIReturnKeyDone];
 //        [self.textView setKeyboardAppearance:UIKeyboardAppearanceAlert];
     }
+    
+    [self.textView becomeFirstResponder];
 //    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 //    self.returnHandler = [[IQKeyboardReturnKeyHandler alloc]initWithViewController:self];
 //    self.returnHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;
-    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView{
     
-//    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 }
 
 #pragma mark 判断是否退出本次编辑
@@ -161,6 +161,9 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if([self.textView isFirstResponder]){
+        [self.textView resignFirstResponder];
+    }
     if(buttonIndex == 1){
         //退出编辑界面之后删除视频文件
         [self deleteFile:self.mediaUrl];
@@ -326,7 +329,7 @@
 
 
 - (IBAction)selectImageClick:(UIButton *)sender {
-    if(self.textView.isFirstResponder){
+    if([self.textView isFirstResponder]){
         [self.textView resignFirstResponder];
     }
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册",@"短视频", nil];
@@ -470,8 +473,10 @@
             //添加按钮消失时，textview面积增加
             self.addButton.hidden = YES;
             
-            self.textView.frame = CGRectMake(self.textView.bounds.origin.x, self.textView.bounds.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height + 80);
-            
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height + 80);
+            NSLog(@"%@",NSStringFromCGRect(self.label.frame));
+            self.label.frame = CGRectMake(self.label.frame.origin.x, self.label.frame.origin.y + 80, self.label.frame.size.width, self.label.frame.size.height);
+            NSLog(@"%@",NSStringFromCGRect(self.label.frame));
         }else{
             imageView.tag = self.initCount;
         }
@@ -628,7 +633,8 @@
             [btn removeFromSuperview];
             _isVedio = NO;
             //显示添加按钮时，textview面积减小
-            self.textView.frame = CGRectMake(self.textView.bounds.origin.x, self.textView.bounds.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height - 80);
+            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height - 80);
+            self.label.frame = CGRectMake(self.label.frame.origin.x, self.label.frame.origin.y - 80, self.label.frame.size.width, self.label.frame.size.height);
             //取消视频选择后删除文件并且将路径置空
             [self deleteFile:self.mediaUrl];
             self.mediaUrl = [[NSMutableString alloc]initWithString:@""];

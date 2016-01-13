@@ -468,12 +468,13 @@
         if(dataArray.count){
                 if(_pageStartCountFriends == 0){
                     [_dataArray replaceObjectAtIndex:0 withObject:dataArray];
+                    [weakSelf.tableView setContentOffset:CGPointZero animated:NO];
                 }else {
                     NSMutableArray *muArr = _dataArray[_index];
                     [muArr addObjectsFromArray:dataArray];
                 }
             _pageStartCountFriends ++;
-            [weakSelf.tableView setContentOffset:CGPointZero animated:NO];
+            
             [self.tableView.mj_footer endRefreshing];
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -904,6 +905,10 @@
         recentM = _dataArray[_index][_commentBtnTag];
         toUserId = @"";
         toUserNickName = @"";
+    }
+    if(_commentView.textField.text.length > 200) {
+        [MyUtil showCleanMessage:@"内容太多，200字以内"];
+        return NO;
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __weak LYFriendsViewController *weakSelf = self;
