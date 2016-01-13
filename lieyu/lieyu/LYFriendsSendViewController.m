@@ -465,8 +465,9 @@
             button.enabled = NO;
             imageView.tag = self.initCount + 100;
             //添加按钮消失时，textview面积增加
-            self.textView.frame = CGRectMake(self.textView.bounds.origin.x, self.textView.bounds.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height + 80);
             self.addButton.hidden = YES;
+            
+            self.textView.frame = CGRectMake(self.textView.bounds.origin.x, self.textView.bounds.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height + 80);
             
         }else{
             imageView.tag = self.initCount;
@@ -623,12 +624,12 @@
             UIButton *btn = [self.view viewWithTag:301];
             [btn removeFromSuperview];
             _isVedio = NO;
+            //显示添加按钮时，textview面积减小
+            self.textView.frame = CGRectMake(self.textView.bounds.origin.x, self.textView.bounds.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height - 80);
             //取消视频选择后删除文件并且将路径置空
             [self deleteFile:self.mediaUrl];
             self.mediaUrl = [[NSMutableString alloc]initWithString:@""];
         }
-        //显示添加按钮时，textview面积减小
-        self.textView.frame = CGRectMake(self.textView.bounds.origin.x, self.textView.bounds.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height - 80);
         self.addButton.hidden = NO;
         self.addButton.frame = CGRectMake(12.5, 155, 70, 70);
         self.pageCount ++;
