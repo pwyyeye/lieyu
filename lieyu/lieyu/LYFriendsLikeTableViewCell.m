@@ -23,9 +23,13 @@
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
+    for (UIButton *btn in _btnArray) {
+        btn.hidden = YES;
+    }
     NSArray *array = recentM.likeList;
     for (int i = 0; i<array.count; i++ ) {
         UIButton *btn = _btnArray[i];
+        btn.hidden = NO;
         FriendsLikeModel *likeModel = array[i];
         [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     }
