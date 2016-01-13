@@ -33,6 +33,7 @@
 @property (nonatomic, strong) NSMutableString *city;
 @property (nonatomic, strong) NSMutableString *location;
 @property (nonatomic, assign) BOOL notFirstOpen;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @property (nonatomic, strong) NSString *content;
 
@@ -116,11 +117,13 @@
 
 
 - (void)textViewDidChange:(UITextView *)textView{
-    [self.textView setReturnKeyType:UIReturnKeyDone];
-}
-
-- (void)textViewDidChangeSelection:(UITextView *)textView{
-    [self.textView setReturnKeyType:UIReturnKeyDone];
+    if(textView == self.textView){
+        if(self.textView.text.length >= 800){
+            self.textView.text = [self.textView.text substringToIndex:800];
+        }else{
+            self.label.text = [NSString stringWithFormat:@"%ld/800",self.textView.text.length];
+        }
+    }
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
@@ -160,7 +163,6 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
         //退出编辑界面之后删除视频文件
-        
         [self deleteFile:self.mediaUrl];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -439,7 +441,7 @@
     }
     self.addButton.frame = CGRectMake(10, self.addButton.frame.origin.y, 70, 70);
     for (int i = 0 ; i < self.fodderArray.count; i ++) {
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5 * (i % 4 ) + 12.5 + 70 * (i % 4), 155 , 70, 70)];
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(5 * (i % 4 ) + 12.5 + 70 * (i % 4), 180, 70, 70)];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
         imageView.userInteractionEnabled = YES;
@@ -456,7 +458,7 @@
             self.addButton.hidden = NO;
         }
         if(_isVedio){
-            imageView.frame = CGRectMake(10, 295, 200, 150);
+            imageView.frame = CGRectMake(10, 320, 200, 150);
             UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
             button.center = imageView.center;
             [button setBackgroundImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
@@ -632,7 +634,7 @@
             self.mediaUrl = [[NSMutableString alloc]initWithString:@""];
         }
         self.addButton.hidden = NO;
-        self.addButton.frame = CGRectMake(12.5, 155, 70, 70);
+        self.addButton.frame = CGRectMake(12.5, 180, 70, 70);
         self.pageCount ++;
         [self interfaceLayout];
     }else{
