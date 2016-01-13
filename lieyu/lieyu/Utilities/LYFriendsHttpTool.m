@@ -196,6 +196,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_GetAMessage baseURL:LY_SERVER params:params success:^(id response) {
         [app stopLoading];
+        NSLog(@"------->%@",response);
         if ([response[@"errorcode"] isEqual:@"1"]) {
           FriendsRecentModel *mod = [FriendsRecentModel initFromNSDictionary:response[@"data"]];
             compelte(mod);
