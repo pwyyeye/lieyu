@@ -182,7 +182,7 @@
     NSLog(@"----->%@",paraDic);
     __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel *userInfo, NSMutableArray *dataArray) {
-        _dataArray = dataArray;
+        if(dataArray.count){
         _userInfo = userInfo;
         if(_pageStartCount == 0) {
             _dataArray = dataArray;
@@ -192,6 +192,10 @@
         [weakSelf reloadTableViewAndSetUpProperty];
         [weakSelf addTableViewHeader];
         _pageStartCount ++;
+            [self.tableView.mj_footer endRefreshing];
+        }else {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
     }];
 }
 
@@ -208,16 +212,6 @@
 - (void)reloadTableViewAndSetUpProperty{
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
-    [self.tableView.mj_footer endRefreshing];
-    if(!((NSArray *)_dataArray).count){
-        return;
-    }
-//    FriendsRecentModel *recentM = _dataArray[_section];
-//    if ([recentM.liked isEqualToString:@"0"]) {
-//        _likeStr = @"1";
-//    }else{
-//        _likeStr = @"0";
-//    }
 }
 
 #pragma mark - 添加表头

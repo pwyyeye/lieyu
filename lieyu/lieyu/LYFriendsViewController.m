@@ -221,6 +221,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = [[FriendsRecentModel alloc]init];
     recentM.attachType = @"0";
+    recentM.liked = @"0";
     recentM.usernick = app.userModel.usernick;
     recentM.avatar_img = app.userModel.avatar_img;
     recentM.commentList = [[NSMutableArray alloc]init];
