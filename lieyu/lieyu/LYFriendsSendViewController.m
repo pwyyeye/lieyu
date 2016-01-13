@@ -12,6 +12,8 @@
 #import "HTTPController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <Reachability.h>
+#import "IQKeyboardManager.h"
+#import "IQKeyboardReturnKeyHandler.h"
 
 #define IMGwidth ( [UIScreen mainScreen].bounds.size.width - 20 ) / 3
 
@@ -34,6 +36,8 @@
 
 @property (nonatomic, strong) NSString *content;
 
+@property (nonatomic,strong) IQKeyboardReturnKeyHandler *returnHandler;
+
 @end
 
 @implementation LYFriendsSendViewController
@@ -51,6 +55,8 @@
     self.shangchuanString = [[NSMutableString alloc]init];
     self.location = [[NSMutableString alloc]init];
     self.city = [[NSMutableString alloc]init];
+    
+    
     
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.title = @"发布动态";
@@ -71,7 +77,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.textView resignFirstResponder];
+    if(self.textView.isFirstResponder){
+        [self.textView resignFirstResponder];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
 }
 
@@ -94,6 +102,16 @@
         self.textView.text = @"";
         [self.textView becomeFirstResponder];
     }
+    
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    self.returnHandler = [[IQKeyboardReturnKeyHandler alloc]initWithViewController:self];
+    self.returnHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    
+    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 }
 
 #pragma mark 判断是否退出本次编辑
@@ -264,6 +282,9 @@
 
 
 - (IBAction)selectImageClick:(UIButton *)sender {
+    if(self.textView.isFirstResponder){
+        [self.textView resignFirstResponder];
+    }
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册",@"短视频", nil];
     [actionSheet showInView:self.view];
 }
