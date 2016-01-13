@@ -57,6 +57,7 @@
     self.city = [[NSMutableString alloc]init];
     
     
+    [IQKeyboardManager sharedManager].enable = NO;
     
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.title = @"发布动态";
@@ -69,6 +70,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willexitfull) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterfull) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
 }
+
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    UITouch *touch = [[event touchesForView:self.textView]anyObject];
+//    if ([self.textView isFirstResponder] && [touch view] == self.textView) {
+//        [self.textView resignFirstResponder];
+//    }
+//    [super touchesBegan:touches withEvent:event];
+//}
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -97,24 +106,47 @@
     self.navigationItem.rightBarButtonItem = rightBtn;
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
-        self.textView.text = @"";
-    }
+- (void)textViewFirstResponder:(UITapGestureRecognizer *)gesture{
     if([self.textView isFirstResponder]){
         [self.textView resignFirstResponder];
     }else{
         [self.textView becomeFirstResponder];
     }
+}
+
+
+- (void)textViewDidChange:(UITextView *)textView{
+    [self.textView setReturnKeyType:UIReturnKeyDone];
+}
+
+- (void)textViewDidChangeSelection:(UITextView *)textView{
+    [self.textView setReturnKeyType:UIReturnKeyDone];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if([text isEqualToString:@"\n"]){
+        [self.textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+        self.textView.text = @"";
+        [self.textView becomeFirstResponder];
+        [self.textView setReturnKeyType:UIReturnKeyDone];
+//        [self.textView setKeyboardAppearance:UIKeyboardAppearanceAlert];
+    }
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-    self.returnHandler = [[IQKeyboardReturnKeyHandler alloc]initWithViewController:self];
-    self.returnHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;
+//    self.returnHandler = [[IQKeyboardReturnKeyHandler alloc]initWithViewController:self];
+//    self.returnHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView{
     
-    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
+//    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 }
 
 #pragma mark 判断是否退出本次编辑
@@ -125,7 +157,9 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
         //退出编辑界面之后删除视频文件
-        [self.textView resignFirstResponder];
+        if([self.textView isFirstResponder]){
+            [self.textView resignFirstResponder];
+        }
         [self deleteFile:self.mediaUrl];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -133,7 +167,9 @@
 
 #pragma mark 上传玩友圈,待修改
 - (void)sendClick{
-    [self.textView resignFirstResponder];
+    if([self.textView isFirstResponder]){
+        [self.textView resignFirstResponder];
+    }
     if(self.textView.text.length >= 800){
         [MyUtil showCleanMessage:@"内容过长，限800字！"];
         return;
@@ -217,7 +253,9 @@
         //地址返回
         NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
         [self.delegate sendImagesArray:self.fodderArray andContent:self.content andLocation:location];
-        [self.textView resignFirstResponder];
+        if([self.textView isFirstResponder]){
+            [self.textView resignFirstResponder];
+        }
         for(int i = 0 ; i < self.fodderArray.count; i ++){
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                 if(![MyUtil isEmptyString:key]){
@@ -427,7 +465,7 @@
             button.enabled = NO;
             imageView.tag = self.initCount + 100;
             //添加按钮消失时，textview面积增加
-            self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width, self.textView.frame.size.height + 80);
+            self.textView.frame = CGRectMake(self.textView.bounds.origin.x, self.textView.bounds.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height + 80);
             self.addButton.hidden = YES;
             
         }else{
@@ -509,6 +547,9 @@
 #pragma mark tap手势相应动作
 - (void)tapClick:(UITapGestureRecognizer *)sender{
     [self.navigationController.navigationBar setHidden:YES];
+    if([self.textView isFirstResponder]){
+        [self.textView resignFirstResponder];
+    }
 //    if(!_subView){
     self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
         _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
@@ -587,7 +628,7 @@
             self.mediaUrl = [[NSMutableString alloc]initWithString:@""];
         }
         //显示添加按钮时，textview面积减小
-        self.textView.frame = CGRectMake(self.textView.frame.origin.x, self.textView.frame.origin.y, self.textView.frame.size.width, self.textView.frame.size.height + 80);
+        self.textView.frame = CGRectMake(self.textView.bounds.origin.x, self.textView.bounds.origin.y, self.textView.bounds.size.width, self.textView.bounds.size.height - 80);
         self.addButton.hidden = NO;
         self.addButton.frame = CGRectMake(12.5, 155, 70, 70);
         self.pageCount ++;
