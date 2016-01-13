@@ -30,6 +30,9 @@ static LYRegistrationViewController *_registe;
     _step=60;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];
+    
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+    self.navigationItem.leftBarButtonItem = left;
     /*
     CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);
     UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
@@ -46,6 +49,10 @@ static LYRegistrationViewController *_registe;
     [self.getYzmBtn setBackgroundImage:selectedImg  forState:UIControlStateDisabled];
     */
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)backForword{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillLayoutSubviews{

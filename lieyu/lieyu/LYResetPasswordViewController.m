@@ -28,6 +28,10 @@ static LYResetPasswordViewController *_reset;
     _step=60;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];
+    
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+    self.navigationItem.leftBarButtonItem = left;
+    
    // CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);
 //    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
 //    [RGB(35, 166, 116) set];
@@ -42,6 +46,10 @@ static LYResetPasswordViewController *_reset;
 //    UIGraphicsEndImageContext();
    // [self.getYzmBtn setBackgroundImage:selectedImg  forState:UIControlStateDisabled];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)backForword{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
