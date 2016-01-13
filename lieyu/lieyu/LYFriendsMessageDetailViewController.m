@@ -251,11 +251,14 @@
     if(!_commentView.textField.text.length) return NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *toUserId = nil;
+    NSString *toUserNick = nil;
     if (_isCommentToUser) {
         FriendsCommentModel *commentModel = _dataArray[_indexRow - _indexStart];
         toUserId = commentModel.userId;
+        toUserNick = commentModel.nickName;
     }else{
         toUserId = @"";
+        toUserNick = @"";
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
@@ -269,7 +272,7 @@
             commentModel.commentId = commentId;
             if(toUserId.length){
                 commentModel.toUserId = toUserId;
-                commentModel.toUserNickName = _recentM.usernick;
+                commentModel.toUserNickName = toUserNick;   
             }else
             {
                 commentModel.toUserId = @"0";
@@ -467,6 +470,10 @@
     
     [app.window addSubview:picView];
     }
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {

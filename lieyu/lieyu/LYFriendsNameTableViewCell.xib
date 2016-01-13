@@ -64,10 +64,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rw-eO-sKU">
-                        <rect key="frame" x="291" y="30" width="22" height="16"/>
+                        <rect key="frame" x="291" y="16" width="22" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="MLM-HE-kpV"/>
-                            <constraint firstAttribute="height" constant="16" id="gVN-s4-uzW"/>
+                            <constraint firstAttribute="height" constant="30" id="gVN-s4-uzW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="删除">
@@ -95,7 +95,7 @@
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="e3o-98-IHy"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="khM-s2-mFp"/>
                     <constraint firstItem="wDA-11-w3k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="l6S-wB-fse"/>
-                    <constraint firstItem="7Rw-eO-sKU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="lQB-Zj-3uX"/>
+                    <constraint firstItem="7Rw-eO-sKU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="lQB-Zj-3uX"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="lM4-4y-ffP" secondAttribute="bottom" constant="8" id="mqS-7C-HcM"/>
                     <constraint firstAttribute="trailing" secondItem="7Rw-eO-sKU" secondAttribute="trailing" constant="7" id="qPa-oc-FyU"/>
                     <constraint firstItem="wDA-11-w3k" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="2" id="s6V-Y8-DM2"/>

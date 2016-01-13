@@ -39,7 +39,9 @@
             imgPlay.userInteractionEnabled = YES;
             [imgView addSubview:imgPlay];
         }else{
-            [imgView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:120 andHeight:120]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+            NSInteger picWidth = 120;
+            if(recentM.isMeSendMessage) picWidth = 0;
+            [imgView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             NSLog(@"---->%@",[MyUtil getQiniuUrl:urlArray[i] width:120 andHeight:120]);
         }
 
