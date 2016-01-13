@@ -301,6 +301,7 @@ static NSString * const tableReuseIdentifier = @"tableCell";
     cell.albumTitle = [NSString stringWithFormat:@"%@", [assetsGroup valueForProperty:ALAssetsGroupPropertyName]];
     cell.photoNum = assetsGroup.numberOfAssets;
     cell.albumImg = [UIImage imageWithCGImage:assetsGroup.posterImage];
+    NSLog(@"%@-%ld",cell.albumTitle,cell.photoNum);
     cell.backgroundColor = tableView.backgroundColor;
     return cell;
 }
