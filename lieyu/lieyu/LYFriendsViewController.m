@@ -156,10 +156,12 @@
 #pragma mark - 登录后获取数据
 - (void)loginAndLoadData{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    [app startLoading];
     if(app.userModel)  _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     else return;
     [self getDataFriendsWithSetContentOffSet:NO];
     self.navigationController.navigationBarHidden = NO;
+//    [app stopLoading];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginAndLoadData" object:nil];
 }
 
@@ -716,7 +718,7 @@
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentModel.id,@"type":likeStr};
     
     __weak LYFriendsViewController *weakSelf = self;
-    NSLog(@"---->%ld-----%@",recentModel.likeList.count,recentModel);
+    NSLog(@"---->%ld-->%ld----- ",button.tag,recentModel.likeList.count);
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (result) {//点赞成功
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
@@ -725,12 +727,16 @@
 //            NSMutableArray *array = recentM.likeList;
             [recentModel.likeList insertObject:likeModel atIndex:0];
             recentModel.liked = @"1";
+            NSLog(@"---->%ld-->%ld----- ",button.tag,recentModel.likeList.count);
         }else{
-            for (FriendsLikeModel *likeM in recentModel.likeList) {
+//            NSMutableArray *array = recentModel.
+            for (int i = 0;i < recentModel.likeList.count ; i++) {
+                FriendsLikeModel *likeM = recentModel.likeList[i];
                 if ([likeM.userId isEqualToString:_useridStr]) {
                     [recentModel.likeList removeObject:likeM];
                 }
             }
+            NSLog(@"---->%ld-->%ld----- ",button.tag,recentModel.likeList.count);
                 recentModel.liked = @"0";
         }
         [weakSelf.tableView reloadData];
@@ -742,12 +748,13 @@
 - (void)commentClick:(UIButton *)button{
     _commentBtnTag = button.tag;
     _isCommentToUser = NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
     [self createCommentView];
 }
 
 #pragma mark － 创建commentView
 - (void)createCommentView{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
     _bigView = [[UIView alloc]init];
     _bigView.frame = self.view.bounds;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
@@ -816,7 +823,7 @@
         [_commentView.textField becomeFirstResponder];
         [UIView animateWithDuration:.1 animations:^{
            // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
-            _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
+            //_commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
         }];
     }
     
@@ -1134,7 +1141,6 @@
                         LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
                         NSString *urlStr = ((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink;
                         videoCell.btn_play.tag = indexPath.section;
-                        NSLog(@"----->%@",[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]);
                         [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                         [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                         return videoCell;

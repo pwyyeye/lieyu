@@ -208,12 +208,12 @@
     if(!((NSArray *)_dataArray).count){
         return;
     }
-    FriendsRecentModel *recentM = _dataArray[_section];
-    if ([recentM.liked isEqualToString:@"0"]) {
-        _likeStr = @"1";
-    }else{
-        _likeStr = @"0";
-    }
+//    FriendsRecentModel *recentM = _dataArray[_section];
+//    if ([recentM.liked isEqualToString:@"0"]) {
+//        _likeStr = @"1";
+//    }else{
+//        _likeStr = @"0";
+//    }
 }
 
 #pragma mark - 添加表头
@@ -255,25 +255,30 @@
     cell.btn_like.enabled = NO;
    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = _dataArray[button.tag];
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":_likeStr};
+    NSString *likeStr = nil;
+    NSLog(@"---->%@",recentM.liked);
+    if ([[NSString stringWithFormat:@"%@",recentM.liked] isEqual:@"0"]) {//未表白过
+        likeStr = @"1";
+    }else{
+        likeStr = @"0";
+    }
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":likeStr};
     __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
-            if([_likeStr isEqualToString:@"1"]){
-                _likeStr = @"0";
-            }else{
-                _likeStr = @"1";
-            }
         if (result) {//点赞成功
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
             likeModel.icon = app.userModel.avatar_img;
             likeModel.userId = _useridStr;
             [recentM.likeList insertObject:likeModel atIndex:0];
+            recentM.liked = @"1";
         }else{
-            for (FriendsLikeModel *likeM in recentM.likeList) {
+            for (int i = 0; i< recentM.likeList.count;i ++) {
+                FriendsLikeModel *likeM = recentM.likeList[i];
                 if ([likeM.userId isEqualToString:_useridStr]) {
                     [recentM.likeList removeObject:likeM];
                 }
             }
+            recentM.liked = @"0";
         }
         [weakSelf.tableView reloadData];
         cell.btn_like.enabled = YES;
@@ -285,6 +290,16 @@
     _commentBtnTag = button.tag;
     _isCommentToUser = NO;
     [self createCommentView];
+}
+
+- (void)keyBorderApearce:(NSNotification *)note{
+    
+    //    NSString *keybordHeight = note.userInfo[@"UIKeyboardFrameEndUserInfoKey"];
+    CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    [UIView animateWithDuration:.25 animations:^{
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
+        NSLog(@"--->%@------->%@",NSStringFromCGRect(rect),NSStringFromCGRect(_commentView.frame));
+    }];
 }
 
 
@@ -610,6 +625,7 @@
 
 #pragma mark － 创建commentView
 - (void)createCommentView{
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
     _bigView = [[UIView alloc]init];
     _bigView.frame = self.view.bounds;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
@@ -640,6 +656,7 @@
 
 -(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
     _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
+    
 }
 
 - (void)emojiView:(ISEmojiView *)emojiView didPressDeleteButton:(UIButton *)deletebutton{
@@ -675,7 +692,7 @@
         [_commentView.textField becomeFirstResponder];
         [UIView animateWithDuration:.1 animations:^{
             // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
-            _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
+           // _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
         }];
     }
 }

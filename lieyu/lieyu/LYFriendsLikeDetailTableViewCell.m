@@ -26,13 +26,17 @@
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
     NSArray *array = recentM.likeList;
+    for (UIButton *btn in _btnArray) {
+        btn.hidden = YES;
+    }
     for (int  i = 0; i < recentM.likeList.count; i ++) {
         if(i >= 16) return;
         UIButton *btn = _btnArray[i];
+                btn.hidden = NO;
 //        btn.tag = i;
         FriendsLikeModel *likeM = array[i];
 //        NSLog(@"------>%ld------%@",array.count,commentModel.icon);
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     }
 }
 
