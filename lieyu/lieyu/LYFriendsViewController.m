@@ -546,6 +546,7 @@
     _myBtn.alpha = 1;
     _friendsBtnSelect = NO;
     _pageStartCountMys = 0;
+    _myBadge.hidden = YES;
 //    _index = 1;
     [self getDataMysWithSetContentOffSet:YES];
 //    [self addTableViewHeader];
@@ -563,6 +564,7 @@
         _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339 - 54);
          _headerView.btn_newMessage.hidden = YES;
         _headerView.imageView_NewMessageIcon.hidden = YES;
+        _myBadge.hidden = YES;
     }
     [_headerView.imageView_NewMessageIcon sd_setImageWithURL:[NSURL URLWithString:_icon]  placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _headerView.imageView_NewMessageIcon.clipsToBounds = YES;
@@ -1183,7 +1185,7 @@
                         [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                         [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                         return videoCell;
-                    }   
+                    }
                 }
                     break;
               
