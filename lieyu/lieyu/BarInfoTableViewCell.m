@@ -11,7 +11,7 @@
 @implementation BarInfoTableViewCell
 
 - (void)awakeFromNib {
-//    self.
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
