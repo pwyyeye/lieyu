@@ -36,9 +36,6 @@
 
 #define LYCLICK_MTA @"LYClickEvent"
 
-#define <#macro#>
-
-
 #endif /* lieyu_pch */
 
 
