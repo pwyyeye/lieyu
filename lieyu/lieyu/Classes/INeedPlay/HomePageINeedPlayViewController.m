@@ -99,7 +99,9 @@ UITableViewDataSource,UITableViewDelegate,
 //    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
 //        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
 //    }
-    [self.navigationController setNavigationBarHidden:NO];
+    
+    //WTT
+//    [self.navigationController setNavigationBarHidden:NO];
     [self createNavButton];
 }
 

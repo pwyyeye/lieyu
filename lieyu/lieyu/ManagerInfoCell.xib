@@ -145,6 +145,6 @@
     <resources>
         <image name="CustomBtn_Selected.png" width="21" height="21"/>
         <image name="CustomBtn_unSelected.png" width="21" height="21"/>
-        <image name="starRed" width="32" height="32"/>
+        <image name="starRed" width="42" height="39"/>
     </resources>
 </document>
