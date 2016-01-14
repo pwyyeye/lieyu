@@ -20,8 +20,6 @@
 
 - (void)cellConfigure:(NSDictionary *)dict{
     int i;
-//    dict[@"stars"] = @"4";
-//    [dict setValue:@"4" forKey:@"stars"];
     NSArray *iconsArray = @[self.icon1,self.icon2,self.icon3,self.icon4,self.icon5];
     [_barImage sd_setImageWithURL:[NSURL URLWithString:dict[@"imageURL"]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
 //    [_barImage sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
