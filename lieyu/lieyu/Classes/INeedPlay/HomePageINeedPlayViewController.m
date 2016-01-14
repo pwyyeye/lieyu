@@ -43,6 +43,7 @@ UITableViewDataSource,UITableViewDelegate,
     UIButton *_cityChooseBtn;
     UIButton *_searchBtn;
     UIImageView *_titleImageView;
+    CGFloat _scale;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -64,6 +65,17 @@ UITableViewDataSource,UITableViewDelegate,
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.bounds=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     }
+    
+    if([[MyUtil deviceString] isEqualToString:@"iPhone 6"]||[[MyUtil deviceString] isEqualToString:@"iPhone 6s"]){
+        _scale = 375/320;
+    }else if([[MyUtil deviceString] isEqualToString:@"iPhone 6 Plus"]||[[MyUtil deviceString] isEqualToString:@"iPhone 6s Plus"]){
+        _scale = 414/320;
+    }else{
+        _scale = 1.0;
+    }
+//    _scale = 1.0;
+     _scale = 1.1718;
+//    _scale = 1.29375;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -373,7 +385,7 @@ UITableViewDataSource,UITableViewDelegate,
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
                 [bigArr addObject:dicTemp];
             }
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122)
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122 * _scale)
                                                                   scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
             scroller.delegate=self;
             scroller.tag=1999;
@@ -420,7 +432,7 @@ UITableViewDataSource,UITableViewDelegate,
     switch (indexPath.section) {
         case 0:
         {
-            h = 122.5 ;
+            h = 122.5 * _scale;
         }
             break;
         case 1:
@@ -436,7 +448,7 @@ UITableViewDataSource,UITableViewDelegate,
             break;
         default:
         {
-            h = 273.5;
+            h = 177 * _scale + (273.5 - 177);
         }
             break;
     }
@@ -452,6 +464,9 @@ UITableViewDataSource,UITableViewDelegate,
         controller.beerBarId = @(model.barid);
         [self.navigationController pushViewController:controller animated:YES];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:model.barname]];
+        
+        LYWineBarCell *cell = (LYWineBarCell *)[tableView cellForRowAtIndexPath:indexPath];
+        NSLog(@"---->%@",NSStringFromCGRect(cell.imageView_content.frame));
     }
 }
 

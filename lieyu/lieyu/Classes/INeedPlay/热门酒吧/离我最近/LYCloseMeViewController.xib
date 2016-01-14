@@ -16,8 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="JGf-Lu-mvB">
-                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="JGf-Lu-mvB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="9pW-N8-BDk"/>
@@ -26,6 +26,12 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="JGf-Lu-mvB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3pg-fd-aIH"/>
+                <constraint firstItem="JGf-Lu-mvB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DKV-Es-ASl"/>
+                <constraint firstAttribute="trailing" secondItem="JGf-Lu-mvB" secondAttribute="trailing" id="ZFz-NO-FLj"/>
+                <constraint firstAttribute="bottom" secondItem="JGf-Lu-mvB" secondAttribute="bottom" id="dK1-ic-5Fj"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="223" y="389"/>
         </view>

@@ -16,10 +16,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="521"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BuleLineThree" translatesAutoresizingMaskIntoConstraints="NO" id="h6j-30-xcP">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="BuleLineThree" translatesAutoresizingMaskIntoConstraints="NO" id="h6j-30-xcP">
                         <rect key="frame" x="12" y="16" width="17" height="13"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="娱乐分类" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5a-mL-5zq">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="娱乐分类" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g5a-mL-5zq">
                         <rect key="frame" x="39" y="11" width="64" height="23"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -165,7 +165,7 @@
                 <outletCollection property="buttonArray" destination="TbJ-6R-S3d" collectionClass="NSMutableArray" id="AN1-jA-xpz"/>
                 <outletCollection property="buttonArray" destination="18h-Bf-SG7" collectionClass="NSMutableArray" id="ZUc-AM-d4e"/>
             </connections>
-            <point key="canvasLocation" x="466" y="387"/>
+            <point key="canvasLocation" x="312" y="401"/>
         </tableViewCell>
     </objects>
     <resources>
