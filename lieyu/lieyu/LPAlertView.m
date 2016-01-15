@@ -90,7 +90,7 @@
     if(_buttonTitlesArray.count > 0){
         for(NSString *buttonTitle in _buttonTitlesArray){
             NSInteger index = [_buttonTitlesArray indexOfObject:buttonTitle];
-            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10 + 155 * index, SCREEN_HEIGHT - 60 , 145, 50)];
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10 + (SCREEN_WIDTH / 2 - 5) * index, SCREEN_HEIGHT - 60 , (SCREEN_WIDTH - 30) / 2, 50)];
             button.titleLabel.font = [UIFont fontWithName:@"bold" size:16];
             button.layer.cornerRadius = 5.f;
             button.layer.masksToBounds = YES;

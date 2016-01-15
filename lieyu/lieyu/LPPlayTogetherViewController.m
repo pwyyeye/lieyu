@@ -198,7 +198,7 @@
             height = 66 + 44 * (int)self.pinKeModel.goodsList.count;
             break;
         case 5:
-            height = 200;
+            height = 55 + (SCREEN_WIDTH / 2);
             break;
         default:
             break;

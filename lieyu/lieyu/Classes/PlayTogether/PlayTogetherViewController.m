@@ -99,7 +99,7 @@
 {
     [super viewWillAppear:animated];
     
-    _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
+    _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
     _myTitle.backgroundColor = [UIColor clearColor];
     _myTitle.textColor=[UIColor whiteColor];
     _myTitle.textAlignment = NSTextAlignmentCenter;
@@ -246,26 +246,26 @@
     [self getData:nowDic];
 }
 
-- (void)showSelectView:(NSArray *)array{
-    int rows = (int)array.count / 3;
-    self.selectView.frame = CGRectMake(0, 104, 320, 74 + 50 * (rows - 1 ));
-    self.selectView.backgroundColor = [UIColor grayColor];
-    
-    for (int i = 0 ; i < array.count; i ++) {
-        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(7 + 108 * (i % 3), 20 + 50 * (i / 3), 90, 34)];
-        [button setTitleColor:RGBA(26, 26, 26, 1) forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-        button.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(151, 151, 151, 1));
-        button.layer.borderWidth = 0.5;
-        [button setImage:[self imageWithColor:RGBA(255, 255, 255, 1) andSize:button.frame.size] forState:UIControlStateNormal];
-//        [button setBackgroundColor:[UIColor grayColor]];
-        [button setImage:[self imageWithColor:RGBA(114, 5, 147, 1) andSize:button.frame.size] forState:UIControlStateHighlighted];
-        [button setTitle:array[i] forState:UIControlStateNormal];
-//        button.enabled = YES;
-        [self.selectView addSubview:button];
-    }
-    [self.view addSubview:self.selectView];
-}
+//- (void)showSelectView:(NSArray *)array{
+//    int rows = (int)array.count / 3;
+//    self.selectView.frame = CGRectMake(0, 104, SCREEN_WIDTH, 74 + 50 * (rows - 1 ));
+//    self.selectView.backgroundColor = [UIColor grayColor];
+//    
+//    for (int i = 0 ; i < array.count; i ++) {
+//        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(7 + 108 * (i % 3), 20 + 50 * (i / 3), 90, 34)];
+//        [button setTitleColor:RGBA(26, 26, 26, 1) forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//        button.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(151, 151, 151, 1));
+//        button.layer.borderWidth = 0.5;
+//        [button setImage:[self imageWithColor:RGBA(255, 255, 255, 1) andSize:button.frame.size] forState:UIControlStateNormal];
+////        [button setBackgroundColor:[UIColor grayColor]];
+//        [button setImage:[self imageWithColor:RGBA(114, 5, 147, 1) andSize:button.frame.size] forState:UIControlStateHighlighted];
+//        [button setTitle:array[i] forState:UIControlStateNormal];
+////        button.enabled = YES;
+//        [self.selectView addSubview:button];
+//    }
+//    [self.view addSubview:self.selectView];
+//}
 
 #pragma image
 - (UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size{
@@ -334,10 +334,7 @@
 //        NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
 //        LYCache *lycache = [dataArray objectAtIndex:0];
 //        NSLog(@"%@",lycache.lyCacheValue);
-//        
-
-        
-        NSLog(@"****block%d******",dataList.count);
+//
         if(dataList.count>0){
             
             [_bgView removeFromSuperview];
@@ -355,12 +352,12 @@
                 _bgView.tag = 300;
                 
                 
-                _image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 87,105 , 119)];
+                _image_place = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 105)/2, 87, 105 , 119)];
                 _image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
                 _image_place.tag = 100;
 //                [_bgView addSubview:_image_place];
                 
-                _label_place = [[UILabel alloc]initWithFrame:CGRectMake(76, 240, 164, 22)];
+                _label_place = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 164) / 2, 240, 164, 22)];
                 _label_place.text = @"正在等待商家入驻";
                 _label_place.textColor = RGBA(29, 32, 47, 1);
                 _label_place.font = [UIFont systemFontOfSize:14];

@@ -21,9 +21,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="ChiHeViewController" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ieN-Zf-EMT">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="ChiHeViewController" layoutMarginsFollowReadableWidth="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ieN-Zf-EMT">
                     <rect key="frame" x="0.0" y="36" width="320" height="532"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <edgeInsets key="layoutMargins" top="4" left="4" bottom="4" right="4"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C37-Fj-r2t">
                         <size key="itemSize" width="151" height="288"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>

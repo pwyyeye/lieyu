@@ -79,6 +79,10 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = leftItem;
     
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake((SCREEN_WIDTH - 18) / 2, 127 + SCREEN_WIDTH / 2);
+    [self.collectionView setCollectionViewLayout:layout];
+    
     dataList = [[NSMutableArray alloc]init];
     goodsList = [[NSMutableArray alloc]init];
     
@@ -275,7 +279,7 @@
                 kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(kongImageView.frame.origin.x - 20, 260, 170, 20)];
                 kongLabel.font = [UIFont systemFontOfSize:14];
                 kongLabel.textColor = RGBA(215, 215, 215, 1);
-                kongLabel.text = @"伦家还没有这种商品啦～";
+                kongLabel.text = @"伦家还没有这个啦～";
 //                [kongImageView addSubview:kongLabel];
             }
             [self.view addSubview:kongLabel];
@@ -331,11 +335,13 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"chiheDetailCollectionCell" owner:nil options:nil]firstObject];
     }
     cell.goodImage.image=nil;
-    cell.layer.borderColor = [[UIColor lightGrayColor]CGColor];
+    cell.layer.borderColor = [RGBA(237, 237, 237, 1)CGColor];
     cell.layer.borderWidth = 0.5;
-    cell.layer.cornerRadius = 5.f;
+    cell.layer.cornerRadius = 2.f;
     cell.layer.masksToBounds = YES;
     cell.userInteractionEnabled = YES;
+    
+    
     cell.delegate = self;
     
     CheHeModel *chiHeModel=dataList[indexPath.row];
@@ -363,7 +369,7 @@
 //定义每个UIcollectionview 的大小
 - (CGSize)collectionview:(UICollectionView *)collectionview layout:(UICollectionViewLayout*)collectionviewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(151, 288);
+    return CGSizeMake((SCREEN_WIDTH - 16) / 2, 127 + SCREEN_WIDTH / 2);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -459,7 +465,7 @@
     for(int i = 4 ; i < biaoqianList.count ; i ++){
         int row = (i - 4) / 3;
         int lie = (i - 4) % 3;
-            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake( 8 * (lie + 1) + 96 * lie, 16 * (row + 1) + 32 * row, 96, 32)];
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake( 8 * (lie + 1) + (SCREEN_WIDTH - 32) / 3 * lie, 16 * (row + 1) + 32 * row, (SCREEN_WIDTH - 32) / 3, 32)];
             [button setBackgroundColor:RGBA(217, 217, 217, 1)];
             [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             button.layer.borderColor = (__bridge CGColorRef _Nullable)(RGBA(151, 151, 151, 1));

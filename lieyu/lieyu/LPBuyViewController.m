@@ -53,6 +53,9 @@
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = backBtn;
     [self getAllManagers];
+    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.tableView.backgroundColor = RGBA(237, 237, 237, 1);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     /*
      进行能否购买的判断
@@ -267,7 +270,7 @@
     _payContent.tag = 13;
     _payContent.textField.keyboardType = UIKeyboardTypeNumberPad;
     alertView.contentView = _payContent;
-    _payContent.frame = CGRectMake(10, SCREEN_HEIGHT - 270 , 300, 200);
+    _payContent.frame = CGRectMake(10, SCREEN_HEIGHT - 270 , SCREEN_WIDTH - 20, 200);
     [alertView show];
 }
 #pragma mark 填完金额后的代理事件
