@@ -146,7 +146,7 @@
     }
     
     if (mMenuHriZontal == nil) {
-        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrameForTime:CGRectMake(0,64, 320, 50) ButtonItems:barArr];
+        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrameForTime:CGRectMake(0,64, SCREEN_WIDTH, 50) ButtonItems:barArr];
         mMenuHriZontal.delegate = self;
     }
     [self.view addSubview:mMenuHriZontal];

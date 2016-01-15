@@ -15,7 +15,7 @@
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0 ; i < itemArray.count; i ++) {
         MenuButton *dropBtn = [[MenuButton alloc]init];
-        dropBtn.frame = CGRectMake(i%3 * 108 + 7, i/3 * 50 + 20, 90, 34);
+        dropBtn.frame = CGRectMake(i%3 * ((SCREEN_WIDTH - 50) / 3 + 18) + 7, i/3 * 50 + 20, (SCREEN_WIDTH - 50) / 3, 34);
         dropBtn.layer.borderWidth = 0.5;
         dropBtn.layer.borderColor = RGBA(151, 151, 151, 1).CGColor;
         dropBtn.layer.cornerRadius = 2;

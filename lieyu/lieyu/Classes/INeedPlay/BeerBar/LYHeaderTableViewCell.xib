@@ -14,21 +14,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="317" height="214"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4U-Xs-aaT">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4U-Xs-aaT">
                         <rect key="frame" x="44" y="192" width="268" height="18"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="c5a-YX-aow"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FEd-Vv-5SM">
-                        <rect key="frame" x="0.0" y="179" width="44" height="35"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="laBa" translatesAutoresizingMaskIntoConstraints="NO" id="SMf-Q5-5oE">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="laBa" translatesAutoresizingMaskIntoConstraints="NO" id="SMf-Q5-5oE">
                         <rect key="frame" x="15" y="195" width="21" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="5Ph-hm-GrH"/>
+                        </constraints>
                     </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="E4U-Xs-aaT" firstAttribute="leading" secondItem="SMf-Q5-5oE" secondAttribute="trailing" constant="8" id="1sp-UB-KPc"/>
+                    <constraint firstAttribute="bottom" secondItem="SMf-Q5-5oE" secondAttribute="bottom" constant="7" id="CIC-JV-VIa"/>
+                    <constraint firstAttribute="bottom" secondItem="E4U-Xs-aaT" secondAttribute="bottom" constant="4" id="MC7-hR-eV6"/>
+                    <constraint firstAttribute="trailing" secondItem="E4U-Xs-aaT" secondAttribute="trailing" constant="5" id="jqr-DP-h50"/>
+                    <constraint firstItem="SMf-Q5-5oE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="lMr-h7-CT9"/>
+                    <constraint firstItem="E4U-Xs-aaT" firstAttribute="leading" secondItem="SMf-Q5-5oE" secondAttribute="trailing" constant="8" id="tiF-jZ-Ds2"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="image_laBa" destination="SMf-Q5-5oE" id="nNL-1r-M1S"/>

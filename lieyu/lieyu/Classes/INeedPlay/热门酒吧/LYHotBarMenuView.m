@@ -29,7 +29,7 @@
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0; i < 3; i ++) {
         MenuButton *menuBtn = [[MenuButton alloc]init];
-        menuBtn.frame = CGRectMake(i%3 * 106.5, 0, 106, 40);
+        menuBtn.frame = CGRectMake(i % 3 * (SCREEN_WIDTH / 3), 0, SCREEN_WIDTH / 3, 40);
         [menuBtn setImage:[UIImage imageNamed:@"arrow drop down"] forState:UIControlStateNormal];
         menuBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 69, 0, 13);
         menuBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -13, 0, 37);
@@ -44,7 +44,7 @@
         [_btnArray addObject:menuBtn];
     }
     for(int i = 1; i < 3; i ++){
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(i%3 * 106, 13, 0.5, 14)];
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(i%3 * (SCREEN_WIDTH / 3), 13, 0.5, 14)];
         lineView.backgroundColor = RGBA(204, 204, 204, 1);
         [self addSubview:lineView];
     }
@@ -148,7 +148,7 @@
 }
 
 - (void)hideWithReset:(BOOL)reset{
-    self.frame = CGRectMake(0, 64, 320, 40);
+    self.frame = CGRectMake(0, 64, SCREEN_WIDTH, 40);
     UILabel *lineLabel = [self viewWithTag:100];
     if (lineLabel) {
         [lineLabel removeFromSuperview];

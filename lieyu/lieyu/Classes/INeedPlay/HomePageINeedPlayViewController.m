@@ -43,6 +43,7 @@ UITableViewDataSource,UITableViewDelegate,
     UIButton *_cityChooseBtn;
     UIButton *_searchBtn;
     UIImageView *_titleImageView;
+    CGFloat _scale;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -99,7 +100,9 @@ UITableViewDataSource,UITableViewDelegate,
 //    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
 //        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
 //    }
-    [self.navigationController setNavigationBarHidden:NO];
+    
+    //WTT
+//    [self.navigationController setNavigationBarHidden:NO];
     [self createNavButton];
 }
 
@@ -113,13 +116,14 @@ UITableViewDataSource,UITableViewDelegate,
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_cityChooseBtn];
     
-    
-    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(288, 12, 24, 24)];
+    CGFloat searchBtnWidth = 24;
+    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 32 - searchBtnWidth, 12, searchBtnWidth, searchBtnWidth)];
     [_searchBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
     [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_searchBtn];
     
-    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(134.5, 9.5, 50.0, 24.6)];
+    CGFloat titleImgViewWidth = 50.0;
+    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5, titleImgViewWidth, 24.6)];
     _titleImageView.image = [UIImage imageNamed:@"猎娱"];
     [self.navigationController.navigationBar addSubview:_titleImageView];
 }
@@ -373,7 +377,7 @@ UITableViewDataSource,UITableViewDelegate,
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
                 [bigArr addObject:dicTemp];
             }
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122)
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 8)/21)
                                                                   scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
             scroller.delegate=self;
             scroller.tag=1999;
@@ -420,7 +424,7 @@ UITableViewDataSource,UITableViewDelegate,
     switch (indexPath.section) {
         case 0:
         {
-            h = 122.5 ;
+            h = (SCREEN_WIDTH * 8)/21;
         }
             break;
         case 1:
@@ -436,7 +440,7 @@ UITableViewDataSource,UITableViewDelegate,
             break;
         default:
         {
-            h = 273.5;
+            h = (SCREEN_WIDTH * 9)/16 + (277.5 - 180);
         }
             break;
     }
@@ -452,6 +456,9 @@ UITableViewDataSource,UITableViewDelegate,
         controller.beerBarId = @(model.barid);
         [self.navigationController pushViewController:controller animated:YES];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:model.barname]];
+        
+        LYWineBarCell *cell = (LYWineBarCell *)[tableView cellForRowAtIndexPath:indexPath];
+        NSLog(@"---->%@",NSStringFromCGRect(cell.imageView_content.frame));
     }
 }
 

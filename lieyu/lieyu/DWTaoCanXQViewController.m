@@ -78,12 +78,13 @@
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
-    UIButton *collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(216, 30, 40, 40)];
+    CGFloat collectBtnWidth = 40;
+    UIButton *collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 64 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
     [collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
     [collectBtn addTarget:self action:@selector(collectClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:collectBtn];
     
-    UIButton *shareBtn = [[UIButton alloc]initWithFrame:CGRectMake(272, 30, 40, 40)];
+    UIButton *shareBtn = [[UIButton alloc]initWithFrame:CGRectMake( SCREEN_WIDTH - 8 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:shareBtn];
@@ -248,7 +249,7 @@
     switch (indexPath.section) {
         case 0://广告
         {
-            h = 462-8;
+            h = SCREEN_WIDTH + 146;
         }
             break;
         case 1:// 选项卡 ，酒吧或夜总会
@@ -274,7 +275,7 @@
             break;
         default:
         {
-            h = 229;
+            h = (SCREEN_WIDTH - 16) * 311 / 608 + 52;
         }
             break;
     }

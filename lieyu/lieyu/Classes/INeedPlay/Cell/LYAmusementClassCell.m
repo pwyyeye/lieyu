@@ -47,7 +47,8 @@
         [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"chevron right copy"] forState:UIControlStateNormal];
         [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"chevron right"] forState:UIControlStateNormal];
     }else{
-        [self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH/2.f *(self.bartypeArray.count -2), 0) animated:YES];
+        //[self.scrollView setContentOffset:CGPointMake(SCREEN_WIDTH/2.f *(self.bartypeArray.count -2), 0) animated:YES];
+        [self.scrollView setContentOffset:CGPointMake(_bartypeArray.count * 161 - SCREEN_WIDTH, 0) animated:YES];
         [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"arrowLeftHight"] forState:UIControlStateNormal];
         [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"arrowRitht"] forState:UIControlStateNormal];
     }
@@ -80,7 +81,7 @@
         bartypeslistModel *bartypeModel = bartypeArray[i];
         [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:bartypeModel.imageurl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     }
-    _scrollView.contentSize = CGSizeMake(bartypeArray.count * SCREEN_WIDTH/2.0, 0);
+    _scrollView.contentSize = CGSizeMake(bartypeArray.count * 161, 0);
     _scrollView.alwaysBounceVertical = NO;
 }
 
