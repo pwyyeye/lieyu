@@ -69,7 +69,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 273;
+    return (278 - 180) + (SCREEN_WIDTH * 9)/16;
 }
 
 - (void)didReceiveMemoryWarning {

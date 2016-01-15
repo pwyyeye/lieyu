@@ -24,6 +24,7 @@
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = RGBA(76, 76, 76, 1);
 
+        CGFloat btnWidth = (SCREEN_WIDTH - 20) / 3.f;
         CGFloat offsetX;
         CGFloat offsetZ;
         if (i%3 == 0) {
@@ -36,7 +37,7 @@
         }else{
             offsetZ = 0;
         }
-        label.frame = CGRectMake( i%3 * 100 + 10 + offsetZ, i/3 * 50 + 40, 100 + offsetX, 55);
+        label.frame = CGRectMake(i%3 * btnWidth + 10 + offsetZ, i/3 * 50 + 40, btnWidth + offsetX, 55);
         NSString *str;
         if (i%3 == 0) {
             str = model.name;
@@ -58,7 +59,7 @@
 
 - (void)setIsProgress:(BOOL)isProgress{
     _isProgress = isProgress;
-    UIImageView *progressImageView = [[UIImageView alloc]initWithFrame:CGRectMake(8, 52, 304, 155)];
+    UIImageView *progressImageView = [[UIImageView alloc]initWithFrame:CGRectMake(8, 52, SCREEN_WIDTH - 16, (SCREEN_WIDTH - 16) * 311 / 608)];
     self.label_title.text = @"套餐消费流程";
     progressImageView.image = [UIImage imageNamed:@"套餐"];
     [self addSubview:progressImageView];

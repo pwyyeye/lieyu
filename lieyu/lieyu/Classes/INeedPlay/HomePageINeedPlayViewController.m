@@ -66,17 +66,6 @@ UITableViewDataSource,UITableViewDelegate,
         _tableView.bounds=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     }
     
-    if([[MyUtil deviceString] isEqualToString:@"iPhone 6"]||[[MyUtil deviceString] isEqualToString:@"iPhone 6s"]){
-        _scale = 375/320;
-    }else if([[MyUtil deviceString] isEqualToString:@"iPhone 6 Plus"]||[[MyUtil deviceString] isEqualToString:@"iPhone 6s Plus"]){
-        _scale = 414/320;
-    }else{
-        _scale = 1.0;
-    }
-//    _scale = 1.0;
-     _scale = 1.1718;
-//    _scale = 1.29375;
-    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
@@ -127,13 +116,14 @@ UITableViewDataSource,UITableViewDelegate,
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_cityChooseBtn];
     
-    
-    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(288, 12, 24, 24)];
+    CGFloat searchBtnWidth = 24;
+    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 32 - searchBtnWidth, 12, searchBtnWidth, searchBtnWidth)];
     [_searchBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
     [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_searchBtn];
     
-    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(134.5, 9.5, 50.0, 24.6)];
+    CGFloat titleImgViewWidth = 50.0;
+    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5, titleImgViewWidth, 24.6)];
     _titleImageView.image = [UIImage imageNamed:@"猎娱"];
     [self.navigationController.navigationBar addSubview:_titleImageView];
 }
@@ -387,7 +377,7 @@ UITableViewDataSource,UITableViewDelegate,
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
                 [bigArr addObject:dicTemp];
             }
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, 122 * _scale)
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 8)/21)
                                                                   scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
             scroller.delegate=self;
             scroller.tag=1999;
@@ -434,7 +424,7 @@ UITableViewDataSource,UITableViewDelegate,
     switch (indexPath.section) {
         case 0:
         {
-            h = 122.5 * _scale;
+            h = (SCREEN_WIDTH * 8)/21;
         }
             break;
         case 1:
@@ -450,7 +440,7 @@ UITableViewDataSource,UITableViewDelegate,
             break;
         default:
         {
-            h = 177 * _scale + (273.5 - 177);
+            h = (SCREEN_WIDTH * 9)/16 + (277.5 - 180);
         }
             break;
     }

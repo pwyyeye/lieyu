@@ -191,7 +191,7 @@
 // load webView
 - (void)loadWebView{
     
-    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '303';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",self.beerBarDetail.descriptions];
+    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",self.beerBarDetail.descriptions,SCREEN_WIDTH-17];
     
     
 //    dispatch_async(dispatch_get_main_queue(), ^{
@@ -268,7 +268,7 @@
     NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
     float clientheight = [clientheight_str floatValue];
     //设置到WebView上
-     webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
+    // webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
     //获取WebView最佳尺寸（点）
     CGSize frame = [webView sizeThatFits:webView.frame.size];
     //获取内容实际高度（像素）
@@ -278,7 +278,7 @@
 //    height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
 //    NSLog(@"--->%f",height);
-    webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, frame.height);
+    webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, frame.height);
 //    webView.backgroundColor = [UIColor redColor];
     
     _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
@@ -479,7 +479,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            return 220;
+            return SCREEN_WIDTH * 9 / 16 + 40;
         }
             break;
         case 1:
