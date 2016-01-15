@@ -135,9 +135,6 @@
     if (cell == nil) {
         NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
         cell = (CarInfoCell *)[nibArray objectAtIndex:0];
-        
-        
-        
     }
     CarInfoModel *carInfoModel=dataList[indexPath.section];
     CarModel *carModel=carInfoModel.cartlist[indexPath.row];
