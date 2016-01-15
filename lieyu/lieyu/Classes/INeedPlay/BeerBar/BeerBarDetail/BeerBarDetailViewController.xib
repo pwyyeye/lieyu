@@ -14,6 +14,7 @@
                 <outlet property="image_layer" destination="Jt1-L8-RY0" id="cUi-jE-4WZ"/>
                 <outlet property="scrollView" destination="qCV-au-nay" id="dDM-Wm-44C"/>
                 <outlet property="tableView" destination="0kO-Cg-bvf" id="OWs-wS-3cI"/>
+                <outlet property="tableView_Height" destination="WzX-Oa-sGC" id="QXX-0O-T8L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,12 +23,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qCV-au-nay">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qCV-au-nay">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0kO-Cg-bvf">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="600" id="WzX-Oa-sGC"/>
+                            </constraints>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="YLh-nG-mzE"/>
                                 <outlet property="delegate" destination="-1" id="aZW-RJ-9cZ"/>
@@ -37,10 +41,8 @@
                     <constraints>
                         <constraint firstItem="0kO-Cg-bvf" firstAttribute="centerX" secondItem="qCV-au-nay" secondAttribute="centerX" id="1Ta-o6-cQS"/>
                         <constraint firstItem="0kO-Cg-bvf" firstAttribute="leading" secondItem="qCV-au-nay" secondAttribute="leading" id="GAx-a7-8j7"/>
-                        <constraint firstAttribute="bottom" secondItem="0kO-Cg-bvf" secondAttribute="bottom" id="PBh-xq-UOH"/>
                         <constraint firstAttribute="trailing" secondItem="0kO-Cg-bvf" secondAttribute="trailing" id="fD9-aW-SiS"/>
                         <constraint firstItem="0kO-Cg-bvf" firstAttribute="top" secondItem="qCV-au-nay" secondAttribute="top" id="l1u-rX-HaV"/>
-                        <constraint firstItem="0kO-Cg-bvf" firstAttribute="centerY" secondItem="qCV-au-nay" secondAttribute="centerY" id="wIQ-y0-igO"/>
                     </constraints>
                 </scrollView>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navBarbg" translatesAutoresizingMaskIntoConstraints="NO" id="Jt1-L8-RY0">

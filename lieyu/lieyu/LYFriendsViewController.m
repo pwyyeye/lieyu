@@ -196,18 +196,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginAndLoadData" object:nil];
 }
 
-//- (void)messageCountNotice:(NSNotification *)note{
-//    UIView *view = _tableView.tableHeaderView;
-//    CGRect frame = view.frame;
-//    frame.size.height = frame.size.height + 54;
-//    _tableView.tableHeaderView = view;
-//}
-
-//- (void)badgeValue:(NSNotification *)note{
-//    NSString *resluts = note.userInfo[@"results"];
-//    NSString *icon = note.userInfo[@"icon"];
-//}
-
 #pragma mark - 作为代理收取视频路径地址与截图
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location{
     self.mediaImage = image;
@@ -387,14 +375,19 @@
 
 #pragma mark - 设置导航栏玩友圈和我的按钮及发布动态按钮
 - (void)setupNavMenuView{
-    _friendsBtn = [[UIButton alloc]initWithFrame:CGRectMake(101.5, 12, 42, 20)];
+    _vLine = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 1) / 2.f, 16, 1, 12)];
+    _vLine.backgroundColor = RGBA(255, 255, 255, 0.5);
+    [self.navigationController.navigationBar addSubview:_vLine];
+    
+    CGFloat friendsBtn_Width = 42;
+    _friendsBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f - friendsBtn_Width - 16 , 12, friendsBtn_Width, 20)];
     [_friendsBtn setTitle:@"玩友圈" forState:UIControlStateNormal];
     _friendsBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     _friendsBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_friendsBtn addTarget:self action:@selector(friendsClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_friendsBtn];
     
-    _myBtn = [[UIButton alloc]initWithFrame:CGRectMake(176, 12, 42, 20)];
+    _myBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f + 16, 12, friendsBtn_Width, 20)];
     [_myBtn setTitle:@"我的" forState:UIControlStateNormal];
     _myBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     if(_friendsBtnSelect) {
@@ -407,17 +400,17 @@
     [_myBtn addTarget:self action:@selector(myClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_myBtn];
     
-    _vLine = [[UIView alloc]initWithFrame:CGRectMake(160, 16, 1, 12)];
-    _vLine.backgroundColor = RGBA(255, 255, 255, 0.5);
-    [self.navigationController.navigationBar addSubview:_vLine];
+    
 
-    _myBadge = [[UILabel alloc]initWithFrame:CGRectMake(209, 10, 10, 10)];
+    _myBadge = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f + 16 + 30, 10, 10, 10)];
     _myBadge.backgroundColor = [UIColor redColor];
     _myBadge.layer.cornerRadius = CGRectGetWidth(_myBadge.frame) / 2.f;
     _myBadge.layer.masksToBounds = YES;
     _myBadge.hidden = YES;
     [self.navigationController.navigationBar addSubview:_myBadge];
-    _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake(285.5, 10, 24, 24)];
+    
+    CGFloat carmerBtn_Width = 24;
+    _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 11.3 - carmerBtn_Width, 10, carmerBtn_Width, carmerBtn_Width)];
     [_carmerBtn addTarget:self action:@selector(carmerClick:) forControlEvents:UIControlEventTouchUpInside];
     [_carmerBtn setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
     [self.navigationController.navigationBar addSubview:_carmerBtn];
