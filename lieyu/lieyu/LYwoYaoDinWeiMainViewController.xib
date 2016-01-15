@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -17,22 +17,32 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="3bo-9e-LJO">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-9e-LJO">
                     <rect key="frame" x="0.0" y="114" width="320" height="454"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="WSj-eM-X8F"/>
                         <outlet property="delegate" destination="-1" id="MlJ-Sl-z2q"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" id="XHt-IO-Xda">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHt-IO-Xda">
                     <rect key="frame" x="0.0" y="64" width="320" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="nih-KR-nvH"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="XHt-IO-Xda" secondAttribute="trailing" id="7C5-fJ-x6O"/>
+                <constraint firstItem="XHt-IO-Xda" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HlC-j7-hOF"/>
+                <constraint firstAttribute="trailing" secondItem="3bo-9e-LJO" secondAttribute="trailing" id="J0M-L9-KSN"/>
+                <constraint firstItem="XHt-IO-Xda" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="gEY-Cq-AQb"/>
+                <constraint firstItem="3bo-9e-LJO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gJH-m7-3Q2"/>
+                <constraint firstAttribute="bottom" secondItem="3bo-9e-LJO" secondAttribute="bottom" id="mAg-Nm-qQL"/>
+                <constraint firstItem="3bo-9e-LJO" firstAttribute="top" secondItem="XHt-IO-Xda" secondAttribute="bottom" id="zJw-Ye-UH8"/>
+            </constraints>
             <point key="canvasLocation" x="112" y="228"/>
         </view>
     </objects>

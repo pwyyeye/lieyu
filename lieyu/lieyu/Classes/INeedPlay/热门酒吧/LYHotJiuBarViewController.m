@@ -140,12 +140,14 @@
         _bgView.tag = 300;
         [self.view addSubview:_bgView];
         
-        _image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 191,105 , 119)];
+        CGFloat image_placeWidth = 105;
+        _image_place = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - image_placeWidth)/2.f, 191,image_placeWidth , 119)];
         _image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
         _image_place.tag = 100;
         [self.view addSubview:_image_place];
         
-        _label_place = [[UILabel alloc]initWithFrame:CGRectMake(76, 310, 168, 22)];
+        CGFloat label_placeWidth = 168;
+        _label_place = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - label_placeWidth)/2.f, 310, 168, 22)];
         _label_place.text = @"正在等待商家入住";
         _label_place.textColor = RGBA(29, 32, 47, 1);
         _label_place.font = [UIFont systemFontOfSize:14];
@@ -386,7 +388,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 273;
+    return (278 - 180) + SCREEN_WIDTH * 9 / 16;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

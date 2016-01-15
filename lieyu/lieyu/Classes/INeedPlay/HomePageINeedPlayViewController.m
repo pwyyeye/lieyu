@@ -115,7 +115,7 @@ UITableViewDataSource,UITableViewDelegate,
     [self.navigationController.navigationBar addSubview:_cityChooseBtn];
     
     CGFloat searchBtnWidth = 24;
-    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - searchBtnWidth)/2.f, 12, searchBtnWidth, searchBtnWidth)];
+    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 32 - searchBtnWidth, 12, searchBtnWidth, searchBtnWidth)];
     [_searchBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
     [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_searchBtn];

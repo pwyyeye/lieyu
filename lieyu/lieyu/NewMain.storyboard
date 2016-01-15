@@ -39,7 +39,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="咨询猎娱" image="icon_zixun_normal">
+                                        <state key="normal" title="咨询猎娱" image="icon_zhuyishixiang_normal.png">
                                             <color key="titleColor" red="0.10980392156862745" green="0.71764705882352942" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -135,19 +135,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6As-aD-fwo">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6As-aD-fwo">
                                                     <rect key="frame" x="10" y="11" width="91" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="91" id="LMF-jI-OUw"/>
+                                                        <constraint firstAttribute="height" constant="21" id="bCn-Mv-o0l"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ole-eE-6Bb">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ole-eE-6Bb">
                                                     <rect key="frame" x="172" y="11" width="138" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="4UF-NV-hAa"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ole-eE-6Bb" firstAttribute="leading" secondItem="6As-aD-fwo" secondAttribute="trailing" constant="30" id="0Iv-If-FAr"/>
+                                                <constraint firstAttribute="trailing" secondItem="ole-eE-6Bb" secondAttribute="trailing" constant="10" id="5Ld-oj-5na"/>
+                                                <constraint firstItem="6As-aD-fwo" firstAttribute="top" secondItem="d8k-Da-wcw" secondAttribute="top" constant="11" id="NeB-9z-1wq"/>
+                                                <constraint firstAttribute="bottom" secondItem="ole-eE-6Bb" secondAttribute="bottom" constant="11" id="TaT-bs-tc9"/>
+                                                <constraint firstItem="6As-aD-fwo" firstAttribute="leading" secondItem="d8k-Da-wcw" secondAttribute="leading" constant="10" id="kmU-QV-mSM"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="delLal" destination="ole-eE-6Bb" id="BR8-O7-K1f"/>
@@ -270,7 +284,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <inset key="imageEdgeInsets" minX="-5" minY="3" maxX="5" maxY="3"/>
-                                <state key="normal" title="咨询猎娱" image="icon_zixun_normal">
+                                <state key="normal" title="咨询猎娱" image="icon_zhuyishixiang_normal.png">
                                     <color key="titleColor" red="0.074509803920000006" green="0.65098039220000004" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -1833,7 +1847,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <inset key="titleEdgeInsets" minX="-20" minY="32" maxX="0.0" maxY="5"/>
                                 <inset key="imageEdgeInsets" minX="40" minY="5" maxX="0.0" maxY="20"/>
-                                <state key="normal" title="猎娱客服" image="icon_zixun_normal">
+                                <state key="normal" title="猎娱客服" image="icon_zhuyishixiang_normal.png">
                                     <color key="titleColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -1917,8 +1931,8 @@
         <image name="icon_xinxi_normal1" width="19" height="17"/>
         <image name="icon_zhuyi" width="20" height="20"/>
         <image name="icon_zhuyishixiang_normal" width="20" height="20"/>
+        <image name="icon_zhuyishixiang_normal.png" width="24" height="24"/>
         <image name="icon_zixun" width="20" height="20"/>
-        <image name="icon_zixun_normal" width="20" height="20"/>
         <image name="jia2" width="32" height="32"/>
         <image name="jian2" width="32" height="32"/>
         <image name="phoneLv" width="19" height="19"/>
