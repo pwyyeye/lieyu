@@ -479,7 +479,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            return SCREEN_WIDTH * 9 / 16 + 40;
+            return SCREEN_WIDTH * 9 / 16 + 30;
         }
             break;
         case 1:

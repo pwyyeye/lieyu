@@ -21,7 +21,7 @@
      
     //设置背景色
     UIImageView *bgImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headBgColor"]];
-    bgImage.frame=self.headView.bounds;
+    bgImage.frame=CGRectMake(0, 0, SCREEN_WIDTH, CGRectGetHeight(_headView.frame));
     bgImage.contentMode=UIViewContentModeScaleToFill;
     
     

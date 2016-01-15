@@ -33,6 +33,7 @@
     self.title=@"个人信息";
     data=@[@"头像",@"昵称",@"性别",@"生日",@"标签"];
     _datePicker=[[UIDatePicker alloc] init];
+    _datePicker.center = CGPointMake(SCREEN_WIDTH/2.f,_datePicker.center.y);
     _datePicker.datePickerMode=UIDatePickerModeDate;
     NSLocale *local=[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
     _datePicker.locale=local;
@@ -323,13 +324,14 @@
     _alertView.shade_proportion=0.7;
     [self.view addSubview:_alertView];
     
-    LYUserTagButton *male=[[LYUserTagButton alloc] initWithFrame:CGRectMake(60, 30, 60, 35)];
+    CGFloat maleWidth = 60;
+    LYUserTagButton *male=[[LYUserTagButton alloc] initWithFrame:CGRectMake(60, 30, maleWidth, 35)];
     [male setTitle:@"男" forState:UIControlStateNormal];
     male.delegate=self;
     male.tag=2001;
     
     
-    LYUserTagButton *fmale=[[LYUserTagButton alloc] initWithFrame:CGRectMake(190, 30, 60, 35)];
+    LYUserTagButton *fmale=[[LYUserTagButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 130, 30, maleWidth, 35)];
     [fmale setTitle:@"女" forState:UIControlStateNormal];
     fmale.delegate=self;
     fmale.tag=2000;

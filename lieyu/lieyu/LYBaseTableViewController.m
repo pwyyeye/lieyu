@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  //  self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     self.automaticallyAdjustsScrollViewInsets=1;
     //    self.automaticallyAdjustsScrollViewInsets = NO;

@@ -21,16 +21,17 @@
         [restLayer removeFromSuperlayer];
     }
     
+    CGFloat layerShdowWidth = SCREEN_WIDTH / 4.f;
+    
     CALayer *layerShadowTop=[[CALayer alloc]init];
-    layerShadowTop.frame=CGRectMake(0, 0.5, self.frame.size.width,0.5);
+    layerShadowTop.frame=CGRectMake(0, 0, layerShdowWidth,0.5);
     layerShadowTop.borderColor=[RGBA(0, 0, 0, 0.1) CGColor];
     layerShadowTop.borderWidth=0.5;
     
     [self.layer addSublayer:layerShadowTop];
     
-    
     CALayer *layerShadowRight=[[CALayer alloc]init];
-    layerShadowRight.frame=CGRectMake(self.frame.size.height-0.5, 0,0.5,self.frame.size.height);
+    layerShadowRight.frame=CGRectMake(layerShdowWidth-0.5, 0,0.5,layerShdowWidth);
     layerShadowRight.borderColor=[RGBA(0, 0, 0, 0.1) CGColor];
     layerShadowRight.borderWidth=0.5;
     
