@@ -341,10 +341,6 @@
     cell.layer.masksToBounds = YES;
     cell.userInteractionEnabled = YES;
     
-    cell.layer.shadowColor = [[UIColor blackColor]CGColor];
-    cell.layer.shadowOffset = CGSizeMake(-1, -1);
-    cell.layer.cornerRadius = 5;
-    cell.layer.shadowOpacity = 1;
     
     cell.delegate = self;
     
