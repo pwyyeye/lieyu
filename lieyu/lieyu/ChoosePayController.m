@@ -36,7 +36,7 @@
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-107);
-        _payBtn.frame = CGRectMake(8, 500 - 107 - 64, 304, 52);
+        _payBtn.frame = CGRectMake(10, SCREEN_HEIGHT - 123, SCREEN_WIDTH - 20, 52);
     }
     
     
@@ -55,7 +55,7 @@
 }
 
 - (void)createPayButton{
-    _payBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 500 - 64, 304, 52)];
+    _payBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 123, SCREEN_WIDTH - 20, 52)];
     [_payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
     _payBtn.layer.cornerRadius = 4;
     _payBtn.layer.masksToBounds = YES;
@@ -246,7 +246,7 @@
             _payCell.detailTextLabel.textColor=RGB(102, 101, 102);
             _payCell.imageView.image=[UIImage imageNamed:[dic objectForKey:@"payicon"]];
             
-            PayButton *selectBtn = [[PayButton alloc]initWithFrame:CGRectMake(90,0, 230, 80)];
+            PayButton *selectBtn = [[PayButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 230,0, 230, 80)];
 //            [selectBtn setBackgroundColor:[UIColor redColor]];
             if (!indexPath.row) {
                 selectBtn.isSelect = YES;

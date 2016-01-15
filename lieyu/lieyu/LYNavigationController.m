@@ -28,7 +28,7 @@
     layer.colors = @[(__bridge id)_inputColor0.CGColor, (__bridge id)_inputColor1.CGColor];
     layer.startPoint = _inputPoint0;
     layer.endPoint = _inputPoint1;
-    layer.frame = CGRectMake(0, -20, 320, 64);
+    layer.frame = CGRectMake(0, -20, SCREEN_WIDTH, 64);
     layer.zPosition=-1;
     [self.navigationBar.layer addSublayer:layer];
     
