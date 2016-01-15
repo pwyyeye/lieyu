@@ -63,12 +63,12 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超返利" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9F-Qq-oYs">
-                        <rect key="frame" x="8" y="8" width="39" height="16"/>
+                        <rect key="frame" x="8" y="8" width="44" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="AUG-y0-QZZ"/>
-                            <constraint firstAttribute="width" constant="39" id="R9n-C9-CDJ"/>
+                            <constraint firstAttribute="width" constant="44" id="R9n-C9-CDJ"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.80466056034482758" colorSpace="calibratedRGB"/>
@@ -85,12 +85,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AU-rC-Rg0">
-                        <rect key="frame" x="55" y="7" width="43" height="18"/>
+                        <rect key="frame" x="60" y="7" width="50" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="0ub-qw-j1Y"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="43" id="9Ls-Ux-BWW"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="9Ls-Ux-BWW"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.80466056029999999" colorSpace="calibratedRGB"/>

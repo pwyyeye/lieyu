@@ -183,7 +183,7 @@
     int height;
     switch (indexPath.section) {
         case 0:
-            height = 360;
+            height = 40 + SCREEN_WIDTH;
             break;
         case 1:
             height = 146;

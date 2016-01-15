@@ -87,7 +87,7 @@
         UIView *noteView=[[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height-25,self.bounds.size.width,25)];
         noteView.backgroundColor = [UIColor  colorWithRed:.95 green:.95 blue:.95 alpha:1.0];
         float pageControlWidth = pageCount * 10;
-        pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(320-pageControlWidth-20,scrollView.frame.size.height-15,pageControlWidth,10)];
+        pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-pageControlWidth-20,scrollView.frame.size.height-15,pageControlWidth,10)];
         pageControl.currentPage=0;
         if (pageCount>1) {
             pageControl.currentPageIndicatorTintColor=[UIColor redColor];

@@ -205,7 +205,7 @@
 {
     CGFloat h = 0.0f;
     if(indexPath.section == 0){
-        h = 438;
+        h = 118 + SCREEN_WIDTH;
     }else if(indexPath.section == 1){
         h = 60;
     }else if(indexPath.section == 2){
@@ -214,7 +214,7 @@
         UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
         return cell.frame.size.height;
     }else{
-        h = 200;
+        h = 45 + SCREEN_WIDTH / 2;
     }
     return h;
 }
