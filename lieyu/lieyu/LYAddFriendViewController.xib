@@ -16,12 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQ9-Ou-Ws7">
-                    <rect key="frame" x="22" y="375" width="277" height="43"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQ9-Ou-Ws7">
+                    <rect key="frame" x="22" y="375" width="276" height="43"/>
                     <color key="backgroundColor" red="0.4039215686" green="0.043137254899999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="277" id="030-wz-Thp"/>
-                        <constraint firstAttribute="height" constant="43" id="OGm-0r-oPi"/>
+                        <constraint firstAttribute="height" constant="43" id="rca-JA-fes"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="发送">
@@ -31,14 +30,21 @@
                         <action selector="sendAct:" destination="-1" eventType="touchUpInside" id="7i4-0a-q3b"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="你需要发送验证申请，等待对方通过" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Re-05-0gX">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你需要发送验证申请，等待对方通过" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Re-05-0gX">
                     <rect key="frame" x="22" y="17" width="268" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="268" id="KSL-nf-Wr7"/>
+                        <constraint firstAttribute="height" constant="21" id="mbL-18-BSi"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="0hr-06-2og">
-                    <rect key="frame" x="22" y="62" width="277" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="0hr-06-2og">
+                    <rect key="frame" x="22" y="62" width="276" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="ZcB-Zo-VqD"/>
+                    </constraints>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -46,9 +52,12 @@
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="x9C-nf-uPw"/>
                     </connections>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OD5-4d-1sw">
-                    <rect key="frame" x="26" y="92" width="268" height="1"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OD5-4d-1sw">
+                    <rect key="frame" x="22" y="92" width="276" height="1"/>
                     <color key="backgroundColor" red="0.7803921568627451" green="0.7803921568627451" blue="0.7803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="5ny-Kq-eMC"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -56,7 +65,17 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="XQ9-Ou-Ws7" secondAttribute="bottom" constant="150" id="gCG-Kt-cGM"/>
+                <constraint firstItem="4Re-05-0gX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="17" id="18D-s1-XaJ"/>
+                <constraint firstAttribute="trailing" secondItem="0hr-06-2og" secondAttribute="trailing" constant="22" id="1O6-ui-dkm"/>
+                <constraint firstAttribute="trailing" secondItem="XQ9-Ou-Ws7" secondAttribute="trailing" constant="22" id="JdB-df-k7m"/>
+                <constraint firstItem="XQ9-Ou-Ws7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="OWv-du-Bhm"/>
+                <constraint firstItem="OD5-4d-1sw" firstAttribute="leading" secondItem="0hr-06-2og" secondAttribute="leading" id="QFS-5w-IaX"/>
+                <constraint firstAttribute="bottom" secondItem="XQ9-Ou-Ws7" secondAttribute="bottom" constant="150" id="Wyh-u0-2bA"/>
+                <constraint firstItem="OD5-4d-1sw" firstAttribute="top" secondItem="0hr-06-2og" secondAttribute="bottom" id="cIE-e2-von"/>
+                <constraint firstItem="4Re-05-0gX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="hUQ-hU-4xs"/>
+                <constraint firstItem="0hr-06-2og" firstAttribute="top" secondItem="4Re-05-0gX" secondAttribute="bottom" constant="24" id="lwI-J9-TFM"/>
+                <constraint firstItem="OD5-4d-1sw" firstAttribute="trailing" secondItem="0hr-06-2og" secondAttribute="trailing" id="nJ8-Cs-yyL"/>
+                <constraint firstItem="0hr-06-2og" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="z6d-ew-xlX"/>
             </constraints>
             <point key="canvasLocation" x="296" y="301"/>
         </view>
