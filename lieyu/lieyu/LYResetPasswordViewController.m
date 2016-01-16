@@ -57,6 +57,11 @@ static LYResetPasswordViewController *_reset;
     self.navigationController.navigationBarHidden = NO;
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

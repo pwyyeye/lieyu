@@ -1809,8 +1809,8 @@
                                             <outlet property="typeBtn" destination="r7f-R2-MCz" id="ZdG-e6-OSi"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTShowIntroductionsCell" rowHeight="200" id="UG9-CT-4EA" customClass="PTShowIntroductionsCell">
-                                        <rect key="frame" x="0.0" y="126" width="320" height="200"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTShowIntroductionsCell" rowHeight="205" id="UG9-CT-4EA" customClass="PTShowIntroductionsCell">
+                                        <rect key="frame" x="0.0" y="125.5" width="320" height="205"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UG9-CT-4EA" id="UY7-ne-zCV">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>

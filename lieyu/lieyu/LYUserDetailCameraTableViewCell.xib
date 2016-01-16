@@ -14,20 +14,40 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cameraCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="jAQ-vA-Fqd">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cameraCircle.png" translatesAutoresizingMaskIntoConstraints="NO" id="jAQ-vA-Fqd">
                         <rect key="frame" x="127" y="31" width="65" height="65"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="65" id="QJc-Bi-gAp"/>
+                            <constraint firstAttribute="width" constant="65" id="jLe-aF-3R8"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="精彩从头像开始" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mk-4g-v1B">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精彩从头像开始" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mk-4g-v1B">
                         <rect key="frame" x="122" y="106" width="77" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="aRX-A7-Xg3"/>
+                            <constraint firstAttribute="width" constant="77" id="w8o-fr-yd0"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvT-HQ-up1">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvT-HQ-up1">
                         <rect key="frame" x="129" y="33" width="61" height="61"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="61" id="RY3-68-MqS"/>
+                            <constraint firstAttribute="width" constant="61" id="XV3-7O-FYr"/>
+                        </constraints>
                         <state key="normal" backgroundImage="camera.png"/>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="jAQ-vA-Fqd" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="4yR-nd-SNY"/>
+                    <constraint firstItem="kvT-HQ-up1" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Fob-X6-eDE"/>
+                    <constraint firstItem="5mk-4g-v1B" firstAttribute="top" secondItem="jAQ-vA-Fqd" secondAttribute="bottom" constant="10" id="P5P-PB-NM3"/>
+                    <constraint firstItem="kvT-HQ-up1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="33" id="kOz-Ow-VDw"/>
+                    <constraint firstItem="jAQ-vA-Fqd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="31" id="lvl-CX-o2C"/>
+                    <constraint firstItem="5mk-4g-v1B" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="t0h-kf-ecj"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="btn_userImage" destination="kvT-HQ-up1" id="nhd-MJ-orp"/>
@@ -38,6 +58,6 @@
     </objects>
     <resources>
         <image name="camera.png" width="61" height="61"/>
-        <image name="cameraCircle.png" width="16" height="16"/>
+        <image name="cameraCircle.png" width="65" height="65"/>
     </resources>
 </document>

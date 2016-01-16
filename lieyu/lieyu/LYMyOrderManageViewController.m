@@ -295,7 +295,7 @@
     }
     
     if (mMenuHriZontal == nil) {
-        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:self.menuView.frame ButtonItems:barArr andOrderType:_orderType];
+        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:CGRectMake(_menuView.origin.x, _menuView.origin.y, SCREEN_WIDTH, _menuView.frame.size.height) ButtonItems:barArr andOrderType:_orderType];
         mMenuHriZontal.delegate = self;
     }
     [self.view addSubview:mMenuHriZontal];
@@ -828,7 +828,7 @@
            [cell.yjBtn setHidden:YES];
         }
     }
-    UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, 290, 0.5)];
+    UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 0.5)];
     lineLal.backgroundColor=RGB(199, 199, 199);
     [cell addSubview:lineLal];
     cell.zhekouLal.text=[NSString stringWithFormat:@"￥%@",shopDetailmodel.youfeiPrice];

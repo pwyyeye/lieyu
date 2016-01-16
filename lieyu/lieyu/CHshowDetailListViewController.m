@@ -88,15 +88,16 @@
         [dataList addObjectsFromArray:arr];
         
         NSLog(@"****block%d******",dataList.count);
-        if(dataList.count>0){
-            
-            pageCount++;
-            [weakSelf.collectionview.mj_footer resetNoMoreData];
-        }
+//        if(dataList.count>0){
+//            
+//            pageCount++;
+//            [weakSelf.collectionview.mj_footer endRefreshingWithNoMoreData];
+//        }
         [weakSelf.collectionview reloadData];
     }];
     [weakSelf.collectionview.mj_header endRefreshing];
 }
+
 #pragma mark 获取更多数据
 -(void)getDataWithDicMore:(NSDictionary *)dic{
     __weak __typeof(self)weakSelf = self;
@@ -105,12 +106,13 @@
             [dataList addObjectsFromArray:result];
             pageCount++;
             [weakSelf.collectionview reloadData];
+              [weakSelf.collectionview.mj_footer endRefreshing];
         }else{
-            [weakSelf.collectionview.mj_footer noticeNoMoreData];
+            [weakSelf.collectionview.mj_footer endRefreshingWithNoMoreData];
         }
     }];
     
-    [weakSelf.collectionview.mj_footer endRefreshing];
+  
     
 }
 //定义展示的UIcollectionviewCell的个数

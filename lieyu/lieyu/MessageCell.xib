@@ -14,30 +14,56 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XEk-BZ-mMe">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XEk-BZ-mMe">
                         <rect key="frame" x="17" y="8" width="52" height="52"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="52" id="3pC-A2-itv"/>
+                            <constraint firstAttribute="width" constant="52" id="kjj-Rz-MiC"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="嘛嘛利亚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ju-JN-FDA">
-                        <rect key="frame" x="77" y="8" width="163" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="嘛嘛利亚" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ju-JN-FDA">
+                        <rect key="frame" x="77" y="8" width="141" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="63X-lk-bd8"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90a-PA-NSN">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90a-PA-NSN">
                         <rect key="frame" x="218" y="21" width="85" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="7Nc-Qw-3CL"/>
+                            <constraint firstAttribute="width" constant="85" id="Yei-OC-ghD"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="接受" backgroundImage="typeSelect">
                             <color key="titleShadowColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="一起玩吧！" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgG-31-VmG">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一起玩吧！" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgG-31-VmG">
                         <rect key="frame" x="77" y="29" width="141" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="31" id="1Ci-nX-gVt"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="cgG-31-VmG" firstAttribute="leading" secondItem="XEk-BZ-mMe" secondAttribute="trailing" constant="8" id="6j2-ai-wLp"/>
+                    <constraint firstItem="cgG-31-VmG" firstAttribute="top" secondItem="8ju-JN-FDA" secondAttribute="bottom" constant="3" id="Brh-L2-IyH"/>
+                    <constraint firstItem="8ju-JN-FDA" firstAttribute="leading" secondItem="XEk-BZ-mMe" secondAttribute="trailing" constant="8" id="PvF-6q-4F1"/>
+                    <constraint firstItem="90a-PA-NSN" firstAttribute="leading" secondItem="cgG-31-VmG" secondAttribute="trailing" id="WIH-Q5-VUk"/>
+                    <constraint firstItem="90a-PA-NSN" firstAttribute="leading" secondItem="8ju-JN-FDA" secondAttribute="trailing" id="Wme-4F-fGJ"/>
+                    <constraint firstAttribute="trailing" secondItem="90a-PA-NSN" secondAttribute="trailing" constant="17" id="bkq-PQ-LtQ"/>
+                    <constraint firstItem="XEk-BZ-mMe" firstAttribute="top" secondItem="cCg-19-9HW" secondAttribute="top" constant="8" id="eU7-aX-iqP"/>
+                    <constraint firstItem="90a-PA-NSN" firstAttribute="top" secondItem="cCg-19-9HW" secondAttribute="top" constant="21" id="goR-2z-BHC"/>
+                    <constraint firstItem="8ju-JN-FDA" firstAttribute="top" secondItem="cCg-19-9HW" secondAttribute="top" constant="8" id="tua-Jo-TU8"/>
+                    <constraint firstItem="XEk-BZ-mMe" firstAttribute="leading" secondItem="cCg-19-9HW" secondAttribute="leading" constant="17" id="usb-Tj-zSw"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="detLal" destination="cgG-31-VmG" id="QbG-Ua-d97"/>
