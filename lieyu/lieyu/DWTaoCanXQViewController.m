@@ -98,6 +98,7 @@
 //    [super viewWillDisappear:animated];
 //     [self.navigationController setNavigationBarHidden:NO];
 //}
+
 #pragma mark 收藏按钮action
 - (void)collectClick{
     NSDictionary *dic=@{@"barid":@(taoCanModel.barinfo.barid)};
