@@ -131,9 +131,10 @@
     [super updateViewConstraints];
     if (self.beerBarDetail.isSign==0) {
         _buttomViewHeight.constant=0;
-       
+        _bottomBarView.hidden = YES;
     }else{
         _buttomViewHeight.constant=49;
+        _bottomBarView.hidden = NO;
     }
     
 }
@@ -161,13 +162,13 @@
             
             [weakSelf updateViewConstraints];
             [weakSelf.tableView reloadData];
-            //加载webview
             
+            //加载webview
             [weakSelf loadWebView];
             [weakSelf setTimer];
         }
     } failure:^(BeerBarOrYzhDetailModel *beerModel) {
-            //本地加载酒吧详情数据
+        //本地加载酒吧详情数据
         weakSelf.beerBarDetail = beerModel;
         [weakSelf.tableView reloadData];
         [weakSelf loadWebView];
@@ -197,10 +198,6 @@
         // 更UI
         [_webView loadHTMLString:webStr baseURL:nil];
 //    });
-    
-    
-    
-    
 }
 
 
