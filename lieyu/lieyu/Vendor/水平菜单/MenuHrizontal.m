@@ -219,14 +219,14 @@
         return;
     }
      //宽度小于320肯定不需要移动
-    if (mTotalWidth <= 320) {
+    if (mTotalWidth <= SCREEN_WIDTH) {
         return;
     }
     NSDictionary *vDic = [mItemInfoArray objectAtIndex:aIndex];
     float vButtonOrigin = [[vDic objectForKey:TOTALWIDTH] floatValue];
-    if (vButtonOrigin >= 300) {
+    if (vButtonOrigin >= SCREEN_WIDTH - 20) {
         if ((vButtonOrigin + 180) >= mScrollView.contentSize.width) {
-            [mScrollView setContentOffset:CGPointMake(mScrollView.contentSize.width - 320, mScrollView.contentOffset.y) animated:YES];
+            [mScrollView setContentOffset:CGPointMake(mScrollView.contentSize.width - SCREEN_WIDTH, mScrollView.contentOffset.y) animated:YES];
             return;
         }
         
