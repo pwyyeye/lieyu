@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,11 +11,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLB-C6-KZm" customClass="BiaoQianBtn">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLB-C6-KZm" customClass="BiaoQianBtn">
                         <rect key="frame" x="118" y="7" width="85" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="8pz-ZN-vda"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <state key="normal" backgroundImage="type">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -23,8 +26,11 @@
                         </state>
                         <state key="selected" backgroundImage="typeSelect"/>
                     </button>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEE-If-Eyk" customClass="BiaoQianBtn">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEE-If-Eyk" customClass="BiaoQianBtn">
                         <rect key="frame" x="219" y="7" width="85" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="7uB-bK-bQN"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <state key="normal" backgroundImage="type">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -32,8 +38,11 @@
                         </state>
                         <state key="selected" backgroundImage="typeSelect"/>
                     </button>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZS-fw-2xA" customClass="BiaoQianBtn">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZS-fw-2xA" customClass="BiaoQianBtn">
                         <rect key="frame" x="15" y="7" width="85" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="MZ2-IP-Ni1"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <state key="normal" backgroundImage="type">
                             <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,6 +51,19 @@
                         <state key="selected" backgroundImage="typeSelect"/>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="uLB-C6-KZm" firstAttribute="leading" secondItem="TZS-fw-2xA" secondAttribute="trailing" constant="18" id="3qX-cN-5IK"/>
+                    <constraint firstItem="uLB-C6-KZm" firstAttribute="width" secondItem="TZS-fw-2xA" secondAttribute="width" id="48K-OM-xAT"/>
+                    <constraint firstItem="TZS-fw-2xA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Hbp-bE-DfV"/>
+                    <constraint firstAttribute="trailing" secondItem="PEE-If-Eyk" secondAttribute="trailing" constant="16" id="I9q-mw-7DB"/>
+                    <constraint firstItem="PEE-If-Eyk" firstAttribute="leading" secondItem="uLB-C6-KZm" secondAttribute="trailing" constant="16" id="Lok-0n-Ztp"/>
+                    <constraint firstItem="uLB-C6-KZm" firstAttribute="leading" secondItem="TZS-fw-2xA" secondAttribute="trailing" constant="18" id="d9a-da-l9n"/>
+                    <constraint firstItem="TZS-fw-2xA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="i97-zY-7Qk"/>
+                    <constraint firstItem="PEE-If-Eyk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="lzG-cb-lDM"/>
+                    <constraint firstItem="PEE-If-Eyk" firstAttribute="leading" secondItem="uLB-C6-KZm" secondAttribute="trailing" constant="16" id="m0K-hz-lPI"/>
+                    <constraint firstItem="uLB-C6-KZm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="pih-J7-nw4"/>
+                    <constraint firstItem="PEE-If-Eyk" firstAttribute="width" secondItem="TZS-fw-2xA" secondAttribute="width" id="xyS-Wo-zjr"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="oneBtn" destination="TZS-fw-2xA" id="IH4-Le-eo2"/>

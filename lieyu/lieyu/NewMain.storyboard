@@ -23,9 +23,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daG-Gk-NtN">
                                 <rect key="frame" x="0.0" y="527" width="320" height="41"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-TZ-Lf7">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJn-TZ-Lf7">
                                         <rect key="frame" x="213" y="0.0" width="107" height="44"/>
                                         <color key="backgroundColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="wrf-yi-4tC"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="马上购买">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,12 +38,15 @@
                                             <action selector="payAct:" destination="aUW-Rh-D74" eventType="touchUpInside" id="6ok-S6-4Vf"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ram-7p-oDY">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ram-7p-oDY">
                                         <rect key="frame" x="0.0" y="0.0" width="107" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="YaT-JR-ETn"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="咨询猎娱" image="icon_zhuyishixiang_normal.png">
+                                        <state key="normal" title="咨询猎娱" image="icon_zixun_normal.png">
                                             <color key="titleColor" red="0.10980392156862745" green="0.71764705882352942" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -48,12 +54,15 @@
                                             <action selector="queryAct:" destination="aUW-Rh-D74" eventType="touchUpInside" id="fGh-1M-j0Z"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjU-UO-ndX">
-                                        <rect key="frame" x="107" y="0.0" width="107" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjU-UO-ndX">
+                                        <rect key="frame" x="107" y="0.0" width="103" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="aSe-wB-9Nu"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <inset key="titleEdgeInsets" minX="23" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="注意事项" image="icon_zhuyishixiang_normal">
+                                        <state key="normal" title="注意事项" image="icon_zhuyishixiang_normal.png">
                                             <color key="titleColor" red="0.3411764705882353" green="0.792156862745098" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -64,6 +73,20 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ram-7p-oDY" secondAttribute="bottom" id="F3I-Au-MlD"/>
+                                    <constraint firstItem="OJn-TZ-Lf7" firstAttribute="leading" secondItem="jjU-UO-ndX" secondAttribute="trailing" id="LfN-yh-d4N"/>
+                                    <constraint firstItem="OJn-TZ-Lf7" firstAttribute="top" secondItem="daG-Gk-NtN" secondAttribute="top" id="MUM-FU-ey6"/>
+                                    <constraint firstItem="jjU-UO-ndX" firstAttribute="leading" secondItem="Ram-7p-oDY" secondAttribute="trailing" id="RWi-Ve-89E"/>
+                                    <constraint firstAttribute="bottom" secondItem="jjU-UO-ndX" secondAttribute="bottom" id="WOn-4A-OtN"/>
+                                    <constraint firstItem="jjU-UO-ndX" firstAttribute="top" secondItem="daG-Gk-NtN" secondAttribute="top" id="WS0-JJ-srB"/>
+                                    <constraint firstItem="jjU-UO-ndX" firstAttribute="width" secondItem="Ram-7p-oDY" secondAttribute="width" id="X8f-Ft-hJe"/>
+                                    <constraint firstItem="Ram-7p-oDY" firstAttribute="leading" secondItem="daG-Gk-NtN" secondAttribute="leading" id="YOE-G2-W7J"/>
+                                    <constraint firstItem="OJn-TZ-Lf7" firstAttribute="width" secondItem="Ram-7p-oDY" secondAttribute="width" id="ZR2-EU-SvD"/>
+                                    <constraint firstItem="Ram-7p-oDY" firstAttribute="top" secondItem="daG-Gk-NtN" secondAttribute="top" id="aw9-6L-HKJ"/>
+                                    <constraint firstItem="jjU-UO-ndX" firstAttribute="leading" secondItem="Ram-7p-oDY" secondAttribute="trailing" id="cBN-jF-Mau"/>
+                                    <constraint firstAttribute="trailing" secondItem="OJn-TZ-Lf7" secondAttribute="trailing" id="faI-BG-0Oj"/>
+                                    <constraint firstAttribute="bottom" secondItem="OJn-TZ-Lf7" secondAttribute="bottom" id="hNP-UT-4o2"/>
+                                    <constraint firstItem="OJn-TZ-Lf7" firstAttribute="leading" secondItem="jjU-UO-ndX" secondAttribute="trailing" id="onA-z2-HaK"/>
                                     <constraint firstAttribute="height" constant="41" id="rsf-uf-ibG"/>
                                 </constraints>
                             </view>
@@ -1810,7 +1833,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PTShowIntroductionsCell" rowHeight="205" id="UG9-CT-4EA" customClass="PTShowIntroductionsCell">
-                                        <rect key="frame" x="0.0" y="125.5" width="320" height="205"/>
+                                        <rect key="frame" x="0.0" y="126" width="320" height="205"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UG9-CT-4EA" id="UY7-ne-zCV">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
@@ -1949,7 +1972,7 @@
         <image name="icon_xinxi_normal1" width="19" height="17"/>
         <image name="icon_zhuyi" width="20" height="20"/>
         <image name="icon_zhuyishixiang_normal" width="20" height="20"/>
-        <image name="icon_zhuyishixiang_normal.png" width="32" height="32"/>
+        <image name="icon_zhuyishixiang_normal.png" width="20" height="20"/>
         <image name="icon_zixun" width="20" height="20"/>
         <image name="icon_zixun_normal.png" width="20" height="20"/>
         <image name="jia2" width="32" height="32"/>
