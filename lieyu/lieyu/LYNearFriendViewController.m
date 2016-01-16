@@ -80,6 +80,7 @@
             
             
         }
+        cell.userImageView.image = nil;
         CustomerModel *customerModel=filteredListContent[indexPath.row];
         [cell.userImageView  setImageWithURL:[NSURL URLWithString:customerModel.avatar_img]];
         cell.titleLal.text=customerModel.usernick;

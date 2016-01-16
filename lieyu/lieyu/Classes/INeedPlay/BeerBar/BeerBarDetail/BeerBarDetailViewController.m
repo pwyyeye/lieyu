@@ -70,7 +70,7 @@
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
-     self.tableView.scrollEnabled = NO;
+//    _tableView.layer.zPosition = 2.0;
     
     self.navigationController.navigationBarHidden=YES;
     _scrollView.delegate = self;
@@ -87,11 +87,11 @@
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, 2500)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _webView.delegate = self;
     [_webView sizeToFit];
     [_webView.scrollView setScrollEnabled:NO];
-    _webView.scalesPageToFit = YES;
+//    _webView.scalesPageToFit = YES;
     [self.scrollView addSubview:_webView];
 
 }
@@ -193,7 +193,6 @@
     
     NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",self.beerBarDetail.descriptions,SCREEN_WIDTH-17];
     
-    
 //    dispatch_async(dispatch_get_main_queue(), ^{
         // 更UI
         [_webView loadHTMLString:webStr baseURL:nil];
@@ -265,12 +264,14 @@
 #pragma mark-- webview delegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     //获取页面高度（像素）
-    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
-    float clientheight = [clientheight_str floatValue];
+//    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
+//    float clientheight = [clientheight_str floatValue];
+     CGFloat documentHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"content\").offsetHeight;"] floatValue];
+     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
     //设置到WebView上
     // webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
     //获取WebView最佳尺寸（点）
-    CGSize frame = [webView sizeThatFits:webView.frame.size];
+   // CGSize frame = [webView sizeThatFits:webView.frame.size];
     //获取内容实际高度（像素）
 //    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight;"];
 //    float height = [height_str floatValue];
@@ -278,11 +279,21 @@
 //    height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
 //    NSLog(@"--->%f",height);
-    webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, frame.height);
+    NSLog(@"---->%f",webView.scrollView.contentSize.height);
+    webView.scrollView.scrollEnabled = NO;
+ NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+    webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, webView.scrollView.contentSize.height);
 //    webView.backgroundColor = [UIColor redColor];
-    
-    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
-    
+   // if(_tableView.contentSize.height > SCREEN_HEIGHT) {
+//        _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, SCREEN_WIDTH, _tableView.contentSize.height);
+//        self.tableView_Height.constant = _tableView.contentSize.height;
+//        [self updateViewConstraints];
+//    }
+    _tableView.scrollEnabled = NO;
+     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+//    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
+    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.contentSize.height+webView.scrollView.contentSize.height);
+    NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
     
 //  CGFloat offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
 //    
@@ -479,7 +490,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            return SCREEN_WIDTH * 9 / 16 + 40;
+            return SCREEN_WIDTH * 9 / 16 + 30;
         }
             break;
         case 1:

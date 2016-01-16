@@ -112,7 +112,7 @@
     
     
     CALayer *layerShadow=[[CALayer alloc]init];
-    layerShadow.frame=CGRectMake(0, cell.frame.origin.y, cell.frame.size.width, 5);
+    layerShadow.frame=CGRectMake(0, cell.frame.origin.y, SCREEN_WIDTH, 5);
     layerShadow.borderColor=[RGB(237, 237, 237) CGColor];
     layerShadow.borderWidth=5;
     [cell.layer addSublayer:layerShadow];
