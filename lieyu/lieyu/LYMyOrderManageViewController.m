@@ -367,7 +367,7 @@
                 NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
                 if(pinkerList.count>0){
                     for (PinkInfoModel *pinkInfoModel in pinkerList) {
-                        if(pinkInfoModel.inmember==userId){
+                        if(pinkInfoModel.inmember==self.userModel.userid){
                             if(pinkInfoModel.paymentStatus==1){
                                 moneyStr=pinkInfoModel.price;
                             }
