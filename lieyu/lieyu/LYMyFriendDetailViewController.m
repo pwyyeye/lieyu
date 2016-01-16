@@ -34,8 +34,6 @@
                 [mytags appendString:@","];
             }
         }
-        
-        
         _zhiwuLal.text=mytags;
     }
     if(_customerModel.tag.count==0 && _customerModel.userTag.count>0){

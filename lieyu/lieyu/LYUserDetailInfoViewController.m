@@ -168,7 +168,7 @@
         return _tagCell;
     }else {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        UIButton *sureBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 47, 300, 52)];
+        UIButton *sureBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 47, SCREEN_WIDTH - 20, 52)];
         [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
         [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [sureBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];

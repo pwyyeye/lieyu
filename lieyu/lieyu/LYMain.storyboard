@@ -355,8 +355,8 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="26d-N5-jdq">
-                                <rect key="frame" x="0.0" y="64" width="320" height="454"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="26d-N5-jdq">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindMenuCell" rowHeight="51" id="gKb-OT-apz" customClass="FindMenuCell">
@@ -395,6 +395,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PCU-qB-sJB" firstAttribute="top" secondItem="26d-N5-jdq" secondAttribute="bottom" id="6MW-qD-rtS"/>
+                            <constraint firstItem="26d-N5-jdq" firstAttribute="top" secondItem="MrH-zI-oZg" secondAttribute="bottom" id="LDg-bC-1iv"/>
+                            <constraint firstAttribute="trailing" secondItem="26d-N5-jdq" secondAttribute="trailing" id="Yf4-8R-uqP"/>
+                            <constraint firstItem="26d-N5-jdq" firstAttribute="leading" secondItem="nAn-bw-oeb" secondAttribute="leading" id="uNA-cc-Ijc"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="发现" id="vDy-98-bey">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>

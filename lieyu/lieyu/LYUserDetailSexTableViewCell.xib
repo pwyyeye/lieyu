@@ -14,14 +14,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="性别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTg-NP-FU5">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTg-NP-FU5">
                         <rect key="frame" x="20" y="15" width="50" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="IA0-W5-9OC"/>
+                            <constraint firstAttribute="height" constant="22" id="od4-9Z-YPu"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLG-Zn-GcW">
+                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLG-Zn-GcW">
                         <rect key="frame" x="80" y="15" width="48" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="2gA-ck-Hb1"/>
+                            <constraint firstAttribute="width" constant="48" id="9Ah-lQ-wLo"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <inset key="titleEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="男" image="circleWhiteSelect.png">
@@ -31,8 +39,12 @@
                             <action selector="sexClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="81f-be-gUd"/>
                         </connections>
                     </button>
-                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6q3-W7-19k">
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6q3-W7-19k">
                         <rect key="frame" x="134" y="15" width="48" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="CEh-HP-vmv"/>
+                            <constraint firstAttribute="width" constant="48" id="XnL-8J-lRv"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <inset key="titleEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="女" image="circleWhite.png">
@@ -43,6 +55,14 @@
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="aTg-NP-FU5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="5zp-4l-jUa"/>
+                    <constraint firstItem="6q3-W7-19k" firstAttribute="leading" secondItem="ZLG-Zn-GcW" secondAttribute="trailing" constant="6" id="958-9g-H1N"/>
+                    <constraint firstItem="6q3-W7-19k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Bwy-cZ-6eh"/>
+                    <constraint firstItem="aTg-NP-FU5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Vwu-wg-DLR"/>
+                    <constraint firstItem="ZLG-Zn-GcW" firstAttribute="leading" secondItem="aTg-NP-FU5" secondAttribute="trailing" constant="10" id="mG7-QE-AT6"/>
+                    <constraint firstItem="ZLG-Zn-GcW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="wqP-YT-0Gi"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="btn_man" destination="ZLG-Zn-GcW" id="GBn-xP-9fi"/>

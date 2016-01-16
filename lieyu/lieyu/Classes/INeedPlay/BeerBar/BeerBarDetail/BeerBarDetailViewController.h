@@ -23,5 +23,6 @@
 - (IBAction)chiHeAct:(UIButton *)sender;
 - (IBAction)zsliAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableView_Height;
 
 @end

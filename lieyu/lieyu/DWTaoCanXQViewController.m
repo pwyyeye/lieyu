@@ -98,6 +98,7 @@
 //    [super viewWillDisappear:animated];
 //     [self.navigationController setNavigationBarHidden:NO];
 //}
+
 #pragma mark 收藏按钮action
 - (void)collectClick{
     NSDictionary *dic=@{@"barid":@(taoCanModel.barinfo.barid)};
@@ -128,6 +129,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"LYTaoCanContentTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYTaoCanContentTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYTaoCanListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYTaoCanListTableViewCell"];
 }
+
 #pragma mark 获取数据
 -(void)getdata{
     NSDictionary *dic=@{@"smid":[NSString stringWithFormat:@"%d",self.smid]};
@@ -143,6 +145,7 @@
     return 1;
     
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if(taoCanModel){

@@ -88,7 +88,7 @@
 //    [self performSelector:@selector(setCustomTitle:) withObject:@"发现" afterDelay:0.1];
 
     [super viewWillAppear:animated];
-         _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 320, 44)];
+         _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
     
         _myTitle.backgroundColor = [UIColor clearColor];
         _myTitle.textColor=[UIColor whiteColor];
@@ -156,14 +156,14 @@
                 [cell.messageImageView setHidden:YES];
             }
             [[cell viewWithTag:100] removeFromSuperview];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, 320, 0.3)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, SCREEN_WIDTH, 0.3)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             lineLal.tag=100;
             [cell addSubview:lineLal];
         }else if(indexPath.row==1){
             dic=[datalist objectAtIndex:1];
             [[cell viewWithTag:100] removeFromSuperview];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, 320, 0.3)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, SCREEN_WIDTH, 0.3)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             lineLal.tag=100;
             [cell addSubview:lineLal];
@@ -176,7 +176,7 @@
         if(indexPath.row==0){
             [[cell viewWithTag:100] removeFromSuperview];
             dic=[datalist objectAtIndex:3];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, 320, 0.3)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, SCREEN_WIDTH, 0.3)];
             lineLal.tag=100;
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];

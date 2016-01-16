@@ -27,13 +27,17 @@
     self.label_buyCount.text = [NSString stringWithFormat:@"%@人购",model.buynum];
     [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
 
-    NSString *percentStr =[NSString stringWithFormat:@"%.0f%@",([self.model.rebate floatValue]) * 100,@"%"];
+    CGFloat rebate = ([self.model.rebate floatValue]) * 100;
+    NSString *percentStr =[NSString stringWithFormat:@"%.0f%@",rebate,@"%"];
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:percentStr];
+    NSInteger rangeIndex;
+    if(rebate == 0) rangeIndex = 1;
+    else rangeIndex = 2;
     [attributedStr addAttribute:NSFontAttributeName
      
                           value:[UIFont systemFontOfSize:10]
      
-                          range:NSMakeRange(2, 1.9)];
+                          range:NSMakeRange(rangeIndex, 1)];
     self.label_percent.attributedText = attributedStr;
 }
 

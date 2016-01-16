@@ -46,7 +46,7 @@
         [dicTemp setObject:@"" forKey:@"mainHeading"];
         [bigArr addObject:dicTemp];
     }
-    scroller = [[EScrollerView alloc]initWithFrameRect:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height) scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
+    scroller = [[EScrollerView alloc]initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH) scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     
     [self.scrollView addSubview:scroller];
 }
