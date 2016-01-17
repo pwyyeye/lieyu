@@ -465,7 +465,6 @@
         orderBottomView.zsUserImageView.layer.cornerRadius =orderBottomView.zsUserImageView.width/2;
         
         
-        
         //根据订单类型 订单状态设置底部按钮
         if(orderInfoModel.ordertype==0){
             orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
