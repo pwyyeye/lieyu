@@ -91,10 +91,10 @@
             [self getDaiXiaoFei];
             break;
         case 3:
-            [self getDaiFanLi];
+            [self getDaiPingjia];
             break;
         case 4:
-            [self getDaiPingjia];
+            [self getDaiFanLi];
             break;
         case 5:
             [self getTuiDan];
@@ -264,7 +264,7 @@
 }
 #pragma mark 获取顶部菜单
 -(void)getMenuHrizontal{
-    NSArray *menuArrNew=@[@"订单",@"待付款",@"待消费",@"待返利",@"待评价",@"退款"];
+    NSArray *menuArrNew=@[@"订单",@"待付款",@"待消费",@"待评价",@"待返利",@"退款"];
     NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:5];
     for (int i=0; i<=menuArrNew.count-1; i++) {
         
@@ -503,7 +503,7 @@
                 [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
                 [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.secondBtn.tag=section;
-            }else if(orderInfoModel.orderStatus==8 || orderInfoModel.orderStatus==9 ){
+            }else if(orderInfoModel.orderStatus==9 ){
                 
                 
                 [orderBottomView.secondBtn setTitle:@"删除订单" forState:0];
@@ -631,7 +631,7 @@
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
-            }else if(orderInfoModel.orderStatus==8 || orderInfoModel.orderStatus==9 ){
+            }else if(orderInfoModel.orderStatus==9 ){
                 
                 [orderBottomView.secondBtn setTitle:@"删除订单" forState:0];
                 if(isFaqi){
@@ -658,7 +658,7 @@
                 [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
                 [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.secondBtn.tag=section;
-            }else if(orderInfoModel.orderStatus==8 || orderInfoModel.orderStatus==9 ){
+            }else if(orderInfoModel.orderStatus==9 ){
                 
                 [orderBottomView.secondBtn setTitle:@"删除订单" forState:0];
                 [orderBottomView.secondBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -966,15 +966,15 @@
             break;
         }
             
-        case 3:// 待返利
+        case 3:// 待评价
         {
-            [self getDaiFanLi];
             
+            [self getDaiPingjia];
             break;
         }
-        case 4:// 待评价
+        case 4:// 返利
         {
-            [self getDaiPingjia];
+            [self getDaiFanLi];
             break;
         }
         default://退款
