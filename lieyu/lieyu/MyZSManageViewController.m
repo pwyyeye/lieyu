@@ -52,7 +52,7 @@
     
     UINib * detailNib = [UINib nibWithNibName:@"LYZSdetailCell" bundle:nil];
     [self.tableView registerNib:detailNib forCellReuseIdentifier:@"LYZSdetailCell"];
-    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 14)];
+    UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 14)];
     
     view1.backgroundColor=RGB(237, 237, 237);
     self.tableView.tableHeaderView=view1;
@@ -190,6 +190,7 @@
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LYZSeditView" owner:nil options:nil];
     seditView= (LYZSeditView *)[nibView objectAtIndex:0];
     seditView.top=SCREEN_HEIGHT;
+    seditView.frame = CGRectMake(0, SCREEN_HEIGHT - 287, SCREEN_WIDTH, 287);
     [seditView.quxiaoBtn addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
     [seditView.editListBtn addTarget:self action:@selector(editZsAct:) forControlEvents:UIControlEventTouchDown];
     [seditView.shenqingBtn addTarget:self action:@selector(shenqingAct:) forControlEvents:UIControlEventTouchDown];
