@@ -129,15 +129,19 @@
 
 //无商品时的界面
 - (void)noGoodsViewWith:(NSArray *)goodsArray{
+    [_bgView removeFromSuperview];
+    [_image_place removeFromSuperview];
+    [_label_place removeFromSuperview];
+            self.tableView.hidden = NO;
     if (!goodsArray.count) {
-        [_bgView removeFromSuperview];
-        [_image_place removeFromSuperview];
-        [_label_place removeFromSuperview];
+        self.tableView.hidden = YES;
         
-        _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(_menuView.frame) , SCREEN_WIDTH,  SCREEN_HEIGHT - 64 - CGRectGetHeight(_menuView.frame))];
+        CGFloat y = 64 + 40;
+        _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,y , SCREEN_WIDTH,  SCREEN_HEIGHT - y)];
         _bgView.backgroundColor = RGBA(0, 0, 0, 0.4);
         _bgView.alpha = 0.2;
         _bgView.tag = 300;
+        NSLog(@"---->%@",NSStringFromCGRect(_bgView.frame));
         [self.view addSubview:_bgView];
         
         CGFloat image_placeWidth = 105;
@@ -156,10 +160,6 @@
         [self.view addSubview:_label_place];
         
         [self.view bringSubviewToFront:_menuView];
-    }else{
-        [_bgView removeFromSuperview];
-        [_image_place removeFromSuperview];
-        [_label_place removeFromSuperview];
     }
 }
 

@@ -259,12 +259,14 @@
 
 
 #pragma mark-- webview delegate
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+     [_webView sizeToFit];
     //获取页面高度（像素）
 //    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
 //    float clientheight = [clientheight_str floatValue];
      CGFloat documentHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"content\").offsetHeight;"] floatValue];
-     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+//     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
     //设置到WebView上
     // webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
     //获取WebView最佳尺寸（点）
@@ -276,9 +278,9 @@
 //    height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
 //    NSLog(@"--->%f",height);
-    NSLog(@"---->%f",webView.scrollView.contentSize.height);
+//    NSLog(@"---->%f",webView.scrollView.contentSize.height);
     webView.scrollView.scrollEnabled = NO;
- NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+// NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
     webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, webView.scrollView.contentSize.height);
 //    webView.backgroundColor = [UIColor redColor];
    // if(_tableView.contentSize.height > SCREEN_HEIGHT) {
@@ -287,10 +289,10 @@
 //        [self updateViewConstraints];
 //    }
     _tableView.scrollEnabled = NO;
-     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+//     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
 //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
-    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.contentSize.height+webView.scrollView.contentSize.height);
-    NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.contentSize.height+webView.scrollView.contentSize.height - 30);
+//    NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
     
 //  CGFloat offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
 //    
@@ -298,6 +300,38 @@
 //     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, offsetHeight+100);
 //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
 }
+
+/*
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    //获取页面高度（像素）
+    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
+    float clientheight = [clientheight_str floatValue];
+    //设置到WebView上
+    webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
+    //获取WebView最佳尺寸（点）
+    CGSize frame = [webView sizeThatFits:webView.frame.size];
+    NSLog(@"--->%@",NSStringFromCGSize(frame));
+    //获取内容实际高度（像素）
+    //    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight;"];
+    //    float height = [height_str floatValue];
+    //内容实际高度（像素）* 点和像素的比
+    //    height = height * frame.height / clientheight;
+    //再次设置WebView高度（点）
+    //    NSLog(@"--->%f",height);
+    webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, frame.height);
+    //    webView.backgroundColor = [UIColor redColor];
+    
+    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
+    
+    
+    //  CGFloat offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
+    //
+    //    NSLog(@"----pass-pass%f---",offsetHeight);
+    //     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, offsetHeight+100);
+    //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
+}
+
+*/
 
 
 #pragma mark -- tableviewDelegate

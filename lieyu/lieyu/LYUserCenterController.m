@@ -22,8 +22,12 @@
 #import "LYUserHttpTool.h"
 #import "UserModel.h"
 #import "IQKeyboardManager.h"
+#import "UMSocial.h"
+#import "UMSocialSnsPlatformManager.h"
 
-@interface LYUserCenterController ()
+@interface LYUserCenterController (){
+    UIButton *_qqBtn;
+}
 
 @end
 
@@ -65,8 +69,12 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
     
-   
-    
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 200, 30, 30)];
+    [_qqBtn setTitle:@"qq登录" forState:UIControlStateNormal];
+    _qqBtn.backgroundColor = [UIColor redColor];
+    [window addSubview:_qqBtn];
+    [_qqBtn addTarget:self action:@selector(qqLogin) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)loadData{
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -360,8 +368,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
 }
 
-
-
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
 //    [self.navigationController setNavigationBarHidden:NO];
     //每次当navigation中的界面切换，设为空。本次赋值只在程序初始化时执行一次
@@ -385,6 +391,22 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //    [viewController viewWillAppear:animated];
     
  
+}
+
+- (void)qqLogin{
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        
+        //          获取微博用户名、uid、token等
+        
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
+            
+            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+            
+        }});
+  
 }
 
 @end
