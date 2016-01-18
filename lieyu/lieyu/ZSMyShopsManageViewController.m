@@ -251,8 +251,6 @@
                 NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:taoCanCellIdentifier owner:self options:nil];
                 cell = (CaoCanCell *)[nibArray objectAtIndex:0];
                 cell.backgroundColor=[UIColor whiteColor];
-                
-                
             }
             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 81, 290, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
