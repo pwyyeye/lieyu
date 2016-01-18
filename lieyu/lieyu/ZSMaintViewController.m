@@ -30,7 +30,7 @@
     self.automaticallyAdjustsScrollViewInsets=1;
     self.tableView.bounces=NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.frame=CGRectMake(0, -20, SCREEN_WIDTH,SCREEN_HEIGHT-20);
+    self.tableView.frame=CGRectMake(0, -20, SCREEN_WIDTH, SCREEN_HEIGHT-20);
     [self getDataForShowList];
     
     
@@ -51,14 +51,16 @@
     [listArr addObject:dic2];
     [listArr addObject:dic3];
     [listArr addObject:dic4];
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, 320, 228)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 228)];
     
-    view.backgroundColor=RGB(35, 166, 116);
+//    view.backgroundColor=RGB(35, 166, 116);
+    view.backgroundColor = RGB(114, 5, 147);
+    
     //外部圆
-    cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(116, 68, 88, 88)];
+    cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 44, 68, 88, 88)];
     [view addSubview:cImageView];
     [cImageView setImage:[UIImage imageNamed:@"yuanhuan"]];
-    myPhotoImageView=[[UIImageView alloc]initWithFrame:CGRectMake(130, 81.7, 60, 60)];
+    myPhotoImageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, 81.7, 60, 60)];
     //照片圆形
     myPhotoImageView.layer.masksToBounds =YES;
     
@@ -66,14 +68,14 @@
     myPhotoImageView.backgroundColor=[UIColor lightGrayColor];
     [myPhotoImageView setImageWithURL:[NSURL URLWithString:self.userModel.avatar_img]];
     [view addSubview:myPhotoImageView];
-    namelal=[[UILabel alloc]initWithFrame:CGRectMake(114,167,166,18)];
+    namelal=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 50,167,100,18)];
     [namelal setTextColor:RGB(255,255,255)];
     namelal.font=[UIFont boldSystemFontOfSize:12];
     namelal.backgroundColor=[UIColor clearColor];
     namelal.text=@"我是VIP专属经理";
     namelal.textAlignment=NSTextAlignmentLeft;
     [view addSubview:namelal];
-    orderInfoLal=[[UILabel alloc]initWithFrame:CGRectMake(28,200,266,16)];
+    orderInfoLal=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 133,200,266,16)];
     [orderInfoLal setTextColor:RGB(255,255,255)];
     orderInfoLal.font=[UIFont boldSystemFontOfSize:10];
     orderInfoLal.backgroundColor=[UIColor clearColor];
