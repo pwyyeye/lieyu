@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -35,8 +36,12 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXp-dm-Rxu">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXp-dm-Rxu">
                         <rect key="frame" x="209" y="80" width="103" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="0mt-yw-wIp"/>
+                            <constraint firstAttribute="width" constant="103" id="ThV-iZ-370"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -50,7 +55,7 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdb-vZ-osW">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdb-vZ-osW">
                         <rect key="frame" x="122" y="54" width="199" height="26"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="bxA-Xh-J9Q"/>
@@ -78,7 +83,9 @@
                     <constraint firstItem="ARi-Hw-eaA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="OFP-Vf-IZw"/>
                     <constraint firstAttribute="trailing" secondItem="wdb-vZ-osW" secondAttribute="trailing" constant="10" id="PjL-nx-5Vx"/>
                     <constraint firstAttribute="bottom" secondItem="b7h-v5-8Ys" secondAttribute="bottom" constant="20" id="WM6-cr-kzb"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="oXp-dm-Rxu" secondAttribute="trailing" constant="31" id="X16-iK-evT"/>
                     <constraint firstItem="ARi-Hw-eaA" firstAttribute="width" secondItem="F8U-dn-NWV" secondAttribute="width" id="YkZ-LF-NcE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="oXp-dm-Rxu" secondAttribute="bottom" constant="-3" id="dvV-0e-xIj"/>
                     <constraint firstItem="wdb-vZ-osW" firstAttribute="leading" secondItem="b7h-v5-8Ys" secondAttribute="trailing" constant="6" id="pRM-Cn-bZm"/>
                     <constraint firstItem="ARi-Hw-eaA" firstAttribute="leading" secondItem="F8U-dn-NWV" secondAttribute="trailing" constant="8" id="sXa-fh-zGB"/>
                     <constraint firstItem="F8U-dn-NWV" firstAttribute="leading" secondItem="FKA-Z0-7bl" secondAttribute="trailing" constant="8" id="slg-rM-aTm"/>
