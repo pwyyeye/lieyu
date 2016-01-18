@@ -71,7 +71,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
-                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.80466056034482758" colorSpace="calibratedRGB"/>
+                        <color key="shadowColor" white="0.20262688758389261" alpha="0.80466056034482758" colorSpace="calibratedWhite"/>
                         <size key="shadowOffset" width="0.0" height="1"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="现价" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-iV-OEc">
@@ -93,7 +93,7 @@
                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
-                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.80466056029999999" colorSpace="calibratedRGB"/>
+                        <color key="shadowColor" white="0.20079173657718122" alpha="0.80466056029999999" colorSpace="calibratedWhite"/>
                         <size key="shadowOffset" width="0.0" height="1"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="套餐名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loi-ON-iF8">
