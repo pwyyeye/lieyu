@@ -55,7 +55,8 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVc-Z5-sb8">
                             <rect key="frame" x="206" y="7" width="114" height="15"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="15" id="7M1-Jz-SWl"/>
+                                <constraint firstAttribute="height" constant="15" id="FNe-C0-MOp"/>
+                                <constraint firstAttribute="width" constant="114" id="enK-xe-0be"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,8 +65,8 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单时间：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hr4-nU-5WJ">
                             <rect key="frame" x="158" y="7" width="51" height="15"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="51" id="gaM-y8-Adf"/>
-                                <constraint firstAttribute="height" constant="15" id="vQp-fZ-Vut"/>
+                                <constraint firstAttribute="width" constant="51" id="z0K-PP-qiU"/>
+                                <constraint firstAttribute="height" constant="15" id="zjH-mL-anG"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -75,12 +76,11 @@
                     <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="36u-nl-7Nx"/>
-                        <constraint firstItem="DVc-Z5-sb8" firstAttribute="leading" secondItem="n5K-Js-YfG" secondAttribute="trailing" constant="68" id="5FD-ma-3I0"/>
-                        <constraint firstItem="Hr4-nU-5WJ" firstAttribute="top" secondItem="TMb-Ny-wIT" secondAttribute="top" constant="7" id="7vk-Je-DwO"/>
-                        <constraint firstItem="DVc-Z5-sb8" firstAttribute="top" secondItem="TMb-Ny-wIT" secondAttribute="top" constant="7" id="QHV-Lk-GQM"/>
+                        <constraint firstAttribute="trailing" secondItem="DVc-Z5-sb8" secondAttribute="trailing" id="AI1-xu-LaN"/>
+                        <constraint firstItem="Hr4-nU-5WJ" firstAttribute="top" secondItem="TMb-Ny-wIT" secondAttribute="top" constant="7" id="QJf-4t-7Bd"/>
                         <constraint firstItem="n5K-Js-YfG" firstAttribute="leading" secondItem="TMb-Ny-wIT" secondAttribute="leading" constant="43" id="a8v-ow-9PH"/>
-                        <constraint firstAttribute="trailing" secondItem="DVc-Z5-sb8" secondAttribute="trailing" id="h1L-Cq-V7U"/>
-                        <constraint firstItem="Hr4-nU-5WJ" firstAttribute="leading" secondItem="n5K-Js-YfG" secondAttribute="trailing" constant="20" id="h7Y-Zx-jzJ"/>
+                        <constraint firstItem="DVc-Z5-sb8" firstAttribute="top" secondItem="TMb-Ny-wIT" secondAttribute="top" constant="7" id="bcV-Fk-ZGb"/>
+                        <constraint firstAttribute="trailing" secondItem="Hr4-nU-5WJ" secondAttribute="trailing" constant="111" id="cbr-bz-NOW"/>
                         <constraint firstItem="n5K-Js-YfG" firstAttribute="top" secondItem="TMb-Ny-wIT" secondAttribute="top" constant="7" id="jNM-Qh-Ppy"/>
                         <constraint firstItem="EcX-zI-i3t" firstAttribute="leading" secondItem="TMb-Ny-wIT" secondAttribute="leading" constant="10" id="lhx-sR-l7s"/>
                         <constraint firstItem="EcX-zI-i3t" firstAttribute="top" secondItem="TMb-Ny-wIT" secondAttribute="top" constant="7" id="xKM-5M-nLS"/>
