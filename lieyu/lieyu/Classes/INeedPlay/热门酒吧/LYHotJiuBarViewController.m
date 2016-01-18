@@ -94,17 +94,18 @@
 
 #pragma mark 获取数据
 -(void)getData{
-    if(!_addressStr.length){
-        NSArray *dataArray = [self getDataFromLocal];
-        if(dataArray.count){
-        NSDictionary *dataDic = ((LYCache *)dataArray.firstObject).lyCacheValue;
-        self.aryList = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]];
-        [self.tableView reloadData];
-        [self noGoodsViewWith:self.aryList];
-        return;
+    if([MyUtil configureNetworkConnect] == 0){
+        if(!_addressStr.length){
+            NSArray *dataArray = [self getDataFromLocal];
+            if(dataArray.count){
+                NSDictionary *dataDic = ((LYCache *)dataArray.firstObject).lyCacheValue;
+                self.aryList = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]];
+                [self.tableView reloadData];
+                [self noGoodsViewWith:self.aryList];
+                return;
+            }
         }
     }
-    
     __weak LYHotJiuBarViewController * weakSelf = self;
     //    __weak UITableView *tableView = self.tableView;
     [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)

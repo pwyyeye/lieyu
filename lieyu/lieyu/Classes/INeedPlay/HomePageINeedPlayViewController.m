@@ -176,17 +176,18 @@ UITableViewDataSource,UITableViewDelegate,
 
 #pragma mark 获取数据
 -(void)getData{
-    NSArray *array = [self getDataFromLocal];
-    if (array.count) {
-        NSDictionary *dataDic = ((LYCache *)array.firstObject).lyCacheValue;
-        self.aryList = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
-        self.bannerList = dataDic[@"banner"];
-        self.newbannerList = dataDic[@"newbanner"];
-        self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]] ;
-        [self.tableView reloadData];
-        return;
+    if([MyUtil configureNetworkConnect] == 0){
+        NSArray *array = [self getDataFromLocal];
+        if (array.count) {
+            NSDictionary *dataDic = ((LYCache *)array.firstObject).lyCacheValue;
+            self.aryList = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
+            self.bannerList = dataDic[@"banner"];
+            self.newbannerList = dataDic[@"newbanner"];
+            self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]] ;
+            [self.tableView reloadData];
+            return;
+        }
     }
-    
     __weak HomePageINeedPlayViewController * weakSelf = self;
     [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {
