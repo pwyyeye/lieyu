@@ -28,9 +28,13 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="e1A-lf-i3b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0sV-U8-DsE"/>
+                <constraint firstItem="e1A-lf-i3b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4JG-AF-yDY"/>
                 <constraint firstAttribute="trailing" secondItem="e1A-lf-i3b" secondAttribute="trailing" id="7V7-tX-wIh"/>
                 <constraint firstAttribute="bottom" secondItem="e1A-lf-i3b" secondAttribute="bottom" id="DqS-OR-uju"/>
+                <constraint firstItem="e1A-lf-i3b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Um1-LO-hSv"/>
                 <constraint firstItem="e1A-lf-i3b" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VHG-Qe-8VY"/>
+                <constraint firstAttribute="trailing" secondItem="e1A-lf-i3b" secondAttribute="trailing" id="s18-h5-fun"/>
+                <constraint firstAttribute="bottom" secondItem="e1A-lf-i3b" secondAttribute="bottom" id="spb-YL-bHD"/>
             </constraints>
             <point key="canvasLocation" x="299" y="295"/>
         </view>

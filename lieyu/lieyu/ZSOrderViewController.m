@@ -705,13 +705,15 @@
         
         [itemTemp setObject: selectedImg forKey:HEIGHTKEY];
         [itemTemp setObject: ss forKey:TITLEKEY];
-        [itemTemp setObject:[NSNumber numberWithFloat:self.view.width/5]  forKey:TITLEWIDTH];
+//        [itemTemp setObject:[NSNumber numberWithFloat:self.view.width/5]  forKey:TITLEWIDTH];
+        [itemTemp setObject:[NSNumber numberWithFloat:SCREEN_WIDTH/5]  forKey:TITLEWIDTH];
         [itemTemp setObject:@"88"  forKey:COUNTORDER];
         [barArr addObject:itemTemp];
     }
 
     if (mMenuHriZontal == nil) {
-        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:self.menuView.frame ButtonItems:barArr];
+//        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:self.menuView.frame ButtonItems:barArr];
+        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, CGRectGetHeight(self.menuView.frame)) ButtonItems:barArr];
         mMenuHriZontal.delegate = self;
     }
     [self.view addSubview:mMenuHriZontal];
@@ -783,6 +785,7 @@
     xiaoFeiMaUiew.top=-xiaoFeiMaUiew.height;
     [xiaoFeiMaUiew.xiaofeiMaTextField addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
     xiaoFeiMaUiew.xiaofeiMaTextField.tag=sender.tag;
+    xiaoFeiMaUiew.xiaofeiMaTextField.keyboardType = UIKeyboardTypeNumberPad;
     xiaoFeiMaUiew.xiaofeiMaTextField.returnKeyType=UIReturnKeyDone;
     xiaoFeiMaUiew.xiaofeiMaTextField.delegate=self;
     [_bgView addSubview:xiaoFeiMaUiew];
@@ -931,7 +934,7 @@
     [self.calendarLogic reloadCalendarView:self.calendarView];
     surebutton=[UIButton buttonWithType:UIButtonTypeCustom];
     surebutton.frame=CGRectMake(0 ,SCREEN_HEIGHT+50+266+45, SCREEN_WIDTH,45 );
-    [surebutton setBackgroundColor:RGB(35, 166, 116)];
+    [surebutton setBackgroundColor:RGB(114, 5, 147)];
     [surebutton setTitle:@"确定" forState:0];
     [surebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [surebutton.titleLabel setFont:[UIFont systemFontOfSize:16]];
@@ -948,12 +951,12 @@
     [monView addSubview:preBtn];
     
     UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    nextBtn.frame = (CGRect){235, 3, 60, 44};
+    nextBtn.frame = (CGRect){SCREEN_WIDTH - 85, 3, 60, 44};
     [nextBtn addTarget:self action:@selector(goToNextMonth:) forControlEvents:UIControlEventTouchUpInside];
     [nextBtn setTitle:@"下一月" forState:UIControlStateNormal];
     [monView addSubview:nextBtn];
     
-    CGRect labelRect = (CGRect){110, 3, 100, 44};
+    CGRect labelRect = (CGRect){SCREEN_WIDTH / 2 - 50, 3, 100, 44};
     self.monthLabel = [[UILabel alloc] initWithFrame:labelRect];
     self.monthLabel.textAlignment = NSTextAlignmentCenter;
     self.monthLabel.text = [NSString stringWithFormat:@"%lu年%lu月", (unsigned long)self.calendarLogic.selectedCalendarDay.year, (unsigned long)self.calendarLogic.selectedCalendarDay.month];

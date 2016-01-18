@@ -37,8 +37,7 @@
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
-//    _tableView.backgroundColor=RGB(237, 237, 237 );
-    self.view.backgroundColor=RGB(237, 237, 237 );
+    _tableView.backgroundColor=RGB(237, 237, 237 );
     [self.navigationController setNavigationBarHidden:YES];
     dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
@@ -553,7 +552,7 @@
     [self.calendarLogic reloadCalendarView:self.calendarView];
     surebutton=[UIButton buttonWithType:UIButtonTypeCustom];
     surebutton.frame=CGRectMake(0 ,SCREEN_HEIGHT+50+266+45, SCREEN_WIDTH,45 );
-    [surebutton setBackgroundColor:RGB(35, 166, 116)];
+    [surebutton setBackgroundColor:RGB(114, 5, 147)];
     [surebutton setTitle:@"确定" forState:0];
     [surebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [surebutton.titleLabel setFont:[UIFont systemFontOfSize:16]];
@@ -570,12 +569,12 @@
     [monView addSubview:preBtn];
     
     UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    nextBtn.frame = (CGRect){235, 3, 60, 44};
+    nextBtn.frame = (CGRect){SCREEN_WIDTH - 85, 3, 60, 44};
     [nextBtn addTarget:self action:@selector(goToNextMonth:) forControlEvents:UIControlEventTouchUpInside];
     [nextBtn setTitle:@"下一月" forState:UIControlStateNormal];
     [monView addSubview:nextBtn];
     
-    CGRect labelRect = (CGRect){110, 3, 100, 44};
+    CGRect labelRect = (CGRect){SCREEN_WIDTH / 2 - 50, 3, 100, 44};
     self.monthLabel = [[UILabel alloc] initWithFrame:labelRect];
     self.monthLabel.textAlignment = NSTextAlignmentCenter;
     self.monthLabel.text = [NSString stringWithFormat:@"%lu年%lu月", (unsigned long)self.calendarLogic.selectedCalendarDay.year, (unsigned long)self.calendarLogic.selectedCalendarDay.month];
