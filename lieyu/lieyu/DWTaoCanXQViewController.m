@@ -120,7 +120,8 @@
     //                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
     //                                delegate:self];
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_headerCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
-    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:TAOCANDETAILPAGE_MTA titleName:taoCanModel.barinfo.barname]];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:TAOCANDETAILPAGE_MTA titleName:_jiubaModel.barname]];
+    NSLog(@"ffffff");
 }
 
 - (void)setTableViewCell{
