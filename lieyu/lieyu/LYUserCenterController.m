@@ -360,8 +360,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
 }
 
-
-
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
 //    [self.navigationController setNavigationBarHidden:NO];
     //每次当navigation中的界面切换，设为空。本次赋值只在程序初始化时执行一次

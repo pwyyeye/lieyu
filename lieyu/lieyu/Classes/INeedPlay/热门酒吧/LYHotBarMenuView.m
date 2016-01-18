@@ -24,7 +24,7 @@
 }
 
 - (void)deployWithMiddleTitle:(NSString *)title ItemArray:(NSArray *)itemArray{
-  //  self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = [UIColor redColor];
     NSArray *titleArray = @[@"所有地区",title,@"离我最近"];
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0; i < 3; i ++) {
@@ -130,7 +130,8 @@
 
     self.frame = CGRectMake(0, 64, SCREEN_WIDTH, dropHeight + self.frame.size.height);
     _dropMenuView = [[LYHotBarMenuDropView alloc]init];
-    _dropMenuView.backgroundColor = [UIColor whiteColor];
+//    _dropMenuView.backgroundColor = [UIColor whiteColor];
+    _dropMenuView.backgroundColor = [UIColor cyanColor];
     _dropMenuView.frame = CGRectMake(0, 40,SCREEN_WIDTH, dropHeight );
     [_dropMenuView deployWithItemArrayWith:smallArray];
     for (MenuButton *dropBtn in _dropMenuView.btnArray) {
