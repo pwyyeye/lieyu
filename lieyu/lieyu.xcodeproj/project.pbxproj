@@ -295,6 +295,11 @@
 		3806563C1C489A1A003094C9 /* AddCar_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 380656391C489A1A003094C9 /* AddCar_red.png */; };
 		3806563D1C489A1A003094C9 /* AddCar_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3806563A1C489A1A003094C9 /* AddCar_red@2x.png */; };
 		3806563E1C489A1A003094C9 /* AddCar_red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3806563B1C489A1A003094C9 /* AddCar_red@3x.png */; };
+		380656691C4E5D5B003094C9 /* ImageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380656621C4E5D5B003094C9 /* ImageCollectionViewController.m */; };
+		3806566A1C4E5D5B003094C9 /* ImageCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380656631C4E5D5B003094C9 /* ImageCollectionViewController.xib */; };
+		3806566B1C4E5D5B003094C9 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380656651C4E5D5B003094C9 /* ImagePickerViewController.m */; };
+		3806566C1C4E5D5B003094C9 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380656671C4E5D5B003094C9 /* MyCell.m */; };
+		3806566D1C4E5D5B003094C9 /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380656681C4E5D5B003094C9 /* MyCell.xib */; };
 		381A01C41C140DE500592485 /* INeedYou.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01C11C140DE500592485 /* INeedYou.png */; };
 		381A01C51C140DE500592485 /* INeedYou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01C21C140DE500592485 /* INeedYou@2x.png */; };
 		381A01C61C140DE500592485 /* INeedYou@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01C31C140DE500592485 /* INeedYou@3x.png */; };
@@ -348,13 +353,6 @@
 		389C01081C1488F000FE9412 /* seeGirls.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FF1C1488EF00FE9412 /* seeGirls.png */; };
 		389C01091C1488F000FE9412 /* seeGirls@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C01001C1488EF00FE9412 /* seeGirls@2x.png */; };
 		389C010A1C1488F000FE9412 /* seeGirls@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C01011C1488EF00FE9412 /* seeGirls@3x.png */; };
-		38AA7CBA1C31597700D9BCE8 /* YBImgPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA7CB01C31597700D9BCE8 /* YBImgPickerTableViewCell.xib */; };
-		38AA7CBB1C31597700D9BCE8 /* YBImgPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA7CB11C31597700D9BCE8 /* YBImgPickerViewController.m */; };
-		38AA7CBC1C31597700D9BCE8 /* YBimgPickerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 38AA7CB21C31597700D9BCE8 /* YBimgPickerView.bundle */; };
-		38AA7CBD1C31597700D9BCE8 /* YBImgPickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA7CB31C31597700D9BCE8 /* YBImgPickerViewCell.xib */; };
-		38AA7CBE1C31597700D9BCE8 /* YBImgPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA7CB41C31597700D9BCE8 /* YBImgPickerViewController.xib */; };
-		38AA7CBF1C31597700D9BCE8 /* YBImgPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA7CB61C31597700D9BCE8 /* YBImgPickerTableViewCell.m */; };
-		38AA7CC01C31597700D9BCE8 /* YBImgPickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA7CB81C31597700D9BCE8 /* YBImgPickerViewCell.m */; };
 		38AA7CC51C315A0000D9BCE8 /* preview.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA7CC21C315A0000D9BCE8 /* preview.m */; };
 		38AA7CC61C315A0000D9BCE8 /* preview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA7CC31C315A0000D9BCE8 /* preview.xib */; };
 		38D876431C16E95300E2F284 /* ChooseNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D876421C16E95300E2F284 /* ChooseNumber.m */; };
@@ -1494,6 +1492,14 @@
 		380656391C489A1A003094C9 /* AddCar_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddCar_red.png; sourceTree = "<group>"; };
 		3806563A1C489A1A003094C9 /* AddCar_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddCar_red@2x.png"; sourceTree = "<group>"; };
 		3806563B1C489A1A003094C9 /* AddCar_red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddCar_red@3x.png"; sourceTree = "<group>"; };
+		380656611C4E5D5B003094C9 /* ImageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewController.h; sourceTree = "<group>"; };
+		380656621C4E5D5B003094C9 /* ImageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewController.m; sourceTree = "<group>"; };
+		380656631C4E5D5B003094C9 /* ImageCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCollectionViewController.xib; sourceTree = "<group>"; };
+		380656641C4E5D5B003094C9 /* ImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerViewController.h; sourceTree = "<group>"; };
+		380656651C4E5D5B003094C9 /* ImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerViewController.m; sourceTree = "<group>"; };
+		380656661C4E5D5B003094C9 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
+		380656671C4E5D5B003094C9 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
+		380656681C4E5D5B003094C9 /* MyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCell.xib; sourceTree = "<group>"; };
 		381A01C11C140DE500592485 /* INeedYou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = INeedYou.png; sourceTree = "<group>"; };
 		381A01C21C140DE500592485 /* INeedYou@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "INeedYou@2x.png"; sourceTree = "<group>"; };
 		381A01C31C140DE500592485 /* INeedYou@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "INeedYou@3x.png"; sourceTree = "<group>"; };
@@ -1554,16 +1560,6 @@
 		389C00FF1C1488EF00FE9412 /* seeGirls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeGirls.png; sourceTree = "<group>"; };
 		389C01001C1488EF00FE9412 /* seeGirls@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeGirls@2x.png"; sourceTree = "<group>"; };
 		389C01011C1488EF00FE9412 /* seeGirls@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeGirls@3x.png"; sourceTree = "<group>"; };
-		38AA7CB01C31597700D9BCE8 /* YBImgPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YBImgPickerTableViewCell.xib; path = other/YBImgPickerTableViewCell.xib; sourceTree = "<group>"; };
-		38AA7CB11C31597700D9BCE8 /* YBImgPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBImgPickerViewController.m; path = other/YBImgPickerViewController.m; sourceTree = "<group>"; };
-		38AA7CB21C31597700D9BCE8 /* YBimgPickerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = YBimgPickerView.bundle; path = other/YBimgPickerView.bundle; sourceTree = "<group>"; };
-		38AA7CB31C31597700D9BCE8 /* YBImgPickerViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YBImgPickerViewCell.xib; path = other/YBImgPickerViewCell.xib; sourceTree = "<group>"; };
-		38AA7CB41C31597700D9BCE8 /* YBImgPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YBImgPickerViewController.xib; path = other/YBImgPickerViewController.xib; sourceTree = "<group>"; };
-		38AA7CB51C31597700D9BCE8 /* YBImgPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBImgPickerTableViewCell.h; path = other/YBImgPickerTableViewCell.h; sourceTree = "<group>"; };
-		38AA7CB61C31597700D9BCE8 /* YBImgPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBImgPickerTableViewCell.m; path = other/YBImgPickerTableViewCell.m; sourceTree = "<group>"; };
-		38AA7CB71C31597700D9BCE8 /* YBImgPickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBImgPickerViewCell.h; path = other/YBImgPickerViewCell.h; sourceTree = "<group>"; };
-		38AA7CB81C31597700D9BCE8 /* YBImgPickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBImgPickerViewCell.m; path = other/YBImgPickerViewCell.m; sourceTree = "<group>"; };
-		38AA7CB91C31597700D9BCE8 /* YBImgPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBImgPickerViewController.h; path = other/YBImgPickerViewController.h; sourceTree = "<group>"; };
 		38AA7CC21C315A0000D9BCE8 /* preview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = preview.m; sourceTree = "<group>"; };
 		38AA7CC31C315A0000D9BCE8 /* preview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = preview.xib; sourceTree = "<group>"; };
 		38AA7CC41C315A0000D9BCE8 /* preview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preview.h; sourceTree = "<group>"; };
@@ -3701,6 +3697,21 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
+		380656601C4E5D1E003094C9 /* imagepicker */ = {
+			isa = PBXGroup;
+			children = (
+				380656641C4E5D5B003094C9 /* ImagePickerViewController.h */,
+				380656651C4E5D5B003094C9 /* ImagePickerViewController.m */,
+				380656611C4E5D5B003094C9 /* ImageCollectionViewController.h */,
+				380656621C4E5D5B003094C9 /* ImageCollectionViewController.m */,
+				380656631C4E5D5B003094C9 /* ImageCollectionViewController.xib */,
+				380656661C4E5D5B003094C9 /* MyCell.h */,
+				380656671C4E5D5B003094C9 /* MyCell.m */,
+				380656681C4E5D5B003094C9 /* MyCell.xib */,
+			);
+			name = imagepicker;
+			sourceTree = "<group>";
+		};
 		381A01C91C14227F00592485 /* 吃喝专场 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3817,23 +3828,6 @@
 				389C01011C1488EF00FE9412 /* seeGirls@3x.png */,
 			);
 			name = "发现";
-			sourceTree = "<group>";
-		};
-		38AA7CC11C31597E00D9BCE8 /* other */ = {
-			isa = PBXGroup;
-			children = (
-				38AA7CB21C31597700D9BCE8 /* YBimgPickerView.bundle */,
-				38AA7CB91C31597700D9BCE8 /* YBImgPickerViewController.h */,
-				38AA7CB11C31597700D9BCE8 /* YBImgPickerViewController.m */,
-				38AA7CB41C31597700D9BCE8 /* YBImgPickerViewController.xib */,
-				38AA7CB51C31597700D9BCE8 /* YBImgPickerTableViewCell.h */,
-				38AA7CB61C31597700D9BCE8 /* YBImgPickerTableViewCell.m */,
-				38AA7CB01C31597700D9BCE8 /* YBImgPickerTableViewCell.xib */,
-				38AA7CB71C31597700D9BCE8 /* YBImgPickerViewCell.h */,
-				38AA7CB81C31597700D9BCE8 /* YBImgPickerViewCell.m */,
-				38AA7CB31C31597700D9BCE8 /* YBImgPickerViewCell.xib */,
-			);
-			name = other;
 			sourceTree = "<group>";
 		};
 		38E5D6B51C0EA427004B49D2 /* 拼客 */ = {
@@ -4184,8 +4178,8 @@
 		8540B6851C2CF3E800F16463 /* 发布动态 */ = {
 			isa = PBXGroup;
 			children = (
+				380656601C4E5D1E003094C9 /* imagepicker */,
 				38EE91A31C3BE09C00361D07 /* AppleAPI */,
-				38AA7CC11C31597E00D9BCE8 /* other */,
 				38AA7CC41C315A0000D9BCE8 /* preview.h */,
 				38AA7CC21C315A0000D9BCE8 /* preview.m */,
 				38AA7CC31C315A0000D9BCE8 /* preview.xib */,
@@ -6018,7 +6012,6 @@
 				AD078C531C33CD8E00A056D1 /* icon_saoyisao_normal@3x.png in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
 				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
-				38AA7CBE1C31597700D9BCE8 /* YBImgPickerViewController.xib in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
 				38D876501C170DB200E2F284 /* PayNow@2x.png in Resources */,
 				38F0FE801C4692C30070092D /* biaobai_icon@2x.png in Resources */,
@@ -6112,6 +6105,7 @@
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
 				8512BCAD1C4A14D20087FFA6 /* icon_zixun_normal@3x.png in Resources */,
+				3806566D1C4E5D5B003094C9 /* MyCell.xib in Resources */,
 				85F545401C1408040013B92B /* circleWhiteSelect@3x.png in Resources */,
 				ADF88E661C102E4F00CF5DED /* pingjiaxiangji@2x.png in Resources */,
 				8540B67A1C2CE4E300F16463 /* LYFriendsAddressTableViewCell.xib in Resources */,
@@ -6173,7 +6167,6 @@
 				381FF0021C168755002A47BA /* icon_zixun_normal@2x.png in Resources */,
 				8550E71A1C30181E001FF2DE /* LYFriendsHeaderTableViewCell.xib in Resources */,
 				A2F9DA841BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib in Resources */,
-				38AA7CBA1C31597700D9BCE8 /* YBImgPickerTableViewCell.xib in Resources */,
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
 				15844BC91BE1CAEB00247FBC /* FindMenuTwoCell.xib in Resources */,
 				ADF88E541C1029F600CF5DED /* LYEvaluationController.xib in Resources */,
@@ -6274,7 +6267,6 @@
 				38F0FE811C4692C30070092D /* biaobai_icon@3x.png in Resources */,
 				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
 				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
-				38AA7CBC1C31597700D9BCE8 /* YBimgPickerView.bundle in Resources */,
 				38E5D7AD1C113879004B49D2 /* purper_less@2x.png in Resources */,
 				AD078C591C33CDA200A056D1 /* icon_wanyouliebiao_normal@3x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
@@ -6315,6 +6307,7 @@
 				38E5D7C21C128C44004B49D2 /* triangle_down.png in Resources */,
 				ADFFA6CB1C181ED800D9BD2A /* refresh4@2x.png in Resources */,
 				853860791C45600F009B19AE /* friendPresentBG.jpeg in Resources */,
+				3806566A1C4E5D5B003094C9 /* ImageCollectionViewController.xib in Resources */,
 				AD078C5F1C33CDAF00A056D1 /* icon_yaoyiyao_window@3x.png in Resources */,
 				ADF88E6F1C11613800CF5DED /* empyImage300.png in Resources */,
 				ADF88EAB1C1197C400CF5DED /* MJRefresh.bundle in Resources */,
@@ -6332,7 +6325,6 @@
 				853860901C45607E009B19AE /* pinglun_icon@2x.png in Resources */,
 				853DBD931C3B55E500EAE60E /* biaoqian_wanyouquan_zhuangtai2@2x.png in Resources */,
 				854727361C197E6B0048CEDC /* icon_fanhui2@2x.png in Resources */,
-				38AA7CBD1C31597700D9BCE8 /* YBImgPickerViewCell.xib in Resources */,
 				853C4C851C311A9900D48BA2 /* dizhi_icon@2x.png in Resources */,
 				ADE2AD711C23ADDE00B0A54B /* ReleaseNotes.txt in Resources */,
 				854727351C197E6B0048CEDC /*  .png in Resources */,
@@ -6544,7 +6536,6 @@
 				15013AD11BBA161100061FAF /* ZSManageHttpTool.m in Sources */,
 				1559DD151BDB279700F3FE9B /* CarHeadView.m in Sources */,
 				15013AFC1BBA33BE00061FAF /* SDWebImageManager.m in Sources */,
-				38AA7CC01C31597700D9BCE8 /* YBImgPickerViewCell.m in Sources */,
 				D74C60871BB6E8B600A49598 /* LYRestfulBussiness.m in Sources */,
 				ADE103C21BE0EAAA00D9EC38 /* EAIntroView.m in Sources */,
 				15E1849A1BB5319900681BB2 /* Toast+UIView.m in Sources */,
@@ -6654,7 +6645,6 @@
 				15CC31DF1BEB2C5B00DDD03F /* DBHelper.m in Sources */,
 				8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */,
 				85F625A11C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m in Sources */,
-				38AA7CBF1C31597700D9BCE8 /* YBImgPickerTableViewCell.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
 				85EE80461C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m in Sources */,
@@ -6721,7 +6711,6 @@
 				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
 				8545385F1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m in Sources */,
 				15E240771BB24F510090D240 /* MyCollectionViewController.m in Sources */,
-				38AA7CBB1C31597700D9BCE8 /* YBImgPickerViewController.m in Sources */,
 				38AA7CC51C315A0000D9BCE8 /* preview.m in Sources */,
 				AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
@@ -6778,6 +6767,7 @@
 				15B8668A1BE09888002E2BB6 /* MyBarModel.m in Sources */,
 				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,
 				853C4C3E1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.m in Sources */,
+				380656691C4E5D5B003094C9 /* ImageCollectionViewController.m in Sources */,
 				152247B41BEB064600E68A2B /* IQTextView.m in Sources */,
 				A2F9DA631BAA5621009DEAF3 /* OrderInfoModel.m in Sources */,
 				15E240711BB2478B0090D240 /* TuiJianShangJiaViewController.m in Sources */,
@@ -6810,6 +6800,7 @@
 				15EB7C6C1BCF8BF700756153 /* LYHomePageHttpTool.m in Sources */,
 				AD92AEAC1BE23521009F2A34 /* LYTagTableViewCell.m in Sources */,
 				AD078C411C2BAF7700A056D1 /* UITabBarItem+CustomBadge.m in Sources */,
+				3806566B1C4E5D5B003094C9 /* ImagePickerViewController.m in Sources */,
 				15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */,
 				ADF88EA71C1197C400CF5DED /* MJRefreshBackStateFooter.m in Sources */,
 				15013AF71BBA33BE00061FAF /* SDImageCache.m in Sources */,
@@ -6852,6 +6843,7 @@
 				ADF88EA21C1197C400CF5DED /* MJRefreshAutoGifFooter.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
 				15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */,
+				3806566C1C4E5D5B003094C9 /* MyCell.m in Sources */,
 				15B866291BDB6A57002E2BB6 /* AllInfoModel.m in Sources */,
 				15A4CF461BD7682400C22C01 /* DWOredrNextCell.m in Sources */,
 				ADF88EA41C1197C400CF5DED /* MJRefreshAutoStateFooter.m in Sources */,

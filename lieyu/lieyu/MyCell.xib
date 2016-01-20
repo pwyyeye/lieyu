@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mycell" id="gTV-IL-0wX" customClass="MyCell">
+            <rect key="frame" x="0.0" y="0.0" width="132" height="124"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="132" height="124"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z9p-YO-Ewm">
+                        <rect key="frame" x="0.0" y="0.0" width="132" height="124"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9LF-w2-dzm">
+                        <rect key="frame" x="92" y="0.0" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="eNu-1m-vHs"/>
+                            <constraint firstAttribute="height" constant="40" id="yXW-9F-1US"/>
+                        </constraints>
+                        <state key="normal" image="imageUnselected.png"/>
+                        <state key="selected" image="imageSelected.png"/>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="9LF-w2-dzm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="61R-UP-0KN"/>
+                <constraint firstItem="z9p-YO-Ewm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="TP4-SS-yCE"/>
+                <constraint firstAttribute="trailing" secondItem="9LF-w2-dzm" secondAttribute="trailing" id="VEx-BO-7e1"/>
+                <constraint firstItem="z9p-YO-Ewm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bhi-nD-CQo"/>
+                <constraint firstAttribute="bottom" secondItem="z9p-YO-Ewm" secondAttribute="bottom" id="jQu-ck-PCU"/>
+                <constraint firstAttribute="trailing" secondItem="z9p-YO-Ewm" secondAttribute="trailing" id="zVk-MP-gmP"/>
+            </constraints>
+            <size key="customSize" width="132" height="124"/>
+            <connections>
+                <outlet property="cellButton" destination="9LF-w2-dzm" id="BT3-cc-6MF"/>
+                <outlet property="cellImage" destination="z9p-YO-Ewm" id="FVt-YF-leh"/>
+            </connections>
+            <point key="canvasLocation" x="399" y="443"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="imageSelected.png" width="29" height="29"/>
+        <image name="imageUnselected.png" width="29" height="29"/>
+    </resources>
+</document>
