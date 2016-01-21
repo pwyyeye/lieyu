@@ -553,8 +553,10 @@
 #pragma mark 分享按钮
 - (IBAction)shareClick:(id)sender {
     NSString *string= [NSString stringWithFormat:@"大家一起来看看～%@酒吧不错啊!下载猎娱App即可优惠下单，还有超值返利。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barname,self.beerBarDetail.barid];
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"hhhhhhhh" shareImage:[UIImage imageNamed:@"lieyuIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
 }
 

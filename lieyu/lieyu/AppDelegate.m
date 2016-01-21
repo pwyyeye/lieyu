@@ -25,6 +25,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMessage.h"
 #import "WXApi.h"
+#import "UMSocialQQHandler.h"
 #import "SingletonTenpay.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -109,6 +110,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     //向微信注册
     [WXApi registerApp:@"wxb1f5e1de5d4778b9" withDescription:@"猎娱"];
+    [UMSocialQQHandler setQQWithAppId:@"1104853065" appKey:@"9wumIImmJdUgJn2N" url:@"http://www.lie98.com"];
     
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
@@ -569,6 +571,17 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"URL scheme:%@", [url scheme]);
     NSLog(@"URL query: %@", [url query]);
     
+    if([sourceApplication isEqualToString:@"com.tencent.mqq"]){
+        return [TencentOAuth HandleOpenURL:url];
+    }
+    
+    NSString *code = nil;
+    if(![MyUtil isEmptyString:[url query]]){
+        NSArray *arrayStr = [[url query] componentsSeparatedByString:@"&"];
+        NSArray *arrayStr2 = [arrayStr[0] componentsSeparatedByString:@"="];
+        code = arrayStr2[1];
+    }
+    
     if ([sourceApplication isEqualToString:@"com.apple.mobilesafari"]){
         // 接受传过来的参数
         NSDictionary *dic=[MyUtil getKeyValue:[url query]];
@@ -585,6 +598,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         //如果是微信分享回来 无参数
         if([MyUtil isEmptyString:[url query]]){
             return NO;
+        }else if(![MyUtil isEmptyString:code]){
+            [[NSUserDefaults standardUserDefaults] setObject:code forKey:@"weixinCode"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [ [NSNotificationCenter defaultCenter] postNotificationName:@"weixinCode" object:nil];
+            return [WXApi handleOpenURL:url delegate:self];
         }else{//如果是微信支付回来 带参数
             return [WXApi handleOpenURL:url delegate:[SingletonTenpay singletonTenpay]];
         }

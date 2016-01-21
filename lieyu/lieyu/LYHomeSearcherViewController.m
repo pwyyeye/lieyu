@@ -293,6 +293,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
+    wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
     JiuBaModel *model = [searchlist objectAtIndex:indexPath.row];
     wineCell.jiuBaModel = model;
     return wineCell;
