@@ -24,10 +24,6 @@
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmz-Nn-v0t">
                         <rect key="frame" x="245" y="42" width="67" height="22"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="22" id="XmD-jz-oIc"/>
-                            <constraint firstAttribute="width" constant="67" id="ls7-KW-LBy"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-8" maxY="0.0"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
@@ -37,19 +33,12 @@
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEY-tT-1js">
                         <rect key="frame" x="74" y="13" width="238" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="18" id="oxi-fG-bzm"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncn-8q-CHh">
                         <rect key="frame" x="141" y="42" width="67" height="22"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="67" id="37U-BO-eoY"/>
-                            <constraint firstAttribute="height" constant="22" id="38C-gO-fLi"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-8" maxY="0.0"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
@@ -64,17 +53,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <constraints>
-                    <constraint firstAttribute="trailing" secondItem="YEY-tT-1js" secondAttribute="trailing" constant="8" id="BOX-8i-Y52"/>
-                    <constraint firstAttribute="bottom" secondItem="Ncn-8q-CHh" secondAttribute="bottom" constant="11" id="Cxt-M1-pIS"/>
-                    <constraint firstItem="V93-tr-lHz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="M6c-ce-sGK"/>
-                    <constraint firstItem="YEY-tT-1js" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="Pud-8K-brS"/>
-                    <constraint firstItem="YEY-tT-1js" firstAttribute="leading" secondItem="V93-tr-lHz" secondAttribute="trailing" constant="8" id="V3m-MN-IKE"/>
-                    <constraint firstAttribute="bottom" secondItem="gmz-Nn-v0t" secondAttribute="bottom" constant="11" id="a2V-Us-X89"/>
-                    <constraint firstAttribute="trailing" secondItem="gmz-Nn-v0t" secondAttribute="trailing" constant="8" id="mpc-li-lpO"/>
-                    <constraint firstItem="V93-tr-lHz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="yL3-d5-euS"/>
-                    <constraint firstItem="gmz-Nn-v0t" firstAttribute="leading" secondItem="Ncn-8q-CHh" secondAttribute="trailing" constant="37" id="zJl-pb-iUQ"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="ageLal" destination="g9w-eS-se2" id="G2s-g0-u7v"/>

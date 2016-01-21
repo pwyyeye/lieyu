@@ -7,7 +7,7 @@
 //
 
 #import "FriendsUserInfoModel.h"
-
+#import "MJExtension.h"
 @implementation FriendsUserInfoModel
 
 @end
