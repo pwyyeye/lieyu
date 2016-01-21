@@ -28,9 +28,9 @@
         NSMutableString *mytags=[[NSMutableString alloc] init];
         for (int i=0; i<_customerModel.tag.count; i++) {
             if (i==_customerModel.tag.count-1) {
-                [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]];
+                [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
             }else{
-                [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]];
+                [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
                 [mytags appendString:@","];
             }
         }
@@ -40,9 +40,9 @@
          NSMutableString *mytags=[[NSMutableString alloc] init];
         for (int i=0; i<_customerModel.userTag.count; i++) {
             if (i==_customerModel.userTag.count-1) {
-                [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]];
+                [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
             }else{
-                [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]];
+                [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
                 [mytags appendString:@","];
             }
         }
