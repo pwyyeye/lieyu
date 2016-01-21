@@ -35,8 +35,8 @@
 #import "FriendsUserInfoModel.h"
 #import "MJRefresh.h"
 #import "ISEmojiView.h"
+#import "ImagePickerViewController.h"
 
-#import "YBImgPickerViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -50,9 +50,9 @@
 #define LYFriendsVideoCellID @"LYFriendsVideoTableViewCell"
 #define LYFriendsCellID @"cell"
 
-@interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UITextFieldDelegate,YBImgPickerViewControllerDelegate,
+@interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UITextFieldDelegate,
     UIImagePickerControllerDelegate,
-    UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage>{
+    UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePickerFinish>{
     UIButton *_friendsBtn;//导航栏朋友圈按钮
     UIButton *_myBtn;//导航栏我的按钮
     UILabel *_myBadge;//我的按钮小红圈
@@ -655,9 +655,14 @@
         return;//给出提示
     }
     _typeOfImagePicker = @"photos";
-    YBImgPickerViewController *ybImagePicker = [[YBImgPickerViewController alloc]init];
-    ybImagePicker.photoCount = self.pagesCount;
-    [ybImagePicker showInViewContrller:self choosenNum:0 delegate:self];
+    ImagePickerViewController *imagePicker = [[ImagePickerViewController alloc]init];
+    imagePicker.imagesCount = self.pagesCount;
+    imagePicker.delegate = self;
+    [self.navigationController pushViewController:imagePicker animated:YES];
+    
+//    YBImgPickerViewController *ybImagePicker = [[YBImgPickerViewController alloc]init];
+//    ybImagePicker.photoCount = self.pagesCount;
+//    [ybImagePicker showInViewContrller:self choosenNum:0 delegate:self];
 }
 
 - (void)takePhotoActionClick{
@@ -697,7 +702,19 @@
     return _imagePicker;
 }
 
+
+
 #pragma mark 选择玩照片后的操作
+- (void)ImagePickerDidFinishWithImages:(NSArray *)imageArray{
+    friendsSendVC = [[LYFriendsSendViewController alloc]initWithNibName:@"LYFriendsSendViewController" bundle:[NSBundle mainBundle]];
+    friendsSendVC.delegate = self;
+    [self.navigationController pushViewController:friendsSendVC animated:YES];
+    /**
+     */
+    //        [self YBImagePickerDidFinishWithImages:imageArray];
+    [_notificationDict setObject:imageArray forKey:@"info"];
+}
+
 - (void)YBImagePickerDidFinishWithImages:(NSArray *)imageArray{
     friendsSendVC = [[LYFriendsSendViewController alloc]initWithNibName:@"LYFriendsSendViewController" bundle:[NSBundle mainBundle]];
     friendsSendVC.delegate = self;

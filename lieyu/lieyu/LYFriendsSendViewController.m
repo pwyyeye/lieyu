@@ -14,10 +14,11 @@
 #import <Reachability.h>
 #import "IQKeyboardManager.h"
 #import "IQKeyboardReturnKeyHandler.h"
+#import "ImagePickerViewController.h"
 
 #define IMGwidth ( [UIScreen mainScreen].bounds.size.width - 20 ) / 3
 
-@interface LYFriendsSendViewController ()<UIImagePickerControllerDelegate,UITextViewDelegate,UIAlertViewDelegate>
+@interface LYFriendsSendViewController ()<UIImagePickerControllerDelegate,UITextViewDelegate,UIAlertViewDelegate,ImagePickerFinish>
 {
     int qiniuPages;
     AppDelegate *app;
@@ -371,9 +372,14 @@
         [MyUtil showCleanMessage:@"抱歉，无法再添加照片"];
         return;//给出提示
     }
-    YBImgPickerViewController *ybImagePicker = [[YBImgPickerViewController alloc]init];
-    ybImagePicker.photoCount = self.pageCount;
-    [ybImagePicker showInViewContrller:self choosenNum:0 delegate:self];
+    ImagePickerViewController *imagePicker = [[ImagePickerViewController alloc]init];
+    imagePicker.imagesCount = self.pageCount;
+    imagePicker.delegate = self;
+    [self.navigationController pushViewController:imagePicker animated:YES];
+    
+//    YBImgPickerViewController *ybImagePicker = [[YBImgPickerViewController alloc]init];
+//    ybImagePicker.photoCount = self.pageCount;
+//    [ybImagePicker showInViewContrller:self choosenNum:0 delegate:self];
 }
 
 - (void)takePhotoActionClick{
@@ -428,6 +434,14 @@
     return _imagePicker;
 }
 
+- (void)ImagePickerDidFinishWithImages:(NSArray *)imageArray{
+    self.pageCount = self.pageCount - (int)imageArray.count;
+    [self.fodderArray addObjectsFromArray:imageArray];
+    //界面刷新，重新排版
+    [app startLoading];
+    [self interfaceLayout];
+}
+
 #pragma mark YB的代理方法
 - (void)YBImagePickerDidFinishWithImages:(NSArray *)imageArray{
     self.pageCount = self.pageCount - (int)imageArray.count;
@@ -455,7 +469,7 @@
         [self.imageViewArray addObject:imageView];
         self.initCount ++;
         self.addButton.frame = CGRectMake(self.addButton.frame.origin.x + 75, self.addButton.frame.origin.y, 70, 70);
-        if(self.addButton.frame.origin.x > SCREEN_WIDTH - 12){
+        if(self.pageCount <= 0){
             self.addButton.hidden = YES;
         }else{
             self.addButton.hidden = NO;

@@ -8,7 +8,6 @@
 
 #import "LYBaseViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "YBImgPickerViewController.h"
 #import "preview.h"
 #import "LYFriendsChooseLocationViewController.h"
 @protocol sendBackVedioAndImage <NSObject>
@@ -19,7 +18,7 @@
 
 @end
 
-@interface LYFriendsSendViewController : LYBaseViewController<UIActionSheetDelegate,UINavigationControllerDelegate,YBImgPickerViewControllerDelegate,PullLocationInfo>
+@interface LYFriendsSendViewController : LYBaseViewController<UIActionSheetDelegate,UINavigationControllerDelegate,PullLocationInfo>
 
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;

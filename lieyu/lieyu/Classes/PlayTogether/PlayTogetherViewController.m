@@ -78,18 +78,22 @@
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount]};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
 
-    LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
-    NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
-    if(dataArray.count){
-        
-        LYCache *lycache = [dataArray objectAtIndex:0];
-        NSLog(@"value:%@",lycache.lyCacheValue);
-        dataList = [PinKeModel mj_objectArrayWithKeyValuesArray:lycache.lyCacheValue];
-        
-        NSLog(@"%@",dataList);
-        pageCount ++;
-    }else{
+    if([MyUtil configureNetworkConnect] == 0) {
         [self getDataForTogether];
+    }else{
+        LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+        NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
+        if(dataArray.count){
+            
+            LYCache *lycache = [dataArray objectAtIndex:0];
+            NSLog(@"value:%@",lycache.lyCacheValue);
+            dataList = [PinKeModel mj_objectArrayWithKeyValuesArray:lycache.lyCacheValue];
+            
+            NSLog(@"%@",dataList);
+            pageCount ++;
+        }else{
+            [self getDataForTogether];
+        }
     }
     [self getData];
     [self setMenuView];

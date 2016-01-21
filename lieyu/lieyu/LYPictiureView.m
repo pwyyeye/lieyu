@@ -66,7 +66,6 @@
             [imageView addGestureRecognizer:longPress];
             
         }
-        
         _scrollView.contentOffset = CGPointMake(SCREEN_WIDTH * index, 0);
         _scrollView.pagingEnabled = YES;
         

@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
-
 - (IBAction)startStopReading:(id)sender;
 
 @end
