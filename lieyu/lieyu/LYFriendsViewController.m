@@ -118,27 +118,14 @@
     NSDictionary *paraDic = @{@"userId":_useridStr};
     //__weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
-//        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
-//        if(reslults.integerValue){
-//            _myBadge.hidden = NO;
-//            _headerView.btn_newMessage.hidden = NO;
-//        }
-//       // [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-//        [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
-        
-
-        //_headerView.btn_newMessage.hidden = NO;
-        //[[NSNotificationCenter defaultCenter] postNotificationName:@"MyFriendsMessageCount" object:weakSelf userInfo:@{@"count":reslults,@"icon":icon}];
         _results = reslults;
         _icon = icon;
         if(_results) _myBadge.hidden = NO;
         else _myBadge.hidden = YES;
         if(_results.integerValue && _index == 1){
-            NSLog(@"---->%@",_results);
             _myBadge.hidden = NO;
             [self removeTableViewHeader];
             [self addTableViewHeader];
-            //  [self.tableView reloadData];
         }
     }];
 }
@@ -169,7 +156,6 @@
     else return;
     [self getDataFriendsWithSetContentOffSet:NO];
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageCountNotice:) name:@"MyFriendsMessageCount" object:nil];
     [self getRecentMessage];
 }
 
@@ -313,9 +299,7 @@
     for (int i = 0; i < 2; i ++) {
          NSMutableArray *arr = _dataArray[i];
         FriendsRecentModel *recentM = arr[0];
-        NSLog(@"---->%@",recentM.id);
         recentM.id = [NSString stringWithFormat:@"%@",messageId];
-                NSLog(@"---->%@",recentM.id);
     }
     [self reloadTableViewAndSetUpPropertyneedSetContentOffset:YES];
 }

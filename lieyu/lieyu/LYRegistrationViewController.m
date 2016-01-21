@@ -10,7 +10,9 @@
 #import "LYUserHttpTool.h"
 #import "LYUserDetailInfoViewController.h"
 #import "LYUserLoginViewController.h"
-@interface LYRegistrationViewController ()
+@interface LYRegistrationViewController (){
+    BOOL _isRegisted;
+}
 
 @end
 
@@ -49,6 +51,15 @@ static LYRegistrationViewController *_registe;
     [self.getYzmBtn setBackgroundImage:selectedImg  forState:UIControlStateDisabled];
     */
     // Do any additional setup after loading the view from its nib.
+    
+    if(_isTheThirdLogin){
+        self.title = @"绑定手机号";
+        _textField_psw.hidden = YES;
+        _passWordTex.hidden = YES;
+        _againPassWordTex.hidden = YES;
+        _textField_psw_little.hidden = YES;
+        [_btn_regist setTitle:@"立即绑定" forState:UIControlStateNormal];
+    }
 }
 
 - (void)backForword{
@@ -113,7 +124,6 @@ static LYRegistrationViewController *_registe;
           [MyUtil showMessage:@"验证码发送成功请输入短信中的验证码!"];
         }
     }];
-    
 }
 #pragma mark - 密码
 - (IBAction)zcAct:(UIButton *)sender {
@@ -126,36 +136,42 @@ static LYRegistrationViewController *_registe;
         [MyUtil showMessage:@"请输入验证码!"];
         return;
     }
-    if(self.passWordTex.text.length<1){
-        [MyUtil showMessage:@"请输入密码!"];
-        return;
-    }
-    if(self.againPassWordTex.text.length<1){
-        [MyUtil showMessage:@"请输入重置密码!"];
-        return;
-    }
-    if(![self.againPassWordTex.text isEqualToString:self.passWordTex.text]){
-        [MyUtil showMessage:@"两次输入密码不一致!"];
-        return;
-    }
-    NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text]};
-    [[LYUserHttpTool shareInstance] setZhuCe:dic complete:^(BOOL result) {
-        if (result) {
-            [_timer setFireDate:[NSDate distantPast]];
-            
-            [self.delegate registration];
-            [USER_DEFAULT setObject:self.phoneTex.text forKey:@"username"];
-            [USER_DEFAULT setObject:[MyUtil md5HexDigest:self.passWordTex.text] forKey:@"pass"];
-            
-            LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
-            [loginVC autoLogin];
-            
-            LYUserDetailInfoViewController *detailVC = [[LYUserDetailInfoViewController alloc]init];
-            detailVC.isAutoLogin = YES;
-     
-            [self.navigationController pushViewController:detailVC animated:YES];
+    if(_isRegisted){//绑定手机号
+        
+    }else{
+        if(self.passWordTex.text.length<1){
+            [MyUtil showMessage:@"请输入密码!"];
+            return;
         }
-    }];
+        if(self.againPassWordTex.text.length<1){
+            [MyUtil showMessage:@"请输入重置密码!"];
+            return;
+        }
+        if(![self.againPassWordTex.text isEqualToString:self.passWordTex.text]){
+            [MyUtil showMessage:@"两次输入密码不一致!"];
+            return;
+        }
+        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text]};
+        [[LYUserHttpTool shareInstance] setZhuCe:dic complete:^(BOOL result) {
+            if (result) {
+                [_timer setFireDate:[NSDate distantPast]];
+                
+                [self.delegate registration];
+                [USER_DEFAULT setObject:self.phoneTex.text forKey:@"username"];
+                [USER_DEFAULT setObject:[MyUtil md5HexDigest:self.passWordTex.text] forKey:@"pass"];
+                
+                LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+                [loginVC autoLogin];
+                
+                LYUserDetailInfoViewController *detailVC = [[LYUserDetailInfoViewController alloc]init];
+                detailVC.userM = _userM;
+                detailVC.isAutoLogin = YES;
+                
+                [self.navigationController pushViewController:detailVC animated:YES];
+            }
+        }];
+
+    }
 }
 
 - (IBAction)exitEdit:(UITextField *)sender {
