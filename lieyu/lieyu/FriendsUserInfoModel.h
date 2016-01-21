@@ -25,4 +25,5 @@
 @property (nonatomic,copy) NSString *username;
 @property (nonatomic,copy) NSString *usernick;
 @property (nonatomic,copy) NSString *type;
+@property(strong,nonatomic) NSArray *tags;
 @end

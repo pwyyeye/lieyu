@@ -569,6 +569,11 @@
 		85589C311C167E49000E342E /* PayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A2A1C15B6050088CD86 /* PayButton.m */; };
 		85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
 		85589CB81C16D41D000E342E /* SingletonRegiste.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CB71C16D41D000E342E /* SingletonRegiste.m */; };
+		85653B631C508D010012B718 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B5F1C508D010012B718 /* libSocialQQ.a */; };
+		85653B641C508D010012B718 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B601C508D010012B718 /* TencentOpenAPI.framework */; };
+		85653B651C508D010012B718 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 85653B611C508D010012B718 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		85653B671C508DF40012B718 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B661C508DF40012B718 /* CoreGraphics.framework */; };
+		85653B691C508E100012B718 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B681C508E100012B718 /* libstdc++.tbd */; };
 		8567A4A51C43E14E00982882 /* biaoqing_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8567A4A21C43E14E00982882 /* biaoqing_icon.png */; };
 		8567A4A61C43E14E00982882 /* biaoqing_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8567A4A31C43E14E00982882 /* biaoqing_icon@2x.png */; };
 		8567A4A71C43E14E00982882 /* biaoqing_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8567A4A41C43E14E00982882 /* biaoqing_icon@3x.png */; };
@@ -1848,6 +1853,12 @@
 		855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearcherViewController.xib; sourceTree = "<group>"; };
 		85589CB61C16D41D000E342E /* SingletonRegiste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonRegiste.h; sourceTree = "<group>"; };
 		85589CB71C16D41D000E342E /* SingletonRegiste.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonRegiste.m; sourceTree = "<group>"; };
+		85653B5F1C508D010012B718 /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
+		85653B601C508D010012B718 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		85653B611C508D010012B718 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		85653B621C508D010012B718 /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		85653B661C508DF40012B718 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		85653B681C508E100012B718 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		8567A4A21C43E14E00982882 /* biaoqing_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biaoqing_icon.png; sourceTree = "<group>"; };
 		8567A4A31C43E14E00982882 /* biaoqing_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaoqing_icon@2x.png"; sourceTree = "<group>"; };
 		8567A4A41C43E14E00982882 /* biaoqing_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaoqing_icon@3x.png"; sourceTree = "<group>"; };
@@ -2536,7 +2547,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85653B691C508E100012B718 /* libstdc++.tbd in Frameworks */,
+				85653B671C508DF40012B718 /* CoreGraphics.framework in Frameworks */,
 				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
+				85653B631C508D010012B718 /* libSocialQQ.a in Frameworks */,
 				853D3AB31C34CED500B4FEAD /* AMapSearchKit.framework in Frameworks */,
 				ADE2AD771C23AE8E00B0A54B /* Security.framework in Frameworks */,
 				ADE2AD751C23AE6600B0A54B /* libsqlite3.tbd in Frameworks */,
@@ -2560,6 +2574,7 @@
 				15EB35661BD4840300BA6161 /* libWeiboSDK.a in Frameworks */,
 				15EB35651BD4840300BA6161 /* libSocialSinaSSO.a in Frameworks */,
 				D748BC561BA1C7C6005AA996 /* MobileCoreServices.framework in Frameworks */,
+				85653B641C508D010012B718 /* TencentOpenAPI.framework in Frameworks */,
 				ADE103A21BDE4AB800D9EC38 /* libcrypto.a in Frameworks */,
 				15EB35481BD4839D00BA6161 /* libUMSocial_Sdk_Comment_4.2.3.a in Frameworks */,
 				D748BC521BA1C765005AA996 /* CoreTelephony.framework in Frameworks */,
@@ -3296,6 +3311,7 @@
 		15EB35291BD4838600BA6161 /* 社会化分享 */ = {
 			isa = PBXGroup;
 			children = (
+				85653B5E1C508D010012B718 /* TencentOpenAPI */,
 				15EB35541BD483E900BA6161 /* Wechat */,
 				15EB35531BD483E000BA6161 /* sinaSSo */,
 				15EB35521BD483DA00BA6161 /* sina */,
@@ -4350,6 +4366,17 @@
 			name = "酒吧详情整改";
 			sourceTree = "<group>";
 		};
+		85653B5E1C508D010012B718 /* TencentOpenAPI */ = {
+			isa = PBXGroup;
+			children = (
+				85653B5F1C508D010012B718 /* libSocialQQ.a */,
+				85653B601C508D010012B718 /* TencentOpenAPI.framework */,
+				85653B611C508D010012B718 /* TencentOpenApi_IOS_Bundle.bundle */,
+				85653B621C508D010012B718 /* UMSocialQQHandler.h */,
+			);
+			path = TencentOpenAPI;
+			sourceTree = "<group>";
+		};
 		85C4286E1C119D1B0028FC21 /* 离我最近 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4851,6 +4878,8 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85653B681C508E100012B718 /* libstdc++.tbd */,
+				85653B661C508DF40012B718 /* CoreGraphics.framework */,
 				ADE2AD761C23AE8E00B0A54B /* Security.framework */,
 				ADE2AD741C23AE6600B0A54B /* libsqlite3.tbd */,
 				ADE2AD721C23AE5500B0A54B /* libz.tbd */,
@@ -6273,6 +6302,7 @@
 				38E5D6E61C0F1018004B49D2 /* LPBuyTaocanCell.xib in Resources */,
 				85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */,
 				38E5D6C71C0EA4DF004B49D2 /* CustomBtn_Selected@2x.png in Resources */,
+				85653B651C508D010012B718 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				ADFFA68E1C16DFBD00D9BD2A /* purpleBtnBG@3x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */,
@@ -7108,6 +7138,7 @@
 			baseConfigurationReference = 5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -7116,6 +7147,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/lieyu/Vendor/LBS.amap",
+					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -7143,6 +7175,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/lieyu/Vendor/mta-sdk-1.4.8",
+					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -7155,6 +7188,7 @@
 			baseConfigurationReference = 60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -7163,6 +7197,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/lieyu/Vendor/LBS.amap",
+					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -7190,6 +7225,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.2.0",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/lieyu/Vendor/mta-sdk-1.4.8",
+					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

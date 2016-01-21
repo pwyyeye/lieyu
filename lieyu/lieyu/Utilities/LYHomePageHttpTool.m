@@ -584,4 +584,88 @@
         [MyUtil showPlaceMessage:@"取消点赞失败，请检查网络连接"];
     }];
 }
+
++ (void)getWeixinAccessTokenWithCode:(NSString *)codeStr compelete:(void(^)(NSString *))compelete{
+    
+    NSURLRequest *urlRequest= [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxb1f5e1de5d4778b9&secret=d4624c36b6795d1d99dcf0547af5443d&code=%@&grant_type=authorization_code",codeStr]]];
+    
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
+    // NSLog(@"---->%@",[[NSString  alloc]initWithData:data1 encoding:NSUTF8StringEncoding]);
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    //    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[[NSOperationQueue alloc]init]completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+    //        NSLog(@"----->%@---------%@",response,[[NSString  alloc]initWithData:data encoding:NSUTF8StringEncoding]);
+    //    }];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:dic[@"access_token"] forKey:@"weixinGetAccessToken"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"weixinDate"];
+    compelete(dic[@"access_token"]);
+    NSString *refreshAccessTokenStr = dic[@"refresh_token"];
+    [[NSUserDefaults standardUserDefaults] setObject:refreshAccessTokenStr forKey:@"weixinRefresh_token"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"weixinReDate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    
+    /*   [HTTPController requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxb1f5e1de5d4778b9&secret=d4624c36b6795d1d99dcf0547af5443d&code=%@&grant_type=authorization_code",codeStr] baseURL:nil params:nil success:^(id response) {
+     NSLog(@"---->%@",response);
+     compelete(response[@"access_token"]);
+     NSString *refreshAccessTokenStr = response[@"refresh_token"];
+     [[NSUserDefaults standardUserDefaults] setObject:refreshAccessTokenStr forKey:@"refreshToken"];
+     [[NSUserDefaults standardUserDefaults] synchronize];
+     } failure:^(NSError *err) {
+     NSLog(@"---->----");
+     }];
+     */
+}
+
++ (void)getWeixinNewAccessTokenWithRefreshToken:(NSString *)RefreshToken compelete:(void (^)(NSString *))compelete{
+    
+    NSLog(@"---->%@------------>%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinRefresh_token"],RefreshToken );
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wxb1f5e1de5d4778b9&grant_type=refresh_token&refresh_token=%@",RefreshToken]]];
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
+    NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:dic[@"access_token"] forKey:@"weixinGetAccessToken"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"weixinDate"];
+    [[NSUserDefaults standardUserDefaults] setObject:dic[@"openid"] forKey:@"weixinOpenid"];
+    [[NSUserDefaults standardUserDefaults] setObject:dic[@"refresh_token"] forKey:@"weixinRefresh_token"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    compelete(dic[@"access_token"]);
+    NSLog(@"--%@",dic);
+    
+    /*[HTTPController requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wxb1f5e1de5d4778b9&grant_type=refresh_token&refresh_token=%@",RefreshToken] baseURL:nil params:nil success:^(id response) {
+     NSLog(@"---->%@",response)
+     [[NSUserDefaults standardUserDefaults] setObject:response[@"access_token"] forKey:@"weixinAccessToken"];
+     [[NSUserDefaults standardUserDefaults] setObject:response[@"openid"] forKey:@"weixinOpenid"];
+     [[NSUserDefaults standardUserDefaults] setObject:response[@"refresh_token"] forKey:@"weixinRefresh_token"];
+     [[NSUserDefaults standardUserDefaults] synchronize];
+     compelete(response[@"access_token"]);
+     } failure:^(NSError *err) {
+     
+     }];
+     
+     */
+}
+
++ (void)getWeixinUserInfoWithAccessToken:(NSString *)accessToken compelete:(void(^)(UserModel *))compelete{
+    NSString *openIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"weixinOpenid"];
+    
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openIdStr]]];
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
+    NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    NSLog(@"--->%@",dic);
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    app.userModel.avatar_img = dic[@"headimgurl"];
+    app.userModel.usernick = dic[@"nickname"];
+    app.userModel.gender = dic[@"sex"];
+    
+    
+    /*  [HTTPController requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openIdStr] baseURL:nil params:nil success:^(id response) {
+     NSLog(@"---->%@",response);
+     } failure:^(NSError *err) {
+     
+     }];
+     */
+}
 @end
