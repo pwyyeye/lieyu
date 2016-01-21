@@ -65,6 +65,11 @@
     self.navigationItem.leftBarButtonItem = leftItem;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
+}
+
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }

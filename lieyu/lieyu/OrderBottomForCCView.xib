@@ -73,7 +73,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际付款：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQv-Yo-jXU">
-                    <rect key="frame" x="19" y="8" width="74" height="21"/>
+                    <rect key="frame" x="15" y="8" width="74" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="HHr-QX-6RR"/>
                         <constraint firstAttribute="width" constant="74" id="PxM-Gt-pDs"/>
@@ -83,7 +83,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥1200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65Y-UC-yWP">
-                    <rect key="frame" x="226" y="8" width="75" height="21"/>
+                    <rect key="frame" x="230" y="8" width="75" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="bKi-4M-b7v"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="fkz-iE-5se"/>
@@ -110,11 +110,11 @@
                 <constraint firstAttribute="trailing" secondItem="o6L-Cd-FMm" secondAttribute="trailing" id="TQ3-wV-5va"/>
                 <constraint firstItem="7am-v5-FQi" firstAttribute="centerY" secondItem="Xvm-hY-SRI" secondAttribute="centerY" id="Typ-kN-r3w"/>
                 <constraint firstItem="fmm-as-z6o" firstAttribute="centerX" secondItem="7am-v5-FQi" secondAttribute="centerX" constant="12" id="UAZ-mc-QNO"/>
-                <constraint firstAttribute="trailing" secondItem="65Y-UC-yWP" secondAttribute="trailing" constant="19" id="bDU-eB-679"/>
+                <constraint firstAttribute="trailing" secondItem="65Y-UC-yWP" secondAttribute="trailing" constant="15" id="bDU-eB-679"/>
                 <constraint firstItem="7am-v5-FQi" firstAttribute="width" secondItem="Xvm-hY-SRI" secondAttribute="width" id="bdP-Jt-XeG"/>
                 <constraint firstItem="0yz-Fm-sNS" firstAttribute="centerX" secondItem="Xvm-hY-SRI" secondAttribute="centerX" constant="13" id="jFk-RC-UF6"/>
                 <constraint firstItem="7am-v5-FQi" firstAttribute="height" secondItem="Xvm-hY-SRI" secondAttribute="height" id="nAk-Qs-VTf"/>
-                <constraint firstItem="lQv-Yo-jXU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="19" id="vB4-FB-0R3"/>
+                <constraint firstItem="lQv-Yo-jXU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="vB4-FB-0R3"/>
                 <constraint firstItem="7am-v5-FQi" firstAttribute="leading" secondItem="Xvm-hY-SRI" secondAttribute="trailing" id="w2O-ni-Ood"/>
                 <constraint firstAttribute="trailing" secondItem="7am-v5-FQi" secondAttribute="trailing" id="z4g-GD-M2D"/>
             </constraints>

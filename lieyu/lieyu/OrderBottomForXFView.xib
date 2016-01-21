@@ -19,7 +19,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户付款：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWu-MK-7FS">
-                    <rect key="frame" x="13" y="5" width="154" height="11"/>
+                    <rect key="frame" x="15" y="5" width="154" height="11"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="154" id="bEj-5W-X95"/>
                         <constraint firstAttribute="height" constant="11" id="dKD-gw-OTC"/>
@@ -29,7 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0U-xg-m3G">
-                    <rect key="frame" x="220" y="5" width="75" height="11"/>
+                    <rect key="frame" x="230" y="5" width="75" height="11"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="11" id="Sww-W0-KUv"/>
                         <constraint firstAttribute="width" constant="75" id="tl2-QA-ujR"/>
@@ -39,7 +39,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际结算：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYe-bw-Y3d">
-                    <rect key="frame" x="13" y="21" width="114" height="11"/>
+                    <rect key="frame" x="15" y="21" width="114" height="11"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="11" id="G2Q-Hd-mog"/>
                         <constraint firstAttribute="width" constant="114" id="TAi-11-6zI"/>
@@ -49,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8p2-NR-XsQ">
-                    <rect key="frame" x="135" y="21" width="97" height="11"/>
+                    <rect key="frame" x="137" y="21" width="95" height="11"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="11" id="asB-9r-xjn"/>
                     </constraints>
@@ -58,7 +58,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cc-es-UbS">
-                    <rect key="frame" x="220" y="21" width="75" height="11"/>
+                    <rect key="frame" x="230" y="21" width="75" height="11"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="11" id="Azs-Ws-y2h"/>
                         <constraint firstAttribute="width" constant="75" id="E5b-bW-Egn"/>
@@ -72,13 +72,13 @@
             <constraints>
                 <constraint firstItem="kq8-wc-plf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="29J-iE-fHQ"/>
                 <constraint firstAttribute="trailing" secondItem="kq8-wc-plf" secondAttribute="trailing" id="3Ry-OK-GaM"/>
-                <constraint firstAttribute="trailing" secondItem="3Cc-es-UbS" secondAttribute="trailing" constant="25" id="4Dl-U5-kkU"/>
-                <constraint firstItem="KYe-bw-Y3d" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="13" id="6Wv-No-ydh"/>
+                <constraint firstAttribute="trailing" secondItem="3Cc-es-UbS" secondAttribute="trailing" constant="15" id="4Dl-U5-kkU"/>
+                <constraint firstItem="KYe-bw-Y3d" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="6Wv-No-ydh"/>
                 <constraint firstItem="kq8-wc-plf" firstAttribute="top" secondItem="8p2-NR-XsQ" secondAttribute="bottom" constant="4" id="DkN-dj-84y"/>
-                <constraint firstItem="jWu-MK-7FS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="13" id="Hdk-lJ-An2"/>
+                <constraint firstItem="jWu-MK-7FS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Hdk-lJ-An2"/>
                 <constraint firstAttribute="trailing" secondItem="8p2-NR-XsQ" secondAttribute="trailing" constant="88" id="IeO-8c-yjs"/>
                 <constraint firstItem="u0U-xg-m3G" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="RCe-5V-XMm"/>
-                <constraint firstAttribute="trailing" secondItem="u0U-xg-m3G" secondAttribute="trailing" constant="25" id="Zu4-2P-icm"/>
+                <constraint firstAttribute="trailing" secondItem="u0U-xg-m3G" secondAttribute="trailing" constant="15" id="Zu4-2P-icm"/>
                 <constraint firstItem="KYe-bw-Y3d" firstAttribute="top" secondItem="jWu-MK-7FS" secondAttribute="bottom" constant="5" id="bwu-Xg-fTg"/>
                 <constraint firstAttribute="bottom" secondItem="kq8-wc-plf" secondAttribute="bottom" id="eeF-Yj-0zI"/>
                 <constraint firstItem="kq8-wc-plf" firstAttribute="top" secondItem="3Cc-es-UbS" secondAttribute="bottom" constant="4" id="nn5-Fr-azF"/>
