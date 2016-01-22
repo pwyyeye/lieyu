@@ -27,6 +27,12 @@
 //获取验证码
 #define LY_YZM  @"registerAction.do?action=custom"
 
+//判断手机是否注册过
+#define LY_YZM_THIRDLOGIN @"registerAction.do?action=login"
+
+//绑定手机qq 微信 sina
+#define LY_TIE_OPENID @"portal/usersAction.do?action=logout"
+
 //获取忘记密码验证码
 #define LY_RYZM  @"registerAction.do?action=list"
 

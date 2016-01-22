@@ -372,7 +372,7 @@
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
             NSLog(@"--->%@",snsAccount);
             NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
-            if([MyUtil isEmptyString:snsAccount.usid]){
+            if(![MyUtil isEmptyString:snsAccount.usid]){
                 UserModel *userM = [[UserModel alloc]init];
                 userM.usernick = snsAccount.userName;
                 userM.avatar_img = snsAccount.iconURL;
@@ -385,7 +385,6 @@
             }
         }});
     
-//    LYRegistrationViewController 
 }
  
 @end

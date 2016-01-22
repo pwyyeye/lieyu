@@ -238,18 +238,32 @@
     customerM.message = _userInfo.introduction;
     customerM.imUserId= _userInfo.imUserId;
     customerM.friendName=_userInfo.usernick;
-    customerM.friend=_userInfo.userId.intValue;
+    customerM.friend = _userInfo.userId.intValue;
     customerM.age = [MyUtil getAgefromDate:_userInfo.birthday];
     customerM.birthday=_userInfo.birthday;
     customerM.userid = _userInfo.userId.intValue;
     customerM.tag=_userInfo.tags;
-    LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
-    friendDetailVC.customerModel = customerM;
-    if(_dataArray.count) {
-        FriendsRecentModel *recentM = _dataArray[0];
-        friendDetailVC.type = [NSString stringWithFormat:@"%@",recentM.type];
-    }
-        [self.navigationController pushViewController:friendDetailVC animated:YES];
+    
+        __weak __typeof(self)weakSelf = self;
+        NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
+        [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
+            
+            NSString *typeStr = nil;
+            for(CustomerModel *csm in result){
+                if (csm.userid == _userInfo.userId.intValue) {
+                    typeStr = @"0";
+                }else{
+                    typeStr = @"4";
+                }
+            }
+            LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
+            friendDetailVC.customerModel = customerM;
+            if(_dataArray.count) {
+                friendDetailVC.type = [NSString stringWithFormat:@"%@",typeStr];
+            }
+            [weakSelf.navigationController pushViewController:friendDetailVC animated:YES];
+        }];
+    
 }
 
 #pragma mark - 表白action

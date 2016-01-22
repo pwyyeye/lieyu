@@ -143,4 +143,10 @@
 
 //获取用户赞的酒吧
 + (void)getUserZangJiuBarListWithCompelet:(void(^)(NSArray *array))compelte;
+
+//判断手机是否注册过
++ (void)getYZMForThirdthLoginWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSString *))compelte;
+
+//绑定手机号
++ (void)tieQQWeixinAndSinaWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte;
 @end

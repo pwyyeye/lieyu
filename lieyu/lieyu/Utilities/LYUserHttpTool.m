@@ -156,6 +156,27 @@
     
 }
 
+#pragma mark - 判断手机是否注册过
++ (void)getYZMForThirdthLoginWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSString *))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YZM_THIRDLOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *flag = response[@"data"][@"result"];
+        compelte(flag);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark - 绑定手机号
++ (void)tieQQWeixinAndSinaWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_TIE_OPENID baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+        NSString *errorCode = response[@"errorcode"];
+        compelte(errorCode.integerValue);
+    } failure:^(NSError *err) {
+        
+    }];
+    
+}
+
 #pragma mark - 获取忘记密码验证码
 -(void) getResetYanZhengMa:(NSDictionary*)params
              complete:(void (^)(BOOL result))result{

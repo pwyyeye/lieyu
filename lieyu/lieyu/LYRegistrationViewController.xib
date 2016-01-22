@@ -14,8 +14,8 @@
                 <outlet property="phoneTex" destination="1hx-6G-8MK" id="Rsr-Fo-g9C"/>
                 <outlet property="textField_YZM" destination="pJF-4J-9GP" id="R4g-xI-gYe"/>
                 <outlet property="textField_phone" destination="O4d-R3-kAh" id="yCW-Wu-AcI"/>
-                <outlet property="textField_psw" destination="L1F-QB-n3b" id="C8f-bx-uNO"/>
-                <outlet property="textField_psw_little" destination="aYT-Jv-A2a" id="Sxj-rd-387"/>
+                <outlet property="textField_psw" destination="BKc-wG-3X3" id="PhX-VP-3dz"/>
+                <outlet property="textField_psw_little" destination="eRu-dE-6Po" id="Khb-Hd-Q8S"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yzmTex" destination="hMM-Jh-Eif" id="nqv-4n-Zgm"/>
             </connections>

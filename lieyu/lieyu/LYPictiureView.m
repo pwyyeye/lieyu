@@ -81,6 +81,9 @@
             UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
             [tapGes setNumberOfTapsRequired:1];
             [imageView addGestureRecognizer:tapGes];
+            [s addGestureRecognizer:tapGes];
+            
+            [tapGes requireGestureRecognizerToFail:doubleTap];
             
             UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(savePicture:)];
 //            longPress.minimumPressDuration = 1;
@@ -115,8 +118,8 @@
         
         if(count == 1) _pageCtl.hidden = YES;
         
-        UITapGestureRecognizer *scroll_tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(scroll_tapGes)];
-        [_scrollView addGestureRecognizer:scroll_tapGes];
+//        UITapGestureRecognizer *scroll_tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(scroll_tapGes)];
+//        [_scrollView addGestureRecognizer:scroll_tapGes];
     }
     return self;
 }
@@ -158,7 +161,7 @@
                     [s setZoomScale:1.0];
                     UIImageView *image = [[s subviews] objectAtIndex:0];
                     image.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                }       
+                }
             }
         }
     }
@@ -169,11 +172,13 @@
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView{
     NSLog(@"Did zoom!");
+    if(scrollView.subviews.count){
     UIView *v = [scrollView.subviews objectAtIndex:0];
     if ([v isKindOfClass:[UIImageView class]]){
         if (scrollView.zoomScale<1.0){
             //         v.center = CGPointMake(scrollView.frame.size.width/2.0, scrollView.frame.size.height/2.0);
         }
+    }
     }
 }
 
@@ -249,13 +254,22 @@
 
 - (void)tapGes{
     UIImageView *imgView = _imageViewArray[_index];
-    [UIView animateWithDuration:.5 animations:^{
-        CGRect rect = CGRectFromString(_oldFrameArr[_index]);
-        imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
-        self.backgroundColor = RGBA(255, 255, 255, 0);
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
+    UIScrollView *scrollView = _scrollViewArray[_index];
+    NSLog(@"----------->%f",imgView.frame.size.width);
+    if (scrollView.contentSize.width > SCREEN_WIDTH) {
+        [UIView animateWithDuration:.5 animations:^{
+            scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+            imgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        }];
+    }else{
+        [UIView animateWithDuration:.5 animations:^{
+            CGRect rect = CGRectFromString(_oldFrameArr[_index]);
+            imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
+            self.backgroundColor = RGBA(255, 255, 255, 0);
+        } completion:^(BOOL finished) {
+            [self removeFromSuperview];
+        }];
+    }
 }
 
 @end

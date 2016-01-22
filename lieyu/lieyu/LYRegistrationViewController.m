@@ -117,13 +117,30 @@ static LYRegistrationViewController *_registe;
         [MyUtil showMessage:@"请输入正确的手机格式!"];
         return;
     }
+    
     NSDictionary *dic=@{@"mobile":self.phoneTex.text};
+    __block LYRegistrationViewController *weakSelf = self;
+    if(_isTheThirdLogin){
+        [LYUserHttpTool getYZMForThirdthLoginWithPara:dic compelte:^(NSString *flag) {//1 注册过 0 未注册过
+            if([flag isEqualToString:@"1"]){//注册过去绑定
+                NSDictionary *paraDic = @{@"mobile":weakSelf.phoneTex.text,@"captchas":self.yzmTex.text,@"weibo":[NSString stringWithFormat:@"%ld",_userM.openID]};
+                [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
+                    if (flag) {//
+                        
+                    }
+                }];
+            }else{//未注册显示注册等控件
+                
+            }
+        }];
+    }else{
     [[LYUserHttpTool shareInstance] getYanZhengMa:dic complete:^(BOOL result) {
         if (result) {
             [_timer setFireDate:[NSDate distantPast]];
           [MyUtil showMessage:@"验证码发送成功请输入短信中的验证码!"];
         }
     }];
+    }
 }
 #pragma mark - 密码
 - (IBAction)zcAct:(UIButton *)sender {

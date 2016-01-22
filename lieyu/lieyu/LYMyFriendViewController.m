@@ -32,6 +32,7 @@
     [self getMyCustomerslist];
     // Do any additional setup after loading the view from its nib.
 }
+
 -(void)getMyCustomerslist{
     [_listContent removeAllObjects];
     __weak __typeof(self)weakSelf = self;
