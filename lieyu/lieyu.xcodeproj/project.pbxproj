@@ -300,6 +300,9 @@
 		3806566B1C4E5D5B003094C9 /* ImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 380656651C4E5D5B003094C9 /* ImagePickerViewController.m */; };
 		3806566C1C4E5D5B003094C9 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 380656671C4E5D5B003094C9 /* MyCell.m */; };
 		3806566D1C4E5D5B003094C9 /* MyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380656681C4E5D5B003094C9 /* MyCell.xib */; };
+		3806599A1C520250003094C9 /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 380659961C520250003094C9 /* libSocialQQ.a */; };
+		3806599B1C520250003094C9 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380659971C520250003094C9 /* TencentOpenAPI.framework */; };
+		3806599C1C520250003094C9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 380659981C520250003094C9 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		381A01C41C140DE500592485 /* INeedYou.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01C11C140DE500592485 /* INeedYou.png */; };
 		381A01C51C140DE500592485 /* INeedYou@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01C21C140DE500592485 /* INeedYou@2x.png */; };
 		381A01C61C140DE500592485 /* INeedYou@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381A01C31C140DE500592485 /* INeedYou@3x.png */; };
@@ -3311,7 +3314,7 @@
 		15EB35291BD4838600BA6161 /* 社会化分享 */ = {
 			isa = PBXGroup;
 			children = (
-				85653B5E1C508D010012B718 /* TencentOpenAPI */,
+				380659951C520250003094C9 /* TencentOpenAPI */,
 				15EB35541BD483E900BA6161 /* Wechat */,
 				15EB35531BD483E000BA6161 /* sinaSSo */,
 				15EB35521BD483DA00BA6161 /* sina */,
@@ -3726,6 +3729,17 @@
 				380656681C4E5D5B003094C9 /* MyCell.xib */,
 			);
 			name = imagepicker;
+			sourceTree = "<group>";
+		};
+		380659951C520250003094C9 /* TencentOpenAPI */ = {
+			isa = PBXGroup;
+			children = (
+				380659961C520250003094C9 /* libSocialQQ.a */,
+				380659971C520250003094C9 /* TencentOpenAPI.framework */,
+				380659981C520250003094C9 /* TencentOpenApi_IOS_Bundle.bundle */,
+				380659991C520250003094C9 /* UMSocialQQHandler.h */,
+			);
+			path = TencentOpenAPI;
 			sourceTree = "<group>";
 		};
 		381A01C91C14227F00592485 /* 吃喝专场 */ = {

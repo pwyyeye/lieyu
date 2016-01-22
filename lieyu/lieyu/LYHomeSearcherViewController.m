@@ -51,7 +51,6 @@
     hisSerchArr=[[NSMutableArray alloc]init];
     self.curPageIndex = 1;
     datalist=[[NSMutableArray alloc]init];
-    self.tableView.rowHeight = 274;
     _searchBar.returnKeyType = UIReturnKeySearch;
     self.tableView.tableFooterView = [[UIView alloc]init];
     
@@ -312,14 +311,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 94 + SCREEN_WIDTH / 16 * 9;
+}
 
 @end
