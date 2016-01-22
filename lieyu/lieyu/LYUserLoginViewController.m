@@ -39,17 +39,17 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     // Do any additional setup after loading the view from its nib.
     
-//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-//    [self.navigationItem setLeftBarButtonItem:item];
+    //    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    //    [self.navigationItem setLeftBarButtonItem:item];
     
-   // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
+    // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController setNavigationBarHidden:YES];
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(wait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantPast]];
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
     _step=1;
     
-//    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    //    UIWindow *window = [UIApplication sharedApplication].delegate.window;
     _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 400, 100, 30)];
     [_qqBtn setTitle:@"qq登录" forState:UIControlStateNormal];
     _qqBtn.backgroundColor = [UIColor redColor];
@@ -80,13 +80,13 @@
     _step++;
 }
 - (IBAction)goBackClick:(id)sender {
-//    NSLog(@"-------pop:%@",self.popoverPresentationController);
-//    NSLog(@"-------pop:%@",self.parentViewController);
-//    NSLog(@"-------pop:%@",self.childViewControllers);
-//    NSLog(@"-------pop:%@",self.navigationController.childViewControllers);
-//    NSLog(@"-------pop:%d",self.navigationController.childViewControllers.count);
-//    NSLog(@"-------pop:%@",self.navigationController.childViewControllers);
-//
+    //    NSLog(@"-------pop:%@",self.popoverPresentationController);
+    //    NSLog(@"-------pop:%@",self.parentViewController);
+    //    NSLog(@"-------pop:%@",self.childViewControllers);
+    //    NSLog(@"-------pop:%@",self.navigationController.childViewControllers);
+    //    NSLog(@"-------pop:%d",self.navigationController.childViewControllers.count);
+    //    NSLog(@"-------pop:%@",self.navigationController.childViewControllers);
+    //
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[ChiHeViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
@@ -96,7 +96,7 @@
     
     
     [self.navigationController popViewControllerAnimated:YES];
-//    if([self.navigationController.childViewControllers objectAtIndex:1])
+    //    if([self.navigationController.childViewControllers objectAtIndex:1])
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,7 +106,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-        [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 //-(void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];
@@ -115,14 +115,14 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-//    if (self.navigationController.navigationBarHidden == NO) {
-//        [self.navigationController setNavigationBarHidden:YES];
-//    }
-//
+    //    if (self.navigationController.navigationBarHidden == NO) {
+    //        [self.navigationController setNavigationBarHidden:YES];
+    //    }
+    //
     self.navigationController.navigationBarHidden = YES;
     //self.userNameTex.layer.borderWidth = 0.5;
-  //  self.userNameTex.layer.borderColor = RGBA(255,255,255, 0.2).CGColor;
-   // self.userNameTex.layer.masksToBounds = YES;
+    //  self.userNameTex.layer.borderColor = RGBA(255,255,255, 0.2).CGColor;
+    // self.userNameTex.layer.masksToBounds = YES;
 }
 
 #pragma mark - Navigation
@@ -152,7 +152,7 @@
     }
     NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":[MyUtil md5HexDigest:self.passWordTex.text] };
     NSLog(@"----pass-[MyUtil md5HexDigest:self.passWordTex.text]=%@---",[MyUtil md5HexDigest:self.passWordTex.text]);
-//    NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":self.passWordTex.text};
+    //    NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":self.passWordTex.text};
     [[LYUserHttpTool shareInstance] userLoginWithParams:dic block:^(UserModel *result) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         app.s_app_id=result.token;
@@ -161,9 +161,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [USER_DEFAULT setObject:self.userNameTex.text forKey:@"username"];
         [USER_DEFAULT setObject:[MyUtil md5HexDigest:self.passWordTex.text] forKey:@"pass"];
-//      [self dismissViewControllerAnimated:YES completion:^{
-//          
-//      }];
+        //      [self dismissViewControllerAnimated:YES completion:^{
+        //
+        //      }];
         
         //先删除别名，然后再注册新的－－－友盟 消息推送
         if ([USER_DEFAULT objectForKey:@"userid"]) {
@@ -194,14 +194,14 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NEEDGETLIKE"]) {
         [LYUserHttpTool getUserCollectionJiuBarListWithCompelet:^(NSArray *array) {
-            NSLog(@"------->%d",array.count);
+            //  NSLog(@"------->%d",array.count);
             for (JiuBaModel *jiuBa in array) {
                 NSString *jiuBaId = [NSString stringWithFormat:@"%d",jiuBa.barid];
-                    [[NSUserDefaults standardUserDefaults] setObject:jiuBaId forKey:[NSString stringWithFormat:@"%@%@sc",[NSString stringWithFormat:@"%d",app.userModel.userid],jiuBaId]];
+                [[NSUserDefaults standardUserDefaults] setObject:jiuBaId forKey:[NSString stringWithFormat:@"%@%@sc",[NSString stringWithFormat:@"%d",app.userModel.userid],jiuBaId]];
             }
             [[NSUserDefaults standardUserDefaults] synchronize];
-    }];
-}
+        }];
+    }
 }
 
 //从服务器获取用户是否赞过酒吧
@@ -209,7 +209,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NEEDGETCOLLECT"]) {
         [LYUserHttpTool getUserZangJiuBarListWithCompelet:^(NSArray *array) {
-             NSLog(@"------->%d",array.count);
+            //    NSLog(@"------->%d",array.count);
             for (JiuBaModel *jiuBa in array) {
                 NSString *jiuBaId = [NSString stringWithFormat:@"%d",jiuBa.barid];
                 [[NSUserDefaults standardUserDefaults] setObject:jiuBaId forKey:[NSString stringWithFormat:@"%@%@",[NSString stringWithFormat:@"%d",app.userModel.userid],jiuBaId]];
@@ -244,12 +244,12 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
-//        [self.navigationController popToRootViewControllerAnimated:YES ];
+        //        [self.navigationController popToRootViewControllerAnimated:YES ];
     }];
 }
 #pragma mark - 注册
 - (IBAction)zhuceAct:(UIButton *)sender {
-//    LYRegistrationViewController *registrationViewController=[[LYRegistrationViewController alloc]initWithNibName:@"LYRegistrationViewController" bundle:nil];
+    //    LYRegistrationViewController *registrationViewController=[[LYRegistrationViewController alloc]initWithNibName:@"LYRegistrationViewController" bundle:nil];
     LYRegistrationViewController *registrationViewController = [LYRegistrationViewController shareRegist];
     registrationViewController.title=@"注册";
     registrationViewController.delegate=self;
@@ -341,7 +341,7 @@
             }
         }];
     }else{
-        if(timeNow - timeWeixin >  60){
+        if(timeNow - timeWeixin > 2 * 60 * 60){
             [LYHomePageHttpTool getWeixinNewAccessTokenWithRefreshToken:[[NSUserDefaults standardUserDefaults]          objectForKey:@"weixinRefresh_token"] compelete:^(NSString *accessToken) {
                 if(![MyUtil isEmptyString:accessToken]){
                     [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessToken compelete:^(UserModel *userInfo) {
@@ -366,9 +366,7 @@
     snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
         
         //          获取微博用户名、uid、token等
-        
         if (response.responseCode == UMSResponseCodeSuccess) {
-            
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
             NSLog(@"--->%@",snsAccount);
             NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
@@ -378,13 +376,26 @@
                 userM.avatar_img = snsAccount.iconURL;
                 userM.openID = snsAccount.usid.integerValue;
                 
-                LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
-                registVC.userM = userM;
-                registVC.isTheThirdLogin = YES;
-                [self.navigationController pushViewController:registVC animated:YES];
+                NSDictionary *paraDic = @{@"currentSessionId":snsAccount.usid};
+                NSLog(@"---->%@",paraDic);
+                [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess) {
+                    if (sucess) {//登录成功
+                        
+                    }else{//去绑定手机好
+                        LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
+                        registVC.userM = userM;
+                        registVC.isTheThirdLogin = YES;
+                        registVC.thirdLoginType = @"3";
+                        [self.navigationController pushViewController:registVC animated:YES];
+                        
+                    }
+                }];
+                
+                
             }
         }});
     
+    //    LYRegistrationViewController 
 }
- 
+
 @end

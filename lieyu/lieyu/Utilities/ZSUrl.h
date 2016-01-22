@@ -1,5 +1,5 @@
 //
-//  ZSUrl.h 
+//  ZSUrl.h
 //  lieyu
 //
 //  Created by 薛斯岐 on 15/9/29.
@@ -27,12 +27,6 @@
 //获取验证码
 #define LY_YZM  @"registerAction.do?action=custom"
 
-//判断手机是否注册过
-#define LY_YZM_THIRDLOGIN @"registerAction.do?action=login"
-
-//绑定手机qq 微信 sina
-#define LY_TIE_OPENID @"portal/usersAction.do?action=logout"
-
 //获取忘记密码验证码
 #define LY_RYZM  @"registerAction.do?action=list"
 
@@ -42,6 +36,10 @@
 #define LY_GET_PW  @"registerAction.do?action=update"
 //登录
 #define LY_DL  @"accountAction.do?action=login"
+
+//第三方登录
+#define LY_DL_THIRD @"accountAction.do?action=login"
+
 //登出
 #define LY_LOGOUT  @"osregisterAction.do?action=logout"
 

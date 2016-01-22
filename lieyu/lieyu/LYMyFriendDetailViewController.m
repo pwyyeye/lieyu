@@ -60,9 +60,10 @@
     }
     
     self.namelal.text=_customerModel.usernick;
-    [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img]];
+    [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
     if([_type isEqualToString:@"0"]){
-        self.namelal.text=_customerModel.friendName;
+        self.namelal.text=_customerModel.friendName == nil ? _customerModel.name : _customerModel.friendName;
+        
         if (_customerModel.sex.integerValue==0) {
             self.sexImageView.image=[UIImage imageNamed:@"woman"];
         }else{
@@ -73,9 +74,9 @@
         }
        
     }else if([_type isEqualToString:@"4"]){
-        self.namelal.text=_customerModel.name;
+        self.namelal.text=_customerModel.friendName == nil ? _customerModel.name : _customerModel.friendName;
         [_setBtn setTitle:@"打招呼" forState:0];
-        [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.mark]];
+        [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img]];
         if([_customerModel.sex isEqualToString:@"1"]){
             _sexImageView.image=[UIImage imageNamed:@"manIcon"];
         }

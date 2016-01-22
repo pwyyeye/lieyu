@@ -233,6 +233,7 @@
 - (void)headerImgClick:(UIButton *)button{
     CustomerModel *customerM = [[CustomerModel alloc]init];
     customerM.avatar_img = _userInfo.avatar_img;
+    customerM.icon = _userInfo.avatar_img;
     customerM.sex = [_userInfo.gender isEqualToString:@"0"] ? @"男" : @"女";
     customerM.usernick = _userInfo.usernick;
     customerM.message = _userInfo.introduction;
