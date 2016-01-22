@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1S-p8-pwh">
-                        <rect key="frame" x="84" y="44" width="149" height="21"/>
+                        <rect key="frame" x="84" y="44" width="148" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="0aV-Wk-vtr"/>
                         </constraints>
@@ -61,7 +61,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDu-N9-u0P">
-                        <rect key="frame" x="241" y="46" width="65" height="18"/>
+                        <rect key="frame" x="240" y="46" width="65" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="TvF-BC-36q"/>
                             <constraint firstAttribute="width" constant="65" id="p2R-jA-FEb"/>
@@ -74,7 +74,7 @@
                 <constraints>
                     <constraint firstItem="G1S-p8-pwh" firstAttribute="top" secondItem="98o-uH-ktC" secondAttribute="bottom" constant="15" id="6G1-f1-jDc"/>
                     <constraint firstItem="98o-uH-ktC" firstAttribute="top" secondItem="fX8-OI-ctU" secondAttribute="bottom" constant="11" id="8Y5-u3-Ozc"/>
-                    <constraint firstAttribute="trailing" secondItem="sDu-N9-u0P" secondAttribute="trailing" constant="14" id="CUb-q0-7wm"/>
+                    <constraint firstAttribute="trailing" secondItem="sDu-N9-u0P" secondAttribute="trailing" constant="15" id="CUb-q0-7wm"/>
                     <constraint firstItem="fX8-OI-ctU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="DeW-xJ-lvb"/>
                     <constraint firstItem="JaB-2l-eHj" firstAttribute="top" secondItem="fX8-OI-ctU" secondAttribute="bottom" constant="14" id="IB1-2z-7LZ"/>
                     <constraint firstAttribute="trailing" secondItem="fX8-OI-ctU" secondAttribute="trailing" constant="15" id="PcW-fL-uev"/>

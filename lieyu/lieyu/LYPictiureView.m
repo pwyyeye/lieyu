@@ -15,6 +15,8 @@
     NSArray *_oldFrameArr;
     NSInteger _voidIndex;//第几个按钮
     UIActionSheet *_sheet;
+    CGFloat offset;
+    NSMutableArray *_scrollViewArray;
 }
 
 @end
@@ -32,7 +34,9 @@
 - (instancetype)initWithFrame:(CGRect)frame urlArray:(NSArray *)urlArray oldFrame:(NSArray *)oldFrame with:(NSInteger)index{
     self = [super initWithFrame:frame];
     if (self) {
-        NSLog(@"--->%@-----%@",urlArray,oldFrame);
+        
+        _scrollViewArray = [[NSMutableArray alloc]initWithCapacity:0];
+        
         _oldFrameArr = oldFrame;
         _scrollView = [[UIScrollView alloc]initWithFrame:frame];
         _scrollView.delegate = self;
@@ -45,20 +49,37 @@
         _imageViewArray = [[NSMutableArray alloc]init];
 
         for (int i = 0; i < count; i ++) {
-//            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,(SCREEN_HEIGHT - SCREEN_WIDTH)/2.f, SCREEN_WIDTH, SCREEN_HEIGHT)];
-             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i % count * SCREEN_WIDTH,0, SCREEN_WIDTH, SCREEN_WIDTH)];
-//            imageView.backgroundColor = [uic]
+            UITapGestureRecognizer *doubleTap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+            [doubleTap setNumberOfTapsRequired:2];
+            
+            UIScrollView *s = [[UIScrollView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*i, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            s.backgroundColor = [UIColor clearColor];
+            s.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+            s.showsHorizontalScrollIndicator = NO;
+            s.showsVerticalScrollIndicator = NO;
+            s.delegate = self;
+            s.minimumZoomScale = 1.0;
+            s.maximumZoomScale = 3.0;
+            s.tag = i+1;
+            [s setZoomScale:1.0];
+            [_scrollViewArray addObject:s];
+            [_scrollView addSubview:s];
+            
+             UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_WIDTH)];
             [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
-            NSLog(@"---->%@",[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]);
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             imageView.clipsToBounds = YES;
-            [_scrollView addSubview:imageView];
+            imageView.tag = i+1;
+            [imageView addGestureRecognizer:doubleTap];
+            [s addSubview:imageView];
             [_imageViewArray addObject:imageView];
             imageView.userInteractionEnabled = YES;
             
-            imageView.center = CGPointMake(SCREEN_WIDTH *i + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
+            imageView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
+            s.center = CGPointMake(SCREEN_WIDTH *i + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             
             UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
+            [tapGes setNumberOfTapsRequired:1];
             [imageView addGestureRecognizer:tapGes];
             
             UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(savePicture:)];
@@ -71,12 +92,12 @@
         
         UIImageView *imgView = _imageViewArray[index];
         CGRect rect = CGRectFromString(oldFrame[index]);
-        imgView.frame = CGRectMake(rect.origin.x + SCREEN_WIDTH * index, rect.origin.y, rect.size.width, rect.size.height);
+        imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
         
         [UIView animateWithDuration:.5 animations:^{
             imgView.alpha = 1;
             imgView.bounds = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            imgView.center = CGPointMake(SCREEN_WIDTH *index + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
+            imgView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             self.backgroundColor = RGBA(255, 255, 255, 1);
         } completion:^(BOOL finished) {
             for (UIImageView *imgView_ce in _imageViewArray) {
@@ -108,24 +129,107 @@
     }];
 }
 
-//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
-//    return _imageViewArray[_index];
-//}
-//
-//- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
-//    
-//}
-//
-//- (void)scrollViewDidZoom:(UIScrollView *)scrollView{
-//    NSLog(@"-----%f--->%@",scrollView.zoomScale,NSStringFromCGSize(scrollView.contentSize));
-//    
-//}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     _index = (scrollView.contentOffset.x / SCREEN_WIDTH);
     NSLog(@"----%ld",_index);
     _pageCtl.currentPage = _index;
 }
+
+#pragma mark - ScrollView delegate
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    
+    for (UIView *v in scrollView.subviews){
+        return v;
+    }
+    return nil;
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+    if (scrollView == self.scrollView){
+        CGFloat x = scrollView.contentOffset.x;
+        if (x == offset){
+            
+        }
+        else {
+            offset = x;
+            for (UIScrollView *s in scrollView.subviews){
+                if ([s isKindOfClass:[UIScrollView class]]){
+                    [s setZoomScale:1.0];
+                    UIImageView *image = [[s subviews] objectAtIndex:0];
+                    image.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                }       
+            }
+        }
+    }
+}
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
+}
+
+-(void)scrollViewDidZoom:(UIScrollView *)scrollView{
+    NSLog(@"Did zoom!");
+    UIView *v = [scrollView.subviews objectAtIndex:0];
+    if ([v isKindOfClass:[UIImageView class]]){
+        if (scrollView.zoomScale<1.0){
+            //         v.center = CGPointMake(scrollView.frame.size.width/2.0, scrollView.frame.size.height/2.0);
+        }
+    }
+}
+
+#pragma mark -
+-(void)handleDoubleTap:(UIGestureRecognizer *)gesture{
+    
+    float newScale = [(UIScrollView*)gesture.view.superview zoomScale] * 1.5;
+    CGRect zoomRect = [self zoomRectForScale:newScale  inView:(UIScrollView*)gesture.view.superview withCenter:[gesture locationInView:gesture.view]];
+    UIView *view = gesture.view.superview;
+    if ([view isKindOfClass:[UIScrollView class]]){
+        UIScrollView *s = (UIScrollView *)view;
+        [s zoomToRect:zoomRect animated:YES];
+    }
+}
+
+#pragma mark - Utility methods
+
+-(CGRect)zoomRectForScale:(float)scale inView:(UIScrollView*)scrollView withCenter:(CGPoint)center {
+    
+    CGRect zoomRect;
+    
+    zoomRect.size.height = [scrollView frame].size.height / scale;
+    zoomRect.size.width  = [scrollView frame].size.width  / scale;
+    
+    
+    
+    return zoomRect;
+}
+
+-(CGRect)resizeImageSize:(CGRect)rect{
+    //    NSLog(@"x:%f y:%f width:%f height:%f ", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    CGRect newRect;
+    
+    CGSize newSize;
+    CGPoint newOri;
+    
+    CGSize oldSize = rect.size;
+    if (oldSize.width>=SCREEN_WIDTH || oldSize.height>=SCREEN_HEIGHT){
+        float scale = (oldSize.width/SCREEN_WIDTH>oldSize.height/SCREEN_HEIGHT?oldSize.width/SCREEN_WIDTH:oldSize.height/SCREEN_HEIGHT);
+        newSize.width = oldSize.width/scale;
+        newSize.height = oldSize.height/scale;
+    }
+    else {
+        newSize = oldSize;
+    }
+    newOri.x = (SCREEN_WIDTH-newSize.width)/2.0;
+    newOri.y = (SCREEN_HEIGHT-newSize.height)/2.0;
+    
+    newRect.size = newSize;
+    newRect.origin = newOri;
+    
+    return newRect;
+}
+
+
+
 
 - (void)savePicture:(UILongPressGestureRecognizer *)longPress{
     if(!_sheet){
@@ -147,7 +251,7 @@
     UIImageView *imgView = _imageViewArray[_index];
     [UIView animateWithDuration:.5 animations:^{
         CGRect rect = CGRectFromString(_oldFrameArr[_index]);
-        imgView.frame = CGRectMake(rect.origin.x + SCREEN_WIDTH * _index, rect.origin.y, rect.size.width, rect.size.height);
+        imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
         self.backgroundColor = RGBA(255, 255, 255, 0);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];

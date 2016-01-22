@@ -46,7 +46,7 @@
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户付款：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbc-pQ-hxy">
-                    <rect key="frame" x="18" y="8" width="67" height="21"/>
+                    <rect key="frame" x="15" y="8" width="67" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="m1A-x7-dBH"/>
                         <constraint firstAttribute="width" constant="67" id="zml-7U-WJ6"/>
@@ -63,7 +63,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMM-Jt-dSh">
-                    <rect key="frame" x="222" y="8" width="75" height="21"/>
+                    <rect key="frame" x="230" y="8" width="75" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="9y5-l2-ecx"/>
                         <constraint firstAttribute="height" constant="21" id="A80-4L-wTN"/>
@@ -83,10 +83,10 @@
                 <constraint firstItem="hbc-pQ-hxy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Ehx-eQ-hOi"/>
                 <constraint firstItem="MbY-R9-KOz" firstAttribute="height" secondItem="5XK-kk-9uV" secondAttribute="height" id="HDv-cy-B2U"/>
                 <constraint firstItem="5XK-kk-9uV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Jab-Pa-F0X"/>
-                <constraint firstItem="hbc-pQ-hxy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="18" id="KXf-sU-Eec"/>
+                <constraint firstItem="hbc-pQ-hxy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="KXf-sU-Eec"/>
                 <constraint firstItem="5LU-9v-Cxd" firstAttribute="top" secondItem="BsS-AC-Qib" secondAttribute="bottom" id="M86-13-aYA"/>
                 <constraint firstItem="BsS-AC-Qib" firstAttribute="width" secondItem="5XK-kk-9uV" secondAttribute="width" id="bYk-23-HTz"/>
-                <constraint firstAttribute="trailing" secondItem="dMM-Jt-dSh" secondAttribute="trailing" constant="23" id="baU-KZ-tRQ"/>
+                <constraint firstAttribute="trailing" secondItem="dMM-Jt-dSh" secondAttribute="trailing" constant="15" id="baU-KZ-tRQ"/>
                 <constraint firstItem="BsS-AC-Qib" firstAttribute="height" secondItem="5XK-kk-9uV" secondAttribute="height" id="dVq-TN-YfX"/>
                 <constraint firstItem="dMM-Jt-dSh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="i7F-dT-WBT"/>
                 <constraint firstItem="5LU-9v-Cxd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jft-k0-FEz"/>

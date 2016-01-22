@@ -20,6 +20,7 @@
     _recentModel = recentModel;
     NSArray *array = recentModel.lyMomentsAttachList;
     _btnArray = [[NSMutableArray alloc]init];
+    if(array.count){
     FriendsPicAndVideoModel *pvModel = array[0];
     NSArray *urlArray = [pvModel.imageLink componentsSeparatedByString:@","];
     switch (urlArray.count) {
@@ -116,7 +117,7 @@
             break;
     }
 
-
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

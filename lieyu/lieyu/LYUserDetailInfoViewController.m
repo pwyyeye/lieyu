@@ -104,7 +104,10 @@
     UserModel *mod= app.userModel;//获取当前用户信息
     if (!indexPath.row) {//头像
         _selectcedCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailCameraTableViewCell" forIndexPath:indexPath];
-        [_selectcedCell.btn_userImage sd_setBackgroundImageWithURL:[NSURL URLWithString:mod.avatar_img] forState:UIControlStateNormal];
+        NSString *avatarImgStr = nil;
+        if(_userM) avatarImgStr = _userM.avatar_img;
+        else avatarImgStr = mod.avatar_img;
+        [_selectcedCell.btn_userImage sd_setBackgroundImageWithURL:[NSURL URLWithString:avatarImgStr] forState:UIControlStateNormal];
         [_selectcedCell.btn_userImage addTarget:self action:@selector(chooseImage) forControlEvents:UIControlEventTouchUpInside];
         _selectcedCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _selectcedCell;
@@ -115,6 +118,7 @@
 //            _nickCell.textF_content.text = mod.usernick;
 //            _nickCell.textF_content.textColor = RGBA(114, 5, 145, 1);
 //        }
+        _nickCell.textF_content.text = _userM.usernick;
         _nickCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _nickCell;
         

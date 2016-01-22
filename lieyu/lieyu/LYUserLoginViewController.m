@@ -14,10 +14,21 @@
 #import "HomePageINeedPlayViewController.h"
 #import "ChiHeViewController.h"
 
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "WXApi.h"
+#import "LYHomePageHttpTool.h"
+#import "UMSocial.h"
+#import "LYRegistrationViewController.h"
+
 #define COLLECTKEY [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 
-@interface LYUserLoginViewController ()<LYRegistrationDelegate,LYResetPasswordDelegate>
+@interface LYUserLoginViewController ()<LYRegistrationDelegate,LYResetPasswordDelegate>{
+    UIButton *_qqBtn;
+    UIButton *_weixinBtn;
+    UIButton *_weiboBtn;
+    TencentOAuth *_tencentOAuth;
+}
 
 @end
 
@@ -37,6 +48,28 @@
     [_timer setFireDate:[NSDate distantPast]];
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
     _step=1;
+    
+//    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 400, 100, 30)];
+    [_qqBtn setTitle:@"qq登录" forState:UIControlStateNormal];
+    _qqBtn.backgroundColor = [UIColor redColor];
+    [self.view addSubview:_qqBtn];
+    [_qqBtn addTarget:self action:@selector(qqLogin) forControlEvents:UIControlEventTouchUpInside];
+    
+    _weixinBtn = [[UIButton alloc]initWithFrame:CGRectMake(130, 400, 100, 30)];
+    [_weixinBtn setTitle:@"weixin登录" forState:UIControlStateNormal];
+    _weixinBtn.backgroundColor = [UIColor redColor];
+    [self.view addSubview:_weixinBtn];
+    [_weixinBtn addTarget:self action:@selector(weixinLogin) forControlEvents:UIControlEventTouchUpInside];
+    
+    _weiboBtn = [[UIButton alloc]initWithFrame:CGRectMake(240, 400, 100, 30)];
+    [_weiboBtn setTitle:@"weibo登录" forState:UIControlStateNormal];
+    _weiboBtn.backgroundColor = [UIColor redColor];
+    [self.view addSubview:_weiboBtn];
+    [_weiboBtn addTarget:self action:@selector(weiboLogin) forControlEvents:UIControlEventTouchUpInside];
+    
+    if(![WXApi isWXAppInstalled]) _weixinBtn.hidden = YES;
+    if(![TencentOAuth iphoneQQInstalled]) _qqBtn.hidden = YES;
     
 }
 -(void)wait{
@@ -246,6 +279,113 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
     
+}
+
+#pragma mark - qq登录
+- (void)qqLogin{
+    _tencentOAuth = [[TencentOAuth alloc] initWithAppId:@"1104853065"  andDelegate:self];
+    _tencentOAuth.redirectURI = @"www.qq.com";
+    NSArray *_permissions =  [NSArray arrayWithObjects:kOPEN_PERMISSION_GET_USER_INFO, @"get_simple_userinfo", @"add_t", nil];
+    [_tencentOAuth authorize:_permissions inSafari:NO];
+    
+    
+}
+
+- (void)tencentDidLogin{
+    if (_tencentOAuth.accessToken && 0 != [_tencentOAuth.accessToken length])
+    {
+        //  记录登录用户的OpenID、Token以及过期时间
+        NSLog(@"---->%@", _tencentOAuth.accessToken);
+        [_tencentOAuth getUserInfo];
+    }
+    else
+    {
+        NSLog(@"登录不成功 没有获取accesstoken");
+    }
+}
+
+- (void)tencentDidNotLogin:(BOOL)cancelled{
+    
+}
+
+- (void)getUserInfoResponse:(APIResponse *)response{
+    NSLog(@"----->%@",response);
+}
+
+#pragma mark - 微信登录
+- (void)weixinLogin{
+    //构造SendAuthReq结构体
+    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+    req.scope = @"snsapi_userinfo" ;
+    req.state = @"123" ;
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    if ([WXApi sendReq:req]) NSLog(@"-->success");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getWeiXinAccessToken) name:@"weixinCode" object:nil];
+}
+
+- (void)getWeiXinAccessToken{
+    NSString *accessTokenStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"weixinGetAccessToken"];
+    NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];
+    NSTimeInterval timeWeixin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"weixinDate"] timeIntervalSince1970];
+    NSLog(@"------------------>%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinCode"]);
+    NSLog(@"--->%f",timeNow - timeWeixin);
+    
+    NSTimeInterval timeWeixin_re = [[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinReDate"] timeIntervalSince1970];
+    
+    if([MyUtil isEmptyString:accessTokenStr] || timeNow - timeWeixin_re > 60 * 60 * 24 * 30){//refreshToken超过30tian
+        [LYHomePageHttpTool getWeixinAccessTokenWithCode:[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinCode"] compelete:^(NSString *accessToken) {
+            if(![MyUtil isEmptyString:accessToken]){
+                [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessToken compelete:^(UserModel *userInfo) {
+                    
+                }];
+            }
+        }];
+    }else{
+        if(timeNow - timeWeixin >  60){
+            [LYHomePageHttpTool getWeixinNewAccessTokenWithRefreshToken:[[NSUserDefaults standardUserDefaults]          objectForKey:@"weixinRefresh_token"] compelete:^(NSString *accessToken) {
+                if(![MyUtil isEmptyString:accessToken]){
+                    [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessToken compelete:^(UserModel *userInfo) {
+                        
+                    }];
+                }
+            }];
+        }else{
+            
+            [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessTokenStr compelete:^(UserModel *userInfo) {
+                
+            }];
+            
+        }
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"weixinCode" object:nil];
+}
+
+#pragma mark - 新浪微博登录
+- (void)weiboLogin{
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        
+        //          获取微博用户名、uid、token等
+        
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
+            NSLog(@"--->%@",snsAccount);
+            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
+            if([MyUtil isEmptyString:snsAccount.usid]){
+                UserModel *userM = [[UserModel alloc]init];
+                userM.usernick = snsAccount.userName;
+                userM.avatar_img = snsAccount.iconURL;
+                userM.openID = snsAccount.usid.integerValue;
+                
+                LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
+                registVC.userM = userM;
+                registVC.isTheThirdLogin = YES;
+                [self.navigationController pushViewController:registVC animated:YES];
+            }
+        }});
+    
+//    LYRegistrationViewController 
 }
  
 @end
