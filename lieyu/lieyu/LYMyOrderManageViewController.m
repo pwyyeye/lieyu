@@ -36,6 +36,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.btn_yue.layer.cornerRadius = 5;
+    self.btn_yue.layer.masksToBounds = YES;
     //自定义返回
     UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -1165,5 +1167,6 @@
 
 - (IBAction)gohomeAct:(UIButton *)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 @end

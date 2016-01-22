@@ -107,6 +107,7 @@
             btn.layer.cornerRadius = 0;
             [btn setTitle:@"" forState:UIControlStateNormal];
         }
+        self.btn_clean.hidden = YES;
          [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:SEARCHPAGE_MTA titleName:@"删除历史记录"]];
     }
 }
@@ -140,6 +141,11 @@
 }
 
 - (void)setHistory{
+    if(hisSerchArr.count == 0){
+        self.btn_clean.hidden = YES;
+    }else{
+        self.btn_clean.hidden = NO;
+    }
     for (int i = 0; i < hisSerchArr.count;i ++) {
         UIButton *button = _btnHistoryArray[i];
         button.layer.borderWidth = 0.5;

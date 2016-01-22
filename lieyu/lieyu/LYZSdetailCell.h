@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconStar4;
 @property (weak, nonatomic) IBOutlet UIImageView *iconStar5;
 
+@property (weak, nonatomic) IBOutlet UIView *backView;
+
 @property (nonatomic, strong) NSArray *imagesArray;
 
 @property (nonatomic, strong) ZSDetailModel *zsModel;

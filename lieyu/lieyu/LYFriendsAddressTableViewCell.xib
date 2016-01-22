@@ -15,10 +15,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dizhi_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
-                        <rect key="frame" x="7" y="13" width="13" height="20"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
+                        <rect key="frame" x="7" y="13" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="13" id="eD2-ol-lep"/>
+                            <constraint firstAttribute="width" constant="20" id="eD2-ol-lep"/>
                             <constraint firstAttribute="height" constant="20" id="uHW-9L-Inf"/>
                         </constraints>
                     </imageView>
@@ -39,12 +39,12 @@
                         <state key="normal" backgroundImage="haoyou_pinglun.png"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFq-hw-xAl">
-                        <rect key="frame" x="30" y="14" width="151" height="21"/>
+                        <rect key="frame" x="37" y="13" width="144" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="IFe-Yf-YtR"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -56,15 +56,21 @@
                     <constraint firstItem="vZ1-l2-3kw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="LOl-QO-gM9"/>
                     <constraint firstItem="DFq-hw-xAl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="NVd-X6-W2a"/>
                     <constraint firstItem="DFq-hw-xAl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="NhX-CR-rFE"/>
+                    <constraint firstItem="DFq-hw-xAl" firstAttribute="centerY" secondItem="vZ1-l2-3kw" secondAttribute="centerY" id="RIq-7P-nnV"/>
                     <constraint firstItem="XLc-dG-9ra" firstAttribute="leading" secondItem="DFq-hw-xAl" secondAttribute="trailing" constant="29" id="Wt6-9t-lPR"/>
+                    <constraint firstItem="XLc-dG-9ra" firstAttribute="centerY" secondItem="DFq-hw-xAl" secondAttribute="centerY" id="eTd-Vf-4kQ"/>
                     <constraint firstItem="ETK-xZ-gYL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="g1V-s0-AVj"/>
                     <constraint firstAttribute="trailing" secondItem="DFq-hw-xAl" secondAttribute="trailing" constant="139" id="iqP-Mm-SJU"/>
+                    <constraint firstItem="ETK-xZ-gYL" firstAttribute="centerY" secondItem="DFq-hw-xAl" secondAttribute="centerY" id="okl-kL-HOv"/>
                     <constraint firstItem="DFq-hw-xAl" firstAttribute="leading" secondItem="vZ1-l2-3kw" secondAttribute="trailing" constant="10" id="w9G-Y8-Y56"/>
                     <constraint firstItem="ETK-xZ-gYL" firstAttribute="leading" secondItem="XLc-dG-9ra" secondAttribute="trailing" constant="15" id="zLy-gB-rCn"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="NVd-X6-W2a"/>
+                        <exclude reference="NhX-CR-rFE"/>
+                        <exclude reference="Geh-1q-L6R"/>
+                        <exclude reference="g1V-s0-AVj"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -78,7 +84,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="dizhi_icon.png" width="13" height="20"/>
+        <image name="address" width="25" height="24"/>
         <image name="haoyou_biaobai.png" width="44" height="18"/>
         <image name="haoyou_pinglun.png" width="44" height="18"/>
     </resources>

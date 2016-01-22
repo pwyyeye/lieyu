@@ -47,7 +47,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *headerBackBtn;
 @property (weak, nonatomic) IBOutlet UIButton *headerShareBtn;
-@property (weak, nonatomic) IBOutlet UILabel *headerLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *headerLbl;
 
 @end
 
@@ -67,6 +67,10 @@
         self.headerLbl.hidden = NO;
         self.headerShareBtn.hidden = NO;
         self.headerBackBtn.hidden = NO;
+        self.headerLbl.layer.shadowColor = [[UIColor blackColor]CGColor];
+        self.headerLbl.layer.shadowOffset = CGSizeMake(0, 1);
+        self.headerLbl.layer.shadowOpacity = 0.8;
+        self.headerLbl.layer.shadowRadius = 2;
 //        self.headerLbl.hidden = NO;
     }else{
         self.headerLbl.hidden = YES;
@@ -103,6 +107,11 @@
     self.headerShareBtn.hidden = YES;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.view_back.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    self.view_back.layer.shadowOffset = CGSizeMake(0, -1);
+    self.view_back.layer.shadowOpacity = 0.8;
+    self.view_back.layer.shadowRadius = 1;
     
     self.defaultString = @"选择正确的拼客方式";
     self.defaultPay = -2;

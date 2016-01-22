@@ -14,6 +14,8 @@
 
 @property (nonatomic, assign)int smid;
 
+@property (weak, nonatomic) IBOutlet UIView *view_back;
+
 @property (nonatomic, strong) PinKeModel *pinKeModel;
 
 @property (weak, nonatomic) IBOutlet UIButton *zixunBtn;

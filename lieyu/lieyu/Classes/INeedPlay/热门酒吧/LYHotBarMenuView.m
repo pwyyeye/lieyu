@@ -25,6 +25,10 @@
 
 - (void)deployWithMiddleTitle:(NSString *)title ItemArray:(NSArray *)itemArray{
 //    self.backgroundColor = [UIColor redColor];
+    self.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    self.layer.shadowOffset = CGSizeMake(0, 1);
+    self.layer.shadowOpacity = 0.5;
+    self.layer.shadowRadius = 2;
     NSArray *titleArray = @[@"所有地区",title,@"离我最近"];
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0; i < 3; i ++) {

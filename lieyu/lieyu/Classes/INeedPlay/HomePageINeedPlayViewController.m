@@ -82,6 +82,10 @@ UITableViewDataSource,UITableViewDelegate,
     _tableView.showsVerticalScrollIndicator=NO;
     [self setupViewStyles];
     [self getData];
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
+    self.navigationController.navigationBar.layer.shadowRadius = 1;
 }
 
 -(void)dealloc{

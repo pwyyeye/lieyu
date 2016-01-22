@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     _captureSession = nil;
     _isReading = NO;
     [self startReading];
@@ -65,23 +65,23 @@
     //9.将图层添加到预览view的图层上
     [_viewPreview.layer addSublayer:_videoPreviewLayer];
     //10.设置扫描范围
-    captureMetadataOutput.rectOfInterest = CGRectMake(1, 1, 1, 1);
+    captureMetadataOutput.rectOfInterest = CGRectMake(0, 0, 1, 1);
     
     
     
     
     
     //10.1.扫描框
-    _boxView = [[UIView alloc] initWithFrame:CGRectMake(_viewPreview.bounds.size.width * 0.2f, _viewPreview.bounds.size.height * 0.2f, _viewPreview.bounds.size.width - _viewPreview.bounds.size.width * 0.4f, _viewPreview.bounds.size.height - _viewPreview.bounds.size.height * 0.4f)];
-//    _boxView.center = _viewPreview.center;
-    NSLog(@"%@",NSStringFromCGRect(_boxView.frame));
-    NSLog(@"%@",NSStringFromCGRect(_viewPreview.frame));
-    _boxView.layer.borderColor = [UIColor greenColor].CGColor;
-    _boxView.layer.borderWidth = 1.0f;
-    [_viewPreview addSubview:_boxView];
+//    _boxView = [[UIView alloc] initWithFrame:CGRectMake(_viewPreview.bounds.size.width * 0.2f, _viewPreview.bounds.size.height * 0.2f, _viewPreview.bounds.size.width - _viewPreview.bounds.size.width * 0.4f, _viewPreview.bounds.size.height - _viewPreview.bounds.size.height * 0.4f)];
+////    _boxView.center = _viewPreview.center;
+//    NSLog(@"%@",NSStringFromCGRect(_boxView.frame));
+//    NSLog(@"%@",NSStringFromCGRect(_viewPreview.frame));
+//    _boxView.layer.borderColor = [UIColor greenColor].CGColor;
+//    _boxView.layer.borderWidth = 1.0f;
+//    [_viewPreview addSubview:_boxView];
     //10.2.扫描线
     _scanLayer = [[CALayer alloc] init];
-    _scanLayer.frame = CGRectMake(0, 0, _viewPreview.bounds.size.width, 1);
+    _scanLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH - 46, 1);
     _scanLayer.backgroundColor = [UIColor brownColor].CGColor;
     [_viewPreview.layer addSublayer:_scanLayer];
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(moveScanLayer:) userInfo:nil repeats:YES];
