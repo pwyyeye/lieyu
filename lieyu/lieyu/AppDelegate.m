@@ -512,18 +512,27 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 -(void)connectWithToken{
     NSLog(@"_im_token=%@",_im_token);
 //    _im_token=@"aqw73LOC9fju/Zfr+G0uCIZ6iyJm4gkQBO3AbCIB4IoMo7IJ9CyOesCxoHF0+KU1I2fSIds0iGGsdNrAeyA1L6CePnAuGYiF";
-    [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
-        // Connect 成功
-        NSLog(@"****登录成功%@",userId);
+    @try {
+        [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
+            // Connect 成功
+            NSLog(@"****登录成功%@",userId);
+        }
+                                      error:^(RCConnectErrorCode status) {
+                                          NSLog(@"****登录失败");
+                                          // Connect 失败
+                                      }
+                             tokenIncorrect:^() {
+                                 NSLog(@"Token 失效的状态处理");
+                                 // Token 失效的状态处理
+                             }];
     }
-    error:^(RCConnectErrorCode status) {
-        NSLog(@"****登录失败");
-                                      // Connect 失败
+    @catch (NSException *exception) {
+        NSLog(@"----pass-pass%@---",exception);
     }
-    tokenIncorrect:^() {
-        NSLog(@"Token 失效的状态处理");
-                             // Token 失效的状态处理
-    }];
+    @finally {
+        
+    }
+    
 }
 
 // 获取用户信息的方法。
