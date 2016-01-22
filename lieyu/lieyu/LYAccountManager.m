@@ -12,7 +12,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.title=@"账户管理";
+    self.title=@"账户管理"; 
     _data=@[@"修改密码",@"绑定微信",@"绑定QQ",@"绑定微博"];
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
