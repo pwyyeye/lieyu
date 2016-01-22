@@ -512,49 +512,58 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 -(void)connectWithToken{
     NSLog(@"_im_token=%@",_im_token);
 //    _im_token=@"aqw73LOC9fju/Zfr+G0uCIZ6iyJm4gkQBO3AbCIB4IoMo7IJ9CyOesCxoHF0+KU1I2fSIds0iGGsdNrAeyA1L6CePnAuGYiF";
-    [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
-        // Connect 成功
-        NSLog(@"****登录成功%@",userId);
+    @try {
+        [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
+            // Connect 成功
+            NSLog(@"****登录成功%@",userId);
+        }
+                                      error:^(RCConnectErrorCode status) {
+                                          NSLog(@"****登录失败");
+                                          // Connect 失败
+                                      }
+                             tokenIncorrect:^() {
+                                 NSLog(@"Token 失效的状态处理");
+                                 // Token 失效的状态处理
+                             }];
     }
-    error:^(RCConnectErrorCode status) {
-        NSLog(@"****登录失败");
-                                      // Connect 失败
+    @catch (NSException *exception) {
+        NSLog(@"----pass-pass%@---",exception);
     }
-    tokenIncorrect:^() {
-        NSLog(@"Token 失效的状态处理");
-                             // Token 失效的状态处理
-    }];
+    @finally {
+        
+    }
+    
 }
 
 // 获取用户信息的方法。
 -(void)getUserInfoWithUserId:(NSString *)userId completion:(void(^)(RCUserInfo* userInfo))completion
 {
 //    LYUserHttpTool
-    
+    NSDictionary *dic = @{@"imUserId":userId};
+    [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
+        RCUserInfo *user = [[RCUserInfo alloc]init];
+        user.userId =result.imUserId;
+        user.name = result.name;
+        user.portraitUri = result.mark;
+        [[RCDataBaseManager shareInstance] insertUserToDB:user];
+        completion(user);
+    }];
     //看本地缓存是否存在
-    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
-    if (userInfo==nil) {
-        NSDictionary *dic = @{@"imUserId":userId};
-        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
-            RCUserInfo *user = [[RCUserInfo alloc]init];
-            user.userId =result.imUserId;
-            user.name = result.name;
-            user.portraitUri = result.mark;
-            [[RCDataBaseManager shareInstance] insertUserToDB:user];
-             completion(user);
-        }];
-    }else{
-        NSDictionary *dic = @{@"imUserId":userId};
-        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
-            RCUserInfo *user = [[RCUserInfo alloc]init];
-            user.userId =result.imUserId;
-            user.name = result.name;
-            user.portraitUri = result.mark;
-            [[RCDataBaseManager shareInstance] insertUserToDB:user];
-            
-        }];
-         completion(userInfo);
-    }
+//    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
+//    if (userInfo==nil) {
+//        
+//    }else{
+//        NSDictionary *dic = @{@"imUserId":userId};
+//        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
+//            RCUserInfo *user = [[RCUserInfo alloc]init];
+//            user.userId =result.imUserId;
+//            user.name = result.name;
+//            user.portraitUri = result.mark;
+//            [[RCDataBaseManager shareInstance] insertUserToDB:user];
+//            
+//        }];
+//         completion(userInfo);
+//    }
 }
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{

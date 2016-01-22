@@ -144,9 +144,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未知" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaO-Lq-Ghh">
-                            <rect key="frame" x="235" y="115" width="72" height="21"/>
+                            <rect key="frame" x="217" y="115" width="90" height="21"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="72" id="QHP-md-uFk"/>
+                                <constraint firstAttribute="width" constant="90" id="QHP-md-uFk"/>
                                 <constraint firstAttribute="height" constant="21" id="lLs-Oh-snB"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

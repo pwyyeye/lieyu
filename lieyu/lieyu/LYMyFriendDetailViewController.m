@@ -9,7 +9,7 @@
 #import "LYMyFriendDetailViewController.h"
 #import "LYAddFriendViewController.h"
 #import "IQKeyboardManager.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "UIImageView+WebCache.h"
 @interface LYMyFriendDetailViewController ()
 
 @end
@@ -48,7 +48,18 @@
         }
         _zhiwuLal.text=mytags;
     }
-    
+    if(_customerModel.tag.count==0 && _customerModel.tags.count>0){
+        NSMutableString *mytags=[[NSMutableString alloc] init];
+        for (int i=0; i<_customerModel.tags.count; i++) {
+            if (i==_customerModel.tags.count-1) {
+                [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
+            }else{
+                [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
+                [mytags appendString:@","];
+            }
+        }
+        _zhiwuLal.text=mytags;
+    }
     
     if (![MyUtil isEmptyString:_customerModel.age]) {
         _age.text=_customerModel.age;
