@@ -252,7 +252,7 @@
                 cell = (CaoCanCell *)[nibArray objectAtIndex:0];
                 cell.backgroundColor=[UIColor whiteColor];
             }
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 81, 290, 0.5)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 81, SCREEN_WIDTH - 30, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
             TaoCanModel *taoCanModel=dataList[indexPath.row];
@@ -285,7 +285,7 @@
                 
                 
             }
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 88, 290, 0.5)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 88, SCREEN_WIDTH - 30, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
 
@@ -315,7 +315,7 @@
                 
                 
             }
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 81, 290, 0.5)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 81, SCREEN_WIDTH - 30, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
             CheHeModel *cheHeModel=dataList[indexPath.row];

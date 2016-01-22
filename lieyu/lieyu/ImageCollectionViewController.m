@@ -41,10 +41,11 @@
     rightItem.enabled = NO;
     rightItem.tintColor = [UIColor grayColor];
     
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [UIColor blackColor];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.collectionViewLayout = layout;
+    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"MyCell" bundle:nil] forCellWithReuseIdentifier:@"mycell"];
     self.collectionData = [[NSMutableArray alloc]init];
@@ -65,13 +66,13 @@
     self.navigationItem.leftBarButtonItem = leftItem;
 }
 
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
-}
-
-- (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -collectionView的代理方法
