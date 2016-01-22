@@ -1012,6 +1012,7 @@
         }
         
     } failure:^(NSError *err) {
+        NSLog(@"----pass-saveUserInfo :%@---",err.description);
         result(NO);
         
         
