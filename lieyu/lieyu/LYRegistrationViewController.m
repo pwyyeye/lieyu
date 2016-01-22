@@ -10,6 +10,8 @@
 #import "LYUserHttpTool.h"
 #import "LYUserDetailInfoViewController.h"
 #import "LYUserLoginViewController.h"
+#import "HomePageINeedPlayViewController.h"
+
 @interface LYRegistrationViewController (){
     BOOL _isRegisted;
     NSString *_flag;
@@ -163,13 +165,19 @@ static LYRegistrationViewController *_registe;
     if(!_isRegisted){//绑定手机号
         if([_flag isEqualToString:@"1"]){//注册过去绑定
             NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"weibo":[NSString stringWithFormat:@"%ld",_userM.openID]};
+            __block LYRegistrationViewController *weakSelf = self;
             [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
                 if (flag) {//绑定
                     [MyUtil showPlaceMessage:@"绑定成功"];
                     
-                    NSDictionary *paraDic = @{@"currentSessionId":}
-                    [LYUserHttpTool userLoginFromOpenIdWithPara:paraDic compelte:^(NSInteger) {
+                    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]]};
+                    [LYUserHttpTool userLoginFromOpenIdWithPara:paraDic compelte:^(UserModel *userModel) {
+                        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                        app.s_app_id=userModel.token;
+                        app.userModel=userModel;
+                        [app getImToken];
                         
+                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                     }];
                 }else{
                     [MyUtil showPlaceMessage:@"绑定失败"];

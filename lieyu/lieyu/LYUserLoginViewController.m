@@ -310,6 +310,23 @@
 
 - (void)getUserInfoResponse:(APIResponse *)response{
     NSLog(@"----->%@",response);
+    __block LYUserLoginViewController *weakSelf = self;
+    NSDictionary *paraDic = @{@"currentSessionId":_tencentOAuth.openId};
+    [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
+        if (sucess) {//登录成功
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            app.s_app_id=userM.token;
+            app.userModel=userM;
+            [app getImToken];
+            
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }else{//去绑定手机好
+            LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
+            registVC.userM = userM;
+            registVC.isTheThirdLogin = YES;
+            registVC.thirdLoginType = @"1";
+            [self.navigationController pushViewController:registVC animated:YES];
+        }}];
 }
 
 #pragma mark - 微信登录
@@ -329,14 +346,16 @@
     NSTimeInterval timeWeixin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"weixinDate"] timeIntervalSince1970];
     NSLog(@"------------------>%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinCode"]);
     NSLog(@"--->%f",timeNow - timeWeixin);
-    
+    __block LYUserLoginViewController *weakSelf = self;
     NSTimeInterval timeWeixin_re = [[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinReDate"] timeIntervalSince1970];
     
     if([MyUtil isEmptyString:accessTokenStr] || timeNow - timeWeixin_re > 60 * 60 * 24 * 30){//refreshToken超过30tian
         [LYHomePageHttpTool getWeixinAccessTokenWithCode:[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinCode"] compelete:^(NSString *accessToken) {
             if(![MyUtil isEmptyString:accessToken]){
                 [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessToken compelete:^(UserModel *userInfo) {
-                    
+                    if(userInfo){
+                        [weakSelf weiXinLoginWith:userInfo];
+                    }
                 }];
             }
         }];
@@ -345,19 +364,41 @@
             [LYHomePageHttpTool getWeixinNewAccessTokenWithRefreshToken:[[NSUserDefaults standardUserDefaults]          objectForKey:@"weixinRefresh_token"] compelete:^(NSString *accessToken) {
                 if(![MyUtil isEmptyString:accessToken]){
                     [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessToken compelete:^(UserModel *userInfo) {
-                        
+                        [weakSelf weiXinLoginWith:userInfo];
                     }];
                 }
             }];
         }else{
             
             [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessTokenStr compelete:^(UserModel *userInfo) {
-                
+                [weakSelf weiXinLoginWith:userInfo];
             }];
             
         }
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"weixinCode" object:nil];
+}
+
+- (void)weiXinLoginWith:(UserModel *)userModel{
+    __block LYUserLoginViewController *weakSelf = self;
+    NSDictionary *paraDic = @{@"currentSessionId":[NSString stringWithFormat:@"%ld",userModel.openID]};
+    [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
+        if (sucess) {//登录成功
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            app.s_app_id=userM.token;
+            app.userModel=userM;
+            [app getImToken];
+            
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }else{//去绑定手机好
+            LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
+            registVC.userM = userM;
+            registVC.isTheThirdLogin = YES;
+            registVC.thirdLoginType = @"2";
+            [self.navigationController pushViewController:registVC animated:YES];
+            
+        }
+    }];
 }
 
 #pragma mark - 新浪微博登录
@@ -378,10 +419,17 @@
                 
                 NSDictionary *paraDic = @{@"currentSessionId":snsAccount.usid};
                 NSLog(@"---->%@",paraDic);
-                [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess) {
+                __block LYUserLoginViewController *weakSelf = self;
+                [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
                     if (sucess) {//登录成功
+                        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                        app.s_app_id=userM.token;
+                        app.userModel=userM;
+                        [app getImToken];
                         
+                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                     }else{//去绑定手机好
+                        [MyUtil showPlaceMessage:@"绑定手机号"];
                         LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
                         registVC.userM = userM;
                         registVC.isTheThirdLogin = YES;

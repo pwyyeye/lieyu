@@ -70,14 +70,13 @@
 }
 
 #pragma mark - 第三方登录
-+ (void)userLoginFromQQWeixinAndSinaWithParams:(NSDictionary*)params compelte:(void(^)(NSInteger flag))compelte{
-    NSString *cansuStr = params[@"currentSessionId"];
-    //    [NSString stringWithFormat:@"%@&currentSessionId=%@",LY_DL_THIRD,cansuStr]
++ (void)userLoginFromQQWeixinAndSinaWithParams:(NSDictionary*)params compelte:(void(^)(NSInteger flag,UserModel *userModel))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_DL_THIRD baseURL:LY_SERVER params:params success:^(id response) {
         if([response[@"errorcode"] isEqualToString:@"-2"]){//登录失败
-            compelte(0);
+            compelte(0,nil);
         }else{//登录成功
-            
+            UserModel *userM = [UserModel mj_objectWithKeyValues:response[@"data"]];
+            compelte(1,userM);
         }
         NSLog(@"----->%@",response);
     } failure:^(NSError *err) {
@@ -1087,10 +1086,10 @@
     
 }
 
-//绑定手机后用openId登录
-+ (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void (^)(NSInteger))compelte{
+#pragma mark - 绑定手机后用openId登录
++ (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void (^)(UserModel *))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_OPENID_LOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
-        
+        UserModel *userModel=[UserModel mj_objectWithKeyValues:response[@"data"]];
     } failure:^(NSError *err) {
         
     }];

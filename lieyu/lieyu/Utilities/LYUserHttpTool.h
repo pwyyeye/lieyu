@@ -23,7 +23,7 @@
                           block:(void(^)(UserModel* result)) block;
 
 //第三方登录
-+ (void)userLoginFromQQWeixinAndSinaWithParams:(NSDictionary*)params compelte:(void(^)(NSInteger flag))compelte;
++ (void)userLoginFromQQWeixinAndSinaWithParams:(NSDictionary*)params compelte:(void(^)(NSInteger flag,UserModel *))compelte;
 
 //是否强制更新
 -(void) getAppUpdateStatus:(NSDictionary*)params
@@ -154,6 +154,6 @@
 + (void)tieQQWeixinAndSinaWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte;
 
 //绑定手机后用openId登录
-+ (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte;
++ (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void(^)(UserModel *))compelte;
 
 @end
