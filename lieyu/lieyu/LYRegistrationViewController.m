@@ -166,6 +166,11 @@ static LYRegistrationViewController *_registe;
             [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
                 if (flag) {//绑定
                     [MyUtil showPlaceMessage:@"绑定成功"];
+                    
+                    NSDictionary *paraDic = @{@"currentSessionId":}
+                    [LYUserHttpTool userLoginFromOpenIdWithPara:paraDic compelte:^(NSInteger) {
+                        
+                    }];
                 }else{
                     [MyUtil showPlaceMessage:@"绑定失败"];
                 }

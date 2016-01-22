@@ -1087,5 +1087,14 @@
     
 }
 
+//绑定手机后用openId登录
++ (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void (^)(NSInteger))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_OPENID_LOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
+        
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
 
 @end

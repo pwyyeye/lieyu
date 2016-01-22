@@ -245,25 +245,12 @@
     customerM.userid = _userInfo.userId.intValue;
     customerM.tag=_userInfo.tags;
     
-        __weak __typeof(self)weakSelf = self;
-        NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
-        [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
-            
-            NSString *typeStr = nil;
-            for(CustomerModel *csm in result){
-                if (csm.userid == _userInfo.userId.intValue) {
-                    typeStr = @"0";
-                }else{
-                    typeStr = @"4";
-                }
-            }
-            LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
-            friendDetailVC.customerModel = customerM;
-            if(_dataArray.count) {
-                friendDetailVC.type = [NSString stringWithFormat:@"%@",typeStr];
-            }
-            [weakSelf.navigationController pushViewController:friendDetailVC animated:YES];
-        }];
+    __weak __typeof(self)weakSelf = self;
+    LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
+    friendDetailVC.customerModel = customerM;
+    [weakSelf.navigationController pushViewController:friendDetailVC animated:YES];
+
+
     
 }
 

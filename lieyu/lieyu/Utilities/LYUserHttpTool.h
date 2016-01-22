@@ -153,4 +153,7 @@
 //绑定手机号
 + (void)tieQQWeixinAndSinaWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte;
 
+//绑定手机后用openId登录
++ (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte;
+
 @end

@@ -49,6 +49,10 @@ typedef NS_ENUM(NSInteger, RequestMethodType){
                   failure:(void (^)(NSError *err))failure;
 //七牛上传图片
 +(void)uploadImageToQiuNiu:(UIImage *)image complete:(QNUpCompletionHandler)completionHandler;
+
+//七牛上传图片自定义压缩比例
++(void)uploadImageToQiuNiu:(UIImage *)image withDegree:(CGFloat)degree complete:(QNUpCompletionHandler)completionHandler;
+
 //七牛上传文件
 +(BOOL)uploadFileToQiuNiu:(NSString *)filePath complete:(QNUpCompletionHandler)completionHandler;
 

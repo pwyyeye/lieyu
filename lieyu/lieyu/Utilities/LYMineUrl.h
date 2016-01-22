@@ -76,4 +76,7 @@
 //绑定qq
 #define LY_TIE_OPENID @"portal/usersAction.do?action=logout"
 
+//openId登录
+#define LY_OPENID_LOGIN @"accountAction.do?action=login"
+
 #endif

@@ -404,9 +404,27 @@
         
     }
 }
-
+//七牛上传图片
++(void)uploadImageToQiuNiu:(UIImage *)image withDegree:(CGFloat)degree complete:(QNUpCompletionHandler)completionHandler{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if(app.qiniu_token){
+        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        QNUploadOption *op=[[QNUploadOption alloc] initWithMime:nil progressHandler:nil params:nil checkCrc:NO cancellationSignal:nil];
+        
+        NSString *fileName = [NSString stringWithFormat:@"lieyu_ios_%@_%@.jpg",[MyUtil getNumberFormatDate:[NSDate date]], [MyUtil randomStringWithLength:8]];
+        
+        //上传代码
+        //图片压缩到30%
+        NSData *data = UIImageJPEGRepresentation(image, degree);
+        
+        // fileName=@"ZSKC2015-09-30_22:45:04_OoIkxuCe.jpg";
+        [upManager putData:data key:fileName token:app.qiniu_token complete:(QNUpCompletionHandler)completionHandler  option:op];
+        
+        
+    }
+}
 //七牛上传文件
-+(BOOL)uploadFileToQiuNiu:(NSString *)filePath complete:(QNUpCompletionHandler)completionHandler{
++(BOOL)uploadFileToQiuNiu:(NSString *)filePath  complete:(QNUpCompletionHandler)completionHandler{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(app.qiniu_media_token){
         @try {
