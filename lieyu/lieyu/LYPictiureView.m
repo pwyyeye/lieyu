@@ -158,7 +158,7 @@
                     [s setZoomScale:1.0];
                     UIImageView *image = [[s subviews] objectAtIndex:0];
                     image.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                }
+                }    
             }
         }
     }
