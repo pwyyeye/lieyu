@@ -73,7 +73,7 @@
     self.namelal.text=_customerModel.usernick;
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img?_customerModel.avatar_img:_customerModel.icon]];
     if([_type isEqualToString:@"0"]){
-        self.namelal.text=_customerModel.friendName;
+        self.namelal.text=_customerModel.usernick?_customerModel.usernick:_customerModel.friendName;
         if (_customerModel.sex.integerValue==0) {
             self.sexImageView.image=[UIImage imageNamed:@"woman"];
         }else{
@@ -84,7 +84,7 @@
         }
        
     }else if([_type isEqualToString:@"4"]){
-        self.namelal.text=_customerModel.name;
+        self.namelal.text=_customerModel.usernick?_customerModel.usernick:_customerModel.name;
         [_setBtn setTitle:@"打招呼" forState:0];
         [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.mark]];
         if([_customerModel.sex isEqualToString:@"1"]){
