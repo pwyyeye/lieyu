@@ -74,7 +74,7 @@
 //判断手机是否注册过
 #define LY_YZM_THIRDLOGIN @"registerAction.do?action=login"
 //绑定qq
-#define LY_TIE_OPENID @"portal/usersAction.do?action=logout"
+#define LY_TIE_OPENID @"osregisterAction.do?action=cancel"
 
 //openId登录
 #define LY_OPENID_LOGIN @"accountAction.do?action=login"

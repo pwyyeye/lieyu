@@ -311,14 +311,14 @@
 - (void)getUserInfoResponse:(APIResponse *)response{
     NSLog(@"----->%@",response);
     __block LYUserLoginViewController *weakSelf = self;
-    NSDictionary *paraDic = @{@"currentSessionId":_tencentOAuth.openId};
+    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES: _tencentOAuth.openId]};
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
         if (sucess) {//登录成功
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             app.s_app_id=userM.token;
             app.userModel=userM;
             [app getImToken];
-            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
@@ -381,14 +381,14 @@
 
 - (void)weiXinLoginWith:(UserModel *)userModel{
     __block LYUserLoginViewController *weakSelf = self;
-    NSDictionary *paraDic = @{@"currentSessionId":[NSString stringWithFormat:@"%ld",userModel.openID]};
+    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES: [NSString stringWithFormat:@"%ld",userModel.openID]]};
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
         if (sucess) {//登录成功
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             app.s_app_id=userM.token;
             app.userModel=userM;
             [app getImToken];
-            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
@@ -412,12 +412,12 @@
             NSLog(@"--->%@",snsAccount);
             NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
             if(![MyUtil isEmptyString:snsAccount.usid]){
-                UserModel *userM = [[UserModel alloc]init];
-                userM.usernick = snsAccount.userName;
-                userM.avatar_img = snsAccount.iconURL;
-                userM.openID = snsAccount.usid.integerValue;
+                UserModel *userModel = [[UserModel alloc]init];
+                userModel.usernick = snsAccount.userName;
+                userModel.avatar_img = snsAccount.iconURL;
+                userModel.openID = snsAccount.usid.integerValue;
                 
-                NSDictionary *paraDic = @{@"currentSessionId":snsAccount.usid};
+                NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:snsAccount.usid]};
                 NSLog(@"---->%@",paraDic);
                 __block LYUserLoginViewController *weakSelf = self;
                 [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
@@ -426,12 +426,12 @@
                         app.s_app_id=userM.token;
                         app.userModel=userM;
                         [app getImToken];
-                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                     }else{//去绑定手机好
                         [MyUtil showPlaceMessage:@"绑定手机号"];
                         LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
-                        registVC.userM = userM;
+                        registVC.userM = userModel;
                         registVC.isTheThirdLogin = YES;
                         registVC.thirdLoginType = @"3";
                         [self.navigationController pushViewController:registVC animated:YES];

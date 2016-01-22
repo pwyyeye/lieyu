@@ -58,6 +58,8 @@ static LYRegistrationViewController *_registe;
     if(_isTheThirdLogin){
         self.title = @"绑定手机号";
         _textField_psw.hidden = YES;
+        _textField_psw_third.hidden = YES;
+        _imgView_icon_four.hidden = YES;
         _passWordTex.hidden = YES;
         _againPassWordTex.hidden = YES;
         _textField_psw_little.hidden = YES;
@@ -132,11 +134,13 @@ static LYRegistrationViewController *_registe;
                 weakSelf.title = @"注册";
                 _textField_psw.hidden = NO;
                 _passWordTex.hidden = NO;
+                _textField_psw_third.hidden = NO;
+                _imgView_icon_four.hidden = NO;
                 _againPassWordTex.hidden = NO;
                 _textField_psw_little.hidden = NO;
                 [_btn_regist setTitle:@"立即注册" forState:UIControlStateNormal];
                 _isRegisted = YES;
-            }else{
+            }else{//已注册去绑定
                 _isRegisted = NO;
             }
             
@@ -164,7 +168,7 @@ static LYRegistrationViewController *_registe;
     }
     if(!_isRegisted){//绑定手机号
         if([_flag isEqualToString:@"1"]){//注册过去绑定
-            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"weibo":[NSString stringWithFormat:@"%ld",_userM.openID]};
+            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"weibo":[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]]};
             __block LYRegistrationViewController *weakSelf = self;
             [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
                 if (flag) {//绑定
@@ -176,7 +180,7 @@ static LYRegistrationViewController *_registe;
                         app.s_app_id=userModel.token;
                         app.userModel=userModel;
                         [app getImToken];
-                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                     }];
                 }else{
@@ -221,7 +225,7 @@ static LYRegistrationViewController *_registe;
     }
 }
 
-//- (IBAction)exitEdit:(UITextField *)sender {
-//    [sender resignFirstResponder];
-//}
+- (IBAction)exitEdit:(UITextField *)sender {
+    [sender resignFirstResponder];
+}
 @end
