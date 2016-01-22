@@ -9,7 +9,8 @@
 #import "LYMyFriendDetailViewController.h"
 #import "LYAddFriendViewController.h"
 #import "IQKeyboardManager.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "UIImageView+WebCache.h"
+#import "LYUserHttpTool.h"
 @interface LYMyFriendDetailViewController ()
 
 @end
@@ -48,7 +49,18 @@
         }
         _zhiwuLal.text=mytags;
     }
-    
+    if(_customerModel.tag.count==0 && _customerModel.tags.count>0){
+        NSMutableString *mytags=[[NSMutableString alloc] init];
+        for (int i=0; i<_customerModel.tags.count; i++) {
+            if (i==_customerModel.tags.count-1) {
+                [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
+            }else{
+                [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
+                [mytags appendString:@","];
+            }
+        }
+        _zhiwuLal.text=mytags;
+    }
     
     if (![MyUtil isEmptyString:_customerModel.age]) {
         _age.text=_customerModel.age;
@@ -60,42 +72,65 @@
     }
     
     self.namelal.text=_customerModel.usernick;
-    [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img]];
-    if([_type isEqualToString:@"0"]){
-        self.namelal.text=_customerModel.friendName;
-        if (_customerModel.sex.integerValue==0) {
-            self.sexImageView.image=[UIImage imageNamed:@"woman"];
-        }else{
-            self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
-        }
-        if (_customerModel.tag.count>0) {
-//            _zhiwuLal.text=_customerModel.tag.firstObject;
-        }
-       
-    }else if([_type isEqualToString:@"4"]){
-        self.namelal.text=_customerModel.name;
-        [_setBtn setTitle:@"打招呼" forState:0];
-        [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.mark]];
-        if([_customerModel.sex isEqualToString:@"1"]){
-            _sexImageView.image=[UIImage imageNamed:@"manIcon"];
-        }
-    }else{
-        [_setBtn setTitle:@"打招呼" forState:0];
-        
-        self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
-        if (_customerModel.distance.doubleValue>1000) {
-            self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
-        }
-        
-        if([_customerModel.sex isEqualToString:@"1"]){
-            _sexImageView.image=[UIImage imageNamed:@"manIcon"];
-        }
-        
-        [self.userImageView setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img]];
-    }
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
+    [self getData];
     // Do any additional setup after loading the view from its nib.
 }
-
+-(void)getData{
+    NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
+    [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
+        
+        NSString *typeStr = nil;
+        for(CustomerModel *csm in result){
+            int i=csm.userid?csm.userid:csm.friend;
+            int j=_customerModel.userid?_customerModel.userid:_customerModel.friend;
+            if (i == j) {
+                typeStr = @"0";
+                break;
+            }else{
+                typeStr = @"4";
+                continue;
+            }
+        }
+        self.type = [NSString stringWithFormat:@"%@",typeStr];
+        if([_type isEqualToString:@"0"]){
+            self.namelal.text=_customerModel.friendName == nil ? _customerModel.name?_customerModel.name:_customerModel.usernick  : _customerModel.friendName;
+            
+            if (_customerModel.sex.integerValue==0) {
+                self.sexImageView.image=[UIImage imageNamed:@"woman"];
+            }else{
+                self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+            }
+            if (_customerModel.tag.count>0) {
+                //            _zhiwuLal.text=_customerModel.tag.firstObject;
+            }
+            
+        }else if([_type isEqualToString:@"4"]){
+            if([MyUtil isEmptyString:self.namelal.text]){
+                self.namelal.text=_customerModel.friendName == nil ? _customerModel.name?_customerModel.name:_customerModel.usernick : _customerModel.friendName;
+            }
+            
+            [_setBtn setTitle:@"打招呼" forState:0];
+            [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img?_customerModel.avatar_img:_customerModel.mark]];
+            if([_customerModel.sex isEqualToString:@"1"]){
+                _sexImageView.image=[UIImage imageNamed:@"manIcon"];
+            }
+        }else{
+            [_setBtn setTitle:@"打招呼" forState:0];
+            
+            self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
+            if (_customerModel.distance.doubleValue>1000) {
+                self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
+            }
+            
+            if([_customerModel.sex isEqualToString:@"1"]){
+                _sexImageView.image=[UIImage imageNamed:@"manIcon"];
+            }
+            
+            [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img]];
+        }
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -112,7 +147,7 @@
 */
 
 - (IBAction)sendMessageAct:(UIButton *)sender {
-    
+   
     if(![_type isEqualToString:@"0"]){
         LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
         addFriendViewController.title=@"加好友";

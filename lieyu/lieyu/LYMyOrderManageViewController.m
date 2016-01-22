@@ -514,10 +514,11 @@
             }
             //订单为8 待评价
             if (orderInfoModel.orderStatus==8) {
-                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
-                orderBottomView.oneBtn.tag=section;
-                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.oneBtn setHidden:NO];
+                [orderBottomView.secondBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.secondBtn.tag=section;
+                [orderBottomView.secondBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.secondBtn setHidden:NO];
+                [orderBottomView.oneBtn setHidden:YES];
             }
         }else if(orderInfoModel.ordertype==1){
             //拼客
@@ -554,11 +555,12 @@
             
             //订单为8 待评价
             if (orderInfoModel.orderStatus==8&&isFaqi) {
-                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
-                orderBottomView.oneBtn.tag=section;
-                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.oneBtn setHidden:NO];
-                orderBottomView.oneBtn.selected=YES;
+                [orderBottomView.secondBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.secondBtn.tag=section;
+                [orderBottomView.secondBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.secondBtn setHidden:NO];
+                orderBottomView.secondBtn.selected=YES;
+                [orderBottomView.oneBtn setHidden:YES];
             }
             
             if(orderInfoModel.orderStatus==0){
@@ -669,11 +671,12 @@
             
             //订单为8 待评价
             if (orderInfoModel.orderStatus==8) {
-                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
-                orderBottomView.oneBtn.tag=section;
-                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.oneBtn setHidden:NO];
-                [orderBottomView.oneBtn setSelected:YES];
+                [orderBottomView.secondBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.secondBtn.tag=section;
+                [orderBottomView.secondBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.secondBtn setHidden:NO];
+                [orderBottomView.secondBtn setSelected:YES];
+                [orderBottomView.oneBtn setHidden:YES];
             }
         }
         

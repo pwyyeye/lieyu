@@ -50,10 +50,10 @@
 
 #pragma mark - 自动登录
 -(void) userAutoLoginWithParams:(NSDictionary*)params
-                      block:(void(^)(UserModel* result)) block{
+                          block:(void(^)(UserModel* result)) block{
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_DL baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-//        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        //        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         NSDictionary *dataDic = response[@"data"];
         UserModel *userModel=[UserModel mj_objectWithKeyValues:dataDic];
@@ -62,12 +62,30 @@
                 block(userModel);
             });
         }else{
-//            [MyUtil showMessage:message];
+            //            [MyUtil showMessage:message];
         }
         
     } failure:^(NSError *err) {
     }];
 }
+
+#pragma mark - 第三方登录
++ (void)userLoginFromQQWeixinAndSinaWithParams:(NSDictionary*)params compelte:(void(^)(NSInteger flag,UserModel *userModel))compelte{
+    NSLog(@"---->%@",params);
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_DL_THIRD baseURL:LY_SERVER params:params success:^(id response) {
+        if([response[@"errorcode"] isEqualToString:@"-2"]){//登录失败
+            compelte(0,nil);
+            [MyUtil showPlaceMessage:@"登录失败"];
+        }else{//登录成功
+            UserModel *userM = [UserModel mj_objectWithKeyValues:response[@"data"]];
+            compelte(1,userM);
+        }
+        NSLog(@"----->%@",response);
+    } failure:^(NSError *err) {
+        NSLog(@"----->%@",err);
+    }];
+}
+
 #pragma mark - 获取远程版本 判断是否强制升级
 -(void) getAppUpdateStatus:(NSDictionary*)params
                   complete:(void (^)(BOOL result))result{
@@ -99,12 +117,12 @@
         }
     } failure:^(NSError *err) {
     }];
-
+    
 }
 
 #pragma mark - 登出
 -(void) userLogOutWithParams:(NSDictionary*)params
-                      block:(void(^)(BOOL result)) block{
+                       block:(void(^)(BOOL result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_LOGOUT baseURL:QINIU_SERVER params:params success:^(id response) {
@@ -156,30 +174,9 @@
     
 }
 
-#pragma mark - 判断手机是否注册过
-+ (void)getYZMForThirdthLoginWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSString *))compelte{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YZM_THIRDLOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
-        NSString *flag = response[@"data"][@"result"];
-        compelte(flag);
-    } failure:^(NSError *err) {
-        
-    }];
-}
-
-#pragma mark - 绑定手机号
-+ (void)tieQQWeixinAndSinaWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_TIE_OPENID baseURL:QINIU_SERVER params:paraDic success:^(id response) {
-        NSString *errorCode = response[@"errorcode"];
-        compelte(errorCode.integerValue);
-    } failure:^(NSError *err) {
-        
-    }];
-    
-}
-
 #pragma mark - 获取忘记密码验证码
 -(void) getResetYanZhengMa:(NSDictionary*)params
-             complete:(void (^)(BOOL result))result{
+                  complete:(void (^)(BOOL result))result{
     
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
@@ -220,8 +217,8 @@
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
                 
-//                mobile
-//                password
+                //                mobile
+                //                password
                 [[NSUserDefaults standardUserDefaults] setObject:params[@"mobile"] forKey:@"username"];
                 [[NSUserDefaults standardUserDefaults] setObject:params[@"password"] forKey:@"password"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
@@ -272,7 +269,7 @@
 
 #pragma mark  - 我的专属经理收藏
 -(void) getMyVipStore:(NSDictionary*)params
-             block:(void(^)(NSMutableArray* result)) block{
+                block:(void(^)(NSMutableArray* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
@@ -321,7 +318,7 @@
         
         
     }];
-
+    
 }
 #pragma mark  - 我的专属经理申请-酒吧列表
 -(void) getJiuBaList:(NSDictionary*)params
@@ -365,7 +362,7 @@
             [app stopLoading];
             [MyUtil showMessage:message];
         }
-
+        
     } failure:^(NSError *err) {
         [app stopLoading];
     }];
@@ -383,7 +380,7 @@
         
         if ([code isEqualToString:@"1"]) {
             NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel mj_objectArrayWithKeyValuesArray:dataList]];
-                block(tempArr);
+            block(tempArr);
             
             
         }else{
@@ -429,7 +426,7 @@
 
 #pragma mark -删除参与人订单
 -(void) delMyOrderByCanYu:(NSDictionary*)params
-          complete:(void (^)(BOOL result))result{
+                 complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
@@ -530,14 +527,14 @@
         
     } failure:^(NSError *err) {
         NSLog(@"----pass-err%@---",err);
-
+        
     }];
-
+    
 }
 
 #pragma mark 添加评价
 -(void) addEvaluation:(NSDictionary*)params
-          complete:(void (^)(BOOL result))result{
+             complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     NSLog(@"----pass-LY_MY_ORDER_PINGJIA%@---",LY_MY_ORDER_PINGJIA);
@@ -565,7 +562,7 @@
 }
 #pragma mark 添加评价商家回复
 -(void) addEvaluationReview:(NSDictionary*)params
-             complete:(void (^)(BOOL result))result{
+                   complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     NSLog(@"----pass-LY_MY_ORDER_REVIEW%@---",LY_MY_ORDER_REVIEW);
@@ -717,11 +714,11 @@
             CustomerModel *model=[CustomerModel mj_objectWithKeyValues:dicTemp];
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(model);
-
+                
             });
             
         }else{
-//            [MyUtil showMessage:message];
+            //            [MyUtil showMessage:message];
         }
         
         
@@ -813,8 +810,8 @@
 #pragma mark 收藏酒吧
 -(void) addMyBarWithParams:(NSDictionary*)params
                   complete:(void (^)(BOOL result))result{
-//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    [app startLoading];
+    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    //    [app startLoading];
     
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_ADD baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -823,24 +820,24 @@
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
             });
-//            [app stopLoading];
+            //            [app stopLoading];
             [MyUtil showPlaceMessage:message];
         }else{
             result(NO);
-//            [app stopLoading];
+            //            [app stopLoading];
             [MyUtil showPlaceMessage:message];
         }
     } failure:^(NSError *err) {
-//        [app stopLoading];
-          [MyUtil showPlaceMessage:@"点赞失败，请检查网络连接"];
+        //        [app stopLoading];
+        [MyUtil showPlaceMessage:@"点赞失败，请检查网络连接"];
         result(NO);
     }];
 }
 #pragma mark 删除收藏酒吧
 -(void) delMyBarWithParams:(NSDictionary*)params
                   complete:(void (^)(BOOL result))result{
-//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    [app startLoading];
+    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    //    [app startLoading];
     
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_DEL baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -857,10 +854,10 @@
         
         
     } failure:^(NSError *err) {
-//        [app stopLoading];
+        //        [app stopLoading];
         [MyUtil showPlaceMessage:@"取消点赞失败，请检查网络连接"];
         result(NO);
-     
+        
     }];
 }
 #pragma mark 信息中心
@@ -887,7 +884,7 @@
         //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
-
+    
 }
 #pragma mark查找好友
 -(void) getFindFriendListWithParams:(NSDictionary*)params
@@ -989,7 +986,7 @@
         //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
-
+    
 }
 #pragma mark - 获取用户标签
 -(void) getUserTags:(NSDictionary*)params
@@ -1016,8 +1013,8 @@
 
 #pragma mark 保存用户信息
 -(void) saveUserInfo:(NSDictionary*)params
-                  complete:(void (^)(BOOL result))result{
-
+            complete:(void (^)(BOOL result))result{
+    
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SAVE_USERINFO baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
@@ -1028,12 +1025,11 @@
             });
         }else{
             result(NO);
-         
+            
             [MyUtil showMessage:message];
         }
         
     } failure:^(NSError *err) {
-        NSLog(@"----pass-saveUserInfo :%@---",err.description);
         result(NO);
         
         
@@ -1059,13 +1055,45 @@
 #pragma mark 获取用户赞的酒吧
 + (void)getUserZangJiuBarListWithCompelet:(void(^)(NSArray *array))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GETUSERZANGJIUBA baseURL:LY_SERVER params:nil success:^(id response) {
-         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([code isEqualToString:@"1"]) {
             NSArray *jiubaArray = [JiuBaModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
             compelte(jiubaArray);
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NEEDGETCOLLECT"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark - 判断手机是否注册过
++ (void)getYZMForThirdthLoginWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSString *))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YZM_THIRDLOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *flag = response[@"data"][@"result"];
+        compelte(flag);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark - 绑定手机号
++ (void)tieQQWeixinAndSinaWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte{
+    NSLog(@"---->%@",paraDic);
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_TIE_OPENID baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+        NSString *errorCode = response[@"errorcode"];
+        compelte(errorCode.integerValue);
+    } failure:^(NSError *err) {
+        NSLog(@"--->%@",err.description);
+    }];
+    
+}
+
+#pragma mark - 绑定手机后用openId登录
++ (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void (^)(UserModel *))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_OPENID_LOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
+        UserModel *userModel=[UserModel mj_objectWithKeyValues:response[@"data"]];
+        compelte(userModel);
     } failure:^(NSError *err) {
         
     }];

@@ -19,11 +19,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *textField_YZM;
 @property (weak, nonatomic) IBOutlet UIImageView *textField_psw;
 @property (weak, nonatomic) IBOutlet UIImageView *textField_psw_little;
+@property (weak, nonatomic) IBOutlet UIImageView *textField_psw_third;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView_icon_four;
 
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTex;
 @property(nonatomic,strong) UserModel *userM;
 @property (nonatomic,unsafe_unretained) BOOL isTheThirdLogin;
+@property (nonatomic,copy) NSString *thirdLoginType;
 @property (weak, nonatomic) IBOutlet UITextField *yzmTex;
 @property (weak, nonatomic) IBOutlet UIButton *getYzmBtn;
 - (IBAction)getYzmAct:(UIButton *)sender;

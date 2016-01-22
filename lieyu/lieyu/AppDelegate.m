@@ -16,7 +16,7 @@
 #import "UMSocial.h"
 #import "UMSocialControllerService.h"
 #import "UMSocialWechatHandler.h"
-#import "UMSocialSinaHandler.h"
+#import "UMSocialSinaHandler.h"   
 #import "PTjoinInViewController.h"
 #import "LYUserLoginViewController.h"
 #import "CustomerModel.h"
@@ -539,31 +539,31 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 -(void)getUserInfoWithUserId:(NSString *)userId completion:(void(^)(RCUserInfo* userInfo))completion
 {
 //    LYUserHttpTool
-    
+    NSDictionary *dic = @{@"imUserId":userId};
+    [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
+        RCUserInfo *user = [[RCUserInfo alloc]init];
+        user.userId =result.imUserId;
+        user.name = result.name;
+        user.portraitUri = result.mark;
+        [[RCDataBaseManager shareInstance] insertUserToDB:user];
+        completion(user);
+    }];
     //看本地缓存是否存在
-    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
-    if (userInfo==nil) {
-        NSDictionary *dic = @{@"imUserId":userId};
-        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
-            RCUserInfo *user = [[RCUserInfo alloc]init];
-            user.userId =result.imUserId;
-            user.name = result.name;
-            user.portraitUri = result.mark;
-            [[RCDataBaseManager shareInstance] insertUserToDB:user];
-             completion(user);
-        }];
-    }else{
-        NSDictionary *dic = @{@"imUserId":userId};
-        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
-            RCUserInfo *user = [[RCUserInfo alloc]init];
-            user.userId =result.imUserId;
-            user.name = result.name;
-            user.portraitUri = result.mark;
-            [[RCDataBaseManager shareInstance] insertUserToDB:user];
-            
-        }];
-         completion(userInfo);
-    }
+//    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
+//    if (userInfo==nil) {
+//        
+//    }else{
+//        NSDictionary *dic = @{@"imUserId":userId};
+//        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
+//            RCUserInfo *user = [[RCUserInfo alloc]init];
+//            user.userId =result.imUserId;
+//            user.name = result.name;
+//            user.portraitUri = result.mark;
+//            [[RCDataBaseManager shareInstance] insertUserToDB:user];
+//            
+//        }];
+//         completion(userInfo);
+//    }
 }
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{

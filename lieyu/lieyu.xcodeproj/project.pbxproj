@@ -804,6 +804,13 @@
 		ADC66CE41C1FBB9900E597D9 /* LYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC66CE31C1FBB9900E597D9 /* LYNavigationController.m */; };
 		ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */; };
 		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
+		ADD1B45D1C527EE200A5237C /* LYAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1B45C1C527EE200A5237C /* LYAccountManager.m */; };
+		ADD1B4651C528EE100A5237C /* qq_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B45F1C528EE100A5237C /* qq_s@2x.png */; };
+		ADD1B4661C528EE100A5237C /* qq_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B4601C528EE100A5237C /* qq_s@3x.png */; };
+		ADD1B4671C528EE100A5237C /* sina_weibo_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B4611C528EE100A5237C /* sina_weibo_s@2x.png */; };
+		ADD1B4681C528EE100A5237C /* sina_weibo_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B4621C528EE100A5237C /* sina_weibo_s@3x.png */; };
+		ADD1B4691C528EE100A5237C /* wechat_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B4631C528EE100A5237C /* wechat_s@2x.png */; };
+		ADD1B46A1C528EE100A5237C /* wechat_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B4641C528EE100A5237C /* wechat_s@3x.png */; };
 		ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
 		ADD530411BDE1E9D002CF4D8 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD5303F1BDE1E9D002CF4D8 /* AlipaySDK.framework */; };
 		ADD530AF1BDE2BA3002CF4D8 /* AlipaySDK.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */; };
@@ -2185,6 +2192,14 @@
 		ADCDF7A91BF19A890040E9E3 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		ADCDF7AE1BF1A84F0040E9E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		ADCDF7B01BF1A8530040E9E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ADD1B45B1C527EE200A5237C /* LYAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAccountManager.h; sourceTree = "<group>"; };
+		ADD1B45C1C527EE200A5237C /* LYAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAccountManager.m; sourceTree = "<group>"; };
+		ADD1B45F1C528EE100A5237C /* qq_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_s@2x.png"; sourceTree = "<group>"; };
+		ADD1B4601C528EE100A5237C /* qq_s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_s@3x.png"; sourceTree = "<group>"; };
+		ADD1B4611C528EE100A5237C /* sina_weibo_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sina_weibo_s@2x.png"; sourceTree = "<group>"; };
+		ADD1B4621C528EE100A5237C /* sina_weibo_s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sina_weibo_s@3x.png"; sourceTree = "<group>"; };
+		ADD1B4631C528EE100A5237C /* wechat_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_s@2x.png"; sourceTree = "<group>"; };
+		ADD1B4641C528EE100A5237C /* wechat_s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_s@3x.png"; sourceTree = "<group>"; };
 		ADD5303E1BDE1E9D002CF4D8 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		ADD5303F1BDE1E9D002CF4D8 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		ADE1033B1BDE498F00D9EC38 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
@@ -5070,6 +5085,19 @@
 			path = UMessage_Sdk_1.2.0;
 			sourceTree = "<group>";
 		};
+		ADD1B45E1C528E8F00A5237C /* 第三方登陆 */ = {
+			isa = PBXGroup;
+			children = (
+				ADD1B45F1C528EE100A5237C /* qq_s@2x.png */,
+				ADD1B4601C528EE100A5237C /* qq_s@3x.png */,
+				ADD1B4611C528EE100A5237C /* sina_weibo_s@2x.png */,
+				ADD1B4621C528EE100A5237C /* sina_weibo_s@3x.png */,
+				ADD1B4631C528EE100A5237C /* wechat_s@2x.png */,
+				ADD1B4641C528EE100A5237C /* wechat_s@3x.png */,
+			);
+			name = "第三方登陆";
+			sourceTree = "<group>";
+		};
 		ADE103391BDE48CA00D9EC38 /* Alipay */ = {
 			isa = PBXGroup;
 			children = (
@@ -5214,6 +5242,8 @@
 				AD92AEB91BE50AD9009F2A34 /* AboutLieyu.h */,
 				AD92AEBA1BE50AD9009F2A34 /* AboutLieyu.m */,
 				AD92AEBB1BE50AD9009F2A34 /* AboutLieyu.xib */,
+				ADD1B45B1C527EE200A5237C /* LYAccountManager.h */,
+				ADD1B45C1C527EE200A5237C /* LYAccountManager.m */,
 			);
 			name = "设置";
 			sourceTree = "<group>";
@@ -5244,6 +5274,7 @@
 		ADE103C41BE0EBDC00D9EC38 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				ADD1B45E1C528E8F00A5237C /* 第三方登陆 */,
 				8550E71B1C302A10001FF2DE /* 玩友圈 */,
 				A2020D5C1BA67CCB0090B92A /* 个人中心 */,
 				85EC6A041C186A090082AA3E /* 离我最近 */,
@@ -6052,6 +6083,7 @@
 				15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */,
 				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
 				389C010A1C1488F000FE9412 /* seeGirls@3x.png in Resources */,
+				ADD1B4671C528EE100A5237C /* sina_weibo_s@2x.png in Resources */,
 				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
 				854CC9871C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib in Resources */,
 				85F5453E1C1408040013B92B /* circleWhiteSelect.png in Resources */,
@@ -6073,6 +6105,7 @@
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,
 				15EB354C1BD4839D00BA6161 /* UMShareEditViewController.xib in Resources */,
 				15EB354F1BD4839D00BA6161 /* UMSnsAccountViewController.xib in Resources */,
+				ADD1B46A1C528EE100A5237C /* wechat_s@3x.png in Resources */,
 				ADFFA6AB1C181B9100D9BD2A /* 3@2x.jpg in Resources */,
 				853C4C861C311A9900D48BA2 /* dizhi_icon@3x.png in Resources */,
 				853C4C741C311A6D00D48BA2 /* fabudongtai_xuanzedizhi@3x.png in Resources */,
@@ -6180,6 +6213,7 @@
 				38E5D6FA1C100B01004B49D2 /* TimePickerView.xib in Resources */,
 				38F0FE821C4692C30070092D /* haoyou_biaobai.png in Resources */,
 				38E5D7A21C113879004B49D2 /* choose@3x.png in Resources */,
+				ADD1B4691C528EE100A5237C /* wechat_s@2x.png in Resources */,
 				381A01F71C144E1B00592485 /* shoppingCar.png in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
 				853C4C8C1C311AAD00D48BA2 /* gengduo_icon@3x.png in Resources */,
@@ -6300,6 +6334,7 @@
 				ADFFA6CE1C181ED800D9BD2A /* refresh7@2x.png in Resources */,
 				15E2409B1BB296CF0090D240 /* OrderDetailCell.xib in Resources */,
 				853C4C6D1C311A5C00D48BA2 /* zengjia_icon@2x.png in Resources */,
+				ADD1B4651C528EE100A5237C /* qq_s@2x.png in Resources */,
 				D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */,
 				15E184751BB4EB7A00681BB2 /* LYZSdetailCell.xib in Resources */,
 				381FF0011C168755002A47BA /* icon_zixun_normal.png in Resources */,
@@ -6328,6 +6363,7 @@
 				851806861C2E89DC00006804 /* LYNewMessageTableViewCell.xib in Resources */,
 				ADFFA6CF1C181ED800D9BD2A /* refresh8@2x.png in Resources */,
 				85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */,
+				ADD1B4661C528EE100A5237C /* qq_s@3x.png in Resources */,
 				853C4C6C1C311A5C00D48BA2 /* zengjia_icon.png in Resources */,
 				3879F2581C0D32B900B72629 /* TaocanTableViewCell.xib in Resources */,
 				15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */,
@@ -6387,6 +6423,7 @@
 				85F5454C1C1454010013B92B /* camera.png in Resources */,
 				85F66E491C524F59005D1CD8 /* fujinwanyou@2x.png in Resources */,
 				A2020D7B1BA67FA40090B92A /* Fill20179.png in Resources */,
+				ADD1B4681C528EE100A5237C /* sina_weibo_s@3x.png in Resources */,
 				15EE515B1BA7085C00464B74 /* ZSAlreadyPayedViewController.xib in Resources */,
 				38E5D7F31C12DF0C004B49D2 /* comment@2x.png in Resources */,
 				15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */,
@@ -6879,6 +6916,7 @@
 				85F5452E1C13FAF50013B92B /* LYUserDetailTableViewCell.m in Sources */,
 				1559DD061BDA254600F3FE9B /* CarInfoModel.m in Sources */,
 				152247B71BEB064600E68A2B /* IQToolbar.m in Sources */,
+				ADD1B45D1C527EE200A5237C /* LYAccountManager.m in Sources */,
 				A2020D591BA6781B0090B92A /* FunctionListCell.m in Sources */,
 				1559DCF01BD9C7C800F3FE9B /* CHChooseNumView.m in Sources */,
 				15B8668F1BE0B04C002E2BB6 /* MyMessageListViewController.m in Sources */,

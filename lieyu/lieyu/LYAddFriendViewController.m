@@ -42,9 +42,9 @@
 - (IBAction)sendAct:(UIButton *)sender {
     NSDictionary *dic;
     if([_type isEqualToString:@"4"]){
-        dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.id],@"message":_messagetext.text,@"type":_type};
+        dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.id?_customerModel.id:_customerModel.userid?_customerModel.userid:_customerModel.friend],@"message":_messagetext.text,@"type":_type};
     }else{
-        dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.userid],@"message":_messagetext.text,@"type":_type};
+        dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.userid?_customerModel.userid:_customerModel.friend],@"message":_messagetext.text,@"type":_type};
     }
     
     [[LYUserHttpTool shareInstance] addFriends:dic complete:^(BOOL result) {
