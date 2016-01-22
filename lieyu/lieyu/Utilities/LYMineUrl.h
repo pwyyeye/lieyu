@@ -71,4 +71,12 @@
 //获取用户赞的酒吧
 #define LY_GETUSERZANGJIUBA @"userPraisedAction.do?action=list"
 
+//判断手机是否注册过
+#define LY_YZM_THIRDLOGIN @"registerAction.do?action=login"
+//绑定qq
+#define LY_TIE_OPENID @"portal/usersAction.do?action=logout"
+
+//openId登录
+#define LY_OPENID_LOGIN @"accountAction.do?action=login"
+
 #endif

@@ -61,7 +61,7 @@
     //7.设置预览图层填充方式
     [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     //8.设置图层的frame 115
-    [_videoPreviewLayer setFrame:_viewPreview.frame];
+    [_videoPreviewLayer setFrame:CGRectMake(23, 20, SCREEN_WIDTH - 26, SCREEN_HEIGHT - 115)];
     //9.将图层添加到预览view的图层上
     [_viewPreview.layer addSublayer:_videoPreviewLayer];
     //10.设置扫描范围
@@ -91,11 +91,11 @@
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         //判断回传的数据类型
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
-//            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
+            //            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
             NSURL* url = [[NSURL alloc] initWithString:[metadataObj stringValue]];
             [[ UIApplication sharedApplication]openURL:url];
-//            [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
-//            _isReading = NO;
+            //            [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
+            //            _isReading = NO;
         }
     }
 }

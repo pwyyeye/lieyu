@@ -655,11 +655,13 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
     NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"--->%@",dic);
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    app.userModel.avatar_img = dic[@"headimgurl"];
-    app.userModel.usernick = dic[@"nickname"];
-    app.userModel.gender = dic[@"sex"];
-    
+
+    UserModel *userM = [[UserModel alloc]init];
+    userM.avatar_img = dic[@"headimgurl"];
+    userM.usernick = dic[@"nickname"];
+    userM.gender = dic[@"sex"];
+    userM.openID = ((NSString *)dic[@"openid"]).integerValue;
+    compelete(userM);
     
     /*  [HTTPController requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openIdStr] baseURL:nil params:nil success:^(id response) {
      NSLog(@"---->%@",response);

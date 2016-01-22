@@ -16,7 +16,7 @@
 #import "UMSocial.h"
 #import "UMSocialControllerService.h"
 #import "UMSocialWechatHandler.h"
-#import "UMSocialSinaHandler.h"
+#import "UMSocialSinaHandler.h"   
 #import "PTjoinInViewController.h"
 #import "LYUserLoginViewController.h"
 #import "CustomerModel.h"

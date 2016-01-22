@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTex;
 @property(nonatomic,strong) UserModel *userM;
 @property (nonatomic,unsafe_unretained) BOOL isTheThirdLogin;
+@property (nonatomic,copy) NSString *thirdLoginType;
 @property (weak, nonatomic) IBOutlet UITextField *yzmTex;
 @property (weak, nonatomic) IBOutlet UIButton *getYzmBtn;
 - (IBAction)getYzmAct:(UIButton *)sender;

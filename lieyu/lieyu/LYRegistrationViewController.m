@@ -10,8 +10,11 @@
 #import "LYUserHttpTool.h"
 #import "LYUserDetailInfoViewController.h"
 #import "LYUserLoginViewController.h"
+#import "HomePageINeedPlayViewController.h"
+
 @interface LYRegistrationViewController (){
     BOOL _isRegisted;
+    NSString *_flag;
 }
 
 @end
@@ -122,16 +125,22 @@ static LYRegistrationViewController *_registe;
     __block LYRegistrationViewController *weakSelf = self;
     if(_isTheThirdLogin){
         [LYUserHttpTool getYZMForThirdthLoginWithPara:dic compelte:^(NSString *flag) {//1 注册过 0 未注册过
-            if([flag isEqualToString:@"1"]){//注册过去绑定
-                NSDictionary *paraDic = @{@"mobile":weakSelf.phoneTex.text,@"captchas":self.yzmTex.text,@"weibo":[NSString stringWithFormat:@"%ld",_userM.openID]};
-                [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
-                    if (flag) {//绑定
-                        
-                    }
-                }];
-            }else{//未注册显示注册等控件
-                
+            _flag = flag;
+            [_timer setFireDate:[NSDate distantPast]];
+            if([flag isEqualToString:@"0"]){
+                //未注册显示注册等控件
+                weakSelf.title = @"注册";
+                _textField_psw.hidden = NO;
+                _passWordTex.hidden = NO;
+                _againPassWordTex.hidden = NO;
+                _textField_psw_little.hidden = NO;
+                [_btn_regist setTitle:@"立即注册" forState:UIControlStateNormal];
+                _isRegisted = YES;
+            }else{
+                _isRegisted = NO;
             }
+            
+            
         }];
     }else{
     [[LYUserHttpTool shareInstance] getYanZhengMa:dic complete:^(BOOL result) {
@@ -153,7 +162,28 @@ static LYRegistrationViewController *_registe;
         [MyUtil showMessage:@"请输入验证码!"];
         return;
     }
-    if(_isRegisted){//绑定手机号
+    if(!_isRegisted){//绑定手机号
+        if([_flag isEqualToString:@"1"]){//注册过去绑定
+            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"weibo":[NSString stringWithFormat:@"%ld",_userM.openID]};
+            __block LYRegistrationViewController *weakSelf = self;
+            [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
+                if (flag) {//绑定
+                    [MyUtil showPlaceMessage:@"绑定成功"];
+                    
+                    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]]};
+                    [LYUserHttpTool userLoginFromOpenIdWithPara:paraDic compelte:^(UserModel *userModel) {
+                        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                        app.s_app_id=userModel.token;
+                        app.userModel=userModel;
+                        [app getImToken];
+                        
+                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                    }];
+                }else{
+                    [MyUtil showPlaceMessage:@"绑定失败"];
+                }
+            }];
+        }
         
     }else{
         if(self.passWordTex.text.length<1){
@@ -168,7 +198,7 @@ static LYRegistrationViewController *_registe;
             [MyUtil showMessage:@"两次输入密码不一致!"];
             return;
         }
-        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text]};
+        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text],@"type":_thirdLoginType,@"openId":[NSString stringWithFormat:@"%ld",_userM.openID]};
         [[LYUserHttpTool shareInstance] setZhuCe:dic complete:^(BOOL result) {
             if (result) {
                 [_timer setFireDate:[NSDate distantPast]];
@@ -191,7 +221,7 @@ static LYRegistrationViewController *_registe;
     }
 }
 
-- (IBAction)exitEdit:(UITextField *)sender {
-    [sender resignFirstResponder];
-}
+//- (IBAction)exitEdit:(UITextField *)sender {
+//    [sender resignFirstResponder];
+//}
 @end
