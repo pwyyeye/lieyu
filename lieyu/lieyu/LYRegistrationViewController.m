@@ -125,7 +125,7 @@ static LYRegistrationViewController *_registe;
             if([flag isEqualToString:@"1"]){//注册过去绑定
                 NSDictionary *paraDic = @{@"mobile":weakSelf.phoneTex.text,@"captchas":self.yzmTex.text,@"weibo":[NSString stringWithFormat:@"%ld",_userM.openID]};
                 [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
-                    if (flag) {//
+                    if (flag) {//绑定
                         
                     }
                 }];
