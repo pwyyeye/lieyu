@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *textField_YZM;
 @property (weak, nonatomic) IBOutlet UIImageView *textField_psw;
 @property (weak, nonatomic) IBOutlet UIImageView *textField_psw_little;
+@property (weak, nonatomic) IBOutlet UIImageView *textField_psw_third;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView_icon_four;
 
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTex;

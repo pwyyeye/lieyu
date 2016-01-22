@@ -71,9 +71,11 @@
 
 #pragma mark - 第三方登录
 + (void)userLoginFromQQWeixinAndSinaWithParams:(NSDictionary*)params compelte:(void(^)(NSInteger flag,UserModel *userModel))compelte{
+    NSLog(@"---->%@",params);
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_DL_THIRD baseURL:LY_SERVER params:params success:^(id response) {
         if([response[@"errorcode"] isEqualToString:@"-2"]){//登录失败
             compelte(0,nil);
+            [MyUtil showPlaceMessage:@"登录失败"];
         }else{//登录成功
             UserModel *userM = [UserModel mj_objectWithKeyValues:response[@"data"]];
             compelte(1,userM);
@@ -1077,11 +1079,12 @@
 
 #pragma mark - 绑定手机号
 + (void)tieQQWeixinAndSinaWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte{
+    NSLog(@"---->%@",paraDic);
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_TIE_OPENID baseURL:QINIU_SERVER params:paraDic success:^(id response) {
         NSString *errorCode = response[@"errorcode"];
         compelte(errorCode.integerValue);
     } failure:^(NSError *err) {
-        
+        NSLog(@"--->%@",err.description);
     }];
     
 }
@@ -1090,6 +1093,7 @@
 + (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void (^)(UserModel *))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_OPENID_LOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
         UserModel *userModel=[UserModel mj_objectWithKeyValues:response[@"data"]];
+        compelte(userModel);
     } failure:^(NSError *err) {
         
     }];

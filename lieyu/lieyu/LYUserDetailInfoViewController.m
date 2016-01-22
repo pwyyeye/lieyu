@@ -27,6 +27,7 @@
     LYUserDetailSexTableViewCell *_sexCell;
     LYUserDetailTableViewCell *_birthCell;
      LYUserDetailTableViewCell *_tagCell;
+    NSString *_keyStr;
     NSDate *_chooseBirthDate;
     NSString *_tagNames;
     UIImage *_imageIcon;
@@ -105,7 +106,11 @@
     if (!indexPath.row) {//头像
         _selectcedCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailCameraTableViewCell" forIndexPath:indexPath];
         NSString *avatarImgStr = nil;
-        if(_userM) avatarImgStr = _userM.avatar_img;
+        if(_userM) {
+            
+            avatarImgStr = _userM.avatar_img;
+            mod.avatar_img = _userM.avatar_img;
+        }
         else avatarImgStr = mod.avatar_img;
         [_selectcedCell.btn_userImage sd_setBackgroundImageWithURL:[NSURL URLWithString:avatarImgStr] forState:UIControlStateNormal];
         [_selectcedCell.btn_userImage addTarget:self action:@selector(chooseImage) forControlEvents:UIControlEventTouchUpInside];
@@ -392,6 +397,7 @@
     [_selectcedCell.btn_userImage setBackgroundImage:scaledImage forState:UIControlStateNormal];
     
     [HTTPController uploadImageToQiuNiu:scaledImage complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+        _keyStr = key;
         if (![MyUtil isEmptyString:key]) {
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             UserModel *mod= app.userModel;
@@ -436,16 +442,13 @@
         [MyUtil showMessage:@"昵称不能为空"];
         [_nickCell.textF_content endEditing:NO];
         return;
-    }else if(_nickCell.textF_content.text.length >= 8){
+    }else if(_nickCell.textF_content.text.length >= 12){
         [MyUtil showMessage:@"昵称不能超过八个字符"];
         [_nickCell.textF_content endEditing:NO];
         return;
     }
     
-    if(_imageIcon == nil){
-        [MyUtil showMessage:@"请选择头像"];
-      return;
-    }
+    
     
     NSMutableDictionary *userinfo=[NSMutableDictionary new];
     
@@ -473,6 +476,13 @@
     
     if([MyUtil isEmptyString:_userTag.name]){
         [MyUtil showMessage:@"请选择标签"];
+        return;
+    }
+    if(_keyStr == nil) [userinfo setObject:_userM.avatar_img forKey:@"avatar_img"];
+    
+    if(_selectcedCell.btn_userImage.currentBackgroundImage == nil){
+        [MyUtil showMessage:@"请选择头像"];
+        
         return;
     }
     
