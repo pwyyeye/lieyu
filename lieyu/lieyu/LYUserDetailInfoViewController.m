@@ -494,7 +494,7 @@
     [userinfo setObject:[NSString stringWithFormat:@"%@",sexNum] forKey:@"gender"];
     
     if(_userM.openID && _thirdLoginType){
-        [userinfo setObject:[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]] forKey:@"openId"];
+        [userinfo setObject:[MyUtil encryptUseDES:_userM.openID] forKey:@"openId"];
         [userinfo setObject:_thirdLoginType forKey:@"type"];
     }
     

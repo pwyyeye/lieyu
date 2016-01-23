@@ -316,6 +316,7 @@
     UserModel *userModel = [[UserModel alloc]init];
     userModel.usernick = response.jsonResponse[@"nickname"];
     userModel.gender = [response.jsonResponse[@"gender"] isEqualToString:@"男"] ? @"1" : @"0";
+     userModel.openID =  _tencentOAuth.openId;
     
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
         if (sucess) {//登录成功
@@ -327,7 +328,7 @@
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
-            userModel.openID = _tencentOAuth.openId.integerValue;
+           
             registVC.userM = userModel;
             
             registVC.isTheThirdLogin = YES;
@@ -388,7 +389,7 @@
 
 - (void)weiXinLoginWith:(UserModel *)userModel{
     __block LYUserLoginViewController *weakSelf = self;
-    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES: [NSString stringWithFormat:@"%ld",userModel.openID]]};
+    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:userModel.openID]};
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
         if (sucess) {//登录成功
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -421,7 +422,7 @@
                 UserModel *userModel = [[UserModel alloc]init];
                 userModel.usernick = snsAccount.userName;
                 userModel.avatar_img = snsAccount.iconURL;
-                userModel.openID = snsAccount.usid.integerValue;
+                userModel.openID = snsAccount.usid;
                 
                 NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:snsAccount.usid]};
                 NSLog(@"---->%@",paraDic);
@@ -437,7 +438,7 @@
                     }else{//去绑定手机好
                         [MyUtil showPlaceMessage:@"绑定手机号"];
                         LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
-                        userModel.openID = snsAccount.usid.integerValue;
+                        userModel.openID = snsAccount.usid;
                         registVC.userM = userModel;
                         registVC.isTheThirdLogin = YES;
                         registVC.thirdLoginType = @"3";

@@ -173,13 +173,13 @@ static LYRegistrationViewController *_registe;
             else if([_thirdLoginType isEqualToString:@"2"]) plantType = @"wechat";
             else plantType = @"weibo";
             if(plantType == nil) return;
-            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,plantType:[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]]};
+            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,plantType:[MyUtil encryptUseDES:_userM.openID]};
             __block LYRegistrationViewController *weakSelf = self;
             [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
                 if (flag) {//绑定
                     [MyUtil showPlaceMessage:@"绑定成功"];
                     
-                    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]]};
+                    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:_userM.openID]};
                     [LYUserHttpTool userLoginFromOpenIdWithPara:paraDic compelte:^(UserModel *userModel) {
                         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                         app.s_app_id=userModel.token;
@@ -207,7 +207,7 @@ static LYRegistrationViewController *_registe;
             [MyUtil showMessage:@"两次输入密码不一致!"];
             return;
         }
-        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text],@"type":_thirdLoginType,@"openId":[NSString stringWithFormat:@"%ld",_userM.openID]};
+        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text],@"type":_thirdLoginType,@"openId":[MyUtil encryptUseDES:_userM.openID]};
         [[LYUserHttpTool shareInstance] setZhuCe:dic complete:^(BOOL result) {
             if (result) {
                 [_timer setFireDate:[NSDate distantPast]];
