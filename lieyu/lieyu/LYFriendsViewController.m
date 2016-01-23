@@ -167,18 +167,19 @@
 
 - (void)onTimer{
     [self getFriendsNewMessage];
-    
 }
 
 #pragma mark - 登录后获取数据
 - (void)loginAndLoadData{
+    _friendsBtn.alpha = 1;
+    _myBtn.alpha = 0.5;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    [app startLoading];
+    [app startLoading];
     if(app.userModel)  _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     else return;
+    
     [self getDataFriendsWithSetContentOffSet:NO];
     self.navigationController.navigationBarHidden = NO;
-//    [app stopLoading];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginAndLoadData" object:nil];
 }
 
@@ -446,6 +447,8 @@
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr};
     [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [app stopLoading];
         _index = 0;
         if(dataArray.count){
                 if(_pageStartCountFriends == 0){
@@ -468,6 +471,9 @@
 
 #pragma mark - 获取最新我的数据
 - (void)getDataMysWithSetContentOffSet:(BOOL)need{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountMys * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
