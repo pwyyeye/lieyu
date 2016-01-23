@@ -45,7 +45,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     //设置电池状态栏为白色
