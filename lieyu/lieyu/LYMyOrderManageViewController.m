@@ -39,17 +39,18 @@
     self.btn_yue.layer.cornerRadius = 5;
     self.btn_yue.layer.masksToBounds = YES;
     //自定义返回
-    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-    [button addTarget:self action: @selector(gotoBack)
-     forControlEvents:UIControlEventTouchUpInside];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-    [view addSubview:button];
-    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
-    self.navigationItem.leftBarButtonItem = customBarItem;
-
+//    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [button setImage:buttonImage forState:UIControlStateNormal];
+//    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+//    [button addTarget:self action: @selector(gotoBack)
+//     forControlEvents:UIControlEventTouchUpInside];
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
+//    [view addSubview:button];
+//    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+//    self.navigationItem.leftBarButtonItem = customBarItem;
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.backBarButtonItem = left;
     self.title=@"我的订单";
     pageCount=1;
     perCount=5;
@@ -888,7 +889,7 @@
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             // 把单聊视图控制器添加到导航栈。
-            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
             conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }else{
@@ -901,7 +902,7 @@
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             // 把单聊视图控制器添加到导航栈。
-            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
             conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }
@@ -915,7 +916,7 @@
         [IQKeyboardManager sharedManager].isAdd = YES;
         [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
         // 把单聊视图控制器添加到导航栈。
-        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
         conversationVC.navigationItem.leftBarButtonItem = left;
         
         [self.navigationController pushViewController:conversationVC animated:YES];
@@ -1075,7 +1076,8 @@
         }
     }
     
-    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.backBarButtonItem = left;
     
     [self.navigationController pushViewController:detailViewController animated:YES];
     

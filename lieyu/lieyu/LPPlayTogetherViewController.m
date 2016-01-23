@@ -437,7 +437,7 @@
     conversationVC.targetId = @"KEFU144946169476221";
     conversationVC.userName = @"猎娱客服";
     conversationVC.title = @"猎娱客服";
-    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
     conversationVC.navigationItem.leftBarButtonItem = leftBtn;
     [self.navigationController pushViewController:conversationVC animated:YES];
 }

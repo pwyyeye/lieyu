@@ -37,7 +37,7 @@ static LYRegistrationViewController *_registe;
     [_timer setFireDate:[NSDate distantFuture]];
     
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
     self.navigationItem.leftBarButtonItem = left;
     /*
     CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);

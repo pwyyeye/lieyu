@@ -54,7 +54,7 @@
     _searchBar.returnKeyType = UIReturnKeySearch;
     self.tableView.tableFooterView = [[UIView alloc]init];
     
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
 }
 
@@ -166,9 +166,11 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    NSString *string = [searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     [searchBar endEditing:NO];
-    if (!searchBar.text.length) {
+    if (!string.length) {
         self.tableView.hidden = YES;
+        [MyUtil showCleanMessage:@"请输入正确字符"];
         [self loadHisData];
         return;
     }
