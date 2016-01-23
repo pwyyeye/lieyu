@@ -141,7 +141,7 @@
                             <constraint firstAttribute="height" constant="17" id="OKE-21-cDb"/>
                             <constraint firstAttribute="width" constant="30" id="pNj-dR-17a"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -151,7 +151,7 @@
                             <constraint firstAttribute="height" constant="17" id="2jD-jH-VaA"/>
                             <constraint firstAttribute="width" constant="30" id="Xvi-Ga-Swi"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -316,9 +316,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CommonIcon" width="84" height="84"/>
+        <image name="CommonIcon" width="43" height="43"/>
         <image name="address" width="25" height="24"/>
-        <image name="fire" width="72" height="80"/>
+        <image name="fire" width="84" height="84"/>
         <image name="icon_star" width="15" height="15"/>
         <image name="zang" width="15" height="13"/>
     </resources>
