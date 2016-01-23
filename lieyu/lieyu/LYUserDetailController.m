@@ -133,7 +133,13 @@
     }else if(indexPath.row==3){
         label.text=mod.birthday;
         if (![MyUtil isEmptyString:mod.birthday]) {
-            NSDate *birthday=[MyUtil getDateFromString:mod.birthday];
+            
+            NSDate *birthday;
+            if (![mod.birthday isEqualToString:@"1990-04-15"]) {
+                birthday=[MyUtil getDateFromString:mod.birthday];
+            }else{
+                birthday=[MyUtil getFullDateFromString:[NSString stringWithFormat:@"%@ 1:00:00",mod.birthday] ];
+            }
             [_datePicker setDate:birthday animated:NO];
         }else{
             [_datePicker setDate:[NSDate date] animated:NO];
@@ -418,8 +424,8 @@
         return;
     }
     
-    if(tf.text.length >= 8) {
-        [MyUtil showCleanMessage:@"昵称不能超过八个字符"];
+    if(tf.text.length > 8) {
+        [MyUtil showCleanMessage:@"昵称不能超过八个汉字"];
         return;
     }
     

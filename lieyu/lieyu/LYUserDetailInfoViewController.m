@@ -288,14 +288,14 @@
     
     mod.tags=[usertags copy];
     
-    _tagCell.textF_content.text=tagNames;
+    _tagCell.textF_content.text=tagNames;     
     NSMutableDictionary *userinfo=[NSMutableDictionary new];
     [userinfo setObject:tagids forKey:@"tag"];
     [self savaUserInfo:userinfo needReload:NO];
 }
 */
 
-#pragma mark - 保存用户信息  
+#pragma mark - 保存用户信息
 -(void)savaUserInfo:(NSMutableDictionary *)userInfo needReload:(BOOL)isNeed{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UserModel *mod= app.userModel;
