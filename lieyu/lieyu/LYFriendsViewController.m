@@ -852,7 +852,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
-        _commentView.btn_send_cont_width.constant = 30;
+        _commentView.btn_send_cont_width.constant = 60;
         [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
         [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
         [self updateViewConstraints];
