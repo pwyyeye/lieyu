@@ -416,8 +416,19 @@
             }
             FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
             NSString *string = [NSString stringWithFormat:@"%@:%@",commentModel.nickName,commentModel.comment];
-            CGSize size = [string boundingRectWithSize:CGSizeMake(235, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-            return size.height >= 34 ? size.height + 14 : 34;
+//            CGSize size = [string boundingRectWithSize:CGSizeMake(235, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+//            return size.height >= 34 ? size.height + 14 : 34;
+            
+            
+            CGSize size = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 71, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGFloat height;
+            if (size.height + 10 < 36) {
+                height = 36;
+            }else {
+                height = size.height + 15;
+            }
+            return height;
+            
             break;
     }
 }

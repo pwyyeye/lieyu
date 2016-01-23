@@ -236,15 +236,21 @@
                 CarModel *mo=carInfoModel.cartlist.firstObject;
                 detailViewController.productName=mo.product.fullname;
                 detailViewController.productDescription=@"暂无";
-                self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-                
-                [self.navigationController pushViewController:detailViewController animated:YES];
+                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+                self.navigationItem.backBarButtonItem = left;
+//                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:detailViewController action:@selector(backForward)];
+//                detailViewController.navigationItem.leftBarButtonItem = left;
+//                [self.navigationController pushViewController:detailViewController animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
 
             }
         }];
         
     }
+}
+
+- (void)backForward{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

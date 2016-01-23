@@ -30,7 +30,7 @@
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
     [_dataArray addObjectsFromArray:self.beerBarArray];
    _dataArray = [[_dataArray sortedArrayUsingSelector:@selector(compareJiuBaModel:)] mutableCopy];
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
 }
 

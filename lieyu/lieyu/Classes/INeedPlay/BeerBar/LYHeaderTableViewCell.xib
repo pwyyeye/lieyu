@@ -11,43 +11,10 @@
             <rect key="frame" x="0.0" y="0.0" width="317" height="215"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="317" height="214"/>
+                <rect key="frame" x="0.0" y="0.0" width="317" height="214.5"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4U-Xs-aaT">
-                        <rect key="frame" x="44" y="192" width="268" height="18"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="18" id="aKi-YZ-NaZ"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="laBa" translatesAutoresizingMaskIntoConstraints="NO" id="SMf-Q5-5oE">
-                        <rect key="frame" x="15" y="195" width="21" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="21" id="WUE-x3-TYJ"/>
-                            <constraint firstAttribute="height" constant="12" id="x2x-QS-hju"/>
-                        </constraints>
-                    </imageView>
-                </subviews>
-                <constraints>
-                    <constraint firstAttribute="trailing" secondItem="E4U-Xs-aaT" secondAttribute="trailing" constant="5" id="9ma-4h-dba"/>
-                    <constraint firstItem="SMf-Q5-5oE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="BeK-Hv-Adu"/>
-                    <constraint firstAttribute="bottom" secondItem="E4U-Xs-aaT" secondAttribute="bottom" constant="4" id="Qps-nP-eQ2"/>
-                    <constraint firstItem="E4U-Xs-aaT" firstAttribute="leading" secondItem="SMf-Q5-5oE" secondAttribute="trailing" constant="8" id="RuT-1e-KTG"/>
-                    <constraint firstAttribute="bottom" secondItem="SMf-Q5-5oE" secondAttribute="bottom" constant="7" id="agD-qm-G3m"/>
-                </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="image_laBa" destination="SMf-Q5-5oE" id="nNL-1r-M1S"/>
-                <outlet property="label_laBa" destination="E4U-Xs-aaT" id="riB-pp-3gE"/>
-            </connections>
-            <point key="canvasLocation" x="422.5" y="477.5"/>
+            <point key="canvasLocation" x="292.5" y="295.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="laBa" width="32" height="32"/>
-    </resources>
 </document>

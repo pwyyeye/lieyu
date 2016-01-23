@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *line1Heght;
 //头像
 @property (weak, nonatomic) IBOutlet UIImageView *avatar_img;
+@property (weak, nonatomic) IBOutlet UIButton *avatar_btn;
 //昵称
 @property (weak, nonatomic) IBOutlet UILabel *userNick;
 //年龄

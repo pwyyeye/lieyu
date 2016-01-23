@@ -206,7 +206,7 @@
         <image name="passWord" width="22" height="22"/>
         <image name="phoneNumber" width="22" height="22"/>
         <image name="purpleBtnBG.png" width="2" height="54"/>
-        <image name="textFieldLong" width="320" height="567"/>
+        <image name="textFieldLong" width="32" height="32"/>
         <image name="textFieldShort" width="174" height="54"/>
         <image name="yanZhengMa" width="22" height="22"/>
     </resources>

@@ -382,7 +382,7 @@ UITableViewDataSource,UITableViewDelegate,
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
                 [bigArr addObject:dicTemp];
             }
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 8)/21)
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 9)/16)
                                                                   scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
             scroller.delegate=self;
             scroller.tag=1999;
@@ -429,7 +429,7 @@ UITableViewDataSource,UITableViewDelegate,
     switch (indexPath.section) {
         case 0:
         {
-            h = (SCREEN_WIDTH * 8)/21;
+            h = (SCREEN_WIDTH * 9)/16;
         }
             break;
         case 1:

@@ -104,16 +104,19 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         [MTA trackPageViewEnd:self.title];
     }
 }
+
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
+
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     if (self.navigationController.navigationBarHidden==NO) {
         [self.navigationController setNavigationBarHidden:YES];
     }
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -258,7 +261,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.title = @"猎娱客服";
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
-            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
             conversationVC.navigationItem.leftBarButtonItem = leftBtn;
             
             [self.navigationController pushViewController:conversationVC animated:YES];
