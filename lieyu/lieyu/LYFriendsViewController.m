@@ -6,7 +6,7 @@
 //  Copyright © 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "LYFriendsViewController.h"
+#import "LYFriendsViewController.h"    
 #import "LYFriendsNameTableViewCell.h"
 #import "LYFriendsAddressTableViewCell.h"
 #import "LYFriendsLikeTableViewCell.h"
