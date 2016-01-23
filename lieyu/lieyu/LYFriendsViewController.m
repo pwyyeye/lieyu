@@ -1349,7 +1349,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
-            CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 71, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             CGFloat height;
             if (size.height + 10 < 36) {
                 height = 36;

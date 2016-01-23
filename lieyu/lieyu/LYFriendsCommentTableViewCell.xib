@@ -21,19 +21,19 @@
                             <constraint firstAttribute="width" constant="12" id="fqZ-T8-UX7"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-dc-DES" customClass="LYFriendsCommentButton">
-                        <rect key="frame" x="35" y="5" width="26" height="26"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="26" id="40D-ui-XM1"/>
-                            <constraint firstAttribute="height" constant="26" id="dFJ-sJ-DpZ"/>
-                        </constraints>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2a1-5q-Rjt">
                         <rect key="frame" x="71" y="5" width="239" height="84"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-dc-DES" customClass="LYFriendsCommentButton">
+                        <rect key="frame" x="37" y="5" width="26" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="26" id="40D-ui-XM1"/>
+                            <constraint firstAttribute="height" constant="26" id="dFJ-sJ-DpZ"/>
+                        </constraints>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2a1-5q-Rjt" firstAttribute="leading" secondItem="hDf-dc-DES" secondAttribute="trailing" constant="10" id="KNT-r5-LWi"/>
