@@ -50,7 +50,7 @@
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
     _step=1;
     
-    //    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+
     _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 400, 100, 30)];
     [_qqBtn setTitle:@"qq登录" forState:UIControlStateNormal];
     _qqBtn.backgroundColor = [UIColor redColor];
@@ -317,6 +317,8 @@
     UserModel *userModel = [[UserModel alloc]init];
     userModel.usernick = response.jsonResponse[@"nickname"];
     userModel.gender = [response.jsonResponse[@"gender"] isEqualToString:@"男"] ? @"1" : @"0";
+    userModel.avatar_img=response.jsonResponse[@"figureurl_qq_2"];
+    
      userModel.openID =  _tencentOAuth.openId;
     
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {

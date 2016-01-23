@@ -7,8 +7,9 @@
 //
 
 #import "LYBaseTableViewController.h"
+#import <TencentOpenAPI/TencentOAuth.h>
 
-@interface LYAccountManager : LYBaseTableViewController
+@interface LYAccountManager : LYBaseTableViewController<UIActionSheetDelegate>
 @property(strong,nonatomic) NSArray *data;
-
+@property(strong,nonatomic) TencentOAuth *tencentOAuth;;
 @end

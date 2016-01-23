@@ -458,9 +458,9 @@
     // UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];//原始图
     UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];
     
-    UIGraphicsBeginImageContext(CGSizeMake(200, 200));  //size 为CGSize类型，即你所需要的图片尺寸
+    UIGraphicsBeginImageContext(CGSizeMake(800, 800));  //size 为CGSize类型，即你所需要的图片尺寸
     
-    [image drawInRect:CGRectMake(0, 0, 200, 200)];
+    [image drawInRect:CGRectMake(0, 0, 800, 800)];
     
     UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     

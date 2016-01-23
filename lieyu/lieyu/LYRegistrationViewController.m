@@ -39,21 +39,7 @@ static LYRegistrationViewController *_registe;
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
     self.navigationItem.leftBarButtonItem = left;
-    /*
-    CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);
-    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-    [RGB(35, 166, 116) set];
-    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
-    UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [self.getYzmBtn setBackgroundImage:normalImg  forState:UIControlStateNormal];
-    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-    [RGB(199, 199, 199) set];
-    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
-    UIImage *selectedImg = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    [self.getYzmBtn setBackgroundImage:selectedImg  forState:UIControlStateDisabled];
-    */
+  
     // Do any additional setup after loading the view from its nib.
     
     if(_isTheThirdLogin){
@@ -144,7 +130,7 @@ static LYRegistrationViewController *_registe;
             }else{//已注册去绑定
                 _isRegisted = NO;
             }
-            
+            [_yzmTex becomeFirstResponder];
             
         }];
     }else{
@@ -152,6 +138,7 @@ static LYRegistrationViewController *_registe;
         if (result) {
             [_timer setFireDate:[NSDate distantPast]];
           [MyUtil showMessage:@"验证码发送成功请输入短信中的验证码!"];
+            [_yzmTex becomeFirstResponder];
         }
     }];
     }
@@ -195,6 +182,44 @@ static LYRegistrationViewController *_registe;
             }];
         }
         
+    }else if(_isTheThirdLogin){
+        if(self.passWordTex.text.length<1){
+            [MyUtil showMessage:@"请输入密码!"];
+            return;
+        }
+        if(self.againPassWordTex.text.length<1){
+            [MyUtil showMessage:@"请输入重置密码!"];
+            return;
+        }
+        if(![self.againPassWordTex.text isEqualToString:self.passWordTex.text]){
+            [MyUtil showMessage:@"两次输入密码不一致!"];
+            return;
+        }
+        
+        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text],@"type":_thirdLoginType,@"openId":[MyUtil encryptUseDES:_userM.openID]};
+        __weak LYRegistrationViewController *weakself=self;
+        [[LYUserHttpTool shareInstance] setThirdZhuCe:dic complete:^(BOOL result) {
+            if (result) {
+                [_timer setFireDate:[NSDate distantPast]];
+                
+                [weakself.delegate registration];
+                [USER_DEFAULT setObject:self.phoneTex.text forKey:@"username"];
+                [USER_DEFAULT setObject:[MyUtil md5HexDigest:self.passWordTex.text] forKey:@"pass"];
+                
+                LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+                [loginVC autoLogin];
+                
+                LYUserDetailInfoViewController *detailVC = [[LYUserDetailInfoViewController alloc]init];
+                detailVC.userM = _userM;
+                detailVC.thirdLoginType = _thirdLoginType;
+                detailVC.isAutoLogin = YES;
+                UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+                detailVC.navigationItem.leftBarButtonItem = leftBtn;
+                
+                [weakself.navigationController pushViewController:detailVC animated:YES];
+            }
+        }];
+        
     }else{
         if(self.passWordTex.text.length<1){
             [MyUtil showMessage:@"请输入密码!"];
@@ -208,7 +233,7 @@ static LYRegistrationViewController *_registe;
             [MyUtil showMessage:@"两次输入密码不一致!"];
             return;
         }
-        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text],@"type":_thirdLoginType,@"openId":[MyUtil encryptUseDES:_userM.openID]};
+        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text]};
         [[LYUserHttpTool shareInstance] setZhuCe:dic complete:^(BOOL result) {
             if (result) {
                 [_timer setFireDate:[NSDate distantPast]];
@@ -231,6 +256,7 @@ static LYRegistrationViewController *_registe;
 
     }
 }
+
 
 - (IBAction)exitEdit:(UITextField *)sender {
     [sender resignFirstResponder];

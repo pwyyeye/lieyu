@@ -313,6 +313,14 @@
                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                 NSString *date = [dateFormatter stringFromDate:_chooseBirthDate];
                 app.userModel.age=[MyUtil getAgefromDate:date];
+                if(_keyStr == nil && _userM.avatar_img != nil){
+                    app.userModel.avatar_img=_userM.avatar_img;
+                }
+                else{
+                    if([MyUtil isEmptyString:_keyStr]) return;
+                    app.userModel.avatar_img=_keyStr;
+                }
+                
             }
             
              [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
@@ -386,9 +394,9 @@
     // UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];//原始图
     UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];
     _imageIcon = image;
-    UIGraphicsBeginImageContext(CGSizeMake(200, 200));  //size 为CGSize类型，即你所需要的图片尺寸
+    UIGraphicsBeginImageContext(CGSizeMake(800, 800));  //size 为CGSize类型，即你所需要的图片尺寸
     
-    [image drawInRect:CGRectMake(0, 0, 200, 200)];
+    [image drawInRect:CGRectMake(0, 0, 800, 800)];
     
     UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -484,11 +492,12 @@
         return;
     }
     if(_keyStr == nil && _userM.avatar_img != nil){
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        [userinfo setObject:_userM.avatar_img forKey:@"avatar_img"];
+        [userinfo setObject:_userM.avatar_img forKey:@"avatar_img"];
     }
     else{
         if([MyUtil isEmptyString:_keyStr]) return;
         [userinfo setObject:_keyStr forKey:@"avatar_img"];
+
     }
     
     [userinfo setObject:[NSString stringWithFormat:@"%@",sexNum] forKey:@"gender"];

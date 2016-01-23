@@ -32,6 +32,10 @@
 
 //注册
 #define LY_ZC  @"registerAction.do?action=add"
+
+//第三方注册
+#define LY_THIRD_ZC  @"osregisterAction.do?action=cancel"
+
 //找回密码
 #define LY_GET_PW  @"registerAction.do?action=update"
 //登录
