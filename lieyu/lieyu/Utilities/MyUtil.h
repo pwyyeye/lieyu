@@ -92,4 +92,6 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 + (NSString *)calculateDateFromNowWith:(NSString *)dateString;
 
 + (void)showLikePlaceMessage:(NSString* )message;
+
+
 @end
