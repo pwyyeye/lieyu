@@ -56,10 +56,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woman" translatesAutoresizingMaskIntoConstraints="NO" id="7pG-d2-QDP">
-                            <rect key="frame" x="279" y="13" width="25" height="20"/>
+                            <rect key="frame" x="288" y="13" width="16" height="16"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="25" id="HUJ-qJ-IiT"/>
-                                <constraint firstAttribute="height" constant="20" id="rhW-5Q-KpM"/>
+                                <constraint firstAttribute="width" constant="16" id="HUJ-qJ-IiT"/>
+                                <constraint firstAttribute="height" constant="16" id="rhW-5Q-KpM"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSd-Jf-J92">
@@ -211,6 +211,6 @@
         </view>
     </objects>
     <resources>
-        <image name="woman" width="30" height="30"/>
+        <image name="woman" width="16" height="16"/>
     </resources>
 </document>

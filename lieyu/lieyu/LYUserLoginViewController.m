@@ -19,7 +19,7 @@
 #import "LYHomePageHttpTool.h"
 #import "UMSocial.h"
 #import "LYRegistrationViewController.h"
-
+#import "IQKeyboardManager.h"
 #define COLLECTKEY [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 
@@ -39,6 +39,7 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     // Do any additional setup after loading the view from its nib.
     
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     //    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     //    [self.navigationItem setLeftBarButtonItem:item];
     

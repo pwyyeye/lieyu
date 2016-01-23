@@ -506,22 +506,26 @@
     return 0.001;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *headerView = [[UIView alloc]init];
-    headerView.backgroundColor = [UIColor clearColor];
-    return headerView;
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *headerView = [[UIView alloc]init];
+//    headerView.backgroundColor = [UIColor clearColor];
+//    return headerView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 8;
+    if(section == 0){
+        return 0.00001;
+    }else{
+        return 8;
+    }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *headerView = [[UIView alloc]init];
-    headerView.backgroundColor = [UIColor clearColor];
-    return headerView;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    UIView *headerView = [[UIView alloc]init];
+//    headerView.backgroundColor = [UIColor clearColor];
+//    return headerView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -529,7 +533,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            return SCREEN_WIDTH * 9 / 16 + 30;
+            return SCREEN_WIDTH * 9 / 16;
         }
             break;
         case 1:
