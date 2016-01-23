@@ -24,27 +24,27 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textFieldLong" translatesAutoresizingMaskIntoConstraints="NO" id="bYT-6V-NnL">
-                    <rect key="frame" x="10" y="222" width="300" height="52"/>
+                    <rect key="frame" x="10" y="181" width="300" height="52"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="52" id="zmR-Qv-FXL"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textFieldLong" translatesAutoresizingMaskIntoConstraints="NO" id="Mme-DJ-yaF">
-                    <rect key="frame" x="10" y="278" width="300" height="52"/>
+                    <rect key="frame" x="10" y="237" width="300" height="52"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="52" id="FX3-Kt-w9d"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MineBG" translatesAutoresizingMaskIntoConstraints="NO" id="xvr-qN-7Rm">
-                    <rect key="frame" x="100" y="80" width="120" height="120"/>
+                    <rect key="frame" x="116" y="70" width="89" height="89"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="120" id="PVT-hg-nDK"/>
-                        <constraint firstAttribute="width" constant="120" id="fo0-yv-vrz"/>
+                        <constraint firstAttribute="height" constant="89" id="PVT-hg-nDK"/>
+                        <constraint firstAttribute="width" constant="89" id="fo0-yv-vrz"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjU-uV-SLx">
-                    <rect key="frame" x="10" y="384" width="300" height="54"/>
+                    <rect key="frame" x="10" y="343" width="300" height="54"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="登陆" backgroundImage="purpleBtnBG.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,7 +61,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入登录密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="udk-cZ-jda">
-                    <rect key="frame" x="30" y="286" width="273" height="35"/>
+                    <rect key="frame" x="30" y="245" width="273" height="35"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="f1z-Tf-5eP"/>
@@ -74,7 +74,7 @@
                     </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7P-jM-rcG">
-                    <rect key="frame" x="236" y="334" width="74" height="20"/>
+                    <rect key="frame" x="236" y="293" width="74" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="Yee-8f-onU"/>
                         <constraint firstAttribute="width" constant="74" id="uXR-Mr-W7z"/>
@@ -88,7 +88,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3P9-vn-XEd">
-                    <rect key="frame" x="10" y="334" width="32" height="20"/>
+                    <rect key="frame" x="10" y="293" width="32" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="9rV-c2-5aP"/>
                         <constraint firstAttribute="width" constant="32" id="yjF-Jf-Ocu"/>
@@ -103,10 +103,10 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4U3-EB-kcb">
-                    <rect key="frame" x="125" y="95" width="70" height="90"/>
+                    <rect key="frame" x="127" y="81" width="67" height="67"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="Viz-1W-B8x"/>
-                        <constraint firstAttribute="width" constant="70" id="xOg-z0-4ae"/>
+                        <constraint firstAttribute="height" constant="67" id="Viz-1W-B8x"/>
+                        <constraint firstAttribute="width" constant="67" id="xOg-z0-4ae"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQS-T1-Wgn">
@@ -121,7 +121,7 @@
                     </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r2z-Mv-Y8t">
-                    <rect key="frame" x="30" y="230" width="273" height="35"/>
+                    <rect key="frame" x="30" y="189" width="273" height="35"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="bZc-9N-buq"/>
@@ -196,8 +196,8 @@
                 <constraint firstItem="v45-lu-qgO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tSt-DP-iym"/>
                 <constraint firstItem="Zhe-Ir-CL8" firstAttribute="trailing" secondItem="GqP-DB-dcf" secondAttribute="trailing" id="uGT-fB-tWD"/>
                 <constraint firstAttribute="trailing" secondItem="Zhe-Ir-CL8" secondAttribute="trailing" constant="1" id="vSH-zc-R9z"/>
-                <constraint firstItem="4U3-EB-kcb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="95" id="wF5-Se-Uy7"/>
-                <constraint firstItem="xvr-qN-7Rm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="wFt-AZ-9TZ"/>
+                <constraint firstItem="4U3-EB-kcb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="wF5-Se-Uy7"/>
+                <constraint firstItem="xvr-qN-7Rm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="wFt-AZ-9TZ"/>
                 <constraint firstItem="bYT-6V-NnL" firstAttribute="top" secondItem="xvr-qN-7Rm" secondAttribute="bottom" constant="22" id="wdo-yH-zfu"/>
                 <constraint firstAttribute="bottom" secondItem="v45-lu-qgO" secondAttribute="bottom" id="x9x-9Q-EGG"/>
                 <constraint firstAttribute="bottom" secondItem="hdj-Uf-g8K" secondAttribute="bottom" constant="109" id="yu3-PG-7SL"/>
