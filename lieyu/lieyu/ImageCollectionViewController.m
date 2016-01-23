@@ -141,9 +141,6 @@
 }
 
 #pragma mark - 跳转出去以后
-//- (void)completed()^{
-//    
-//}
 
 #pragma mark - 选择图片
 - (void)pickImage:(UIButton *)button{
