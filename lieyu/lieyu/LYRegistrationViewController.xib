@@ -89,7 +89,7 @@
                     </constraints>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     <connections>
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="UdX-KY-MA1"/>
                     </connections>
@@ -114,7 +114,7 @@
                     </constraints>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     <connections>
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="XlH-up-bgS"/>
                     </connections>
@@ -206,7 +206,7 @@
         <image name="passWord" width="22" height="22"/>
         <image name="phoneNumber" width="22" height="22"/>
         <image name="purpleBtnBG.png" width="2" height="54"/>
-        <image name="textFieldLong" width="320" height="567"/>
+        <image name="textFieldLong" width="32" height="32"/>
         <image name="textFieldShort" width="174" height="54"/>
         <image name="yanZhengMa" width="22" height="22"/>
     </resources>

@@ -11,7 +11,7 @@
 #import "LYUserDetailInfoViewController.h"
 #import "LYUserLoginViewController.h"
 #import "HomePageINeedPlayViewController.h"
-
+#import "IQKeyboardManager.h"
 @interface LYRegistrationViewController (){
     BOOL _isRegisted;
     NSString *_flag;
@@ -36,6 +36,7 @@ static LYRegistrationViewController *_registe;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];
     
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
     self.navigationItem.leftBarButtonItem = left;
     /*

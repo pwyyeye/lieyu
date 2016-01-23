@@ -79,6 +79,12 @@
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
     [self getData];
     [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
+    if (_customerModel.sex.integerValue==0) {
+        self.sexImageView.image=[UIImage imageNamed:@"woman"];
+    }else{
+        self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+    }
+
 }
 
 - (void)checkFriendAvatar{

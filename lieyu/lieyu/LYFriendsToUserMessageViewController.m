@@ -234,7 +234,8 @@
     CustomerModel *customerM = [[CustomerModel alloc]init];
     customerM.avatar_img = _userInfo.avatar_img;
     customerM.icon = _userInfo.avatar_img;
-    customerM.sex = [_userInfo.gender isEqualToString:@"0"] ? @"男" : @"女";
+    customerM.sex = [_userInfo.gender isEqualToString:@"0"] ? @"0" : @"1";
+//    customerM.sex = _userInfo.gender;
     customerM.usernick = _userInfo.usernick;
     customerM.message = _userInfo.introduction;
     customerM.imUserId= _userInfo.imUserId;

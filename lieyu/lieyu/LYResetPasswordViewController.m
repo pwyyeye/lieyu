@@ -8,6 +8,7 @@
 
 #import "LYResetPasswordViewController.h"
 #import "LYUserHttpTool.h"
+#import "IQKeyboardManager.h"
 @interface LYResetPasswordViewController ()
 
 @end
@@ -29,7 +30,7 @@ static LYResetPasswordViewController *_reset;
     _step=60;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];
-    
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
     self.navigationItem.leftBarButtonItem = left;
     

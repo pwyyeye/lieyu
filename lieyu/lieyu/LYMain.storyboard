@@ -372,7 +372,7 @@
                                                         <constraint firstAttribute="width" constant="233" id="eeF-EP-JML"/>
                                                         <constraint firstAttribute="height" constant="21" id="lsz-Lv-MMq"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yOd-dT-a78">
