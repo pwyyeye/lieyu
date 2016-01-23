@@ -61,11 +61,8 @@
     //7.设置预览图层填充方式
     [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     //8.设置图层的frame 115
-<<<<<<< HEAD
     [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 46, SCREEN_HEIGHT - 115 - 64)];
-=======
     [_videoPreviewLayer setFrame:CGRectMake(23, 20, SCREEN_WIDTH - 26, SCREEN_HEIGHT - 115)];
->>>>>>> ab425d726bd4ac0d55475b2df8f2944afc4f4198
     //9.将图层添加到预览view的图层上
     [_viewPreview.layer addSublayer:_videoPreviewLayer];
     //10.设置扫描范围

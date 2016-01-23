@@ -478,16 +478,27 @@
         [MyUtil showMessage:@"请选择标签"];
         return;
     }
-    if(_keyStr == nil) [userinfo setObject:_userM.avatar_img forKey:@"avatar_img"];
-    
     if(_selectcedCell.btn_userImage.currentBackgroundImage == nil){
         [MyUtil showMessage:@"请选择头像"];
         
         return;
     }
+    if(_keyStr == nil && _userM.avatar_img != nil){
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        [userinfo setObject:_userM.avatar_img forKey:@"avatar_img"];
+    }
+    else{
+        if([MyUtil isEmptyString:_keyStr]) return;
+        [userinfo setObject:_keyStr forKey:@"avatar_img"];
+    }
     
     [userinfo setObject:[NSString stringWithFormat:@"%@",sexNum] forKey:@"gender"];
     
+    if(_userM.openID && _thirdLoginType){
+        [userinfo setObject:[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]] forKey:@"openId"];
+        [userinfo setObject:_thirdLoginType forKey:@"type"];
+    }
+    
+
     [userinfo setObject:[NSString stringWithFormat:@"%ld",_userTag.id] forKey:@"tag"];
     NSLog(@"-----%@---->%@",_userTag.tagname,userinfo);
     
@@ -495,8 +506,6 @@
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 
-   
-   
 }
 
 
