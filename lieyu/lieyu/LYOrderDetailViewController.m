@@ -964,7 +964,7 @@
                 [cell.yjBtn setHidden:YES];
             }
         }
-        UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, 290, 0.5)];
+        UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 0.5)];
         lineLal.backgroundColor=RGB(199, 199, 199);
         [cell addSubview:lineLal];
         cell.zhekouLal.text=[NSString stringWithFormat:@"￥%@",shopDetailmodel.youfeiPrice];
@@ -1024,7 +1024,7 @@
                 [cell.siliaoBtn setHidden:YES];
                 [cell.phoneBtn setHidden:YES];
             }
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 45.5, 290, 0.5)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 45.5, SCREEN_WIDTH, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -1058,7 +1058,7 @@
                 [cell.siliaoBtn setHidden:YES];
                 [cell.phoneBtn setHidden:YES];
             }
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, SCREEN_WIDTH, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
             
@@ -1096,7 +1096,7 @@
                 [cell.phoneBtn setHidden:YES];
             }
             
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, SCREEN_WIDTH - 30, 0.5)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -1111,7 +1111,7 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.backgroundColor=[UIColor whiteColor];
-                UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
+                UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH-20, 25)];
                 [lal1 setTag:1];
                 lal1.textAlignment=NSTextAlignmentLeft;
                 lal1.font=[UIFont boldSystemFontOfSize:12];
@@ -1158,7 +1158,7 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor=[UIColor whiteColor];
-            UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 320-20, 25)];
+            UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH-20, 25)];
             [lal1 setTag:1];
             lal1.textAlignment=NSTextAlignmentLeft;
             lal1.font=[UIFont boldSystemFontOfSize:12];
@@ -1257,7 +1257,8 @@
         }
     }
     
-    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.backBarButtonItem = left;
     
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
@@ -1383,7 +1384,9 @@
     orderInfoModel=_orderInfoModel;
     //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
     NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n %@inPinkerWebAction.do?id=%d",self.userModel.usernick,orderInfoModel.barinfo.barname,LY_SERVER,orderInfoModel.id];
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UmengAppkey
                                       shareText:ss
@@ -1404,7 +1407,7 @@
     [IQKeyboardManager sharedManager].isAdd = YES;
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
     // 把单聊视图控制器添加到导航栈。
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
     conversationVC.navigationItem.leftBarButtonItem = left;
     
     [self.navigationController pushViewController:conversationVC animated:YES];
@@ -1441,7 +1444,7 @@
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     // 把单聊视图控制器添加到导航栈。
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
     conversationVC.navigationItem.leftBarButtonItem = left;
     [self.navigationController pushViewController:conversationVC animated:YES];
 }

@@ -101,7 +101,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.pagesCount = 4;
-    
     _notificationDict = [[NSMutableDictionary alloc]init];
     [self setupAllProperty];//设置全局属性
     [self setupTableView];
@@ -115,30 +114,18 @@
     _icon = @"";
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
+    
     NSDictionary *paraDic = @{@"userId":_useridStr};
     //__weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
-//        _myBadge.text = [NSString stringWithFormat:@"%@",reslults];
-//        if(reslults.integerValue){
-//            _myBadge.hidden = NO;
-//            _headerView.btn_newMessage.hidden = NO;
-//        }
-//       // [_headerView.btn_newMessage sd_setImageWithURL:[NSURL URLWithString:icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-//        [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条未读消息",reslults] forState:UIControlStateNormal];
-        
-
-        //_headerView.btn_newMessage.hidden = NO;
-        //[[NSNotificationCenter defaultCenter] postNotificationName:@"MyFriendsMessageCount" object:weakSelf userInfo:@{@"count":reslults,@"icon":icon}];
         _results = reslults;
         _icon = icon;
         if(_results) _myBadge.hidden = NO;
         else _myBadge.hidden = YES;
         if(_results.integerValue && _index == 1){
-            NSLog(@"---->%@",_results);
             _myBadge.hidden = NO;
             [self removeTableViewHeader];
             [self addTableViewHeader];
-            //  [self.tableView reloadData];
         }
     }];
 }
@@ -169,7 +156,6 @@
     else return;
     [self getDataFriendsWithSetContentOffSet:NO];
     
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageCountNotice:) name:@"MyFriendsMessageCount" object:nil];
     [self getRecentMessage];
 }
 
@@ -181,18 +167,19 @@
 
 - (void)onTimer{
     [self getFriendsNewMessage];
-    
 }
 
 #pragma mark - 登录后获取数据
 - (void)loginAndLoadData{
+    _friendsBtn.alpha = 1;
+    _myBtn.alpha = 0.5;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    [app startLoading];
+    [app startLoading];
     if(app.userModel)  _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     else return;
+    
     [self getDataFriendsWithSetContentOffSet:NO];
     self.navigationController.navigationBarHidden = NO;
-//    [app stopLoading];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginAndLoadData" object:nil];
 }
 
@@ -313,9 +300,7 @@
     for (int i = 0; i < 2; i ++) {
          NSMutableArray *arr = _dataArray[i];
         FriendsRecentModel *recentM = arr[0];
-        NSLog(@"---->%@",recentM.id);
         recentM.id = [NSString stringWithFormat:@"%@",messageId];
-                NSLog(@"---->%@",recentM.id);
     }
     [self reloadTableViewAndSetUpPropertyneedSetContentOffset:YES];
 }
@@ -375,14 +360,19 @@
 
 #pragma mark - 设置导航栏玩友圈和我的按钮及发布动态按钮
 - (void)setupNavMenuView{
-    _vLine = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 1) / 2.f, 16, 1, 12)];
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
+    self.navigationController.navigationBar.layer.shadowRadius = 1;
+    
+    _vLine = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 1) / 2.f, 16, 0.3, 12)];
     _vLine.backgroundColor = RGBA(255, 255, 255, 0.5);
     [self.navigationController.navigationBar addSubview:_vLine];
     
     CGFloat friendsBtn_Width = 42;
     _friendsBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f - friendsBtn_Width - 16 , 12, friendsBtn_Width, 20)];
     [_friendsBtn setTitle:@"玩友圈" forState:UIControlStateNormal];
-    _friendsBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
     _friendsBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_friendsBtn addTarget:self action:@selector(friendsClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_friendsBtn];
@@ -457,6 +447,8 @@
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr};
     [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [app stopLoading];
         _index = 0;
         if(dataArray.count){
                 if(_pageStartCountFriends == 0){
@@ -479,6 +471,9 @@
 
 #pragma mark - 获取最新我的数据
 - (void)getDataMysWithSetContentOffSet:(BOOL)need{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountMys * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
@@ -527,6 +522,8 @@
 #pragma mark - 玩友圈action
 - (void)friendsClick:(UIButton *)friendsBtn{
 //    _index = 0;
+    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
+    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
     _friendsBtn.alpha = 1;
     _myBtn.alpha = 0.5;
     _friendsBtnSelect = YES;
@@ -537,6 +534,8 @@
 
 #pragma mark - 我的action
 - (void)myClick:(UIButton *)myBtn{
+    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
+    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
     _friendsBtn.alpha = 0.5;
     _myBtn.alpha = 1;
     _friendsBtnSelect = NO;
@@ -1356,7 +1355,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
-            CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 71, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             CGFloat height;
             if (size.height + 10 < 36) {
                 height = 36;

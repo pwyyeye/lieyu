@@ -3,10 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutLieyu">
             <connections>
+                <outlet property="commonIcon" destination="94N-4M-zav" id="JCX-L9-h6N"/>
+                <outlet property="commonIconHead" destination="b4H-ut-6Uz" id="gZo-vT-N7h"/>
                 <outlet property="version" destination="xGX-S3-etT" id="kGa-3S-7Pq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,44 +19,48 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="猎娱" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDe-g8-ZL5">
-                    <rect key="frame" x="282" y="198" width="36" height="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="猎娱" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDe-g8-ZL5">
+                    <rect key="frame" x="282" y="153" width="36" height="21.5"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                     <color key="textColor" red="0.4039215686" green="0.043137254899999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="V1.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGX-S3-etT">
-                    <rect key="frame" x="288" y="234" width="26" height="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V1.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGX-S3-etT">
+                    <rect key="frame" x="287" y="189" width="26" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="猎寻娱乐丰富社交圈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnk-YC-7VC">
-                    <rect key="frame" x="223" y="480" width="153" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="猎寻娱乐丰富社交圈" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnk-YC-7VC">
+                    <rect key="frame" x="223" y="480" width="153" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.4039215686" green="0.043137254899999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="版权：狼族（上海）网络科技有限公司" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvP-2S-V5u">
-                    <rect key="frame" x="198" y="549" width="204" height="15"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版权：狼族（上海）网络科技有限公司" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvP-2S-V5u">
+                    <rect key="frame" x="198" y="549" width="204" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright @2014-2015 Lie98.com All Rights Reserved" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NU2-qs-hN0">
-                    <rect key="frame" x="158" y="571" width="285" height="14"/>
+                    <rect key="frame" x="158" y="571" width="285" height="13.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="官网：www.lie98.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAR-dC-RU1">
-                    <rect key="frame" x="244" y="525" width="113" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="官网：www.lie98.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAR-dC-RU1">
+                    <rect key="frame" x="244" y="525" width="113" height="13.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CommonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="94N-4M-zav">
-                    <rect key="frame" x="118" y="94" width="364" height="84"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CommonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="94N-4M-zav">
+                    <rect key="frame" x="258" y="50" width="83" height="83"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="94N-4M-zav" secondAttribute="height" multiplier="1:1" id="3Cr-gi-O4A"/>
+                        <constraint firstAttribute="height" constant="83" id="SXG-sn-7IQ"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -70,19 +77,18 @@
                 <constraint firstItem="hAR-dC-RU1" firstAttribute="top" secondItem="hnk-YC-7VC" secondAttribute="bottom" constant="25" id="Mzc-z1-sSl"/>
                 <constraint firstAttribute="centerX" secondItem="RvP-2S-V5u" secondAttribute="centerX" id="PFL-mT-Nef"/>
                 <constraint firstItem="RvP-2S-V5u" firstAttribute="top" secondItem="hAR-dC-RU1" secondAttribute="bottom" constant="10" id="QQh-fO-mvx"/>
+                <constraint firstItem="94N-4M-zav" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VGl-YE-JYs"/>
                 <constraint firstAttribute="centerX" secondItem="hnk-YC-7VC" secondAttribute="centerX" id="VwX-gc-tXr"/>
-                <constraint firstItem="94N-4M-zav" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="b4H-ut-6Uz"/>
+                <constraint firstItem="94N-4M-zav" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="b4H-ut-6Uz"/>
                 <constraint firstAttribute="centerX" secondItem="xGX-S3-etT" secondAttribute="centerX" id="cej-CO-dFr"/>
                 <constraint firstAttribute="centerX" secondItem="NU2-qs-hN0" secondAttribute="centerX" id="dao-mg-pRT"/>
-                <constraint firstItem="94N-4M-zav" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="118" id="iks-Ou-pgN"/>
                 <constraint firstItem="NU2-qs-hN0" firstAttribute="top" secondItem="RvP-2S-V5u" secondAttribute="bottom" constant="8" id="kck-kd-4wx"/>
-                <constraint firstAttribute="trailing" secondItem="94N-4M-zav" secondAttribute="trailing" constant="118" id="m0U-8Q-1PD"/>
                 <constraint firstAttribute="bottom" secondItem="NU2-qs-hN0" secondAttribute="bottom" constant="15" id="nQc-yo-idK"/>
                 <constraint firstItem="lDe-g8-ZL5" firstAttribute="top" secondItem="94N-4M-zav" secondAttribute="bottom" constant="20" id="qsC-od-T6M"/>
             </constraints>
         </view>
     </objects>
     <resources>
-        <image name="CommonIcon" width="84" height="84"/>
+        <image name="CommonIcon" width="43" height="43"/>
     </resources>
 </document>

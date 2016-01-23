@@ -16,7 +16,7 @@
 #import "UMSocial.h"
 #import "UMSocialControllerService.h"
 #import "UMSocialWechatHandler.h"
-#import "UMSocialSinaHandler.h"
+#import "UMSocialSinaHandler.h"   
 #import "PTjoinInViewController.h"
 #import "LYUserLoginViewController.h"
 #import "CustomerModel.h"
@@ -25,6 +25,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMessage.h"
 #import "WXApi.h"
+#import "UMSocialQQHandler.h"
 #import "SingletonTenpay.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -43,7 +44,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 #define _IPHONE80_ 80000
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -109,6 +109,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     //向微信注册
     [WXApi registerApp:@"wxb1f5e1de5d4778b9" withDescription:@"猎娱"];
+    [UMSocialQQHandler setQQWithAppId:@"1104853065" appKey:@"9wumIImmJdUgJn2N" url:@"http://www.lie98.com"];
     
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
@@ -510,49 +511,58 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 -(void)connectWithToken{
     NSLog(@"_im_token=%@",_im_token);
 //    _im_token=@"aqw73LOC9fju/Zfr+G0uCIZ6iyJm4gkQBO3AbCIB4IoMo7IJ9CyOesCxoHF0+KU1I2fSIds0iGGsdNrAeyA1L6CePnAuGYiF";
-    [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
-        // Connect 成功
-        NSLog(@"****登录成功%@",userId);
+    @try {
+        [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
+            // Connect 成功
+            NSLog(@"****登录成功%@",userId);
+        }
+                                      error:^(RCConnectErrorCode status) {
+                                          NSLog(@"****登录失败");
+                                          // Connect 失败
+                                      }
+                             tokenIncorrect:^() {
+                                 NSLog(@"Token 失效的状态处理");
+                                 // Token 失效的状态处理
+                             }];
     }
-    error:^(RCConnectErrorCode status) {
-        NSLog(@"****登录失败");
-                                      // Connect 失败
+    @catch (NSException *exception) {
+        NSLog(@"----pass-pass%@---",exception);
     }
-    tokenIncorrect:^() {
-        NSLog(@"Token 失效的状态处理");
-                             // Token 失效的状态处理
-    }];
+    @finally {
+        
+    }
+    
 }
 
 // 获取用户信息的方法。
 -(void)getUserInfoWithUserId:(NSString *)userId completion:(void(^)(RCUserInfo* userInfo))completion
 {
 //    LYUserHttpTool
-    
+    NSDictionary *dic = @{@"imUserId":userId};
+    [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
+        RCUserInfo *user = [[RCUserInfo alloc]init];
+        user.userId =result.imUserId;
+        user.name = result.name;
+        user.portraitUri = result.mark;
+        [[RCDataBaseManager shareInstance] insertUserToDB:user];
+        completion(user);
+    }];
     //看本地缓存是否存在
-    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
-    if (userInfo==nil) {
-        NSDictionary *dic = @{@"imUserId":userId};
-        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
-            RCUserInfo *user = [[RCUserInfo alloc]init];
-            user.userId =result.imUserId;
-            user.name = result.name;
-            user.portraitUri = result.mark;
-            [[RCDataBaseManager shareInstance] insertUserToDB:user];
-             completion(user);
-        }];
-    }else{
-        NSDictionary *dic = @{@"imUserId":userId};
-        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
-            RCUserInfo *user = [[RCUserInfo alloc]init];
-            user.userId =result.imUserId;
-            user.name = result.name;
-            user.portraitUri = result.mark;
-            [[RCDataBaseManager shareInstance] insertUserToDB:user];
-            
-        }];
-         completion(userInfo);
-    }
+//    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
+//    if (userInfo==nil) {
+//        
+//    }else{
+//        NSDictionary *dic = @{@"imUserId":userId};
+//        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
+//            RCUserInfo *user = [[RCUserInfo alloc]init];
+//            user.userId =result.imUserId;
+//            user.name = result.name;
+//            user.portraitUri = result.mark;
+//            [[RCDataBaseManager shareInstance] insertUserToDB:user];
+//            
+//        }];
+//         completion(userInfo);
+//    }
 }
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
@@ -568,6 +578,17 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSLog(@"sourceApplication: %@", sourceApplication);
     NSLog(@"URL scheme:%@", [url scheme]);
     NSLog(@"URL query: %@", [url query]);
+    
+    if([sourceApplication isEqualToString:@"com.tencent.mqq"]){
+        return [TencentOAuth HandleOpenURL:url];
+    }
+    
+    NSString *code = nil;
+    if(![MyUtil isEmptyString:[url query]]){
+        NSArray *arrayStr = [[url query] componentsSeparatedByString:@"&"];
+        NSArray *arrayStr2 = [arrayStr[0] componentsSeparatedByString:@"="];
+        code = arrayStr2[1];
+    }
     
     if ([sourceApplication isEqualToString:@"com.apple.mobilesafari"]){
         // 接受传过来的参数
@@ -585,6 +606,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         //如果是微信分享回来 无参数
         if([MyUtil isEmptyString:[url query]]){
             return NO;
+        }else if(![MyUtil isEmptyString:code]){
+            [[NSUserDefaults standardUserDefaults] setObject:code forKey:@"weixinCode"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [ [NSNotificationCenter defaultCenter] postNotificationName:@"weixinCode" object:nil];
+            return [WXApi handleOpenURL:url delegate:self];
         }else{//如果是微信支付回来 带参数
             return [WXApi handleOpenURL:url delegate:[SingletonTenpay singletonTenpay]];
         }

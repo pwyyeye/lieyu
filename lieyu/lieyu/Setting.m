@@ -12,7 +12,7 @@
 #import "LYUserDetailController.h"
 #import "AboutLieyu.h"
 #import "SDImageCache.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "LYAccountManager.h"
 @interface Setting ()
 
 @end
@@ -27,7 +27,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    _data=@[@"编辑个人资料",@"清除缓存",@"关于猎娱"];
+    _data=@[@"编辑个人资料",@"清除缓存",@"账户管理",@"关于猎娱"];
     
     
     self.title=@"个人设置";
@@ -118,7 +118,7 @@
     [cell.layer addSublayer:layerShadow];
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
-    if(indexPath.row==0){
+    if(indexPath.row==0||indexPath.row==2){
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }else{
         cell.accessoryType=UITableViewCellAccessoryNone;
@@ -148,11 +148,15 @@
         [MyUtil showMessage:@"清除成功！"];
         
     }else if(indexPath.row==2){
+        detailViewController=[[LYAccountManager alloc] init];
+    }else if(indexPath.row==3){
         detailViewController=[[AboutLieyu alloc] initWithNibName:@"AboutLieyu" bundle:nil];
     }
+
     
     // Push the view controller.
-    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.backBarButtonItem = left;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 

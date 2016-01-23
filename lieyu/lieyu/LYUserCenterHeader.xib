@@ -28,7 +28,7 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="米赛儿贝妮儿妮儿" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuk-bF-Uqp">
-                            <rect key="frame" x="86" y="44" width="109" height="41"/>
+                            <rect key="frame" x="86" y="40" width="109" height="41"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="41" id="4O4-Nm-RFF"/>
                             </constraints>
@@ -37,7 +37,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQW-Pi-kMR">
-                            <rect key="frame" x="86" y="86" width="27" height="15"/>
+                            <rect key="frame" x="86" y="82" width="27" height="15"/>
                             <color key="backgroundColor" red="0.69019607843137254" green="0.5607843137254902" blue="0.7803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="27" id="XMO-OG-6A0"/>
@@ -66,7 +66,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-cg-HPc">
-                            <rect key="frame" x="118" y="86" width="30" height="15"/>
+                            <rect key="frame" x="118" y="82" width="30" height="15"/>
                             <color key="backgroundColor" red="0.69019607839999997" green="0.56078431370000004" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="jIe-oR-QEL"/>
@@ -99,9 +99,14 @@
                                 <action selector="gotoMessageList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="dJN-cz-Foj"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00X-dQ-bjO">
+                            <rect key="frame" x="14" y="44" width="60" height="60"/>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="HgA-cg-HPc" firstAttribute="top" secondItem="Iuk-bF-Uqp" secondAttribute="bottom" constant="1" id="34d-PG-Pvl"/>
+                        <constraint firstItem="00X-dQ-bjO" firstAttribute="top" secondItem="ygw-yQ-gSS" secondAttribute="top" id="3YY-BV-NGl"/>
+                        <constraint firstItem="00X-dQ-bjO" firstAttribute="bottom" secondItem="ygw-yQ-gSS" secondAttribute="bottom" id="7NA-PO-7ET"/>
                         <constraint firstItem="NTS-fO-BCi" firstAttribute="top" secondItem="uKD-Od-hVt" secondAttribute="top" constant="44" id="9x6-p6-SYV"/>
                         <constraint firstItem="AQW-Pi-kMR" firstAttribute="top" secondItem="Iuk-bF-Uqp" secondAttribute="bottom" constant="1" id="GFs-Xn-EoX"/>
                         <constraint firstItem="KNc-RX-6I4" firstAttribute="leading" secondItem="NTS-fO-BCi" secondAttribute="trailing" constant="17" id="Nvj-xZ-hgH"/>
@@ -114,8 +119,10 @@
                         <constraint firstItem="Iuk-bF-Uqp" firstAttribute="leading" secondItem="ygw-yQ-gSS" secondAttribute="trailing" constant="12" id="ee3-27-Ap3"/>
                         <constraint firstAttribute="height" constant="124" id="fTV-RN-3qU"/>
                         <constraint firstItem="ygw-yQ-gSS" firstAttribute="top" secondItem="uKD-Od-hVt" secondAttribute="top" constant="44" id="gxI-if-gPE"/>
+                        <constraint firstItem="00X-dQ-bjO" firstAttribute="leading" secondItem="ygw-yQ-gSS" secondAttribute="leading" id="hcs-6p-X12"/>
                         <constraint firstAttribute="bottom" secondItem="ygw-yQ-gSS" secondAttribute="bottom" constant="20" id="qC1-Rf-5S6"/>
-                        <constraint firstItem="Iuk-bF-Uqp" firstAttribute="top" secondItem="uKD-Od-hVt" secondAttribute="top" constant="44" id="vu0-hv-jIf"/>
+                        <constraint firstItem="00X-dQ-bjO" firstAttribute="trailing" secondItem="ygw-yQ-gSS" secondAttribute="trailing" id="tU2-D7-0NF"/>
+                        <constraint firstItem="Iuk-bF-Uqp" firstAttribute="top" secondItem="uKD-Od-hVt" secondAttribute="top" constant="40" id="vu0-hv-jIf"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gf-wl-Y6x">
@@ -187,24 +194,6 @@
                                 <action selector="gotoWaitConsumptionOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="afV-Zs-g30"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPc-20-z80">
-                            <rect key="frame" x="128" y="48" width="64" height="38"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="43" id="3I8-VE-xh8"/>
-                                <constraint firstAttribute="width" constant="64" id="frl-cA-Mro"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="waitRebate"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="3I8-VE-xh8"/>
-                                    <exclude reference="frl-cA-Mro"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="gotoWaitRebateOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="nuL-eL-dFn"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDc-mf-KXs">
                             <rect key="frame" x="300" y="9" width="20" height="29"/>
                             <constraints>
@@ -247,11 +236,11 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
-                            <state key="normal" title="待返利">
+                            <state key="normal" title="待评价">
                                 <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
-                                <action selector="gotoWaitRebateOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="urw-kg-eKY"/>
+                                <action selector="gotoWaitEvaluationOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="hoa-g6-SGc"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMg-XD-akU">
@@ -261,11 +250,11 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                             <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
-                            <state key="normal" title="待评价">
+                            <state key="normal" title="待返利">
                                 <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
-                                <action selector="gotoWaitEvaluationOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="XM7-Nf-Avd"/>
+                                <action selector="gotoWaitRebateOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="dgg-eC-drh"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzB-jJ-rgW">
@@ -315,7 +304,25 @@
                                 </mask>
                             </variation>
                             <connections>
-                                <action selector="gotoWaitEvaluationOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="ppl-dd-3uG"/>
+                                <action selector="gotoWaitRebateOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="ttQ-Xn-M7x"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPc-20-z80">
+                            <rect key="frame" x="128" y="48" width="64" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="3I8-VE-xh8"/>
+                                <constraint firstAttribute="width" constant="64" id="frl-cA-Mro"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="waitRebate"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="3I8-VE-xh8"/>
+                                    <exclude reference="frl-cA-Mro"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="gotoWaitEvaluationOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="wNh-I8-SVr"/>
                             </connections>
                         </button>
                     </subviews>
@@ -397,6 +404,7 @@
             </variation>
             <connections>
                 <outlet property="age" destination="AQW-Pi-kMR" id="PQ2-5g-WOl"/>
+                <outlet property="avatar_btn" destination="00X-dQ-bjO" id="wbP-yY-juK"/>
                 <outlet property="avatar_img" destination="ygw-yQ-gSS" id="3j5-Ls-Wsk"/>
                 <outlet property="btnMessage" destination="NTS-fO-BCi" id="FTd-1v-YVe"/>
                 <outlet property="btnSetting" destination="KNc-RX-6I4" id="DGO-29-aio"/>
@@ -405,10 +413,10 @@
                 <outlet property="tags" destination="HgA-cg-HPc" id="9d5-Gp-e7h"/>
                 <outlet property="userNick" destination="Iuk-bF-Uqp" id="NXe-6x-WQO"/>
                 <outlet property="waitConsumption" destination="I7O-TL-unf" id="ib2-Af-uWr"/>
-                <outlet property="waitEvaluation" destination="cai-FL-cSj" id="zL6-o6-MAg"/>
+                <outlet property="waitEvaluation" destination="YPc-20-z80" id="ner-rN-XEa"/>
                 <outlet property="waitPay" destination="sMQ-p7-byq" id="bD8-1O-3t4"/>
                 <outlet property="waitPayBack" destination="Fyr-Q8-jkr" id="wRc-cc-qKy"/>
-                <outlet property="waitRebate" destination="YPc-20-z80" id="Xge-0m-bJt"/>
+                <outlet property="waitRebate" destination="cai-FL-cSj" id="2tE-Bd-TG2"/>
             </connections>
             <point key="canvasLocation" x="312" y="176"/>
         </collectionReusableView>

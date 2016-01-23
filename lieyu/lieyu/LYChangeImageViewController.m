@@ -83,8 +83,7 @@
 //                [self.navigationController popToViewController:vc animated:YES];
 //            }
 //        }
-        
-        [HTTPController uploadImageToQiuNiu:image complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+        [HTTPController uploadImageToQiuNiu:image withDegree:0.5 complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
             NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
             NSDictionary *paraDic = @{@"userId":userIdStr,@"friends_img":key};

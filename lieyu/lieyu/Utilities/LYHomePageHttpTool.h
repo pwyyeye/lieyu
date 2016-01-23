@@ -80,4 +80,10 @@
 - (void)likeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result;
 //给酒吧取消点赞
 - (void)unLikeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result;
+
++ (void)getWeixinAccessTokenWithCode:(NSString *)codeStr compelete:(void(^)(NSString *))compelete;
+
++ (void)getWeixinNewAccessTokenWithRefreshToken:(NSString *)RefreshToken compelete:(void (^)(NSString *))compelete;
+
++ (void)getWeixinUserInfoWithAccessToken:(NSString *)accessToken compelete:(void(^)(UserModel *))compelete;
 @end

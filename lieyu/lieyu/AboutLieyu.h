@@ -10,5 +10,7 @@
 
 @interface AboutLieyu : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UILabel *version;
+@property (weak, nonatomic) IBOutlet UIImageView *commonIcon;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *commonIconHead;
 
 @end

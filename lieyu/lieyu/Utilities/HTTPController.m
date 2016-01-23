@@ -20,10 +20,9 @@
 {
     //添加userid
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    if (![MyUtil isEmptyString:app.s_app_id] && ![url isEqualToString:LY_DL]) {
+    if (![MyUtil isEmptyString:app.s_app_id] && ![url isEqualToString:LY_DL] &![url isEqualToString:LY_ZC]&![url isEqualToString:LY_DL_THIRD]&&![url isEqualToString:LY_FORCED_UPDATE] ) {
         url = [NSString stringWithFormat:@"%@&SEM_LOGIN_TOKEN=%@",url,app.s_app_id];
     }
- 
     NSURL* baseURL = [NSURL URLWithString:baseStr];
     //获得请求管理者
     AFHTTPRequestOperationManager* mgr = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
@@ -41,6 +40,7 @@
              success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                  if (success) {
                      NSString *code = [NSString stringWithFormat:@"%@",responseObj[@"errorcode"]];
+                     NSLog(@"---->%@",responseObj);
                      if ([code isEqualToString:@"-1"]) {
                          LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
                          UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
@@ -404,9 +404,27 @@
         
     }
 }
-
+//七牛上传图片
++(void)uploadImageToQiuNiu:(UIImage *)image withDegree:(CGFloat)degree complete:(QNUpCompletionHandler)completionHandler{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if(app.qiniu_token){
+        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        QNUploadOption *op=[[QNUploadOption alloc] initWithMime:nil progressHandler:nil params:nil checkCrc:NO cancellationSignal:nil];
+        
+        NSString *fileName = [NSString stringWithFormat:@"lieyu_ios_%@_%@.jpg",[MyUtil getNumberFormatDate:[NSDate date]], [MyUtil randomStringWithLength:8]];
+        
+        //上传代码
+        //图片压缩到30%
+        NSData *data = UIImageJPEGRepresentation(image, degree);
+        
+        // fileName=@"ZSKC2015-09-30_22:45:04_OoIkxuCe.jpg";
+        [upManager putData:data key:fileName token:app.qiniu_token complete:(QNUpCompletionHandler)completionHandler  option:op];
+        
+        
+    }
+}
 //七牛上传文件
-+(BOOL)uploadFileToQiuNiu:(NSString *)filePath complete:(QNUpCompletionHandler)completionHandler{
++(BOOL)uploadFileToQiuNiu:(NSString *)filePath  complete:(QNUpCompletionHandler)completionHandler{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(app.qiniu_media_token){
         @try {

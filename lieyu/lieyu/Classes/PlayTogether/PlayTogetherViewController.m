@@ -78,7 +78,7 @@
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount]};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
 
-    if([MyUtil configureNetworkConnect] == 0) {
+    if([MyUtil configureNetworkConnect] != 0) {
         [self getDataForTogether];
     }else{
         LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
@@ -97,6 +97,10 @@
     }
     [self getData];
     [self setMenuView];
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
+    self.navigationController.navigationBar.layer.shadowRadius = 1;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -134,6 +138,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    [sectionView hideWithReset:YES];
     [_fillterButton removeFromSuperview];
     [_myTitle removeFromSuperview];
     _myTitle=nil;
@@ -303,7 +308,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 148;
+    return 152;
 }
 
 #pragma mark 获取更多一起玩数据

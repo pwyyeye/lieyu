@@ -82,6 +82,10 @@ UITableViewDataSource,UITableViewDelegate,
     _tableView.showsVerticalScrollIndicator=NO;
     [self setupViewStyles];
     [self getData];
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
+    self.navigationController.navigationBar.layer.shadowRadius = 1;
 }
 
 -(void)dealloc{
@@ -378,7 +382,7 @@ UITableViewDataSource,UITableViewDelegate,
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
                 [bigArr addObject:dicTemp];
             }
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 8)/21)
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 9)/16)
                                                                   scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
             scroller.delegate=self;
             scroller.tag=1999;
@@ -425,7 +429,7 @@ UITableViewDataSource,UITableViewDelegate,
     switch (indexPath.section) {
         case 0:
         {
-            h = (SCREEN_WIDTH * 8)/21;
+            h = (SCREEN_WIDTH * 9)/16;
         }
             break;
         case 1:

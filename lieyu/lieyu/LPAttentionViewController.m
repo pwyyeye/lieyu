@@ -19,7 +19,7 @@
     self.title = @"注意事项";
 //    self.navigationItem.leftBarButtonItem.style = UIBarButtonItemStylePlain;
     //back item zhuyi
-    UIBarButtonItem *leftBack = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+    UIBarButtonItem *leftBack = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = leftBack;
     
     

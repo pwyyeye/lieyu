@@ -13,6 +13,7 @@
 @interface ImageCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     int selectedPages;
+    BOOL isRemoved;
 }
 @property (nonatomic, strong) NSMutableArray *imagesArray;
 @property (nonatomic, strong) NSMutableArray *collectionData;
@@ -30,9 +31,9 @@
     [self setupView];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake((SCREEN_WIDTH - 30) / 3, (SCREEN_WIDTH - 30) / 3);
+    layout.itemSize = CGSizeMake((SCREEN_WIDTH-3) / 4, (SCREEN_WIDTH-3) / 4);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+    layout.sectionInset = UIEdgeInsetsMake(1, 0, 20, 0);
     
     self.imagesArray = [[NSMutableArray alloc]init];
     self.cellsArray = [[NSMutableArray alloc]init];
@@ -41,18 +42,18 @@
     rightItem.enabled = NO;
     rightItem.tintColor = [UIColor grayColor];
     
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [UIColor blackColor];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.collectionViewLayout = layout;
-    
+    //    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
     [self.collectionView registerNib:[UINib nibWithNibName:@"MyCell" bundle:nil] forCellWithReuseIdentifier:@"mycell"];
     self.collectionData = [[NSMutableArray alloc]init];
     [_assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         if (result) {
             NSString *type = [result valueForProperty:ALAssetPropertyType];
             if([type isEqualToString:ALAssetTypePhoto]){
-//                [self.collectionData addObject:[UIImage imageWithCGImage:[result aspectRatioThumbnail ]]];
+                //                [self.collectionData addObject:[UIImage imageWithCGImage:[result aspectRatioThumbnail ]]];
                 [self.collectionData addObject:result];
             }
         }
@@ -60,13 +61,53 @@
     }];
 }
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 1;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 1;
+}
+
 - (void)setupView{
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     self.navigationItem.leftBarButtonItem = leftItem;
 }
 
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    if(isRemoved == NO && self.collectionView.contentSize.height > 0){
+        if(self.collectionView.contentSize.height >= self.view.frame.size.height){
+            self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
+            if(self.collectionView.contentOffset.y > -self.view.frame.size.height){
+                isRemoved = YES;
+            }
+        }else{
+            isRemoved = YES;
+        }
+        
+    }
+    //    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
+    //    NSLog(@"%@",NSStringFromCGSize(self.collectionView.contentSize));
+    //    if (self.collectionView.contentOffset.y <= -self.view.frame.size.height && isRemoved == NO) {
+    //        self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
+    //    }
+    //    if(self.collectionView.contentOffset.y > self.view.frame.size.height){
+    //        isRemoved = YES;
+    //    }
+    NSLog(@"%@",NSStringFromCGPoint(self.collectionView.contentOffset));
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 #pragma mark -collectionView的代理方法
@@ -85,7 +126,7 @@
         weakcell.cellImage.contentMode = UIViewContentModeScaleAspectFill;
         dispatch_async(dispatch_get_main_queue(), ^{
             weakcell.cellImage.image = [UIImage imageWithCGImage:[((ALAsset *)[self.collectionData objectAtIndex:indexPath.item]) aspectRatioThumbnail]];
-//            weakcell.cellImage.image = [self.collectionData objectAtIndex:indexPath.item % 10];
+            //            weakcell.cellImage.image = [self.collectionData objectAtIndex:indexPath.item % 10];
             //            weakcell.selectBtn.tag = indexPath.item;
             //            [weakcell.imageTap setBackgroundImage:[self.collectionData objectAtIndex:indexPath.item % 10] forState:UIControlStateNormal];
         });
@@ -102,7 +143,7 @@
     _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _subView.button.hidden = YES;
     _subView.image = [UIImage imageWithCGImage:[[((ALAsset *)[self.collectionData objectAtIndex:indexPath.item]) defaultRepresentation] fullScreenImage]];
-//    _subView.image = [self.collectionData objectAtIndex:indexPath.item];
+    //    _subView.image = [self.collectionData objectAtIndex:indexPath.item];
     [_subView viewConfigure];
     _subView.imageView.center = _subView.center;
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideSubView:)];
@@ -122,22 +163,19 @@
         for (int i = 0 ; i < self.cellsArray.count; i ++) {
             int tag = (int)((MyCell *)[self.cellsArray objectAtIndex:i]).tag;
             [self.imagesArray addObject:[UIImage imageWithCGImage:[[((ALAsset *)[self.collectionData objectAtIndex:tag]) defaultRepresentation] fullScreenImage]]];
-//            [self.imagesArray addObject:[self.collectionData objectAtIndex:tag]];
+            //            [self.imagesArray addObject:[self.collectionData objectAtIndex:tag]];
         }
     }else{
         [MyUtil showCleanMessage:@"请选择图片"];
         return;
     }
-//    if(self.delegate){
-        [self.navigationController popViewControllerAnimated:NO];
-        self.pushSuccessBlock(self.imagesArray);
-//    }
+    //    if(self.delegate){
+    [self.navigationController popViewControllerAnimated:NO];
+    self.pushSuccessBlock(self.imagesArray);
+    //    }
 }
 
 #pragma mark - 跳转出去以后
-//- (void)completed()^{
-//    
-//}
 
 #pragma mark - 选择图片
 - (void)pickImage:(UIButton *)button{

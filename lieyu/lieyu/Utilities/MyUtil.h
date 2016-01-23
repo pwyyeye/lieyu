@@ -49,6 +49,11 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 +(NSString *)trim:(NSString *)string;
 
 + (NSString *)md5HexDigest:(NSString*)input;
+//des加密
++ (NSString *) encryptUseDES:(NSString *)plainText;
+
+//des解密
++ (NSString *) decryptUseDES:(NSString*)cipherText;
 
 + (BOOL) validateIdentityCard: (NSString *)identityCard;
 //判断是否数字
@@ -87,4 +92,6 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 + (NSString *)calculateDateFromNowWith:(NSString *)dateString;
 
 + (void)showLikePlaceMessage:(NSString* )message;
+
+
 @end

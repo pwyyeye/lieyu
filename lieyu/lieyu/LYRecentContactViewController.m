@@ -20,7 +20,7 @@
     [super viewDidLoad];
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE)]];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+    [self setupView];
     //设置tableView样式
     self.conversationListTableView.separatorColor = RGB(223, 223, 223);
     self.conversationListTableView.tableFooterView = [UIView new];
@@ -29,6 +29,15 @@
  
     // Do any additional setup after loading the view.
 }
+- (void)setupView{
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+}
+
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     //统计错误情况下 需要特殊处理
@@ -56,7 +65,7 @@
     
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
     conversationVC.navigationItem.leftBarButtonItem = left;
     
     

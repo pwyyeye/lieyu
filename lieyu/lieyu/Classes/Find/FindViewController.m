@@ -14,11 +14,16 @@
 #import "SaoYiSaoViewController.h"
 #import "YaoYiYaoViewController.h"
 #import "LYRecentContactViewController.h"
+#import "LYUserHttpTool.h"
+#import "OrderTTL.h"
+#import "MyMessageListViewController.h"
+
 @interface FindViewController ()
 {
     NSArray *datalist;
     BOOL isMes;
 }
+@property(strong,nonatomic) OrderTTL *orderTTL;
 @end
 
 @implementation FindViewController
@@ -36,14 +41,18 @@
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
-  
-    datalist=@[@{@"image":@"icon_zuijinglianxi_normal",@"title":@"最近联系"},
-               @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
-               @{@"image":@"icon_fujinwangke_normal",@"title":@"附近玩客"},
+    [self setuptitle];
+    datalist=@[@{@"image":@"xitongtongzhi",@"title":@"系统通知"},
+               @{@"image":@"zuijinlianxiren",@"title":@"最近联系"},
+               @{@"image":@"lianxiren",@"title":@"玩友列表"},
+               @{@"image":@"fujinwanyou",@"title":@"附近玩客"},
               // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-               @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}];
+               @{@"image":@"saoyisao",@"title":@"扫一扫"}];
 
-    
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
+    self.navigationController.navigationBar.layer.shadowRadius = 1;
     
 //    datalist=@[
 //               @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
@@ -62,6 +71,41 @@
 //    [titleText setText:@"我是导航栏标题"];
 //    self.navigationItem.titleView=titleText;
     // Do any additional setup after loading the view.
+}
+
+- (void)setuptitle{
+    _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+    
+    _myTitle.backgroundColor = [UIColor clearColor];
+    _myTitle.textColor=[UIColor whiteColor];
+    _myTitle.textAlignment = NSTextAlignmentCenter;
+    [_myTitle setFont:[UIFont systemFontOfSize:17.0]];
+    [_myTitle setText:@"发现"];
+}
+
+//加载角标
+-(void)loadBadge:(OrderTTL *)orderTTL{
+    if (orderTTL.messageNum>0) {//消息中心
+//        UILabel *badge=[[UILabel alloc] init];
+//        badge.backgroundColor=[UIColor redColor];
+//        badge.font=[UIFont systemFontOfSize:8];
+//        badge.layer.masksToBounds=YES;
+//        badge.layer.cornerRadius=6;
+//        badge.textColor=[UIColor whiteColor];
+//        badge.textAlignment=NSTextAlignmentCenter;
+        FindMenuCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        cell.messageImageView.hidden = NO;
+//        CGRect frame=_btnMessage.frame;
+//        badge.frame=CGRectMake(frame.size.width-6, -3, 12, 12);
+//        badge.text=[NSString stringWithFormat:@"%ld",orderTTL.messageNum];
+//        badge.tag=105;
+//        [_btnMessage insertSubview:badge aboveSubview:_btnMessage.titleLabel];
+        
+    }else{
+        FindMenuCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        cell.messageImageView.hidden = YES;
+//        [[_btnMessage viewWithTag:105] removeFromSuperview];
+    }
 }
 
 -(void)dealloc{
@@ -88,13 +132,15 @@
 //    [self performSelector:@selector(setCustomTitle:) withObject:@"发现" afterDelay:0.1];
 
     [super viewWillAppear:animated];
-         _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+    //角标
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (![MyUtil isEmptyString:app.s_app_id]) {
+        [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
+            _orderTTL=result;
+            [self loadBadge:_orderTTL];
+        }];
+    }
     
-        _myTitle.backgroundColor = [UIColor clearColor];
-        _myTitle.textColor=[UIColor whiteColor];
-        _myTitle.textAlignment = NSTextAlignmentCenter;
-        [_myTitle setFont:[UIFont systemFontOfSize:17.0]];
-        [_myTitle setText:@"发现"];
 //        self.navigationItem.titleView=titleText;
     [self.navigationController.navigationBar addSubview:_myTitle];
     if (self.navigationController.navigationBarHidden != NO) {
@@ -128,12 +174,12 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 14;
+    return 4;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section==0){
-        return 3;
+        return 4;
     }
         return 1;
 }
@@ -147,36 +193,42 @@
     NSDictionary *dic;
     cell = [tableView dequeueReusableCellWithIdentifier:@"FindMenuCell" forIndexPath:indexPath];
     if(indexPath.section==0){
-       
-        if(indexPath.row==0){
+        if (indexPath.row == 0) {
             dic=[datalist objectAtIndex:0];
+            [[cell viewWithTag:100] removeFromSuperview];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            lineLal.tag=100;
+            [cell addSubview:lineLal];
+        }else if(indexPath.row==1){
+            dic=[datalist objectAtIndex:1];
             if([USER_DEFAULT objectForKey:@"badgeValue"]){//true
                 [cell.messageImageView setHidden:NO];
             }else{
                 [cell.messageImageView setHidden:YES];
             }
             [[cell viewWithTag:100] removeFromSuperview];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, SCREEN_WIDTH, 0.3)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             lineLal.tag=100;
             [cell addSubview:lineLal];
-        }else if(indexPath.row==1){
-            dic=[datalist objectAtIndex:1];
+        }else if(indexPath.row==2){
+            dic=[datalist objectAtIndex:2];
             [[cell viewWithTag:100] removeFromSuperview];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, SCREEN_WIDTH, 0.3)];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
             lineLal.backgroundColor=RGB(199, 199, 199);
             lineLal.tag=100;
             [cell addSubview:lineLal];
         }else{
-            dic=[datalist objectAtIndex:2];
+            dic=[datalist objectAtIndex:3];
         }
 
     }
     else{
         if(indexPath.row==0){
             [[cell viewWithTag:100] removeFromSuperview];
-            dic=[datalist objectAtIndex:3];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 50.5, SCREEN_WIDTH, 0.3)];
+            dic=[datalist objectAtIndex:4];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
             lineLal.tag=100;
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
@@ -194,16 +246,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return 51;
+    return 60;
 }
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section==0){
-      
-        if(indexPath.row==0){
+        if (indexPath.row == 0) {
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择系统通知"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            MyMessageListViewController *messageListViewController=[[MyMessageListViewController alloc]initWithNibName:@"MyMessageListViewController" bundle:nil];
+            messageListViewController.title=@"信息中心";
+            [app.navigationController pushViewController:messageListViewController animated:YES];
+            
+        }else if(indexPath.row==1){
             if([USER_DEFAULT objectForKey:@"badgeValue"]==nil){
                 isMes=false;
             }
@@ -217,11 +276,11 @@
             
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             chat.title=@"最近联系";
-            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
             chat.navigationItem.leftBarButtonItem = leftBtn;
             
             [self.navigationController pushViewController:chat animated:YES];
-        }else if(indexPath.row==1){
+        }else if(indexPath.row==2){
             //玩友列表
             
             //统计发现页面的选择

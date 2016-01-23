@@ -27,11 +27,11 @@
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
-    
      _searchBar.barTintColor=[UIColor whiteColor];
     [self getMyCustomerslist];
     // Do any additional setup after loading the view from its nib.
 }
+
 -(void)getMyCustomerslist{
     [_listContent removeAllObjects];
     __weak __typeof(self)weakSelf = self;
@@ -74,8 +74,10 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return nil;
     } else {
+//        self.tableView.sectionIndexTrackingBackgroundColor = [UIColor redColor];
         return [[NSArray arrayWithObject:UITableViewIndexSearch] arrayByAddingObjectsFromArray:
                 [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles]];
+        
     }
 }
 

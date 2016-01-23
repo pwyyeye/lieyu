@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     _captureSession = nil;
     _isReading = NO;
     [self startReading];
@@ -61,21 +61,29 @@
     //7.设置预览图层填充方式
     [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     //8.设置图层的frame 115
-    [_videoPreviewLayer setFrame:CGRectMake(23, 20, SCREEN_WIDTH - 26, SCREEN_HEIGHT - 115)];
-    //9.将图层添加到预览view的图层上
+    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 46, SCREEN_HEIGHT - 115 - 64)];
+        //9.将图层添加到预览view的图层上
     [_viewPreview.layer addSublayer:_videoPreviewLayer];
     //10.设置扫描范围
-    captureMetadataOutput.rectOfInterest = CGRectMake(0.2f, 0.2f, 0.8f, 0.8f);
+    captureMetadataOutput.rectOfInterest = CGRectMake(0, 0, 1, 1);
+    
+    
+    
+    
+    
     //10.1.扫描框
-    _boxView = [[UIView alloc] initWithFrame:CGRectMake(_viewPreview.bounds.size.width * 0.2f, _viewPreview.bounds.size.height * 0.2f, _viewPreview.bounds.size.width - _viewPreview.bounds.size.width * 0.4f, _viewPreview.bounds.size.height - _viewPreview.bounds.size.height * 0.4f)];
-    _boxView.layer.borderColor = [UIColor greenColor].CGColor;
-    _boxView.layer.borderWidth = 1.0f;
-    [_viewPreview addSubview:_boxView];
+//    _boxView = [[UIView alloc] initWithFrame:CGRectMake(_viewPreview.bounds.size.width * 0.2f, _viewPreview.bounds.size.height * 0.2f, _viewPreview.bounds.size.width - _viewPreview.bounds.size.width * 0.4f, _viewPreview.bounds.size.height - _viewPreview.bounds.size.height * 0.4f)];
+////    _boxView.center = _viewPreview.center;
+//    NSLog(@"%@",NSStringFromCGRect(_boxView.frame));
+//    NSLog(@"%@",NSStringFromCGRect(_viewPreview.frame));
+//    _boxView.layer.borderColor = [UIColor greenColor].CGColor;
+//    _boxView.layer.borderWidth = 1.0f;
+//    [_viewPreview addSubview:_boxView];
     //10.2.扫描线
     _scanLayer = [[CALayer alloc] init];
-    _scanLayer.frame = CGRectMake(0, 0, _boxView.bounds.size.width, 1);
+    _scanLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH - 46, 1);
     _scanLayer.backgroundColor = [UIColor brownColor].CGColor;
-    [_boxView.layer addSublayer:_scanLayer];
+    [_viewPreview.layer addSublayer:_scanLayer];
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(moveScanLayer:) userInfo:nil repeats:YES];
     [timer fire];
     //10.开始扫描
@@ -91,11 +99,11 @@
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         //判断回传的数据类型
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
-//            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
+            //            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
             NSURL* url = [[NSURL alloc] initWithString:[metadataObj stringValue]];
             [[ UIApplication sharedApplication]openURL:url];
-//            [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
-//            _isReading = NO;
+            //            [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
+            //            _isReading = NO;
         }
     }
 }
@@ -103,7 +111,7 @@
 - (void)moveScanLayer:(NSTimer *)timer
 {
     CGRect frame = _scanLayer.frame;
-    if (_boxView.frame.size.height < _scanLayer.frame.origin.y) {
+    if (_viewPreview.frame.size.height < _scanLayer.frame.origin.y) {
         frame.origin.y = 0;
         _scanLayer.frame = frame;
     }else{

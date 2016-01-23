@@ -36,18 +36,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.btn_yue.layer.cornerRadius = 5;
+    self.btn_yue.layer.masksToBounds = YES;
     //自定义返回
-    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-    [button addTarget:self action: @selector(gotoBack)
-     forControlEvents:UIControlEventTouchUpInside];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
-    [view addSubview:button];
-    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
-    self.navigationItem.leftBarButtonItem = customBarItem;
-
+//    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [button setImage:buttonImage forState:UIControlStateNormal];
+//    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+//    [button addTarget:self action: @selector(gotoBack)
+//     forControlEvents:UIControlEventTouchUpInside];
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)];
+//    [view addSubview:button];
+//    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+//    self.navigationItem.leftBarButtonItem = customBarItem;
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.backBarButtonItem = left;
     self.title=@"我的订单";
     pageCount=1;
     perCount=5;
@@ -91,10 +94,10 @@
             [self getDaiXiaoFei];
             break;
         case 3:
-            [self getDaiFanLi];
+            [self getDaiPingjia];
             break;
         case 4:
-            [self getDaiPingjia];
+            [self getDaiFanLi];
             break;
         case 5:
             [self getTuiDan];
@@ -264,7 +267,7 @@
 }
 #pragma mark 获取顶部菜单
 -(void)getMenuHrizontal{
-    NSArray *menuArrNew=@[@"订单",@"待付款",@"待消费",@"待返利",@"待评价",@"退款"];
+    NSArray *menuArrNew=@[@"订单",@"待付款",@"待消费",@"待评价",@"待返利",@"退款"];
     NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:5];
     for (int i=0; i<=menuArrNew.count-1; i++) {
         
@@ -367,7 +370,7 @@
                 NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
                 if(pinkerList.count>0){
                     for (PinkInfoModel *pinkInfoModel in pinkerList) {
-                        if(pinkInfoModel.inmember==userId){
+                        if(pinkInfoModel.inmember==self.userModel.userid){
                             if(pinkInfoModel.paymentStatus==1){
                                 moneyStr=pinkInfoModel.price;
                             }
@@ -503,7 +506,7 @@
                 [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
                 [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.secondBtn.tag=section;
-            }else if(orderInfoModel.orderStatus==8 || orderInfoModel.orderStatus==9 ){
+            }else if(orderInfoModel.orderStatus==9 ){
                 
                 
                 [orderBottomView.secondBtn setTitle:@"删除订单" forState:0];
@@ -512,10 +515,11 @@
             }
             //订单为8 待评价
             if (orderInfoModel.orderStatus==8) {
-                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
-                orderBottomView.oneBtn.tag=section;
-                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.oneBtn setHidden:NO];
+                [orderBottomView.secondBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.secondBtn.tag=section;
+                [orderBottomView.secondBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.secondBtn setHidden:NO];
+                [orderBottomView.oneBtn setHidden:YES];
             }
         }else if(orderInfoModel.ordertype==1){
             //拼客
@@ -552,11 +556,12 @@
             
             //订单为8 待评价
             if (orderInfoModel.orderStatus==8&&isFaqi) {
-                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
-                orderBottomView.oneBtn.tag=section;
-                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.oneBtn setHidden:NO];
-                orderBottomView.oneBtn.selected=YES;
+                [orderBottomView.secondBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.secondBtn.tag=section;
+                [orderBottomView.secondBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.secondBtn setHidden:NO];
+                orderBottomView.secondBtn.selected=YES;
+                [orderBottomView.oneBtn setHidden:YES];
             }
             
             if(orderInfoModel.orderStatus==0){
@@ -631,7 +636,7 @@
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
-            }else if(orderInfoModel.orderStatus==8 || orderInfoModel.orderStatus==9 ){
+            }else if(orderInfoModel.orderStatus==9 ){
                 
                 [orderBottomView.secondBtn setTitle:@"删除订单" forState:0];
                 if(isFaqi){
@@ -658,7 +663,7 @@
                 [orderBottomView.secondBtn setTitle:@"取消订单" forState:0];
                 [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.secondBtn.tag=section;
-            }else if(orderInfoModel.orderStatus==8 || orderInfoModel.orderStatus==9 ){
+            }else if(orderInfoModel.orderStatus==9 ){
                 
                 [orderBottomView.secondBtn setTitle:@"删除订单" forState:0];
                 [orderBottomView.secondBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
@@ -667,11 +672,12 @@
             
             //订单为8 待评价
             if (orderInfoModel.orderStatus==8) {
-                [orderBottomView.oneBtn setTitle:@"立即评价" forState:UIControlStateNormal];
-                orderBottomView.oneBtn.tag=section;
-                [orderBottomView.oneBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.oneBtn setHidden:NO];
-                [orderBottomView.oneBtn setSelected:YES];
+                [orderBottomView.secondBtn setTitle:@"立即评价" forState:UIControlStateNormal];
+                orderBottomView.secondBtn.tag=section;
+                [orderBottomView.secondBtn addTarget:self action:@selector(gotoPingjia:) forControlEvents:UIControlEventTouchUpInside];
+                [orderBottomView.secondBtn setHidden:NO];
+                [orderBottomView.secondBtn setSelected:YES];
+                [orderBottomView.oneBtn setHidden:YES];
             }
         }
         
@@ -883,7 +889,7 @@
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             // 把单聊视图控制器添加到导航栈。
-            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
             conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }else{
@@ -896,7 +902,7 @@
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             // 把单聊视图控制器添加到导航栈。
-            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
             conversationVC.navigationItem.leftBarButtonItem = left;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }
@@ -910,7 +916,7 @@
         [IQKeyboardManager sharedManager].isAdd = YES;
         [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
         // 把单聊视图控制器添加到导航栈。
-        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
         conversationVC.navigationItem.leftBarButtonItem = left;
         
         [self.navigationController pushViewController:conversationVC animated:YES];
@@ -966,15 +972,15 @@
             break;
         }
             
-        case 3:// 待返利
+        case 3:// 待评价
         {
-            [self getDaiFanLi];
             
+            [self getDaiPingjia];
             break;
         }
-        case 4:// 待评价
+        case 4:// 返利
         {
-            [self getDaiPingjia];
+            [self getDaiFanLi];
             break;
         }
         default://退款
@@ -1070,7 +1076,8 @@
         }
     }
     
-    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.backBarButtonItem = left;
     
     [self.navigationController pushViewController:detailViewController animated:YES];
     
@@ -1165,5 +1172,6 @@
 
 - (IBAction)gohomeAct:(UIButton *)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 @end

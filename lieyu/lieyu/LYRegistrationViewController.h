@@ -7,13 +7,26 @@
 //
 
 #import "LYBaseViewController.h"
+@class UserModel;
+
 @protocol LYRegistrationDelegate<NSObject>
 - (void)registration;
 
 @end
 @interface LYRegistrationViewController : UIViewController
 - (IBAction)zcAct:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *textField_phone;
+@property (weak, nonatomic) IBOutlet UIImageView *textField_YZM;
+@property (weak, nonatomic) IBOutlet UIImageView *textField_psw;
+@property (weak, nonatomic) IBOutlet UIImageView *textField_psw_little;
+@property (weak, nonatomic) IBOutlet UIImageView *textField_psw_third;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView_icon_four;
+
+
 @property (weak, nonatomic) IBOutlet UITextField *phoneTex;
+@property(nonatomic,strong) UserModel *userM;
+@property (nonatomic,unsafe_unretained) BOOL isTheThirdLogin;
+@property (nonatomic,copy) NSString *thirdLoginType;
 @property (weak, nonatomic) IBOutlet UITextField *yzmTex;
 @property (weak, nonatomic) IBOutlet UIButton *getYzmBtn;
 - (IBAction)getYzmAct:(UIButton *)sender;
@@ -23,6 +36,7 @@
 @property(assign,nonatomic) int step;
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (nonatomic, weak) id <LYRegistrationDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *btn_regist;
 
 + (instancetype)shareRegist;
 @end

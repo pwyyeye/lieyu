@@ -46,7 +46,11 @@
         UITabBarItem *item=[items objectAtIndex:3];
         item.badgeValue=((NSString *)[USER_DEFAULT objectForKey:@"badgeValue"]);
     }
-    
+    self.tabBar.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    self.tabBar.layer.shadowOffset = CGSizeMake(0, -1);
+    self.tabBar.layer.shadowOpacity = 0.5;
+    self.tabBar.layer.shadowRadius = 1;
+    [self.tabBarController.tabBar setBackgroundImage:[MyUtil getImageFromColor:[UIColor clearColor]]];
 }
 
 
@@ -152,13 +156,13 @@
 
 - (void)setupViewStyles
 {
-    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"biaoqian_wanyouquan_zhuangtai2",@"Find_normal",@"Mine_normal"];
-    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"biaoqian_wanyouquan_zhuangtai1",@"Find_selected",@"Mine_selected"];
+    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
+    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
 
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(114, 5, 147, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(153, 50, 204, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];
     
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(114, 5, 147, 0.3), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateNormal];
     
     int i = 0;
     for (UITabBarItem *item in self.tabBar.items)

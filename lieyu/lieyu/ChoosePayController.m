@@ -43,7 +43,7 @@
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     self.title=@"支付方式";
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
     _data=@[
             @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
@@ -343,7 +343,8 @@
       //  detailViewController.payAmountString=[NSString stringWithFormat:@"%.2f",_payAmount];
         
         
-        self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+        self.navigationItem.leftBarButtonItem = left;
         
         [self.navigationController pushViewController:detailViewController animated:YES];
     }else if([[resultDic objectForKey:@"resultStatus"] longLongValue]==6001){
@@ -356,7 +357,7 @@
         
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
         
-        UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
+        UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:nil action:nil];
         delegate.navigationController.navigationItem.backBarButtonItem=item;
         [delegate.navigationController pushViewController:detailViewController animated:YES];
         

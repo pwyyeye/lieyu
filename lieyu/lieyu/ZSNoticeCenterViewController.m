@@ -21,10 +21,19 @@
     self.title=@"通知中心";
     listArr =[[NSMutableArray alloc]init];
     
-    
+    [self setupView];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.tableView reloadData];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)setupView{
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+}
+
+- (void)back{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark tableview代理方法
 #pragma mark tableView

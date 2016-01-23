@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class UserModel;
 
 @interface LYUserDetailInfoViewController : UIViewController
 @property (nonatomic,unsafe_unretained) BOOL isAutoLogin;
+@property (nonatomic,strong) UserModel *userM;
+@property (nonatomic,copy) NSString *thirdLoginType;
 @end

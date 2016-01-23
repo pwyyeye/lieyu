@@ -85,12 +85,12 @@
                 _bigView.tag = 300;
                 [weakSelf.view addSubview:_bgView];
                 
-                _image_place = [[UIImageView alloc]initWithFrame:CGRectMake(107, 191-64,105 , 119)];
+                _image_place = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 105) / 2, 191-64,105 , 119)];
                 _image_place.image =[UIImage sd_animatedGIFNamed:@"sorry"];
                 _image_place.tag = 100;
                 [weakSelf.view addSubview:_image_place];
                 
-                _label_place = [[UILabel alloc]initWithFrame:CGRectMake(76, 310-64, 168, 22)];
+                _label_place = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 168) / 2, 310-64, 168, 22)];
                 _label_place.text = @"快快收藏专属经理吧";
                 _label_place.textColor = RGBA(29, 32, 47, 1);
                 _label_place.font = [UIFont systemFontOfSize:14];
@@ -297,7 +297,7 @@
         [IQKeyboardManager sharedManager].enable = NO;
         [IQKeyboardManager sharedManager].isAdd = YES;
         // 把单聊视图控制器添加到导航栈。
-        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
         conversationVC.navigationItem.leftBarButtonItem = left;
         [self.navigationController pushViewController:conversationVC animated:YES];
     }else{

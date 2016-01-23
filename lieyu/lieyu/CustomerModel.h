@@ -20,7 +20,7 @@
 //        ],
 //"userid": 3,
 //"username": "aaa"
-
+ 
 //"friend": 108888,
 //"friendName": "马东",
 //"icon": "http://source.lie98.com/1",
@@ -55,6 +55,7 @@
 @property(nonatomic,copy)NSString * username_en;
 @property(nonatomic,copy)NSString * phone;
 @property(nonatomic,retain)NSArray * tag;
+@property(nonatomic,retain)NSArray * tags;
 @property(nonatomic,retain)NSArray *userTag;
 @property(strong,nonatomic) NSString *age;
 @property(strong,nonatomic) NSString *birthday;

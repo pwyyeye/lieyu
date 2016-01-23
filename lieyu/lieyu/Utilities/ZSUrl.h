@@ -1,5 +1,5 @@
 //
-//  ZSUrl.h 
+//  ZSUrl.h
 //  lieyu
 //
 //  Created by 薛斯岐 on 15/9/29.
@@ -32,10 +32,18 @@
 
 //注册
 #define LY_ZC  @"registerAction.do?action=add"
+
+//第三方注册
+#define LY_THIRD_ZC  @"osregisterAction.do?action=cancel"
+
 //找回密码
 #define LY_GET_PW  @"registerAction.do?action=update"
 //登录
 #define LY_DL  @"accountAction.do?action=login"
+
+//第三方登录
+#define LY_DL_THIRD @"accountAction.do?action=login"
+
 //登出
 #define LY_LOGOUT  @"osregisterAction.do?action=logout"
 

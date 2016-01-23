@@ -16,8 +16,8 @@ typedef NS_ENUM(NSInteger, LYOrderType) {
     LYOrderTypeDefault=0,//all
     LYOrderTypeWaitPay=1,//待付款
     LYOrderTypeWaitConsumption=2,//待消费
-    LYOrderTypeWaitRebate=3,//待返利
-    LYOrderTypeWaitEvaluation=4,//待评价
+    LYOrderTypeWaitRebate=4,//待评价
+    LYOrderTypeWaitEvaluation=3,//待返利
     LYOrderTypeWaitPayBack=5//待退款
     
 };
@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, LYOrderType) {
 @property(assign,nonatomic) LYOrderType orderType;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *btn_yue;
 
 - (IBAction)gohomeAct:(UIButton *)sender;
 

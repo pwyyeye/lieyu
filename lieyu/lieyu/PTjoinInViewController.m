@@ -230,8 +230,8 @@
                 detailViewController.payAmount=pinKeModel.pinkerNeedPayAmount.doubleValue;
                 detailViewController.productName=pinKeModel.fullname;
                 detailViewController.productDescription=@"暂无";
-                self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-                
+                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+                self.navigationItem.backBarButtonItem = left;
                 [self.navigationController pushViewController:detailViewController animated:YES];
             }
            

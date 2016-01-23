@@ -24,9 +24,12 @@
 #import "IQKeyboardManager.h"
 #import "UMSocial.h"
 #import "UMSocialSnsPlatformManager.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "WXApi.h"
+#import "LYHomePageHttpTool.h"
 
-@interface LYUserCenterController (){
-    UIButton *_qqBtn;
+@interface LYUserCenterController ()<TencentSessionDelegate>{
+    
 }
 
 @end
@@ -43,7 +46,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     self.automaticallyAdjustsScrollViewInsets = YES;
     
     self.edgesForExtendedLayout=UIRectEdgeNone;
-    self.title=@"我的";
+    self.title=@"我";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -55,8 +58,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     [self.collectionView registerClass:[LYUserCenterHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader"];
     
-  
-    
     [self.collectionView registerNib:[UINib nibWithNibName:@"LYUserCenterFooter" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter"];
     //
 
@@ -64,19 +65,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
  
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
-    self.collectionView.bounces=NO;//遇到边框不反弹
+//    self.collectionView.scrollEnabled = YES;
+    self.collectionView.bounces = NO;//遇到边框不反弹
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
-    
-    UIWindow *window = [UIApplication sharedApplication].delegate.window;
-    _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 200, 30, 30)];
-    [_qqBtn setTitle:@"qq登录" forState:UIControlStateNormal];
-    _qqBtn.backgroundColor = [UIColor redColor];
-    [window addSubview:_qqBtn];
-    [_qqBtn addTarget:self action:@selector(qqLogin) forControlEvents:UIControlEventTouchUpInside];
-    
 }
+
 -(void)loadData{
     dispatch_async(dispatch_get_main_queue(), ^{
         // 更UI
@@ -109,30 +104,23 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         [MTA trackPageViewEnd:self.title];
     }
 }
+
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
+
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     if (self.navigationController.navigationBarHidden==NO) {
         [self.navigationController setNavigationBarHidden:YES];
     }
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -273,7 +261,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.title = @"猎娱客服";
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
-            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
             conversationVC.navigationItem.leftBarButtonItem = leftBtn;
             
             [self.navigationController pushViewController:conversationVC animated:YES];
@@ -394,30 +382,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
  
 }
 
-- (void)qqLogin{
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatTimeline];
-    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-        
-        //          获取微博用户名、uid、token等
-        
-        if (response.responseCode == UMSResponseCodeSuccess) {
-            
-            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToWechatTimeline];
-            NSLog(@"--->%@",snsAccount);
-            NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
-            
-        }});
-  
-    
-//    NSString *platformName = [UMSocialSnsPlatformManager getSnsPlatformString:UMSocialSnsTypeMobileQQ];
-//    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatTimeline];
-//    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-//        NSLog(@"response is %@",response);
-//        if (response.responseCode == UMSResponseCodeSuccess) {
-//            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToWechatTimeline];
-//            NSLog(@"=========%@",snsAccount.accessToken);
-//        }
-//    });
-}
+
+
 
 @end

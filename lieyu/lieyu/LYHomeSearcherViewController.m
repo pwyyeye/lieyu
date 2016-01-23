@@ -51,11 +51,10 @@
     hisSerchArr=[[NSMutableArray alloc]init];
     self.curPageIndex = 1;
     datalist=[[NSMutableArray alloc]init];
-    self.tableView.rowHeight = 274;
     _searchBar.returnKeyType = UIReturnKeySearch;
     self.tableView.tableFooterView = [[UIView alloc]init];
     
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
 }
 
@@ -108,6 +107,7 @@
             btn.layer.cornerRadius = 0;
             [btn setTitle:@"" forState:UIControlStateNormal];
         }
+        self.btn_clean.hidden = YES;
          [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:SEARCHPAGE_MTA titleName:@"删除历史记录"]];
     }
 }
@@ -141,6 +141,11 @@
 }
 
 - (void)setHistory{
+    if(hisSerchArr.count == 0){
+        self.btn_clean.hidden = YES;
+    }else{
+        self.btn_clean.hidden = NO;
+    }
     for (int i = 0; i < hisSerchArr.count;i ++) {
         UIButton *button = _btnHistoryArray[i];
         button.layer.borderWidth = 0.5;
@@ -161,9 +166,11 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    NSString *string = [searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     [searchBar endEditing:NO];
-    if (!searchBar.text.length) {
+    if (!string.length) {
         self.tableView.hidden = YES;
+        [MyUtil showCleanMessage:@"请输入正确字符"];
         [self loadHisData];
         return;
     }
@@ -293,6 +300,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
+    wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
     JiuBaModel *model = [searchlist objectAtIndex:indexPath.row];
     wineCell.jiuBaModel = model;
     return wineCell;
@@ -311,14 +319,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 94 + SCREEN_WIDTH / 16 * 9;
+}
 
 @end

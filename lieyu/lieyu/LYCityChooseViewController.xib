@@ -33,7 +33,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更多城市，敬请期待" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQl-fg-mX4">
-                    <rect key="frame" x="97" y="532" width="153" height="21"/>
+                    <rect key="frame" x="97" y="532" width="126" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="enD-k5-kty"/>
                     </constraints>
@@ -44,11 +44,18 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="ZQl-fg-mX4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="I1y-o4-ALS"/>
                 <constraint firstAttribute="bottom" secondItem="ZQl-fg-mX4" secondAttribute="bottom" constant="15" id="SoP-5g-YC7"/>
                 <constraint firstAttribute="trailing" secondItem="ZQl-fg-mX4" secondAttribute="trailing" constant="70" id="kfL-Ze-6gg"/>
                 <constraint firstItem="ZQl-fg-mX4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="97" id="vcZ-yg-6dz"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="kfL-Ze-6gg"/>
+                    <exclude reference="vcZ-yg-6dz"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="241" y="398"/>
         </view>
     </objects>

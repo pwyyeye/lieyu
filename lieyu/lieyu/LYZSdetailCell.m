@@ -13,7 +13,16 @@
 
 - (void)awakeFromNib {
     _imagesArray = @[_iconStar1,_iconStar2,_iconStar3,_iconStar4,_iconStar5];
-    
+    self.backView.layer.cornerRadius = 2;
+    self.backView.layer.masksToBounds = YES;
+//    self.backView.layer.shadowColor = [[UIColor grayColor]CGColor];
+//    self.backView.layer.shadowOffset = CGSizeMake(0, 1);
+//    self.backView.layer.shadowOpacity = 0.8;
+//    self.backView.layer.shadowRadius = 2 ;
+//    self.layer.shadowColor = [[UIColor grayColor]CGColor];
+//    self.layer.shadowOffset = CGSizeMake(0, 1);
+//    self.layer.shadowOpacity = 0.8;
+//    self.layer.shadowRadius = 2;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

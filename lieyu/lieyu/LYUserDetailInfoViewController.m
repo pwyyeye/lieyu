@@ -27,6 +27,7 @@
     LYUserDetailSexTableViewCell *_sexCell;
     LYUserDetailTableViewCell *_birthCell;
      LYUserDetailTableViewCell *_tagCell;
+    NSString *_keyStr;
     NSDate *_chooseBirthDate;
     NSString *_tagNames;
     UIImage *_imageIcon;
@@ -104,7 +105,14 @@
     UserModel *mod= app.userModel;//获取当前用户信息
     if (!indexPath.row) {//头像
         _selectcedCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailCameraTableViewCell" forIndexPath:indexPath];
-        [_selectcedCell.btn_userImage sd_setBackgroundImageWithURL:[NSURL URLWithString:mod.avatar_img] forState:UIControlStateNormal];
+        NSString *avatarImgStr = nil;
+        if(_userM) {
+            
+            avatarImgStr = _userM.avatar_img;
+            mod.avatar_img = _userM.avatar_img;
+        }
+        else avatarImgStr = mod.avatar_img;
+        [_selectcedCell.btn_userImage sd_setBackgroundImageWithURL:[NSURL URLWithString:avatarImgStr] forState:UIControlStateNormal];
         [_selectcedCell.btn_userImage addTarget:self action:@selector(chooseImage) forControlEvents:UIControlEventTouchUpInside];
         _selectcedCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _selectcedCell;
@@ -115,6 +123,7 @@
 //            _nickCell.textF_content.text = mod.usernick;
 //            _nickCell.textF_content.textColor = RGBA(114, 5, 145, 1);
 //        }
+        _nickCell.textF_content.text = _userM.usernick;
         _nickCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _nickCell;
         
@@ -279,7 +288,7 @@
     
     mod.tags=[usertags copy];
     
-    _tagCell.textF_content.text=tagNames;
+    _tagCell.textF_content.text=tagNames;     
     NSMutableDictionary *userinfo=[NSMutableDictionary new];
     [userinfo setObject:tagids forKey:@"tag"];
     [self savaUserInfo:userinfo needReload:NO];
@@ -304,6 +313,14 @@
                 [dateFormatter setDateFormat:@"yyyy-MM-dd"];
                 NSString *date = [dateFormatter stringFromDate:_chooseBirthDate];
                 app.userModel.age=[MyUtil getAgefromDate:date];
+                if(_keyStr == nil && _userM.avatar_img != nil){
+                    app.userModel.avatar_img=_userM.avatar_img;
+                }
+                else{
+                    if([MyUtil isEmptyString:_keyStr]) return;
+                    app.userModel.avatar_img=_keyStr;
+                }
+                
             }
             
              [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
@@ -377,9 +394,9 @@
     // UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];//原始图
     UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];
     _imageIcon = image;
-    UIGraphicsBeginImageContext(CGSizeMake(200, 200));  //size 为CGSize类型，即你所需要的图片尺寸
+    UIGraphicsBeginImageContext(CGSizeMake(800, 800));  //size 为CGSize类型，即你所需要的图片尺寸
     
-    [image drawInRect:CGRectMake(0, 0, 200, 200)];
+    [image drawInRect:CGRectMake(0, 0, 800, 800)];
     
     UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -388,6 +405,7 @@
     [_selectcedCell.btn_userImage setBackgroundImage:scaledImage forState:UIControlStateNormal];
     
     [HTTPController uploadImageToQiuNiu:scaledImage complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+        _keyStr = key;
         if (![MyUtil isEmptyString:key]) {
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             UserModel *mod= app.userModel;
@@ -432,16 +450,13 @@
         [MyUtil showMessage:@"昵称不能为空"];
         [_nickCell.textF_content endEditing:NO];
         return;
-    }else if(_nickCell.textF_content.text.length >= 8){
+    }else if(_nickCell.textF_content.text.length >= 12){
         [MyUtil showMessage:@"昵称不能超过八个字符"];
         [_nickCell.textF_content endEditing:NO];
         return;
     }
     
-    if(_imageIcon == nil){
-        [MyUtil showMessage:@"请选择头像"];
-      return;
-    }
+    
     
     NSMutableDictionary *userinfo=[NSMutableDictionary new];
     
@@ -471,9 +486,28 @@
         [MyUtil showMessage:@"请选择标签"];
         return;
     }
+    if(_selectcedCell.btn_userImage.currentBackgroundImage == nil){
+        [MyUtil showMessage:@"请选择头像"];
+        
+        return;
+    }
+    if(_keyStr == nil && _userM.avatar_img != nil){
+        [userinfo setObject:_userM.avatar_img forKey:@"avatar_img"];
+    }
+    else{
+        if([MyUtil isEmptyString:_keyStr]) return;
+        [userinfo setObject:_keyStr forKey:@"avatar_img"];
+
+    }
     
     [userinfo setObject:[NSString stringWithFormat:@"%@",sexNum] forKey:@"gender"];
     
+    if(_userM.openID && _thirdLoginType){
+        [userinfo setObject:[MyUtil encryptUseDES:_userM.openID] forKey:@"openId"];
+        [userinfo setObject:_thirdLoginType forKey:@"type"];
+    }
+    
+
     [userinfo setObject:[NSString stringWithFormat:@"%ld",_userTag.id] forKey:@"tag"];
     NSLog(@"-----%@---->%@",_userTag.tagname,userinfo);
     
@@ -481,8 +515,6 @@
     
     [self.navigationController popToRootViewControllerAnimated:YES];
 
-   
-   
 }
 
 

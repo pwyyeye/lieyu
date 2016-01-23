@@ -10,6 +10,7 @@
 #import "CustomerModel.h"
 @interface LYMyFriendDetailViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
+@property (weak, nonatomic) IBOutlet UIButton *userimageBtn;
 @property (weak, nonatomic) IBOutlet UILabel *namelal;
 @property (weak, nonatomic) IBOutlet UILabel *delLal;
 @property (weak, nonatomic) IBOutlet UILabel *zhiwuLal;

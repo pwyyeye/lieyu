@@ -202,6 +202,7 @@
             compelte(mod);
         }
     }failure:^(NSError *err) {
+        NSLog(@"----pass-friendsGetAMessageWithParams:%@---",err);
                 [app stopLoading];
     }];
 }

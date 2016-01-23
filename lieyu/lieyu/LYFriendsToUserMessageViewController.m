@@ -231,20 +231,28 @@
 }
 
 - (void)headerImgClick:(UIButton *)button{
-        CustomerModel *customerM = [[CustomerModel alloc]init];
-        customerM.avatar_img = _userInfo.avatar_img;
-        customerM.sex = [_userInfo.gender isEqualToString:@"0"] ? @"男" : @"女";
-        customerM.usernick = _userInfo.usernick;
-        customerM.message = _userInfo.introduction;
-        customerM.age = [MyUtil getAgefromDate:_userInfo.birthday];
-        customerM.userid = _userInfo.userId.intValue;
-        LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
-        friendDetailVC.customerModel = customerM;
-    if(_dataArray.count) {
-        FriendsRecentModel *recentM = _dataArray[0];
-        friendDetailVC.type = [NSString stringWithFormat:@"%@",recentM.type];
-    }
-        [self.navigationController pushViewController:friendDetailVC animated:YES];
+    CustomerModel *customerM = [[CustomerModel alloc]init];
+    customerM.avatar_img = _userInfo.avatar_img;
+    customerM.icon = _userInfo.avatar_img;
+    customerM.sex = [_userInfo.gender isEqualToString:@"0"] ? @"0" : @"1";
+//    customerM.sex = _userInfo.gender;
+    customerM.usernick = _userInfo.usernick;
+    customerM.message = _userInfo.introduction;
+    customerM.imUserId= _userInfo.imUserId;
+    customerM.friendName=_userInfo.usernick;
+    customerM.friend = _userInfo.userId.intValue;
+    customerM.age = [MyUtil getAgefromDate:_userInfo.birthday];
+    customerM.birthday=_userInfo.birthday;
+    customerM.userid = _userInfo.userId.intValue;
+    customerM.tag=_userInfo.tags;
+    
+    __weak __typeof(self)weakSelf = self;
+    LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
+    friendDetailVC.customerModel = customerM;
+    [weakSelf.navigationController pushViewController:friendDetailVC animated:YES];
+
+
+    
 }
 
 #pragma mark - 表白action

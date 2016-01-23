@@ -86,6 +86,10 @@
     _context = app.managedObjectContext;
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
+    self.view_bottom.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    self.view_bottom.layer.shadowOffset = CGSizeMake(0, -1);
+    self.view_bottom.layer.shadowOpacity = 0.8;
+    self.view_bottom.layer.shadowRadius = 2;
     
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _webView.delegate = self;
@@ -184,6 +188,10 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - self.image_layer.size.height) {
         self.image_layer.hidden = NO;
+        self.image_layer.layer.shadowRadius = 2;
+        self.image_layer.layer.shadowOpacity = 0.8;
+        self.image_layer.layer.shadowOffset = CGSizeMake(0, 1);
+        self.image_layer.layer.shadowColor = [[UIColor blackColor]CGColor];
     }else{
         self.image_layer.hidden = YES;
     }
@@ -498,22 +506,26 @@
     return 0.001;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *headerView = [[UIView alloc]init];
-    headerView.backgroundColor = [UIColor clearColor];
-    return headerView;
-}
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *headerView = [[UIView alloc]init];
+//    headerView.backgroundColor = [UIColor clearColor];
+//    return headerView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 8;
+    if(section == 0){
+        return 0.00001;
+    }else{
+        return 8;
+    }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *headerView = [[UIView alloc]init];
-    headerView.backgroundColor = [UIColor clearColor];
-    return headerView;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    UIView *headerView = [[UIView alloc]init];
+//    headerView.backgroundColor = [UIColor clearColor];
+//    return headerView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -521,7 +533,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            return SCREEN_WIDTH * 9 / 16 + 30;
+            return SCREEN_WIDTH * 9 / 16;
         }
             break;
         case 1:
@@ -553,8 +565,10 @@
 #pragma mark 分享按钮
 - (IBAction)shareClick:(id)sender {
     NSString *string= [NSString stringWithFormat:@"大家一起来看看～%@酒吧不错啊!下载猎娱App即可优惠下单，还有超值返利。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barname,self.beerBarDetail.barid];
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"hhhhhhhh" shareImage:[UIImage imageNamed:@"lieyuIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
 }
 

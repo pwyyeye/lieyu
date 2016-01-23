@@ -27,6 +27,10 @@
     _btn_star.layer.masksToBounds = YES;
     _btn_star.layer.borderWidth = 0.5;
     _btn_star.layer.borderColor = RGBACOLOR(255, 255, 255, 0.5).CGColor;
+    
+    self.imageView_rectangle.layer.cornerRadius = 2;
+    self.imageView_rectangle.layer.masksToBounds = YES;
+    
 }
 
 - (void)setJiuBaModel:(JiuBaModel *)jiuBaModel{
@@ -68,12 +72,27 @@
     
     
     if ([jiuBaModel.fav_num integerValue]) {
-        [_label_star_count setText:jiuBaModel.fav_num];
+        int num = [jiuBaModel.fav_num intValue];
+        if(num < 1000){
+            [_label_star_count setText:jiuBaModel.fav_num];
+        }else{
+            [_label_star_count setText:[NSString stringWithFormat:@"%dk+",num / 1000]];
+        }
     }else{
         [_label_star_count setText:@"0"];
     }
-    [_label_zang_count setText:jiuBaModel.like_num];
+//    [_label_zang_count setText:jiuBaModel.like_num];
     
+    if ([jiuBaModel.like_num integerValue]) {
+        int num = [jiuBaModel.like_num intValue];
+        if(num < 1000){
+            [_label_zang_count setText:jiuBaModel.like_num];
+        }else{
+            [_label_zang_count setText:[NSString stringWithFormat:@"%dk+",num / 1000]];
+        }
+    }else{
+        [_label_zang_count setText:@"0"];
+    }
     int fanli=jiuBaModel.rebate.floatValue * 100;
     
     if (!fanli) {

@@ -8,9 +8,16 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYRegistrationViewController">
             <connections>
                 <outlet property="againPassWordTex" destination="6M5-7o-vSY" id="XYY-u7-lIj"/>
+                <outlet property="btn_regist" destination="giJ-N8-FTm" id="TSr-qH-PJm"/>
                 <outlet property="getYzmBtn" destination="jDb-YS-mg1" id="Zol-gT-CBO"/>
+                <outlet property="imgView_icon_four" destination="aYT-Jv-A2a" id="LOW-MQ-7Sf"/>
                 <outlet property="passWordTex" destination="dyr-sn-p1K" id="3xM-y1-nIs"/>
                 <outlet property="phoneTex" destination="1hx-6G-8MK" id="Rsr-Fo-g9C"/>
+                <outlet property="textField_YZM" destination="pJF-4J-9GP" id="R4g-xI-gYe"/>
+                <outlet property="textField_phone" destination="O4d-R3-kAh" id="yCW-Wu-AcI"/>
+                <outlet property="textField_psw" destination="BKc-wG-3X3" id="b4g-Br-2ox"/>
+                <outlet property="textField_psw_little" destination="eRu-dE-6Po" id="8jL-eC-y3q"/>
+                <outlet property="textField_psw_third" destination="L1F-QB-n3b" id="001-RT-7Fe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yzmTex" destination="hMM-Jh-Eif" id="nqv-4n-Zgm"/>
             </connections>
@@ -82,7 +89,7 @@
                     </constraints>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     <connections>
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="UdX-KY-MA1"/>
                     </connections>
@@ -107,7 +114,7 @@
                     </constraints>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     <connections>
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="XlH-up-bgS"/>
                     </connections>
@@ -199,7 +206,7 @@
         <image name="passWord" width="22" height="22"/>
         <image name="phoneNumber" width="22" height="22"/>
         <image name="purpleBtnBG.png" width="2" height="54"/>
-        <image name="textFieldLong" width="24" height="24"/>
+        <image name="textFieldLong" width="32" height="32"/>
         <image name="textFieldShort" width="174" height="54"/>
         <image name="yanZhengMa" width="22" height="22"/>
     </resources>

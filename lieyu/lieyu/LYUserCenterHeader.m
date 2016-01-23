@@ -12,13 +12,14 @@
 #import "LYMyOrderManageViewController.h"
 #import "MyMessageListViewController.h"
 #import "Setting.h"
+#import "LYUserDetailController.h"
 @implementation LYUserCenterHeader
 
 - (void)awakeFromNib {
     // Initialization code
     [self loadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
-     
+    self.btnMessage.hidden = YES;
     //设置背景色
     UIImageView *bgImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headBgColor"]];
     bgImage.frame=CGRectMake(0, 0, SCREEN_WIDTH, CGRectGetHeight(_headView.frame));
@@ -36,7 +37,19 @@
     
     self.avatar_img.layer.borderColor=RGB(176,143,199).CGColor; //要设置的颜色
     self.avatar_img.layer.borderWidth=2.5;
+    [self.avatar_btn addTarget:self action:@selector(changeAvatar) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)changeAvatar{
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"更换头像"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
     
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    LYUserDetailController *detail = [[LYUserDetailController alloc]init];
+//    Setting *setting =[[Setting alloc] init];
+    [app.navigationController pushViewController:detail animated:YES];
 }
 
 -(void)dealloc{
@@ -60,7 +73,7 @@
             _tags.hidden=NO;
         }
         [_age setTitle:[NSString stringWithFormat:@"%@岁",app.userModel.age]  forState:UIControlStateNormal];
-        if (![MyUtil isEmptyString:app.userModel.birthday]) {
+        if (![MyUtil isEmptyString:app.userModel.birthday]&&[MyUtil  isEmptyString:app.userModel.age]) {
             [_age setTitle:[NSString stringWithFormat:@"%@岁",[MyUtil getAgefromDate:app.userModel.birthday]]  forState:UIControlStateNormal];
             
         }

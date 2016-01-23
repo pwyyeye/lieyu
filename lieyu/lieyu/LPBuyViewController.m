@@ -50,7 +50,7 @@
     self.tableView.bounces = NO;
     
     self.title = @"确认拼客订单";
-    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"leftBackItem"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = backBtn;
     [self getAllManagers];
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -375,8 +375,8 @@
                 detailViewController.payAmount=[self.InfoDict[@"money"] doubleValue];
                 detailViewController.productName=self.pinkeModel.title;
                 detailViewController.productDescription=@"暂无";
-                self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-                
+                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+                self.navigationItem.backBarButtonItem = left;
                 [self.navigationController pushViewController:detailViewController animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
 

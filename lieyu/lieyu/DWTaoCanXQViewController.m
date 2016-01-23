@@ -28,6 +28,9 @@
 {
     TaoCanModel *taoCanModel;
     LYTaoCanHeaderTableViewCell *_headerCell;
+    UIButton *backBtn;
+    UIButton *collectBtn;
+    UIButton *shareBtn;
 }
 @end
 
@@ -35,7 +38,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
      _tableView.frame = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -48,6 +50,14 @@
     [self setTableViewCell];
     [self createButton];
     
+    self.image_header.hidden = YES;
+    self.btn_back.hidden = YES;
+    self.btn_collect.hidden = YES;
+    self.btn_share.hidden = YES;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+    [self.btn_back addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.btn_collect addTarget:self action:@selector(collectClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.btn_share addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -58,6 +68,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -66,25 +77,26 @@
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
+
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
-
 }
+
 - (void)createButton{
-    UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 30, 40, 40)];
+    backBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 30, 40, 40)];
     [backBtn setBackgroundImage:[UIImage imageNamed:@"icon_huanhui_action"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
     CGFloat collectBtnWidth = 40;
-    UIButton *collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 64 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
+    collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 64 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
     [collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
     [collectBtn addTarget:self action:@selector(collectClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:collectBtn];
     
-    UIButton *shareBtn = [[UIButton alloc]initWithFrame:CGRectMake( SCREEN_WIDTH - 8 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
+    shareBtn = [[UIButton alloc]initWithFrame:CGRectMake( SCREEN_WIDTH - 8 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
     [shareBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:shareBtn];
@@ -101,13 +113,14 @@
 
 #pragma mark 收藏按钮action
 - (void)collectClick{
-    NSDictionary *dic=@{@"barid":@(taoCanModel.barinfo.barid)};
+    NSDictionary *dic=@{@"barid":@(_jiubaModel.barid)};
     [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
         if(result){
             [MyUtil showMessage:@"收藏成功"];
         }
     }];
-    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"收藏" pageName:TAOCANDETAILPAGE_MTA titleName:taoCanModel.barinfo.barname]];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"收藏" pageName:TAOCANDETAILPAGE_MTA titleName:_jiubaModel.barname]];
+//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"喜欢" pageName:BEERBARDETAIL_MTA titleName:_jiubaModel.barname]];
 }
 
 - (void)shareClick{
@@ -173,6 +186,30 @@
     return [[UIView alloc]init];
 }
 
+#pragma mark -scrollViewDidScroll
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - 64) {
+        self.image_header.hidden = NO;
+        self.btn_share.hidden = NO;
+        self.btn_collect.hidden = NO;
+        self.btn_back.hidden = NO;
+        backBtn.hidden = YES;
+        collectBtn.hidden = YES;
+        shareBtn.hidden = YES;
+        self.image_header.layer.shadowRadius = 2;
+        self.image_header.layer.shadowOpacity = 0.8;
+        self.image_header.layer.shadowOffset = CGSizeMake(0, 1);
+        self.image_header.layer.shadowColor = [[UIColor blackColor]CGColor];
+    }else{
+        self.image_header.hidden = YES;
+        self.btn_share.hidden = YES;
+        self.btn_collect.hidden = YES;
+        self.btn_back.hidden = YES;
+        backBtn.hidden = NO;
+        collectBtn.hidden = NO;
+        shareBtn.hidden = NO;
+    }
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -319,7 +356,7 @@
     conversationVC.title = @"猎娱客服";
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
-    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
     conversationVC.navigationItem.leftBarButtonItem = leftBtn;
 
     [self.navigationController pushViewController:conversationVC animated:YES];

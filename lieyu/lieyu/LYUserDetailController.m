@@ -133,7 +133,13 @@
     }else if(indexPath.row==3){
         label.text=mod.birthday;
         if (![MyUtil isEmptyString:mod.birthday]) {
-            NSDate *birthday=[MyUtil getDateFromString:mod.birthday];
+            
+            NSDate *birthday;
+            if (![mod.birthday isEqualToString:@"1990-04-15"]) {
+                birthday=[MyUtil getDateFromString:mod.birthday];
+            }else{
+                birthday=[MyUtil getFullDateFromString:[NSString stringWithFormat:@"%@ 1:00:00",mod.birthday] ];
+            }
             [_datePicker setDate:birthday animated:NO];
         }else{
             [_datePicker setDate:[NSDate date] animated:NO];
@@ -418,8 +424,8 @@
         return;
     }
     
-    if(tf.text.length >= 8) {
-        [MyUtil showCleanMessage:@"昵称不能超过八个字符"];
+    if(tf.text.length > 8) {
+        [MyUtil showCleanMessage:@"昵称不能超过八个汉字"];
         return;
     }
     
@@ -452,9 +458,9 @@
     // UIImage *image=[info objectForKey:UIImagePickerControllerOriginalImage];//原始图
     UIImage *image=[info objectForKey:UIImagePickerControllerEditedImage];
     
-    UIGraphicsBeginImageContext(CGSizeMake(200, 200));  //size 为CGSize类型，即你所需要的图片尺寸
+    UIGraphicsBeginImageContext(CGSizeMake(800, 800));  //size 为CGSize类型，即你所需要的图片尺寸
     
-    [image drawInRect:CGRectMake(0, 0, 200, 200)];
+    [image drawInRect:CGRectMake(0, 0, 800, 800)];
     
     UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     
