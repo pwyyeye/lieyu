@@ -31,9 +31,9 @@
     [self setupView];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake((SCREEN_WIDTH - 30) / 3, (SCREEN_WIDTH - 30) / 3);
+    layout.itemSize = CGSizeMake((SCREEN_WIDTH-3) / 4, (SCREEN_WIDTH-3) / 4);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
+    layout.sectionInset = UIEdgeInsetsMake(1, 0, 20, 0);
     
     self.imagesArray = [[NSMutableArray alloc]init];
     self.cellsArray = [[NSMutableArray alloc]init];
@@ -59,6 +59,14 @@
         }
         [self.collectionView reloadData];
     }];
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 1;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 1;
 }
 
 - (void)setupView{

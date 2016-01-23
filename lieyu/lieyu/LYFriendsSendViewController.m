@@ -209,7 +209,7 @@
         int status = [MyUtil configureNetworkConnect];
         if(status == 1){
             //数据流量
-            _mp4Quality = AVAssetExportPresetLowQuality;
+            _mp4Quality = AVAssetExportPresetMediumQuality;
         }else if(status == 2){
             //wifi
             _mp4Quality = AVAssetExportPresetHighestQuality;
@@ -263,7 +263,7 @@
         if([self.textView isFirstResponder]){
             [self.textView resignFirstResponder];
         }
-        for(int i = 0 ; i < self.fodderArray.count; i ++){
+        for(int i = (int)self.fodderArray.count - 1 ; i >= 0; i --){
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                 if(![MyUtil isEmptyString:key]){
                     qiniuPages ++;
