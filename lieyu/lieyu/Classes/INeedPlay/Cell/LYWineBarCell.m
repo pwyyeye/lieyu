@@ -27,6 +27,10 @@
     _btn_star.layer.masksToBounds = YES;
     _btn_star.layer.borderWidth = 0.5;
     _btn_star.layer.borderColor = RGBACOLOR(255, 255, 255, 0.5).CGColor;
+    
+    self.imageView_rectangle.layer.cornerRadius = 2;
+    self.imageView_rectangle.layer.masksToBounds = YES;
+    
 }
 
 - (void)setJiuBaModel:(JiuBaModel *)jiuBaModel{
