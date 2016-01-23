@@ -660,7 +660,7 @@
     userM.avatar_img = dic[@"headimgurl"];
     userM.usernick = dic[@"nickname"];
     userM.gender = dic[@"sex"];
-    userM.openID = ((NSString *)dic[@"openid"]).integerValue;
+    userM.openID = dic[@"openid"];
     compelete(userM);
     
     /*  [HTTPController requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openIdStr] baseURL:nil params:nil success:^(id response) {
