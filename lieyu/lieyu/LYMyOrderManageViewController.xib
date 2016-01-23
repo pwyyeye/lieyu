@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYMyOrderManageViewController">
             <connections>
+                <outlet property="btn_yue" destination="ulw-ZZ-MOG" id="yu1-b0-6Je"/>
                 <outlet property="kongImageView" destination="evp-iy-BHh" id="UuP-AS-E6j"/>
                 <outlet property="menuView" destination="KEx-PM-4af" id="PsK-vU-5XU"/>
                 <outlet property="nodataView" destination="TPf-dR-yAC" id="Ac2-Uw-MbO"/>

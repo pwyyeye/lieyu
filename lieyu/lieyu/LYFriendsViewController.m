@@ -101,7 +101,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.pagesCount = 4;
-    
     _notificationDict = [[NSMutableDictionary alloc]init];
     [self setupAllProperty];//设置全局属性
     [self setupTableView];
@@ -115,6 +114,7 @@
     _icon = @"";
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel == nil)return;
+    
     NSDictionary *paraDic = @{@"userId":_useridStr};
     //__weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
@@ -359,14 +359,19 @@
 
 #pragma mark - 设置导航栏玩友圈和我的按钮及发布动态按钮
 - (void)setupNavMenuView{
-    _vLine = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 1) / 2.f, 16, 1, 12)];
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
+    self.navigationController.navigationBar.layer.shadowRadius = 1;
+    
+    _vLine = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 1) / 2.f, 16, 0.3, 12)];
     _vLine.backgroundColor = RGBA(255, 255, 255, 0.5);
     [self.navigationController.navigationBar addSubview:_vLine];
     
     CGFloat friendsBtn_Width = 42;
     _friendsBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f - friendsBtn_Width - 16 , 12, friendsBtn_Width, 20)];
     [_friendsBtn setTitle:@"玩友圈" forState:UIControlStateNormal];
-    _friendsBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
     _friendsBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_friendsBtn addTarget:self action:@selector(friendsClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_friendsBtn];
@@ -511,6 +516,8 @@
 #pragma mark - 玩友圈action
 - (void)friendsClick:(UIButton *)friendsBtn{
 //    _index = 0;
+    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
+    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
     _friendsBtn.alpha = 1;
     _myBtn.alpha = 0.5;
     _friendsBtnSelect = YES;
@@ -521,6 +528,8 @@
 
 #pragma mark - 我的action
 - (void)myClick:(UIButton *)myBtn{
+    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
+    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
     _friendsBtn.alpha = 0.5;
     _myBtn.alpha = 1;
     _friendsBtnSelect = NO;

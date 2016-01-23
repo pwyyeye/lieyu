@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYHomeSearcherViewController">
             <connections>
+                <outlet property="btn_clean" destination="6Ol-N0-roY" id="4re-6M-WMP"/>
                 <outlet property="searchBar" destination="8wO-wA-6tw" id="lhe-73-rWe"/>
                 <outlet property="tableView" destination="K5a-ST-sAY" id="4tp-yq-hbF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -114,7 +115,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ol-N0-roY">
-                    <rect key="frame" x="132" y="336" width="60" height="30"/>
+                    <rect key="frame" x="132" y="518" width="60" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="HeG-c8-i08"/>
                     </constraints>
@@ -156,7 +157,7 @@
                 <constraint firstItem="kGN-G0-RqR" firstAttribute="width" secondItem="MdP-m3-mnV" secondAttribute="width" id="Nh9-NV-Nom"/>
                 <constraint firstItem="kGN-G0-RqR" firstAttribute="top" secondItem="8wO-wA-6tw" secondAttribute="bottom" constant="16" id="Nwe-p7-yVJ"/>
                 <constraint firstItem="ux9-4n-Mh5" firstAttribute="height" secondItem="nZT-fS-L5V" secondAttribute="height" id="Pd2-BD-LTX"/>
-                <constraint firstAttribute="bottom" secondItem="6Ol-N0-roY" secondAttribute="bottom" constant="202" id="YPy-kb-xpY"/>
+                <constraint firstAttribute="bottom" secondItem="6Ol-N0-roY" secondAttribute="bottom" constant="20" id="YPy-kb-xpY"/>
                 <constraint firstAttribute="bottom" secondItem="K5a-ST-sAY" secondAttribute="bottom" id="Ycp-ZU-5qn"/>
                 <constraint firstItem="8wO-wA-6tw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="aUd-pJ-39F"/>
                 <constraint firstAttribute="trailing" secondItem="8wO-wA-6tw" secondAttribute="trailing" id="dBI-4N-2gC"/>

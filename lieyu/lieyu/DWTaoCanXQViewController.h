@@ -14,6 +14,12 @@
 - (IBAction)queryAct:(UIButton *)sender;
 - (IBAction)warnAct:(UIButton *)sender;
 - (IBAction)payAct:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UIImageView *image_header;
+@property (weak, nonatomic) IBOutlet UIButton *btn_back;
+@property (weak, nonatomic) IBOutlet UIButton *btn_collect;
+@property (weak, nonatomic) IBOutlet UIButton *btn_share;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) int smid;
 @property (copy, nonatomic) NSString *dateStr;

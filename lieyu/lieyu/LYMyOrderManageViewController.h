@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, LYOrderType) {
 @property(assign,nonatomic) LYOrderType orderType;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *btn_yue;
 
 - (IBAction)gohomeAct:(UIButton *)sender;
 

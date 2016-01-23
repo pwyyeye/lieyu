@@ -17,6 +17,8 @@
     NeedHideNavigationBar
 >
 
+@property (weak, nonatomic) IBOutlet UIView *view_bottom;
+
 @property (weak, nonatomic) IBOutlet UIButton *btn_collect;
 @property(nonatomic,strong)NSNumber * beerBarId;
 - (IBAction)dianweiAct:(UIButton *)sender;
@@ -24,5 +26,7 @@
 - (IBAction)zsliAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableView_Height;
+
+
 
 @end

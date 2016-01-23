@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *btn_fanli;
 @property (nonatomic,strong) TaoCanModel *model;
 
+
+
 @property (nonatomic, strong) CheHeModel *chiheModel;
 
 - (void)cellConfigure:(CheHeModel *)chiheModel;

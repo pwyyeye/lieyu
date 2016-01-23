@@ -97,6 +97,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="biaobai_icon.png" width="13" height="13"/>
+        <image name="biaobai_icon.png" width="13" height="12"/>
     </resources>
 </document>

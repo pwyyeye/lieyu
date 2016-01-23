@@ -16,6 +16,7 @@
                 <outlet property="tableView" destination="0kO-Cg-bvf" id="OWs-wS-3cI"/>
                 <outlet property="tableView_Height" destination="WzX-Oa-sGC" id="QXX-0O-T8L"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="view_bottom" destination="XXg-kz-6Dv" id="qNM-Yp-54c"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
