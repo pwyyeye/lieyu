@@ -62,7 +62,8 @@
     [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     //8.设置图层的frame 115
     [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 46, SCREEN_HEIGHT - 115 - 64)];
-        //9.将图层添加到预览view的图层上
+    [_videoPreviewLayer setFrame:CGRectMake(23, 20, SCREEN_WIDTH - 26, SCREEN_HEIGHT - 115)];
+    //9.将图层添加到预览view的图层上
     [_viewPreview.layer addSublayer:_videoPreviewLayer];
     //10.设置扫描范围
     captureMetadataOutput.rectOfInterest = CGRectMake(0, 0, 1, 1);
