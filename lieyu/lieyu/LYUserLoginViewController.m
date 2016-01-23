@@ -240,7 +240,6 @@
         NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:openID]};
         [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
             if (sucess) {//登录成功
-                [[NSUserDefaults standardUserDefaults] setObject:_tencentOAuth.openId forKey:@"OPENIDSTR"];
                 AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                 app.s_app_id=userM.token;
                 app.userModel=userM;
@@ -268,6 +267,7 @@
         app.userModel=result;
         [app getImToken];
         //        [self.navigationController popToRootViewControllerAnimated:YES ];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
     }];
 }
 #pragma mark - 注册
@@ -419,7 +419,7 @@
     NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:userModel.openID]};
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
         if (sucess) {//登录成功
-             [[NSUserDefaults standardUserDefaults] setObject:_tencentOAuth.openId forKey:@"OPENIDSTR"];
+             [[NSUserDefaults standardUserDefaults] setObject:userModel.openID forKey:@"OPENIDSTR"];
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             app.s_app_id=userM.token;
             app.userModel=userM;
@@ -458,7 +458,7 @@
                 __block LYUserLoginViewController *weakSelf = self;
                 [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
                     if (sucess) {//登录成功
-                         [[NSUserDefaults standardUserDefaults] setObject:_tencentOAuth.openId forKey:@"OPENIDSTR"];
+                         [[NSUserDefaults standardUserDefaults] setObject:userModel.openID forKey:@"OPENIDSTR"];
                         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                         app.s_app_id=userM.token;
                         app.userModel=userM;
