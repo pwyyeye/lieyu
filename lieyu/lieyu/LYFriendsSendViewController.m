@@ -288,6 +288,7 @@
     }
 }
 
+
 #pragma mark 上传文件到七牛
 - (void)sendFilesToQiniu{
     [HTTPController uploadFileToQiuNiu:self.mediaUrl complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {

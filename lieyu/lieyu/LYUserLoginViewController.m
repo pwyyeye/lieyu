@@ -312,6 +312,11 @@
     NSLog(@"----->%@",response);
     __block LYUserLoginViewController *weakSelf = self;
     NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES: _tencentOAuth.openId]};
+    
+    UserModel *userModel = [[UserModel alloc]init];
+    userModel.usernick = response.jsonResponse[@"nickname"];
+    userModel.gender = [response.jsonResponse[@"gender"] isEqualToString:@"男"] ? @"1" : @"0";
+    
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
         if (sucess) {//登录成功
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -322,10 +327,12 @@
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
-            registVC.userM = userM;
+            userModel.openID = _tencentOAuth.openId.integerValue;
+            registVC.userM = userModel;
+            
             registVC.isTheThirdLogin = YES;
             registVC.thirdLoginType = @"1";
-            [self.navigationController pushViewController:registVC animated:YES];
+            [weakSelf.navigationController pushViewController:registVC animated:YES];
         }}];
 }
 
@@ -392,11 +399,10 @@
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
-            registVC.userM = userM;
+            registVC.userM = userModel;
             registVC.isTheThirdLogin = YES;
             registVC.thirdLoginType = @"2";
-            [self.navigationController pushViewController:registVC animated:YES];
-            
+            [weakSelf.navigationController pushViewController:registVC animated:YES];
         }
     }];
 }
@@ -431,10 +437,11 @@
                     }else{//去绑定手机好
                         [MyUtil showPlaceMessage:@"绑定手机号"];
                         LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
+                        userModel.openID = snsAccount.usid.integerValue;
                         registVC.userM = userModel;
                         registVC.isTheThirdLogin = YES;
                         registVC.thirdLoginType = @"3";
-                        [self.navigationController pushViewController:registVC animated:YES];
+                        [weakSelf.navigationController pushViewController:registVC animated:YES];
                         
                     }
                 }];

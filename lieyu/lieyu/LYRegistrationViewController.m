@@ -168,7 +168,12 @@ static LYRegistrationViewController *_registe;
     }
     if(!_isRegisted){//绑定手机号
         if([_flag isEqualToString:@"1"]){//注册过去绑定
-            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"weibo":[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]]};
+            NSString *plantType = nil;
+            if([_thirdLoginType isEqualToString:@"1"]) plantType = @"qq";
+            else if([_thirdLoginType isEqualToString:@"2"]) plantType = @"wechat";
+            else plantType = @"weibo";
+            if(plantType == nil) return;
+            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,plantType:[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]]};
             __block LYRegistrationViewController *weakSelf = self;
             [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
                 if (flag) {//绑定
@@ -216,6 +221,7 @@ static LYRegistrationViewController *_registe;
                 
                 LYUserDetailInfoViewController *detailVC = [[LYUserDetailInfoViewController alloc]init];
                 detailVC.userM = _userM;
+                detailVC.thirdLoginType = _thirdLoginType;
                 detailVC.isAutoLogin = YES;
                 
                 [self.navigationController pushViewController:detailVC animated:YES];
@@ -228,4 +234,5 @@ static LYRegistrationViewController *_registe;
 - (IBAction)exitEdit:(UITextField *)sender {
     [sender resignFirstResponder];
 }
+
 @end

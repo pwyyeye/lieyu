@@ -41,6 +41,7 @@
              success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                  if (success) {
                      NSString *code = [NSString stringWithFormat:@"%@",responseObj[@"errorcode"]];
+                     NSLog(@"---->%@",responseObj);
                      if ([code isEqualToString:@"-1"]) {
                          LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
                          UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
