@@ -149,12 +149,13 @@
             }
         }else{
             [_setBtn setTitle:@"打招呼" forState:0];
-            
-            self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
-            if (_customerModel.distance.doubleValue>1000) {
-                self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
+            if (_customerModel.distance) {
+                self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
+                if (_customerModel.distance.doubleValue>1000) {
+                    self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
+                }
             }
-            
+
             if([_customerModel.sex isEqualToString:@"1"]){
                 _sexImageView.image=[UIImage imageNamed:@"manIcon"];
             }
