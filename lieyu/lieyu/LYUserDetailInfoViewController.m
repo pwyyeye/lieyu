@@ -295,7 +295,7 @@
 }
 */
 
-#pragma mark - 保存用户信息
+#pragma mark - 保存用户信息  
 -(void)savaUserInfo:(NSMutableDictionary *)userInfo needReload:(BOOL)isNeed{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UserModel *mod= app.userModel;
