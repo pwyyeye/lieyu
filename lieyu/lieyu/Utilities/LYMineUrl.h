@@ -76,6 +76,9 @@
 //绑定qq
 #define LY_TIE_OPENID @"osregisterAction.do?action=cancel"
 
+//绑定qq 已登陆情况
+#define LY_TIE_OPENID2 @"usersAction.do?action=expand"
+
 //openId登录
 #define LY_OPENID_LOGIN @"accountAction.do?action=login"
 

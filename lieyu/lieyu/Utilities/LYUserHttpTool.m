@@ -75,7 +75,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_DL_THIRD baseURL:LY_SERVER params:params success:^(id response) {
         if([response[@"errorcode"] isEqualToString:@"-2"]){//登录失败
             compelte(0,nil);
-            [MyUtil showPlaceMessage:@"登录失败"];
+//            [MyUtil showPlaceMessage:@"登录失败"];
         }else{//登录成功
             UserModel *userM = [UserModel mj_objectWithKeyValues:response[@"data"]];
             compelte(1,userM);
@@ -238,6 +238,36 @@
         
     }];
 }
+
+#pragma mark -第三方注册
+-(void) setThirdZhuCe:(NSDictionary*)params
+        complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ZC baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
+
 #pragma mark  -用户忘记更新密码
 -(void) setNewPassWord:(NSDictionary*)params
               complete:(void (^)(BOOL result))result{
@@ -1081,6 +1111,18 @@
 + (void)tieQQWeixinAndSinaWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte{
     NSLog(@"---->%@",paraDic);
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_TIE_OPENID baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+        NSString *errorCode = response[@"errorcode"];
+        compelte(errorCode.integerValue);
+    } failure:^(NSError *err) {
+        NSLog(@"--->%@",err.description);
+    }];
+    
+}
+
+#pragma mark - 绑定手机号已登陆情况下
++ (void)tieQQWeixinAndSinaWithPara2:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte{
+    NSLog(@"---->%@",paraDic);
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_TIE_OPENID2 baseURL:QINIU_SERVER params:paraDic success:^(id response) {
         NSString *errorCode = response[@"errorcode"];
         compelte(errorCode.integerValue);
     } failure:^(NSError *err) {

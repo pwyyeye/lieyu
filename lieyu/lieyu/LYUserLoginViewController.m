@@ -316,6 +316,8 @@
     UserModel *userModel = [[UserModel alloc]init];
     userModel.usernick = response.jsonResponse[@"nickname"];
     userModel.gender = [response.jsonResponse[@"gender"] isEqualToString:@"男"] ? @"1" : @"0";
+    userModel.avatar_img=response.jsonResponse[@"figureurl_qq_2"];
+    
      userModel.openID =  _tencentOAuth.openId;
     
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {

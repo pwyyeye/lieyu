@@ -42,6 +42,10 @@
 // 注册
 -(void) setZhuCe:(NSDictionary*)params
         complete:(void (^)(BOOL result))result;
+
+-(void) setThirdZhuCe:(NSDictionary*)params
+             complete:(void (^)(BOOL result))result;
+
 // 用户忘记更新密码
 -(void) setNewPassWord:(NSDictionary*)params
               complete:(void (^)(BOOL result))result;
@@ -152,6 +156,8 @@
 
 //绑定手机号
 + (void)tieQQWeixinAndSinaWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte;
+//绑定手机号 已登陆
++ (void)tieQQWeixinAndSinaWithPara2:(NSDictionary *)paraDic compelte:(void(^)(NSInteger))compelte;
 
 //绑定手机后用openId登录
 + (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void(^)(UserModel *))compelte;
