@@ -288,7 +288,7 @@
     
     mod.tags=[usertags copy];
     
-    _tagCell.textF_content.text=tagNames;
+    _tagCell.textF_content.text=tagNames;     
     NSMutableDictionary *userinfo=[NSMutableDictionary new];
     [userinfo setObject:tagids forKey:@"tag"];
     [self savaUserInfo:userinfo needReload:NO];
@@ -494,7 +494,7 @@
     [userinfo setObject:[NSString stringWithFormat:@"%@",sexNum] forKey:@"gender"];
     
     if(_userM.openID && _thirdLoginType){
-        [userinfo setObject:[MyUtil encryptUseDES:[NSString stringWithFormat:@"%ld",_userM.openID]] forKey:@"openId"];
+        [userinfo setObject:[MyUtil encryptUseDES:_userM.openID] forKey:@"openId"];
         [userinfo setObject:_thirdLoginType forKey:@"type"];
     }
     

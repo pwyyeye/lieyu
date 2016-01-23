@@ -35,6 +35,7 @@
 @property (nonatomic, strong) NSMutableString *location;
 @property (nonatomic, assign) BOOL notFirstOpen;
 @property (weak, nonatomic) IBOutlet UILabel *label;
+@property (nonatomic, strong) NSMutableArray *keysArray;
 
 @property (nonatomic, strong) NSString *content;
 
@@ -57,8 +58,7 @@
     self.shangchuanString = [[NSMutableString alloc]init];
     self.location = [[NSMutableString alloc]init];
     self.city = [[NSMutableString alloc]init];
-    
-    
+    self.keysArray = [[NSMutableArray alloc]init];
     
     [IQKeyboardManager sharedManager].enable = NO;
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -267,12 +267,18 @@
             [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                 if(![MyUtil isEmptyString:key]){
                     qiniuPages ++;
+                    [self.keysArray addObject:key];
                     [self.shangchuanString appendString:key];
                     [self.shangchuanString appendString:@","];
                     if(qiniuPages == self.fodderArray.count){
+//                        [self.keysArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+//                            NSString *str1 = (NSString *)obj1;
+//                            NSString *str2 = (NSString *)obj2;
+//                            return [str1 compare:str2];
+//                        }];
+//                        NSLog(@"%@",self.keysArray);
                         [self.shangchuanString deleteCharactersInRange:NSMakeRange([self.shangchuanString length]-1, 1)];
                         [self sendTrends:self.shangchuanString];
-                        
                     }
                 }else{
                     
@@ -281,6 +287,7 @@
         }
     }
 }
+
 
 #pragma mark 上传文件到七牛
 - (void)sendFilesToQiniu{
