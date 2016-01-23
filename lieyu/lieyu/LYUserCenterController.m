@@ -104,16 +104,19 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         [MTA trackPageViewEnd:self.title];
     }
 }
+
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
+
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     if (self.navigationController.navigationBarHidden==NO) {
         [self.navigationController setNavigationBarHidden:YES];
     }
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

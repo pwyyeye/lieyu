@@ -13,6 +13,7 @@
                 <outlet property="setBtn" destination="b8L-1u-jer" id="n4h-oR-Ckz"/>
                 <outlet property="sexImageView" destination="7pG-d2-QDP" id="yam-K6-BQW"/>
                 <outlet property="userImageView" destination="4CY-ix-pKh" id="d8y-ww-31e"/>
+                <outlet property="userimageBtn" destination="gSd-Jf-J92" id="YzU-ZH-d96"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="xingzuo" destination="PaO-Lq-Ghh" id="gfm-io-9xc"/>
                 <outlet property="zhiwuLal" destination="cDH-Sa-L8g" id="ZU3-RC-IiZ"/>
@@ -55,24 +56,31 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woman" translatesAutoresizingMaskIntoConstraints="NO" id="7pG-d2-QDP">
-                            <rect key="frame" x="279" y="30" width="25" height="25"/>
+                            <rect key="frame" x="279" y="13" width="25" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="HUJ-qJ-IiT"/>
-                                <constraint firstAttribute="height" constant="25" id="rhW-5Q-KpM"/>
+                                <constraint firstAttribute="height" constant="20" id="rhW-5Q-KpM"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSd-Jf-J92">
+                            <rect key="frame" x="15" y="9" width="68" height="68"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="7pG-d2-QDP" secondAttribute="trailing" constant="16" id="IwF-Dk-gRU"/>
+                        <constraint firstItem="gSd-Jf-J92" firstAttribute="top" secondItem="4CY-ix-pKh" secondAttribute="top" id="JQN-3W-0dq"/>
                         <constraint firstItem="7jR-Td-yoH" firstAttribute="top" secondItem="4du-72-yLR" secondAttribute="top" constant="13" id="Lh6-gr-Orf"/>
                         <constraint firstItem="4CY-ix-pKh" firstAttribute="top" secondItem="4du-72-yLR" secondAttribute="top" constant="9" id="QxD-bi-z8p"/>
                         <constraint firstAttribute="height" constant="85" id="UVH-Xt-NcD"/>
                         <constraint firstItem="7jR-Td-yoH" firstAttribute="leading" secondItem="4CY-ix-pKh" secondAttribute="trailing" constant="11" id="WaD-Cu-oLD"/>
-                        <constraint firstItem="7pG-d2-QDP" firstAttribute="top" secondItem="4du-72-yLR" secondAttribute="top" constant="30" id="YfN-hl-l0V"/>
                         <constraint firstItem="4CY-ix-pKh" firstAttribute="leading" secondItem="4du-72-yLR" secondAttribute="leading" constant="15" id="YmZ-0l-F5Q"/>
                         <constraint firstItem="b19-SF-u1D" firstAttribute="top" secondItem="7jR-Td-yoH" secondAttribute="bottom" constant="12" id="aFU-Md-LoG"/>
                         <constraint firstItem="b19-SF-u1D" firstAttribute="leading" secondItem="4CY-ix-pKh" secondAttribute="trailing" constant="11" id="hmW-4d-mBW"/>
+                        <constraint firstItem="gSd-Jf-J92" firstAttribute="trailing" secondItem="4CY-ix-pKh" secondAttribute="trailing" id="odJ-CM-Axk"/>
+                        <constraint firstItem="7pG-d2-QDP" firstAttribute="top" secondItem="7jR-Td-yoH" secondAttribute="top" id="tc4-s1-IA5"/>
+                        <constraint firstItem="gSd-Jf-J92" firstAttribute="bottom" secondItem="4CY-ix-pKh" secondAttribute="bottom" id="wlh-EI-AMP"/>
+                        <constraint firstItem="gSd-Jf-J92" firstAttribute="leading" secondItem="4CY-ix-pKh" secondAttribute="leading" id="xhO-ci-Brs"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8L-1u-jer">

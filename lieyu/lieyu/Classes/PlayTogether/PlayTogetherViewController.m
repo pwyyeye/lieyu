@@ -138,6 +138,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    [sectionView hideWithReset:YES];
     [_fillterButton removeFromSuperview];
     [_myTitle removeFromSuperview];
     _myTitle=nil;
