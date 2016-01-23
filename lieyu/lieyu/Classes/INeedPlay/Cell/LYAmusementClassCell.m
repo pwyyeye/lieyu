@@ -23,7 +23,8 @@
 //    self.scrollView.directionalLockEnabled = YES;
     self.scrollView.delegate = self;
     self.label_line_blue.frame = CGRectMake(0, 0.2, CGRectGetWidth(self.label_line_blue.frame), CGRectGetHeight(self.label_line_blue.frame));
-    
+//    self.topHeight.constant = 0;
+    self.viewLineTop.hidden = YES;
     _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, LINEHEIGHT);
     _viewLineMiddle.frame = CGRectMake(0, 44.5, SCREEN_WIDTH, LINEHEIGHT);
     _viewLineBottom.frame = CGRectMake(0, 211, SCREEN_WIDTH, LINEHEIGHT);

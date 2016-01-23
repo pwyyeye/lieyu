@@ -50,5 +50,8 @@
 @property (nonatomic,copy) NSString *tag;
 @property(nonatomic,assign)int barid;
 @property (nonatomic,unsafe_unretained) NSInteger openID;
+@property(strong,nonatomic) NSString *weibo;
+@property(strong,nonatomic) NSString *wechat;
+@property(strong,nonatomic) NSString *qq;
 
 @end

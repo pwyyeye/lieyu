@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewLineBottom;
 @property (weak, nonatomic) IBOutlet UIView *viewLineTop;
 @property (weak, nonatomic) IBOutlet UIView *viewLineMiddle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
 
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSMutableArray *buttonArray;

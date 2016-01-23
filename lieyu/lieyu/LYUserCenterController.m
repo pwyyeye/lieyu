@@ -46,7 +46,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     self.automaticallyAdjustsScrollViewInsets = YES;
     
     self.edgesForExtendedLayout=UIRectEdgeNone;
-    self.title=@"我的";
+    self.title=@"我";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,8 +58,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     [self.collectionView registerClass:[LYUserCenterHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader"];
     
-  
-    
     [self.collectionView registerNib:[UINib nibWithNibName:@"LYUserCenterFooter" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter"];
     //
 
@@ -67,11 +65,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
  
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
-    self.collectionView.bounces=NO;//遇到边框不反弹
+//    self.collectionView.scrollEnabled = YES;
+    self.collectionView.bounces = NO;//遇到边框不反弹
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
 }
+
 -(void)loadData{
     dispatch_async(dispatch_get_main_queue(), ^{
         // 更UI
@@ -118,16 +118,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 

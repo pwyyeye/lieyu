@@ -13,6 +13,7 @@
 @interface ImageCollectionViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     int selectedPages;
+    BOOL isRemoved;
 }
 @property (nonatomic, strong) NSMutableArray *imagesArray;
 @property (nonatomic, strong) NSMutableArray *collectionData;
@@ -45,15 +46,14 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.collectionViewLayout = layout;
-    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
-    
+    //    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
     [self.collectionView registerNib:[UINib nibWithNibName:@"MyCell" bundle:nil] forCellWithReuseIdentifier:@"mycell"];
     self.collectionData = [[NSMutableArray alloc]init];
     [_assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         if (result) {
             NSString *type = [result valueForProperty:ALAssetPropertyType];
             if([type isEqualToString:ALAssetTypePhoto]){
-//                [self.collectionData addObject:[UIImage imageWithCGImage:[result aspectRatioThumbnail ]]];
+                //                [self.collectionData addObject:[UIImage imageWithCGImage:[result aspectRatioThumbnail ]]];
                 [self.collectionData addObject:result];
             }
         }
@@ -72,7 +72,34 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    if(isRemoved == NO && self.collectionView.contentSize.height > 0){
+        if(self.collectionView.contentSize.height >= self.view.frame.size.height){
+            self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
+            if(self.collectionView.contentOffset.y > -self.view.frame.size.height){
+                isRemoved = YES;
+            }
+        }else{
+            isRemoved = YES;
+        }
+        
+    }
+    //    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
+    //    NSLog(@"%@",NSStringFromCGSize(self.collectionView.contentSize));
+    //    if (self.collectionView.contentOffset.y <= -self.view.frame.size.height && isRemoved == NO) {
+    //        self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
+    //    }
+    //    if(self.collectionView.contentOffset.y > self.view.frame.size.height){
+    //        isRemoved = YES;
+    //    }
+    NSLog(@"%@",NSStringFromCGPoint(self.collectionView.contentOffset));
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 #pragma mark -collectionView的代理方法
@@ -91,7 +118,7 @@
         weakcell.cellImage.contentMode = UIViewContentModeScaleAspectFill;
         dispatch_async(dispatch_get_main_queue(), ^{
             weakcell.cellImage.image = [UIImage imageWithCGImage:[((ALAsset *)[self.collectionData objectAtIndex:indexPath.item]) aspectRatioThumbnail]];
-//            weakcell.cellImage.image = [self.collectionData objectAtIndex:indexPath.item % 10];
+            //            weakcell.cellImage.image = [self.collectionData objectAtIndex:indexPath.item % 10];
             //            weakcell.selectBtn.tag = indexPath.item;
             //            [weakcell.imageTap setBackgroundImage:[self.collectionData objectAtIndex:indexPath.item % 10] forState:UIControlStateNormal];
         });
@@ -108,7 +135,7 @@
     _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _subView.button.hidden = YES;
     _subView.image = [UIImage imageWithCGImage:[[((ALAsset *)[self.collectionData objectAtIndex:indexPath.item]) defaultRepresentation] fullScreenImage]];
-//    _subView.image = [self.collectionData objectAtIndex:indexPath.item];
+    //    _subView.image = [self.collectionData objectAtIndex:indexPath.item];
     [_subView viewConfigure];
     _subView.imageView.center = _subView.center;
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideSubView:)];
@@ -128,16 +155,16 @@
         for (int i = 0 ; i < self.cellsArray.count; i ++) {
             int tag = (int)((MyCell *)[self.cellsArray objectAtIndex:i]).tag;
             [self.imagesArray addObject:[UIImage imageWithCGImage:[[((ALAsset *)[self.collectionData objectAtIndex:tag]) defaultRepresentation] fullScreenImage]]];
-//            [self.imagesArray addObject:[self.collectionData objectAtIndex:tag]];
+            //            [self.imagesArray addObject:[self.collectionData objectAtIndex:tag]];
         }
     }else{
         [MyUtil showCleanMessage:@"请选择图片"];
         return;
     }
-//    if(self.delegate){
-        [self.navigationController popViewControllerAnimated:NO];
-        self.pushSuccessBlock(self.imagesArray);
-//    }
+    //    if(self.delegate){
+    [self.navigationController popViewControllerAnimated:NO];
+    self.pushSuccessBlock(self.imagesArray);
+    //    }
 }
 
 #pragma mark - 跳转出去以后

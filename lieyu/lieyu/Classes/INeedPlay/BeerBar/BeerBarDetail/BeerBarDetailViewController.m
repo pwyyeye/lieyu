@@ -86,6 +86,10 @@
     _context = app.managedObjectContext;
     _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
+    self.view_bottom.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    self.view_bottom.layer.shadowOffset = CGSizeMake(0, -1);
+    self.view_bottom.layer.shadowOpacity = 0.8;
+    self.view_bottom.layer.shadowRadius = 2;
     
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _webView.delegate = self;
@@ -184,6 +188,10 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - self.image_layer.size.height) {
         self.image_layer.hidden = NO;
+        self.image_layer.layer.shadowRadius = 2;
+        self.image_layer.layer.shadowOpacity = 0.8;
+        self.image_layer.layer.shadowOffset = CGSizeMake(0, 1);
+        self.image_layer.layer.shadowColor = [[UIColor blackColor]CGColor];
     }else{
         self.image_layer.hidden = YES;
     }

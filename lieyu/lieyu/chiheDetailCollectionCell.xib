@@ -18,6 +18,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1bj-jn-mzG">
                         <rect key="frame" x="0.0" y="0.0" width="152" height="152"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="1bj-jn-mzG" secondAttribute="height" multiplier="1:1" id="Nxq-XX-Uai"/>
                             <constraint firstAttribute="width" secondItem="1bj-jn-mzG" secondAttribute="height" multiplier="1:1" id="YoI-Pa-MT9"/>
                         </constraints>
                     </imageView>
@@ -62,6 +63,12 @@
                             <action selector="AddToShoppingCarClick:" destination="NGu-7m-seR" eventType="touchUpInside" id="EvG-Em-Ge0"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chzcBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="EP2-JQ-vqp">
+                        <rect key="frame" x="0.0" y="0.0" width="152" height="76"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="EP2-JQ-vqp" secondAttribute="height" multiplier="2:1" id="Lc3-NJ-awH"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超返利" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9F-Qq-oYs">
                         <rect key="frame" x="8" y="8" width="44" height="16"/>
                         <constraints>
@@ -118,6 +125,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="EP2-JQ-vqp" firstAttribute="leading" secondItem="1bj-jn-mzG" secondAttribute="leading" id="5Ap-KB-0Bw"/>
                 <constraint firstItem="DVO-iV-OEc" firstAttribute="leading" secondItem="NGu-7m-seR" secondAttribute="leading" constant="5" id="9fx-Na-cMV"/>
                 <constraint firstItem="DVO-iV-OEc" firstAttribute="top" secondItem="Loi-ON-iF8" secondAttribute="bottom" constant="4" id="AgK-OW-QyZ"/>
                 <constraint firstItem="Loi-ON-iF8" firstAttribute="leading" secondItem="NGu-7m-seR" secondAttribute="leading" constant="5" id="Ca7-u3-PsC"/>
@@ -126,6 +134,7 @@
                 <constraint firstAttribute="trailing" secondItem="1bj-jn-mzG" secondAttribute="trailing" id="I0Z-o3-ahl"/>
                 <constraint firstItem="lyz-qi-0Ac" firstAttribute="top" secondItem="AiR-PV-fkl" secondAttribute="bottom" constant="10" id="JRI-ix-iYy"/>
                 <constraint firstItem="lyz-qi-0Ac" firstAttribute="centerX" secondItem="NGu-7m-seR" secondAttribute="centerX" id="Mq2-6X-ZcX"/>
+                <constraint firstItem="EP2-JQ-vqp" firstAttribute="trailing" secondItem="1bj-jn-mzG" secondAttribute="trailing" id="OCN-6h-Flk"/>
                 <constraint firstItem="AiR-PV-fkl" firstAttribute="centerY" secondItem="DVO-iV-OEc" secondAttribute="centerY" id="Q3x-gh-gpJ"/>
                 <constraint firstItem="rMj-I1-BV5" firstAttribute="leading" secondItem="NGu-7m-seR" secondAttribute="leading" id="V2f-aL-uwP"/>
                 <constraint firstAttribute="trailing" secondItem="rMj-I1-BV5" secondAttribute="trailing" id="VB4-H3-p0e"/>
@@ -138,14 +147,21 @@
                 <constraint firstAttribute="trailing" secondItem="Loi-ON-iF8" secondAttribute="trailing" constant="5" id="f2p-hk-fIL"/>
                 <constraint firstItem="I9F-Qq-oYs" firstAttribute="top" secondItem="NGu-7m-seR" secondAttribute="top" constant="8" id="fPd-bX-P4G"/>
                 <constraint firstItem="lyz-qi-0Ac" firstAttribute="leading" secondItem="RuI-O3-4a6" secondAttribute="trailing" constant="8" id="iqZ-oD-Md3"/>
+                <constraint firstItem="EP2-JQ-vqp" firstAttribute="top" secondItem="1bj-jn-mzG" secondAttribute="top" id="ngZ-tK-HTT"/>
                 <constraint firstItem="6AU-rC-Rg0" firstAttribute="centerY" secondItem="I9F-Qq-oYs" secondAttribute="centerY" id="qAP-4X-Uco"/>
                 <constraint firstItem="1bj-jn-mzG" firstAttribute="leading" secondItem="NGu-7m-seR" secondAttribute="leading" id="qTk-vS-jjd"/>
                 <constraint firstItem="6AU-rC-Rg0" firstAttribute="leading" secondItem="I9F-Qq-oYs" secondAttribute="trailing" constant="8" id="sIN-yq-e4O"/>
+                <constraint firstItem="EP2-JQ-vqp" firstAttribute="bottom" secondItem="1bj-jn-mzG" secondAttribute="bottom" id="uGx-6N-lII"/>
                 <constraint firstItem="Loi-ON-iF8" firstAttribute="top" secondItem="1bj-jn-mzG" secondAttribute="bottom" constant="5" id="ucL-fD-RSQ"/>
                 <constraint firstAttribute="trailing" secondItem="AiR-PV-fkl" secondAttribute="trailing" constant="5" id="wgH-nr-MTC"/>
                 <constraint firstItem="AiR-PV-fkl" firstAttribute="leading" secondItem="DVO-iV-OEc" secondAttribute="trailing" constant="20" id="zZE-6k-R4u"/>
             </constraints>
             <size key="customSize" width="158" height="273"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="uGx-6N-lII"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="GoodNameLbl" destination="Loi-ON-iF8" id="DdD-Mz-9nt"/>
                 <outlet property="MarketPriceLbl" destination="AiR-PV-fkl" id="zQC-hL-5kM"/>
@@ -163,6 +179,7 @@
     </objects>
     <resources>
         <image name="AddCar_red.png" width="165" height="36"/>
+        <image name="chzcBackground.png" width="167" height="52"/>
         <image name="gray_less.png" width="32" height="32"/>
         <image name="purper_add.png" width="32" height="32"/>
     </resources>
