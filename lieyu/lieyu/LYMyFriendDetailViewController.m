@@ -11,8 +11,11 @@
 #import "IQKeyboardManager.h"
 #import "UIImageView+WebCache.h"
 #import "LYUserHttpTool.h"
+#import "preview.h"
 @interface LYMyFriendDetailViewController ()
-
+{
+    preview *_subView;
+}
 @end
 
 @implementation LYMyFriendDetailViewController
@@ -23,6 +26,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"个人信息";
     self.userImageView.layer.masksToBounds =YES;
+    
     
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
     if(_customerModel.tag.count>0){
@@ -74,8 +78,30 @@
     self.namelal.text=_customerModel.usernick;
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
     [self getData];
-    // Do any additional setup after loading the view from its nib.
+    [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
 }
+
+- (void)checkFriendAvatar{
+    self.navigationController.navigationBarHidden = YES;
+    _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
+    _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _subView.button.hidden = YES;
+    _subView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]]];
+//    [_subView.imageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
+    //    _subView.image = [self.collectionData objectAtIndex:indexPath.item];
+    [_subView viewConfigure];
+    _subView.imageView.center = _subView.center;
+    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideSubView:)];
+    [_subView addGestureRecognizer:tapgesture];
+    
+    [self.view addSubview:_subView];
+}
+
+- (void)hideSubView:(UIButton *)button{
+    self.navigationController.navigationBarHidden = NO;
+    [_subView removeFromSuperview];
+}
+
 -(void)getData{
     NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
     [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
