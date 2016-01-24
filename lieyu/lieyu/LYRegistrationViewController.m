@@ -155,6 +155,9 @@ static LYRegistrationViewController *_registe;
         return;
     }
     if(!_isRegisted){//绑定手机号
+        if (_flag==nil) {
+            [MyUtil showCleanMessage:@"无效验证码！"];
+        }
         if([_flag isEqualToString:@"1"]){//注册过去绑定
             NSString *plantType = nil;
             if([_thirdLoginType isEqualToString:@"1"]) plantType = @"qq";

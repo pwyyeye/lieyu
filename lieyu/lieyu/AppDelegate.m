@@ -587,7 +587,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSString *code = nil;
     if(![MyUtil isEmptyString:[url query]]){
         NSArray *arrayStr = [[url query] componentsSeparatedByString:@"&"];
-        if (arrayStr.count>2) {
+        if (arrayStr.count>=2) {
             NSArray *arrayStr2 = [arrayStr[0] componentsSeparatedByString:@"="];
             code = arrayStr2[1]; 
         }
