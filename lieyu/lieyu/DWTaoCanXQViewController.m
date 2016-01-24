@@ -86,18 +86,21 @@
 
 - (void)createButton{
     backBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 30, 40, 40)];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"icon_huanhui_action"] forState:UIControlStateNormal];
+//    [backBtn setBackgroundImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
     CGFloat collectBtnWidth = 40;
     collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 64 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
-    [collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_star_normal"] forState:UIControlStateNormal];
+//    [collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_star_2"] forState:UIControlStateNormal];
+    [collectBtn setImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
     [collectBtn addTarget:self action:@selector(collectClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:collectBtn];
     
     shareBtn = [[UIButton alloc]initWithFrame:CGRectMake( SCREEN_WIDTH - 8 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
-    [shareBtn setBackgroundImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+//    [shareBtn setBackgroundImage:[UIImage imageNamed:@"icon_share2"] forState:UIControlStateNormal];
+    [shareBtn setImage:[UIImage imageNamed:@"icon_share2"] forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:shareBtn];
 }
@@ -188,7 +191,7 @@
 
 #pragma mark -scrollViewDidScroll
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - 64) {
+    if (scrollView.contentOffset.y > SCREEN_WIDTH - 64) {
         self.image_header.hidden = NO;
         self.btn_share.hidden = NO;
         self.btn_collect.hidden = NO;

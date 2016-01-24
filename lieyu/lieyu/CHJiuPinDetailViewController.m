@@ -39,7 +39,7 @@
     [super viewDidLoad];
     
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 40) ;
-    
+    self.backImage.hidden = YES;
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
@@ -305,6 +305,15 @@
             [MyUtil showMessage:@"添加购物车成功!"];
         }
     }];
+}
+
+#pragma mark - 出现顶部紫色框
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y > SCREEN_WIDTH - 64) {
+        self.backImage.hidden = NO;
+    }else{
+        self.backImage.hidden = YES;
+    }
 }
 
 #pragma mark -购物车

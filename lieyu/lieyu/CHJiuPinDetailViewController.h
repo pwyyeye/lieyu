@@ -24,6 +24,9 @@
 - (IBAction)LYkefu:(UIButton *)sender;//猎娱客服
 - (IBAction)buyNow:(UIButton *)sender;//立即下单
 
+
+@property (weak, nonatomic) IBOutlet UIImageView *backImage;
+
 @property (nonatomic, assign) id<RefreshGoodsNum> refreshNumDelegate;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

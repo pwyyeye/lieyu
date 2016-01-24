@@ -77,7 +77,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXg-kz-6Dv">
                     <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="吃喝专场" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsd-L6-gAk">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吃喝专场" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsd-L6-gAk">
                             <rect key="frame" x="107" y="33" width="106" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Fb9-E9-dck"/>
@@ -87,7 +87,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专属经理" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yf-FT-xLw">
-                            <rect key="frame" x="213" y="33" width="107" height="21"/>
+                            <rect key="frame" x="213" y="33" width="106.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="xYp-4X-QQF"/>
                             </constraints>
@@ -96,7 +96,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我要订位" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzJ-km-gwt">
-                            <rect key="frame" x="0.0" y="33" width="107" height="21"/>
+                            <rect key="frame" x="0.0" y="33" width="106.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="8iM-zi-sr4"/>
                             </constraints>
@@ -126,7 +126,7 @@
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SM-5N-3Iy">
-                            <rect key="frame" x="109" y="0.0" width="104" height="49"/>
+                            <rect key="frame" x="109" y="0.0" width="104.5" height="49"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49" id="jYq-UY-52k"/>
                             </constraints>
@@ -156,7 +156,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3H-P8-Uou">
-                            <rect key="frame" x="214" y="0.0" width="106" height="49"/>
+                            <rect key="frame" x="214" y="0.0" width="105.5" height="49"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49" id="HTJ-pI-puK"/>
                             </constraints>
@@ -223,7 +223,7 @@
                         <constraint firstAttribute="height" constant="32" id="lCf-nk-ilU"/>
                         <constraint firstAttribute="width" constant="32" id="vJg-Y0-7ol"/>
                     </constraints>
-                    <state key="normal" backgroundImage="icon_fanhui2.png"/>
+                    <state key="normal" image="return"/>
                     <connections>
                         <action selector="goBack:" destination="-1" eventType="touchUpInside" id="7oR-Cb-yPY"/>
                     </connections>
@@ -484,15 +484,15 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon_collect_2.png" width="32" height="32"/>
+        <image name="icon_collect_2.png" width="24" height="24"/>
         <image name="icon_eatdrinkspecial" width="28" height="28"/>
-        <image name="icon_fanhui2.png" width="32" height="32"/>
-        <image name="icon_like_2.png" width="32" height="32"/>
+        <image name="icon_like_2.png" width="24" height="24"/>
         <image name="icon_locate" width="11" height="14"/>
         <image name="icon_managers" width="28" height="28"/>
         <image name="icon_ordersits" width="28" height="28"/>
-        <image name="icon_share2.png" width="32" height="32"/>
+        <image name="icon_share2.png" width="24" height="24"/>
         <image name="navBarbg" width="6" height="192"/>
+        <image name="return" width="25" height="24"/>
         <image name="teseBtn" width="48" height="20"/>
         <image name="xingxing" width="12" height="12"/>
     </resources>
