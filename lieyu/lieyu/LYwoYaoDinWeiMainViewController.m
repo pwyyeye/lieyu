@@ -157,10 +157,35 @@
     NSLog(@"------>%@",dic);
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiDetailWithParams:dic block:^(JiuBaModel *result) {
+        if(result.recommend_package.count){
         jiubaModel=result;
         [weakSelf.tableView reloadData];
+            [weakSelf removeNoGoodView];
+        }else{
+            [weakSelf createNoGoodView];
+        }
     }];
 }
+
+#pragma mark 无商品时界面
+- (void)createNoGoodView{
+    UILabel *alerLabel = [[UILabel alloc]init];
+    alerLabel.frame = CGRectMake(0, 64 + 50, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50);
+    alerLabel.tag = 10086;
+    alerLabel.textAlignment = NSTextAlignmentCenter;
+    alerLabel.text = @"暂无套餐";
+    [self.view addSubview:alerLabel];
+    
+}
+
+#pragma mark 移除无商品时界面
+- (void)removeNoGoodView{
+    UIView *label = [self.view viewWithTag:10086];
+    if (label) {
+        [label removeFromSuperview];
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
         return 1;
