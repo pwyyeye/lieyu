@@ -189,6 +189,7 @@
         
         [self.navigationController popViewControllerAnimated:YES ];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
     }];
     
     
