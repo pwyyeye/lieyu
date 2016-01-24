@@ -252,6 +252,9 @@
 
 - (IBAction)historyClick:(UIButton *)sender {
     _searchBar.text = sender.currentTitle;
+    if (sender.currentTitle==nil) {
+        return;
+    }
     [self searchBarSearchButtonClicked:_searchBar];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"点击历史" pageName:SEARCHPAGE_MTA titleName:sender.currentTitle]];
 }

@@ -64,7 +64,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     [self loadBarDetail];                                                       //load data
+ 
     
     self.automaticallyAdjustsScrollViewInsets=NO;
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -97,6 +97,8 @@
     [_webView.scrollView setScrollEnabled:NO];
 //    _webView.scalesPageToFit = YES;
     [self.scrollView addSubview:_webView];
+    
+    [self loadBarDetail];                                                       //load data
 
 }
 
@@ -564,7 +566,7 @@
 
 #pragma mark 分享按钮
 - (IBAction)shareClick:(id)sender {
-    NSString *string= [NSString stringWithFormat:@"大家一起来看看～%@酒吧不错啊!下载猎娱App即可优惠下单，还有超值返利。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barname,self.beerBarDetail.barid];
+    NSString *string= [NSString stringWithFormat:@"我要推荐下～%@酒吧!下载猎娱App猎寻更多特色酒吧。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barname,self.beerBarDetail.barid];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];

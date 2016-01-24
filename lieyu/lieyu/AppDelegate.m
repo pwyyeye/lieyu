@@ -51,7 +51,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-
+    
+    [NSThread sleepForTimeInterval:1.0];//设置启动页面时间
     
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
