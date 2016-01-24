@@ -62,7 +62,7 @@
     [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     //8.设置图层的frame 115
 //    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 46, SCREEN_HEIGHT - 115 - 64)];
-    [_videoPreviewLayer setFrame:self.viewPreview.frame];
+    [_videoPreviewLayer setFrame:CGRectMake(0, 0, self.viewPreview.size.width, self.viewPreview.size.height)];
     NSLog(@"%@",NSStringFromCGRect(_videoPreviewLayer.frame));
         //9.将图层添加到预览view的图层上
     [_viewPreview.layer addSublayer:_videoPreviewLayer];
