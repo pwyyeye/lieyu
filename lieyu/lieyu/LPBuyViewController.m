@@ -278,6 +278,11 @@
     if(buttonIndex == 0){
         if([((PayMoney *)alertView.contentView).textField.text intValue] < 100){
             ((PayMoney *)alertView.contentView).warningLabel.textColor = [UIColor redColor];
+            ((PayMoney *)alertView.contentView).warningLabel.text = @"发起人预支付金额不可少于100元";
+            ((PayMoney *)alertView.contentView).textField.text = @"";
+        }else if ([((PayMoney *)alertView.contentView).textField.text intValue] > [_pinkeModel.price intValue]){
+            ((PayMoney *)alertView.contentView).warningLabel.textColor = [UIColor redColor];
+            ((PayMoney *)alertView.contentView).warningLabel.text = @"预支付金额不可超过套餐金额";
             ((PayMoney *)alertView.contentView).textField.text = @"";
         }else{
             [alertView hide];
