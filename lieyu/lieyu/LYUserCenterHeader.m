@@ -82,7 +82,7 @@
         }
         
         [_age setTitle:[NSString stringWithFormat:@"%@岁",app.userModel.age]  forState:UIControlStateNormal];
-        if (![MyUtil isEmptyString:app.userModel.birthday]&&[MyUtil  isEmptyString:app.userModel.age]) {
+        if (![MyUtil isEmptyString:app.userModel.birthday]) {
             [_age setTitle:[NSString stringWithFormat:@"%@岁",[MyUtil getAgefromDate:app.userModel.birthday]]  forState:UIControlStateNormal];
             
         }

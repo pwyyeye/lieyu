@@ -487,7 +487,14 @@
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     //用[NSDate date]可以获取系统当前时间
-    NSDate *date = [dateFormatter dateFromString:birthday];
+    NSDate *date;
+    if ([birthday isEqualToString:@"1990-04-15"] || [birthday isEqualToString:@"1990-4-15"]) {
+        birthday=@"1990-04-15 1:00:00";
+        date=[MyUtil getFullDateFromString:birthday];
+    }else{
+         date= [dateFormatter dateFromString:birthday];
+    }
+
     
     NSDate *myDate = date;
     
