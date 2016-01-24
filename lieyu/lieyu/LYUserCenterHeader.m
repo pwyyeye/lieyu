@@ -34,6 +34,7 @@
     [self.headView bringSubviewToFront:_tags];
     [self.headView bringSubviewToFront:_btnMessage];
     [self.headView bringSubviewToFront:_btnSetting];
+    [self.headView bringSubviewToFront:_xingzuo];
     
     self.avatar_img.layer.borderColor=RGB(176,143,199).CGColor; //要设置的颜色
     self.avatar_img.layer.borderWidth=2.5;
@@ -72,6 +73,14 @@
         }else{
             _tags.hidden=NO;
         }
+        
+        if ([MyUtil isEmptyString:app.userModel.birthday]) {
+            _xingzuo.hidden=YES;
+        }else{
+            _xingzuo.hidden=NO;
+            [_xingzuo setTitle:[MyUtil getAstroWithBirthday:app.userModel.birthday]  forState:UIControlStateNormal];
+        }
+        
         [_age setTitle:[NSString stringWithFormat:@"%@岁",app.userModel.age]  forState:UIControlStateNormal];
         if (![MyUtil isEmptyString:app.userModel.birthday]&&[MyUtil  isEmptyString:app.userModel.age]) {
             [_age setTitle:[NSString stringWithFormat:@"%@岁",[MyUtil getAgefromDate:app.userModel.birthday]]  forState:UIControlStateNormal];

@@ -436,6 +436,9 @@
     if ([MyUtil isEmptyString:dateString]) {
         return @"";
     }
+    if ([dateString isEqualToString:@"1990-04-15"]||[dateString isEqualToString:@"1990-04-15"]) {
+        return @"白羊座";
+    }
     //实例化一个NSDateFormatter对象
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //设定时间格式,这里可以设置成自己需要的格式
