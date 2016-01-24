@@ -7,7 +7,7 @@
 //
 #import "DejalActivityView.h"
 #import "EScrollerView.h"
-#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "UIImageView+WebCache.h"
 
 @implementation EScrollerView
 @synthesize delegate;
@@ -65,7 +65,7 @@
             if ([[imagePathArray objectAtIndex:i]length]>0)
             {
                 NSString *urlStr = [imagePathArray objectAtIndex:i];
-                [imgView setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+                [imgView sd_setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
             }
 //            [imgView setImage:[UIImage imageNamed:@"default_01.png"]];
             imgView.contentMode = UIViewContentModeScaleToFill;
