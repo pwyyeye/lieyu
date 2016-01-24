@@ -197,6 +197,7 @@
     if ([view isKindOfClass:[UIScrollView class]]){
         UIScrollView *s = (UIScrollView *)view;
         [s zoomToRect:zoomRect animated:YES];
+        
     }
 }
 
@@ -208,8 +209,6 @@
     
     zoomRect.size.height = [scrollView frame].size.height / scale;
     zoomRect.size.width  = [scrollView frame].size.width  / scale;
-    
-    
     
     return zoomRect;
 }
