@@ -28,6 +28,8 @@
 #import "LYUserHttpTool.h"
 #import "LYHomePageHttpTool.h"
 #import "ChiHeViewController.h"
+#import "MyBarModel.h"
+#import "LYUserLoginViewController.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
@@ -45,6 +47,8 @@
     NSTimer *_timer;
     CGFloat offSet;
     EScrollerView *_scroller;
+    BOOL _userLiked;
+    BOOL _userCollected;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -101,6 +105,12 @@
     
     [self loadBarDetail];                                                       //load data
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMyCollectedAndLikeBar) name:@"loadMyCollectedAndLikeBar" object:nil];
+}
+
+- (void)loadMyCollectedAndLikeBar{
+    [self loadMyBarInfo];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loadMyCollectedAndLikeBar" object:nil];
 }
 
 //喜欢按钮圆角
@@ -113,7 +123,10 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
      [_timer setFireDate:[NSDate distantPast]];
+    
 }
+
+
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -156,20 +169,15 @@
             weakSelf.beerBarDetail = detailItem;
             self.title=weakSelf.beerBarDetail.barname;
             //判断用户是否已经喜欢过
-            if ([[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY]) {
-                //收藏过
-                [self.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
-            }
+        
             [_timer setFireDate:[NSDate distantPast]];
             
-            if ([[NSUserDefaults standardUserDefaults] valueForKey:COLLECTKEY]) {
-                [self.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
-            }
+         
             
             
             [weakSelf updateViewConstraints];
             [weakSelf.tableView reloadData];
-            
+            [weakSelf loadMyBarInfo];
             //加载webview
             [weakSelf loadWebView];
             [weakSelf setTimer];
@@ -180,6 +188,31 @@
         [weakSelf.tableView reloadData];
         [weakSelf loadWebView];
     }];
+}
+
+- (void)loadMyBarInfo{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.userModel.userid) {
+        //        __weak __typeof(self)weakSelf = self;
+        [[LYUserHttpTool shareInstance]getMyBarWithParams:nil block:^(NSMutableArray *result) {
+            for (MyBarModel *barModel in result) {
+                if([_beerBarDetail.barid isEqual:@(barModel.barid)]){
+                    _userCollected = YES;
+                    [_btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+                }
+            }
+        }];
+        
+        [[LYUserHttpTool shareInstance] getMyBarZangWithParams:nil block:^(NSMutableArray *result) {
+            for (MyBarModel *barModel in result) {
+                if([_beerBarDetail.barid isEqual:@(barModel.barid)]){
+                    _userLiked = YES;
+                    [_btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+                }
+            }
+        }];
+    }
+
 }
 
 - (void)setTimer{
@@ -225,17 +258,21 @@
 
 #pragma mark --喜欢按钮
 - (IBAction)likeClick:(UIButton *)sender {
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (!app.userModel.userid) {
+        LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }else{
      __weak BeerBarDetailViewController *weakSelf = self;
      NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
     //判断用户是否已经喜欢过
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:LIKEKEY]) {
+    if (_userLiked) {
         
         [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
             //收藏过
             if(result){
             [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey: LIKEKEY];
-             [[NSUserDefaults standardUserDefaults] synchronize];
+                _userLiked = NO;
             }
         }];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"喜欢" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
@@ -243,12 +280,12 @@
     [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
         if (result) {
             [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+            _userLiked = YES;
             
-            [[NSUserDefaults standardUserDefaults] setObject:weakSelf.beerBarDetail.barid forKey:LIKEKEY];
-            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消喜欢" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
     }];
+    }
     }
 }
 
@@ -638,19 +675,22 @@
 }
 #pragma mark-- 收藏
 - (IBAction)soucangAct:(UIButton *)sender {
-    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (!app.userModel.userid) {
+        LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }else{
     NSDictionary *dic=@{@"barid":self.beerBarDetail.barid};
     
     
     __weak BeerBarDetailViewController *weakSelf = self;
     //判断用户是否已经收藏过
-    if ([[NSUserDefaults standardUserDefaults] valueForKey:COLLECTKEY]) {
+    if (_userCollected) {
         
         [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
             //收藏过
             [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:COLLECTKEY];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            _userCollected = NO;
                
         }];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"收藏" pageName:BEERBARDETAIL_MTA titleName:weakSelf.beerBarDetail.barname]];
@@ -658,10 +698,10 @@
     
     [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
             [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
-            [[NSUserDefaults standardUserDefaults] setObject:self.beerBarDetail.barid forKey:COLLECTKEY];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+        _userCollected = YES;
     }];
          [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消收藏" pageName:BEERBARDETAIL_MTA titleName:weakSelf.beerBarDetail.barname]];
+    }
     }
 }
 @end
