@@ -40,7 +40,7 @@
         _oldFrameArr = oldFrame;
         _scrollView = [[UIScrollView alloc]initWithFrame:frame];
         _scrollView.delegate = self;
-        _scrollView.maximumZoomScale = 2.0;
+//        _scrollView.maximumZoomScale = 2.0;
         self.backgroundColor = RGBA(255, 255, 255, 0);
         [self addSubview:_scrollView];
         _scrollView.frame = frame;
@@ -134,7 +134,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     _index = (_scrollView.contentOffset.x / SCREEN_WIDTH);
-    NSLog(@"----%ld",_index);
+    NSLog(@"----->%f-------->%d",_scrollView.contentOffset.x,((int)_scrollView.contentOffset.x % (int)SCREEN_WIDTH));
+//    if(((int)_scrollView.contentOffset.x % (int)SCREEN_WIDTH) != 0){
+//        for (UIScrollView *s in _scrollViewArray) {
+//            s.delegate = nil;
+//        }
+//    }
     _pageCtl.currentPage = _index;
 }
 
@@ -172,6 +177,7 @@
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView{
     NSLog(@"Did zoom!");
+    
     if(scrollView.subviews.count){
     UIView *v = [scrollView.subviews objectAtIndex:0];
     if ([v isKindOfClass:[UIImageView class]]){
