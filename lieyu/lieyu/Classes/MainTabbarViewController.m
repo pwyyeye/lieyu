@@ -40,6 +40,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete:) name:COMPLETE_MESSAGE object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToFirstView) name:@"jumpToFirstViewController" object:nil];
+    
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
     if([USER_DEFAULT objectForKey:@"badgeValue"]!=nil){
         NSArray *items = self.tabBar.items;
@@ -261,6 +263,10 @@
 }
 -(void)layoutSublayersOfLayer:(CALayer *)layer{
     [super layoutSublayersOfLayer:layer];
+}
+
+- (void)jumpToFirstView{
+    self.selectedIndex = 0;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

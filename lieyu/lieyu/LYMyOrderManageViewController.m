@@ -36,8 +36,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.btn_yue addTarget:self action:@selector(jumpToYue) forControlEvents:UIControlEventTouchUpInside];
     self.btn_yue.layer.cornerRadius = 5;
     self.btn_yue.layer.masksToBounds = YES;
+    
     //自定义返回
 //    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
 //    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -60,10 +63,6 @@
     dataList=[[NSMutableArray alloc]init];
     [self getMenuHrizontal];
     
-    
-   
-    
-
     
     
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
@@ -110,6 +109,12 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     // Do any additional setup after loading the view from its nib.
 }
+
+- (void)jumpToYue{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToFirstViewController" object:nil];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (self.navigationController.navigationBar.hidden) {
