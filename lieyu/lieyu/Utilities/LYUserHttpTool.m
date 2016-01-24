@@ -837,6 +837,34 @@
         [app stopLoading];
     }];
 }
+
+#pragma mark - 点赞的酒吧
+-(void) getMyBarZangWithParams:(NSDictionary*)params
+                     block:(void(^)(NSMutableArray* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_ZANG baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[MyBarModel mj_objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+}
+
+        
 #pragma mark 收藏酒吧
 -(void) addMyBarWithParams:(NSDictionary*)params
                   complete:(void (^)(BOOL result))result{

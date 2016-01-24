@@ -240,7 +240,7 @@
                 self.navigationItem.backBarButtonItem = left;
 //                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:detailViewController action:@selector(backForward)];
 //                detailViewController.navigationItem.leftBarButtonItem = left;
-//                [self.navigationController pushViewController:detailViewController animated:YES];
+                [self.navigationController pushViewController:detailViewController animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
 
             }

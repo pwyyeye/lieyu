@@ -34,6 +34,9 @@
 
 //收藏的店铺
 #define LY_MY_BAR_LIST @"userStoreAction.do?action=list"
+//点赞的店铺
+#define LY_MY_BAR_ZANG @"userPraisedAction.do?action=list"
+
 //收藏酒吧
 #define LY_MY_BAR_ADD @"userStoreAction.do?action=add"
 //删除收藏酒吧

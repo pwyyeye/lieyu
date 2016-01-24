@@ -115,6 +115,9 @@
 //收藏的店铺
 -(void) getMyBarWithParams:(NSDictionary*)params
                      block:(void(^)(NSMutableArray* result)) block;
+//点赞的酒吧
+-(void) getMyBarZangWithParams:(NSDictionary*)params
+                     block:(void(^)(NSMutableArray* result)) block;
 //收藏酒吧
 -(void) addMyBarWithParams:(NSDictionary*)params
                   complete:(void (^)(BOOL result))result;
