@@ -6,7 +6,7 @@
 //  Copyright © 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "LYFriendsViewController.h"
+#import "LYFriendsViewController.h"    
 #import "LYFriendsNameTableViewCell.h"
 #import "LYFriendsAddressTableViewCell.h"
 #import "LYFriendsLikeTableViewCell.h"
@@ -150,7 +150,6 @@
     _pageStartCountMys = 0;
     _pageCount = 10;
     self.tableView.tableFooterView = [[UIView alloc]init];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAndLoadData) name:@"loginAndLoadData" object:nil];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel)  _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     else return;
@@ -177,7 +176,8 @@
     [app startLoading];
     if(app.userModel)  _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     else return;
-    
+    if(_dataArray.count == 2) [_dataArray[1] removeAllObjects];
+    _friendsBtnSelect = YES;
     [self getDataFriendsWithSetContentOffSet:NO];
     self.navigationController.navigationBarHidden = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginAndLoadData" object:nil];
@@ -408,6 +408,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAndLoadData) name:@"loginAndLoadData" object:nil];
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     if(self.navigationController.navigationBarHidden == YES){

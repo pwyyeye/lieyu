@@ -140,6 +140,7 @@
         [USER_DEFAULT removeObjectForKey:@"user_name"];
         [USER_DEFAULT removeObjectForKey:@"user_pass"];
         
+        [USER_DEFAULT removeObjectForKey:@"OPENIDSTR"];
         [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         
         [[SDImageCache sharedImageCache] clearDisk];

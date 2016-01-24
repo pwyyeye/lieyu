@@ -76,6 +76,15 @@
     [self installFreshEvent];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    for (MenuButton *btn in _menuView.btnArray) {
+        if([btn.currentImage isEqual:[UIImage imageNamed:@"arrow drop up"]]){
+            [_menuView menuClick:btn];
+        }
+    }
+}
+
 //- (void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];
 //    [MTA trackPageViewBegin:ADDRESSPAGE_MTA];

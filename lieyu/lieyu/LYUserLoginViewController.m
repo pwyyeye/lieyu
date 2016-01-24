@@ -50,22 +50,25 @@
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
     _step=1;
     
+    
+    
+    CGFloat _qqBtnWidth = 35;
+    _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 30 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+    [_qqBtn setBackgroundImage:[UIImage imageNamed:@"qq_s"] forState:UIControlStateNormal];
 
-    _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 400, 100, 30)];
-    [_qqBtn setTitle:@"qq登录" forState:UIControlStateNormal];
-    _qqBtn.backgroundColor = [UIColor redColor];
     [self.view addSubview:_qqBtn];
     [_qqBtn addTarget:self action:@selector(qqLogin) forControlEvents:UIControlEventTouchUpInside];
     
-    _weixinBtn = [[UIButton alloc]initWithFrame:CGRectMake(130, 400, 100, 30)];
-    [_weixinBtn setTitle:@"weixin登录" forState:UIControlStateNormal];
-    _weixinBtn.backgroundColor = [UIColor redColor];
+    _weixinBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 30 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+
+    [_weixinBtn setBackgroundImage:[UIImage imageNamed:@"wechat_s"] forState:UIControlStateNormal];
+
     [self.view addSubview:_weixinBtn];
     [_weixinBtn addTarget:self action:@selector(weixinLogin) forControlEvents:UIControlEventTouchUpInside];
     
-    _weiboBtn = [[UIButton alloc]initWithFrame:CGRectMake(240, 400, 100, 30)];
-    [_weiboBtn setTitle:@"weibo登录" forState:UIControlStateNormal];
-    _weiboBtn.backgroundColor = [UIColor redColor];
+    _weiboBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f * 3 - _qqBtnWidth/2.f, SCREEN_HEIGHT - 30 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+    [_weiboBtn setBackgroundImage:[UIImage imageNamed:@"sina_weibo_s"] forState:UIControlStateNormal];
+
     [self.view addSubview:_weiboBtn];
     [_weiboBtn addTarget:self action:@selector(weiboLogin) forControlEvents:UIControlEventTouchUpInside];
     
@@ -231,6 +234,24 @@
 }
 #pragma mark - 自动登录
 - (void)autoLogin{
+    NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"OPENIDSTR"];
+    if(![MyUtil isEmptyString:openID] ){
+        __block LYUserLoginViewController *weakSelf = self;
+        NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:openID]};
+        [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
+            if (sucess) {//登录成功
+                AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+                app.s_app_id=userM.token;
+                app.userModel=userM;
+                [app getImToken];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }];
+
+    }
+    
+    
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
     if([MyUtil isEmptyString:username]){
@@ -246,6 +267,7 @@
         app.userModel=result;
         [app getImToken];
         //        [self.navigationController popToRootViewControllerAnimated:YES ];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
     }];
 }
 #pragma mark - 注册
@@ -323,6 +345,7 @@
     
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
         if (sucess) {//登录成功
+            [[NSUserDefaults standardUserDefaults] setObject:_tencentOAuth.openId forKey:@"OPENIDSTR"];
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             app.s_app_id=userM.token;
             app.userModel=userM;
@@ -330,6 +353,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
            
             registVC.userM = userModel;
@@ -395,6 +419,7 @@
     NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:userModel.openID]};
     [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
         if (sucess) {//登录成功
+             [[NSUserDefaults standardUserDefaults] setObject:userModel.openID forKey:@"OPENIDSTR"];
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             app.s_app_id=userM.token;
             app.userModel=userM;
@@ -402,6 +427,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
+             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
             registVC.userM = userModel;
             registVC.isTheThirdLogin = YES;
@@ -432,6 +458,7 @@
                 __block LYUserLoginViewController *weakSelf = self;
                 [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
                     if (sucess) {//登录成功
+                         [[NSUserDefaults standardUserDefaults] setObject:userModel.openID forKey:@"OPENIDSTR"];
                         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                         app.s_app_id=userM.token;
                         app.userModel=userM;
@@ -439,6 +466,7 @@
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                     }else{//去绑定手机好
+                         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
                         [MyUtil showPlaceMessage:@"绑定手机号"];
                         LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
                         userModel.openID = snsAccount.usid;
