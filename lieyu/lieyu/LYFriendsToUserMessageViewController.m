@@ -203,6 +203,7 @@
 - (void)pushUserPage:(LYFriendsCommentButton *)button{
     FriendsRecentModel *recentM = _dataArray[button.tag];
     FriendsCommentModel *commentModel = recentM.commentList[button.indexTag - 4];
+    if([commentModel.userId isEqualToString:_useridStr]) return;
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsUserMegVC.friendsId = commentModel.userId;
     [self.navigationController pushViewController:friendsUserMegVC animated:YES];
@@ -318,6 +319,7 @@
         FriendsRecentModel *recentM = _dataArray[section];
         if(i > recentM.likeList.count) return;
         FriendsLikeModel *likeM = recentM.likeList[i - 1];
+        if([likeM.userId isEqualToString:_useridStr]) return;
         LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
         messageVC.friendsId = likeM.userId;
         [self.navigationController pushViewController:messageVC animated:YES];
@@ -479,7 +481,7 @@
                 commentCell.imageV_comment.hidden = YES;
             }
             commentCell.commentM = commentModel;
-            
+            commentCell.btn_headerImg.tag = indexPath.section;
             commentCell.btn_headerImg.indexTag = indexPath.row;
             [commentCell.btn_headerImg addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
             return commentCell;

@@ -1089,9 +1089,10 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     if(section >=0 && i>=0){
     FriendsRecentModel *recentM = _dataArray[_index][section];
         if(i > recentM.likeList.count) return;
-        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        if ([recentM.userId isEqualToString:[NSString stringWithFormat:@"%d",app.userModel.userid]]) return;
     FriendsLikeModel *likeM = recentM.likeList[i - 1];
+        if ([likeM.userId isEqualToString:_useridStr]) {
+            return;
+        }
     LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
     messageVC.friendsId = likeM.userId;
     [self.navigationController pushViewController:messageVC animated:YES];

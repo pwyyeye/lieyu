@@ -192,7 +192,7 @@
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
-        _commentView.btn_send_cont_width.constant = 30;
+        _commentView.btn_send_cont_width.constant = 60;
         [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
         [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
         [self updateViewConstraints];
@@ -261,6 +261,7 @@
     if(index > _recentM.likeList.count) return;
     if(section >=0 && index>=0){
         FriendsLikeModel *likeM = _recentM.likeList[index - 1];
+        if([likeM.userId isEqualToString:_useridStr]) return;
         LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
         messageVC.friendsId = likeM.userId;
         [self.navigationController pushViewController:messageVC animated:YES];
@@ -474,6 +475,7 @@
 #pragma mark - 跳转到指定用户动态页
 - (void)puUserMessagePageClick:(UIButton *)button{
     FriendsCommentModel *commentModel = _dataArray[button.tag];
+    if([commentModel.userId isEqualToString:_useridStr]) return;
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsUserMegVC.friendsId = commentModel.userId;
     [self.navigationController pushViewController:friendsUserMegVC animated:YES];
