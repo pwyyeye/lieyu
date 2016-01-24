@@ -261,7 +261,7 @@
         
         [[LYHomePageHttpTool shareInstance] addCarWithParams:dic block:^(BOOL result) {
             if (result) {
-                [MyUtil showMessage:@"添加购物车成功!"];
+                [MyUtil showCleanMessage:@"添加购物车成功!"];
                 [self.refreshNumDelegate getNumAdd];
             }
         }];
@@ -302,7 +302,7 @@
     NSDictionary *dic=@{@"product_id":[NSNumber numberWithInt:chiHeModel.id],@"quantity":numView.numLal.text};
     [[LYHomePageHttpTool shareInstance] addCarWithParams:dic block:^(BOOL result) {
         if (result) {
-            [MyUtil showMessage:@"添加购物车成功!"];
+            [MyUtil showCleanMessage:@"添加购物车成功!"];
         }
     }];
 }

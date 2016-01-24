@@ -134,6 +134,11 @@
     }
     _isReading = !_isReading;
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [self stopReading];
+}
+
 -(void)stopReading{
     [_captureSession stopRunning];
     _captureSession = nil;

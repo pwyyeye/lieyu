@@ -126,6 +126,7 @@
 #pragma mark viewWillAppear
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self getGoodsNum];
     self.navigationController.navigationBarHidden = NO;
 }
 
