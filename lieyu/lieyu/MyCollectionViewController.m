@@ -25,7 +25,7 @@
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
     _tableView.backgroundColor=RGB(237, 237, 237);
-    [self getData];
+    
     // Do any additional setup after loading the view from its nib.
 }
 -(void)getData{
@@ -37,6 +37,10 @@
         }];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getData];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     

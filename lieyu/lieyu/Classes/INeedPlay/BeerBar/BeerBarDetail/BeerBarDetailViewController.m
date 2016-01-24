@@ -64,7 +64,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-     [self loadBarDetail];                                                       //load data
+ 
     
     self.automaticallyAdjustsScrollViewInsets=NO;
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -77,6 +77,7 @@
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height+2500);
     self.scrollView.showsVerticalScrollIndicator=NO;
     self.scrollView.showsHorizontalScrollIndicator=NO;
+    [self.scrollView setScrollEnabled:YES];
     [self setupViewStyles];                                                     //tableView registe cell
     _scrollView.bounces = NO;
 
@@ -91,12 +92,14 @@
     self.view_bottom.layer.shadowOpacity = 0.8;
     self.view_bottom.layer.shadowRadius = 2;
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height, SCREEN_WIDTH, 2500)];
     _webView.delegate = self;
     [_webView sizeToFit];
     [_webView.scrollView setScrollEnabled:NO];
 //    _webView.scalesPageToFit = YES;
     [self.scrollView addSubview:_webView];
+    
+    [self loadBarDetail];                                                       //load data
 
 }
 
@@ -267,7 +270,7 @@
 
 
 #pragma mark-- webview delegate
-
+/*
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
      [_webView sizeToFit];
     //获取页面高度（像素）
@@ -308,8 +311,8 @@
 //     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, offsetHeight+100);
 //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
 }
+*/
 
-/*
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     //获取页面高度（像素）
     NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
@@ -339,7 +342,7 @@
     //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
 }
 
-*/
+
 
 
 #pragma mark -- tableviewDelegate
@@ -564,7 +567,7 @@
 
 #pragma mark 分享按钮
 - (IBAction)shareClick:(id)sender {
-    NSString *string= [NSString stringWithFormat:@"大家一起来看看～%@酒吧不错啊!下载猎娱App即可优惠下单，还有超值返利。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barname,self.beerBarDetail.barid];
+    NSString *string= [NSString stringWithFormat:@"我要推荐下～%@酒吧!下载猎娱App猎寻更多特色酒吧。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barname,self.beerBarDetail.barid];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];
@@ -633,7 +636,7 @@
     [self.navigationController pushViewController:myZSManageViewController animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"专属经理"]];
 }
-
+#pragma mark-- 收藏
 - (IBAction)soucangAct:(UIButton *)sender {
     
     NSDictionary *dic=@{@"barid":self.beerBarDetail.barid};

@@ -149,12 +149,13 @@
             }
         }else{
             [_setBtn setTitle:@"打招呼" forState:0];
-            
-            self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
-            if (_customerModel.distance.doubleValue>1000) {
-                self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
+            if (_customerModel.distance) {
+                self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
+                if (_customerModel.distance.doubleValue>1000) {
+                    self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
+                }
             }
-            
+
             if([_customerModel.sex isEqualToString:@"1"]){
                 _sexImageView.image=[UIImage imageNamed:@"manIcon"];
             }
@@ -191,8 +192,8 @@
         RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
         conversationVC.targetId = _customerModel.imUserId; // 接收者的 targetId，这里为举例。
-        conversationVC.userName =_customerModel.friendName; // 接受者的 username，这里为举例。
-        conversationVC.title = _customerModel.friendName; // 会话的 title。
+        conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 接受者的 username，这里为举例。
+        conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
         [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
         [IQKeyboardManager sharedManager].enable = NO;
         [IQKeyboardManager sharedManager].isAdd = YES;
