@@ -23,7 +23,6 @@
 //    self.scrollView.directionalLockEnabled = YES;
     self.scrollView.delegate = self;
     self.label_line_blue.frame = CGRectMake(0, 0.2, CGRectGetWidth(self.label_line_blue.frame), CGRectGetHeight(self.label_line_blue.frame));
-//    self.topHeight.constant = 0;
     self.viewLineTop.hidden = YES;
     _viewLineTop.frame = CGRectMake(0, 0, SCREEN_WIDTH, LINEHEIGHT);
     _viewLineMiddle.frame = CGRectMake(0, 44.5, SCREEN_WIDTH, LINEHEIGHT);
@@ -40,6 +39,7 @@
     
     [self.button_page_left addTarget:self action:@selector(pageClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.button_page_right addTarget:self action:@selector(pageClick:) forControlEvents:UIControlEventTouchUpInside];
+    NSLog(@"---->%@",NSStringFromCGSize(_scrollView.contentSize));
 }
 
 - (void)pageClick:(UIButton *)buton{
@@ -63,6 +63,7 @@
         [self.button_page_left setBackgroundImage:[UIImage imageNamed:@"chevron right copy"] forState:UIControlStateNormal];
         [self.button_page_right setBackgroundImage:[UIImage imageNamed:@"chevron right"] forState:UIControlStateNormal];
     }
+
 }
 
 - (void)setBartypeArray:(NSArray *)bartypeArray{
@@ -82,14 +83,15 @@
         bartypeslistModel *bartypeModel = bartypeArray[i];
         [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:bartypeModel.imageurl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     }
-    _scrollView.contentSize = CGSizeMake(bartypeArray.count * 161, 0);
-    _scrollView.alwaysBounceVertical = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _scrollView.contentSize = CGSizeMake(bartypeArray.count * 161, 0);
+    });
+//    _scrollView.alwaysBounceVertical = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end

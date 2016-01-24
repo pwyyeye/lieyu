@@ -40,7 +40,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKI-Sx-1gS">
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKI-Sx-1gS">
                         <rect key="frame" x="0.0" y="45" width="320" height="166"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cY-QH-nH8">
@@ -71,7 +71,7 @@
                                 <state key="normal" backgroundImage="CommonIcon"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="IBU-SE-djO" firstAttribute="baseline" secondItem="4cY-QH-nH8" secondAttribute="baseline" id="1I3-FC-caB"/>
                             <constraint firstItem="TbJ-6R-S3d" firstAttribute="leading" secondItem="IBU-SE-djO" secondAttribute="trailing" constant="10" id="5Fb-eJ-dxb"/>
@@ -149,6 +149,7 @@
                     <constraint firstItem="sHe-d7-bYQ" firstAttribute="leading" secondItem="QKI-Sx-1gS" secondAttribute="leading" id="qcf-Jx-7sk"/>
                     <constraint firstItem="sHe-d7-bYQ" firstAttribute="leading" secondItem="Gcq-XA-cd1" secondAttribute="leading" id="rZp-qd-jt1"/>
                     <constraint firstItem="g5a-mL-5zq" firstAttribute="top" secondItem="YQw-wT-xgC" secondAttribute="bottom" constant="10" id="ycg-Wd-oAV"/>
+                    <constraint firstAttribute="trailing" secondItem="QKI-Sx-1gS" secondAttribute="trailing" id="z8W-dE-AEx"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
