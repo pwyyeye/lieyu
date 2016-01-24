@@ -33,7 +33,7 @@
 
     datalist=@[
 //               @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-               @{@"image":@"icon_saoyisao_normal",@"title":@"扫一扫"}
+               @{@"image":@"saoyisao",@"title":@"扫一扫"}
             ];
     
     // Do any additional setup after loading the view from its nib.
