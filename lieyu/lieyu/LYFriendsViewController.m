@@ -1420,7 +1420,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     FriendsRecentModel *recentM = _dataArray[_index][button.tag];
     FriendsCommentModel *commentModel = recentM.commentList[button.indexTag - 4];
     if([commentModel.userId isEqualToString:_useridStr]) {
-        [self myClick:nil];
+//        [self myClick:nil];
         return;
     }
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
