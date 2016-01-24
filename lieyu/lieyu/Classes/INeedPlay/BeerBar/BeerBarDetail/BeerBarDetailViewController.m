@@ -92,7 +92,7 @@
     self.view_bottom.layer.shadowOpacity = 0.8;
     self.view_bottom.layer.shadowRadius = 2;
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height-70, SCREEN_WIDTH, 2500)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height, SCREEN_WIDTH, 2500)];
     _webView.delegate = self;
     [_webView sizeToFit];
     [_webView.scrollView setScrollEnabled:NO];

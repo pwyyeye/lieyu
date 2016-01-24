@@ -587,8 +587,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSString *code = nil;
     if(![MyUtil isEmptyString:[url query]]){
         NSArray *arrayStr = [[url query] componentsSeparatedByString:@"&"];
-        NSArray *arrayStr2 = [arrayStr[0] componentsSeparatedByString:@"="];
-        code = arrayStr2[1];
+        if (arrayStr.count>2) {
+            NSArray *arrayStr2 = [arrayStr[0] componentsSeparatedByString:@"="];
+            code = arrayStr2[1]; 
+        }
+        
     }
     
     if ([sourceApplication isEqualToString:@"com.apple.mobilesafari"]){
