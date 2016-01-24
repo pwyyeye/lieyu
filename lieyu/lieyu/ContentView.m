@@ -14,16 +14,16 @@
     self.radioButtons = @[_redioButton1,_radioButton2,_radioButton3];
     self.selectButton = @[_selectBtn1, _selectBtn2, _selectBtn3];
     self.buttonStatusArray = [NSMutableArray array];
-    [self.buttonStatusArray addObjectsFromArray:@[@"0",@"0",@"1"]];
+    [self.buttonStatusArray addObjectsFromArray:@[@"1",@"0",@"0"]];
 }
 
 - (void)contentViewChooseBtn{
-    if([_defaultString isEqualToString:@"自由付款"] || [_defaultString isEqualToString:@"选择正确的拼客方式"]){
-        [self.radioButton3 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];
+    if([_defaultString isEqualToString:@"我请客"] || [_defaultString isEqualToString:@"选择正确的拼客方式"]){
+        [self.redioButton1 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];
     }else if([_defaultString isEqualToString:@"AA付款"]){
         [self.radioButton2 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];
     }else{
-        [self.redioButton1 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];
+        [self.radioButton3 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];
     }
 }
 
