@@ -823,6 +823,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     if(_isCommentToUser){
         FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_index][_section];
+        if(!recentM.commentList.count) return;
         FriendsCommentModel *commentM = recentM.commentList[_indexRow - 4];
         _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
     }
@@ -1088,6 +1089,8 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     if(section >=0 && i>=0){
     FriendsRecentModel *recentM = _dataArray[_index][section];
         if(i > recentM.likeList.count) return;
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if ([recentM.userId isEqualToString:[NSString stringWithFormat:@"%d",app.userModel.userid]]) return;
     FriendsLikeModel *likeM = recentM.likeList[i - 1];
     LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
     messageVC.friendsId = likeM.userId;
@@ -1404,7 +1407,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     FriendsRecentModel *recentM = _dataArray[_index][button.tag];
 //    if([recentM.userId isEqualToString:_useridStr]) return;
     if([recentM.userId isEqualToString:_useridStr]) {
-        [self myClick:nil];
+//        [self myClick:nil];
         return;
     }
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
@@ -1417,7 +1420,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     FriendsRecentModel *recentM = _dataArray[_index][button.tag];
     FriendsCommentModel *commentModel = recentM.commentList[button.indexTag - 4];
     if([commentModel.userId isEqualToString:_useridStr]) {
-        [self myClick:nil];
+//        [self myClick:nil];
         return;
     }
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
