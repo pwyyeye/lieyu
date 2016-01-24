@@ -283,7 +283,7 @@
                                     <constraint firstAttribute="width" constant="32" id="4Iq-aF-f9F"/>
                                     <constraint firstAttribute="height" constant="32" id="Mqg-3g-6Zq"/>
                                 </constraints>
-                                <state key="normal" image="icon_collect_2.png"/>
+                                <state key="normal" backgroundImage="icon_collect_2.png"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbt-Ir-t9c">
                                 <rect key="frame" x="276" y="26" width="32" height="32"/>
@@ -291,7 +291,7 @@
                                     <constraint firstAttribute="height" constant="32" id="AjZ-hv-ovD"/>
                                     <constraint firstAttribute="width" constant="32" id="viV-73-jmS"/>
                                 </constraints>
-                                <state key="normal" image="icon_share2.png"/>
+                                <state key="normal" backgroundImage="icon_share2.png"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -385,18 +385,18 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0b-Lx-lzo">
-                                <rect key="frame" x="263" y="20" width="40" height="40"/>
+                                <rect key="frame" x="271" y="24" width="32" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="Ngn-y5-XJX"/>
-                                    <constraint firstAttribute="height" constant="40" id="Px1-bi-66q"/>
+                                    <constraint firstAttribute="width" constant="32" id="Ngn-y5-XJX"/>
+                                    <constraint firstAttribute="height" constant="32" id="Px1-bi-66q"/>
                                 </constraints>
-                                <state key="normal" image="icon_share2.png"/>
+                                <state key="normal" backgroundImage="icon_share2.png"/>
                                 <connections>
                                     <action selector="ShareClick:" destination="fvS-oF-oUI" eventType="touchUpInside" id="Snp-7i-fdy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fJ-Xm-xC5">
-                                <rect key="frame" x="209" y="20" width="40" height="40"/>
+                                <rect key="frame" x="217" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="TXR-Fv-ykx"/>
                                     <constraint firstAttribute="height" constant="40" id="wz2-1w-M33"/>
@@ -435,12 +435,13 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82X-r2-49y">
-                                <rect key="frame" x="264" y="22" width="40" height="40"/>
+                                <rect key="frame" x="272" y="22" width="32" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="AVH-yz-NWk"/>
-                                    <constraint firstAttribute="width" constant="40" id="w8g-vb-8qc"/>
+                                    <constraint firstAttribute="height" constant="32" id="AVH-yz-NWk"/>
+                                    <constraint firstAttribute="width" constant="32" id="w8g-vb-8qc"/>
                                 </constraints>
-                                <state key="normal" image="icon_share2.png"/>
+                                <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" backgroundImage="icon_share2.png"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7OF-Pk-96C">
                                 <rect key="frame" x="16" y="22" width="40" height="40"/>
@@ -2008,7 +2009,7 @@
                     </view>
                     <connections>
                         <outlet property="backBtn" destination="oKl-Me-0Om" id="0hW-yc-Cy7"/>
-                        <outlet property="backImage" destination="Wz7-xN-2WB" id="rnd-63-nyR"/>
+                        <outlet property="backImage" destination="Wz7-xN-2WB" id="uLl-Hq-OO9"/>
                         <outlet property="tableView" destination="hlY-4O-L0H" id="vRD-HV-FZu"/>
                     </connections>
                 </viewController>

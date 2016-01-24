@@ -85,22 +85,22 @@
 }
 
 - (void)createButton{
-    backBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 30, 40, 40)];
+    backBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 26, 32, 32)];
 //    [backBtn setBackgroundImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
     [backBtn setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
-    CGFloat collectBtnWidth = 40;
-    collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 64 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
-//    [collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_star_2"] forState:UIControlStateNormal];
-    [collectBtn setImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
+    CGFloat collectBtnWidth = 32;
+    collectBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 64 - collectBtnWidth, 26, collectBtnWidth, collectBtnWidth)];
+    [collectBtn setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
+//    [collectBtn setImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
     [collectBtn addTarget:self action:@selector(collectClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:collectBtn];
     
-    shareBtn = [[UIButton alloc]initWithFrame:CGRectMake( SCREEN_WIDTH - 8 - collectBtnWidth, 30, collectBtnWidth, collectBtnWidth)];
-//    [shareBtn setBackgroundImage:[UIImage imageNamed:@"icon_share2"] forState:UIControlStateNormal];
-    [shareBtn setImage:[UIImage imageNamed:@"icon_share2"] forState:UIControlStateNormal];
+    shareBtn = [[UIButton alloc]initWithFrame:CGRectMake( SCREEN_WIDTH - 8 - collectBtnWidth, 26, collectBtnWidth, collectBtnWidth)];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"icon_share2"] forState:UIControlStateNormal];
+//    [shareBtn setImage:[UIImage imageNamed:@"icon_share2"] forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:shareBtn];
 }
