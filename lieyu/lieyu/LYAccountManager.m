@@ -141,6 +141,10 @@
         detailViewController=[[LYResetPasswordViewController alloc] initWithNibName:@"LYResetPasswordViewController" bundle:nil];
         [self.navigationController pushViewController:detailViewController animated:YES];
     }else if (indexPath.row==1) {
+        if(![WXApi isWXAppInstalled]){
+            [MyUtil showCleanMessage:@"未安装微信"];
+            return;
+        }
         
         UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[MyUtil isEmptyString: app.userModel.wechat]?@"立即绑定":@"更换微信",@"取消绑定", nil];
         
@@ -148,6 +152,10 @@
         
         [actionSheet showInView:self.view];
     }else if(indexPath.row==2){
+        if(![TencentOAuth iphoneQQInstalled]){
+            [MyUtil showCleanMessage:@"未安装QQ"];
+            return;
+        }
         UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[MyUtil isEmptyString: app.userModel.qq]?@"立即绑定":@"更换QQ",@"取消绑定", nil];
         
         actionSheet.tag=256;

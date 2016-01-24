@@ -61,7 +61,9 @@
     //7.设置预览图层填充方式
     [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     //8.设置图层的frame 115
-    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 46, SCREEN_HEIGHT - 115 - 64)];
+//    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 46, SCREEN_HEIGHT - 115 - 64)];
+    [_videoPreviewLayer setFrame:self.viewPreview.frame];
+    NSLog(@"%@",NSStringFromCGRect(_videoPreviewLayer.frame));
         //9.将图层添加到预览view的图层上
     [_viewPreview.layer addSublayer:_videoPreviewLayer];
     //10.设置扫描范围
@@ -81,7 +83,7 @@
 //    [_viewPreview addSubview:_boxView];
     //10.2.扫描线
     _scanLayer = [[CALayer alloc] init];
-    _scanLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH - 46, 1);
+    _scanLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH - 100, 1);
     _scanLayer.backgroundColor = [UIColor brownColor].CGColor;
     [_viewPreview.layer addSublayer:_scanLayer];
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(moveScanLayer:) userInfo:nil repeats:YES];

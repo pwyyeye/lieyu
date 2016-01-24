@@ -17,6 +17,7 @@
 //头像
 @property (weak, nonatomic) IBOutlet UIImageView *avatar_img;
 @property (weak, nonatomic) IBOutlet UIButton *avatar_btn;
+@property (weak, nonatomic) IBOutlet UIButton *xingzuo;
 //昵称
 @property (weak, nonatomic) IBOutlet UILabel *userNick;
 //年龄

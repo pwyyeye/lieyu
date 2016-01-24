@@ -88,6 +88,29 @@
                                 </mask>
                             </variation>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE9-sV-g7T">
+                            <rect key="frame" x="154" y="82" width="41" height="15"/>
+                            <color key="backgroundColor" red="0.69019607839999997" green="0.56078431370000004" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="27" id="D01-CR-Th7"/>
+                                <constraint firstAttribute="height" constant="15" id="Rqv-s4-xav"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                            <state key="normal" title="天枰座">
+                                <color key="titleColor" red="0.4039215686" green="0.043137254899999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="D01-CR-Th7"/>
+                                </mask>
+                            </variation>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTS-fO-BCi">
                             <rect key="frame" x="245" y="44" width="24" height="24"/>
                             <constraints>
@@ -114,10 +137,12 @@
                         <constraint firstItem="KNc-RX-6I4" firstAttribute="top" secondItem="uKD-Od-hVt" secondAttribute="top" constant="44" id="VHG-bb-2dV"/>
                         <constraint firstAttribute="trailing" secondItem="KNc-RX-6I4" secondAttribute="trailing" constant="10" id="Wbv-FB-q09"/>
                         <constraint firstItem="ygw-yQ-gSS" firstAttribute="leading" secondItem="uKD-Od-hVt" secondAttribute="leading" constant="14" id="Web-Fq-Thg"/>
+                        <constraint firstItem="lE9-sV-g7T" firstAttribute="top" secondItem="Iuk-bF-Uqp" secondAttribute="bottom" constant="1" id="aHW-PR-JPH"/>
                         <constraint firstAttribute="trailing" secondItem="Iuk-bF-Uqp" secondAttribute="trailing" constant="125" id="cLE-Tz-oau"/>
                         <constraint firstItem="AQW-Pi-kMR" firstAttribute="leading" secondItem="ygw-yQ-gSS" secondAttribute="trailing" constant="12" id="eN5-Dt-86b"/>
                         <constraint firstItem="Iuk-bF-Uqp" firstAttribute="leading" secondItem="ygw-yQ-gSS" secondAttribute="trailing" constant="12" id="ee3-27-Ap3"/>
                         <constraint firstAttribute="height" constant="124" id="fTV-RN-3qU"/>
+                        <constraint firstItem="lE9-sV-g7T" firstAttribute="leading" secondItem="HgA-cg-HPc" secondAttribute="trailing" constant="6" id="fl9-OV-Vig"/>
                         <constraint firstItem="ygw-yQ-gSS" firstAttribute="top" secondItem="uKD-Od-hVt" secondAttribute="top" constant="44" id="gxI-if-gPE"/>
                         <constraint firstItem="00X-dQ-bjO" firstAttribute="leading" secondItem="ygw-yQ-gSS" secondAttribute="leading" id="hcs-6p-X12"/>
                         <constraint firstAttribute="bottom" secondItem="ygw-yQ-gSS" secondAttribute="bottom" constant="20" id="qC1-Rf-5S6"/>
@@ -417,6 +442,7 @@
                 <outlet property="waitPay" destination="sMQ-p7-byq" id="bD8-1O-3t4"/>
                 <outlet property="waitPayBack" destination="Fyr-Q8-jkr" id="wRc-cc-qKy"/>
                 <outlet property="waitRebate" destination="cai-FL-cSj" id="2tE-Bd-TG2"/>
+                <outlet property="xingzuo" destination="lE9-sV-g7T" id="IbM-cs-pNZ"/>
             </connections>
             <point key="canvasLocation" x="312" y="176"/>
         </collectionReusableView>
