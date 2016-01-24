@@ -17,6 +17,8 @@
 
 @interface LYHotBarMenuView : UIView
 @property (nonatomic,unsafe_unretained) id<LYHotBarMenuViewDelegate> delegate;
+@property (nonatomic,strong)  NSMutableArray *btnArray;
 - (void)deployWithMiddleTitle:(NSString *)title ItemArray:(NSArray *)itemArray;
 - (void)hideWithReset:(BOOL)reset;
+- (void)menuClick:(MenuButton *)button;
 @end

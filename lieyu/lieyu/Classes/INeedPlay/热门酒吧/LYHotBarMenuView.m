@@ -20,7 +20,7 @@
 @implementation LYHotBarMenuView
 {
     LYHotBarMenuDropView *_dropMenuView;
-    NSMutableArray *_btnArray;
+   
 }
 
 - (void)deployWithMiddleTitle:(NSString *)title ItemArray:(NSArray *)itemArray{

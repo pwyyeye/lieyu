@@ -133,7 +133,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    _index = (scrollView.contentOffset.x / SCREEN_WIDTH);
+    _index = (_scrollView.contentOffset.x / SCREEN_WIDTH);
     NSLog(@"----%ld",_index);
     _pageCtl.currentPage = _index;
 }
