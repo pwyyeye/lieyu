@@ -18,6 +18,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "BeerBarDetailViewController.h"
 #import "JiuBaModel.h"
+#import "IQKeyboardManager.h"
 
 #define PAGESIZE 20
 #define SEARCHPAGE_MTA @"SEARCHPAGE"
@@ -44,6 +45,7 @@
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
     self.navigationItem.title = @"搜索";
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [self setupViewStyles];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     self.tableView.hidden = YES;

@@ -165,6 +165,7 @@ static LYRegistrationViewController *_registe;
             __block LYRegistrationViewController *weakSelf = self;
             [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
                 if (flag) {//绑定
+                    [[NSUserDefaults standardUserDefaults] setObject:_userM.openID forKey:@"OPENIDSTR"];
                     [MyUtil showPlaceMessage:@"绑定成功"];
                     
                     NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:_userM.openID]};
@@ -177,6 +178,7 @@ static LYRegistrationViewController *_registe;
                         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                     }];
                 }else{
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
                     [MyUtil showPlaceMessage:@"绑定失败"];
                 }
             }];
