@@ -359,7 +359,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <inset key="imageEdgeInsets" minX="-5" minY="3" maxX="5" maxY="3"/>
-                                <state key="normal" title="咨询猎娱" image="icon_zhuyishixiang_normal.png">
+                                <state key="normal" title="咨询猎娱" image="icon_zixun_normal.png">
                                     <color key="titleColor" red="0.074509803920000006" green="0.65098039220000004" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
