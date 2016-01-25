@@ -140,6 +140,8 @@
     }
 }
 
+
+
 #pragma mark 获取酒品种类信息
 -(void)geBiaoQianData{
     //获取酒水类型
