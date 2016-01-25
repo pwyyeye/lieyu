@@ -126,7 +126,9 @@
 #pragma mark viewWillAppear
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self getGoodsNum];
+    if(((AppDelegate*)[[UIApplication sharedApplication] delegate]).userModel){
+        [self getGoodsNum];
+    }
     self.navigationController.navigationBarHidden = NO;
 }
 
