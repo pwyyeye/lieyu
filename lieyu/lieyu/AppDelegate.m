@@ -57,7 +57,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
 
-    [self loadHisData];
+    [self loadHisData];  
     [self setupDataStore];
 
     
