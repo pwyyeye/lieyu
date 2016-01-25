@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYwoYaoDinWeiMainViewController">
             <connections>
+                <outlet property="managersView" destination="5P9-YC-eYs" id="R9r-eG-Hs5"/>
                 <outlet property="menuView" destination="XHt-IO-Xda" id="qgc-Be-965"/>
                 <outlet property="tableView" destination="3bo-9e-LJO" id="9eM-DH-7cL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -18,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-9e-LJO">
-                    <rect key="frame" x="0.0" y="114" width="320" height="454"/>
+                    <rect key="frame" x="0.0" y="196" width="320" height="372"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="WSj-eM-X8F"/>
@@ -26,22 +27,31 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHt-IO-Xda">
-                    <rect key="frame" x="0.0" y="64" width="320" height="50"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="34"/>
+                    <color key="backgroundColor" red="0.29411764709999999" green="0.76470588240000004" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="nih-KR-nvH"/>
+                        <constraint firstAttribute="height" constant="34" id="nih-KR-nvH"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5P9-YC-eYs">
+                    <rect key="frame" x="0.0" y="98" width="320" height="98"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="98" id="22d-7R-kHk"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="XHt-IO-Xda" secondAttribute="trailing" id="7C5-fJ-x6O"/>
+                <constraint firstItem="5P9-YC-eYs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E7D-TR-JUM"/>
                 <constraint firstItem="XHt-IO-Xda" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HlC-j7-hOF"/>
                 <constraint firstAttribute="trailing" secondItem="3bo-9e-LJO" secondAttribute="trailing" id="J0M-L9-KSN"/>
+                <constraint firstItem="3bo-9e-LJO" firstAttribute="top" secondItem="5P9-YC-eYs" secondAttribute="bottom" id="aym-by-cEE"/>
                 <constraint firstItem="XHt-IO-Xda" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="gEY-Cq-AQb"/>
                 <constraint firstItem="3bo-9e-LJO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gJH-m7-3Q2"/>
                 <constraint firstAttribute="bottom" secondItem="3bo-9e-LJO" secondAttribute="bottom" id="mAg-Nm-qQL"/>
-                <constraint firstItem="3bo-9e-LJO" firstAttribute="top" secondItem="XHt-IO-Xda" secondAttribute="bottom" id="zJw-Ye-UH8"/>
+                <constraint firstItem="5P9-YC-eYs" firstAttribute="top" secondItem="XHt-IO-Xda" secondAttribute="bottom" id="yFD-iw-Mmj"/>
+                <constraint firstAttribute="trailing" secondItem="5P9-YC-eYs" secondAttribute="trailing" id="zVV-wn-cew"/>
             </constraints>
             <point key="canvasLocation" x="112" y="228"/>
         </view>

@@ -77,7 +77,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXg-kz-6Dv">
                     <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吃喝专场" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsd-L6-gAk">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="单点" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsd-L6-gAk">
                             <rect key="frame" x="107" y="33" width="106" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Fb9-E9-dck"/>
@@ -86,7 +86,7 @@
                             <color key="textColor" red="0.4039215686" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专属经理" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yf-FT-xLw">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="组局" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Yf-FT-xLw">
                             <rect key="frame" x="213" y="33" width="107" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="xYp-4X-QQF"/>
@@ -95,7 +95,7 @@
                             <color key="textColor" red="0.4039215686" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我要订位" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzJ-km-gwt">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzJ-km-gwt">
                             <rect key="frame" x="0.0" y="33" width="107" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="8iM-zi-sr4"/>
@@ -118,14 +118,14 @@
                                 <constraint firstAttribute="height" constant="31" id="Vfh-zO-gWw"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_managers" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-Rq-0Gl">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pinke" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-Rq-0Gl">
                             <rect key="frame" x="251" y="4" width="31" height="31"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="31" id="DQs-xS-OLx"/>
                                 <constraint firstAttribute="height" constant="31" id="K91-qm-F8V"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SM-5N-3Iy">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SM-5N-3Iy">
                             <rect key="frame" x="109" y="0.0" width="105" height="49"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49" id="jYq-UY-52k"/>
@@ -262,7 +262,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="96X-DT-GEW" id="HBL-mj-0Sl">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="219.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIi-JY-IS5">
@@ -456,7 +456,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwQ-ej-J52" id="Jfr-2l-B75">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="热门订座套餐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXA-Gg-EX9">
@@ -485,11 +485,11 @@
     </objects>
     <resources>
         <image name="icon_collect_2.png" width="24" height="24"/>
-        <image name="icon_eatdrinkspecial" width="28" height="28"/>
+        <image name="icon_eatdrinkspecial" width="30" height="30"/>
         <image name="icon_like_2.png" width="24" height="24"/>
         <image name="icon_locate" width="11" height="14"/>
-        <image name="icon_managers" width="28" height="28"/>
-        <image name="icon_ordersits" width="28" height="28"/>
+        <image name="icon_ordersits" width="30" height="30"/>
+        <image name="icon_pinke" width="30" height="30"/>
         <image name="icon_share2.png" width="24" height="24"/>
         <image name="navBarbg" width="6" height="192"/>
         <image name="return" width="25" height="24"/>

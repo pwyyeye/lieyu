@@ -17,6 +17,7 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
+@property (weak, nonatomic) IBOutlet UIView *managersView;
 @property (assign, nonatomic) int barid;
 
 @end

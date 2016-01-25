@@ -339,6 +339,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
     
+        NSDictionary *dict = @{@"result":@"支付宝支付成功"};
+        [MTA trackCustomKeyValueEvent:@"payEvent" props:dict];
       //  detailViewController.orderNoString=_orderNo;
       //  detailViewController.payAmountString=[NSString stringWithFormat:@"%.2f",_payAmount];
         

@@ -42,6 +42,7 @@
     [self getweekDate];
     [self getMenuHrizontal];
     [self getdata];
+    [self managerList];
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
     self.navigationItem.title = @"所有套餐";
@@ -49,9 +50,18 @@
     [self.navigationItem setLeftBarButtonItem:item];
 }
 
+#pragma mark - 专属经理选框
+- (void)managerList{
+    _managersView.layer.shadowColor = [[UIColor blackColor]CGColor];
+    _managersView.layer.shadowOffset = CGSizeMake(0, 1);
+    _managersView.layer.shadowOpacity = 0.5;
+    _managersView.layer.shadowRadius = 2;
+}
+
 - (void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
@@ -128,15 +138,15 @@
         
         NSDictionary *dic=weekDateArr[i];
         NSMutableDictionary *itemTemp =[[NSMutableDictionary alloc]init] ;
-        // 使用颜色创建UIImage//未选中颜色
-        CGSize imageSize = CGSizeMake((SCREEN_WIDTH/5.5), 34);
-        UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-        [RGB(229, 255, 245) set];
-        UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
-        UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+//        // 使用颜色创建UIImage//未选中颜色
+//        CGSize imageSize = CGSizeMake((SCREEN_WIDTH/5.5), 34);
+//        UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
+//        [RGB(229, 255, 245) set];
+//        UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
+//        UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
         
-        [itemTemp setObject:normalImg forKey:NOMALKEY];
+//        [itemTemp setObject:normalImg forKey:NOMALKEY];
         [itemTemp setObject: [dic objectForKey:@"week"] forKey:WEEKKEY];
         [itemTemp setObject:[dic objectForKey:@"day"]  forKey:TITLEKEY];
         [itemTemp setObject:[dic objectForKey:@"month"] forKey:MONTHKEY];
@@ -146,7 +156,7 @@
     }
     
     if (mMenuHriZontal == nil) {
-        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrameForTime:CGRectMake(0,64, SCREEN_WIDTH, 50) ButtonItems:barArr];
+        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrameForTime:CGRectMake(0,64, SCREEN_WIDTH, 34) ButtonItems:barArr];
         mMenuHriZontal.delegate = self;
     }
     [self.view addSubview:mMenuHriZontal];
@@ -228,6 +238,7 @@
     taoCanXQViewController.jiubaModel = jiubaModel;
     [self.navigationController pushViewController:taoCanXQViewController animated:YES]; 
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:WOYAODINGWEIPAGE_MTA titleName:model.title]];
+    [MTA trackCustomKeyValueEvent:@"TCList" props:nil];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

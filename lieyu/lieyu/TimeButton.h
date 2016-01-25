@@ -12,4 +12,5 @@
 @property (nonatomic,retain)UILabel *titleLal;
 @property (nonatomic,retain)UILabel *weekLal;
 @property (nonatomic,unsafe_unretained) BOOL *selec;
+@property (nonatomic, retain) UIView *lineView;
 @end
