@@ -126,7 +126,9 @@
 #pragma mark viewWillAppear
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self getGoodsNum];
+    if(((AppDelegate*)[[UIApplication sharedApplication] delegate]).userModel){
+        [self getGoodsNum];
+    }
     self.navigationController.navigationBarHidden = NO;
 }
 
@@ -137,6 +139,8 @@
         [_badge setHidden:NO];
     }
 }
+
+
 
 #pragma mark 获取酒品种类信息
 -(void)geBiaoQianData{
