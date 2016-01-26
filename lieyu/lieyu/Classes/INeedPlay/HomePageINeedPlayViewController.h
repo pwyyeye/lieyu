@@ -15,8 +15,6 @@
 
 @interface HomePageINeedPlayViewController : LYBaseViewController<UINavigationControllerDelegate,LYChooseCityDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *cityBtn;
-
 @property(strong,nonatomic) LYAlert *alertView;
 
 

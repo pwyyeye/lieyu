@@ -85,19 +85,6 @@
     }
 }
 
-//- (void)viewDidAppear:(BOOL)animated{
-//    [super viewDidAppear:animated];
-//    [MTA trackPageViewBegin:ADDRESSPAGE_MTA];
-//    [MTA trackCustomEventBegin:LYTIMEEVENT_MTA args:@[ADDRESSPAGE_TIMEEVENT_MTA]];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    [MTA trackPageViewEnd:ADDRESSPAGE_MTA];
-//    [MTA trackCustomEventEnd:LYTIMEEVENT_MTA args:@[ADDRESSPAGE_TIMEEVENT_MTA]];
-//}
-
 - (void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
