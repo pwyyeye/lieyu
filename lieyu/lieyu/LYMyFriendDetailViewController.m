@@ -92,7 +92,10 @@
     _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
     _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _subView.button.hidden = YES;
-    _subView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]]];
+    NSArray *array = [_customerModel.icon componentsSeparatedByString:@"?"];
+    NSLog(@"%@",_customerModel);
+    NSLog(@"%@",array);
+    _subView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[array objectAtIndex:0] == nil ? self.userImageView.image : [array objectAtIndex:0]]]];
 //    [_subView.imageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
     //    _subView.image = [self.collectionData objectAtIndex:indexPath.item];
     [_subView viewConfigure];

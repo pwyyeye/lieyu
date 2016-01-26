@@ -264,7 +264,7 @@
 
 #pragma mark 付钱按钮，选择预付金额
 - (void)payMoney{
-    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定",@"取消", nil];
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
     alertView.delegate = self;
     _payContent = [[[NSBundle mainBundle]loadNibNamed:@"PayMoney" owner:nil options:nil]firstObject];
     _payContent.tag = 13;
@@ -275,7 +275,7 @@
 }
 #pragma mark 填完金额后的代理事件
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexPayMoney:(NSInteger)buttonIndex{
-    if(buttonIndex == 0){
+    if(buttonIndex == 1){
         if([((PayMoney *)alertView.contentView).textField.text intValue] < 100){
             ((PayMoney *)alertView.contentView).warningLabel.textColor = [UIColor redColor];
             ((PayMoney *)alertView.contentView).warningLabel.text = @"发起人预支付金额不可少于100元";

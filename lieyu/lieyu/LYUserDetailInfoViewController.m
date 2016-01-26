@@ -220,7 +220,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UserModel *mod= app.userModel;
     if (indexPath.row == 3) {//选择生日
-        LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消",@"确定",nil];
+        LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定",nil];
         
         TimePickerView *timeView = [[[NSBundle mainBundle] loadNibNamed:@"TimePickerView" owner:nil options:nil] firstObject];
         timeView.timePicker.datePickerMode = UIDatePickerModeDate;

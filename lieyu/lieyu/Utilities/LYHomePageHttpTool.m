@@ -492,7 +492,7 @@
 -(void) getBarVipWithParams:(NSDictionary*)params
                       block:(void(^)(NSMutableArray* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_BAR_VIPLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -507,7 +507,7 @@
         }else{
             [MyUtil showMessage:message];
         }
-        [app stopLoading];
+//        [app stopLoading];
     } failure:^(NSError *err) {
         //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];

@@ -46,14 +46,25 @@
         PayResp*response=(PayResp*)resp;
         switch(response.errCode){
             case WXSuccess:
+            {
                 //服务器端查询支付通知或查询API返回的结果再提示成功
                 NSLog(@"支付成功");
+                
+                NSDictionary *dict = @{@"result":@"微信支付成功"};
+                [MTA trackCustomKeyValueEvent:@"payEvent" props:dict];
+                
                 [MyUtil showMessage:@"支付成功！"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                 break;
+            }
             default:
+            {
+                NSDictionary *dict = @{@"result":@"微信支付失败"};
+                [MTA trackCustomKeyValueEvent:@"payEvent" props:dict];
+                
                 NSLog(@"支付失败，retcode=%d",resp.errCode);
                 break;
+            }
         }
     }
     

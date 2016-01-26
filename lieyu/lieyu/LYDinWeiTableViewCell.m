@@ -11,9 +11,29 @@
 #import "TaoCanModel.h"
 
 @implementation LYDinWeiTableViewCell
+- (void)setSelected:(BOOL)selected{
+    if(selected){
+        self.backView.layer.borderWidth = 2;
+        self.backView.layer.borderColor = [RGB(186, 40, 227)CGColor];
+        self.button_add.hidden = NO;
+        self.button_less.hidden = NO;
+        self.label_number.hidden = NO;
+    }else{
+        self.backView.layer.borderWidth = 0;
+        self.button_add.hidden = YES;
+        self.button_less.hidden = YES;
+        self.label_number.hidden = YES;
+        self.label_number.text = @"1";
+        [self.button_less setImage:[UIImage imageNamed:@"gray_less_circle"] forState:UIControlStateNormal];
+        [self.button_add setImage:[UIImage imageNamed:@"add_purper_circle"] forState:UIControlStateNormal];
+    }
+}
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.backView.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    self.backView.layer.shadowOffset = CGSizeMake(0, 1);
+    self.backView.layer.shadowOpacity = 0.8;
+    self.backView.layer.shadowRadius = 2;
 }
 
 - (void)setModel:(RecommendPackageModel *)model{
@@ -26,19 +46,20 @@
     self.label_price_old.attributedText = attribtStr;
     self.label_buyCount.text = [NSString stringWithFormat:@"%@人购",model.buynum];
     [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:model.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-
-    CGFloat rebate = ([self.model.rebate floatValue]) * 100;
-    NSString *percentStr =[NSString stringWithFormat:@"%.0f%@",rebate,@"%"];
-    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:percentStr];
-    NSInteger rangeIndex;
-    if(rebate == 0) rangeIndex = 1;
-    else rangeIndex = 2;
-    [attributedStr addAttribute:NSFontAttributeName
-     
-                          value:[UIFont systemFontOfSize:10]
-     
-                          range:NSMakeRange(rangeIndex, 1)];
-    self.label_percent.attributedText = attributedStr;
+    
+    CGFloat rebate = [self.model.rebate floatValue];
+    CGFloat profit = [model.price intValue] * rebate;
+    NSString *percentStr =[NSString stringWithFormat:@"返利:%.0f元",profit];
+//    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:percentStr];
+//    NSInteger rangeIndex;
+//    if(rebate == 0) rangeIndex = 1;
+//    else rangeIndex = 2;
+//    [attributedStr addAttribute:NSFontAttributeName
+//     
+//                          value:[UIFont systemFontOfSize:10]
+//     
+//                          range:NSMakeRange(rangeIndex, 1)];
+    self.label_percent.text = percentStr;
 }
 
 - (void)setTaoCanModel:(TaoCanModel *)taoCanModel{

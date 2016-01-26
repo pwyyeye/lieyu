@@ -239,7 +239,7 @@
 
 #pragma mark -添加购物车
 - (IBAction)AddToShopCar:(UIButton *)sender {
-    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
     alertView.delegate = self;
     _chooseNumView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseNumber" owner:nil options:nil]firstObject];
     _chooseNumView.tag = 14;
@@ -250,7 +250,7 @@
 
 #pragma mark 选择数量后上传
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
-    if(buttonIndex == 0){
+    if(buttonIndex == 1){
         NSDictionary *dic=@{@"product_id":[NSNumber numberWithInt:chiHeModel.id],
                             @"quantity":_chooseNumView.numberField.text};
         

@@ -20,7 +20,7 @@
                     <color key="textColor" red="0.36862745099999999" green="0.0" blue="0.51372549020000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iXQ-h5-2Tg">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iXQ-h5-2Tg">
                     <rect key="frame" x="125" y="448" width="70" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="WOx-Qa-IIh"/>

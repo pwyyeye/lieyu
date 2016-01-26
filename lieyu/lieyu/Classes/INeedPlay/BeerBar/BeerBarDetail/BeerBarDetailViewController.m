@@ -67,9 +67,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
- 
-    
     self.automaticallyAdjustsScrollViewInsets=NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
@@ -106,6 +103,9 @@
     [self loadBarDetail];                                                       //load data
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMyCollectedAndLikeBar) name:@"loadMyCollectedAndLikeBar" object:nil];
+    
+    [MTA trackCustomKeyValueEvent:@"BarDetail" props:nil];
+    
 }
 
 - (void)loadMyCollectedAndLikeBar{
@@ -663,6 +663,7 @@
     CHDetailVC.barName=_beerBarDetail.barname;
     [self.navigationController pushViewController:CHDetailVC animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"吃喝专场"]];
+    [MTA trackCustomKeyValueEvent:@"SingleList" props:nil];
 }
 
 - (IBAction)zsliAct:(UIButton *)sender {

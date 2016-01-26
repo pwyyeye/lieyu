@@ -241,7 +241,7 @@
 
 //选择时间
 - (void)choseTime{
-    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
     alertView.delegate = self;
     _timeView = [[[NSBundle mainBundle]loadNibNamed:@"TimePickerView" owner:nil options:nil]firstObject];
     _timeView.timePicker.datePickerMode = UIDatePickerModeTime;
@@ -255,7 +255,7 @@
 }
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
-    if (!buttonIndex) {
+    if (buttonIndex) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"HH:mm"];
         NSString *dateString = [formatter stringFromDate:_timeView.timePicker.date];
@@ -266,7 +266,7 @@
 }
 
 - (void)isResrve{
-    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
     alertView.delegate = self;
     view_taocan = [[[NSBundle mainBundle] loadNibNamed:@"ContentViewTaocan" owner:nil options:nil] firstObject];
     view_taocan.tag = 12;
@@ -276,7 +276,7 @@
 }
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
-    if (!buttonIndex) {
+    if (buttonIndex) {
     NSString *remainStr = nil;
     if (((ContentViewTaocan *)alertView.contentView).image_remain.tag == 3) {
         //确定预留
