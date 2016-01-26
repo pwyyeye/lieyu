@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 狼族（上海）网络科技有限公司. All rights reserved.
 //
 #import "LYAdshowCell.h"
-#import "LYWineBarCell.h"
 #import "HomePageINeedPlayViewController.h"
 #import "MJRefresh.h"
 #import "BeerBarDetailViewController.h"
@@ -17,8 +16,6 @@
 #import "LYPlayTogetherMainViewController.h"
 #import "DWTaoCanXQViewController.h"
 #import "MyCollectionViewController.h"
-#import "LYAmusementClassCell.h"
-#import "LYHotRecommandCell.h"
 #import "LYCityChooseViewController.h"
 #import "LYHomeSearcherViewController.h"
 #import "LYHotJiuBarViewController.h"
@@ -29,27 +26,33 @@
 #import "LYCache+CoreDataProperties.h"
 #import "LYUserHttpTool.h"
 #import "LYFriendsHttpTool.h"
+#import "Masonry.h"
+#import "HomeBarCollectionViewCell.h"
+#import "HomeMenuCollectionViewCell.h"
+#import "LYHotBarViewController.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
 #define HOMEPAGE_TIMEEVENT_MTA @"HOMEPAGE_TIMEEVENT"
 
 @interface HomePageINeedPlayViewController ()
-<
-UITableViewDataSource,UITableViewDelegate,
-    EScrollerViewDelegate,
-    UITextFieldDelegate
+<EScrollerViewDelegate,
+    UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 >{
     UIButton *_cityChooseBtn;
     UIButton *_searchBtn;
     UIImageView *_titleImageView;
     CGFloat _scale;
+    UICollectionView *_collectView;
+    UIButton *_btn_yedian;
+    UIButton *_btn_bar;
+    UIView *_lineView;
+    UIVisualEffectView *_navView;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
 @property(nonatomic,strong)NSMutableArray *aryList;
-@property(nonatomic,weak) IBOutlet UITableView * tableView;
 @property (nonatomic,strong) NSArray *bartypeslistArray;
 @property(nonatomic,assign) NSInteger curPageIndex;
 @property (nonatomic,strong) NSArray *hotJiuBarTitle;
@@ -62,14 +65,17 @@ UITableViewDataSource,UITableViewDelegate,
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
     
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    _collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT - 49 - 90) collectionViewLayout:layout];
+    _collectView.backgroundColor = RGBA(243, 243, 243, 1);
+    [self.view addSubview:_collectView];
+    
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
-        _tableView.bounds=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-104);
+        _collectView.bounds=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     }
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-   // _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-104);
     
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
 //        self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -78,8 +84,9 @@ UITableViewDataSource,UITableViewDelegate,
     }
      self.curPageIndex = 1;
      self.aryList=[[NSMutableArray alloc]init];
-    _tableView.showsHorizontalScrollIndicator=NO;
-    _tableView.showsVerticalScrollIndicator=NO;
+    _collectView.dataSource = self;
+    _collectView.delegate = self;
+    _collectView.showsHorizontalScrollIndicator=NO;
     [self setupViewStyles];
     [self getData];
     self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
@@ -112,24 +119,70 @@ UITableViewDataSource,UITableViewDelegate,
 
 #pragma mark 创建导航的按钮(选择城市和搜索)
 - (void)createNavButton{
-    _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(9.5, 12, 54, 20)];
-    [_cityChooseBtn setImage:[UIImage imageNamed:@"Shape"] forState:UIControlStateNormal];
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    _navView = [[UIVisualEffectView alloc]initWithEffect:effect];
+    _navView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90 - 20);
+    [self.navigationController.navigationBar addSubview:_navView];
+    
+    _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 10, 40, 27)];
+    [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
-    [_cityChooseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -8)];
-    _cityChooseBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
+    _cityChooseBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:12];
+    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(30, 20, 0, 0)];
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_cityChooseBtn];
     
     CGFloat searchBtnWidth = 24;
-    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 8 - searchBtnWidth, 12, searchBtnWidth, searchBtnWidth)];
-    [_searchBtn setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 10 - searchBtnWidth, 10, searchBtnWidth, searchBtnWidth)];
+    [_searchBtn setBackgroundImage:[UIImage imageNamed:@"搜索"] forState:UIControlStateNormal];
     [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_searchBtn];
     
-    CGFloat titleImgViewWidth = 50.0;
-    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5, titleImgViewWidth, 24.6)];
-    _titleImageView.image = [UIImage imageNamed:@"猎娱"];
-    [self.navigationController.navigationBar addSubview:_titleImageView];
+    CGFloat titleImgViewWidth = 40;
+    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5, titleImgViewWidth, titleImgViewWidth)];
+    _titleImageView.image = [UIImage imageNamed:@"logo"];
+    [_navView addSubview:_titleImageView];
+    
+    _btn_yedian = [[UIButton alloc]initWithFrame:CGRectMake(47, 20, 24, 28)];
+    [_btn_yedian setTitle:@"夜店" forState:UIControlStateNormal];
+    [_btn_yedian addTarget:self action:@selector(yedianClick) forControlEvents:UIControlEventTouchUpInside];
+    _btn_yedian.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    [_btn_yedian setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
+    [_navView addSubview:_btn_yedian];
+    [_btn_yedian mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(_navView.mas_bottom).with.offset(-5);
+        make.left.mas_equalTo(_navView.mas_left).with.offset(130);
+        make.size.mas_equalTo(CGSizeMake(24, 28));
+    }];
+
+    _btn_bar = [[UIButton alloc]init];
+    [_btn_bar setTitle:@"酒吧" forState:UIControlStateNormal];
+        [_btn_bar addTarget:self action:@selector(barClick) forControlEvents:UIControlEventTouchUpInside];
+    _btn_bar.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    [_btn_bar setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
+    [_navView addSubview:_btn_bar];
+    [_btn_bar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(_navView.mas_bottom).with.offset(-5);
+        make.right.mas_equalTo(_navView.mas_right).with.offset(-130);
+        make.size.mas_equalTo(CGSizeMake(24, 28));
+    }];
+    
+    _lineView = [[UIView alloc]init];
+    _lineView.backgroundColor = RGBA(186, 40, 227, 1);
+    [_navView addSubview:_lineView];
+    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(_navView.mas_bottom).with.offset(0);
+        make.centerX.mas_equalTo(_btn_yedian.mas_centerX).with.offset(0);
+        make.size.mas_equalTo(CGSizeMake(42, 1));
+    }];
+
+}
+- (void)yedianClick{
+    NSLog(@"---->夜店");
+}
+- (void)barClick{
+    NSLog(@"---->酒吧");
 }
 
 - (void)viewWillLayoutSubviews
@@ -156,6 +209,10 @@ UITableViewDataSource,UITableViewDelegate,
     [_titleImageView removeFromSuperview];
     [_searchBtn removeFromSuperview];
     [_cityChooseBtn removeFromSuperview];
+    [_btn_bar removeFromSuperview];
+    [_btn_yedian removeFromSuperview];
+    [_navView removeFromSuperview];
+    [_lineView removeFromSuperview];
 }
 
 //筛选，跳转，增加，删除，确认
@@ -164,7 +221,6 @@ UITableViewDataSource,UITableViewDelegate,
 - (void)cityChangeClick:(UIButton *)sender {
     LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
     [self.navigationController pushViewController:cityChooseVC animated:YES];
-    
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
 }
 
@@ -172,7 +228,6 @@ UITableViewDataSource,UITableViewDelegate,
 - (void)searchClick:(UIButton *)sender {
     LYHomeSearcherViewController *homeSearchVC = [[LYHomeSearcherViewController alloc]init];
     [self.navigationController pushViewController:homeSearchVC animated:YES];
-    
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"搜索"]];
 }
 
@@ -188,7 +243,7 @@ UITableViewDataSource,UITableViewDelegate,
             self.bannerList = dataDic[@"banner"];
             self.newbannerList = dataDic[@"newbanner"];
             self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]] ;
-            [self.tableView reloadData];
+            [_collectView reloadData];
             return;
         }
     }
@@ -200,11 +255,11 @@ UITableViewDataSource,UITableViewDelegate,
              if (barList.count == PAGESIZE)
              {
                  weakSelf.curPageIndex = 2;
-                 weakSelf.tableView.mj_footer.hidden = NO;
+                 _collectView.mj_footer.hidden = NO;
              }
              else
              {
-                 weakSelf.tableView.mj_footer.hidden = YES;
+                 _collectView.mj_footer.hidden = YES;
              }
          }
      }];
@@ -218,9 +273,9 @@ UITableViewDataSource,UITableViewDelegate,
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
     hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
-    if (![MyUtil isEmptyString:_cityBtn.titleLabel.text]) {
-       hList.city = _cityBtn.titleLabel.text;
-    }
+//    if (![MyUtil isEmptyString:_cityBtn.titleLabel.text]) {
+//     //  hList.city = _cityBtn.titleLabel.text;
+//    }
     hList.need_page = @(1);
     hList.p = @(_curPageIndex);
     hList.per = @(PAGESIZE);
@@ -236,7 +291,7 @@ UITableViewDataSource,UITableViewDelegate,
                 weakSelf.bartypeslistArray = bartypeslist;
             }
             [weakSelf.aryList addObjectsFromArray:barList.mutableCopy] ;
-            [weakSelf.tableView reloadData];
+            [_collectView reloadData];
         }
         block !=nil? block(ermsg,bannerList,barList):nil;
     }];
@@ -251,18 +306,15 @@ UITableViewDataSource,UITableViewDelegate,
 - (void)setupViewStyles
 {
     [self installFreshEvent];
-    
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYHotRecommandCell" bundle:nil]  forCellReuseIdentifier:@"hotCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYAmusementClassCell" bundle:nil] forCellReuseIdentifier:@"LYAmusementClassCell"];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [_collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    [_collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
+    [_collectView registerNib:[UINib nibWithNibName:@"HomeMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenuCollectionViewCell"];
 }
 
 - (void)installFreshEvent
 {
     __weak HomePageINeedPlayViewController * weakSelf = self;
-    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:
+    _collectView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:
                              ^{
                                  weakSelf.curPageIndex = 1;
                                  [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
@@ -272,37 +324,38 @@ UITableViewDataSource,UITableViewDelegate,
                                           if (barList.count == PAGESIZE)
                                           {
                                               weakSelf.curPageIndex = 2;
-                                              weakSelf.tableView.mj_footer.hidden = NO;
+                                              _collectView.mj_footer.hidden = NO;
                                           }
                                           else
                                           {
-                                              weakSelf.tableView.mj_footer.hidden = YES;
+                                              _collectView.mj_footer.hidden = YES;
                                           }
-                                          [weakSelf.tableView.mj_header endRefreshing];
+                                          [_collectView.mj_header endRefreshing];
                                       }
                                   }];
                              }];
-    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)_collectView.mj_header;
     [self initMJRefeshHeaderForGif:header];
     
-    self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+    _collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [weakSelf loadHomeList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
                 if (barList.count == PAGESIZE)
                 {
-                    weakSelf.tableView.mj_footer.hidden = NO;
+                    _collectView.mj_footer.hidden = NO;
                 }
                 else
                 {
-                    weakSelf.tableView.mj_footer.hidden = YES;
+                    _collectView.mj_footer.hidden = YES;
                 }
                 weakSelf.curPageIndex ++;
-                [weakSelf.tableView.mj_footer endRefreshing];
+                [_collectView.mj_footer endRefreshing];
             }
         }];
     }];
-    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
+    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)_collectView.mj_footer;
     [self initMJRefeshFooterForGif:footer];
+   
 }
 
 #pragma mark 离我最近
@@ -325,71 +378,15 @@ UITableViewDataSource,UITableViewDelegate,
     // Dispose of any resources that can be recreated.
 }
 
+/*
 #pragma mark UITableViewDataSoucre&UITableViewDelegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (self.aryList.count) {
-        return self.aryList.count + 3;
-    }else{
-        return 0;
-    }
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (!section || section == 3) {
-        return 0.00001;
-    }
-    return 4;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view = [[UIView alloc]init];
-    return view;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *view = [UIView new];
-    return view;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 2) {
-        return 0.0001;
-    }
-    return 4;
-}
- 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
     switch (indexPath.section) {
         case 0://广告
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            [[cell viewWithTag:1999] removeFromSuperview];
-            
-            NSMutableArray *bigArr=[[NSMutableArray alloc]init];
-            for (NSString *iconStr in self.bannerList) {
-                NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
-                [dicTemp setObject:iconStr forKey:@"ititle"];
-                [dicTemp setObject:@"" forKey:@"mainHeading"];
-                [bigArr addObject:dicTemp];
-            }
-            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 9)/16)
-                                                                  scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
-            scroller.delegate=self;
-            scroller.tag=1999;
-            [cell addSubview:scroller];
-        }
-            break;
-        case 1://娱乐分类
+                case 1://娱乐分类
         {
           LYAmusementClassCell *amuseCell =[tableView dequeueReusableCellWithIdentifier:@"LYAmusementClassCell" forIndexPath:indexPath];
             amuseCell.bartypeArray = self.bartypeslistArray;
@@ -423,64 +420,117 @@ UITableViewDataSource,UITableViewDelegate,
   return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    CGFloat h = 0.0f;
-    switch (indexPath.section) {
-        case 0:
-        {
-            h = (SCREEN_WIDTH * 9)/16;
-        }
-            break;
-        case 1:
-        {
-            h = 211  ;
-        }
-            break;
-        case 2:
-        {
-           
-            h = 45;
-        }
-            break;
-        default:
-        {
-            h = (SCREEN_WIDTH * 9)/16 + (277.5 - 180);
-        }
-            break;
-    }
-    return h;
+ */
+
+#pragma mark UICollectionViewDataSource 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return _aryList.count + 5;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.item >= 2 && indexPath.item <= 5){
+            return CGSizeMake((SCREEN_WIDTH - 9)/2.f, (SCREEN_WIDTH - 9)/2.f * 9 / 16);
+    }else if(indexPath.row == 0){
+            return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 9 / 16);
+    }else{
+            return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
+    }
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 3;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 3;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(0, 3, 3, 3);
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == 0){
+            UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+            [[cell viewWithTag:1999] removeFromSuperview];
+            
+            NSMutableArray *bigArr=[[NSMutableArray alloc]init];
+            for (NSString *iconStr in self.bannerList) {
+                NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
+                [dicTemp setObject:iconStr forKey:@"ititle"];
+                [dicTemp setObject:@"" forKey:@"mainHeading"];
+                [bigArr addObject:dicTemp];
+            }
+            EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 9)/16)
+                                                                  scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
+            scroller.delegate=self;
+            scroller.tag=1999;
+            [cell addSubview:scroller];
+            return cell;
+    }else if(indexPath.row == 1){
+            HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+            if(_aryList.count){
+                JiuBaModel *jiuBaM = _aryList[0];
+                jiubaCell.jiuBaM = jiuBaM;
+            }
+            return jiubaCell;
+    }else if(indexPath.row >= 2 & indexPath.row <= 5){
+        NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
+            HomeMenuCollectionViewCell *menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeMenuCollectionViewCell" forIndexPath:indexPath];
+        menuCell.imgView_bg.userInteractionEnabled = YES;
+        [menuCell.imgView_title setImage:[UIImage imageNamed:picNameArray[indexPath.row - 2]]];
+        menuCell.label_title.text = picNameArray[indexPath.row - 2];
+            menuCell.backgroundColor = [UIColor cyanColor];
+        menuCell.label_title.shadowOffset = CGSizeMake(0, 0.5);
+            return menuCell;
+        }else{
+            HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+            JiuBaModel *jiuBaM = _aryList[indexPath.row - 5];
+            jiubaCell.jiuBaM = jiuBaM;
+            return jiubaCell;
+        }
+
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    JiuBaModel *jiuBaM = nil;
+    if(indexPath.item == 1){
+        jiuBaM = _aryList[indexPath.item - 1];
+    }else if(indexPath.item >= 6){
+        jiuBaM = _aryList[indexPath.item - 5];
+    }else if(indexPath.item >= 2&& indexPath.item <= 5){
+//        LYHotBarViewController *hotJiuBarVC = [[LYHotBarViewController alloc]init];
+        LYHotBarViewController *hotBarVC = [[LYHotBarViewController alloc]init];
+//        NSMutableArray *titleArray = [[NSMutableArray alloc]initWithCapacity:0];
+//        for (int i = 0;  i < self.bartypeslistArray.count; i ++) {
+//            bartypeslistModel *bartypeModel = self.bartypeslistArray[i];
+//            [titleArray addObject:bartypeModel.name];
+//        }
+//        hotJiuBarVC.titleArray = titleArray;
+//        hotJiuBarVC.bartypeArray = self.bartypeslistArray;
+//        if(!self.bartypeslistArray.count) return;
+//        hotJiuBarVC.subidStr = ((bartypeslistModel *)self.bartypeslistArray[indexPath.item - 2]).subids;
+        [self.navigationController pushViewController:hotBarVC animated:YES];
+        return;
+//        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:titleArray[indexPath.item - 2]]];
+    }else{
+        return;
+    }
+    BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    controller.beerBarId = @(jiuBaM.barid);
+    [self.navigationController pushViewController:controller animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
     
-    if (indexPath.section >= 3) {
-        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
-        JiuBaModel * model = [_aryList objectAtIndex:indexPath.section -3];
-        controller.beerBarId = @(model.barid);
-        [self.navigationController pushViewController:controller animated:YES];
-        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:model.barname]];
-        
-        LYWineBarCell *cell = (LYWineBarCell *)[tableView cellForRowAtIndexPath:indexPath];
-        NSLog(@"---->%@",NSStringFromCGRect(cell.imageView_content.frame));
-    }
+//    LYWineBarCell *cell = (LYWineBarCell *)[tableView cellForRowAtIndexPath:indexPath];
 }
-
 #pragma mark 跳转热门酒吧界面
 - (void)hotJiuClick:(UIButton *)button{
-    LYHotJiuBarViewController *hotJiuBarVC = [[LYHotJiuBarViewController alloc]init];
-    NSMutableArray *titleArray = [[NSMutableArray alloc]initWithCapacity:0];
-    for (int i = 0;  i < self.bartypeslistArray.count; i ++) {
-        bartypeslistModel *bartypeModel = self.bartypeslistArray[i];
-        [titleArray addObject:bartypeModel.name];
-    }
-    hotJiuBarVC.titleArray = titleArray;
-    hotJiuBarVC.middleStr = titleArray[button.tag];
-    hotJiuBarVC.bartypeArray = self.bartypeslistArray;
-    hotJiuBarVC.subidStr = ((bartypeslistModel *)self.bartypeslistArray[button.tag]).subids;
-    [self.navigationController pushViewController:hotJiuBarVC animated:YES];
-    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:titleArray[button.tag]]];
+    
 }
 
 #pragma mark 搜索代理

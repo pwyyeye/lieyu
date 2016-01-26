@@ -188,6 +188,7 @@
         [self getUserZangJiuBaList];
         
         [self.navigationController popViewControllerAnimated:YES ];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
     }];
@@ -471,7 +472,7 @@
                         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                     }else{//去绑定手机好
                          [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
-                        [MyUtil showPlaceMessage:@"绑定手机号"];
+//                        [MyUtil showPlaceMessage:@"绑定手机号"];
                         LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
                         userModel.openID = snsAccount.usid;
                         registVC.userM = userModel;

@@ -154,9 +154,10 @@ static LYRegistrationViewController *_registe;
         [MyUtil showMessage:@"请输入验证码!"];
         return;
     }
-    if(!_isRegisted){//绑定手机号
+    if(!_isRegisted&&_isTheThirdLogin==YES){//绑定手机号
         if (_flag==nil) {
             [MyUtil showCleanMessage:@"无效验证码！"];
+            return;
         }
         if([_flag isEqualToString:@"1"]){//注册过去绑定
             NSString *plantType = nil;
@@ -187,7 +188,7 @@ static LYRegistrationViewController *_registe;
             }];
         }
         
-    }else if(_isTheThirdLogin){
+    }else if(_isTheThirdLogin && _isRegisted){
         if(self.passWordTex.text.length<1){
             [MyUtil showMessage:@"请输入密码!"];
             return;
