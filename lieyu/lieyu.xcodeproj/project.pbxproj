@@ -333,8 +333,8 @@
 		3812C4EF1C57242100F4DD6B /* purper_star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4ED1C57242100F4DD6B /* purper_star@3x.png */; };
 		3812C4F21C57242B00F4DD6B /* gray_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4F01C57242B00F4DD6B /* gray_star@2x.png */; };
 		3812C4F31C57242B00F4DD6B /* gray_star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4F11C57242B00F4DD6B /* gray_star@3x.png */; };
-		3812C4F61C57363F00F4DD6B /* hot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4F41C57363F00F4DD6B /* hot@2x.png */; };
-		3812C4F71C57363F00F4DD6B /* hot@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4F51C57363F00F4DD6B /* hot@3x.png */; };
+		3812C4F61C57363F00F4DD6B /* hot_triangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4F41C57363F00F4DD6B /* hot_triangle@2x.png */; };
+		3812C4F71C57363F00F4DD6B /* hot_triangle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4F51C57363F00F4DD6B /* hot_triangle@3x.png */; };
 		3812C4FA1C5737A200F4DD6B /* advance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4F81C5737A200F4DD6B /* advance@2x.png */; };
 		3812C4FB1C5737A200F4DD6B /* advance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4F91C5737A200F4DD6B /* advance@3x.png */; };
 		3812C5001C5737AC00F4DD6B /* add_purper_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C4FC1C5737AC00F4DD6B /* add_purper_circle@2x.png */; };
@@ -1568,8 +1568,8 @@
 		3812C4ED1C57242100F4DD6B /* purper_star@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purper_star@3x.png"; sourceTree = "<group>"; };
 		3812C4F01C57242B00F4DD6B /* gray_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_star@2x.png"; sourceTree = "<group>"; };
 		3812C4F11C57242B00F4DD6B /* gray_star@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_star@3x.png"; sourceTree = "<group>"; };
-		3812C4F41C57363F00F4DD6B /* hot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hot@2x.png"; sourceTree = "<group>"; };
-		3812C4F51C57363F00F4DD6B /* hot@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hot@3x.png"; sourceTree = "<group>"; };
+		3812C4F41C57363F00F4DD6B /* hot_triangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hot_triangle@2x.png"; sourceTree = "<group>"; };
+		3812C4F51C57363F00F4DD6B /* hot_triangle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hot_triangle@3x.png"; sourceTree = "<group>"; };
 		3812C4F81C5737A200F4DD6B /* advance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "advance@2x.png"; sourceTree = "<group>"; };
 		3812C4F91C5737A200F4DD6B /* advance@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "advance@3x.png"; sourceTree = "<group>"; };
 		3812C4FC1C5737AC00F4DD6B /* add_purper_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_purper_circle@2x.png"; sourceTree = "<group>"; };
@@ -3812,8 +3812,8 @@
 		380659DE1C563CE2003094C9 /* 套餐 */ = {
 			isa = PBXGroup;
 			children = (
-				3812C4F41C57363F00F4DD6B /* hot@2x.png */,
-				3812C4F51C57363F00F4DD6B /* hot@3x.png */,
+				3812C4F41C57363F00F4DD6B /* hot_triangle@2x.png */,
+				3812C4F51C57363F00F4DD6B /* hot_triangle@3x.png */,
 				3812C4F01C57242B00F4DD6B /* gray_star@2x.png */,
 				3812C4F11C57242B00F4DD6B /* gray_star@3x.png */,
 				3812C4EC1C57242100F4DD6B /* purper_star@2x.png */,
@@ -6478,7 +6478,7 @@
 				15E2409B1BB296CF0090D240 /* OrderDetailCell.xib in Resources */,
 				853C4C6D1C311A5C00D48BA2 /* zengjia_icon@2x.png in Resources */,
 				ADD1B4651C528EE100A5237C /* qq_s@2x.png in Resources */,
-				3812C4F61C57363F00F4DD6B /* hot@2x.png in Resources */,
+				3812C4F61C57363F00F4DD6B /* hot_triangle@2x.png in Resources */,
 				D71E1D8D1BAE8C3300915F37 /* PacketBarCell.xib in Resources */,
 				15E184751BB4EB7A00681BB2 /* LYZSdetailCell.xib in Resources */,
 				A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */,
@@ -6487,7 +6487,7 @@
 				AD92AE9C1BE1D339009F2A34 /* lieyu_default_female@2x.png in Resources */,
 				38F0FE7F1C4692C30070092D /* biaobai_icon.png in Resources */,
 				ADFFA6D01C181ED800D9BD2A /* refresh9@2x.png in Resources */,
-				3812C4F71C57363F00F4DD6B /* hot@3x.png in Resources */,
+				3812C4F71C57363F00F4DD6B /* hot_triangle@3x.png in Resources */,
 				854CC98D1C32624D00A6CA60 /* LYChangeImageViewController.xib in Resources */,
 				15B866991BE0C183002E2BB6 /* MessageCell.xib in Resources */,
 				ADFFA6A01C181A7200D9BD2A /* 2_retina.jpg in Resources */,

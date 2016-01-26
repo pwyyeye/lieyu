@@ -98,7 +98,7 @@
                         <color key="textColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot.png" translatesAutoresizingMaskIntoConstraints="NO" id="3w5-E7-2aR">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot_triangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="3w5-E7-2aR">
                         <rect key="frame" x="16" y="8" width="26" height="26"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="CgL-wb-xrp"/>
@@ -177,6 +177,6 @@
         <image name="add_purper_circle.png" width="20" height="20"/>
         <image name="backViewWithCorner.png" width="359" height="104"/>
         <image name="gray_less_circle.png" width="20" height="20"/>
-        <image name="hot.png" width="26" height="26"/>
+        <image name="hot_triangle.png" width="26" height="26"/>
     </resources>
 </document>
