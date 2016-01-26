@@ -1390,7 +1390,7 @@
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:UmengAppkey
                                       shareText:ss
-                                     shareImage:nil
+                                     shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfoModel.pinkerinfo.linkUrl]]]
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,UMShareToEmail,nil]
                                        delegate:nil];
 }
