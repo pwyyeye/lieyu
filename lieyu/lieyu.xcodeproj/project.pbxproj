@@ -468,7 +468,6 @@
 		8512BCA91C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */; };
 		8512BCAA1C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */; };
 		8512BCAC1C4A14D20087FFA6 /* icon_zixun_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA61C4A14D20087FFA6 /* icon_zixun_normal@2x.png */; };
-		8512BCAD1C4A14D20087FFA6 /* icon_zixun_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA71C4A14D20087FFA6 /* icon_zixun_normal@3x.png */; };
 		85138DFD1C33A49500BD6F6C /* LYFriendsCommentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 85138DFC1C33A49500BD6F6C /* LYFriendsCommentButton.m */; };
 		8518066A1C2E284100006804 /* FriendsCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 851806691C2E284100006804 /* FriendsCommentModel.m */; };
 		8518066D1C2E28F500006804 /* FriendsLikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8518066C1C2E28F500006804 /* FriendsLikeModel.m */; };
@@ -1699,7 +1698,6 @@
 		8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@2x.png"; sourceTree = "<group>"; };
 		8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@3x.png"; sourceTree = "<group>"; };
 		8512BCA61C4A14D20087FFA6 /* icon_zixun_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zixun_normal@2x.png"; sourceTree = "<group>"; };
-		8512BCA71C4A14D20087FFA6 /* icon_zixun_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zixun_normal@3x.png"; sourceTree = "<group>"; };
 		85138DFB1C33A49500BD6F6C /* LYFriendsCommentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsCommentButton.h; sourceTree = "<group>"; };
 		85138DFC1C33A49500BD6F6C /* LYFriendsCommentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsCommentButton.m; sourceTree = "<group>"; };
 		851806681C2E284100006804 /* FriendsCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsCommentModel.h; sourceTree = "<group>"; };
@@ -4322,7 +4320,6 @@
 				8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */,
 				8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */,
 				8512BCA61C4A14D20087FFA6 /* icon_zixun_normal@2x.png */,
-				8512BCA71C4A14D20087FFA6 /* icon_zixun_normal@3x.png */,
 				854727241C197E6B0048CEDC /* icon_fanhui2@2x.png */,
 				854727251C197E6B0048CEDC /* icon_fanhui2@3x.png */,
 				380659BC1C54AB5B003094C9 /* icon_like_2@2x.png */,
@@ -6131,7 +6128,6 @@
 				853C4C741C311A6D00D48BA2 /* fabudongtai_xuanzedizhi@3x.png in Resources */,
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
-				8512BCAD1C4A14D20087FFA6 /* icon_zixun_normal@3x.png in Resources */,
 				3806566D1C4E5D5B003094C9 /* MyCell.xib in Resources */,
 				85F545401C1408040013B92B /* circleWhiteSelect@3x.png in Resources */,
 				ADF88E661C102E4F00CF5DED /* pingjiaxiangji@2x.png in Resources */,
@@ -7135,8 +7131,8 @@
 			baseConfigurationReference = 5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7174,7 +7170,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fb61ef67-6126-4596-a723-3ae9a1d09f43";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -7184,8 +7180,8 @@
 			baseConfigurationReference = 60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7223,7 +7219,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "fb61ef67-6126-4596-a723-3ae9a1d09f43";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
