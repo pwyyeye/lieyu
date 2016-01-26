@@ -326,7 +326,7 @@
 
 #pragma mark  实现代理的方法，选择拼客方式
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex{
-    if(buttonIndex == 0){
+    if(buttonIndex == 1){
         for (int index = 0 ; index < _contentView.buttonStatusArray.count; index ++) {
             if([_contentView.buttonStatusArray[index] isEqualToString:@"1"]){
                 [self.biTianCell.chooseWay setTitle:self.labelArray[index] forState:UIControlStateNormal];
@@ -357,7 +357,7 @@
 
 #pragma mark   选择消费时间
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
-    if(buttonIndex == 0){
+    if(buttonIndex == 1){
 //        for (int index = 0 ; index < _contentView.buttonStatusArray.count; index ++) {
             self.defaultDate = _LPtimeView.timePicker.date;
             NSLog(@"--------%@",_LPtimeView.timePicker.date);
@@ -373,7 +373,7 @@
 
 #pragma mark  选择消费时间
 - (void)chooseTimeForTaocan{
-    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
 //    alertView.delegate = self;
     _LPtimeView = [[[NSBundle mainBundle]loadNibNamed:@"TimePickerView" owner:nil options:nil]firstObject];
     _LPtimeView.tag = 11;
@@ -386,7 +386,7 @@
 
 #pragma mark  选择拼客方式
 - (void)chooseWayForTaocan{
-    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"确定", @"取消", nil];
+    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
     alertView.delegate = self;
     _contentView = [[[NSBundle mainBundle]loadNibNamed:@"ContentView" owner:nil options:nil]firstObject];
     _contentView.tag = 12;
