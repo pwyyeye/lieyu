@@ -23,7 +23,8 @@
         }
         if (mScrollView == nil) {
             mScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            mScrollView.backgroundColor=RGB(114, 5, 147);
+            //            mScrollView.backgroundColor=RGB(114, 5, 147);
+            mScrollView.backgroundColor = [UIColor whiteColor];
             mScrollView.showsHorizontalScrollIndicator = NO;
         }
         if (mItemInfoArray == nil) {
@@ -45,7 +46,8 @@
         }
         if (mScrollView == nil) {
             mScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            mScrollView.backgroundColor=RGB(114, 5, 147);
+//            mScrollView.backgroundColor=RGB(114, 5, 147);
+            mScrollView.backgroundColor = [UIColor whiteColor];
             mScrollView.showsHorizontalScrollIndicator = NO;
         }
         if (mItemInfoArray == nil) {
@@ -58,7 +60,7 @@
 }
 - (id)initWithFrameForTime:(CGRect)frame ButtonItems:(NSArray *)aItemsArray
 {
-    jianWidth=52;
+    jianWidth=54;
     self = [super initWithFrame:frame];
     if (self) {
         if (mButtonArray == nil) {
@@ -66,7 +68,8 @@
         }
         if (mScrollView == nil) {
             mScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            mScrollView.backgroundColor=RGB(114, 5, 147);
+//            mScrollView.backgroundColor=RGB(114, 5, 147);
+            mScrollView.backgroundColor = [UIColor whiteColor];
             mScrollView.showsHorizontalScrollIndicator = NO;
         }
         if (mItemInfoArray == nil) {
@@ -139,7 +142,7 @@
         vButton.userInteractionEnabled=YES;
         
         
-        [vButton setBackgroundColor:RGB(114, 5, 147)];
+        [vButton setBackgroundColor:[UIColor whiteColor]];
 
         //[vButton setBackgroundImage:[UIImage imageNamed:@"portrait_bg"] forState:UIControlStateSelected];
         //        [vButton setTitle:vTitleStr forState:UIControlStateNormal];
@@ -150,21 +153,25 @@
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];
         
         //title
-        vButton.weekLal=[[UILabel alloc]initWithFrame:CGRectMake(20, 10,20, 14)];
+        vButton.weekLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 4,vButton.frame.size.width, 15)];
         vButton.weekLal.text=weekStr;
-        vButton.weekLal.font=[UIFont systemFontOfSize:10];
+        vButton.weekLal.font=[UIFont systemFontOfSize:12];
         vButton.weekLal.backgroundColor=[UIColor clearColor];
-        vButton.weekLal.textColor =RGB(255, 255, 255);
+        vButton.weekLal.textColor = RGB(102, 102, 102);
         vButton.weekLal.textAlignment=1;
         [vButton addSubview:vButton.weekLal];
         
+        //lineView
+        vButton.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, vButton.bounds.size.height - 1, vButton.bounds.size.width, 1)];
+        vButton.lineView.backgroundColor = [UIColor whiteColor];
+        [vButton addSubview:vButton.lineView];
         
-        vButton.titleLal =[[UILabel alloc]initWithFrame:CGRectMake(11, 28,40, 10)];
+        vButton.titleLal =[[UILabel alloc]initWithFrame:CGRectMake(11, 20,40, 10)];
         vButton.titleLal.text= [NSString stringWithFormat:@"%@月%@日",vMonthStr, vTitleStr];
         vButton.titleLal.font=[UIFont systemFontOfSize:9];
         vButton.titleLal.backgroundColor=[UIColor clearColor];
         vButton.titleLal.alpha = 0.7;
-        vButton.titleLal.textColor =RGB(255, 255, 255);
+        vButton.titleLal.textColor = RGB(102, 102, 102);
         vButton.titleLal.textAlignment=1;
         [vButton addSubview:vButton.titleLal];
         //

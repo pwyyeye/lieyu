@@ -9,24 +9,22 @@
 #import "TimeButton.h"
 
 @implementation TimeButton
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib{
+    
 }
-*/
+
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
     if(selected){
-        self.titleLal.textColor=RGB(114, 5, 147);
-        self.weekLal.textColor=RGB(114, 5, 147);
+        self.titleLal.textColor=RGB(186, 40, 227);
+        self.weekLal.textColor=RGB(186, 40, 227);
         self.backgroundColor = [UIColor whiteColor];
+        _lineView.backgroundColor = RGB(186, 40, 227);
     }else{
-        self.titleLal.textColor=RGB(255, 255, 255);
-        self.weekLal.textColor=RGB(255, 255, 255);
-        self.backgroundColor = RGB(114, 5, 147);
+        self.titleLal.textColor=RGB(102, 102, 102);
+        self.weekLal.textColor=RGB(102, 102, 102);
+        self.backgroundColor = [UIColor whiteColor];
+        _lineView.backgroundColor = [UIColor whiteColor];
     }
 }
 @end

@@ -101,6 +101,8 @@
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
     self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
     self.navigationController.navigationBar.layer.shadowRadius = 1;
+
+    [MTA trackCustomKeyValueEvent:@"PKList" props:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -559,7 +561,7 @@
     //统计点击cell按钮的频率
     NSDictionary *dict = @{@"actionName":@"点击",@"pageName":@"一起玩",@"titleName":@"cell拼客",@"value":pinKeModel.title};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
-    
+    [MTA trackCustomKeyValueEvent:@"PKDetail" props:nil];
     LPPlayTogetherViewController *LPPlayVC = [[UIStoryboard storyboardWithName:@"NewMain" bundle:[NSBundle mainBundle]]instantiateViewControllerWithIdentifier:@"LPPlayVC"];
     LPPlayVC.title = @"我要拼客";
     LPPlayVC.smid = pinKeModel.smid;

@@ -27,6 +27,7 @@
 @end
 
 @protocol LPAlertViewDelegate <NSObject>
+
 @optional
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenWay:(NSInteger)buttonIndex;
 
