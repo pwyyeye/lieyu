@@ -90,12 +90,6 @@
                         <constraint firstItem="8R1-DT-LV3" firstAttribute="leading" secondItem="BbW-0d-DJ8" secondAttribute="leading" constant="8" id="wFV-fw-F1O"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5P9-YC-eYs">
-                    <rect key="frame" x="0.0" y="98" width="320" height="98"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="98" id="22d-7R-kHk"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
