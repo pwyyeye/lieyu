@@ -209,7 +209,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LYHotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHotCollectionViewCell" forIndexPath:indexPath];
-
+      
     return cell;
 }
 
