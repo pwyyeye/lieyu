@@ -451,7 +451,7 @@
         [MyUtil showMessage:@"昵称不能为空"];
         [_nickCell.textF_content endEditing:NO];
         return;
-    }else if(_nickCell.textF_content.text.length >= 12){
+    }else if([MyUtil countTheStrLength:_nickCell.textF_content.text] >8){
         [MyUtil showMessage:@"昵称不能超过八个字符"];
         [_nickCell.textF_content endEditing:NO];
         return;
