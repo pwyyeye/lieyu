@@ -828,7 +828,7 @@
         [view addSubview:label];
         
         if(_orderInfoModel.ordertype==1){
-            UILabel *label1=[[UILabel alloc]initWithFrame:CGRectMake(215, 11, 90, 12)];
+            UILabel *label1=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 105, 11, 90, 12)];
             label1.font=[UIFont systemFontOfSize:12];
             label1.textColor=RGB(240, 77, 109);
             label1.textAlignment=NSTextAlignmentRight;
@@ -842,7 +842,7 @@
                 }else if(_orderInfoModel.pinkerType==1){
                     pinkType=@"AA付款";
                 }else{
-                    pinkType=@"自由付款";
+                    pinkType=@"免费发起";
                 }
                 label.text=[NSString stringWithFormat:@"我的拼客好友(%@)",pinkType];
             }else{
@@ -952,6 +952,7 @@
         
         cell.nameLal.text=shopDetailmodel.name;
         cell.delLal.text=shopDetailmodel.count;
+        cell.timeLal.text = [NSString stringWithFormat:@"X%d",orderInfoModel.pinkerNum];
         NSString *flTem=[NSString stringWithFormat:@"再返利%.f%%",shopDetailmodel.rebate.doubleValue*100];
         if(orderInfoModel.orderStatus!=10&&orderInfoModel.orderStatus!=3&&orderInfoModel.orderStatus!=4&&orderInfoModel.orderStatus!=5){
             [cell.yjBtn setHidden:NO];

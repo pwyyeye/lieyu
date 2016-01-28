@@ -24,20 +24,17 @@
 }
 
 - (IBAction)addBtnClick:(UIButton *)sender {
-//    if(num < _store - 1){
-//        self.numberField.text = [NSString stringWithFormat:@"%d",++num];
-//        if(self.lessBtn.enabled == NO){
-//            [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
-//        }
-//    }else if(num == _store - 1){
-//        self.numberField.text = [NSString stringWithFormat:@"%d",_store];
-//        self.addBtn.enabled = NO;
-//        [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"gray_add"] forState:UIControlStateNormal];
-//    }else{
-//        return;
-//    }
     self.numberField.text = [NSString stringWithFormat:@"%d",[self.numberField.text intValue] + 1];
     self.lessBtn.enabled = YES;
     [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
+}
+
+- (void)configure:(int)defaultNum{
+    if (defaultNum > 1) {
+        [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
+        self.numberField.text = [NSString stringWithFormat:@"%d",defaultNum];
+    }else if(defaultNum == 0){
+        self.numberField.text = @"1";
+    }
 }
 @end

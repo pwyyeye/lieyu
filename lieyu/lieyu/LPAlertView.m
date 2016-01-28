@@ -120,6 +120,7 @@
     }else if(_delegate && _contentView.tag == 14){//选择购买数量
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
         [_delegate LPAlertView:self clickedButtonAtIndexChooseNum:index];
+        [self hide];
     }
 }
 

@@ -21,7 +21,7 @@
 #import "TimeView.h"
 #import "LPAlertView.h"
 #import "ChooseTime.h"
-#import "DetailView.h"
+#import "ChoosePayController.h"
 
 #define WOYAODINGWEIPAGE_MTA @"WOYAODINGWEIPAGE"
 
@@ -32,10 +32,13 @@
     NSIndexPath *oldIndex;//选择的cell的indexpath
     LYDinWeiTableViewCell *oldCell;//选择的cell的indexpath
     int oldNumber;//选择的商品数量
+    int oldDate;//选择的是第几天
     
     ChooseTime *chooseTimeAlert;
     TimeView *timeView;
+    ManagersView *managerView;
     JiuBaModel *jiubaModel;
+    RecommendPackageModel *tcModel;
     NSMutableArray *zsList;
 }
 @end
@@ -44,8 +47,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    _tableView.frame = CGRectMake(0, 64 + 50, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50);
     self.automaticallyAdjustsScrollViewInsets = NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
@@ -58,6 +59,7 @@
     [self getdata];
     [self initThisBottomView];
     [self managerList];
+    [self initManagerView];
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
     self.navigationItem.title = @"所有套餐";
@@ -67,10 +69,10 @@
 
 #pragma mark - 初始化界面
 - (void)initThisBottomView{
-    _bottomView.backgroundColor = RGBA(243, 243, 243, 1);
+    _bottomView.backgroundColor = RGBA(252, 252, 252, 0.75);
     _bottomView.layer.shadowRadius = 2;
     _bottomView.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
-    _bottomView.layer.shadowOffset = CGSizeMake(0, 1);
+    _bottomView.layer.shadowOffset = CGSizeMake(0, -1);
     _bottomView.layer.shadowOpacity = 0.5;
     [_payBtn addTarget:self action:@selector(PayMoneyNow) forControlEvents:UIControlEventTouchUpInside];
     [self initBottomLabelAndButton];
@@ -87,8 +89,8 @@
 - (void)chooseTime:(UITapGestureRecognizer *)tap{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定",  nil];
     chooseTimeAlert = [[[NSBundle mainBundle]loadNibNamed:@"ChooseTime" owner:nil options:nil]firstObject];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:[NSString stringWithFormat:@"yyyy-MM-dd HH:mm"]];
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:[NSString stringWithFormat:@"yyyy-MM-dd HH:mm"]];
 //    NSDate *minDate = [formatter dateFromString:[NSString stringWithFormat:@"2016-01-26 20:00"]];
 //    NSDate *maxDate = [formatter dateFromString:[NSString stringWithFormat:@"2016-01-27 05:00"]];
 //    chooseTimeAlert.minDate = minDate;
@@ -112,28 +114,40 @@
     }
 }
 
+- (void)initTimeView{
+    timeView.startTime = self.startTime;
+    timeView.endTime = self.endTime;
+    [timeView congigure];
+}
+
+- (void)initManagerView{
+    if(managerView){
+        [managerView removeFromSuperview];
+    }
+    managerView = [[ManagersView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 54)];
+    managerView.layer.shadowRadius = 2;
+    managerView.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    managerView.layer.shadowOffset = CGSizeMake(0, 1);
+    managerView.layer.shadowOpacity = 0.5;
+    managerView.delegate = self;
+    managerView.backgroundColor = [UIColor whiteColor];
+    [_managersView addSubview:managerView];
+    zsList = [NSMutableArray array];
+    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:_barid],@"":@""};
+    [[LYHomePageHttpTool shareInstance]getBarVipWithParams:dic block:^(NSMutableArray *result) {
+        [zsList addObjectsFromArray:result];
+        [managerView configure:zsList];
+    }];
+}
+
 #pragma mark - 营业时间与专属经理选框
 - (void)managerList{
     timeView = [[TimeView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
     UITapGestureRecognizer *chooseTime = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(chooseTime:)];
     [timeView addGestureRecognizer:chooseTime];
+    [self initTimeView];
     [_managersView addSubview:timeView];
-    
-    
-    zsList = [NSMutableArray array];
-    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:_barid]};
-    [[LYHomePageHttpTool shareInstance]getBarVipWithParams:dic block:^(NSMutableArray *result) {
-        [zsList addObjectsFromArray:result];
-        ManagersView *managerView = [[ManagersView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 54)];
-        managerView.layer.shadowRadius = 2;
-        managerView.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
-        managerView.layer.shadowOffset = CGSizeMake(0, 1);
-        managerView.layer.shadowOpacity = 0.5;
-        managerView.delegate = self;
-        managerView.backgroundColor = [UIColor whiteColor];
-        [managerView configure:zsList];
-        [_managersView addSubview:managerView];
-    }];
+
 }
 
 - (void)chooseManagerDone:(ManagerChooseButton *)button{
@@ -142,11 +156,35 @@
 
 #pragma mark - 立即支付
 - (void)PayMoneyNow{
-    NSLog(@"index:%d",index);
-    NSLog(@"oldCell:%@",oldCell);
-    NSLog(@"oldIndex:%@",oldIndex);
-    NSLog(@"oldNumber:%d",oldNumber);
-    NSLog(@"time:%@",time);
+    if(time == nil){
+        [MyUtil showCleanMessage:@"请选择到店时间！"];
+        return;
+    }else{
+        NSString *dataAndTime = [[[weekDateArr objectAtIndex:oldDate][@"date"] stringByAppendingString:time] stringByAppendingString:@":00"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//        NSString *reachtime = [formatter stringFromDate:_timeView.timePicker.date];
+        tcModel = jiubaModel.recommend_package[oldIndex.section];
+        ZSDetailModel *zsModel = zsList[index];
+        NSLog(@"%@",tcModel.smid);
+        NSDictionary *dic=@{@"smid":tcModel.smid,@"reachtime":dataAndTime,@"checkuserid":[NSNumber numberWithInt:zsModel.userid],@"allnum":[NSNumber numberWithInt:oldNumber],@"consumptionStatus":@"1"};
+            [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
+                if(result){
+                    //支付宝页面"data": "P130637201510181610220",
+                    //result的值就是P130637201510181610220
+                    ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+                    detailViewController.orderNo=result;
+                    detailViewController.payAmount=[tcModel.price intValue]*oldNumber;
+                    detailViewController.productName=tcModel.title;
+                    detailViewController.productDescription=@"暂无";
+                    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+                    self.navigationItem.backBarButtonItem = left;
+                    [self.navigationController pushViewController:detailViewController animated:YES];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+                    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"预定" titleName:@"马上支付"]];
+                }
+            }];
+    }
 }
 
 - (void)gotoBack{
@@ -268,8 +306,9 @@
         jiubaModel=result;
 //        dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.tableView reloadData];
+            weakSelf.tableView.contentOffset = CGPointMake(0, 0);
 //        });
-            
+            [self initTimeView];
             [weakSelf removeNoGoodView];
         }else{
             [weakSelf createNoGoodView];
@@ -333,7 +372,7 @@
         cell.label_number.hidden = YES;
         [cell.button_add addTarget:self action:@selector(addGoodNum) forControlEvents:UIControlEventTouchUpInside];
         [cell.button_less addTarget:self action:@selector(lessGoodNum) forControlEvents:UIControlEventTouchUpInside];
-        cell.imageView_button.tag = indexPath.row;
+        cell.imageView_button.tag = indexPath.section;
         [cell.imageView_button addTarget:self action:@selector(clickThisImageView:) forControlEvents:UIControlEventTouchUpInside];
         RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.section];
         cell.model = model;
@@ -407,7 +446,30 @@
 
 #pragma mark - 点击图片查看详情
 - (void)clickThisImageView:(UIButton *)sender{
+    UIView *bigView = [[UIView alloc]initWithFrame:self.view.frame];
+    bigView.backgroundColor = RGBA(0, 0, 0, 0.2);
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideBigView:)];
+    [bigView addGestureRecognizer:tap];
     
+    DetailView *detailView = [[[NSBundle mainBundle]loadNibNamed:@"DetailView" owner:nil options:nil]firstObject];
+    detailView.frame = CGRectMake(8, 64, SCREEN_WIDTH - 16, 268 + SCREEN_WIDTH / 3);
+    detailView.center = self.view.center;
+    RecommendPackageModel *model = [jiubaModel.recommend_package objectAtIndex:sender.tag];
+    detailView.packModel = model;
+    detailView.delegate = self;
+    NSDictionary *dic=@{@"smid":[NSString stringWithFormat:@"%@",model.smid]};
+    [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiTaoCanDetailWithParams:dic block:^(TaoCanModel *result) {
+        [detailView setTcModel:result];
+        [detailView Configure];
+    }];
+
+    [self.view addSubview:bigView];
+    [bigView addSubview:detailView];
+}
+
+#pragma mark - 将详情界面撤销
+- (void)hideBigView:(UITapGestureRecognizer *)gesture{
+    [gesture.view removeFromSuperview];
 }
 
 #pragma mark - 加减法
@@ -438,11 +500,33 @@
 
 #pragma mark MenuHrizontalDelegate
 -(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
+    oldDate = (int)aIndex;
      NSDictionary *dic=weekDateArr[aIndex];
     datePar=[dic objectForKey:@"month"];
     [self initThisCell];
     [self initBottomLabelAndButton];
+    [self initManagerView];
     [self getdata];
+}
+
+#pragma mark - 显示预览图片
+- (void)showImageInPreview:(UIImage *)image{
+    [self.navigationController.navigationBar setHidden:YES];
+    _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
+    _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _subView.button.hidden = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(previewHide)];
+    [_subView addGestureRecognizer:tap];
+    _subView.image = image;
+    [_subView viewConfigure];
+//    _subView.imageView.contentMode = UIViewContentModeScaleAspectFit;
+//    _subView.imageView.center = _subView.center;
+    [self.view addSubview:_subView];
+}
+
+- (void)previewHide{
+    [self.navigationController.navigationBar setHidden:NO];
+    [_subView removeFromSuperview];
 }
 
 @end

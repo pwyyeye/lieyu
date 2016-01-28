@@ -32,7 +32,7 @@
         if ([commentModel.toUserId isEqualToString:@"0"]) {
             [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentModel.nickName.length + 1)];
         }else{
-            [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(2, commentModel.nickName.length + 1)];
+            [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(2, commentModel.toUserNickName.length + 1)];
         }
     
     _label_comment.attributedText = attributedStr;

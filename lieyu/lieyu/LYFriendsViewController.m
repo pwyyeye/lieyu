@@ -1241,7 +1241,8 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                             btn.tag = likeCell.btnArray.count * (indexPath.section + 1) - 7 + i +1;
                             [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                         }
-                        if(recentM.likeList.count <= 8) likeCell.btn_more.hidden = YES;
+                        if(recentM.likeList.count < 8) likeCell.btn_more.hidden = YES;
+                        else likeCell.btn_more.hidden = NO;
                         return likeCell;
                     }
                     else{

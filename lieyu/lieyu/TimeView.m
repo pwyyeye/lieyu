@@ -9,8 +9,7 @@
 #import "TimeView.h"
 
 @implementation TimeView
-- (instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
+- (void)congigure{
         UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(14, 15, 150, 14)];
         label1.backgroundColor = [UIColor clearColor];
         label1.textColor = RGBA(102, 102, 102, 1);
@@ -47,8 +46,6 @@
         [self addSubview:_label3];
         [self addSubview:label4];
         [self addSubview:imageView];
-    }
-    return self;
 }
 
 @end

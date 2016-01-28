@@ -30,6 +30,7 @@
 #import "ChiHeViewController.h"
 #import "MyBarModel.h"
 #import "LYUserLoginViewController.h"
+#import "zujuViewController.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
@@ -652,6 +653,8 @@
 - (IBAction)dianweiAct:(UIButton *)sender {
     LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
     woYaoDinWeiMainViewController.barid=_beerBarDetail.barid.intValue;
+    woYaoDinWeiMainViewController.startTime = _beerBarDetail.startTime;
+    woYaoDinWeiMainViewController.endTime = _beerBarDetail.endTime;
     [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"我要订位"]];
 }
@@ -667,12 +670,19 @@
 }
 
 - (IBAction)zsliAct:(UIButton *)sender {
-    MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
-    myZSManageViewController.title=@"专属经理";
-    myZSManageViewController.barid=_beerBarDetail.barid.intValue;
-    myZSManageViewController.isBarVip=true;
-    [self.navigationController pushViewController:myZSManageViewController animated:YES];
-    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"专属经理"]];
+    ZujuViewController *zujuVC = [[ZujuViewController alloc]initWithNibName:@"ZujuViewController" bundle:nil];
+    zujuVC.title = @"组局";
+    zujuVC.barid = _beerBarDetail.barid.intValue;
+    zujuVC.startTime = _beerBarDetail.startTime;
+    zujuVC.endTime = _beerBarDetail.endTime;
+    [self.navigationController pushViewController:zujuVC animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"组局"]];
+//    MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
+//    myZSManageViewController.title=@"专属经理";
+//    myZSManageViewController.barid=_beerBarDetail.barid.intValue;
+//    myZSManageViewController.isBarVip=true;
+//    [self.navigationController pushViewController:myZSManageViewController animated:YES];
+//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"专属经理"]];
 }
 #pragma mark-- 收藏
 - (IBAction)soucangAct:(UIButton *)sender {

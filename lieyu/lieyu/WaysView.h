@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface WaysView : UIView
+@property (nonatomic, strong) UILabel *label3;
 
+- (void)configure;
 @end
