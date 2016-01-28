@@ -349,7 +349,6 @@
 		3812C54E1C57B76100F4DD6B /* add_purper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C53F1C57B76100F4DD6B /* add_purper@2x.png */; };
 		3812C54F1C57B76100F4DD6B /* add_purper@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C5401C57B76100F4DD6B /* add_purper@3x.png */; };
 		3812C5501C57B76100F4DD6B /* advance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C5411C57B76100F4DD6B /* advance@2x.png */; };
-		3812C5511C57B76100F4DD6B /* advance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C5421C57B76100F4DD6B /* advance@3x.png */; };
 		3812C5521C57B76100F4DD6B /* backViewWithCorner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C5431C57B76100F4DD6B /* backViewWithCorner@2x.png */; };
 		3812C5531C57B76100F4DD6B /* backViewWithCorner@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C5441C57B76100F4DD6B /* backViewWithCorner@3x.png */; };
 		3812C5541C57B76100F4DD6B /* purper_less_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3812C5451C57B76100F4DD6B /* purper_less_circle@2x.png */; };
@@ -628,6 +627,7 @@
 		8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */; };
 		8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */; };
 		855192701C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */; };
+		855393F31C58F57F00575048 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 855393F21C58F57F00575048 /* HomePageModel.m */; };
 		85539EBA1C3DFE0B001031B6 /* ISEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85539EB91C3DFE0B001031B6 /* ISEmojiView.m */; };
 		85539EBC1C3E06BA001031B6 /* ISEmojiList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */; };
 		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
@@ -2009,6 +2009,8 @@
 		8551926C1C0B3339007B9949 /* LYHotBarMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuTableViewCell.h; sourceTree = "<group>"; };
 		8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuTableViewCell.m; sourceTree = "<group>"; };
 		8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotBarMenuTableViewCell.xib; sourceTree = "<group>"; };
+		855393F11C58F57F00575048 /* HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
+		855393F21C58F57F00575048 /* HomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
 		85539EB81C3DFE0B001031B6 /* ISEmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISEmojiView.h; sourceTree = "<group>"; };
 		85539EB91C3DFE0B001031B6 /* ISEmojiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISEmojiView.m; sourceTree = "<group>"; };
 		85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ISEmojiList.plist; sourceTree = "<group>"; };
@@ -4573,6 +4575,7 @@
 		855192651C0B30C4007B9949 /* 热门酒吧 */ = {
 			isa = PBXGroup;
 			children = (
+				855393F01C58F56800575048 /* Model */,
 				85C4286E1C119D1B0028FC21 /* 离我最近 */,
 				8551926B1C0B3275007B9949 /* Cell */,
 				855192661C0B30E0007B9949 /* LYHotJiuBarViewController.h */,
@@ -4611,6 +4614,15 @@
 				52D4F9051C5763DE00691BEF /* HotMenuButton.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		855393F01C58F56800575048 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				855393F11C58F57F00575048 /* HomePageModel.h */,
+				855393F21C58F57F00575048 /* HomePageModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		85539EB71C3DFDF8001031B6 /* 键盘表情 */ = {
@@ -7245,6 +7257,7 @@
 				151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */,
 				152247AF1BEB064600E68A2B /* IQUIViewController+Additions.m in Sources */,
 				853D3AB61C350B3300B4FEAD /* FriendsNewsModel.m in Sources */,
+				855393F31C58F57F00575048 /* HomePageModel.m in Sources */,
 				85589CB81C16D41D000E342E /* SingletonRegiste.m in Sources */,
 				AD106BB81C0DDEFF007F5FBA /* MJPropertyKey.m in Sources */,
 				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,

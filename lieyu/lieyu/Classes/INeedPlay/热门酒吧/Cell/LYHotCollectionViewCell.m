@@ -22,6 +22,7 @@
     [self.collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
     [_collectView setContentInset:UIEdgeInsetsMake(35, 0, 0, 0)];
     
+    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
