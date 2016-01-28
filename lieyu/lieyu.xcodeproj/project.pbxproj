@@ -526,8 +526,6 @@
 		52D4F9AD1C57B2B700691BEF /* 首页列表点赞@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F9931C57B2B700691BEF /* 首页列表点赞@3x.png */; };
 		52D4F9AE1C57B2B700691BEF /* 首页列表收藏@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F9941C57B2B700691BEF /* 首页列表收藏@2x.png */; };
 		52D4F9AF1C57B2B700691BEF /* 首页列表收藏@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F9951C57B2B700691BEF /* 首页列表收藏@3x.png */; };
-		52D4F9B01C57B2B700691BEF /* 搜索@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F9961C57B2B700691BEF /* 搜索@2x.png */; };
-		52D4F9B11C57B2B700691BEF /* 搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F9971C57B2B700691BEF /* 搜索@3x.png */; };
 		52D4F9B41C57B2B700691BEF /* home_list_mask@2x .png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F99A1C57B2B700691BEF /* home_list_mask@2x .png */; };
 		52D4F9B51C57B2B700691BEF /* home_list_mask@3x .png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F99B1C57B2B700691BEF /* home_list_mask@3x .png */; };
 		52D4F9B61C57B2B700691BEF /* HOT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F99C1C57B2B700691BEF /* HOT@2x.png */; };
@@ -732,6 +730,8 @@
 		85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */; };
 		85FC07F01C5A00C3006E5409 /* 选择城市@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07EE1C5A00C3006E5409 /* 选择城市@2x.png */; };
 		85FC07F11C5A00C3006E5409 /* 选择城市@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07EF1C5A00C3006E5409 /* 选择城市@3x.png */; };
+		85FC07F41C5A0B60006E5409 /* 搜索@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07F21C5A0B60006E5409 /* 搜索@2x.png */; };
+		85FC07F51C5A0B60006E5409 /* 搜索@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07F31C5A0B60006E5409 /* 搜索@3x.png */; };
 		A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */; };
 		A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */; };
 		A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A20100811BA7AFAB009283D1 /* LYProductslistViewController.m */; };
@@ -1857,8 +1857,6 @@
 		52D4F9931C57B2B700691BEF /* 首页列表点赞@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页列表点赞@3x.png"; sourceTree = "<group>"; };
 		52D4F9941C57B2B700691BEF /* 首页列表收藏@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页列表收藏@2x.png"; sourceTree = "<group>"; };
 		52D4F9951C57B2B700691BEF /* 首页列表收藏@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页列表收藏@3x.png"; sourceTree = "<group>"; };
-		52D4F9961C57B2B700691BEF /* 搜索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索@2x.png"; sourceTree = "<group>"; };
-		52D4F9971C57B2B700691BEF /* 搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索@3x.png"; sourceTree = "<group>"; };
 		52D4F99A1C57B2B700691BEF /* home_list_mask@2x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_list_mask@2x .png"; sourceTree = "<group>"; };
 		52D4F99B1C57B2B700691BEF /* home_list_mask@3x .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_list_mask@3x .png"; sourceTree = "<group>"; };
 		52D4F99C1C57B2B700691BEF /* HOT@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HOT@2x.png"; sourceTree = "<group>"; };
@@ -2152,6 +2150,8 @@
 		85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYCityChooseViewController.xib; sourceTree = "<group>"; };
 		85FC07EE1C5A00C3006E5409 /* 选择城市@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择城市@2x.png"; sourceTree = "<group>"; };
 		85FC07EF1C5A00C3006E5409 /* 选择城市@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择城市@3x.png"; sourceTree = "<group>"; };
+		85FC07F21C5A0B60006E5409 /* 搜索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索@2x.png"; sourceTree = "<group>"; };
+		85FC07F31C5A0B60006E5409 /* 搜索@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索@3x.png"; sourceTree = "<group>"; };
 		A20100741BA7ADCB009283D1 /* ZSReleaseMBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseMBViewController.h; sourceTree = "<group>"; };
 		A20100751BA7ADCB009283D1 /* ZSReleaseMBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleaseMBViewController.m; sourceTree = "<group>"; };
 		A20100761BA7ADCB009283D1 /* ZSReleaseMBViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleaseMBViewController.xib; sourceTree = "<group>"; };
@@ -4274,6 +4274,8 @@
 		52D4F9851C57B2AB00691BEF /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				85FC07F21C5A0B60006E5409 /* 搜索@2x.png */,
+				85FC07F31C5A0B60006E5409 /* 搜索@3x.png */,
 				85FC07EE1C5A00C3006E5409 /* 选择城市@2x.png */,
 				85FC07EF1C5A00C3006E5409 /* 选择城市@3x.png */,
 				52D4F9861C57B2B700691BEF /* 点赞2@2x.png */,
@@ -4292,8 +4294,6 @@
 				52D4F9931C57B2B700691BEF /* 首页列表点赞@3x.png */,
 				52D4F9941C57B2B700691BEF /* 首页列表收藏@2x.png */,
 				52D4F9951C57B2B700691BEF /* 首页列表收藏@3x.png */,
-				52D4F9961C57B2B700691BEF /* 搜索@2x.png */,
-				52D4F9971C57B2B700691BEF /* 搜索@3x.png */,
 				52D4F99A1C57B2B700691BEF /* home_list_mask@2x .png */,
 				52D4F99B1C57B2B700691BEF /* home_list_mask@3x .png */,
 				52D4F99C1C57B2B700691BEF /* HOT@2x.png */,
@@ -6322,7 +6322,6 @@
 				ADFFA6CD1C181ED800D9BD2A /* refresh6@2x.png in Resources */,
 				15844BBF1BE1C70600247FBC /* LYSearchFriendViewController.xib in Resources */,
 				38D8764B1C1703B600E2F284 /* purper_fanli@3x.png in Resources */,
-				52D4F9B11C57B2B700691BEF /* 搜索@3x.png in Resources */,
 				380385EA1C327C2B007C8DC0 /* imageUnselected@2x.png in Resources */,
 				3812C5631C57B78800F4DD6B /* gray_less_circle@3x.png in Resources */,
 				38E5D7BD1C128B7D004B49D2 /* Location@2x.png in Resources */,
@@ -6403,7 +6402,6 @@
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
 				AD4EA8571C546B110056E560 /* MineBigBG@3x.jpg in Resources */,
 				8550E7141C301740001FF2DE /* LYFriendsMessageDetailViewController.xib in Resources */,
-				52D4F9B01C57B2B700691BEF /* 搜索@2x.png in Resources */,
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
@@ -6536,6 +6534,7 @@
 				52D4F9AB1C57B2B700691BEF /* 收藏2@3x.png in Resources */,
 				ADFFA6CC1C181ED800D9BD2A /* refresh5@2x.png in Resources */,
 				38D876451C16E97500E2F284 /* ChooseNumber.xib in Resources */,
+				85FC07F51C5A0B60006E5409 /* 搜索@3x.png in Resources */,
 				15E2405E1BB102A70090D240 /* FBDanPinView.xib in Resources */,
 				8512BCA91C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png in Resources */,
 				1559DCF21BD9C7E200F3FE9B /* CHChooseNumView.xib in Resources */,
@@ -6633,6 +6632,7 @@
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,
 				1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */,
 				ADFFA6A31C181A7200D9BD2A /* 5_retina.jpg in Resources */,
+				85FC07F41C5A0B60006E5409 /* 搜索@2x.png in Resources */,
 				38E5D7A61C113879004B49D2 /* gray_less.png in Resources */,
 				A2FD577E1BAFE97000CFFF92 /* FBTaoCanSectionBottom.xib in Resources */,
 				85F545461C14338D0013B92B /* biaoQianAdd.png in Resources */,

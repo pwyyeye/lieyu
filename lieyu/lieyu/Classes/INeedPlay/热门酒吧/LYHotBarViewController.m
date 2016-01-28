@@ -200,45 +200,42 @@
      {
          if (ermsg.state == Req_Success)
          {
+             if(tag >= 4) return ;
              NSMutableArray *array = _dataArray[tag];
              switch (tag) {
                  case 0:
                  {
                      if(_currentPageHot == 1){
-                          [_dataArray replaceObjectAtIndex:0 withObject:barList];
-                     }else{
-                         [array addObjectsFromArray:barList];
+                          [array removeAllObjects];
                      }
+                         [array addObjectsFromArray:barList];
                      _currentPageHot ++;
                  }
                      break;
                  case 1:
                  {
                      if(_currentPageDistance == 1) {
-                          [_dataArray replaceObjectAtIndex:1 withObject:barList];
-                     }else{
-                         [array addObjectsFromArray:barList];
+                          [array removeAllObjects];
                      }
+                         [array addObjectsFromArray:barList];
                      _currentPageDistance ++;
                  }
                      break;
                  case 2:
                  {
                      if(_currentPagePrice == 1) {
-                          [_dataArray replaceObjectAtIndex:2 withObject:barList];
-                     }else{
-                         [array addObjectsFromArray:barList];
+                         [array removeAllObjects];
                      }
+                         [array addObjectsFromArray:barList];
                      _currentPagePrice ++;
                  }
                      break;
                  case 3:
                  {
                      if(_currentPageFanli == 1) {
-                          [_dataArray replaceObjectAtIndex:3 withObject:barList];
-                     }else{
-                         [array addObjectsFromArray:barList];
+                         [array removeAllObjects];
                      }
+                         [array addObjectsFromArray:barList];
                      _currentPageFanli ++;
                  }
                      break;
@@ -247,10 +244,46 @@
              
              UICollectionView *collectView = _collectArray[tag];
              dispatch_async(dispatch_get_main_queue(), ^{
-                 [collectView reloadData];
                  [collectView.mj_header endRefreshing];
-                 if(barList.count) [collectView.mj_footer endRefreshing];
-                 else [collectView.mj_footer endRefreshingWithNoMoreData];
+                 switch (tag) {
+                     case 0:
+                     {
+                         if (_currentPageHot != 1 && !barList.count) {
+                             [collectView.mj_footer endRefreshingWithNoMoreData];
+                         }else{
+                             [collectView.mj_footer endRefreshing];
+                         }
+                     }
+                         break;
+                     case 1:
+                     {
+                         if (_currentPageDistance != 1 && !barList.count) {
+                             [collectView.mj_footer endRefreshingWithNoMoreData];
+                         }else{
+                             [collectView.mj_footer endRefreshing];
+                         }
+                     }
+                         break;
+                     case 2:
+                     {
+                         if (_currentPagePrice != 1 && !barList.count) {
+                             [collectView.mj_footer endRefreshingWithNoMoreData];
+                         }else{
+                             [collectView.mj_footer endRefreshing];
+                         }
+                     }
+                         break;
+                     case 3:
+                     {
+                         if (_currentPageFanli != 1 && !barList.count) {
+                             [collectView.mj_footer endRefreshingWithNoMoreData];
+                         }else{
+                             [collectView.mj_footer endRefreshing];
+                         }
+                     }
+                         break;
+                 }
+                  [collectView reloadData];
              });
          }
      }];

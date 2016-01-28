@@ -71,14 +71,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _currentPage_YD = 1;
     _currentPage_Bar = 1;
     
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT - 90)];
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _scrollView.backgroundColor = RGBA(242, 242, 242, 1);
     _scrollView.delegate = self;
-    _scrollView.pagingEnabled = self;
+    _scrollView.pagingEnabled = YES;
     _scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:_scrollView];
     
-    _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
+    _dataArray = [[NSMutableArray alloc]initWithCapacity:2];
     for (int i = 0; i < 2; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         [_dataArray addObject:array];
@@ -87,13 +87,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _collectViewArray = [[NSMutableArray alloc]initWithCapacity:2];
     for (int i = 0; i < 2; i ++) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i % 2 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 49 - 90) collectionViewLayout:layout];
+        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i % 2 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
         collectView.backgroundColor = RGBA(243, 243, 243, 1);
         collectView.tag = i;
             [collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenuCollectionViewCell"];
-
+        [collectView setContentInset:UIEdgeInsetsMake(90, 0, 49, 0)];
         collectView.dataSource = self;
         collectView.delegate = self;
         [_collectViewArray addObject:collectView];
@@ -159,7 +159,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 创建导航的按钮(选择城市和搜索)
 - (void)createNavButton{
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     _navView = [[UIVisualEffectView alloc]initWithEffect:effect];
     _navView.alpha = 5;
     _navView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);
@@ -170,7 +170,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _menuView.alpha = 5;
     [self.view addSubview:_menuView];
     
-    _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 10, 40, 30)];
+    _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 6, 40, 30)];
     [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
@@ -220,7 +220,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(_menuView.mas_bottom).with.offset(0);
         make.left.mas_equalTo(_menuView.mas_left).offset(122);
-        make.size.mas_equalTo(CGSizeMake(42, 1));
+        make.size.mas_equalTo(CGSizeMake(42, 2));
     }];
     
 }
@@ -360,9 +360,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [bus getToPlayOnHomeList2:hList pageIndex:1 results:^(LYErrorMessage * ermsg,HomePageModel *homePageM){
         if (ermsg.state == Req_Success)
         {
+            if(tag >= 2) return;
             UICollectionView *collectView = _collectViewArray[tag];
             NSMutableArray *array = _dataArray[tag];
             if((tag == 0 && _currentPage_YD == 1) || (tag == 1 && _currentPage_Bar == 1)) {
+                [array removeAllObjects];
                 weakSelf.bannerList = homePageM.banner.mutableCopy;
                 weakSelf.newbannerList = homePageM.newbanner.mutableCopy;
                 weakSelf.bartypeslistArray = homePageM.bartypeslist;
@@ -370,6 +372,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
             [collectView reloadData];
+////            NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:0];
+//            NSMutableArray *reloadArray = [[NSMutableArray alloc]init];
+//            for (int i = 0; i < array.count + 5; i ++) {
+//                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+//                [reloadArray addObject:indexPath];
+//            }
+//            [collectView reloadItemsAtIndexPaths:reloadArray];
         }
         block !=nil? block(ermsg,homePageM.banner,homePageM.barlist):nil;
     }];
@@ -490,11 +499,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 3;
+    return 0;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 3;
+    return 0;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
