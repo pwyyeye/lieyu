@@ -170,12 +170,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _menuView.alpha = 5;
     [self.view addSubview:_menuView];
     
-    _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 30, 25)];
+    _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 10, 40, 30)];
     [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
     _cityChooseBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:12];
-    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 20, 0, 0)];
+    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 18, 0, 0)];
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
     [_navView addSubview:_cityChooseBtn];
     
