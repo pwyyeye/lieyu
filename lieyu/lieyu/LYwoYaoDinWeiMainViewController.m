@@ -447,7 +447,7 @@
 #pragma mark - 点击图片查看详情
 - (void)clickThisImageView:(UIButton *)sender{
     UIView *bigView = [[UIView alloc]initWithFrame:self.view.frame];
-    bigView.backgroundColor = RGBA(0, 0, 0, 0.2);
+    bigView.backgroundColor = RGBA(0, 0, 0, 0.3);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideBigView:)];
     [bigView addGestureRecognizer:tap];
     

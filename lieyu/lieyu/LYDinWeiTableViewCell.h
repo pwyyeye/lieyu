@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_price_now;
 @property (weak, nonatomic) IBOutlet UILabel *label_price_old;
 @property (weak, nonatomic) IBOutlet UILabel *label_percent;
+@property (weak, nonatomic) IBOutlet UIImageView *hotImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backView;
 
