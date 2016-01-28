@@ -23,6 +23,7 @@
     if(array.count){
     FriendsPicAndVideoModel *pvModel = array[0];
     NSArray *urlArray = [pvModel.imageLink componentsSeparatedByString:@","];
+    if(!urlArray.count) return;
     switch (urlArray.count) {
         case 1:
         {
@@ -77,13 +78,11 @@
             
             for(int i = 0 ; i< count ; i ++ ){
                 UIButton *btn = nil;
-                UIImageView *imgView = nil;
                 NSInteger picWidth = 0;
                 switch (i) {
                     case 0:
                     {
                         btn = [[UIButton alloc]initWithFrame:CGRectMake(2, 0, SCREEN_WIDTH -4, SCREEN_WIDTH)];
-                        imgView = [[UIImageView alloc]initWithFrame:CGRectMake(2, 0, SCREEN_WIDTH -4, SCREEN_WIDTH)];
                         picWidth = 0;
                     }
                         break;
@@ -91,25 +90,17 @@
                     default:
                     {
                         btn = [[UIButton alloc]initWithFrame:CGRectMake((i - 1)%3 *(btnW + 2) + 2, SCREEN_WIDTH + 2, btnW, btnW)];
-                        imgView = [[UIImageView alloc]initWithFrame:CGRectMake((i - 1)%3 *(btnW + 2) + 2, SCREEN_WIDTH + 2, btnW, btnW)];
                         picWidth = 450;
                     }
                         break;
                         
                 }
-//                imgView.userInteractionEnabled = YES;
-                imgView.clipsToBounds = YES;
                 if( recentModel.isMeSendMessage ){
                     picWidth = 0;
                 }
                 [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
-                NSLog(@"---->%@",[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]);
-                //[imgView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]]   placeholderImage:[UIImage imageNamed:@"empyImage120"]];
                 btn.imageView.contentMode = UIViewContentModeScaleAspectFill;
-                imgView.contentMode = UIViewContentModeScaleAspectFill;
-//                btn.contentMode = UIViewContentModeScaleAspectFill;
                 btn.adjustsImageWhenHighlighted = NO;
-//                [self addSubview:imgView];
                 [self addSubview:btn];
                 [_btnArray addObject:btn];
             }

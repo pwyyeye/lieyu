@@ -28,6 +28,7 @@
     }
     NSArray *array = recentM.likeList;
     for (int i = 0; i<array.count; i++ ) {
+        if(i >= 7) return;
         UIButton *btn = _btnArray[i];
         btn.hidden = NO;
         FriendsLikeModel *likeModel = array[i];

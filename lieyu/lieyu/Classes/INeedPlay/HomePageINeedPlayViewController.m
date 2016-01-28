@@ -52,6 +52,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UIScrollView *_scrollView;
     UIVisualEffectView *_navView,*_menuView;
     NSArray *_fiterArray;
+    JiuBaModel *_recommendedBar;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -370,15 +371,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 weakSelf.bartypeslistArray = homePageM.bartypeslist;
                 _fiterArray = homePageM.filterImages;
             }
+            _recommendedBar = homePageM.recommendedBar;
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
             [collectView reloadData];
-////            NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:0];
-//            NSMutableArray *reloadArray = [[NSMutableArray alloc]init];
-//            for (int i = 0; i < array.count + 5; i ++) {
-//                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
-//                [reloadArray addObject:indexPath];
-//            }
-//            [collectView reloadItemsAtIndexPaths:reloadArray];
         }
         block !=nil? block(ermsg,homePageM.banner,homePageM.barlist):nil;
     }];
@@ -485,7 +480,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 
     NSArray *array = _dataArray[collectionView.tag];
-    return array.count + 5;
+    return array.count + 6;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -531,12 +526,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         return cell;
     }else if(indexPath.row == 1){
         HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-        if(_dataArray.count){
-            NSArray *array = _dataArray[collectionView.tag];
-            if(array.count){
-                JiuBaModel *jiuBaM = array[0];
-                jiubaCell.jiuBaM = jiuBaM;
-            }
+        if(_recommendedBar){
+                jiubaCell.jiuBaM = _recommendedBar;
         }
         return jiubaCell;
     }else if(indexPath.row >= 2 & indexPath.row <= 5){
@@ -551,7 +542,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if(_dataArray.count){
             NSArray *array = _dataArray[collectionView.tag];
             if(array.count){
-                JiuBaModel *jiuBaM = array[indexPath.row - 5];
+                JiuBaModel *jiuBaM = array[indexPath.row - 6];
                 jiubaCell.jiuBaM = jiuBaM;
             }
         }
@@ -567,9 +558,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         array = _dataArray[collectionView.tag];
     }
     if(indexPath.item == 1){
-        if(array.count) jiuBaM = array[indexPath.item - 1];
+        jiuBaM = _recommendedBar;
     }else if(indexPath.item >= 6){
-        if(array.count) jiuBaM = array[indexPath.item - 5];
+        if(array.count) jiuBaM = array[indexPath.item - 6];
     }else if(indexPath.item >= 2&& indexPath.item <= 5){
         //        LYHotBarViewController *hotJiuBarVC = [[LYHotBarViewController alloc]init];
         LYHotBarViewController *hotBarVC = [[LYHotBarViewController alloc]init];

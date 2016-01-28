@@ -117,7 +117,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="biaobai_icon.png" width="13" height="13"/>
+        <image name="biaobai_icon.png" width="13" height="12"/>
         <image name="gengduo_icon.png" width="27" height="27"/>
     </resources>
 </document>
