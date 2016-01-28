@@ -150,11 +150,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lieyu/LYUserDetailInfoViewController.m"
-            timestampString = "475239260.177976"
+            timestampString = "475426555.254537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "514"
-            endingLineNumber = "514"
+            startingLineNumber = "515"
+            endingLineNumber = "515"
             landmarkName = "-sureClick"
             landmarkType = "5">
          </BreakpointContent>
@@ -364,6 +364,22 @@
             startingLineNumber = "77"
             endingLineNumber = "77"
             landmarkName = "-loadData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lieyu/LYFriendsLikeTableViewCell.m"
+            timestampString = "475579497.924818"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "-setRecentM:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -318,7 +318,7 @@
                 }
                 else{
                     if([MyUtil isEmptyString:_keyStr]) return;
-                    app.userModel.avatar_img=_keyStr;
+                    app.userModel.avatar_img=[MyUtil getQiniuUrl:_keyStr width:160 andHeight:160];;
                 }
                 
             }
@@ -405,11 +405,12 @@
     [_selectcedCell.btn_userImage setBackgroundImage:scaledImage forState:UIControlStateNormal];
     
     [HTTPController uploadImageToQiuNiu:scaledImage complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-        _keyStr = key;
+        
         if (![MyUtil isEmptyString:key]) {
+            _keyStr = key;
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             UserModel *mod= app.userModel;
-            mod.avatar_img=[MyUtil getQiniuUrl:key width:80 andHeight:80];
+            mod.avatar_img=[MyUtil getQiniuUrl:key width:160 andHeight:160];
             
             NSMutableDictionary *userinfo=[NSMutableDictionary new];
             
@@ -450,7 +451,7 @@
         [MyUtil showMessage:@"昵称不能为空"];
         [_nickCell.textF_content endEditing:NO];
         return;
-    }else if(_nickCell.textF_content.text.length >= 12){
+    }else if([MyUtil countTheStrLength:_nickCell.textF_content.text] >8){
         [MyUtil showMessage:@"昵称不能超过八个字符"];
         [_nickCell.textF_content endEditing:NO];
         return;

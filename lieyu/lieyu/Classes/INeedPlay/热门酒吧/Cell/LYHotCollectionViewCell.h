@@ -10,5 +10,4 @@
 
 @interface LYHotCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UICollectionView *collectView;
-- (void)deploy;
 @end

@@ -11,8 +11,65 @@
 #import "bartypeslistModel.h"
 #import "LYCache.h"
 #import "LYCoreDataUtil.h"
+#import "HomePageModel.h"
 
 @implementation LYToPlayRestfulBusiness
+
+- (void)getToPlayOnHomeList2:(MReqToPlayHomeList *)reqParam pageIndex:(NSInteger)index results:(void(^)(LYErrorMessage * ermsg,HomePageModel *))block{
+    NSString *addStr = reqParam.address;
+    NSString *titleStr = reqParam.titleStr;
+    NSDictionary * param = [reqParam mj_keyValues];
+    if (param == nil) {
+        return;
+    }
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_HOMELIST  baseURL:LY_SERVER params:param success:^(id response)
+     {
+         
+         [app stopLoading];
+         NSDictionary *dataDic = response[@"data"];
+         NSMutableArray *bannerList = nil;
+         NSMutableArray * barlist = nil;
+         NSMutableArray *bartypeslist = nil;
+         LYErrorMessage * erMsg = [LYErrorMessage instanceWithDictionary:response];
+         HomePageModel *homePageM = [[HomePageModel alloc]init];
+         if (erMsg.state == Req_Success)
+         {
+             
+             if(index == 1){
+                 //存储缓存讯息 首页
+                 LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+                 [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
+             }else{
+                 //存储娱乐分类讯息
+                 if ([MyUtil isEmptyString:addStr]) {
+                     NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_HOTJIUBA,titleStr];
+                     LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+                     [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":keyStr,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":keyStr}];
+                 }
+             }
+             
+             homePageM.banner = [dataDic valueForKey:@"banner"];
+             barlist = [dataDic valueForKey:@"barlist"];
+             homePageM.newbanner=[dataDic valueForKey:@"newbanner"];
+             bartypeslist = [dataDic valueForKey:@"bartypeslist"];
+             homePageM.bartypeslist = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:bartypeslist]];
+             homePageM.barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:barlist]];
+             homePageM.filterImages = [dataDic valueForKey:@"filterImages"];
+         }
+         block(erMsg,homePageM);
+         
+     } failure:^(NSError *err)
+     {
+         [app stopLoading];
+         NSLog(@"----->%@",err.description);
+         LYErrorMessage * erMsg = [LYErrorMessage instanceWithError:err];
+         block(erMsg,nil);
+     }];
+
+}
+
 
 - (void)getToPlayOnHomeList:(MReqToPlayHomeList *)reqParam pageIndex:(NSInteger)index results:(void(^)(LYErrorMessage * ermsg,NSArray * bannerList,NSArray *barList,NSArray *newbanner,NSMutableArray *bartypeslist))block
 {
@@ -32,6 +89,7 @@
         NSMutableArray *bannerList = nil;
         NSMutableArray * barlist = nil;
         NSArray *newbanner = nil;
+        NSArray *filterImages = nil;
         NSMutableArray *bartypeslist = nil;
         LYErrorMessage * erMsg = [LYErrorMessage instanceWithDictionary:response];
         if (erMsg.state == Req_Success)
@@ -62,6 +120,7 @@
     } failure:^(NSError *err)
     {
         [app stopLoading];
+        NSLog(@"----->%@",err.description);
         LYErrorMessage * erMsg = [LYErrorMessage instanceWithError:err];
         block(erMsg,nil,nil,nil,nil);
     }];

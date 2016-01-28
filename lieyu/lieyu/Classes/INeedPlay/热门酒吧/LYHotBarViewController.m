@@ -7,7 +7,7 @@
 //
 
 #import "LYHotBarViewController.h"
-#import "LYHotCollectionViewCell.h"
+#import "HomeBarCollectionViewCell.h"
 #import "MJRefresh.h"
 #import "HotMenuButton.h"
 
@@ -20,197 +20,357 @@
 #import "LYUserLocation.h"
 #import "UIImage+GIF.h"
 #import "LYCache.h"
+#import "JiuBaModel.h"
+#import "BeerBarDetailViewController.h"
 
 #define PAGESIZE 20
 
-@interface LYHotBarViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>{
+@interface LYHotBarViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>{
     UIView *_purpleLineView;
+    NSMutableArray *_dataArray;
+    NSMutableArray *_collectArray;
+    NSInteger _currentPageHot;
+        NSInteger _currentPageDistance;
+        NSInteger _currentPagePrice;
+        NSInteger _currentPageFanli;
+    NSInteger _index;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
+@property (strong, nonatomic) UIScrollView *scrollView;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectView;
-@property (weak, nonatomic) IBOutlet UIView *menuView;
+@property (strong, nonatomic) UIVisualEffectView *menuView;
 @property(nonatomic,strong)NSMutableArray *aryList;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *menuBtnArray;
-@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *layout;
-@property(nonatomic,assign) NSInteger curPageIndex;
+@property (strong, nonatomic) NSMutableArray *menuBtnArray;
 @end
 
 @implementation LYHotBarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self createMenuView];
     self.navigationItem.title = @"热门酒吧";
-    [_collectView registerNib:[UINib nibWithNibName:@"LYHotCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYHotCollectionViewCell"];
+    _collectArray = [[NSMutableArray alloc]initWithCapacity:4];
+    _dataArray = [[NSMutableArray alloc]initWithCapacity:4];
+    _currentPageHot = 1;
+        _currentPageDistance= 1;
+        _currentPagePrice = 1;
+        _currentPageFanli = 1;
     
-    self.curPageIndex = 1;
-    _aryList = [[NSMutableArray alloc]initWithCapacity:0];
-     [self installFreshEvent];
-    [self getData];
+    for (int i = 0; i < 4; i ++) {
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        [_dataArray addObject:array];
+    }
+    
+    for(int i = 0; i < 4; i++){
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 90) collectionViewLayout:layout];
+        collectView.dataSource = self;
+        collectView.delegate = self;
+        collectView.tag = i;
+        collectView.backgroundColor = RGBA(243, 243, 243, 1);
+        [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
+        [_collectArray addObject:collectView];
+        [_scrollView addSubview:collectView];
+    }
+    [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _collectArray.count, 0)];
+    [self installFreshEvent];
+    [self getDataForHotWith:_contentTag];
+    [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * _contentTag, 0)];
     [self createLineForMenuView];
+}
+#pragma mark - 创建菜单view
+- (void)createMenuView{
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    _menuView = [[UIVisualEffectView alloc]initWithEffect:effect];
+    _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 26);
+    [self.view addSubview:_menuView];
+    
+    CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
+    CGFloat offSet = 26;
+    _menuBtnArray = [[NSMutableArray alloc]initWithCapacity:4];
+    NSArray *btnTitleArray = @[@"热门",@"附近",@"价格",@"返利"];
+    for (int i = 0; i < 4; i ++) {
+        HotMenuButton *btn = [[HotMenuButton alloc]init];
+        if (i == 0) {
+            btn.frame = CGRectMake(offSet, -1,btnWidth, 26);
+        }else{
+            btn.frame = CGRectMake(offSet + i%4 * btnWidth, -1, btnWidth, 26);
+        }
+        if (i == _contentTag) {
+            btn.isMenuSelected = YES;
+        }else{
+            btn.isMenuSelected = NO;
+        }
+        [btn setTitle:btnTitleArray[i] forState:UIControlStateNormal];
+        btn.tag = i;
+        [btn addTarget:self action:@selector(btnMenuViewClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_menuView addSubview:btn];
+        [_menuBtnArray addObject:btn];
+    }
+    
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 26, SCREEN_WIDTH, SCREEN_HEIGHT - 90)];
+    _scrollView.delegate = self;
+    _scrollView.pagingEnabled = YES;
+    [self.view addSubview:_scrollView];
 }
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-//    UIButton *hotBtn = _menuBtnArray[0];
 }
 
 - (void)createLineForMenuView{
     UIButton *hotBtn = _menuBtnArray[0];
     _purpleLineView = [[UIView alloc]init];
-    _purpleLineView.frame = CGRectMake(0, _menuView.size.height - 1, 42, 1);
+    CGFloat hotMenuBtnWidth = hotBtn.frame.size.width;
+    CGFloat offsetWidth = _scrollView.contentOffset.x;
+    _purpleLineView.frame = CGRectMake(0, _menuView.size.height - 2, 42, 2);
     _purpleLineView.backgroundColor = RGBA(186, 40, 227, 1);
-    _purpleLineView.center = CGPointMake(hotBtn.center.x + 12, CGRectGetCenter(_purpleLineView.frame).y);
+    _purpleLineView.center = CGPointMake(hotBtn.center.x + offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH , CGRectGetCenter(_purpleLineView.frame).y);
     [_menuView addSubview:_purpleLineView];
 }
-- (IBAction)btnMenuViewClick:(HotMenuButton *)sender {
+
+- (void)btnMenuViewClick:(HotMenuButton *)sender {
     for (HotMenuButton *btn in _menuBtnArray) {
         btn.isMenuSelected = NO;
     }
     sender.isMenuSelected = YES;
-    [_collectView setContentOffset:CGPointMake(sender.tag * SCREEN_WIDTH, 0) animated:YES];
+    [_scrollView setContentOffset:CGPointMake(sender.tag * SCREEN_WIDTH, 0) animated:YES];
+    if (!((NSArray *)_dataArray[sender.tag]).count) {
+        [self getDataForHotWith:sender.tag];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(scrollView == _scrollView){
         UIButton *hotBtn = _menuBtnArray[0];
-    CGFloat offsetWidth = scrollView.contentOffset.x;
-    CGFloat hotMenuBtnWidth = hotBtn.frame.size.width;
-    _purpleLineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + hotBtn.center.x, _purpleLineView.center.y);
+        CGFloat offsetWidth = scrollView.contentOffset.x;
+        CGFloat hotMenuBtnWidth = hotBtn.frame.size.width;
+        _purpleLineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + hotBtn.center.x, _purpleLineView.center.y);
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     for (HotMenuButton *btn in _menuBtnArray) {
         btn.isMenuSelected = NO;
     }
-    NSInteger index = (NSInteger)scrollView.contentOffset.x/SCREEN_WIDTH;
-    HotMenuButton *btn = _menuBtnArray[index];
-    btn.isMenuSelected = YES;
-    
+        _index = (NSInteger)_scrollView.contentOffset.x/SCREEN_WIDTH;
+        HotMenuButton *btn = _menuBtnArray[_index];
+        btn.isMenuSelected = YES;
+    if (_dataArray.count) {
+        NSArray *array = _dataArray[_index];
+        if(!array.count) [self getDataForHotWith:_index];
+    }
 }
 
-- (void)installFreshEvent
-{
- /*   __weak LYHotBarViewController * weakSelf = self;
-    //    __weak UITableView *tableView = self.tableView;
-    self.collectView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:
-                                ^{
-                                    weakSelf.curPageIndex = 1;
-                                    [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
-                                     {
-                                         if (Req_Success == ermsg.state)
-                                         {
-                                             if (barList.count == PAGESIZE)
-                                             {
-                                                 weakSelf.curPageIndex = 2;
-                                                 weakSelf.collectView.mj_footer.hidden = NO;
-                                             }
-                                             else
-                                             {
-                                                 weakSelf.collectView.mj_footer.hidden = YES;
-                                             }
-                                             [weakSelf.tableView.mj_header endRefreshing];
-                                         }
-                                     }];
-                                }];
-    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
-    [self initMJRefeshHeaderForGif:header];
-    
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
-            if (Req_Success == ermsg.state) {
-                if (barList.count == PAGESIZE)
-                {
-                    
-                    weakSelf.tableView.mj_footer.hidden = NO;
-                }
-                else
-                {
-                    weakSelf.tableView.mj_footer.hidden = YES;
-                }
-                weakSelf.curPageIndex ++;
-                [weakSelf.tableView.mj_footer endRefreshing];
-            }
-            
-        }];
-    }];
-  */
-}
-
-#pragma mark 获取数据
--(void)getData{
-    __weak LYHotBarViewController * weakSelf = self;
-    [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
-     {
-         if (Req_Success == ermsg.state)
-         {
-             if (barList.count == PAGESIZE)
-             {
-                 weakSelf.curPageIndex = 2;
-                 weakSelf.collectView.mj_footer.hidden = NO;
-             }
-             else
-             {
-                 weakSelf.collectView.mj_footer.hidden = YES;
-             }
-         }
-     }];
-}
-
-- (void)loadItemList:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
-
-{
+- (void)getDataForHotWith:(NSInteger)tag{
     MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
     LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
-    
-    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
-    hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
-    hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
-    
-//    hList.address = _addressStr;
-//    hList.subids = _subidStr;
     hList.need_page = @(1);
-    hList.p = @(_curPageIndex);
+    switch (tag) {
+        case 0:
+        {
+             hList.p = @(_currentPageHot);
+        }
+            break;
+        case 1:
+        {
+             hList.p = @(_currentPageDistance);
+            hList.sort = @"distanceasc";
+        }
+            break;
+        case 2:
+        {
+            hList.p = @(_currentPagePrice);
+            hList.sort = @"priceasc";
+        }
+            break;
+        case 3:
+        {
+             hList.p = @(_currentPageFanli);
+            hList.sort = @"rebateasc";
+        }
+            break;
+    }
+    hList.subids = _subidStr;
     hList.per = @(PAGESIZE);
     hList.titleStr = self.navigationItem.title;
     
-    __weak __typeof(self)weakSelf = self;
     [bus getToPlayOnHomeList:hList pageIndex:2 results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner,NSMutableArray *bartypeslist)
      {
          if (ermsg.state == Req_Success)
          {
-             if (weakSelf.curPageIndex == 1) {
-                 [weakSelf.aryList removeAllObjects];
-                 weakSelf.bannerList = bannerList.mutableCopy;
-                 //                [weakSelf.bannerList removeAllObjects];
+             NSMutableArray *array = _dataArray[tag];
+             switch (tag) {
+                 case 0:
+                 {
+                     if(_currentPageHot == 1){
+                          [_dataArray replaceObjectAtIndex:0 withObject:barList];
+                     }else{
+                         [array addObjectsFromArray:barList];
+                     }
+                     _currentPageHot ++;
+                 }
+                     break;
+                 case 1:
+                 {
+                     if(_currentPageDistance == 1) {
+                          [_dataArray replaceObjectAtIndex:1 withObject:barList];
+                     }else{
+                         [array addObjectsFromArray:barList];
+                     }
+                     _currentPageDistance ++;
+                 }
+                     break;
+                 case 2:
+                 {
+                     if(_currentPagePrice == 1) {
+                          [_dataArray replaceObjectAtIndex:2 withObject:barList];
+                     }else{
+                         [array addObjectsFromArray:barList];
+                     }
+                     _currentPagePrice ++;
+                 }
+                     break;
+                 case 3:
+                 {
+                     if(_currentPageFanli == 1) {
+                          [_dataArray replaceObjectAtIndex:3 withObject:barList];
+                     }else{
+                         [array addObjectsFromArray:barList];
+                     }
+                     _currentPageFanli ++;
+                 }
+                     break;
              }
+
              
-             [weakSelf.aryList addObjectsFromArray:barList];
-             [weakSelf.collectView reloadData];
-//             [weakSelf noGoodsViewWith:weakSelf.aryList];
+             UICollectionView *collectView = _collectArray[tag];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [collectView reloadData];
+                 [collectView.mj_header endRefreshing];
+                 if(barList.count) [collectView.mj_footer endRefreshing];
+                 else [collectView.mj_footer endRefreshingWithNoMoreData];
+             });
          }
-         block !=nil? block(ermsg,bannerList,barList):nil;
      }];
 }
 
 
+
+- (void)installFreshEvent
+{
+    for (int i = 0; i < _collectArray.count; i ++) {
+        if(!_collectArray.count) return;
+        __weak UICollectionView *collectView = _collectArray[i];
+        __weak LYHotBarViewController * weakSelf = self;
+        //    __weak UITableView *tableView = self.tableView;
+        collectView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+            switch (i) {
+                case 0:
+                {
+                    _currentPageHot = 1;
+                    [weakSelf getDataForHotWith:0];
+                }
+                    break;
+                case 1:
+                {
+                    _currentPageDistance = 1;
+                    [weakSelf getDataForHotWith:1];
+                }
+                    break;
+                case 2:
+                {
+                    _currentPagePrice = 1;
+                    [weakSelf getDataForHotWith:2];
+                }
+                    break;
+                case 3:
+                {
+                    _currentPageFanli = 1;
+                    [weakSelf getDataForHotWith:3];
+                }
+                    break;
+            }
+            
+        }];
+        
+        MJRefreshGifHeader *header=(MJRefreshGifHeader *)collectView.mj_header;
+        [self initMJRefeshHeaderForGif:header];
+        collectView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            switch (i) {
+                case 0:
+                {
+                    [weakSelf getDataForHotWith:0];
+                }
+                    break;
+                case 1:
+                {
+                    [weakSelf getDataForHotWith:1];
+                }
+                    break;
+                case 2:
+                {
+                    [weakSelf getDataForHotWith:2];
+                }
+                    break;
+                case 3:
+                {
+                    [weakSelf getDataForHotWith:3];
+                }
+                    break;
+            }
+        }];
+    }
+    
+}
+
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 1;
+    NSArray *array = _dataArray[collectionView.tag];
+    return array.count;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 4;
+    return 1;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 3;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 3;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(3, 3, 3, 3);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    LYHotCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHotCollectionViewCell" forIndexPath:indexPath];
-      
+    HomeBarCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+    cell.layer.cornerRadius = 2;
+    cell.layer.masksToBounds = YES;
+    JiuBaModel *jiubaM = _dataArray[collectionView.tag][indexPath.row];
+    cell.jiuBaM = jiubaM;
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (_dataArray.count) {
+        NSArray *array = _dataArray[collectionView.tag];
+        if (array.count) {
+            JiuBaModel *jiuM = array[indexPath.item];
+            BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+            controller.beerBarId = @(jiuM.barid);
+            [self.navigationController pushViewController:controller animated:YES];
+           // [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {

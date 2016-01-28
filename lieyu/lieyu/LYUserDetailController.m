@@ -424,7 +424,7 @@
         return;
     }
     
-    if(tf.text.length > 8) {
+    if([MyUtil countTheStrLength:tf.text] > 8) {
         [MyUtil showCleanMessage:@"昵称不能超过八个汉字"];
         return;
     }
