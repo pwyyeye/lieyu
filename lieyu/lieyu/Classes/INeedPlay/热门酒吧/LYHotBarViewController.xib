@@ -7,108 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYHotBarViewController">
             <connections>
-                <outlet property="menuView" destination="Aog-tF-DsK" id="XSg-du-5zp"/>
-                <outlet property="scrollView" destination="jya-kd-qcb" id="Xxd-oC-2S8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outletCollection property="menuBtnArray" destination="NOz-US-D8Q" id="hGw-oo-1yo"/>
-                <outletCollection property="menuBtnArray" destination="L5v-9W-3qr" id="Az3-w5-aJk"/>
-                <outletCollection property="menuBtnArray" destination="R1N-vH-A6F" id="IbR-Fe-wWQ"/>
-                <outletCollection property="menuBtnArray" destination="oh0-0R-9Dl" id="B5c-n5-24o"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aog-tF-DsK">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOz-US-D8Q" customClass="HotMenuButton">
-                            <rect key="frame" x="26" y="-2" width="67" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="24" id="KbR-9f-mVz"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <state key="normal" title="热门">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="btnMenuViewClick:" destination="-1" eventType="touchUpInside" id="c45-a5-EZL"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5v-9W-3qr" customClass="HotMenuButton">
-                            <rect key="frame" x="93" y="-4" width="67" height="27"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="24" id="MCK-ax-ZD7"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                            <state key="normal" title="附近">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="btnMenuViewClick:" destination="-1" eventType="touchUpInside" id="TIC-1k-k55"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R1N-vH-A6F" customClass="HotMenuButton">
-                            <rect key="frame" x="160" y="-4" width="67" height="27"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="24" id="7J4-IW-Pi6"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                            <state key="normal" title="价格">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="btnMenuViewClick:" destination="-1" eventType="touchUpInside" id="xpz-5L-CSg"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oh0-0R-9Dl" customClass="HotMenuButton">
-                            <rect key="frame" x="227" y="-4" width="67" height="27"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="24" id="OYo-V3-HXa"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                            <state key="normal" title="返利">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="btnMenuViewClick:" destination="-1" eventType="touchUpInside" id="zf7-aw-Pku"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="L5v-9W-3qr" firstAttribute="leading" secondItem="NOz-US-D8Q" secondAttribute="trailing" id="0Ir-Le-ELV"/>
-                        <constraint firstItem="L5v-9W-3qr" firstAttribute="width" secondItem="NOz-US-D8Q" secondAttribute="width" id="23Y-5x-JuI"/>
-                        <constraint firstItem="R1N-vH-A6F" firstAttribute="width" secondItem="NOz-US-D8Q" secondAttribute="width" id="5Mc-fH-F0A"/>
-                        <constraint firstAttribute="bottom" secondItem="oh0-0R-9Dl" secondAttribute="bottom" constant="4" id="8gK-Vx-1s1"/>
-                        <constraint firstAttribute="bottom" secondItem="R1N-vH-A6F" secondAttribute="bottom" constant="4" id="Use-5K-NOq"/>
-                        <constraint firstItem="oh0-0R-9Dl" firstAttribute="width" secondItem="NOz-US-D8Q" secondAttribute="width" id="Xl1-rd-VAX"/>
-                        <constraint firstItem="NOz-US-D8Q" firstAttribute="leading" secondItem="Aog-tF-DsK" secondAttribute="leading" constant="26" id="bEY-Ga-DVk"/>
-                        <constraint firstAttribute="bottom" secondItem="NOz-US-D8Q" secondAttribute="bottom" constant="4" id="eCs-p3-Vfl"/>
-                        <constraint firstAttribute="trailing" secondItem="oh0-0R-9Dl" secondAttribute="trailing" constant="26" id="mz9-wB-aUm"/>
-                        <constraint firstAttribute="bottom" secondItem="L5v-9W-3qr" secondAttribute="bottom" constant="4" id="pai-DF-dac"/>
-                        <constraint firstAttribute="height" constant="26" id="wee-jU-K1R"/>
-                        <constraint firstItem="oh0-0R-9Dl" firstAttribute="leading" secondItem="R1N-vH-A6F" secondAttribute="trailing" id="xYK-J9-TFj"/>
-                        <constraint firstItem="R1N-vH-A6F" firstAttribute="leading" secondItem="L5v-9W-3qr" secondAttribute="trailing" id="zZJ-VU-XNS"/>
-                    </constraints>
-                </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jya-kd-qcb">
-                    <rect key="frame" x="0.0" y="26" width="320" height="542"/>
-                </scrollView>
-            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="jya-kd-qcb" secondAttribute="bottom" id="4nN-mt-eAl"/>
-                <constraint firstItem="Aog-tF-DsK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CkF-71-skW"/>
-                <constraint firstAttribute="trailing" secondItem="Aog-tF-DsK" secondAttribute="trailing" id="JsJ-95-43U"/>
-                <constraint firstItem="jya-kd-qcb" firstAttribute="top" secondItem="Aog-tF-DsK" secondAttribute="bottom" id="VDG-MK-aID"/>
-                <constraint firstItem="jya-kd-qcb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bUU-aG-KHw"/>
-                <constraint firstAttribute="trailing" secondItem="jya-kd-qcb" secondAttribute="trailing" id="ehG-EK-VAh"/>
-                <constraint firstItem="Aog-tF-DsK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ygF-5Y-jzu"/>
-            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>

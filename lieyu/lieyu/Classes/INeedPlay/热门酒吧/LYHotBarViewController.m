@@ -37,20 +37,19 @@
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) UIScrollView *scrollView;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
-@property (weak, nonatomic) IBOutlet UIView *menuView;
+@property (strong, nonatomic) UIVisualEffectView *menuView;
 @property(nonatomic,strong)NSMutableArray *aryList;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *menuBtnArray;
+@property (strong, nonatomic) NSMutableArray *menuBtnArray;
 @end
 
 @implementation LYHotBarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self createMenuView];
     self.navigationItem.title = @"热门酒吧";
-    _scrollView.delegate = self;
     _collectArray = [[NSMutableArray alloc]initWithCapacity:4];
     _dataArray = [[NSMutableArray alloc]initWithCapacity:4];
     _currentPageHot = 1;
@@ -69,16 +68,51 @@
         collectView.dataSource = self;
         collectView.delegate = self;
         collectView.tag = i;
+        collectView.backgroundColor = RGBA(243, 243, 243, 1);
         [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
         [_collectArray addObject:collectView];
         [_scrollView addSubview:collectView];
     }
     [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _collectArray.count, 0)];
-    
-     [self installFreshEvent];
+    [self installFreshEvent];
     [self getDataForHotWith:_contentTag];
     [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * _contentTag, 0)];
     [self createLineForMenuView];
+}
+#pragma mark - 创建菜单view
+- (void)createMenuView{
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    _menuView = [[UIVisualEffectView alloc]initWithEffect:effect];
+    _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 26);
+    [self.view addSubview:_menuView];
+    
+    CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
+    CGFloat offSet = 26;
+    _menuBtnArray = [[NSMutableArray alloc]initWithCapacity:4];
+    NSArray *btnTitleArray = @[@"热门",@"附近",@"价格",@"返利"];
+    for (int i = 0; i < 4; i ++) {
+        HotMenuButton *btn = [[HotMenuButton alloc]init];
+        if (i == 0) {
+            btn.frame = CGRectMake(offSet, -1,btnWidth, 26);
+        }else{
+            btn.frame = CGRectMake(offSet + i%4 * btnWidth, -1, btnWidth, 26);
+        }
+        if (i == _contentTag) {
+            btn.isMenuSelected = YES;
+        }else{
+            btn.isMenuSelected = NO;
+        }
+        [btn setTitle:btnTitleArray[i] forState:UIControlStateNormal];
+        btn.tag = i;
+        [btn addTarget:self action:@selector(btnMenuViewClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_menuView addSubview:btn];
+        [_menuBtnArray addObject:btn];
+    }
+    
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 26, SCREEN_WIDTH, SCREEN_HEIGHT - 90)];
+    _scrollView.delegate = self;
+    _scrollView.pagingEnabled = YES;
+    [self.view addSubview:_scrollView];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -90,26 +124,29 @@
     _purpleLineView = [[UIView alloc]init];
     CGFloat hotMenuBtnWidth = hotBtn.frame.size.width;
     CGFloat offsetWidth = _scrollView.contentOffset.x;
-    _purpleLineView.frame = CGRectMake(0, _menuView.size.height - 1, 42, 1);
+    _purpleLineView.frame = CGRectMake(0, _menuView.size.height - 2, 42, 2);
     _purpleLineView.backgroundColor = RGBA(186, 40, 227, 1);
     _purpleLineView.center = CGPointMake(hotBtn.center.x + offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH , CGRectGetCenter(_purpleLineView.frame).y);
     [_menuView addSubview:_purpleLineView];
 }
 
-- (IBAction)btnMenuViewClick:(HotMenuButton *)sender {
+- (void)btnMenuViewClick:(HotMenuButton *)sender {
     for (HotMenuButton *btn in _menuBtnArray) {
         btn.isMenuSelected = NO;
     }
     sender.isMenuSelected = YES;
     [_scrollView setContentOffset:CGPointMake(sender.tag * SCREEN_WIDTH, 0) animated:YES];
+    if (!((NSArray *)_dataArray[sender.tag]).count) {
+        [self getDataForHotWith:sender.tag];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if(scrollView == _scrollView){
         UIButton *hotBtn = _menuBtnArray[0];
-    CGFloat offsetWidth = scrollView.contentOffset.x;
-    CGFloat hotMenuBtnWidth = hotBtn.frame.size.width;
-    _purpleLineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + hotBtn.center.x, _purpleLineView.center.y);
+        CGFloat offsetWidth = scrollView.contentOffset.x;
+        CGFloat hotMenuBtnWidth = hotBtn.frame.size.width;
+        _purpleLineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + hotBtn.center.x, _purpleLineView.center.y);
     }
 }
 
@@ -117,10 +154,9 @@
     for (HotMenuButton *btn in _menuBtnArray) {
         btn.isMenuSelected = NO;
     }
-     _index = (NSInteger)_scrollView.contentOffset.x/SCREEN_WIDTH;
-    HotMenuButton *btn = _menuBtnArray[_index];
-    btn.isMenuSelected = YES;
-    
+        _index = (NSInteger)_scrollView.contentOffset.x/SCREEN_WIDTH;
+        HotMenuButton *btn = _menuBtnArray[_index];
+        btn.isMenuSelected = YES;
     if (_dataArray.count) {
         NSArray *array = _dataArray[_index];
         if(!array.count) [self getDataForHotWith:_index];
@@ -128,7 +164,6 @@
 }
 
 - (void)getDataForHotWith:(NSInteger)tag{
-    
     MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
     LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
     hList.need_page = @(1);
@@ -300,12 +335,26 @@
     return 1;
 }
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 3;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 3;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(3, 3, 3, 3);
+}
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 9 /16);
+    return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     HomeBarCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+    cell.layer.cornerRadius = 2;
+    cell.layer.masksToBounds = YES;
     JiuBaModel *jiubaM = _dataArray[collectionView.tag][indexPath.row];
     cell.jiuBaM = jiubaM;
     return cell;

@@ -553,23 +553,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     JiuBaModel *jiuBaM = nil;
+    NSArray *array = nil;
+    if (_dataArray.count) {
+        array = _dataArray[collectionView.tag];
+    }
     if(indexPath.item == 1){
-        jiuBaM = _aryList[indexPath.item - 1];
+        if(array.count) jiuBaM = array[indexPath.item - 1];
     }else if(indexPath.item >= 6){
-        jiuBaM = _aryList[indexPath.item - 5];
+        if(array.count) jiuBaM = array[indexPath.item - 5];
     }else if(indexPath.item >= 2&& indexPath.item <= 5){
         //        LYHotBarViewController *hotJiuBarVC = [[LYHotBarViewController alloc]init];
         LYHotBarViewController *hotBarVC = [[LYHotBarViewController alloc]init];
         hotBarVC.contentTag = indexPath.item - 2;
-        //        NSMutableArray *titleArray = [[NSMutableArray alloc]initWithCapacity:0];
-        //        for (int i = 0;  i < self.bartypeslistArray.count; i ++) {
-        //            bartypeslistModel *bartypeModel = self.bartypeslistArray[i];
-        //            [titleArray addObject:bartypeModel.name];
-        //        }
-        //        hotJiuBarVC.titleArray = titleArray;
-        //        hotJiuBarVC.bartypeArray = self.bartypeslistArray;
-        //        if(!self.bartypeslistArray.count) return;
-        //        hotJiuBarVC.subidStr = ((bartypeslistModel *)self.bartypeslistArray[indexPath.item - 2]).subids;
         switch (collectionView.tag) {
             case 0:
             {
@@ -588,10 +583,20 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else{
         return;
     }
+    
+    
     BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     controller.beerBarId = @(jiuBaM.barid);
     [self.navigationController pushViewController:controller animated:YES];
+    // [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
+   
+
+    
+  /*  BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    controller.beerBarId = @(jiuBaM.barid);
+    [self.navigationController pushViewController:controller animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
+   */
     
     //    LYWineBarCell *cell = (LYWineBarCell *)[tableView cellForRowAtIndexPath:indexPath];
 }

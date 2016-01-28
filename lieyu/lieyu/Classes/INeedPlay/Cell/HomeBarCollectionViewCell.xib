@@ -109,7 +109,7 @@
                         <rect key="frame" x="203" y="165" width="51" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="15j-om-z89"/>
-                            <constraint firstAttribute="width" constant="51" id="amB-V0-2Sg"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="51" id="amB-V0-2Sg"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
