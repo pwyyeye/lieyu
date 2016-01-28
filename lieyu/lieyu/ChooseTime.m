@@ -11,9 +11,10 @@
 @implementation ChooseTime
 
 - (void)awakeFromNib{
-    self.timePicker.datePickerMode = UIDatePickerModeCountDownTimer;
+    self.timePicker.datePickerMode = UIDatePickerModeTime;
     self.timePicker.tintColor = [UIColor purpleColor];
     
+    self.timePicker.minimumDate = [NSDate date];
 }
 
 - (void)showTimeWithTime:(NSDate *)date{
@@ -21,7 +22,7 @@
 }
 
 - (void)configure{
-//    self.timePicker.minimumDate = self.minDate;
+    
 //    self.timePicker.maximumDate = self.maxDate;
 }
 @end

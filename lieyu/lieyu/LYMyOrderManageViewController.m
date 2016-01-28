@@ -845,6 +845,7 @@
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",shopDetailmodel.money] attributes:attribtDic];
     cell.moneyLal.attributedText=attribtStr;
+    cell.timeLal.text = [NSString stringWithFormat:@"X%d",orderInfoModel.pinkerNum];
     NSString *str=shopDetailmodel.img ;
     [cell.taoCanImageView setImageWithURL:[NSURL URLWithString:str]];
     

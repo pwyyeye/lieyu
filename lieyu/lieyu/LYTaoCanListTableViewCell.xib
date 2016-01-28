@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="178"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="177"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="177.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="套餐内容" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1p-fU-bq2">
@@ -33,7 +33,7 @@
             <connections>
                 <outlet property="label_title" destination="o1p-fU-bq2" id="ud6-jA-Xjb"/>
             </connections>
-            <point key="canvasLocation" x="431" y="408"/>
+            <point key="canvasLocation" x="284" y="229"/>
         </tableViewCell>
     </objects>
 </document>

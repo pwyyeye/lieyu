@@ -59,6 +59,8 @@
 @property NSInteger sectionNumber;
 @property (nonatomic,copy) NSString *rebate;
 @property (nonatomic,copy) NSString *isSign;
+@property (nonatomic, strong) NSString *startTime;
+@property (nonatomic, strong) NSString *endTime;
 @property BOOL rowSelected;
 
 -(NSComparisonResult)compareJiuBaModel:(JiuBaModel *)model;

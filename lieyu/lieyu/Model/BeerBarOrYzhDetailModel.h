@@ -41,6 +41,8 @@
 @property(nonatomic,copy)NSArray *tese;
 @property (nonatomic,unsafe_unretained) CGFloat rebate;
 @property(nonatomic,copy)NSString *today_sm_buynum;
+@property (nonatomic, strong) NSString *startTime;
+@property (nonatomic, strong) NSString *endTime;
 
 +(BeerBarOrYzhDetailModel *)initFormDictionary:(NSDictionary *)dic;
 

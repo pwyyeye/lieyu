@@ -30,15 +30,15 @@
 }
 
 - (void)awakeFromNib {
-    self.backView.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    self.backView.layer.shadowColor = [[UIColor blackColor]CGColor];
     self.backView.layer.shadowOffset = CGSizeMake(0, 1);
-    self.backView.layer.shadowOpacity = 0.8;
-    self.backView.layer.shadowRadius = 2;
+    self.backView.layer.shadowOpacity = 0.1;
+    self.backView.layer.shadowRadius = 1;
 }
 
 - (void)setModel:(RecommendPackageModel *)model{
     _model = model;
-    self.label_name.text = model.title;
+    self.label_name.text = [NSString stringWithFormat:@"%@(适合%@-%@人)",model.title,model.minnum,model.maxnum];
     self.label_price_now.text = [NSString stringWithFormat:@"¥%@",model.price];
     
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
@@ -94,7 +94,20 @@
     self.label_percent.attributedText = attributedStr;
 }
 
-
+- (void)setPinkeModel:(PinKeModel *)pinkeModel{
+    _pinkeModel = pinkeModel;
+    [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:_pinkeModel.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    self.label_name.text = [NSString stringWithFormat:@"%@(适合%@-%@人)",_pinkeModel.title,_pinkeModel.minnum,_pinkeModel.maxnum];
+    self.label_buyCount.text = [NSString stringWithFormat:@"%@人购",_pinkeModel.buynum];
+    self.label_price_now.text = [NSString stringWithFormat:@"¥%@",_pinkeModel.price];
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",_pinkeModel.marketprice] attributes:attribtDic];
+    self.label_price_old.attributedText = attribtStr;
+    CGFloat rebate = [_pinkeModel.rebate floatValue];
+    CGFloat profit = [_pinkeModel.price intValue] * rebate;
+    NSString *percentStr =[NSString stringWithFormat:@"返利:%.0f元",profit];
+    self.label_percent.text = percentStr;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

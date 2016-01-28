@@ -13,17 +13,19 @@
 - (void)awakeFromNib{
     self.radioButtons = @[_redioButton1,_radioButton2,_radioButton3];
     self.selectButton = @[_selectBtn1, _selectBtn2, _selectBtn3];
-    self.buttonStatusArray = [NSMutableArray array];
-    [self.buttonStatusArray addObjectsFromArray:@[@"1",@"0",@"0"]];
+    self.buttonStatusArray = [[NSMutableArray alloc]initWithArray:@[@"1",@"0",@"0"]];
 }
 
 - (void)contentViewChooseBtn{
-    if([_defaultString isEqualToString:@"我请客"] || [_defaultString isEqualToString:@"选择正确的拼客方式"]){
+    if([_defaultString isEqualToString:@"我请客"] || [_defaultString isEqualToString:@"选择正确的拼客方式"] || !_defaultString){
         [self.redioButton1 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];
+        self.buttonStatusArray = [[NSMutableArray alloc]initWithArray:@[@"1",@"0",@"0"]];
     }else if([_defaultString isEqualToString:@"AA付款"]){
         [self.radioButton2 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];
+        self.buttonStatusArray = [[NSMutableArray alloc]initWithArray:@[@"0",@"1",@"0"]];
     }else{
         [self.radioButton3 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];
+        self.buttonStatusArray = [[NSMutableArray alloc]initWithArray:@[@"0",@"0",@"1"]];
     }
 }
 
