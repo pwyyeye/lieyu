@@ -18,6 +18,7 @@
 @property(nonatomic,strong)NSString *subtype;
 @property(nonatomic,strong)NSString *barname;
 @property (nonatomic,copy) NSString *subids;
+@property (nonatomic,copy) NSString *sort;
 
 @property (nonatomic,copy) NSString *titleStr;
 
