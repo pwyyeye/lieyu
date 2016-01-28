@@ -92,6 +92,7 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 + (NSString *)calculateDateFromNowWith:(NSString *)dateString;
 
 + (void)showLikePlaceMessage:(NSString* )message;
-
+//获取字符长度 中文＝2 英文＝1
++ (int)countTheStrLength:(NSString*)strtemp;
 
 @end
