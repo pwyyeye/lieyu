@@ -25,26 +25,25 @@
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:recentM.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empy120"]];
     _label_name.text = recentM.usernick;
     _label_content.text = recentM.message;
-    NSArray *urlArray = [((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink componentsSeparatedByString:@","];
+    
+    NSArray *urlArray = nil;
+    if(recentM.lyMomentsAttachList.count){
+    urlArray = [((FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0]).imageLink componentsSeparatedByString:@","];
     for (int i = 0; i < urlArray.count; i ++) {
         UIImageView *imgView = _imageViewArray[i];
-
         if([recentM.attachType isEqualToString:@"1"]){
             [imgView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] mediaType:QiNiuUploadTpyeDefault width:120 andHeight:120]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-            NSLog(@"----->%@",[MyUtil getQiniuUrl:urlArray[i] mediaType:QiNiuUploadTpyeDefault width:120 andHeight:120]);
             UIImageView *imgPlay = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetWidth(imgView.frame)/2.f - 15, CGRectGetWidth(imgView.frame)/2.f - 15, 30, 30)];
             imgPlay.image = [UIImage imageNamed:@"dabofangqi_icon"];
-           // imgPlay.center = imgView.center;
-            NSLog(@"-imgPlay:%@-----imgView:%@",NSStringFromCGRect(imgPlay.frame),NSStringFromCGRect(imgView.frame));
             imgPlay.userInteractionEnabled = YES;
             [imgView addSubview:imgPlay];
         }else{
             NSInteger picWidth = 120;
             if(recentM.isMeSendMessage) picWidth = 0;
             [imgView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-            NSLog(@"---->%@",[MyUtil getQiniuUrl:urlArray[i] width:120 andHeight:120]);
         }
 
+    }
     }
     _label_time.text = [NSString stringWithFormat:@"%@\n%@",[MyUtil calculateDateFromNowWith:recentM.date],recentM.location];
     

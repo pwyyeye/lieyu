@@ -64,7 +64,8 @@
     
     for(int i = 0; i < 4; i++){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 90) collectionViewLayout:layout];
+        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) collectionViewLayout:layout];
+        [collectView setContentInset:UIEdgeInsetsMake(26, 0, 0, 0)];
         collectView.dataSource = self;
         collectView.delegate = self;
         collectView.tag = i;
@@ -81,9 +82,19 @@
 }
 #pragma mark - 创建菜单view
 - (void)createMenuView{
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+    _scrollView.delegate = self;
+    _scrollView.pagingEnabled = YES;
+    [self.view addSubview:_scrollView];
+    
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     _menuView = [[UIVisualEffectView alloc]initWithEffect:effect];
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 26);
+    _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
+    _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
+    _menuView.layer.shadowOpacity = 0.1;
+    _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
     CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
@@ -109,10 +120,7 @@
         [_menuBtnArray addObject:btn];
     }
     
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 26, SCREEN_WIDTH, SCREEN_HEIGHT - 90)];
-    _scrollView.delegate = self;
-    _scrollView.pagingEnabled = YES;
-    [self.view addSubview:_scrollView];
+    
 }
 
 - (void)viewWillLayoutSubviews{
@@ -200,45 +208,42 @@
      {
          if (ermsg.state == Req_Success)
          {
+             if(tag >= 4) return ;
              NSMutableArray *array = _dataArray[tag];
              switch (tag) {
                  case 0:
                  {
                      if(_currentPageHot == 1){
-                          [_dataArray replaceObjectAtIndex:0 withObject:barList];
-                     }else{
-                         [array addObjectsFromArray:barList];
+                          [array removeAllObjects];
                      }
+                         [array addObjectsFromArray:barList];
                      _currentPageHot ++;
                  }
                      break;
                  case 1:
                  {
                      if(_currentPageDistance == 1) {
-                          [_dataArray replaceObjectAtIndex:1 withObject:barList];
-                     }else{
-                         [array addObjectsFromArray:barList];
+                          [array removeAllObjects];
                      }
+                         [array addObjectsFromArray:barList];
                      _currentPageDistance ++;
                  }
                      break;
                  case 2:
                  {
                      if(_currentPagePrice == 1) {
-                          [_dataArray replaceObjectAtIndex:2 withObject:barList];
-                     }else{
-                         [array addObjectsFromArray:barList];
+                         [array removeAllObjects];
                      }
+                         [array addObjectsFromArray:barList];
                      _currentPagePrice ++;
                  }
                      break;
                  case 3:
                  {
                      if(_currentPageFanli == 1) {
-                          [_dataArray replaceObjectAtIndex:3 withObject:barList];
-                     }else{
-                         [array addObjectsFromArray:barList];
+                         [array removeAllObjects];
                      }
+                         [array addObjectsFromArray:barList];
                      _currentPageFanli ++;
                  }
                      break;
@@ -247,10 +252,46 @@
              
              UICollectionView *collectView = _collectArray[tag];
              dispatch_async(dispatch_get_main_queue(), ^{
-                 [collectView reloadData];
                  [collectView.mj_header endRefreshing];
-                 if(barList.count) [collectView.mj_footer endRefreshing];
-                 else [collectView.mj_footer endRefreshingWithNoMoreData];
+                 switch (tag) {
+                     case 0:
+                     {
+                         if (_currentPageHot != 1 && !barList.count) {
+                             [collectView.mj_footer endRefreshingWithNoMoreData];
+                         }else{
+                             [collectView.mj_footer endRefreshing];
+                         }
+                     }
+                         break;
+                     case 1:
+                     {
+                         if (_currentPageDistance != 1 && !barList.count) {
+                             [collectView.mj_footer endRefreshingWithNoMoreData];
+                         }else{
+                             [collectView.mj_footer endRefreshing];
+                         }
+                     }
+                         break;
+                     case 2:
+                     {
+                         if (_currentPagePrice != 1 && !barList.count) {
+                             [collectView.mj_footer endRefreshingWithNoMoreData];
+                         }else{
+                             [collectView.mj_footer endRefreshing];
+                         }
+                     }
+                         break;
+                     case 3:
+                     {
+                         if (_currentPageFanli != 1 && !barList.count) {
+                             [collectView.mj_footer endRefreshingWithNoMoreData];
+                         }else{
+                             [collectView.mj_footer endRefreshing];
+                         }
+                     }
+                         break;
+                 }
+                  [collectView reloadData];
              });
          }
      }];

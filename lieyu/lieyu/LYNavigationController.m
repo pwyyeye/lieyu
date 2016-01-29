@@ -20,7 +20,7 @@
     self.navigationBar.translucent = YES;
     
     //修改的部分
-    UIColor *_inputColor0 = RGBA(109, 0, 142,0.9);
+   /* UIColor *_inputColor0 = RGBA(109, 0, 142,0.9);
     UIColor *_inputColor1 = RGBA(64, 1, 120,0.9);
     CGPoint _inputPoint0 = CGPointMake(0.5, 0);
     CGPoint _inputPoint1 = CGPointMake(0.5, 1);
@@ -30,12 +30,26 @@
     layer.endPoint = _inputPoint1;
     layer.frame = CGRectMake(0, -20, SCREEN_WIDTH, 64);
     layer.zPosition=-1;
-    [self.navigationBar.layer addSublayer:layer];
+    [self.navigationBar.layer addSublayer:layer]; */
     
 
-    UIImage *bgImage=[UIImage imageNamed:@"navBarbg"];
+   /* UIImage *bgImage=[UIImage imageNamed:@"navBarbg"];
     
-    [self.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];*/
+    
+//    _navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0,-20, SCREEN_WIDTH, 90)];
+//    _navBar.translucent = YES;
+    
+//    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+//    _navBar = [[UIVisualEffectView alloc]initWithEffect:effect];
+//    _navBar.backgroundColor = [UIColor blackColor];
+//    _navBar.frame = CGRectMake(0, -20, SCREEN_WIDTH, 64);
+//    [self.navigationBar addSubview:_navBar];
+    
+//    _navBar.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
+//    _navBar.layer.shadowOffset = CGSizeMake(0, 0.5);
+//    _navBar.layer.shadowOpacity = 0.1;
+//    _navBar.layer.shadowRadius = 1;
     //返回的颜色
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     
@@ -50,6 +64,11 @@
 
 
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+}
+
 -(void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
 }

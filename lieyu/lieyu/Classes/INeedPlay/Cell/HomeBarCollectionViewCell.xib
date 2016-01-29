@@ -29,6 +29,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvD-Nq-F2d">
                         <rect key="frame" x="239" y="141" width="26" height="12"/>
                         <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="bT3-jy-9ZI"/>
                             <constraint firstAttribute="height" constant="12" id="nFP-OT-NXn"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -166,6 +167,7 @@
                         <rect key="frame" x="295" y="141" width="26" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="RVa-la-HSs"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="fP9-zc-Myz"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

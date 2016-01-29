@@ -24,14 +24,15 @@
     NSString *string = nil;
     if([commentM.toUserId isEqualToString:@"0"]) {
         string = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
-    }
-    else {
+    }else {
         string = [NSString stringWithFormat:@"回复%@:%@",commentM.toUserNickName,commentM.comment];
     }
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
     if([commentM.toUserId isEqualToString:@"0"]) {
+        if([MyUtil isEmptyString:commentM.nickName] || [MyUtil isEmptyString:commentM.nickName]) return;
         [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentM.nickName.length + 1)];
     }else{
+        if([MyUtil isEmptyString:commentM.toUserNickName] || [MyUtil isEmptyString:commentM.toUserNickName]) return;
          [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(2, commentM.toUserNickName.length + 1)];
     }
     _label_comment.attributedText = attributedStr;
