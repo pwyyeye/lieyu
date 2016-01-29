@@ -29,12 +29,5 @@
     [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
 }
 
-- (void)configure:(int)defaultNum{
-    if (defaultNum > 1) {
-        [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
-        self.numberField.text = [NSString stringWithFormat:@"%d",defaultNum];
-    }else if(defaultNum == 0){
-        self.numberField.text = @"1";
-    }
-}
+
 @end

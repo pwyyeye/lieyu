@@ -110,7 +110,26 @@
     [self setupTableView];
     [self setupTableViewFresh];//配置表的刷新和加载
     [self getFriendsNewMessage];
+    
+
+    //[_tableView addObserver:self forKeyPath:@"contentOffset" options:nske context:nil];
 }
+
+/*
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    NSLog(@"------>%@",change);
+    if (change[@"new"]) {
+        
+    }else{
+        [UIView animateWithDuration:.4 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+        }completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.2 animations:^{
+                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+            }];
+        }];
+    }
+} */
 
 #pragma mark - 获取我的未读消息数
 - (void)getFriendsNewMessage{
@@ -430,7 +449,11 @@
     
     _lineView = [[UIView alloc]init];
     _lineView.bounds = CGRectMake(0,0,42, 2);
-    _lineView.center = CGPointMake(_friendsBtn.center.x, self.navigationController.navigationBar.frame.size.height - 1);
+    if (_friendsBtnSelect) {
+        _lineView.center = CGPointMake(_friendsBtn.center.x, self.navigationController.navigationBar.frame.size.height - 1);
+    }else{
+        _lineView.center = CGPointMake(_myBtn.center.x, self.navigationController.navigationBar.frame.size.height - 1);
+    }
     _lineView.backgroundColor = RGBA(186, 40, 227, 1);
     [self.navigationController.navigationBar addSubview:_lineView];
     
@@ -439,6 +462,41 @@
 //        make.centerX.mas_equalTo(_friendsBtn.mas_centerX).offset(0);
 //        make.size.mas_equalTo(CGSizeMake(42, 2));
 //    }];
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [UIView animateWithDuration:0.4 animations:^{
+         effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+    }];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (!decelerate) {
+    [UIView animateWithDuration:.4 delay:4 options:nil animations:^{
+        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+    }completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+        }];
+    }];
+    }
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if(CGRectGetMaxY(effectView.frame) == SCREEN_HEIGHT){
+    [UIView animateWithDuration:.4 delay:2 options:nil animations:^{
+        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+    }completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+        }];
+    }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
