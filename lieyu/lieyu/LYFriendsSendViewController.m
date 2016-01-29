@@ -295,7 +295,7 @@
         if(![MyUtil isEmptyString:key]){
             [self sendTrends:key];
         }else{
-            //
+            [MyUtil showCleanMessage:@"上传失败！"];
         }
     }];
 }

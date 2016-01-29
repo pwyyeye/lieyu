@@ -129,7 +129,11 @@
     if(((AppDelegate*)[[UIApplication sharedApplication] delegate]).userModel){
         [self getGoodsNum];
     }
-    self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 #pragma mark viewDidAppear

@@ -275,7 +275,7 @@
                                     <constraint firstAttribute="height" constant="32" id="k6H-KD-bbY"/>
                                     <constraint firstAttribute="width" constant="32" id="sLq-hR-Wxb"/>
                                 </constraints>
-                                <state key="normal" image="return"/>
+                                <state key="normal" image="return_white.png"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="klT-oE-fFs">
                                 <rect key="frame" x="227" y="26" width="32" height="32"/>
@@ -380,7 +380,7 @@
                                     <constraint firstAttribute="width" constant="40" id="Avm-Rf-HRb"/>
                                     <constraint firstAttribute="height" constant="40" id="tXB-kt-E5g"/>
                                 </constraints>
-                                <state key="normal" image="return">
+                                <state key="normal" image="return_white.png">
                                     <color key="titleColor" red="0.98431372549999996" green="0.1450980392" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -449,7 +449,7 @@
                                     <constraint firstAttribute="width" constant="40" id="BSi-XY-cCI"/>
                                     <constraint firstAttribute="height" constant="40" id="uFn-UV-Ckc"/>
                                 </constraints>
-                                <state key="normal" image="return"/>
+                                <state key="normal" image="return_white.png"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1934,7 +1934,7 @@
                                     <constraint firstAttribute="width" constant="40" id="AcL-EK-Oft"/>
                                     <constraint firstAttribute="height" constant="40" id="d7J-Tt-9qt"/>
                                 </constraints>
-                                <state key="normal" image="return"/>
+                                <state key="normal" image="return_white.png"/>
                                 <connections>
                                     <action selector="backAct:" destination="1a9-8m-xGU" eventType="touchUpInside" id="LrC-NY-uny"/>
                                 </connections>
@@ -2043,7 +2043,7 @@
         <image name="phoneLv" width="19" height="19"/>
         <image name="purper_fanli" width="20" height="20"/>
         <image name="purpleBtnBG.png" width="2" height="54"/>
-        <image name="return" width="25" height="24"/>
+        <image name="return_white.png" width="25" height="24"/>
         <image name="shoppingCar_High.png" width="20" height="20"/>
         <image name="type" width="87" height="26"/>
         <image name="typeBorder.png" width="94" height="30"/>
