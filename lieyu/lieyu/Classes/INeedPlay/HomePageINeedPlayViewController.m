@@ -55,7 +55,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UIVisualEffectView *_navView,*_menuView;
     NSArray *_fiterArray;
     JiuBaModel *_recommendedBar;
-    CGFloat _contentOffSet_Height_one;
+    CGFloat _contentOffSet_Height;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -226,7 +226,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
     _cityChooseBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:12];
-    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 18, 0, 0)];
+    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 14, 0, 0)];
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_cityChooseBtn];
     
@@ -237,7 +237,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuView addSubview:_searchBtn];
     
     CGFloat titleImgViewWidth = 40;
-    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5 + 20, titleImgViewWidth, titleImgViewWidth)];
+    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5 + 10, titleImgViewWidth, titleImgViewWidth)];
     _titleImageView.image = [UIImage imageNamed:@"logo"];
     [_menuView addSubview:_titleImageView];
     
