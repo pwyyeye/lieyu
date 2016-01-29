@@ -55,7 +55,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UIVisualEffectView *_navView,*_menuView;
     NSArray *_fiterArray;
     JiuBaModel *_recommendedBar;
-    CGFloat _contentOffSet_Height;
+    CGFloat _contentOffSet_Height_YD,_contentOffSet_Height_BAR,_contentOffSetWidth;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -126,38 +126,55 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityChange" object:nil];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if(scrollView == _scrollView){
-        CGFloat offsetWidth = scrollView.contentOffset.x;
-        CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
-        _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
-    }
-
-    if (scrollView.contentOffset.y > _contentOffSet_Height) {
-        [UIView animateWithDuration:0.5 animations:^{
-            _menuView.center = CGPointMake( _menuView.center.x,-2 );
-            _titleImageView.alpha = 0.0;
-            _cityChooseBtn.alpha = 0.f;
-            _searchBtn.alpha = 0.f;
-            for (UICollectionView *collectView in _collectViewArray) {
-                [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0)];
-            }
-        }];
-    }else{
-        [UIView animateWithDuration:0.5 animations:^{
-            _menuView.center = CGPointMake(_menuView.center.x,45 );
-                        _titleImageView.alpha = 1.0;
-            _cityChooseBtn.alpha = 1.f;
-            _searchBtn.alpha = 1.f;
-            for (UICollectionView *collectView in _collectViewArray) {
-                [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
-            }
-        }];
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    UICollectionView *collectView = _collectViewArray[_index];
+    switch (_index) {
+        case 0:
+        {
+            _contentOffSet_Height_YD = collectView.contentOffset.y;
+        }
+            break;
+        case 1:
+        {
+            _contentOffSet_Height_BAR = collectView.contentOffset.y;
+        }
+            break;
     }
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    _contentOffSet_Height = scrollView.contentOffset.y;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+   
+    if(scrollView == _scrollView){
+    }else{
+        UICollectionView *collectView = nil;
+        collectView = _collectViewArray[_index];
+        if ((collectView.contentOffset.y > _contentOffSet_Height_YD && _index == 0) || (collectView.contentOffset.y > _contentOffSet_Height_BAR && _index == 1)) {
+            [UIView animateWithDuration:0.5 animations:^{
+                _menuView.center = CGPointMake( _menuView.center.x,-2 );
+                _titleImageView.alpha = 0.0;
+                _cityChooseBtn.alpha = 0.f;
+                _searchBtn.alpha = 0.f;
+                for (UICollectionView *collectView in _collectViewArray) {
+                    [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0)];
+                }
+            }];
+        }else{
+            [UIView animateWithDuration:0.5 animations:^{
+                _menuView.center = CGPointMake(_menuView.center.x,45);
+                _titleImageView.alpha = 1.0;
+                _cityChooseBtn.alpha = 1.f;
+                _searchBtn.alpha = 1.f;
+                for (UICollectionView *collectView in _collectViewArray) {
+                    [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+                }
+            }];
+        }
+    }
+    
+    
+    CGFloat offsetWidth = _scrollView.contentOffset.x;
+    CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
+    _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -166,14 +183,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSArray *array = _dataArray[_index];
         if(!array.count) [self getDataWith:_index];
     }
-    if (_index) {
-        _btn_bar.isHomePageMenuViewSelected = YES;
-        _btn_yedian.isHomePageMenuViewSelected = NO;
-    }else{
-        _btn_bar.isHomePageMenuViewSelected = NO;
-        _btn_yedian.isHomePageMenuViewSelected = YES;
+    if (scrollView == _scrollView) {
+        if (_index) {
+            _btn_bar.isHomePageMenuViewSelected = YES;
+            _btn_yedian.isHomePageMenuViewSelected = NO;
+        }else{
+            _btn_bar.isHomePageMenuViewSelected = NO;
+            _btn_yedian.isHomePageMenuViewSelected = YES;
+        }
     }
-    
+    _contentOffSetWidth = _scrollView.contentOffset.x;
    
     
     
@@ -183,6 +202,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [_scrollView setContentOffset:CGPointZero];
     //    CGRect rc = _topView.frame;
     //    rc.origin.x = 0;
     //    rc.origin.y = -20;
@@ -304,7 +324,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (!array.count) {
             [self getDataWith:1];
         }
-    }}
+    }
+}
 
 #pragma mark 选择城市action
 - (void)cityChangeClick:(UIButton *)sender {
@@ -334,6 +355,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 {
     [super viewWillDisappear:animated];
     [self removeNavButtonAndImageView];
+    
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBarHidden = NO;
 }
