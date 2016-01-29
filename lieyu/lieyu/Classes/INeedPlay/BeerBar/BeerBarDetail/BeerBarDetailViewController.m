@@ -122,20 +122,21 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
      [_timer setFireDate:[NSDate distantPast]];
     
 }
 
-
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController.navigationBar setHidden:YES];
+}
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden=NO;
-    
     [_timer setFireDate:[NSDate distantFuture]];
     
     

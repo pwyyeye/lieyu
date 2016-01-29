@@ -214,7 +214,7 @@
                         <constraint firstAttribute="height" constant="32" id="Fj7-JP-bFz"/>
                         <constraint firstAttribute="width" constant="32" id="IOq-DM-rtF"/>
                     </constraints>
-                    <state key="normal" image="return"/>
+                    <state key="normal" image="return_white.png"/>
                     <connections>
                         <action selector="goBack:" destination="-1" eventType="touchUpInside" id="7oR-Cb-yPY"/>
                     </connections>
@@ -247,7 +247,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="96X-DT-GEW" id="HBL-mj-0Sl">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="219.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIi-JY-IS5">
@@ -441,7 +441,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwQ-ej-J52" id="Jfr-2l-B75">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="热门订座套餐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXA-Gg-EX9">
@@ -477,7 +477,7 @@
         <image name="icon_pinke" width="30" height="30"/>
         <image name="icon_share2.png" width="24" height="24"/>
         <image name="navBarbg" width="6" height="192"/>
-        <image name="return" width="25" height="24"/>
+        <image name="return_white.png" width="25" height="24"/>
         <image name="teseBtn" width="48" height="20"/>
         <image name="xingxing" width="12" height="12"/>
     </resources>

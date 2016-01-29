@@ -62,9 +62,10 @@
     [self initManagerView];
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
-    self.navigationItem.title = @"组局";
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    [self.navigationItem setLeftBarButtonItem:item];
+    self.navigationItem.title = @"预定";
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontNamesForFamilyName:@"STHeiti TC"]}];
+//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+//    [self.navigationItem setLeftBarButtonItem:item];
 }
 
 #pragma mark - 初始化界面
@@ -256,7 +257,7 @@
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 #pragma mark 获取顶部菜单
