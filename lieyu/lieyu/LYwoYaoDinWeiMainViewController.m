@@ -62,7 +62,7 @@
     [self initManagerView];
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
-    self.navigationItem.title = @"所有套餐";
+    self.navigationItem.title = @"组局";
     UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
     [self.navigationItem setLeftBarButtonItem:item];
 }
