@@ -54,7 +54,7 @@
 //    NSLog(@"----pass-xingzuo%@---",xingzuo);
 //    XCTAssert(YES, @"Pass");
     LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":@{@"key":@"value"},@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
+//    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":@{@"key":@"value"},@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
     
 }
 

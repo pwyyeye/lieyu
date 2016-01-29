@@ -26,14 +26,14 @@
 
     //设置标题颜色
     
-    UIColor * color = [UIColor whiteColor];
+    UIColor * color = [UIColor blackColor];
     
     NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
     
     self.navigationController.navigationBar.titleTextAttributes = dict;
     
     //设置电池状态栏为白色
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
 }
 
 - (void)viewDidAppear:(BOOL)animated

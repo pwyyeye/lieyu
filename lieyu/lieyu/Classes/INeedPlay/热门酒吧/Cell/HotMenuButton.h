@@ -10,4 +10,6 @@
 
 @interface HotMenuButton : UIButton
 @property (nonatomic,unsafe_unretained) BOOL isMenuSelected;
+@property (nonatomic,unsafe_unretained) BOOL isHomePageMenuViewSelected;
+@property (nonatomic,unsafe_unretained) BOOL isFriendsMenuViewSelected;
 @end

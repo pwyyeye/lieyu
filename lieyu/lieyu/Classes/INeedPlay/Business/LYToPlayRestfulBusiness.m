@@ -29,7 +29,6 @@
          
          [app stopLoading];
          NSDictionary *dataDic = response[@"data"];
-         NSMutableArray *bannerList = nil;
          NSMutableArray * barlist = nil;
          NSMutableArray *bartypeslist = nil;
          LYErrorMessage * erMsg = [LYErrorMessage instanceWithDictionary:response];
@@ -37,17 +36,13 @@
          if (erMsg.state == Req_Success)
          {
              
-             if(index == 1){
+             if(index == 0){
                  //存储缓存讯息 首页
                  LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-                 [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
-             }else{
-                 //存储娱乐分类讯息
-                 if ([MyUtil isEmptyString:addStr]) {
-                     NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_HOTJIUBA,titleStr];
-                     LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-                     [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":keyStr,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":keyStr}];
-                 }
+                 [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_YD,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_YD}];
+             }else if(index == 1){
+                 LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+                 [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_BAR,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_BAR}];
              }
              
              homePageM.banner = [dataDic valueForKey:@"banner"];
@@ -57,6 +52,8 @@
              homePageM.bartypeslist = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:bartypeslist]];
              homePageM.barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:barlist]];
              homePageM.filterImages = [dataDic valueForKey:@"filterImages"];
+             NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+             homePageM.recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
          }
          block(erMsg,homePageM);
          
@@ -98,7 +95,7 @@
             if(index == 1){
                 //存储缓存讯息 首页
                 LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-                [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
+               // [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
             }else{
                 //存储娱乐分类讯息
                 if ([MyUtil isEmptyString:addStr]) {

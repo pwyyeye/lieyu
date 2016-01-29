@@ -29,6 +29,7 @@
 #import "LYFriendsImgTableViewCell.h"
 #import "LYFriendsChangeImageMenuView.h"
 #import "LYChangeImageViewController.h"
+#import "Masonry.h"
 #import "LYFriendsCommentButton.h"
 #import "FriendsLikeModel.h"
 #import "FriendsPicAndVideoModel.h"
@@ -36,6 +37,7 @@
 #import "MJRefresh.h"
 #import "ISEmojiView.h"
 #import "ImagePickerViewController.h"
+#import "HotMenuButton.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
@@ -53,8 +55,8 @@
 @interface LYFriendsViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UITextFieldDelegate,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePickerFinish>{
-    UIButton *_friendsBtn;//导航栏朋友圈按钮
-    UIButton *_myBtn;//导航栏我的按钮
+    HotMenuButton *_friendsBtn;//导航栏朋友圈按钮
+    HotMenuButton *_myBtn;//导航栏我的按钮
     UILabel *_myBadge;//我的按钮小红圈
     UIButton *_carmerBtn;//发布动态按钮
     CGFloat _friendBtnAlpha,_myBtnAlpha;
@@ -83,8 +85,10 @@
     NSString *_results;//新消息条数
     NSString *_icon;//新消息头像
     NSInteger _deleteMessageTag;//删除动态的btn的tag
+        UIVisualEffectView *effectView;
         NSInteger _saveImageAndVideoIndex;
         NSTimer *_timer;
+        UIView *_lineView;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -137,6 +141,7 @@
 
 #pragma mark - 设置全局属性
 - (void)setupAllProperty{
+    [_tableView setContentInset:UIEdgeInsetsMake(64, 0, 49, 0)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData) name:@"reloadTableView" object:nil];
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0; i < 2; i ++) {
@@ -360,31 +365,33 @@
 
 #pragma mark - 设置导航栏玩友圈和我的按钮及发布动态按钮
 - (void)setupNavMenuView{
-    self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
+  /*  self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
     self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
-    self.navigationController.navigationBar.layer.shadowRadius = 1;
+    self.navigationController.navigationBar.layer.shadowRadius = 1; */
     
     _vLine = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 1) / 2.f, 16, 0.3, 12)];
     _vLine.backgroundColor = RGBA(255, 255, 255, 0.5);
-    [self.navigationController.navigationBar addSubview:_vLine];
+   // [self.navigationController.navigationBar addSubview:_vLine];
     
     CGFloat friendsBtn_Width = 42;
-    _friendsBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f - friendsBtn_Width - 16 , 12, friendsBtn_Width, 20)];
-    [_friendsBtn setTitle:@"玩友圈" forState:UIControlStateNormal];
-    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
+    _friendsBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f - friendsBtn_Width - 16 , 12, friendsBtn_Width, 20)];
+    [_friendsBtn setTitle:@"玩圈" forState:UIControlStateNormal];
+   // _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
     _friendsBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_friendsBtn addTarget:self action:@selector(friendsClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController.navigationBar addSubview:_friendsBtn];
     
-    _myBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f + 16, 12, friendsBtn_Width, 20)];
+    _myBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f + 16, 12, friendsBtn_Width, 20)];
     [_myBtn setTitle:@"我的" forState:UIControlStateNormal];
-    _myBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+//    _myBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     if(_friendsBtnSelect) {
-        _myBtn.alpha = 0.5;
+        _myBtn.isFriendsMenuViewSelected = NO;
+        _friendsBtn.isFriendsMenuViewSelected = YES;
     }
     else{
-        _friendsBtn.alpha = 0.5;
+        _myBtn.isFriendsMenuViewSelected = YES;
+        _friendsBtn.isFriendsMenuViewSelected = NO;
     }
     
     [_myBtn addTarget:self action:@selector(myClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -392,18 +399,46 @@
     
     
 
-    _myBadge = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f + 16 + 30, 10, 10, 10)];
+    _myBadge = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f + 16 + 30 + 5, 10, 5, 5)];
     _myBadge.backgroundColor = [UIColor redColor];
     _myBadge.layer.cornerRadius = CGRectGetWidth(_myBadge.frame) / 2.f;
     _myBadge.layer.masksToBounds = YES;
     _myBadge.hidden = YES;
     [self.navigationController.navigationBar addSubview:_myBadge];
     
-    CGFloat carmerBtn_Width = 24;
-    _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 11.3 - carmerBtn_Width, 10, carmerBtn_Width, carmerBtn_Width)];
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 30, SCREEN_HEIGHT - 60, 60, 60)];
+    effectView.layer.cornerRadius = effectView.frame.size.width/2.f;
+    effectView.layer.masksToBounds = YES;
+    effectView.effect = effect;
+    [self.view addSubview:effectView];
+    [self.view bringSubviewToFront:effectView];
+    
+    
+    _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake((effectView.frame.size.width - 35)/2.f,(effectView.frame.size.height - 30)/2.f , 35, 30)];
     [_carmerBtn addTarget:self action:@selector(carmerClick:) forControlEvents:UIControlEventTouchUpInside];
     [_carmerBtn setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
-    [self.navigationController.navigationBar addSubview:_carmerBtn];
+    [effectView addSubview:_carmerBtn];
+    
+    [UIView animateWithDuration:.4 animations:^{
+       effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+    }completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+        }];
+    }];
+    
+    _lineView = [[UIView alloc]init];
+    _lineView.bounds = CGRectMake(0,0,42, 2);
+    _lineView.center = CGPointMake(_friendsBtn.center.x, self.navigationController.navigationBar.frame.size.height - 1);
+    _lineView.backgroundColor = RGBA(186, 40, 227, 1);
+    [self.navigationController.navigationBar addSubview:_lineView];
+    
+//    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.mas_equalTo(self.navigationController.navigationBar.mas_bottom).with.offset(0);
+//        make.centerX.mas_equalTo(_friendsBtn.mas_centerX).offset(0);
+//        make.size.mas_equalTo(CGSizeMake(42, 2));
+//    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -437,6 +472,9 @@
     [_myBtn removeFromSuperview];
     [_carmerBtn removeFromSuperview];
     [_vLine removeFromSuperview];
+    [_lineView removeFromSuperview];
+    [effectView removeFromSuperview];
+    
     _myBtn = nil;
     _friendsBtn = nil;
 }
@@ -454,10 +492,12 @@
         if(dataArray.count){
                 if(_pageStartCountFriends == 0){
                     [_dataArray replaceObjectAtIndex:0 withObject:dataArray];
-                    [weakSelf.tableView setContentOffset:CGPointZero animated:NO];
+//                    [weakSelf.tableView setContentOffset:CGPointZero animated:NO];
+                    _isFriendsPageUpLoad = YES;
                 }else {
                     NSMutableArray *muArr = _dataArray[_index];
                     [muArr addObjectsFromArray:dataArray];
+                    _isFriendsPageUpLoad = NO;
                 }
             _pageStartCountFriends ++;
             
@@ -504,10 +544,19 @@
 #pragma mark － 刷新表
 - (void)reloadTableViewAndSetUpPropertyneedSetContentOffset:(BOOL)need{
     [self.tableView reloadData];
-     if(need)  [self.tableView setContentOffset:CGPointZero animated:YES];
-    if(_index) [self addTableViewHeader];
-    else [self removeTableViewHeader];
+    // if(need)  [self.tableView setContentOffset:CGPointZero animated:YES];
+    
     [self.tableView.mj_header endRefreshing];
+    if(_index) {
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
+        if(_isMysPageUpLoad) [self.tableView setContentOffset:CGPointMake(0,0) animated:YES];
+        [self addTableViewHeader];
+    }
+    else{
+        self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
+        if(_isFriendsPageUpLoad)  [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+        [self removeTableViewHeader];
+    }
     
 //    if(!((NSArray *)_dataArray[_index]).count || _section >= 10){
 //        return;
@@ -523,27 +572,31 @@
 #pragma mark - 玩友圈action
 - (void)friendsClick:(UIButton *)friendsBtn{
 //    _index = 0;
-    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
-    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
-    _friendsBtn.alpha = 1;
-    _myBtn.alpha = 0.5;
+//    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
+//    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
     _friendsBtnSelect = YES;
     _pageStartCountFriends = 0;
     [self getDataFriendsWithSetContentOffSet:YES];
+    _friendsBtn.isFriendsMenuViewSelected = YES;
+    _myBtn.isFriendsMenuViewSelected = NO;
+    [UIView animateWithDuration:0.5 animations:^{
+        _lineView.center = CGPointMake(friendsBtn.center.x, _lineView.center.y);
+    }];
 //    [self removeTableViewHeader];
 }
 
 #pragma mark - 我的action
 - (void)myClick:(UIButton *)myBtn{
-    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
-    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
-    _friendsBtn.alpha = 0.5;
-    _myBtn.alpha = 1;
+//    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
+//    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
     _friendsBtnSelect = NO;
     _pageStartCountMys = 0;
-    //_myBadge.hidden = YES;
-//    _index = 1;
+    _friendsBtn.isFriendsMenuViewSelected = NO;
+    _myBtn.isFriendsMenuViewSelected = YES;
     [self getDataMysWithSetContentOffSet:YES];
+    [UIView animateWithDuration:0.5 animations:^{
+        _lineView.center = CGPointMake(myBtn.center.x, _lineView.center.y);
+    }];
 //    [self addTableViewHeader];
 }
 
@@ -552,11 +605,11 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
     if(_results.integerValue){
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 344);
          _headerView.btn_newMessage.hidden = NO;
         _myBadge.hidden = NO;
     }else{
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339 - 54);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 344 - 54);
          _headerView.btn_newMessage.hidden = YES;
         _headerView.imageView_NewMessageIcon.hidden = YES;
         _myBadge.hidden = YES;
@@ -599,7 +652,7 @@
 #pragma mark - 移除表头
 - (void)removeTableViewHeader{
     self.tableView.tableHeaderView = nil;
-    self.tableview_top.constant = 0;
+//    self.tableview_top.constant = 0;
     [self updateViewConstraints];
 }
 
@@ -1451,13 +1504,13 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 //            break;
         case 2:
         {
-            cell.separatorInset = UIEdgeInsetsMake(0, -100, 0, 0);
+            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
             if(!recentM.commentList.count && !recentM.likeList.count) cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
         }
             break;
         case 3:
         {
-            cell.separatorInset = UIEdgeInsetsMake(0, 35, 0, 7);
+            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 7);
             if(!recentM.commentList.count) cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
         }
             break;

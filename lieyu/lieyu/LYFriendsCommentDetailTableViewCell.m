@@ -30,8 +30,10 @@
     }
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
         if ([commentModel.toUserId isEqualToString:@"0"]) {
+            if([MyUtil isEmptyString:commentModel.nickName]) return;
             [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentModel.nickName.length + 1)];
         }else{
+                        if([MyUtil isEmptyString:commentModel.toUserNickName]) return;
             [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(2, commentModel.toUserNickName.length + 1)];
         }
     

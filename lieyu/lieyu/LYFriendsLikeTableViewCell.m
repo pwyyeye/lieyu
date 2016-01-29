@@ -28,8 +28,8 @@
     }
     NSArray *array = recentM.likeList;
     NSInteger count = 0;
-    if(array.count > 7){
-        count = 7;
+    if(array.count > 8){
+        count = 8;
         _btn_more.hidden = NO;
     }else{
         count = array.count;

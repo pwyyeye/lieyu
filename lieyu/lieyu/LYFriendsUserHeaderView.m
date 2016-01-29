@@ -38,7 +38,7 @@
 //    _label_name.layer.shadowColor = [UIColor blackColor].CGColor;
 //    _label_name.layer.shadowRadius = 1;
     
-    _btn_newMessage.layer.cornerRadius = 4;
+    _btn_newMessage.layer.cornerRadius = CGRectGetHeight(_btn_newMessage.frame)/2.f;
     _btn_newMessage.layer.masksToBounds = YES;
     
     _imageView_NewMessageIcon.layer.cornerRadius = CGRectGetHeight(_imageView_NewMessageIcon.frame) / 2.f;

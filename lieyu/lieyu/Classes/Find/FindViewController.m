@@ -49,10 +49,10 @@
               // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"saoyisao",@"title":@"扫一扫"}];
 
-    self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
-    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
-    self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
-    self.navigationController.navigationBar.layer.shadowRadius = 1;
+   /* self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 0.5);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.2;
+    self.navigationController.navigationBar.layer.shadowRadius = 1; */
     
 //    datalist=@[
 //               @{@"image":@"icon_wanyouliebiao_normal",@"title":@"玩友列表"},
@@ -77,9 +77,9 @@
     _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
     
     _myTitle.backgroundColor = [UIColor clearColor];
-    _myTitle.textColor=[UIColor whiteColor];
+    _myTitle.textColor=[UIColor blackColor];
     _myTitle.textAlignment = NSTextAlignmentCenter;
-    [_myTitle setFont:[UIFont systemFontOfSize:17.0]];
+    [_myTitle setFont:[UIFont systemFontOfSize:16]];
     [_myTitle setText:@"发现"];
 }
 
