@@ -127,6 +127,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if (CGRectGetMaxY(_menuView.frame) < 90) {
+        for (UICollectionView *collectView in _collectViewArray) {
+            [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0) ]  ;
+        }
+    }
     UICollectionView *collectView = _collectViewArray[_index];
     switch (_index) {
         case 0:
@@ -152,11 +157,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //            for (UICollectionView *collectView in _collectViewArray) {
 //                [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0)];
 //            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                CGFloat offsetWidth = _scrollView.contentOffset.x;
-                CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
-                _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
-            });
             [UIView animateWithDuration:0.5 animations:^{
                 [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0)];
 
@@ -183,12 +183,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }];
         }
     }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        CGFloat offsetWidth = _scrollView.contentOffset.x;
-        CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
-        _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
-    });
+    CGFloat offsetWidth = _scrollView.contentOffset.x;
+    CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
+    _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -207,11 +204,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
     }
 //    _contentOffSetWidth = _scrollView.contentOffset.x;
-    NSLog(@"------->%f",scrollView.contentOffset.x);
-    CGFloat offsetWidth = _scrollView.contentOffset.x;
-    CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
-    NSLog(@"---->%f",offsetWidth);
-    _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
+
+//    [UIView animateWithDuration:.5 animations:^{
+//        CGFloat offsetWidth = _scrollView.contentOffset.x;
+//        CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
+//        _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
+//    }];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
