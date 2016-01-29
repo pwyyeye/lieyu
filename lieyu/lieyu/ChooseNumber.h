@@ -20,4 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *numberField;
 
+- (void)configure:(int)defaultNum;
+
 @end

@@ -91,7 +91,7 @@
         UIImage *secImg = [lDic objectForKey:HEIGHTKEY];
         NSString *vTitleStr = [lDic objectForKey:TITLEKEY];
         float vButtonWidth = [[lDic objectForKey:TITLEWIDTH] floatValue];
-//        NSString *countSumStr=[lDic objectForKey:COUNTORDER];
+        NSString *countSumStr=[lDic objectForKey:COUNTORDER];
         UIButton *vButton = [UIButton buttonWithType:UIButtonTypeCustom];
         vButton.userInteractionEnabled=YES;
         
@@ -100,7 +100,7 @@
         //设置title
         [vButton setTitle:vTitleStr forState:UIControlStateNormal];
         [vButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        [vButton setTitleColor:RGB(37, 82, 157) forState:UIControlStateSelected];
+        [vButton setTitleColor:RGB(37, 82, 157) forState:UIControlStateSelected];
         vButton.titleLabel.font=[UIFont systemFontOfSize:10];
         [vButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [vButton setTag:i];

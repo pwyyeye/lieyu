@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 @class RecommendPackageModel;
 @class TaoCanModel;
+#import "PinKeModel.h"
 
 @interface LYDinWeiTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_header;
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_price_now;
 @property (weak, nonatomic) IBOutlet UILabel *label_price_old;
 @property (weak, nonatomic) IBOutlet UILabel *label_percent;
+@property (weak, nonatomic) IBOutlet UIImageView *hotImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *backView;
 
@@ -27,4 +29,5 @@
 
 @property (nonatomic,strong) RecommendPackageModel *model;
 @property (nonatomic,strong) TaoCanModel *taoCanModel;
+@property (nonatomic, strong) PinKeModel *pinkeModel;
 @end

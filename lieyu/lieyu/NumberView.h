@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface NumberView : UIView
+@property (nonatomic, strong) UILabel *label3;
 
+- (void)configure;
 @end

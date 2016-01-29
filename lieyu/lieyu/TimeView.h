@@ -10,6 +10,9 @@
 
 @interface TimeView : UIView
 @property (nonatomic, strong) UILabel *label3;
+@property (nonatomic, strong) UILabel *label1;
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString *endTime;
+
+- (void)congigure;
 @end

@@ -10,12 +10,14 @@
 #import "NeedHideNavigationBar.h"
 #import "MenuHrizontal.h"
 #import "ManagersView.h"
-@interface LYwoYaoDinWeiMainViewController : LYBaseViewController<MenuHrizontalDelegate,ChooseManage>
+#import "DetailView.h"
+#import "preview.h"
+
+@interface LYwoYaoDinWeiMainViewController : LYBaseViewController<MenuHrizontalDelegate,ChooseManage,showImageInPreview>
 {
     MenuHrizontal *mMenuHriZontal;
     NSMutableArray *weekDateArr;
     NSString *datePar;
-    UITableView *menuTableView;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
@@ -26,5 +28,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *NumberLbl;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLbl;
 @property (weak, nonatomic) IBOutlet UIButton *payBtn;
+
+@property (nonatomic, strong) preview *subView;
+@property (nonatomic, strong) NSString *startTime;
+@property (nonatomic, strong) NSString *endTime;
 
 @end

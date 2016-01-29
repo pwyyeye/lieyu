@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="3bo-9e-LJO">
-                    <rect key="frame" x="0.0" y="196" width="320" height="323"/>
+                    <rect key="frame" x="0.0" y="199" width="320" height="320"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="WSj-eM-X8F"/>
@@ -38,7 +38,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5P9-YC-eYs">
-                    <rect key="frame" x="0.0" y="98" width="320" height="98"/>
+                    <rect key="frame" x="0.0" y="101" width="320" height="98"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="98" id="22d-7R-kHk"/>
                     </constraints>
@@ -53,7 +53,7 @@
                                 <constraint firstAttribute="width" constant="91" id="vLa-Eg-DGC"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总需支付：¥0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNy-SJ-s5N">
@@ -63,7 +63,7 @@
                                 <constraint firstAttribute="width" constant="164" id="vuh-KK-zZK"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3YO-9k-Noy">
@@ -73,7 +73,7 @@
                                 <constraint firstAttribute="width" constant="105" id="BNm-Zz-EGC"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <state key="normal" title="立即支付">
+                            <state key="normal" title="立即购买">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -104,10 +104,10 @@
                 <constraint firstItem="3bo-9e-LJO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gJH-m7-3Q2"/>
                 <constraint firstAttribute="bottom" secondItem="BbW-0d-DJ8" secondAttribute="bottom" id="hsT-h0-AQ7"/>
                 <constraint firstAttribute="trailing" secondItem="BbW-0d-DJ8" secondAttribute="trailing" id="qCK-Le-ula"/>
-                <constraint firstItem="5P9-YC-eYs" firstAttribute="top" secondItem="XHt-IO-Xda" secondAttribute="bottom" id="yFD-iw-Mmj"/>
+                <constraint firstItem="5P9-YC-eYs" firstAttribute="top" secondItem="XHt-IO-Xda" secondAttribute="bottom" constant="3" id="yFD-iw-Mmj"/>
                 <constraint firstAttribute="trailing" secondItem="5P9-YC-eYs" secondAttribute="trailing" id="zVV-wn-cew"/>
             </constraints>
-            <point key="canvasLocation" x="112" y="228"/>
+            <point key="canvasLocation" x="111" y="219"/>
         </view>
     </objects>
 </document>

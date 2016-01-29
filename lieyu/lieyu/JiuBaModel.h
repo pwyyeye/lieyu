@@ -61,6 +61,8 @@
 @property (nonatomic,copy) NSString *isSign;
 @property (nonatomic,copy) NSString *addressabb;
 @property BOOL rowSelected;
+@property (nonatomic, strong) NSString *startTime;
+@property (nonatomic, strong) NSString *endTime;
 
 -(NSComparisonResult)compareJiuBaModel:(JiuBaModel *)model;
 - (NSComparisonResult)compareJiuBaModelGao:(JiuBaModel *)modelGao;
