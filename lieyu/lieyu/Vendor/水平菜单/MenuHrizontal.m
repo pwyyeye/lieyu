@@ -158,21 +158,24 @@
         vButton.weekLal.font=[UIFont systemFontOfSize:12];
         vButton.weekLal.backgroundColor=[UIColor clearColor];
         vButton.weekLal.textColor = RGB(102, 102, 102);
-        vButton.weekLal.textAlignment=1;
+        vButton.weekLal.textAlignment = NSTextAlignmentCenter;
         [vButton addSubview:vButton.weekLal];
         
         //lineView
-        vButton.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, vButton.bounds.size.height - 1, vButton.bounds.size.width, 1)];
+        vButton.lineView = [[UIView alloc]initWithFrame:CGRectMake(10, vButton.bounds.size.height - 2, vButton.bounds.size.width - 20, 2)];
         vButton.lineView.backgroundColor = [UIColor whiteColor];
         [vButton addSubview:vButton.lineView];
         
-        vButton.titleLal =[[UILabel alloc]initWithFrame:CGRectMake(11, 20,40, 10)];
+        //titleView
+        vButton.titleLal =[[UILabel alloc]initWithFrame:CGRectMake(15, 20,vButton.frame.size.width - 30, 10)];
         vButton.titleLal.text= [NSString stringWithFormat:@"%@月%@日",vMonthStr, vTitleStr];
         vButton.titleLal.font=[UIFont systemFontOfSize:9];
+        CGSize size =[vButton.titleLal.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:9]}];
+        vButton.titleLal.frame = CGRectMake((CGRectGetWidth(vButton.frame) - size.width) / 2, 20, size.width, 10);
         vButton.titleLal.backgroundColor=[UIColor clearColor];
-        vButton.titleLal.alpha = 0.7;
+//        vButton.titleLal.alpha = 0.7;
         vButton.titleLal.textColor = RGB(102, 102, 102);
-        vButton.titleLal.textAlignment=1;
+        vButton.weekLal.textAlignment = NSTextAlignmentCenter;
         [vButton addSubview:vButton.titleLal];
         //
         if(i==0){

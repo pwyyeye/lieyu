@@ -8,7 +8,8 @@
 #import "DejalActivityView.h"
 #import "EScrollerView.h"
 #import "UIImageView+WebCache.h"
-
+#define pageConWidth 12
+#define pageConHeight 2
 @implementation EScrollerView
 @synthesize delegate;
 
@@ -46,20 +47,23 @@
         self.userInteractionEnabled=YES;
 		viewSize=rect;
 //        NSUInteger pageCount=3;
-           NSUInteger pageCount=titleArray.count;
-        scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, viewSize.size.width, viewSize.size.height)];
+        NSUInteger pageCount = titleArray.count;
+        scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(3, 0, viewSize.size.width - 6, viewSize.size.height)];
+        scrollView.layer.cornerRadius = 2;
+        scrollView.layer.masksToBounds = YES;
         scrollView.pagingEnabled = YES;
-        scrollView.contentSize = CGSizeMake(viewSize.size.width * pageCount, viewSize.size.height);
+        scrollView.contentSize = CGSizeMake((viewSize.size.width - 6) * pageCount, viewSize.size.height);
         scrollView.showsHorizontalScrollIndicator = NO;
         scrollView.showsVerticalScrollIndicator = NO;
         scrollView.scrollsToTop = NO;
         scrollView.delegate = self;
         scrollView.backgroundColor=[UIColor clearColor];
+//        scrollView.bounces = NO;
         for (int i=0; i<pageCount; i++)
         {
             UIImageView *imgView=[[UIImageView alloc] init];
             [imgView setContentMode:UIViewContentModeScaleAspectFill];
-            [imgView setFrame:CGRectMake(viewSize.size.width*i, 0,viewSize.size.width, viewSize.size.height)];
+            [imgView setFrame:CGRectMake((viewSize.size.width - 6) *i, 0,(viewSize.size.width - 6), viewSize.size.height)];
             imgView.tag= i;
             imgView.backgroundColor=[UIColor grayColor];
             if ([[imagePathArray objectAtIndex:i]length]>0)
@@ -90,9 +94,9 @@
         pageControl=[[UIPageControl alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-pageControlWidth-20,scrollView.frame.size.height-15,pageControlWidth,10)];
         pageControl.currentPage=0;
         if (pageCount>1) {
-            pageControl.currentPageIndicatorTintColor=[UIColor redColor];
+            pageControl.currentPageIndicatorTintColor=[UIColor lightTextColor];
         }else{
-            pageControl.currentPageIndicatorTintColor=[UIColor redColor];
+            pageControl.currentPageIndicatorTintColor=[UIColor lightTextColor];
         }
 //        pageControl.currentPageIndicatorTintColor=[UIColor redColor];
         pageControl.pageIndicatorTintColor = [UIColor whiteColor];
@@ -122,10 +126,10 @@
 
 - (void) updateScrollView
 {
-    [NSTimer scheduledTimerWithTimeInterval:4 target:self
-                                   selector:@selector(handleMaxShowTimer:)
-                                   userInfo: nil
-                                    repeats:YES];
+//    [NSTimer scheduledTimerWithTimeInterval:4 target:self
+//                                   selector:@selector(handleMaxShowTimer:)
+//                                   userInfo: nil
+//                                    repeats:YES];
 }
 
 - (void)handleMaxShowTimer:(NSTimer*)theTimer
@@ -142,6 +146,12 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)sender
 {
+//    NSLog(@"contentOffset:%@",NSStringFromCGPoint(scrollView.contentOffset));
+//    NSLog(@"contentSize:%@",NSStringFromCGSize(scrollView.contentSize));
+//    NSLog(@"%f",scrollView.frame.size.width *(imageArray.count - 1));
+//    if(scrollView.contentOffset.x > scrollView.frame.size.width *(imageArray.count - 1)){
+//        [scrollView setContentOffset:CGPointMake(-scrollView.frame.size.width, 0)];
+//    }
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     currentPageIndex=page;
