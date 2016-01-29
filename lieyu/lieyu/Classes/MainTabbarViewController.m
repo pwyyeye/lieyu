@@ -157,7 +157,9 @@
 
 
 - (void)setupViewStyles
-{/*,@"PlayTogether_normal" ,@"PlayTogether_selected"*/
+{
+//    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
+//    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
     NSArray * aryImages = @[@"iNeedPlay_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
     NSArray * selectedImages = @[@"iNeedPlay_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
 

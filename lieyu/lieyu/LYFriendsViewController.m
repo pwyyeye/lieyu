@@ -89,6 +89,7 @@
         NSInteger _saveImageAndVideoIndex;
         NSTimer *_timer;
         UIView *_lineView;
+        CGFloat _contentOffSetY;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -466,37 +467,29 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [UIView animateWithDuration:0.4 animations:^{
-         effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
-    }];
+   
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y > _contentOffSetY) {
+        [UIView animateWithDuration:0.4 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+        }];
+    }else{
+        if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){
+        [UIView animateWithDuration:.4 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+        }completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.2 animations:^{
+                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+            }];
+        }];
+        }
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    if (!decelerate) {
-    [UIView animateWithDuration:.4 delay:4 options:nil animations:^{
-        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
-    }completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
-            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
-        }];
-    }];
-    }
-}
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    if(CGRectGetMaxY(effectView.frame) == SCREEN_HEIGHT){
-    [UIView animateWithDuration:.4 delay:2 options:nil animations:^{
-        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
-    }completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
-            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
-        }];
-    }];
-    }
+    _contentOffSetY = scrollView.contentOffset.y;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
