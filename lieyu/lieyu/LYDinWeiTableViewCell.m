@@ -34,6 +34,7 @@
     self.backView.layer.shadowOffset = CGSizeMake(0, 1);
     self.backView.layer.shadowOpacity = 0.1;
     self.backView.layer.shadowRadius = 1;
+    self.hotImage.hidden = YES;
 }
 
 - (void)setModel:(RecommendPackageModel *)model{

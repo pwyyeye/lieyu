@@ -554,11 +554,54 @@
 }
 
 - (void)clickThisImageView:(UIButton *)sender{
+    UIView *bigView = [[UIView alloc]initWithFrame:self.view.frame];
+    bigView.backgroundColor = RGBA(0, 0, 0, 0.3);
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideBigView:)];
+    [bigView addGestureRecognizer:tap];
     
+    DetailView *detailView = [[[NSBundle mainBundle]loadNibNamed:@"DetailView" owner:nil options:nil]firstObject];
+    detailView.frame = CGRectMake(8, 64, SCREEN_WIDTH - 16, 268 + SCREEN_WIDTH / 3);
+    detailView.center = self.view.center;
+    PinKeModel *model = [dataList objectAtIndex:sender.tag];
+//    RecommendPackageModel *model = [jiubaModel.recommend_package objectAtIndex:sender.tag];
+//    detailView.packModel = model;
+    detailView.delegate = self;
+    NSDictionary *dic=@{@"smid":[NSString stringWithFormat:@"%d",model.smid]};
+    [[LYHomePageHttpTool shareInstance]getTogetherDetailWithParams:dic block:^(PinKeModel *result) {
+        [detailView fillPinkeModel:result];
+    }];
+//    [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiTaoCanDetailWithParams:dic block:^(TaoCanModel *result) {
+//        PinKeModel *pkModel = result;
+////        detailView fillPinkeModel:<#(PinKeModel *)#>
+//    }];
+    
+    [self.view addSubview:bigView];
+    [bigView addSubview:detailView];
+}
+
+#pragma mark - 将详情界面撤销
+- (void)hideBigView:(UITapGestureRecognizer *)gesture{
+    [gesture.view removeFromSuperview];
 }
 
 - (void)showImageInPreview:(UIImage *)image{
-    
+    [self.navigationController.navigationBar setHidden:YES];
+    _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
+    _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _subView.button.hidden = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(previewHide)];
+    [_subView addGestureRecognizer:tap];
+    _subView.image = image;
+    [_subView viewConfigure];
+    //    _subView.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    //    _subView.imageView.center = _subView.center;
+    [self.view addSubview:_subView];
 }
+
+- (void)previewHide{
+    [self.navigationController.navigationBar setHidden:NO];
+    [_subView removeFromSuperview];
+}
+
 
 @end

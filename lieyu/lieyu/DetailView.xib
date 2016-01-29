@@ -41,7 +41,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzO-6Z-N2L">
-                    <rect key="frame" x="544" y="62.5" width="40" height="40"/>
+                    <rect key="frame" x="544" y="62" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="h5V-lt-khe"/>
                         <constraint firstAttribute="width" constant="40" id="xHu-FN-nPB"/>
@@ -51,13 +51,13 @@
                     <state key="normal" backgroundImage="detail_collect_normal.png"/>
                 </button>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-3o-6HG">
-                    <rect key="frame" x="0.0" y="110" width="600" height="312"/>
+                    <rect key="frame" x="0.0" y="110" width="600" height="85"/>
                     <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="85" id="5cw-gU-fMU"/>
+                        <constraint firstAttribute="height" constant="85" id="5cw-gU-fMU"/>
                     </constraints>
                 </scrollView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4P-h2-UvL">
-                    <rect key="frame" x="16" y="430" width="568" height="1"/>
+                    <rect key="frame" x="16" y="195" width="568" height="1"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050862068990000002" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="FdN-ZD-hwe"/>
@@ -67,7 +67,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rBb-s4-RL5">
-                    <rect key="frame" x="0.0" y="431" width="600" height="128"/>
+                    <rect key="frame" x="0.0" y="196" width="600" height="128"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="128" id="Mwf-Kb-05f"/>
@@ -132,9 +132,11 @@
                 <constraint firstAttribute="trailing" secondItem="Azo-ze-OJv" secondAttribute="trailing" constant="16" id="aev-GA-oI5"/>
                 <constraint firstItem="Azo-ze-OJv" firstAttribute="top" secondItem="nUk-r9-rZT" secondAttribute="bottom" constant="8" id="dAW-yw-SLu"/>
                 <constraint firstItem="uEc-3o-6HG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dPQ-pO-uTr"/>
+                <constraint firstItem="rBb-s4-RL5" firstAttribute="top" secondItem="X4P-h2-UvL" secondAttribute="bottom" id="hcK-h6-LFK"/>
                 <constraint firstItem="VzO-6Z-N2L" firstAttribute="centerY" secondItem="Gy9-Tc-wiN" secondAttribute="centerY" id="kUM-l0-isV"/>
                 <constraint firstAttribute="trailing" secondItem="nUk-r9-rZT" secondAttribute="trailing" constant="16" id="nYK-ee-nrB"/>
                 <constraint firstItem="uEc-3o-6HG" firstAttribute="top" secondItem="Gy9-Tc-wiN" secondAttribute="bottom" constant="20" id="nxX-P2-okc"/>
+                <constraint firstItem="rBb-s4-RL5" firstAttribute="top" secondItem="X4P-h2-UvL" secondAttribute="bottom" id="o5g-1Z-QL6"/>
                 <constraint firstAttribute="bottom" secondItem="e57-P9-AOH" secondAttribute="bottom" constant="15" id="pQW-6f-8gl"/>
                 <constraint firstItem="X4P-h2-UvL" firstAttribute="top" secondItem="uEc-3o-6HG" secondAttribute="bottom" constant="8" id="pZC-of-oCx"/>
                 <constraint firstItem="rBb-s4-RL5" firstAttribute="top" secondItem="X4P-h2-UvL" secondAttribute="bottom" id="s1v-eW-pAF"/>
@@ -142,8 +144,17 @@
                 <constraint firstItem="rBb-s4-RL5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ulv-i1-PJN"/>
                 <constraint firstItem="X4P-h2-UvL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="vyc-z3-FmP"/>
                 <constraint firstAttribute="trailing" secondItem="h4Z-az-8x3" secondAttribute="trailing" constant="16" id="xlR-9M-YVQ"/>
+                <constraint firstItem="X4P-h2-UvL" firstAttribute="top" secondItem="uEc-3o-6HG" secondAttribute="bottom" id="zUq-rb-ycO"/>
                 <constraint firstItem="VTJ-Fw-EaM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="zbw-Ny-vJY"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="pZC-of-oCx"/>
+                    <exclude reference="hcK-h6-LFK"/>
+                    <exclude reference="s1v-eW-pAF"/>
+                    <exclude reference="BxN-ro-Bvk"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="buyed_lbl" destination="xz0-kV-f5I" id="sIU-lO-Ubo"/>
                 <outlet property="collect_btn" destination="VzO-6Z-N2L" id="9bj-HJ-Dba"/>
@@ -157,6 +168,7 @@
                 <outlet property="tableHeight" destination="Mwf-Kb-05f" id="DHJ-FF-wzv"/>
                 <outlet property="title_lbl" destination="h4Z-az-8x3" id="3Ol-22-4aF"/>
             </connections>
+            <point key="canvasLocation" x="29" y="331"/>
         </view>
     </objects>
     <resources>

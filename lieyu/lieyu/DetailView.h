@@ -33,6 +33,7 @@
 
 @property (nonatomic, strong) RecommendPackageModel *packModel;
 @property (nonatomic, strong) TaoCanModel *tcModel;
+@property (nonatomic, strong) PinKeModel *pkModel;
 @property (nonatomic, strong) preview *subView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollHeight;
@@ -41,4 +42,5 @@
 @property (nonatomic, assign) id<showImageInPreview> delegate;
 
 - (void)Configure;
+- (void)fillPinkeModel:(PinKeModel *)model;
 @end

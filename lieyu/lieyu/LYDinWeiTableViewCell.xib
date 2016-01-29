@@ -161,6 +161,7 @@
                 <outlet property="backView" destination="qPV-s1-qNE" id="k9x-4J-kE7"/>
                 <outlet property="button_add" destination="lnV-pD-Wf7" id="zDO-c4-DQD"/>
                 <outlet property="button_less" destination="uT9-vf-Kb0" id="Mch-3c-LFa"/>
+                <outlet property="hotImage" destination="3w5-E7-2aR" id="rpK-ik-NZl"/>
                 <outlet property="imageView_button" destination="zAB-lK-zUm" id="ngt-vU-vgZ"/>
                 <outlet property="imageView_header" destination="q4d-GZ-Jot" id="611-su-2CR"/>
                 <outlet property="label_buyCount" destination="lAn-Wb-x2j" id="ipz-L1-COR"/>
