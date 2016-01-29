@@ -45,7 +45,7 @@
 
     //设置标题颜色
     
-    UIColor * color = [UIColor whiteColor];
+    UIColor * color = [UIColor blackColor];
     
     NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
     

@@ -32,14 +32,16 @@
 #import "HomeMenuCollectionViewCell.h"
 #import "LYHotBarViewController.h"
 #import "HomePageModel.h"
+#import "SDCycleScrollView.h"
 #import "HotMenuButton.h"
+
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
 #define HOMEPAGE_TIMEEVENT_MTA @"HOMEPAGE_TIMEEVENT"
 
 @interface HomePageINeedPlayViewController ()
-<EScrollerViewDelegate,
+<EScrollerViewDelegate,SDCycleScrollViewDelegate,
 UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 ,UIScrollViewDelegate>{
     UIButton *_cityChooseBtn,*_searchBtn;
@@ -653,11 +655,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [dicTemp setObject:@"" forKey:@"mainHeading"];
             [bigArr addObject:dicTemp];
         }
-        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 9)/16)
-                                                              scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
-        scroller.delegate=self;
-        scroller.tag=1999;
-        [cell addSubview:scroller];
+        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+        cycleScrollView.imageURLStringsGroup = self.bannerList;
+        cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
+        cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
+        [cell addSubview:cycleScrollView];
+        
+//        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 9)/16)
+//                                                              scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
+//        scroller.delegate=self;
+//        scroller.tag=1999;
+//        [cell addSubview:scroller];
+        
         return cell;
     }else if(indexPath.row == 1){
         HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
@@ -765,6 +774,57 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+#pragma mark - SDCycleScrollViewDelegate
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
+{
+    NSDictionary *dic = _newbannerList [index];
+    NSNumber *ad_type=[dic objectForKey:@"ad_type"];
+    NSNumber *linkid=[dic objectForKey:@"linkid"];
+    //    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客
+    //    "linkid": 1 //对应的id  比如酒吧 就是对应酒吧id  套餐就是对应套餐id 活动就对应活动页面的id
+    if(ad_type.intValue ==1){
+        //酒吧
+        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+        
+        controller.beerBarId = linkid;
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图酒吧ID%@",linkid];
+        [self.navigationController pushViewController:controller animated:YES];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+    }else if(ad_type.intValue ==2){
+        //有活动内容才跳转
+        if ([dic objectForKey:@"content"]) {
+            HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
+            huodong.content=[dic objectForKey:@"content"];
+            [self.navigationController pushViewController:huodong animated:YES];
+        }
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"活动"]];
+    }else if (ad_type.intValue ==3){
+        //    套餐/3
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *dateStr=[dateFormatter stringFromDate:[NSDate new]];
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
+        DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
+        taoCanXQViewController.title=@"套餐详情";
+        taoCanXQViewController.smid=linkid.intValue;
+        taoCanXQViewController.dateStr=dateStr;
+        [self.navigationController pushViewController:taoCanXQViewController animated:YES];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图套餐详情ID%@",linkid];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+    }else if (ad_type.intValue ==4){
+        //    4：拼客
+        UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
+        LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
+        playTogetherMainViewController.title=@"我要拼客";
+        playTogetherMainViewController.smid=linkid.intValue;
+        [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图我要拼客ID%@",linkid];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+    }
+
+}
+/*
 -(void)EScrollerViewDidClicked:(NSUInteger)index{
     NSDictionary *dic = _newbannerList [index];
     NSNumber *ad_type=[dic objectForKey:@"ad_type"];
@@ -812,6 +872,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     
 }
+ */
 /*
  #pragma mark - Navigation
  

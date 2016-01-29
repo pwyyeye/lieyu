@@ -20,7 +20,7 @@
 
 #import "LPAlertView.h"
 #import "ChooseTime.h"
-#import "ChooseNumber.h"
+#import "ChoosePeople.h"
 #import "ContentView.h"
 #import "TimeView.h"
 
@@ -47,7 +47,7 @@
     
     //alertView
     ChooseTime *chooseTimeAlert;
-    ChooseNumber *chooseNumberAlert;
+    ChoosePeople *chooseNumberAlert;
     ContentView *chooseWayAlert;
 }
 
@@ -69,7 +69,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
     weekDateArr = [[NSMutableArray alloc]initWithCapacity:7];
     self.defaultIndex = -1;
-    oldPeople = 0;
+    oldPeople = 1;
     self.labelArray = @[@"我请客",
                         @"AA付款",
                         @"免费发起"];
@@ -207,7 +207,7 @@
     if(time == nil){
         [MyUtil showCleanMessage:@"请选择到店时间！"];
         return;
-    }else if(oldPeople == 0){
+    }else if(oldPeople == 1){
         [MyUtil showCleanMessage:@"请选择拼客人数！"];
         return;
     }else if (_defaultIndex == -1){
@@ -324,7 +324,7 @@
         [MyUtil showCleanMessage:@"请先选择拼客方式"];
         return;
     }else{
-        chooseNumberAlert = [[[NSBundle mainBundle]loadNibNamed:@"ChooseNumber" owner:nil options:nil]firstObject];
+        chooseNumberAlert = [[[NSBundle mainBundle]loadNibNamed:@"ChoosePeople" owner:nil options:nil]firstObject];
         chooseNumberAlert.tag = 14;
         chooseNumberAlert.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200) ;
         [chooseNumberAlert configure:oldPeople];
@@ -511,7 +511,7 @@
     if (_defaultIndex == -1 || _defaultIndex == 0) {
         //未选择方式或者我请客
     }else if(_defaultIndex == 1){//AA付款
-        if(oldPeople == 0){
+        if(oldPeople == 1){
             //还未选择拼客人数
         }else{
             oldmoney = oldmoney / oldPeople;
