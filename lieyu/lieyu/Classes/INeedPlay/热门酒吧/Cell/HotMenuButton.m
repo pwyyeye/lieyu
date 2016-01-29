@@ -33,10 +33,21 @@
     _isHomePageMenuViewSelected = isHomePageMenuViewSelected;
     if (isHomePageMenuViewSelected) {
         [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
+        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:13];
     }else{
         [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:12];
+        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:13];
+    }
+}
+
+- (void)setIsFriendsMenuViewSelected:(BOOL)isFriendsMenuViewSelected{
+    _isFriendsMenuViewSelected = isFriendsMenuViewSelected;
+    if (isFriendsMenuViewSelected) {
+        [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+        self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
+    }else{
+        [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
+        self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:13];
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biaobai_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="oWY-Hw-95G">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biaobai_iconBlack.png" translatesAutoresizingMaskIntoConstraints="NO" id="oWY-Hw-95G">
                         <rect key="frame" x="11" y="17" width="13" height="13"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="13" id="CuF-MO-LKv"/>
@@ -70,15 +70,23 @@
                             <constraint firstAttribute="height" constant="26" id="dJD-rl-gBB"/>
                         </constraints>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1A-if-scO">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogp-XA-woB">
+                        <rect key="frame" x="285" y="12" width="26" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="26" id="ZKb-gl-whr"/>
+                            <constraint firstAttribute="height" constant="26" id="tfr-qx-VjN"/>
+                        </constraints>
+                    </button>
+                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1A-if-scO">
                         <rect key="frame" x="286" y="11" width="26" height="26"/>
+                        <color key="backgroundColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="Zqd-Qk-3zy"/>
                             <constraint firstAttribute="width" constant="26" id="mID-r3-Z3p"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="21"/>
-                        <state key="normal" backgroundImage="gengduo_icon.png">
-                            <color key="titleColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="8"/>
+                        <state key="normal" title="1000">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
                 </subviews>
@@ -92,6 +100,7 @@
                     <constraint firstItem="4vx-d8-aaB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Kdh-Us-KVI"/>
                     <constraint firstItem="awr-dx-FPt" firstAttribute="leading" secondItem="uLb-Qt-NKL" secondAttribute="trailing" constant="10" id="N0g-SW-Ucz"/>
                     <constraint firstItem="b1A-if-scO" firstAttribute="leading" secondItem="4vx-d8-aaB" secondAttribute="trailing" constant="9" id="Ndd-gp-kSQ"/>
+                    <constraint firstItem="Ogp-XA-woB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="ROz-eg-Dw6"/>
                     <constraint firstItem="f4t-hB-qMt" firstAttribute="leading" secondItem="awr-dx-FPt" secondAttribute="trailing" constant="10" id="Rtm-fn-Ydl"/>
                     <constraint firstItem="dce-VK-K0o" firstAttribute="leading" secondItem="f4t-hB-qMt" secondAttribute="trailing" constant="10" id="TPJ-iv-Y32"/>
                     <constraint firstItem="uLb-Qt-NKL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="X6x-mt-HmM"/>
@@ -99,6 +108,7 @@
                     <constraint firstItem="f4t-hB-qMt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="fKd-7f-1tC"/>
                     <constraint firstItem="b1A-if-scO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="fdZ-4O-m7n"/>
                     <constraint firstItem="dce-VK-K0o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="lDL-RS-sSI"/>
+                    <constraint firstAttribute="trailing" secondItem="Ogp-XA-woB" secondAttribute="trailing" constant="9" id="ttS-aE-5XE"/>
                     <constraint firstItem="yGY-v4-hg6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="xHD-pb-o00"/>
                     <constraint firstItem="oWY-Hw-95G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="yv5-KQ-568"/>
                 </constraints>
@@ -112,12 +122,12 @@
                 <outletCollection property="btnArray" destination="dce-VK-K0o" id="rDg-D1-aU7"/>
                 <outletCollection property="btnArray" destination="RSZ-bW-IXn" id="fkp-2J-jMQ"/>
                 <outletCollection property="btnArray" destination="4vx-d8-aaB" id="mHo-Ur-tHR"/>
+                <outletCollection property="btnArray" destination="Ogp-XA-woB" id="q9J-Rb-6hC"/>
             </connections>
             <point key="canvasLocation" x="443" y="567"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="biaobai_icon.png" width="13" height="12"/>
-        <image name="gengduo_icon.png" width="27" height="27"/>
+        <image name="biaobai_iconBlack.png" width="13" height="12"/>
     </resources>
 </document>

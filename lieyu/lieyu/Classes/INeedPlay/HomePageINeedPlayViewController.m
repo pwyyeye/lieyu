@@ -149,32 +149,46 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         UICollectionView *collectView = nil;
         collectView = _collectViewArray[_index];
         if ((collectView.contentOffset.y > _contentOffSet_Height_YD && _index == 0) || (collectView.contentOffset.y > _contentOffSet_Height_BAR && _index == 1)) {
+//            for (UICollectionView *collectView in _collectViewArray) {
+//                [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0)];
+//            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CGFloat offsetWidth = _scrollView.contentOffset.x;
+                CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
+                _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
+            });
             [UIView animateWithDuration:0.5 animations:^{
+                [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0)];
+
                 _menuView.center = CGPointMake( _menuView.center.x,-2 );
                 _titleImageView.alpha = 0.0;
                 _cityChooseBtn.alpha = 0.f;
                 _searchBtn.alpha = 0.f;
-                for (UICollectionView *collectView in _collectViewArray) {
-                    [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0)];
-                }
+            } completion:^(BOOL finished) {
+                
             }];
         }else{
+           // for (UICollectionView *collectView in _collectViewArray) {
+              //  [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+            //}
             [UIView animateWithDuration:0.5 animations:^{
+                [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+
                 _menuView.center = CGPointMake(_menuView.center.x,45);
                 _titleImageView.alpha = 1.0;
                 _cityChooseBtn.alpha = 1.f;
                 _searchBtn.alpha = 1.f;
-                for (UICollectionView *collectView in _collectViewArray) {
-                    [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
-                }
+            }completion:^(BOOL finished) {
+                
             }];
         }
     }
     
-    
-    CGFloat offsetWidth = _scrollView.contentOffset.x;
-    CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
-    _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CGFloat offsetWidth = _scrollView.contentOffset.x;
+        CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
+        _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
+    });
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -192,10 +206,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             _btn_yedian.isHomePageMenuViewSelected = YES;
         }
     }
-    _contentOffSetWidth = _scrollView.contentOffset.x;
-   
-    
-    
+//    _contentOffSetWidth = _scrollView.contentOffset.x;
+    NSLog(@"------->%f",scrollView.contentOffset.x);
+    CGFloat offsetWidth = _scrollView.contentOffset.x;
+    CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
+    NSLog(@"---->%f",offsetWidth);
+    _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -237,7 +253,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _menuView.alpha = 5;
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-    _menuView.layer.shadowOpacity = 0.1;
+    _menuView.layer.shadowOpacity = 0.3;
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
@@ -245,8 +261,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
-    _cityChooseBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:12];
-    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 14, 0, 0)];
+    _cityChooseBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
+    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 15, 0, 0)];
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_cityChooseBtn];
     
@@ -265,27 +281,27 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _btn_yedian = [[HotMenuButton alloc]init];
     _btn_yedian.isHomePageMenuViewSelected = YES;
     [_btn_yedian setTitle:@"夜店" forState:UIControlStateNormal];
-    _btn_yedian.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+//    _btn_yedian.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
    // [_btn_yedian setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
     [_menuView addSubview:_btn_yedian];
     [_btn_yedian addTarget:self action:@selector(yedianClick) forControlEvents:UIControlEventTouchUpInside];
     [_btn_yedian mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(_menuView.mas_bottom).offset(-5.5);
-        make.right.mas_equalTo(_menuView.mas_centerX).offset(-32);
-        make.size.mas_equalTo(CGSizeMake(24, 14));
+        make.bottom.mas_equalTo(_menuView.mas_bottom).offset(-4.5);
+        make.right.mas_equalTo(_menuView.mas_centerX).offset(-12);
+        make.size.mas_equalTo(CGSizeMake(44, 16));
     }];
     
     _btn_bar = [[HotMenuButton alloc]init];
     [_btn_bar setTitle:@"酒吧" forState:UIControlStateNormal];
-    _btn_bar.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+//    _btn_bar.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     _btn_bar.isHomePageMenuViewSelected = NO;
    // [_btn_bar setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
     [_btn_bar addTarget:self action:@selector(barClick) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_btn_bar];
     [_btn_bar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(_menuView.mas_bottom).offset(-5.5);
-        make.left.mas_equalTo(_menuView.mas_centerX).offset(32);
-        make.size.mas_equalTo(CGSizeMake(24, 14));
+        make.bottom.mas_equalTo(_menuView.mas_bottom).offset(-4.5);
+        make.left.mas_equalTo(_menuView.mas_centerX).offset(12);
+        make.size.mas_equalTo(CGSizeMake(44, 16));
     }];
     
     _lineView = [[UIView alloc]init];
@@ -379,7 +395,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 //筛选，跳转，增加，删除，确认
-
 #pragma mark 搜索action
 - (void)searchClick:(UIButton *)sender {
     LYHomeSearcherViewController *homeSearchVC = [[LYHomeSearcherViewController alloc]init];
