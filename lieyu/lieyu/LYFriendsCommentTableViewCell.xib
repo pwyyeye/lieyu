@@ -15,9 +15,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pinglun_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="og9-JM-rfO">
-                        <rect key="frame" x="11" y="13" width="12" height="11"/>
+                        <rect key="frame" x="13" y="12" width="12" height="13"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="11" id="VUE-Sk-lKp"/>
+                            <constraint firstAttribute="height" constant="13" id="VUE-Sk-lKp"/>
                             <constraint firstAttribute="width" constant="12" id="fqZ-T8-UX7"/>
                         </constraints>
                     </imageView>
@@ -41,7 +41,7 @@
                     <constraint firstItem="2a1-5q-Rjt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="TCX-R7-TDj"/>
                     <constraint firstAttribute="bottom" secondItem="2a1-5q-Rjt" secondAttribute="bottom" constant="5" id="WpP-bw-LOj"/>
                     <constraint firstItem="hDf-dc-DES" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="YS8-n9-fZ7"/>
-                    <constraint firstItem="og9-JM-rfO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="Yda-dY-ahs"/>
+                    <constraint firstItem="og9-JM-rfO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="Yda-dY-ahs"/>
                     <constraint firstItem="hDf-dc-DES" firstAttribute="centerY" secondItem="og9-JM-rfO" secondAttribute="centerY" id="bmQ-ro-aCg"/>
                     <constraint firstItem="og9-JM-rfO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="g3e-Un-yEQ"/>
                     <constraint firstItem="hDf-dc-DES" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35" id="jem-8b-glP"/>
@@ -61,6 +61,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="pinglun_icon.png" width="12" height="11"/>
+        <image name="pinglun_icon.png" width="24" height="24"/>
     </resources>
 </document>
