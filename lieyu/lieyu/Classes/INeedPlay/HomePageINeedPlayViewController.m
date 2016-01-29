@@ -33,6 +33,7 @@
 #import "LYHotBarViewController.h"
 #import "HomePageModel.h"
 #import "SDCycleScrollView.h"
+#import "HotMenuButton.h"
 
 
 #define PAGESIZE 20
