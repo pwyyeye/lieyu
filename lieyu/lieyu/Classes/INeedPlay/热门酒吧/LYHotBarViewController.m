@@ -64,7 +64,8 @@
     
     for(int i = 0; i < 4; i++){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 90) collectionViewLayout:layout];
+        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) collectionViewLayout:layout];
+        [collectView setContentInset:UIEdgeInsetsMake(26, 0, 0, 0)];
         collectView.dataSource = self;
         collectView.delegate = self;
         collectView.tag = i;
@@ -81,9 +82,19 @@
 }
 #pragma mark - 创建菜单view
 - (void)createMenuView{
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+    _scrollView.delegate = self;
+    _scrollView.pagingEnabled = YES;
+    [self.view addSubview:_scrollView];
+    
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     _menuView = [[UIVisualEffectView alloc]initWithEffect:effect];
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 26);
+    _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
+    _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
+    _menuView.layer.shadowOpacity = 0.1;
+    _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
     CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
@@ -109,10 +120,7 @@
         [_menuBtnArray addObject:btn];
     }
     
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 26, SCREEN_WIDTH, SCREEN_HEIGHT - 90)];
-    _scrollView.delegate = self;
-    _scrollView.pagingEnabled = YES;
-    [self.view addSubview:_scrollView];
+    
 }
 
 - (void)viewWillLayoutSubviews{

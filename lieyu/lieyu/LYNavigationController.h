@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LYNavigationController : UINavigationController
-
+@property (nonatomic,strong) UIVisualEffectView *navBar;
 @end
