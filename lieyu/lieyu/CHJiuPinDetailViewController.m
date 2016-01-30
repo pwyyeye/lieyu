@@ -18,6 +18,7 @@
 #import "AddressTableViewCell.h"
 #import "LPAlertView.h"
 #import "ChooseNumber.h"
+#import "IQKeyboardManager.h"
 
 @interface CHJiuPinDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate>
 {
@@ -56,8 +57,18 @@
     [self.navigationController.navigationBar setHidden:YES];
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController.navigationBar setHidden:YES];
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
     [self.navigationController.navigationBar setHidden:NO];
 }
 
@@ -329,18 +340,33 @@
 
 #pragma mark 猎娱客服
 - (IBAction)LYkefu:(UIButton *)sender {
+    //统计我的页面的选择
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"吃喝明细",@"titleName":@"客服"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
     _conversationVC = [[RCPublicServiceChatViewController alloc] init];
     _conversationVC.conversationType = ConversationType_APPSERVICE;;
     _conversationVC.targetId = @"KEFU144946169476221";
+    [_conversationVC.navigationController.navigationBar setHidden:NO];
     _conversationVC.userName = @"猎娱客服";
     _conversationVC.title = @"猎娱客服";
-    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick)];
-    _conversationVC.navigationItem.leftBarButtonItem = leftBtn;
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-20, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    _conversationVC.navigationItem.leftBarButtonItem = item;
     [self.navigationController pushViewController:_conversationVC animated:YES];
 
 }
 
 - (void)backBtnClick{
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
