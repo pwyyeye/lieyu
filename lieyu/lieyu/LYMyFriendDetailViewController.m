@@ -84,7 +84,6 @@
     }else{
         self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
     }
-
 }
 
 - (void)checkFriendAvatar{
