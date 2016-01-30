@@ -48,7 +48,7 @@
                @{@"image":@"fujinwanyou",@"title":@"附近玩客"},
               // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"saoyisao",@"title":@"扫一扫"}];
-
+    _tableView.contentInset = UIEdgeInsetsMake(70, 0, -49, 0);
    /* self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 0.5);
     self.navigationController.navigationBar.layer.shadowOpacity = 0.2;

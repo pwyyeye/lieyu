@@ -23,6 +23,7 @@
 #import "TimePickerView.h"
 #import "CommonShow.h"
 #import "LYUserLocation.h"
+#import "IQKeyboardManager.h"
 
 @interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UITextFieldDelegate,UMSocialUIDelegate>
 
@@ -143,7 +144,8 @@
 
 #pragma mark  回退按钮
 - (void)backForword{
-//    NSLog(@"%@",self.navigationController.childViewControllers);
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
     [self.navigationController popViewControllerAnimated:YES];
 //    for (UIViewController *controller in self.navigationController.childViewControllers) {
 //        if(controller isKindOfClass:[])
@@ -437,8 +439,17 @@
     conversationVC.targetId = @"KEFU144946169476221";
     conversationVC.userName = @"猎娱客服";
     conversationVC.title = @"猎娱客服";
-    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
-    conversationVC.navigationItem.leftBarButtonItem = leftBtn;
+    
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-20, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(backForword) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    conversationVC.navigationItem.leftBarButtonItem = item;
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 

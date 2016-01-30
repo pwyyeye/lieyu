@@ -72,7 +72,7 @@
 
 -(void)doChange{
     NSArray *items = self.tabBar.items;
-    UITabBarItem *item=[items objectAtIndex:3];
+    UITabBarItem *item=[items objectAtIndex:2];
     
 //    if ([MyUtil isEmptyString:item.badgeValue]) {
 //        item.badgeValue=[NSString stringWithFormat:@"%d",1];
@@ -111,7 +111,7 @@
     NSString *delBadgeValue=[USER_DEFAULT objectForKey:@"delBadgeValue"];
     NSString *badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
     NSArray *items= self.tabBar.items;
-    UITabBarItem *item=[items objectAtIndex:3];
+    UITabBarItem *item=[items objectAtIndex:2];
     
     if (![MyUtil isEmptyString:badgeValue]) {//判断角标是否存在 －－存在
         //减去已读角标

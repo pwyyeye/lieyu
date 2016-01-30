@@ -23,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     dataList=[[NSMutableArray alloc]init];
+//    self.navigationController.navigationBar.translucent = YES;
+//    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];

@@ -115,8 +115,15 @@
 
 - (void)setupAllProperty{
 //    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"daohang_fabu"] style:UIBarButtonItemStylePlain target:self action:@selector(sendClick)];
-    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(sendClick)];
-    self.navigationItem.rightBarButtonItem = rightBtn;
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [button setTitle:@"发送" forState:UIControlStateNormal];
+//    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    [button setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(sendClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    self.navigationItem.rightBarButtonItem = item;
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -124,7 +131,7 @@
         if(self.textView.text.length >= 800){
             self.textView.text = [self.textView.text substringToIndex:800];
         }else{
-            self.label.text = [NSString stringWithFormat:@"%ld/800",self.textView.text.length];
+            self.label.text = [NSString stringWithFormat:@"%lu/800",self.textView.text.length];
         }
     }
 }

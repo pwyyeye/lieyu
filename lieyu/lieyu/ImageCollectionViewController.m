@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupView];
+//    [self setupView];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.itemSize = CGSizeMake((SCREEN_WIDTH-3) / 4, (SCREEN_WIDTH-3) / 4);
@@ -69,14 +69,14 @@
     return 1;
 }
 
-- (void)setupView{
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    self.navigationItem.leftBarButtonItem = leftItem;
-}
-
-- (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)setupView{
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+//    self.navigationItem.leftBarButtonItem = leftItem;
+//}
+//
+//- (void)back{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -198,7 +198,7 @@
         selectedPages ++;
         button.selected = YES;
         self.navigationItem.rightBarButtonItem.title = [NSString stringWithFormat:@"选择%d/%d",selectedPages,_imagesCount];
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor whiteColor];
+        self.navigationItem.rightBarButtonItem.tintColor = RGBA(0, 0, 0, 1);
         self.navigationItem.rightBarButtonItem.enabled = YES;
         [self.cellsArray addObject:((MyCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0]])];
     }
