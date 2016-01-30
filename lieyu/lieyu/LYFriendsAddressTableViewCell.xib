@@ -15,8 +15,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="55.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="address.png" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
-                        <rect key="frame" x="7" y="11" width="24" height="24"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address.png" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
+                        <rect key="frame" x="7" y="16" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="eD2-ol-lep"/>
                             <constraint firstAttribute="height" constant="24" id="uHW-9L-Inf"/>
@@ -75,6 +75,7 @@
                         <exclude reference="NVd-X6-W2a"/>
                         <exclude reference="NhX-CR-rFE"/>
                         <exclude reference="RIq-7P-nnV"/>
+                        <exclude reference="w9G-Y8-Y56"/>
                         <exclude reference="Geh-1q-L6R"/>
                         <exclude reference="eTd-Vf-4kQ"/>
                         <exclude reference="g1V-s0-AVj"/>

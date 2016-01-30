@@ -20,7 +20,7 @@
     [super viewDidLoad];
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE)]];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    [self setupView];
+    //[self setupView];
     //设置tableView样式
     self.conversationListTableView.separatorColor = RGB(223, 223, 223);
     self.conversationListTableView.tableFooterView = [UIView new];
@@ -65,10 +65,6 @@
     
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-    conversationVC.navigationItem.leftBarButtonItem = left;
-    
-    
     
 //    if (model.conversationModelType == RC_CONVERSATION_MODEL_TYPE_PUBLIC_SERVICE) {
 //        RCPublicServiceChatViewController *_conversationVC = [[RCPublicServiceChatViewController alloc] init];
