@@ -393,7 +393,7 @@
                            @"smdate":datePar};
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getTogetherListWithParams:dict block:^(NSMutableArray *result) {
-        if(result.count<=0){
+        if(result.count>0){
             dataList = [[NSMutableArray alloc]initWithArray:result];
             [weakSelf.tableView reloadData];
             weakSelf.tableView.contentOffset = CGPointMake(0, 0);
