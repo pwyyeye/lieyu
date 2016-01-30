@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="9Jb-MC-pL6">
-                    <rect key="frame" x="0.0" y="287" width="320" height="232"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BG4-TD-baL">
@@ -34,7 +34,8 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afp-6u-SJp">
-                    <rect key="frame" x="0.0" y="101" width="320" height="186"/>
+                    <rect key="frame" x="0.0" y="98" width="320" height="186"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="186" id="iBw-gf-bcP"/>
                     </constraints>
@@ -94,11 +95,11 @@
                 <constraint firstItem="BG4-TD-baL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gg0-Ow-SyR"/>
                 <constraint firstAttribute="trailing" secondItem="9Jb-MC-pL6" secondAttribute="trailing" id="L01-hT-cm6"/>
                 <constraint firstAttribute="trailing" secondItem="RQc-Li-KRg" secondAttribute="trailing" id="S5d-BZ-AQ4"/>
-                <constraint firstItem="afp-6u-SJp" firstAttribute="top" secondItem="BG4-TD-baL" secondAttribute="bottom" constant="3" id="V8S-Wg-91R"/>
+                <constraint firstItem="afp-6u-SJp" firstAttribute="top" secondItem="BG4-TD-baL" secondAttribute="bottom" id="V8S-Wg-91R"/>
                 <constraint firstItem="9Jb-MC-pL6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Xnw-7f-Wsf"/>
                 <constraint firstItem="RQc-Li-KRg" firstAttribute="top" secondItem="9Jb-MC-pL6" secondAttribute="bottom" id="Yj1-US-Yy2"/>
-                <constraint firstItem="9Jb-MC-pL6" firstAttribute="top" secondItem="afp-6u-SJp" secondAttribute="bottom" id="aoD-Uq-5hA"/>
                 <constraint firstAttribute="trailing" secondItem="BG4-TD-baL" secondAttribute="trailing" id="e8y-8e-nCv"/>
+                <constraint firstItem="9Jb-MC-pL6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lsl-rP-x29"/>
                 <constraint firstItem="afp-6u-SJp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nnq-mr-c30"/>
                 <constraint firstItem="RQc-Li-KRg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ovG-g9-unc"/>
                 <constraint firstItem="BG4-TD-baL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="vmn-NT-dwP"/>

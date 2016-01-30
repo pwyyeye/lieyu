@@ -157,7 +157,6 @@
         _buttomViewHeight.constant=49;
         _bottomBarView.hidden = NO;
     }
-    
 }
 
 - (void)loadBarDetail

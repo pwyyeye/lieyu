@@ -28,6 +28,9 @@
     [super viewDidLoad];
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
+    self.navigationController.navigationBar.translucent = YES;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.automaticallyAdjustsScrollViewInsets = YES;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self getdata];
 
