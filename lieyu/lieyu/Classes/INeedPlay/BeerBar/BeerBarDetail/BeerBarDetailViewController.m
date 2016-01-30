@@ -74,7 +74,7 @@
     _tableView.separatorColor=[UIColor clearColor];
 //    _tableView.layer.zPosition = 2.0;
     
-    self.navigationController.navigationBarHidden=YES;
+//    self.navigationController.navigationBarHidden=YES;
     _scrollView.delegate = self;
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height+2500);
     self.scrollView.showsVerticalScrollIndicator=NO;
@@ -133,12 +133,11 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_timer setFireDate:[NSDate distantFuture]];
-    
+    [self.navigationController.navigationBar setHidden:NO];
     
     
 }

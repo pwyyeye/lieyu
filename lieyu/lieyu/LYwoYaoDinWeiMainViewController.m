@@ -47,11 +47,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeAll;
+    _tableView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
     _tableView.separatorColor=[UIColor clearColor];
     weekDateArr = [[NSMutableArray alloc]initWithCapacity:7];
     [self getweekDate];
@@ -63,9 +64,6 @@
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
     self.navigationItem.title = @"预定";
-//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontNamesForFamilyName:@"STHeiti TC"]}];
-//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-//    [self.navigationItem setLeftBarButtonItem:item];
 }
 
 #pragma mark - 初始化界面
@@ -126,10 +124,10 @@
         [managerView removeFromSuperview];
     }
     managerView = [[ManagersView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 54)];
-    managerView.layer.shadowRadius = 2;
-    managerView.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
-    managerView.layer.shadowOffset = CGSizeMake(0, 1);
-    managerView.layer.shadowOpacity = 0.5;
+    _managersView.layer.shadowRadius = 2;
+    _managersView.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    _managersView.layer.shadowOffset = CGSizeMake(0, 1);
+    _managersView.layer.shadowOpacity = 0.5;
     managerView.delegate = self;
     managerView.backgroundColor = [UIColor whiteColor];
     [_managersView addSubview:managerView];
@@ -144,6 +142,7 @@
 #pragma mark - 营业时间与专属经理选框
 - (void)managerList{
     timeView = [[TimeView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+    timeView.backgroundColor = [UIColor whiteColor];
     UITapGestureRecognizer *chooseTime = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(chooseTime:)];
     [timeView addGestureRecognizer:chooseTime];
     [self initTimeView];
@@ -188,27 +187,28 @@
     }
 }
 
-- (void)gotoBack{
+- (void)gotoBack1{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 0);
+    self.navigationController.navigationBar.layer.borderWidth = 0;
+//    [[UINavigationBar appearance]setBackgroundImage:nil forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-    
+
 }
 #pragma mark 获取七天日期
 -(void)getweekDate{
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday |
+    NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -288,7 +288,7 @@
     if (mMenuHriZontal == nil) {
         mMenuHriZontal = [[MenuHrizontal alloc] initWithFrameForTime:CGRectMake(0,64, SCREEN_WIDTH, 34) ButtonItems:barArr];
         mMenuHriZontal.delegate = self;
-        
+        mMenuHriZontal.layer.borderWidth = 0;
         mMenuHriZontal.layer.shadowRadius = 2;
         mMenuHriZontal.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
         mMenuHriZontal.layer.shadowOffset = CGSizeMake(0, 1);
@@ -307,7 +307,7 @@
         jiubaModel=result;
 //        dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.tableView reloadData];
-            weakSelf.tableView.contentOffset = CGPointMake(0, 0);
+            weakSelf.tableView.contentOffset = CGPointMake(0, -200);
 //        });
             [self initTimeView];
             [weakSelf removeNoGoodView];
