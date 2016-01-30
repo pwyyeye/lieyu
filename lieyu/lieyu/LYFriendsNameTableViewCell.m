@@ -38,14 +38,17 @@
     
     
     if(![MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){
+         CGSize size = [[MyUtil getAstroWithBirthday:recentM.birthday] boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size;
         _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
+        self.label_constellation_constraint_width.constant = size.width + 6;
+        [self updateConstraints];
         _label_constellation.hidden = NO;
     }else{
                 _label_constellation.hidden = YES;
     }
     if(recentM.tags.count){
         CGSize size = [((FriendsTagModel *)recentM.tags[0]).tagname boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size;
-        self.label_work_contraint_width.constant = size.width + 5;
+        self.label_work_contraint_width.constant = size.width + 6;
         [self updateConstraints];
         
         if(recentM.tags.count){
@@ -56,8 +59,14 @@
         }
     }
     
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    [paragraphStyle setLineSpacing:3];
+    [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
+    
     if(recentM.message != nil){
-        [_label_content setText:recentM.message];
+//        [_label_content setText:recentM.message];
+        _label_content.attributedText = attributeStr;
     }else{
         _label_content.text = @" ";
     }

@@ -19,6 +19,11 @@
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
     _label_commentCount.text = [NSString stringWithFormat:@"查看全部%ld条评论...",recentM.commentNum.integerValue];
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOffset = CGSizeMake(0, 0.5);
+    self.layer.shadowRadius = 1;
+    self.layer.shadowOpacity  = .1;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

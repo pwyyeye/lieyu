@@ -31,10 +31,7 @@ static LYResetPasswordViewController *_reset;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
-    self.navigationItem.leftBarButtonItem = left;
-    
-   // CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);
+      // CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);
 //    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
 //    [RGB(35, 166, 116) set];
 //    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "LYBaseTableViewController.h"
 @interface Setting : LYBaseTableViewController
-@property(strong,nonatomic) NSArray *data;
+@property(strong,nonatomic) NSArray *data;     
 
 @end

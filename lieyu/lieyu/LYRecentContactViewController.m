@@ -30,8 +30,12 @@
     // Do any additional setup after loading the view.
 }
 - (void)setupView{
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"backBtn"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = leftItem;
+}
+
+- (void)backClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)back{
@@ -65,10 +69,6 @@
     
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-    conversationVC.navigationItem.leftBarButtonItem = left;
-    
-    
     
 //    if (model.conversationModelType == RC_CONVERSATION_MODEL_TYPE_PUBLIC_SERVICE) {
 //        RCPublicServiceChatViewController *_conversationVC = [[RCPublicServiceChatViewController alloc] init];

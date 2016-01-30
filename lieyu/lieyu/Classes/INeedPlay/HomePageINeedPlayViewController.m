@@ -285,6 +285,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
+//    if ([MyUtil]) {
+//        <#statements#>
+//    }
     _cityChooseBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
     [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 15, 0, 0)];
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -316,7 +319,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }]; */
     _btn_yedian.frame = CGRectMake(SCREEN_WIDTH/2.f - 44 - 12, _menuView.frame.size.height - 16 - 4.5, 44, 16);
     
-    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 12, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
+    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f + 12, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
     [_btn_bar setTitle:@"酒吧" forState:UIControlStateNormal];
 //    _btn_bar.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     _btn_bar.isHomePageMenuViewSelected = NO;

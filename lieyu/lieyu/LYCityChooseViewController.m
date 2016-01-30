@@ -21,8 +21,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"地址";
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    [self.navigationItem setLeftBarButtonItem:item];
 }
 
 - (void)viewDidAppear:(BOOL)animated{

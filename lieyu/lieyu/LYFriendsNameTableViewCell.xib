@@ -22,7 +22,7 @@
                         </constraints>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pH5-Po-Wwa">
-                        <rect key="frame" x="53" y="10" width="45" height="20"/>
+                        <rect key="frame" x="53" y="5" width="45" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="zLP-cd-KBf"/>
                         </constraints>
@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luc-9F-P2m">
-                        <rect key="frame" x="51" y="33" width="5" height="15"/>
+                        <rect key="frame" x="51" y="28" width="5" height="15"/>
                         <color key="backgroundColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="jTI-kj-bnC"/>
@@ -59,7 +59,7 @@
                         </variation>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rw-eO-sKU">
-                        <rect key="frame" x="288" y="20" width="22" height="30"/>
+                        <rect key="frame" x="288" y="25" width="22" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="MLM-HE-kpV"/>
                             <constraint firstAttribute="height" constant="30" id="gVN-s4-uzW"/>
@@ -76,7 +76,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDA-11-w3k">
-                        <rect key="frame" x="59" y="33" width="5" height="15"/>
+                        <rect key="frame" x="59" y="28" width="5" height="15"/>
                         <color key="backgroundColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="MmO-a0-OP1"/>
@@ -96,7 +96,7 @@
                     <constraint firstItem="wDA-11-w3k" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="3" id="FFD-to-mjk"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="HtG-7k-6eO"/>
                     <constraint firstItem="wDA-11-w3k" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="3" id="Qdi-v1-Qip"/>
-                    <constraint firstItem="pH5-Po-Wwa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="SAK-0Z-MSb"/>
+                    <constraint firstItem="pH5-Po-Wwa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="SAK-0Z-MSb"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="8" id="U3g-ed-wTL"/>
                     <constraint firstAttribute="trailing" secondItem="lM4-4y-ffP" secondAttribute="trailing" constant="8" id="YpK-Iw-Kmq"/>
                     <constraint firstAttribute="trailing" secondItem="FEG-lw-pcv" secondAttribute="trailing" constant="7" id="aE3-5V-07U"/>
@@ -104,7 +104,7 @@
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="e3o-98-IHy"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="8" id="i5T-JJ-Xlc"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="khM-s2-mFp"/>
-                    <constraint firstItem="7Rw-eO-sKU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="lQB-Zj-3uX"/>
+                    <constraint firstItem="7Rw-eO-sKU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="lQB-Zj-3uX"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="lM4-4y-ffP" secondAttribute="bottom" constant="8" id="mqS-7C-HcM"/>
                     <constraint firstAttribute="trailing" secondItem="7Rw-eO-sKU" secondAttribute="trailing" constant="10" id="qPa-oc-FyU"/>
                     <constraint firstItem="lM4-4y-ffP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tf2-KC-5iH"/>
@@ -124,9 +124,11 @@
                 <outlet property="btn_headerImg" destination="mUG-zY-dHD" id="JyA-Na-UQd"/>
                 <outlet property="btn_name" destination="pH5-Po-Wwa" id="pcs-dU-JVE"/>
                 <outlet property="label_constellation" destination="luc-9F-P2m" id="4m4-iv-rYT"/>
+                <outlet property="label_constellation_constraint_width" destination="n0S-eC-rkf" id="yMl-9H-kgu"/>
                 <outlet property="label_content" destination="FEG-lw-pcv" id="f9C-Hy-cXB"/>
                 <outlet property="label_time" destination="lM4-4y-ffP" id="XyU-bd-dc6"/>
                 <outlet property="label_work" destination="wDA-11-w3k" id="HUb-Jw-hnn"/>
+                <outlet property="label_work_contraint_width" destination="k5P-5U-gso" id="Ih3-MN-AWw"/>
             </connections>
             <point key="canvasLocation" x="240" y="395.5"/>
         </tableViewCell>
