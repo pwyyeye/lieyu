@@ -10,5 +10,5 @@
 #import "LYBaseTableViewController.h"
 @interface Setting : LYBaseTableViewController
 @property(strong,nonatomic) NSArray *data;
-
+   
 @end
