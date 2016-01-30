@@ -34,6 +34,7 @@
         NSInteger _currentPagePrice;
         NSInteger _currentPageFanli;
     NSInteger _index;
+    UILabel *_titelLabel;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -133,13 +134,13 @@
         [_menuView addSubview:btn];
         [_menuBtnArray addObject:btn];
     }
-    UILabel *titelLabel = [[UILabel alloc]init];
-    titelLabel.frame = CGRectMake(0, 30, SCREEN_WIDTH, 30);
-    titelLabel.textAlignment = NSTextAlignmentCenter;
-    titelLabel.text = @"热门酒吧";
-    titelLabel.font = [UIFont boldSystemFontOfSize:16];
-    titelLabel.textColor = [UIColor blackColor];
-    [_menuView addSubview:titelLabel];
+    _titelLabel = [[UILabel alloc]init];
+    _titelLabel.frame = CGRectMake(0, 30, SCREEN_WIDTH, 30);
+    _titelLabel.textAlignment = NSTextAlignmentCenter;
+    _titelLabel.text = _titleText;
+    _titelLabel.font = [UIFont boldSystemFontOfSize:16];
+    _titelLabel.textColor = [UIColor blackColor];
+    [_menuView addSubview:_titelLabel];
 
     UIButton *backBtn = [[UIButton alloc]init];
     [backBtn setBackgroundImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];

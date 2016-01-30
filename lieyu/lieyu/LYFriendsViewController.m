@@ -29,7 +29,6 @@
 #import "LYFriendsImgTableViewCell.h"
 #import "LYFriendsChangeImageMenuView.h"
 #import "LYChangeImageViewController.h"
-#import "Masonry.h"
 #import "LYFriendsCommentButton.h"
 #import "FriendsLikeModel.h"
 #import "FriendsPicAndVideoModel.h"
@@ -503,10 +502,12 @@
     [self setupNavMenuView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    
 //    NSArray *array = _dataArray[0];
 //    if(array.count){
 //        [self getDataFriendsWithSetContentOffSet:NO];
 //    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -1342,11 +1343,13 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                         likeCell.recentM = recentM;
                         for (int i = 0; i< likeCell.btnArray.count; i ++) {
                             UIButton *btn = likeCell.btnArray[i];
-                            btn.tag = likeCell.btnArray.count * (indexPath.section + 1) - 7 + i +1;
+                            btn.tag = 7 * (indexPath.section + 1) - 7 + i +1;
                             [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                         }
                         if(recentM.likeList.count < 8) likeCell.btn_more.hidden = YES;
-                        else likeCell.btn_more.hidden = NO;
+                        else {likeCell.btn_more.hidden = NO;
+                        [likeCell.btn_more setTitle:recentM.likeNum forState:UIControlStateNormal];
+                        }
                         return likeCell;
                     }
                     else{
