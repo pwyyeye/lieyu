@@ -686,6 +686,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [bigArr addObject:dicTemp];
         }
         SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+        cycleScrollView.layer.cornerRadius = 2;
+        cycleScrollView.layer.masksToBounds = YES;
         cycleScrollView.imageURLStringsGroup = self.bannerList;
         cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
         cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];

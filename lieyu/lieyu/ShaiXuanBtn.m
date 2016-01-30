@@ -9,5 +9,10 @@
 #import "ShaiXuanBtn.h"
 
 @implementation ShaiXuanBtn
-
+//- (void)awakeFromNib{
+//    UIVisualEffectView *view = [[UIVisualEffectView alloc]initWithFrame:self.frame];
+//    [view setBackgroundColor:[UIColor whiteColor]];
+//    [view setEffect:UIBlurEffectStyleExtraLight];
+//    [self addSubview:view];
+//}
 @end

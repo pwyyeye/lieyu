@@ -57,13 +57,6 @@
 #pragma mark viewdidload
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [self.sxBtn1 setBackgroundColor:RGBA(114, 5, 147, 1)];
-//    [self.sxBtn2 setBackgroundColor:RGBA(114, 5, 147, 1)];
-//    [self.sxBtn3 setBackgroundColor:RGBA(114, 5, 147, 1)];
-//    [self.sxBtn4 setBackgroundColor:RGBA(114, 5, 147, 1)];
-//    [self.sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
-    
     _moreShow = NO;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getNumLess) name:@"lessGood" object:nil];
@@ -72,17 +65,29 @@
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         self.collectionView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 120);
     }
+    self.navigationController.navigationBar.translucent = YES;
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(20, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"CHshop"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(showcarAct) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    self.navigationItem.rightBarButtonItem = item;
     
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
-    self.navigationItem.leftBarButtonItem = leftItem;
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
+//    self.navigationItem.rightBarButtonItem = rightItem;
+    
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return1"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
+//    self.navigationItem.leftBarButtonItem = leftItem;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.itemSize = CGSizeMake((SCREEN_WIDTH - 18) / 2, 127 + SCREEN_WIDTH / 2);
     [self.collectionView setCollectionViewLayout:layout];
-    
+    self.collectionView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0);
+    self.collectionView.showsVerticalScrollIndicator = NO;
     dataList = [[NSMutableArray alloc]init];
     goodsList = [[NSMutableArray alloc]init];
     
@@ -240,10 +245,10 @@
     return dataArr;
 }
 
-#pragma mark  back按钮点击事件
-- (void)backClick{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//#pragma mark  back按钮点击事件
+//- (void)backClick{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 #pragma mark 展示购物车
 - (void)showcarAct{
@@ -279,6 +284,7 @@
             [kongLabel removeFromSuperview];
             pageCount++;
             [weakSelf.collectionView.mj_footer resetNoMoreData];
+            weakSelf.collectionView.contentOffset = CGPointMake(0, -100);
         }else{//改种酒类为空
             if(!kongImageView){
                 kongImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 100)/2, 120, 100, 120)];
@@ -467,7 +473,7 @@
                 number = (int)(biaoqianList.count - 4) / 3;
             }
         }
-    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, number * 32 + (number + 1) * 16)];
+    _MoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 100, SCREEN_WIDTH, number * 32 + (number + 1) * 16)];
     [_MoreView setBackgroundColor:[UIColor whiteColor]];
     
     for(int i = 4 ; i < biaoqianList.count ; i ++){

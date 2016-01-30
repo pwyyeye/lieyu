@@ -21,9 +21,14 @@
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    [self.navigationItem setLeftBarButtonItem:item];
-
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-20, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(BaseGoBack) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    self.navigationItem.leftBarButtonItem = item;
+    
     //设置标题颜色
     
     UIColor * color = [UIColor blackColor];
@@ -32,7 +37,7 @@
     
     self.navigationController.navigationBar.titleTextAttributes = dict;
     
-    //设置电池状态栏为白色
+    //设置电池状态栏为黑色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
 }
 
@@ -70,7 +75,7 @@
     return @{@"actionName":actionName,@"pageName":pageName,@"titleName":titleName};
 }
 
--(void)gotoBack{
+-(void)BaseGoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
