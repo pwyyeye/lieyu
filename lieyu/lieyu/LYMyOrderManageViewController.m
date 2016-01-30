@@ -127,9 +127,9 @@
 ////    if (self.navigationController.navigationBar.hidden) {
 //        self.navigationController.navigationBar.hidden=NO;
 ////    }
+//｝
 //
-//}
--(void)gotoBack{
+-(void)BaseGoBack{
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[ChoosePayController class]]) {
             [self.navigationController popToRootViewControllerAnimated:YES];
