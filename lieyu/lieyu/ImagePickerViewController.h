@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYBaseViewController.h"
 
 @protocol ImagePickerFinish <NSObject>
 - (void)ImagePickerDidFinishWithImages:(NSArray *)imageArray;
 @end
-@interface ImagePickerViewController : UIViewController
+@interface ImagePickerViewController : LYBaseViewController
 @property (nonatomic, assign) int imagesCount;
 
 @property (nonatomic, assign) id<ImagePickerFinish> delegate;
