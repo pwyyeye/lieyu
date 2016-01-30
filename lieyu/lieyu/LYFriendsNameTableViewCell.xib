@@ -124,9 +124,11 @@
                 <outlet property="btn_headerImg" destination="mUG-zY-dHD" id="JyA-Na-UQd"/>
                 <outlet property="btn_name" destination="pH5-Po-Wwa" id="pcs-dU-JVE"/>
                 <outlet property="label_constellation" destination="luc-9F-P2m" id="4m4-iv-rYT"/>
+                <outlet property="label_constellation_constraint_width" destination="n0S-eC-rkf" id="yMl-9H-kgu"/>
                 <outlet property="label_content" destination="FEG-lw-pcv" id="f9C-Hy-cXB"/>
                 <outlet property="label_time" destination="lM4-4y-ffP" id="XyU-bd-dc6"/>
                 <outlet property="label_work" destination="wDA-11-w3k" id="HUb-Jw-hnn"/>
+                <outlet property="label_work_contraint_width" destination="k5P-5U-gso" id="Ih3-MN-AWw"/>
             </connections>
             <point key="canvasLocation" x="240" y="395.5"/>
         </tableViewCell>

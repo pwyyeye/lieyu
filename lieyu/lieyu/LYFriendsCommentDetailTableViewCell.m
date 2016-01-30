@@ -36,7 +36,9 @@
                         if([MyUtil isEmptyString:commentModel.toUserNickName]) return;
             [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(186, 40, 227, 1) range:NSMakeRange(2, commentModel.toUserNickName.length + 1)];
         }
-    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    [paragraphStyle setLineSpacing:3];
+    [attributedStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [string length])];
     _label_comment.attributedText = attributedStr;
 }
 

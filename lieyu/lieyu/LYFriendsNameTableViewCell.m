@@ -38,7 +38,10 @@
     
     
     if(![MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){
+         CGSize size = [[MyUtil getAstroWithBirthday:recentM.birthday] boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size;
         _label_constellation.text = [MyUtil getAstroWithBirthday:recentM.birthday];
+        self.label_constellation_constraint_width.constant = size.width + 5;
+        [self updateConstraints];
         _label_constellation.hidden = NO;
     }else{
                 _label_constellation.hidden = YES;

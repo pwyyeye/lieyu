@@ -504,9 +504,9 @@
 //            }
             if(![MyUtil isEmptyString:recentM.message]) {
                 if(size.height >= 47 ) size.height = 47;
-                size.height = 10 + size.height;
+                size.height = 14 + size.height;
             }else{
-                size.height = 0;
+                size.height = 10;
             }
             return 50 + size.height;
         }
@@ -555,16 +555,15 @@
         default:
         {
             if(!recentM.commentList.count) return 36;
-            NSLog(@"-----%ld-->%ld",recentM.commentList.count,indexPath.row);
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
-            CGSize size = [str boundingRectWithSize:CGSizeMake(239, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 81, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             CGFloat height;
-            if (size.height + 10 < 36) {
+            if (size.height + 20 < 36) {
                 height = 36;
             }else {
-                height = size.height + 15;
+                height = size.height + 20 + 5;
             }
             return height;
         }
