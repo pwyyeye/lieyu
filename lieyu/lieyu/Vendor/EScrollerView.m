@@ -48,11 +48,11 @@
 		viewSize=rect;
 //        NSUInteger pageCount=3;
         NSUInteger pageCount = titleArray.count;
-        scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(3, 0, viewSize.size.width - 6, viewSize.size.height)];
+        scrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, viewSize.size.width, viewSize.size.height)];
         scrollView.layer.cornerRadius = 2;
         scrollView.layer.masksToBounds = YES;
         scrollView.pagingEnabled = YES;
-        scrollView.contentSize = CGSizeMake((viewSize.size.width - 6) * pageCount, viewSize.size.height);
+        scrollView.contentSize = CGSizeMake(viewSize.size.width * pageCount, viewSize.size.height);
         scrollView.showsHorizontalScrollIndicator = NO;
         scrollView.showsVerticalScrollIndicator = NO;
         scrollView.scrollsToTop = NO;
@@ -63,7 +63,7 @@
         {
             UIImageView *imgView=[[UIImageView alloc] init];
             [imgView setContentMode:UIViewContentModeScaleAspectFill];
-            [imgView setFrame:CGRectMake((viewSize.size.width - 6) *i, 0,(viewSize.size.width - 6), viewSize.size.height)];
+            [imgView setFrame:CGRectMake(viewSize.size.width *i, 0,viewSize.size.width, viewSize.size.height)];
             imgView.tag= i;
             imgView.backgroundColor=[UIColor grayColor];
             if ([[imagePathArray objectAtIndex:i]length]>0)

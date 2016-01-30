@@ -88,6 +88,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController.navigationBar setHidden:NO];
+}
+
 #pragma mark 获取七天日期
 -(void)getweekDate{
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -388,7 +393,7 @@
                            @"smdate":datePar};
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getTogetherListWithParams:dict block:^(NSMutableArray *result) {
-        if(result.count>0){
+        if(result.count<=0){
             dataList = [[NSMutableArray alloc]initWithArray:result];
             [weakSelf.tableView reloadData];
             weakSelf.tableView.contentOffset = CGPointMake(0, 0);
@@ -405,7 +410,7 @@
     alerLabel.frame = CGRectMake(0, 64 + 50, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50);
     alerLabel.tag = 10086;
     alerLabel.textAlignment = NSTextAlignmentCenter;
-    alerLabel.text = @"暂无套餐";
+    alerLabel.text = @"暂无组局拼客";
     [self.view addSubview:alerLabel];
 }
 
