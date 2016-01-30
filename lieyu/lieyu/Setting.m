@@ -51,6 +51,10 @@
     
 }
 
+- (void)backClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     [self.navigationController setNavigationBarHidden:NO];
@@ -156,9 +160,10 @@
 
     
     // Push the view controller.
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.backBarButtonItem = left;
+   /* UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.backBarButtonItem = left;*/
     [self.navigationController pushViewController:detailViewController animated:YES];
+   
 }
 
 /*

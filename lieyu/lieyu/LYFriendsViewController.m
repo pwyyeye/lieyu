@@ -1411,7 +1411,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
            // if(size.height >= 47) size.height = 47;
             if(![MyUtil isEmptyString:recentM.message]) {
-                if(size.height >= 47 ) size.height = 47;
+                if(size.height >= 47) size.height = 47;
                 size.height = 10 + size.height;
             }else{
                 size.height = 0;
@@ -1447,7 +1447,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             break;
         case 2://地址
         {
-            return 45;
+            return 50;
         }
             break;
         case 3:
@@ -1468,12 +1468,13 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
-            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 71, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 81, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            NSLog(@"-------->%f------->%@",SCREEN_WIDTH - 71,NSStringFromCGSize(size));
             CGFloat height;
-            if (size.height + 10 < 36) {
+            if (size.height + 20 < 36) {
                 height = 36;
             }else {
-                height = size.height + 15;
+                height = size.height + 20 + 3;
             }
             return height;
         }

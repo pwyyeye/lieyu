@@ -276,8 +276,7 @@
             
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             chat.title=@"最近联系";
-            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
-            chat.navigationItem.leftBarButtonItem = leftBtn;
+            
             
             [self.navigationController pushViewController:chat animated:YES];
         }else if(indexPath.row==2){

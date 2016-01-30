@@ -40,8 +40,16 @@
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
     
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    [self.navigationItem setLeftBarButtonItem:item];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-20, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    self.navigationItem.leftBarButtonItem = item;
+//    
+//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+//    [self.navigationItem setLeftBarButtonItem:item];
 
     //设置标题颜色
     

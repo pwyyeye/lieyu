@@ -9,10 +9,16 @@
 #import "ShaiXuanBtn.h"
 
 @implementation ShaiXuanBtn
-//- (void)awakeFromNib{
-//    UIVisualEffectView *view = [[UIVisualEffectView alloc]initWithFrame:self.frame];
-//    [view setBackgroundColor:[UIColor whiteColor]];
-//    [view setEffect:UIBlurEffectStyleExtraLight];
-//    [self addSubview:view];
-//}
+- (void)awakeFromNib{
+    _lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.frame.size.height - 2, self.frame.size.width - 20, 2)];
+    [self addSubview:_lineLabel];
+}
+
+- (void)setSelected:(BOOL)selected{
+    if(selected){//选择了
+        _lineLabel.backgroundColor = RGBA(186, 40, 227, 1);
+    }else{//未选择或取消选择
+        _lineLabel.backgroundColor = [UIColor clearColor];
+    }
+}
 @end

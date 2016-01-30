@@ -30,11 +30,15 @@
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:string];
     if([commentM.toUserId isEqualToString:@"0"]) {
         if([MyUtil isEmptyString:commentM.nickName] || [MyUtil isEmptyString:commentM.nickName]) return;
-        [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(0, commentM.nickName.length + 1)];
+        [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(186, 40, 227, 1) range:NSMakeRange(0, commentM.nickName.length + 1)];
     }else{
         if([MyUtil isEmptyString:commentM.toUserNickName] || [MyUtil isEmptyString:commentM.toUserNickName]) return;
-         [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(114, 5, 147, 1) range:NSMakeRange(2, commentM.toUserNickName.length + 1)];
+         [attributedStr addAttribute:NSForegroundColorAttributeName value:RGBA(186, 40, 227, 1) range:NSMakeRange(2, commentM.toUserNickName.length + 1)];
     }
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    [paragraphStyle setLineSpacing:3];
+    [attributedStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [string length])];
+    
     _label_comment.attributedText = attributedStr;
 }
 

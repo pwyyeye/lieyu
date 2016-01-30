@@ -316,7 +316,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }]; */
     _btn_yedian.frame = CGRectMake(SCREEN_WIDTH/2.f - 44 - 12, _menuView.frame.size.height - 16 - 4.5, 44, 16);
     
-    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 12, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
+    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f + 12, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
     [_btn_bar setTitle:@"酒吧" forState:UIControlStateNormal];
 //    _btn_bar.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     _btn_bar.isHomePageMenuViewSelected = NO;
