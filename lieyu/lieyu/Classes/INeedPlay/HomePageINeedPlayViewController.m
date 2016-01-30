@@ -285,8 +285,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
-
-//    _cityChooseBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
     _cityChooseBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 15, 0, 0)];
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -308,30 +306,19 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _btn_yedian.titleLabel.font = [UIFont systemFontOfSize:12];
     _btn_yedian.isHomePageMenuViewSelected = YES;
     [_btn_yedian setTitle:@"夜店" forState:UIControlStateNormal];
-    _btn_yedian.titleLabel.font = [UIFont systemFontOfSize:12];
-//    _btn_yedian.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
-   // [_btn_yedian setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
     [_menuView addSubview:_btn_yedian];
     [_btn_yedian addTarget:self action:@selector(yedianClick) forControlEvents:UIControlEventTouchUpInside];
     _btn_yedian.frame = CGRectMake(SCREEN_WIDTH/2.f - 44 - 12, _menuView.frame.size.height - 16 - 4.5, 44, 16);
     
-    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f + 12, _menuView.frame.size.height - 16 - 4.5, 44, 16)];   
+    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f + 12, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
     [_btn_bar setTitle:@"酒吧" forState:UIControlStateNormal];
-    _btn_bar.titleLabel.font = [UIFont systemFontOfSize:12];
-//    _btn_bar.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     _btn_bar.isHomePageMenuViewSelected = NO;
-   // [_btn_bar setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
     [_btn_bar addTarget:self action:@selector(barClick) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_btn_bar];
     
     _lineView = [[UIView alloc]init];
     _lineView.backgroundColor = RGBA(186, 40, 227, 1);
     [_menuView addSubview:_lineView];
-   /* [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(_menuView.mas_bottom).with.offset(0);
-        make.centerX.mas_equalTo(_btn_yedian.mas_centerX).offset(0);
-        make.size.mas_equalTo(CGSizeMake(42, 2));
-    }]; */
     _lineView.frame = CGRectMake(0, _menuView.frame.size.height - 2, 42, 2);
     _lineView.center = CGPointMake(_btn_yedian.center.x, _lineView.center.y);
     

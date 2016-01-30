@@ -628,9 +628,7 @@
 //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
     _friendsBtnSelect = YES;
     _pageStartCountFriends = 0;
-    if(((NSArray *)_dataArray[0]).count == 0){
         [self getDataFriendsWithSetContentOffSet:YES];
-    }
     _friendsBtn.isFriendsMenuViewSelected = YES;
     _myBtn.isFriendsMenuViewSelected = NO;
     [UIView animateWithDuration:0.5 animations:^{
@@ -647,7 +645,7 @@
     _pageStartCountMys = 0;
     _friendsBtn.isFriendsMenuViewSelected = NO;
     _myBtn.isFriendsMenuViewSelected = YES;
-    [self getDataMysWithSetContentOffSet:YES];
+        [self getDataMysWithSetContentOffSet:YES];
     [UIView animateWithDuration:0.5 animations:^{
         _lineView.center = CGPointMake(myBtn.center.x, _lineView.center.y);
     }];
