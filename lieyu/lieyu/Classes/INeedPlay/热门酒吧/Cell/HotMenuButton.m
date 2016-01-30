@@ -22,10 +22,11 @@
     _isMenuSelected = isMenuSelected;
     if (isMenuSelected) {
         [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
+//        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:12];
     }else{
         [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Thin" size:12];
+        self.titleLabel.font = [UIFont systemFontOfSize:12];
     }
 }
 
@@ -33,10 +34,10 @@
     _isHomePageMenuViewSelected = isHomePageMenuViewSelected;
     if (isHomePageMenuViewSelected) {
         [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:13];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     }else{
         [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:13];
+        self.titleLabel.font = [UIFont systemFontOfSize:13];
     }
 }
 
@@ -45,9 +46,11 @@
     if (isFriendsMenuViewSelected) {
         [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
+//        self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     }else{
         [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:13];
+//        self.titleLabel.font = [UIFont systemFontOfSize:13];
     }
 }
 

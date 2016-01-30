@@ -30,7 +30,8 @@
     self.automaticallyAdjustsScrollViewInsets=1;
     self.tableView.bounces=NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    self.tableView.frame=CGRectMake(0, -20, SCREEN_WIDTH, SCREEN_HEIGHT-20);
+    self.tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
     [self getDataForShowList];
     
     
@@ -153,13 +154,7 @@
 //    cell.delLal.text=delInfo;
 //    cell.disImageView;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    
-    
-    
     return cell;
-    
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -32,12 +32,11 @@
     datalist =[[NSMutableArray alloc]init];
     filteredListContent=[[NSMutableArray alloc]init];
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
-    
     [self getData];
     // Do any additional setup after loading the view from its nib.
+    _tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
 }
 -(void)getData{
-    
     __weak __typeof(self)weakSelf = self;
     CLLocation * userLocation = [LYUserLocation instance].currentLocation;
     NSDictionary *dic=@{@"longitude":@(userLocation.coordinate.longitude),@"latitude":@(userLocation.coordinate.latitude)};

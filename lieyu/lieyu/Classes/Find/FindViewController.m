@@ -315,7 +315,6 @@
 //            yaoYiYaoViewController.is4s=true;
             yaoYiYaoViewController.title=@"摇一摇";
             [self.navigationController pushViewController:yaoYiYaoViewController  animated:YES];
-            
         }else{
             //扫一扫
             
