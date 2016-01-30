@@ -57,6 +57,18 @@
     conversationVC.targetId = model.targetId;
     conversationVC.userName =model.conversationTitle;
     conversationVC.title = model.conversationTitle;
+    
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-20, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    conversationVC.navigationController.navigationItem.leftBarButtonItem = item;
+    
     [self.navigationController pushViewController:conversationVC animated:YES];
     
     //设置不需要统计角标
@@ -66,9 +78,6 @@
         [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",unread] forKey:@"delBadgeValue"];
         [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
     }
-    
-    [IQKeyboardManager sharedManager].enable = NO;
-    [IQKeyboardManager sharedManager].isAdd = YES;
     
 //    if (model.conversationModelType == RC_CONVERSATION_MODEL_TYPE_PUBLIC_SERVICE) {
 //        RCPublicServiceChatViewController *_conversationVC = [[RCPublicServiceChatViewController alloc] init];

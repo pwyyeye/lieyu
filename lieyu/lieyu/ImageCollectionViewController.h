@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "LYBaseViewController.h"
 
-@interface ImageCollectionViewController : UIViewController
+@interface ImageCollectionViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) ALAssetsGroup *assetsGroup;

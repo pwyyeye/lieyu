@@ -95,7 +95,12 @@
     NSArray *array = [_customerModel.icon componentsSeparatedByString:@"?"];
     NSLog(@"%@",_customerModel);
     NSLog(@"%@",array);
-    _subView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[array objectAtIndex:0] == nil ? self.userImageView.image : [array objectAtIndex:0]]]];
+    if(array == nil){
+        _subView.image = self.userImageView.image;
+    }else{
+        _subView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[array objectAtIndex:0]]]];
+    }
+//    _subView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:array == nil ? self.userImageView.image : [array objectAtIndex:0]]]];
 //    [_subView.imageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
     //    _subView.image = [self.collectionData objectAtIndex:indexPath.item];
     [_subView viewConfigure];

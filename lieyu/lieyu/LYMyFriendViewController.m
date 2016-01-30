@@ -23,6 +23,7 @@
     [self.navigationController setNavigationBarHidden:NO];
     rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add5"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
     [self.navigationItem setRightBarButtonItem:rightBtn];
+
     self.title=@"好友列表";
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];

@@ -28,7 +28,7 @@
     
     [self.view addSubview:self.tableView];
     
-    [self setupView];
+//    [self setupView];
     
     _AssetsGroup = [[NSMutableArray alloc]init];
     _assetsLibrary = [[ALAssetsLibrary alloc]init];
@@ -64,14 +64,14 @@
     [_assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupFaces usingBlock:assetsGroupsEnumerationBlock failureBlock:assetsGroupsFailureBlock];
 }
 
-- (void)setupView{
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    self.navigationItem.leftBarButtonItem = leftItem;
-}
+//- (void)setupView{
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+//    self.navigationItem.leftBarButtonItem = leftItem;
+//}
 
-- (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)back{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

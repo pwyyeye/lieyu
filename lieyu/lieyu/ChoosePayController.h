@@ -10,7 +10,8 @@
 #import "PayCell.h"
 #import "SingletonAlipay.h"
 #import "AlipayOrder.h"
-@interface ChoosePayController : UITableViewController<SingletonAlipayProtocol>
+#import "LYBaseTableViewController.h"
+@interface ChoosePayController : LYBaseTableViewController<SingletonAlipayProtocol>
 
 @property(strong,nonatomic) NSString *orderNo;
 
