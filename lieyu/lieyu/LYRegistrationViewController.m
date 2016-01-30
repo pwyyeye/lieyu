@@ -37,8 +37,7 @@ static LYRegistrationViewController *_registe;
     [_timer setFireDate:[NSDate distantFuture]];
     
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
-    self.navigationItem.leftBarButtonItem = left;
+
   
     // Do any additional setup after loading the view from its nib.
     
@@ -219,8 +218,6 @@ static LYRegistrationViewController *_registe;
                 detailVC.userM = _userM;
                 detailVC.thirdLoginType = _thirdLoginType;
                 detailVC.isAutoLogin = YES;
-                UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back2"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
-                detailVC.navigationItem.leftBarButtonItem = leftBtn;
                 
                 [weakself.navigationController pushViewController:detailVC animated:YES];
             }

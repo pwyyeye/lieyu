@@ -11,8 +11,9 @@
 #import "DetailView.h"
 #import "MenuHrizontal.h"
 #import "ManagersView.h"
+#import "LYBaseViewController.h"
 
-@interface ZujuViewController : UIViewController<showImageInPreview,MenuHrizontalDelegate,ChooseManage>
+@interface ZujuViewController : LYBaseViewController<showImageInPreview,MenuHrizontalDelegate,ChooseManage>
 {
     MenuHrizontal *mMenuHriZontal;
     NSMutableArray *weekDateArr;

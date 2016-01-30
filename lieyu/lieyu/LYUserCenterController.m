@@ -265,9 +265,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.title = @"猎娱客服";
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
-            UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForword)];
-            conversationVC.navigationItem.leftBarButtonItem = leftBtn;
-            
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-20, 0, 40, 40)];
+            [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+            [view addSubview:button];
+            [button addTarget:self action:@selector(backForword) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+            conversationVC.navigationItem.leftBarButtonItem = item;
             [self.navigationController pushViewController:conversationVC animated:YES];
             break;
         }

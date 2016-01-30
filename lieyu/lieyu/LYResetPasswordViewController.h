@@ -11,7 +11,7 @@
 - (void)resetPassword;
 
 @end
-@interface LYResetPasswordViewController : UIViewController
+@interface LYResetPasswordViewController : LYBaseViewController
 - (IBAction)nextAct:(UIButton *)sender;
 - (IBAction)getYZMAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *getPassWordTypeTex;

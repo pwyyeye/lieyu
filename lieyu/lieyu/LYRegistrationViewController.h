@@ -13,7 +13,7 @@
 - (void)registration;
 
 @end
-@interface LYRegistrationViewController : UIViewController
+@interface LYRegistrationViewController : LYBaseViewController
 - (IBAction)zcAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *textField_phone;
 @property (weak, nonatomic) IBOutlet UIImageView *textField_YZM;

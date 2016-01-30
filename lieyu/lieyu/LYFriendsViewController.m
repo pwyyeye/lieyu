@@ -628,7 +628,9 @@
 //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
     _friendsBtnSelect = YES;
     _pageStartCountFriends = 0;
-    [self getDataFriendsWithSetContentOffSet:YES];
+    if(((NSArray *)_dataArray[0]).count == 0){
+        [self getDataFriendsWithSetContentOffSet:YES];
+    }
     _friendsBtn.isFriendsMenuViewSelected = YES;
     _myBtn.isFriendsMenuViewSelected = NO;
     [UIView animateWithDuration:0.5 animations:^{
@@ -1469,7 +1471,6 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
             CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 81, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-            NSLog(@"-------->%f------->%@",SCREEN_WIDTH - 71,NSStringFromCGSize(size));
             CGFloat height;
             if (size.height + 20 < 36) {
                 height = 36;

@@ -56,8 +56,7 @@
     _searchBar.returnKeyType = UIReturnKeySearch;
     self.tableView.tableFooterView = [[UIView alloc]init];
     
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    [self.navigationItem setLeftBarButtonItem:item];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated{

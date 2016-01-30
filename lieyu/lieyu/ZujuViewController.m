@@ -66,6 +66,7 @@
     self.edgesForExtendedLayout = UIRectEdgeAll;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.contentInset = UIEdgeInsetsMake(284, 0, 0, 0);
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
     weekDateArr = [[NSMutableArray alloc]initWithCapacity:7];
     self.defaultIndex = -1;
@@ -80,12 +81,6 @@
     [self initThisBottomView];
     [self managerList];
     [self initManagerView];
-    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    [self.navigationItem setLeftBarButtonItem:item];
-}
-
-- (void)gotoBack{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -396,7 +391,7 @@
         if(result.count>0){
             dataList = [[NSMutableArray alloc]initWithArray:result];
             [weakSelf.tableView reloadData];
-            weakSelf.tableView.contentOffset = CGPointMake(0, 0);
+            weakSelf.tableView.contentOffset = CGPointMake(0, -284);
             [weakSelf removeNoGoodView];
         }else{
             [weakSelf createNoGoodView];

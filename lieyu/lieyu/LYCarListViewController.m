@@ -34,7 +34,9 @@
     dataList=[[NSMutableArray alloc]init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    [self getData];
-    
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.navigationController.navigationBar.translucent = YES;
+    self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
     MJRefreshGifHeader *header = (MJRefreshGifHeader *)self.tableView.mj_header;
     [self initMJRefeshHeaderForGif:header];

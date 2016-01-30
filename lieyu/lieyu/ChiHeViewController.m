@@ -77,12 +77,6 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
     self.navigationItem.rightBarButtonItem = item;
     
-//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"shoppingCar"] style:UIBarButtonItemStylePlain target:self action:@selector(showcarAct)];
-//    self.navigationItem.rightBarButtonItem = rightItem;
-    
-//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return1"] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
-//    self.navigationItem.leftBarButtonItem = leftItem;
-    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.itemSize = CGSizeMake((SCREEN_WIDTH - 18) / 2, 127 + SCREEN_WIDTH / 2);
     [self.collectionView setCollectionViewLayout:layout];

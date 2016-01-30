@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYBaseViewController.h"
 
-@interface LYCityChooseViewController : UIViewController
+@interface LYCityChooseViewController : LYBaseViewController
 
 @end
