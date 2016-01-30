@@ -27,7 +27,6 @@
 #import "LYCache+CoreDataProperties.h"
 #import "LYUserHttpTool.h"
 #import "LYFriendsHttpTool.h"
-#import "Masonry.h"
 #import "HomeBarCollectionViewCell.h"
 #import "HomeMenuCollectionViewCell.h"
 #import "LYHotBarViewController.h"
@@ -131,7 +130,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if (CGRectGetMaxY(_menuView.frame) < 90) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0) ]  ;
+            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
         }
     }
     UICollectionView *collectView = _collectViewArray[_index];
@@ -152,42 +151,64 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
    
     if(scrollView == _scrollView){
+            CGFloat offsetWidth = _scrollView.contentOffset.x;
+            CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
+            _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
     }else{
         UICollectionView *collectView = nil;
         collectView = _collectViewArray[_index];
-        if ((collectView.contentOffset.y > _contentOffSet_Height_YD && _index == 0) || (collectView.contentOffset.y > _contentOffSet_Height_BAR && _index == 1)) {
-//            for (UICollectionView *collectView in _collectViewArray) {
-//                [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0)];
-//            }
-            [UIView animateWithDuration:0.5 animations:^{
-                [collectView setContentInset:UIEdgeInsetsMake(88 - 57, 0, 49, 0)];
-
-                _menuView.center = CGPointMake( _menuView.center.x,-2 );
-                _titleImageView.alpha = 0.0;
-                _cityChooseBtn.alpha = 0.f;
-                _searchBtn.alpha = 0.f;
-            } completion:^(BOOL finished) {
-                
-            }];
-        }else{
-           // for (UICollectionView *collectView in _collectViewArray) {
-              //  [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
-            //}
-            [UIView animateWithDuration:0.5 animations:^{
+        if (_index) {
+            if (collectView.contentOffset.y > _contentOffSet_Height_BAR) {
+                [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+                [UIView animateWithDuration:0.5 animations:^{
+                    
+                    _menuView.center = CGPointMake( _menuView.center.x,-2 );
+                    _titleImageView.alpha = 0.0;
+                    _cityChooseBtn.alpha = 0.f;
+                    _searchBtn.alpha = 0.f;
+                } completion:^(BOOL finished) {
+                    
+                }];
+            }else{
                 [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
-
-                _menuView.center = CGPointMake(_menuView.center.x,45);
-                _titleImageView.alpha = 1.0;
-                _cityChooseBtn.alpha = 1.f;
-                _searchBtn.alpha = 1.f;
-            }completion:^(BOOL finished) {
-                
-            }];
+                [UIView animateWithDuration:0.5 animations:^{
+                    
+                    _menuView.center = CGPointMake(_menuView.center.x,45);
+                    _titleImageView.alpha = 1.0;
+                    _cityChooseBtn.alpha = 1.f;
+                    _searchBtn.alpha = 1.f;
+                }completion:^(BOOL finished) {
+                    
+                }];
+            }
+        }else{
+                if (collectView.contentOffset.y > _contentOffSet_Height_YD) {
+                    [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+                [UIView animateWithDuration:0.5 animations:^{
+                    
+                    _menuView.center = CGPointMake( _menuView.center.x,-2 );
+                    _titleImageView.alpha = 0.0;
+                    _cityChooseBtn.alpha = 0.f;
+                    _searchBtn.alpha = 0.f;
+                } completion:^(BOOL finished) {
+                    
+                }];
+                }else{
+                    [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+                    [UIView animateWithDuration:0.5 animations:^{
+                        
+                        _menuView.center = CGPointMake(_menuView.center.x,45);
+                        _titleImageView.alpha = 1.0;
+                        _cityChooseBtn.alpha = 1.f;
+                        _searchBtn.alpha = 1.f;
+                    }completion:^(BOOL finished) {
+                        
+                    }];
+                }
         }
     }
-    CGFloat offsetWidth = _scrollView.contentOffset.x;
-    CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
-    _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
+    NSLog(@"----->%@",NSStringFromCGRect(_lineView.frame));
+
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -200,9 +221,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (_index) {
             _btn_bar.isHomePageMenuViewSelected = YES;
             _btn_yedian.isHomePageMenuViewSelected = NO;
+            _lineView.center = CGPointMake(_btn_bar.center.x, _lineView.center.y);
         }else{
             _btn_bar.isHomePageMenuViewSelected = NO;
             _btn_yedian.isHomePageMenuViewSelected = YES;
+            _lineView.center = CGPointMake(_btn_yedian.center.x, _lineView.center.y);
         }
     }
 //    _contentOffSetWidth = _scrollView.contentOffset.x;
@@ -212,7 +235,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //        CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
 //        _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
 //    }];
-    
     
 }
 
@@ -287,33 +309,31 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
    // [_btn_yedian setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
     [_menuView addSubview:_btn_yedian];
     [_btn_yedian addTarget:self action:@selector(yedianClick) forControlEvents:UIControlEventTouchUpInside];
-    [_btn_yedian mas_makeConstraints:^(MASConstraintMaker *make) {
+  /*  [_btn_yedian mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(_menuView.mas_bottom).offset(-4.5);
         make.right.mas_equalTo(_menuView.mas_centerX).offset(-12);
         make.size.mas_equalTo(CGSizeMake(44, 16));
-    }];
+    }]; */
+    _btn_yedian.frame = CGRectMake(SCREEN_WIDTH/2.f - 44 - 12, _menuView.frame.size.height - 16 - 4.5, 44, 16);
     
-    _btn_bar = [[HotMenuButton alloc]init];
+    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 12, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
     [_btn_bar setTitle:@"酒吧" forState:UIControlStateNormal];
 //    _btn_bar.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     _btn_bar.isHomePageMenuViewSelected = NO;
    // [_btn_bar setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
     [_btn_bar addTarget:self action:@selector(barClick) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_btn_bar];
-    [_btn_bar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(_menuView.mas_bottom).offset(-4.5);
-        make.left.mas_equalTo(_menuView.mas_centerX).offset(12);
-        make.size.mas_equalTo(CGSizeMake(44, 16));
-    }];
     
     _lineView = [[UIView alloc]init];
     _lineView.backgroundColor = RGBA(186, 40, 227, 1);
     [_menuView addSubview:_lineView];
-    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+   /* [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(_menuView.mas_bottom).with.offset(0);
         make.centerX.mas_equalTo(_btn_yedian.mas_centerX).offset(0);
         make.size.mas_equalTo(CGSizeMake(42, 2));
-    }];
+    }]; */
+    _lineView.frame = CGRectMake(0, _menuView.frame.size.height - 2, 42, 2);
+    _lineView.center = CGPointMake(_btn_yedian.center.x, _lineView.center.y);
     
 }
 
@@ -329,6 +349,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [self getDataWith:0];
         }
     }
+    if (CGRectGetMaxY(_menuView.frame) < 90) {
+        for (UICollectionView *collectView in _collectViewArray) {
+            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
+        }
+    }
 }
 
 #pragma mark －酒吧action
@@ -341,6 +366,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSArray *array = _dataArray[1];
         if (!array.count) {
             [self getDataWith:1];
+        }
+    }
+    if (CGRectGetMaxY(_menuView.frame) < 90) {
+        for (UICollectionView *collectView in _collectViewArray) {
+            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
         }
     }
 }
@@ -411,6 +441,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 -(void)getDataWith:(NSInteger)tag{
     if([MyUtil configureNetworkConnect] == 0){
         NSArray *array = [self getDataFromLocal];
+        UICollectionView *collectView = nil;
         if (array.count == 2) {
             if (((NSArray *)array[0]).count) {
                 NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
@@ -422,6 +453,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
                 _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
                 [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
+                collectView = _collectViewArray[0];
             }else if(((NSArray *)array[1]).count){
                 NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
                 NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
@@ -432,11 +464,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
                 _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
                 [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
+                collectView = _collectViewArray[1];
             }
-            for (UICollectionView *collectView in _collectViewArray) {
-                [collectView reloadData];
-            }
-            //[_collectView reloadData];
+            [collectView reloadData];
             return;
         }
     }
@@ -715,11 +745,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             case 0:
             {
                 hotBarVC.subidStr = @"2";
+                hotBarVC.titleText = @"热门夜店";
             }
                 break;
             case 1:
             {
                 hotBarVC.subidStr = @"1,6,7";
+                hotBarVC.titleText = @"热门酒吧";
             }
                 break;
         }
