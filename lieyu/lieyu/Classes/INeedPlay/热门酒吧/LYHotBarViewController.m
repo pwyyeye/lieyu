@@ -34,6 +34,7 @@
         NSInteger _currentPagePrice;
         NSInteger _currentPageFanli;
     NSInteger _index;
+    UILabel *_titelLabel;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -50,6 +51,10 @@
     [super viewDidLoad];
     [self createMenuView];
     self.navigationItem.title = @"热门酒吧";
+    
+  
+    
+
     _collectArray = [[NSMutableArray alloc]initWithCapacity:4];
     _dataArray = [[NSMutableArray alloc]initWithCapacity:4];
     _currentPageHot = 1;
@@ -64,8 +69,8 @@
     
     for(int i = 0; i < 4; i++){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) collectionViewLayout:layout];
-        [collectView setContentInset:UIEdgeInsetsMake(26, 0, 0, 0)];
+        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
+        [collectView setContentInset:UIEdgeInsetsMake(90, 0, 0, 0)];
         collectView.dataSource = self;
         collectView.delegate = self;
         collectView.tag = i;
@@ -83,7 +88,7 @@
 #pragma mark - 创建菜单view
 - (void)createMenuView{
     
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _scrollView.delegate = self;
     _scrollView.pagingEnabled = YES;
     [self.view addSubview:_scrollView];
@@ -95,6 +100,16 @@
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
     _menuView.layer.shadowOpacity = 0.1;
     _menuView.layer.shadowRadius = 1;
+//    [self.view addSubview:_menuView];
+    UIBlurEffect *effectExtraLight = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    UIBlurEffect *effectLight = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    _menuView = [[UIVisualEffectView alloc]initWithEffect:effectExtraLight];
+    _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
+    _menuView.alpha = 5;
+    _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
+    _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
+    _menuView.layer.shadowOpacity = 0.3;
+    _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
     CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
@@ -104,9 +119,9 @@
     for (int i = 0; i < 4; i ++) {
         HotMenuButton *btn = [[HotMenuButton alloc]init];
         if (i == 0) {
-            btn.frame = CGRectMake(offSet, -1,btnWidth, 26);
+            btn.frame = CGRectMake(offSet, 63,btnWidth, 26);
         }else{
-            btn.frame = CGRectMake(offSet + i%4 * btnWidth, -1, btnWidth, 26);
+            btn.frame = CGRectMake(offSet + i%4 * btnWidth, 63, btnWidth, 26);
         }
         if (i == _contentTag) {
             btn.isMenuSelected = YES;
@@ -119,12 +134,34 @@
         [_menuView addSubview:btn];
         [_menuBtnArray addObject:btn];
     }
+    _titelLabel = [[UILabel alloc]init];
+    _titelLabel.frame = CGRectMake(0, 30, SCREEN_WIDTH, 30);
+    _titelLabel.textAlignment = NSTextAlignmentCenter;
+    _titelLabel.text = _titleText;
+    _titelLabel.font = [UIFont boldSystemFontOfSize:16];
+    _titelLabel.textColor = [UIColor blackColor];
+    [_menuView addSubview:_titelLabel];
+
+    UIButton *backBtn = [[UIButton alloc]init];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    backBtn.frame = CGRectMake(5, 30, 30, 30);
+    [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+    [_menuView addSubview:backBtn];
     
-    
+}
+
+- (void)backClick{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+        self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)createLineForMenuView{

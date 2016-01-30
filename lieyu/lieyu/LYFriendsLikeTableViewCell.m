@@ -41,6 +41,14 @@
         FriendsLikeModel *likeModel = array[i];
         [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     }
+    
+ /*   if (!recentM.likeList.count) {
+        return;
+    }
+    for (UIButton *button in _btnArray) {
+        button.hidden = NO;
+        [button sd_setBackgroundImageWithURL:[NSURL URLWithString:((FriendsLikeModel *)recentM.likeList[0]).icon] forState:UIControlStateNormal];
+    } */
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

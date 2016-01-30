@@ -7,7 +7,6 @@
 //
 
 #import "HomeBarCollectionViewCell.h"
-#import "Masonry.h"
 #import "JiuBaModel.h"
 
 @implementation HomeBarCollectionViewCell

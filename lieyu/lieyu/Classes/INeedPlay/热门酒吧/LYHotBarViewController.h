@@ -11,4 +11,5 @@
 @interface LYHotBarViewController : LYBaseViewController
 @property (nonatomic,copy) NSString *subidStr;
 @property (nonatomic,unsafe_unretained) NSInteger contentTag;
+@property (nonatomic,copy) NSString *titleText;
 @end
