@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="55.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address.png" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addressFriend.png" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
                         <rect key="frame" x="7" y="16" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="eD2-ol-lep"/>
@@ -93,7 +93,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="address.png" width="24" height="24"/>
+        <image name="addressFriend.png" width="24" height="24"/>
         <image name="haoyou_biaobai.png" width="44" height="18"/>
         <image name="haoyou_pinglun.png" width="44" height="18"/>
     </resources>
