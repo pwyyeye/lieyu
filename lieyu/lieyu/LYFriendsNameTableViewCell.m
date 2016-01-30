@@ -59,8 +59,14 @@
         }
     }
     
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    [paragraphStyle setLineSpacing:3];
+    [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
+    
     if(recentM.message != nil){
-        [_label_content setText:recentM.message];
+//        [_label_content setText:recentM.message];
+        _label_content.attributedText = attributeStr;
     }else{
         _label_content.text = @" ";
     }

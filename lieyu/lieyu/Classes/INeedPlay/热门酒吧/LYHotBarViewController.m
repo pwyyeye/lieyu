@@ -143,7 +143,7 @@
     [_menuView addSubview:_titelLabel];
 
     UIButton *backBtn = [[UIButton alloc]init];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     backBtn.frame = CGRectMake(5, 30, 30, 30);
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:backBtn];

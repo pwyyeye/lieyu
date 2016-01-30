@@ -20,7 +20,7 @@
     [super viewDidLoad];
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE)]];
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    //[self setupView];
+    [self setupView];
     //设置tableView样式
     self.conversationListTableView.separatorColor = RGB(223, 223, 223);
     self.conversationListTableView.tableFooterView = [UIView new];
@@ -30,8 +30,12 @@
     // Do any additional setup after loading the view.
 }
 - (void)setupView{
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"backBtn"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(backClick)];
     self.navigationItem.leftBarButtonItem = leftItem;
+}
+
+- (void)backClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)back{

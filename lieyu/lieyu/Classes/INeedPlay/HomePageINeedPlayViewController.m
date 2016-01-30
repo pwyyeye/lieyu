@@ -285,6 +285,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
+//    if ([MyUtil]) {
+//        <#statements#>
+//    }
     _cityChooseBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
     [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 15, 0, 0)];
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
