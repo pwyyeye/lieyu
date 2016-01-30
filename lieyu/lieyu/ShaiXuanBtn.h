@@ -10,4 +10,6 @@
 
 @interface ShaiXuanBtn : UIButton
 @property (assign, nonatomic) BOOL isup;
+
+@property (nonatomic, strong) UILabel *lineLabel;
 @end

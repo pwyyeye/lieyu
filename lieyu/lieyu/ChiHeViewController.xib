@@ -36,15 +36,43 @@
                         <outlet property="delegate" destination="-1" id="Stx-VT-0fd"/>
                     </connections>
                 </collectionView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oj5-Cy-zW0">
+                    <rect key="frame" x="0.0" y="64" width="320" height="36"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Gyg-A8-fhQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bS-fH-dUH">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gLX-c9-d2K">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="extraLight"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="8bS-fH-dUH" firstAttribute="leading" secondItem="Gyg-A8-fhQ" secondAttribute="leading" id="Mto-Qh-aDg"/>
+                            <constraint firstAttribute="trailing" secondItem="8bS-fH-dUH" secondAttribute="trailing" id="Nal-2s-FNM"/>
+                            <constraint firstAttribute="bottom" secondItem="8bS-fH-dUH" secondAttribute="bottom" id="iox-m0-cTL"/>
+                            <constraint firstItem="8bS-fH-dUH" firstAttribute="top" secondItem="Gyg-A8-fhQ" secondAttribute="top" id="sR8-tv-FkD"/>
+                        </constraints>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="P9n-X7-Dbc"/>
+                    </constraints>
+                    <blurEffect style="extraLight"/>
+                </visualEffectView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsN-Tv-T2I" customClass="ShaiXuanBtn">
                     <rect key="frame" x="0.0" y="64" width="64" height="36"/>
-                    <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="qJq-ou-4fi"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="r5l-Al-fd4"/>
@@ -52,10 +80,9 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACj-im-fEU" customClass="ShaiXuanBtn">
                     <rect key="frame" x="64" y="64" width="64" height="36"/>
-                    <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="Z4h-Rs-5BU"/>
@@ -63,10 +90,9 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-1U-1uV" customClass="ShaiXuanBtn">
                     <rect key="frame" x="128" y="64" width="64" height="36"/>
-                    <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="Jzo-A0-AWV"/>
@@ -74,10 +100,9 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR0-ef-oAw" customClass="ShaiXuanBtn">
                     <rect key="frame" x="192" y="64" width="64" height="36"/>
-                    <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="fcR-3m-Ifu"/>
@@ -85,9 +110,10 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0u-qE-nUk" customClass="ShaiXuanBtn">
                     <rect key="frame" x="256" y="64" width="64" height="36"/>
-                    <color key="backgroundColor" red="0.33333333329999998" green="0.066666666669999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" image="more_white.png"/>
+                    <state key="normal" image="more_purper.png">
+                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="63A-l9-Se9"/>
                     </connections>
@@ -105,12 +131,15 @@
                 <constraint firstItem="T0u-qE-nUk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="IZR-V3-UjW"/>
                 <constraint firstItem="uR0-ef-oAw" firstAttribute="leading" secondItem="vfZ-1U-1uV" secondAttribute="trailing" id="Jv9-t7-Dg0"/>
                 <constraint firstItem="T0u-qE-nUk" firstAttribute="width" secondItem="FsN-Tv-T2I" secondAttribute="width" id="OVH-iP-qK4"/>
+                <constraint firstAttribute="trailing" secondItem="Oj5-Cy-zW0" secondAttribute="trailing" id="RuV-Sg-ldT"/>
                 <constraint firstItem="ieN-Zf-EMT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="T3x-7N-J4W"/>
                 <constraint firstItem="vfZ-1U-1uV" firstAttribute="width" secondItem="FsN-Tv-T2I" secondAttribute="width" id="V47-O2-HBB"/>
                 <constraint firstItem="uR0-ef-oAw" firstAttribute="width" secondItem="FsN-Tv-T2I" secondAttribute="width" id="ZdK-hq-UpQ"/>
                 <constraint firstItem="ACj-im-fEU" firstAttribute="height" secondItem="FsN-Tv-T2I" secondAttribute="height" id="ZuJ-b2-KhO"/>
                 <constraint firstAttribute="trailing" secondItem="ieN-Zf-EMT" secondAttribute="trailing" id="auz-eP-aeU"/>
                 <constraint firstItem="FsN-Tv-T2I" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="deD-zH-uRR"/>
+                <constraint firstItem="Oj5-Cy-zW0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="fjW-0e-W2p"/>
+                <constraint firstItem="Oj5-Cy-zW0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gQI-Jx-eNg"/>
                 <constraint firstItem="T0u-qE-nUk" firstAttribute="height" secondItem="FsN-Tv-T2I" secondAttribute="height" id="kco-dD-pYG"/>
                 <constraint firstItem="ACj-im-fEU" firstAttribute="width" secondItem="FsN-Tv-T2I" secondAttribute="width" id="kn7-JH-VaV"/>
                 <constraint firstAttribute="bottom" secondItem="ieN-Zf-EMT" secondAttribute="bottom" id="o6V-SA-L2c"/>
@@ -123,6 +152,6 @@
         </view>
     </objects>
     <resources>
-        <image name="more_white.png" width="12" height="13"/>
+        <image name="more_purper.png" width="12" height="13"/>
     </resources>
 </document>

@@ -164,11 +164,13 @@
 #pragma mark 设置标签栏数据
 - (void)setItemsData{
     for (int i = 0 ; i < _buttonsArray.count; i ++) {
-        [((ShaiXuanBtn *)_buttonsArray[i]) setBackgroundColor:RGBA(114, 5, 147, 1)];
+//        [((ShaiXuanBtn *)_buttonsArray[i]) setBackgroundColor:RGBA(114, 5, 147, 0.8)];
+        [((ShaiXuanBtn *)_buttonsArray[i]) setBackgroundColor:[UIColor clearColor]];
         [((ShaiXuanBtn *)_buttonsArray[i]) setTitle:((ProductCategoryModel *)biaoqianList[i]).name forState:UIControlStateNormal];
         [((ShaiXuanBtn *)_buttonsArray[i]) setTag:((ProductCategoryModel *)biaoqianList[i]).id];
     }
-    [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
+//    [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 0.8)];
+    [_sxBtn5 setBackgroundColor:[UIColor clearColor]];
     [_sxBtn5 setTag:105];
 }
 
@@ -416,23 +418,34 @@
 - (IBAction)sxBtnClick:(ShaiXuanBtn *)sender {
     ShaiXuanBtn *btn=(ShaiXuanBtn*)sender;
     for (UIButton *button in _buttonsArray) {
+        [button setBackgroundColor:[UIColor clearColor]];
+        [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
         if(button.tag == btn.tag){
-            [button setBackgroundColor:[UIColor whiteColor]];
-            [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+            //等待选择
+            [button setSelected:YES];
+//            [button setBackgroundColor:RGBA(255, 255, 255, 0.8)];
+//            [button setBackgroundColor:[UIColor clearColor]];
+//            [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
         }else{
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [button setBackgroundColor:RGBA(114, 5, 147, 1)];
+            [button setSelected:NO];
+//            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//            [button setBackgroundColor:RGBA(114, 5, 147, 0.8)];
+//            [button setBackgroundColor:[UIColor clearColor]];
         }
     }
-    [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
+//    [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 0.8)];
+    [_sxBtn5 setBackgroundColor:[UIColor clearColor]];
     [_sxBtn5 setTitle:@"" forState:UIControlStateNormal];
-    [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
+//    [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
     if(btn.tag == 105){
-        [btn setBackgroundColor:[UIColor whiteColor]];
-        [btn setImage:[UIImage imageNamed:@"more_purper"] forState:UIControlStateNormal];
+//        [btn setBackgroundColor:[UIColor whiteColor]];
+        [btn setBackgroundColor:[UIColor clearColor]];
+        [btn setSelected:YES];
+//        [btn setImage:[UIImage imageNamed:@"more_purper"] forState:UIControlStateNormal];
         [self showMoreButtons];
         return;
     }else{
+        [_sxBtn5 setSelected:NO];
         _moreShow = NO;
         [_MoreView removeFromSuperview];
         chooseKey = btn.tag;
@@ -496,8 +509,9 @@
     }else{
         _moreShow = NO;
         [_sxBtn5 setTitle:@"" forState:UIControlStateNormal];
-        [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 1)];
-        [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
+//        [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 0.8)];
+        [_sxBtn5 setBackgroundColor:[UIColor clearColor]];
+//        [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
         [_MoreView removeFromSuperview];
         _collectionView.userInteractionEnabled = YES;
     }
@@ -510,9 +524,11 @@
     [sender setBackgroundColor:RGBA(114, 5, 147, 1)];
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    [_sxBtn5 setBackgroundColor:[UIColor whiteColor]];
+    [_sxBtn5 setBackgroundColor:[UIColor clearColor]];
+//    [_sxBtn5 setTitleColor:RGBA(114, 5, 147, 0.8) forState:UIControlStateNormal];
     [_sxBtn5 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
     [_sxBtn5 setTitle:sender.titleLabel.text forState:UIControlStateNormal];
+    [_sxBtn5 setSelected:YES];
     
     _moreShow = NO;
     _collectionView.userInteractionEnabled = YES;
