@@ -29,13 +29,13 @@
     
     _jiubaNameLal.text=model.barinfo.barname;
     _titleLal.text=model.pinkerinfo.smname;
-    _priceLal.text=model.pinkerinfo.price;
+    _priceLal.text=[NSString stringWithFormat:@"%@ x %d(份)",model.pinkerinfo.price,model.pinkerNum] ;
     if(model.pinkerType==0){
         _typeLal.text=@"好友请客";
     }else if(model.pinkerType==1){
         _typeLal.text=@"AA付款";
     }else{
-        _typeLal.text=@"自由付款";
+        _typeLal.text=@"AA付款";
     }
     
     

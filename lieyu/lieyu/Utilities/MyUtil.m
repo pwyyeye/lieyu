@@ -601,7 +601,7 @@
 }
 
 
-#pragma mark - 获取字符长度 中文＝2 英文＝1
+#pragma --mark  获取字符长度 中文＝2 英文＝1
 + (int)countTheStrLength:(NSString*)strtemp {
     
     int strlength = 0;
