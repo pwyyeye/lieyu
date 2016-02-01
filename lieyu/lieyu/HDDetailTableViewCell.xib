@@ -45,8 +45,11 @@
                                     <constraint firstAttribute="height" constant="15" id="bkJ-xd-G07"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2h20min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbe-Jd-cvc">
-                                <rect key="frame" x="253" y="14" width="42.5" height="20"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="剩余.png" translatesAutoresizingMaskIntoConstraints="NO" id="ovV-O8-JgO">
+                                <rect key="frame" x="224" y="14" width="72" height="20"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbe-Jd-cvc">
+                                <rect key="frame" x="260" y="14" width="36" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="1mc-7W-CKZ"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="NxB-Ah-Pf5"/>
@@ -56,8 +59,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCf-1Y-vbQ">
-                                <rect key="frame" x="217" y="14" width="36" height="20"/>
-                                <color key="backgroundColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="224" y="14" width="36" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="MWD-jV-QEl"/>
                                     <constraint firstAttribute="height" constant="20" id="Xb1-GX-2VY"/>
@@ -97,7 +99,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc4-Rg-fmq">
-                                <rect key="frame" x="35" y="115" width="35.5" height="19"/>
+                                <rect key="frame" x="35" y="115" width="230" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="M79-5N-4UC"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="mas-fl-D0e"/>
@@ -105,6 +107,11 @@
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="mas-fl-D0e"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="advance.png" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-L5-6Js">
                                 <rect key="frame" x="273" y="162" width="23" height="25"/>
@@ -160,18 +167,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmG-d1-qXs">
-                                <rect key="frame" x="244" y="154.5" width="60" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="dDo-cf-Pse"/>
-                                    <constraint firstAttribute="width" constant="60" id="zqd-zu-3HY"/>
-                                </constraints>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVN-Xh-fAI">
                                 <rect key="frame" x="244" y="105" width="60" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="BgZ-ai-c9u"/>
                                     <constraint firstAttribute="width" constant="60" id="RcC-rq-FiO"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zmG-d1-qXs">
+                                <rect key="frame" x="244" y="154" width="60" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dDo-cf-Pse"/>
+                                    <constraint firstAttribute="width" constant="60" id="zqd-zu-3HY"/>
                                 </constraints>
                             </button>
                         </subviews>
@@ -199,9 +206,13 @@
                             <constraint firstItem="7sq-EE-IuE" firstAttribute="top" secondItem="LLQ-GB-1Ji" secondAttribute="bottom" constant="35" id="MJ3-5r-EmN"/>
                             <constraint firstItem="1df-bb-2fi" firstAttribute="centerY" secondItem="lc4-Rg-fmq" secondAttribute="centerY" id="NsE-Qv-G5a"/>
                             <constraint firstItem="kAb-f4-t1g" firstAttribute="top" secondItem="HuG-yc-BkR" secondAttribute="top" constant="62" id="OPQ-Mr-bPK"/>
+                            <constraint firstItem="1df-bb-2fi" firstAttribute="leading" secondItem="lc4-Rg-fmq" secondAttribute="trailing" constant="8" id="P3v-yy-vak"/>
                             <constraint firstItem="bDZ-L5-6Js" firstAttribute="trailing" secondItem="1df-bb-2fi" secondAttribute="trailing" id="PDk-6q-krt"/>
+                            <constraint firstItem="hCf-1Y-vbQ" firstAttribute="leading" secondItem="ovV-O8-JgO" secondAttribute="leading" id="POa-c5-JDS"/>
+                            <constraint firstItem="wbe-Jd-cvc" firstAttribute="bottom" secondItem="ovV-O8-JgO" secondAttribute="bottom" id="Pxh-D9-5D1"/>
                             <constraint firstItem="7sq-EE-IuE" firstAttribute="top" secondItem="HuG-yc-BkR" secondAttribute="top" constant="162" id="QVD-YS-VS7"/>
                             <constraint firstItem="hCf-1Y-vbQ" firstAttribute="top" secondItem="HuG-yc-BkR" secondAttribute="top" constant="8" id="RQa-Lb-nMv"/>
+                            <constraint firstItem="wbe-Jd-cvc" firstAttribute="trailing" secondItem="ovV-O8-JgO" secondAttribute="trailing" id="TLK-Yo-Tmt"/>
                             <constraint firstItem="LLQ-GB-1Ji" firstAttribute="top" secondItem="kAb-f4-t1g" secondAttribute="bottom" constant="35" id="Tk9-PW-5Lb"/>
                             <constraint firstItem="oQI-Ys-m7M" firstAttribute="leading" secondItem="HuG-yc-BkR" secondAttribute="leading" constant="8" id="UYS-Ce-2gh"/>
                             <constraint firstItem="pDF-j9-T2Y" firstAttribute="leading" secondItem="QVW-cs-yKq" secondAttribute="leading" id="UYk-9f-Jq8"/>
@@ -223,6 +234,7 @@
                             <constraint firstItem="bDZ-L5-6Js" firstAttribute="centerY" secondItem="pDF-j9-T2Y" secondAttribute="centerY" id="jR6-dV-UU5"/>
                             <constraint firstItem="L6c-sO-RgK" firstAttribute="leading" secondItem="QVW-cs-yKq" secondAttribute="leading" id="jTl-4i-Gnk"/>
                             <constraint firstAttribute="trailing" secondItem="Qq7-E4-mic" secondAttribute="trailing" id="nGU-QH-SsP"/>
+                            <constraint firstItem="ovV-O8-JgO" firstAttribute="centerY" secondItem="maX-sn-aGE" secondAttribute="centerY" id="nbc-Bh-UTd"/>
                             <constraint firstItem="zmG-d1-qXs" firstAttribute="centerY" secondItem="pDF-j9-T2Y" secondAttribute="centerY" id="o2S-7g-gzz"/>
                             <constraint firstAttribute="trailing" secondItem="wbe-Jd-cvc" secondAttribute="trailing" constant="8" id="oP3-Uf-Y0e"/>
                             <constraint firstItem="R8y-pq-JvN" firstAttribute="centerY" secondItem="kAb-f4-t1g" secondAttribute="centerY" id="pln-o4-Fr8"/>
@@ -270,12 +282,14 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
                 <outlet property="address_label" destination="lc4-Rg-fmq" id="4U5-sm-ScO"/>
+                <outlet property="backView" destination="HuG-yc-BkR" id="N65-e3-oBF"/>
                 <outlet property="barName_label" destination="pDF-j9-T2Y" id="Fix-El-o7F"/>
                 <outlet property="checkAddress_button" destination="yVN-Xh-fAI" id="UVm-lC-b7r"/>
                 <outlet property="checkBar_button" destination="zmG-d1-qXs" id="WOx-sP-glj"/>
                 <outlet property="joinedNumber_label" destination="L6c-sO-RgK" id="gfB-Mt-Rjj"/>
                 <outlet property="joinedpro_label" destination="R8y-pq-JvN" id="WWW-Be-hnK"/>
                 <outlet property="residue_label" destination="wbe-Jd-cvc" id="Us5-AZ-RnM"/>
+                <outlet property="shangyu_label" destination="hCf-1Y-vbQ" id="p6V-mU-Lof"/>
                 <outlet property="startTime_label" destination="QVW-cs-yKq" id="hHY-T6-TI2"/>
             </connections>
             <point key="canvasLocation" x="344" y="297"/>
@@ -287,5 +301,6 @@
         <image name="address" width="25" height="24"/>
         <image name="advance.png" width="24" height="24"/>
         <image name="date.png" width="16" height="16"/>
+        <image name="剩余.png" width="72" height="20"/>
     </resources>
 </document>

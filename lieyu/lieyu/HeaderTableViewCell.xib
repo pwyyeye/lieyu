@@ -76,13 +76,15 @@
                             </mask>
                         </variation>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yoU-pO-NOw">
+                        <rect key="frame" x="16" y="8" width="50" height="50"/>
+                    </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl5-nA-X3x">
                         <rect key="frame" x="16" y="8" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="dce-MM-21j"/>
                             <constraint firstAttribute="width" constant="50" id="nEY-jJ-XSe"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot_triangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="KXk-Ta-7xW">
                         <rect key="frame" x="16" y="8" width="26" height="26"/>
@@ -110,9 +112,12 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="yoU-pO-NOw" firstAttribute="trailing" secondItem="Cl5-nA-X3x" secondAttribute="trailing" id="1nw-tF-slW"/>
                     <constraint firstItem="Be1-4P-iaf" firstAttribute="leading" secondItem="LsT-nO-4TQ" secondAttribute="trailing" constant="10" id="5Np-II-YdT"/>
                     <constraint firstItem="aFK-1p-R9a" firstAttribute="trailing" secondItem="Cl5-nA-X3x" secondAttribute="trailing" constant="52" id="5UU-PY-dpx"/>
                     <constraint firstItem="dmq-9Y-jyN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6zj-fZ-mtN"/>
+                    <constraint firstItem="yoU-pO-NOw" firstAttribute="leading" secondItem="Cl5-nA-X3x" secondAttribute="leading" id="71N-tc-hVt"/>
+                    <constraint firstItem="yoU-pO-NOw" firstAttribute="bottom" secondItem="Cl5-nA-X3x" secondAttribute="bottom" id="7Kn-Ks-flw"/>
                     <constraint firstItem="KXk-Ta-7xW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="AQF-KT-iv7"/>
                     <constraint firstItem="KXk-Ta-7xW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Av3-mZ-A13"/>
                     <constraint firstItem="Cl5-nA-X3x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Ew5-An-rMy"/>
@@ -124,11 +129,15 @@
                     <constraint firstItem="dmq-9Y-jyN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="hcc-e7-sp6"/>
                     <constraint firstAttribute="trailing" secondItem="dmq-9Y-jyN" secondAttribute="trailing" constant="8" id="k5K-ye-r3i"/>
                     <constraint firstItem="LsT-nO-4TQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="maE-Y1-KRb"/>
+                    <constraint firstItem="yoU-pO-NOw" firstAttribute="top" secondItem="Cl5-nA-X3x" secondAttribute="top" id="mqD-kS-gsg"/>
                     <constraint firstItem="aFK-1p-R9a" firstAttribute="bottom" secondItem="Cl5-nA-X3x" secondAttribute="bottom" id="thj-df-6Eg"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
                 <outlet property="avatar_button" destination="Cl5-nA-X3x" id="iYQ-8x-FZM"/>
+                <outlet property="avatar_image" destination="yoU-pO-NOw" id="JTt-ji-Fjs"/>
+                <outlet property="backView" destination="dmq-9Y-jyN" id="uDd-Ss-jd1"/>
                 <outlet property="hotTriangle" destination="KXk-Ta-7xW" id="m6P-Mi-ecd"/>
                 <outlet property="name_label" destination="LsT-nO-4TQ" id="E4E-uK-e51"/>
                 <outlet property="origanator_image" destination="Be1-4P-iaf" id="M1J-KA-mgu"/>
