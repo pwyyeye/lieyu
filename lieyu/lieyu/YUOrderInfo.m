@@ -7,7 +7,6 @@
 //
 
 #import "YUOrderInfo.h"
-#import "MJExtension.h"
 #import "JiuBaModel.h"
 #import "YUPinkerListModel.h"
 #import "YUPinkerinfo.h"
