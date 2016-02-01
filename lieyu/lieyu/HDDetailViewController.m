@@ -16,6 +16,7 @@
 #import "UIImageView+WebCache.h"
 #import "YUOrderInfo.h"
 #import "LYUserLocation.h"
+#import "LYHomePageHttpTool.h"
 
 @interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate>
 @property (nonatomic, strong) HeaderTableViewCell *headerCell;
@@ -60,21 +61,32 @@
         _headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderTableViewCell" forIndexPath:indexPath];
         [_headerCell.avatar_image sd_setImageWithURL:[NSURL URLWithString:((YUOrderInfo *)_YUModel.orderInfo).avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         _headerCell.name_label.text = ((YUOrderInfo *)_YUModel.orderInfo).username;
+        
         _headerCell.viewNumber_label.text = @"";
         _headerCell.title_label.text = _YUModel.shareContent;
         _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _headerCell;
     }else if (indexPath.section == 1){
         _LYdwCell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
-        [_LYdwCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+//        [_LYdwCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         _LYdwCell.pinkeInfo = ((YUOrderInfo *)_YUModel.orderInfo).pinkerinfo;
         _LYdwCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _LYdwCell;
     }else if(indexPath.section == 2){
         _HDDetailCell = [tableView dequeueReusableCellWithIdentifier:@"HDDetailTableViewCell" forIndexPath:indexPath];
-        _HDDetailCell.startTime_label.text = @"";
-//        [MyUtil ]
-        _HDDetailCell.residue_label.text = @"";
+        
+        NSArray *reachTimeArray1 = [_YUModel.orderInfo.reachtime componentsSeparatedByString:@" "];
+        if (reachTimeArray1.count == 2) {
+            NSArray *reachTimeArray2 = [reachTimeArray1[0] componentsSeparatedByString:@"-"];
+            NSArray *reachTimeArray3 = [reachTimeArray1[1] componentsSeparatedByString:@":"];
+            if (reachTimeArray2.count == 3 && reachTimeArray3.count == 3) {
+                NSString *timeStr = [NSString stringWithFormat:@"%@-%@ (%@) %@:%@",reachTimeArray2[1],reachTimeArray2[2],[MyUtil weekdayStringFromDate:_YUModel.orderInfo.reachtime],reachTimeArray3[0],reachTimeArray3[1]];
+                _HDDetailCell.startTime_label.text = timeStr;
+            }
+        }
+//        _HDDetailCell.startTime_label.text = @"";
+        _HDDetailCell.residue_label.text = [MyUtil residueTimeFromDate:((YUOrderInfo *)_YUModel.orderInfo).reachtime];
+//        _HDDetailCell.residue_label.text = @"";
         _HDDetailCell.joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%lu/%d)",((YUOrderInfo *)_YUModel.orderInfo).pinkerList.count,[((YUOrderInfo *)_YUModel.orderInfo).allnum intValue]];
         if ([_YUModel.allowSex isEqualToString:@"0"]) {
             _HDDetailCell.joinedpro_label.text = @"只邀请女生";
@@ -160,14 +172,39 @@
     alertView.delegate = self;
     _chooseNumber = [[[NSBundle mainBundle]loadNibNamed:@"ChooseNumber" owner:nil options:nil]firstObject];
     _chooseNumber.tag = 14;
-//    _chooseNumber.store = 2;
+    
+    int num = [((YUOrderInfo *)_YUModel.orderInfo).allnum intValue] - (int)((YUOrderInfo *)_YUModel.orderInfo).pinkerList.count;
+    _chooseNumber.store = num;
     _chooseNumber.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20, 250);
     alertView.contentView = _chooseNumber;
     [alertView show];
 }
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
-    
+//    [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:@{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.pinkerinfo.id],@"payamount":pinKeModel.pinkerNeedPayAmount} complete:^(NSString *result) {
+//        if(result){
+//            //支付宝页面"data": "P130637201510181610220",
+//            //result的值就是P130637201510181610220
+//            if (pinKeModel.pinkerNeedPayAmount.doubleValue==0.0) {
+//                UIViewController *detailViewController;
+//                
+//                detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//                
+//                [self.navigationController pushViewController:detailViewController animated:YES];
+//                
+//            }else{
+//                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+//                detailViewController.orderNo=result;
+//                detailViewController.payAmount=pinKeModel.pinkerNeedPayAmount.doubleValue;
+//                detailViewController.productName=pinKeModel.fullname;
+//                detailViewController.productDescription=@"暂无";
+//                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+//                self.navigationItem.backBarButtonItem = left;
+//                [self.navigationController pushViewController:detailViewController animated:YES];
+//            }
+//            
+//        }
+//    }];
 }
 
 - (void)checkAddress{

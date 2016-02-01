@@ -10,6 +10,7 @@
 #import "LYMyOrderManageViewController.h"
 #import "SingletonTenpay.h"
 #import "PayButton.h"
+#import "PinkerShareController.h"
 
 @interface ChoosePayController ()
 {
@@ -335,18 +336,23 @@
     if ([[resultDic objectForKey:@"resultStatus"] longLongValue]==9000) {
            [MyUtil showMessage:@"支付成功！"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-        LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-    
+        
         NSDictionary *dict = @{@"result":@"支付宝支付成功"};
         [MTA trackCustomKeyValueEvent:@"payEvent" props:dict];
-      //  detailViewController.orderNoString=_orderNo;
-      //  detailViewController.payAmountString=[NSString stringWithFormat:@"%.2f",_payAmount];
         
+        if (_isPinker) {
+            PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
+            zujuVC.sn=_orderNo;
+            [self.navigationController pushViewController:zujuVC animated:YES];
+        }else{
+            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+            self.navigationItem.leftBarButtonItem = left;
+            
+            [self.navigationController pushViewController:detailViewController animated:YES];
+        }
         
-        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-        self.navigationItem.leftBarButtonItem = left;
-        
-        [self.navigationController pushViewController:detailViewController animated:YES];
     }else if([[resultDic objectForKey:@"resultStatus"] longLongValue]==6001){
         UIViewController *detailViewController;
         

@@ -31,6 +31,7 @@
 #import "MyBarModel.h"
 #import "LYUserLoginViewController.h"
 #import "zujuViewController.h"
+#import "PinkerShareController.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
@@ -142,11 +143,11 @@
     
     
 }
-//-(void)viewDidDisappear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    self.navigationController.navigationBarHidden=NO;
-//}
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBarHidden=NO;
+}
 
 #pragma mart --约束
 -(void)updateViewConstraints{
@@ -670,6 +671,8 @@
 }
 
 - (IBAction)zsliAct:(UIButton *)sender {
+    
+    
     ZujuViewController *zujuVC = [[ZujuViewController alloc]initWithNibName:@"ZujuViewController" bundle:nil];
     zujuVC.title = @"组局";
     zujuVC.barid = _beerBarDetail.barid.intValue;
@@ -677,6 +680,9 @@
     zujuVC.endTime = _beerBarDetail.endTime;
     [self.navigationController pushViewController:zujuVC animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"组局"]];
+     /**/
+    
+    
 //    MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
 //    myZSManageViewController.title=@"专属经理";
 //    myZSManageViewController.barid=_beerBarDetail.barid.intValue;
