@@ -31,6 +31,9 @@
                     <state key="normal" title="我要参与">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="WannaJoin:" destination="-1" eventType="touchUpInside" id="b3J-o0-xOX"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

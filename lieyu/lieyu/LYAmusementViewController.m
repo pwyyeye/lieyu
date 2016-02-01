@@ -195,6 +195,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
+//    HDDetailVC.YUModel = self.
     [self.navigationController pushViewController:HDDetailVC  animated:YES];
 }
 

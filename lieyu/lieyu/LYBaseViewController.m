@@ -151,7 +151,7 @@
     [header setImages:@[[UIImage imageNamed:@"更新1"]] forState:MJRefreshStateIdle];
     // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
     NSMutableArray *refreshArray = [NSMutableArray array];
-    for (int i = 1 ; i < 59; i ++) {
+    for (int i = 1 ; i < 53; i ++) {
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"更新%d",i]];
         [refreshArray addObject:image];
     }
@@ -169,7 +169,7 @@
     [footer setImages:@[[UIImage imageNamed:@"更新1"]] forState:MJRefreshStateIdle];
     // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
     NSMutableArray *refreshArray = [NSMutableArray array];
-    for (int i = 1 ; i < 59; i ++) {
+    for (int i = 1 ; i < 53; i ++) {
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"更新%d",i]];
         [refreshArray addObject:image];
     }

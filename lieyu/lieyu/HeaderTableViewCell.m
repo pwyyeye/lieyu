@@ -11,7 +11,8 @@
 @implementation HeaderTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    _avatar_button.layer.cornerRadius = _avatar_button.frame.size.width / 2;
+    _avatar_button.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

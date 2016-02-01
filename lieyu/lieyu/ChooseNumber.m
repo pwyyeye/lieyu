@@ -9,6 +9,13 @@
 #import "ChooseNumber.h"
 
 @implementation ChooseNumber
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    if (_store == 1) {
+        self.addBtn.enabled = NO;
+        [self.addBtn setBackgroundImage:[UIImage imageNamed:@"gray_add"] forState:UIControlStateNormal];
+    }
+}
 
 - (IBAction)lessBtnClick:(UIButton *)sender {
     int num = [self.numberField.text intValue];
@@ -18,8 +25,12 @@
         self.numberField.text = @"1";
         self.lessBtn.enabled = NO;
         [self.lessBtn setBackgroundImage:[UIImage imageNamed: @"gray_less"] forState:UIControlStateNormal];
-    }else{
-        return;
+    }
+    if (_store) {
+        if ([self.numberField.text intValue] < _store) {
+            self.addBtn.enabled = YES;
+            [self.addBtn setBackgroundImage:[UIImage imageNamed:@"purper_add"] forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -27,6 +38,12 @@
     self.numberField.text = [NSString stringWithFormat:@"%d",[self.numberField.text intValue] + 1];
     self.lessBtn.enabled = YES;
     [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
+    if (_store) {
+        if ([self.numberField.text intValue] >= _store) {
+            self.addBtn.enabled = NO;
+            [self.addBtn setBackgroundImage:[UIImage imageNamed:@"gray_add"] forState:UIControlStateNormal];
+        }
+    }
 }
 
 

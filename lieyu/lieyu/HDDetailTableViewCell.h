@@ -10,6 +10,7 @@
 
 @interface HDDetailTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *startTime_label;
+@property (weak, nonatomic) IBOutlet UILabel *shangyu_label;
 @property (weak, nonatomic) IBOutlet UILabel *residue_label;
 @property (weak, nonatomic) IBOutlet UILabel *joinedNumber_label;
 @property (weak, nonatomic) IBOutlet UILabel *joinedpro_label;
