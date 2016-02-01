@@ -131,7 +131,7 @@
     [_menuView addSubview:_titelLabel];
     
     UIButton *sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 40, 70, 19)];
-    [sectionBtn addTarget:self action:@selector(sectionClick) forControlEvents:UIControlEventTouchUpInside];
+    [sectionBtn addTarget:self action:@selector(sectionClick:) forControlEvents:UIControlEventTouchUpInside];
     [sectionBtn setTitle:@"徐汇区" forState:UIControlStateNormal];
     sectionBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [sectionBtn setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
@@ -176,13 +176,14 @@
 }
 
 #pragma mark 选择区的action
-- (void)sectionClick{
+- (void)sectionClick:(UIButton *)button{
+    if(_menuDropView) return;
     _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
      NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
-    [_menuDropView deployWithItemArrayWith:array];
+    [_menuDropView deployWithItemArrayWith:array withTitle:button.currentTitle];
     _menuDropView.delegate = self;
-    _menuDropView.isYu = YES;
+//    _menuDropView.isYu = YES;
     [self.view addSubview:_menuDropView];
     
     [UIView beginAnimations:nil context:nil];
@@ -200,6 +201,8 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     [UIView commitAnimations];
+    [_menuDropView removeFromSuperview];
+    _menuDropView = nil;
 }
 
 #pragma mark 热门，附近，价格，时间的acrion
@@ -422,6 +425,13 @@
     return 221 + (SCREEN_WIDTH - (68 + 10 + 16 + 4 * 20))/5.f + 10;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
+    YUOrderShareModel *orderM = _dataArray[tableView.tag][indexPath.row];
+    HDDetailVC.YUModel = orderM;
+    [self.navigationController pushViewController:HDDetailVC  animated:YES];
+}
+
 #pragma mark hot头像的action
 - (void)headerClick:(UIButton *)button{
     NSArray *array = _dataArray[_index];
@@ -432,22 +442,6 @@
     LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsVC.friendsId = orderModel.orderInfo.userid;
     [self.navigationController pushViewController:friendsVC animated:YES];
-      /*  customerM.sex = [orderModel. isEqualToString:@"0"] ? @"0" : @"1";
-        //    customerM.sex = _userInfo.gender;
-        customerM.usernick = _userInfo.usernick;
-        customerM.message = _userInfo.introduction;
-        customerM.imUserId= _userInfo.imUserId;
-        customerM.friendName=_userInfo.usernick;
-        customerM.friend = _userInfo.userId.intValue;
-        customerM.age = [MyUtil getAgefromDate:_userInfo.birthday];
-        customerM.birthday=_userInfo.birthday;
-        customerM.userid = _userInfo.userId.intValue;
-        customerM.tag=_userInfo.tags;
-        
-        __weak __typeof(self)weakSelf = self;
-        LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
-        friendDetailVC.customerModel = customerM;
-        [weakSelf.navigationController pushViewController:friendDetailVC animated:YES]; */
 }
 
 - (void)pinkerClick:(UIButton *)button{
@@ -466,9 +460,7 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
