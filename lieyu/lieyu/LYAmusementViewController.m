@@ -10,6 +10,7 @@
 #import "HotMenuButton.h"
 #import "LYYUTableViewCell.h"
 #import "LYYUHttpTool.h"
+#import "YUOrderShareModel.h"
 
 @interface LYAmusementViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
     UIScrollView *_scrollView;
@@ -29,7 +30,7 @@
     [self setupAllProperty];
     
     
-    
+    [self getData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -166,12 +167,12 @@
     if (!((NSArray *)_dataArray[button.tag]).count) {
       //  [self getDataForHotWith:sender.tag];
     }
-    [self getData];
+    
 }
 
 - (void)getData{
     [LYYUHttpTool yuGetDataOrderShareWithParams:nil compelte:^(NSArray *dataArray) {
-        _dataArray = dataArray;
+        [_dataArray replaceObjectAtIndex:0 withObject:dataArray];
         UITableView *tableView = _tableViewArray[0];
         [tableView reloadData];
     }];
@@ -179,17 +180,19 @@
 
 #pragma mark - UITableViewDataSource && UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _dataArray.count;
+    NSArray *array = _dataArray[tableView.tag];
+    return array.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LYYUTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYYUTableViewCell" forIndexPath:indexPath];
-    
+    YUOrderShareModel *orderM = _dataArray[tableView.tag][indexPath.row];
+    cell.orderModel = orderM;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 213 + (SCREEN_WIDTH - (68 + 10 + 16 + 4 * 20))/5.f + 10;
+    return 221 + (SCREEN_WIDTH - (68 + 10 + 16 + 4 * 20))/5.f + 10;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -671,7 +671,6 @@
     [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:UIControlStateNormal];
     [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] forState:UIControlStateNormal ];
     _headerView.label_name.text = app.userModel.usernick;
-    _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_newMessage addTarget:self action:@selector(newClick) forControlEvents:UIControlEventTouchUpInside];
     self.tableview_top.constant = -64;
