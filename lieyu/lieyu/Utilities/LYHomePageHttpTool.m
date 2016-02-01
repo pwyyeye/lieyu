@@ -53,6 +53,7 @@
             [app stopLoading];
         }];
 }
+
 #pragma mark 一起玩列表详细
 -(void) getTogetherDetailWithParams:(NSDictionary*)params
                               block:(void(^)(PinKeModel* result)) block{
@@ -167,8 +168,6 @@
 }
 
 
-
-
 #pragma mark我要订位
 -(void) getWoYaoDinWeiDetailWithParams:(NSDictionary*)params
                                  block:(void(^)(JiuBaModel* result)) block{
@@ -195,6 +194,8 @@
     }];
     
 }
+
+
 #pragma mark 请求获取套餐信息
 -(void) getWoYaoDinWeiTaoCanDetailWithParams:(NSDictionary*)params
                                        block:(void(^)(TaoCanModel* result)) block{
@@ -220,6 +221,8 @@
         [app stopLoading];
     }];
 }
+
+
 #pragma mark 我要订位确认订单
 -(void) getWoYaoDinWeiOrderWithParams:(NSDictionary*)params
                                 block:(void(^)(TaoCanModel* result)) block{
@@ -247,6 +250,8 @@
     
     
 }
+
+
 #pragma mark 录入套餐订单
 -(void) setWoYaoDinWeiOrderInWithParams:(NSDictionary*)params
                                complete:(void (^)(NSString *result))result{
@@ -423,8 +428,6 @@
                     block(carInfoModel);
                 });
             }
-            
-            
         }else{
             [MyUtil showMessage:message];
         }
@@ -451,13 +454,9 @@
             [MyUtil showMessage:message];
 //            [app stopLoading];
         }
-        
-        
     } failure:^(NSError *err) {
-        
         result(NO);
         [app stopLoading];
-        
     }];
 }
 #pragma mark录入购物车订单
