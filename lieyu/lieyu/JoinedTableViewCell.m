@@ -57,19 +57,23 @@
     int y = 34;
     for (int i = 0 ; i < pinkeList.count; i ++) {
         UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:((YUPinkerListModel *)[pinkeList objectAtIndex:i]).inmenberAvatar_img]]]];
-//        image.layer.cornerRadius = 20;
-//        image.layer.masksToBounds = YES;
+//        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"lieyuIcon"]];
+        image.layer.cornerRadius = 20;
+        image.clipsToBounds = YES;
+        
         YUPinkerListModel *model = [pinkeList objectAtIndex:i];
-        model.quantity = @"2";
+//        model.quantity = @"2";
         if([model.quantity intValue] > 1){
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(35, 0, 20, 20)];
-            label.layer.cornerRadius = 10;
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(x + 30,y + 0, 16, 16)];
+            label.layer.cornerRadius = 8;
             label.textAlignment = NSTextAlignmentCenter;
+            label.font = [UIFont systemFontOfSize:12];
             label.layer.masksToBounds = YES;
             label.backgroundColor = RGB(186, 40, 227);
             label.textColor = [UIColor whiteColor];
             label.text = model.quantity;
-            [image addSubview:label];
+            [_view addSubview:label];
+            label.layer.zPosition = 2.0;
         }
 //        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"lieyuIcon"]];
 //        UIImageView *hot_image = [UIImageView alloc]ini
@@ -80,6 +84,7 @@
         image.frame = CGRectMake(x, y, 40, 40);
         x = x + 50;
         [_view addSubview:image];
+        
     }
     _view.frame = CGRectMake(8, 0, SCREEN_WIDTH - 16, y + 50);
     self.frame = CGRectMake(0, 0, SCREEN_WIDTH, y + 50);

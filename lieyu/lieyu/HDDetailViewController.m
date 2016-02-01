@@ -73,9 +73,16 @@
     }else if(indexPath.section == 2){
         _HDDetailCell = [tableView dequeueReusableCellWithIdentifier:@"HDDetailTableViewCell" forIndexPath:indexPath];
         _HDDetailCell.startTime_label.text = @"";
+//        [MyUtil ]
         _HDDetailCell.residue_label.text = @"";
-        _HDDetailCell.joinedNumber_label.text = @"";
-        _HDDetailCell.joinedpro_label.text = @"";
+        _HDDetailCell.joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%lu/%d)",((YUOrderInfo *)_YUModel.orderInfo).pinkerList.count,[((YUOrderInfo *)_YUModel.orderInfo).allnum intValue]];
+        if ([_YUModel.allowSex isEqualToString:@"0"]) {
+            _HDDetailCell.joinedpro_label.text = @"只邀请女生";
+        }else if ([_YUModel.allowSex isEqualToString:@"1"]){
+            _HDDetailCell.joinedpro_label.text = @"只邀请男生";
+        }else{
+            _HDDetailCell.joinedpro_label.text = @"全部";
+        }
         _HDDetailCell.address_label.text = ((YUOrderInfo *)_YUModel.orderInfo).barinfo.address;
         _HDDetailCell.barName_label.text = ((YUOrderInfo *)_YUModel.orderInfo).barinfo.barname;
         [_HDDetailCell.checkAddress_button addTarget:self action:@selector(checkAddress) forControlEvents:UIControlEventTouchUpInside];
