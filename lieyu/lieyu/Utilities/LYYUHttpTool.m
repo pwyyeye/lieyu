@@ -17,7 +17,8 @@
 + (void)yuGetDataOrderShareWithParams:(NSDictionary *)params compelte:(void(^)(NSArray *dataArray))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_ORDERSHARE baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"---->%@",response);
-        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+        NSString *errorCodeStr = response[@"errorcode"];
+        if ([errorCodeStr isEqualToString:@"1"]) {
             NSArray *array = response[@"data"];
             NSArray *dataArray = [YUOrderShareModel mj_objectArrayWithKeyValuesArray:array];
             compelte(dataArray);

@@ -11,13 +11,24 @@
 #import "LYYUTableViewCell.h"
 #import "LYYUHttpTool.h"
 #import "YUOrderShareModel.h"
+#import "CustomerModel.h"
+#import "YUOrderInfo.h"
+#import "YUPinkerListModel.h"
+#import "LYFriendsToUserMessageViewController.h"
+#import "YUOrderShareModel.h"
+#import "LYHotBarMenuDropView.h"
 
-@interface LYAmusementViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
+#define PAGESIZE 20
+
+@interface LYAmusementViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LYHotBarMenuDropViewDelegate>{
     UIScrollView *_scrollView;
     NSMutableArray *_tableViewArray,*_menuBtnArray,*_dataArray;
     UIVisualEffectView *_menuView;
     UILabel *_titelLabel;
     UIView *_purpleLineView;
+    NSInteger _currentPageHot,_currentPageDistance,_currentPagePrice,_currentPageTime;
+    NSInteger _index;
+    LYHotBarMenuDropView *_menuDropView;
 }
 
 @end
@@ -30,7 +41,6 @@
     [self setupAllProperty];
     
     
-    [self getData];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -44,6 +54,10 @@
 }
 
  - (void)setupAllProperty{
+     _currentPageHot = 1;
+     _currentPageDistance= 1;
+     _currentPagePrice = 1;
+     _currentPageTime = 1;
      _dataArray = [[NSMutableArray alloc]initWithCapacity:4];
      for (int i = 0; i < 4; i ++) {
          [_dataArray addObject:[[NSMutableArray alloc]init]];
@@ -61,17 +75,21 @@
     [self.view addSubview:_scrollView];
     
     for (int i = 0; i < 4; i ++) {
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 90, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
         tableView.tag = i;
         tableView.dataSource = self;
         tableView.delegate = self;
+        [tableView setContentInset:UIEdgeInsetsMake(90, 0, 100,0)];
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [tableView registerNib:[UINib nibWithNibName:@"LYYUTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYUTableViewCell"];
         [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [_scrollView addSubview:tableView];
         [_tableViewArray addObject:tableView];
     }
+    [self installFreshEvent];
     [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _tableViewArray.count, 0)];
-    
+    UITableView *tableView = _tableViewArray[0];
+    [tableView.mj_header beginRefreshing];
     [self createMenuUI];
 }
 
@@ -144,17 +162,44 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     if (_scrollView == scrollView) {
         CGFloat offX = scrollView.contentOffset.x;
-        NSInteger index = offX/SCREEN_WIDTH;
+        _index = offX/SCREEN_WIDTH;
         for (HotMenuButton *btn in _menuBtnArray) {
             btn.isMenuSelected = NO;
         }
-        ((HotMenuButton *)_menuBtnArray[index]).isMenuSelected = YES;
+        ((HotMenuButton *)_menuBtnArray[_index]).isMenuSelected = YES;
+        
+        if(!((NSArray *)_dataArray[_index]).count){
+            UITableView *tableview = _tableViewArray[_index];
+            [tableview.mj_header beginRefreshing];
+        }
     }
 }
 
 #pragma mark 选择区的action
 - (void)sectionClick{
+    _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
+     NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
+    _menuDropView.backgroundColor = [UIColor whiteColor];
+    [_menuDropView deployWithItemArrayWith:array];
+    _menuDropView.delegate = self;
+    _menuDropView.isYu = YES;
+    [self.view addSubview:_menuDropView];
     
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.8];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    _menuDropView.frame = CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+    [UIView commitAnimations];
+    
+}
+
+#pragma mark LYHotBarMenuDropViewDelegate
+- (void)lyHotBarMenuButton:(UIButton *)menuBtn withIndex:(NSInteger)index{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:.8];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+    [UIView commitAnimations];
 }
 
 #pragma mark 热门，附近，价格，时间的acrion
@@ -164,19 +209,195 @@
     }
     button.isMenuSelected = YES;
     [_scrollView setContentOffset:CGPointMake(button.tag *SCREEN_WIDTH, 0) animated:YES];
-    if (!((NSArray *)_dataArray[button.tag]).count) {
-      //  [self getDataForHotWith:sender.tag];
+    if(!((NSArray *)_dataArray[button.tag]).count){
+        UITableView *tableview = _tableViewArray[button.tag];
+        [tableview.mj_header beginRefreshing];
     }
     
 }
 
-- (void)getData{
-    [LYYUHttpTool yuGetDataOrderShareWithParams:nil compelte:^(NSArray *dataArray) {
-        [_dataArray replaceObjectAtIndex:0 withObject:dataArray];
-        UITableView *tableView = _tableViewArray[0];
-        [tableView reloadData];
+- (void)getDataForHotWith:(NSInteger)tag{
+    NSString *p = nil;
+    
+    switch (tag) {
+        case 0:
+        {
+            p = [NSString stringWithFormat:@"%ld",_currentPageHot];
+        }
+            break;
+        case 1:
+        {
+            p = [NSString stringWithFormat:@"%ld",_currentPageDistance];
+        }
+            break;
+        case 2:
+        {
+            p = [NSString stringWithFormat:@"%ld",_currentPagePrice];
+        }
+            break;
+        case 3:
+        {
+            p = [NSString stringWithFormat:@"%ld",_currentPageTime];
+        }
+            break;
+    }
+    NSDictionary *dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE]};
+    [LYYUHttpTool yuGetDataOrderShareWithParams:dic compelte:^(NSArray *dataArray) {
+        if(tag >= 4) return ;
+        NSMutableArray *array = _dataArray[tag];
+        switch (tag) {
+            case 0:
+            {
+                if(_currentPageHot == 1){
+                    [array removeAllObjects];
+                }
+                [array addObjectsFromArray:dataArray];
+                _currentPageHot ++;
+            }
+                break;
+            case 1:
+            {
+                if(_currentPageDistance == 1) {
+                    [array removeAllObjects];
+                }
+                [array addObjectsFromArray:dataArray];
+                _currentPageDistance ++;
+            }
+                break;
+            case 2:
+            {
+                if(_currentPagePrice == 1) {
+                    [array removeAllObjects];
+                }
+                [array addObjectsFromArray:dataArray];
+                _currentPagePrice ++;
+            }
+                break;
+            case 3:
+            {
+                if(_currentPageTime == 1) {
+                    [array removeAllObjects];
+                }
+                [array addObjectsFromArray:dataArray];
+                _currentPageTime ++;
+            }
+                break;
+        }
+        
+        UITableView *tableView = _tableViewArray[tag];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [tableView.mj_header endRefreshing];
+            switch (tag) {
+                case 0:
+                {
+                    if (_currentPageHot != 1 && !dataArray.count) {
+                        [tableView.mj_footer endRefreshingWithNoMoreData];
+                    }else{
+                        [tableView.mj_footer endRefreshing];
+                    }
+                }
+                    break;
+                case 1:
+                {
+                    if (_currentPageDistance != 1 && !dataArray.count) {
+                        [tableView.mj_footer endRefreshingWithNoMoreData];
+                    }else{
+                        [tableView.mj_footer endRefreshing];
+                    }
+                }
+                    break;
+                case 2:
+                {
+                    if (_currentPagePrice != 1 && !dataArray.count) {
+                        [tableView.mj_footer endRefreshingWithNoMoreData];
+                    }else{
+                        [tableView.mj_footer endRefreshing];
+                    }
+                }
+                    break;
+                case 3:
+                {
+                    if (_currentPageTime != 1 && !dataArray.count) {
+                        [tableView.mj_footer endRefreshingWithNoMoreData];
+                    }else{
+                        [tableView.mj_footer endRefreshing];
+                    }
+                }
+                    break;
+            }
+//            [tableView reloadData];
+            NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:0];
+            [tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationLeft];
+        });
     }];
 }
+
+- (void)installFreshEvent
+{
+    for (int i = 0; i < _tableViewArray.count; i ++) {
+        if(!_tableViewArray.count) return;
+        __weak UITableView *tableView = _tableViewArray[i];
+        __weak LYAmusementViewController * weakSelf = self;
+        //    __weak UITableView *tableView = self.tableView;
+        tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+            switch (i) {
+                case 0:
+                {
+                    _currentPageHot = 1;
+                    [weakSelf getDataForHotWith:0];
+                }
+                    break;
+                case 1:
+                {
+                    _currentPageDistance = 1;
+                    [weakSelf getDataForHotWith:1];
+                }
+                    break;
+                case 2:
+                {
+                    _currentPagePrice = 1;
+                    [weakSelf getDataForHotWith:2];
+                }
+                    break;
+                case 3:
+                {
+                    _currentPageTime = 1;
+                    [weakSelf getDataForHotWith:3];
+                }
+                    break;
+            }
+        }];
+        
+        MJRefreshGifHeader *header=(MJRefreshGifHeader *)tableView.mj_header;
+        [self initMJRefeshHeaderForGif:header];
+        tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+            switch (i) {
+                case 0:
+                {
+                    [weakSelf getDataForHotWith:0];
+                }
+                    break;
+                case 1:
+                {
+                    [weakSelf getDataForHotWith:1];
+                }
+                    break;
+                case 2:
+                {
+                    [weakSelf getDataForHotWith:2];
+                }
+                    break;
+                case 3:
+                {
+                    [weakSelf getDataForHotWith:3];
+                }
+                    break;
+            }
+        }];
+    }
+    
+}
+
 
 #pragma mark - UITableViewDataSource && UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -186,6 +407,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LYYUTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYYUTableViewCell" forIndexPath:indexPath];
+    cell.btn_headerImg.tag = indexPath.row;
+    [cell.btn_headerImg addTarget:self action:@selector(headerClick:) forControlEvents:UIControlEventTouchUpInside];
+    for (UIButton *btn in cell.btnArray) {
+        btn.tag = cell.btnArray.count * indexPath.row + btn.tag;
+        [btn addTarget:self action:@selector(pinkerClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
     YUOrderShareModel *orderM = _dataArray[tableView.tag][indexPath.row];
     cell.orderModel = orderM;
     return cell;
@@ -195,8 +422,52 @@
     return 221 + (SCREEN_WIDTH - (68 + 10 + 16 + 4 * 20))/5.f + 10;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+#pragma mark hot头像的action
+- (void)headerClick:(UIButton *)button{
+    NSArray *array = _dataArray[_index];
+    if (button.tag + 1 > array.count) {
+        return;
+    }
+    YUOrderShareModel *orderModel = array[button.tag];
+    LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
+    friendsVC.friendsId = orderModel.orderInfo.userid;
+    [self.navigationController pushViewController:friendsVC animated:YES];
+      /*  customerM.sex = [orderModel. isEqualToString:@"0"] ? @"0" : @"1";
+        //    customerM.sex = _userInfo.gender;
+        customerM.usernick = _userInfo.usernick;
+        customerM.message = _userInfo.introduction;
+        customerM.imUserId= _userInfo.imUserId;
+        customerM.friendName=_userInfo.usernick;
+        customerM.friend = _userInfo.userId.intValue;
+        customerM.age = [MyUtil getAgefromDate:_userInfo.birthday];
+        customerM.birthday=_userInfo.birthday;
+        customerM.userid = _userInfo.userId.intValue;
+        customerM.tag=_userInfo.tags;
+        
+        __weak __typeof(self)weakSelf = self;
+        LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
+        friendDetailVC.customerModel = customerM;
+        [weakSelf.navigationController pushViewController:friendDetailVC animated:YES]; */
+}
+
+- (void)pinkerClick:(UIButton *)button{
+    NSArray *array = _dataArray[_index];
+    if (button.tag + 1 > array.count) {
+        return;
+    }
+    YUOrderShareModel *orderModel = array[button.tag];
+    if (button.tag + 1 > orderModel.orderInfo.pinkerList.count) {
+        return;
+    }
+    YUPinkerListModel *pinkerListM = orderModel.orderInfo.pinkerList[button.tag];
+    LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
+    friendsVC.friendsId = pinkerListM.inmember;
+    [self.navigationController pushViewController:friendsVC animated:YES];
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
 }
 
 - (void)didReceiveMemoryWarning {
