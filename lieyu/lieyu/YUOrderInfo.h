@@ -23,6 +23,7 @@
 @property (nonatomic,copy) NSString *checkUserAvatar_img;
 @property (nonatomic,copy) NSString *checkUserImUserid;
 @property (nonatomic,copy) NSString *checkUserMobile;
+@property (nonatomic,copy) NSString *birthday;
 @property (nonatomic,copy) NSString *checkUserName;
 @property (nonatomic,copy) NSString *checkuserid;
 @property (nonatomic,copy) NSString *consumptionCode;

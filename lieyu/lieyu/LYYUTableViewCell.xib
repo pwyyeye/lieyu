@@ -24,7 +24,6 @@
                                     <constraint firstAttribute="height" constant="50" id="RWv-RQ-UrP"/>
                                     <constraint firstAttribute="width" constant="50" id="d9E-RE-Kci"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="陈泽西" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RcO-rt-3mP">
                                 <rect key="frame" x="68" y="8" width="42" height="21"/>
@@ -179,7 +178,6 @@
                                     <constraint firstAttribute="width" constant="40" id="jeq-4K-oge"/>
                                     <constraint firstAttribute="height" constant="40" id="s9H-Ji-l0N"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="jeq-4K-oge"/>
@@ -194,7 +192,6 @@
                                     <constraint firstAttribute="width" secondItem="vM7-iG-bIo" secondAttribute="height" multiplier="1:1" id="GNc-nh-B6N"/>
                                     <constraint firstAttribute="height" constant="40" id="l8K-ix-II5"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Dew-QZ-fLP"/>
@@ -218,7 +215,6 @@
                                     <constraint firstAttribute="height" constant="40" id="akl-35-vPE"/>
                                     <constraint firstAttribute="width" constant="40" id="gTw-01-o7y"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="akl-35-vPE"/>
@@ -288,7 +284,6 @@
                                     <constraint firstAttribute="width" constant="40" id="F3h-Qw-Udx"/>
                                     <constraint firstAttribute="width" secondItem="CIr-lr-DWd" secondAttribute="height" multiplier="1:1" id="ppA-wN-0kv"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="1VX-h7-4zr"/>
@@ -303,7 +298,6 @@
                                     <constraint firstAttribute="width" secondItem="3Ru-LO-DiJ" secondAttribute="height" multiplier="1:1" id="FJj-1i-ggI"/>
                                     <constraint firstAttribute="width" constant="40" id="Tg8-jN-nOY"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="5A1-Wa-Y7Z"/>
