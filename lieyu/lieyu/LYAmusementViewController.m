@@ -29,6 +29,7 @@
     NSInteger _currentPageHot,_currentPageDistance,_currentPagePrice,_currentPageTime;
     NSInteger _index;
     LYHotBarMenuDropView *_menuDropView;
+    UIButton *_sectionBtn;
 }
 
 @end
@@ -68,7 +69,7 @@
 - (void)createUI{
     
     _tableViewArray = [[NSMutableArray alloc]initWithCapacity:4];
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
     _scrollView.delegate = self;
     _scrollView.bounces = NO;
     _scrollView.pagingEnabled = YES;
@@ -79,15 +80,15 @@
         tableView.tag = i;
         tableView.dataSource = self;
         tableView.delegate = self;
-        [tableView setContentInset:UIEdgeInsetsMake(90, 0, 100,0)];
+        [tableView setContentInset:UIEdgeInsetsMake(90, 0, 200,0)];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [tableView registerNib:[UINib nibWithNibName:@"LYYUTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYUTableViewCell"];
         [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [_scrollView addSubview:tableView];
         [_tableViewArray addObject:tableView];
     }
-    [self installFreshEvent];
     [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _tableViewArray.count, 0)];
+    [self installFreshEvent];
     UITableView *tableView = _tableViewArray[0];
     [tableView.mj_header beginRefreshing];
     [self createMenuUI];
@@ -130,14 +131,14 @@
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     
-    UIButton *sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 40, 70, 19)];
-    [sectionBtn addTarget:self action:@selector(sectionClick) forControlEvents:UIControlEventTouchUpInside];
-    [sectionBtn setTitle:@"徐汇区" forState:UIControlStateNormal];
-    sectionBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [sectionBtn setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
-    [sectionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 14, 0, 0)];
-    [sectionBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
-    [_menuView addSubview:sectionBtn];
+    _sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 40, 70, 19)];
+    [_sectionBtn addTarget:self action:@selector(sectionClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_sectionBtn setTitle:@"徐汇区" forState:UIControlStateNormal];
+    _sectionBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_sectionBtn setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
+    [_sectionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 14, 0, 0)];
+    [_sectionBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
+    [_menuView addSubview:_sectionBtn];
     
     _purpleLineView = [[UIView alloc]init];
     HotMenuButton *hotBtn = _menuBtnArray[0];
@@ -176,13 +177,14 @@
 }
 
 #pragma mark 选择区的action
-- (void)sectionClick{
+- (void)sectionClick:(UIButton *)button{
+    if(_menuDropView) return;
     _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
      NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
-    [_menuDropView deployWithItemArrayWith:array];
+    [_menuDropView deployWithItemArrayWith:array withTitle:button.currentTitle];
     _menuDropView.delegate = self;
-    _menuDropView.isYu = YES;
+//    _menuDropView.isYu = YES;
     [self.view addSubview:_menuDropView];
     
     [UIView beginAnimations:nil context:nil];
@@ -200,6 +202,13 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     [UIView commitAnimations];
+    [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
+    [_sectionBtn setTitle:menuBtn.currentTitle forState:UIControlStateNormal];
+}
+
+- (void)removeMenuView{
+    [_menuDropView removeFromSuperview];
+    _menuDropView = nil;
 }
 
 #pragma mark 热门，附近，价格，时间的acrion
@@ -327,7 +336,7 @@
             }
 //            [tableView reloadData];
             NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:0];
-            [tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationLeft];
+            [tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationFade];
         });
     }];
 }
@@ -370,6 +379,33 @@
         
         MJRefreshGifHeader *header=(MJRefreshGifHeader *)tableView.mj_header;
         [self initMJRefeshHeaderForGif:header];
+        
+      /*  tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+            switch (i) {
+                case 0:
+                {
+                    [weakSelf getDataForHotWith:0];
+                }
+                    break;
+                case 1:
+                {
+                    [weakSelf getDataForHotWith:1];
+                }
+                    break;
+                case 2:
+                {
+                    [weakSelf getDataForHotWith:2];
+                }
+                    break;
+                case 3:
+                {
+                    [weakSelf getDataForHotWith:3];
+                }
+                    break;
+            }
+        }];
+        MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)tableView.mj_footer;
+        [self initMJRefeshFooterForGif:footer]; */
         tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             switch (i) {
                 case 0:
@@ -394,6 +430,7 @@
                     break;
             }
         }];
+
     }
     
 }
@@ -422,6 +459,13 @@
     return 221 + (SCREEN_WIDTH - (68 + 10 + 16 + 4 * 20))/5.f + 10;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
+    YUOrderShareModel *orderM = _dataArray[tableView.tag][indexPath.row];
+    HDDetailVC.YUModel = orderM;
+    [self.navigationController pushViewController:HDDetailVC  animated:YES];
+}
+
 #pragma mark hot头像的action
 - (void)headerClick:(UIButton *)button{
     NSArray *array = _dataArray[_index];
@@ -432,22 +476,6 @@
     LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsVC.friendsId = orderModel.orderInfo.userid;
     [self.navigationController pushViewController:friendsVC animated:YES];
-      /*  customerM.sex = [orderModel. isEqualToString:@"0"] ? @"0" : @"1";
-        //    customerM.sex = _userInfo.gender;
-        customerM.usernick = _userInfo.usernick;
-        customerM.message = _userInfo.introduction;
-        customerM.imUserId= _userInfo.imUserId;
-        customerM.friendName=_userInfo.usernick;
-        customerM.friend = _userInfo.userId.intValue;
-        customerM.age = [MyUtil getAgefromDate:_userInfo.birthday];
-        customerM.birthday=_userInfo.birthday;
-        customerM.userid = _userInfo.userId.intValue;
-        customerM.tag=_userInfo.tags;
-        
-        __weak __typeof(self)weakSelf = self;
-        LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
-        friendDetailVC.customerModel = customerM;
-        [weakSelf.navigationController pushViewController:friendDetailVC animated:YES]; */
 }
 
 - (void)pinkerClick:(UIButton *)button{
@@ -466,12 +494,7 @@
     
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
-    YUOrderShareModel *orderM = _dataArray[tableView.tag][indexPath.row];
-    HDDetailVC.YUModel = orderM;
-    [self.navigationController pushViewController:HDDetailVC  animated:YES];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

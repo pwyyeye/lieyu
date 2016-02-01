@@ -40,14 +40,17 @@
         dropBtn.layer.masksToBounds = YES;
         dropBtn.tag = i;
         [dropBtn setTitle:itemArray[i] forState:UIControlStateNormal];
-        if ([itemArray[i] isEqualToString:title]) {
-            dropBtn.section = YES;
-        }
         [dropBtn addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
         dropBtn.titleLabel.font = [UIFont systemFontOfSize:12];
         [dropBtn setTitleColor:RGBA(26, 26, 26, 1) forState:UIControlStateNormal];
         [self addSubview:dropBtn];
         [_btnArray addObject:dropBtn];
+    }
+    
+    for (MenuButton *dropBtn in _btnArray) {
+        if ([dropBtn.currentTitle isEqualToString:title]) {
+            dropBtn.selected = YES;
+        }
     }
 }
 
@@ -55,9 +58,9 @@
  */
 - (void)menuClick:(MenuButton *)button{
     for (MenuButton *btn in _btnArray) {
-        btn.section = NO;
+        btn.selected = NO;
     }
-    button.section = YES;
+    button.selected = YES;
     if ([_delegate respondsToSelector:@selector(lyHotBarMenuButton:withIndex:)]) {
         [_delegate lyHotBarMenuButton:button withIndex:button.tag];
     }
