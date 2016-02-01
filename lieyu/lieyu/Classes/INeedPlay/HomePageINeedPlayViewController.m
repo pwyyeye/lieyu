@@ -580,7 +580,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                                }
                                                collectView.mj_footer.hidden = NO;
                                            }else{
-                                               collectView.mj_footer.hidden = YES;
+                                              // collectView.mj_footer.hidden = YES;
                                            }
                                            [collectView.mj_header endRefreshing];
                                        }
@@ -598,7 +598,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 }
                 else
                 {
-                    collectView.mj_footer.hidden = YES;
+                   // collectView.mj_footer.hidden = YES;
                 }
                 switch (collectView.tag) {
                     case 0:

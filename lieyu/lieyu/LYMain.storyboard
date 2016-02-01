@@ -36,6 +36,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="xFR-IV-f12" kind="relationship" relationship="viewControllers" id="eH1-zI-rB3"/>
+                        <segue destination="BPS-Wy-U8G" kind="relationship" relationship="viewControllers" id="IMS-YK-1ed"/>
                         <segue destination="1rT-AK-BaE" kind="relationship" relationship="viewControllers" id="5dy-GL-geu"/>
                         <segue destination="cKJ-Em-xQV" kind="relationship" relationship="viewControllers" id="Hlf-7Y-97c"/>
                         <segue destination="yPs-RX-H79" kind="relationship" relationship="viewControllers" id="OR8-W8-7xQ"/>
@@ -86,10 +87,10 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jTw-0b-o2z" id="9QG-Dn-2Rw">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-P4-viZ">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-P4-viZ">
                                                     <rect key="frame" x="0.0" y="5" width="320" height="142"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="超返利" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5Y-Q6-D4e">
@@ -265,6 +266,25 @@
             </objects>
             <point key="canvasLocation" x="-1269" y="-844"/>
         </scene>
+        <!--娱-->
+        <scene sceneID="K9H-6T-F89">
+            <objects>
+                <viewController id="BPS-Wy-U8G" customClass="LYAmusementViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5BH-kd-FX5"/>
+                        <viewControllerLayoutGuide type="bottom" id="qp6-jx-Igu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fLm-0E-8r7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="娱" id="x4G-Uc-Cbu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddq-i7-8vN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-880" y="-7"/>
+        </scene>
         <!--玩友圈-->
         <scene sceneID="dE7-Av-2rV">
             <objects>
@@ -326,10 +346,10 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FindMenuCell" rowHeight="51" id="gKb-OT-apz" customClass="FindMenuCell">
-                                        <rect key="frame" x="0.0" y="49.5" width="320" height="51"/>
+                                        <rect key="frame" x="0.0" y="50" width="320" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gKb-OT-apz" id="uNb-SO-p1w">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIj-qm-8wC">

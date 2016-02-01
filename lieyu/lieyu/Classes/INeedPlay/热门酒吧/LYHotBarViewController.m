@@ -52,9 +52,6 @@
     [self createMenuView];
     self.navigationItem.title = @"热门酒吧";
     
-  
-    
-
     _collectArray = [[NSMutableArray alloc]initWithCapacity:4];
     _dataArray = [[NSMutableArray alloc]initWithCapacity:4];
     _currentPageHot = 1;
@@ -87,7 +84,6 @@
 }
 #pragma mark - 创建菜单view
 - (void)createMenuView{
-    
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _scrollView.delegate = self;
     _scrollView.pagingEnabled = YES;

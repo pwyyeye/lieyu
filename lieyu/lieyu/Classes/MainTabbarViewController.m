@@ -158,10 +158,10 @@
 
 - (void)setupViewStyles
 {
-//    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
-//    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
-    NSArray * aryImages = @[@"iNeedPlay_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
-    NSArray * selectedImages = @[@"iNeedPlay_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
+    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
+    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
+//    NSArray * aryImages = @[@"iNeedPlay_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
+//    NSArray * selectedImages = @[@"iNeedPlay_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
 
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(153, 50, 204, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];
@@ -231,7 +231,7 @@
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     NSLog(@"----pass-tabBarController%d---",self.selectedIndex);
-    if (self.selectedIndex==2||self.selectedIndex==3||self.selectedIndex==4||self.selectedIndex==1) {
+    if (self.selectedIndex==2||self.selectedIndex==3||self.selectedIndex==4) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if([MyUtil isEmptyString:app.s_app_id]){
             LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];

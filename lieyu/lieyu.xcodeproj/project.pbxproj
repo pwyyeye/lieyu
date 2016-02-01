@@ -646,6 +646,25 @@
 		8567A4A51C43E14E00982882 /* biaoqing_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8567A4A21C43E14E00982882 /* biaoqing_icon.png */; };
 		8567A4A61C43E14E00982882 /* biaoqing_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8567A4A31C43E14E00982882 /* biaoqing_icon@2x.png */; };
 		8567A4A71C43E14E00982882 /* biaoqing_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8567A4A41C43E14E00982882 /* biaoqing_icon@3x.png */; };
+		8588C4211C5DEBA00092259E /* LYAmusementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C4201C5DEBA00092259E /* LYAmusementViewController.m */; };
+		8588C4261C5DF90A0092259E /* LYYUTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C4241C5DF90A0092259E /* LYYUTableViewCell.m */; };
+		8588C4271C5DF90A0092259E /* LYYUTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8588C4251C5DF90A0092259E /* LYYUTableViewCell.xib */; };
+		8588C42B1C5DFD4E0092259E /* 剩余@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C4291C5DFD4E0092259E /* 剩余@3x.png */; };
+		8588C42C1C5DFD4E0092259E /* 剩余@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C42A1C5DFD4E0092259E /* 剩余@2x.png */; };
+		8588C42F1C5DFDE40092259E /* 发起人@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C42D1C5DFDE40092259E /* 发起人@2x.png */; };
+		8588C4301C5DFDE40092259E /* 发起人@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C42E1C5DFDE40092259E /* 发起人@3x.png */; };
+		8588C4331C5E16C40092259E /* hotImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C4311C5E16C40092259E /* hotImg@2x.png */; };
+		8588C4341C5E16C40092259E /* hotImg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C4321C5E16C40092259E /* hotImg@3x.png */; };
+		8588C4371C5E17260092259E /* 日历yu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C4351C5E17260092259E /* 日历yu@2x.png */; };
+		8588C4381C5E17260092259E /* 日历yu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C4361C5E17260092259E /* 日历yu@3x.png */; };
+		8588C43D1C5E177F0092259E /* 地址yu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C4391C5E177F0092259E /* 地址yu@2x.png */; };
+		8588C43E1C5E177F0092259E /* 人数yu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C43A1C5E177F0092259E /* 人数yu@2x.png */; };
+		8588C43F1C5E177F0092259E /* 人数yu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C43B1C5E177F0092259E /* 人数yu@3x.png */; };
+		8588C4401C5E177F0092259E /* 地址yu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8588C43C1C5E177F0092259E /* 地址yu@3x.png */; };
+		8588C44F1C5E4A220092259E /* LYYUHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C44E1C5E4A220092259E /* LYYUHttpTool.m */; };
+		8588C4561C5E4F240092259E /* YUOrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C4551C5E4F240092259E /* YUOrderInfo.m */; };
+		8588C4591C5E519C0092259E /* YUPinkerListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C4581C5E519C0092259E /* YUPinkerListModel.m */; };
+		8588C45C1C5E59200092259E /* YUPinkerinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C45B1C5E59200092259E /* YUPinkerinfo.m */; };
 		858B228A1C29653000BF70AD /* LYTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B22891C29653000BF70AD /* LYTagCollectionViewCell.m */; };
 		858B22941C2977C800BF70AD /* LYTagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B22921C2977C800BF70AD /* LYTagsViewController.m */; };
 		858B22951C2977C800BF70AD /* LYTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 858B22931C2977C800BF70AD /* LYTagsViewController.xib */; };
@@ -2031,6 +2050,32 @@
 		8567A4A21C43E14E00982882 /* biaoqing_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biaoqing_icon.png; sourceTree = "<group>"; };
 		8567A4A31C43E14E00982882 /* biaoqing_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaoqing_icon@2x.png"; sourceTree = "<group>"; };
 		8567A4A41C43E14E00982882 /* biaoqing_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaoqing_icon@3x.png"; sourceTree = "<group>"; };
+		8588C41F1C5DEBA00092259E /* LYAmusementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementViewController.h; sourceTree = "<group>"; };
+		8588C4201C5DEBA00092259E /* LYAmusementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAmusementViewController.m; sourceTree = "<group>"; };
+		8588C4231C5DF90A0092259E /* LYYUTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYUTableViewCell.h; sourceTree = "<group>"; };
+		8588C4241C5DF90A0092259E /* LYYUTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYUTableViewCell.m; sourceTree = "<group>"; };
+		8588C4251C5DF90A0092259E /* LYYUTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYYUTableViewCell.xib; sourceTree = "<group>"; };
+		8588C4291C5DFD4E0092259E /* 剩余@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "剩余@3x.png"; sourceTree = "<group>"; };
+		8588C42A1C5DFD4E0092259E /* 剩余@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "剩余@2x.png"; sourceTree = "<group>"; };
+		8588C42D1C5DFDE40092259E /* 发起人@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发起人@2x.png"; sourceTree = "<group>"; };
+		8588C42E1C5DFDE40092259E /* 发起人@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "发起人@3x.png"; sourceTree = "<group>"; };
+		8588C4311C5E16C40092259E /* hotImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hotImg@2x.png"; sourceTree = "<group>"; };
+		8588C4321C5E16C40092259E /* hotImg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hotImg@3x.png"; sourceTree = "<group>"; };
+		8588C4351C5E17260092259E /* 日历yu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "日历yu@2x.png"; sourceTree = "<group>"; };
+		8588C4361C5E17260092259E /* 日历yu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "日历yu@3x.png"; sourceTree = "<group>"; };
+		8588C4391C5E177F0092259E /* 地址yu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地址yu@2x.png"; sourceTree = "<group>"; };
+		8588C43A1C5E177F0092259E /* 人数yu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人数yu@2x.png"; sourceTree = "<group>"; };
+		8588C43B1C5E177F0092259E /* 人数yu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "人数yu@3x.png"; sourceTree = "<group>"; };
+		8588C43C1C5E177F0092259E /* 地址yu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "地址yu@3x.png"; sourceTree = "<group>"; };
+		8588C44C1C5E49DF0092259E /* LYYUUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYYUUrl.h; sourceTree = "<group>"; };
+		8588C44D1C5E4A220092259E /* LYYUHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYUHttpTool.h; sourceTree = "<group>"; };
+		8588C44E1C5E4A220092259E /* LYYUHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYUHttpTool.m; sourceTree = "<group>"; };
+		8588C4541C5E4F240092259E /* YUOrderInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUOrderInfo.h; sourceTree = "<group>"; };
+		8588C4551C5E4F240092259E /* YUOrderInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUOrderInfo.m; sourceTree = "<group>"; };
+		8588C4571C5E519C0092259E /* YUPinkerListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUPinkerListModel.h; sourceTree = "<group>"; };
+		8588C4581C5E519C0092259E /* YUPinkerListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUPinkerListModel.m; sourceTree = "<group>"; };
+		8588C45A1C5E59200092259E /* YUPinkerinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUPinkerinfo.h; sourceTree = "<group>"; };
+		8588C45B1C5E59200092259E /* YUPinkerinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUPinkerinfo.m; sourceTree = "<group>"; };
 		858B22881C29653000BF70AD /* LYTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTagCollectionViewCell.h; sourceTree = "<group>"; };
 		858B22891C29653000BF70AD /* LYTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTagCollectionViewCell.m; sourceTree = "<group>"; };
 		858B22911C2977C800BF70AD /* LYTagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTagsViewController.h; sourceTree = "<group>"; };
@@ -4686,6 +4731,67 @@
 			path = TencentOpenAPI;
 			sourceTree = "<group>";
 		};
+		8588C41D1C5DEB430092259E /* 娱 */ = {
+			isa = PBXGroup;
+			children = (
+				8588C4501C5E4D7F0092259E /* Model */,
+				8588C4221C5DF8B20092259E /* Views */,
+				8588C41E1C5DEB600092259E /* Controller */,
+			);
+			name = "娱";
+			sourceTree = "<group>";
+		};
+		8588C41E1C5DEB600092259E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8588C41F1C5DEBA00092259E /* LYAmusementViewController.h */,
+				8588C4201C5DEBA00092259E /* LYAmusementViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		8588C4221C5DF8B20092259E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8588C4231C5DF90A0092259E /* LYYUTableViewCell.h */,
+				8588C4241C5DF90A0092259E /* LYYUTableViewCell.m */,
+				8588C4251C5DF90A0092259E /* LYYUTableViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8588C4281C5DFD170092259E /* 娱 */ = {
+			isa = PBXGroup;
+			children = (
+				8588C4351C5E17260092259E /* 日历yu@2x.png */,
+				8588C4361C5E17260092259E /* 日历yu@3x.png */,
+				8588C4391C5E177F0092259E /* 地址yu@2x.png */,
+				8588C43A1C5E177F0092259E /* 人数yu@2x.png */,
+				8588C43B1C5E177F0092259E /* 人数yu@3x.png */,
+				8588C43C1C5E177F0092259E /* 地址yu@3x.png */,
+				8588C4311C5E16C40092259E /* hotImg@2x.png */,
+				8588C4321C5E16C40092259E /* hotImg@3x.png */,
+				8588C4291C5DFD4E0092259E /* 剩余@3x.png */,
+				8588C42A1C5DFD4E0092259E /* 剩余@2x.png */,
+				8588C42D1C5DFDE40092259E /* 发起人@2x.png */,
+				8588C42E1C5DFDE40092259E /* 发起人@3x.png */,
+			);
+			name = "娱";
+			sourceTree = "<group>";
+		};
+		8588C4501C5E4D7F0092259E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8588C4541C5E4F240092259E /* YUOrderInfo.h */,
+				8588C4551C5E4F240092259E /* YUOrderInfo.m */,
+				8588C4571C5E519C0092259E /* YUPinkerListModel.h */,
+				8588C4581C5E519C0092259E /* YUPinkerListModel.m */,
+				8588C45A1C5E59200092259E /* YUPinkerinfo.h */,
+				8588C45B1C5E59200092259E /* YUPinkerinfo.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		85C4286E1C119D1B0028FC21 /* 离我最近 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5279,6 +5385,7 @@
 				15EB7C591BC5FD2C00756153 /* LYMineUrl.h */,
 				15EB7C691BCF8B8600756153 /* LYHomePageUrl.h */,
 				854538611C2D40590020AC2C /* LYFriendsPageUrl.h */,
+				8588C44C1C5E49DF0092259E /* LYYUUrl.h */,
 			);
 			name = URL;
 			sourceTree = "<group>";
@@ -5625,6 +5732,7 @@
 		ADE103C41BE0EBDC00D9EC38 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8588C4281C5DFD170092259E /* 娱 */,
 				ADD1B45E1C528E8F00A5237C /* 第三方登陆 */,
 				3812C53C1C57B69700F4DD6B /* 我要订位 */,
 				52D4F9851C57B2AB00691BEF /* 首页 */,
@@ -6111,6 +6219,7 @@
 		D761F0291BA5B92D000757B0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8588C41D1C5DEB430092259E /* 娱 */,
 				A2020D421BA660640090B92A /* Base */,
 				D761F0281BA5B90E000757B0 /* Mine */,
 				D761F0271BA5B8D5000757B0 /* Find */,
@@ -6178,6 +6287,8 @@
 				15EB7C6B1BCF8BF700756153 /* LYHomePageHttpTool.m */,
 				854538581C2D3A8D0020AC2C /* LYFriendsHttpTool.h */,
 				854538591C2D3A8D0020AC2C /* LYFriendsHttpTool.m */,
+				8588C44D1C5E4A220092259E /* LYYUHttpTool.h */,
+				8588C44E1C5E4A220092259E /* LYYUHttpTool.m */,
 				D794ED0A1BB7872A000DC568 /* PFRect.h */,
 				D794ED0B1BB7872A000DC568 /* PFRect.m */,
 				D794ED071BB786AA000DC568 /* PFImage.h */,
@@ -6422,6 +6533,7 @@
 				52D4F9A51C57B2B700691BEF /* 附近@3x.png in Resources */,
 				381FEFFA1C1672EF002A47BA /* DanPinCell.xib in Resources */,
 				38E5D6BF1C0EA458004B49D2 /* CustomBtn_unSelected@3x.png in Resources */,
+				8588C43F1C5E177F0092259E /* 人数yu@3x.png in Resources */,
 				8550E70D1C2FC130001FF2DE /* LYFriendsCommentView.xib in Resources */,
 				380659B61C54AAA4003094C9 /* empyImage16_9@2x.png in Resources */,
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
@@ -6445,6 +6557,7 @@
 				ADFFA69F1C181A7200D9BD2A /* 1_retina.jpg in Resources */,
 				3812C5101C57622E00F4DD6B /* ChooseTime.xib in Resources */,
 				85F5454D1C1454010013B92B /* camera@2x.png in Resources */,
+				8588C4401C5E177F0092259E /* 地址yu@3x.png in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
 				ADFFA6AD1C181B9100D9BD2A /* 5@2x.jpg in Resources */,
 				380385E81C327C2B007C8DC0 /* imageSelected@3x.png in Resources */,
@@ -6479,6 +6592,7 @@
 				3812C5591C57B76100F4DD6B /* purper_star@2x.png in Resources */,
 				85F66EF31C5628F3005D1CD8 /* LYAmusementClassCell.xib in Resources */,
 				854CC9871C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib in Resources */,
+				8588C42F1C5DFDE40092259E /* 发起人@2x.png in Resources */,
 				85F5453E1C1408040013B92B /* circleWhiteSelect.png in Resources */,
 				15E240D71BB3E8610090D240 /* MyPKfriendCell.xib in Resources */,
 				A2020D791BA67FA40090B92A /* Fill20176@2x.png in Resources */,
@@ -6647,6 +6761,7 @@
 				A2F9DA981BABDF7C009DEAF3 /* OrderBottomForXFView.xib in Resources */,
 				15EB7C601BCB7B1C00756153 /* OrderDetailSectionBottomForTuiKuanPinView.xib in Resources */,
 				38E5D7591C113445004B49D2 /* triangle_up.png in Resources */,
+				8588C4331C5E16C40092259E /* hotImg@2x.png in Resources */,
 				8512BCAA1C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png in Resources */,
 				15E184931BB52B0E00681BB2 /* LYJiuBaCell.xib in Resources */,
 				38DBCD761C585A5F00A1E207 /* detail_collect_normal@2x.png in Resources */,
@@ -6687,6 +6802,7 @@
 				380659CE1C54AC2A003094C9 /* icon_share2@2x.png in Resources */,
 				380659B81C54AAA4003094C9 /* empyImage120@3x.png in Resources */,
 				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
+				8588C42C1C5DFD4E0092259E /* 剩余@2x.png in Resources */,
 				38E5D7AD1C113879004B49D2 /* purper_less@2x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
 				38E5D6E61C0F1018004B49D2 /* LPBuyTaocanCell.xib in Resources */,
@@ -6708,6 +6824,7 @@
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
 				85F625A21C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.xib in Resources */,
 				A2F9DA7F1BAA8CC3009DEAF3 /* SerchHeadView.xib in Resources */,
+				8588C43E1C5E177F0092259E /* 人数yu@2x.png in Resources */,
 				380659A31C53522A003094C9 /* image_Unselected@2x.png in Resources */,
 				ADFFA6931C16DFE900D9BD2A /* camera@3x.png in Resources */,
 				855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */,
@@ -6730,6 +6847,7 @@
 				853860791C45600F009B19AE /* friendPresentBG.jpeg in Resources */,
 				3806566A1C4E5D5B003094C9 /* ImageCollectionViewController.xib in Resources */,
 				ADF88EAB1C1197C400CF5DED /* MJRefresh.bundle in Resources */,
+				8588C4381C5E17260092259E /* 日历yu@3x.png in Resources */,
 				380659CF1C54AC2A003094C9 /* icon_share2@3x.png in Resources */,
 				3812C5671C57B78800F4DD6B /* hot_triangle@2x.png in Resources */,
 				ADE103B11BDE4C8E00D9EC38 /* PayCell.xib in Resources */,
@@ -6741,6 +6859,7 @@
 				AD078C471C33CD5A00A056D1 /* add5@3x.png in Resources */,
 				15E2407D1BB2521C0090D240 /* CollectionCell.xib in Resources */,
 				ADFFA6D11C181ED800D9BD2A /* refresh10@2x.png in Resources */,
+				8588C4301C5DFDE40092259E /* 发起人@3x.png in Resources */,
 				52D4F9AA1C57B2B700691BEF /* 收藏2@2x.png in Resources */,
 				380659C21C54AB5B003094C9 /* icon_like2@2x.png in Resources */,
 				38E5D7A01C113879004B49D2 /* choose.png in Resources */,
@@ -6786,9 +6905,11 @@
 				380659B71C54AAA4003094C9 /* empyImage16_9@3x.png in Resources */,
 				ADD1B4661C528EE100A5237C /* qq_s@3x.png in Resources */,
 				853C4C6C1C311A5C00D48BA2 /* zengjia_icon.png in Resources */,
+				8588C42B1C5DFD4E0092259E /* 剩余@3x.png in Resources */,
 				3879F2581C0D32B900B72629 /* TaocanTableViewCell.xib in Resources */,
 				15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */,
 				380659A41C53522A003094C9 /* image_Unselected@3x.png in Resources */,
+				8588C4271C5DF90A0092259E /* LYYUTableViewCell.xib in Resources */,
 				85F5451E1C13DF5A0013B92B /* cameraCircle@3x.png in Resources */,
 				52D4F9A61C57B2B700691BEF /* 价格@2x.png in Resources */,
 				ADFFA6C91C181ED800D9BD2A /* refresh2@2x.png in Resources */,
@@ -6820,6 +6941,7 @@
 				ADF88E641C102E4F00CF5DED /* huiseStar@3x.png in Resources */,
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
+				8588C43D1C5E177F0092259E /* 地址yu@2x.png in Resources */,
 				ADFFA6AA1C181B9100D9BD2A /* 2@2x.jpg in Resources */,
 				854538601C2D3E1B0020AC2C /* LYFriendsMessageViewController.xib in Resources */,
 				389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */,
@@ -6855,11 +6977,13 @@
 				38E5D7F31C12DF0C004B49D2 /* comment@2x.png in Resources */,
 				15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */,
 				85F66E4A1C524F59005D1CD8 /* fujinwanyou@3x.png in Resources */,
+				8588C4371C5E17260092259E /* 日历yu@2x.png in Resources */,
 				38D8764F1C170DB200E2F284 /* PayNow.png in Resources */,
 				ADFFA6D51C181F8200D9BD2A /* mjRefresh@2x.png in Resources */,
 				AD4EA8671C5476AF0056E560 /* launchImage@3x.png in Resources */,
 				8567A4A51C43E14E00982882 /* biaoqing_icon.png in Resources */,
 				38E5D7B71C128A74004B49D2 /* 拼客流程@2x.png in Resources */,
+				8588C4341C5E16C40092259E /* hotImg@3x.png in Resources */,
 				ADFFA6D31C181ED800D9BD2A /* refresh12@2x.png in Resources */,
 				8540B68A1C2CF40B00F16463 /* LYFriendsSendViewController.xib in Resources */,
 				38E5D7F61C13355A004B49D2 /* PayMoney.xib in Resources */,
@@ -7185,6 +7309,7 @@
 				15013B011BBA33BF00061FAF /* UIImage+WebP.m in Sources */,
 				15B8661B1BDB5894002E2BB6 /* CHDoOrderViewController.m in Sources */,
 				38E5D6D51C0EF90D004B49D2 /* LPAttentionViewController.m in Sources */,
+				8588C4561C5E4F240092259E /* YUOrderInfo.m in Sources */,
 				152247B21BEB064600E68A2B /* IQKeyboardReturnKeyHandler.m in Sources */,
 				15E240A51BB381450090D240 /* OrderDetailHeadView.m in Sources */,
 				AD92AEB51BE24165009F2A34 /* LYAlert.m in Sources */,
@@ -7275,6 +7400,7 @@
 				3879F2521C0D329600B72629 /* AddressTableViewCell.m in Sources */,
 				854CC98C1C32624D00A6CA60 /* LYChangeImageViewController.m in Sources */,
 				85F6258B1C0BE74E002858C8 /* LYHotBarMenuViewController.m in Sources */,
+				8588C45C1C5E59200092259E /* YUPinkerinfo.m in Sources */,
 				15EB35071BD1F51200BA6161 /* PTTaoCanCell.m in Sources */,
 				851806701C2E295200006804 /* FriendsPicAndVideoModel.m in Sources */,
 				15EB7C491BC3753B00756153 /* SetMealInfoModel.m in Sources */,
@@ -7287,6 +7413,7 @@
 				85589CB81C16D41D000E342E /* SingletonRegiste.m in Sources */,
 				AD106BB81C0DDEFF007F5FBA /* MJPropertyKey.m in Sources */,
 				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,
+				8588C4261C5DF90A0092259E /* LYYUTableViewCell.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				1559DD101BDA2A3E00F3FE9B /* CarInfoCell.m in Sources */,
 				ADF88EA21C1197C400CF5DED /* MJRefreshAutoGifFooter.m in Sources */,
@@ -7306,6 +7433,7 @@
 				85F66EF41C5628F3005D1CD8 /* LYHotRecommandCell.m in Sources */,
 				85F66EF21C5628F3005D1CD8 /* LYAmusementClassCell.m in Sources */,
 				15013AFE1BBA33BF00061FAF /* UIButton+WebCache.m in Sources */,
+				8588C4211C5DEBA00092259E /* LYAmusementViewController.m in Sources */,
 				15EB7C791BD0DB9400756153 /* LYPlayTogetherMainViewController.m in Sources */,
 				D73652421BAEBF44002541CE /* KuCunModel.m in Sources */,
 				AD078C8D1C34D24C00A056D1 /* LYChooseJiuBaViewController.m in Sources */,
@@ -7331,6 +7459,7 @@
 				152247B61BEB064600E68A2B /* IQTitleBarButtonItem.m in Sources */,
 				A2F9DA6A1BAA58B1009DEAF3 /* DetailCell.m in Sources */,
 				15EA6DC21BBE47C400620C9E /* BrandModel.m in Sources */,
+				8588C44F1C5E4A220092259E /* LYYUHttpTool.m in Sources */,
 				38D876431C16E95300E2F284 /* ChooseNumber.m in Sources */,
 				52D4F9021C57466D00691BEF /* LYHotCollectionViewCell.m in Sources */,
 				386AE39C1C5B61B70062105F /* TAAnimatedDotView.m in Sources */,
@@ -7359,6 +7488,7 @@
 				85F625861C0BDFC9002858C8 /* LYLMenuDropViewController.m in Sources */,
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
 				D748BC461BA1C280005AA996 /* LYDataStore.m in Sources */,
+				8588C4591C5E519C0092259E /* YUPinkerListModel.m in Sources */,
 				ADF88F3C1C12E5F000CF5DED /* KxMenu.m in Sources */,
 				15844BC81BE1CAEB00247FBC /* FindMenuTwoCell.m in Sources */,
 				38E72B561C15A18E002EFBDD /* ChiHeViewController.m in Sources */,
