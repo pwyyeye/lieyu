@@ -16,8 +16,18 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)configureMoreAction{
+    NSLog(@"configureMoreAction");
+}
+
+- (void)configureMessage{
+    NSLog(@"configureMessage");
+}
+
+- (void)configureJoinedNumber{
+    NSLog(@"configureJoinedNumber");
 }
 
 @end

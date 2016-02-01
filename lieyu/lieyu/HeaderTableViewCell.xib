@@ -127,6 +127,7 @@
                     <constraint firstItem="aFK-1p-R9a" firstAttribute="bottom" secondItem="Cl5-nA-X3x" secondAttribute="bottom" id="thj-df-6Eg"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
                 <outlet property="avatar_button" destination="Cl5-nA-X3x" id="iYQ-8x-FZM"/>
                 <outlet property="hotTriangle" destination="KXk-Ta-7xW" id="m6P-Mi-ecd"/>

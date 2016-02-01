@@ -14,6 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="159.5"/>
                 <autoresizingMask key="autoresizingMask"/>
             </tableViewCellContentView>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <point key="canvasLocation" x="219" y="468"/>
         </tableViewCell>
     </objects>

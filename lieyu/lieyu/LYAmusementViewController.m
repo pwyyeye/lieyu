@@ -10,6 +10,7 @@
 #import "HotMenuButton.h"
 #import "LYYUTableViewCell.h"
 #import "LYYUHttpTool.h"
+#import "HDDetailViewController.h"
 
 @interface LYAmusementViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
     UIScrollView *_scrollView;
@@ -191,7 +192,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:HDDetailVC  animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

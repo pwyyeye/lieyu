@@ -27,6 +27,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorColor = [UIColor clearColor];
     [self registerCell];
 }
 
@@ -47,19 +48,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
+        _headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderTableViewCell" forIndexPath:indexPath];
+        _headerCell.selected = NO;
         return _headerCell;
     }else if (indexPath.section == 1){
+        _LYdwCell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
+        _LYdwCell.selected = NO;
         return _LYdwCell;
     }else if(indexPath.section == 2){
+        _HDDetailCell = [tableView dequeueReusableCellWithIdentifier:@"HDDetailTableViewCell" forIndexPath:indexPath];
+        _HDDetailCell.selected = NO;
         return _HDDetailCell;
     }else if(indexPath.section == 3){
+        _joinedCell = [tableView dequeueReusableCellWithIdentifier:@"JoinedTableViewCell" forIndexPath:indexPath];
         [_joinedCell configureJoinedNumber];
+        _joinedCell.selected = NO;
         return _joinedCell;
     }else if(indexPath.section == 4){
+        _joinedCell = [tableView dequeueReusableCellWithIdentifier:@"JoinedTableViewCell" forIndexPath:indexPath];
         [_joinedCell configureMessage];
+        _joinedCell.selected = NO;
         return _joinedCell;
     }else if (indexPath.section == 5){
+        _joinedCell = [tableView dequeueReusableCellWithIdentifier:@"JoinedTableViewCell" forIndexPath:indexPath];
         [_joinedCell configureMoreAction];
+        _joinedCell.selected = NO;
         return _joinedCell;
     }else{
         return nil;
@@ -76,6 +89,27 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat height;
+    if (indexPath.section == 0) {
+        _headerCell.title_label.font = [UIFont systemFontOfSize:14];
+        _headerCell.title_label.text = @"我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我";
+        CGSize size = [_headerCell.title_label.text boundingRectWithSize:CGSizeMake(146, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+        height = size.height + 51;
+    }else if (indexPath.section == 1){
+        height = 104;
+    }else if(indexPath.section == 2){
+        height = 200;
+    }else if (indexPath.section == 3){
+        return 100;
+    }else if(indexPath.section == 4){
+        return 100;
+    }else if(indexPath.section == 5){
+        return 320 / 16 * 9;
+    }
+    return height;
 }
 
 @end
