@@ -70,6 +70,7 @@
     
     _tableViewArray = [[NSMutableArray alloc]initWithCapacity:4];
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
+    _scrollView.backgroundColor = [UIColor redColor];
     _scrollView.delegate = self;
     _scrollView.bounces = NO;
     _scrollView.pagingEnabled = YES;
@@ -89,8 +90,9 @@
     }
     [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _tableViewArray.count, 0)];
     [self installFreshEvent];
-    UITableView *tableView = _tableViewArray[0];
-    [tableView.mj_header beginRefreshing];
+//    UITableView *tableView = _tableViewArray[0];
+//    [tableView.mj_header beginRefreshing];
+    [self getDataForHotWith:0];
     [self createMenuUI];
 }
 
@@ -367,7 +369,7 @@
                     _currentPagePrice = 1;
                     [weakSelf getDataForHotWith:2];
                 }
-                    break;
+                     break;
                 case 3:
                 {
                     _currentPageTime = 1;
@@ -380,7 +382,7 @@
         MJRefreshGifHeader *header=(MJRefreshGifHeader *)tableView.mj_header;
         [self initMJRefeshHeaderForGif:header];
         
-      /*  tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+        tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
             switch (i) {
                 case 0:
                 {
@@ -405,32 +407,8 @@
             }
         }];
         MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)tableView.mj_footer;
-        [self initMJRefeshFooterForGif:footer]; */
-        tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-            switch (i) {
-                case 0:
-                {
-                    [weakSelf getDataForHotWith:0];
-                }
-                    break;
-                case 1:
-                {
-                    [weakSelf getDataForHotWith:1];
-                }
-                    break;
-                case 2:
-                {
-                    [weakSelf getDataForHotWith:2];
-                }
-                    break;
-                case 3:
-                {
-                    [weakSelf getDataForHotWith:3];
-                }
-                    break;
-            }
-        }];
-
+        [self initMJRefeshFooterForGif:footer];
+        
     }
     
 }
