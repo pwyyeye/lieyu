@@ -36,6 +36,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="xFR-IV-f12" kind="relationship" relationship="viewControllers" id="eH1-zI-rB3"/>
+                        <segue destination="BPS-Wy-U8G" kind="relationship" relationship="viewControllers" id="IMS-YK-1ed"/>
                         <segue destination="1rT-AK-BaE" kind="relationship" relationship="viewControllers" id="5dy-GL-geu"/>
                         <segue destination="cKJ-Em-xQV" kind="relationship" relationship="viewControllers" id="Hlf-7Y-97c"/>
                         <segue destination="yPs-RX-H79" kind="relationship" relationship="viewControllers" id="OR8-W8-7xQ"/>
@@ -264,6 +265,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvR-7O-5aO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1269" y="-844"/>
+        </scene>
+        <!--娱-->
+        <scene sceneID="K9H-6T-F89">
+            <objects>
+                <viewController id="BPS-Wy-U8G" customClass="LYAmusementViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5BH-kd-FX5"/>
+                        <viewControllerLayoutGuide type="bottom" id="qp6-jx-Igu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fLm-0E-8r7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="娱" id="x4G-Uc-Cbu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ddq-i7-8vN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-880" y="-7"/>
         </scene>
         <!--玩友圈-->
         <scene sceneID="dE7-Av-2rV">

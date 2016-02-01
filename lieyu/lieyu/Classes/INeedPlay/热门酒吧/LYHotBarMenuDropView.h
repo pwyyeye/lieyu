@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LYHotBarMenuDropViewDelegate <NSObject>
+
+- (void)lyHotBarMenuButton:(UIButton *)menuBtn withIndex:(NSInteger)index;
+
+@end
 
 
 @interface LYHotBarMenuDropView : UIView
 
 @property (nonatomic,strong) NSMutableArray *btnArray;
+@property (nonatomic,unsafe_unretained) BOOL isYu;
+@property (nonatomic,unsafe_unretained) id<LYHotBarMenuDropViewDelegate> delegate;
 - (void)deployWithItemArrayWith:(NSArray *)itemArray;
+
+- (void)deployWithItemArrayWith:(NSArray *)itemArray withTitle:(NSString *)title;
 @end

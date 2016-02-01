@@ -580,7 +580,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                                }
                                                collectView.mj_footer.hidden = NO;
                                            }else{
-                                               collectView.mj_footer.hidden = YES;
+                                              // collectView.mj_footer.hidden = YES;
                                            }
                                            [collectView.mj_header endRefreshing];
                                        }
@@ -598,7 +598,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 }
                 else
                 {
-                    collectView.mj_footer.hidden = YES;
+                   // collectView.mj_footer.hidden = YES;
                 }
                 switch (collectView.tag) {
                     case 0:
@@ -694,12 +694,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
         return jiubaCell;
     }else if(indexPath.row >= 2 & indexPath.row <= 5){
-        NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
+      //  NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
         HomeMenuCollectionViewCell *menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeMenuCollectionViewCell" forIndexPath:indexPath];
         menuCell.layer.cornerRadius = 2;
         menuCell.layer.masksToBounds = YES;
-        [menuCell.imgView_title setImage:[UIImage imageNamed:picNameArray[indexPath.row - 2]]];
-        if(picNameArray.count == 4) menuCell.label_title.text = picNameArray[indexPath.row - 2];
+      //  [menuCell.imgView_title setImage:[UIImage imageNamed:picNameArray[indexPath.row - 2]]];
+     //   if(picNameArray.count == 4) menuCell.label_title.text = picNameArray[indexPath.row - 2];
         if(_fiterArray.count == 4) [menuCell.imgView_bg sd_setImageWithURL:[NSURL URLWithString:_fiterArray[indexPath.row - 2]] placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
         return menuCell;
     }else{

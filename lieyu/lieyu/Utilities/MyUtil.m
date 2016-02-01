@@ -630,4 +630,42 @@
     
 }
 
+#pragma mark - 根据日期获取星期
++ (NSString*)weekdayStringFromDate:(NSString *)dateString{
+    NSDateFormatter *dateFmter = [[NSDateFormatter alloc]init];
+    [dateFmter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFmter dateFromString:dateString];
+    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"Sunday", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSTimeZone *timeZone = [[NSTimeZone alloc] initWithName:@"Asia/Shanghai"];
+    
+    [calendar setTimeZone: timeZone];
+    
+    NSCalendarUnit calendarUnit = NSWeekdayCalendarUnit;
+    
+    NSDateComponents *theComponents = [calendar components:calendarUnit fromDate:date];
+    
+    return [weekdays objectAtIndex:theComponents.weekday];
+    
+}
+
+#pragma mark -剩余时间计算
++ (NSString *)residueTimeFromDate:(NSString *)dateString{
+    NSDateFormatter *dateFmter = [[NSDateFormatter alloc]init];
+    [dateFmter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFmter dateFromString:dateString];
+    NSTimeInterval orderTime = [date timeIntervalSinceNow];
+//    NSTimeInterval nowTime = [[NSDate date] timeIntervalSince1970];
+//    NSTimeInterval differentTime = orderTime - nowTime;
+    if (orderTime >= 60 * 60) {
+        return [NSString stringWithFormat:@"%.0fhour",orderTime/60/60];
+    }else if(orderTime >= 0 && orderTime <= 60 * 60){
+        return [NSString stringWithFormat:@"%.0fmin",orderTime/60];
+    }else{
+        return @"已过期";
+    }
+}
+
 @end

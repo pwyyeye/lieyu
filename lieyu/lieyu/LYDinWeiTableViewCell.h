@@ -10,6 +10,7 @@
 @class RecommendPackageModel;
 @class TaoCanModel;
 #import "PinKeModel.h"
+#import "YUPinkerinfo.h"
 
 @interface LYDinWeiTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_header;
@@ -30,4 +31,6 @@
 @property (nonatomic,strong) RecommendPackageModel *model;
 @property (nonatomic,strong) TaoCanModel *taoCanModel;
 @property (nonatomic, strong) PinKeModel *pinkeModel;
+@property (nonatomic, strong) YUPinkerinfo *pinkeInfo;
+
 @end
