@@ -5,12 +5,12 @@
 //  Created by 狼族 on 16/1/31.
 //  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
 //
-
+#import "HDDetailViewController.h"
 #import "LYAmusementViewController.h"
 #import "HotMenuButton.h"
 #import "LYYUTableViewCell.h"
 #import "LYYUHttpTool.h"
-#import "HDDetailViewController.h"
+#import "YUOrderShareModel.h"
 
 @interface LYAmusementViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
     UIScrollView *_scrollView;
@@ -197,7 +197,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
-//    HDDetailVC.YUModel = self.
+    YUOrderShareModel *orderM = _dataArray[tableView.tag][indexPath.row];
+    HDDetailVC.YUModel = orderM;
     [self.navigationController pushViewController:HDDetailVC  animated:YES];
 }
 

@@ -19,4 +19,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *checkAddress_button;
 @property (weak, nonatomic) IBOutlet UIButton *checkBar_button;
 
+@property (weak, nonatomic) IBOutlet UIView *backView;
 @end

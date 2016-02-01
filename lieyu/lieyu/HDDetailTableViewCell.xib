@@ -99,7 +99,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lc4-Rg-fmq">
-                                <rect key="frame" x="35" y="115" width="35.5" height="19"/>
+                                <rect key="frame" x="35" y="115" width="230" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="M79-5N-4UC"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="mas-fl-D0e"/>
@@ -107,6 +107,11 @@
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="mas-fl-D0e"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="advance.png" translatesAutoresizingMaskIntoConstraints="NO" id="bDZ-L5-6Js">
                                 <rect key="frame" x="273" y="162" width="23" height="25"/>
@@ -201,6 +206,7 @@
                             <constraint firstItem="7sq-EE-IuE" firstAttribute="top" secondItem="LLQ-GB-1Ji" secondAttribute="bottom" constant="35" id="MJ3-5r-EmN"/>
                             <constraint firstItem="1df-bb-2fi" firstAttribute="centerY" secondItem="lc4-Rg-fmq" secondAttribute="centerY" id="NsE-Qv-G5a"/>
                             <constraint firstItem="kAb-f4-t1g" firstAttribute="top" secondItem="HuG-yc-BkR" secondAttribute="top" constant="62" id="OPQ-Mr-bPK"/>
+                            <constraint firstItem="1df-bb-2fi" firstAttribute="leading" secondItem="lc4-Rg-fmq" secondAttribute="trailing" constant="8" id="P3v-yy-vak"/>
                             <constraint firstItem="bDZ-L5-6Js" firstAttribute="trailing" secondItem="1df-bb-2fi" secondAttribute="trailing" id="PDk-6q-krt"/>
                             <constraint firstItem="hCf-1Y-vbQ" firstAttribute="leading" secondItem="ovV-O8-JgO" secondAttribute="leading" id="POa-c5-JDS"/>
                             <constraint firstItem="wbe-Jd-cvc" firstAttribute="bottom" secondItem="ovV-O8-JgO" secondAttribute="bottom" id="Pxh-D9-5D1"/>
@@ -276,6 +282,7 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
                 <outlet property="address_label" destination="lc4-Rg-fmq" id="4U5-sm-ScO"/>
+                <outlet property="backView" destination="HuG-yc-BkR" id="N65-e3-oBF"/>
                 <outlet property="barName_label" destination="pDF-j9-T2Y" id="Fix-El-o7F"/>
                 <outlet property="checkAddress_button" destination="yVN-Xh-fAI" id="UVm-lC-b7r"/>
                 <outlet property="checkBar_button" destination="zmG-d1-qXs" id="WOx-sP-glj"/>

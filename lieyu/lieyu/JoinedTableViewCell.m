@@ -7,6 +7,7 @@
 //
 
 #import "JoinedTableViewCell.h"
+#import "YUPinkerListModel.h"
 
 @implementation JoinedTableViewCell
 
@@ -19,15 +20,69 @@
 }
 
 - (void)configureMoreAction{
-    NSLog(@"configureMoreAction");
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 55, 20, 110, 28)];
+    button.layer.cornerRadius = 2;
+    button.layer.masksToBounds = YES;
+    button.layer.borderColor = [RGB(153, 50, 204)CGColor];
+    button.layer.borderWidth = 0.5;
+    button.titleLabel.font = [UIFont systemFontOfSize:12];
+    [button setTitleColor:RGB(153, 50, 204) forState:UIControlStateNormal];
+    button.titleLabel.text = @"更多拼客活动";
+    button.hidden = YES;
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"YUGroup"]];
+    imageView.frame = CGRectMake(SCREEN_WIDTH / 2 - 57, 20, 114, 114);
+    [self addSubview:imageView];
+    [self addSubview:button];
 }
 
 - (void)configureMessage{
-    NSLog(@"configureMessage");
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(8, 0, SCREEN_WIDTH - 16, 100)];
+    view.backgroundColor = [UIColor whiteColor];
+    [self addSubview:view];
 }
 
-- (void)configureJoinedNumber{
-    NSLog(@"configureJoinedNumber");
+- (void)configureJoinedNumber:(int)number andPeople:(NSArray *)pinkeList{
+    _view = [[UIView alloc]initWithFrame:CGRectMake(8, 0, SCREEN_WIDTH - 16, self.frame.size.height)];
+    _view.backgroundColor = [UIColor whiteColor];
+    [self addSubview:_view];
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 8, 200, 16)];
+    label.textColor = [UIColor blackColor];
+    label.textAlignment = NSTextAlignmentLeft;
+    label.text = [NSString stringWithFormat:@"已参加( %lu/%d )",pinkeList.count,number];
+    [_view addSubview:label];
+    
+    int x = 8;
+    int y = 34;
+    for (int i = 0 ; i < pinkeList.count; i ++) {
+        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:((YUPinkerListModel *)[pinkeList objectAtIndex:i]).inmenberAvatar_img]]]];
+//        image.layer.cornerRadius = 20;
+//        image.layer.masksToBounds = YES;
+        YUPinkerListModel *model = [pinkeList objectAtIndex:i];
+        model.quantity = @"2";
+        if([model.quantity intValue] > 1){
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(35, 0, 20, 20)];
+            label.layer.cornerRadius = 10;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.layer.masksToBounds = YES;
+            label.backgroundColor = RGB(186, 40, 227);
+            label.textColor = [UIColor whiteColor];
+            label.text = model.quantity;
+            [image addSubview:label];
+        }
+//        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"lieyuIcon"]];
+//        UIImageView *hot_image = [UIImageView alloc]ini
+        if( x + 40 > SCREEN_WIDTH - 16){
+            y = y + 50;
+            x = 8;
+        }
+        image.frame = CGRectMake(x, y, 40, 40);
+        x = x + 50;
+        [_view addSubview:image];
+    }
+    _view.frame = CGRectMake(8, 0, SCREEN_WIDTH - 16, y + 50);
+    self.frame = CGRectMake(0, 0, SCREEN_WIDTH, y + 50);
 }
 
 @end

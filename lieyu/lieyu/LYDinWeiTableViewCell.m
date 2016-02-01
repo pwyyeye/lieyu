@@ -110,6 +110,23 @@
     self.label_percent.text = percentStr;
 }
 
+- (void)setPinkeInfo:(YUPinkerinfo *)pinkeInfo{
+    _pinkeInfo = pinkeInfo;
+    [self.imageView_header sd_setImageWithURL:[NSURL URLWithString:_pinkeInfo.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    self.label_name.text = [NSString stringWithFormat:@"%@(适合%@-%@人)",_pinkeInfo.smname,_pinkeInfo.minnum,_pinkeInfo.maxnum];
+    self.label_buyCount.text = [NSString stringWithFormat:@"%@人购",_pinkeInfo.buynum];
+    self.label_price_now.text = [NSString stringWithFormat:@"¥%@",_pinkeInfo.price];
+    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",_pinkeInfo.marketprice] attributes:attribtDic];
+    self.label_price_old.attributedText = attribtStr;
+    CGFloat rebate = [_pinkeInfo.rebate floatValue];
+    CGFloat profit = [_pinkeInfo.price intValue] * rebate;
+    NSString *percentStr =[NSString stringWithFormat:@"返利:%.0f元",profit];
+    self.label_percent.text = percentStr;
+    NSLog(@"%d",[_pinkeInfo.recommended intValue])
+    self.hotImage.hidden = ![_pinkeInfo.recommended intValue];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

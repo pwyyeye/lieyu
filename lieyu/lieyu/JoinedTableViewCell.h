@@ -11,8 +11,9 @@
 @interface JoinedTableViewCell : UITableViewCell
 @property (nonatomic, strong) UILabel *title_label;
 @property (nonatomic, strong) NSMutableArray *buttons_array;
+@property (nonatomic, strong) UIView *view;
 
-- (void)configureJoinedNumber;
+- (void)configureJoinedNumber:(int)number andPeople:(NSArray *)pinkeList;
 - (void)configureMessage;
 - (void)configureMoreAction;
 
