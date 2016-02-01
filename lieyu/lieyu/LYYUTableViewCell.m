@@ -35,7 +35,7 @@
     
     UIButton *_btn_more = [[UIButton alloc]init];
 //    _btn_more.frame = ((UIButton *)_btnArray[4]).frame;
-    _btn_more.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+//    _btn_more.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
     _btn_more.backgroundColor = RGBA(186, 20, 227, 0.5);
     [self.view_cell addSubview:_btn_more];
     
