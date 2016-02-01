@@ -170,14 +170,16 @@
 }
 
 - (void)getData{
-    [LYYUHttpTool yuGetDataOrderShareWithParams:nil compelte:^(NSMutableArray *dataArray) {
-        
+    [LYYUHttpTool yuGetDataOrderShareWithParams:nil compelte:^(NSArray *dataArray) {
+        _dataArray = dataArray;
+        UITableView *tableView = _tableViewArray[0];
+        [tableView reloadData];
     }];
 }
 
 #pragma mark - UITableViewDataSource && UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

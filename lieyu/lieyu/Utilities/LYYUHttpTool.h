@@ -10,5 +10,5 @@
 
 @interface LYYUHttpTool : NSObject
 //获取娱模版主页数据
-+ (void)yuGetDataOrderShareWithParams:(NSDictionary *)params compelte:(void(^)(NSMutableArray *dataArray))compelte;
++ (void)yuGetDataOrderShareWithParams:(NSDictionary *)params compelte:(void(^)(NSArray *dataArray))compelte;
 @end

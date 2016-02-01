@@ -10,16 +10,17 @@
 #import "HTTPController.h"
 #import "LYYUUrl.h"
 #import "YUOrderInfo.h"
+#import "YUOrderShareModel.h"
 
 @implementation LYYUHttpTool
 
-+ (void)yuGetDataOrderShareWithParams:(NSDictionary *)params compelte:(void(^)(NSMutableArray *dataArray))compelte{
++ (void)yuGetDataOrderShareWithParams:(NSDictionary *)params compelte:(void(^)(NSArray *dataArray))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_ORDERSHARE baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"---->%@",response);
         if ([response[@"errorcode"] isEqualToString:@"1"]) {
-            NSDictionary *dic = response[@"data"];
-            NSDictionary *orderDic = dic[@"orderInfo"];
-            
+            NSArray *array = response[@"data"];
+            NSArray *dataArray = [YUOrderShareModel mj_objectArrayWithKeyValuesArray:array];
+            compelte(dataArray);
         }
     } failure:^(NSError *err) {
         

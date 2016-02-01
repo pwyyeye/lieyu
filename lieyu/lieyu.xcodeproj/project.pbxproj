@@ -548,6 +548,7 @@
 		52D4F9B61C57B2B700691BEF /* HOT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F99C1C57B2B700691BEF /* HOT@2x.png */; };
 		52D4F9B71C57B2B700691BEF /* HOT@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D4F99D1C57B2B700691BEF /* HOT@3x.png */; };
 		85028A5B1C3D0E7100B07BBD /* FriendsTagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85028A5A1C3D0E7100B07BBD /* FriendsTagModel.m */; };
+		850475FC1C5EFD2B00BF9C8C /* YUOrderShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 850475FB1C5EFD2B00BF9C8C /* YUOrderShareModel.m */; };
 		8512BCA81C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */; };
 		8512BCA91C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */; };
 		8512BCAA1C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */; };
@@ -1901,6 +1902,8 @@
 		60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		85028A591C3D0E7100B07BBD /* FriendsTagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTagModel.h; sourceTree = "<group>"; };
 		85028A5A1C3D0E7100B07BBD /* FriendsTagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTagModel.m; sourceTree = "<group>"; };
+		850475FA1C5EFD2B00BF9C8C /* YUOrderShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUOrderShareModel.h; sourceTree = "<group>"; };
+		850475FB1C5EFD2B00BF9C8C /* YUOrderShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUOrderShareModel.m; sourceTree = "<group>"; };
 		8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zhuyishixiang_normal.png; sourceTree = "<group>"; };
 		8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@2x.png"; sourceTree = "<group>"; };
 		8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@3x.png"; sourceTree = "<group>"; };
@@ -4782,6 +4785,8 @@
 		8588C4501C5E4D7F0092259E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				850475FA1C5EFD2B00BF9C8C /* YUOrderShareModel.h */,
+				850475FB1C5EFD2B00BF9C8C /* YUOrderShareModel.m */,
 				8588C4541C5E4F240092259E /* YUOrderInfo.h */,
 				8588C4551C5E4F240092259E /* YUOrderInfo.m */,
 				8588C4571C5E519C0092259E /* YUPinkerListModel.h */,
@@ -7333,6 +7338,7 @@
 				1559DCE51BD8C0EA00F3FE9B /* CHShaiXuanViewController.m in Sources */,
 				15FD2A9C1BD5E8BB00D66920 /* LYwoYaoDinWeiMainViewController.m in Sources */,
 				ADF88EA61C1197C400CF5DED /* MJRefreshBackNormalFooter.m in Sources */,
+				850475FC1C5EFD2B00BF9C8C /* YUOrderShareModel.m in Sources */,
 				85028A5B1C3D0E7100B07BBD /* FriendsTagModel.m in Sources */,
 				ADF8E1C21C214ECB00943E4D /* LYCache+CoreDataProperties.m in Sources */,
 				15013B071BBA3BD000061FAF /* LYCommonHttpTool.m in Sources */,
