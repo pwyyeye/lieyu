@@ -94,5 +94,8 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 + (void)showLikePlaceMessage:(NSString* )message;
 //获取字符长度 中文＝2 英文＝1
 + (int)countTheStrLength:(NSString*)strtemp;
-
+//根据日期获取星期
++ (NSString*)weekdayStringFromDate:(NSString *)dateString;
+//剩余时间计算
++ (NSString *)residueTimeFromDate:(NSString *)dateString;
 @end
