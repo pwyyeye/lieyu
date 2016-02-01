@@ -29,6 +29,7 @@
     NSInteger _currentPageHot,_currentPageDistance,_currentPagePrice,_currentPageTime;
     NSInteger _index;
     LYHotBarMenuDropView *_menuDropView;
+    UIButton *_sectionBtn;
 }
 
 @end
@@ -68,7 +69,7 @@
 - (void)createUI{
     
     _tableViewArray = [[NSMutableArray alloc]initWithCapacity:4];
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
     _scrollView.delegate = self;
     _scrollView.bounces = NO;
     _scrollView.pagingEnabled = YES;
@@ -79,15 +80,15 @@
         tableView.tag = i;
         tableView.dataSource = self;
         tableView.delegate = self;
-        [tableView setContentInset:UIEdgeInsetsMake(90, 0, 100,0)];
+        [tableView setContentInset:UIEdgeInsetsMake(90, 0, 200,0)];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [tableView registerNib:[UINib nibWithNibName:@"LYYUTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYUTableViewCell"];
         [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [_scrollView addSubview:tableView];
         [_tableViewArray addObject:tableView];
     }
-    [self installFreshEvent];
     [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _tableViewArray.count, 0)];
+    [self installFreshEvent];
     UITableView *tableView = _tableViewArray[0];
     [tableView.mj_header beginRefreshing];
     [self createMenuUI];
@@ -130,14 +131,14 @@
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     
-    UIButton *sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 40, 70, 19)];
-    [sectionBtn addTarget:self action:@selector(sectionClick:) forControlEvents:UIControlEventTouchUpInside];
-    [sectionBtn setTitle:@"徐汇区" forState:UIControlStateNormal];
-    sectionBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [sectionBtn setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
-    [sectionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 14, 0, 0)];
-    [sectionBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
-    [_menuView addSubview:sectionBtn];
+    _sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 40, 70, 19)];
+    [_sectionBtn addTarget:self action:@selector(sectionClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_sectionBtn setTitle:@"徐汇区" forState:UIControlStateNormal];
+    _sectionBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_sectionBtn setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
+    [_sectionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 14, 0, 0)];
+    [_sectionBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
+    [_menuView addSubview:_sectionBtn];
     
     _purpleLineView = [[UIView alloc]init];
     HotMenuButton *hotBtn = _menuBtnArray[0];
@@ -201,6 +202,11 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     [UIView commitAnimations];
+    [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
+    [_sectionBtn setTitle:menuBtn.currentTitle forState:UIControlStateNormal];
+}
+
+- (void)removeMenuView{
     [_menuDropView removeFromSuperview];
     _menuDropView = nil;
 }
@@ -330,7 +336,7 @@
             }
 //            [tableView reloadData];
             NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:0];
-            [tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationLeft];
+            [tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationFade];
         });
     }];
 }
@@ -373,6 +379,33 @@
         
         MJRefreshGifHeader *header=(MJRefreshGifHeader *)tableView.mj_header;
         [self initMJRefeshHeaderForGif:header];
+        
+      /*  tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+            switch (i) {
+                case 0:
+                {
+                    [weakSelf getDataForHotWith:0];
+                }
+                    break;
+                case 1:
+                {
+                    [weakSelf getDataForHotWith:1];
+                }
+                    break;
+                case 2:
+                {
+                    [weakSelf getDataForHotWith:2];
+                }
+                    break;
+                case 3:
+                {
+                    [weakSelf getDataForHotWith:3];
+                }
+                    break;
+            }
+        }];
+        MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)tableView.mj_footer;
+        [self initMJRefeshFooterForGif:footer]; */
         tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             switch (i) {
                 case 0:
@@ -397,6 +430,7 @@
                     break;
             }
         }];
+
     }
     
 }
