@@ -8,8 +8,16 @@
 
 #ifndef lieyu_LYMineUrl_h
 #define lieyu_LYMineUrl_h
-//客户订单
+//客户列表
 #define LY_MY_ORDER  @"lyOrderAction.do?action=list"
+//客户明细
+#define LY_MY_ORDERDETAIL  @"smOrderAction.do?action=custom"
+//sn 获取拼客订单明细
+#define LY_MY_ORDERDETAILSN  @"smOrderAction.do?action=expand"
+
+//分享拼客订单
+#define LY_MY_ORDER_SHARE @"lyOrderShareInAction.do?action=add"
+
 //删除订单
 #define LY_MY_ORDER_DEL @"lyOrderAction.do?action=delete"
 //参与人删除订单

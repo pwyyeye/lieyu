@@ -27,6 +27,7 @@
 #import "ChoosePayController.h"
 #import "LYEvaluationController.h"
 #import "IQKeyboardManager.h"
+#import "PinkerShareController.h"
 
 @interface LYMyOrderManageViewController ()
 
@@ -1077,6 +1078,7 @@
                 if(pinkInfoModel.inmember==self.userModel.userid){
                      detailViewController.orderNo=pinkInfoModel.sn;
                      detailViewController.payAmount=pinkInfoModel.price.doubleValue;
+                    detailViewController.isPinker=YES;
                 }
             }
         }
@@ -1146,25 +1148,44 @@
     OrderInfoModel *orderInfoModel;
     
     orderInfoModel=dataList[sender.tag];
-    //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
-    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n %@inPinkerWebAction.do?id=%d",self.userModel.usernick,orderInfoModel.barinfo.barname,LY_SERVER,orderInfoModel.id];
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
-    @try {
-        [UMSocialSnsService presentSnsIconSheetView:self
-                                             appKey:UmengAppkey
-                                          shareText:ss
-                                         shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfoModel.pinkerinfo.linkUrl]]]
-                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
-                                           delegate:nil];
-    }
-    @catch (NSException *exception) {
-        [MyUtil showCleanMessage:@"无法分享！"];
-    }
-    @finally {
-        
-    }
+    
+    __weak __typeof(self)weakSelf = self;
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"选择分享平台" message:@"" cancelButtonTitle:@"分享到娱" otherButtonTitles:@"其他平台" block:^(NSInteger buttonIndex){
+        //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
+        if (buttonIndex == 0) {
+            //取消
+            PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
+            zujuVC.orderid=orderInfoModel.id;
+            [self.navigationController pushViewController:zujuVC animated:YES];
+        }else if (buttonIndex == 1){
+            //确定
+            
+            //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
+            NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n %@inPinkerWebAction.do?id=%d",self.userModel.usernick,orderInfoModel.barinfo.barname,LY_SERVER,orderInfoModel.id];
+            [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+            [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
+            [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
+            @try {
+                [UMSocialSnsService presentSnsIconSheetView:self
+                                                     appKey:UmengAppkey
+                                                  shareText:ss
+                                                 shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfoModel.pinkerinfo.linkUrl]]]
+                                            shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
+                                                   delegate:nil];
+            }
+            @catch (NSException *exception) {
+                [MyUtil showCleanMessage:@"无法分享！"];
+            }
+            @finally {
+                
+            }
+        }
+    }];
+    [alert show];
+    
+    
+    
+    
     
 }
 - (void)refreshTable{

@@ -99,7 +99,7 @@
             BOOL b=NO;
             //对比班底
             if (![MyUtil isEmptyString:remote_version]) {
-                if (version.floatValue!=remote_version.floatValue) {
+                if (![version isEqualToString:remote_version] ) {
                     b=YES;
                 }
             }
@@ -423,6 +423,89 @@
     }];
     
 }
+
+#pragma mark -获取我的订单明细
+-(void) getMyOrderDetailWithParams:(NSDictionary*)params
+                           block:(void(^)(OrderInfoModel* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDERDETAIL baseURL:LY_SERVER params:params success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+
+            OrderInfoModel *orderInfo=[OrderInfoModel mj_objectWithKeyValues:data];
+            block(orderInfo);
+            
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+    
+}
+
+#pragma mark -通过sn获取我的订单明细
+-(void) getOrderDetailWithSN:(NSDictionary*)params
+                             block:(void(^)(OrderInfoModel* result)) block{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDERDETAILSN baseURL:LY_SERVER params:params success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            
+            OrderInfoModel *orderInfo=[OrderInfoModel mj_objectWithKeyValues:data];
+            
+            block(orderInfo);
+            
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+    
+}
+
+#pragma mark -分享拼客订单
+-(void) sharePinkerOrder:(NSDictionary*)params
+          complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_SHARE baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+    } failure:^(NSError *err) {
+        [app stopLoading];
+        result(NO);
+        
+        
+    }];
+}
+
 
 #pragma mark -删除我的订单
 -(void) delMyOrder:(NSDictionary*)params

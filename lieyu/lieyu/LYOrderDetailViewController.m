@@ -1253,6 +1253,7 @@
                 if(pinkInfoModel.inmember==userId){
                     detailViewController.orderNo=pinkInfoModel.sn;
                     detailViewController.payAmount=pinkInfoModel.price.doubleValue;
+                    detailViewController.isPinker=YES;
                 }
             }
         }
