@@ -467,7 +467,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
+    YUOrderShareModel *orderM = _dataArray[tableView.tag][indexPath.row];
+    HDDetailVC.YUModel = orderM;
+    [self.navigationController pushViewController:HDDetailVC  animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
