@@ -56,6 +56,23 @@
     self.title = @"活动详情";
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    self.navigationController.navigationBarHidden=YES;
+}
+
+-(void)viewWillLayoutSubviews{
+    [super  viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden=NO;
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=NO;
+}
+
 //计算剩余参与人数
 - (void)configureStore{
     int num = 0;
