@@ -184,7 +184,15 @@
 
 #pragma mark 选择区的action
 - (void)sectionClick:(UIButton *)button{
-    if(_menuDropView) return;
+    if(_menuDropView) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:.8];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+        _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+        [UIView commitAnimations];
+[self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
+        return;
+    }
     _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
     NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
@@ -342,13 +350,11 @@
             }
 //                [tableView reloadData];
             [UIView transitionWithView:tableView
-                              duration: 0.35f
-                               options: UIViewAnimationOptionTransitionCrossDissolve
+                              duration: 0.6f
+                               options: UIViewAnimationOptionTransitionCurlDown
                             animations: ^(void){
                  [tableView reloadData];
-             }
-                            completion: ^(BOOL isFinished)
-             {
+             }completion: ^(BOOL isFinished){
                  
              }];
 //            NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:0];
@@ -463,21 +469,22 @@
         btn.tag = cell.btnArray.count * indexPath.row + btn.tag;
         [btn addTarget:self action:@selector(pinkerClick:) forControlEvents:UIControlEventTouchUpInside];
     }
+    cell.layer.shadowColor = RGBA(1, 0, 0, 1).CGColor;
+    cell.layer.shadowOffset = CGSizeMake(0, 0.5);
+    cell.layer.shadowOpacity = 0.3;
+    cell.layer.shadowRadius = 1;
     YUOrderShareModel *orderM = _dataArray[collectionView.tag][indexPath.row];
     cell.orderModel = orderM;
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 221 + (SCREEN_WIDTH - (68 + 10 + 16 + 4 * 20))/5.f + 10;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
-    YUOrderShareModel *orderM = _dataArray[tableView.tag][indexPath.row];
+    YUOrderShareModel *orderM = _dataArray[collectionView.tag][indexPath.row];
     HDDetailVC.YUModel = orderM;
     [self.navigationController pushViewController:HDDetailVC  animated:YES];
 }
+
 
 #pragma mark hot头像的action
 - (void)headerClick:(UIButton *)button{
