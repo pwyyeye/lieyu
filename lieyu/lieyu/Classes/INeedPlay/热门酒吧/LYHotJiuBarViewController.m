@@ -83,6 +83,18 @@
             [_menuView menuClick:btn];
         }
     }
+    self.navigationController.navigationBarHidden=YES;
+}
+
+-(void)viewWillLayoutSubviews{
+    [super  viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden=NO;
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=NO;
 }
 
 - (void)gotoBack{

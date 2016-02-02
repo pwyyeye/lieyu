@@ -58,12 +58,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYwoYaoDinWeiMainViewController.m"
-                  timestampString = "476076816.197372"
+                  timestampString = "476097293.723383"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "186"
                   endingLineNumber = "186"
-                  offsetFromSymbolStart = "947">
+                  offsetFromSymbolStart = "1048">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -73,42 +73,29 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYwoYaoDinWeiMainViewController.m"
-                  timestampString = "476076816.1978"
+                  timestampString = "476097293.723686"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_275"
+                  moduleName = "lieyu"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYwoYaoDinWeiMainViewController.m"
+                  timestampString = "476097293.723956"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lieyu/LYUserCenterController.m"
-            timestampString = "474812064.976171"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "403"
-            endingLineNumber = "403">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lieyu/LYUserCenterController.m"
-            timestampString = "474812128.101798"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -342,12 +329,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lieyu/LYHomeSearcherViewController.m"
-            timestampString = "475302160.524778"
+            timestampString = "476096972.435049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "-historyClick:"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "-loadItemList:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -390,12 +377,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/Utilities/LYUserHttpTool.m"
-                  timestampString = "476076816.212462"
+                  timestampString = "476097293.737572"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "488"
                   endingLineNumber = "488"
-                  offsetFromSymbolStart = "213">
+                  offsetFromSymbolStart = "232">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -405,12 +392,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/Utilities/LYUserHttpTool.m"
-                  timestampString = "476076816.212634"
+                  timestampString = "476097293.737749"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "488"
                   endingLineNumber = "488"
-                  offsetFromSymbolStart = "46">
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -428,6 +415,22 @@
             startingLineNumber = "402"
             endingLineNumber = "402"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lieyu/Classes/INeedPlay/&#x70ed;&#x95e8;&#x9152;&#x5427;/LYHotJiuBarViewController.m"
+            timestampString = "476097118.458507"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-viewWillLayoutSubviews"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
