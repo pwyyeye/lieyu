@@ -13,6 +13,7 @@
 #import "AFNetworking.h"
 #import "LYMineUrl.h"
 #import "OrderTTL.h"
+#import "OrderInfoModel.h"
 @interface LYUserHttpTool : NSObject
 + (LYUserHttpTool *)shareInstance;
 // 登录
@@ -64,9 +65,24 @@
 //我的订单
 -(void) getMyOrderListWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block;
+
+//通过sn获取订单号
+-(void) getOrderDetailWithSN:(NSDictionary*)params
+                       block:(void(^)(OrderInfoModel* result)) block;
+
+//订单详情
+-(void) getMyOrderDetailWithParams:(NSDictionary*)params
+                             block:(void(^)(OrderInfoModel* result)) block;
+
+//分享拼客订单
+-(void) sharePinkerOrder:(NSDictionary*)params
+                complete:(void (^)(BOOL result))result;
+
 //删除订单
 -(void) delMyOrder:(NSDictionary*)params
           complete:(void (^)(BOOL result))result;
+
+
 //删除参与人订单
 -(void) delMyOrderByCanYu:(NSDictionary*)params
                  complete:(void (^)(BOOL result))result;

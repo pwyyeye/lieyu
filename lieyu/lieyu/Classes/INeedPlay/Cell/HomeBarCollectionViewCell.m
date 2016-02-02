@@ -15,7 +15,6 @@
     // Initialization code
 }
 - (void)drawRect:(CGRect)rect{
-    self.backgroundColor = [UIColor redColor];
     self.layer.cornerRadius = 2;
     self.layer.masksToBounds = YES;
     _view_cons_width.constant = 0.5;
@@ -46,7 +45,11 @@
     }
     _label_barDescr.text = jiuBaM.subtitle;
     _label_price.text = [NSString stringWithFormat:@"%@元起",jiuBaM.lowest_consumption];
-    _label_address.text = jiuBaM.addressabb;
+    if([MyUtil isEmptyString:jiuBaM.addressabb]){
+        _label_address.text = jiuBaM.addressabb;
+        _view_line_distance.hidden = YES;
+        _label_disstance_left_cons.constant = -7;
+    }
     
     if(![MyUtil isEmptyString:jiuBaM.distance] && jiuBaM.distance.floatValue != 0.f){
         CGFloat distanceStr = jiuBaM.distance.floatValue * 1000;

@@ -23,6 +23,10 @@
     self.navigationItem.title = @"地址";
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=NO;
+}
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 }
@@ -30,6 +34,8 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden=YES;
+
 }
 
 - (void)gotoBack{

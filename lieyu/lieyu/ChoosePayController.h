@@ -22,4 +22,6 @@
 @property(assign,nonatomic) double payAmount;
 
 @property(strong,nonatomic) NSArray *data;
+
+@property(assign,nonatomic) NSInteger isPinker;
 @end

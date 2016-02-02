@@ -269,7 +269,7 @@
         <!--娱-->
         <scene sceneID="K9H-6T-F89">
             <objects>
-                <viewController id="BPS-Wy-U8G" customClass="LYAmusementViewController" sceneMemberID="viewController">
+                <viewController id="BPS-Wy-U8G" customClass="LYAmusementsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5BH-kd-FX5"/>
                         <viewControllerLayoutGuide type="bottom" id="qp6-jx-Igu"/>

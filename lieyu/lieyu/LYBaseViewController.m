@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    // self.automaticallyAdjustsScrollViewInsets=0;
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];

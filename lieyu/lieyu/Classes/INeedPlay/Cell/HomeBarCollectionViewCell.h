@@ -10,6 +10,8 @@
 @class JiuBaModel;
 
 @interface HomeBarCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIView *view_line_distance;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_disstance_left_cons;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView_bg;
 @property (weak, nonatomic) IBOutlet UILabel *label_barDescr;
 @property (weak, nonatomic) IBOutlet UILabel *label_address;
