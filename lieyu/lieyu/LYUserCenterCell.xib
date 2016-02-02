@@ -14,37 +14,32 @@
                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8E-qE-ghQ">
-                        <rect key="frame" x="0.0" y="48" width="80" height="22"/>
+                        <rect key="frame" x="0.0" y="45" width="80" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="IeT-Zf-PYt"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                         <color key="textColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cO4-bc-ycf">
-                        <rect key="frame" x="0.0" y="18" width="80" height="25"/>
+                        <rect key="frame" x="32" y="17.5" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="25" id="jR2-tU-q6E"/>
-                            <constraint firstAttribute="width" constant="80" id="ubj-45-DIO"/>
+                            <constraint firstAttribute="height" constant="15" id="jR2-tU-q6E"/>
+                            <constraint firstAttribute="width" constant="15" id="ubj-45-DIO"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="T8E-qE-ghQ" firstAttribute="top" secondItem="cO4-bc-ycf" secondAttribute="bottom" constant="5" id="1Ec-ok-zX2"/>
-                <constraint firstItem="cO4-bc-ycf" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="18" id="4M1-Lu-tKs"/>
                 <constraint firstItem="T8E-qE-ghQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8De-kx-kMP"/>
-                <constraint firstAttribute="trailing" secondItem="cO4-bc-ycf" secondAttribute="trailing" id="8eQ-qK-s6y"/>
-                <constraint firstItem="cO4-bc-ycf" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="JAp-RO-sdV"/>
-                <constraint firstAttribute="bottom" secondItem="cO4-bc-ycf" secondAttribute="bottom" constant="30" id="Qhd-Wn-s5F"/>
-                <constraint firstAttribute="bottom" secondItem="T8E-qE-ghQ" secondAttribute="bottom" constant="10" id="aRc-h3-NDr"/>
+                <constraint firstItem="cO4-bc-ycf" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Y09-Ef-qJ4"/>
+                <constraint firstItem="T8E-qE-ghQ" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="15" id="o4H-Bs-Aao"/>
+                <constraint firstItem="cO4-bc-ycf" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-15" id="ryo-d7-u2Z"/>
                 <constraint firstAttribute="trailing" secondItem="T8E-qE-ghQ" secondAttribute="trailing" id="tEz-DN-xZq"/>
             </constraints>
             <size key="customSize" width="112" height="105"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="Qhd-Wn-s5F"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="icon" destination="cO4-bc-ycf" id="QNJ-lP-Ket"/>
                 <outlet property="text" destination="T8E-qE-ghQ" id="PNY-1S-i9M"/>

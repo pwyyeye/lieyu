@@ -451,10 +451,10 @@
         <image name="chevron right" width="24" height="24"/>
         <image name="userCenterSetting" width="22" height="22"/>
         <image name="userMessage" width="20" height="20"/>
-        <image name="waitConsumption" width="20" height="16"/>
-        <image name="waitEvaluation" width="20" height="16"/>
-        <image name="waitPay" width="20" height="16"/>
-        <image name="waitPayBack" width="20" height="16"/>
-        <image name="waitRebate" width="20" height="16"/>
+        <image name="waitConsumption" width="14" height="14"/>
+        <image name="waitEvaluation" width="14" height="14"/>
+        <image name="waitPay" width="14" height="14"/>
+        <image name="waitPayBack" width="14" height="14"/>
+        <image name="waitRebate" width="14" height="14"/>
     </resources>
 </document>

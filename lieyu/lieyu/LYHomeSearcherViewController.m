@@ -66,8 +66,13 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden=YES;
 }
-
+-(void)viewWillLayoutSubviews{
+    [super  viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden=NO;
+    
+}
 - (void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
 }

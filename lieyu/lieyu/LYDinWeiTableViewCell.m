@@ -125,6 +125,9 @@
     self.label_percent.text = percentStr;
     NSLog(@"%d",[_pinkeInfo.recommended intValue])
     self.hotImage.hidden = ![_pinkeInfo.recommended intValue];
+    [self.button_add removeFromSuperview];
+    [self.button_less removeFromSuperview];
+    [self.label_number removeFromSuperview];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
