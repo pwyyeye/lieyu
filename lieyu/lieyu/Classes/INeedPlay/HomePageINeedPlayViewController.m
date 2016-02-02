@@ -139,7 +139,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     if (CGRectGetMaxY(_menuView.frame) < 90) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
+            //[collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
         }
     }
     UICollectionView *collectView = _collectViewArray[_index];
@@ -158,18 +158,39 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     NSLog(@"----->%f--------%f--------%f",_contentOffSet_Height_YD,_contentOffSet_Height_BAR,collectView.contentOffset.y);
 }
 
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    if (_menuView.center.y < 45) {
+        for (UICollectionView *collectView in _collectViewArray) {
+            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+        }
+    }else{
+        for (UICollectionView *collectView in _collectViewArray) {
+            [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+        }
+    }
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
    
     if(scrollView == _scrollView){
             CGFloat offsetWidth = _scrollView.contentOffset.x;
             CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
             _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
+//        if (_menuView.center.y < 45) {
+//            for (UICollectionView *collectView in _collectViewArray) {
+//                [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+//            }
+//        }else{
+//            for (UICollectionView *collectView in _collectViewArray) {
+//                [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+//            }
+//        }
     }else{
         UICollectionView *collectView = nil;
         collectView = _collectViewArray[_index];
         if (_index) {
             if (collectView.contentOffset.y > _contentOffSet_Height_BAR) {
-                [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+              //  [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
                     _menuView.center = CGPointMake( _menuView.center.x,8 );
@@ -180,7 +201,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     
                 }];
             }else{
-                [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+              // [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
                     _menuView.center = CGPointMake(_menuView.center.x,45);
@@ -193,7 +214,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
         }else{
                 if (collectView.contentOffset.y > _contentOffSet_Height_YD) {
-                    [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+                  //  [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
                     _menuView.center = CGPointMake( _menuView.center.x,8 );
@@ -204,7 +225,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     
                 }];
                 }else{
-                    [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+                   // [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
                     [UIView animateWithDuration:0.5 animations:^{
                         
                         _menuView.center = CGPointMake(_menuView.center.x,45);
@@ -222,9 +243,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     _index = (NSInteger)_scrollView.contentOffset.x/SCREEN_WIDTH;
+    UICollectionView *collectView = nil;
     if (_dataArray.count) {
         NSArray *array = _dataArray[_index];
-        if(!array.count) [self getDataWith:_index];
+        if(!array.count) {
+            collectView = _collectViewArray[_index];
+            [collectView.mj_header beginRefreshing];
+        }
     }
     if (scrollView == _scrollView) {
         if (_index) {
@@ -315,6 +340,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark －夜店action
 - (void)yedianClick{
+    _index = 0;
     [_scrollView setContentOffset:CGPointZero animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"筛选" pageName:HOMEPAGE_MTA titleName:_btn_yedian.currentTitle]];
     _btn_yedian.isHomePageMenuViewSelected = YES;
@@ -327,7 +353,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     if (CGRectGetMaxY(_menuView.frame) < 90) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
+            //[collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
         }
     }
 }
@@ -347,7 +373,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     if (CGRectGetMaxY(_menuView.frame) < 90) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
+            //[collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
         }
     }
 }
@@ -451,7 +477,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
                 collectView = _collectViewArray[1];
             }
-            [collectView reloadData];
+//            [collectView reloadData];
+            [UIView transitionWithView:collectView
+                              duration: 0.6f
+                               options: UIViewAnimationOptionTransitionCrossDissolve
+                            animations: ^(void){
+                                [collectView reloadData];
+                            }completion: ^(BOOL isFinished){
+                                
+                            }];
             return;
         }
     }
@@ -521,7 +555,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
             _recommendedBar = homePageM.recommendedBar;
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
-            [collectView reloadData];
+//            [collectView reloadData];
+            [UIView transitionWithView:collectView
+                              duration: 0.6f
+                               options: UIViewAnimationOptionTransitionCrossDissolve
+                            animations: ^(void){
+                                [collectView reloadData];
+                            }completion: ^(BOOL isFinished){
+                                
+                            }];
         }
         block !=nil? block(ermsg,homePageM.banner,homePageM.barlist):nil;
     }];

@@ -27,4 +27,5 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
 @property (weak, nonatomic) IBOutlet UILabel *label_barName;
 @property (nonatomic,strong)  UIButton *btn_more;//更多的按钮
+//@property (nonatomic,strong) NSArray *btnArray;
 @end

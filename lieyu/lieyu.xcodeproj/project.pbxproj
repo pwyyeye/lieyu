@@ -815,6 +815,8 @@
 		85FBBDC41C6073ED0084E3F2 /* 首页列表点赞@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FBBDC01C6073ED0084E3F2 /* 首页列表点赞@2x.png */; };
 		85FBBDC61C6073ED0084E3F2 /* 首页列表收藏@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FBBDC21C6073ED0084E3F2 /* 首页列表收藏@2x.png */; };
 		85FBBDC71C6073ED0084E3F2 /* 首页列表收藏@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FBBDC31C6073ED0084E3F2 /* 首页列表收藏@3x.png */; };
+		85FBBDCA1C60A61C0084E3F2 /* downArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FBBDC81C60A61C0084E3F2 /* downArrow@3x.png */; };
+		85FBBDCB1C60A61D0084E3F2 /* downArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FBBDC91C60A61C0084E3F2 /* downArrow@2x.png */; };
 		85FC07F01C5A00C3006E5409 /* 选择城市@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07EE1C5A00C3006E5409 /* 选择城市@2x.png */; };
 		85FC07F11C5A00C3006E5409 /* 选择城市@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07EF1C5A00C3006E5409 /* 选择城市@3x.png */; };
 		85FC07F41C5A0B60006E5409 /* 搜索@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07F21C5A0B60006E5409 /* 搜索@2x.png */; };
@@ -2326,6 +2328,8 @@
 		85FBBDC11C6073ED0084E3F2 /* 首页列表点赞@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页列表点赞@3x.png"; sourceTree = "<group>"; };
 		85FBBDC21C6073ED0084E3F2 /* 首页列表收藏@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页列表收藏@2x.png"; sourceTree = "<group>"; };
 		85FBBDC31C6073ED0084E3F2 /* 首页列表收藏@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "首页列表收藏@3x.png"; sourceTree = "<group>"; };
+		85FBBDC81C60A61C0084E3F2 /* downArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downArrow@3x.png"; sourceTree = "<group>"; };
+		85FBBDC91C60A61C0084E3F2 /* downArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downArrow@2x.png"; sourceTree = "<group>"; };
 		85FC07EE1C5A00C3006E5409 /* 选择城市@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择城市@2x.png"; sourceTree = "<group>"; };
 		85FC07EF1C5A00C3006E5409 /* 选择城市@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择城市@3x.png"; sourceTree = "<group>"; };
 		85FC07F21C5A0B60006E5409 /* 搜索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索@2x.png"; sourceTree = "<group>"; };
@@ -5771,6 +5775,105 @@
 			name = "第三方登陆";
 			sourceTree = "<group>";
 		};
+		ADDF23B71C5FA3B000719AE3 /* 娱 */ = {
+			isa = PBXGroup;
+			children = (
+				85FBBDC81C60A61C0084E3F2 /* downArrow@3x.png */,
+				85FBBDC91C60A61C0084E3F2 /* downArrow@2x.png */,
+				ADDF23B81C5FA3B000719AE3 /* hotImg@2x.png */,
+				ADDF23B91C5FA3B000719AE3 /* hotImg@3x.png */,
+				ADDF23BA1C5FA3B000719AE3 /* 人数yu@2x.png */,
+				ADDF23BB1C5FA3B000719AE3 /* 人数yu@3x.png */,
+				ADDF23BC1C5FA3B000719AE3 /* 剩余@2x.png */,
+				ADDF23BD1C5FA3B000719AE3 /* 剩余@3x.png */,
+				ADDF23BE1C5FA3B000719AE3 /* 发起人@2x.png */,
+				ADDF23BF1C5FA3B000719AE3 /* 发起人@3x.png */,
+				ADDF23C01C5FA3B000719AE3 /* 地址yu@2x.png */,
+				ADDF23C11C5FA3B000719AE3 /* 地址yu@3x.png */,
+				ADDF23C21C5FA3B000719AE3 /* 日历yu@2x.png */,
+				ADDF23C31C5FA3B000719AE3 /* 日历yu@3x.png */,
+			);
+			path = "娱";
+			sourceTree = "<group>";
+		};
+		ADDF23D01C5FA3D000719AE3 /* 另刷新 */ = {
+			isa = PBXGroup;
+			children = (
+				ADDF24BC1C5FAC5700719AE3 /* 更新1.png */,
+				ADDF24BD1C5FAC5700719AE3 /* 更新2.png */,
+				ADDF24BE1C5FAC5700719AE3 /* 更新3.png */,
+				ADDF24BF1C5FAC5700719AE3 /* 更新4.png */,
+				ADDF24C01C5FAC5700719AE3 /* 更新5.png */,
+				ADDF24C11C5FAC5700719AE3 /* 更新6.png */,
+				ADDF24C21C5FAC5700719AE3 /* 更新7.png */,
+				ADDF24C31C5FAC5700719AE3 /* 更新8.png */,
+				ADDF24C41C5FAC5700719AE3 /* 更新9.png */,
+				ADDF24C51C5FAC5700719AE3 /* 更新10.png */,
+				ADDF24C61C5FAC5700719AE3 /* 更新11.png */,
+				ADDF24C71C5FAC5700719AE3 /* 更新12.png */,
+				ADDF24C81C5FAC5700719AE3 /* 更新13.png */,
+				ADDF24C91C5FAC5700719AE3 /* 更新14.png */,
+				ADDF24CA1C5FAC5700719AE3 /* 更新15.png */,
+				ADDF24CB1C5FAC5700719AE3 /* 更新16.png */,
+				ADDF24CC1C5FAC5700719AE3 /* 更新17.png */,
+				ADDF24CD1C5FAC5700719AE3 /* 更新18.png */,
+				ADDF24CE1C5FAC5700719AE3 /* 更新19.png */,
+				ADDF24CF1C5FAC5700719AE3 /* 更新20.png */,
+				ADDF24D01C5FAC5700719AE3 /* 更新21.png */,
+				ADDF24D11C5FAC5700719AE3 /* 更新22.png */,
+				ADDF24D21C5FAC5700719AE3 /* 更新23.png */,
+				ADDF24D31C5FAC5700719AE3 /* 更新24.png */,
+				ADDF24D41C5FAC5700719AE3 /* 更新25.png */,
+				ADDF24D51C5FAC5700719AE3 /* 更新26.png */,
+				ADDF24D61C5FAC5700719AE3 /* 更新27.png */,
+				ADDF24D71C5FAC5700719AE3 /* 更新28.png */,
+				ADDF24D81C5FAC5700719AE3 /* 更新29.png */,
+				ADDF24D91C5FAC5700719AE3 /* 更新30.png */,
+				ADDF24DA1C5FAC5700719AE3 /* 更新31.png */,
+				ADDF24DB1C5FAC5700719AE3 /* 更新32.png */,
+				ADDF24DC1C5FAC5700719AE3 /* 更新33.png */,
+				ADDF24DD1C5FAC5700719AE3 /* 更新34.png */,
+				ADDF24DE1C5FAC5700719AE3 /* 更新35.png */,
+				ADDF24DF1C5FAC5700719AE3 /* 更新36.png */,
+				ADDF24E01C5FAC5700719AE3 /* 更新37.png */,
+				ADDF24E11C5FAC5700719AE3 /* 更新38.png */,
+				ADDF24E21C5FAC5700719AE3 /* 更新39.png */,
+				ADDF24E31C5FAC5700719AE3 /* 更新40.png */,
+				ADDF24E41C5FAC5700719AE3 /* 更新41.png */,
+				ADDF24E51C5FAC5700719AE3 /* 更新42.png */,
+				ADDF24E61C5FAC5700719AE3 /* 更新43.png */,
+				ADDF24E71C5FAC5700719AE3 /* 更新44.png */,
+				ADDF24E81C5FAC5700719AE3 /* 更新45.png */,
+				ADDF24E91C5FAC5700719AE3 /* 更新46.png */,
+				ADDF24EA1C5FAC5700719AE3 /* 更新47.png */,
+				ADDF24EB1C5FAC5700719AE3 /* 更新48.png */,
+				ADDF24EC1C5FAC5700719AE3 /* 更新49.png */,
+				ADDF24ED1C5FAC5700719AE3 /* 更新50.png */,
+				ADDF24EE1C5FAC5700719AE3 /* 更新51.png */,
+				ADDF24EF1C5FAC5700719AE3 /* 更新52.png */,
+			);
+			name = "另刷新";
+			sourceTree = "<group>";
+		};
+		ADDF24391C5FA42F00719AE3 /* 活动详情 */ = {
+			isa = PBXGroup;
+			children = (
+				ADDF24461C5FA48000719AE3 /* originator@2x.png */,
+				ADDF24471C5FA48000719AE3 /* originator@3x.png */,
+				ADDF24481C5FA48000719AE3 /* viewNumber@2x.png */,
+				ADDF24491C5FA48000719AE3 /* viewNumber@3x.png */,
+				ADDF244A1C5FA48000719AE3 /* YUGroup@2x.png */,
+				ADDF244B1C5FA48000719AE3 /* YUGroup@3x.png */,
+				ADDF243A1C5FA46400719AE3 /* BarIcon@2x.png */,
+				ADDF243B1C5FA46400719AE3 /* BarIcon@3x.png */,
+				ADDF243C1C5FA46400719AE3 /* date@2x.png */,
+				ADDF243D1C5FA46400719AE3 /* date@3x.png */,
+				ADDF243E1C5FA46400719AE3 /* JoinedNumber@2x.png */,
+				ADDF243F1C5FA46400719AE3 /* JoinedNumber@3x.png */,
+			);
+			name = "活动详情";
+			sourceTree = "<group>";
+		};
 		ADE103391BDE48CA00D9EC38 /* Alipay */ = {
 			isa = PBXGroup;
 			children = (
@@ -6713,6 +6816,7 @@
 				A2020D611BA67E9E0090B92A /* disClosure@2x.png in Resources */,
 				853D3ABF1C35347A00B4FEAD /* dabofangqi_icon @3x.png in Resources */,
 				38E5D6F51C0F10E7004B49D2 /* LPBuyManagerCell.xib in Resources */,
+				85FBBDCA1C60A61C0084E3F2 /* downArrow@3x.png in Resources */,
 				525CA0F11C5C6930009ED9DA /* pinglun_icon@3x.png in Resources */,
 				3812C5561C57B76100F4DD6B /* purper_less@3x.png in Resources */,
 				151BB6D31BBB78E000E7A81C /* UzysAssetsPickerController.xib in Resources */,
@@ -6853,6 +6957,9 @@
 				85F545401C1408040013B92B /* circleWhiteSelect@3x.png in Resources */,
 				ADF88E661C102E4F00CF5DED /* pingjiaxiangji@2x.png in Resources */,
 				52D4F9A01C57B2B700691BEF /* 点赞2@2x.png in Resources */,
+				ADDF24F51C5FAC5700719AE3 /* 更新6.png in Resources */,
+				85FBBDCB1C60A61D0084E3F2 /* downArrow@2x.png in Resources */,
+				ADDF23C91C5FA3B000719AE3 /* 剩余@3x.png in Resources */,
 				8540B67A1C2CE4E300F16463 /* LYFriendsAddressTableViewCell.xib in Resources */,
 				381A01DC1C14229F00592485 /* more_purper.png in Resources */,
 				15E240631BB1237E0090D240 /* BiaoQianChooseViewController.xib in Resources */,
