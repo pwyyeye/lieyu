@@ -351,9 +351,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [self getDataWith:0];
         }
     }
-    if (CGRectGetMaxY(_menuView.frame) < 90) {
+    
+    if (_menuView.center.y < 45) {
         for (UICollectionView *collectView in _collectViewArray) {
-            //[collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
+            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+        }
+    }else{
+        for (UICollectionView *collectView in _collectViewArray) {
+            [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
         }
     }
 }
@@ -374,6 +379,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (CGRectGetMaxY(_menuView.frame) < 90) {
         for (UICollectionView *collectView in _collectViewArray) {
             //[collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
+        }
+    }
+    
+    if (_menuView.center.y < 45) {
+        for (UICollectionView *collectView in _collectViewArray) {
+            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+        }
+    }else{
+        for (UICollectionView *collectView in _collectViewArray) {
+            [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
         }
     }
 }
@@ -672,9 +687,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-
     NSArray *array = _dataArray[collectionView.tag];
+    if(array.count){
     return array.count + 6;
+    }else{
+        return 0;
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

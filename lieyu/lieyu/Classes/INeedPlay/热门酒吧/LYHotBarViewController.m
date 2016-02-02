@@ -78,7 +78,11 @@
     }
     [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _collectArray.count, 0)];
     [self installFreshEvent];
-    [self getDataForHotWith:_contentTag];
+//    [self getDataForHotWith:_contentTag];
+    if (_collectArray.count == 4) {
+        UICollectionView *collectView = _collectArray[_contentTag];
+        [collectView.mj_header beginRefreshing];
+    }
     [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH * _contentTag, 0)];
     [self createLineForMenuView];
 }
@@ -188,7 +192,9 @@
     sender.isMenuSelected = YES;
     [_scrollView setContentOffset:CGPointMake(sender.tag * SCREEN_WIDTH, 0) animated:YES];
     if (!((NSArray *)_dataArray[sender.tag]).count) {
-        [self getDataForHotWith:sender.tag];
+        //[self getDataForHotWith:sender.tag];
+        UICollectionView *collectView = _collectArray[sender.tag];
+        [collectView.mj_header beginRefreshing];
     }
 }
 
@@ -210,7 +216,13 @@
         btn.isMenuSelected = YES;
     if (_dataArray.count) {
         NSArray *array = _dataArray[_index];
-        if(!array.count) [self getDataForHotWith:_index];
+        if(!array.count) {
+//            [self getDataForHotWith:_index];
+            if (_collectArray.count == 4) {
+                UICollectionView *collectView = _collectArray[_index];
+                [collectView.mj_header beginRefreshing];
+            }
+        }
     }
 }
 
@@ -218,6 +230,9 @@
     MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
     LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
     hList.need_page = @(1);
+    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
+    hList.longitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue];
+    hList.latitude = [[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue];
     switch (tag) {
         case 0:
         {
@@ -334,7 +349,14 @@
                      }
                          break;
                  }
-                  [collectView reloadData];
+                 [UIView transitionWithView:collectView
+                                   duration: 0.6f
+                                    options: UIViewAnimationOptionTransitionCrossDissolve
+                                 animations: ^(void){
+                                     [collectView reloadData];
+                                 }completion: ^(BOOL isFinished){
+                                     
+                                 }];
              });
          }
      }];
@@ -381,7 +403,7 @@
         
         MJRefreshGifHeader *header=(MJRefreshGifHeader *)collectView.mj_header;
         [self initMJRefeshHeaderForGif:header];
-        collectView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
             switch (i) {
                 case 0:
                 {
@@ -405,7 +427,8 @@
                     break;
             }
         }];
-        
+        MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)collectView.mj_footer;
+        [self initMJRefeshFooterForGif:footer];
         NSLog(@"----->%@",collectView.mj_footer);
     }
     

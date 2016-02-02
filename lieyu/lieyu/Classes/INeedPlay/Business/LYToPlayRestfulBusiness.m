@@ -76,12 +76,12 @@
     if (param == nil) {
         return;
     }
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_HOMELIST  baseURL:LY_SERVER params:param success:^(id response)
     {
         
-        [app stopLoading];
+        //[app stopLoading];
         NSDictionary *dataDic = response[@"data"];
         NSMutableArray *bannerList = nil;
         NSMutableArray * barlist = nil;
@@ -116,7 +116,7 @@
         block(erMsg,bannerList,barlist,newbanner,bartypeslist);
     } failure:^(NSError *err)
     {
-        [app stopLoading];
+//        [app stopLoading];
         NSLog(@"----->%@",err.description);
         LYErrorMessage * erMsg = [LYErrorMessage instanceWithError:err];
         block(erMsg,nil,nil,nil,nil);
