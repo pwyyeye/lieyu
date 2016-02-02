@@ -512,9 +512,9 @@
 
 #pragma mark - 显示预览图片
 - (void)showImageInPreview:(UIImage *)image{
-    [self.navigationController.navigationBar setHidden:YES];
+//    [self.navigationController.navigationBar setHidden:YES];
     _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
-    _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _subView.frame = CGRectMake(-64, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _subView.button.hidden = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(previewHide)];
     [_subView addGestureRecognizer:tap];
@@ -526,7 +526,7 @@
 }
 
 - (void)previewHide{
-    [self.navigationController.navigationBar setHidden:NO];
+//    [self.navigationController.navigationBar setHidden:NO];
     [_subView removeFromSuperview];
 }
 

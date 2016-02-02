@@ -8,6 +8,7 @@
 
 #import "JoinedTableViewCell.h"
 #import "YUPinkerListModel.h"
+#import "LYFriendsToUserMessageViewController.h"
 
 @implementation JoinedTableViewCell
 
@@ -43,8 +44,14 @@
 }
 
 - (void)configureJoinedNumber:(int)number andPeople:(NSArray *)pinkeList{
-    _view = [[UIView alloc]initWithFrame:CGRectMake(8, 0, SCREEN_WIDTH - 16, self.frame.size.height)];
-    _view.backgroundColor = [UIColor whiteColor];
+    _pinkeModelList = pinkeList;
+    _view = [[UIImageView alloc]initWithFrame:CGRectMake(8, 0, SCREEN_WIDTH - 16, self.frame.size.height)];
+    _view.image = [UIImage imageNamed:@"backViewWithCorner"];
+    _view.layer.shadowColor = [[UIColor blackColor]CGColor];
+    _view.layer.shadowOffset = CGSizeMake(0, 1);
+    _view.layer.shadowOpacity = 0.1;
+    _view.layer.shadowRadius = 1;
+    
     [self addSubview:_view];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 8, 200, 16)];
@@ -82,12 +89,35 @@
             x = 8;
         }
         image.frame = CGRectMake(x, y, 40, 40);
-        x = x + 50;
+        
         [_view addSubview:image];
         
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(x + 8 , y, 40, 40)];
+        [button addTarget:self.delegate action:@selector(gotoUserPage:) forControlEvents:UIControlEventTouchUpInside];
+//        button.backgroundColor = [UIColor clearColor];
+        button.enabled = YES;
+        button.tag = i;
+        [self addSubview:button];
+        
+        x = x + 50;
     }
     _view.frame = CGRectMake(8, 0, SCREEN_WIDTH - 16, y + 50);
     self.frame = CGRectMake(0, 0, SCREEN_WIDTH, y + 50);
+}
+
+//- (void)gotoUserPage:(UIButton *)button{
+//    NSInteger index = button.tag;
+//    if ([self.delegate respondsToSelector:@selector(HDDetailJumpToFriendDetail:)]) {
+//        [self.delegate HDDetailJumpToFriendDetail:((YUPinkerListModel *)[_pinkeModelList objectAtIndex:index]).inmember];
+//    }
+//}
+
+- (void)gotoUserPage:(UITapGestureRecognizer *)tap{
+//    NSInteger index = button.tag;
+    NSInteger index = tap.view.tag;
+    if ([self.delegate respondsToSelector:@selector(HDDetailJumpToFriendDetail:)]) {
+        [self.delegate HDDetailJumpToFriendDetail:((YUPinkerListModel *)[_pinkeModelList objectAtIndex:index]).inmember];
+    }
 }
 
 @end

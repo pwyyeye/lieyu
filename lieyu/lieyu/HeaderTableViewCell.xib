@@ -17,6 +17,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmq-9Y-jyN">
                         <rect key="frame" x="8" y="0.0" width="304" height="69.5"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backViewWithCorner.png" translatesAutoresizingMaskIntoConstraints="NO" id="55T-vg-Mhx">
+                                <rect key="frame" x="0.0" y="0.0" width="304" height="69.5"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6o-eI-Oqt">
                                 <rect key="frame" x="192" y="8" width="42" height="21"/>
                                 <constraints>
@@ -24,7 +27,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="FEP-gt-77O"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFK-1p-R9a">
@@ -34,7 +37,7 @@
                                     <constraint firstAttribute="height" constant="19" id="dNA-DF-oYM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="viewNumber.png" translatesAutoresizingMaskIntoConstraints="NO" id="dwu-z0-ROq">
@@ -50,21 +53,24 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="cVJ-Kn-Ft7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="55T-vg-Mhx" secondAttribute="bottom" id="47o-yd-DFk"/>
                             <constraint firstAttribute="trailing" secondItem="YcL-rt-e7B" secondAttribute="trailing" constant="10" id="4vr-g8-c9Q"/>
                             <constraint firstItem="a6o-eI-Oqt" firstAttribute="top" secondItem="dmq-9Y-jyN" secondAttribute="top" constant="8" id="7Yr-Du-JRs"/>
                             <constraint firstItem="YcL-rt-e7B" firstAttribute="top" secondItem="aFK-1p-R9a" secondAttribute="top" id="JWE-e8-gtz"/>
+                            <constraint firstAttribute="trailing" secondItem="55T-vg-Mhx" secondAttribute="trailing" id="VyH-JR-cnc"/>
                             <constraint firstItem="dwu-z0-ROq" firstAttribute="leading" secondItem="dmq-9Y-jyN" secondAttribute="leading" constant="180" id="hR8-YW-90X"/>
                             <constraint firstItem="dwu-z0-ROq" firstAttribute="leading" secondItem="dmq-9Y-jyN" secondAttribute="leading" constant="176" id="hdi-3Z-d8X"/>
                             <constraint firstItem="dwu-z0-ROq" firstAttribute="top" secondItem="dmq-9Y-jyN" secondAttribute="top" constant="13" id="iRJ-cW-inv"/>
                             <constraint firstItem="YcL-rt-e7B" firstAttribute="leading" secondItem="aFK-1p-R9a" secondAttribute="trailing" constant="10" id="jvI-Ce-Go0"/>
+                            <constraint firstItem="55T-vg-Mhx" firstAttribute="top" secondItem="dmq-9Y-jyN" secondAttribute="top" id="kTJ-d9-cvr"/>
                             <constraint firstItem="aFK-1p-R9a" firstAttribute="leading" secondItem="dmq-9Y-jyN" secondAttribute="leading" constant="10" id="pug-ev-WtR"/>
                             <constraint firstItem="dwu-z0-ROq" firstAttribute="top" secondItem="dmq-9Y-jyN" secondAttribute="top" constant="10" id="rBW-rs-dLb"/>
+                            <constraint firstItem="55T-vg-Mhx" firstAttribute="leading" secondItem="dmq-9Y-jyN" secondAttribute="leading" id="rg4-Ud-gl1"/>
                             <constraint firstItem="a6o-eI-Oqt" firstAttribute="leading" secondItem="dwu-z0-ROq" secondAttribute="trailing" constant="7" id="zIx-rQ-k9q"/>
                         </constraints>
                         <variation key="default">
@@ -100,7 +106,7 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="VrU-4T-w3b"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="originator.png" translatesAutoresizingMaskIntoConstraints="NO" id="Be1-4P-iaf">
@@ -133,7 +139,7 @@
                     <constraint firstItem="aFK-1p-R9a" firstAttribute="bottom" secondItem="Cl5-nA-X3x" secondAttribute="bottom" id="thj-df-6Eg"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="avatar_button" destination="Cl5-nA-X3x" id="iYQ-8x-FZM"/>
                 <outlet property="avatar_image" destination="yoU-pO-NOw" id="JTt-ji-Fjs"/>
@@ -148,8 +154,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="backViewWithCorner.png" width="359" height="104"/>
         <image name="hot_triangle.png" width="26" height="26"/>
         <image name="originator.png" width="37" height="16"/>
-        <image name="viewNumber.png" width="20" height="20"/>
+        <image name="viewNumber.png" width="16" height="16"/>
     </resources>
 </document>

@@ -20,13 +20,13 @@
     self.title_lbl.text = _tcModel.title;
     self.buyed_lbl.text = [NSString stringWithFormat:@"%d人购",_tcModel.buynum];
     self.fitNum_lbl.text = [NSString stringWithFormat:@"(适合%d-%d人)",_tcModel.minnum,_tcModel.maxnum];
-    self.price_lbl.text = [NSString stringWithFormat:@"¥%@",_packModel.price];
+    self.price_lbl.text = [NSString stringWithFormat:@"¥%g",_tcModel.price];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",_packModel.marketprice] attributes:attribtDic];
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",_tcModel.marketprice] attributes:attribtDic];
     self.marketPrice_lbl.attributedText = attribtStr;
-    CGFloat rebate = [_packModel.rebate floatValue];
-    CGFloat profit = [_packModel.price intValue] * rebate;
-    NSString *percentStr =[NSString stringWithFormat:@"返利:%.0f元",profit];
+    CGFloat rebate = _tcModel.rebate;
+    CGFloat profit = _tcModel.price * rebate;
+    NSString *percentStr =[NSString stringWithFormat:@"返利:%g元",profit];
     self.profit_lbl.text = percentStr;
     //tableView---data
     self.content_table.delegate = self;
