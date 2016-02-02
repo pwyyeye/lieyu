@@ -275,6 +275,30 @@
             [self.navigationController pushViewController:detailVC animated:YES];
         }
     }];
+//    [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:@{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.pinkerinfo.id],@"payamount":pinKeModel.pinkerNeedPayAmount} complete:^(NSString *result) {
+//        if(result){
+//            //支付宝页面"data": "P130637201510181610220",
+//            //result的值就是P130637201510181610220
+//            if (pinKeModel.pinkerNeedPayAmount.doubleValue==0.0) {
+//                UIViewController *detailViewController;
+//                
+//                detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//                
+//                [self.navigationController pushViewController:detailViewController animated:YES];
+//                
+//            }else{
+//                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+//                detailViewController.orderNo=result;
+//                detailViewController.payAmount=pinKeModel.pinkerNeedPayAmount.doubleValue;
+//                detailViewController.productName=pinKeModel.fullname;
+//                detailViewController.productDescription=@"暂无";
+//                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+//                self.navigationItem.backBarButtonItem = left;
+//                [self.navigationController pushViewController:detailViewController animated:YES];
+//            }
+//            
+//        }
+//    }];
 }
 
 #pragma mark - 计算还需要多少钱
