@@ -151,6 +151,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
             break;
     }
+    NSLog(@"----->%f--------%f--------%f",_contentOffSet_Height_YD,_contentOffSet_Height_BAR,collectView.contentOffset.y);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -212,7 +213,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 }
         }
     }
-    NSLog(@"----->%@",NSStringFromCGRect(_lineView.frame));
 
 }
 
@@ -350,6 +350,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark －酒吧action
 - (void)barClick{
+    _contentOffSet_Height_BAR = _contentOffSet_Height_YD;
     [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:YES];
      [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"筛选" pageName:HOMEPAGE_MTA titleName:_btn_bar.currentTitle]];
     _btn_bar.isHomePageMenuViewSelected = YES;

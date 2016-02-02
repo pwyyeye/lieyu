@@ -15,7 +15,6 @@
     // Initialization code
 }
 - (void)drawRect:(CGRect)rect{
-    self.backgroundColor = [UIColor redColor];
     self.layer.cornerRadius = 2;
     self.layer.masksToBounds = YES;
     _view_cons_width.constant = 0.5;
