@@ -4292,7 +4292,7 @@
 			name = "发现";
 			sourceTree = "<group>";
 		};
-		38C98C551C605FF80084E6BD /* 刷新动画 */ = {
+		38C98C551C605FF80084E6BD /* 另刷新 */ = {
 			isa = PBXGroup;
 			children = (
 				38C98C561C6060030084E6BD /* 更新1.png */,
@@ -4356,7 +4356,7 @@
 				38C98C901C6060040084E6BD /* 更新59.png */,
 				38C98C911C6060040084E6BD /* 更新60.png */,
 			);
-			name = "刷新动画";
+			name = "另刷新";
 			sourceTree = "<group>";
 		};
 		38DBCD7A1C58E3B900A1E207 /* 组局 */ = {
@@ -5969,7 +5969,7 @@
 		ADE103C41BE0EBDC00D9EC38 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				38C98C551C605FF80084E6BD /* 刷新动画 */,
+				38C98C551C605FF80084E6BD /* 另刷新 */,
 				850476311C5F94E300BF9C8C /* 娱 */,
 				38EDED6E1C5E288600694758 /* 活动详情 */,
 				ADD1B45E1C528E8F00A5237C /* 第三方登陆 */,
