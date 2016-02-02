@@ -19,6 +19,7 @@
 #import "LYHotBarMenuDropView.h"
 #import "MJRefresh.h"
 #import "LYYUCollectionViewCell.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 #define PAGESIZE 20
 
@@ -137,13 +138,13 @@
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     
-    _sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(8, 40, 70, 19)];
+    _sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 35, 80, 19)];
     [_sectionBtn addTarget:self action:@selector(sectionClick:) forControlEvents:UIControlEventTouchUpInside];
     [_sectionBtn setTitle:@"徐汇区" forState:UIControlStateNormal];
     _sectionBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [_sectionBtn setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
-    [_sectionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 14, 0, 0)];
-    [_sectionBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
+    [_sectionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 0)];
+    [_sectionBtn setImage:[UIImage imageNamed:@"downArrow"] forState:UIControlStateNormal];
     [_menuView addSubview:_sectionBtn];
     
     _purpleLineView = [[UIView alloc]init];
@@ -190,20 +191,31 @@
         [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
         _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
         [UIView commitAnimations];
-[self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
+        [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
+        [UIView animateWithDuration:.5 animations:^{
+            
+            button.imageView.transform = CGAffineTransformMakeRotation(0);
+//            button.imageView.transform = CGAffineTransformMakeScale(2, 2);
+        }];
         return;
     }
+    [UIView animateWithDuration:.5 animations:^{
+//        button.imageView.transform = CGAffineTransformMakeScale(1, 1);
+        button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+    }];
     _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
     NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
     [_menuDropView deployWithItemArrayWith:array withTitle:button.currentTitle];
     _menuDropView.delegate = self;
     //    _menuDropView.isYu = YES;
+    _menuDropView.alpha = 0;
     [self.view addSubview:_menuDropView];
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.8];
+    [UIView setAnimationDuration:.4];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    _menuDropView.alpha = 1.0;
     _menuDropView.frame = CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     [UIView commitAnimations];
     
@@ -212,10 +224,17 @@
 #pragma mark LYHotBarMenuDropViewDelegate
 - (void)lyHotBarMenuButton:(UIButton *)menuBtn withIndex:(NSInteger)index{
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.8];
+    [UIView setAnimationDuration:.4];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+        _menuDropView.alpha = 0.0;
     [UIView commitAnimations];
+    
+    [UIView animateWithDuration:.5 animations:^{
+        
+        //    button.transform = CGAffineTransformMakeRotation(180);
+        _sectionBtn.imageView.transform = CGAffineTransformMakeRotation(0);
+    }];
     [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
     [_sectionBtn setTitle:menuBtn.currentTitle forState:UIControlStateNormal];
 }
@@ -351,7 +370,7 @@
 //                [tableView reloadData];
             [UIView transitionWithView:tableView
                               duration: 0.6f
-                               options: UIViewAnimationOptionTransitionCurlDown
+                               options: UIViewAnimationOptionTransitionCrossDissolve
                             animations: ^(void){
                  [tableView reloadData];
              }completion: ^(BOOL isFinished){
@@ -469,10 +488,7 @@
         btn.tag = cell.btnArray.count * indexPath.row + btn.tag;
         [btn addTarget:self action:@selector(pinkerClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-    cell.layer.shadowColor = RGBA(1, 0, 0, 1).CGColor;
-    cell.layer.shadowOffset = CGSizeMake(0, 0.5);
-    cell.layer.shadowOpacity = 0.3;
-    cell.layer.shadowRadius = 1;
+    
     YUOrderShareModel *orderM = _dataArray[collectionView.tag][indexPath.row];
     cell.orderModel = orderM;
     return cell;
