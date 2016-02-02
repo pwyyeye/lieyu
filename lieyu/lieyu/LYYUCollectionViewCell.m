@@ -19,16 +19,10 @@
     self.layer.cornerRadius = 2;
     self.layer.masksToBounds = YES;
 
-    
-    self.view_cell.layer.shadowColor = RGBA(0, 0, 0, 0.5).CGColor;
-    self.view_cell.layer.shadowOffset = CGSizeMake(0, .5);
-    self.view_cell.layer.shadowRadius = 0.5;
-    self.view_cell.layer.shadowOpacity = 1;
-
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
     _btn_headerImg.layer.masksToBounds = YES;
     
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(68, 180, SCREEN_WIDTH - 68 - 16, 0.5)];
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(68, 180, SCREEN_WIDTH - 68 - 19, 0.5)];
     lineView.backgroundColor = RGBA(204, 204, 204, 1);
     [self.view_cell addSubview:lineView];
     
@@ -55,6 +49,7 @@
     _btn_more = [[UIButton alloc]init];
     UIButton *lastBtn = ((UIButton *)_btnArray[4]);
     CGRect rect = CGRectMake(lastBtn.frame.origin.x, lastBtn.frame.origin.y, btnWidth, btnWidth);
+    _btn_more.hidden = YES;
     _btn_more.frame = CGRectMake(0, 0, rect.size.width, rect.size.height);
     _btn_more.backgroundColor = RGBA(186, 20, 227, 0.5);
     [lastBtn addSubview:_btn_more];
@@ -111,7 +106,7 @@
         NSArray *reachTimeArray2 = [reachTimeArray1[0] componentsSeparatedByString:@"-"];
         NSArray *reachTimeArray3 = [reachTimeArray1[1] componentsSeparatedByString:@":"];
         if (reachTimeArray2.count == 3 && reachTimeArray3.count == 3) {
-            NSString *timeStr = [NSString stringWithFormat:@"%@-%@ (%@) %@:%@",reachTimeArray2[1],reachTimeArray2[2],[MyUtil weekdayStringFromDate:orderModel.orderInfo.reachtime],reachTimeArray3[0],reachTimeArray3[1]];
+            NSString *timeStr = [NSString stringWithFormat:@"%@-%@  (%@)  %@:%@",reachTimeArray2[1],reachTimeArray2[2],[MyUtil weekdayStringFromDate:orderModel.orderInfo.reachtime],reachTimeArray3[0],reachTimeArray3[1]];
             _label_concreteTime.text = timeStr;
         }
     }
@@ -126,7 +121,25 @@
     //    _label_time.text = [MyUtil residueTimeFromDate:@"2016-02-01 20:45:39"];
     
     _label_barName.text = orderModel.orderInfo.barinfo.barname;
+    if (!_shortLineView) {
+        _shortLineView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_label_address.frame) + 18, _label_distance.frame.origin.y, 0.5, 16)];
+        _shortLineView.backgroundColor = [UIColor grayColor];
+        [self.view_cell addSubview:_shortLineView];
+    }
     //    _label_distance.text = orderModel.orderInfo.
+    
+  /*  for (int i = 0; i < orderModel.orderInfo.pinkerList.count; i ++) {
+        if (i >= 5) {
+            return;
+        }
+        YUPinkerListModel *pinkerInfo = orderModel.orderInfo.pinkerList[i];
+        UIButton *btn = _btnArray[i];
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal];
+        btn.hidden = NO;
+    } */
+    
+    if(orderModel.orderInfo.pinkerList.count >= 5) [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerList.count] forState:UIControlStateNormal];
+    
     
     for (int i = 0; i < orderModel.orderInfo.pinkerList.count; i ++) {
         if (i >= 5) {
@@ -138,19 +151,10 @@
         btn.hidden = NO;
     }
     
-    if(orderModel.orderInfo.pinkerList.count >= 5) [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerList.count] forState:UIControlStateNormal];
-    
-   /* CGFloat btnWidth = (SCREEN_WIDTH - 16 - 68 - 10 - 20 * 4)/5.f;
-    for (int i = 0; i < 5; i ++ ) {
-        UIButton *btn = [[UIButton alloc]init];
-        if (i == 0) {
-            btn.frame = CGRectMake(68, self.view_cell.frame.size.height - 10 - btnWidth, btnWidth, btnWidth);
-        }else{
-            btn.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-        }
-    } */
-    
-    
+    if (orderModel.orderInfo.pinkerList.count >= 5) {
+        [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerList.count] forState:UIControlStateNormal];
+    _btn_more.hidden = NO;
+    }
 }
 
 @end
