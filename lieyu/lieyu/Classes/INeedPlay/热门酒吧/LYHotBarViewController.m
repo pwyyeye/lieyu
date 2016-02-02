@@ -49,7 +49,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
     [self createMenuView];
     self.navigationItem.title = @"热门酒吧";
     
@@ -158,13 +157,18 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-        //self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-   // self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 
 - (void)createLineForMenuView{
     UIButton *hotBtn = _menuBtnArray[0];
