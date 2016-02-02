@@ -395,6 +395,8 @@
                     break;
             }
         }];
+        
+        NSLog(@"----->%@",collectView.mj_footer);
     }
     
 }
