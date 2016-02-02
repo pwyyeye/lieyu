@@ -747,6 +747,9 @@
 		85F66F161C565559005D1CD8 /* HomeBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F66F141C565559005D1CD8 /* HomeBarCollectionViewCell.xib */; };
 		85F672BC1C09D7F8001BEE5B /* LYCityChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F672BA1C09D7F8001BEE5B /* LYCityChooseViewController.m */; };
 		85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */; };
+		85FBBD711C604A3A0084E3F2 /* LYAmusementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FBBD701C604A3A0084E3F2 /* LYAmusementsViewController.m */; };
+		85FBBDB41C6050FB0084E3F2 /* LYYUCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85FBBDB21C6050FB0084E3F2 /* LYYUCollectionViewCell.m */; };
+		85FBBDB51C6050FB0084E3F2 /* LYYUCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FBBDB31C6050FB0084E3F2 /* LYYUCollectionViewCell.xib */; };
 		85FC07F01C5A00C3006E5409 /* 选择城市@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07EE1C5A00C3006E5409 /* 选择城市@2x.png */; };
 		85FC07F11C5A00C3006E5409 /* 选择城市@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07EF1C5A00C3006E5409 /* 选择城市@3x.png */; };
 		85FC07F41C5A0B60006E5409 /* 搜索@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85FC07F21C5A0B60006E5409 /* 搜索@2x.png */; };
@@ -2262,6 +2265,11 @@
 		85F672B91C09D7F8001BEE5B /* LYCityChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCityChooseViewController.h; sourceTree = "<group>"; };
 		85F672BA1C09D7F8001BEE5B /* LYCityChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCityChooseViewController.m; sourceTree = "<group>"; };
 		85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYCityChooseViewController.xib; sourceTree = "<group>"; };
+		85FBBD6F1C604A3A0084E3F2 /* LYAmusementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementsViewController.h; sourceTree = "<group>"; };
+		85FBBD701C604A3A0084E3F2 /* LYAmusementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAmusementsViewController.m; sourceTree = "<group>"; };
+		85FBBDB11C6050FB0084E3F2 /* LYYUCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYUCollectionViewCell.h; sourceTree = "<group>"; };
+		85FBBDB21C6050FB0084E3F2 /* LYYUCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYUCollectionViewCell.m; sourceTree = "<group>"; };
+		85FBBDB31C6050FB0084E3F2 /* LYYUCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYYUCollectionViewCell.xib; sourceTree = "<group>"; };
 		85FC07EE1C5A00C3006E5409 /* 选择城市@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择城市@2x.png"; sourceTree = "<group>"; };
 		85FC07EF1C5A00C3006E5409 /* 选择城市@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选择城市@3x.png"; sourceTree = "<group>"; };
 		85FC07F21C5A0B60006E5409 /* 搜索@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "搜索@2x.png"; sourceTree = "<group>"; };
@@ -4914,6 +4922,8 @@
 			children = (
 				8588C41F1C5DEBA00092259E /* LYAmusementViewController.h */,
 				8588C4201C5DEBA00092259E /* LYAmusementViewController.m */,
+				85FBBD6F1C604A3A0084E3F2 /* LYAmusementsViewController.h */,
+				85FBBD701C604A3A0084E3F2 /* LYAmusementsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -4924,6 +4934,9 @@
 				8588C4231C5DF90A0092259E /* LYYUTableViewCell.h */,
 				8588C4241C5DF90A0092259E /* LYYUTableViewCell.m */,
 				8588C4251C5DF90A0092259E /* LYYUTableViewCell.xib */,
+				85FBBDB11C6050FB0084E3F2 /* LYYUCollectionViewCell.h */,
+				85FBBDB21C6050FB0084E3F2 /* LYYUCollectionViewCell.m */,
+				85FBBDB31C6050FB0084E3F2 /* LYYUCollectionViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -7127,6 +7140,8 @@
 				855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */,
 				ADFFA68C1C16DFB800D9BD2A /* purpleBtnBG.png in Resources */,
 				AD106B961C0B1A7C007F5FBA /* LYUserCenterCell.xib in Resources */,
+				85FBBDB51C6050FB0084E3F2 /* LYYUCollectionViewCell.xib in Resources */,
+				ADDF241D1C5FA3E900719AE3 /* 更新25.png in Resources */,
 				380385EB1C327C2B007C8DC0 /* imageUnselected@3x.png in Resources */,
 				525CA0BC1C5B4EE8009ED9DA /* logo@2x.png in Resources */,
 				85F66E521C525E51005D1CD8 /* xitongtongzhi@3x.png in Resources */,
@@ -7584,6 +7599,7 @@
 				15EB35751BD495C600BA6161 /* CYPayAmoutCell.m in Sources */,
 				ADF88EA11C1197C400CF5DED /* MJRefreshHeader.m in Sources */,
 				15013B041BBA33BF00061FAF /* UIView+WebCacheOperation.m in Sources */,
+				85FBBDB41C6050FB0084E3F2 /* LYYUCollectionViewCell.m in Sources */,
 				D7A230D31BA7259100E8B51B /* LYAdBannerCell.m in Sources */,
 				52D4F8FD1C5742E800691BEF /* LYHotBarViewController.m in Sources */,
 				15EA6DCC1BC014BD00620C9E /* UserModel.m in Sources */,
@@ -7710,6 +7726,7 @@
 				3879F2521C0D329600B72629 /* AddressTableViewCell.m in Sources */,
 				854CC98C1C32624D00A6CA60 /* LYChangeImageViewController.m in Sources */,
 				85F6258B1C0BE74E002858C8 /* LYHotBarMenuViewController.m in Sources */,
+				85FBBD711C604A3A0084E3F2 /* LYAmusementsViewController.m in Sources */,
 				8588C45C1C5E59200092259E /* YUPinkerinfo.m in Sources */,
 				15EB35071BD1F51200BA6161 /* PTTaoCanCell.m in Sources */,
 				851806701C2E295200006804 /* FriendsPicAndVideoModel.m in Sources */,

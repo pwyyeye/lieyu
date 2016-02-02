@@ -6,7 +6,7 @@
 //  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 #import "HDDetailViewController.h"
-#import "LYAmusementViewController.h"
+#import "LYAmusementsViewController.h"
 #import "HotMenuButton.h"
 #import "LYYUTableViewCell.h"
 #import "LYYUHttpTool.h"
@@ -18,12 +18,13 @@
 #import "YUOrderShareModel.h"
 #import "LYHotBarMenuDropView.h"
 #import "MJRefresh.h"
+#import "LYYUCollectionViewCell.h"
 
 #define PAGESIZE 20
 
-@interface LYAmusementViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,LYHotBarMenuDropViewDelegate>{
+@interface LYAmusementsViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate,LYHotBarMenuDropViewDelegate>{
     UIScrollView *_scrollView;
-    NSMutableArray *_tableViewArray,*_menuBtnArray,*_dataArray;
+    NSMutableArray *_collectviewArray,*_menuBtnArray,*_dataArray;
     UIVisualEffectView *_menuView;
     UILabel *_titelLabel;
     UIView *_purpleLineView;
@@ -35,7 +36,7 @@
 
 @end
 
-@implementation LYAmusementViewController
+@implementation LYAmusementsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,45 +56,46 @@
     self.navigationController.navigationBarHidden = YES;
 }
 
- - (void)setupAllProperty{
-     _currentPageHot = 1;
-     _currentPageDistance= 1;
-     _currentPagePrice = 1;
-     _currentPageTime = 1;
-     _dataArray = [[NSMutableArray alloc]initWithCapacity:4];
-     for (int i = 0; i < 4; i ++) {
-         [_dataArray addObject:[[NSMutableArray alloc]init]];
-     }
-     [self createUI];
+- (void)setupAllProperty{
+    _currentPageHot = 1;
+    _currentPageDistance= 1;
+    _currentPagePrice = 1;
+    _currentPageTime = 1;
+    _dataArray = [[NSMutableArray alloc]initWithCapacity:4];
+    for (int i = 0; i < 4; i ++) {
+        [_dataArray addObject:[[NSMutableArray alloc]init]];
+    }
+    [self createUI];
 }
-                                  
+
 - (void)createUI{
     
-    _tableViewArray = [[NSMutableArray alloc]initWithCapacity:4];
+    _collectviewArray = [[NSMutableArray alloc]initWithCapacity:4];
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _scrollView.backgroundColor = [UIColor redColor];
     _scrollView.delegate = self;
     _scrollView.bounces = NO;
-    _scrollView.alwaysBounceHorizontal = NO;
-    _scrollView.alwaysBounceVertical = NO;
     _scrollView.pagingEnabled = YES;
     [self.view addSubview:_scrollView];
     
     for (int i = 0; i < 4; i ++) {
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+        UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc]init];
+        UICollectionView *tableView = [[UICollectionView alloc]initWithFrame:CGRectMake(i%4 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
         tableView.tag = i;
         tableView.dataSource = self;
         tableView.delegate = self;
         [tableView setContentInset:UIEdgeInsetsMake(90, 0, 49,0)];
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [tableView registerNib:[UINib nibWithNibName:@"LYYUTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYUTableViewCell"];
-        [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        tableView.backgroundColor = RGBA(243, 243, 243, 1);
+//        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        [tableView registerNib:[UINib nibWithNibName:@"LYYUTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYUTableViewCell"];
+        [tableView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+        [tableView registerNib:[UINib nibWithNibName:@"LYYUCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYYUCollectionViewCell"];
         [_scrollView addSubview:tableView];
-        [_tableViewArray addObject:tableView];
+        [_collectviewArray addObject:tableView];
     }
-    [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _tableViewArray.count, 0)];
+    [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _collectviewArray.count, 0)];
     [self installFreshEvent];
-    UITableView *tableView = _tableViewArray[0];
+    UICollectionView *tableView = _collectviewArray[0];
     [tableView.mj_header beginRefreshing];
     [self createMenuUI];
 }
@@ -174,7 +176,7 @@
         ((HotMenuButton *)_menuBtnArray[_index]).isMenuSelected = YES;
         
         if(!((NSArray *)_dataArray[_index]).count){
-            UITableView *tableview = _tableViewArray[_index];
+            UICollectionView *tableview = _collectviewArray[_index];
             [tableview.mj_header beginRefreshing];
         }
     }
@@ -184,11 +186,11 @@
 - (void)sectionClick:(UIButton *)button{
     if(_menuDropView) return;
     _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
-     NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
+    NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
     [_menuDropView deployWithItemArrayWith:array withTitle:button.currentTitle];
     _menuDropView.delegate = self;
-//    _menuDropView.isYu = YES;
+    //    _menuDropView.isYu = YES;
     [self.view addSubview:_menuDropView];
     
     [UIView beginAnimations:nil context:nil];
@@ -223,7 +225,7 @@
     button.isMenuSelected = YES;
     [_scrollView setContentOffset:CGPointMake(button.tag *SCREEN_WIDTH, 0) animated:YES];
     if(!((NSArray *)_dataArray[button.tag]).count){
-        UITableView *tableview = _tableViewArray[button.tag];
+        UICollectionView  *tableview = _collectviewArray[button.tag];
         [tableview.mj_header beginRefreshing];
     }
     
@@ -297,7 +299,7 @@
                 break;
         }
         
-        UITableView *tableView = _tableViewArray[tag];
+        UICollectionView *tableView = _collectviewArray[tag];
         dispatch_async(dispatch_get_main_queue(), ^{
             [tableView.mj_header endRefreshing];
             switch (tag) {
@@ -338,19 +340,29 @@
                 }
                     break;
             }
-//            [tableView reloadData];
-            NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:0];
-            [tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationFade];
+//                [tableView reloadData];
+            [UIView transitionWithView:tableView
+                              duration: 0.35f
+                               options: UIViewAnimationOptionTransitionCrossDissolve
+                            animations: ^(void){
+                 [tableView reloadData];
+             }
+                            completion: ^(BOOL isFinished)
+             {
+                 
+             }];
+//            NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:0];
+//            [tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationFade];
         });
     }];
 }
 
 - (void)installFreshEvent
 {
-    for (int i = 0; i < _tableViewArray.count; i ++) {
-        if(!_tableViewArray.count) return;
-        __weak UITableView *tableView = _tableViewArray[i];
-        __weak LYAmusementViewController * weakSelf = self;
+    for (int i = 0; i < _collectviewArray.count; i ++) {
+        if(!_collectviewArray.count) return;
+        __weak UITableView *tableView = _collectviewArray[i];
+        __weak LYAmusementsViewController * weakSelf = self;
         tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             switch (i) {
                 case 0:
@@ -370,7 +382,7 @@
                     _currentPagePrice = 1;
                     [weakSelf getDataForHotWith:2];
                 }
-                     break;
+                    break;
                 case 3:
                 {
                     _currentPageTime = 1;
@@ -417,20 +429,41 @@
 
 
 #pragma mark - UITableViewDataSource && UITableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *array = _dataArray[tableView.tag];
-    return array.count;
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LYYUTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYYUTableViewCell" forIndexPath:indexPath];
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return ((NSArray *)_dataArray[collectionView.tag]).count;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 8;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 8;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(8, 8, 8, 8);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(SCREEN_WIDTH - 16, 221 + (SCREEN_WIDTH - (68 + 10 + 16 + 4 * 20))/5.f + 10);
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+//    cell.backgroundColor = [UIColor redColor];
+    LYYUCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYYUCollectionViewCell" forIndexPath:indexPath];
     cell.btn_headerImg.tag = indexPath.row;
     [cell.btn_headerImg addTarget:self action:@selector(headerClick:) forControlEvents:UIControlEventTouchUpInside];
     for (UIButton *btn in cell.btnArray) {
         btn.tag = cell.btnArray.count * indexPath.row + btn.tag;
         [btn addTarget:self action:@selector(pinkerClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-    YUOrderShareModel *orderM = _dataArray[tableView.tag][indexPath.row];
+    YUOrderShareModel *orderM = _dataArray[collectionView.tag][indexPath.row];
     cell.orderModel = orderM;
     return cell;
 }
@@ -482,13 +515,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
