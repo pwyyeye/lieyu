@@ -870,7 +870,6 @@
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentModel.id,@"type":likeStr};
     
     __weak LYFriendsViewController *weakSelf = self;
-    NSLog(@"---->%ld-->%ld----- ",button.tag,recentModel.likeList.count);
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (result) {//点赞成功
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
@@ -879,7 +878,6 @@
 //            NSMutableArray *array = recentM.likeList;
             [recentModel.likeList insertObject:likeModel atIndex:0];
             recentModel.liked = @"1";
-            NSLog(@"---->%ld-->%ld----- ",button.tag,recentModel.likeList.count);
         }else{
 //            NSMutableArray *array = recentModel.
             for (int i = 0;i < recentModel.likeList.count ; i++) {
@@ -888,7 +886,6 @@
                     [recentModel.likeList removeObject:likeM];
                 }
             }
-            NSLog(@"---->%ld-->%ld----- ",button.tag,recentModel.likeList.count);
                 recentModel.liked = @"0";
         }
         [weakSelf.tableView reloadData];
@@ -980,10 +977,6 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
          [_commentView.btn_send setTitle:@"" forState:UIControlStateNormal];
         [self updateViewConstraints];
         [_commentView.textField becomeFirstResponder];
-        [UIView animateWithDuration:.1 animations:^{
-           // _commentView.frame = CGRectMake(0,SCREEN_HEIGHT - 216 - CGRectGetHeight(_commentView.frame) , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
-            //_commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 249 - 59, SCREEN_WIDTH, CGRectGetHeight(_commentView.frame));
-        }];
     }
     
 }
@@ -1047,7 +1040,8 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             if(recentM.commentList.count == 5) [recentM.commentList removeObjectAtIndex:0];
             [recentM.commentList addObject:commentModel];
             recentM.commentNum = [NSString stringWithFormat:@"%ld",recentM.commentNum.intValue + 1];
-          // [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
+//           [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
+//            weakSelf.tableView reloadRowsAtIndexPaths:<#(nonnull NSArray<NSIndexPath *> *)#> withRowAnimation:<#(UITableViewRowAnimation)#>
             [weakSelf.tableView reloadData];
         }
     }];
