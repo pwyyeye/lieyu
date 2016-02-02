@@ -21,7 +21,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
     self.btnMessage.hidden = YES;
     //设置背景色
-    UIImageView *bgImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headBgColor"]];
+    UIImageView *bgImage = [[UIImageView alloc]initWithImage:[MyUtil getImageFromColor:RGBA(153, 50, 204, 1)] ];
+//    UIImageView *bgImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headBgColor"]];
     bgImage.frame=CGRectMake(0, 0, SCREEN_WIDTH, CGRectGetHeight(_headView.frame));
     bgImage.contentMode=UIViewContentModeScaleToFill;
     
@@ -126,7 +127,7 @@
     if (orderTTL) {
         if (orderTTL.waitPay>0) {//待付款
             UILabel *badge=[[UILabel alloc] init];
-            badge.backgroundColor=[UIColor redColor];
+            badge.backgroundColor=RGBA(153, 50, 204, 1);
             badge.font=[UIFont systemFontOfSize:8];
             badge.layer.masksToBounds=YES;
             badge.layer.cornerRadius=6;
@@ -144,7 +145,7 @@
         }
         if(orderTTL.waitConsumption>0){//待消费
             UILabel *badge=[[UILabel alloc] init];
-            badge.backgroundColor=[UIColor redColor];
+            badge.backgroundColor=RGBA(153, 50, 204, 1);
             badge.font=[UIFont systemFontOfSize:8];
             badge.layer.masksToBounds=YES;
             badge.layer.cornerRadius=6;
@@ -160,7 +161,7 @@
         }
         if (orderTTL.waitRebate>0){//待返利
             UILabel *badge=[[UILabel alloc] init];
-            badge.backgroundColor=[UIColor redColor];
+            badge.backgroundColor=RGBA(153, 50, 204, 1);
             badge.font=[UIFont systemFontOfSize:8];
             badge.layer.masksToBounds=YES;
             badge.layer.cornerRadius=6;
@@ -176,7 +177,7 @@
         }
         if(orderTTL.waitEvaluation>0){//待评价
             UILabel *badge=[[UILabel alloc] init];
-            badge.backgroundColor=[UIColor redColor];
+            badge.backgroundColor=RGBA(153, 50, 204, 1);
             badge.font=[UIFont systemFontOfSize:8];
             badge.layer.masksToBounds=YES;
             badge.layer.cornerRadius=6;
@@ -192,7 +193,7 @@
         }
         if (orderTTL.waitPayBack>0){//待退款
             UILabel *badge=[[UILabel alloc] init];
-            badge.backgroundColor=[UIColor redColor];
+            badge.backgroundColor=RGBA(153, 50, 204, 1);
             badge.font=[UIFont systemFontOfSize:8];
             badge.layer.masksToBounds=YES;
             badge.layer.cornerRadius=6;

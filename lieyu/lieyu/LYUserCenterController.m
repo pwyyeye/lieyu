@@ -61,7 +61,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [self.collectionView registerNib:[UINib nibWithNibName:@"LYUserCenterFooter" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter"];
     //
 
-    _data=@[@{@"title":@"购物车",@"icon":@"userShopCart"},@{@"title":@"收藏",@"icon":@"userFav"},@{@"title":@"专属经理",@"icon":@"userManager"},@{@"title":@"推荐猎娱",@"icon":@"userTuijian"},@{@"title":@"帮助与反馈",@"icon":@"userHelp"},@{@"title":@"",@"icon":@""}];
+    _data=@[
+  @{@"title":@"购物车",@"icon":@"userShopCart"},
+  @{@"title":@"收藏",@"icon":@"userFav"},
+//  @{@"title":@"专属经理",@"icon":@"userManager"},
+  @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
+  @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
+  @{@"title":@"",@"icon":@""}];
  
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
@@ -149,7 +155,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
 //     NSLog(@"----pass-------%@---", NSStringFromCGRect(cell.icon.frame));
     cell.text.text=@"";
-    if (indexPath.row<6) {
+    if (indexPath.row<5) {
         NSDictionary *dic=_data[indexPath.row];
         cell.icon.image=[UIImage imageNamed:[dic objectForKey:@"icon"]];
         cell.text.text=[dic objectForKey:@"title"];
@@ -222,22 +228,22 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         }
             
-        case 2:// 专属经理
-        {
-            //统计我的页面的选择
-            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"专属经理"};
-            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+//        case 2:// 专属经理
+//        {
+//            //统计我的页面的选择
+//            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"专属经理"};
+//            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+//            
+//            MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
+//            myZSManageViewController.title=@"我的专属经理";
+//            myZSManageViewController.isBarVip=false;
+//            [self.navigationController pushViewController:myZSManageViewController animated:YES];
+//            
+//            break;
+//
+//        }
             
-            MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
-            myZSManageViewController.title=@"我的专属经理";
-            myZSManageViewController.isBarVip=false;
-            [self.navigationController pushViewController:myZSManageViewController animated:YES];
-            
-            break;
-
-        }
-            
-        case 3:
+        case 2:
         {
             //统计我的页面的选择
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"我的主页面",@"titleName":@"分享"};
@@ -252,7 +258,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                                                delegate:nil];
             break;
         }
-        case 4:// 反馈
+        case 3:// 反馈
         {
             //统计我的页面的选择
             NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"客服"};
@@ -275,7 +281,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [self.navigationController pushViewController:conversationVC animated:YES];
             break;
         }
-        case 5:// 信息中心
+        case 4:// 信息中心
         {
             break;
         }
