@@ -17,8 +17,20 @@
 #import "YUOrderInfo.h"
 #import "LYUserLocation.h"
 #import "LYHomePageHttpTool.h"
+#import "BeerBarDetailViewController.h"
+#import "YUPinkerinfo.h"
+#import "YUPinkerListModel.h"
+#import "LYMyOrderManageViewController.h"
+#import "ChoosePayController.h"
 
 @interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate>
+{
+    YUOrderInfo *orderInfo;
+    YUPinkerinfo *pinkeModel;
+    YUPinkerListModel *listModel;
+    int store;
+    float allMoney;
+}
 @property (nonatomic, strong) HeaderTableViewCell *headerCell;
 @property (nonatomic, strong) LYDinWeiTableViewCell *LYdwCell;
 @property (nonatomic, strong) HDDetailTableViewCell *HDDetailCell;
@@ -35,10 +47,31 @@
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.showsVerticalScrollIndicator = NO;
+    orderInfo = _YUModel.orderInfo;
+    pinkeModel = orderInfo.pinkerinfo;
 //    self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH - 52);
+    [self configureStore];
     [self registerCell];
     self.title = @"活动详情";
+}
+
+//计算剩余参与人数
+- (void)configureStore{
+    int num = 0;
+    for (int i = 0 ; i < orderInfo.pinkerList.count; i ++) {
+        listModel = [orderInfo.pinkerList objectAtIndex:i];
+        num = num + [listModel.quantity intValue];
+    }
+    store = [orderInfo.allnum intValue] - num ;
+}
+
+//判断拼客形成
+- (void)configurePinkeStatus{
+    if(![orderInfo.orderStatus isEqualToString:@"0"]){
+        self.joinBtn.enabled = NO;
+        self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
+    }
 }
 
 - (void)registerCell{
@@ -59,8 +92,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         _headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderTableViewCell" forIndexPath:indexPath];
-        [_headerCell.avatar_image sd_setImageWithURL:[NSURL URLWithString:((YUOrderInfo *)_YUModel.orderInfo).avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-        _headerCell.name_label.text = ((YUOrderInfo *)_YUModel.orderInfo).username;
+        [_headerCell.avatar_image sd_setImageWithURL:[NSURL URLWithString:orderInfo.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        _headerCell.name_label.text = orderInfo.username;
         
         _headerCell.viewNumber_label.text = @"";
         _headerCell.title_label.text = _YUModel.shareContent;
@@ -68,26 +101,23 @@
         return _headerCell;
     }else if (indexPath.section == 1){
         _LYdwCell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
-//        [_LYdwCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-        _LYdwCell.pinkeInfo = ((YUOrderInfo *)_YUModel.orderInfo).pinkerinfo;
+        _LYdwCell.pinkeInfo = pinkeModel;
         _LYdwCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _LYdwCell;
     }else if(indexPath.section == 2){
         _HDDetailCell = [tableView dequeueReusableCellWithIdentifier:@"HDDetailTableViewCell" forIndexPath:indexPath];
         
-        NSArray *reachTimeArray1 = [_YUModel.orderInfo.reachtime componentsSeparatedByString:@" "];
+        NSArray *reachTimeArray1 = [orderInfo.reachtime componentsSeparatedByString:@" "];
         if (reachTimeArray1.count == 2) {
             NSArray *reachTimeArray2 = [reachTimeArray1[0] componentsSeparatedByString:@"-"];
             NSArray *reachTimeArray3 = [reachTimeArray1[1] componentsSeparatedByString:@":"];
             if (reachTimeArray2.count == 3 && reachTimeArray3.count == 3) {
-                NSString *timeStr = [NSString stringWithFormat:@"%@-%@ (%@) %@:%@",reachTimeArray2[1],reachTimeArray2[2],[MyUtil weekdayStringFromDate:_YUModel.orderInfo.reachtime],reachTimeArray3[0],reachTimeArray3[1]];
+                NSString *timeStr = [NSString stringWithFormat:@"%@-%@ (%@) %@:%@",reachTimeArray2[1],reachTimeArray2[2],[MyUtil weekdayStringFromDate:orderInfo.reachtime],reachTimeArray3[0],reachTimeArray3[1]];
                 _HDDetailCell.startTime_label.text = timeStr;
             }
         }
-//        _HDDetailCell.startTime_label.text = @"";
-        _HDDetailCell.residue_label.text = [MyUtil residueTimeFromDate:((YUOrderInfo *)_YUModel.orderInfo).reachtime];
-//        _HDDetailCell.residue_label.text = @"";
-        _HDDetailCell.joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%lu/%d)",((YUOrderInfo *)_YUModel.orderInfo).pinkerList.count,[((YUOrderInfo *)_YUModel.orderInfo).allnum intValue]];
+        _HDDetailCell.residue_label.text = [MyUtil residueTimeFromDate:orderInfo.reachtime];
+        _HDDetailCell.joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%lu/%d)",orderInfo.pinkerList.count,[orderInfo.allnum intValue]];
         if ([_YUModel.allowSex isEqualToString:@"0"]) {
             _HDDetailCell.joinedpro_label.text = @"只邀请女生";
         }else if ([_YUModel.allowSex isEqualToString:@"1"]){
@@ -95,15 +125,15 @@
         }else{
             _HDDetailCell.joinedpro_label.text = @"全部";
         }
-        _HDDetailCell.address_label.text = ((YUOrderInfo *)_YUModel.orderInfo).barinfo.address;
-        _HDDetailCell.barName_label.text = ((YUOrderInfo *)_YUModel.orderInfo).barinfo.barname;
+        _HDDetailCell.address_label.text = orderInfo.barinfo.address;
+        _HDDetailCell.barName_label.text = orderInfo.barinfo.barname;
         [_HDDetailCell.checkAddress_button addTarget:self action:@selector(checkAddress) forControlEvents:UIControlEventTouchUpInside];
         [_HDDetailCell.checkBar_button addTarget:self action:@selector(checkBar) forControlEvents:UIControlEventTouchUpInside];
         _HDDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _HDDetailCell;
     }else if(indexPath.section == 3){
         _joinedCell = [tableView dequeueReusableCellWithIdentifier:@"JoinedTableViewCell" forIndexPath:indexPath];
-        [_joinedCell configureJoinedNumber:[((YUOrderInfo *)_YUModel.orderInfo).allnum intValue]andPeople:((YUOrderInfo *)_YUModel.orderInfo).pinkerList];
+        [_joinedCell configureJoinedNumber:[orderInfo.allnum intValue]andPeople:orderInfo.pinkerList];
         _joinedCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _joinedCell;
 //    }else if(indexPath.section == 4){
@@ -151,10 +181,8 @@
             shang ++;
         }
         //shang为一行能摆几个头像
-        int row = ((YUOrderInfo *)_YUModel.orderInfo).pinkerList.count / shang;
-        int duoyu = ((YUOrderInfo *)_YUModel.orderInfo).pinkerList.count % shang;
-//        int row = 22 / shang;
-//        int duoyu = 22 % shang;
+        int row = (int)orderInfo.pinkerList.count / shang;
+        int duoyu = orderInfo.pinkerList.count % shang;
         if(duoyu > 0){
             row ++;
         }
@@ -173,48 +201,102 @@
     _chooseNumber = [[[NSBundle mainBundle]loadNibNamed:@"ChooseNumber" owner:nil options:nil]firstObject];
     _chooseNumber.tag = 14;
     
-    int num = [((YUOrderInfo *)_YUModel.orderInfo).allnum intValue] - (int)((YUOrderInfo *)_YUModel.orderInfo).pinkerList.count;
-    _chooseNumber.store = num;
+    _chooseNumber.store = store;
     _chooseNumber.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20, 250);
     alertView.contentView = _chooseNumber;
     [alertView show];
 }
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
-//    [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:@{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.pinkerinfo.id],@"payamount":pinKeModel.pinkerNeedPayAmount} complete:^(NSString *result) {
-//        if(result){
-//            //支付宝页面"data": "P130637201510181610220",
-//            //result的值就是P130637201510181610220
-//            if (pinKeModel.pinkerNeedPayAmount.doubleValue==0.0) {
-//                UIViewController *detailViewController;
-//                
-//                detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-//                
-//                [self.navigationController pushViewController:detailViewController animated:YES];
-//                
-//            }else{
-//                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
-//                detailViewController.orderNo=result;
-//                detailViewController.payAmount=pinKeModel.pinkerNeedPayAmount.doubleValue;
-//                detailViewController.productName=pinKeModel.fullname;
-//                detailViewController.productDescription=@"暂无";
-//                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-//                self.navigationItem.backBarButtonItem = left;
-//                [self.navigationController pushViewController:detailViewController animated:YES];
-//            }
-//            
-//        }
-//    }];
+    allMoney = [orderInfo.pinkerNum intValue] * [pinkeModel.price floatValue];
+//    orderInfo.pinkerType
+//    0、请客 1、AA付款 2、自由付款 （发起人自由 其他AA）
+//    _YUModel.allowSex
+//    0、只有女生 1、只有男生 2、全部
+//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    _context = app.managedObjectContext;
+//    _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    app.userModel.gender   0表示女生
+    if ([_YUModel.allowSex isEqualToString:@"2"]) {
+        //全部都可以参加
+    }else if ([_YUModel.allowSex isEqualToString:@"0"]){
+        if (![app.userModel.gender isEqualToString:@"0"]) {
+            //不是女生
+            [MyUtil showCleanMessage:@"抱歉，该组局仅允许女生加入"];
+            return;
+        }
+    }else if ([_YUModel.allowSex isEqualToString:@"1"]){
+        if (![app.userModel.gender isEqualToString:@"1"]) {
+            //不是男生
+            [MyUtil showCleanMessage:@"抱歉，该组局仅允许男生生加入"];
+            return;
+        }
+    }
+    float payamout;
+    if ([orderInfo.pinkerType isEqualToString:@"0"]) {
+        //发起人请客
+        payamout = 0 ;
+    }else if([orderInfo.pinkerType isEqualToString:@"1"]){
+        //AA付款
+        if ([_chooseNumber.numberField.text intValue] == store) {
+            [self configureRestMoney];
+            payamout = allMoney;
+        }else{
+            payamout = allMoney / [orderInfo.allnum intValue];
+            payamout = payamout * [_chooseNumber.numberField.text intValue];
+        }
+    }else if ([orderInfo.pinkerType isEqualToString:@"2"]){
+        //发起人自由付款，其他人AA
+        if ([_chooseNumber.numberField.text intValue] == store) {
+            [self configureRestMoney];
+            payamout = allMoney;
+        }else{
+            payamout = allMoney / ([orderInfo.allnum intValue] - 1);
+            payamout = payamout * [_chooseNumber.numberField.text intValue];
+        }
+        
+    }
+    NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",pinkeModel.id],
+                          @"payamount":[NSString stringWithFormat:@"%f",payamout],
+                          @"allnum":_chooseNumber.numberField.text};
+    [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:dic complete:^(NSString *result) {
+        if(payamout == 0.0){
+            LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }else{
+            ChoosePayController *detailVC = [[ChoosePayController alloc]init];
+            detailVC.orderNo = result;
+            detailVC.payAmount = payamout;
+            detailVC.productName = pinkeModel.smname;
+            detailVC.productDescription = @"暂无";
+            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+            self.navigationItem.backBarButtonItem = left;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }
+    }];
+}
+
+#pragma mark - 计算还需要多少钱
+- (void)configureRestMoney{
+    float num = 0;
+    for (int i = 0 ; i < orderInfo.pinkerList.count; i ++) {
+        listModel = [orderInfo.pinkerList objectAtIndex:i];
+        num = num + [listModel.price floatValue];;
+    }
+    allMoney = allMoney - num;
 }
 
 - (void)checkAddress{
-    YUOrderInfo *model = _YUModel.orderInfo;
-    NSDictionary *dic=@{@"title":model.barinfo.barname,@"latitude":model.barinfo.latitude,@"longitude":model.barinfo.longitude};
+    NSDictionary *dic=@{@"title":orderInfo.barinfo.barname,@"latitude":orderInfo.barinfo.latitude,@"longitude":orderInfo.barinfo.longitude};
     [[LYUserLocation instance] daoHan:dic];
 }
 
 - (void)checkBar{
-    
+    BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    controller.beerBarId = [NSNumber numberWithInt:orderInfo.barinfo.id];
+    [self.navigationController pushViewController:controller animated:YES];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"活动详情" titleName:orderInfo.barinfo.barname]];
 }
 
 @end
