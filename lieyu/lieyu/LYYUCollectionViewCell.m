@@ -43,18 +43,21 @@
     _label_work.layer.borderColor = RGBA(217, 217, 217, 1).CGColor;
     _label_work.layer.borderWidth = 0.5;
     
-    _btn_more = [[UIButton alloc]init];
-    UIButton *lastBtn = ((UIButton *)_btnArray[4]);
-    CGRect rect = lastBtn.frame;
-    _btn_more.frame = CGRectMake(0, 0, rect.size.width, rect.size.height);
-    _btn_more.backgroundColor = RGBA(186, 20, 227, 0.5);
-    [lastBtn addSubview:_btn_more];
-    
+
+    CGFloat btnWidth = (SCREEN_WIDTH - 16 - 68 - 10 - 20 * 4)/5.f;
     for (UIButton *btn in _btnArray) {
-        btn.layer.cornerRadius = CGRectGetHeight(btn.frame)/2.f;
+        btn.layer.cornerRadius = btnWidth/2.f;
         btn.layer.masksToBounds = YES;
         btn.hidden = YES;
     }
+    
+    
+    _btn_more = [[UIButton alloc]init];
+    UIButton *lastBtn = ((UIButton *)_btnArray[4]);
+    CGRect rect = CGRectMake(lastBtn.frame.origin.x, lastBtn.frame.origin.y, btnWidth, btnWidth);
+    _btn_more.frame = CGRectMake(0, 0, rect.size.width, rect.size.height);
+    _btn_more.backgroundColor = RGBA(186, 20, 227, 0.5);
+    [lastBtn addSubview:_btn_more];
 
 }
 
@@ -78,9 +81,9 @@
     _label_message.text = orderModel.shareContent;
     
     if([orderModel.orderInfo.orderStatus isEqualToString:@"0"]){
-    _label_fanshi.text = @"[已拼成]";
+    _label_fanshi.text = @"[待拼成]";
 }else{
-    _label_fanshi.text = @"[未拼成]";
+    _label_fanshi.text = @"[已拼成]";
 }
 
     if (orderModel.orderInfo.tags.count) {
@@ -98,7 +101,7 @@
             sexStr = @"男";
             break;
         case 3:
-            sexStr = @"男女均可";
+            sexStr = @"全部";
             break;
     }
     _label_peopleCount.text = [NSString stringWithFormat:@"邀请人数: %@ (%@)", orderModel.orderInfo.allnum,sexStr];
@@ -113,7 +116,7 @@
         }
     }
     
-    _label_peoplePercent.text = [NSString stringWithFormat:@"以参与(%u / %@)",orderModel.orderInfo.pinkerList.count,orderModel.orderInfo.allnum];
+    _label_peoplePercent.text = [NSString stringWithFormat:@"已参与(%u / %@)",orderModel.orderInfo.pinkerList.count,orderModel.orderInfo.allnum];
     
     if (![MyUtil isEmptyString:orderModel.orderInfo.barinfo.address]) {
         _label_address.text = orderModel.orderInfo.barinfo.address;
@@ -136,6 +139,18 @@
     }
     
     if(orderModel.orderInfo.pinkerList.count >= 5) [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerList.count] forState:UIControlStateNormal];
+    
+   /* CGFloat btnWidth = (SCREEN_WIDTH - 16 - 68 - 10 - 20 * 4)/5.f;
+    for (int i = 0; i < 5; i ++ ) {
+        UIButton *btn = [[UIButton alloc]init];
+        if (i == 0) {
+            btn.frame = CGRectMake(68, self.view_cell.frame.size.height - 10 - btnWidth, btnWidth, btnWidth);
+        }else{
+            btn.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+        }
+    } */
+    
+    
 }
 
 @end
