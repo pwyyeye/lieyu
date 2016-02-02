@@ -9,14 +9,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LYYUCollectionViewCell" id="SKR-CA-swy" customClass="LYYUCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="290"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="309"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="290"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="309"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eR7-PE-0B1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="290"/>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eR7-PE-0B1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="289"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXm-4B-jRG">
                                 <rect key="frame" x="8" y="8" width="50" height="50"/>
@@ -404,13 +404,14 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="eR7-PE-0B1" secondAttribute="trailing" id="AMu-5z-y5s"/>
                 <constraint firstItem="eR7-PE-0B1" firstAttribute="leading" secondItem="SKR-CA-swy" secondAttribute="leading" id="fGv-kK-6wG"/>
-                <constraint firstAttribute="bottom" secondItem="eR7-PE-0B1" secondAttribute="bottom" id="pjq-KC-6tt"/>
+                <constraint firstAttribute="bottom" secondItem="eR7-PE-0B1" secondAttribute="bottom" constant="1" id="pjq-KC-6tt"/>
                 <constraint firstItem="eR7-PE-0B1" firstAttribute="top" secondItem="SKR-CA-swy" secondAttribute="top" id="vhv-rS-c86"/>
             </constraints>
-            <size key="customSize" width="462" height="500"/>
+            <size key="customSize" width="462" height="519"/>
             <connections>
                 <outlet property="btn_headerImg" destination="qXm-4B-jRG" id="vMR-Qv-KmX"/>
                 <outlet property="label_address" destination="eII-eE-PDO" id="Lcg-26-6Xd"/>
@@ -433,7 +434,7 @@
                 <outletCollection property="btnArray" destination="dny-wF-wGE" id="WG3-JI-UWs"/>
                 <outletCollection property="btnArray" destination="tGK-W2-cxv" id="jMi-Fr-jY5"/>
             </connections>
-            <point key="canvasLocation" x="550" y="998"/>
+            <point key="canvasLocation" x="550" y="1007.5"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -16,6 +16,14 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.layer.cornerRadius = 2;
+    self.layer.masksToBounds = YES;
+
+    
+    self.view_cell.layer.shadowColor = RGBA(0, 0, 0, 0.5).CGColor;
+    self.view_cell.layer.shadowOffset = CGSizeMake(0, .5);
+    self.view_cell.layer.shadowRadius = 0.5;
+    self.view_cell.layer.shadowOpacity = 1;
 
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
     _btn_headerImg.layer.masksToBounds = YES;
@@ -69,8 +77,12 @@
     
     _label_message.text = orderModel.shareContent;
     
-    _label_fanshi.text = [NSString stringWithFormat:@"[%@]",orderModel.orderInfo.orderStatusName];
-    
+    if([orderModel.orderInfo.orderStatus isEqualToString:@"0"]){
+    _label_fanshi.text = @"[已拼成]";
+}else{
+    _label_fanshi.text = @"[未拼成]";
+}
+
     if (orderModel.orderInfo.tags.count) {
         _label_work.text = orderModel.orderInfo.tags[0][@"tagname"];
     }else{

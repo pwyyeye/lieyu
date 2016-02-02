@@ -80,6 +80,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _scrollView.backgroundColor = RGBA(242, 242, 242, 1);
     _scrollView.delegate = self;
+    _scrollView.bounces = NO;
+    _scrollView.alwaysBounceVertical = NO;
     _scrollView.pagingEnabled = YES;
     _scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:_scrollView];
@@ -117,7 +119,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         //        self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     [self setupViewStyles];
-    [self getDataWith:0];
+    if (_collectViewArray.count) {
+        UICollectionView *collectV = _collectViewArray[0];
+        [collectV.mj_header beginRefreshing];
+    }
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
     
@@ -162,7 +167,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
-                    _menuView.center = CGPointMake( _menuView.center.x,-2 );
+                    _menuView.center = CGPointMake( _menuView.center.x,8 );
                     _titleImageView.alpha = 0.0;
                     _cityChooseBtn.alpha = 0.f;
                     _searchBtn.alpha = 0.f;
@@ -186,7 +191,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
-                    _menuView.center = CGPointMake( _menuView.center.x,-2 );
+                    _menuView.center = CGPointMake( _menuView.center.x,8 );
                     _titleImageView.alpha = 0.0;
                     _cityChooseBtn.alpha = 0.f;
                     _searchBtn.alpha = 0.f;
@@ -308,9 +313,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_btn_yedian setTitle:@"夜店" forState:UIControlStateNormal];
     [_menuView addSubview:_btn_yedian];
     [_btn_yedian addTarget:self action:@selector(yedianClick) forControlEvents:UIControlEventTouchUpInside];
-    _btn_yedian.frame = CGRectMake(SCREEN_WIDTH/2.f - 44 - 12, _menuView.frame.size.height - 16 - 4.5, 44, 16);
+    _btn_yedian.frame = CGRectMake(SCREEN_WIDTH/2.f - 44 - 22, _menuView.frame.size.height - 16 - 4.5, 44, 16);
     
-    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f + 12, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
+    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f + 22, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
     [_btn_bar setTitle:@"酒吧" forState:UIControlStateNormal];
     _btn_bar.isHomePageMenuViewSelected = NO;
     [_btn_bar addTarget:self action:@selector(barClick) forControlEvents:UIControlEventTouchUpInside];
