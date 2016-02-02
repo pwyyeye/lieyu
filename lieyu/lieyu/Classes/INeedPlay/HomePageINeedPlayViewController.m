@@ -72,10 +72,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self.navigationController setNavigationBarHidden:NO];
+
+   
     
     _currentPage_YD = 1;
     _currentPage_Bar = 1;
+    _contentOffSet_Height_BAR = 0;
+    _contentOffSet_Height_YD = 0;
     
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _scrollView.backgroundColor = RGBA(242, 242, 242, 1);
@@ -126,6 +129,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
     
+//     self.navigationController.delegate=self;
 }
 
 -(void)dealloc{
@@ -243,26 +247,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-    [_scrollView setContentOffset:CGPointZero];
-    //    CGRect rc = _topView.frame;
-    //    rc.origin.x = 0;
-    //    rc.origin.y = -20;
-    //    _topView.frame = rc;
-    //    [self.navigationController.navigationBar addSubview:_topView];
-    //ios 7.0适配
-    //    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) && ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0)) {
-    //        self.tableView.contentInset = UIEdgeInsetsMake(0,  0,  0,  0);
-    //    }
-    
-    //WTT
-    //    [self.navigationController setNavigationBarHidden:NO];
-    ((LYNavigationController *)self.navigationController).navBar.hidden = NO;
-    [self createNavButton];
-}
 
 #pragma mark 创建导航的按钮(选择城市和搜索)
 - (void)createNavButton{
@@ -350,7 +334,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark －酒吧action
 - (void)barClick{
-    _contentOffSet_Height_BAR = _contentOffSet_Height_YD;
+    _index = 1;
     [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:YES];
      [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"筛选" pageName:HOMEPAGE_MTA titleName:_btn_bar.currentTitle]];
     _btn_bar.isHomePageMenuViewSelected = YES;
@@ -378,18 +362,26 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    ((LYNavigationController *)self.navigationController).navBar.hidden = NO;
+//    ((LYNavigationController *)self.navigationController).navBar.hidden = NO;
     self.navigationController.navigationBarHidden = YES;
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.hidden = YES;
 
     if (self.navigationController.navigationBarHidden != NO) {
 //        [self.navigationController setNavigationBarHidden:NO];
     }
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+    [_scrollView setContentOffset:CGPointZero];
+//    ((LYNavigationController *)self.navigationController).navBar.hidden = NO;
+    [self createNavButton];
+}
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
+   
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -398,13 +390,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self removeNavButtonAndImageView];
     
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBarHidden = NO;
 }
 
 #pragma mark 移除导航的按钮和图片
