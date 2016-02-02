@@ -586,7 +586,7 @@
 }
 
 - (void)showImageInPreview:(UIImage *)image{
-    [self.navigationController.navigationBar setHidden:YES];
+//    [self.navigationController.navigationBar setHidden:YES];
     _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
     _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _subView.button.hidden = YES;
@@ -596,11 +596,12 @@
     [_subView viewConfigure];
     //    _subView.imageView.contentMode = UIViewContentModeScaleAspectFit;
     //    _subView.imageView.center = _subView.center;
-    [self.view addSubview:_subView];
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    [window addSubview:_subView];
 }
 
 - (void)previewHide{
-    [self.navigationController.navigationBar setHidden:NO];
+//    [self.navigationController.navigationBar setHidden:NO];
     [_subView removeFromSuperview];
 }
 

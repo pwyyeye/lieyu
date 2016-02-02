@@ -27,8 +27,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"more1"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
-    [self.navigationItem setRightBarButtonItem:rightBtn];
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"more1"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(moreAct:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    self.navigationItem.rightBarButtonItem = item;
+    
+//    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"more1"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
+//    [self.navigationItem setRightBarButtonItem:rightBtn];
     datalist =[[NSMutableArray alloc]init];
     filteredListContent=[[NSMutableArray alloc]init];
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
