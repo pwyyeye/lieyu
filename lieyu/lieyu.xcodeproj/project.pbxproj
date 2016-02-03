@@ -4712,7 +4712,6 @@
 		853C4C561C31199C00D48BA2 /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
-				ADC367431C62407B006C2AE5 /* friendPresentBG.jpg */,
 				525CA0E61C5C67A3009ED9DA /* addressFriend@2x.png */,
 				525CA0E71C5C67A3009ED9DA /* addressFriend@3x.png */,
 				525CA0CA1C5B7257009ED9DA /* haoyou_biaobai@2x.png */,

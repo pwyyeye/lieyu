@@ -77,8 +77,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     _currentPage_YD = 1;
     _currentPage_Bar = 1;
-    _contentOffSet_Height_BAR = 0;
-    _contentOffSet_Height_YD = 0;
+    _contentOffSet_Height_BAR = 1;
+    _contentOffSet_Height_YD = 1;
     
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _scrollView.backgroundColor = RGBA(242, 242, 242, 1);
@@ -509,13 +509,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
      {
          if (Req_Success == ermsg.state)
          {
+             UICollectionView *collectView = _collectViewArray[_index];
              if (barList.count == PAGESIZE)
              {
-                 weakSelf.curPageIndex = 2;
-             }
-             else
-             {
+//                 weakSelf.curPageIndex = 2;
                  
+                
+             }else
+             {
+                 collectView.mj_footer.hidden = YES;
              }
          }
      }];
@@ -633,7 +635,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                                }
                                                collectView.mj_footer.hidden = NO;
                                            }else{
-                                              // collectView.mj_footer.hidden = YES;
+                                               collectView.mj_footer.hidden = YES;
                                            }
                                            [collectView.mj_header endRefreshing];
                                        }
