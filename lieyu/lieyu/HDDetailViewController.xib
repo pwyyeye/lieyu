@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HDDetailViewController">
             <connections>
                 <outlet property="joinBtn" destination="pt5-F7-Bjb" id="SWA-Wr-TZw"/>
+                <outlet property="label_bottom" destination="CB8-Ft-g9V" id="bSE-b5-Csa"/>
                 <outlet property="tableView" destination="pEW-ir-ApL" id="ctL-Em-amm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,6 +22,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="516"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CB8-Ft-g9V">
+                    <rect key="frame" x="0.0" y="516" width="320" height="52"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pt5-F7-Bjb">
                     <rect key="frame" x="15" y="524" width="290" height="36"/>
                     <color key="backgroundColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -37,7 +45,7 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwm-18-7fO">
                     <rect key="frame" x="0.0" y="516" width="320" height="0.5"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10158943970000001" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="BLo-ov-zEw"/>
                     </constraints>
@@ -49,13 +57,17 @@
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="pt5-F7-Bjb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="5qN-9C-CsQ"/>
+                <constraint firstAttribute="trailing" secondItem="CB8-Ft-g9V" secondAttribute="trailing" id="B4h-96-q4U"/>
                 <constraint firstAttribute="trailing" secondItem="pt5-F7-Bjb" secondAttribute="trailing" constant="15" id="Bn3-Dl-02b"/>
+                <constraint firstAttribute="bottom" secondItem="CB8-Ft-g9V" secondAttribute="bottom" id="CZ4-rK-289"/>
                 <constraint firstItem="pt5-F7-Bjb" firstAttribute="top" secondItem="pEW-ir-ApL" secondAttribute="bottom" constant="8" id="HTG-RC-Bet"/>
                 <constraint firstItem="bwm-18-7fO" firstAttribute="top" secondItem="pEW-ir-ApL" secondAttribute="bottom" id="N0G-Pr-DSx"/>
                 <constraint firstAttribute="trailing" secondItem="bwm-18-7fO" secondAttribute="trailing" id="OAs-89-aYm"/>
                 <constraint firstItem="bwm-18-7fO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SGu-OI-zSM"/>
                 <constraint firstItem="pEW-ir-ApL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Sgk-Rx-Ytq"/>
                 <constraint firstAttribute="bottom" secondItem="pt5-F7-Bjb" secondAttribute="bottom" constant="8" id="Yvd-2Y-1xy"/>
+                <constraint firstItem="CB8-Ft-g9V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="by5-VH-zLa"/>
+                <constraint firstItem="CB8-Ft-g9V" firstAttribute="top" secondItem="pEW-ir-ApL" secondAttribute="bottom" id="kGf-wY-AaQ"/>
                 <constraint firstItem="pEW-ir-ApL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mA1-yY-BxJ"/>
                 <constraint firstAttribute="trailing" secondItem="pEW-ir-ApL" secondAttribute="trailing" id="nGi-UG-8qC"/>
             </constraints>

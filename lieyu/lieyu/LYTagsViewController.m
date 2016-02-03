@@ -27,8 +27,16 @@ static NSString *cellIdentifier = @"cell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [_collectionView registerClass:[LYTagCollectionViewCell class] forCellWithReuseIdentifier:cellIdentifier];
-    UIBarButtonItem *rightItem=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(makeSure)];
-    [self.navigationItem setRightBarButtonItem:rightItem];
+    
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 48, 40)];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [button setTitle:@"确定" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(makeSure) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
+    
+//    UIBarButtonItem *rightItem=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(makeSure)];
+    [self.navigationItem setRightBarButtonItem:item];
     [self getData];
     self.title = @"我的标签";
 }

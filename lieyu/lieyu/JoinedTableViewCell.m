@@ -9,6 +9,7 @@
 #import "JoinedTableViewCell.h"
 #import "YUPinkerListModel.h"
 #import "LYFriendsToUserMessageViewController.h"
+#import "UIImageView+WebCache.h"
 
 @implementation JoinedTableViewCell
 
@@ -63,8 +64,9 @@
     int x = 8;
     int y = 34;
     for (int i = 0 ; i < pinkeList.count; i ++) {
-        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:((YUPinkerListModel *)[pinkeList objectAtIndex:i]).inmenberAvatar_img]]]];
-//        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"lieyuIcon"]];
+//        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:((YUPinkerListModel *)[pinkeList objectAtIndex:i]).inmenberAvatar_img]]]];
+        UIImageView *image = [[UIImageView alloc]init];
+        [image sd_setImageWithURL:[NSURL URLWithString:((YUPinkerListModel *)[pinkeList objectAtIndex:i]).inmenberAvatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         image.layer.cornerRadius = 20;
         image.clipsToBounds = YES;
         

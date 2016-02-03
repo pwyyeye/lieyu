@@ -12,6 +12,7 @@
 @interface HDDetailViewController : LYBaseViewController<HDDetailJumpToFriendDetail>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *joinBtn;
+@property (weak, nonatomic) IBOutlet UILabel *label_bottom;
 - (IBAction)WannaJoin:(UIButton *)sender;
 
 @property (nonatomic, strong) YUOrderShareModel *YUModel;

@@ -20,6 +20,7 @@
     [super viewDidLoad];
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE)]];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.automaticallyAdjustsScrollViewInsets = YES;
     [self setupView];
     //设置tableView样式
     self.conversationListTableView.separatorColor = RGB(223, 223, 223);
@@ -67,7 +68,7 @@
     [view addSubview:button];
     [button addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
-    conversationVC.navigationController.navigationItem.leftBarButtonItem = item;
+    conversationVC.navigationItem.leftBarButtonItem = item;
     
     [self.navigationController pushViewController:conversationVC animated:YES];
     
@@ -75,7 +76,7 @@
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
     NSInteger unread= model.unreadMessageCount;
     if (unread) {
-        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",unread] forKey:@"delBadgeValue"];
+        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",(int)unread] forKey:@"delBadgeValue"];
         [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
     }
     
