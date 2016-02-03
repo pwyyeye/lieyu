@@ -618,8 +618,7 @@
                     }
                 }else{
                     if(isfu){
-                        
-                        [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                        [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerCount] forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
                         
                         
@@ -642,7 +641,7 @@
                     [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                     orderBottomView.secondBtn.tag=section;
                 }else{
-                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerCount] forState:UIControlStateSelected];
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
@@ -653,7 +652,7 @@
                     [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                     orderBottomView.secondBtn.tag=section;
                 }else{
-                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerCount] forState:UIControlStateSelected];
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
