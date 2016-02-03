@@ -46,5 +46,8 @@
     }
 }
 
+- (void)configureTitle{
+    self.title.text = @"选择参与人次";
+}
 
 @end

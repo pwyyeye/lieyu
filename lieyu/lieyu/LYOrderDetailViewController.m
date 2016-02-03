@@ -832,7 +832,7 @@
             label1.font=[UIFont systemFontOfSize:12];
             label1.textColor=RGB(240, 77, 109);
             label1.textAlignment=NSTextAlignmentRight;
-            label1.text=[NSString stringWithFormat:@"%ld/%@",_orderInfoModel.pinkerList.count,_orderInfoModel.allnum];
+            label1.text=[NSString stringWithFormat:@"%d/%@",_orderInfoModel.pinkerCount,_orderInfoModel.allnum];
             [view addSubview:label1];
             if(isFaqi){
                 //"pinkertype":"0"// 0、请客 1、AA付款 2、自由付款 （发起人自由 其他AA）
