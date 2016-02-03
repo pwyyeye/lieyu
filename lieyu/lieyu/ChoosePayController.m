@@ -12,6 +12,8 @@
 #import "PayButton.h"
 #import "PinkerShareController.h"
 #import "HDDetailViewController.h"
+#import "CHDoOrderViewController.h"
+
 @interface ChoosePayController ()
 {
     UITableViewCell *_payCell;
@@ -142,7 +144,7 @@
     //    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
     for (UIViewController *controller in self.navigationController.viewControllers) {
-        if([controller isKindOfClass:[HDDetailViewController class]]){
+        if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]]){
             LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
             [self.navigationController pushViewController:detailViewController animated:YES];
             return;
