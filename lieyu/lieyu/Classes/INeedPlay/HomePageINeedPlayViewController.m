@@ -517,7 +517,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 
              }else
              {
-                 collectView.mj_footer.hidden = YES;
+                 //collectView.mj_footer.hidden = YES;
+                 [collectView.mj_footer endRefreshingWithNoMoreData];
              }
          }
      }];
@@ -635,7 +636,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                                }
                                                collectView.mj_footer.hidden = NO;
                                            }else{
-                                               collectView.mj_footer.hidden = YES;
+                                              // collectView.mj_footer.hidden = YES;
+                                               [collectView.mj_footer endRefreshingWithNoMoreData];
                                            }
                                            [collectView.mj_header endRefreshing];
                                        }
@@ -740,19 +742,17 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [bigArr addObject:dicTemp];
         }
         
-        UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16)];
-        shadowView.tag = 10086;
-        shadowView.layer.cornerRadius = 2;
-        shadowView.layer.cornerRadius = 2;
-        shadowView.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
-        shadowView.layer.shadowOffset = CGSizeMake(0, .5);
-        shadowView.layer.shadowRadius = 1;
-        shadowView.layer.shadowOpacity = 1;
-        [cell addSubview:shadowView];
+       // UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16)];
+//        shadowView.tag = 10086;
+//        shadowView.layer.cornerRadius = 2;
+//        shadowView.layer.cornerRadius = 2;
+//        shadowView.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
+//        shadowView.layer.shadowOffset = CGSizeMake(0, .5);
+//        shadowView.layer.shadowRadius = 1;
+//        shadowView.layer.shadowOpacity = 1;
+       // [cell addSubview:shadowView];
         
         SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
-        cycleScrollView.layer.cornerRadius = 2;
-//        cycleScrollView.layer.masksToBounds = YES;
         cycleScrollView.layer.cornerRadius = 2;
         cycleScrollView.layer.masksToBounds = YES;
         
@@ -774,6 +774,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 jiubaCell.jiuBaM = _recommendedBar;
         }
         return jiubaCell;
+
     }else if(indexPath.row >= 2 & indexPath.row <= 5){
       //  NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
         HomeMenuCollectionViewCell *menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeMenuCollectionViewCell" forIndexPath:indexPath];
