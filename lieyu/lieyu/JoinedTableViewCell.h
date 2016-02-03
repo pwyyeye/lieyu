@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YUOrderInfo.h"
 @protocol HDDetailJumpToFriendDetail <NSObject>
 - (void)HDDetailJumpToFriendDetail:(NSString *)friendId;
 - (void)gotoUserPage:(UIButton *)button;
@@ -20,7 +21,7 @@
 
 @property (nonatomic, assign) id<HDDetailJumpToFriendDetail> delegate;
 
-- (void)configureJoinedNumber:(int)number andPeople:(NSArray *)pinkeList;
+- (void)configureJoinedNumber:(int)number andPeople:(YUOrderInfo *)OrderInfo;
 - (void)configureMessage;
 - (void)configureMoreAction;
 

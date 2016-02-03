@@ -14,10 +14,12 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *lessBtn;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
+@property (weak, nonatomic) IBOutlet UILabel *title;
 
 - (IBAction)lessBtnClick:(UIButton *)sender;
 - (IBAction)addBtnClick:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *numberField;
 
+- (void)configureTitle;
 @end

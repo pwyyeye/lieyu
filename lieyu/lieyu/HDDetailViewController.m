@@ -30,7 +30,7 @@
     YUPinkerinfo *pinkeModel;
     YUPinkerListModel *listModel;
     int store;
-    float allMoney;
+    double allMoney;
 }
 @property (nonatomic, strong) HeaderTableViewCell *headerCell;
 @property (nonatomic, strong) LYDinWeiTableViewCell *LYdwCell;
@@ -147,7 +147,7 @@
             }
         }
         _HDDetailCell.residue_label.text = [MyUtil residueTimeFromDate:orderInfo.reachtime];
-        _HDDetailCell.joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%lu/%d)",orderInfo.pinkerList.count,[orderInfo.allnum intValue]];
+        _HDDetailCell.joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%d/%d)",orderInfo.pinkerCount,[orderInfo.allnum intValue]];
         if ([_YUModel.allowSex isEqualToString:@"0"]) {
             _HDDetailCell.joinedpro_label.text = @"只邀请女生";
         }else if ([_YUModel.allowSex isEqualToString:@"1"]){
@@ -163,7 +163,7 @@
         return _HDDetailCell;
     }else if(indexPath.section == 3){
         _joinedCell = [tableView dequeueReusableCellWithIdentifier:@"JoinedTableViewCell" forIndexPath:indexPath];
-        [_joinedCell configureJoinedNumber:[orderInfo.allnum intValue]andPeople:orderInfo.pinkerList];
+        [_joinedCell configureJoinedNumber:[orderInfo.allnum intValue]andPeople:orderInfo];
         _joinedCell.delegate = self;
         _joinedCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _joinedCell;
@@ -236,13 +236,14 @@
     
     _chooseNumber.store = store;
     _chooseNumber.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20, 250);
+    
     alertView.contentView = _chooseNumber;
     [alertView show];
 }
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
     if(buttonIndex){
-        allMoney = [orderInfo.pinkerNum intValue] * [pinkeModel.price floatValue];
+        allMoney = [orderInfo.pinkerNum intValue] * [pinkeModel.price doubleValue];
         //    orderInfo.pinkerType
         //    0、请客 1、AA付款 2、自由付款 （发起人自由 其他AA）
         //    _YUModel.allowSex
@@ -267,7 +268,7 @@
                 return;
             }
         }
-        float payamout;
+        double payamout;
         if ([orderInfo.pinkerType isEqualToString:@"0"]) {
             //发起人请客
             payamout = 0 ;
@@ -289,10 +290,10 @@
                 payamout = allMoney / ([orderInfo.allnum intValue] - 1);
                 payamout = payamout * [_chooseNumber.numberField.text intValue];
             }
-            
         }
-        NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",_YUModel.id],
-                              @"payamount":[NSString stringWithFormat:@"%f",payamout],
+//        NSString *string = [NSString stringWithFormat:@"%f",payamout];
+        NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.id],
+                              @"payamount":[NSString stringWithFormat:@"%.2f",payamout],
                               @"allnum":_chooseNumber.numberField.text};
         [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:dic complete:^(NSString *result) {
             if(payamout == 0.0){
@@ -339,12 +340,25 @@
 
 #pragma mark - 计算还需要多少钱
 - (void)configureRestMoney{
-    float num = 0;
-    for (int i = 0 ; i < orderInfo.pinkerList.count; i ++) {
+//    double money = 0.00;
+//    for (int i = 0 ; i < orderInfo.pinkerList.count; i ++) {
+//        listModel = [orderInfo.pinkerList objectAtIndex:i];
+////        num = num + [listModel.price floatValue];;
+//        NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:listModel.price];
+//        NSLog(@"%f",[num doubleValue]);
+//        money = money + [num doubleValue];
+//    }
+//    allMoney = allMoney - money;
+    NSDecimalNumber *money = [NSDecimalNumber decimalNumberWithString:@"0"];
+    for (int i = 0 ; i < orderInfo.pinkerList.count ; i ++) {
         listModel = [orderInfo.pinkerList objectAtIndex:i];
-        num = num + [listModel.price floatValue];;
+        NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:listModel.price];
+        money = [money decimalNumberByAdding:num];
     }
-    allMoney = allMoney - num;
+    NSDecimalNumber *one = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",allMoney]];
+    one = [one decimalNumberBySubtracting:money];
+    NSLog(@"%f",[one doubleValue]);
+    allMoney = [one doubleValue];
 }
 
 - (void)checkAddress{
