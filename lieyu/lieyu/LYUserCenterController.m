@@ -271,6 +271,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.title = @"猎娱客服";
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
+            
             UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
             UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 40, 40)];
             [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
