@@ -238,6 +238,8 @@
     }];
     [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
     [_sectionBtn setTitle:menuBtn.currentTitle forState:UIControlStateNormal];
+    NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"娱",@"titleName":@"地区",@"value":menuBtn.titleLabel.text};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
 - (void)removeMenuView{
@@ -510,7 +512,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
     YUOrderShareModel *orderM = _dataArray[collectionView.tag][indexPath.row];
-    HDDetailVC.YUModel = orderM;
+    
+    HDDetailVC.YUid = orderM.id;
+//    HDDetailVC.YUModel = orderM;
+    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"娱",@"titleName":@"组局活动",@"value":orderM.orderInfo.id};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     [self.navigationController pushViewController:HDDetailVC  animated:YES];
 }
 

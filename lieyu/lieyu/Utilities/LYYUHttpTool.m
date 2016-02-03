@@ -10,7 +10,6 @@
 #import "HTTPController.h"
 #import "LYYUUrl.h"
 #import "YUOrderInfo.h"
-#import "YUOrderShareModel.h"
 
 @implementation LYYUHttpTool
 
@@ -22,6 +21,19 @@
             NSArray *array = response[@"data"];
             NSArray *dataArray = [YUOrderShareModel mj_objectArrayWithKeyValuesArray:array];
             compelte(dataArray);
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
++ (void)yuGetYuModelWithParams:(NSDictionary *)params complete:(void(^)(YUOrderShareModel *YUModel))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_YUMODEL baseURL:LY_SERVER params:params success:^(id response) {
+//        NSLog(@"----->%@",response);
+        NSString *errorCodeStr = response[@"errorcode"];
+        if([errorCodeStr isEqualToString:@"1"]){
+            YUOrderShareModel *model = [YUOrderShareModel mj_objectWithKeyValues:response[@"data"]];
+            complete(model);
         }
     } failure:^(NSError *err) {
         

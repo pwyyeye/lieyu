@@ -191,7 +191,8 @@
             btn.isMenuSelected = NO;
         }
         ((HotMenuButton *)_menuBtnArray[_index]).isMenuSelected = YES;
-        
+        NSDictionary *dict = @{@"actionName":@"滑动",@"pageName":@"娱",@"titleName":@"选区"};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
         if(!((NSArray *)_dataArray[_index]).count || ![_sectionTitle_time isEqualToString:_sectionTitle_distance]){
             UICollectionView *tableview = _collectviewArray[_index];
             [tableview.mj_header beginRefreshing];
@@ -261,6 +262,8 @@
     }
     UICollectionView *collectView = _collectviewArray[_index];
     [collectView.mj_header beginRefreshing];
+    NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"娱",@"titleName":@"地区",@"value":menuBtn.titleLabel.text};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
 - (void)removeMenuView{
@@ -486,7 +489,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
     YUOrderShareModel *orderM = _dataArray[collectionView.tag][indexPath.row];
-    HDDetailVC.YUModel = orderM;
+    
+    HDDetailVC.YUid = orderM.id;
+    NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"娱",@"titleName":@"组局活动",@"value":orderM.orderInfo.id};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     [self.navigationController pushViewController:HDDetailVC  animated:YES];
 }
 
