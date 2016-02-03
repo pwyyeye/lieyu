@@ -20,6 +20,7 @@
 #import "MJRefresh.h"
 #import "LYYUCollectionViewCell.h"
 #import <CoreGraphics/CoreGraphics.h>
+#import "LYUserLocation.h"
 
 #define PAGESIZE 20
 
@@ -73,7 +74,6 @@
     
     _collectviewArray = [[NSMutableArray alloc]initWithCapacity:4];
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _scrollView.backgroundColor = [UIColor redColor];
     _scrollView.delegate = self;
     _scrollView.bounces = NO;
     _scrollView.pagingEnabled = YES;
@@ -283,7 +283,10 @@
         }
             break;
     }
-    NSDictionary *dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE]};
+    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
+    NSString *longitude = [NSString stringWithFormat:@"%@",[[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue]];
+    NSString *latitude = [NSString stringWithFormat:@"%@",[[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue]];
+    NSDictionary *dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude};
     [LYYUHttpTool yuGetDataOrderShareWithParams:dic compelte:^(NSArray *dataArray) {
         if(tag >= 4) return ;
         NSMutableArray *array = _dataArray[tag];
@@ -463,24 +466,23 @@
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 8;
+    return 0;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 8;
+    return 0;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(8, 8, 8, 8);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(SCREEN_WIDTH - 16, 221 + (SCREEN_WIDTH - (68 + 10 + 16 + 4 * 20))/5.f + 10);
+    return CGSizeMake(SCREEN_WIDTH, 221 + (SCREEN_WIDTH - (68 + 10 + 4 * 20))/5.f + 10);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-//    cell.backgroundColor = [UIColor redColor];
+
     LYYUCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYYUCollectionViewCell" forIndexPath:indexPath];
     cell.btn_headerImg.tag = indexPath.row;
     [cell.btn_headerImg addTarget:self action:@selector(headerClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -488,10 +490,20 @@
         btn.tag = cell.btnArray.count * indexPath.row + btn.tag;
         [btn addTarget:self action:@selector(pinkerClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
     YUOrderShareModel *orderM = _dataArray[collectionView.tag][indexPath.row];
     cell.orderModel = orderM;
+    if (orderM.orderInfo.pinkerList.count >= 5) {
+        cell.btn_more.tag = indexPath.item;
+        [cell.btn_more addTarget:self action:@selector(btnMoreClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
     return cell;
+}
+
+- (void)btnMoreClick:(UIButton *)button{
+    HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
+    YUOrderShareModel *orderM = _dataArray[_index][button.tag];
+    HDDetailVC.YUModel = orderM;
+    [self.navigationController pushViewController:HDDetailVC  animated:YES];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

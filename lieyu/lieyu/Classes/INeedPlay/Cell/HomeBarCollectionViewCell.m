@@ -43,6 +43,7 @@
     if(jiuBaM.banners.count){
         [_imgView_bg sd_setImageWithURL:[NSURL URLWithString:jiuBaM.banners[0]] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
     }
+    
     _label_barDescr.text = jiuBaM.subtitle;
     _label_price.text = [NSString stringWithFormat:@"%@元起",jiuBaM.lowest_consumption];
     if([MyUtil isEmptyString:jiuBaM.addressabb]){

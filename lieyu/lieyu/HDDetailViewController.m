@@ -8,7 +8,6 @@
 #import "HDDetailViewController.h"
 #import "HeaderTableViewCell.h"
 #import "HDDetailTableViewCell.h"
-#import "JoinedTableViewCell.h"
 #import "LYDinWeiTableViewCell.h"
 #import "LPAlertView.h"
 #import "ChooseNumber.h"
@@ -21,8 +20,11 @@
 #import "YUPinkerListModel.h"
 #import "LYMyOrderManageViewController.h"
 #import "ChoosePayController.h"
+#import "LYFriendsToUserMessageViewController.h"
+#import "DetailView.h"
+#import "preview.h"
 
-@interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate>
+@interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate,showImageInPreview>
 {
     YUOrderInfo *orderInfo;
     YUPinkerinfo *pinkeModel;
@@ -35,6 +37,8 @@
 @property (nonatomic, strong) HDDetailTableViewCell *HDDetailCell;
 @property (nonatomic, strong) JoinedTableViewCell *joinedCell;
 @property (nonatomic, strong) ChooseNumber *chooseNumber;
+
+@property (nonatomic, strong) preview *subView;
 
 @end
 
@@ -51,6 +55,7 @@
 //    self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH - 52);
     [self configureStore];
+    [self configurePinkeStatus];
     [self registerCell];
     self.title = @"活动详情";
 }
@@ -88,6 +93,10 @@
         self.joinBtn.enabled = NO;
         self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
     }
+    if ([[MyUtil residueTimeFromDate:orderInfo.reachtime] isEqualToString:@"已过期"]) {
+        self.joinBtn.enabled = NO;
+        self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
+    }
 }
 
 - (void)registerCell{
@@ -110,13 +119,14 @@
         _headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderTableViewCell" forIndexPath:indexPath];
         [_headerCell.avatar_image sd_setImageWithURL:[NSURL URLWithString:orderInfo.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         _headerCell.name_label.text = orderInfo.username;
-        
+        [_headerCell.avatar_button addTarget:self action:@selector(CheckMyMessage) forControlEvents:UIControlEventTouchUpInside];
         _headerCell.viewNumber_label.text = @"";
         _headerCell.title_label.text = _YUModel.shareContent;
         _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _headerCell;
     }else if (indexPath.section == 1){
         _LYdwCell = [tableView dequeueReusableCellWithIdentifier:@"LYDinWeiTableViewCell" forIndexPath:indexPath];
+        [_LYdwCell.imageView_button addTarget:self action:@selector(clickThisImageView) forControlEvents:UIControlEventTouchUpInside];
         _LYdwCell.pinkeInfo = pinkeModel;
         _LYdwCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _LYdwCell;
@@ -150,6 +160,7 @@
     }else if(indexPath.section == 3){
         _joinedCell = [tableView dequeueReusableCellWithIdentifier:@"JoinedTableViewCell" forIndexPath:indexPath];
         [_joinedCell configureJoinedNumber:[orderInfo.allnum intValue]andPeople:orderInfo.pinkerList];
+        _joinedCell.delegate = self;
         _joinedCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _joinedCell;
 //    }else if(indexPath.section == 4){
@@ -337,6 +348,72 @@
     controller.beerBarId = [NSNumber numberWithInt:orderInfo.barinfo.id];
     [self.navigationController pushViewController:controller animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"活动详情" titleName:orderInfo.barinfo.barname]];
+}
+
+- (void)CheckMyMessage{
+    [self HDDetailJumpToFriendDetail:orderInfo.userid];
+}
+
+- (void)gotoUserPage:(UIButton *)button{
+        NSInteger index = button.tag;
+//    NSInteger index = tap.view.tag;
+   
+    [self HDDetailJumpToFriendDetail:((YUPinkerListModel *)[orderInfo.pinkerList objectAtIndex:index]).inmember];
+}
+
+
+- (void)HDDetailJumpToFriendDetail:(NSString *)friendId{
+    LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
+    messageVC.friendsId = friendId;
+    [self.navigationController pushViewController:messageVC animated:YES];
+}
+
+- (void)clickThisImageView{
+    UIView *bigView = [[UIView alloc]initWithFrame:self.view.bounds];
+    bigView.backgroundColor = RGBA(0, 0, 0, 0.3);
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideBigView:)];
+    [bigView addGestureRecognizer:tap];
+    
+    DetailView *detailView = [[[NSBundle mainBundle]loadNibNamed:@"DetailView" owner:nil options:nil]firstObject];
+    detailView.frame = CGRectMake(8, 64, SCREEN_WIDTH - 16, 268 + SCREEN_WIDTH / 3);
+//    detailView.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+//    RecommendPackageModel *model = [jiubaModel.recommend_package objectAtIndex:sender.tag];
+//    detailView.packModel = model;
+    detailView.delegate = self;
+    NSDictionary *dic=@{@"smid":pinkeModel.id};
+    [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiTaoCanDetailWithParams:dic block:^(TaoCanModel *result) {
+        NSLog(@"%@",result);
+        [detailView setTcModel:result];
+        [detailView Configure];
+    }];
+    
+    
+    [self.view addSubview:bigView];
+    [bigView addSubview:detailView];
+}
+
+- (void)hideBigView:(UITapGestureRecognizer *)gesture{
+    [gesture.view removeFromSuperview];
+}
+
+- (void)showImageInPreview:(UIImage *)image{
+//    [self.navigationController.navigationBar setHidden:YES];
+    _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
+    _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _subView.button.hidden = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(previewHide)];
+    [_subView addGestureRecognizer:tap];
+    _subView.image = image;
+    [_subView viewConfigure];
+    //    _subView.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    //    _subView.imageView.center = _subView.center;
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    [window addSubview:_subView];
+}
+
+- (void)previewHide{
+//    [self.navigationController.navigationBar setHidden:NO];
+    [_subView removeFromSuperview];
 }
 
 @end

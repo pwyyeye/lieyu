@@ -8,7 +8,8 @@
 
 #import "LYBaseViewController.h"
 #import "YUOrderShareModel.h"
-@interface HDDetailViewController : LYBaseViewController
+#import "JoinedTableViewCell.h"
+@interface HDDetailViewController : LYBaseViewController<HDDetailJumpToFriendDetail>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *joinBtn;
 - (IBAction)WannaJoin:(UIButton *)sender;

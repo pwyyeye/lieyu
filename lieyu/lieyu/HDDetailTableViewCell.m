@@ -11,8 +11,8 @@
 @implementation HDDetailTableViewCell
 
 - (void)awakeFromNib {
-    self.backView.layer.cornerRadius = 2;
-    self.backView.layer.masksToBounds = YES;
+//    self.backView.layer.cornerRadius = 2;
+//    self.backView.layer.masksToBounds = YES;
     self.backView.layer.shadowColor = [[UIColor blackColor]CGColor];
     self.backView.layer.shadowOffset = CGSizeMake(0, 1);
     self.backView.layer.shadowOpacity = 0.1;
