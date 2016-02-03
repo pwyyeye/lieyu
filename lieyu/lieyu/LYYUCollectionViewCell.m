@@ -27,7 +27,7 @@
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
     _btn_headerImg.layer.masksToBounds = YES;
     
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(68, 180, SCREEN_WIDTH - 68 - 25, 0.5)];
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(68, 180 + 6, SCREEN_WIDTH - 68 - 25, 0.5)];
     lineView.backgroundColor = RGBA(204, 204, 204, 1);
     [self.view_cell addSubview:lineView];
     
@@ -130,7 +130,7 @@
         }
     }
     
-    _label_peoplePercent.text = [NSString stringWithFormat:@"已参与(%u / %@)",orderModel.orderInfo.pinkerList.count,orderModel.orderInfo.allnum];
+    _label_peoplePercent.text = [NSString stringWithFormat:@"已参与(%u / %@)",orderModel.orderInfo.pinkerCount,orderModel.orderInfo.allnum];
     
     if (![MyUtil isEmptyString:orderModel.orderInfo.barinfo.address]) {
         _label_address.text = orderModel.orderInfo.barinfo.addressabb;
