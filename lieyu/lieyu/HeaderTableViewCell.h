@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *origanator_image;
 @property (weak, nonatomic) IBOutlet UILabel *viewNumber_label;
 @property (weak, nonatomic) IBOutlet UILabel *title_label;
+@property (weak, nonatomic) IBOutlet UIImageView *view_image;
 
 @property (weak, nonatomic) IBOutlet UIView *backView;
 @end

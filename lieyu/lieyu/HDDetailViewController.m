@@ -24,6 +24,7 @@
 #import "DetailView.h"
 #import "preview.h"
 #import "UMSocial.h"
+#import "LYYUHttpTool.h"
 
 @interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate,showImageInPreview>
 {
@@ -51,13 +52,14 @@
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.showsVerticalScrollIndicator = NO;
-    orderInfo = _YUModel.orderInfo;
-    pinkeModel = orderInfo.pinkerinfo;
+    [self getData];
+//    orderInfo = _YUModel.orderInfo;
+//    pinkeModel = orderInfo.pinkerinfo;
 //    self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH - 52);
-    [self configureStore];
+//    [self configureStore];
     [self configureRightItem];
-    [self configurePinkeStatus];
+//    [self configurePinkeStatus];
     [self registerCell];
     self.label_bottom.layer.shadowColor = [RGBA(0, 0, 0, 0.2) CGColor];
     self.label_bottom.layer.shadowOffset = CGSizeMake(-1, 0);
@@ -83,6 +85,18 @@
     self.navigationController.navigationBarHidden=NO;
 }
 
+- (void)getData{
+    NSDictionary *dict = @{@"id":_YUid};
+    [LYYUHttpTool yuGetYuModelWithParams:dict complete:^(YUOrderShareModel *YUModel) {
+        _YUModel = YUModel;
+        orderInfo = _YUModel.orderInfo;
+        pinkeModel = orderInfo.pinkerinfo;
+        [self configurePinkeStatus];
+        [self configureStore];
+        [self.tableView reloadData];
+    }];
+}
+
 - (void)configureRightItem{
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     [button setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
@@ -92,6 +106,9 @@
 }
 
 - (void)shareZuju{
+    NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"活动详情",@"titleName":@"分享"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
     NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n %@inPinkerWebAction.do?id=%@",app.userModel.usernick,orderInfo.barinfo.barname,LY_SERVER,orderInfo.id];
@@ -144,7 +161,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    if(_YUModel){
+        return 5;
+    }else{
+        return 0;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -276,6 +297,10 @@
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
     if(buttonIndex){
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"活动详情",@"titleName":@"想要参加",@"value":[NSString stringWithFormat:@"%d",app.userModel.userid]};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+        
         allMoney = [orderInfo.pinkerNum intValue] * [pinkeModel.price doubleValue];
         //    orderInfo.pinkerType
         //    0、请客 1、AA付款 2、自由付款 （发起人自由 其他AA）
@@ -284,7 +309,7 @@
         //    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         //    _context = app.managedObjectContext;
         //    _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
-        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
         //    app.userModel.gender   0表示女生
         if ([_YUModel.allowSex isEqualToString:@"2"]) {
             //全部都可以参加
@@ -407,6 +432,8 @@
 
 - (void)checkAddress{
     NSDictionary *dic=@{@"title":orderInfo.barinfo.barname,@"latitude":orderInfo.barinfo.latitude,@"longitude":orderInfo.barinfo.longitude};
+    NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"活动详情",@"titleName":@"地图"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     [[LYUserLocation instance] daoHan:dic];
 }
 
@@ -424,7 +451,10 @@
 - (void)gotoUserPage:(UIButton *)button{
         NSInteger index = button.tag;
 //    NSInteger index = tap.view.tag;
-   
+    
+    NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"活动详情",@"titleName":@"个人主页",@"value":((YUPinkerListModel *)[orderInfo.pinkerList objectAtIndex:index]).inmember};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     [self HDDetailJumpToFriendDetail:((YUPinkerListModel *)[orderInfo.pinkerList objectAtIndex:index]).inmember];
 }
 
@@ -453,7 +483,8 @@
         [detailView setTcModel:result];
         [detailView Configure];
     }];
-    
+    NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"活动详情",@"titleName":@"查看套餐详情",@"value":pinkeModel.id};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
     [self.view addSubview:bigView];
     [bigView addSubview:detailView];
@@ -476,6 +507,9 @@
     //    _subView.imageView.center = _subView.center;
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     [window addSubview:_subView];
+    
+    NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"活动详情",@"titleName":@"预览套餐图片",@"value":pinkeModel.id};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
 - (void)previewHide{

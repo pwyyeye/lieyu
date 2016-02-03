@@ -16,4 +16,5 @@
 - (IBAction)WannaJoin:(UIButton *)sender;
 
 @property (nonatomic, strong) YUOrderShareModel *YUModel;
+@property (nonatomic, strong) NSString *YUid;
 @end

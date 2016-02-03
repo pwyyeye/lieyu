@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YUOrderShareModel.h"
 
 @interface LYYUHttpTool : NSObject
 //获取娱模版主页数据
 + (void)yuGetDataOrderShareWithParams:(NSDictionary *)params compelte:(void(^)(NSArray *dataArray))compelte;
++ (void)yuGetYuModelWithParams:(NSDictionary *)params complete:(void(^)(YUOrderShareModel *YUModel))complete;
 @end
