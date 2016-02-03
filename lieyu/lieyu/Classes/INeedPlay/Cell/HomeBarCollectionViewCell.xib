@@ -113,7 +113,7 @@
                             <constraint firstAttribute="height" constant="8" id="a4Y-Du-bhd"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="酒吧的一句话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81W-Pb-AU9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="酒吧的一句话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81W-Pb-AU9">
                         <rect key="frame" x="10" y="139" width="210" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="6DK-14-tHS"/>
@@ -241,6 +241,7 @@
                 <constraint firstItem="Htz-dk-0Yh" firstAttribute="leading" secondItem="36i-xa-JPf" secondAttribute="trailing" constant="8" id="lNF-93-mjL"/>
                 <constraint firstItem="36i-xa-JPf" firstAttribute="leading" secondItem="Uj8-rt-rwS" secondAttribute="trailing" constant="8" id="mNc-FW-cfF"/>
                 <constraint firstAttribute="bottom" secondItem="SgJ-8v-c3X" secondAttribute="bottom" constant="10" id="maH-Pe-Upj"/>
+                <constraint firstItem="KjI-Qe-wPo" firstAttribute="leading" secondItem="81W-Pb-AU9" secondAttribute="trailing" constant="10" id="oqL-Yd-mYJ"/>
                 <constraint firstItem="SgJ-8v-c3X" firstAttribute="leading" secondItem="k1V-0q-hZf" secondAttribute="trailing" constant="7" id="qUZ-3b-fMI"/>
                 <constraint firstItem="Htz-dk-0Yh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="rj8-eH-unu"/>
                 <constraint firstItem="vlo-bG-9q8" firstAttribute="leading" secondItem="p5D-Hp-sL6" secondAttribute="trailing" constant="7" id="sU5-Or-jCR"/>
