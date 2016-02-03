@@ -13,6 +13,9 @@
 #import "AboutLieyu.h"
 #import "SDImageCache.h"
 #import "LYAccountManager.h"
+#import "MyZSManageViewController.h"
+#import "LYZSApplicationViewController.h"
+
 @interface Setting ()
 
 @end
@@ -27,7 +30,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    _data=@[@"编辑个人资料",@"清除缓存",@"账户管理",@"关于猎娱"];
+    _data=@[@"编辑个人资料",@"账户管理",@"申请专属经理",@"清除缓存",@"关于猎娱"];
     
     
     self.title=@"个人设置";
@@ -122,7 +125,7 @@
     [cell.layer addSublayer:layerShadow];
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
-    if(indexPath.row==0||indexPath.row==2){
+    if(indexPath.row==0||indexPath.row==1||indexPath.row == 2){
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     }else{
         cell.accessoryType=UITableViewCellAccessoryNone;
@@ -140,7 +143,7 @@
 //        [self gotoAppStorePageRaisal:@""];//app评价地址
 //        detailViewController=[[LYUserDetailInfoViewController alloc] init];
         detailViewController=[[LYUserDetailController alloc] init];
-    }else if (indexPath.row==1) {
+    }else if (indexPath.row==3) {
         [USER_DEFAULT removeObjectForKey:@"user_name"];
         [USER_DEFAULT removeObjectForKey:@"user_pass"];
         
@@ -152,10 +155,15 @@
         [[LYCoreDataUtil shareInstance] deleteLocalSQLLite];
         [MyUtil showMessage:@"清除成功！"];
         
-    }else if(indexPath.row==2){
+    }else if(indexPath.row==1){
         detailViewController=[[LYAccountManager alloc] init];
-    }else if(indexPath.row==3){
+    }else if(indexPath.row==4){
         detailViewController=[[AboutLieyu alloc] initWithNibName:@"AboutLieyu" bundle:nil];
+    }else if (indexPath.row == 2){
+        
+        detailViewController = [[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
+        detailViewController.title=@"申请专属经理";
+        
     }
 
     

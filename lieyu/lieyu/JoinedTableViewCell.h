@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol HDDetailJumpToFriendDetail <NSObject>
+- (void)HDDetailJumpToFriendDetail:(NSString *)friendId;
+- (void)gotoUserPage:(UIButton *)button;
+@end
 
 @interface JoinedTableViewCell : UITableViewCell
 @property (nonatomic, strong) UILabel *title_label;
 @property (nonatomic, strong) NSMutableArray *buttons_array;
-@property (nonatomic, strong) UIView *view;
+@property (nonatomic, strong) UIImageView *view;
+@property (nonatomic, strong) NSArray *pinkeModelList;
+
+@property (nonatomic, assign) id<HDDetailJumpToFriendDetail> delegate;
 
 - (void)configureJoinedNumber:(int)number andPeople:(NSArray *)pinkeList;
 - (void)configureMessage;

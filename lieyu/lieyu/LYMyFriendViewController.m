@@ -21,8 +21,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
-    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add5"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
-    [self.navigationItem setRightBarButtonItem:rightBtn];
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"add5"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(moreAct:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    self.navigationItem.rightBarButtonItem = item;
+    
+//    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add5"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
+//    [self.navigationItem setRightBarButtonItem:rightBtn];
 
     self.title=@"好友列表";
     _listContent = [NSMutableArray new];

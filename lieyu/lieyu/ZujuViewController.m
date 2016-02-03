@@ -12,6 +12,7 @@
 #import "ZSDetailModel.h"
 #import "ChoosePayController.h"
 #import "LYMyOrderManageViewController.h"
+#import "PinkerShareController.h"
 
 #import "TimeView.h"
 #import "WaysView.h"
@@ -245,11 +246,14 @@
                     [self.navigationController pushViewController:detailViewController animated:YES];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                 }else{
-                    LYMyOrderManageViewController *detailViewController  =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-                    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-                    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:nil action:nil];
-                    delegate.navigationController.navigationItem.backBarButtonItem=item;
-                    [delegate.navigationController pushViewController:detailViewController animated:YES];
+                    PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
+                    zujuVC.sn=result;
+                    [self.navigationController pushViewController:zujuVC animated:YES];
+//                    LYMyOrderManageViewController *detailViewController  =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//                    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+//                    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:nil action:nil];
+//                    delegate.navigationController.navigationItem.backBarButtonItem=item;
+//                    [delegate.navigationController pushViewController:detailViewController animated:YES];
                 }
             }
         }];
@@ -586,7 +590,7 @@
 }
 
 - (void)showImageInPreview:(UIImage *)image{
-    [self.navigationController.navigationBar setHidden:YES];
+//    [self.navigationController.navigationBar setHidden:YES];
     _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
     _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _subView.button.hidden = YES;
@@ -596,11 +600,12 @@
     [_subView viewConfigure];
     //    _subView.imageView.contentMode = UIViewContentModeScaleAspectFit;
     //    _subView.imageView.center = _subView.center;
-    [self.view addSubview:_subView];
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
+    [window addSubview:_subView];
 }
 
 - (void)previewHide{
-    [self.navigationController.navigationBar setHidden:NO];
+//    [self.navigationController.navigationBar setHidden:NO];
     [_subView removeFromSuperview];
 }
 
