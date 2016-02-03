@@ -104,7 +104,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenuCollectionViewCell"];
-        [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+        [collectView setContentInset:UIEdgeInsetsMake(93, 0, 49, 0)];
         collectView.dataSource = self;
         collectView.delegate = self;
         [_collectViewArray addObject:collectView];
@@ -161,11 +161,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
     if (_menuView.center.y < 45) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(93 - 40, 0, 49, 0)];
         }
     }else{
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(93, 0, 49, 0)];
         }
     }
 }
@@ -354,11 +354,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     if (_menuView.center.y < 45) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(93 - 40, 0, 49, 0)];
         }
     }else{
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(93, 0, 49, 0)];
         }
     }
 }
@@ -384,11 +384,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     if (_menuView.center.y < 45) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(93 - 40, 0, 49, 0)];
         }
     }else{
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(93, 0, 49, 0)];
         }
     }
 }
@@ -696,25 +696,33 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row >= 2 && indexPath.row <= 5){
+    /*if(indexPath.row >= 2 && indexPath.row <= 5){
         return CGSizeMake((SCREEN_WIDTH - 9)/2.f, (SCREEN_WIDTH - 9)/2.f * 9 / 16);
     }else if(indexPath.row == 0){
         return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 9 / 16);
     }else{
         return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
+    } */
+    
+    if(indexPath.row >= 2 && indexPath.row <= 5){
+        return CGSizeMake((SCREEN_WIDTH - 6)/2.f, (SCREEN_WIDTH - 6)/2.f * 9 / 16);
+    }else if(indexPath.row == 0){
+        return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 9 / 16);
+    }else{
+        return CGSizeMake(SCREEN_WIDTH, (SCREEN_WIDTH ) * 9 / 16);
     }
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 3;
+    return 0;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 3;
+    return 0;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(3, 3, 3, 3);
+    return UIEdgeInsetsMake(0,2,0,2);
 }
 
 
@@ -730,9 +738,23 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [dicTemp setObject:@"" forKey:@"mainHeading"];
             [bigArr addObject:dicTemp];
         }
-        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+        
+        UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16)];
+        shadowView.tag = 10086;
+        shadowView.layer.cornerRadius = 2;
+        shadowView.layer.cornerRadius = 2;
+        shadowView.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
+        shadowView.layer.shadowOffset = CGSizeMake(0, .5);
+        shadowView.layer.shadowRadius = 1;
+        shadowView.layer.shadowOpacity = 1;
+        [cell addSubview:shadowView];
+        
+        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+        cycleScrollView.layer.cornerRadius = 2;
+//        cycleScrollView.layer.masksToBounds = YES;
         cycleScrollView.layer.cornerRadius = 2;
         cycleScrollView.layer.masksToBounds = YES;
+        
         cycleScrollView.imageURLStringsGroup = self.bannerList;
         cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
         cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
@@ -769,6 +791,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 jiubaCell.jiuBaM = jiuBaM;
             }
         }
+
         return jiubaCell;
     }
     

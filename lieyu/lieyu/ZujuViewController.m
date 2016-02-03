@@ -312,6 +312,9 @@
     chooseTimeAlert = [[[NSBundle mainBundle]loadNibNamed:@"ChooseTime" owner:nil options:nil]firstObject];
     chooseTimeAlert.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200) ;
     chooseTimeAlert.tag = 11;
+    if (oldDate == 0) {
+        [chooseTimeAlert configure];
+    }
     [self initAlertView:chooseTimeAlert];
 }
 

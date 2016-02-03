@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_price;
 @property (weak, nonatomic) IBOutlet UILabel *label_fanli;
 @property (weak, nonatomic) IBOutlet UILabel *label_collect;
+@property (weak, nonatomic) IBOutlet UIView *shadowView;
 
 @property (weak, nonatomic) IBOutlet UILabel *label_distance;
 @property (weak, nonatomic) IBOutlet UILabel *label_zang;

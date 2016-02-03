@@ -12,6 +12,14 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.imgView_bg.layer.cornerRadius = 2;
+    self.imgView_bg.layer.masksToBounds = YES;
+    
+    self.shadowView.layer.cornerRadius = 2;
+    self.shadowView.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
+    self.shadowView.layer.shadowOffset = CGSizeMake(0, .5);
+    self.shadowView.layer.shadowRadius = 1;
+    self.shadowView.layer.shadowOpacity = 1;
 }
 
 @end

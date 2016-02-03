@@ -99,6 +99,9 @@
     chooseTimeAlert.tag = 11;
     alertView.contentView = chooseTimeAlert;
     chooseTimeAlert.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200) ;
+    if (oldDate == 0) {
+        [chooseTimeAlert configure];
+    }
     [alertView show];
 }
 
