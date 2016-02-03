@@ -38,7 +38,7 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQW-Pi-kMR">
                             <rect key="frame" x="86" y="82" width="27" height="15"/>
-                            <color key="backgroundColor" red="0.69019607843137254" green="0.5607843137254902" blue="0.7803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="1" alpha="0.2966594827586207" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="27" id="XMO-OG-6A0"/>
                                 <constraint firstAttribute="height" constant="15" id="qHd-S7-Rz8"/>
@@ -67,7 +67,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-cg-HPc">
                             <rect key="frame" x="118" y="82" width="30" height="15"/>
-                            <color key="backgroundColor" red="0.69019607839999997" green="0.56078431370000004" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="1" alpha="0.29665948279999999" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="jIe-oR-QEL"/>
                                 <constraint firstAttribute="width" constant="27" id="zUy-cQ-OTW"/>
@@ -90,7 +90,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE9-sV-g7T">
                             <rect key="frame" x="154" y="82" width="41" height="15"/>
-                            <color key="backgroundColor" red="0.69019607839999997" green="0.56078431370000004" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="1" alpha="0.29665948279999999" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="27" id="D01-CR-Th7"/>
                                 <constraint firstAttribute="height" constant="15" id="Rqv-s4-xav"/>

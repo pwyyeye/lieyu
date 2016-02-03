@@ -68,6 +68,7 @@
                 <outlet property="addBtn" destination="odG-nZ-35Q" id="4A0-Qi-NLX"/>
                 <outlet property="lessBtn" destination="ZXx-MX-0QQ" id="8SN-PV-34c"/>
                 <outlet property="numberField" destination="iXQ-h5-2Tg" id="0eM-Hs-OJc"/>
+                <outlet property="title" destination="PZM-w2-xcw" id="ZJ1-9W-PZB"/>
             </connections>
             <point key="canvasLocation" x="293" y="335"/>
         </view>

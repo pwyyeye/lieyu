@@ -67,5 +67,6 @@
 @property (nonatomic,copy) NSString *tax;
 @property (nonatomic,copy) NSString *userid;
 @property (nonatomic,copy) NSString *username;
+@property (nonatomic, assign) int pinkerCount;
 
 @end

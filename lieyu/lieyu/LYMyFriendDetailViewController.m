@@ -205,8 +205,17 @@
         [IQKeyboardManager sharedManager].enable = NO;
         [IQKeyboardManager sharedManager].isAdd = YES;
         // 把单聊视图控制器添加到导航栈。
-        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-        conversationVC.navigationItem.leftBarButtonItem = left;
+        
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 40, 40)];
+        [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+        [view addSubview:button];
+        [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+        conversationVC.navigationItem.leftBarButtonItem = item;
+//
+//        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+//        conversationVC.navigationItem.leftBarButtonItem = left;
         
         [self.navigationController pushViewController:conversationVC animated:YES];
     }

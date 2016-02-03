@@ -140,8 +140,6 @@
         [UIApplication sharedApplication].applicationIconBadgeNumber=0;
         item.badgeValue=nil;
     }
-    
-    
 }
 
 #pragma --mark IM消息接受

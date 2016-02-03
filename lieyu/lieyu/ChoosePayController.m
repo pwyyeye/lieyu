@@ -11,7 +11,7 @@
 #import "SingletonTenpay.h"
 #import "PayButton.h"
 #import "PinkerShareController.h"
-
+#import "HDDetailViewController.h"
 @interface ChoosePayController ()
 {
     UITableViewCell *_payCell;
@@ -111,6 +111,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+//-(void)BaseGoBack{
+//    for (UIViewController *controller in self.navigationController.viewControllers) {
+//        if([controller isKindOfClass:[HDDetailViewController class]]){
+//            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//            [self.navigationController pushViewController:detailViewController animated:YES];
+//        }
+//    }
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
+
 -(void)gotoBack{
     
 //    for (UIViewController *controller in self.navigationController.viewControllers) {
@@ -130,8 +140,13 @@
     //
     //    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
-
-    [self.navigationController popViewControllerAnimated:YES];
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if([controller isKindOfClass:[HDDetailViewController class]]){
+            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            [self.navigationController pushViewController:detailViewController animated:YES];
+            return;
+        }
+    }
 }
 
 #pragma mark - Table view data source

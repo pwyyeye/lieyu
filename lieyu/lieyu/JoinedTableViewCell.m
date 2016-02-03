@@ -9,6 +9,7 @@
 #import "JoinedTableViewCell.h"
 #import "YUPinkerListModel.h"
 #import "LYFriendsToUserMessageViewController.h"
+#import "UIImageView+WebCache.h"
 
 @implementation JoinedTableViewCell
 
@@ -43,8 +44,8 @@
     [self addSubview:view];
 }
 
-- (void)configureJoinedNumber:(int)number andPeople:(NSArray *)pinkeList{
-    _pinkeModelList = pinkeList;
+- (void)configureJoinedNumber:(int)number andPeople:(YUOrderInfo *)OrderInfo{
+    _pinkeModelList = OrderInfo.pinkerList;
     _view = [[UIImageView alloc]initWithFrame:CGRectMake(8, 0, SCREEN_WIDTH - 16, self.frame.size.height)];
     _view.image = [UIImage imageNamed:@"backViewWithCorner"];
     _view.layer.shadowColor = [[UIColor blackColor]CGColor];
@@ -57,18 +58,19 @@
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 8, 200, 16)];
     label.textColor = [UIColor blackColor];
     label.textAlignment = NSTextAlignmentLeft;
-    label.text = [NSString stringWithFormat:@"已参加( %lu/%d )",pinkeList.count,number];
+    label.text = [NSString stringWithFormat:@"已参加( %d/%d )",OrderInfo.pinkerCount,number];
     [_view addSubview:label];
     
     int x = 8;
     int y = 34;
-    for (int i = 0 ; i < pinkeList.count; i ++) {
-        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:((YUPinkerListModel *)[pinkeList objectAtIndex:i]).inmenberAvatar_img]]]];
-//        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"lieyuIcon"]];
+    for (int i = 0 ; i < _pinkeModelList.count; i ++) {
+//        UIImageView *image = [[UIImageView alloc]initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:((YUPinkerListModel *)[pinkeList objectAtIndex:i]).inmenberAvatar_img]]]];
+        UIImageView *image = [[UIImageView alloc]init];
+        [image sd_setImageWithURL:[NSURL URLWithString:((YUPinkerListModel *)[_pinkeModelList objectAtIndex:i]).inmenberAvatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         image.layer.cornerRadius = 20;
         image.clipsToBounds = YES;
         
-        YUPinkerListModel *model = [pinkeList objectAtIndex:i];
+        YUPinkerListModel *model = [_pinkeModelList objectAtIndex:i];
 //        model.quantity = @"2";
         if([model.quantity intValue] > 1){
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(x + 30,y + 0, 16, 16)];

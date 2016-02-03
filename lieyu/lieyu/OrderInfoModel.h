@@ -55,6 +55,7 @@
 @property(nonatomic,copy)NSString *rebateAmout;
 @property(nonatomic,copy)NSString *pinkerNeedPayAmount;
 @property(nonatomic,assign)int pinkerNum;
+@property(nonatomic,assign)int pinkerCount;
 /*
  
  "beforeOrAfter": "",

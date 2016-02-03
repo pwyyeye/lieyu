@@ -30,7 +30,7 @@
     YUPinkerinfo *pinkeModel;
     YUPinkerListModel *listModel;
     int store;
-    float allMoney;
+    double allMoney;
 }
 @property (nonatomic, strong) HeaderTableViewCell *headerCell;
 @property (nonatomic, strong) LYDinWeiTableViewCell *LYdwCell;
@@ -57,6 +57,10 @@
     [self configureStore];
     [self configurePinkeStatus];
     [self registerCell];
+    self.label_bottom.layer.shadowColor = [RGBA(0, 0, 0, 0.2) CGColor];
+    self.label_bottom.layer.shadowOffset = CGSizeMake(-1, 0);
+    self.label_bottom.layer.shadowOpacity = 0.5;
+    self.label_bottom.layer.shadowRadius = 1;
     self.title = @"活动详情";
 }
 
@@ -143,7 +147,7 @@
             }
         }
         _HDDetailCell.residue_label.text = [MyUtil residueTimeFromDate:orderInfo.reachtime];
-        _HDDetailCell.joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%lu/%d)",orderInfo.pinkerList.count,[orderInfo.allnum intValue]];
+        _HDDetailCell.joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%d/%d)",orderInfo.pinkerCount,[orderInfo.allnum intValue]];
         if ([_YUModel.allowSex isEqualToString:@"0"]) {
             _HDDetailCell.joinedpro_label.text = @"只邀请女生";
         }else if ([_YUModel.allowSex isEqualToString:@"1"]){
@@ -159,7 +163,7 @@
         return _HDDetailCell;
     }else if(indexPath.section == 3){
         _joinedCell = [tableView dequeueReusableCellWithIdentifier:@"JoinedTableViewCell" forIndexPath:indexPath];
-        [_joinedCell configureJoinedNumber:[orderInfo.allnum intValue]andPeople:orderInfo.pinkerList];
+        [_joinedCell configureJoinedNumber:[orderInfo.allnum intValue]andPeople:orderInfo];
         _joinedCell.delegate = self;
         _joinedCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _joinedCell;
@@ -232,78 +236,82 @@
     
     _chooseNumber.store = store;
     _chooseNumber.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20, 250);
+    
     alertView.contentView = _chooseNumber;
     [alertView show];
 }
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
-    allMoney = [orderInfo.pinkerNum intValue] * [pinkeModel.price floatValue];
-//    orderInfo.pinkerType
-//    0、请客 1、AA付款 2、自由付款 （发起人自由 其他AA）
-//    _YUModel.allowSex
-//    0、只有女生 1、只有男生 2、全部
-//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    _context = app.managedObjectContext;
-//    _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    app.userModel.gender   0表示女生
-    if ([_YUModel.allowSex isEqualToString:@"2"]) {
-        //全部都可以参加
-    }else if ([_YUModel.allowSex isEqualToString:@"0"]){
-        if (![app.userModel.gender isEqualToString:@"0"]) {
-            //不是女生
-            [MyUtil showCleanMessage:@"抱歉，该组局仅允许女生加入"];
-            return;
+    if(buttonIndex){
+        allMoney = [orderInfo.pinkerNum intValue] * [pinkeModel.price doubleValue];
+        //    orderInfo.pinkerType
+        //    0、请客 1、AA付款 2、自由付款 （发起人自由 其他AA）
+        //    _YUModel.allowSex
+        //    0、只有女生 1、只有男生 2、全部
+        //    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        //    _context = app.managedObjectContext;
+        //    _userid = [NSString stringWithFormat:@"%d",app.userModel.userid];
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        //    app.userModel.gender   0表示女生
+        if ([_YUModel.allowSex isEqualToString:@"2"]) {
+            //全部都可以参加
+        }else if ([_YUModel.allowSex isEqualToString:@"0"]){
+            if (![app.userModel.gender isEqualToString:@"0"]) {
+                //不是女生
+                [MyUtil showCleanMessage:@"抱歉，该组局仅允许女生加入"];
+                return;
+            }
+        }else if ([_YUModel.allowSex isEqualToString:@"1"]){
+            if (![app.userModel.gender isEqualToString:@"1"]) {
+                //不是男生
+                [MyUtil showCleanMessage:@"抱歉，该组局仅允许男生生加入"];
+                return;
+            }
         }
-    }else if ([_YUModel.allowSex isEqualToString:@"1"]){
-        if (![app.userModel.gender isEqualToString:@"1"]) {
-            //不是男生
-            [MyUtil showCleanMessage:@"抱歉，该组局仅允许男生生加入"];
-            return;
+        double payamout;
+        if ([orderInfo.pinkerType isEqualToString:@"0"]) {
+            //发起人请客
+            payamout = 0 ;
+        }else if([orderInfo.pinkerType isEqualToString:@"1"]){
+            //AA付款
+            if ([_chooseNumber.numberField.text intValue] == store) {
+                [self configureRestMoney];
+                payamout = allMoney;
+            }else{
+                payamout = allMoney / [orderInfo.allnum intValue];
+                payamout = payamout * [_chooseNumber.numberField.text intValue];
+            }
+        }else if ([orderInfo.pinkerType isEqualToString:@"2"]){
+            //发起人自由付款，其他人AA
+            if ([_chooseNumber.numberField.text intValue] == store) {
+                [self configureRestMoney];
+                payamout = allMoney;
+            }else{
+                payamout = allMoney / ([orderInfo.allnum intValue] - 1);
+                payamout = payamout * [_chooseNumber.numberField.text intValue];
+            }
         }
+//        NSString *string = [NSString stringWithFormat:@"%f",payamout];
+        NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.id],
+                              @"payamount":[NSString stringWithFormat:@"%.2f",payamout],
+                              @"allnum":_chooseNumber.numberField.text};
+        [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:dic complete:^(NSString *result) {
+            if(payamout == 0.0){
+                LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+                [self.navigationController pushViewController:detailVC animated:YES];
+            }else{
+                ChoosePayController *detailVC = [[ChoosePayController alloc]init];
+                detailVC.orderNo = result;
+                detailVC.payAmount = payamout;
+                detailVC.productName = pinkeModel.smname;
+                detailVC.productDescription = @"暂无";
+                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+                self.navigationItem.backBarButtonItem = left;
+                [self.navigationController pushViewController:detailVC animated:YES];
+            }
+        }];
     }
-    float payamout;
-    if ([orderInfo.pinkerType isEqualToString:@"0"]) {
-        //发起人请客
-        payamout = 0 ;
-    }else if([orderInfo.pinkerType isEqualToString:@"1"]){
-        //AA付款
-        if ([_chooseNumber.numberField.text intValue] == store) {
-            [self configureRestMoney];
-            payamout = allMoney;
-        }else{
-            payamout = allMoney / [orderInfo.allnum intValue];
-            payamout = payamout * [_chooseNumber.numberField.text intValue];
-        }
-    }else if ([orderInfo.pinkerType isEqualToString:@"2"]){
-        //发起人自由付款，其他人AA
-        if ([_chooseNumber.numberField.text intValue] == store) {
-            [self configureRestMoney];
-            payamout = allMoney;
-        }else{
-            payamout = allMoney / ([orderInfo.allnum intValue] - 1);
-            payamout = payamout * [_chooseNumber.numberField.text intValue];
-        }
-        
-    }
-    NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.id],
-                          @"payamount":[NSString stringWithFormat:@"%f",payamout],
-                          @"allnum":_chooseNumber.numberField.text};
-    [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:dic complete:^(NSString *result) {
-        if(payamout == 0.0){
-            LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-            [self.navigationController pushViewController:detailVC animated:YES];
-        }else{
-            ChoosePayController *detailVC = [[ChoosePayController alloc]init];
-            detailVC.orderNo = result;
-            detailVC.payAmount = payamout;
-            detailVC.productName = pinkeModel.smname;
-            detailVC.productDescription = @"暂无";
-            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-            self.navigationItem.backBarButtonItem = left;
-            [self.navigationController pushViewController:detailVC animated:YES];
-        }
-    }];
+    
 //    [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:@{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.pinkerinfo.id],@"payamount":pinKeModel.pinkerNeedPayAmount} complete:^(NSString *result) {
 //        if(result){
 //            //支付宝页面"data": "P130637201510181610220",
@@ -332,12 +340,25 @@
 
 #pragma mark - 计算还需要多少钱
 - (void)configureRestMoney{
-    float num = 0;
-    for (int i = 0 ; i < orderInfo.pinkerList.count; i ++) {
+//    double money = 0.00;
+//    for (int i = 0 ; i < orderInfo.pinkerList.count; i ++) {
+//        listModel = [orderInfo.pinkerList objectAtIndex:i];
+////        num = num + [listModel.price floatValue];;
+//        NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:listModel.price];
+//        NSLog(@"%f",[num doubleValue]);
+//        money = money + [num doubleValue];
+//    }
+//    allMoney = allMoney - money;
+    NSDecimalNumber *money = [NSDecimalNumber decimalNumberWithString:@"0"];
+    for (int i = 0 ; i < orderInfo.pinkerList.count ; i ++) {
         listModel = [orderInfo.pinkerList objectAtIndex:i];
-        num = num + [listModel.price floatValue];;
+        NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:listModel.price];
+        money = [money decimalNumberByAdding:num];
     }
-    allMoney = allMoney - num;
+    NSDecimalNumber *one = [NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f",allMoney]];
+    one = [one decimalNumberBySubtracting:money];
+    NSLog(@"%f",[one doubleValue]);
+    allMoney = [one doubleValue];
 }
 
 - (void)checkAddress{

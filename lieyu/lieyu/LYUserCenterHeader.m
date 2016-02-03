@@ -37,7 +37,7 @@
     [self.headView bringSubviewToFront:_btnSetting];
     [self.headView bringSubviewToFront:_xingzuo];
     
-    self.avatar_img.layer.borderColor=RGB(176,143,199).CGColor; //要设置的颜色
+    self.avatar_img.layer.borderColor=RGBA(255,255,255,0.3).CGColor; //要设置的颜色
     self.avatar_img.layer.borderWidth=2.5;
     [self.avatar_btn addTarget:self action:@selector(changeAvatar) forControlEvents:UIControlEventTouchUpInside];
 }
