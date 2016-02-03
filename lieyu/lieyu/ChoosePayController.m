@@ -110,12 +110,13 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//
 //-(void)BaseGoBack{
 //    for (UIViewController *controller in self.navigationController.viewControllers) {
 //        if([controller isKindOfClass:[HDDetailViewController class]]){
 //            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //            [self.navigationController pushViewController:detailViewController animated:YES];
+//            return;
 //        }
 //    }
 //    [self.navigationController popViewControllerAnimated:YES];
@@ -147,6 +148,7 @@
             return;
         }
     }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source

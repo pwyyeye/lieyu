@@ -35,6 +35,8 @@
     self.backView.layer.shadowOpacity = 0.1;
     self.backView.layer.shadowRadius = 1;
     self.hotImage.hidden = YES;
+    self.imageView_header.layer.borderWidth = 0.5;
+    self.imageView_header.layer.borderColor = [RGBA(204, 204, 204, 1)CGColor];
 }
 
 - (void)setModel:(RecommendPackageModel *)model{
