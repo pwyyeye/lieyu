@@ -88,7 +88,7 @@
         tableView.tag = i;
         tableView.dataSource = self;
         tableView.delegate = self;
-        [tableView setContentInset:UIEdgeInsetsMake(90, 0, 49,0)];
+        [tableView setContentInset:UIEdgeInsetsMake(94, 0, 49,0)];
         tableView.backgroundColor = RGBA(243, 243, 243, 1);
         //        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         //        [tableView registerNib:[UINib nibWithNibName:@"LYYUTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYUTableViewCell"];
@@ -110,14 +110,14 @@
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-    _menuView.layer.shadowOpacity = 0.3;
+    _menuView.layer.shadowOpacity = 0.1;
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
     CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
     CGFloat offSet = 26;
     _menuBtnArray = [[NSMutableArray alloc]initWithCapacity:2];
-    NSArray *btnTitleArray = @[@"热门",@"附近",@"时间",@"价格"];
+    NSArray *btnTitleArray = @[@"热门",@"时间",@"附近",@"价格"];
     for (int i = 0; i < 4; i ++) {
         HotMenuButton *btn = [[HotMenuButton alloc]init];
         if (i == 0) {
@@ -202,7 +202,7 @@
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:.8];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-        _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+        _menuDropView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
         [UIView commitAnimations];
         [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
         [UIView animateWithDuration:.5 animations:^{
@@ -216,17 +216,17 @@
         //        button.imageView.transform = CGAffineTransformMakeScale(1, 1);
         button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
     }];
-    _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
+    
+    _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
     NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
     [_menuDropView deployWithItemArrayWith:array withTitle:button.currentTitle];
     _menuDropView.delegate = self;
-    //    _menuDropView.isYu = YES;
     _menuDropView.alpha = 0;
     [self.view addSubview:_menuDropView];
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.4];
+    [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     _menuDropView.alpha = 1.0;
     _menuDropView.frame = CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
@@ -236,16 +236,16 @@
 #pragma mark LYHotBarMenuDropViewDelegate
 - (void)lyHotBarMenuButton:(UIButton *)menuBtn withIndex:(NSInteger)index{
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.4];
+    [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+    _menuDropView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     _menuDropView.alpha = 0.0;
     [UIView commitAnimations];
     
     [UIView animateWithDuration:.5 animations:^{
         _sectionBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     }];
-    [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
+    [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.3];
     [_sectionBtn setTitle:menuBtn.currentTitle forState:UIControlStateNormal];
     
     if (!_index) {
@@ -295,13 +295,13 @@
         case 0:
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageDistance];
-            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"distanceasc"};
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"rebatedesc"};
         }
             break;
         case 1:
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageTime];
-            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"priceasc"};
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"distanceasc"};
         }
             break;
     }

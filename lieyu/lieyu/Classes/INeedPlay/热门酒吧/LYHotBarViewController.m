@@ -254,7 +254,7 @@
         case 3:
         {
              hList.p = @(_currentPageFanli);
-            hList.sort = @"rebateasc";
+            hList.sort = @"rebatedesc";
         }
             break;
     }

@@ -15,9 +15,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="309"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yuShadow.png" translatesAutoresizingMaskIntoConstraints="NO" id="SzQ-rh-zIU">
-                        <rect key="frame" x="8" y="4" width="304" height="302"/>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eR7-PE-0B1">
                         <rect key="frame" x="8" y="4" width="304" height="301"/>
                         <subviews>
@@ -51,7 +48,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[我请客]" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGp-TK-6pD">
                                 <rect key="frame" x="247" y="8" width="49" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="49" id="KRC-fb-d8z"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="49" id="KRC-fb-d8z"/>
                                     <constraint firstAttribute="height" constant="21" id="pDf-G2-kxM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
@@ -104,12 +101,12 @@
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="nd0-ak-9VS"/>
                                         <exclude reference="7Lp-Ek-W1G"/>
-                                        <exclude reference="eCh-7f-oth"/>
-                                        <exclude reference="ncL-HL-7o8"/>
                                         <exclude reference="LQt-mK-WxL"/>
                                         <exclude reference="Mxa-h8-hIM"/>
+                                        <exclude reference="eCh-7f-oth"/>
+                                        <exclude reference="ncL-HL-7o8"/>
+                                        <exclude reference="nd0-ak-9VS"/>
                                     </mask>
                                 </variation>
                             </label>
@@ -256,11 +253,11 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="447-Ch-Nkm"/>
+                                        <exclude reference="KuD-QJ-kiC"/>
+                                        <exclude reference="La6-a0-n4L"/>
                                         <exclude reference="O1P-TD-fs6"/>
                                         <exclude reference="nrK-Qu-2ea"/>
                                         <exclude reference="tg8-47-wyt"/>
-                                        <exclude reference="KuD-QJ-kiC"/>
-                                        <exclude reference="La6-a0-n4L"/>
                                     </mask>
                                 </variation>
                             </label>
@@ -290,8 +287,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="FOl-RE-qYc"/>
                                         <exclude reference="4tX-Th-HQx"/>
+                                        <exclude reference="FOl-RE-qYc"/>
                                     </mask>
                                 </variation>
                             </button>
@@ -304,8 +301,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="xj8-lC-1cK"/>
                                         <exclude reference="gm5-YM-9r6"/>
+                                        <exclude reference="xj8-lC-1cK"/>
                                     </mask>
                                 </variation>
                             </button>
@@ -316,7 +313,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Nly-al-Nrp" firstAttribute="leading" secondItem="Vo3-iv-fC9" secondAttribute="leading" id="056-25-qd6"/>
                             <constraint firstItem="9b9-UY-Mzx" firstAttribute="leading" secondItem="Nly-al-Nrp" secondAttribute="leading" id="0MW-1f-tPf"/>
@@ -409,13 +406,9 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="SzQ-rh-zIU" firstAttribute="top" secondItem="SKR-CA-swy" secondAttribute="top" constant="4" id="4ch-bB-IUh"/>
-                <constraint firstItem="SzQ-rh-zIU" firstAttribute="leading" secondItem="SKR-CA-swy" secondAttribute="leading" constant="8" id="7HK-ok-kFS"/>
                 <constraint firstAttribute="trailing" secondItem="eR7-PE-0B1" secondAttribute="trailing" constant="8" id="AMu-5z-y5s"/>
-                <constraint firstAttribute="trailing" secondItem="SzQ-rh-zIU" secondAttribute="trailing" constant="8" id="Q3l-44-Zzn"/>
                 <constraint firstItem="eR7-PE-0B1" firstAttribute="leading" secondItem="SKR-CA-swy" secondAttribute="leading" constant="8" id="fGv-kK-6wG"/>
                 <constraint firstAttribute="bottom" secondItem="eR7-PE-0B1" secondAttribute="bottom" constant="4" id="pjq-KC-6tt"/>
-                <constraint firstAttribute="bottom" secondItem="SzQ-rh-zIU" secondAttribute="bottom" constant="3" id="rx8-M0-T5Q"/>
                 <constraint firstItem="eR7-PE-0B1" firstAttribute="top" secondItem="SKR-CA-swy" secondAttribute="top" constant="4" id="vhv-rS-c86"/>
             </constraints>
             <size key="customSize" width="462" height="519"/>
@@ -446,7 +439,6 @@
     </objects>
     <resources>
         <image name="hotImg.png" width="26" height="26"/>
-        <image name="yuShadow.png" width="363" height="267"/>
         <image name="人数yu.png" width="10" height="11"/>
         <image name="剩余.png" width="72" height="20"/>
         <image name="发起人.png" width="38" height="16"/>

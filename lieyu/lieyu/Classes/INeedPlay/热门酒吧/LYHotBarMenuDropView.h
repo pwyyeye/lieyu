@@ -23,4 +23,6 @@
 - (void)deployWithItemArrayWith:(NSArray *)itemArray;
 
 - (void)deployWithItemArrayWith:(NSArray *)itemArray withTitle:(NSString *)title;
+
+- (instancetype)initWithFrame:(CGRect)frame itemArray:(NSArray *)itemArray withTitle:(NSString *)title;
 @end
