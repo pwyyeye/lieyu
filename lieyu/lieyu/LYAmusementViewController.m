@@ -224,12 +224,13 @@
     _menuDropView.delegate = self;
     _menuDropView.alpha = 0;
     [self.view addSubview:_menuDropView];
+    [self.view bringSubviewToFront:_menuView];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     _menuDropView.alpha = 1.0;
-    _menuDropView.frame = CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+    _menuDropView.frame = CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     [UIView commitAnimations];
 }
 

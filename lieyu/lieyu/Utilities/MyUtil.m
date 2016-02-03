@@ -660,7 +660,10 @@
 //    NSTimeInterval nowTime = [[NSDate date] timeIntervalSince1970];
 //    NSTimeInterval differentTime = orderTime - nowTime;
     if (orderTime >= 60 * 60) {
-        return [NSString stringWithFormat:@"%.0fhour",orderTime/60/60];
+        if (orderTime >= 24 * 60 * 60) {
+            return @"24h";
+        }
+        return [NSString stringWithFormat:@"%.0fh",orderTime/60/60];
     }else if(orderTime >= 0 && orderTime <= 60 * 60){
         return [NSString stringWithFormat:@"%.0fmin",orderTime/60];
     }else{
