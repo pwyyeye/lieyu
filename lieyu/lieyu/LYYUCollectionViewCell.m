@@ -75,10 +75,10 @@
     
     _label_message.text = orderModel.shareContent;
     
-    if([orderModel.orderInfo.orderStatus isEqualToString:@"0"]){
-    _label_fanshi.text = @"[待拼成]";
-}else{
-    _label_fanshi.text = @"[已拼成]";
+    if([orderModel.orderInfo.ordertype isEqualToString:@"0"]){
+    _label_fanshi.text = @"[我请客]";
+}else if([orderModel.orderInfo.ordertype isEqualToString:@"1"]){
+    _label_fanshi.text = @"[AA付款]";
 }
 
     if (orderModel.orderInfo.tags.count) {

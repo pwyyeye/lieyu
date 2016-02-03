@@ -97,7 +97,7 @@
 
 #pragma mark - 跳转到个人动态界面
 - (void)pushUserMessageClick{
-    //    if([recentM.userId isEqualToString:_useridStr]) return;
+        if([_recentM.userId isEqualToString:_useridStr]) return;
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsUserMegVC.friendsId = _recentM.userId;
     [self.navigationController pushViewController:friendsUserMegVC animated:YES];
