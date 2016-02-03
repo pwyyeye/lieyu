@@ -222,6 +222,8 @@
     return height;
 }
 
+#pragma --mark 参与拼客
+
 - (IBAction)WannaJoin:(UIButton *)sender {
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
     alertView.delegate = self;
@@ -284,7 +286,7 @@
         }
         
     }
-    NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",pinkeModel.id],
+    NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.id],
                           @"payamount":[NSString stringWithFormat:@"%f",payamout],
                           @"allnum":_chooseNumber.numberField.text};
     [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:dic complete:^(NSString *result) {
