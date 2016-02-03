@@ -88,7 +88,7 @@
         tableView.tag = i;
         tableView.dataSource = self;
         tableView.delegate = self;
-        [tableView setContentInset:UIEdgeInsetsMake(90, 0, 49,0)];
+        [tableView setContentInset:UIEdgeInsetsMake(94, 0, 49,0)];
         tableView.backgroundColor = RGBA(243, 243, 243, 1);
         //        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         //        [tableView registerNib:[UINib nibWithNibName:@"LYYUTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYUTableViewCell"];
@@ -202,7 +202,7 @@
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:.8];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-        _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+        _menuDropView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
         [UIView commitAnimations];
         [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
         [UIView animateWithDuration:.5 animations:^{
@@ -216,17 +216,17 @@
         //        button.imageView.transform = CGAffineTransformMakeScale(1, 1);
         button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
     }];
-    _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
+    
+    _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
     NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
     [_menuDropView deployWithItemArrayWith:array withTitle:button.currentTitle];
     _menuDropView.delegate = self;
-    //    _menuDropView.isYu = YES;
     _menuDropView.alpha = 0;
     [self.view addSubview:_menuDropView];
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.4];
+    [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     _menuDropView.alpha = 1.0;
     _menuDropView.frame = CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
@@ -238,7 +238,7 @@
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+    _menuDropView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     _menuDropView.alpha = 0.0;
     [UIView commitAnimations];
     

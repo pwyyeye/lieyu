@@ -16,8 +16,13 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.layer.cornerRadius = 2;
-    self.layer.masksToBounds = YES;
+    self.view_cell.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
+    self.view_cell.layer.shadowOffset = CGSizeMake(0, 0.5);
+    self.view_cell.layer.shadowRadius = 1;
+    self.view_cell.layer.shadowOpacity = 1;
+    
+    self.view_cell.layer.cornerRadius = 2;
+//    self.view_cell.layer.masksToBounds = YES;
 
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
     _btn_headerImg.layer.masksToBounds = YES;
