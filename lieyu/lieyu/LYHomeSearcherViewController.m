@@ -45,6 +45,7 @@
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
     self.navigationItem.title = @"搜索";
+//    [_tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [self setupViewStyles];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];

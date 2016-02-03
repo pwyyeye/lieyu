@@ -22,6 +22,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "LYUserLocation.h"
 
+
 #define PAGESIZE 20
 
 @interface LYAmusementViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate,LYHotBarMenuDropViewDelegate>{
@@ -35,6 +36,7 @@
     NSInteger _index;
     LYHotBarMenuDropView *_menuDropView;
     UIButton *_sectionBtn;
+    NSString *_sectionTitle_distance,*_sectionTitle_time;//记录是否换过区
 }
 
 @end
@@ -86,7 +88,7 @@
         tableView.tag = i;
         tableView.dataSource = self;
         tableView.delegate = self;
-        [tableView setContentInset:UIEdgeInsetsMake(90, 0, 49,0)];
+        [tableView setContentInset:UIEdgeInsetsMake(94, 0, 49,0)];
         tableView.backgroundColor = RGBA(243, 243, 243, 1);
         //        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         //        [tableView registerNib:[UINib nibWithNibName:@"LYYUTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYUTableViewCell"];
@@ -108,14 +110,14 @@
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-    _menuView.layer.shadowOpacity = 0.3;
+    _menuView.layer.shadowOpacity = 0.1;
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
     CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
     CGFloat offSet = 26;
     _menuBtnArray = [[NSMutableArray alloc]initWithCapacity:2];
-    NSArray *btnTitleArray = @[@"热门",@"附近",@"时间",@"价格"];
+    NSArray *btnTitleArray = @[@"热门",@"时间",@"附近",@"价格"];
     for (int i = 0; i < 4; i ++) {
         HotMenuButton *btn = [[HotMenuButton alloc]init];
         if (i == 0) {
@@ -126,9 +128,10 @@
             btn.isMenuSelected = NO;
         }
         [btn setTitle:btnTitleArray[i] forState:UIControlStateNormal];
-        btn.tag = i;
+//        btn.tag = i;
         [btn addTarget:self action:@selector(btnMenuViewClick:) forControlEvents:UIControlEventTouchUpInside];
         if (i == 1 || i == 2)  {
+            btn.tag = i - 1;
             [_menuView addSubview:btn];
             [_menuBtnArray addObject:btn];
         }
@@ -144,9 +147,11 @@
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     
-    _sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 35, 80, 19)];
+    _sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 35, 88, 19)];
     [_sectionBtn addTarget:self action:@selector(sectionClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_sectionBtn setTitle:@"徐汇区" forState:UIControlStateNormal];
+    [_sectionBtn setTitle:@"所有地区" forState:UIControlStateNormal];
+    _sectionTitle_distance = _sectionBtn.currentTitle;
+    _sectionTitle_time = _sectionBtn.currentTitle;
     _sectionBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [_sectionBtn setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
     [_sectionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 0)];
@@ -182,9 +187,11 @@
         }
         ((HotMenuButton *)_menuBtnArray[_index]).isMenuSelected = YES;
         
-        if(!((NSArray *)_dataArray[_index]).count){
+        if(!((NSArray *)_dataArray[_index]).count || ![_sectionTitle_time isEqualToString:_sectionTitle_distance]){
             UICollectionView *tableview = _collectviewArray[_index];
             [tableview.mj_header beginRefreshing];
+            _sectionTitle_time = _sectionBtn.currentTitle;
+            _sectionTitle_distance = _sectionBtn.currentTitle;
         }
     }
 }
@@ -195,7 +202,7 @@
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:.8];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-        _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+        _menuDropView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
         [UIView commitAnimations];
         [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
         [UIView animateWithDuration:.5 animations:^{
@@ -209,40 +216,45 @@
         //        button.imageView.transform = CGAffineTransformMakeScale(1, 1);
         button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
     }];
-    _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
+    
+    _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
     NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
     [_menuDropView deployWithItemArrayWith:array withTitle:button.currentTitle];
     _menuDropView.delegate = self;
-    //    _menuDropView.isYu = YES;
     _menuDropView.alpha = 0;
     [self.view addSubview:_menuDropView];
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.4];
+    [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
     _menuDropView.alpha = 1.0;
     _menuDropView.frame = CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     [UIView commitAnimations];
-    
 }
 
 #pragma mark LYHotBarMenuDropViewDelegate
 - (void)lyHotBarMenuButton:(UIButton *)menuBtn withIndex:(NSInteger)index{
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.4];
+    [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+    _menuDropView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     _menuDropView.alpha = 0.0;
     [UIView commitAnimations];
     
     [UIView animateWithDuration:.5 animations:^{
-        
-        //    button.transform = CGAffineTransformMakeRotation(180);
         _sectionBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     }];
-    [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
+    [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.3];
     [_sectionBtn setTitle:menuBtn.currentTitle forState:UIControlStateNormal];
+    
+    if (!_index) {
+        _sectionTitle_distance = menuBtn.currentTitle;
+    }else{
+        _sectionTitle_time = menuBtn.currentTitle;
+    }
+    UICollectionView *collectView = _collectviewArray[_index];
+    [collectView.mj_header beginRefreshing];
 }
 
 - (void)removeMenuView{
@@ -257,9 +269,11 @@
     }
     button.isMenuSelected = YES;
     [_scrollView setContentOffset:CGPointMake(button.tag *SCREEN_WIDTH, 0) animated:YES];
-    if(!((NSArray *)_dataArray[button.tag]).count){
+    if(!((NSArray *)_dataArray[button.tag]).count || ![_sectionTitle_time isEqualToString:_sectionTitle_distance]){
         UICollectionView  *tableview = _collectviewArray[button.tag];
         [tableview.mj_header beginRefreshing];
+        _sectionTitle_distance = _sectionBtn.currentTitle;
+        _sectionTitle_time = _sectionBtn.currentTitle;
     }
     
 }
@@ -267,23 +281,31 @@
 
 - (void)getDataForHotWith:(NSInteger)tag{
     NSString *p = nil;
-    
+    NSDictionary *dic = nil;
+    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
+    NSString *longitude = [NSString stringWithFormat:@"%@",[[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue]];
+    NSString *latitude = [NSString stringWithFormat:@"%@",[[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue]];
+    NSString *address = nil;
+    if ([_sectionBtn.currentTitle isEqualToString:@"所有地区"]) {
+        address = @"";
+    }else{
+        address = _sectionBtn.currentTitle;
+    }
     switch (tag) {
         case 0:
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageDistance];
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"rebatedesc"};
         }
             break;
         case 1:
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageTime];
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"distanceasc"};
         }
             break;
     }
-    CLLocation * userLocation = [LYUserLocation instance].currentLocation;
-    NSString *longitude = [NSString stringWithFormat:@"%@",[[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.longitude).stringValue]];
-    NSString *latitude = [NSString stringWithFormat:@"%@",[[NSDecimalNumber alloc] initWithString:@(userLocation.coordinate.latitude).stringValue]];
-    NSDictionary *dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude};
+//    dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude};
     [LYYUHttpTool yuGetDataOrderShareWithParams:dic compelte:^(NSArray *dataArray) {
         if(tag >= 4) return ;
         NSMutableArray *array = _dataArray[tag];

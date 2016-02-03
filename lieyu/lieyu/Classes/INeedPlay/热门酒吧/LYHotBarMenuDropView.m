@@ -29,6 +29,36 @@
     }
 }
 
+- (instancetype)initWithFrame:(CGRect)frame itemArray:(NSArray *)itemArray withTitle:(NSString *)title{
+    self = [super initWithFrame:frame];
+    if (self) {
+        _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
+        for (int i = 0 ; i < itemArray.count; i ++) {
+            MenuButton *dropBtn = [[MenuButton alloc]init];
+            dropBtn.frame = CGRectMake(i%3 * ((frame.size.width - 50) / 3 + 18) + 7, i/3 * 50 + 20, (frame.size.width - 50) / 3, 34);
+            dropBtn.layer.borderWidth = 0.5;
+            dropBtn.layer.borderColor = RGBA(151, 151, 151, 1).CGColor;
+            dropBtn.layer.cornerRadius = 2;
+            dropBtn.layer.masksToBounds = YES;
+            dropBtn.tag = i;
+            [dropBtn setTitle:itemArray[i] forState:UIControlStateNormal];
+            [dropBtn addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
+            dropBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+            [dropBtn setTitleColor:RGBA(26, 26, 26, 1) forState:UIControlStateNormal];
+            [self addSubview:dropBtn];
+            [_btnArray addObject:dropBtn];
+        }
+        
+        for (MenuButton *dropBtn in _btnArray) {
+            if ([dropBtn.currentTitle isEqualToString:title]) {
+                dropBtn.selected = YES;
+            }
+        }
+
+    }
+    return self;
+}
+
 - (void)deployWithItemArrayWith:(NSArray *)itemArray withTitle:(NSString *)title{
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
     for (int i = 0 ; i < itemArray.count; i ++) {
@@ -54,8 +84,6 @@
     }
 }
 
-/*
- */
 - (void)menuClick:(MenuButton *)button{
     for (MenuButton *btn in _btnArray) {
         btn.selected = NO;

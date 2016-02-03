@@ -226,6 +226,8 @@
     return height;
 }
 
+#pragma --mark 参与拼客
+
 - (IBAction)WannaJoin:(UIButton *)sender {
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
     alertView.delegate = self;

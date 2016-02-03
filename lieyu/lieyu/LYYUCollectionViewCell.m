@@ -16,8 +16,13 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.layer.cornerRadius = 2;
-    self.layer.masksToBounds = YES;
+    self.view_cell.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
+    self.view_cell.layer.shadowOffset = CGSizeMake(0, 0.5);
+    self.view_cell.layer.shadowRadius = 1;
+    self.view_cell.layer.shadowOpacity = 1;
+    
+    self.view_cell.layer.cornerRadius = 2;
+//    self.view_cell.layer.masksToBounds = YES;
 
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
     _btn_headerImg.layer.masksToBounds = YES;
@@ -59,7 +64,7 @@
 
 - (void)setOrderModel:(YUOrderShareModel *)orderModel{
     _orderModel = orderModel;
-    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:orderModel.orderInfo.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"lieyuIcon"]];
+    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:orderModel.orderInfo.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     //    _label_age.text = [NSString stringWithFormat:@"%d",orderModel.orderInfo.]
     _label_name.text = orderModel.orderInfo.username;
     
@@ -71,14 +76,22 @@
         _label_constell.hidden = YES;
     }
     
-    _label_distance.text = orderModel.orderInfo.barinfo.distance;
+//    _label_distance.text = orderModel.orderInfo.barinfo.distance;
+    if(![MyUtil isEmptyString:orderModel.orderInfo.barinfo.distance] && orderModel.orderInfo.barinfo.distance.floatValue != 0.f){
+        CGFloat distanceStr = orderModel.orderInfo.barinfo.distance.floatValue * 1000;
+        if (distanceStr > 1000) {
+            [_label_distance setText:[NSString stringWithFormat:@"%.0fKM",distanceStr/1000]];
+        }else{
+            [_label_distance setText:[NSString stringWithFormat:@"%.0fM",distanceStr]];
+        }
+    }
     
     _label_message.text = orderModel.shareContent;
     
-    if([orderModel.orderInfo.orderStatus isEqualToString:@"0"]){
-    _label_fanshi.text = @"[待拼成]";
-}else{
-    _label_fanshi.text = @"[已拼成]";
+    if([orderModel.orderInfo.ordertype isEqualToString:@"0"]){
+    _label_fanshi.text = @"[我请客]";
+}else if([orderModel.orderInfo.ordertype isEqualToString:@"1"]){
+    _label_fanshi.text = @"[AA付款]";
 }
 
     if (orderModel.orderInfo.tags.count) {
@@ -114,7 +127,7 @@
     _label_peoplePercent.text = [NSString stringWithFormat:@"已参与(%u / %@)",orderModel.orderInfo.pinkerList.count,orderModel.orderInfo.allnum];
     
     if (![MyUtil isEmptyString:orderModel.orderInfo.barinfo.address]) {
-        _label_address.text = orderModel.orderInfo.barinfo.address;
+        _label_address.text = orderModel.orderInfo.barinfo.addressabb;
     }
     
     _label_time.text = [MyUtil residueTimeFromDate:orderModel.orderInfo.reachtime];
@@ -147,7 +160,7 @@
         }
         YUPinkerListModel *pinkerInfo = orderModel.orderInfo.pinkerList[i];
         UIButton *btn = _btnArray[i];
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal];
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
         btn.hidden = NO;
     }
     
