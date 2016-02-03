@@ -22,6 +22,7 @@
 #import "LPAlertView.h"
 #import "ChooseTime.h"
 #import "ChoosePayController.h"
+#import "MTA.h"
 
 #define WOYAODINGWEIPAGE_MTA @"WOYAODINGWEIPAGE"
 
@@ -398,19 +399,6 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSDictionary *dic=weekDateArr[mMenuHriZontal.selectIndex];
-//    NSString *dataChoose=[dic objectForKey:@"date"];
-//    RecommendPackageModel *model=jiubaModel.recommend_package[indexPath.section];
-//    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
-//    DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
-//    taoCanXQViewController.title=@"套餐详情";
-//    taoCanXQViewController.smid=model.smid.intValue;
-//    taoCanXQViewController.dateStr=dataChoose;
-//    taoCanXQViewController.weekStr = [dic objectForKey:@"week"];
-//    taoCanXQViewController.jiubaModel = jiubaModel;
-//    [self.navigationController pushViewController:taoCanXQViewController animated:YES]; 
-//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:WOYAODINGWEIPAGE_MTA titleName:model.title]];
-//    [MTA trackCustomKeyValueEvent:@"TCList" props:nil];
     if(indexPath != oldIndex){
         //旧的cell去除描边
         LYDinWeiTableViewCell *old_Cell = [tableView cellForRowAtIndexPath:oldIndex];
@@ -430,6 +418,12 @@
         self.payBtn.backgroundColor = RGB(186, 40, 207);
         self.NumberLbl.text = @"共1点单";
         self.moneyLbl.text = [NSString stringWithFormat:@"总需支付：%@",cell.label_price_now.text];
+        
+        NSDictionary *dict = @{@"actionName":@"选择套餐",
+                               @"pageName":@"预定",
+                               @"titleName":((RecommendPackageModel *)[jiubaModel.recommend_package objectAtIndex:indexPath.section]).title};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+        
     }
 }
 
@@ -467,6 +461,11 @@
         [detailView Configure];
     }];
 
+    NSDictionary *dict = @{@"actionName":@"查看套餐详情",
+                           @"pageName":@"预定",
+                           @"titleName":model.title};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     [self.view addSubview:bigView];
     [bigView addSubview:detailView];
 }
@@ -486,6 +485,10 @@
         oldCell.button_less.enabled = YES;
         [oldCell.button_less setImage:[UIImage imageNamed:@"purper_less_circle"] forState:UIControlStateNormal];
 //    }
+    NSDictionary *dict = @{@"actionName":@"确定",
+                           @"pageName":@"预定",
+                           @"titleName":@"增加套餐数量"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
 - (void)lessGoodNum{
@@ -500,13 +503,24 @@
         oldCell.button_less.enabled = NO;
         [oldCell.button_less setImage:[UIImage imageNamed:@"gray_less_circle"] forState:UIControlStateNormal];
     }
+    
+    NSDictionary *dict = @{@"actionName":@"确定",
+                           @"pageName":@"预定",
+                           @"titleName":@"减少套餐数量"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
+
+#pragma mark - MTA字典
 
 #pragma mark MenuHrizontalDelegate
 -(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
     oldDate = (int)aIndex;
-     NSDictionary *dic=weekDateArr[aIndex];
+    NSDictionary *dic=weekDateArr[aIndex];
     datePar=[dic objectForKey:@"month"];
+    
+    NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"我要订位",@"titleName":@"选择预定日期",@"value":[dic objectForKey:@"week"]};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
     [self initThisCell];
     [self initBottomLabelAndButton];
     [self initManagerView];
@@ -527,6 +541,11 @@
 //    _subView.imageView.center = _subView.center;
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     [window addSubview:_subView];
+    NSDictionary *dict = @{@"actionName":@"确定",
+                           @"pageName":@"预定",
+                           @"titleName":@"预览套餐图片"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+    
 }
 
 - (void)previewHide{

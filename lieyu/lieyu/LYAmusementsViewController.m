@@ -175,7 +175,8 @@
             btn.isMenuSelected = NO;
         }
         ((HotMenuButton *)_menuBtnArray[_index]).isMenuSelected = YES;
-        
+        NSDictionary *dict = @{@"actionName":@"滑动",@"pageName":@"娱",@"titleName":@"选区"};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
         if(!((NSArray *)_dataArray[_index]).count){
             UICollectionView *tableview = _collectviewArray[_index];
             [tableview.mj_header beginRefreshing];

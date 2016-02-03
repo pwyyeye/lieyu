@@ -196,6 +196,8 @@
         UICollectionView *collectView = _collectArray[sender.tag];
         [collectView.mj_header beginRefreshing];
     }
+    NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"娱",@"titleName":@"主条件",@"value":sender.titleLabel.text};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

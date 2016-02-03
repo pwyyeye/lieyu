@@ -35,7 +35,7 @@
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
-#define BEERBARDETAIL_MTA @"BEERBARDETAILPAGE"
+#define BEERBARDETAIL_MTA @"酒吧详情"
 
 @interface BeerBarDetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 {

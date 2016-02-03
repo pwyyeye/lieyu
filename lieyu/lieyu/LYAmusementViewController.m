@@ -301,7 +301,7 @@
         case 0:
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageDistance];
-            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"rebatedesc"};
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"reachtimedesc"};
         }
             break;
         case 1:
