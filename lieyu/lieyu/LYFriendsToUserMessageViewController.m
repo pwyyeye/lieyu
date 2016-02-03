@@ -223,7 +223,6 @@
     _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 339 - 54);
     [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:_userInfo.avatar_img] forState:UIControlStateNormal];
     _headerView.label_name.text = _userInfo.usernick;
-    _headerView.ImageView_bg.backgroundColor = [UIColor redColor];
     _headerView.btn_newMessage.hidden = YES;
     [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpeg"]];
     _headerView.ImageView_bg.clipsToBounds = YES;

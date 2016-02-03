@@ -8,6 +8,7 @@
 
 #import "ManagersView.h"
 #import "ZSDetailModel.h"
+#import "MTA.h"
 @implementation ManagersView
 
 - (void)configure:(NSArray *)managerList{
@@ -62,6 +63,10 @@
         }
     }
     if ([_delegate respondsToSelector:@selector(chooseManagerDone:)]) {
+        NSDictionary *dict = @{@"actionName":@"选择",
+                               @"pageName":@"预定",
+                               @"titleName":((ZSDetailModel *)[_managersArray objectAtIndex:sender.tag]).usernick};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
         [_delegate chooseManagerDone:sender];
     }
 }

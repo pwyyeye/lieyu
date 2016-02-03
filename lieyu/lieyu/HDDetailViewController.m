@@ -23,6 +23,7 @@
 #import "LYFriendsToUserMessageViewController.h"
 #import "DetailView.h"
 #import "preview.h"
+#import "UMSocial.h"
 
 @interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate,showImageInPreview>
 {
@@ -55,6 +56,7 @@
 //    self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH - 52);
     [self configureStore];
+    [self configureRightItem];
     [self configurePinkeStatus];
     [self registerCell];
     self.label_bottom.layer.shadowColor = [RGBA(0, 0, 0, 0.2) CGColor];
@@ -79,6 +81,37 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=NO;
+}
+
+- (void)configureRightItem{
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(shareZuju) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)shareZuju{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
+    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n %@inPinkerWebAction.do?id=%@",app.userModel.usernick,orderInfo.barinfo.barname,LY_SERVER,orderInfo.id];
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%@",LY_SERVER,orderInfo.id];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%@",LY_SERVER,orderInfo.id];
+    @try {
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:UmengAppkey
+                                          shareText:ss
+                                         shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfo.pinkerinfo.linkUrl]]]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
+                                           delegate:nil];
+    }
+    @catch (NSException *exception) {
+        [MyUtil showCleanMessage:@"无法分享！"];
+    }
+    @finally {
+        
+    }
 }
 
 //计算剩余参与人数

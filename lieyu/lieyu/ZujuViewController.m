@@ -175,6 +175,8 @@
     [self initBottomLabelAndButton];
     [self initManagerView];
     [self getdata];
+    NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"组局",@"titleName":@"选择组局日期",@"value":[dic objectForKey:@"week"]};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
 - (void)initThisCell{
@@ -245,10 +247,14 @@
                     self.navigationItem.backBarButtonItem = left;
                     [self.navigationController pushViewController:detailViewController animated:YES];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+                    
+                    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"组局" titleName:@"马上支付"]];
+                    
                 }else{
                     PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
                     zujuVC.sn=result;
                     [self.navigationController pushViewController:zujuVC animated:YES];
+                    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"组局" titleName:@"分享组局"]];
 //                    LYMyOrderManageViewController *detailViewController  =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //                    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
 //                    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -511,6 +517,9 @@
         self.payBtn.backgroundColor = RGB(186, 40, 207);
         self.numberLbl.text = @"共1点单";
         [self computerMoney];
+        
+        NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"组局",@"titleName":@"选择拼客套餐",@"value":[NSNumber numberWithInt:((PinKeModel *)[dataList objectAtIndex:indexPath.section]).smid]};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     }
 }
 
@@ -543,7 +552,8 @@
     oldCell.button_less.enabled = YES;
     [oldCell.button_less setImage:[UIImage imageNamed:@"purper_less_circle"] forState:UIControlStateNormal];
     //    }
-
+    NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"组局",@"titleName":@"增加拼客数量"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
 - (void)lessGoodNum{
@@ -559,6 +569,8 @@
         oldCell.button_less.enabled = NO;
         [oldCell.button_less setImage:[UIImage imageNamed:@"gray_less_circle"] forState:UIControlStateNormal];
     }
+    NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"组局",@"titleName":@"减少拼客数量"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
 - (void)clickThisImageView:(UIButton *)sender{
@@ -582,7 +594,8 @@
 //        PinKeModel *pkModel = result;
 ////        detailView fillPinkeModel:<#(PinKeModel *)#>
 //    }];
-    
+    NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"组局",@"titleName":@"查看拼客详情",@"value":model.title};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     [self.view addSubview:bigView];
     [bigView addSubview:detailView];
 }
@@ -605,6 +618,8 @@
     //    _subView.imageView.center = _subView.center;
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     [window addSubview:_subView];
+    NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"组局",@"titleName":@"预览拼客图片"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
 - (void)previewHide{

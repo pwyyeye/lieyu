@@ -45,6 +45,7 @@
 }
 
 -(void)BaseGoBack{
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:@"分享组局" titleName:@"取消分享"]];
     for (UIViewController *viewController in self.navigationController.viewControllers) {
         if([viewController isKindOfClass:[LYMyOrderManageViewController class]]){
             [self.navigationController popToViewController:viewController animated:YES];
@@ -154,6 +155,7 @@
 
 #pragma mark - 发送按钮
 - (void)sureAct:(UIButton *)sender {
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:@"分享组局" titleName:@"分享"]];
     if ([MyUtil isEmptyString:_shareContent.text]) {
         [MyUtil showCleanMessage:@"分享内容不能为空！"];
         return;
@@ -173,7 +175,7 @@
     [[LYUserHttpTool shareInstance] sharePinkerOrder:@{@"orderid":[NSString stringWithFormat:@"%ld",(long) _orderModel.id],@"shareType":[NSString stringWithFormat:@"%ld",(long)_shareType],@"allowSex":[NSString stringWithFormat:@"%ld",(long)_allowSex],@"shareContent":[MyUtil trim:_shareContent.text],@"shareUsers":(_shareUsers==nil?@"":_shareUsers)} complete:^(BOOL result) {
         if (result) {
             [MyUtil showCleanMessage:@"发送成功！"];
-            
+            [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:@"分享组局" titleName:@"分享成功"]];
 //            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //            
 //            [self.navigationController pushViewController:detailViewController animated:YES];
