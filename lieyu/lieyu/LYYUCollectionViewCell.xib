@@ -51,7 +51,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[我请客]" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGp-TK-6pD">
                                 <rect key="frame" x="247" y="8" width="49" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="49" id="KRC-fb-d8z"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="49" id="KRC-fb-d8z"/>
                                     <constraint firstAttribute="height" constant="21" id="pDf-G2-kxM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
@@ -104,12 +104,12 @@
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="nd0-ak-9VS"/>
                                         <exclude reference="7Lp-Ek-W1G"/>
-                                        <exclude reference="eCh-7f-oth"/>
-                                        <exclude reference="ncL-HL-7o8"/>
                                         <exclude reference="LQt-mK-WxL"/>
                                         <exclude reference="Mxa-h8-hIM"/>
+                                        <exclude reference="eCh-7f-oth"/>
+                                        <exclude reference="ncL-HL-7o8"/>
+                                        <exclude reference="nd0-ak-9VS"/>
                                     </mask>
                                 </variation>
                             </label>
@@ -256,11 +256,11 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="447-Ch-Nkm"/>
+                                        <exclude reference="KuD-QJ-kiC"/>
+                                        <exclude reference="La6-a0-n4L"/>
                                         <exclude reference="O1P-TD-fs6"/>
                                         <exclude reference="nrK-Qu-2ea"/>
                                         <exclude reference="tg8-47-wyt"/>
-                                        <exclude reference="KuD-QJ-kiC"/>
-                                        <exclude reference="La6-a0-n4L"/>
                                     </mask>
                                 </variation>
                             </label>
@@ -290,8 +290,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="FOl-RE-qYc"/>
                                         <exclude reference="4tX-Th-HQx"/>
+                                        <exclude reference="FOl-RE-qYc"/>
                                     </mask>
                                 </variation>
                             </button>
@@ -304,8 +304,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="xj8-lC-1cK"/>
                                         <exclude reference="gm5-YM-9r6"/>
+                                        <exclude reference="xj8-lC-1cK"/>
                                     </mask>
                                 </variation>
                             </button>

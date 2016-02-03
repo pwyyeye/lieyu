@@ -59,7 +59,7 @@
 
 - (void)setOrderModel:(YUOrderShareModel *)orderModel{
     _orderModel = orderModel;
-    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:orderModel.orderInfo.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"lieyuIcon"]];
+    [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:orderModel.orderInfo.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     //    _label_age.text = [NSString stringWithFormat:@"%d",orderModel.orderInfo.]
     _label_name.text = orderModel.orderInfo.username;
     
@@ -71,7 +71,15 @@
         _label_constell.hidden = YES;
     }
     
-    _label_distance.text = orderModel.orderInfo.barinfo.distance;
+//    _label_distance.text = orderModel.orderInfo.barinfo.distance;
+    if(![MyUtil isEmptyString:orderModel.orderInfo.barinfo.distance] && orderModel.orderInfo.barinfo.distance.floatValue != 0.f){
+        CGFloat distanceStr = orderModel.orderInfo.barinfo.distance.floatValue * 1000;
+        if (distanceStr > 1000) {
+            [_label_distance setText:[NSString stringWithFormat:@"%.0fKM",distanceStr/1000]];
+        }else{
+            [_label_distance setText:[NSString stringWithFormat:@"%.0fM",distanceStr]];
+        }
+    }
     
     _label_message.text = orderModel.shareContent;
     
@@ -147,7 +155,7 @@
         }
         YUPinkerListModel *pinkerInfo = orderModel.orderInfo.pinkerList[i];
         UIButton *btn = _btnArray[i];
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal];
+        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
         btn.hidden = NO;
     }
     
