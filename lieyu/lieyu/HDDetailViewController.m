@@ -292,6 +292,17 @@
             }
         }
 //        NSString *string = [NSString stringWithFormat:@"%f",payamout];
+//        NSRange range = [string rangeOfString:@"."];
+//        int location = (int)range.location;
+//        location = location + 3;
+//        NSString *string2 = [string substringToIndex:location];
+        
+        
+//        NSArray *array = [string componentsSeparatedByString:@"."];
+//        NSMutableString *string1 = array[0] ;
+//        [string1 stringByAppendingString:@"."];
+//        [string1 stringByAppendingString:[array[1] substringToIndex:2]];
+        
         NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.id],
                               @"payamount":[NSString stringWithFormat:@"%.2f",payamout],
                               @"allnum":_chooseNumber.numberField.text};
