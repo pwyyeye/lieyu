@@ -149,6 +149,7 @@
                 <outlet property="origanator_image" destination="Be1-4P-iaf" id="M1J-KA-mgu"/>
                 <outlet property="title_label" destination="YcL-rt-e7B" id="Pxc-qZ-L9j"/>
                 <outlet property="viewNumber_label" destination="a6o-eI-Oqt" id="yYu-YZ-7uL"/>
+                <outlet property="view_image" destination="dwu-z0-ROq" id="SZU-lj-KjD"/>
             </connections>
             <point key="canvasLocation" x="366" y="430"/>
         </tableViewCell>
@@ -157,6 +158,6 @@
         <image name="backViewWithCorner.png" width="359" height="104"/>
         <image name="hot_triangle.png" width="26" height="26"/>
         <image name="originator.png" width="37" height="16"/>
-        <image name="viewNumber.png" width="16" height="16"/>
+        <image name="viewNumber.png" width="20" height="20"/>
     </resources>
 </document>

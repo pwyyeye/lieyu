@@ -19,6 +19,7 @@
     self.backView.layer.shadowOffset = CGSizeMake(0, 1);
     self.backView.layer.shadowOpacity = 0.1;
     self.backView.layer.shadowRadius = 1;
+    self.view_image.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
