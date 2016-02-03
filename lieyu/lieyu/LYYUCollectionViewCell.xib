@@ -76,6 +76,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FED-9m-O0c"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="剩余.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZoQ-ZB-kHR">
                                 <rect key="frame" x="224" y="40" width="72" height="20"/>
@@ -85,7 +90,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oy-52-woV">
-                                <rect key="frame" x="227" y="40" width="31" height="20"/>
+                                <rect key="frame" x="229" y="40" width="31" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="44Q-D0-Pnq"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="21" id="7Lp-Ek-W1G"/>
@@ -229,14 +234,14 @@
                                     <constraint firstAttribute="width" constant="37" id="ByE-4A-QYI"/>
                                     <constraint firstAttribute="height" constant="16" id="bMU-WE-5Rf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="发起人" backgroundImage="发起人.png">
                                     <color key="titleColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24hour" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkN-2g-Ani">
-                                <rect key="frame" x="258" y="40" width="36" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已过期" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkN-2g-Ani">
+                                <rect key="frame" x="260" y="40" width="36" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="447-Ch-Nkm"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="21" id="KuD-QJ-kiC"/>
@@ -385,7 +390,7 @@
                             <constraint firstItem="tGK-W2-cxv" firstAttribute="leading" secondItem="dny-wF-wGE" secondAttribute="trailing" constant="20" id="ybT-OG-9ac"/>
                             <constraint firstItem="rgH-Gx-EOF" firstAttribute="leading" secondItem="v4I-NO-urA" secondAttribute="trailing" constant="5" id="yhe-id-fJ1"/>
                             <constraint firstItem="eII-eE-PDO" firstAttribute="leading" secondItem="Rw2-pW-fdj" secondAttribute="trailing" constant="12" id="zEf-R7-3rb"/>
-                            <constraint firstAttribute="trailing" secondItem="EkN-2g-Ani" secondAttribute="trailing" constant="10" id="zHt-m4-Yby"/>
+                            <constraint firstAttribute="trailing" secondItem="EkN-2g-Ani" secondAttribute="trailing" constant="8" id="zHt-m4-Yby"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -419,6 +424,7 @@
                 <outlet property="label_barName" destination="v4I-NO-urA" id="P8v-mp-hwX"/>
                 <outlet property="label_concreteTime" destination="9Pu-St-M4p" id="8hR-hr-v97"/>
                 <outlet property="label_constell" destination="Vo3-iv-fC9" id="ZB8-XB-DK8"/>
+                <outlet property="label_constell_consWidth" destination="vi2-sp-y7B" id="G1w-xb-kwx"/>
                 <outlet property="label_distance" destination="rgH-Gx-EOF" id="F4b-gX-eUH"/>
                 <outlet property="label_fanshi" destination="sGp-TK-6pD" id="VBj-0D-D6F"/>
                 <outlet property="label_message" destination="Nly-al-Nrp" id="nR6-vL-SaF"/>
@@ -427,6 +433,7 @@
                 <outlet property="label_peoplePercent" destination="53P-uo-7xT" id="Et6-8c-2Av"/>
                 <outlet property="label_time" destination="EkN-2g-Ani" id="lsZ-lE-3b2"/>
                 <outlet property="label_work" destination="b2f-P3-AnM" id="iPS-6f-Hyl"/>
+                <outlet property="label_work_consWidth" destination="NKQ-bG-3uA" id="Bai-XI-pyL"/>
                 <outlet property="view_cell" destination="eR7-PE-0B1" id="EL8-Zp-fTi"/>
                 <outletCollection property="btnArray" destination="R4n-Gt-h6A" id="3eJ-M9-wn1"/>
                 <outletCollection property="btnArray" destination="orb-CI-4eM" id="bTx-Qw-QZ9"/>
@@ -439,10 +446,10 @@
     </objects>
     <resources>
         <image name="hotImg.png" width="26" height="26"/>
-        <image name="人数yu.png" width="10" height="11"/>
+        <image name="人数yu.png" width="16" height="16"/>
         <image name="剩余.png" width="72" height="20"/>
         <image name="发起人.png" width="38" height="16"/>
-        <image name="地址yu.png" width="14" height="12"/>
-        <image name="日历yu.png" width="13" height="14"/>
+        <image name="地址yu.png" width="17" height="16"/>
+        <image name="日历yu.png" width="17" height="16"/>
     </resources>
 </document>
