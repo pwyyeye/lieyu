@@ -122,7 +122,7 @@
     _label_peoplePercent.text = [NSString stringWithFormat:@"已参与(%u / %@)",orderModel.orderInfo.pinkerList.count,orderModel.orderInfo.allnum];
     
     if (![MyUtil isEmptyString:orderModel.orderInfo.barinfo.address]) {
-        _label_address.text = orderModel.orderInfo.barinfo.address;
+        _label_address.text = orderModel.orderInfo.barinfo.addressabb;
     }
     
     _label_time.text = [MyUtil residueTimeFromDate:orderModel.orderInfo.reachtime];

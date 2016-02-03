@@ -117,7 +117,7 @@
     CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
     CGFloat offSet = 26;
     _menuBtnArray = [[NSMutableArray alloc]initWithCapacity:2];
-    NSArray *btnTitleArray = @[@"热门",@"附近",@"时间",@"价格"];
+    NSArray *btnTitleArray = @[@"热门",@"时间",@"附近",@"价格"];
     for (int i = 0; i < 4; i ++) {
         HotMenuButton *btn = [[HotMenuButton alloc]init];
         if (i == 0) {
@@ -236,7 +236,7 @@
 #pragma mark LYHotBarMenuDropViewDelegate
 - (void)lyHotBarMenuButton:(UIButton *)menuBtn withIndex:(NSInteger)index{
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:.4];
+    [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
     _menuDropView.frame = CGRectMake(-SCREEN_WIDTH, 65, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
     _menuDropView.alpha = 0.0;
@@ -245,7 +245,7 @@
     [UIView animateWithDuration:.5 animations:^{
         _sectionBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     }];
-    [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
+    [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.3];
     [_sectionBtn setTitle:menuBtn.currentTitle forState:UIControlStateNormal];
     
     if (!_index) {
@@ -295,13 +295,13 @@
         case 0:
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageDistance];
-            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"distanceasc"};
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"rebatedesc"};
         }
             break;
         case 1:
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageTime];
-            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"priceasc"};
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"distanceasc"};
         }
             break;
     }

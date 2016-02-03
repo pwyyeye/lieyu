@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -128,7 +128,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K5a-ST-sAY">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="108" width="320" height="460"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="9PP-yi-DTn"/>
@@ -144,6 +144,7 @@
                 <constraint firstAttribute="trailing" secondItem="6Ol-N0-roY" secondAttribute="trailing" constant="128" id="3lD-k4-Z1l"/>
                 <constraint firstItem="ThU-6d-RUU" firstAttribute="leading" secondItem="nZT-fS-L5V" secondAttribute="trailing" constant="12" id="4r0-X7-U2R"/>
                 <constraint firstItem="K5a-ST-sAY" firstAttribute="top" secondItem="8wO-wA-6tw" secondAttribute="bottom" id="5Oc-JV-hsI"/>
+                <constraint firstItem="K5a-ST-sAY" firstAttribute="top" secondItem="8wO-wA-6tw" secondAttribute="bottom" id="8h3-NR-5Ar"/>
                 <constraint firstItem="ux9-4n-Mh5" firstAttribute="top" secondItem="w9r-Xp-1tw" secondAttribute="bottom" constant="18" id="DcC-Sk-ZYJ"/>
                 <constraint firstItem="w9r-Xp-1tw" firstAttribute="leading" secondItem="kGN-G0-RqR" secondAttribute="trailing" constant="12" id="E22-P2-nwO"/>
                 <constraint firstItem="6Ol-N0-roY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="132" id="FZQ-mx-SPd"/>
@@ -180,6 +181,7 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="5Oc-JV-hsI"/>
+                    <exclude reference="W8i-DR-Ivf"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="342" y="166"/>
