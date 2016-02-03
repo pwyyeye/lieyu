@@ -12,6 +12,7 @@
 #import "ZSDetailModel.h"
 #import "ChoosePayController.h"
 #import "LYMyOrderManageViewController.h"
+#import "PinkerShareController.h"
 
 #import "TimeView.h"
 #import "WaysView.h"
@@ -245,11 +246,14 @@
                     [self.navigationController pushViewController:detailViewController animated:YES];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                 }else{
-                    LYMyOrderManageViewController *detailViewController  =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-                    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-                    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:nil action:nil];
-                    delegate.navigationController.navigationItem.backBarButtonItem=item;
-                    [delegate.navigationController pushViewController:detailViewController animated:YES];
+                    PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
+                    zujuVC.sn=result;
+                    [self.navigationController pushViewController:zujuVC animated:YES];
+//                    LYMyOrderManageViewController *detailViewController  =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//                    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+//                    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:nil action:nil];
+//                    delegate.navigationController.navigationItem.backBarButtonItem=item;
+//                    [delegate.navigationController pushViewController:detailViewController animated:YES];
                 }
             }
         }];

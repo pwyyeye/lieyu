@@ -55,6 +55,7 @@
 //    self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH - 52);
     [self configureStore];
+    [self configurePinkeStatus];
     [self registerCell];
     self.title = @"活动详情";
 }
@@ -89,6 +90,10 @@
 //判断拼客形成
 - (void)configurePinkeStatus{
     if(![orderInfo.orderStatus isEqualToString:@"0"]){
+        self.joinBtn.enabled = NO;
+        self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
+    }
+    if ([[MyUtil residueTimeFromDate:orderInfo.reachtime] isEqualToString:@"已过期"]) {
         self.joinBtn.enabled = NO;
         self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
     }

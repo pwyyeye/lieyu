@@ -44,6 +44,17 @@
     [self getData];
 }
 
+-(void)BaseGoBack{
+    for (UIViewController *viewController in self.navigationController.viewControllers) {
+        if([viewController isKindOfClass:[LYMyOrderManageViewController class]]){
+            [self.navigationController popToViewController:viewController animated:YES];
+            return;
+        }
+    }
+    LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -162,10 +173,13 @@
     [[LYUserHttpTool shareInstance] sharePinkerOrder:@{@"orderid":[NSString stringWithFormat:@"%ld",(long) _orderModel.id],@"shareType":[NSString stringWithFormat:@"%ld",(long)_shareType],@"allowSex":[NSString stringWithFormat:@"%ld",(long)_allowSex],@"shareContent":[MyUtil trim:_shareContent.text],@"shareUsers":(_shareUsers==nil?@"":_shareUsers)} complete:^(BOOL result) {
         if (result) {
             [MyUtil showCleanMessage:@"发送成功！"];
-            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
             
-            [self.navigationController pushViewController:detailViewController animated:YES];
+//            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//            
+//            [self.navigationController pushViewController:detailViewController animated:YES];
 //            [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popToRootViewControllerAnimated:NO];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToSecondViewController" object:nil];
         }
     }];
     

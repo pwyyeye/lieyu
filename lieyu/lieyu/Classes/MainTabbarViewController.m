@@ -41,6 +41,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagneComplete:) name:COMPLETE_MESSAGE object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToFirstView) name:@"jumpToFirstViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToSecondView) name:@"jumpToSecondViewController" object:nil];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
     if([USER_DEFAULT objectForKey:@"badgeValue"]!=nil){
@@ -269,6 +270,10 @@
 
 - (void)jumpToFirstView{
     self.selectedIndex = 0;
+}
+
+- (void)jumpToSecondView{
+    self.selectedIndex = 1;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

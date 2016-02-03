@@ -111,6 +111,17 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+//-(void)BaseGoBack{
+//    for (UIViewController *viewController in self.navigationController.viewControllers) {
+//        if([viewController isKindOfClass:[LYMyOrderManageViewController class]]){
+//            [self.navigationController popToViewController:viewController animated:YES];
+//            return;
+//        }
+//    }
+//    LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//    [self.navigationController pushViewController:detailViewController animated:YES];
+//}
+
 - (void)jumpToYue{
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToFirstViewController" object:nil];
@@ -133,6 +144,10 @@
 -(void)BaseGoBack{
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[ChoosePayController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+        if ([controller isKindOfClass:[PinkerShareController class]]) {
             [self.navigationController popToRootViewControllerAnimated:YES];
             return;
         }
