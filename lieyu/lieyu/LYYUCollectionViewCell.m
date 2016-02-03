@@ -27,7 +27,7 @@
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
     _btn_headerImg.layer.masksToBounds = YES;
     
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(68, 180, SCREEN_WIDTH - 68 - 19, 0.5)];
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(68, 180, SCREEN_WIDTH - 68 - 25, 0.5)];
     lineView.backgroundColor = RGBA(204, 204, 204, 1);
     [self.view_cell addSubview:lineView];
     
@@ -70,6 +70,9 @@
     
     if (![MyUtil isEmptyString:orderModel.orderInfo.birthday]) {
         _label_age.text = [NSString stringWithFormat:@"%@岁",[MyUtil getAgefromDate:orderModel.orderInfo.birthday]];
+        CGSize size = [[MyUtil getAstroWithBirthday:orderModel.orderInfo.birthday] boundingRectWithSize:CGSizeMake(MAXFLOAT, 21) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+        _label_constell_consWidth.constant = size.width + 20;
+        [self updateConstraints];
         _label_constell.text = [MyUtil getAstroWithBirthday:orderModel.orderInfo.birthday];
     }else{
         _label_age.hidden = YES;
@@ -95,6 +98,9 @@
 }
 
     if (orderModel.orderInfo.tags.count) {
+        CGSize size = [orderModel.orderInfo.tags[0][@"tagname"] boundingRectWithSize:CGSizeMake(MAXFLOAT, 21) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+        _label_work_consWidth.constant = size.width + 20;
+        [self updateConstraints];
         _label_work.text = orderModel.orderInfo.tags[0][@"tagname"];
     }else{
         _label_work.hidden = YES;
@@ -135,7 +141,7 @@
     
     _label_barName.text = orderModel.orderInfo.barinfo.barname;
     if (!_shortLineView) {
-        _shortLineView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_label_address.frame) + 18, _label_distance.frame.origin.y, 0.5, 16)];
+        _shortLineView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(_label_address.frame) + 18, _label_distance.frame.origin.y + 3, 0.5, 10)];
         _shortLineView.backgroundColor = [UIColor grayColor];
         [self.view_cell addSubview:_shortLineView];
     }
@@ -168,6 +174,11 @@
         [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerList.count] forState:UIControlStateNormal];
     _btn_more.hidden = NO;
     }
+}
+
+
+- (void)updateConstraints{
+    [super updateConstraints];
 }
 
 @end

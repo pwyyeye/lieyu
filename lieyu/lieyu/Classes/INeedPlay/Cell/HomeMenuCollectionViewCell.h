@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgView_bg;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView_title;
 @property (weak, nonatomic) IBOutlet UILabel *label_title;
+@property (weak, nonatomic) IBOutlet UIView *shadowView;
 
 @end

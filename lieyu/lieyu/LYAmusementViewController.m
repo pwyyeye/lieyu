@@ -54,6 +54,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    if(_menuDropView) {
+        [_menuDropView removeFromSuperview];
+        _menuDropView = nil;
+        _sectionBtn.imageView.transform = CGAffineTransformMakeRotation(0);
+    }
 }
 
 - (void)viewWillLayoutSubviews{
