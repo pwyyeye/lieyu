@@ -304,7 +304,7 @@
         case 0:
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageDistance];
-            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"rebatedesc"};
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"reachtimedesc"};
         }
             break;
         case 1:
@@ -458,7 +458,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(SCREEN_WIDTH, 221 + (SCREEN_WIDTH - (68 + 10 + 4 * 20))/5.f + 10);
+    return CGSizeMake(SCREEN_WIDTH, 221 + 6 + (SCREEN_WIDTH - (68 + 10 + 4 * 20))/5.f + 10);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -466,8 +466,9 @@
     LYYUCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYYUCollectionViewCell" forIndexPath:indexPath];
     cell.btn_headerImg.tag = indexPath.row;
     [cell.btn_headerImg addTarget:self action:@selector(headerClick:) forControlEvents:UIControlEventTouchUpInside];
-    for (UIButton *btn in cell.btnArray) {
-        btn.tag = cell.btnArray.count * indexPath.row + btn.tag;
+    for (int i = 0; i < cell.btnArray.count; i ++) {
+        UIButton *btn = cell.btnArray[i];
+        btn.tag = cell.btnArray.count * indexPath.row + i;
         [btn addTarget:self action:@selector(pinkerClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     YUOrderShareModel *orderM = _dataArray[collectionView.tag][indexPath.row];
@@ -510,15 +511,16 @@
 }
 
 - (void)pinkerClick:(UIButton *)button{
+    NSInteger tag = button.tag %5;
     NSArray *array = _dataArray[_index];
-    if (button.tag + 1 > array.count) {
+    if (tag + 1 > array.count) {
         return;
     }
-    YUOrderShareModel *orderModel = array[button.tag];
-    if (button.tag + 1 > orderModel.orderInfo.pinkerList.count) {
+    YUOrderShareModel *orderModel = array[tag];
+    if (tag + 1 > orderModel.orderInfo.pinkerList.count) {
         return;
     }
-    YUPinkerListModel *pinkerListM = orderModel.orderInfo.pinkerList[button.tag];
+    YUPinkerListModel *pinkerListM = orderModel.orderInfo.pinkerList[tag];
     LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsVC.friendsId = pinkerListM.inmember;
     [self.navigationController pushViewController:friendsVC animated:YES];

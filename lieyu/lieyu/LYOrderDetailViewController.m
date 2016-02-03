@@ -852,7 +852,7 @@
                 }else if(_orderInfoModel.pinkerType==1){
                     pinkType=@"AA付款";
                 }else{
-                    pinkType=@"自由付款";
+                    pinkType=@"AA付款";
                 }
 
                 label.text=[NSString stringWithFormat:@"邀请我的好友(%@)",pinkType];
@@ -1007,7 +1007,7 @@
             [cell.pkUserimageView  setImageWithURL:[NSURL URLWithString:str]];
             NSString *inmemberName;
             if(pinkInfoModel.paymentStatus==1&&pinkInfoModel.price.doubleValue==0.0){
-                inmemberName=[NSString stringWithFormat:@"%@(免费)",pinkInfoModel.inmemberName];
+                inmemberName=[NSString stringWithFormat:@"%@(%@)",pinkInfoModel.inmemberName,isFaqi?@"免费发起":@"发起人"];
             }else if(pinkInfoModel.paymentStatus==1&&pinkInfoModel.price.doubleValue>0.0){
                 inmemberName=[NSString stringWithFormat:@"%@(已付款)",pinkInfoModel.inmemberName];
             }else{
@@ -1409,10 +1409,20 @@
     [IQKeyboardManager sharedManager].isAdd = YES;
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
     // 把单聊视图控制器添加到导航栈。
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-    conversationVC.navigationItem.leftBarButtonItem = left;
+//    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+//    conversationVC.navigationItem.leftBarButtonItem = left;
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:button];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    conversationVC.navigationItem.leftBarButtonItem = item;
     
     [self.navigationController pushViewController:conversationVC animated:YES];
+    
+//    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
 
@@ -1446,9 +1456,21 @@
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     // 把单聊视图控制器添加到导航栈。
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-    conversationVC.navigationItem.leftBarButtonItem = left;
+//    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backBtn"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    
+//
+//    conversationVC.navigationItem.leftBarButtonItem = left;
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:button];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    conversationVC.navigationItem.leftBarButtonItem = item;
+    
     [self.navigationController pushViewController:conversationVC animated:YES];
+
 }
 
 #pragma mark 电话

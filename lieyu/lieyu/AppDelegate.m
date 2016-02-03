@@ -316,29 +316,29 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if ([viewController conformsToProtocol:@protocol(NeedHideNavigationBar)])
-    {
-        [viewController.navigationController setNavigationBarHidden:YES];
-    }
-    else
-    {
-        BOOL isTabBarContrller = [viewController isKindOfClass:[UITabBarController class]];
-        UIViewController *dstController = viewController;
-        if (isTabBarContrller)
-        {
-            UITabBarController * tabBarController = (UITabBarController *)viewController;
-            dstController = tabBarController.selectedViewController;
-        }
-        
-        if (![dstController conformsToProtocol:@protocol(NeedHideNavigationBar)])
-        {
-            [dstController.navigationController setNavigationBarHidden:NO];
-        }
-        else
-        {
-            [dstController.navigationController setNavigationBarHidden:YES];
-        }
-    }
+//    if ([viewController conformsToProtocol:@protocol(NeedHideNavigationBar)])
+//    {
+//        [viewController.navigationController setNavigationBarHidden:YES];
+//    }
+//    else
+//    {
+//        BOOL isTabBarContrller = [viewController isKindOfClass:[UITabBarController class]];
+//        UIViewController *dstController = viewController;
+//        if (isTabBarContrller)
+//        {
+//            UITabBarController * tabBarController = (UITabBarController *)viewController;
+//            dstController = tabBarController.selectedViewController;
+//        }
+//        
+//        if (![dstController conformsToProtocol:@protocol(NeedHideNavigationBar)])
+//        {
+//            [dstController.navigationController setNavigationBarHidden:NO];
+//        }
+//        else
+//        {
+//            [dstController.navigationController setNavigationBarHidden:YES];
+//        }
+//    }
 }
 
 //注册用户通知设置

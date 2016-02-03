@@ -618,8 +618,7 @@
                     }
                 }else{
                     if(isfu){
-                        
-                        [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                        [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerCount] forState:UIControlStateSelected];
                         orderBottomView.secondBtn.selected=YES;
                         
                         
@@ -642,7 +641,7 @@
                     [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                     orderBottomView.secondBtn.tag=section;
                 }else{
-                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerCount] forState:UIControlStateSelected];
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
@@ -653,7 +652,7 @@
                     [orderBottomView.secondBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
                     orderBottomView.secondBtn.tag=section;
                 }else{
-                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%ld人",orderInfoModel.pinkerList.count] forState:UIControlStateSelected];
+                    [orderBottomView.secondBtn setTitle:[NSString stringWithFormat:@"%d人",orderInfoModel.pinkerCount] forState:UIControlStateSelected];
                     orderBottomView.secondBtn.selected=YES;
                 }
                 
@@ -1164,7 +1163,7 @@
     
     orderInfoModel=dataList[sender.tag];
     
-    __weak __typeof(self)weakSelf = self;
+//    __weak __typeof(self)weakSelf = self;
     AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"选择分享平台" message:@"" cancelButtonTitle:@"分享到娱" otherButtonTitles:@"其他平台" block:^(NSInteger buttonIndex){
         //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
         if (buttonIndex == 0) {
