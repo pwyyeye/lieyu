@@ -492,15 +492,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
                 collectView = _collectViewArray[1];
             }
-//            [collectView reloadData];
-            [UIView transitionWithView:collectView
+            [collectView reloadData];
+            /*[UIView transitionWithView:collectView
                               duration: 0.6f
                                options: UIViewAnimationOptionTransitionCrossDissolve
                             animations: ^(void){
                                 [collectView reloadData];
                             }completion: ^(BOOL isFinished){
                                 
-                            }];
+                            }]; */
             return;
         }
     }
@@ -512,11 +512,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
              if (barList.count == PAGESIZE)
              {
                  weakSelf.curPageIndex = 2;
-                 //        weakSelf.tableView.mj_footer.hidden = NO;
              }
              else
              {
-                 //       weakSelf.tableView.mj_footer.hidden = YES;
                  
              }
          }
@@ -665,7 +663,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                 _currentPage_Bar ++;
                     }
                 }
-                [collectView.mj_footer endRefreshing];
+                if(barList.count) [collectView.mj_footer endRefreshing];
+                else [collectView.mj_footer endRefreshingWithNoMoreData];
             }
         }];
     }];
