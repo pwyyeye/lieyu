@@ -190,7 +190,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         UICollectionView *collectView = nil;
         collectView = _collectViewArray[_index];
         if (_index) {
-            if (collectView.contentOffset.y > _contentOffSet_Height_BAR) {
+            if (collectView.contentOffset.y - 40> _contentOffSet_Height_BAR) {
               //  [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
@@ -201,7 +201,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 } completion:^(BOOL finished) {
                     
                 }];
-            }else{
+            }else if(collectView.contentOffset.y + 40 <_contentOffSet_Height_BAR){
               // [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
@@ -214,7 +214,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 }];
             }
         }else{
-                if (collectView.contentOffset.y > _contentOffSet_Height_YD) {
+                if (collectView.contentOffset.y - 40 > _contentOffSet_Height_YD) {
                   //  [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
@@ -225,7 +225,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 } completion:^(BOOL finished) {
                     
                 }];
-                }else{
+                }else if(collectView.contentOffset.y + 40 < _contentOffSet_Height_YD) {
                    // [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
                     [UIView animateWithDuration:0.5 animations:^{
                         
