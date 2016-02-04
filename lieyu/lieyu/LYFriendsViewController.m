@@ -566,8 +566,9 @@
 #pragma mark - 获取最新我的数据
 - (void)getDataMysWithSetContentOffSet:(BOOL)need{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆！"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return;
     }
     _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -644,9 +645,9 @@
 
 #pragma mark - 我的action
 - (void)myClick:(UIButton *)myBtn{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return;
     }
 //    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];

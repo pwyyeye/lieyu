@@ -358,6 +358,7 @@
         if(!recentM.commentList.count) return 5;
         return 4 + recentM.commentList.count;
     }
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -592,9 +593,11 @@
     FriendsRecentModel *recentM = _dataArray[indexPath.section];
     if (indexPath.row >= 4 && indexPath.row <= 8) {
         if(!recentM.commentList.count) return;
+        
         _indexRow = indexPath.row;
         if(indexPath.row - 4 == recentM.commentList.count) {
             [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+             return;
         }
         FriendsCommentModel *commetnM = recentM.commentList[indexPath.row - 4];
         if ([commetnM.userId isEqualToString:_useridStr]) {//我发的评论

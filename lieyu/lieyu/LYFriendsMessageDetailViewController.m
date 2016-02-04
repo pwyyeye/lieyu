@@ -62,7 +62,7 @@
     [super viewWillDisappear:animated];
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
-    self.navigationController.navigationBarHidden=YES;
+//    self.navigationController.navigationBarHidden=YES;
 }
 
 - (void)setupAllProperty{

@@ -124,8 +124,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self setupViewStyles];
     if (_collectViewArray.count) {
         [self getDataLocalAndReload];
-        UICollectionView *collectV = _collectViewArray[0];
-        [collectV.mj_header beginRefreshing];
+        [self getDataWith:0];
     }
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
@@ -311,8 +310,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_searchBtn];
     
-    CGFloat titleImgViewWidth = 40;
-    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5 + 10, titleImgViewWidth, titleImgViewWidth)];
+    CGFloat titleImgViewWidth = 30;
+    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5 + 15, titleImgViewWidth, titleImgViewWidth)];
     _titleImageView.image = [UIImage imageNamed:@"logo"];
     [_menuView addSubview:_titleImageView];
     
@@ -495,45 +494,45 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 获取数据
 -(void)getDataWith:(NSInteger)tag{
-    if([MyUtil configureNetworkConnect] == 0){
-        NSArray *array = [self getDataFromLocal];
-        UICollectionView *collectView = nil;
-        if (array.count == 2) {
-            if (((NSArray *)array[0]).count) {
-                NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
-                NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
-                self.bannerList = dataDic[@"banner"];
-                self.newbannerList = dataDic[@"newbanner"];
-                self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
-                _fiterArray = [dataDic valueForKey:@"filterImages"];
-                NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
-                _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
-                [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
-                collectView = _collectViewArray[0];
-            }else if(((NSArray *)array[1]).count){
-                NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
-                NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
-                self.bannerList = dataDic[@"banner"];
-                self.newbannerList = dataDic[@"newbanner"];
-                self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
-                _fiterArray = [dataDic valueForKey:@"filterImages"];
-                NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
-                _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
-                [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
-                collectView = _collectViewArray[1];
-            }
-            [collectView reloadData];
-            /*[UIView transitionWithView:collectView
-                              duration: 0.6f
-                               options: UIViewAnimationOptionTransitionCrossDissolve
-                            animations: ^(void){
-                                [collectView reloadData];
-                            }completion: ^(BOOL isFinished){
-                                
-                            }]; */
-            return;
-        }
-    }
+//    if([MyUtil configureNetworkConnect] == 0){
+//        NSArray *array = [self getDataFromLocal];
+//        UICollectionView *collectView = nil;
+//        if (array.count == 2) {
+//            if (((NSArray *)array[0]).count) {
+//                NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
+//                NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
+//                self.bannerList = dataDic[@"banner"];
+//                self.newbannerList = dataDic[@"newbanner"];
+//                self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
+//                _fiterArray = [dataDic valueForKey:@"filterImages"];
+//                NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+//                _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+//                [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
+//                collectView = _collectViewArray[0];
+//            }else if(((NSArray *)array[1]).count){
+//                NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
+//                NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
+//                self.bannerList = dataDic[@"banner"];
+//                self.newbannerList = dataDic[@"newbanner"];
+//                self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
+//                _fiterArray = [dataDic valueForKey:@"filterImages"];
+//                NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+//                _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+//                [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
+//                collectView = _collectViewArray[1];
+//            }
+//            [collectView reloadData];
+//            /*[UIView transitionWithView:collectView
+//                              duration: 0.6f
+//                               options: UIViewAnimationOptionTransitionCrossDissolve
+//                            animations: ^(void){
+//                                [collectView reloadData];
+//                            }completion: ^(BOOL isFinished){
+//                                
+//                            }]; */
+//            return;
+//        }
+//    }
     __weak HomePageINeedPlayViewController * weakSelf = self;
     [weakSelf loadHomeListWith:tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {
@@ -543,7 +542,17 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
              if (barList.count == PAGESIZE)
              {
 //                 weakSelf.curPageIndex = 2;
-                 
+                 switch (_index) {
+                     case 0:
+                         _currentPage_YD = 2;
+                         break;
+                         
+                     case 1:
+                         _currentPage_Bar = 2;
+                         break;
+                     default:
+                         break;
+                 }
                 
              }else
              {
@@ -566,7 +575,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //     //  hList.city = _cityBtn.titleLabel.text;
     //    }
     hList.need_page = @(1);
-    switch (tag) {
+    switch (_index) {
         case 0:
         {
                 hList.p = @(_currentPage_YD);
@@ -641,11 +650,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                       case 0:
                                       {
                                           _currentPage_YD = 1;
+                                          [collectView.mj_footer setState:MJRefreshStatePulling];
                                       }
                                           break;
                                       case 1:
                                       {
                                           _currentPage_Bar = 1;
+                                          [collectView.mj_footer setState:MJRefreshStatePulling];
                                       }
                                           break;
                                   }
@@ -660,7 +671,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                                    {
                                                        _currentPage_YD = 2;                                                  }
                                                        break;
-                                                   case 2:{
+                                                   case 1:{
                                                        _currentPage_Bar = 2;
                                                    }
                                                }
@@ -677,6 +688,19 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self initMJRefeshHeaderForGif:header];
     
     collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+//        switch (collectView.tag) {
+//            case 0:
+//            {
+//                _currentPage_ = 2;
+//            }
+//                break;
+//            case 1:
+//            {
+//                _currentPage_Bar = 2;
+//            }
+//                break;
+//        }
+
         [weakSelf loadHomeListWith:collectView.tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
                 if (barList.count == PAGESIZE)
