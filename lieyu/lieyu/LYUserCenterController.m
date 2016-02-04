@@ -42,7 +42,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [super viewDidLoad];
     
     
-    self.navigationController.delegate=self;
+//    self.navigationController.delegate=self;
 
     [self.navigationController setNavigationBarHidden:YES];
     self.automaticallyAdjustsScrollViewInsets = YES;

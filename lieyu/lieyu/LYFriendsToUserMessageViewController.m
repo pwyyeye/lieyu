@@ -91,7 +91,7 @@
 - (void)setupAllProperty{
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    _useridStr = app.userModel?@"0":[NSString stringWithFormat:@"%d",app.userModel.userid];
+    _useridStr = app.userModel==nil?@"0":[NSString stringWithFormat:@"%d",app.userModel.userid];
     _pageStartCount = 0;
     _pageCount = 10;
     [self getData];
@@ -615,6 +615,11 @@
 }
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登陆"];
+        return;
+    }
     if(!buttonIndex){
             FriendsRecentModel *recetnM = _dataArray[_section];
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
@@ -665,6 +670,7 @@
 
 #pragma mark － 创建commentView
 - (void)createCommentView{
+   
    //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
 //    UIWindow *window = [UIApplication]
     _bigView = [[UIView alloc]init];
@@ -758,7 +764,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         if (app.userModel==nil) {
         [MyUtil showCleanMessage:@"请先登陆"];
-        NO;
+        return NO;
     }
     
     FriendsRecentModel *recentM = nil;
