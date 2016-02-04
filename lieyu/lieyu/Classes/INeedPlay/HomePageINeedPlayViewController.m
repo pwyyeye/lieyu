@@ -122,11 +122,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         //        self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     [self setupViewStyles];
-    if (_collectViewArray.count) {
-        UICollectionView *collectV = _collectViewArray[0];
-        [collectV.mj_header beginRefreshing];
-    }
-    
+//    if (_collectViewArray.count) {
+//        UICollectionView *collectV = _collectViewArray[0];
+//        [collectV.mj_header beginRefreshing];
+//    }
+    [self getDataWith:0];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
     
 //     self.navigationController.delegate=self;
@@ -465,7 +465,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 获取数据
 -(void)getDataWith:(NSInteger)tag{
-    if([MyUtil configureNetworkConnect] == 0){
+//    if([MyUtil configureNetworkConnect] == 0){
         NSArray *array = [self getDataFromLocal];
         UICollectionView *collectView = nil;
         if (array.count == 2) {
@@ -501,9 +501,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                             }completion: ^(BOOL isFinished){
                                 
                             }]; */
-            return;
+//            return;
         }
-    }
+//    }
     __weak HomePageINeedPlayViewController * weakSelf = self;
     [weakSelf loadHomeListWith:tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {

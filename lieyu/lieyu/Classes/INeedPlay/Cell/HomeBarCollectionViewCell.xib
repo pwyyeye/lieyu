@@ -257,10 +257,10 @@
             <size key="customSize" width="336" height="195"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="lNF-93-mjL"/>
                     <exclude reference="DvJ-78-4uG"/>
                     <exclude reference="75h-Hw-8fU"/>
                     <exclude reference="DJV-fh-pii"/>
+                    <exclude reference="lNF-93-mjL"/>
                 </mask>
             </variation>
             <connections>
