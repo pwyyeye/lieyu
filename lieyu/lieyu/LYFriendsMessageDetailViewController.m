@@ -54,12 +54,14 @@
     [super viewWillAppear:animated];
      //[IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
+    self.navigationController.navigationBarHidden=NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
+    self.navigationController.navigationBarHidden=YES;
 }
 
 - (void)setupAllProperty{
@@ -79,7 +81,7 @@
 
 - (void)getData{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel==nil?0:app.userModel.userid];
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
     NSDictionary *paraDic = @{@"userId":userIdStr,@"messageId":_recentM.id};
     [LYFriendsHttpTool friendsGetMessageDetailAllCommentsWithParams:paraDic compelte:^(NSMutableArray *commentArray) {
@@ -105,9 +107,13 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登陆"];
+        return;
+    }
     LYFriendsHeaderTableViewCell *cell = (LYFriendsHeaderTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     cell.btn_like.enabled = NO;
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *likeStr = nil;
     if ([[NSString stringWithFormat:@"%@",_recentM.liked] isEqual:@"0"]) {//未表白过
         likeStr = @"1";
@@ -271,10 +277,14 @@
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登陆"];
+        return NO;
+    }
     [_bigView removeFromSuperview];
     [textField endEditing:YES];
     if(!_commentView.textField.text.length) return NO;
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *toUserId = nil;
     NSString *toUserNick = nil;
     NSInteger likeCount = _recentM.likeList.count == 0? 1 : 2;

@@ -643,6 +643,11 @@
 
 #pragma mark - 我的action
 - (void)myClick:(UIButton *)myBtn{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登陆"];
+        return;
+    }
 //    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
 //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
     _friendsBtnSelect = NO;
@@ -1208,10 +1213,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     if(section >=0 && i>=0){
     FriendsRecentModel *recentM = _dataArray[_index][section];
         if(i > recentM.likeList.count) return;
-    if(_useridStr==nil){
-            [MyUtil showCleanMessage:@"请先登录！"];
-        return;
-    }
+ 
     FriendsLikeModel *likeM = recentM.likeList[i - 1];
         if ([likeM.userId isEqualToString:_useridStr]) {
             return;

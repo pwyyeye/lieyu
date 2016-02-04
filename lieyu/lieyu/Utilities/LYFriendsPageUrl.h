@@ -33,7 +33,7 @@
 #define LY_Friends_DeleteMyComment @"lyMomentCommentAction.do?action=delete"
 
 //获取所有评论
-#define LY_Friends_AllComments @"lyMomentCommentAction.do?action=list"
+#define LY_Friends_AllComments @"lyMomentCommentOutAction.do?action=list"
 
 //获取最新消息
 #define LY_Friends_NewMessage @"lyMomentsAction.do?action=login"
