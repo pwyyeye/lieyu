@@ -28,6 +28,8 @@
 }
 
 + (void)yuGetYuModelWithParams:(NSDictionary *)params complete:(void(^)(YUOrderShareModel *YUModel))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_YUMODEL baseURL:LY_SERVER params:params success:^(id response) {
 //        NSLog(@"----->%@",response);
         NSString *errorCodeStr = response[@"errorcode"];
@@ -35,8 +37,9 @@
             YUOrderShareModel *model = [YUOrderShareModel mj_objectWithKeyValues:response[@"data"]];
             complete(model);
         }
+        [app stopLoading];
     } failure:^(NSError *err) {
-        
+        [app stopLoading];
     }];
 }
 

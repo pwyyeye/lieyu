@@ -37,10 +37,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQW-Pi-kMR">
-                            <rect key="frame" x="86" y="82" width="27" height="15"/>
+                            <rect key="frame" x="86" y="82" width="30" height="15"/>
                             <color key="backgroundColor" white="1" alpha="0.2966594827586207" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="27" id="XMO-OG-6A0"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="27" id="XMO-OG-6A0"/>
                                 <constraint firstAttribute="height" constant="15" id="qHd-S7-Rz8"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
@@ -66,11 +66,11 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgA-cg-HPc">
-                            <rect key="frame" x="118" y="82" width="30" height="15"/>
+                            <rect key="frame" x="121" y="82" width="30" height="15"/>
                             <color key="backgroundColor" white="1" alpha="0.29665948279999999" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="jIe-oR-QEL"/>
-                                <constraint firstAttribute="width" constant="27" id="zUy-cQ-OTW"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="nox-Rj-0gF"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                             <state key="normal" title="白领">
@@ -82,17 +82,12 @@
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="zUy-cQ-OTW"/>
-                                </mask>
-                            </variation>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE9-sV-g7T">
-                            <rect key="frame" x="154" y="82" width="41" height="15"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE9-sV-g7T">
+                            <rect key="frame" x="157" y="82" width="41" height="15"/>
                             <color key="backgroundColor" white="1" alpha="0.29665948279999999" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="27" id="D01-CR-Th7"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="41" id="A5z-Nq-urr"/>
                                 <constraint firstAttribute="height" constant="15" id="Rqv-s4-xav"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
@@ -105,11 +100,6 @@
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             </userDefinedRuntimeAttributes>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="D01-CR-Th7"/>
-                                </mask>
-                            </variation>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTS-fO-BCi">
                             <rect key="frame" x="245" y="44" width="24" height="24"/>
@@ -428,6 +418,9 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="_ageConstrant" destination="XMO-OG-6A0" id="VDZ-9I-9IQ"/>
+                <outlet property="_tagConstrant" destination="nox-Rj-0gF" id="pmR-bg-3SB"/>
+                <outlet property="_xingzuoConstrant" destination="A5z-Nq-urr" id="Zf1-Vq-v28"/>
                 <outlet property="age" destination="AQW-Pi-kMR" id="PQ2-5g-WOl"/>
                 <outlet property="avatar_btn" destination="00X-dQ-bjO" id="wbP-yY-juK"/>
                 <outlet property="avatar_img" destination="ygw-yQ-gSS" id="3j5-Ls-Wsk"/>

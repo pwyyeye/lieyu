@@ -70,10 +70,11 @@
             
         }
         CustomerModel *customerModel=searchlist[indexPath.row];
-        [cell.userImageView  setImageWithURL:[NSURL URLWithString:customerModel.mark]];
+//        [cell.userImageView  setImageWithURL:[NSURL URLWithString:customerModel.mark]];
+        [cell.userImageView sd_setImageWithURL:[NSURL URLWithString:customerModel.mark] placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
         cell.titleLal.text=customerModel.name;
+        NSMutableString *ss=[[NSMutableString alloc]init];
         if(customerModel.userTag.count>0){
-            NSMutableString *ss=[[NSMutableString alloc]init];
             for (int i=0 ; i < customerModel.userTag.count; i++ ){
                 NSDictionary *dic =customerModel.userTag[i];
                 NSString *biaoqianStr=[dic objectForKey:@"tagName"];
@@ -82,12 +83,16 @@
                     [ss appendString:@","];
                 }
             }
-            cell.detLal.text=ss;
+            [ss appendString:@"  "];
+//            cell.detLal.text=ss;
         }
+        [ss appendString:[MyUtil getAstroWithBirthday:customerModel.birthday]];
+        cell.detLal.text=ss;
+//        cell.miaosuLal.text = [MyUtil getAstroWithBirthday:customerModel.birthday];
         if([customerModel.sex isEqualToString:@"1"]){
             cell.sexImageView.image=[UIImage imageNamed:@"manIcon"];
         }
-        UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, 290, 0.5)];
+        UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 75.5, SCREEN_WIDTH - 30, 0.5)];
         lineLal.backgroundColor=RGB(199, 199, 199);
         [cell addSubview:lineLal];
         cell.accessoryType = UITableViewCellSelectionStyleNone;

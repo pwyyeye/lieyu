@@ -176,7 +176,7 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel)  _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    else return;
+//    else return;
     [self getDataFriendsWithSetContentOffSet:NO];
     
     [self getRecentMessage];
@@ -536,7 +536,7 @@
        __weak LYFriendsViewController *weakSelf = self;
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountFriends * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
-    NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr};
+    NSDictionary *paraDic = @{@"start":startStr,@"limit":pageCountStr};
     [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         [app stopLoading];
@@ -565,6 +565,10 @@
 #pragma mark - 获取最新我的数据
 - (void)getDataMysWithSetContentOffSet:(BOOL)need{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登陆！"];
+        return;
+    }
     _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountMys * _pageCount];
@@ -669,7 +673,7 @@
     [_headerView.imageView_NewMessageIcon sd_setImageWithURL:[NSURL URLWithString:_icon]  placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _headerView.imageView_NewMessageIcon.clipsToBounds = YES;
     [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:UIControlStateNormal];
-    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] forState:UIControlStateNormal ];
+    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img?@"":app.userModel.avatar_img] forState:UIControlStateNormal ];
     _headerView.label_name.text = app.userModel.usernick;
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_newMessage addTarget:self action:@selector(newClick) forControlEvents:UIControlEventTouchUpInside];
@@ -857,6 +861,10 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
+    if(_useridStr==nil){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        return;
+    }
     LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
     cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -867,6 +875,7 @@
     }else{
         likeStr = @"0";
     }
+    
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentModel.id,@"type":likeStr};
     
     __weak LYFriendsViewController *weakSelf = self;
@@ -1019,6 +1028,10 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
         [MyUtil showCleanMessage:@"内容太多，200字以内"];
         return NO;
     }
+    if(_useridStr==nil){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        return NO;
+    }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
     __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
@@ -1110,6 +1123,10 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     if (buttonIndex) {
         NSMutableArray *array = _dataArray[_index];
         FriendsRecentModel *recentM = array[_deleteMessageTag];
+        if(_useridStr==nil){
+            [MyUtil showCleanMessage:@"请先登录！"];
+            return;
+        }
         NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
         __weak LYFriendsViewController *weakSelf = self;
         [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
@@ -1166,6 +1183,10 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
         if (!buttonIndex) {//删除我的评论
             FriendsRecentModel *recetnM = _dataArray[_index][_section];
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
+            if(_useridStr==nil){
+                [MyUtil showCleanMessage:@"请先登录！"];
+                return;
+            }
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
             __weak LYFriendsViewController *weakSelf = self;
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
@@ -1187,6 +1208,10 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     if(section >=0 && i>=0){
     FriendsRecentModel *recentM = _dataArray[_index][section];
         if(i > recentM.likeList.count) return;
+    if(_useridStr==nil){
+            [MyUtil showCleanMessage:@"请先登录！"];
+        return;
+    }
     FriendsLikeModel *likeM = recentM.likeList[i - 1];
         if ([likeM.userId isEqualToString:_useridStr]) {
             return;

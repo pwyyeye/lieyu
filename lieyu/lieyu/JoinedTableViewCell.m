@@ -59,6 +59,7 @@
     label.textColor = [UIColor blackColor];
     label.textAlignment = NSTextAlignmentLeft;
     label.text = [NSString stringWithFormat:@"已参加( %d/%d )",OrderInfo.pinkerCount,number];
+    label.font = [UIFont systemFontOfSize:12];
     [_view addSubview:label];
     
     int x = 8;

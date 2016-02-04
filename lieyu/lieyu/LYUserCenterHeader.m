@@ -66,12 +66,16 @@
         if ([MyUtil isEmptyString:app.userModel.age]) {
             _age.hidden=YES;
         }else{
+            CGSize size = [_age.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            self._ageConstrant.constant = size.width + 10;
             _age.hidden=NO;
         }
         
         if (app.userModel.tags.count==0) {
             _tags.hidden=YES;
         }else{
+            CGSize size = [_tags.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            self._tagConstrant.constant = size.width + 10;
             _tags.hidden=NO;
         }
         
@@ -79,6 +83,8 @@
             _xingzuo.hidden=YES;
         }else{
             _xingzuo.hidden=NO;
+            CGSize size = [_xingzuo.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            self._xingzuoConstrant.constant = size.width + 10;
             [_xingzuo setTitle:[MyUtil getAstroWithBirthday:app.userModel.birthday]  forState:UIControlStateNormal];
         }
         

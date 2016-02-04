@@ -24,8 +24,14 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Recent baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
         NSArray *itemsArray = dictionary[@"items"];
-        NSMutableArray *array = [[NSMutableArray alloc]initWithArray:[FriendsRecentModel initFormNSArray:itemsArray]];
-        compelte(array);
+        if (itemsArray!=nil) {
+            NSMutableArray *array = [[NSMutableArray alloc]initWithArray:[FriendsRecentModel initFormNSArray:itemsArray]];
+            compelte(array);
+        }else{
+            compelte([NSMutableArray arrayWithCapacity:0]);
+        }
+        
+        
         [app stopLoading];
     } failure:^(NSError *err) {
         [MyUtil showMessage:@"请求失败"];

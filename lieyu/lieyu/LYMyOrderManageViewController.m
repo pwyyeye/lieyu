@@ -1182,7 +1182,7 @@
             NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"订单详情",@"titleName":@"分享",@"value":@"分享到其他平台"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
             //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
-            NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n %@inPinkerWebAction.do?id=%d",self.userModel.usernick,orderInfoModel.barinfo.barname,LY_SERVER,orderInfoModel.id];
+            NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩～",self.userModel.usernick,orderInfoModel.barinfo.barname];
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
             [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
             [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];

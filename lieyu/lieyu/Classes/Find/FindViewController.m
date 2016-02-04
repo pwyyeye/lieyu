@@ -45,7 +45,7 @@
     datalist=@[@{@"image":@"xitongtongzhi",@"title":@"系统通知"},
                @{@"image":@"zuijinlianxiren",@"title":@"最近联系"},
                @{@"image":@"lianxiren",@"title":@"玩友列表"},
-               @{@"image":@"fujinwanyou",@"title":@"附近玩客"},
+//               @{@"image":@"fujinwanyou",@"title":@"附近玩客"},
               // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"saoyisao",@"title":@"扫一扫"}];
     _tableView.contentInset = UIEdgeInsetsMake(70, 0, -49, 0);
@@ -179,7 +179,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section==0){
-        return 4;
+        return 3;
     }
         return 1;
 }
@@ -227,7 +227,7 @@
     else{
         if(indexPath.row==0){
             [[cell viewWithTag:100] removeFromSuperview];
-            dic=[datalist objectAtIndex:4];
+            dic=[datalist objectAtIndex:3];
             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
             lineLal.tag=100;
             lineLal.backgroundColor=RGB(199, 199, 199);

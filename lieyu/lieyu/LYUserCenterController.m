@@ -40,6 +40,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     self.navigationController.delegate=self;
 
     [self.navigationController setNavigationBarHidden:YES];
@@ -88,6 +90,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if (self.navigationController.navigationBarHidden==NO) {
        [self.navigationController setNavigationBarHidden:YES];
     }
