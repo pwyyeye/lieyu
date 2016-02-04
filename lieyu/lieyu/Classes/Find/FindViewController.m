@@ -34,6 +34,7 @@
     if ([USER_DEFAULT objectForKey:@"badgeValue"]) {
         isMes=true;
     }
+//    self.title = @"探";
     self.automaticallyAdjustsScrollViewInsets=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:RECEIVES_MESSAGE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:COMPLETE_MESSAGE object:nil];
@@ -80,7 +81,7 @@
     _myTitle.textColor=[UIColor blackColor];
     _myTitle.textAlignment = NSTextAlignmentCenter;
     [_myTitle setFont:[UIFont systemFontOfSize:16]];
-    [_myTitle setText:@"发现"];
+    [_myTitle setText:@"探"];
 }
 
 //加载角标
