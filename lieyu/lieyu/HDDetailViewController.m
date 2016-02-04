@@ -25,6 +25,7 @@
 #import "preview.h"
 #import "UMSocial.h"
 #import "LYYUHttpTool.h"
+#import "LYUserLoginViewController.h"
 
 @interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate,showImageInPreview>
 {
@@ -33,6 +34,7 @@
     YUPinkerListModel *listModel;
     int store;
     double allMoney;
+    AppDelegate *app;
 }
 @property (nonatomic, strong) HeaderTableViewCell *headerCell;
 @property (nonatomic, strong) LYDinWeiTableViewCell *LYdwCell;
@@ -289,21 +291,27 @@
 #pragma --mark 参与拼客
 
 - (IBAction)WannaJoin:(UIButton *)sender {
-    LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
-    alertView.delegate = self;
-    _chooseNumber = [[[NSBundle mainBundle]loadNibNamed:@"ChooseNumber" owner:nil options:nil]firstObject];
-    _chooseNumber.tag = 14;
-    
-    _chooseNumber.store = store;
-    _chooseNumber.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20, 250);
-    
-    alertView.contentView = _chooseNumber;
-    [alertView show];
+    app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(app.userModel.userid){
+        LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
+        alertView.delegate = self;
+        _chooseNumber = [[[NSBundle mainBundle]loadNibNamed:@"ChooseNumber" owner:nil options:nil]firstObject];
+        _chooseNumber.tag = 14;
+        
+        _chooseNumber.store = store;
+        _chooseNumber.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20, 250);
+        
+        alertView.contentView = _chooseNumber;
+        [alertView show];
+    }else{
+        LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }
 }
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
     if(buttonIndex){
-        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        
         NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"活动详情",@"titleName":@"想要参加",@"value":[NSString stringWithFormat:@"%d",app.userModel.userid]};
         [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
         
