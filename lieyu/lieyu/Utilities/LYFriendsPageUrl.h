@@ -9,10 +9,10 @@
 #ifndef LYFriendsPageUrl_h
 #define LYFriendsPageUrl_h
 //获取最新的玩友圈动态
-#define LY_Friends_Recent @"lyMomentsAction.do?action=list"
+#define LY_Friends_Recent @"lyMomentsOutAction.do?action=list"
 
 //获取我的的玩友圈动态
-#define LY_Friends_User @"lyMomentsAction.do?action=custom"
+#define LY_Friends_User @"lyMomentsOutAction.do?action=custom"
 
 //获取我的的玩友圈消息
 #define LY_Friends_MyNewsMessage @"lyMomentsCommentAction.do?action=list"
@@ -33,7 +33,7 @@
 #define LY_Friends_DeleteMyComment @"lyMomentCommentAction.do?action=delete"
 
 //获取所有评论
-#define LY_Friends_AllComments @"lyMomentCommentAction.do?action=list"
+#define LY_Friends_AllComments @"lyMomentCommentOutAction.do?action=list"
 
 //获取最新消息
 #define LY_Friends_NewMessage @"lyMomentsAction.do?action=login"

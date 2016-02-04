@@ -351,14 +351,14 @@
                      }
                          break;
                  }
-                 [UIView transitionWithView:collectView
-                                   duration: 0.6f
-                                    options: UIViewAnimationOptionTransitionCrossDissolve
-                                 animations: ^(void){
+//                 [UIView transitionWithView:collectView
+//                                   duration: 0.6f
+//                                    options: UIViewAnimationOptionTransitionCrossDissolve
+//                                 animations: ^(void){
                                      [collectView reloadData];
-                                 }completion: ^(BOOL isFinished){
-                                     
-                                 }];
+//                                 }completion: ^(BOOL isFinished){
+//                                     
+//                                 }];
              });
          }
      }];

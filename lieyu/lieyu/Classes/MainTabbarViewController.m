@@ -230,7 +230,7 @@
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     NSLog(@"----pass-tabBarController%d---",self.selectedIndex);
-    if (self.selectedIndex==2||self.selectedIndex==3||self.selectedIndex==4) {
+    if (self.selectedIndex==3||self.selectedIndex==4) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if([MyUtil isEmptyString:app.s_app_id]){
             LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
@@ -279,7 +279,7 @@
     [super viewWillAppear:animated];
     //用户退出以后 返回到首页
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    if([MyUtil isEmptyString:app.s_app_id]){
+    if([MyUtil isEmptyString:app.s_app_id]&&self.selectedIndex!=2&&self.selectedIndex!=1){
         self.selectedIndex=0;
     }
 }

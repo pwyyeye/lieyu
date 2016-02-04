@@ -116,6 +116,9 @@
 }
 
 -(void)getData{
+    if (self.userModel==nil) {
+        return;
+    }
     NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
     [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
         
@@ -187,7 +190,10 @@
 */
 
 - (IBAction)sendMessageAct:(UIButton *)sender {
-   
+    if (self.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登录"];
+        return;
+    }
     if(![_type isEqualToString:@"0"]){
         LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
         addFriendViewController.title=@"加好友";

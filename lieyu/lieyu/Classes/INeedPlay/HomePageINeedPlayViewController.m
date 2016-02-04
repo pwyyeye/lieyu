@@ -571,15 +571,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
             _recommendedBar = homePageM.recommendedBar;
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
-//            [collectView reloadData];
-            [UIView transitionWithView:collectView
+            [collectView reloadData];
+          /*  [UIView transitionWithView:collectView
                               duration: 0.6f
                                options: UIViewAnimationOptionTransitionCrossDissolve
                             animations: ^(void){
                                 [collectView reloadData];
                             }completion: ^(BOOL isFinished){
                                 
-                            }];
+                            }]; */
         }
         block !=nil? block(ermsg,homePageM.banner,homePageM.barlist):nil;
     }];

@@ -83,11 +83,15 @@
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
 }
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden =NO;
+}
 
 - (void)setupAllProperty{
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    _useridStr = app.userModel==nil?@"0":[NSString stringWithFormat:@"%d",app.userModel.userid];
     _pageStartCount = 0;
     _pageCount = 10;
     [self getData];
@@ -258,9 +262,14 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登陆"];
+        return;
+    }
     LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
     cell.btn_like.enabled = NO;
-   AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+  
     FriendsRecentModel *recentM = _dataArray[button.tag];
     NSString *likeStr = nil;
     NSLog(@"---->%@",recentM.liked);
@@ -294,6 +303,11 @@
 
 #pragma mark - 评论action
 - (void)commentClick:(UIButton *)button{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登陆"];
+        return;
+    }
     _commentBtnTag = button.tag;
     _isCommentToUser = NO;
     [self createCommentView];
@@ -601,6 +615,11 @@
 }
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登陆"];
+        return;
+    }
     if(!buttonIndex){
             FriendsRecentModel *recetnM = _dataArray[_section];
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
@@ -651,6 +670,7 @@
 
 #pragma mark － 创建commentView
 - (void)createCommentView{
+   
    //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
 //    UIWindow *window = [UIApplication]
     _bigView = [[UIView alloc]init];
@@ -742,6 +762,11 @@
     [textField endEditing:YES];
     if(!_commentView.textField.text.length) return NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if (app.userModel==nil) {
+        [MyUtil showCleanMessage:@"请先登陆"];
+        return NO;
+    }
+    
     FriendsRecentModel *recentM = nil;
     NSString *toUserId = nil;
     NSString *toUserNickName = nil;
