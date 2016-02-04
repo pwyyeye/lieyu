@@ -104,7 +104,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenuCollectionViewCell"];
-        [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+        [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
         collectView.dataSource = self;
         collectView.delegate = self;
         [_collectViewArray addObject:collectView];
@@ -161,11 +161,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
     if (_menuView.center.y < 45) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
         }
     }else{
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
         }
     }
 }
@@ -354,11 +354,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     if (_menuView.center.y < 45) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
         }
     }else{
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
         }
     }
 }
@@ -384,11 +384,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     if (_menuView.center.y < 45) {
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
         }
     }else{
         for (UICollectionView *collectView in _collectViewArray) {
-            [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
+            [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
         }
     }
 }
