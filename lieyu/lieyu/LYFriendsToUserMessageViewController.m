@@ -755,9 +755,9 @@
 }
 
 - (void)bigViewGes{
-    if (_commentView.textField.text.length) {
+//    if (_commentView.textField.text.length) {
         defaultComment = _commentView.textField.text;
-    }
+//    }
     [_bigView removeFromSuperview];
     
 }
