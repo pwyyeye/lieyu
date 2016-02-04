@@ -122,11 +122,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         //        self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     [self setupViewStyles];
-//    if (_collectViewArray.count) {
-//        UICollectionView *collectV = _collectViewArray[0];
-//        [collectV.mj_header beginRefreshing];
-//    }
-    [self getDataWith:0];
+    if (_collectViewArray.count) {
+        [self getDataLocalAndReload];
+        UICollectionView *collectV = _collectViewArray[0];
+        [collectV.mj_header beginRefreshing];
+    }
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
     
 //     self.navigationController.delegate=self;
@@ -461,11 +462,40 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"搜索"]];
 }
 
-
+- (void)getDataLocalAndReload{
+    NSArray *array = [self getDataFromLocal];
+    UICollectionView *collectView = nil;
+    if (array.count == 2) {
+        if (((NSArray *)array[0]).count) {
+            NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
+            NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
+            self.bannerList = dataDic[@"banner"];
+            self.newbannerList = dataDic[@"newbanner"];
+            self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
+            _fiterArray = [dataDic valueForKey:@"filterImages"];
+            NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+            [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
+            collectView = _collectViewArray[0];
+        }else if(((NSArray *)array[1]).count){
+            NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
+            NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
+            self.bannerList = dataDic[@"banner"];
+            self.newbannerList = dataDic[@"newbanner"];
+            self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
+            _fiterArray = [dataDic valueForKey:@"filterImages"];
+            NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+            [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
+            collectView = _collectViewArray[1];
+        }
+        [collectView reloadData];
+    }
+}
 
 #pragma mark 获取数据
 -(void)getDataWith:(NSInteger)tag{
-//    if([MyUtil configureNetworkConnect] == 0){
+    if([MyUtil configureNetworkConnect] == 0){
         NSArray *array = [self getDataFromLocal];
         UICollectionView *collectView = nil;
         if (array.count == 2) {
@@ -501,9 +531,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                             }completion: ^(BOOL isFinished){
                                 
                             }]; */
-//            return;
+            return;
         }
-//    }
+    }
     __weak HomePageINeedPlayViewController * weakSelf = self;
     [weakSelf loadHomeListWith:tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {
