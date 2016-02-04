@@ -197,13 +197,13 @@
                         <constraint firstAttribute="bottom" secondItem="wsd-L6-gAk" secondAttribute="bottom" constant="-5" id="wSR-Ih-A8D"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSb-ZY-naX">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSb-ZY-naX">
                     <rect key="frame" x="281" y="26" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="NDB-if-dQ0"/>
                         <constraint firstAttribute="height" constant="32" id="ObF-EI-nrr"/>
                     </constraints>
-                    <state key="normal" backgroundImage="icon_share2.png"/>
+                    <state key="normal" image="share_black.png"/>
                     <connections>
                         <action selector="shareClick:" destination="-1" eventType="touchUpInside" id="Ary-OJ-QRn"/>
                     </connections>
@@ -214,7 +214,7 @@
                         <constraint firstAttribute="height" constant="32" id="Fj7-JP-bFz"/>
                         <constraint firstAttribute="width" constant="32" id="IOq-DM-rtF"/>
                     </constraints>
-                    <state key="normal" image="return_white.png"/>
+                    <state key="normal" image="backBtn.png"/>
                     <connections>
                         <action selector="goBack:" destination="-1" eventType="touchUpInside" id="7oR-Cb-yPY"/>
                     </connections>
@@ -469,15 +469,15 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="backBtn.png" width="25" height="24"/>
         <image name="icon_collect_2.png" width="24" height="24"/>
         <image name="icon_eatdrinkspecial" width="30" height="30"/>
         <image name="icon_like_2.png" width="24" height="24"/>
         <image name="icon_locate" width="11" height="14"/>
         <image name="icon_ordersits" width="30" height="30"/>
         <image name="icon_pinke" width="30" height="30"/>
-        <image name="icon_share2.png" width="24" height="24"/>
-        <image name="navBarbg" width="6" height="192"/>
-        <image name="return_white.png" width="25" height="24"/>
+        <image name="navBarbg" width="2" height="64"/>
+        <image name="share_black.png" width="15" height="14"/>
         <image name="teseBtn" width="48" height="20"/>
         <image name="xingxing" width="12" height="12"/>
     </resources>

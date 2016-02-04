@@ -682,7 +682,7 @@
     
     NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
     if(!_userBgImageUrl)    _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
-    else [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpeg"]];
+    else [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
     _headerView.ImageView_bg.clipsToBounds = YES;
     _headerView.ImageView_bg.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseBgImage)];

@@ -14,11 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="246" height="129"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jXy-0Y-6bJ">
-                        <rect key="frame" x="1" y="0.0" width="244" height="126"/>
+                        <rect key="frame" x="0.0" y="0.0" width="246" height="129"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dGm-zg-7fK">
-                        <rect key="frame" x="1" y="0.0" width="244" height="126"/>
+                        <rect key="frame" x="0.0" y="0.0" width="246" height="129"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ceP-hn-Bsk">
                         <rect key="frame" x="111" y="28" width="24" height="24"/>
@@ -43,14 +43,14 @@
             </view>
             <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="jXy-0Y-6bJ" secondAttribute="bottom" constant="3" id="3Gy-2i-TBK"/>
+                <constraint firstAttribute="bottom" secondItem="jXy-0Y-6bJ" secondAttribute="bottom" id="3Gy-2i-TBK"/>
                 <constraint firstItem="ceP-hn-Bsk" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="4bT-mq-v5T"/>
-                <constraint firstAttribute="trailing" secondItem="dGm-zg-7fK" secondAttribute="trailing" constant="1" id="6e9-UL-pWK"/>
-                <constraint firstAttribute="trailing" secondItem="jXy-0Y-6bJ" secondAttribute="trailing" constant="1" id="6qc-JQ-U1q"/>
-                <constraint firstItem="jXy-0Y-6bJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="UOX-Rp-1By"/>
-                <constraint firstItem="dGm-zg-7fK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="VFN-rJ-dhE"/>
+                <constraint firstAttribute="trailing" secondItem="dGm-zg-7fK" secondAttribute="trailing" id="6e9-UL-pWK"/>
+                <constraint firstAttribute="trailing" secondItem="jXy-0Y-6bJ" secondAttribute="trailing" id="6qc-JQ-U1q"/>
+                <constraint firstItem="jXy-0Y-6bJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UOX-Rp-1By"/>
+                <constraint firstItem="dGm-zg-7fK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="VFN-rJ-dhE"/>
                 <constraint firstAttribute="trailing" secondItem="Ccz-12-z3C" secondAttribute="trailing" id="XNq-Qb-61Q"/>
-                <constraint firstAttribute="bottom" secondItem="dGm-zg-7fK" secondAttribute="bottom" constant="3" id="g4p-qo-twZ"/>
+                <constraint firstAttribute="bottom" secondItem="dGm-zg-7fK" secondAttribute="bottom" id="g4p-qo-twZ"/>
                 <constraint firstItem="dGm-zg-7fK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="gxL-Kd-1x4"/>
                 <constraint firstItem="Ccz-12-z3C" firstAttribute="top" secondItem="ceP-hn-Bsk" secondAttribute="bottom" constant="5" id="i0I-3O-XJa"/>
                 <constraint firstItem="ceP-hn-Bsk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="28" id="irj-QV-ulg"/>

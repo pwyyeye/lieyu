@@ -1934,7 +1934,8 @@
                                     <constraint firstAttribute="width" constant="40" id="AcL-EK-Oft"/>
                                     <constraint firstAttribute="height" constant="40" id="d7J-Tt-9qt"/>
                                 </constraints>
-                                <state key="normal" image="return_white.png"/>
+                                <inset key="contentEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="backBtn.png"/>
                                 <connections>
                                     <action selector="backAct:" destination="1a9-8m-xGU" eventType="touchUpInside" id="LrC-NY-uny"/>
                                 </connections>
@@ -2015,13 +2016,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sr4-n4-mP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-396" y="312"/>
+            <point key="canvasLocation" x="-116" y="321"/>
         </scene>
     </scenes>
     <resources>
         <image name="CustomBtn_Selected.png" width="21" height="21"/>
         <image name="CustomBtn_unSelected.png" width="21" height="21"/>
         <image name="ZSyjbj" width="68" height="17"/>
+        <image name="backBtn.png" width="25" height="24"/>
         <image name="danxuan" width="22" height="22"/>
         <image name="danxuanSelected" width="22" height="22"/>
         <image name="disClosure.png" width="7" height="10"/>
@@ -2039,7 +2041,7 @@
         <image name="icon_zixun_normal.png" width="20" height="20"/>
         <image name="jia2" width="32" height="32"/>
         <image name="jian2" width="32" height="32"/>
-        <image name="navBarbg" width="6" height="192"/>
+        <image name="navBarbg" width="2" height="64"/>
         <image name="phoneLv" width="19" height="19"/>
         <image name="purper_fanli" width="20" height="20"/>
         <image name="purpleBtnBG.png" width="2" height="54"/>

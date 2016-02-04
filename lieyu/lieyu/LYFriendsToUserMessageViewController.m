@@ -228,7 +228,7 @@
     [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:_userInfo.avatar_img] forState:UIControlStateNormal];
     _headerView.label_name.text = _userInfo.usernick;
     _headerView.btn_newMessage.hidden = YES;
-    [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpeg"]];
+    [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userInfo.friends_img] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
     _headerView.ImageView_bg.clipsToBounds = YES;
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_header addTarget:self action:@selector(headerImgClick:) forControlEvents:UIControlEventTouchUpInside];
