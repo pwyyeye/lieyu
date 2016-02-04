@@ -16,12 +16,14 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.view_cell.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
-    self.view_cell.layer.shadowOffset = CGSizeMake(0, 0.5);
-    self.view_cell.layer.shadowRadius = 1;
-    self.view_cell.layer.shadowOpacity = 1;
+//    self.view_cell.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
+//    self.view_cell.layer.shadowOffset = CGSizeMake(0, 0.5);
+//    self.view_cell.layer.shadowRadius = 1;
+//    self.view_cell.layer.shadowOpacity = 1;
     
     self.view_cell.layer.cornerRadius = 2;
+    self.view_cell.layer.borderWidth = 0.5;
+    self.view_cell.layer.borderColor = RGBA(204, 204, 204, 1).CGColor;
 //    self.view_cell.layer.masksToBounds = YES;
 
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
