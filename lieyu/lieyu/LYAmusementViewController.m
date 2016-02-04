@@ -363,14 +363,14 @@
                     break;
             }
             //                [tableView reloadData];
-            [UIView transitionWithView:tableView
-                              duration: 0.6f
-                               options: UIViewAnimationOptionTransitionCrossDissolve
-                            animations: ^(void){
+//            [UIView transitionWithView:tableView
+//                              duration: 0.6f
+//                               options: UIViewAnimationOptionTransitionCrossDissolve
+//                            animations: ^(void){
                                 [tableView reloadData];
-                            }completion: ^(BOOL isFinished){
-                                
-                            }];
+//                            }completion: ^(BOOL isFinished){
+//                                
+//                            }];
             //            NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:0];
             //            [tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationFade];
         });
