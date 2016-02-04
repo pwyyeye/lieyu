@@ -11,7 +11,7 @@
 #import <Reachability.h>
 #import "GTM_Base64.h"
 #import <CommonCrypto/CommonCryptor.h>
-
+#import "LYUserLoginViewController.h"
 #define desKey @"lieyu"
 
 @implementation MyUtil
@@ -670,5 +670,22 @@
         return @"已过期";
     }
 }
+
++(BOOL)isUserLogin{
+     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (app.userModel==nil) {
+        return NO;
+    }
+    return YES;
+}
+
++(void)gotoLogin{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+    UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
+    [nav pushViewController:login animated:YES];
+}
+
+
 
 @end

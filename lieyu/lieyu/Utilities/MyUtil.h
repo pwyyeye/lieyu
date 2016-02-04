@@ -98,4 +98,9 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 + (NSString*)weekdayStringFromDate:(NSString *)dateString;
 //剩余时间计算
 + (NSString *)residueTimeFromDate:(NSString *)dateString;
+
++(BOOL)isUserLogin;
+
++(void)gotoLogin;
+
 @end
