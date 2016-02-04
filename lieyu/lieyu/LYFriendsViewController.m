@@ -89,6 +89,7 @@
         NSTimer *_timer;
         UIView *_lineView;
         CGFloat _contentOffSetY;
+        NSString *defaultComment;//残留评论
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -935,6 +936,13 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
+    /**
+     WTT
+     */
+    if (defaultComment && ![defaultComment isEqualToString:@""]) {
+        _commentView.textField.text = defaultComment;
+    }
+    
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     if(_isCommentToUser){
         FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_index][_section];
@@ -962,6 +970,9 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 }
 
 - (void)bigViewGes{
+    if (_commentView.textField.text.length) {
+        defaultComment = _commentView.textField.text;
+    }
     [_bigView removeFromSuperview];
     
 }
@@ -994,7 +1005,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     }
     
 }
-
+#pragma mark - WTT
 - (void)sendMessageClick:(UIButton *)button{
     [self textFieldShouldReturn:_commentView.textField];
 }
@@ -1015,6 +1026,8 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     [_bigView removeFromSuperview];
     [textField endEditing:YES];
     if(!_commentView.textField.text.length) return NO;
+    
+//    defaultComment = _commentView.textField.text;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = nil;
     NSString *toUserId = nil;
@@ -1041,6 +1054,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
+            defaultComment = nil;
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
             commentModel.icon = app.userModel.avatar_img;

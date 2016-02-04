@@ -362,12 +362,21 @@
                 }
                     break;
             }
+            if(array.count > 0){
+                [tableView reloadData];
+            }else{
+                UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT  / 2, SCREEN_WIDTH, 20)];
+                label.text = @"对不起，该区域暂无组局";
+                label.textColor = RGBA(0, 0, 0, 0.5);
+                label.textAlignment = NSTextAlignmentCenter;
+                [self.view addSubview:label];
+            }
             //                [tableView reloadData];
 //            [UIView transitionWithView:tableView
 //                              duration: 0.6f
 //                               options: UIViewAnimationOptionTransitionCrossDissolve
-//                            animations: ^(void){
-                                [tableView reloadData];
+////                            animations: ^(void){
+//                                [tableView reloadData];
 //                            }completion: ^(BOOL isFinished){
 //                                
 //                            }];
