@@ -264,8 +264,9 @@
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return;
     }
     LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
@@ -304,9 +305,9 @@
 
 #pragma mark - 评论action
 - (void)commentClick:(UIButton *)button{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return;
     }
     _commentBtnTag = button.tag;
@@ -616,9 +617,9 @@
 }
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return;
     }
     if(!buttonIndex){
@@ -768,8 +769,9 @@
     [textField endEditing:YES];
     if(!_commentView.textField.text.length) return NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return NO;
     }
     
