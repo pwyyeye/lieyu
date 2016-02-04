@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="290"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="289"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="289.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gdc-SU-QBC">
@@ -186,7 +186,7 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM7-iG-bIo">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vM7-iG-bIo">
                                 <rect key="frame" x="166" y="242" width="30" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Dew-QZ-fLP"/>
@@ -261,7 +261,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="352-mI-8fQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="999km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="352-mI-8fQ">
                                 <rect key="frame" x="256" y="155" width="40" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="Gcw-vH-cT9"/>
@@ -306,7 +306,7 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="aas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kei-th-rah">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" ambiguous="YES" text="aas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kei-th-rah">
                                 <rect key="frame" x="169" y="156" width="82" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -432,15 +432,15 @@
                 <outletCollection property="btnArray" destination="h84-Vy-2f7" id="5Vx-tq-J61"/>
                 <outletCollection property="btnArray" destination="CIr-lr-DWd" id="3Wb-2q-IyI"/>
             </connections>
-            <point key="canvasLocation" x="698" y="1021"/>
+            <point key="canvasLocation" x="354" y="876"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="hotImg.png" width="26" height="26"/>
-        <image name="人数yu.png" width="10" height="11"/>
+        <image name="人数yu.png" width="16" height="16"/>
         <image name="剩余.png" width="72" height="20"/>
         <image name="发起人.png" width="38" height="16"/>
-        <image name="地址yu.png" width="14" height="12"/>
-        <image name="日历yu.png" width="13" height="14"/>
+        <image name="地址yu.png" width="17" height="16"/>
+        <image name="日历yu.png" width="17" height="16"/>
     </resources>
 </document>

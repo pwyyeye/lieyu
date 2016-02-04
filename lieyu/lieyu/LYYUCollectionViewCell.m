@@ -147,6 +147,13 @@
         _shortLineView.backgroundColor = [UIColor grayColor];
         [self.view_cell addSubview:_shortLineView];
     }
+    if(_label_address.text && ![_label_address.text isEqualToString:@""]){
+        _shortLineView.hidden = NO;
+    }else{
+        _shortLineView.hidden = YES;
+        _label_barName_left.constant = 0;
+//        _label_barName.frame = CGRectMake(_label_barName.bounds.origin.x - 18, _label_barName.bounds.origin.y, _label_barName.bounds.size.width, _label_barName.bounds.size.height);
+    }
     //    _label_distance.text = orderModel.orderInfo.
     
   /*  for (int i = 0; i < orderModel.orderInfo.pinkerList.count; i ++) {

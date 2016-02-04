@@ -23,10 +23,10 @@
     if (isMenuSelected) {
         [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
 //        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
-        self.titleLabel.font = [UIFont boldSystemFontOfSize:12];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     }else{
         [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont systemFontOfSize:12];
+        self.titleLabel.font = [UIFont systemFontOfSize:13];
     }
 }
 
