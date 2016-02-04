@@ -113,6 +113,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self.navigationController setNavigationBarHidden:NO];
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewEnd:self.title];
