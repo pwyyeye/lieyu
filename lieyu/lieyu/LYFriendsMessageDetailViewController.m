@@ -260,9 +260,9 @@
     }
 }
 - (void)bigViewGes{
-    if(_commentView.textField.text.length){
+//    if(_commentView.textField.text.length){
         defaultCommnet = _commentView.textField.text;
-    }
+//    }
     [_bigView removeFromSuperview];
     
 }

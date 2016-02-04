@@ -676,10 +676,11 @@
         _headerView.imageView_NewMessageIcon.hidden = YES;
         _myBadge.hidden = YES;
     }
+    
     [_headerView.imageView_NewMessageIcon sd_setImageWithURL:[NSURL URLWithString:_icon]  placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _headerView.imageView_NewMessageIcon.clipsToBounds = YES;
     [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:UIControlStateNormal];
-    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img?@"":app.userModel.avatar_img] forState:UIControlStateNormal ];
+    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img?app.userModel.avatar_img:@""] forState:UIControlStateNormal ];
     _headerView.label_name.text = app.userModel.usernick;
     self.tableView.tableHeaderView = _headerView;
     [_headerView.btn_newMessage addTarget:self action:@selector(newClick) forControlEvents:UIControlEventTouchUpInside];
@@ -970,9 +971,9 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 }
 
 - (void)bigViewGes{
-    if (_commentView.textField.text.length) {
+//    if (_commentView.textField.text.length) {
         defaultComment = _commentView.textField.text;
-    }
+//    }
     [_bigView removeFromSuperview];
     
 }
