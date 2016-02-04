@@ -48,6 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.joinBtn.hidden = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
@@ -94,6 +95,7 @@
         [self configurePinkeStatus];
         [self configureStore];
         [self.tableView reloadData];
+        self.joinBtn.hidden = NO;
     }];
 }
 
@@ -111,7 +113,7 @@
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
-    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩:\n %@inPinkerWebAction.do?id=%@",app.userModel.usernick,orderInfo.barinfo.barname,LY_SERVER,orderInfo.id];
+    NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩~",app.userModel.usernick,orderInfo.barinfo.barname];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%@",LY_SERVER,orderInfo.id];
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%@",LY_SERVER,orderInfo.id];
@@ -139,6 +141,10 @@
         num = num + [listModel.quantity intValue];
     }
     store = [orderInfo.allnum intValue] - num ;
+    if(store <= 0){
+        self.joinBtn.enabled = NO;
+        self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
+    }
 }
 
 //判断拼客形成

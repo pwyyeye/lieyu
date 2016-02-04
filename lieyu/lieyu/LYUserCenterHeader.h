@@ -25,6 +25,11 @@
 //标签
 @property (weak, nonatomic) IBOutlet UIButton *tags;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *_ageConstrant;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *_tagConstrant;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *_xingzuoConstrant;
+
+
 /**五个订单状态按钮*/
 
 @property (weak, nonatomic) IBOutlet UIButton *waitPay;

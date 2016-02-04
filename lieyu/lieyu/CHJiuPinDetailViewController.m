@@ -322,6 +322,10 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.y > SCREEN_WIDTH - 64) {
         self.backImage.hidden = NO;
+        self.backImage.layer.shadowRadius = 2;
+        self.backImage.layer.shadowOpacity = 0.5;
+        self.backImage.layer.shadowOffset = CGSizeMake(0, 1);
+        self.backImage.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
     }else{
         self.backImage.hidden = YES;
     }

@@ -227,9 +227,9 @@
     if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - self.image_layer.size.height) {
         self.image_layer.hidden = NO;
         self.image_layer.layer.shadowRadius = 2;
-        self.image_layer.layer.shadowOpacity = 0.8;
+        self.image_layer.layer.shadowOpacity = 0.5;
         self.image_layer.layer.shadowOffset = CGSizeMake(0, 1);
-        self.image_layer.layer.shadowColor = [[UIColor blackColor]CGColor];
+        self.image_layer.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
     }else{
         self.image_layer.hidden = YES;
     }

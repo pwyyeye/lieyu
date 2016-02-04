@@ -10,11 +10,11 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WanYouInfoCell" rowHeight="76" id="KGk-i7-Jjw" customClass="WanYouInfoCell">
             <rect key="frame" x="0.0" y="0.0" width="321" height="76"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="321" height="75"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="321" height="75.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qeg-42-sCP">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qeg-42-sCP">
                         <rect key="frame" x="10" y="12" width="51" height="51"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -22,7 +22,7 @@
                             <constraint firstAttribute="height" constant="51" id="SUM-T0-CbL"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSi-Wt-jal">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSi-Wt-jal">
                         <rect key="frame" x="79" y="12" width="100" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="9Eh-Jo-kri"/>
@@ -32,28 +32,36 @@
                         <color key="textColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBk-uV-H54">
-                        <rect key="frame" x="79" y="46" width="100" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBk-uV-H54">
+                        <rect key="frame" x="79" y="46" width="0.0" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="RCV-8c-PGt"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="IKb-JY-jUv"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="RCV-8c-PGt"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" id="gFk-7p-l3a"/>
                             <constraint firstAttribute="height" constant="21" id="tDJ-fR-dZ3"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="IKb-JY-jUv"/>
+                                <exclude reference="RCV-8c-PGt"/>
+                            </mask>
+                        </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="right" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="led-HF-kgx">
-                        <rect key="frame" x="228" y="46" width="0.0" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="led-HF-kgx">
+                        <rect key="frame" x="89" y="46" width="100" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Odu-sj-UKK"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="fj8-bR-uG5"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="woman" translatesAutoresizingMaskIntoConstraints="NO" id="lMc-8m-J7Z">
-                        <rect key="frame" x="209" y="12" width="20" height="20"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woman" translatesAutoresizingMaskIntoConstraints="NO" id="lMc-8m-J7Z">
+                        <rect key="frame" x="291" y="12" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="RNg-Ta-fpr"/>
                             <constraint firstAttribute="width" constant="20" id="k7p-E4-upj"/>
@@ -67,12 +75,17 @@
                     <constraint firstItem="fSi-Wt-jal" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Q2u-6y-8up"/>
                     <constraint firstItem="qeg-42-sCP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Vnq-8x-xcE"/>
                     <constraint firstItem="fSi-Wt-jal" firstAttribute="leading" secondItem="qeg-42-sCP" secondAttribute="trailing" constant="18" id="Xb9-dc-Hbw"/>
-                    <constraint firstItem="led-HF-kgx" firstAttribute="leading" secondItem="WBk-uV-H54" secondAttribute="trailing" constant="49" id="Zy3-FN-4yJ"/>
+                    <constraint firstItem="led-HF-kgx" firstAttribute="leading" secondItem="WBk-uV-H54" secondAttribute="trailing" constant="10" id="Zy3-FN-4yJ"/>
                     <constraint firstItem="WBk-uV-H54" firstAttribute="top" secondItem="fSi-Wt-jal" secondAttribute="bottom" constant="13" id="a5S-Dx-GzD"/>
                     <constraint firstItem="led-HF-kgx" firstAttribute="centerY" secondItem="WBk-uV-H54" secondAttribute="centerY" id="fTP-SB-fDN"/>
                     <constraint firstAttribute="trailing" secondItem="lMc-8m-J7Z" secondAttribute="trailing" constant="10" id="lhE-DE-hXV"/>
                     <constraint firstItem="WBk-uV-H54" firstAttribute="leading" secondItem="qeg-42-sCP" secondAttribute="trailing" constant="18" id="nfx-fO-FA1"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Dcl-z4-33W"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="detLal" destination="WBk-uV-H54" id="cZb-yQ-dHm"/>
@@ -85,6 +98,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="woman" width="30" height="30"/>
+        <image name="woman" width="16" height="16"/>
     </resources>
 </document>
