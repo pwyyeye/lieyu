@@ -56,6 +56,7 @@
     BOOL _isCommentToUser;
     NSInteger _indexRow;
     FriendsUserInfoModel *_userInfo;
+    NSString *defaultComment;//未发送的评论
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -684,7 +685,9 @@
     _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
-    
+    if(defaultComment && ![defaultComment isEqualToString:@""]){
+        _commentView.textField.text = defaultComment;
+    }
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -752,6 +755,9 @@
 }
 
 - (void)bigViewGes{
+    if (_commentView.textField.text.length) {
+        defaultComment = _commentView.textField.text;
+    }
     [_bigView removeFromSuperview];
     
 }
@@ -789,6 +795,7 @@
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
             NSLog(@"--->%ld",recentM.commentList.count + 2);
+            defaultComment = nil;
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
             commentModel.icon = app.userModel.avatar_img;

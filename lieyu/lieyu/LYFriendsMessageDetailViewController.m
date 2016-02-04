@@ -36,6 +36,7 @@
     LYFriendsCommentView *_commentView;//弹出的评论框
     BOOL _isCommentToUser;//是否对用户评论
     NSInteger _indexRow;//点的第几个行
+    NSString *defaultCommnet;//未发送的评论
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -172,7 +173,9 @@
     _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
-    
+    if (defaultCommnet && ![defaultCommnet isEqualToString:@""]) {
+        _commentView.textField.text = defaultCommnet;
+    }
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -229,6 +232,7 @@
 }
 
 - (void)sendMessageClick:(UIButton *)button{
+//    defaultComment = nil;
     [self textFieldShouldReturn:_commentView.textField];
 }
 
@@ -256,6 +260,9 @@
     }
 }
 - (void)bigViewGes{
+    if(_commentView.textField.text.length){
+        defaultCommnet = _commentView.textField.text;
+    }
     [_bigView removeFromSuperview];
     
 }
@@ -304,6 +311,7 @@
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
+            defaultCommnet = nil;
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
             commentModel.icon = app.userModel.avatar_img;
