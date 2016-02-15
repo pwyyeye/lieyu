@@ -276,6 +276,7 @@
     for (HotMenuButton *btn in _menuBtnArray) {
         btn.isMenuSelected = NO;
     }
+    _index = button.tag;
     button.isMenuSelected = YES;
     [_scrollView setContentOffset:CGPointMake(button.tag *SCREEN_WIDTH, 0) animated:YES];
     if(!((NSArray *)_dataArray[button.tag]).count || ![_sectionTitle_time isEqualToString:_sectionTitle_distance]){

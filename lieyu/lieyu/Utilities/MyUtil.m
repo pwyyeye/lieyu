@@ -584,7 +584,8 @@
     NSTimeInterval now= [dat timeIntervalSince1970]*1;
     NSInteger today = now / (24*3600);
     NSInteger yestoday = preTime / (24*3600);
-    NSInteger iDiff = today - yestoday;
+//    NSInteger iDiff = today - yestoday;
+    NSInteger iDiff = (now - preTime)/24/3600;
     NSString *strDiff = nil;
     
     if(iDiff == 0) {
@@ -598,6 +599,44 @@
         strDiff = [dateFmter stringFromDate:date];
     }
     return [NSString stringWithFormat:@"%@ %@",strDiff,dateStringPart];
+}
+
++ (NSString *)calculatedDateFromNowWith:(NSString *)dateString{
+    NSDateFormatter *dateFmter = [[NSDateFormatter alloc]init];
+    [dateFmter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *date = [dateFmter dateFromString:dateString];
+    [dateFmter setDateFormat:@"HH:mm:ss"];
+    NSString *dateStringPart = [dateFmter stringFromDate:date];
+    
+    NSTimeInterval secondsPerDay = 24 * 60 * 60;
+    NSDate *today = [[NSDate alloc] init];
+    NSDate *qiantian, *yesterday;
+    
+    qiantian = [today dateByAddingTimeInterval: - 2 *secondsPerDay];
+    yesterday = [today dateByAddingTimeInterval: -secondsPerDay];
+    
+    // 10 first characters of description is the calendar date:
+    NSString * todayString = [[today description] substringToIndex:10];
+    NSString * yesterdayString = [[yesterday description] substringToIndex:10];
+    NSString * tomorrowString = [[qiantian description] substringToIndex:10];
+    
+    dateString = [dateString substringToIndex:10];
+    NSString *strDiff = nil;
+    if ([dateString isEqualToString:todayString])
+    {
+         strDiff= [NSString stringWithFormat:@"今天"];
+    } else if ([dateString isEqualToString:yesterdayString])
+    {
+        strDiff= [NSString stringWithFormat:@"昨天"];
+    }else if ([dateString isEqualToString:tomorrowString])
+    {
+        strDiff= [NSString stringWithFormat:@"前天"];
+    }else{
+        [dateFmter setDateFormat:@"yy-MM-dd"];
+        strDiff = [dateFmter stringFromDate:date];
+    }
+    
+  return  [NSString stringWithFormat:@"%@ %@",strDiff,dateStringPart];
 }
 
 

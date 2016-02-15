@@ -33,6 +33,10 @@
 #import "HomePageModel.h"
 #import "SDCycleScrollView.h"
 #import "HotMenuButton.h"
+#import "LYHotBarsViewController.h"
+#import "UIButton+WebCache.h"
+
+#import "HomeMenusCollectionViewCell.h"
 
 
 #define PAGESIZE 20
@@ -104,6 +108,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenuCollectionViewCell"];
+        [collectView registerNib:[UINib nibWithNibName:@"HomeMenusCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenusCollectionViewCell"];
         [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
         collectView.dataSource = self;
         collectView.delegate = self;
@@ -337,7 +342,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _lineView.frame = CGRectMake(0, _menuView.frame.size.height - 2, 42, 2);
     _lineView.center = CGPointMake(_btn_yedian.center.x, _lineView.center.y);
     
+    
 }
+
+//- (void)homeScrollToTop{
+//    UICollectionView *collectView = _collectViewArray[_index];
+//    [collectView setContentOffset:CGPointZero animated:YES];
+//}
 
 #pragma mark －夜店action
 - (void)yedianClick{
@@ -722,16 +733,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     NSArray *array = _dataArray[collectionView.tag];
     if(array.count){
-    return array.count + 6;
+    return array.count + 3;
     }else{
         return 0;
     }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row >= 2 && indexPath.row <= 5){
+   /* if(indexPath.row >= 2 && indexPath.row <= 5){
         return CGSizeMake((SCREEN_WIDTH - 9)/2.f, (SCREEN_WIDTH - 9)/2.f * 9 / 16);
-    }else if(indexPath.row == 0){
+    }else*/ if(indexPath.row == 0){
         return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
     }else{
         return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
@@ -805,29 +816,38 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
         return jiubaCell;
 
-    }else if(indexPath.row >= 2 & indexPath.row <= 5){
+    }else if(indexPath.row == 2){  //if(indexPath.row >= 2 & indexPath.row <= 5){
       //  NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
-        HomeMenuCollectionViewCell *menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeMenuCollectionViewCell" forIndexPath:indexPath];
-        menuCell.layer.cornerRadius = 2;
-        menuCell.layer.masksToBounds = YES;
+ /*       HomeMenuCollectionViewCell *menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeMenuCollectionViewCell" forIndexPath:indexPath];
+//        menuCell.layer.cornerRadius = 2;
+//        menuCell.layer.masksToBounds = YES;
       //  [menuCell.imgView_title setImage:[UIImage imageNamed:picNameArray[indexPath.row - 2]]];
      //   if(picNameArray.count == 4) menuCell.label_title.text = picNameArray[indexPath.row - 2];
         if(_fiterArray.count == 4) [menuCell.imgView_bg sd_setImageWithURL:[NSURL URLWithString:_fiterArray[indexPath.row - 2]] placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
-        return menuCell;
+        return menuCell; */
+        
+        HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@
+                                                 "HomeMenusCollectionViewCell"forIndexPath:indexPath];
+        for (int i = 0;i < 4;i++) {
+            UIButton *btn = menucell.btnArray[i];
+            [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
+            [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        return menucell;
     }else{
         HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
         if(_dataArray.count){
             NSArray *array = _dataArray[collectionView.tag];
             if(array.count){
-                JiuBaModel *jiuBaM = array[indexPath.row - 6];
+                JiuBaModel *jiuBaM = array[indexPath.row - 3];
                 jiubaCell.jiuBaM = jiuBaM;
             }
         }
-
         return jiubaCell;
     }
     
 }
+
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     JiuBaModel *jiuBaM = nil;
@@ -837,11 +857,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     if(indexPath.item == 1){
         jiuBaM = _recommendedBar;
-    }else if(indexPath.item >= 6){
-        if(array.count) jiuBaM = array[indexPath.item - 6];
-    }else if(indexPath.item >= 2&& indexPath.item <= 5){
+    }else if(indexPath.item >= 3){
+        if(array.count) jiuBaM = array[indexPath.item - 3];
+    }else /*if(indexPath.item >= 2&& indexPath.item <= 5)*/ if (indexPath.item == 2){
+        return;
         //        LYHotBarViewController *hotJiuBarVC = [[LYHotBarViewController alloc]init];
-        LYHotBarViewController *hotBarVC = [[LYHotBarViewController alloc]init];
+        LYHotBarsViewController *hotBarVC = [[LYHotBarsViewController alloc]init];
         hotBarVC.contentTag = indexPath.item - 2;
         switch (collectionView.tag) {
             case 0:
@@ -883,6 +904,28 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //    LYWineBarCell *cell = (LYWineBarCell *)[tableView cellForRowAtIndexPath:indexPath];
 }
 
+#pragma mark 热门酒吧跳转
+- (void)menusClickCell:(UIButton *)button{
+    LYHotBarsViewController *hotBarVC = [[LYHotBarsViewController alloc]init];
+    hotBarVC.contentTag = button.tag;
+    switch (_index) {
+        case 0:
+        {
+            hotBarVC.subidStr = @"2";
+            hotBarVC.titleText = @"热门夜店";
+        }
+            break;
+        case 1:
+        {
+            hotBarVC.subidStr = @"1,6,7";
+            hotBarVC.titleText = @"热门酒吧";
+        }
+            break;
+    }
+    NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:picNameArray[button.tag]]];
+    [self.navigationController pushViewController:hotBarVC animated:YES];
+}
 
 #pragma mark 跳转热门酒吧界面
 - (void)hotJiuClick:(UIButton *)button{
