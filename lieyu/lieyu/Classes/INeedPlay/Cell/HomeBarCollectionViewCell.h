@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_zang;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view_cont_one_width;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view_cons_width;
-@property (weak, nonatomic) IBOutlet UIVisualEffectView *bulrView;
+@property (strong, nonatomic)  UIVisualEffectView *bulrView;
 @property (weak, nonatomic) IBOutlet UILabel *label_yu;
 @property (weak, nonatomic) IBOutlet UIView *view_withFanli;
 @property (nonatomic,strong) JiuBaModel *jiuBaM;

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeMenusCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="357" height="283"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="357" height="283"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYd-WW-32H">
+                        <rect key="frame" x="0.0" y="0.0" width="177" height="140"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXi-K2-McW">
+                        <rect key="frame" x="180" y="0.0" width="177" height="140"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9M-b6-ceq">
+                        <rect key="frame" x="0.0" y="143" width="177" height="140"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0dA-kL-VD9">
+                        <rect key="frame" x="180" y="143" width="177" height="140"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="0dA-kL-VD9" firstAttribute="top" secondItem="HXi-K2-McW" secondAttribute="bottom" constant="3" id="63Q-2J-DYB"/>
+                <constraint firstAttribute="bottom" secondItem="0dA-kL-VD9" secondAttribute="bottom" id="6Wa-ma-abf"/>
+                <constraint firstAttribute="trailing" secondItem="HXi-K2-McW" secondAttribute="trailing" id="8mI-HV-8aw"/>
+                <constraint firstAttribute="trailing" secondItem="0dA-kL-VD9" secondAttribute="trailing" id="Cbb-4v-z1t"/>
+                <constraint firstItem="0dA-kL-VD9" firstAttribute="height" secondItem="rYd-WW-32H" secondAttribute="height" id="E4O-HN-du6"/>
+                <constraint firstItem="t9M-b6-ceq" firstAttribute="top" secondItem="rYd-WW-32H" secondAttribute="bottom" constant="3" id="FXU-KA-fcX"/>
+                <constraint firstItem="HXi-K2-McW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Iel-23-wPx"/>
+                <constraint firstItem="0dA-kL-VD9" firstAttribute="leading" secondItem="t9M-b6-ceq" secondAttribute="trailing" constant="3" id="LT2-4a-gqT"/>
+                <constraint firstItem="0dA-kL-VD9" firstAttribute="width" secondItem="rYd-WW-32H" secondAttribute="width" id="NNU-Dv-BOj"/>
+                <constraint firstItem="HXi-K2-McW" firstAttribute="leading" secondItem="rYd-WW-32H" secondAttribute="trailing" constant="3" id="Oek-RN-vY4"/>
+                <constraint firstItem="HXi-K2-McW" firstAttribute="height" secondItem="rYd-WW-32H" secondAttribute="height" id="TWE-oa-aME"/>
+                <constraint firstItem="t9M-b6-ceq" firstAttribute="height" secondItem="rYd-WW-32H" secondAttribute="height" id="WwV-MN-HVw"/>
+                <constraint firstItem="t9M-b6-ceq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aUF-6J-4gB"/>
+                <constraint firstItem="HXi-K2-McW" firstAttribute="leading" secondItem="rYd-WW-32H" secondAttribute="trailing" constant="3" id="bmX-Yf-vAG"/>
+                <constraint firstItem="rYd-WW-32H" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cfk-ga-WF6"/>
+                <constraint firstAttribute="bottom" secondItem="t9M-b6-ceq" secondAttribute="bottom" id="du2-wZ-9sp"/>
+                <constraint firstItem="t9M-b6-ceq" firstAttribute="width" secondItem="rYd-WW-32H" secondAttribute="width" id="hVm-S5-hQY"/>
+                <constraint firstItem="rYd-WW-32H" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hqd-4Q-r2H"/>
+                <constraint firstItem="0dA-kL-VD9" firstAttribute="top" secondItem="HXi-K2-McW" secondAttribute="bottom" constant="3" id="jaX-qB-ddh"/>
+                <constraint firstItem="HXi-K2-McW" firstAttribute="width" secondItem="rYd-WW-32H" secondAttribute="width" id="kD3-Ee-xnh"/>
+                <constraint firstItem="t9M-b6-ceq" firstAttribute="top" secondItem="rYd-WW-32H" secondAttribute="bottom" constant="3" id="nyW-Nd-EaQ"/>
+                <constraint firstItem="0dA-kL-VD9" firstAttribute="leading" secondItem="t9M-b6-ceq" secondAttribute="trailing" constant="3" id="tya-DQ-hPh"/>
+            </constraints>
+            <size key="customSize" width="357" height="283"/>
+            <connections>
+                <outletCollection property="btnArray" destination="rYd-WW-32H" id="qw7-9J-zbh"/>
+                <outletCollection property="btnArray" destination="HXi-K2-McW" id="tLW-Ma-iPo"/>
+                <outletCollection property="btnArray" destination="t9M-b6-ceq" id="kf1-GX-0hs"/>
+                <outletCollection property="btnArray" destination="0dA-kL-VD9" id="q15-H8-nBZ"/>
+            </connections>
+            <point key="canvasLocation" x="250.5" y="334.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
