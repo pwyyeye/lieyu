@@ -1040,8 +1040,6 @@
 		ADE103BB1BDFA5F200D9EC38 /* LYUserDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103BA1BDFA5F200D9EC38 /* LYUserDetailController.m */; };
 		ADE103C11BE0EAAA00D9EC38 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103BE1BE0EAAA00D9EC38 /* EAIntroPage.m */; };
 		ADE103C21BE0EAAA00D9EC38 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE103C01BE0EAAA00D9EC38 /* EAIntroView.m */; };
-		ADE1C46E1C70609D0011D4AB /* HomeMenusCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE1C46C1C70609D0011D4AB /* HomeMenusCollectionViewCell.m */; };
-		ADE1C46F1C70609D0011D4AB /* HomeMenusCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADE1C46D1C70609D0011D4AB /* HomeMenusCollectionViewCell.xib */; };
 		ADE2AD701C23ADDE00B0A54B /* libmtasdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE2AD6B1C23ADDE00B0A54B /* libmtasdk.a */; };
 		ADE2AD711C23ADDE00B0A54B /* ReleaseNotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = ADE2AD6F1C23ADDE00B0A54B /* ReleaseNotes.txt */; };
 		ADE2AD731C23AE5500B0A54B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE2AD721C23AE5500B0A54B /* libz.tbd */; };
@@ -2756,9 +2754,6 @@
 		ADE103BE1BE0EAAA00D9EC38 /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
 		ADE103BF1BE0EAAA00D9EC38 /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
 		ADE103C01BE0EAAA00D9EC38 /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
-		ADE1C46B1C70609D0011D4AB /* HomeMenusCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMenusCollectionViewCell.h; sourceTree = "<group>"; };
-		ADE1C46C1C70609D0011D4AB /* HomeMenusCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMenusCollectionViewCell.m; sourceTree = "<group>"; };
-		ADE1C46D1C70609D0011D4AB /* HomeMenusCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeMenusCollectionViewCell.xib; sourceTree = "<group>"; };
 		ADE2AD6B1C23ADDE00B0A54B /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmtasdk.a; sourceTree = "<group>"; };
 		ADE2AD6C1C23ADDE00B0A54B /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
 		ADE2AD6D1C23ADDE00B0A54B /* MTAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAConfig.h; sourceTree = "<group>"; };
@@ -6664,9 +6659,6 @@
 				85F66F0B1C564AC3005D1CD8 /* HomeMenuCollectionViewCell.h */,
 				85F66F0C1C564AC3005D1CD8 /* HomeMenuCollectionViewCell.m */,
 				85F66F0D1C564AC3005D1CD8 /* HomeMenuCollectionViewCell.xib */,
-				ADE1C46B1C70609D0011D4AB /* HomeMenusCollectionViewCell.h */,
-				ADE1C46C1C70609D0011D4AB /* HomeMenusCollectionViewCell.m */,
-				ADE1C46D1C70609D0011D4AB /* HomeMenusCollectionViewCell.xib */,
 			);
 			name = Cell;
 			path = Classes/INeedPlay/Cell;
@@ -7289,7 +7281,6 @@
 				3879F2581C0D32B900B72629 /* TaocanTableViewCell.xib in Resources */,
 				850099C01C61EEE700DDE626 /* downArrow@2x.png in Resources */,
 				15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */,
-				ADE1C46F1C70609D0011D4AB /* HomeMenusCollectionViewCell.xib in Resources */,
 				380659A41C53522A003094C9 /* image_Unselected@3x.png in Resources */,
 				8588C4271C5DF90A0092259E /* LYYUTableViewCell.xib in Resources */,
 				85F5451E1C13DF5A0013B92B /* cameraCircle@3x.png in Resources */,
@@ -7614,7 +7605,6 @@
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
 				85EE80461C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m in Sources */,
-				ADE1C46E1C70609D0011D4AB /* HomeMenusCollectionViewCell.m in Sources */,
 				85F43BAB1C11459400B04466 /* LYOrderWriteTableViewCell.m in Sources */,
 				AD198CC41C00368300AA654D /* TenpayModel.m in Sources */,
 				AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */,
