@@ -33,6 +33,9 @@
 #import "HomePageModel.h"
 #import "SDCycleScrollView.h"
 #import "HotMenuButton.h"
+#import "UIButton+WebCache.h"
+
+#import "HomeMenusCollectionViewCell.h"
 
 
 #define PAGESIZE 20
@@ -104,6 +107,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
             [collectView registerNib:[UINib nibWithNibName:@"HomeMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenuCollectionViewCell"];
+          [collectView registerNib:[UINib nibWithNibName:@"HomeMenusCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenusCollectionViewCell"];
         [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
         collectView.dataSource = self;
         collectView.delegate = self;
@@ -804,7 +808,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //        shadowView.layer.shadowOffset = CGSizeMake(0, .5);
 //        shadowView.layer.shadowRadius = 1;
 //        shadowView.layer.shadowOpacity = 1;
-       // [cell addSubview:shadowView];
+//        [cell addSubview:shadowView];
         
         SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
         cycleScrollView.layer.cornerRadius = 2;
@@ -813,7 +817,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         cycleScrollView.imageURLStringsGroup = self.bannerList;
         cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
         cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
-        [cell addSubview:cycleScrollView];
+//        [cell addSubview:cycleScrollView];
         
 //        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 9)/16)
 //                                                              scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
@@ -829,15 +833,24 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
         return jiubaCell;
 
-    }else if(indexPath.row >= 2 & indexPath.row <= 5){
+    }else /*if(indexPath.row == 2){ */ if(indexPath.row >= 2 & indexPath.row <= 5){
       //  NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
-        HomeMenuCollectionViewCell *menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeMenuCollectionViewCell" forIndexPath:indexPath];
-        menuCell.layer.cornerRadius = 2;
-        menuCell.layer.masksToBounds = YES;
+       HomeMenuCollectionViewCell *menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeMenuCollectionViewCell" forIndexPath:indexPath];
+//        menuCell.layer.cornerRadius = 2;
+//        menuCell.layer.masksToBounds = YES;
       //  [menuCell.imgView_title setImage:[UIImage imageNamed:picNameArray[indexPath.row - 2]]];
      //   if(picNameArray.count == 4) menuCell.label_title.text = picNameArray[indexPath.row - 2];
         if(_fiterArray.count == 4) [menuCell.imgView_bg sd_setImageWithURL:[NSURL URLWithString:_fiterArray[indexPath.row - 2]] placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
         return menuCell;
+   
+        
+    /*    HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@                                                 "HomeMenusCollectionViewCell"forIndexPath:indexPath];
+        
+        for (int i = 0;i < 4;i++) {
+            UIButton *btn = menucell.btnArray[i];
+            [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
+        }
+        return menucell; */
     }else{
         HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
         if(_dataArray.count){

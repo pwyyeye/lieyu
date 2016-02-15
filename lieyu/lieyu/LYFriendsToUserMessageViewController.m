@@ -656,12 +656,12 @@
 //            break;
         case 2:
         {
-            cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
         }
             break;
         case 3:
         {
-            cell.separatorInset = UIEdgeInsetsMake(0, 35, 0, 7);
+            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
         }
             break;
         default:

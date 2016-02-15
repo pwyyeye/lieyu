@@ -1047,6 +1047,10 @@
                 if(result){
                     [MyUtil showMessage:@"删除成功"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+                    if(orderInfoModel.ordertype==1){
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"YunoticeToReload" object:nil];
+
+                    }
 
                     [weakSelf refreshData];
                 }

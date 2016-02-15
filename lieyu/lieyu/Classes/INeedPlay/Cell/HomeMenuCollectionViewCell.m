@@ -14,6 +14,7 @@
     // Initialization code
     self.imgView_bg.layer.cornerRadius = 2;
     self.imgView_bg.layer.masksToBounds = YES;
+    self.imgView_bg.layer.shouldRasterize = YES;
     
     self.imgView_bg.layer.borderWidth = 0.5;
     self.imgView_bg.layer.borderColor = RGBA(204, 204, 204, 1).CGColor;

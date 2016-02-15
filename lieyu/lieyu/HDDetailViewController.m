@@ -292,7 +292,7 @@
 
 - (IBAction)WannaJoin:(UIButton *)sender {
     app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if(app.userModel.userid){
+    if(app.userModel){
         LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定", nil];
         alertView.delegate = self;
         _chooseNumber = [[[NSBundle mainBundle]loadNibNamed:@"ChooseNumber" owner:nil options:nil]firstObject];
@@ -340,6 +340,13 @@
                 return;
             }
         }
+        
+        app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if(app.userModel.userid==orderInfo.userid.intValue){
+            [MyUtil showCleanMessage:@"不能参加自己的组局！"];
+            return;
+        }
+        
         double payamout;
         if ([orderInfo.pinkerType isEqualToString:@"0"]) {
             //发起人请客

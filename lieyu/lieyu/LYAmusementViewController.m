@@ -48,9 +48,12 @@
     // Do any additional setup after loading the view.
     [self setupAllProperty];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeToReload) name:@"YunoticeToReload" object:nil];
 }
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"YunoticeToReload" object:nil];
 
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
@@ -76,6 +79,7 @@
         [_dataArray addObject:[[NSMutableArray alloc]init]];
     }
     [self createUI];
+
 }
 
 - (void)createUI{
@@ -107,6 +111,11 @@
     UICollectionView *tableView = _collectviewArray[0];
     [tableView.mj_header beginRefreshing];
     [self createMenuUI];
+}
+
+-(void)noticeToReload{
+    UICollectionView *tableView = _collectviewArray[0];
+    [tableView.mj_header beginRefreshing];
 }
 
 - (void)createMenuUI{
@@ -277,6 +286,7 @@
     for (HotMenuButton *btn in _menuBtnArray) {
         btn.isMenuSelected = NO;
     }
+    _index = button.tag;
     button.isMenuSelected = YES;
     [_scrollView setContentOffset:CGPointMake(button.tag *SCREEN_WIDTH, 0) animated:YES];
     if(!((NSArray *)_dataArray[button.tag]).count || ![_sectionTitle_time isEqualToString:_sectionTitle_distance]){

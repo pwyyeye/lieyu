@@ -36,7 +36,7 @@
     
     _shareContent.delegate=self;
     
-    
+    _allowSex=2;
     UIBarButtonItem *rightBtn=[[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(sureAct:)];
     [rightBtn setTintColor:[UIColor blackColor]];
     [self.navigationItem setRightBarButtonItem:rightBtn];
@@ -189,9 +189,9 @@
 //            [self.navigationController popViewControllerAnimated:YES];
             [self.navigationController popToRootViewControllerAnimated:NO];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToSecondViewController" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"YunoticeToReload" object:nil];
         }
     }];
-    
 }
 
 #pragma --mark 选择公开 私人
