@@ -554,7 +554,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
              if (barList.count == PAGESIZE)
              {
 //                 weakSelf.curPageIndex = 2;
-                 
+                 switch (tag) {
+                     case 0:
+                         _currentPage_YD = 2;
+                         break;
+                    case 1:
+                         _currentPage_Bar = 2;
+                         break;
+                 }
                 
              }else
              {
