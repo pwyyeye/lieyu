@@ -29,5 +29,6 @@
 @property (nonatomic,strong)  UIButton *btn_more;//更多的按钮
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_constell_consWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_work_consWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_barName_left;
 @property (nonatomic,strong) UIView *shortLineView;
 @end

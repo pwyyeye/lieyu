@@ -681,7 +681,7 @@
     [self.view addSubview:_bigView];
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
-    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 110, SCREEN_WIDTH, 49);
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 110, SCREEN_WIDTH, 54);
     _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
@@ -725,7 +725,7 @@
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
-        _commentView.btn_send_cont_width.constant = 30;
+        _commentView.btn_send_cont_width.constant = 60;
         [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
         [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
         [self updateViewConstraints];

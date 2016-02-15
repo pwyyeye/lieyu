@@ -311,7 +311,7 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="aas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4I-NO-urA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" text="aas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4I-NO-urA">
                                 <rect key="frame" x="171" y="161" width="80" height="15"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -402,6 +402,7 @@
                                 <exclude reference="89n-lF-BDN"/>
                                 <exclude reference="rTz-pD-6LN"/>
                                 <exclude reference="3wN-Ad-dYN"/>
+                                <exclude reference="yhe-id-fJ1"/>
                                 <exclude reference="5os-q6-PLy"/>
                             </mask>
                         </variation>
@@ -422,6 +423,7 @@
                 <outlet property="label_address" destination="eII-eE-PDO" id="Lcg-26-6Xd"/>
                 <outlet property="label_age" destination="FAm-C9-m8g" id="MrD-QY-Bfc"/>
                 <outlet property="label_barName" destination="v4I-NO-urA" id="P8v-mp-hwX"/>
+                <outlet property="label_barName_left" destination="0gs-cs-sbC" id="nih-w0-MLR"/>
                 <outlet property="label_concreteTime" destination="9Pu-St-M4p" id="8hR-hr-v97"/>
                 <outlet property="label_constell" destination="Vo3-iv-fC9" id="ZB8-XB-DK8"/>
                 <outlet property="label_constell_consWidth" destination="vi2-sp-y7B" id="G1w-xb-kwx"/>
@@ -441,7 +443,7 @@
                 <outletCollection property="btnArray" destination="dny-wF-wGE" id="WG3-JI-UWs"/>
                 <outletCollection property="btnArray" destination="tGK-W2-cxv" id="jMi-Fr-jY5"/>
             </connections>
-            <point key="canvasLocation" x="550" y="1007.5"/>
+            <point key="canvasLocation" x="461" y="913.5"/>
         </collectionViewCell>
     </objects>
     <resources>

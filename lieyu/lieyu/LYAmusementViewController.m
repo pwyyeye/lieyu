@@ -132,6 +132,7 @@
             btn.frame = CGRectMake(offSet + i%4 * btnWidth, 63, btnWidth, 26);
             btn.isMenuSelected = NO;
         }
+        [btn setTitleEdgeInsets:UIEdgeInsetsMake(2, 0, -2, 0)];
         [btn setTitle:btnTitleArray[i] forState:UIControlStateNormal];
 //        btn.tag = i;
         [btn addTarget:self action:@selector(btnMenuViewClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -145,10 +146,10 @@
     
     
     _titelLabel = [[UILabel alloc]init];
-    _titelLabel.frame = CGRectMake(0, 30, SCREEN_WIDTH, 30);
+    _titelLabel.frame = CGRectMake(0, 28, SCREEN_WIDTH, 30);
     _titelLabel.textAlignment = NSTextAlignmentCenter;
     _titelLabel.text = @"娱";
-    _titelLabel.font = [UIFont boldSystemFontOfSize:16];
+    _titelLabel.font = [UIFont systemFontOfSize:16];
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     
