@@ -143,8 +143,6 @@
         }
     }
     
-    
-    
     _titelLabel = [[UILabel alloc]init];
     _titelLabel.frame = CGRectMake(0, 28, SCREEN_WIDTH, 30);
     _titelLabel.textAlignment = NSTextAlignmentCenter;
