@@ -35,6 +35,7 @@
 #import "HotMenuButton.h"
 #import "LYHotBarsViewController.h"
 #import "UIButton+WebCache.h"
+#import "BeerNewBarViewController.h"
 
 #import "HomeMenusCollectionViewCell.h"
 #import "LYHomeCollectionViewCell.h"
@@ -97,6 +98,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _collectView.bounces = NO;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.view addSubview:_collectView];
+    
+    [self getDataWith:0];
     
 //    for (int i = 0; i < 2; i ++) {
 //        
@@ -1078,8 +1081,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         return;
     }
     
-    
+
     BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+   // BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
     controller.beerBarId = @(jiuBaM.barid);
     [self.navigationController pushViewController:controller animated:YES];
      [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];

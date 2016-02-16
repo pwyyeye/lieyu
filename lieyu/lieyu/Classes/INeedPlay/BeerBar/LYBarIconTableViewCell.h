@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LYBarIconTableViewCell : UITableViewCell
-
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
+@property (nonatomic,strong) UIButton *moreBtn;
 @end
