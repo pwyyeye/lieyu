@@ -600,6 +600,10 @@
 		85390A621C2C149700FF53F9 /* LYFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85390A611C2C149700FF53F9 /* LYFriendsViewController.m */; };
 		853C360A1C72B43200F1703B /* LYBarIconTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C36081C72B43200F1703B /* LYBarIconTableViewCell.m */; };
 		853C360B1C72B43200F1703B /* LYBarIconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853C36091C72B43200F1703B /* LYBarIconTableViewCell.xib */; };
+		853C360F1C72BA8400F1703B /* LYBarScrollTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C360D1C72BA8400F1703B /* LYBarScrollTableViewCell.m */; };
+		853C36101C72BA8400F1703B /* LYBarScrollTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853C360E1C72BA8400F1703B /* LYBarScrollTableViewCell.xib */; };
+		853C36141C72BC4700F1703B /* BeerNewBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C36121C72BC4700F1703B /* BeerNewBarViewController.m */; };
+		853C36151C72BC4700F1703B /* BeerNewBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853C36131C72BC4700F1703B /* BeerNewBarViewController.xib */; };
 		853C4C3E1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C4C3C1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.m */; };
 		853C4C3F1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853C4C3D1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib */; };
 		853C4C491C31115500D48BA2 /* LYFriendsLikeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C4C471C31115500D48BA2 /* LYFriendsLikeDetailTableViewCell.m */; };
@@ -2035,6 +2039,12 @@
 		853C36071C72B43200F1703B /* LYBarIconTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarIconTableViewCell.h; sourceTree = "<group>"; };
 		853C36081C72B43200F1703B /* LYBarIconTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarIconTableViewCell.m; sourceTree = "<group>"; };
 		853C36091C72B43200F1703B /* LYBarIconTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarIconTableViewCell.xib; sourceTree = "<group>"; };
+		853C360C1C72BA8400F1703B /* LYBarScrollTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarScrollTableViewCell.h; sourceTree = "<group>"; };
+		853C360D1C72BA8400F1703B /* LYBarScrollTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarScrollTableViewCell.m; sourceTree = "<group>"; };
+		853C360E1C72BA8400F1703B /* LYBarScrollTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarScrollTableViewCell.xib; sourceTree = "<group>"; };
+		853C36111C72BC4700F1703B /* BeerNewBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerNewBarViewController.h; sourceTree = "<group>"; };
+		853C36121C72BC4700F1703B /* BeerNewBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerNewBarViewController.m; sourceTree = "<group>"; };
+		853C36131C72BC4700F1703B /* BeerNewBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeerNewBarViewController.xib; sourceTree = "<group>"; };
 		853C4C3B1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsToUserMessageViewController.h; sourceTree = "<group>"; };
 		853C4C3C1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsToUserMessageViewController.m; sourceTree = "<group>"; };
 		853C4C3D1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYFriendsToUserMessageViewController.xib; sourceTree = "<group>"; };
@@ -5095,6 +5105,9 @@
 				853C36071C72B43200F1703B /* LYBarIconTableViewCell.h */,
 				853C36081C72B43200F1703B /* LYBarIconTableViewCell.m */,
 				853C36091C72B43200F1703B /* LYBarIconTableViewCell.xib */,
+				853C360C1C72BA8400F1703B /* LYBarScrollTableViewCell.h */,
+				853C360D1C72BA8400F1703B /* LYBarScrollTableViewCell.m */,
+				853C360E1C72BA8400F1703B /* LYBarScrollTableViewCell.xib */,
 			);
 			name = Cell;
 			path = ..;
@@ -6249,6 +6262,9 @@
 				D729DB5E1BADB8D3005A9E60 /* BeerBarDetailViewController.h */,
 				D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */,
 				D729DB601BADB8D3005A9E60 /* BeerBarDetailViewController.xib */,
+				853C36111C72BC4700F1703B /* BeerNewBarViewController.h */,
+				853C36121C72BC4700F1703B /* BeerNewBarViewController.m */,
+				853C36131C72BC4700F1703B /* BeerNewBarViewController.xib */,
 				D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */,
 				D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */,
 				D71E1D891BAE8C3300915F37 /* PacketBarCell.h */,
@@ -6890,6 +6906,7 @@
 				ADD1B46A1C528EE100A5237C /* wechat_s@3x.png in Resources */,
 				85FBBDBF1C6073130084E3F2 /* HOT@3x.png in Resources */,
 				38EDEC611C5B9CDC00694758 /* CHshop@2x.png in Resources */,
+				853C36101C72BA8400F1703B /* LYBarScrollTableViewCell.xib in Resources */,
 				ADFFA6AB1C181B9100D9BD2A /* 3@2x.jpg in Resources */,
 				52D4F9A71C57B2B700691BEF /* 价格@3x.png in Resources */,
 				853C4C861C311A9900D48BA2 /* dizhi_icon@3x.png in Resources */,
@@ -6897,6 +6914,7 @@
 				853C4C741C311A6D00D48BA2 /* fabudongtai_xuanzedizhi@3x.png in Resources */,
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				3812C55A1C57B76100F4DD6B /* purper_star@3x.png in Resources */,
+				853C36151C72BC4700F1703B /* BeerNewBarViewController.xib in Resources */,
 				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
 				3806566D1C4E5D5B003094C9 /* MyCell.xib in Resources */,
 				ADE1C5331C71DA790011D4AB /* 更新1@2x.png in Resources */,
@@ -7660,6 +7678,7 @@
 				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,
 				853C4C3E1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.m in Sources */,
 				380656691C4E5D5B003094C9 /* ImageCollectionViewController.m in Sources */,
+				853C360F1C72BA8400F1703B /* LYBarScrollTableViewCell.m in Sources */,
 				152247B41BEB064600E68A2B /* IQTextView.m in Sources */,
 				A2F9DA631BAA5621009DEAF3 /* OrderInfoModel.m in Sources */,
 				15E240711BB2478B0090D240 /* TuiJianShangJiaViewController.m in Sources */,
@@ -7800,6 +7819,7 @@
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				38E5D6F41C0F10E7004B49D2 /* LPBuyManagerCell.m in Sources */,
 				853C4C4E1C31189E00D48BA2 /* LYFriendsCommentDetailTableViewCell.m in Sources */,
+				853C36141C72BC4700F1703B /* BeerNewBarViewController.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
 				15013AF81BBA33BE00061FAF /* SDWebImageCompat.m in Sources */,
 				152247B51BEB064600E68A2B /* IQBarButtonItem.m in Sources */,

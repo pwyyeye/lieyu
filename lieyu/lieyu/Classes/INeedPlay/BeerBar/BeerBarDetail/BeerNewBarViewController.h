@@ -10,15 +10,14 @@
 #import "NeedHideNavigationBar.h"
 #import "EScrollerView.h"
 #import "LYBaseViewController.h"
-@interface BeerBarDetailViewController : LYBaseViewController
+@interface BeerNewBarViewController : LYBaseViewController
 <
-    UITableViewDelegate,
-    UITableViewDataSource,
-    NeedHideNavigationBar
+UITableViewDelegate,
+UITableViewDataSource,
+NeedHideNavigationBar
 >
 
 @property (weak, nonatomic) IBOutlet UIView *view_bottom;
-@property (strong, nonatomic) UIImageView *headerImgV;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_collect;
 @property(nonatomic,strong)NSNumber * beerBarId;

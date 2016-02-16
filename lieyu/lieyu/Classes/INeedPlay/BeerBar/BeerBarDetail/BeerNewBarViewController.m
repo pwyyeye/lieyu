@@ -6,7 +6,7 @@
 //  Copyright © 2015 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "BeerBarDetailViewController.h"
+#import "BeerNewBarViewController.h"
 #import "MacroDefinition.h"
 #import "LYShareSnsView.h"
 #import "UMSocial.h"
@@ -37,7 +37,7 @@
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 #define BEERBARDETAIL_MTA @"酒吧详情"
 
-@interface BeerBarDetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
+@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 {
     NSManagedObjectContext *_context;
     NSString *_userid;
@@ -51,6 +51,7 @@
     EScrollerView *_scroller;
     BOOL _userLiked;
     BOOL _userCollected;
+    UIImageView *_tableHeaderImgView;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -65,7 +66,7 @@
 
 @end
 
-@implementation BeerBarDetailViewController
+@implementation BeerNewBarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,17 +74,17 @@
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
-//    _tableView.layer.zPosition = 2.0;
+    //    _tableView.layer.zPosition = 2.0;
     
-//    self.navigationController.navigationBarHidden=YES;
+    //    self.navigationController.navigationBarHidden=YES;
     _scrollView.delegate = self;
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height+2500);
     self.scrollView.showsVerticalScrollIndicator=NO;
     self.scrollView.showsHorizontalScrollIndicator=NO;
     [self.scrollView setScrollEnabled:YES];
     [self setupViewStyles];                                                     //tableView registe cell
-//    _scrollView.bounces = NO;
-
+    _scrollView.bounces = NO;
+    
     self.image_layer.hidden = YES;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -99,15 +100,15 @@
     _webView.delegate = self;
     [_webView sizeToFit];
     [_webView.scrollView setScrollEnabled:NO];
-//    _webView.scalesPageToFit = YES;
+    //    _webView.scalesPageToFit = YES;
     [self.scrollView addSubview:_webView];
     
     [self loadBarDetail];                                                       //load data
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMyCollectedAndLikeBar) name:@"loadMyCollectedAndLikeBar" object:nil];
     
     [MTA trackCustomKeyValueEvent:@"BarDetail" props:nil];
-    
+
 }
 
 - (void)loadMyCollectedAndLikeBar{
@@ -124,7 +125,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
-     [_timer setFireDate:[NSDate distantPast]];
+    [_timer setFireDate:[NSDate distantPast]];
     
 }
 
@@ -166,35 +167,40 @@
     __weak __typeof(self ) weakSelf = self;
     LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
     [bus getBearBarOrYzhDetail:_beerBarId results:^(LYErrorMessage *erMsg, BeerBarOrYzhDetailModel *detailItem)
-    {
-        if (erMsg.state == Req_Success) {
-            weakSelf.beerBarDetail = detailItem;
-            
-            _headerImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16.f)];
-            [_headerImgV sd_setImageWithURL:[NSURL URLWithString:detailItem.banners.firstObject]];
-            weakSelf.tableView.tableHeaderView = _headerImgV;
-            
-            self.title=weakSelf.beerBarDetail.barname;
-            //判断用户是否已经喜欢过
-        
-            [_timer setFireDate:[NSDate distantPast]];
-            
-         
-            
-            
-            [weakSelf updateViewConstraints];
-            [weakSelf.tableView reloadData];
-            [weakSelf loadMyBarInfo];
-            //加载webview
-            [weakSelf loadWebView];
-            [weakSelf setTimer];
-        }
-    } failure:^(BeerBarOrYzhDetailModel *beerModel) {
-        //本地加载酒吧详情数据
-        weakSelf.beerBarDetail = beerModel;
-        [weakSelf.tableView reloadData];
-        [weakSelf loadWebView];
-    }];
+     {
+         if (erMsg.state == Req_Success) {
+             weakSelf.beerBarDetail = detailItem;
+             
+             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
+             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:detailItem.banners.firstObject]];
+             [self.view addSubview:_tableHeaderImgView];
+             [self.view sendSubviewToBack:_tableHeaderImgView];
+             
+             UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
+             view.alpha = 0;
+             weakSelf.tableView.tableHeaderView = view;
+             
+             self.title=weakSelf.beerBarDetail.barname;
+             //判断用户是否已经喜欢过
+             
+             [_timer setFireDate:[NSDate distantPast]];
+             
+             
+             
+             
+             [weakSelf updateViewConstraints];
+             [weakSelf.tableView reloadData];
+             [weakSelf loadMyBarInfo];
+             //加载webview
+             [weakSelf loadWebView];
+             [weakSelf setTimer];
+         }
+     } failure:^(BeerBarOrYzhDetailModel *beerModel) {
+         //本地加载酒吧详情数据
+         weakSelf.beerBarDetail = beerModel;
+         [weakSelf.tableView reloadData];
+         [weakSelf loadWebView];
+     }];
 }
 
 - (void)loadMyBarInfo{
@@ -219,7 +225,7 @@
             }
         }];
     }
-
+    
 }
 
 - (void)setTimer{
@@ -238,27 +244,12 @@
     }else{
         self.image_layer.hidden = YES;
     }
-   /* if (scrollView.contentOffset.y < 0) {
-        CGFloat y = scrollView.contentOffset.y;
-        CGFloat height = SCREEN_WIDTH * 9 /16.f;
-        _headerImgV.frame = CGRectMake(-((height - y) * 16/9 - SCREEN_WIDTH)/2.f, 0, (height - y) * 16/9, height - y);
-    } */
-    
-    CGFloat offsetY = scrollView.contentOffset.y;
     
     if (scrollView.contentOffset.y < 0) {
-        // 高度宽度同时拉伸 从中心放大
-//        CGFloat imgH = self.headerImgHeight - scrollView.contentOffset.y * 2;
-//        CGFloat imgW = imgH * self.scale;
-//        _headerImgV.frame = CGRectMake(scrollView.contentOffset.y * self.scale,0, imgW,imgH);
-//        
-//        CGFloat iconOriginalX = (self.frame.size.width - self.iconHeight) / 2;
-//        CGFloat iconOriginalY = (self.headerImgHeight - self.iconHeight) / 2;
-        
-       // _headerImgV.frame = CGRectMake(iconOriginalX + offsetY * changeRate, iconOriginalY + offsetY * changeRate * 2, self.iconHeight - changeRate * offsetY * 2, self.iconHeight - changeRate * offsetY * 2);
-        CGFloat height = SCREEN_WIDTH * 9 /16.f;
-        _headerImgV.frame = CGRectMake(-((height - offsetY) * 16/9 - SCREEN_WIDTH)/2.f, offsetY, (height - offsetY) * 16/9, height - offsetY);
-        NSLog(@"----->%@",NSStringFromCGRect(_headerImgV.frame));
+        CGFloat y = scrollView.contentOffset.y;
+     //   self.tableView.tableHeaderView.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, SCREEN_WIDTH, <#CGFloat height#>)
+        _tableHeaderImgView.frame = CGRectMake(y, y, SCREEN_WIDTH - y, (SCREEN_WIDTH - y) * 9 / 16);
+       // NSLog(@"---->%@",NSStringFromCGRect(_tableHeaderImgView.frame));
     }
 }
 
@@ -267,10 +258,10 @@
     
     NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",self.beerBarDetail.descriptions,SCREEN_WIDTH-17];
     
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        // 更UI
-        [_webView loadHTMLString:webStr baseURL:nil];
-//    });
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    // 更UI
+    [_webView loadHTMLString:webStr baseURL:nil];
+    //    });
 }
 
 
@@ -292,29 +283,29 @@
         LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
         [self.navigationController pushViewController:loginVC animated:YES];
     }else{
-     __weak BeerBarDetailViewController *weakSelf = self;
-     NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
-    //判断用户是否已经喜欢过
-    if (_userLiked) {
-        
-        [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
-            //收藏过
-            if(result){
-            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
-                _userLiked = NO;
-            }
-        }];
-        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"喜欢" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
-    }else{
-    [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
-        if (result) {
-            [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
-            _userLiked = YES;
+        __weak BeerNewBarViewController *weakSelf = self;
+        NSDictionary * param = @{@"barid":self.beerBarDetail.barid};
+        //判断用户是否已经喜欢过
+        if (_userLiked) {
             
+            [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
+                //收藏过
+                if(result){
+                    [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+                    _userLiked = NO;
+                }
+            }];
+            [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"喜欢" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
+        }else{
+            [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
+                if (result) {
+                    [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+                    _userLiked = YES;
+                    
+                }
+                [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消喜欢" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
+            }];
         }
-        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消喜欢" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
-    }];
-    }
     }
 }
 
@@ -337,47 +328,47 @@
 
 #pragma mark-- webview delegate
 /*
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-     [_webView sizeToFit];
-    //获取页面高度（像素）
-//    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
-//    float clientheight = [clientheight_str floatValue];
-     CGFloat documentHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"content\").offsetHeight;"] floatValue];
-//     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
-    //设置到WebView上
-    // webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
-    //获取WebView最佳尺寸（点）
-   // CGSize frame = [webView sizeThatFits:webView.frame.size];
-    //获取内容实际高度（像素）
-//    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight;"];
-//    float height = [height_str floatValue];
-    //内容实际高度（像素）* 点和像素的比
-//    height = height * frame.height / clientheight;
-    //再次设置WebView高度（点）
-//    NSLog(@"--->%f",height);
-//    NSLog(@"---->%f",webView.scrollView.contentSize.height);
-    webView.scrollView.scrollEnabled = NO;
-// NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
-    webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, webView.scrollView.contentSize.height);
-//    webView.backgroundColor = [UIColor redColor];
-   // if(_tableView.contentSize.height > SCREEN_HEIGHT) {
-//        _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, SCREEN_WIDTH, _tableView.contentSize.height);
-//        self.tableView_Height.constant = _tableView.contentSize.height;
-//        [self updateViewConstraints];
-//    }
-    _tableView.scrollEnabled = NO;
-//     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
-//    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
-    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.contentSize.height+webView.scrollView.contentSize.height - 30);
-//    NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
-    
-//  CGFloat offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
-//    
-//    NSLog(@"----pass-pass%f---",offsetHeight);
-//     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, offsetHeight+100);
-//    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
-}
-*/
+ - (void)webViewDidFinishLoad:(UIWebView *)webView{
+ [_webView sizeToFit];
+ //获取页面高度（像素）
+ //    NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
+ //    float clientheight = [clientheight_str floatValue];
+ CGFloat documentHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"content\").offsetHeight;"] floatValue];
+ //     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+ //设置到WebView上
+ // webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
+ //获取WebView最佳尺寸（点）
+ // CGSize frame = [webView sizeThatFits:webView.frame.size];
+ //获取内容实际高度（像素）
+ //    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight;"];
+ //    float height = [height_str floatValue];
+ //内容实际高度（像素）* 点和像素的比
+ //    height = height * frame.height / clientheight;
+ //再次设置WebView高度（点）
+ //    NSLog(@"--->%f",height);
+ //    NSLog(@"---->%f",webView.scrollView.contentSize.height);
+ webView.scrollView.scrollEnabled = NO;
+ // NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+ webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, webView.scrollView.contentSize.height);
+ //    webView.backgroundColor = [UIColor redColor];
+ // if(_tableView.contentSize.height > SCREEN_HEIGHT) {
+ //        _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, SCREEN_WIDTH, _tableView.contentSize.height);
+ //        self.tableView_Height.constant = _tableView.contentSize.height;
+ //        [self updateViewConstraints];
+ //    }
+ _tableView.scrollEnabled = NO;
+ //     NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+ //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
+ _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.contentSize.height+webView.scrollView.contentSize.height - 30);
+ //    NSLog(@"--------->%f----",webView.scrollView.contentSize.height);
+ 
+ //  CGFloat offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
+ //
+ //    NSLog(@"----pass-pass%f---",offsetHeight);
+ //     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, offsetHeight+100);
+ //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
+ }
+ */
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     //获取页面高度（像素）
@@ -429,10 +420,10 @@
         {
             _headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
             /*_size = [self.beerBarDetail.announcement.content boundingRectWithSize:CGSizeMake(MAXFLOAT, 18) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-            _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
-                                                                                                                                                                            
-                                                                                                                                                            
-            _headerCell.label_laBa.text = self.beerBarDetail.announcement.content; */
+             _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
+             
+             
+             _headerCell.label_laBa.text = self.beerBarDetail.announcement.content; */
             
             
             NSMutableArray *bigArr=[[NSMutableArray alloc]init];
@@ -446,19 +437,19 @@
             
             
             _scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0 , 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
-                                                                  scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
-
+                                                    scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
+            
             [_headerCell addSubview:_scroller];
-
+            
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+            
             return _headerCell;
-
+            
         }
             break;
         case 1:
         {
-           
+            
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             [_barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             
@@ -484,9 +475,9 @@
             }
             NSString *priceStr;
             if (self.beerBarDetail.lowest_consumption==nil) {
-                 priceStr= [NSString stringWithFormat:@"¥%@起",@"    "];
+                priceStr= [NSString stringWithFormat:@"¥%@起",@"    "];
             }else{
-                 priceStr= [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
+                priceStr= [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
             }
             
             NSInteger a = 0 ;
@@ -522,22 +513,22 @@
             
         }
             break;
-            case 2:
+        case 2:
         {
             LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
             barPointCell.label_point.text = self.beerBarDetail.address;
             barPointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                        barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return barPointCell;
         }
             break;
-            case 3://酒吧特色
+        case 3://酒吧特色
         {
             LYBarSpecialTableViewCell *barSpecialCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarSpecialTableViewCell" forIndexPath:indexPath];
             
             [barSpecialCell configureCell:self.beerBarDetail];
             
-                                   barSpecialCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            barSpecialCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return barSpecialCell;
         }
             break;
@@ -552,7 +543,7 @@
             break;
         default:
             break;
-
+            
     }
     return cell;
 }
@@ -561,11 +552,11 @@
     _timeCount ++;
     _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH - _timeCount, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
     _headerCell.image_laBa.frame = CGRectMake(CGRectGetMinX(_headerCell.label_laBa.frame) - CGRectGetWidth(_headerCell.image_laBa.frame), CGRectGetMinY(_headerCell.image_laBa.frame), _headerCell.image_laBa.frame.size.width,_headerCell.image_laBa.frame.size.height );
-//    _headerCell.label_laBa.center = CGPointMake(_size.width/2.0 + SCREEN_WIDTH - _timeCount, _headerCell.label_laBa.center.y);
+    //    _headerCell.label_laBa.center = CGPointMake(_size.width/2.0 + SCREEN_WIDTH - _timeCount, _headerCell.label_laBa.center.y);
     NSString *width = [NSString stringWithFormat:@"%.0f",_size.width];
     if (_headerCell.label_laBa.frame.origin.x == -width.integerValue) {
         _timeCount = 0;
-       _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
+        _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
     }
     [_headerCell bringSubviewToFront:_headerCell.image_laBa];
 }
@@ -624,11 +615,11 @@
         default:
         {
             return 76;
-
+            
         }
             break;
     }
-        return h;
+    return h;
 }
 
 #pragma mark 分享按钮
@@ -644,7 +635,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 2) {
-//        _image_layer.userInteractionEnabled = NO;
+        //        _image_layer.userInteractionEnabled = NO;
         [self daohang];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"地图导航" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
     }
@@ -662,18 +653,18 @@
         [_timer invalidate];
         _timer = nil;
     }
-
+    
     NSLog(@"dealoc bardetail viewcontroller");
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 #pragma mark-- 底部三个按钮方法
@@ -707,15 +698,15 @@
     zujuVC.endTime = _beerBarDetail.endTime;
     [self.navigationController pushViewController:zujuVC animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"组局"]];
-     /**/
+    /**/
     
     
-//    MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
-//    myZSManageViewController.title=@"专属经理";
-//    myZSManageViewController.barid=_beerBarDetail.barid.intValue;
-//    myZSManageViewController.isBarVip=true;
-//    [self.navigationController pushViewController:myZSManageViewController animated:YES];
-//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"专属经理"]];
+    //    MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
+    //    myZSManageViewController.title=@"专属经理";
+    //    myZSManageViewController.barid=_beerBarDetail.barid.intValue;
+    //    myZSManageViewController.isBarVip=true;
+    //    [self.navigationController pushViewController:myZSManageViewController animated:YES];
+    //    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"专属经理"]];
 }
 #pragma mark-- 收藏
 - (IBAction)soucangAct:(UIButton *)sender {
@@ -724,28 +715,28 @@
         LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
         [self.navigationController pushViewController:loginVC animated:YES];
     }else{
-    NSDictionary *dic=@{@"barid":self.beerBarDetail.barid};
-    
-    
-    __weak BeerBarDetailViewController *weakSelf = self;
-    //判断用户是否已经收藏过
-    if (_userCollected) {
+        NSDictionary *dic=@{@"barid":self.beerBarDetail.barid};
         
-        [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
-            //收藏过
-            [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
-            _userCollected = NO;
-               
-        }];
-        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"收藏" pageName:BEERBARDETAIL_MTA titleName:weakSelf.beerBarDetail.barname]];
-    }else{
-    
-    [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
-            [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
-        _userCollected = YES;
-    }];
-         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消收藏" pageName:BEERBARDETAIL_MTA titleName:weakSelf.beerBarDetail.barname]];
-    }
+        
+        __weak BeerNewBarViewController *weakSelf = self;
+        //判断用户是否已经收藏过
+        if (_userCollected) {
+            
+            [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
+                //收藏过
+                [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
+                _userCollected = NO;
+                
+            }];
+            [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"收藏" pageName:BEERBARDETAIL_MTA titleName:weakSelf.beerBarDetail.barname]];
+        }else{
+            
+            [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
+                [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+                _userCollected = YES;
+            }];
+            [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消收藏" pageName:BEERBARDETAIL_MTA titleName:weakSelf.beerBarDetail.barname]];
+        }
     }
 }
 @end
