@@ -27,10 +27,10 @@
     
     _view_cons_width.constant = 0.5;
     _view_cont_one_width.constant = 0.5;
-    
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    _bulrView = [[UIVisualEffectView alloc]initWithEffect:effect];
-    _bulrView.frame = CGRectMake(240, 20, 40, 40);
+//    
+//    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+//    _bulrView = [[UIVisualEffectView alloc]initWithEffect:effect];
+//    _bulrView.frame = CGRectMake(240, 20, 40, 40);
 //    [self addSubview:_bulrView];
     _bulrView.layer.cornerRadius = CGRectGetWidth(_bulrView.frame) / 2.f;
     _bulrView.layer.masksToBounds = YES;
