@@ -78,9 +78,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
-    
     _currentPage_YD = 1;
     _currentPage_Bar = 1;
     _contentOffSet_Height_BAR = 1;
@@ -102,23 +99,24 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.view addSubview:_collectView];
     
-    _collectViewArray = [[NSMutableArray alloc]initWithCapacity:2];
-    for (int i = 0; i < 2; i ++) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i % 2 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
-        collectView.backgroundColor = RGBA(243, 243, 243, 1);
-        collectView.tag = i;
-        [collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-        [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
-        [collectView registerNib:[UINib nibWithNibName:@"HomeMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenuCollectionViewCell"];
-        [collectView registerNib:[UINib nibWithNibName:@"HomeMenusCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenusCollectionViewCell"];
-        [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
-        collectView.dataSource = self;
-        collectView.delegate = self;
-        [_collectViewArray addObject:collectView];
-        [_scrollView addSubview:collectView];
-        [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _collectViewArray.count, 0)];
-    }
+    [self getDataWith:0];
+    
+    //    for (int i = 0; i < 2; i ++) {
+    //
+    //        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i % 2 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
+    //        collectView.backgroundColor = RGBA(243, 243, 243, 1);
+    //        collectView.tag = i;
+    //            [collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    //            [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
+    //            [collectView registerNib:[UINib nibWithNibName:@"HomeMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenuCollectionViewCell"];
+    //        [collectView registerNib:[UINib nibWithNibName:@"HomeMenusCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenusCollectionViewCell"];
+    //        [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
+    //        collectView.dataSource = self;
+    //        collectView.delegate = self;
+    //        [_collectViewArray addObject:collectView];
+    //        [_scrollView addSubview:collectView];
+    //        [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _collectViewArray.count, 0)];
+    //    }
     
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -130,11 +128,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         //        self.modalPresentationCapturesStatusBarAppearance = NO;
     }
     [self setupViewStyles];
-//    if (_collectViewArray.count) {
-//        [self getDataLocalAndReload];
-//        UICollectionView *collectV = _collectViewArray[0];
-//        [collectV.mj_header beginRefreshing];
-//    }
+    //    if (_collectViewArray.count) {
+    //        [self getDataLocalAndReload];
+    //        UICollectionView *collectV = _collectViewArray[0];
+    //        [collectV.mj_header beginRefreshing];
+    //    }
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
     
@@ -149,7 +147,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     
     if (CGRectGetMaxY(_menuView.frame) < 90) {
-            [cell.collectViewInside setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
+        [cell.collectViewInside setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
     }
     switch (_index) {
         case 0:
@@ -163,24 +161,24 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
             break;
     }
-//    NSLog(@"----->%f--------%f--------%f",_contentOffSet_Height_YD,_contentOffSet_Height_BAR,collectView.contentOffset.y);
+    //    NSLog(@"----->%f--------%f--------%f",_contentOffSet_Height_YD,_contentOffSet_Height_BAR,collectView.contentOffset.y);
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-     LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (_menuView.center.y < 45) {
-            [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
+        [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
     }else{
-//        for (UICollectionView *collectView in _collectViewArray) {
-            [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
-//        }
+        //        for (UICollectionView *collectView in _collectViewArray) {
+        [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
+        //        }
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    if(scrollView == _scrollView){
-        CGFloat offsetWidth = _scrollView.contentOffset.x;
+    if(scrollView == _collectView){
+        CGFloat offsetWidth = _collectView.contentOffset.x;
         CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
         _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
         //        if (_menuView.center.y < 45) {
@@ -195,7 +193,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else{
         LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
         if (_index) {
-            if (collectView.contentOffset.y - 40> _contentOffSet_Height_BAR) {
+            if (cell.collectViewInside.contentOffset.y - 40> _contentOffSet_Height_BAR) {
                 //  [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
@@ -206,7 +204,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 } completion:^(BOOL finished) {
                     
                 }];
-            }else if(collectView.contentOffset.y + 40 <_contentOffSet_Height_BAR){
+            }else if(cell.collectViewInside.contentOffset.y + 40 <_contentOffSet_Height_BAR){
                 // [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
@@ -219,7 +217,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 }];
             }
         }else{
-            if (collectView.contentOffset.y - 40 > _contentOffSet_Height_YD) {
+            if (cell.collectViewInside.contentOffset.y - 40 > _contentOffSet_Height_YD) {
                 //  [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
@@ -230,7 +228,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 } completion:^(BOOL finished) {
                     
                 }];
-            }else if(collectView.contentOffset.y + 40 < _contentOffSet_Height_YD) {
+            }else if(cell.collectViewInside.contentOffset.y + 40 < _contentOffSet_Height_YD) {
                 // [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
@@ -249,7 +247,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     _index = (NSInteger)_collectView.contentOffset.x/SCREEN_WIDTH;
-
+    
     if (_dataArray.count) {
         NSArray *array = _dataArray[_index];
         if(!array.count) {
@@ -364,21 +362,21 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
     }
     
-//    if (_menuView.center.y < 45) {
-//        for (UICollectionView *collectView in _collectViewArray) {
-//            [collectView setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
-//        }
-//    }else{
-//        for (UICollectionView *collectView in _collectViewArray) {
-//            [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
-//        }
-//    }
+    //    if (_menuView.center.y < 45) {
+    //        for (UICollectionView *collectView in _collectViewArray) {
+    //            [collectView setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
+    //        }
+    //    }else{
+    //        for (UICollectionView *collectView in _collectViewArray) {
+    //            [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
+    //        }
+    //    }
 }
 
 #pragma mark －酒吧action
 - (void)barClick{
     _index = 1;
-    [_scrollView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:YES];
+    [_collectView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"筛选" pageName:HOMEPAGE_MTA titleName:_btn_bar.currentTitle]];
     _btn_bar.isHomePageMenuViewSelected = YES;
     _btn_yedian.isHomePageMenuViewSelected = NO;
@@ -388,21 +386,21 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [self getDataWith:1];
         }
     }
-//    if (CGRectGetMaxY(_menuView.frame) < 90) {
-//        for (UICollectionView *collectView in _collectViewArray) {
-//            //[collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
-//        }
-//    }
-//    
-//    if (_menuView.center.y < 45) {
-//        for (UICollectionView *collectView in _collectViewArray) {
-//            [collectView setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
-//        }
-//    }else{
-//        for (UICollectionView *collectView in _collectViewArray) {
-//            [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
-//        }
-//    }
+    //    if (CGRectGetMaxY(_menuView.frame) < 90) {
+    //        for (UICollectionView *collectView in _collectViewArray) {
+    //            //[collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
+    //        }
+    //    }
+    //
+    //    if (_menuView.center.y < 45) {
+    //        for (UICollectionView *collectView in _collectViewArray) {
+    //            [collectView setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
+    //        }
+    //    }else{
+    //        for (UICollectionView *collectView in _collectViewArray) {
+    //            [collectView setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
+    //        }
+    //    }
 }
 
 #pragma mark 选择城市action
@@ -427,7 +425,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    [_scrollView setContentOffset:CGPointZero];
+    //    [_scrollView setContentOffset:CGPointZero];
     //    ((LYNavigationController *)self.navigationController).navBar.hidden = NO;
     [self createNavButton];
 }
@@ -487,7 +485,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
             _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
             [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
-//            collectView = _collectViewArray[0];
+            //            collectView = _collectViewArray[0];
         }else if(((NSArray *)array[1]).count){
             NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
             NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
@@ -498,7 +496,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
             _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
             [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
-//            collectView = _collectViewArray[1];
+            //            collectView = _collectViewArray[1];
         }
         [collectView reloadData];
     }
@@ -520,7 +518,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
                 _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
                 [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
-//                collectView = _collectViewArray[0];
+                //                collectView = _collectViewArray[0];
             }else if(((NSArray *)array[1]).count){
                 NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
                 NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
@@ -531,7 +529,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
                 _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
                 [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
-//                collectView = _collectViewArray[1];
+                //                collectView = _collectViewArray[1];
             }
             [collectView reloadData];
             /*[UIView transitionWithView:collectView
@@ -550,16 +548,22 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
      {
          if (Req_Success == ermsg.state)
          {
-//             UICollectionView *collectView = _collectViewArray[_index];
+             //             UICollectionView *collectView = _collectViewArray[_index];
              if (barList.count == PAGESIZE)
              {
                  //                 weakSelf.curPageIndex = 2;
+                 switch (tag) {
+                     case 0:
+                         _currentPage_YD = 2;
+                         break;
+                     case 1:
+                         _currentPage_Bar = 2;
+                         break;
+                 }
                  
-                 
-             }else
-             {
+             }else{
                  //collectView.mj_footer.hidden = YES;
-//                 [collectView.mj_footer endRefreshingWithNoMoreData];
+                 //                 [collectView.mj_footer endRefreshingWithNoMoreData];
              }
          }
      }];
@@ -601,7 +605,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (ermsg.state == Req_Success)
         {
             if(tag >= 2) return;
-//            UICollectionView *collectView = _collectViewArray[tag];
+            //            UICollectionView *collectView = _collectViewArray[tag];
             NSMutableArray *array = _dataArray[tag];
             if((tag == 0 && _currentPage_YD == 1) || (tag == 1 && _currentPage_Bar == 1)) {
                 [array removeAllObjects];
@@ -611,17 +615,25 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 _fiterArray = homePageM.filterImages;
             }
             _recommendedBar = homePageM.recommendedBar;
-//            switch (_index) {
-//                case 0:
-//                    [_recommendedBarArray replaceObjectAtIndex:0 withObject:_recommendedBarArray];
-//                    break;
-//                case 1:
-////                    [_recommendedBarArray insertObject:_recommendedBar atIndex:1];
-//                    [_recommendedBarArray replaceObjectAtIndex:1 withObject:_recommendedBarArray];
-//                    break;
-//            }
+            //            switch (_index) {
+            //                case 0:
+            //                    [_recommendedBarArray replaceObjectAtIndex:0 withObject:_recommendedBarArray];
+            //                    break;
+            //                case 1:
+            ////                    [_recommendedBarArray insertObject:_recommendedBar atIndex:1];
+            //                    [_recommendedBarArray replaceObjectAtIndex:1 withObject:_recommendedBarArray];
+            //                    break;
+            //            }
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
-            [collectView reloadData];
+            
+            LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+            [cell.collectViewInside reloadData];
+            //            cell.recommendedBar = _recommendedBarArray[_index];
+            cell.recommendedBar = homePageM.recommendedBar;
+            cell.bannerList = homePageM.banner;
+            cell.fiterArray = _fiterArray;
+            
+            //            [collectView reloadData];
             /*  [UIView transitionWithView:collectView
              duration: 0.6f
              options: UIViewAnimationOptionTransitionCrossDissolve
@@ -653,78 +665,78 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)installFreshEvent
 {
-    for (UICollectionView *collectView in _collectViewArray) {
-        __weak HomePageINeedPlayViewController * weakSelf = self;
-        collectView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:
-                                 ^{
-                                     switch (collectView.tag) {
-                                         case 0:
-                                         {
-                                             _currentPage_YD = 1;
-                                         }
-                                             break;
-                                         case 1:
-                                         {
-                                             _currentPage_Bar = 1;
-                                         }
-                                             break;
-                                     }
-                                     [weakSelf loadHomeListWith:collectView.tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
-                                      {
-                                          if (Req_Success == ermsg.state)
-                                          {
-                                              if (barList.count == PAGESIZE)
-                                              {
-                                                  switch (collectView.tag) {
-                                                      case 0:
-                                                      {
-                                                          _currentPage_YD = 2;                                                  }
-                                                          break;
-                                                      case 2:{
-                                                          _currentPage_Bar = 2;
-                                                      }
-                                                  }
-                                                  collectView.mj_footer.hidden = NO;
-                                              }else{
-                                                  // collectView.mj_footer.hidden = YES;
-                                                  [collectView.mj_footer endRefreshingWithNoMoreData];
-                                              }
-                                              [collectView.mj_header endRefreshing];
-                                          }
-                                      }];
-                                 }];
-        MJRefreshGifHeader *header=(MJRefreshGifHeader *)collectView.mj_header;
-        [self initMJRefeshHeaderForGif:header];
-        
-        collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-            [weakSelf loadHomeListWith:collectView.tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
-                if (Req_Success == ermsg.state) {
-                    if (barList.count == PAGESIZE)
-                    {
-                        collectView.mj_footer.hidden = NO;
-                    }
-                    else
-                    {
-                        // collectView.mj_footer.hidden = YES;
-                    }
-                    switch (collectView.tag) {
-                        case 0:
-                        {
-                            _currentPage_YD ++;
-                        }
-                            break;
-                        case 1:{
-                            _currentPage_Bar ++;
-                        }
-                    }
-                    if(barList.count) [collectView.mj_footer endRefreshing];
-                    else [collectView.mj_footer endRefreshingWithNoMoreData];
-                }
-            }];
-        }];
-        MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)collectView.mj_footer;
-        [self initMJRefeshFooterForGif:footer];
-    }
+    /*  for (UICollectionView *collectView in _collectViewArray) {
+     __weak HomePageINeedPlayViewController * weakSelf = self;
+     collectView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:
+     ^{
+     switch (collectView.tag) {
+     case 0:
+     {
+     _currentPage_YD = 1;
+     }
+     break;
+     case 1:
+     {
+     _currentPage_Bar = 1;
+     }
+     break;
+     }
+     [weakSelf loadHomeListWith:collectView.tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+     {
+     if (Req_Success == ermsg.state)
+     {
+     if (barList.count == PAGESIZE)
+     {
+     switch (collectView.tag) {
+     case 0:
+     {
+     _currentPage_YD = 2;                                                  }
+     break;
+     case 2:{
+     _currentPage_Bar = 2;
+     }
+     }
+     collectView.mj_footer.hidden = NO;
+     }else{
+     // collectView.mj_footer.hidden = YES;
+     [collectView.mj_footer endRefreshingWithNoMoreData];
+     }
+     [collectView.mj_header endRefreshing];
+     }
+     }];
+     }];
+     MJRefreshGifHeader *header=(MJRefreshGifHeader *)collectView.mj_header;
+     [self initMJRefeshHeaderForGif:header];
+     
+     collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+     [weakSelf loadHomeListWith:collectView.tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
+     if (Req_Success == ermsg.state) {
+     if (barList.count == PAGESIZE)
+     {
+     collectView.mj_footer.hidden = NO;
+     }
+     else
+     {
+     // collectView.mj_footer.hidden = YES;
+     }
+     switch (collectView.tag) {
+     case 0:
+     {
+     _currentPage_YD ++;
+     }
+     break;
+     case 1:{
+     _currentPage_Bar ++;
+     }
+     }
+     if(barList.count) [collectView.mj_footer endRefreshing];
+     else [collectView.mj_footer endRefreshingWithNoMoreData];
+     }
+     }];
+     }];
+     MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)collectView.mj_footer;
+     [self initMJRefeshFooterForGif:footer];
+     } */
 }
 
 
@@ -740,9 +752,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    NSArray *array = _dataArray[collectionView.tag];
-    if(array.count){
-        return array.count + 3;
+    //    NSArray *array = _dataArray[collectionView.tag];
+    //    if(array.count){
+    //    return array.count + 3;
+    //    }else{
+    //        return 0;
+    //    }
+    if(collectionView == _collectView){
+        return _dataArray.count;
     }else{
         return ((NSArray *)_dataArray[_index]).count + 3;
     }
@@ -751,19 +768,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     /* if(indexPath.row >= 2 && indexPath.row <= 5){
      return CGSizeMake((SCREEN_WIDTH - 9)/2.f, (SCREEN_WIDTH - 9)/2.f * 9 / 16);
-     }else*/ if(indexPath.row == 0){
-         return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
-     }else{
-         return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
-     }
-    
-    /*   if(indexPath.row >= 2 && indexPath.row <= 5){
-     return CGSizeMake((SCREEN_WIDTH - 6)/2.f, (SCREEN_WIDTH - 6)/2.f * 9 / 16);
      }else if(indexPath.row == 0){
-     return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 9 / 16);
+     return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
      }else{
-     return CGSizeMake(SCREEN_WIDTH, (SCREEN_WIDTH ) * 9 / 16);
+     return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
      } */
+    if (collectionView == _collectView) {
+        return CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    }else{
+        return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
+    }
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
@@ -771,7 +785,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         
         return 0;
     }else{
-       return 3;
+        return 3;
     }
 }
 
@@ -790,87 +804,87 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else{
         return UIEdgeInsetsMake(3, 3, 3, 3);
     }
-  
+    
 }
 
 /*
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row == 0){
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-        [[cell viewWithTag:1999] removeFromSuperview];
-        
-        NSMutableArray *bigArr=[[NSMutableArray alloc]init];
-        for (NSString *iconStr in self.bannerList) {
-            NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
-            [dicTemp setObject:iconStr forKey:@"ititle"];
-            [dicTemp setObject:@"" forKey:@"mainHeading"];
-            [bigArr addObject:dicTemp];
-        }
-        
-        // UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16)];
-        //        shadowView.tag = 10086;
-        //        shadowView.layer.cornerRadius = 2;
-        //        shadowView.layer.cornerRadius = 2;
-        //        shadowView.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
-        //        shadowView.layer.shadowOffset = CGSizeMake(0, .5);
-        //        shadowView.layer.shadowRadius = 1;
-        //        shadowView.layer.shadowOpacity = 1;
-        // [cell addSubview:shadowView];
-        
-        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
-        cycleScrollView.layer.cornerRadius = 2;
-        cycleScrollView.layer.masksToBounds = YES;
-        
-        cycleScrollView.imageURLStringsGroup = self.bannerList;
-        cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
-        cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
-        [cell addSubview:cycleScrollView];
-        
-        //        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 9)/16)
-        //                                                              scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
-        //        scroller.delegate=self;
-        //        scroller.tag=1999;
-        //        [cell addSubview:scroller];
-        
-        return cell;
-    }else if(indexPath.row == 1){
-        HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-        if(_recommendedBar){
-            jiubaCell.jiuBaM = _recommendedBar;
-        }
-        return jiubaCell;
-        
-    }else if(indexPath.row == 2){  //if(indexPath.row >= 2 & indexPath.row <= 5){
-        //  NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
-        /*       HomeMenuCollectionViewCell *menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeMenuCollectionViewCell" forIndexPath:indexPath];
-         //        menuCell.layer.cornerRadius = 2;
-         //        menuCell.layer.masksToBounds = YES;
-         //  [menuCell.imgView_title setImage:[UIImage imageNamed:picNameArray[indexPath.row - 2]]];
-         //   if(picNameArray.count == 4) menuCell.label_title.text = picNameArray[indexPath.row - 2];
-         if(_fiterArray.count == 4) [menuCell.imgView_bg sd_setImageWithURL:[NSURL URLWithString:_fiterArray[indexPath.row - 2]] placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
-         return menuCell; */
-        
-        HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@
-                                                 "HomeMenusCollectionViewCell"forIndexPath:indexPath];
-        for (int i = 0;i < 4;i++) {
-            UIButton *btn = menucell.btnArray[i];
-            [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
-            [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
-        }
-        return menucell;
-    }else{
-        HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-        if(_dataArray.count){
-            NSArray *array = _dataArray[collectionView.tag];
-            if(array.count){
-                JiuBaModel *jiuBaM = array[indexPath.row - 3];
-                jiubaCell.jiuBaM = jiuBaM;
-            }
-        }
-        return jiubaCell;
-    }
-    
-} */
+ - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+ if(indexPath.row == 0){
+ UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+ [[cell viewWithTag:1999] removeFromSuperview];
+ 
+ NSMutableArray *bigArr=[[NSMutableArray alloc]init];
+ for (NSString *iconStr in self.bannerList) {
+ NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
+ [dicTemp setObject:iconStr forKey:@"ititle"];
+ [dicTemp setObject:@"" forKey:@"mainHeading"];
+ [bigArr addObject:dicTemp];
+ }
+ 
+ // UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(3, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16)];
+ //        shadowView.tag = 10086;
+ //        shadowView.layer.cornerRadius = 2;
+ //        shadowView.layer.cornerRadius = 2;
+ //        shadowView.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
+ //        shadowView.layer.shadowOffset = CGSizeMake(0, .5);
+ //        shadowView.layer.shadowRadius = 1;
+ //        shadowView.layer.shadowOpacity = 1;
+ // [cell addSubview:shadowView];
+ 
+ SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+ cycleScrollView.layer.cornerRadius = 2;
+ cycleScrollView.layer.masksToBounds = YES;
+ 
+ cycleScrollView.imageURLStringsGroup = self.bannerList;
+ cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
+ cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
+ [cell addSubview:cycleScrollView];
+ 
+ //        EScrollerView *scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH * 9)/16)
+ //                                                              scrolArray:[NSArray arrayWithArray:[bigArr copy]] needTitile:YES];
+ //        scroller.delegate=self;
+ //        scroller.tag=1999;
+ //        [cell addSubview:scroller];
+ 
+ return cell;
+ }else if(indexPath.row == 1){
+ HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+ if(_recommendedBar){
+ jiubaCell.jiuBaM = _recommendedBar;
+ }
+ return jiubaCell;
+ 
+ }else if(indexPath.row == 2){  //if(indexPath.row >= 2 & indexPath.row <= 5){
+ //  NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
+ /*       HomeMenuCollectionViewCell *menuCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeMenuCollectionViewCell" forIndexPath:indexPath];
+ //        menuCell.layer.cornerRadius = 2;
+ //        menuCell.layer.masksToBounds = YES;
+ //  [menuCell.imgView_title setImage:[UIImage imageNamed:picNameArray[indexPath.row - 2]]];
+ //   if(picNameArray.count == 4) menuCell.label_title.text = picNameArray[indexPath.row - 2];
+ if(_fiterArray.count == 4) [menuCell.imgView_bg sd_setImageWithURL:[NSURL URLWithString:_fiterArray[indexPath.row - 2]] placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
+ return menuCell;
+ 
+ HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@
+ "HomeMenusCollectionViewCell"forIndexPath:indexPath];
+ for (int i = 0;i < 4;i++) {
+ UIButton *btn = menucell.btnArray[i];
+ [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
+ [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
+ }
+ return menucell;
+ }else{
+ HomeBarCollectionViewCell *jiubaCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+ if(_dataArray.count){
+ NSArray *array = _dataArray[collectionView.tag];
+ if(array.count){
+ JiuBaModel *jiuBaM = array[indexPath.row - 3];
+ jiubaCell.jiuBaM = jiuBaM;
+ }
+ }
+ return jiubaCell;
+ }
+ 
+ } */
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == _collectView) {
@@ -881,152 +895,152 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [cell.collectViewInside registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
         [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeMenusCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenusCollectionViewCell"];
         cell.collectViewInside.contentInset = UIEdgeInsetsMake(90, 0, 0, 0);
-    __weak HomePageINeedPlayViewController *weakSelf = self;
-    cell.collectViewInside.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-//        switch (indexPath.item) {
-//            case 0:
-//            {
-//                _currentPage_YD = 1;
-//                [weakSelf getDataWith:0];
-//            }
-//                break;
-//            case 1:
-//            {
-//                _currentPage_Bar = 1;
-//                [weakSelf getDataWith:1];
-//            }
-//                break;
-//        }
-        
-        [weakSelf loadHomeListWith:_index block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
-         {
-             if (Req_Success == ermsg.state)
+        __weak HomePageINeedPlayViewController *weakSelf = self;
+        cell.collectViewInside.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+            //        switch (indexPath.item) {
+            //            case 0:
+            //            {
+            //                _currentPage_YD = 1;
+            //                [weakSelf getDataWith:0];
+            //            }
+            //                break;
+            //            case 1:
+            //            {
+            //                _currentPage_Bar = 1;
+            //                [weakSelf getDataWith:1];
+            //            }
+            //                break;
+            //        }
+            
+            [weakSelf loadHomeListWith:_index block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
              {
-                 if (barList.count == PAGESIZE)
+                 if (Req_Success == ermsg.state)
                  {
-                     switch (_index) {
-                         case 0:
-                         {
-                             _currentPage_YD = 2;                                                  }
-                             break;
-                         case 2:{
-                             _currentPage_Bar = 2;
+                     if (barList.count == PAGESIZE)
+                     {
+                         switch (_index) {
+                             case 0:
+                             {
+                                 _currentPage_YD = 2;                                                  }
+                                 break;
+                             case 2:{
+                                 _currentPage_Bar = 2;
+                             }
+                                 break;
                          }
-                             break;
+                         cell.collectViewInside.mj_footer.hidden = NO;
+                     }else{
+                         // collectView.mj_footer.hidden = YES;
+                         [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
                      }
-                     cell.collectViewInside.mj_footer.hidden = NO;
-                 }else{
-                     // collectView.mj_footer.hidden = YES;
-                     [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
+                     [cell.collectViewInside.mj_header endRefreshing];
                  }
-                 [cell.collectViewInside.mj_header endRefreshing];
-             }
-         }];
-
-    
-    }];
-
-    MJRefreshGifHeader *header=(MJRefreshGifHeader *)cell.collectViewInside.mj_header;
-    [self initMJRefeshHeaderForGif:header];
-    cell.collectViewInside.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-//        switch (indexPath.item) {
-//            case 0:
-//            {
-//                [weakSelf getDataWith:0];
-//            }
-//                break;
-//            case 1:
-//            {
-//                [weakSelf getDataWith:1];
-//            }
-//                break;
-//        }
-        
-        [weakSelf loadHomeListWith:_index block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
-            if (Req_Success == ermsg.state) {
-                if (barList.count == PAGESIZE)
-                {
-                    cell.collectViewInside.mj_footer.hidden = NO;
-                }
-                else
-                {
-                    // collectView.mj_footer.hidden = YES;
-                }
-                switch (_index) {
-                    case 0:
-                    {
-                        _currentPage_YD ++;
-                    }
-                        break;
-                    case 1:{
-                        _currentPage_Bar ++;
-                    }
-                }
-                if(barList.count) [cell.collectViewInside.mj_footer endRefreshing];
-                else [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
-            }
+             }];
+            
+            
         }];
-    }];
-    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)cell.collectViewInside.mj_footer;
-    [self initMJRefeshFooterForGif:footer];
-    
+        
+        MJRefreshGifHeader *header=(MJRefreshGifHeader *)cell.collectViewInside.mj_header;
+        [self initMJRefeshHeaderForGif:header];
+        cell.collectViewInside.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+            //        switch (indexPath.item) {
+            //            case 0:
+            //            {
+            //                [weakSelf getDataWith:0];
+            //            }
+            //                break;
+            //            case 1:
+            //            {
+            //                [weakSelf getDataWith:1];
+            //            }
+            //                break;
+            //        }
+            
+            [weakSelf loadHomeListWith:_index block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
+                if (Req_Success == ermsg.state) {
+                    if (barList.count == PAGESIZE)
+                    {
+                        cell.collectViewInside.mj_footer.hidden = NO;
+                    }
+                    else
+                    {
+                        // collectView.mj_footer.hidden = YES;
+                    }
+                    switch (_index) {
+                        case 0:
+                        {
+                            _currentPage_YD ++;
+                        }
+                            break;
+                        case 1:{
+                            _currentPage_Bar ++;
+                        }
+                    }
+                    if(barList.count) [cell.collectViewInside.mj_footer endRefreshing];
+                    else [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
+                }
+            }];
+        }];
+        MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)cell.collectViewInside.mj_footer;
+        [self initMJRefeshFooterForGif:footer];
+        
         return cell;
     }else{
         LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-            switch (indexPath.item) {
-                case 0:
-                {
-                    UICollectionViewCell *spaceCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-                    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
-                    cycleScrollView.layer.cornerRadius = 2;
-                    cycleScrollView.layer.masksToBounds = YES;
-                    cycleScrollView.imageURLStringsGroup = self.bannerList;
-                    cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
-                    cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
-                    [spaceCell addSubview:cycleScrollView];
-                    return spaceCell;
-                }
-                    break;
-                case 1:
-                {
-                    HomeBarCollectionViewCell *jiubaCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                    if(_recommendedBar){
-                        jiubaCell.jiuBaM = _recommendedBar;
-                    }
-                    return jiubaCell;
-                }
-                    break;
-                case 2://才当
-                {
-                    HomeMenusCollectionViewCell *menucell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@
-                                                             "HomeMenusCollectionViewCell"forIndexPath:indexPath];
-                    for (int i = 0;i < 4;i++) {
-                        UIButton *btn = menucell.btnArray[i];
-                        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
-                        [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
-                    }
-                    return menucell;
-                }
-                    break;
-                default:{
-                    HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                    JiuBaModel *jiubaM = _dataArray[_index][indexPath.item - 3];
-                    cell.jiuBaM = jiubaM;
-                    return cell;
-                }
-                    break;
+        switch (indexPath.item) {
+            case 0:
+            {
+                UICollectionViewCell *spaceCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+                SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+                cycleScrollView.layer.cornerRadius = 2;
+                cycleScrollView.layer.masksToBounds = YES;
+                cycleScrollView.imageURLStringsGroup = self.bannerList;
+                cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
+                cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
+                [spaceCell addSubview:cycleScrollView];
+                return spaceCell;
             }
-            return nil;
+                break;
+            case 1:
+            {
+                HomeBarCollectionViewCell *jiubaCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+                if(_recommendedBar){
+                    jiubaCell.jiuBaM = _recommendedBar;
+                }
+                return jiubaCell;
+            }
+                break;
+            case 2://才当
+            {
+                HomeMenusCollectionViewCell *menucell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@
+                                                         "HomeMenusCollectionViewCell"forIndexPath:indexPath];
+                for (int i = 0;i < 4;i++) {
+                    UIButton *btn = menucell.btnArray[i];
+                    [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
+                    [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
+                }
+                return menucell;
+            }
+                break;
+            default:{
+                HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+                JiuBaModel *jiubaM = _dataArray[_index][indexPath.item - 3];
+                cell.jiuBaM = jiubaM;
+                return cell;
+            }
+                break;
         }
+        return nil;
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == _collectView) {
         
-    LYHomeCollectionViewCell *hotCell = (LYHomeCollectionViewCell*)cell;
-    hotCell.jiubaArray = _dataArray[indexPath.item];
+        LYHomeCollectionViewCell *hotCell = (LYHomeCollectionViewCell*)cell;
+        hotCell.jiubaArray = _dataArray[indexPath.item];
     }
-
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -1067,9 +1081,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         return;
     }
     
-
+    
     BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
-   // BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+    // BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
     controller.beerBarId = @(jiuBaM.barid);
     [self.navigationController pushViewController:controller animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
