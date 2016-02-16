@@ -28,20 +28,25 @@
     _view_cons_width.constant = 0.5;
     _view_cont_one_width.constant = 0.5;
     
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    _bulrView = [[UIVisualEffectView alloc]initWithEffect:effect];
+    _bulrView.frame = CGRectMake(240, 20, 40, 40);
+//    [self addSubview:_bulrView];
     _bulrView.layer.cornerRadius = CGRectGetWidth(_bulrView.frame) / 2.f;
     _bulrView.layer.masksToBounds = YES;
+    _bulrView.layer.shouldRasterize = YES;
     
     _label_yu.layer.cornerRadius = 2;
     _label_yu.layer.masksToBounds = YES;
     
-    _label_address.shadowOffset = CGSizeMake(0, 0.5);
-    _label_barName.shadowOffset = CGSizeMake(0, 0.5);
-        _label_distance.shadowOffset = CGSizeMake(0, 0.5);
-        _label_fanli.shadowOffset = CGSizeMake(0, 0.5);
-        _label_price.shadowOffset = CGSizeMake(0, 0.5);
-    _label_barDescr.shadowOffset = CGSizeMake(0, 0.5);
-    _label_collect.shadowOffset = CGSizeMake(0, 0.5);
-        _label_zang.shadowOffset = CGSizeMake(0, 0.5);
+//    _label_address.shadowOffset = CGSizeMake(0, 0.5);
+//    _label_barName.shadowOffset = CGSizeMake(0, 0.5);
+//        _label_distance.shadowOffset = CGSizeMake(0, 0.5);
+//        _label_fanli.shadowOffset = CGSizeMake(0, 0.5);
+//        _label_price.shadowOffset = CGSizeMake(0, 0.5);
+//    _label_barDescr.shadowOffset = CGSizeMake(0, 0.5);
+//    _label_collect.shadowOffset = CGSizeMake(0, 0.5);
+//        _label_zang.shadowOffset = CGSizeMake(0, 0.5);
 }
 
 - (void)setJiuBaM:(JiuBaModel *)jiuBaM{

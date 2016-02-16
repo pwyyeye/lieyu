@@ -30,8 +30,8 @@
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame) / 2.f;
     _btn_headerImg.layer.masksToBounds = YES;
     [_btn_name setTitle:recentM.usernick forState:UIControlStateNormal];
-    [_label_time setText:[MyUtil calculateDateFromNowWith:recentM.date]];
-   
+    [_label_time setText:[MyUtil calculatedDateFromNowWith:recentM.date]];
+    NSLog(@"---------%@-->%@",recentM.usernick,recentM.date);
 //    if(recentM.message.length >26){
 //        [_label_content setText:[recentM.message substringToIndex:25]];
 //    }else{
