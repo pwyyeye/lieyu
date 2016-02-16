@@ -99,6 +99,7 @@
     
     
     [self loadBarDetail];                                                       //load data
+  
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMyCollectedAndLikeBar) name:@"loadMyCollectedAndLikeBar" object:nil];
     
@@ -179,7 +180,7 @@
              [weakSelf.tableView reloadData];
              [weakSelf loadMyBarInfo];
              //加载webview
-             [weakSelf loadWebView];
+            // [weakSelf loadWebView];
              [weakSelf setTimer];
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
@@ -365,7 +366,7 @@
     webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
     //获取WebView最佳尺寸（点）
     CGSize frame = [webView sizeThatFits:webView.frame.size];
-    NSLog(@"--->%@",NSStringFromCGSize(frame));
+
     //获取内容实际高度（像素）
     //    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight;"];
     //    float height = [height_str floatValue];
@@ -373,17 +374,12 @@
     //    height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
     //    NSLog(@"--->%f",height);
-    webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, frame.height);
+    //webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, frame.height);
     //    webView.backgroundColor = [UIColor redColor];
     
-    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
-    
-    
-    //  CGFloat offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
-    //
-    //    NSLog(@"----pass-pass%f---",offsetHeight);
-    //     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, offsetHeight+100);
-    //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
+//    NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:5];
+//    [_tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationNone];
+   // [_tableView reloadData];
 }
 
 #pragma mark -- tableviewDelegate
@@ -534,11 +530,24 @@
         case 5:
         {
             cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height, SCREEN_WIDTH, 2500)];
+            UIWebView *webV = [cell viewWithTag:10086];
+            if (webV) {
+                [webV removeFromSuperview];
+            }
+            
+            _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2500)];
             _webView.backgroundColor = [UIColor redColor];
-            _webView.delegate = self;
+            _webView.tintColor = [UIColor redColor];
+//            _webView.delegate = self;
+            _webView.tag = 10086;
+            
+            NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",self.beerBarDetail.descriptions,SCREEN_WIDTH-17];
+            [_webView loadHTMLString:webStr baseURL:nil];
+            
             [_webView sizeToFit];
             [_webView.scrollView setScrollEnabled:NO];
+            
+            
             [cell addSubview:_webView];
         }
             break;
@@ -619,7 +628,14 @@
             break;
             case 5:
         {
-            return 1000;
+            NSString * clientheight_str = [_webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
+            float clientheight = [clientheight_str floatValue];
+            //设置到WebView上
+            _webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
+            //获取WebView最佳尺寸（点）
+            CGSize frame = [_webView sizeThatFits:_webView.frame.size];
+//            return frame.height;
+            return 2000;
         }
             break;
     }
