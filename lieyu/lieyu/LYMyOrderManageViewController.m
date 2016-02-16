@@ -589,9 +589,25 @@
                 
                 if(isFaqi){
                     if(isfu){
-                        [orderBottomView.oneBtn setTitle:@"取消订单" forState:0];
+                        BOOL isFree=NO;//是否免费发起
+                        NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+                        for (PinkInfoModel *pinkInfoModel in pinkerList) {
+                            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
+                            if(pinkInfoModel.inmember==app.userModel.userid){
+                                if (pinkInfoModel.price.doubleValue==0.0) {
+                                    isFree=YES;
+                                }
+                            }
+                        }
+                        [orderBottomView.oneBtn setTitle:isFree?@"删除订单":@"取消订单" forState:0];
                         [orderBottomView.oneBtn setHidden:NO];
-                        [orderBottomView.oneBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                        if (isFree) {
+                            [orderBottomView.oneBtn addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                        }else{
+                            [orderBottomView.oneBtn addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                        }
+                        
                         if(orderInfoModel.pinkerList.count<orderInfoModel.allnum.intValue){
                             [orderBottomView.secondBtn setTitle:@"立即拼客" forState:UIControlStateSelected];
                             orderBottomView.secondBtn.selected=YES;
@@ -1031,6 +1047,10 @@
                 if(result){
                     [MyUtil showMessage:@"删除成功"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+                    if(orderInfoModel.ordertype==1){
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"YunoticeToReload" object:nil];
+
+                    }
 
                     [weakSelf refreshData];
                 }

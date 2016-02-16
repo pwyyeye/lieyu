@@ -213,10 +213,24 @@
                     UIButton *btn2=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, dibuView.width/2, dibuView.height)];
                     btn2.backgroundColor=RGB(229, 229, 229);
                     
-                    [btn2 setTitle:@"取消订单" forState:UIControlStateNormal];
+                    BOOL isFree=NO;//是否免费发起
+                    NSArray *pinkerList=[PinkInfoModel mj_objectArrayWithKeyValuesArray:_orderInfoModel.pinkerList];
+                    for (PinkInfoModel *pinkInfoModel in pinkerList) {
+                        if(pinkInfoModel.inmember==self.userModel.userid){
+                            if (pinkInfoModel.price.doubleValue==0.0) {
+                                isFree=YES;
+                            }
+                        }
+                    }
+                    
+                    [btn2 setTitle:isFree?@"删除订单":@"取消订单" forState:UIControlStateNormal];
                     btn2.titleLabel.font = [UIFont systemFontOfSize:12];
                     [btn2 setTitleColor:RGB(153, 153, 153)  forState:UIControlStateNormal];
-                    [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    if (isFree) {
+                        [btn2 addTarget:self action:@selector(shanChuDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    }else{
+                        [btn2 addTarget:self action:@selector(queXiaoDinDanAct:) forControlEvents:UIControlEventTouchUpInside];
+                    }
                     [dibuView addSubview:btn2];
                     
                     UIButton *btn1=[[UIButton alloc]initWithFrame:CGRectMake(dibuView.width/2, 0, dibuView.width/2, dibuView.height)];

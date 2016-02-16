@@ -12,9 +12,9 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DPd-nu-1fz">
-                    <rect key="frame" x="10" y="10" width="580" height="580"/>
+                    <rect key="frame" x="10" y="5" width="580" height="590"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcN-zi-6PG">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcN-zi-6PG">
                             <rect key="frame" x="546" y="0.0" width="21" height="580"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -26,7 +26,7 @@
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <view contentMode="scaleToFill" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="Ulo-To-XW2">
+                        <view contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ulo-To-XW2">
                             <rect key="frame" x="537" y="6" width="1" height="568"/>
                             <color key="backgroundColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -34,7 +34,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2k-3O-csD">
-                            <rect key="frame" x="572" y="0.0" width="3" height="580"/>
+                            <rect key="frame" x="572" y="0.0" width="3" height="590"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="3" id="fPX-8A-Rr6"/>
                             </constraints>
@@ -42,7 +42,7 @@
                                 <color key="titleColor" red="0.56078431370000004" green="0.0078431372550000003" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  评论(200字以内)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDJ-i7-gbH">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  评论(200字以内)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDJ-i7-gbH">
                             <rect key="frame" x="2" y="0.0" width="535" height="580"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="send"/>
@@ -70,8 +70,8 @@
             <constraints>
                 <constraint firstItem="DPd-nu-1fz" firstAttribute="leading" secondItem="wpO-CU-Ge9" secondAttribute="leading" constant="10" id="2dz-MU-8bj"/>
                 <constraint firstAttribute="trailing" secondItem="DPd-nu-1fz" secondAttribute="trailing" constant="10" id="8wR-Md-O8s"/>
-                <constraint firstItem="DPd-nu-1fz" firstAttribute="top" secondItem="wpO-CU-Ge9" secondAttribute="top" constant="10" id="R2c-cS-N3H"/>
-                <constraint firstAttribute="bottom" secondItem="DPd-nu-1fz" secondAttribute="bottom" constant="10" id="wJy-Yu-L4Q"/>
+                <constraint firstItem="DPd-nu-1fz" firstAttribute="top" secondItem="wpO-CU-Ge9" secondAttribute="top" constant="5" id="R2c-cS-N3H"/>
+                <constraint firstAttribute="bottom" secondItem="DPd-nu-1fz" secondAttribute="bottom" constant="5" id="wJy-Yu-L4Q"/>
             </constraints>
             <connections>
                 <outlet property="bgView" destination="DPd-nu-1fz" id="FZO-cn-FIm"/>
@@ -80,7 +80,7 @@
                 <outlet property="btn_send_cont_width" destination="fPX-8A-Rr6" id="nLc-dd-id1"/>
                 <outlet property="textField" destination="fDJ-i7-gbH" id="Akn-8P-lhB"/>
             </connections>
-            <point key="canvasLocation" x="318" y="416"/>
+            <point key="canvasLocation" x="214" y="405"/>
         </view>
     </objects>
     <resources>

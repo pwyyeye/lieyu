@@ -36,7 +36,7 @@
     
     _shareContent.delegate=self;
     
-    
+    _allowSex=2;
     UIBarButtonItem *rightBtn=[[UIBarButtonItem alloc] initWithTitle:@"发送" style:UIBarButtonItemStylePlain target:self action:@selector(sureAct:)];
     [rightBtn setTintColor:[UIColor blackColor]];
     [self.navigationItem setRightBarButtonItem:rightBtn];
@@ -99,25 +99,29 @@
             if (_orderModel.pinkerinfo.images.count>0) {
                 NSString *url=_orderModel.pinkerinfo.images[0];
                 [_pinkerImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-                //活动时间
-                if (![MyUtil isEmptyString:_orderModel.reachtime]) {
-                    NSDate *date= [MyUtil getFullDateFromString:_orderModel.reachtime];
-                    if (date!=nil) {
-                        //实例化一个NSDateFormatter对象
-                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                        //设定时间格式,这里可以设置成自己需要的格式
-                        [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
-                        //用[NSDate date]可以获取系统当前时间
-                        NSString *currentDateStr = [dateFormatter stringFromDate:date];
-                        _pinkerTimeLabel.text=currentDateStr;
-                    }
+                
+                
+                
+            }else if(_orderModel.pinkerinfo.linkUrl){
+                [_pinkerImageView sd_setImageWithURL:[NSURL URLWithString:_orderModel.pinkerinfo.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+            }
+            
+            //活动时间
+            if (![MyUtil isEmptyString:_orderModel.reachtime]) {
+                NSDate *date= [MyUtil getFullDateFromString:_orderModel.reachtime];
+                if (date!=nil) {
+                    //实例化一个NSDateFormatter对象
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    //设定时间格式,这里可以设置成自己需要的格式
+                    [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
+                    //用[NSDate date]可以获取系统当前时间
+                    NSString *currentDateStr = [dateFormatter stringFromDate:date];
+                    _pinkerTimeLabel.text=currentDateStr;
                 }
-                
-                if (_orderModel.barinfo.address) {
-                    _pinkerAddress.text=_orderModel.barinfo.address;
-                }
-                
-                
+            }
+            
+            if (_orderModel.barinfo.address) {
+                _pinkerAddress.text=_orderModel.barinfo.address;
             }
             
         }];
@@ -185,9 +189,9 @@
 //            [self.navigationController popViewControllerAnimated:YES];
             [self.navigationController popToRootViewControllerAnimated:NO];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToSecondViewController" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"YunoticeToReload" object:nil];
         }
     }];
-    
 }
 
 #pragma --mark 选择公开 私人

@@ -244,7 +244,8 @@
         
         [alert show];
     }else if(indexPath.row==2){
-        [self showAlertViewForSex];
+        return;
+//        [self showAlertViewForSex];
     }else if(indexPath.row==3){
         [self showAlertView];
     }else if (indexPath.row==4){
