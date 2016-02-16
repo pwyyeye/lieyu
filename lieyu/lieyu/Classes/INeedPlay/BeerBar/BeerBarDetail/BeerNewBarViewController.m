@@ -96,12 +96,7 @@
     self.view_bottom.layer.shadowOpacity = 0.8;
     self.view_bottom.layer.shadowRadius = 2;
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height, SCREEN_WIDTH, 2500)];
-    _webView.delegate = self;
-    [_webView sizeToFit];
-    [_webView.scrollView setScrollEnabled:NO];
-    //    _webView.scalesPageToFit = YES;
-    [self.scrollView addSubview:_webView];
+    
     
     [self loadBarDetail];                                                       //load data
     
@@ -171,22 +166,14 @@
          if (erMsg.state == Req_Success) {
              weakSelf.beerBarDetail = detailItem;
              
-             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
-             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:detailItem.banners.firstObject]];
-             [self.view addSubview:_tableHeaderImgView];
-             [self.view sendSubviewToBack:_tableHeaderImgView];
+//             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
+//             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:detailItem.banners.firstObject]];
+//             weakSelf.tableView.tableHeaderView = _tableHeaderImgView;
              
-             UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
-             view.alpha = 0;
-             weakSelf.tableView.tableHeaderView = view;
-             
-             self.title=weakSelf.beerBarDetail.barname;
+             weakSelf.title=weakSelf.beerBarDetail.barname;
              //判断用户是否已经喜欢过
              
              [_timer setFireDate:[NSDate distantPast]];
-             
-             
-             
              
              [weakSelf updateViewConstraints];
              [weakSelf.tableView reloadData];
@@ -245,11 +232,11 @@
         self.image_layer.hidden = YES;
     }
     
-    if (scrollView.contentOffset.y < 0) {
+    if (_tableView.contentOffset.y < 0) {
         CGFloat y = scrollView.contentOffset.y;
-     //   self.tableView.tableHeaderView.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, SCREEN_WIDTH, <#CGFloat height#>)
-        _tableHeaderImgView.frame = CGRectMake(y, y, SCREEN_WIDTH - y, (SCREEN_WIDTH - y) * 9 / 16);
-       // NSLog(@"---->%@",NSStringFromCGRect(_tableHeaderImgView.frame));
+        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
+        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
+        NSLog(@"----->%@",NSStringFromCGRect(_tableHeaderImgView.frame));
     }
 }
 
@@ -403,7 +390,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -439,7 +426,10 @@
             _scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0 , 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
                                                     scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
             
-            [_headerCell addSubview:_scroller];
+           // [_headerCell addSubview:_scroller];
+            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
+            [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject]];
+            [_headerCell addSubview:_tableHeaderImgView];
             
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
             
@@ -541,7 +531,16 @@
             
         }
             break;
-        default:
+        case 5:
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height, SCREEN_WIDTH, 2500)];
+            _webView.backgroundColor = [UIColor redColor];
+            _webView.delegate = self;
+            [_webView sizeToFit];
+            [_webView.scrollView setScrollEnabled:NO];
+            [cell addSubview:_webView];
+        }
             break;
             
     }
@@ -612,10 +611,15 @@
         }
             break;
             
-        default:
+        case 4:
         {
             return 76;
             
+        }
+            break;
+            case 5:
+        {
+            return 1000;
         }
             break;
     }

@@ -17,27 +17,10 @@
 - (void)drawRect:(CGRect)rect{
     self.imgView_bg.layer.cornerRadius = 2;
     self.imgView_bg.layer.masksToBounds = YES;
-//    self.shadowView.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
-//    self.shadowView.layer.shadowOffset = CGSizeMake(0, .5);
-//    self.shadowView.layer.shadowRadius = 1;
-//    self.shadowView.layer.shadowOpacity = 1;
-    self.imgView_bg.layer.borderWidth = 0.5;
-    self.imgView_bg.layer.borderColor = RGBA(204, 204, 204, 1).CGColor;
-    
+    self.layer.shouldRasterize = YES;
     
     _view_cons_width.constant = 0.5;
     _view_cont_one_width.constant = 0.5;
-    
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    _bulrView = [[UIVisualEffectView alloc]initWithEffect:effect];
-    _bulrView.frame = CGRectMake(240, 20, 40, 40);
-//    [self addSubview:_bulrView];
-    _bulrView.layer.cornerRadius = CGRectGetWidth(_bulrView.frame) / 2.f;
-    _bulrView.layer.masksToBounds = YES;
-    _bulrView.layer.shouldRasterize = YES;
-    
-    _label_yu.layer.cornerRadius = 2;
-    _label_yu.layer.masksToBounds = YES;
     
 //    _label_address.shadowOffset = CGSizeMake(0, 0.5);
 //    _label_barName.shadowOffset = CGSizeMake(0, 0.5);
@@ -99,8 +82,8 @@
     int fanli=jiuBaM.rebate.floatValue * 100;
     
     NSLog(@"------>%@",jiuBaM.isSign);
-    if([jiuBaM.isSign isEqualToString:@"0"]) _label_yu.hidden = YES;
-    else _label_yu.hidden = NO;
+    if([jiuBaM.isSign isEqualToString:@"0"]) _imgYu.hidden = YES;
+    else _imgYu.hidden = NO;
     if (!fanli) {
         _label_fanli.text = @"";
         _label_fanli.hidden = YES;

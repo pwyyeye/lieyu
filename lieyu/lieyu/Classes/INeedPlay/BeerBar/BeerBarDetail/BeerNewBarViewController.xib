@@ -130,7 +130,7 @@
                         <constraint firstItem="Tin-Bb-P53" firstAttribute="width" secondItem="nnS-mG-iG5" secondAttribute="width" id="z1n-hM-Z1f"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-SZ-V8q">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-SZ-V8q">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
