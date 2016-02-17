@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LYBarScrollTableViewCell : UITableViewCell
+@interface LYBarScrollTableViewCell : UITableViewCell{
+    UIScrollView *_scrollView;
+}
 
+@property (nonatomic,strong) NSArray *activtyArray;
+@property (nonatomic,strong) NSMutableArray *activtyBtnArray;
 @end

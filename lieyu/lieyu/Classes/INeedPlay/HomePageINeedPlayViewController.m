@@ -179,6 +179,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
     if(scrollView == _collectView){
             CGFloat offsetWidth = _collectView.contentOffset.x;
             CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
@@ -197,6 +198,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
         if (_index) {
             if (cell.collectViewInside.contentOffset.y - 40> _contentOffSet_Height_BAR) {
+                //  [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
                     _menuView.center = CGPointMake( _menuView.center.x,8 );
@@ -207,6 +209,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     
                 }];
             }else if(cell.collectViewInside.contentOffset.y + 40 <_contentOffSet_Height_BAR){
+                // [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
                 [UIView animateWithDuration:0.5 animations:^{
                     
                     _menuView.center = CGPointMake(_menuView.center.x,45);
@@ -265,6 +268,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
         
     }
+    //    _contentOffSetWidth = _scrollView.contentOffset.x;
+    
+    //    [UIView animateWithDuration:.5 animations:^{
+    //        CGFloat offsetWidth = _scrollView.contentOffset.x;
+    //        CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
+    //        _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
+    //    }];
     
 }
 
@@ -910,23 +920,24 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
              {
                  if (Req_Success == ermsg.state)
                  {
-                     switch (_index) {
-                         case 0:
-                         {
-                             _currentPage_YD = 2;                                                  }
-                             break;
-                         case 1:{
-                             _currentPage_Bar = 2;
-                         }
-                         cell.collectViewInside.mj_footer.hidden = NO;
+//                     switch (_index) {
+//                         case 0:
+//                         {
+//                             _currentPage_YD = 2;                                                  }
+//                             break;
+//                         case 1:{
+//                             _currentPage_Bar = 2;
+//                         }
+//                             break;
+//                         cell.collectViewInside.mj_footer.hidden = NO;
                      }else{
                          // collectView.mj_footer.hidden = YES;
                          [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
                      }
                      [cell.collectViewInside.mj_header endRefreshing];
-                 }
-                 [cell.collectViewInside.mj_header endRefreshing];
              }
+                 [cell.collectViewInside.mj_header endRefreshing];
+
          }];
 
     
@@ -934,11 +945,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
     MJRefreshGifHeader *header=(MJRefreshGifHeader *)cell.collectViewInside.mj_header;
     [self initMJRefeshHeaderForGif:header];
+        
+        
+        
     cell.collectViewInside.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         
-        MJRefreshGifHeader *header=(MJRefreshGifHeader *)cell.collectViewInside.mj_header;
-        [self initMJRefeshHeaderForGif:header];
-        cell.collectViewInside.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
             //        switch (indexPath.item) {
             //            case 0:
             //            {
@@ -975,8 +986,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     if(barList.count) [cell.collectViewInside.mj_footer endRefreshing];
                     else [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
                 }
-            }];
         }];
+    }];
         MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)cell.collectViewInside.mj_footer;
         [self initMJRefeshFooterForGif:footer];
         
@@ -993,37 +1004,26 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
                     [spaceCell addSubview:cycleScrollView];
                     return spaceCell;
+            }
+                break;
+            case 1:{
+                HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+                if (_recommendedBar) {
+                    cell.jiuBaM = _recommendedBar;
+                }
+                return cell;
                 }
                     break;
-                case 1:
-                {
-                    HomeBarCollectionViewCell *jiubaCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                    if(_recommendedBar){
-                        jiubaCell.jiuBaM = _recommendedBar;
-                    }
-                    return jiubaCell;
-                }
-                    break;
-                case 2://才当
-                {
-                    HomeMenusCollectionViewCell *menucell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@
-                                                             "HomeMenusCollectionViewCell"forIndexPath:indexPath];
-                    
-                    return menucell;
-                }
-                    break;
-                default:{
-                    HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                    
-                    return cell;
-                }
+            case 2://才当
+            {
+                HomeMenusCollectionViewCell *menucell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@
+                                                         "HomeMenusCollectionViewCell"forIndexPath:indexPath];
                 return menucell;
+               
             }
                 break;
             default:{
                 HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                JiuBaModel *jiubaM = _dataArray[_index][indexPath.item - 3];
-                cell.jiuBaM = jiubaM;
                 return cell;
             }
                 break;
@@ -1094,14 +1094,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
     //BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
     BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
-    controller.beerBarId = @(jiuBaM.barid);
-    [self.navigationController pushViewController:controller animated:YES];
-     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
-   
-
-    
-    BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
-    // BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
     controller.beerBarId = @(jiuBaM.barid);
     [self.navigationController pushViewController:controller animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];

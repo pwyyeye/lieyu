@@ -153,6 +153,29 @@
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                         <size key="shadowOffset" width="0.0" height="1"/>
                     </label>
+                    <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Htz-dk-0Yh">
+                        <rect key="frame" x="291" y="10" width="32" height="32"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="EMJ-jg-6V3">
+                            <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="EF007D27-C955-4444-828D-9C555D15D379" translatesAutoresizingMaskIntoConstraints="NO" id="5kg-jA-Wg0">
+                                    <rect key="frame" x="2" y="8" width="29" height="16"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="29" id="P4F-m1-ENS"/>
+                                        <constraint firstAttribute="height" constant="16" id="naI-mW-HqY"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                        </view>
+                        <constraints>
+                            <constraint firstItem="5kg-jA-Wg0" firstAttribute="centerX" secondItem="Htz-dk-0Yh" secondAttribute="centerX" id="LVv-Hw-6CK"/>
+                            <constraint firstAttribute="width" constant="32" id="Taq-Ku-8LV"/>
+                            <constraint firstItem="5kg-jA-Wg0" firstAttribute="centerY" secondItem="Htz-dk-0Yh" secondAttribute="centerY" id="fyb-i1-Hmj"/>
+                            <constraint firstAttribute="height" constant="32" id="zWQ-ON-9m0"/>
+                        </constraints>
+                        <blurEffect style="extraLight"/>
+                    </visualEffectView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRw-CJ-AP7">
                         <rect key="frame" x="101" y="171" width="51" height="14"/>
                         <constraints>
@@ -266,6 +289,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="EF007D27-C955-4444-828D-9C555D15D379" width="369" height="192"/>
         <image name="HOT.png" width="40" height="40"/>
         <image name="home_list_mask.png" width="369" height="192"/>
         <image name="yuding.png" width="14" height="14"/>

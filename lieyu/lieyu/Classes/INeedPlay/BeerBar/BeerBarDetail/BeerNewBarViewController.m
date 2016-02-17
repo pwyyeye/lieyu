@@ -180,7 +180,7 @@
              [weakSelf.tableView reloadData];
              [weakSelf loadMyBarInfo];
              //加载webview
-            // [weakSelf loadWebView];
+             [weakSelf loadWebView];
              [weakSelf setTimer];
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
@@ -237,19 +237,29 @@
         CGFloat y = scrollView.contentOffset.y;
         CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
         _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
-        NSLog(@"----->%@",NSStringFromCGRect(_tableHeaderImgView.frame));
     }
 }
 
 // load webView
 - (void)loadWebView{
     
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2500)];
+    _webView.backgroundColor = [UIColor redColor];
+    _webView.tintColor = [UIColor redColor];
+    _webView.delegate = self;
+    _webView.tag = 10086;
+    
+    
+    [_webView sizeToFit];
+    [_webView.scrollView setScrollEnabled:NO];
     NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",self.beerBarDetail.descriptions,SCREEN_WIDTH-17];
     
     //    dispatch_async(dispatch_get_main_queue(), ^{
     // 更UI
     [_webView loadHTMLString:webStr baseURL:nil];
     //    });
+    
+   
 }
 
 
@@ -363,7 +373,7 @@
     NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
     float clientheight = [clientheight_str floatValue];
     //设置到WebView上
-    webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
+    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight);
     //获取WebView最佳尺寸（点）
     CGSize frame = [webView sizeThatFits:webView.frame.size];
 
@@ -376,17 +386,15 @@
     //    NSLog(@"--->%f",height);
     //webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, frame.height);
     //    webView.backgroundColor = [UIColor redColor];
-    
-//    NSIndexSet *indexS = [NSIndexSet indexSetWithIndex:5];
-//    [_tableView reloadSections:indexS withRowAnimation:UITableViewRowAnimationNone];
-   // [_tableView reloadData];
+    [_tableView reloadData];
+
 }
 
 #pragma mark -- tableviewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -523,34 +531,29 @@
             LYBarDescTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTableViewCell" forIndexPath:indexPath];
             barDescTitleCell.title = self.beerBarDetail.subtitle;
             barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return barDescTitleCell;
             
-        }
-            break;
-        case 5:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            UIWebView *webV = [cell viewWithTag:10086];
+            UIWebView *webV = [barDescTitleCell viewWithTag:10086];
             if (webV) {
                 [webV removeFromSuperview];
             }
             
-            _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2500)];
-            _webView.backgroundColor = [UIColor redColor];
-            _webView.tintColor = [UIColor redColor];
-//            _webView.delegate = self;
-            _webView.tag = 10086;
+            [barDescTitleCell addSubview:_webView];
             
-            NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",self.beerBarDetail.descriptions,SCREEN_WIDTH-17];
-            [_webView loadHTMLString:webStr baseURL:nil];
+            return barDescTitleCell;
             
-            [_webView sizeToFit];
-            [_webView.scrollView setScrollEnabled:NO];
-            
-            
-            [cell addSubview:_webView];
         }
             break;
+//        case 5:
+//        {
+//            cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+//            UIWebView *webV = [cell viewWithTag:10086];
+//            if (webV) {
+//                [webV removeFromSuperview];
+//            }
+//           
+//            [cell addSubview:_webView];
+//        }
+//            break;
             
     }
     return cell;
@@ -582,7 +585,7 @@
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if(section == 0){
+    if(section == 0 || section == 4){
         return 0.00001;
     }else{
         return 8;
@@ -622,22 +625,15 @@
             
         case 4:
         {
-            return 76;
-            
+//            return 76;
+            return _webView.frame.size.height + 55;
         }
             break;
-            case 5:
-        {
-            NSString * clientheight_str = [_webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
-            float clientheight = [clientheight_str floatValue];
-            //设置到WebView上
-            _webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
-            //获取WebView最佳尺寸（点）
-            CGSize frame = [_webView sizeThatFits:_webView.frame.size];
-//            return frame.height;
-            return 2000;
-        }
-            break;
+//            case 5:
+//        {
+//            return _webView.frame.size.height;
+//        }
+//            break;
     }
     return h;
 }
