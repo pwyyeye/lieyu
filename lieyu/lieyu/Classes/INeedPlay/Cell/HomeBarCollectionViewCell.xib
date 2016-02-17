@@ -21,14 +21,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="336" height="195"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="首页列表收藏.png" translatesAutoresizingMaskIntoConstraints="NO" id="KjI-Qe-wPo">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="首页列表收藏.png" translatesAutoresizingMaskIntoConstraints="NO" id="KjI-Qe-wPo">
                         <rect key="frame" x="235" y="148" width="10" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="pZb-X6-G8w"/>
                             <constraint firstAttribute="width" constant="10" id="zi7-tC-W9e"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvD-Nq-F2d">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvD-Nq-F2d">
                         <rect key="frame" x="249" y="147" width="26" height="12"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="bT3-jy-9ZI"/>
@@ -115,7 +115,7 @@
                             <constraint firstAttribute="height" constant="8" id="a4Y-Du-bhd"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="酒吧的一句话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81W-Pb-AU9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="酒吧的一句话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81W-Pb-AU9">
                         <rect key="frame" x="13" y="145" width="212" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="6DK-14-tHS"/>
@@ -134,7 +134,7 @@
                             </mask>
                         </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="预" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36i-xa-JPf">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36i-xa-JPf">
                         <rect key="frame" x="60" y="13" width="14" height="14"/>
                         <color key="backgroundColor" red="0.72941176470588232" green="0.15686274509803921" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -170,7 +170,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EF007D27-C955-4444-828D-9C555D15D379" translatesAutoresizingMaskIntoConstraints="NO" id="5kg-jA-Wg0">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="83212135-7C52-49BC-BD30-085D9574D1F3" translatesAutoresizingMaskIntoConstraints="NO" id="5kg-jA-Wg0">
                                     <rect key="frame" x="2" y="8" width="29" height="16"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="29" id="P4F-m1-ENS"/>
@@ -313,7 +313,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="EF007D27-C955-4444-828D-9C555D15D379" width="29" height="16">
+        <image name="83212135-7C52-49BC-BD30-085D9574D1F3" width="29" height="16">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
