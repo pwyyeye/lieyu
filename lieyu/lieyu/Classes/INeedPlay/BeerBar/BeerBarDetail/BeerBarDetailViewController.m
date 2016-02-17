@@ -51,6 +51,7 @@
     EScrollerView *_scroller;
     BOOL _userLiked;
     BOOL _userCollected;
+    UIImageView *_tableHeaderImgView;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -169,11 +170,6 @@
     {
         if (erMsg.state == Req_Success) {
             weakSelf.beerBarDetail = detailItem;
-            
-            _headerImgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16.f)];
-            [_headerImgV sd_setImageWithURL:[NSURL URLWithString:detailItem.banners.firstObject]];
-            weakSelf.tableView.tableHeaderView = _headerImgV;
-            
             self.title=weakSelf.beerBarDetail.barname;
             //判断用户是否已经喜欢过
         
@@ -238,27 +234,12 @@
     }else{
         self.image_layer.hidden = YES;
     }
-   /* if (scrollView.contentOffset.y < 0) {
-        CGFloat y = scrollView.contentOffset.y;
-        CGFloat height = SCREEN_WIDTH * 9 /16.f;
-        _headerImgV.frame = CGRectMake(-((height - y) * 16/9 - SCREEN_WIDTH)/2.f, 0, (height - y) * 16/9, height - y);
-    } */
-    
-    CGFloat offsetY = scrollView.contentOffset.y;
     
     if (scrollView.contentOffset.y < 0) {
-        // 高度宽度同时拉伸 从中心放大
-//        CGFloat imgH = self.headerImgHeight - scrollView.contentOffset.y * 2;
-//        CGFloat imgW = imgH * self.scale;
-//        _headerImgV.frame = CGRectMake(scrollView.contentOffset.y * self.scale,0, imgW,imgH);
-//        
-//        CGFloat iconOriginalX = (self.frame.size.width - self.iconHeight) / 2;
-//        CGFloat iconOriginalY = (self.headerImgHeight - self.iconHeight) / 2;
-        
-       // _headerImgV.frame = CGRectMake(iconOriginalX + offsetY * changeRate, iconOriginalY + offsetY * changeRate * 2, self.iconHeight - changeRate * offsetY * 2, self.iconHeight - changeRate * offsetY * 2);
-        CGFloat height = SCREEN_WIDTH * 9 /16.f;
-        _headerImgV.frame = CGRectMake(-((height - offsetY) * 16/9 - SCREEN_WIDTH)/2.f, offsetY, (height - offsetY) * 16/9, height - offsetY);
-        NSLog(@"----->%@",NSStringFromCGRect(_headerImgV.frame));
+        CGFloat y = scrollView.contentOffset.y;
+        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
+        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
+        NSLog(@"----->%@",NSStringFromCGRect(_tableHeaderImgView.frame));
     }
 }
 
@@ -408,7 +389,12 @@
     //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
 }
 
+
+
+
 #pragma mark -- tableviewDelegate
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -445,10 +431,13 @@
             
             
             
-            _scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0 , 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
+          /*  _scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0 , 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
                                                                   scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
 
-            [_headerCell addSubview:_scroller];
+            [_headerCell addSubview:_scroller]; */
+            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
+            [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject]];
+            [_headerCell addSubview:_tableHeaderImgView];
 
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
 

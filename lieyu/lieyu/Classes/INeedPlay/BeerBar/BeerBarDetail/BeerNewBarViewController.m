@@ -96,14 +96,10 @@
     self.view_bottom.layer.shadowOpacity = 0.8;
     self.view_bottom.layer.shadowRadius = 2;
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height, SCREEN_WIDTH, 2500)];
-    _webView.delegate = self;
-    [_webView sizeToFit];
-    [_webView.scrollView setScrollEnabled:NO];
-    //    _webView.scalesPageToFit = YES;
-    [self.scrollView addSubview:_webView];
+    
     
     [self loadBarDetail];                                                       //load data
+  
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMyCollectedAndLikeBar) name:@"loadMyCollectedAndLikeBar" object:nil];
     
@@ -171,22 +167,14 @@
          if (erMsg.state == Req_Success) {
              weakSelf.beerBarDetail = detailItem;
              
-             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
-             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:detailItem.banners.firstObject]];
-             [self.view addSubview:_tableHeaderImgView];
-             [self.view sendSubviewToBack:_tableHeaderImgView];
+//             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
+//             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:detailItem.banners.firstObject]];
+//             weakSelf.tableView.tableHeaderView = _tableHeaderImgView;
              
-             UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
-             view.alpha = 0;
-             weakSelf.tableView.tableHeaderView = view;
-             
-             self.title=weakSelf.beerBarDetail.barname;
+             weakSelf.title=weakSelf.beerBarDetail.barname;
              //判断用户是否已经喜欢过
              
              [_timer setFireDate:[NSDate distantPast]];
-             
-             
-             
              
              [weakSelf updateViewConstraints];
              [weakSelf.tableView reloadData];
@@ -245,23 +233,33 @@
         self.image_layer.hidden = YES;
     }
     
-    if (scrollView.contentOffset.y < 0) {
+    if (_tableView.contentOffset.y < 0) {
         CGFloat y = scrollView.contentOffset.y;
-     //   self.tableView.tableHeaderView.frame = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, SCREEN_WIDTH, <#CGFloat height#>)
-        _tableHeaderImgView.frame = CGRectMake(y, y, SCREEN_WIDTH - y, (SCREEN_WIDTH - y) * 9 / 16);
-       // NSLog(@"---->%@",NSStringFromCGRect(_tableHeaderImgView.frame));
+        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
+        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
     }
 }
 
 // load webView
 - (void)loadWebView{
     
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2500)];
+    _webView.backgroundColor = [UIColor redColor];
+    _webView.tintColor = [UIColor redColor];
+    _webView.delegate = self;
+    _webView.tag = 10086;
+    
+    
+    [_webView sizeToFit];
+    [_webView.scrollView setScrollEnabled:NO];
     NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",self.beerBarDetail.descriptions,SCREEN_WIDTH-17];
     
     //    dispatch_async(dispatch_get_main_queue(), ^{
     // 更UI
     [_webView loadHTMLString:webStr baseURL:nil];
     //    });
+    
+   
 }
 
 
@@ -375,10 +373,10 @@
     NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
     float clientheight = [clientheight_str floatValue];
     //设置到WebView上
-    webView.frame = CGRectMake(0,0, SCREEN_WIDTH, clientheight);
+    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight);
     //获取WebView最佳尺寸（点）
     CGSize frame = [webView sizeThatFits:webView.frame.size];
-    NSLog(@"--->%@",NSStringFromCGSize(frame));
+
     //获取内容实际高度（像素）
     //    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight;"];
     //    float height = [height_str floatValue];
@@ -386,17 +384,10 @@
     //    height = height * frame.height / clientheight;
     //再次设置WebView高度（点）
     //    NSLog(@"--->%f",height);
-    webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, frame.height);
+    //webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, frame.height);
     //    webView.backgroundColor = [UIColor redColor];
-    
-    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height-65);
-    
-    
-    //  CGFloat offsetHeight = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
-    //
-    //    NSLog(@"----pass-pass%f---",offsetHeight);
-    //     webView.frame = CGRectMake(0, self.tableView.frame.size.height-70, 320, offsetHeight+100);
-    //    _scrollView.contentSize=CGSizeMake(SCREEN_WIDTH, self.tableView.frame.size.height+webView.frame.size.height);
+    [_tableView reloadData];
+
 }
 
 #pragma mark -- tableviewDelegate
@@ -439,7 +430,10 @@
             _scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0 , 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
                                                     scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
             
-            [_headerCell addSubview:_scroller];
+           // [_headerCell addSubview:_scroller];
+            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
+            [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject]];
+            [_headerCell addSubview:_tableHeaderImgView];
             
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
             
@@ -537,12 +531,29 @@
             LYBarDescTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTableViewCell" forIndexPath:indexPath];
             barDescTitleCell.title = self.beerBarDetail.subtitle;
             barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            UIWebView *webV = [barDescTitleCell viewWithTag:10086];
+            if (webV) {
+                [webV removeFromSuperview];
+            }
+            
+            [barDescTitleCell addSubview:_webView];
+            
             return barDescTitleCell;
             
         }
             break;
-        default:
-            break;
+//        case 5:
+//        {
+//            cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+//            UIWebView *webV = [cell viewWithTag:10086];
+//            if (webV) {
+//                [webV removeFromSuperview];
+//            }
+//           
+//            [cell addSubview:_webView];
+//        }
+//            break;
             
     }
     return cell;
@@ -574,7 +585,7 @@
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if(section == 0){
+    if(section == 0 || section == 4){
         return 0.00001;
     }else{
         return 8;
@@ -612,12 +623,17 @@
         }
             break;
             
-        default:
+        case 4:
         {
-            return 76;
-            
+//            return 76;
+            return _webView.frame.size.height + 55;
         }
             break;
+//            case 5:
+//        {
+//            return _webView.frame.size.height;
+//        }
+//            break;
     }
     return h;
 }
