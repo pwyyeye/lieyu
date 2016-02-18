@@ -58,4 +58,8 @@
 
 
 #define LY_BAR_ACTIVITYLIST @"activitiesOutAction.do?action=list"
+//获取专题页列表
+#define LY_ACTION_LIST @"activitiesOutAction.do?action=expand"
+//获取活动详情
+#define LY_ACTIVITY_DETAIL @"activitiesOutAction.do?action=custom"
 #endif

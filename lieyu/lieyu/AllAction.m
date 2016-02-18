@@ -8,9 +8,12 @@
 
 #import "AllAction.h"
 #import "HDZTHeaderCell.h"
+#import "LYHomePageHttpTool.h"
+
 @interface AllAction ()<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *dataList;
+    int start ;
 }
 @end
 
@@ -34,7 +37,11 @@
 }
 
 - (void)getData{
-    
+    NSDictionary *dict = @{@"start":[NSString stringWithFormat:@"%d",start],
+                           @"limit":@"10"};
+    [LYHomePageHttpTool getActionList:dict complete:^(NSMutableArray *result) {
+        
+    }];
 }
 
 - (void)addRefreshAction{

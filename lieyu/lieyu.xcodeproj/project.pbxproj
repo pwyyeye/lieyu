@@ -390,6 +390,8 @@
 		385664B21C745550000DCFA5 /* jubao_btn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664B01C745550000DCFA5 /* jubao_btn@3x.png */; };
 		385664B81C756CE4000DCFA5 /* AllAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 385664B61C756CE4000DCFA5 /* AllAction.m */; };
 		385664B91C756CE4000DCFA5 /* AllAction.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385664B71C756CE4000DCFA5 /* AllAction.xib */; };
+		385664FB1C75BCF7000DCFA5 /* emptyImage_rect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664F91C75BCF7000DCFA5 /* emptyImage_rect@2x.png */; };
+		385664FC1C75BCF7000DCFA5 /* emptyImage_rect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664FA1C75BCF7000DCFA5 /* emptyImage_rect@3x.png */; };
 		386AE39B1C5B61B70062105F /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386AE38E1C5B61B70062105F /* TAAbstractDotView.m */; };
 		386AE39C1C5B61B70062105F /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386AE3901C5B61B70062105F /* TAAnimatedDotView.m */; };
 		386AE39D1C5B61B70062105F /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386AE3921C5B61B70062105F /* TADotView.m */; };
@@ -1804,6 +1806,8 @@
 		385664B51C756CE4000DCFA5 /* AllAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAction.h; sourceTree = "<group>"; };
 		385664B61C756CE4000DCFA5 /* AllAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllAction.m; sourceTree = "<group>"; };
 		385664B71C756CE4000DCFA5 /* AllAction.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllAction.xib; sourceTree = "<group>"; };
+		385664F91C75BCF7000DCFA5 /* emptyImage_rect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emptyImage_rect@2x.png"; sourceTree = "<group>"; };
+		385664FA1C75BCF7000DCFA5 /* emptyImage_rect@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emptyImage_rect@3x.png"; sourceTree = "<group>"; };
 		386AE38D1C5B61B70062105F /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
 		386AE38E1C5B61B70062105F /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
 		386AE38F1C5B61B70062105F /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
@@ -6263,6 +6267,8 @@
 				380659B21C54AAA4003094C9 /* empyImage120@3x.png */,
 				380659B41C54AAA4003094C9 /* empyImage300@2x.png */,
 				380659B51C54AAA4003094C9 /* empyImage300@3x.png */,
+				385664F91C75BCF7000DCFA5 /* emptyImage_rect@2x.png */,
+				385664FA1C75BCF7000DCFA5 /* emptyImage_rect@3x.png */,
 			);
 			name = "空态图";
 			sourceTree = "<group>";
@@ -7028,6 +7034,7 @@
 				AD92AEAD1BE23521009F2A34 /* LYTagTableViewCell.xib in Resources */,
 				15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */,
 				85FC07F01C5A00C3006E5409 /* 选择城市@2x.png in Resources */,
+				385664FB1C75BCF7000DCFA5 /* emptyImage_rect@2x.png in Resources */,
 				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
 				389C010A1C1488F000FE9412 /* seeGirls@3x.png in Resources */,
 				ADD1B4671C528EE100A5237C /* sina_weibo_s@2x.png in Resources */,
@@ -7343,6 +7350,7 @@
 				525CA0C81C5B626E009ED9DA /* daohang_xiangji@2x.png in Resources */,
 				3806566A1C4E5D5B003094C9 /* ImageCollectionViewController.xib in Resources */,
 				ADF88EAB1C1197C400CF5DED /* MJRefresh.bundle in Resources */,
+				385664FC1C75BCF7000DCFA5 /* emptyImage_rect@3x.png in Resources */,
 				380659CF1C54AC2A003094C9 /* icon_share2@3x.png in Resources */,
 				38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */,
 				3812C5671C57B78800F4DD6B /* hot_triangle@2x.png in Resources */,

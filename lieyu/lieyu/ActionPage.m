@@ -13,6 +13,7 @@
 #import "ActionDetailViewController.h"
 #import "AllAction.h"
 #import "LYUserLocation.h"
+#import "LYHomePageHttpTool.h"
 @interface ActionPage ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSMutableArray *actionList;
@@ -22,6 +23,8 @@
     float contentOffsetY;
     int rows;
     UIButton *button;
+    
+    int start;
 }
 @end
 
@@ -32,6 +35,7 @@
 //    _tableView.backgroundColor = [UIColor whiteColor];
     contentOffsetY = MAXFLOAT;
     page = 1;
+    actionList = [NSMutableArray array];
     self.tableView.bounces = YES;
     _tableView.dataSource = self;
     _tableView.delegate = self;
@@ -69,21 +73,29 @@
 }
 
 #pragma mark - 当刷新到最底部时
-- (void)StopBottomBounds{
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 117, 0);
-    button = [[UIButton alloc]initWithFrame:CGRectMake(10, self.tableView.contentSize.height + 10, SCREEN_WIDTH - 20, 44)];
+- (void)StopBottomBounds:(BOOL) isIn{
+    if (isIn) {
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
+        button = [[UIButton alloc]initWithFrame:CGRectMake(10, self.tableView.contentSize.height + 10, SCREEN_WIDTH - 20, 44)];
+        //    NSLog(@"tableView的总长度：%f",self.tableView.contentOffset.y);
+        contentOffsetY = self.tableView.contentOffset.y;
+    }
+    else{
+        button = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 118, SCREEN_WIDTH - 20, 44)];
+        self.tableView.bounces = NO;
+    }
     button.backgroundColor = [UIColor blackColor];
     [button addTarget:self action:@selector(MoreTopic) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:button];
     self.tableView.mj_footer.hidden = YES;
-//    NSLog(@"tableView的总长度：%f",self.tableView.contentOffset.y);
-    contentOffsetY = self.tableView.contentOffset.y;
 }
 
 #pragma mark - 上拉刷新一切重置
 - (void)initAllPropertites{
     page = 1;
+    start = 0;
     [button removeFromSuperview];
+    [actionList removeAllObjects];
     self.tableView.mj_footer.hidden = NO;
     contentOffsetY = MAXFLOAT;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -91,12 +103,21 @@
 
 - (void)getData{
     //获取数据
-    if (page > 1) {
-        [self StopBottomBounds];
-    }else{
-        rows = page + page * 5;
-        [self.tableView reloadData];
-    }
+    NSDictionary *dic = @{@"start":[NSString stringWithFormat:@"%d",start],
+                          @"limit":@"10",
+                          @"topicid":@"1"};
+    [LYHomePageHttpTool getActivityListWithPara:dic compelte:^(NSMutableArray *result) {
+        if (result.count > 0) {
+            [actionList addObjectsFromArray:result];
+            [self.tableView reloadData];
+            if(self.tableView.contentSize.height < SCREEN_HEIGHT - 64){
+                [self StopBottomBounds:NO];
+            }
+        }else{
+            //没有更多数据了
+            [self StopBottomBounds:YES];
+        }
+    }];
 }
 
 - (void)registerTableViewCell{
@@ -116,6 +137,7 @@
     
     self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         page ++;
+        start += 10;
         [weakSelf getData];
         [weakSelf.tableView.mj_footer endRefreshing];
     }];
@@ -128,8 +150,12 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return actionList.count;
-    return rows;
+    if (actionList.count > 0) {
+        return actionList.count + 1;
+    }else{
+        return 0;
+    }
+//    return rows;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -152,11 +178,14 @@
     if (indexPath.section == 0) {
         HDZTHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HDZTHeaderCell" forIndexPath:indexPath];
         cell.action_image.backgroundColor = [UIColor grayColor];
-        cell.selected = NO;
+        cell.topicInfo = ((BarActivityList *)[actionList objectAtIndex:indexPath.section]).topicInfo;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
         HDZTListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HDZTListCell" forIndexPath:indexPath];
-        cell.selected = YES;
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+//        actionList objectAtIndex:indexPath
+        cell.barActivity = [actionList objectAtIndex:indexPath.section - 1];
         return cell;
     }
 }
