@@ -636,7 +636,7 @@
     userM.avatar_img = dic[@"headimgurl"];
     userM.usernick = dic[@"nickname"];
     userM.gender = dic[@"sex"];
-    userM.openID = dic[@"openid"];
+    userM.openID = dic[@"openi                                                                                                                                                                                                                                        d"];
     compelete(userM);  
 }
 
