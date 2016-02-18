@@ -45,8 +45,8 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"滑动了多少：%f",scrollView.contentOffset.y);
-    NSLog(@"最多为多少：%f",contentOffsetY);
+//    NSLog(@"滑动了多少：%f",scrollView.contentOffset.y);
+//    NSLog(@"最多为多少：%f",contentOffsetY);
     if (scrollView.contentOffset.y <= 10) {
         self.tableView.bounces = YES;
     }
@@ -76,7 +76,7 @@
     [button addTarget:self action:@selector(MoreTopic) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:button];
     self.tableView.mj_footer.hidden = YES;
-    NSLog(@"tableView的总长度：%f",self.tableView.contentOffset.y);
+//    NSLog(@"tableView的总长度：%f",self.tableView.contentOffset.y);
     contentOffsetY = self.tableView.contentOffset.y;
 }
 

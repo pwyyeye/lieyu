@@ -12,6 +12,7 @@
 #import "ZSUrl.h"
 #import "ZSDetailModel.h"
 #import "LYCache.h"
+#import "BarActivityList.h"
 
 
 @implementation LYHomePageHttpTool
@@ -639,12 +640,26 @@
     compelete(userM);
 }
 
-//#pragma mark 获取酒吧的活动列表
-//+ (void)getActivityListWithPara:(NSDictionary *)paraDic compelte:(void(^)(b{
-//    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_BAR_ACTIVITYLIST baseURL:LY_SERVER params:paraDic success:^(id response) {
-//        
-//    } failure:^(NSError *err) {
-//        
-//    }];
-//}
+#pragma mark 获取酒吧的活动列表
++ (void)getActivityListWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSMutableArray * result))compelete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_BAR_ACTIVITYLIST baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message = [NSString stringWithFormat:@"%@",response[@"message"]];
+        NSArray *dataList = response[@"data"];
+        if([code isEqualToString:@"1"]){
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[BarActivityList mj_objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compelete(tempArr);
+            });
+        }else{
+            [MyUtil showCleanMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showCleanMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+}
 @end
