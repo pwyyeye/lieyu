@@ -49,6 +49,25 @@
     // Do any additional setup after loading the view from its nib.
     [self setupAllProperty];
     [self setupTableView];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSString *MyUserid = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    if (![MyUserid isEqualToString:_recentM.userId]) {
+        //不是自己的动态详情
+        [self configureRightButton];
+    }
+}
+
+- (void)configureRightButton{
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"jubao_btn"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(jubaoDT:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)jubaoDT:(UIButton *)button{
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",  nil];
+        [actionSheet showInView:self.view];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

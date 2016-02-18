@@ -72,4 +72,13 @@
         [MKMapItem openMapsWithItems:items launchOptions:options];
     }
 }
+
+#pragma mark - 根据传入目的地经纬度计算距离
+- (CLLocationDistance)configureDistance:(NSString *)latitude And:(NSString *)longitude{
+    CLLocation *currentLocation = [self currentLocation];
+    CLLocation *destinationLocation = [[CLLocation alloc]initWithLatitude:[latitude doubleValue] longitude:[longitude doubleValue]];
+    CLLocationDistance kiloMeters = [currentLocation distanceFromLocation:destinationLocation] / 1000;
+    return kiloMeters;
+}
+
 @end

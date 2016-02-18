@@ -363,6 +363,11 @@
     return _dataArray.count;
 }
 
+- (void)jubaoDT:(UIButton *)button{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告", nil];
+    [actionSheet showInView:self.view];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FriendsRecentModel *recentM = _dataArray[indexPath.section];
     switch (indexPath.row) {
@@ -370,7 +375,10 @@
         {
             LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
                 nameCell.recentM = recentM;
-                nameCell.btn_delete.hidden = YES;
+//                nameCell.btn_delete.hidden = YES;
+            [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
+            [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+            [nameCell.btn_delete addTarget:self action:@selector(jubaoDT:) forControlEvents:UIControlEventTouchUpInside];
             return nameCell;
             
         }

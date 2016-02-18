@@ -17,10 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="201" height="175"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9LF-w2-dzm">
-                        <rect key="frame" x="171" y="0.0" width="30" height="30"/>
+                        <rect key="frame" x="161" y="0.0" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="eNu-1m-vHs"/>
-                            <constraint firstAttribute="height" constant="30" id="yXW-9F-1US"/>
+                            <constraint firstAttribute="width" constant="40" id="eNu-1m-vHs"/>
+                            <constraint firstAttribute="height" constant="40" id="yXW-9F-1US"/>
                         </constraints>
                         <state key="normal" image="image_Unselected.png"/>
                         <state key="selected" image="image_Selected.png"/>
