@@ -265,7 +265,7 @@
         
         
     }];
-    [weakSelf.tableView.mj_header endRefreshing];
+//    [self.tableView.mj_header endRefreshing];
     
 }
 #pragma mark 获取更多订单数据
@@ -283,7 +283,7 @@
         
         
     }];
-    [weakSelf.tableView.mj_footer endRefreshing];
+//    [self.tableView.mj_footer endRefreshing];
     
 }
 #pragma mark 获取顶部菜单
