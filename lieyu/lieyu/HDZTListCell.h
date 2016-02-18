@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BarActivityList.h"
 @interface HDZTListCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *back_view;
 @property (weak, nonatomic) IBOutlet UIImageView *hot_triangle;
@@ -21,4 +21,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *action_likeNum;
 
 @property (weak, nonatomic) IBOutlet UIButton *action_likeBtn;
+@property (nonatomic, strong) BarActivityList *barActivity;
 @end

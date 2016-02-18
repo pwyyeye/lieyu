@@ -89,4 +89,6 @@
 
 //获取酒吧的活动列表
 + (void)getActivityListWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSMutableArray * result))compelete;
+//获取所有活动专题
++ (void)getActionList:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete;
 @end

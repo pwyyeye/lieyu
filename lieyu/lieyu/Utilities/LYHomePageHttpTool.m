@@ -13,6 +13,7 @@
 #import "ZSDetailModel.h"
 #import "LYCache.h"
 #import "BarActivityList.h"
+#import "BarTopicInfo.h"
 
 
 @implementation LYHomePageHttpTool
@@ -664,6 +665,22 @@
 }
 
 #pragma mark - 获取所动专题列表
-//+ (void)
++ (void)getActionList:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ACTION_LIST baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message = [NSString stringWithFormat:@"%@",response[@"message"]];
+        NSArray *dataList = response[@"data"];
+        if([code isEqualToString:@"1"]){
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[BarTopicInfo mj_objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(tempArr);
+            });
+        }else{
+            [MyUtil showCleanMessage:message];
+        }
+    } failure:^(NSError *err) {
+        [MyUtil showCleanMessage:@"获取数据失败"];
+    }];
+}
 
 @end

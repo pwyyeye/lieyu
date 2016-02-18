@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LYBaseViewController.h"
+#import "BarActivityList.h"
 @interface ActionDetailViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, strong) BarActivityList *barActivity;
 @end

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BarTopicInfo.h"
 @interface HDZTHeaderCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *action_image;
 @property (weak, nonatomic) IBOutlet UILabel *action_discript;
 @property (weak, nonatomic) IBOutlet UIButton *action_button;
+
+@property (nonatomic, strong) BarTopicInfo *topicInfo;
 
 @end

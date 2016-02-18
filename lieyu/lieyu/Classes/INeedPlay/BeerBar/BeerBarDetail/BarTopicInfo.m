@@ -9,5 +9,11 @@
 #import "BarTopicInfo.h"
 
 @implementation BarTopicInfo
+//+ (NSDictionary *)objectClassInArray
+//{
+//    return @{
+//             @"barInfo" : @"BeerBarOrYzhDetailModel",@"topicInfo":@"BarTopicInfo",
+//             };
+//}
 
 @end

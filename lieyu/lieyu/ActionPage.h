@@ -10,5 +10,5 @@
 
 @interface ActionPage : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, strong) NSString *topicid;
 @end
