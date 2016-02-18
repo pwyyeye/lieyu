@@ -636,7 +636,7 @@
     userM.usernick = dic[@"nickname"];
     userM.gender = dic[@"sex"];
     userM.openID = dic[@"openid"];
-    compelete(userM);
+    compelete(userM);  
 }
 
 //#pragma mark 获取酒吧的活动列表
