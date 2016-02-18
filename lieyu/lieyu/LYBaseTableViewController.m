@@ -40,12 +40,11 @@
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
     [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-    [view addSubview:button];
     [button addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = item;
 //    
 //    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];

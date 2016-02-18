@@ -15,6 +15,7 @@
 @property(nonatomic,strong)CLLocation *currentLocation;
 @property(nonatomic,strong)NSString *city;
 -(void)daoHan:(NSDictionary *) dic;
+- (CLLocationDistance)configureDistance:(NSString *)latitude And:(NSString *)longitude;
 @end
 
 

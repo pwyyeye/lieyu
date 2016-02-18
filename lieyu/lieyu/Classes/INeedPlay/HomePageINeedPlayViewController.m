@@ -97,6 +97,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _collectView.delegate = self;
     _collectView.pagingEnabled = YES;
     _collectView.bounces = NO;
+    _collectView.backgroundColor = [UIColor whiteColor];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.view addSubview:_collectView];
     
