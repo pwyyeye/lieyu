@@ -7,16 +7,33 @@
 //
 
 #import "LYBarTitleTableViewCell.h"
-
+#import "BeerBarOrYzhDetailModel.h"
 @implementation LYBarTitleTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
-    _label_line.bounds = CGRectMake(0, 0, 60, 0.5);
     self.label_name.text = @"酒吧名";
     self.imageView_header.layer.cornerRadius = 2;
     self.imageView_header.layer.masksToBounds = YES;
-    _barStar.enabled=NO;
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_btnBuy.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerTopLeft cornerRadii:CGSizeMake(_btnBuy.frame.size.height/2.f, _btnBuy.frame.size.height/2.f)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = _btnBuy.bounds;
+    maskLayer.path = maskPath.CGPath;
+    _btnBuy.layer.mask = maskLayer;
+    
+    _imageView_header.layer.cornerRadius = CGRectGetWidth(_imageView_header.frame)/2.f;
+    _imageView_header.layer.masksToBounds = YES;
+    
+    _imageView_header.layer.borderColor = RGBA(204, 204, 204, 1).CGColor;
+    _imageView_header.layer.borderWidth = 0.5;
+}
+
+- (void)setBeerM:(BeerBarOrYzhDetailModel *)beerM{
+    _beerM = beerM;
+    _label_name.text = beerM.barname;
+    [_imageView_header sd_setImageWithURL:[NSURL URLWithString:beerM.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    _label_price.text = [NSString stringWithFormat:@"%@元／人起-返利%0.f%@",beerM.lowest_consumption,beerM.rebate * 100,@"%"];
+    _label_time.text = [NSString stringWithFormat:@"营业时间:\t%@-%@",beerM.startTime,beerM.endTime];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

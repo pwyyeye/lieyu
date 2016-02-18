@@ -14,12 +14,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cNb-n1-tMN">
-                        <rect key="frame" x="21" y="0.0" width="34" height="44"/>
-                        <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKh-g5-uib">
+                        <rect key="frame" x="64" y="14" width="246" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="6BB-Ft-VqU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="eKh-g5-uib" secondAttribute="trailing" constant="10" id="PT4-qB-txz"/>
+                    <constraint firstItem="eKh-g5-uib" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="j5m-56-9el"/>
+                    <constraint firstItem="eKh-g5-uib" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="64" id="wiP-bp-bpl"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="label_time" destination="eKh-g5-uib" id="tuM-sD-1fb"/>
+            </connections>
             <point key="canvasLocation" x="441" y="368"/>
         </tableViewCell>
     </objects>

@@ -625,7 +625,6 @@
 		853C36141C72BC4700F1703B /* BeerNewBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C36121C72BC4700F1703B /* BeerNewBarViewController.m */; };
 		853C36151C72BC4700F1703B /* BeerNewBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853C36131C72BC4700F1703B /* BeerNewBarViewController.xib */; };
 		853C361B1C73082200F1703B /* HOT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C36191C73082100F1703B /* HOT@2x.png */; };
-		853C361C1C73082200F1703B /* HOT@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C361A1C73082200F1703B /* HOT@3x.png */; };
 		853C361F1C7308D900F1703B /* yuding@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C361D1C7308D900F1703B /* yuding@2x.png */; };
 		853C36201C7308D900F1703B /* yuding@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853C361E1C7308D900F1703B /* yuding@3x.png */; };
 		853C4C3E1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C4C3C1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.m */; };
@@ -691,6 +690,8 @@
 		85514E4F1C7563CA00E24C78 /* SignDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85514E4D1C7563CA00E24C78 /* SignDateTableViewCell.xib */; };
 		85514E951C757B7600E24C78 /* BarActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E941C757B7600E24C78 /* BarActivityList.m */; };
 		85514E981C75904500E24C78 /* BarTopicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E971C75904500E24C78 /* BarTopicInfo.m */; };
+		85514E9C1C75BB4500E24C78 /* SignIconTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E9A1C75BB4500E24C78 /* SignIconTableViewCell.m */; };
+		85514E9D1C75BB4500E24C78 /* SignIconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85514E9B1C75BB4500E24C78 /* SignIconTableViewCell.xib */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
 		8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */; };
 		8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */; };
@@ -2209,6 +2210,9 @@
 		85514E941C757B7600E24C78 /* BarActivityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarActivityList.m; sourceTree = "<group>"; };
 		85514E961C75904500E24C78 /* BarTopicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarTopicInfo.h; sourceTree = "<group>"; };
 		85514E971C75904500E24C78 /* BarTopicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarTopicInfo.m; sourceTree = "<group>"; };
+		85514E991C75BB4500E24C78 /* SignIconTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignIconTableViewCell.h; sourceTree = "<group>"; };
+		85514E9A1C75BB4500E24C78 /* SignIconTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignIconTableViewCell.m; sourceTree = "<group>"; };
+		85514E9B1C75BB4500E24C78 /* SignIconTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignIconTableViewCell.xib; sourceTree = "<group>"; };
 		855192661C0B30E0007B9949 /* LYHotJiuBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotJiuBarViewController.h; sourceTree = "<group>"; };
 		855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotJiuBarViewController.m; sourceTree = "<group>"; };
 		855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotJiuBarViewController.xib; sourceTree = "<group>"; };
@@ -5009,6 +5013,9 @@
 				85514E4B1C7563CA00E24C78 /* SignDateTableViewCell.h */,
 				85514E4C1C7563CA00E24C78 /* SignDateTableViewCell.m */,
 				85514E4D1C7563CA00E24C78 /* SignDateTableViewCell.xib */,
+				85514E991C75BB4500E24C78 /* SignIconTableViewCell.h */,
+				85514E9A1C75BB4500E24C78 /* SignIconTableViewCell.m */,
+				85514E9B1C75BB4500E24C78 /* SignIconTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -7082,7 +7089,6 @@
 				3812C5521C57B76100F4DD6B /* backViewWithCorner@2x.png in Resources */,
 				15844BCF1BE1EF5000247FBC /* LYAddFriendViewController.xib in Resources */,
 				38E5D7C31C128C44004B49D2 /* triangle_down@2x.png in Resources */,
-				85009A111C61F29B00DDE626 /* 更新5.png in Resources */,
 				385664701C72B919000DCFA5 /* HDZTHeaderCell.xib in Resources */,
 				525CA0ED1C5C68AD009ED9DA /* biaobai_iconBlack@3x.png in Resources */,
 				52D4F9A11C57B2B700691BEF /* 点赞2@3x.png in Resources */,
@@ -7289,7 +7295,6 @@
 				85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */,
 				ADE1C5C71C730E1C0011D4AB /* 更新18@2x.png in Resources */,
 				38E5D6C71C0EA4DF004B49D2 /* CustomBtn_Selected@2x.png in Resources */,
-				85009A431C61F29B00DDE626 /* 更新55.png in Resources */,
 				385664A21C731D89000DCFA5 /* music_HD@2x.png in Resources */,
 				380659C81C54AC02003094C9 /* icon_collect_2@2x.png in Resources */,
 				855941781C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -7322,7 +7327,6 @@
 				AD106B961C0B1A7C007F5FBA /* LYUserCenterCell.xib in Resources */,
 				85FBBDB51C6050FB0084E3F2 /* LYYUCollectionViewCell.xib in Resources */,
 				380385EB1C327C2B007C8DC0 /* imageUnselected@3x.png in Resources */,
-				525CA0BC1C5B4EE8009ED9DA /* logo@2x.png in Resources */,
 				3856647B1C72BF02000DCFA5 /* purper_price@3x.png in Resources */,
 				85F66E521C525E51005D1CD8 /* xitongtongzhi@3x.png in Resources */,
 				38AA7CC61C315A0000D9BCE8 /* preview.xib in Resources */,
@@ -7356,7 +7360,6 @@
 				15E1847F1BB4FF0900681BB2 /* LYZSeditView.xib in Resources */,
 				854727361C197E6B0048CEDC /* icon_fanhui2@2x.png in Resources */,
 				853C4C851C311A9900D48BA2 /* dizhi_icon@2x.png in Resources */,
-				85009A2A1C61F29B00DDE626 /* 更新30.png in Resources */,
 				385664B11C745550000DCFA5 /* jubao_btn@2x.png in Resources */,
 				ADE2AD711C23ADDE00B0A54B /* ReleaseNotes.txt in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
@@ -7430,6 +7433,7 @@
 				3806563C1C489A1A003094C9 /* AddCar_red.png in Resources */,
 				15E240B61BB3A1FC0090D240 /* OrderDetailSectionBottomForDanPinView.xib in Resources */,
 				85F66E591C5282FE005D1CD8 /* chzcBackground@2x.png in Resources */,
+				85514E9D1C75BB4500E24C78 /* SignIconTableViewCell.xib in Resources */,
 				38D8764A1C1703B600E2F284 /* purper_fanli@2x.png in Resources */,
 				850099CB1C61EEE700DDE626 /* 发起人@3x.png in Resources */,
 				ADE1C5BB1C730E1C0011D4AB /* 更新6@2x.png in Resources */,
@@ -8028,6 +8032,7 @@
 				15B8668F1BE0B04C002E2BB6 /* MyMessageListViewController.m in Sources */,
 				15FD2AB11BD7231C00D66920 /* LYTaoCanXQCell.m in Sources */,
 				15A4CF7B1BD871C000C22C01 /* chiheDetailCollectionCell.m in Sources */,
+				85514E9C1C75BB4500E24C78 /* SignIconTableViewCell.m in Sources */,
 				15B8662C1BDB6D29002E2BB6 /* CHDoOrderell.m in Sources */,
 				D7A1D42E1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m in Sources */,
 				8540B6831C2CED9100F16463 /* LYFriendsCommentTableViewCell.m in Sources */,

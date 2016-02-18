@@ -9,6 +9,7 @@
 
 #import "SignViewController.h"
 #import "SignDateTableViewCell.h"
+#import "SignIconTableViewCell.h"
 
 @interface SignViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -24,19 +25,34 @@
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"SignDateTableViewCell" bundle:nil] forCellReuseIdentifier:@"SignDateTableViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"SignIconTableViewCell" bundle:nil] forCellReuseIdentifier:@"SignIconTableViewCell"];
 }
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 7;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-   /* UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    return cell; */
-    SignDateTableViewCell *dateCell = [_tableView dequeueReusableCellWithIdentifier:@"SignDateTableViewCell" forIndexPath:indexPath];
-    
-    return dateCell;
+    if (indexPath.row == 0) {
+        SignDateTableViewCell *dateCell = [_tableView dequeueReusableCellWithIdentifier:@"SignDateTableViewCell" forIndexPath:indexPath];
+        
+        return dateCell;
+    }else{
+        SignIconTableViewCell *iconCell = [_tableView dequeueReusableCellWithIdentifier:@"SignIconTableViewCell" forIndexPath:indexPath];
+        return iconCell;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return 34;
+    }else{
+        return 51;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

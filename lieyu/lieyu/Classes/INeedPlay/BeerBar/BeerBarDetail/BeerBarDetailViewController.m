@@ -463,14 +463,6 @@
                 _barTitleCell.label_name.text = @"";
             }
             
-            
-            
-            
-            if (![MyUtil isEmptyString:self.beerBarDetail.environment_num] ) {
-                _barTitleCell.barStar.value=self.beerBarDetail.environment_num.floatValue;
-            }else{
-                _barTitleCell.barStar.value=5.0;
-            }
             NSString *priceStr;
             if (self.beerBarDetail.lowest_consumption==nil) {
                  priceStr= [NSString stringWithFormat:@"¥%@起",@"    "];
@@ -494,19 +486,14 @@
             
             _barTitleCell.label_price.attributedText = attributedStr;
             
-            for (int i = 0;i < 5;i ++) {
-                UIImageView *imageView = _barTitleCell.imageView_starArray[i];
-                imageView.image = [UIImage imageNamed:@"starGray"];
-            }
-            if ([self.beerBarDetail.star_num integerValue]) {
-                for (int y = 0; y < [self.beerBarDetail.star_num integerValue]; y++) {
-                    UIImageView *imageView = _barTitleCell.imageView_starArray[y];
-                    imageView.image = [UIImage imageNamed:@"starRed"];
-                }
-            }
+//            if ([self.beerBarDetail.star_num integerValue]) {
+//                for (int y = 0; y < [self.beerBarDetail.star_num integerValue]; y++) {
+//                    UIImageView *imageView = _barTitleCell.imageView_starArray[y];
+//                    imageView.image = [UIImage imageNamed:@"starRed"];
+//                }
+//            }
             _barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
             CGFloat fanliFloat = self.beerBarDetail.rebate * self.beerBarDetail.lowest_consumption.floatValue;
-            _barTitleCell.label_fanli_num.text = [NSString stringWithFormat:@"¥%.0f起",fanliFloat];
             return _barTitleCell;
             
         }

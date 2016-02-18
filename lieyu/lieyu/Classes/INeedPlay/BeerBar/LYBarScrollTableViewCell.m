@@ -8,6 +8,8 @@
 
 #import "LYBarScrollTableViewCell.h"
 #import "UIButton+WebCache.h"
+#import "BarActivityList.h"
+#import "BarTopicInfo.h"
 
 @implementation LYBarScrollTableViewCell
 
@@ -40,8 +42,9 @@
             break;
         default:{
             for (int i = 0; i < activtyArray.count; i ++) {
-                UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i % activtyArray.count * (imgVWidth + 8) +8 , 8, imgVWidth, 213)];
-                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:_activtyArray[i]]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
+                UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i % activtyArray.count * (imgVWidth + 8) +8 , 0, imgVWidth, 213)];
+                BarActivityList *activityL = _activtyArray[i];
+                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:activityL.topicInfo.imageUrl]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
                 [_activtyBtnArray addObject:btn];
                 [_scrollView addSubview:btn];
                 UIImageView *hotImgV = [[UIImageView alloc]initWithFrame:CGRectMake(imgVWidth - 4 - 32, 4, 32, 32)];
