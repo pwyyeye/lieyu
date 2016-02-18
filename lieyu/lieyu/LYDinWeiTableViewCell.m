@@ -125,7 +125,7 @@
     CGFloat profit = [_pinkeInfo.price intValue] * rebate;
     NSString *percentStr =[NSString stringWithFormat:@"返利:%.0f元",profit];
     self.label_percent.text = percentStr;
-    NSLog(@"%d",[_pinkeInfo.recommended intValue])
+    NSLog(@"%d",[_pinkeInfo.recommended intValue]);
     self.hotImage.hidden = ![_pinkeInfo.recommended intValue];
     [self.button_add removeFromSuperview];
     [self.button_less removeFromSuperview];

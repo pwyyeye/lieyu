@@ -51,6 +51,7 @@
     EScrollerView *_scroller;
     BOOL _userLiked;
     BOOL _userCollected;
+    UIImageView *_tableHeaderImgView;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -82,7 +83,7 @@
     self.scrollView.showsHorizontalScrollIndicator=NO;
     [self.scrollView setScrollEnabled:YES];
     [self setupViewStyles];                                                     //tableView registe cell
-    _scrollView.bounces = NO;
+//    _scrollView.bounces = NO;
 
     self.image_layer.hidden = YES;
     
@@ -232,6 +233,13 @@
         self.image_layer.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
     }else{
         self.image_layer.hidden = YES;
+    }
+    
+    if (scrollView.contentOffset.y < 0) {
+        CGFloat y = scrollView.contentOffset.y;
+        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
+        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
+        NSLog(@"----->%@",NSStringFromCGRect(_tableHeaderImgView.frame));
     }
 }
 
@@ -386,6 +394,8 @@
 
 #pragma mark -- tableviewDelegate
 
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 5;
@@ -404,11 +414,11 @@
         case 0:
         {
             _headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
-            _size = [self.beerBarDetail.announcement.content boundingRectWithSize:CGSizeMake(MAXFLOAT, 18) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+            /*_size = [self.beerBarDetail.announcement.content boundingRectWithSize:CGSizeMake(MAXFLOAT, 18) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
                                                                                                                                                                             
                                                                                                                                                             
-            _headerCell.label_laBa.text = self.beerBarDetail.announcement.content;
+            _headerCell.label_laBa.text = self.beerBarDetail.announcement.content; */
             
             
             NSMutableArray *bigArr=[[NSMutableArray alloc]init];
@@ -418,10 +428,16 @@
                 [dicTemp setObject:@"" forKey:@"mainHeading"];
                 [bigArr addObject:dicTemp];
             }
-            _scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0 , 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
+            
+            
+            
+          /*  _scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0 , 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
                                                                   scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
 
-            [_headerCell addSubview:_scroller];
+            [_headerCell addSubview:_scroller]; */
+            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
+            [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject]];
+            [_headerCell addSubview:_tableHeaderImgView];
 
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
 

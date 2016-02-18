@@ -566,8 +566,9 @@
 #pragma mark - 获取最新我的数据
 - (void)getDataMysWithSetContentOffSet:(BOOL)need{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆！"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return;
     }
     _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -644,9 +645,9 @@
 
 #pragma mark - 我的action
 - (void)myClick:(UIButton *)myBtn{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return;
     }
 //    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
@@ -868,8 +869,9 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
-    if(_useridStr==nil){
+    if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return;
     }
     LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
@@ -930,7 +932,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     [window addSubview:_bigView];
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
-    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 49);
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 54);
     _commentView.bgView.layer.borderColor = RGBA(0,0,0, .5).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
@@ -1047,8 +1049,9 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
         [MyUtil showCleanMessage:@"内容太多，200字以内"];
         return NO;
     }
-    if(_useridStr==nil){
+    if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return NO;
     }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"toUserId":toUserId,@"comment":_commentView.textField.text};
@@ -1145,8 +1148,9 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     if (buttonIndex) {
         NSMutableArray *array = _dataArray[_index];
         FriendsRecentModel *recentM = array[_deleteMessageTag];
-        if(_useridStr==nil){
+        if(![MyUtil isUserLogin]){
             [MyUtil showCleanMessage:@"请先登录！"];
+            [MyUtil gotoLogin];
             return;
         }
         NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
@@ -1205,8 +1209,9 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
         if (!buttonIndex) {//删除我的评论
             FriendsRecentModel *recetnM = _dataArray[_index][_section];
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
-            if(_useridStr==nil){
+            if(![MyUtil isUserLogin]){
                 [MyUtil showCleanMessage:@"请先登录！"];
+                [MyUtil gotoLogin];
                 return;
             }
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};

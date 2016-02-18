@@ -55,8 +55,6 @@
 
 - (void)setTitle:(NSString *)title{
     _title = title;
-    
-    
     _label_descr.text = title;
     
     CGSize strSize = [title boundingRectWithSize:CGSizeMake(MAXFLOAT, 48.0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:18]} context:nil].size;

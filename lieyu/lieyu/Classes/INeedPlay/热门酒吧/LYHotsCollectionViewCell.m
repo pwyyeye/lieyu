@@ -98,9 +98,18 @@
      HomeBarCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
     //    cell.layer.cornerRadius = 2;
     //    cell.layer.masksToBounds = YES;
-        JiuBaModel *jiubaM = _jiubaArray[indexPath.item];
-        cell.jiuBaM = jiubaM;
+//        JiuBaModel *jiubaM = _jiubaArray[indexPath.item];
+//        cell.jiuBaM = jiubaM;
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    HomeBarCollectionViewCell *cell2=(HomeBarCollectionViewCell *)cell;
+            JiuBaModel *jiubaM = _jiubaArray[indexPath.item];
+            cell2.jiuBaM = jiubaM;
+
+
+
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

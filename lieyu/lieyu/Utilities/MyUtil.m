@@ -11,7 +11,7 @@
 #import <Reachability.h>
 #import "GTM_Base64.h"
 #import <CommonCrypto/CommonCryptor.h>
-
+#import "LYUserLoginViewController.h"
 #define desKey @"lieyu"
 
 @implementation MyUtil
@@ -674,7 +674,7 @@
     NSDateFormatter *dateFmter = [[NSDateFormatter alloc]init];
     [dateFmter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [dateFmter dateFromString:dateString];
-    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"Sunday", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
+    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
@@ -685,9 +685,7 @@
     NSCalendarUnit calendarUnit = NSWeekdayCalendarUnit;
     
     NSDateComponents *theComponents = [calendar components:calendarUnit fromDate:date];
-    
     return [weekdays objectAtIndex:theComponents.weekday];
-    
 }
 
 #pragma mark -剩余时间计算
@@ -709,5 +707,22 @@
         return @"已过期";
     }
 }
+
++(BOOL)isUserLogin{
+     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (app.userModel==nil) {
+        return NO;
+    }
+    return YES;
+}
+
++(void)gotoLogin{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+    UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
+    [nav pushViewController:login animated:YES];
+}
+
+
 
 @end

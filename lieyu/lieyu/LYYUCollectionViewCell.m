@@ -49,7 +49,6 @@
     for (UIButton *btn in _btnArray) {
         btn.layer.cornerRadius = btnWidth/2.f;
         btn.layer.masksToBounds = YES;
-        btn.hidden = YES;
     }
     
     
@@ -65,6 +64,10 @@
 
 
 - (void)setOrderModel:(YUOrderShareModel *)orderModel{
+    for (UIButton *btn in _btnArray) {
+         btn.hidden = YES;
+    }
+    
     _orderModel = orderModel;
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:orderModel.orderInfo.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     //    _label_age.text = [NSString stringWithFormat:@"%d",orderModel.orderInfo.]
@@ -109,17 +112,20 @@
     }
     
     NSString *sexStr = nil;
-    switch (orderModel.allowSex.integerValue) {
-        case 0:
-            sexStr = @"女";
-            break;
-        case 2:
-            sexStr = @"男";
-            break;
-        case 3:
-            sexStr = @"全部";
-            break;
+    if (orderModel.allowSex) {
+        switch (orderModel.allowSex.integerValue) {
+            case 0:
+                sexStr = @"女";
+                break;
+            case 1:
+                sexStr = @"男";
+                break;
+            case 2:
+                sexStr = @"全部";
+                break;
+        }
     }
+    
     _label_peopleCount.text = [NSString stringWithFormat:@"邀请人数: %@ (%@)", orderModel.orderInfo.allnum,sexStr];
     
     NSArray *reachTimeArray1 = [orderModel.orderInfo.reachtime componentsSeparatedByString:@" "];

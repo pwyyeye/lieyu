@@ -44,6 +44,21 @@
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString *endTime;
 
+@property (nonatomic,copy) NSString *addressabb;
+@property (nonatomic,copy) NSString *imageid;
+@property (nonatomic,copy) NSString *level;
+@property (nonatomic,copy) NSString *levelname;
+@property (nonatomic,copy) NSString *modifydate;
+@property (nonatomic,copy) NSString *need_page;
+@property (nonatomic,copy) NSString *online;
+@property (nonatomic,copy) NSString *recommended;
+@property (nonatomic,copy) NSString *requstall;
+@property (nonatomic,copy) NSString *smdate;
+@property (nonatomic,copy) NSString *smid;
+@property (nonatomic,copy) NSString *sort;
+@property (nonatomic,copy) NSString *subids;
+@property (nonatomic,copy) NSString *telephone;
+
 +(BeerBarOrYzhDetailModel *)initFormDictionary:(NSDictionary *)dic;
 
 @end

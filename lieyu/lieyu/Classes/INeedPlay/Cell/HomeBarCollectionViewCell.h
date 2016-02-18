@@ -19,14 +19,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_price;
 @property (weak, nonatomic) IBOutlet UILabel *label_fanli;
 @property (weak, nonatomic) IBOutlet UILabel *label_collect;
-@property (weak, nonatomic) IBOutlet UIView *shadowView;
 
 @property (weak, nonatomic) IBOutlet UILabel *label_distance;
 @property (weak, nonatomic) IBOutlet UILabel *label_zang;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view_cont_one_width;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view_cons_width;
 @property (strong, nonatomic)  UIVisualEffectView *bulrView;
-@property (weak, nonatomic) IBOutlet UILabel *label_yu;
+@property (weak, nonatomic) IBOutlet UIImageView *imgYu;
+
 @property (weak, nonatomic) IBOutlet UIView *view_withFanli;
 @property (nonatomic,strong) JiuBaModel *jiuBaM;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_fanli_right_const;

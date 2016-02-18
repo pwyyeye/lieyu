@@ -18,6 +18,7 @@
 >
 
 @property (weak, nonatomic) IBOutlet UIView *view_bottom;
+@property (strong, nonatomic) UIImageView *headerImgV;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_collect;
 @property(nonatomic,strong)NSNumber * beerBarId;

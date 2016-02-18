@@ -81,7 +81,7 @@
     [super viewWillDisappear:animated];
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
-    self.navigationController.navigationBarHidden=YES;
+//    self.navigationController.navigationBarHidden=YES;
 }
 
 - (void)setupAllProperty{
@@ -128,8 +128,9 @@
 #pragma mark - 表白action
 - (void)likeFriendsClick{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return;
     }
     LYFriendsHeaderTableViewCell *cell = (LYFriendsHeaderTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
@@ -172,6 +173,11 @@
 
 #pragma mark - 评论action
 - (void)commentClick{
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
+        return;
+    }
     _isCommentToUser = NO;
   
     [self createCommentView];
@@ -188,7 +194,7 @@
     [self.view addSubview:_bigView];
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
-    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 110 , SCREEN_WIDTH, 49);
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 110 , SCREEN_WIDTH, 54);
     _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
@@ -304,8 +310,9 @@
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel==nil) {
-        [MyUtil showCleanMessage:@"请先登陆"];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
         return NO;
     }
     [_bigView removeFromSuperview];
