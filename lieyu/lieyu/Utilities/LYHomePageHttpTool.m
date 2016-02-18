@@ -636,8 +636,8 @@
     userM.avatar_img = dic[@"headimgurl"];
     userM.usernick = dic[@"nickname"];
     userM.gender = dic[@"sex"];
-    userM.openID = dic[@"openid"];
-    compelete(userM);
+    userM.openID = dic[@"openi                                                                                                                                                                                                                                        d"];
+    compelete(userM);  
 }
 
 #pragma mark 获取酒吧的活动列表

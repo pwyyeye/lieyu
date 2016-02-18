@@ -56,6 +56,7 @@
     BOOL _userLiked;
     BOOL _userCollected;
     UIImageView *_tableHeaderImgView;
+    NSArray *_activityArray;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -74,6 +75,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.automaticallyAdjustsScrollViewInsets=NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
@@ -193,6 +195,13 @@
          [weakSelf.tableView reloadData];
          [weakSelf loadWebView];
      }];
+    
+    
+    NSDictionary *dic = @{@"barid":_beerBarId};
+    [LYHomePageHttpTool getActivityListWithPara:dic compelte:^(NSMutableArray *result) {
+        _activityArray = result;
+        [_tableView reloadData];
+    }];
 }
 
 - (void)loadMyBarInfo{
