@@ -12,21 +12,27 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     CGFloat btnWidth = (SCREEN_WIDTH - 16 - (_btnArray.count - 1) * 7)/_btnArray.count;
     for (UIButton *btn in _btnArray) {
         btn.layer.cornerRadius = btnWidth/2.f;
         btn.layer.masksToBounds = YES;
     }
-    
     UIButton *lastBtn = [_btnArray lastObject];
-    _moreBtn = [[UIButton alloc]initWithFrame:lastBtn.frame];
-    _moreBtn.backgroundColor = RGBA(186, 40,227, 1);
+    _moreBtn = [[UIButton alloc]initWithFrame:CGRectMake(lastBtn.frame.origin.x, lastBtn.frame.origin.y, btnWidth, btnWidth)];
+    _moreBtn.backgroundColor = RGBA(186, 40,227, .5);
     [self addSubview:_moreBtn];
-    
     
 }
 
+- (void)layoutSubviews{
+    [super layoutSubviews];
+     CGFloat btnWidth = (SCREEN_WIDTH - 16 - (_btnArray.count - 1) * 7)/_btnArray.count;
+    UIButton *lastBtn = [_btnArray lastObject];
+    _moreBtn.frame = CGRectMake(lastBtn.frame.origin.x, lastBtn.frame.origin.y, btnWidth, btnWidth);
+    _moreBtn.layer.cornerRadius = btnWidth/2.f;
 
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

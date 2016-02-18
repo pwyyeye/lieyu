@@ -665,6 +665,12 @@
 		8550E7201C302A33001FF2DE /* daohang_fabu.png in Resources */ = {isa = PBXBuildFile; fileRef = 8550E71D1C302A33001FF2DE /* daohang_fabu.png */; };
 		8550E7211C302A33001FF2DE /* daohang_fabu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8550E71E1C302A33001FF2DE /* daohang_fabu@2x.png */; };
 		8550E7221C302A33001FF2DE /* daohang_fabu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8550E71F1C302A33001FF2DE /* daohang_fabu@3x.png */; };
+		85514E421C75619400E24C78 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E401C75619400E24C78 /* SignViewController.m */; };
+		85514E431C75619400E24C78 /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85514E411C75619400E24C78 /* SignViewController.xib */; };
+		85514E4E1C7563CA00E24C78 /* SignDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E4C1C7563CA00E24C78 /* SignDateTableViewCell.m */; };
+		85514E4F1C7563CA00E24C78 /* SignDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85514E4D1C7563CA00E24C78 /* SignDateTableViewCell.xib */; };
+		85514E951C757B7600E24C78 /* BarActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E941C757B7600E24C78 /* BarActivityList.m */; };
+		85514E981C75904500E24C78 /* BarTopicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E971C75904500E24C78 /* BarTopicInfo.m */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
 		8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */; };
 		8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */; };
@@ -2147,6 +2153,16 @@
 		8550E71D1C302A33001FF2DE /* daohang_fabu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang_fabu.png; sourceTree = "<group>"; };
 		8550E71E1C302A33001FF2DE /* daohang_fabu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_fabu@2x.png"; sourceTree = "<group>"; };
 		8550E71F1C302A33001FF2DE /* daohang_fabu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_fabu@3x.png"; sourceTree = "<group>"; };
+		85514E3F1C75619400E24C78 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
+		85514E401C75619400E24C78 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
+		85514E411C75619400E24C78 /* SignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignViewController.xib; sourceTree = "<group>"; };
+		85514E4B1C7563CA00E24C78 /* SignDateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignDateTableViewCell.h; sourceTree = "<group>"; };
+		85514E4C1C7563CA00E24C78 /* SignDateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignDateTableViewCell.m; sourceTree = "<group>"; };
+		85514E4D1C7563CA00E24C78 /* SignDateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignDateTableViewCell.xib; sourceTree = "<group>"; };
+		85514E931C757B7600E24C78 /* BarActivityList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarActivityList.h; sourceTree = "<group>"; };
+		85514E941C757B7600E24C78 /* BarActivityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarActivityList.m; sourceTree = "<group>"; };
+		85514E961C75904500E24C78 /* BarTopicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarTopicInfo.h; sourceTree = "<group>"; };
+		85514E971C75904500E24C78 /* BarTopicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarTopicInfo.m; sourceTree = "<group>"; };
 		855192661C0B30E0007B9949 /* LYHotJiuBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotJiuBarViewController.h; sourceTree = "<group>"; };
 		855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotJiuBarViewController.m; sourceTree = "<group>"; };
 		855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotJiuBarViewController.xib; sourceTree = "<group>"; };
@@ -4907,6 +4923,46 @@
 			name = "发布动态";
 			sourceTree = "<group>";
 		};
+		85514E3E1C75617500E24C78 /* 所有签到 */ = {
+			isa = PBXGroup;
+			children = (
+				85514E451C75635300E24C78 /* Views */,
+				85514E441C75634500E24C78 /* Controller */,
+			);
+			name = "所有签到";
+			sourceTree = "<group>";
+		};
+		85514E441C75634500E24C78 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				85514E3F1C75619400E24C78 /* SignViewController.h */,
+				85514E401C75619400E24C78 /* SignViewController.m */,
+				85514E411C75619400E24C78 /* SignViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		85514E451C75635300E24C78 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				85514E4B1C7563CA00E24C78 /* SignDateTableViewCell.h */,
+				85514E4C1C7563CA00E24C78 /* SignDateTableViewCell.m */,
+				85514E4D1C7563CA00E24C78 /* SignDateTableViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		85514E921C757B5500E24C78 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85514E931C757B7600E24C78 /* BarActivityList.h */,
+				85514E941C757B7600E24C78 /* BarActivityList.m */,
+				85514E961C75904500E24C78 /* BarTopicInfo.h */,
+				85514E971C75904500E24C78 /* BarTopicInfo.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		855192651C0B30C4007B9949 /* 热门酒吧 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6258,6 +6314,7 @@
 		D729DB5C1BADB8AB005A9E60 /* 酒吧详情 */ = {
 			isa = PBXGroup;
 			children = (
+				85514E3E1C75617500E24C78 /* 所有签到 */,
 				D729DB5D1BADB8AB005A9E60 /* BeerBarDetail */,
 			);
 			name = "酒吧详情";
@@ -6267,6 +6324,7 @@
 		D729DB5D1BADB8AB005A9E60 /* BeerBarDetail */ = {
 			isa = PBXGroup;
 			children = (
+				85514E921C757B5500E24C78 /* Model */,
 				85EE802E1C0AF03700958F76 /* Cell */,
 				D729DB5E1BADB8D3005A9E60 /* BeerBarDetailViewController.h */,
 				D729DB5F1BADB8D3005A9E60 /* BeerBarDetailViewController.m */,
@@ -6923,6 +6981,7 @@
 				853C4C861C311A9900D48BA2 /* dizhi_icon@3x.png in Resources */,
 				52D4F9A41C57B2B700691BEF /* 附近@2x.png in Resources */,
 				853C4C741C311A6D00D48BA2 /* fabudongtai_xuanzedizhi@3x.png in Resources */,
+				85514E431C75619400E24C78 /* SignViewController.xib in Resources */,
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				3812C55A1C57B76100F4DD6B /* purper_star@3x.png in Resources */,
 				853C36151C72BC4700F1703B /* BeerNewBarViewController.xib in Resources */,
@@ -6948,6 +7007,7 @@
 				A2020D4A1BA661260090B92A /* MyInfoViewController.xib in Resources */,
 				ADE1C5401C71DA790011D4AB /* 更新14@2x.png in Resources */,
 				A2F9DA8E1BAB96C8009DEAF3 /* KaZuoView.xib in Resources */,
+				85514E4F1C7563CA00E24C78 /* SignDateTableViewCell.xib in Resources */,
 				AD92AEBD1BE50AD9009F2A34 /* AboutLieyu.xib in Resources */,
 				85F66E411C524F32005D1CD8 /* zuijinlianxiren@2x.png in Resources */,
 				15EB35461BD4839D00BA6161 /* UMSocialLocalizable.strings in Resources */,
@@ -7502,6 +7562,7 @@
 				A2F9DA741BAA6AB7009DEAF3 /* OrderBottomView.m in Sources */,
 				AD106BB91C0DDEFF007F5FBA /* MJPropertyType.m in Sources */,
 				A20100C61BA91288009283D1 /* CustomerModel.m in Sources */,
+				85514E4E1C7563CA00E24C78 /* SignDateTableViewCell.m in Sources */,
 				15EB7C5E1BCB7AE900756153 /* OrderDetailSectionBottomForTuiKuanPinView.m in Sources */,
 				15844BB41BE1B17D00247FBC /* LYMyFriendDetailViewController.m in Sources */,
 				853C4C491C31115500D48BA2 /* LYFriendsLikeDetailTableViewCell.m in Sources */,
@@ -7636,6 +7697,7 @@
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				380659DD1C5639F4003094C9 /* ManagersView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
+				85514E951C757B7600E24C78 /* BarActivityList.m in Sources */,
 				D748BC7A1BA1CB0E005AA996 /* User.m in Sources */,
 				152247AD1BEB064600E68A2B /* IQUITextFieldView+Additions.m in Sources */,
 				151BB6E21BBB913E00E7A81C /* DejalActivityView.m in Sources */,
@@ -7667,6 +7729,7 @@
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
 				3879F2611C0D32EE00B72629 /* ContentTableViewCell.m in Sources */,
+				85514E421C75619400E24C78 /* SignViewController.m in Sources */,
 				15EB35101BD1F67200BA6161 /* PTShowIntroductionsCell.m in Sources */,
 				D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */,
 				15E1848D1BB5220C00681BB2 /* LyZSuploadIdCardViewController.m in Sources */,
@@ -7778,6 +7841,7 @@
 				15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */,
 				3806566C1C4E5D5B003094C9 /* MyCell.m in Sources */,
 				15B866291BDB6A57002E2BB6 /* AllInfoModel.m in Sources */,
+				85514E981C75904500E24C78 /* BarTopicInfo.m in Sources */,
 				15A4CF461BD7682400C22C01 /* DWOredrNextCell.m in Sources */,
 				ADF88EA41C1197C400CF5DED /* MJRefreshAutoStateFooter.m in Sources */,
 				D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */,

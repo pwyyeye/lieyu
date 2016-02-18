@@ -33,6 +33,10 @@
 #import "zujuViewController.h"
 #import "PinkerShareController.h"
 
+#import "LYBarIconTableViewCell.h"
+#import "LYBarScrollTableViewCell.h"
+#import "SignViewController.h"
+
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 #define BEERBARDETAIL_MTA @"酒吧详情"
@@ -317,6 +321,8 @@
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarSpecialTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarSpecialTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarDescTitleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarDescTitleTableViewCell"];
     [_tableView registerClass:[LYBarDescTableViewCell class] forCellReuseIdentifier:@"LYBarDescTableViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"LYBarIconTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarIconTableViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"LYBarScrollTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarScrollTableViewCell"];
     
     self.bottomBarView.backgroundColor = [LYColors tabbarBgColor];
     //_dyBarDetailH = [BeerBarDetailCell adjustCellHeight:nil];
@@ -394,7 +400,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -516,21 +522,42 @@
             return barPointCell;
         }
             break;
-        case 3://酒吧特色
+        case 3://iconlist
         {
-            LYBarSpecialTableViewCell *barSpecialCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarSpecialTableViewCell" forIndexPath:indexPath];
+            /*LYBarSpecialTableViewCell *barSpecialCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarSpecialTableViewCell" forIndexPath:indexPath];
             
             [barSpecialCell configureCell:self.beerBarDetail];
             
             barSpecialCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return barSpecialCell;
+            return barSpecialCell; */
+            
+            LYBarIconTableViewCell *iconCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarIconTableViewCell" forIndexPath:indexPath];
+            iconCell.moreBtn.tag = indexPath.row;
+            [iconCell.moreBtn addTarget:self action:@selector(moreClick:) forControlEvents:UIControlEventTouchUpInside];
+            return iconCell;
+            
         }
             break;
-        case 4:
+            
+            case 4://activity
+        {
+            LYBarScrollTableViewCell *scrollCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarScrollTableViewCell" forIndexPath:indexPath];
+            NSArray *array = @[@"http://source.lie98.com/20160127212540923.jpg?imageView2/0/w/160/h/160",@"http://source.lie98.com/20160127212540923.jpg?imageView2/0/w/160/h/160",@"http://source.lie98.com/20160127212540923.jpg?imageView2/0/w/160/h/160"];
+            for (int i = 0; i < scrollCell.activtyBtnArray.count; i ++) {
+                UIButton *btn = scrollCell.activtyBtnArray[i];
+                btn.tag = i;
+                [btn addTarget:self action:@selector(activtyClick:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            scrollCell.activtyArray = array;
+            return scrollCell;
+        }
+            break;
+        case 5:
         {
             LYBarDescTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTableViewCell" forIndexPath:indexPath];
             barDescTitleCell.title = self.beerBarDetail.subtitle;
             barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            barDescTitleCell con
             
             UIWebView *webV = [barDescTitleCell viewWithTag:10086];
             if (webV) {
@@ -543,20 +570,19 @@
             
         }
             break;
-//        case 5:
-//        {
-//            cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-//            UIWebView *webV = [cell viewWithTag:10086];
-//            if (webV) {
-//                [webV removeFromSuperview];
-//            }
-//           
-//            [cell addSubview:_webView];
-//        }
-//            break;
             
     }
     return cell;
+}
+
+#pragma mark - 所有签到action
+- (void)moreClick:(UIButton *)button{
+    SignViewController *signVC = [[SignViewController alloc]init];
+    [self.navigationController pushViewController:signVC animated:YES];
+}
+
+- (void)activtyClick:(UIButton *)button{
+    
 }
 
 - (void)onTime{
@@ -585,7 +611,7 @@
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if(section == 0 || section == 4){
+    if(section == 0 || section == 5){
         return 0.00001;
     }else{
         return 8;
@@ -619,11 +645,15 @@
             break;
         case 3:
         {
-            return 105;
+            return 60;
         }
             break;
+            case 4:
+        {
+            return 213 + 16;
+        }
             
-        case 4:
+        case 5:
         {
 //            return 76;
             return _webView.frame.size.height + 55;
