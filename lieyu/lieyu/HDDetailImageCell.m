@@ -24,10 +24,10 @@
 //    [_image sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
 //    _image.image = [UIImage imageNamed:@"zhanwei"];
     _image.image = [UIImage imageNamed:@"zhanwei2"];
-    float height = CGRectGetHeight(_image.frame);
-    float width = CGRectGetWidth(_image.frame);
-    float bili = height / width ;
-    _image.frame = CGRectMake(12, _image.frame.origin.y, SCREEN_WIDTH - 24, (SCREEN_WIDTH - 24) * bili);
+//    float height = CGRectGetHeight(_image.frame);
+//    float width = CGRectGetWidth(_image.frame);
+//    float bili = height / width ;
+//    _image.frame = CGRectMake(12, _image.frame.origin.y, SCREEN_WIDTH - 24, (SCREEN_WIDTH - 24) * bili);
 //    NSLog(@"%@",NSStringFromCGRect(_image.frame));
 }
 
