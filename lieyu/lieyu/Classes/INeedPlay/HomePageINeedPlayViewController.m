@@ -66,6 +66,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UICollectionView *_collectView;
     BOOL _isCollectView;
     RecommendedTopic *_recommendedTopic;
+    NSMutableArray *_newbannerListArray;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -88,6 +89,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _contentOffSet_Height_YD = 1;
     
     _dataArray = [[NSMutableArray alloc]initWithCapacity:2];
+    _newbannerListArray = [[NSMutableArray alloc]initWithCapacity:2];
     _recommendedBarArray= [[NSMutableArray alloc]initWithCapacity:2];
     for (int i = 0; i < 2; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
@@ -739,7 +741,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (collectionView == _collectView) {
         return CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
     }else{
-        if (!_recommendedTopic) {
+        if (!_recommendedTopic.id) {
             if (indexPath.item == 3) {
                 return CGSizeZero;
             }
@@ -1003,7 +1005,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     if (imageV) {
                         [imageV removeFromSuperview];
                     }
-                    if (_recommendedTopic) {
+                    if (_recommendedTopic.id) {
                     UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
                     imageV.layer.cornerRadius = 2;
                     imageV.layer.masksToBounds = YES;
@@ -1028,9 +1030,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray *array = nil;
-    
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     if (collectionView != _collectView) {
         if(indexPath.item == 2){
             HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
@@ -1075,7 +1075,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if(indexPath.item == 1){
         jiuBaM = _recommendedBar;
     }else if(indexPath.item == 3){
-        if(_recommendedTopic){
+        if(_recommendedTopic.id){
         ActionPage *aPage = [[ActionPage alloc]init];
         aPage.topicid = _recommendedTopic.id;
         [self.navigationController pushViewController:aPage animated:YES];
