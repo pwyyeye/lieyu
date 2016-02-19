@@ -39,5 +39,5 @@
 //根据动态id获取动态
 + (void)friendsGetAMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsRecentModel *))compelte;
 //举报
-+ (void)friendsJuBaoWithParams:(NSDictionary *)params complete:(void(^)(void))complete;
++ (void)friendsJuBaoWithParams:(NSDictionary *)params complete:(void(^)(NSString *))complete;
 @end

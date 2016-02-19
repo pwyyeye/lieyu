@@ -130,7 +130,7 @@
 #pragma mark - 查看套餐
 - (IBAction)YuDingClick:(UIButton *)sender {
     LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
-    woYaoDinWeiMainViewController.barid=_barActivity.barInfo.barid.intValue;
+    woYaoDinWeiMainViewController.barid=[_barActivity.barInfo.id intValue];
     woYaoDinWeiMainViewController.startTime = _barActivity.barInfo.startTime;
     woYaoDinWeiMainViewController.endTime = _barActivity.barInfo.endTime;
     [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];
