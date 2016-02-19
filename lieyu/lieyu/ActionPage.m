@@ -137,7 +137,7 @@
     //获取数据
     NSDictionary *dic = @{@"start":[NSString stringWithFormat:@"%d",start],
                           @"limit":@"10",
-                          @"topicid":@"1"};
+                          @"topicid":_topicid};
     [LYHomePageHttpTool getActivityListWithPara:dic compelte:^(NSMutableArray *result) {
         if (result.count > 0) {
             [actionList addObjectsFromArray:result];
