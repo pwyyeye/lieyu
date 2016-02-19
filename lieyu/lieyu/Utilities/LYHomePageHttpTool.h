@@ -91,4 +91,8 @@
 + (void)getActivityListWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSMutableArray * result))compelete;
 //获取所有活动专题
 + (void)getActionList:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete;
+//获取所有签到
++ (void)getSignListWidth:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete;
+//签到
++ (void)signWith:(NSDictionary *)paraDic;
 @end

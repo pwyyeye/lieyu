@@ -26,7 +26,7 @@
 #define LYFriendsLikeDetailCellID @"LYFriendsLikeDetailTableViewCell"
 #define LYFriendsCommentDetailCellID @"LYFriendsCommentDetailTableViewCell"
 
-@interface LYFriendsMessageDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LYFriendsHeaderTableViewCellDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate>
+@interface LYFriendsMessageDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LYFriendsHeaderTableViewCellDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate,UIActionSheetDelegate>
 {
     NSMutableArray *_dataArray;
     NSInteger _indexStart;
@@ -66,7 +66,8 @@
 }
 
 - (void)jubaoDT:(UIButton *)button{
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",  nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",@"其他原因",  nil];
+        actionSheet.tag = 100;
         [actionSheet showInView:self.view];
 }
 
@@ -501,18 +502,40 @@
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSInteger count = _recentM.likeList.count == 0 ? 1 : 2;
-    if (!buttonIndex) {//删除我的评论
-        FriendsCommentModel *commentM = _dataArray[_indexRow - count];
-        NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
-        __weak LYFriendsMessageDetailViewController *weakSelf = self;
-        [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
-            if(result){
-                [_dataArray removeObjectAtIndex:_indexRow - count];
-                _recentM.commentNum = [NSString stringWithFormat:@"%ld",_recentM.commentNum.integerValue - 1];
-                [weakSelf.tableView reloadData];
-            }
-        }];
+    if(actionSheet.tag == 100){
+        NSString *message;
+        if (buttonIndex == 0) {
+            message = @"污秽色情";
+        }else if (buttonIndex == 1){
+            message = @"垃圾广告";
+        }else if (buttonIndex == 2){
+            message = @"其他原因";
+        }
+        if (buttonIndex != 3) {
+            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            
+            NSDictionary *dict = @{@"reportedUserid":_recentM.userId,
+                                   @"momentId":_recentM.id,
+                                   @"message":message,
+                                   @"userid":[NSString stringWithFormat:@"%d",app.userModel.userid]};
+            [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^{
+                
+            }];
+        }
+    }else{
+        NSInteger count = _recentM.likeList.count == 0 ? 1 : 2;
+        if (!buttonIndex) {//删除我的评论
+            FriendsCommentModel *commentM = _dataArray[_indexRow - count];
+            NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
+            __weak LYFriendsMessageDetailViewController *weakSelf = self;
+            [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
+                if(result){
+                    [_dataArray removeObjectAtIndex:_indexRow - count];
+                    _recentM.commentNum = [NSString stringWithFormat:@"%ld",_recentM.commentNum.integerValue - 1];
+                    [weakSelf.tableView reloadData];
+                }
+            }];
+        }
     }
 }
 #pragma mark - 跳转到指定用户动态页

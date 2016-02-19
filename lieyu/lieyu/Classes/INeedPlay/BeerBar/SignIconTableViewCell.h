@@ -1,5 +1,5 @@
 //
-//  SignDateTableViewCell.h
+//  SignIconTableViewCell.h
 //  lieyu
 //
 //  Created by 狼族 on 16/2/18.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignDateTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *label_time;
+@interface SignIconTableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
 
 @end

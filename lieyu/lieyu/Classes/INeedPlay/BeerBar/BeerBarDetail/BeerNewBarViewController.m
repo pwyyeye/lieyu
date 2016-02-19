@@ -36,6 +36,9 @@
 #import "LYBarIconTableViewCell.h"
 #import "LYBarScrollTableViewCell.h"
 #import "SignViewController.h"
+#import "ActionDetailViewController.h"
+#import "BarActivityList.h"
+#import "LYMyFriendDetailViewController.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
@@ -83,11 +86,7 @@
     //    _tableView.layer.zPosition = 2.0;
     
     //    self.navigationController.navigationBarHidden=YES;
-    _scrollView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height+2500);
-    self.scrollView.showsVerticalScrollIndicator=NO;
-    self.scrollView.showsHorizontalScrollIndicator=NO;
-    [self.scrollView setScrollEnabled:YES];
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     [self setupViewStyles];                                                     //tableView registe cell
     _scrollView.bounces = NO;
     
@@ -236,7 +235,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - self.image_layer.size.height) {
+    if (scrollView.contentOffset.y > SCREEN_WIDTH/183*95 - self.image_layer.size.height) {
         self.image_layer.hidden = NO;
         self.image_layer.layer.shadowRadius = 2;
         self.image_layer.layer.shadowOpacity = 0.5;
@@ -248,8 +247,8 @@
     
     if (_tableView.contentOffset.y < 0) {
         CGFloat y = scrollView.contentOffset.y;
-        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
-        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
+        CGFloat hegiht = SCREEN_WIDTH * 95 / 183.f;
+        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 183 / 95.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 183 / 95.f, hegiht -y);
     }
 }
 
@@ -409,7 +408,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if(_beerBarDetail)
     return 6;
+    else return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -425,28 +426,12 @@
         case 0:
         {
             _headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
-            /*_size = [self.beerBarDetail.announcement.content boundingRectWithSize:CGSizeMake(MAXFLOAT, 18) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-             _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
-             
-             
-             _headerCell.label_laBa.text = self.beerBarDetail.announcement.content; */
-            
-            
-            NSMutableArray *bigArr=[[NSMutableArray alloc]init];
-            for (NSString *iconStr in self.beerBarDetail.banners) {
-                NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
-                [dicTemp setObject:iconStr forKey:@"ititle"];
-                [dicTemp setObject:@"" forKey:@"mainHeading"];
-                [bigArr addObject:dicTemp];
+            UIImageView *imgV = [_headerCell viewWithTag:10086];
+            if (imgV) {
+                [imgV removeFromSuperview];
             }
-            
-            
-            
-            _scroller=[[EScrollerView alloc] initWithFrameRect:CGRectMake(0 , 0, SCREEN_WIDTH, SCREEN_WIDTH/16*9)
-                                                    scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
-            
-           // [_headerCell addSubview:_scroller];
-            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
+            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 95/183.f)];
+            _tableHeaderImgView.tag = 10086;
             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject]];
             [_headerCell addSubview:_tableHeaderImgView];
             
@@ -460,64 +445,8 @@
         {
             
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
-            [_barTitleCell.imageView_header sd_setImageWithURL:[NSURL URLWithString:self.beerBarDetail.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-            
-            if(self.beerBarDetail.barname){
-                CGSize nameSize = [self.beerBarDetail.barname boundingRectWithSize:CGSizeMake(150, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16]} context:nil].size;
-                if (nameSize.height < 30) {
-                    _barTitleCell.label_name.text = [NSString stringWithFormat:@"%@\n",self.beerBarDetail.barname];
-                }else{
-                    //
-                    _barTitleCell.label_name.text = self.beerBarDetail.barname;
-                }
-            }else{
-                _barTitleCell.label_name.text = @"";
-            }
-            
-            
-            
-            
-            if (![MyUtil isEmptyString:self.beerBarDetail.environment_num] ) {
-                _barTitleCell.barStar.value=self.beerBarDetail.environment_num.floatValue;
-            }else{
-                _barTitleCell.barStar.value=5.0;
-            }
-            NSString *priceStr;
-            if (self.beerBarDetail.lowest_consumption==nil) {
-                priceStr= [NSString stringWithFormat:@"¥%@起",@"    "];
-            }else{
-                priceStr= [NSString stringWithFormat:@"¥%@起",self.beerBarDetail.lowest_consumption];
-            }
-            
-            NSInteger a = 0 ;
-            NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:priceStr];
-            
-            if ([self.beerBarDetail.lowest_consumption integerValue] > 9) {
-                a = 2;
-            }
-            if ([self.beerBarDetail.lowest_consumption integerValue] > 99){
-                a = 3;
-            }
-            if([self.beerBarDetail.lowest_consumption integerValue] > 999){
-                a = 4;
-            }
-            [attributedStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:NSMakeRange(1, a)];
-            
-            _barTitleCell.label_price.attributedText = attributedStr;
-            
-            for (int i = 0;i < 5;i ++) {
-                UIImageView *imageView = _barTitleCell.imageView_starArray[i];
-                imageView.image = [UIImage imageNamed:@"starGray"];
-            }
-            if ([self.beerBarDetail.star_num integerValue]) {
-                for (int y = 0; y < [self.beerBarDetail.star_num integerValue]; y++) {
-                    UIImageView *imageView = _barTitleCell.imageView_starArray[y];
-                    imageView.image = [UIImage imageNamed:@"starRed"];
-                }
-            }
+            _barTitleCell.beerM = _beerBarDetail;
             _barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            CGFloat fanliFloat = self.beerBarDetail.rebate * self.beerBarDetail.lowest_consumption.floatValue;
-            _barTitleCell.label_fanli_num.text = [NSString stringWithFormat:@"¥%.0f起",fanliFloat];
             return _barTitleCell;
             
         }
@@ -533,15 +462,13 @@
             break;
         case 3://iconlist
         {
-            /*LYBarSpecialTableViewCell *barSpecialCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarSpecialTableViewCell" forIndexPath:indexPath];
-            
-            [barSpecialCell configureCell:self.beerBarDetail];
-            
-            barSpecialCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return barSpecialCell; */
-            
             LYBarIconTableViewCell *iconCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarIconTableViewCell" forIndexPath:indexPath];
-            iconCell.moreBtn.tag = indexPath.row;
+            iconCell.iconArray = _beerBarDetail.signUsers;
+            for (int i = 0; i < iconCell.btnArray.count; i ++) {
+                UIButton *btn = iconCell.btnArray[i];
+                btn.tag = i;
+                [btn addTarget:self action:@selector(iconClick:) forControlEvents:UIControlEventTouchUpInside];
+            }
             [iconCell.moreBtn addTarget:self action:@selector(moreClick:) forControlEvents:UIControlEventTouchUpInside];
             return iconCell;
             
@@ -551,14 +478,16 @@
             case 4://activity
         {
             LYBarScrollTableViewCell *scrollCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarScrollTableViewCell" forIndexPath:indexPath];
-            NSArray *array = @[@"http://source.lie98.com/20160127212540923.jpg?imageView2/0/w/160/h/160",@"http://source.lie98.com/20160127212540923.jpg?imageView2/0/w/160/h/160",@"http://source.lie98.com/20160127212540923.jpg?imageView2/0/w/160/h/160"];
+            scrollCell.activtyArray = _activityArray;
             for (int i = 0; i < scrollCell.activtyBtnArray.count; i ++) {
                 UIButton *btn = scrollCell.activtyBtnArray[i];
                 btn.tag = i;
                 [btn addTarget:self action:@selector(activtyClick:) forControlEvents:UIControlEventTouchUpInside];
             }
-            scrollCell.activtyArray = array;
             return scrollCell;
+           /* UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.backgroundColor = [UIColor redColor];
+            return cell; */
         }
             break;
         case 5:
@@ -584,14 +513,44 @@
     return cell;
 }
 
+#pragma mark － 签到
+- (IBAction)signClick:(id)sender {
+    NSDictionary *dic = @{@"barid":_beerBarId};
+    [LYHomePageHttpTool signWith:dic];
+}
+#pragma mark - 签到头像action
+- (void)iconClick:(UIButton *)button{
+    CustomerModel *cum = _beerBarDetail.signUsers[button.tag];
+    CustomerModel *addressBook = [[CustomerModel alloc]init];
+    addressBook.userid = cum.userid;
+    addressBook.username = cum.userInfo.username;
+    addressBook.userTag = cum.tag;
+    addressBook.tag = cum.tag;
+    addressBook.avatar_img = cum.userInfo.avatar_img;
+    addressBook.birthday = cum.userInfo.birthday;
+    addressBook.sex = cum.userInfo.sex;
+    addressBook.usernick = cum.userInfo.usernick;
+    
+    LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    friendDetailViewController.title=@"详细信息";
+    friendDetailViewController.type=@"4";
+    friendDetailViewController.customerModel=addressBook;
+    [self.navigationController pushViewController:friendDetailViewController animated:YES];
+}
+
 #pragma mark - 所有签到action
 - (void)moreClick:(UIButton *)button{
     SignViewController *signVC = [[SignViewController alloc]init];
+    signVC.barid = [NSString stringWithFormat:@"%@",_beerBarId];
     [self.navigationController pushViewController:signVC animated:YES];
 }
 
+#pragma mark - 活动action
 - (void)activtyClick:(UIButton *)button{
-    
+    BarActivityList *aBarList = _activityArray[button.tag];
+    ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
+    actionDetailVC.barActivity = aBarList;
+    [self.navigationController pushViewController:actionDetailVC animated:YES];
 }
 
 - (void)onTime{
@@ -623,6 +582,13 @@
     if(section == 0 || section == 5){
         return 0.00001;
     }else{
+        if (section == 3) {
+            if(_beerBarDetail.signCount.integerValue) return 8;
+            else return 0;
+        }else if(section == 4){
+            if(_activityArray.count) return 8;
+            else return 0;
+        }
         return 8;
     }
 }
@@ -639,12 +605,12 @@
     switch (indexPath.section) {
         case 0:
         {
-            return SCREEN_WIDTH * 9 / 16;
+            return SCREEN_WIDTH * 95 / 183;
         }
             break;
         case 1:
         {
-            return 77;
+            return 88;
         }
             break;
         case 2:
@@ -654,12 +620,14 @@
             break;
         case 3:
         {
-            return 60;
+            if(_beerBarDetail.signCount.integerValue) return 60;
+            else return 0;
         }
             break;
             case 4:
         {
-            return 213 + 16;
+            if(_activityArray.count) return 213;
+            else return 0;
         }
             
         case 5:

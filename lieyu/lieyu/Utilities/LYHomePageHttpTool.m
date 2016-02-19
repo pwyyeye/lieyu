@@ -14,7 +14,7 @@
 #import "LYCache.h"
 #import "BarActivityList.h"
 #import "BarTopicInfo.h"
-
+#import "CustomerModel.h"
 
 @implementation LYHomePageHttpTool
 + (LYHomePageHttpTool *)shareInstance
@@ -664,7 +664,7 @@
     }];
 }
 
-#pragma mark - 获取所动专题列表
+#pragma mark - 获取所有专题列表
 + (void)getActionList:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ACTION_LIST baseURL:LY_SERVER params:paraDic success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -679,6 +679,35 @@
             [MyUtil showCleanMessage:message];
         }
     } failure:^(NSError *err) {
+        [MyUtil showCleanMessage:@"获取数据失败"];
+    }];
+}
+
+#pragma mark - 获取所有签到
++ (void)getSignListWidth:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SIGN baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"] ];
+        if ([code isEqualToString:@"1"]) {
+            NSArray *array = response[@"data"];
+            NSMutableArray *dataArray = [[CustomerModel mj_objectArrayWithKeyValuesArray:array] mutableCopy];
+            complete(dataArray);
+        }
+    }failure:^(NSError *err) {
+        [MyUtil showCleanMessage:@"获取数据失败"];
+    }];
+}
+
+#pragma mark - 签到
++ (void)signWith:(NSDictionary *)paraDic{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GOTOSIGN baseURL:LY_SERVER params:paraDic success:^(id response) {
+      //  NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"] ];
+        [MyUtil showCleanMessage:response[@"message"]];
+//        if ([code isEqualToString:@"1"]) {
+////            complete(YES);
+//        }else{
+////            complete(NO);
+//        }
+    }failure:^(NSError *err) {
         [MyUtil showCleanMessage:@"获取数据失败"];
     }];
 }

@@ -36,6 +36,9 @@
                             <state key="normal" title="查看套餐">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="YuDingClick:" destination="-1" eventType="touchUpInside" id="OuJ-A2-Ck6"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -50,9 +53,9 @@
                         <constraint firstAttribute="height" constant="49" id="zGj-k5-H06"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oJS-Le-JX3">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="oJS-Le-JX3">
+                    <rect key="frame" x="6" y="0.0" width="588" height="551"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -60,10 +63,10 @@
                 <constraint firstAttribute="bottom" secondItem="Fhh-rK-GeK" secondAttribute="bottom" id="30M-UA-cfQ"/>
                 <constraint firstItem="Fhh-rK-GeK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AaP-tr-5i6"/>
                 <constraint firstItem="Fhh-rK-GeK" firstAttribute="top" secondItem="oJS-Le-JX3" secondAttribute="bottom" id="ISi-ac-lhn"/>
-                <constraint firstAttribute="trailing" secondItem="oJS-Le-JX3" secondAttribute="trailing" id="OEw-hn-rVk"/>
+                <constraint firstAttribute="trailing" secondItem="oJS-Le-JX3" secondAttribute="trailing" constant="6" id="OEw-hn-rVk"/>
                 <constraint firstAttribute="trailing" secondItem="Fhh-rK-GeK" secondAttribute="trailing" id="vsh-EP-26l"/>
                 <constraint firstItem="oJS-Le-JX3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="x2I-we-3RH"/>
-                <constraint firstItem="oJS-Le-JX3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yKN-Ki-aLf"/>
+                <constraint firstItem="oJS-Le-JX3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="6" id="yKN-Ki-aLf"/>
             </constraints>
             <point key="canvasLocation" x="377" y="340"/>
         </view>

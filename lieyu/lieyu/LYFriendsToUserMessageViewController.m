@@ -57,6 +57,8 @@
     NSInteger _indexRow;
     FriendsUserInfoModel *_userInfo;
     NSString *defaultComment;//未发送的评论
+    
+    NSString *juBaoMomentID;//要举报的动态ID
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -366,7 +368,10 @@
 }
 
 - (void)jubaoDT:(UIButton *)button{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告", nil];
+    FriendsRecentModel *recentM = _dataArray[button.tag];
+    juBaoMomentID = recentM.id;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",@"其他原因", nil];
+    actionSheet.tag = 100;
     [actionSheet showInView:self.view];
 }
 
@@ -376,10 +381,11 @@
         case 0:
         {
             LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
-                nameCell.recentM = recentM;
+            nameCell.recentM = recentM;
 //                nameCell.btn_delete.hidden = YES;
             [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
             [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+            nameCell.btn_delete.tag = indexPath.section;
             [nameCell.btn_delete addTarget:self action:@selector(jubaoDT:) forControlEvents:UIControlEventTouchUpInside];
             return nameCell;
             
@@ -633,7 +639,29 @@
         [MyUtil gotoLogin];
         return;
     }
-    if(!buttonIndex){
+    if(actionSheet.tag == 100){
+        NSString *message;
+        if (buttonIndex == 0) {
+            message = @"污秽色情";
+        }else if (buttonIndex == 1){
+            message = @"垃圾广告";
+        }else if (buttonIndex == 2){
+            message = @"其他原因";
+        }
+        if (buttonIndex != 3) {
+            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            
+            NSDictionary *dict = @{@"reportedUserid":_friendsId,
+                                   @"momentId":juBaoMomentID,
+                                   @"message":message,
+                                   @"userid":[NSString stringWithFormat:@"%d",app.userModel.userid]};
+            [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^{
+                
+            }];
+        }
+    }
+    else{
+        if(!buttonIndex){
             FriendsRecentModel *recetnM = _dataArray[_section];
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
@@ -647,6 +675,7 @@
                     [weakSelf.tableView reloadData];
                 }
             }];
+        }
     }
 }
 
