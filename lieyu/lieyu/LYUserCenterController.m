@@ -106,15 +106,16 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         [MTA trackPageViewBegin:self.title];
     }
     [super viewWillAppear:animated];
-    if (self.navigationController.navigationBarHidden==NO) {
-        [self.navigationController setNavigationBarHidden:YES];
-    }
+//    if (self.navigationController.navigationBarHidden==NO) {
+//        [self.navigationController setNavigationBarHidden:YES];
+//    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBarHidden = NO;
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewEnd:self.title];
     }
@@ -122,7 +123,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
 }
 
 -(void)viewWillLayoutSubviews{

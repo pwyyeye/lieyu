@@ -171,7 +171,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController.navigationBar setHidden:YES];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -183,7 +183,7 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden=NO;
+//    self.navigationController.navigationBarHidden=NO;
 }
 
 #pragma mart --约束
