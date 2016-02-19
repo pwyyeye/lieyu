@@ -87,20 +87,25 @@
 }
 
 - (NSDictionary *)feedBackDictionary{
-    NSDictionary *dict = @{@"startTime":_barActivity.beginDate,
-                           @"endTime":_barActivity.endDate,
-                           @"address":_barActivity.barInfo.address,
-                           @"latitude":_barActivity.barInfo.latitude,
-                           @"longitude":_barActivity.barInfo.longitude,
-                           @"environment":_barActivity.environment,
-                           @"music":_barActivity.music};
+    NSDictionary *dict;
+    if (_barActivity) {
+        dict = @{@"startTime":_barActivity.beginDate,
+                 @"endTime":_barActivity.endDate,
+                 @"address":_barActivity.barInfo.address,
+                 @"latitude":_barActivity.barInfo.latitude,
+                 @"longitude":_barActivity.barInfo.longitude,
+                 @"environment":_barActivity.environment,
+                 @"music":_barActivity.music};
+    }
     return dict;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 0){
         DetailImageCell = [[[NSBundle mainBundle]loadNibNamed:@"HDDetailImageCell" owner:nil options:nil]firstObject];
-        [DetailImageCell configureImageView:_barActivity.imageUrl];
+        if (_barActivity.imageUrl) {
+            [DetailImageCell configureImageView:_barActivity.imageUrl];
+        }
         DetailImageCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return DetailImageCell;
     }else if (indexPath.section == 1){
@@ -110,7 +115,9 @@
         return cell;
     }else{
         HDDetailFootCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"HDDetailFootCell" owner:nil options:nil]firstObject];
-        cell.decriptLbl.text = _barActivity.content;
+        if (_barActivity) {
+            cell.decriptLbl.text = _barActivity.content;
+        }
 //      cell.decriptLbl.text = @"fjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljk";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
