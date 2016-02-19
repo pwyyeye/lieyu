@@ -181,7 +181,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if(scrollView == _collectView){
-        _index = (NSInteger)_collectView.contentOffset.x/SCREEN_WIDTH;
+        
             CGFloat offsetWidth = _collectView.contentOffset.x;
             CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
             _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
@@ -229,13 +229,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    
+    _index = (NSInteger)_collectView.contentOffset.x/SCREEN_WIDTH;
     LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (_dataArray.count) {
         NSArray *array = _dataArray[_index];
         if(!array.count) {
 //            [cell.collectViewInside.mj_header beginRefreshing];
-            [self getDataWith:1];
+            [self getDataWith:_index];
         }
     }
     
@@ -712,9 +712,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if(collectionView == _collectView){
         return _dataArray.count;
     }else{
-        NSArray *array =_dataArray[_index];
-        if (array.count) {
-            return array.count + 4;
+//        NSArray *array =_dataArray[_index];
+        LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
+        if (hcell.jiubaArray.count) {
+            return hcell.jiubaArray.count + 4;
         }else{
             return 0;
         }
@@ -850,6 +851,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == _collectView) {
         LYHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeCollectionViewCell" forIndexPath:indexPath];
+        
         cell.collectViewInside.dataSource = self;
         cell.collectViewInside.delegate = self;
         [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
@@ -952,7 +954,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         
         return cell;
     }else{
-        LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+//        LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+          LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
             switch (indexPath.item) {
                 case 0:
                 {
@@ -1006,8 +1009,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 }
                     break;
             default:{
-                HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                return cell;
+                NSLog(@"---->%ld",indexPath.item);
+                HomeBarCollectionViewCell *barCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+                return barCell;
+                
+               /* HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+                return cell; */
             }
                 break;
         }
@@ -1029,14 +1036,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
             }
         }else if (indexPath.item > 3) {
-            array = _dataArray[_index];
+//            array = _dataArray[_index];
+            LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
             HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
             NSLog(@"---->%ld",indexPath.item);
-            JiuBaModel *jiubaM = array[indexPath.item - 4];
+            JiuBaModel *jiubaM = hcell.jiubaArray[indexPath.item - 4];
             homeCell.jiuBaM = jiubaM;
         }
     }else{
         LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)cell;
+        hcell.jiubaArray = _dataArray[indexPath.item];
         if (hcell.collectViewInside) {
             if (_menuView.center.y < 45) {
                 [hcell.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
