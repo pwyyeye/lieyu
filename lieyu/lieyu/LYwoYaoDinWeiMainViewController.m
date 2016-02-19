@@ -200,6 +200,7 @@
     self.navigationController.navigationBar.layer.borderWidth = 0;
 //    [[UINavigationBar appearance]setBackgroundImage:nil forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 
 }
 
@@ -262,6 +263,7 @@
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark 获取顶部菜单

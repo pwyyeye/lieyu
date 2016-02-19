@@ -398,11 +398,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES];
    /* _index = 0;
     [_collectView setContentOffset:CGPointZero]; */
     [self createNavButton];
@@ -410,7 +412,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+
     
 }
 
@@ -421,6 +423,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     self.navigationController.navigationBar.hidden = NO;
         self.navigationController.navigationBarHidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

@@ -60,6 +60,7 @@ static LYRegistrationViewController *_registe;
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     self.navigationController.navigationBarHidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark -定时器更新验证码按钮

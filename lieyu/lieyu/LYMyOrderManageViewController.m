@@ -107,6 +107,7 @@
     }
     
     self.navigationController.navigationBarHidden=NO;
+    [self.navigationController setNavigationBarHidden:NO];
     self.automaticallyAdjustsScrollViewInsets=NO;
     // Do any additional setup after loading the view from its nib.
 }
@@ -131,6 +132,7 @@
     [super viewWillAppear:animated];
     if (self.navigationController.navigationBar.hidden) {
         self.navigationController.navigationBar.hidden=NO;
+        [self.navigationController setNavigationBarHidden:NO];
     }
 
 }

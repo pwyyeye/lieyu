@@ -95,6 +95,7 @@
 
 - (void)checkFriendAvatar{
     self.navigationController.navigationBarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES];
     _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
     _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _subView.button.hidden = YES;
@@ -119,6 +120,7 @@
 
 - (void)hideSubView:(UIButton *)button{
     self.navigationController.navigationBarHidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
     [_subView removeFromSuperview];
 }
 

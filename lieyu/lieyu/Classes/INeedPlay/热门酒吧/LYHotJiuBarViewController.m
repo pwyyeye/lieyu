@@ -84,17 +84,20 @@
         }
     }
     self.navigationController.navigationBarHidden=YES;
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 -(void)viewWillLayoutSubviews{
     [super  viewWillLayoutSubviews];
     self.navigationController.navigationBarHidden=NO;
+    [self.navigationController setNavigationBarHidden:NO];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=NO;
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)gotoBack{
