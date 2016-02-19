@@ -1050,13 +1050,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lieyu/Classes/INeedPlay/HomePageINeedPlayViewController.m"
-            timestampString = "477564900.316585"
+            timestampString = "477585397.49599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1143"
-            endingLineNumber = "1143"
-            landmarkName = "-cycleScrollView:didSelectItemAtIndex:"
-            landmarkType = "5">
+            startingLineNumber = "1144"
+            endingLineNumber = "1144"
+            landmarkName = "@implementation HomePageINeedPlayViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
