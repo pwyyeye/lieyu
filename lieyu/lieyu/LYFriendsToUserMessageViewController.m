@@ -655,8 +655,8 @@
                                    @"momentId":juBaoMomentID,
                                    @"message":message,
                                    @"userid":[NSString stringWithFormat:@"%d",app.userModel.userid]};
-            [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^{
-                
+            [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^(NSString *message) {
+                [MyUtil showCleanMessage:message];
             }];
         }
     }

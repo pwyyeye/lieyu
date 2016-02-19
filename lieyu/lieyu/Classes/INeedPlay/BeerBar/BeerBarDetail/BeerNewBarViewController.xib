@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeerNewBarViewController">
             <connections>
+                <outlet property="btnBack" destination="0zl-aU-4MY" id="K4O-KC-iy2"/>
                 <outlet property="btn_collect" destination="Gu7-Ag-jA3" id="aWT-vR-blt"/>
                 <outlet property="btn_like" destination="gEV-Ne-pSz" id="cAr-Du-NHT"/>
                 <outlet property="image_layer" destination="Fwq-Sp-gAa" id="gm4-Ff-hA9"/>

@@ -578,7 +578,6 @@
     //    NSString *str = [dateFmter stringFromDate:date];
     //    NSLog(@"------>%@",str);
     NSString *dateStringPart = [dateFmter stringFromDate:date];
-    
     NSInteger preTime = [date timeIntervalSince1970];
     NSDate* dat = [NSDate date];
     NSTimeInterval now= [dat timeIntervalSince1970]*1;

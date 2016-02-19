@@ -79,6 +79,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     self.automaticallyAdjustsScrollViewInsets=NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
@@ -90,7 +92,8 @@
     [self setupViewStyles];                                                     //tableView registe cell
     _scrollView.bounces = NO;
     
-    self.image_layer.hidden = YES;
+//    self.image_layer.hidden = YES;
+    self.image_layer.alpha = 0.f;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _context = app.managedObjectContext;
@@ -142,7 +145,7 @@
     [super viewWillDisappear:animated];
     [_timer setFireDate:[NSDate distantFuture]];
     [self.navigationController.navigationBar setHidden:NO];
-    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
 }
 -(void)viewDidDisappear:(BOOL)animated
@@ -178,7 +181,6 @@
              
              weakSelf.title=weakSelf.beerBarDetail.barname;
              //判断用户是否已经喜欢过
-             
              [_timer setFireDate:[NSDate distantPast]];
              
              [weakSelf updateViewConstraints];
@@ -235,14 +237,29 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y > SCREEN_WIDTH/183*95 - self.image_layer.size.height) {
-        self.image_layer.hidden = NO;
+   // if (scrollView.contentOffset.y > SCREEN_WIDTH/183*95 - self.image_layer.size.height) {
+//        self.image_layer.hidden = NO;
+        self.image_layer.alpha = scrollView.contentOffset.y / 64.f;
         self.image_layer.layer.shadowRadius = 2;
         self.image_layer.layer.shadowOpacity = 0.5;
         self.image_layer.layer.shadowOffset = CGSizeMake(0, 1);
         self.image_layer.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
-    }else{
-        self.image_layer.hidden = YES;
+    if (self.image_layer.alpha <= 0.f) {//white
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+        [_btnBack setImage:[UIImage imageNamed:@"return_white"] forState:UIControlStateNormal];
+        if (_userCollected) {
+            [_btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏whited"] forState:UIControlStateNormal];
+        }else{
+            [_btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏white"] forState:UIControlStateNormal];
+        }
+    }else{//black
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+         [_btnBack setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+        if (_userCollected) {
+            [_btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+        }else{
+            [_btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
+        }
     }
     
     if (_tableView.contentOffset.y < 0) {
