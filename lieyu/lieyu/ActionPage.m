@@ -53,8 +53,14 @@
     [super viewWillAppear:animated];
     [self initAllPropertites];
     [self getData];
+    [self.navigationController setNavigationBarHidden:NO];
+
 }
 
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"滑动了多少：%f",scrollView.contentOffset.y);
 //    NSLog(@"最多为多少：%f",contentOffsetY);

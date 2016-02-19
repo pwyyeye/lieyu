@@ -47,7 +47,15 @@
     [self registerCell];
 //    [self configureRightItem];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 - (void)configureRightItem{
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     [button setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
@@ -66,8 +74,12 @@
     NSDictionary *dict = @{@"id":_actionID};
     [LYHomePageHttpTool getActionDetail:dict complete:^(BarActivityList *action) {
         _barActivity = action;
-        [self.tableView reloadData];
+        if (_barActivity.id==nil) {
+            return ;
+        }
         [self loadWebView];
+        [self.tableView reloadData];
+        
     }];
 }
 
@@ -119,7 +131,11 @@
         return DetailImageCell;
     }else if (indexPath.section == 1){
         HDDetailHeaderCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"HDDetailHeaderCell" owner:nil options:nil]firstObject];
-        cell.dict = [self feedBackDictionary];
+        NSDictionary *dic=[self feedBackDictionary];
+        if (dic!=nil) {
+            cell.dict = dic;
+        }
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
