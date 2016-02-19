@@ -35,7 +35,7 @@
 //    _tableView.backgroundColor = [UIColor whiteColor];
     contentOffsetY = MAXFLOAT;
     page = 1;
-    _topicid = @"0";
+//    _topicid = @"0";
     actionList = [NSMutableArray array];
     self.title = @"活动专题";
     self.tableView.bounces = YES;

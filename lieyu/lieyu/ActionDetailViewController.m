@@ -32,9 +32,11 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.estimatedRowHeight = 100;
-    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailImageCell" bundle:nil] forCellReuseIdentifier:@"HDDetailImageCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailHeaderCell" bundle:nil] forCellReuseIdentifier:@"HDDetailHeaderCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailFootCell" bundle:nil] forCellReuseIdentifier:@"HDDetailFootCell"];
+//    _actionID = @"7";
+    if (_actionID) {
+        [self getData];
+    }
+    [self registerCell];
 //    [self configureRightItem];
 }
 
@@ -44,6 +46,20 @@
     [button addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)registerCell{
+    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailImageCell" bundle:nil] forCellReuseIdentifier:@"HDDetailImageCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailHeaderCell" bundle:nil] forCellReuseIdentifier:@"HDDetailHeaderCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailFootCell" bundle:nil] forCellReuseIdentifier:@"HDDetailFootCell"];
+}
+
+- (void)getData{
+    NSDictionary *dict = @{@"id":_actionID};
+    [LYHomePageHttpTool getActionDetail:dict complete:^(BarActivityList *action) {
+        _barActivity = action;
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - 分享
@@ -63,7 +79,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    if (_barActivity) {
+        return 3;
+    }else{
+        return 0;
+    }
 }
 
 - (NSDictionary *)feedBackDictionary{

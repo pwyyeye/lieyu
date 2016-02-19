@@ -683,6 +683,25 @@
     }];
 }
 
+#pragma mark - 活动详情
++ (void)getActionDetail:(NSDictionary *)paraDic complete:(void(^)(BarActivityList *action))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ACTIVITY_DETAIL baseURL:LY_SERVER params:paraDic success:^(id response) {
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            BarActivityList *actionDetail = [BarActivityList mj_objectWithKeyValues:response[@"data"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(actionDetail);
+            });
+        }else{
+            [MyUtil showCleanMessage:response[@"message"]];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 #pragma mark - 获取所有签到
 + (void)getSignListWidth:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SIGN baseURL:LY_SERVER params:paraDic success:^(id response) {
