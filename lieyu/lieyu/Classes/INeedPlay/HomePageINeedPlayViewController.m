@@ -318,6 +318,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _lineView.frame = CGRectMake(0, _menuView.frame.size.height - 2, 42, 2);
     _lineView.center = CGPointMake(_btn_yedian.center.x, _lineView.center.y);
     
+    if (_index) {
+        _btn_bar.isHomePageMenuViewSelected = YES;
+        _btn_yedian.isHomePageMenuViewSelected = NO;
+        _lineView.center = CGPointMake(_btn_bar.center.x, _lineView.center.y);
+    }
     
 }
 
@@ -396,8 +401,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    _index = 0;
-    [_collectView setContentOffset:CGPointZero];
+   /* _index = 0;
+    [_collectView setContentOffset:CGPointZero]; */
     [self createNavButton];
 }
 
@@ -1040,6 +1045,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
             HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
             NSLog(@"---->%ld",indexPath.item);
+            if (indexPath.item - 4 >= hcell.jiubaArray.count) {
+                return;
+            }
             JiuBaModel *jiubaM = hcell.jiubaArray[indexPath.item - 4];
             homeCell.jiuBaM = jiubaM;
         }
