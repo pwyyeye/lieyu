@@ -66,7 +66,7 @@
 }
 
 - (void)jubaoDT:(UIButton *)button{
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",  nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",@"其他原因",  nil];
         actionSheet.tag = 100;
         [actionSheet showInView:self.view];
 }
@@ -508,8 +508,10 @@
             message = @"污秽色情";
         }else if (buttonIndex == 1){
             message = @"垃圾广告";
+        }else if (buttonIndex == 2){
+            message = @"其他原因";
         }
-        if (buttonIndex != 2) {
+        if (buttonIndex != 3) {
             AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
             
             NSDictionary *dict = @{@"reportedUserid":_recentM.userId,
