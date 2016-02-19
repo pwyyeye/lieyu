@@ -655,6 +655,7 @@
         if (result) {
             AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
             CustomerModel *customerM = [[CustomerModel alloc]init];
+            customerM.userid = app.userModel.userid;
             UserModel *userM = [[UserModel alloc]init];
             userM.avatar_img = app.userModel.avatar_img;
             customerM.userInfo = userM;
