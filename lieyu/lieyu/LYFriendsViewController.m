@@ -1136,9 +1136,11 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 
 #pragma mark － 删除我的动态
 - (void)deleteClick:(UIButton *)button{
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"确定删除这条动态" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alertView show];
-    _deleteMessageTag = button.tag;
+    if([button.titleLabel.text isEqualToString:@"删除"]){
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"确定删除这条动态" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+        _deleteMessageTag = button.tag;
+    }
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -1280,6 +1282,13 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     }
 }
 
+- (void)jubaoDT:(UIButton *)button{
+    if(![button.titleLabel.text isEqualToString:@"删除"]){
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告", nil];
+        [actionSheet showInView:self.view];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
             NSArray *dataArr = _dataArray[_index];
@@ -1290,12 +1299,18 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                     LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
                     nameCell.recentM = recentM;
                     nameCell.btn_delete.tag = indexPath.section;
-                    [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
-                    nameCell.btn_headerImg.tag = indexPath.section;
-                    [nameCell.btn_headerImg addTarget:self action:@selector(pushUserMessagePage:) forControlEvents:UIControlEventTouchUpInside];
+                    
                     if (!_index) {
-                        nameCell.btn_delete.hidden = YES;
+//                        nameCell.btn_delete.hidden = YES;
+                        [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
+                        [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+                        [nameCell.btn_delete addTarget:self action:@selector(jubaoDT:) forControlEvents:UIControlEventTouchUpInside];
+                        nameCell.btn_headerImg.tag = indexPath.section;
+                        [nameCell.btn_headerImg addTarget:self action:@selector(pushUserMessagePage:) forControlEvents:UIControlEventTouchUpInside];
                     }else{
+                        [nameCell.btn_delete setTitle:@"删除" forState:UIControlStateNormal];
+                        [nameCell.btn_delete setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+                        [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
                         nameCell.btn_delete.hidden = NO;
                     }
                     if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){

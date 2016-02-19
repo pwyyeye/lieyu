@@ -12,6 +12,8 @@
 #import "ZSUrl.h"
 #import "ZSDetailModel.h"
 #import "LYCache.h"
+#import "BarActivityList.h"
+#import "BarTopicInfo.h"
 
 
 @implementation LYHomePageHttpTool
@@ -605,17 +607,6 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"weixinReDate"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    
-    /*   [HTTPController requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxb1f5e1de5d4778b9&secret=d4624c36b6795d1d99dcf0547af5443d&code=%@&grant_type=authorization_code",codeStr] baseURL:nil params:nil success:^(id response) {
-     NSLog(@"---->%@",response);
-     compelete(response[@"access_token"]);
-     NSString *refreshAccessTokenStr = response[@"refresh_token"];
-     [[NSUserDefaults standardUserDefaults] setObject:refreshAccessTokenStr forKey:@"refreshToken"];
-     [[NSUserDefaults standardUserDefaults] synchronize];
-     } failure:^(NSError *err) {
-     NSLog(@"---->----");
-     }];
-     */
 }
 
 + (void)getWeixinNewAccessTokenWithRefreshToken:(NSString *)RefreshToken compelete:(void (^)(NSString *))compelete{
@@ -632,19 +623,6 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     compelete(dic[@"access_token"]);
     NSLog(@"--%@",dic);
-    
-    /*[HTTPController requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wxb1f5e1de5d4778b9&grant_type=refresh_token&refresh_token=%@",RefreshToken] baseURL:nil params:nil success:^(id response) {
-     NSLog(@"---->%@",response)
-     [[NSUserDefaults standardUserDefaults] setObject:response[@"access_token"] forKey:@"weixinAccessToken"];
-     [[NSUserDefaults standardUserDefaults] setObject:response[@"openid"] forKey:@"weixinOpenid"];
-     [[NSUserDefaults standardUserDefaults] setObject:response[@"refresh_token"] forKey:@"weixinRefresh_token"];
-     [[NSUserDefaults standardUserDefaults] synchronize];
-     compelete(response[@"access_token"]);
-     } failure:^(NSError *err) {
-     
-     }];
-     
-     */
 }
 
 + (void)getWeixinUserInfoWithAccessToken:(NSString *)accessToken compelete:(void(^)(UserModel *))compelete{
@@ -659,14 +637,50 @@
     userM.avatar_img = dic[@"headimgurl"];
     userM.usernick = dic[@"nickname"];
     userM.gender = dic[@"sex"];
-    userM.openID = dic[@"openid"];
-    compelete(userM);
-    
-    /*  [HTTPController requestWihtMethod:RequestMethodTypeGet url:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openIdStr] baseURL:nil params:nil success:^(id response) {
-     NSLog(@"---->%@",response);
-     } failure:^(NSError *err) {
-     
-     }];
-     */
+    userM.openID = dic[@"openi                                                                                                                                                                                                                                        d"];
+    compelete(userM);  
 }
+
+#pragma mark 获取酒吧的活动列表
++ (void)getActivityListWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSMutableArray * result))compelete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_BAR_ACTIVITYLIST baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message = [NSString stringWithFormat:@"%@",response[@"message"]];
+        NSArray *dataList = response[@"data"];
+        if([code isEqualToString:@"1"]){
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[BarActivityList mj_objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compelete(tempArr);
+            });
+        }else{
+            [MyUtil showCleanMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showCleanMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 获取所动专题列表
++ (void)getActionList:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ACTION_LIST baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message = [NSString stringWithFormat:@"%@",response[@"message"]];
+        NSArray *dataList = response[@"data"];
+        if([code isEqualToString:@"1"]){
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[BarTopicInfo mj_objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(tempArr);
+            });
+        }else{
+            [MyUtil showCleanMessage:message];
+        }
+    } failure:^(NSError *err) {
+        [MyUtil showCleanMessage:@"获取数据失败"];
+    }];
+}
+
 @end

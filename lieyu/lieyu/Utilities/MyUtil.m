@@ -674,7 +674,7 @@
     NSDateFormatter *dateFmter = [[NSDateFormatter alloc]init];
     [dateFmter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [dateFmter dateFromString:dateString];
-    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"Sunday", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
+    NSArray *weekdays = [NSArray arrayWithObjects: [NSNull null], @"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", nil];
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
@@ -685,9 +685,7 @@
     NSCalendarUnit calendarUnit = NSWeekdayCalendarUnit;
     
     NSDateComponents *theComponents = [calendar components:calendarUnit fromDate:date];
-    
     return [weekdays objectAtIndex:theComponents.weekday];
-    
 }
 
 #pragma mark -剩余时间计算

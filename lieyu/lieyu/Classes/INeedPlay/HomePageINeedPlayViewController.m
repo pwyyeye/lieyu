@@ -78,6 +78,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self createNavButton];
     _currentPage_YD = 1;
     _currentPage_Bar = 1;
     _contentOffSet_Height_BAR = 1;
@@ -96,6 +97,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _collectView.delegate = self;
     _collectView.pagingEnabled = YES;
     _collectView.bounces = NO;
+    _collectView.backgroundColor = [UIColor whiteColor];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.view addSubview:_collectView];
     
@@ -145,10 +147,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-    
-  /*  if (CGRectGetMaxY(_menuView.frame) < 90) {
-            [cell.collectViewInside setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0) ]  ;
-    } */
     switch (_index) {
         case 0:
         {
@@ -161,20 +159,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
             break;
     }
-    
-//    NSLog(@"----->%f--------%f--------%f",_contentOffSet_Height_YD,_contentOffSet_Height_BAR,collectView.contentOffset.y);
 }
 
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    LYHomeCollectionViewCell *cell1 = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-    LYHomeCollectionViewCell *cell2 = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (_menuView.center.y < 45) {
-        [cell1.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
-        [cell2.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
+        [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
     }else{
-        [cell1.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
-        [cell2.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
+        [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
     }
 }
 
@@ -184,67 +176,49 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             CGFloat offsetWidth = _collectView.contentOffset.x;
             CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
             _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
-        LYHomeCollectionViewCell *cell1 = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
-         LYHomeCollectionViewCell *cell2 = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
-        if (_menuView.center.y < 45) {
-            [cell1.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
-            [cell2.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
-        }else{
-            [cell1.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
-            [cell2.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
-        }
-       
     }else{
         LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
         if (_index) {
-            if (cell.collectViewInside.contentOffset.y - 40> _contentOffSet_Height_BAR) {
-                //  [collectView setContentInset:UIEdgeInsetsMake(88 - 40, 0, 49, 0)];
-                [UIView animateWithDuration:0.5 animations:^{
-                    
-                    _menuView.center = CGPointMake( _menuView.center.x,8 );
-                    _titleImageView.alpha = 0.0;
-                    _cityChooseBtn.alpha = 0.f;
-                    _searchBtn.alpha = 0.f;
-                } completion:^(BOOL finished) {
-                    
-                }];
-            }else if(cell.collectViewInside.contentOffset.y + 40 <_contentOffSet_Height_BAR){
-                // [collectView setContentInset:UIEdgeInsetsMake(88, 0, 49, 0)];
-                [UIView animateWithDuration:0.5 animations:^{
+            if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_BAR > 90) {
+                [UIView animateWithDuration:0.3 animations:^{
                     
                     _menuView.center = CGPointMake(_menuView.center.x,45);
                     _titleImageView.alpha = 1.0;
                     _cityChooseBtn.alpha = 1.f;
                     _searchBtn.alpha = 1.f;
-                }completion:^(BOOL finished) {
-                    
-                }];
-            }
-        }else{
-                if (cell.collectViewInside.contentOffset.y - 40 > _contentOffSet_Height_YD) {
-                [UIView animateWithDuration:0.5 animations:^{
-                    
+                }completion:nil];
+            }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_BAR > 90) {
+                [UIView animateWithDuration:0.3 animations:^{
                     _menuView.center = CGPointMake( _menuView.center.x,8 );
                     _titleImageView.alpha = 0.0;
                     _cityChooseBtn.alpha = 0.f;
                     _searchBtn.alpha = 0.f;
-                } completion:^(BOOL finished) {
-                    
-                }];
-                }else if(cell.collectViewInside.contentOffset.y + 40 < _contentOffSet_Height_YD) {
-                    [UIView animateWithDuration:0.5 animations:^{
+                } completion:nil];
+            }
+        }else{
+                if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 90) {
+                    [UIView animateWithDuration:0.3 animations:^{
                         
                         _menuView.center = CGPointMake(_menuView.center.x,45);
                         _titleImageView.alpha = 1.0;
                         _cityChooseBtn.alpha = 1.f;
                         _searchBtn.alpha = 1.f;
                     }completion:^(BOOL finished) {
-                        
+                        NSLog(@"------>%f",cell.collectViewInside.contentInset.top);
+//                        cell.collectViewInside.contentInset = UIEdgeInsetsMake(91, 0, 0, 0);
+                    }];
+                }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_YD > 90) {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        _menuView.center = CGPointMake( _menuView.center.x,8 );
+                        _titleImageView.alpha = 0.0;
+                        _cityChooseBtn.alpha = 0.f;
+                        _searchBtn.alpha = 0.f;
+                    } completion:^(BOOL finished) {
+//                            cell.collectViewInside.contentInset = UIEdgeInsetsMake(91 - 40, 0, 0, 0);
                     }];
                 }
         }
     }
-    
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -256,6 +230,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [cell.collectViewInside.mj_header beginRefreshing];
         }
     }
+    
     if (scrollView == _collectView) {
         if (_index) {
             _btn_bar.isHomePageMenuViewSelected = YES;
@@ -266,16 +241,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             _btn_yedian.isHomePageMenuViewSelected = YES;
             _lineView.center = CGPointMake(_btn_yedian.center.x, _lineView.center.y);
         }
-        
     }
-    //    _contentOffSetWidth = _scrollView.contentOffset.x;
-    
-    //    [UIView animateWithDuration:.5 animations:^{
-    //        CGFloat offsetWidth = _scrollView.contentOffset.x;
-    //        CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
-    //        _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
-    //    }];
-    
 }
 
 
@@ -291,6 +257,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
      _navView.alpha = 5;
      _navView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);
      [self.navigationController.navigationBar addSubview:_navView];*/
+    
+
     
     _menuView = [[UIVisualEffectView alloc]initWithEffect:effectExtraLight];
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
@@ -415,20 +383,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    //    ((LYNavigationController *)self.navigationController).navBar.hidden = NO;
-    self.navigationController.navigationBarHidden = YES;
-    //    self.navigationController.navigationBar.hidden = YES;
-    
-    if (self.navigationController.navigationBarHidden != NO) {
-        //        [self.navigationController setNavigationBarHidden:NO];
-    }
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
-    //    [_scrollView setContentOffset:CGPointZero];
-    //    ((LYNavigationController *)self.navigationController).navBar.hidden = NO;
+    [_collectView setContentOffset:CGPointZero];
     [self createNavButton];
 }
 
@@ -619,15 +579,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 _fiterArray = homePageM.filterImages;
             }
             _recommendedBar = homePageM.recommendedBar;
-            //            switch (_index) {
-            //                case 0:
-            //                    [_recommendedBarArray replaceObjectAtIndex:0 withObject:_recommendedBarArray];
-            //                    break;
-            //                case 1:
-            ////                    [_recommendedBarArray insertObject:_recommendedBar atIndex:1];
-            //                    [_recommendedBarArray replaceObjectAtIndex:1 withObject:_recommendedBarArray];
-            //                    break;
-            //            }
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
             
             LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
@@ -638,14 +589,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //            cell.fiterArray = _fiterArray;
             
             //            [collectView reloadData];
-            /*  [UIView transitionWithView:collectView
-             duration: 0.6f
-             options: UIViewAnimationOptionTransitionCrossDissolve
-             animations: ^(void){
-             [collectView reloadData];
-             }completion: ^(BOOL isFinished){
-             
-             }]; */
         }
         block !=nil? block(ermsg,homePageM.banner,homePageM.barlist):nil;
     }];
@@ -920,15 +863,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
              {
                  if (Req_Success == ermsg.state)
                  {
-//                     switch (_index) {
-//                         case 0:
-//                         {
-//                             _currentPage_YD = 2;                                                  }
-//                             break;
-//                         case 1:{
-//                             _currentPage_Bar = 2;
-//                         }
-//                             break;
+                     switch (_index) {
+                         case 0:
+                         {
+                             _currentPage_YD = 2;                                                  }
+                             break;
+                         case 1:{
+                             _currentPage_Bar = 2;
+                         }
+                             break;
+                     }
 //                         cell.collectViewInside.mj_footer.hidden = NO;
                      }else{
                          // collectView.mj_footer.hidden = YES;
@@ -937,7 +881,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                      [cell.collectViewInside.mj_header endRefreshing];
              }
                  [cell.collectViewInside.mj_header endRefreshing];
-
          }];
 
     
@@ -1034,20 +977,28 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView != _collectView) {
-        
-//    LYHomeCollectionViewCell *hotCell = (LYHomeCollectionViewCell*)cell;
-//    hotCell.jiubaArray = _dataArray[indexPath.item];
         if(indexPath.item == 2){
             HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
+            if(_fiterArray.count == 4){
             for (int i = 0;i < 4;i++) {
                 UIButton *btn = menucell.btnArray[i];
                 [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
             }
+            }
         }else if (indexPath.item > 2) {
             HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
             JiuBaModel *jiubaM = _dataArray[_index][indexPath.item - 3];
             homeCell.jiuBaM = jiubaM;
+        }
+    }else{
+        LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)cell;
+        if (hcell.collectViewInside) {
+            if (_menuView.center.y < 45) {
+                [hcell.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
+            }else{
+                [hcell.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
+            }
         }
     }
     
@@ -1097,16 +1048,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     controller.beerBarId = @(jiuBaM.barid);
     [self.navigationController pushViewController:controller animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
-    
-    
-    
-    /*  BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
-     controller.beerBarId = @(jiuBaM.barid);
-     [self.navigationController pushViewController:controller animated:YES];
-     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
-     */
-    
-    //    LYWineBarCell *cell = (LYWineBarCell *)[tableView cellForRowAtIndexPath:indexPath];
 }
 
 #pragma mark 热门酒吧跳转

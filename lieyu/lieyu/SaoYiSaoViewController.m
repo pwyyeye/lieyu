@@ -86,7 +86,7 @@
     _scanLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH - 100, 1);
     _scanLayer.backgroundColor = [UIColor brownColor].CGColor;
     [_viewPreview.layer addSublayer:_scanLayer];
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(moveScanLayer:) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(moveScanLayer:) userInfo:nil repeats:YES];
     [timer fire];
     //10.开始扫描
     [_captureSession startRunning];

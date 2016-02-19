@@ -48,7 +48,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupAllProperty];
-//    [self deleteFile:@""];
     
     self.pageCount = 4;
     self.initCount = 0;
@@ -270,28 +269,126 @@
         if([self.textView isFirstResponder]){
             [self.textView resignFirstResponder];
         }
-        for(int i = (int)self.fodderArray.count - 1 ; i >= 0; i --){
-            [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-                if(![MyUtil isEmptyString:key]){
-                    qiniuPages ++;
-                    [self.keysArray addObject:key];
-                    [self.shangchuanString appendString:key];
-                    [self.shangchuanString appendString:@","];
-                    if(qiniuPages == self.fodderArray.count){
-//                        [self.keysArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-//                            NSString *str1 = (NSString *)obj1;
-//                            NSString *str2 = (NSString *)obj2;
-//                            return [str1 compare:str2];
-//                        }];
-//                        NSLog(@"%@",self.keysArray);
-                        [self.shangchuanString deleteCharactersInRange:NSMakeRange([self.shangchuanString length]-1, 1)];
-                        [self sendTrends:self.shangchuanString];
-                    }
-                }else{
-                    
-                }
-            }];
-        }
+        
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_async(queue, ^{
+            __block NSString *firstString;
+            __block NSString *secondString;
+            __block NSString *thirdString;
+            __block NSString *forthString;
+            dispatch_group_t group = dispatch_group_create();
+            for (int i = 0; i < (int)self.fodderArray.count; i ++) {
+                dispatch_group_async(group, queue, ^{
+                    [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                        if(![MyUtil isEmptyString:key]){
+                            //上传成功
+                            qiniuPages ++;
+                            if (i == 0) {
+                                firstString = key;
+//                                [self.shangchuanString appendString:key];
+//                                [self.shangchuanString appendString:@","];//字符串拼接
+                            }else if(i == 1){
+                                secondString = key;
+//                                [self.shangchuanString appendString:key];
+//                                [self.shangchuanString appendString:@","];//字符串拼接
+                            }else if (i == 2){
+                                thirdString = key;
+//                                [self.shangchuanString appendString:key];
+//                                [self.shangchuanString appendString:@","];//字符串拼接
+                            }else{
+                                forthString = key;
+//                                [self.shangchuanString appendString:key];
+//                                [self.shangchuanString appendString:@","];//字符串拼接
+                            }
+                            if (qiniuPages == self.fodderArray.count) {
+                                dispatch_group_notify(group, queue, ^{
+                                    switch (self.fodderArray.count) {
+                                        case 1:
+                                            [self.shangchuanString appendString:firstString];
+                                            break;
+                                        
+                                        case 2:
+                                            [self.shangchuanString appendString:firstString];
+                                            [self.shangchuanString appendString:@","];
+                                            [self.shangchuanString appendString:secondString];
+                                            break;
+                                        case 3:
+                                            [self.shangchuanString appendString:firstString];
+                                            [self.shangchuanString appendString:@","];
+                                            [self.shangchuanString appendString:secondString];
+                                            [self.shangchuanString appendString:@","];
+                                            [self.shangchuanString appendString:thirdString];
+                                            break;
+                                        case 4:
+                                            [self.shangchuanString appendString:firstString];
+                                            [self.shangchuanString appendString:@","];
+                                            [self.shangchuanString appendString:secondString];
+                                            [self.shangchuanString appendString:@","];
+                                            [self.shangchuanString appendString:thirdString];
+                                            [self.shangchuanString appendString:@","];
+                                            [self.shangchuanString appendString:forthString];
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        [self sendTrends:self.shangchuanString];
+                                    });
+                                });
+                            }
+                        }
+                    }];
+                });
+            }
+            
+        });
+        
+        
+        
+//        //用异步串行队列进行图片的上传
+////        dispatch_queue_t queue = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
+//        for (int i = (int)self.fodderArray.count - 1; i >= 0 ; i --) {
+//            dispatch_async(queue, ^{
+//                [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+//                    if(![MyUtil isEmptyString:key]){//上传成功
+//                        qiniuPages ++;
+//                        [self.keysArray addObject:key];
+//                        [self.shangchuanString appendString:key];
+//                        [self.shangchuanString appendString:@","];//字符串拼接
+//                        if(qiniuPages == self.fodderArray.count){
+//                            [self.shangchuanString deleteCharactersInRange:NSMakeRange([self.shangchuanString length]-1, 1)];
+//                            [self sendTrends:self.shangchuanString];
+//                        }
+//                    }else{
+//                        
+//                    }
+//                }];
+//            });
+//        }
+        
+        
+//        for(int i = (int)self.fodderArray.count - 1 ; i >= 0; i --){
+//            [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+//                if(![MyUtil isEmptyString:key]){
+//                    qiniuPages ++;
+//                    [self.keysArray addObject:key];
+//                    [self.shangchuanString appendString:key];
+//                    [self.shangchuanString appendString:@","];
+//                    if(qiniuPages == self.fodderArray.count){
+////                        [self.keysArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+////                            NSString *str1 = (NSString *)obj1;
+////                            NSString *str2 = (NSString *)obj2;
+////                            return [str1 compare:str2];
+////                        }];
+////                        NSLog(@"%@",self.keysArray);
+//                        [self.shangchuanString deleteCharactersInRange:NSMakeRange([self.shangchuanString length]-1, 1)];
+//                        [self sendTrends:self.shangchuanString];
+//                    }
+//                }else{
+//                    
+//                }
+//            }];
+//        }
     }
 }
 
