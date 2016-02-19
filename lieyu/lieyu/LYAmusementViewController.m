@@ -47,7 +47,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupAllProperty];
-    
+    [MTA trackCustomEvent:@"ZJList" args:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeToReload) name:@"YunoticeToReload" object:nil];
 }
 -(void)dealloc{

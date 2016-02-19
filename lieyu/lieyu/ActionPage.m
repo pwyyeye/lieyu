@@ -125,7 +125,7 @@
 
 #pragma mark - 上拉刷新一切重置
 - (void)initAllPropertites{
-    page = 1;
+//    page = 1;
     start = 0;
     [button removeFromSuperview];
     [actionList removeAllObjects];
@@ -181,7 +181,7 @@
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self initAllPropertites];
         [weakSelf getData];
-        [weakSelf.tableView.mj_header endRefreshing];
+        [_tableView.mj_header endRefreshing];
     }];
     MJRefreshGifHeader *header = (MJRefreshGifHeader *)self.tableView.mj_header;
     [self initMJRefeshHeaderForGif:header];
@@ -229,7 +229,9 @@
     if (indexPath.section == 0) {
         HDZTHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HDZTHeaderCell" forIndexPath:indexPath];
         cell.action_image.backgroundColor = [UIColor grayColor];
-        cell.topicInfo = ((BarActivityList *)[actionList objectAtIndex:indexPath.section]).topicInfo;
+        if (actionList.count > 0) {
+            cell.topicInfo = ((BarActivityList *)[actionList objectAtIndex:indexPath.section]).topicInfo;
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.userInteractionEnabled = NO;
         return cell;
@@ -237,7 +239,9 @@
         HDZTListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HDZTListCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
 //        actionList objectAtIndex:indexPath
-        cell.barActivity = [actionList objectAtIndex:indexPath.section - 1];
+        if (actionList.count > 0) {
+            cell.barActivity = [actionList objectAtIndex:indexPath.section - 1];
+        }
         return cell;
     }
 }
@@ -256,7 +260,6 @@
                            @"titleName":@"活动详情",
                            @"value":((BarActivityList *)actionList[indexPath.section - 1]).id};
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:dict];
-
     ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]initWithNibName:@"ActionDetailViewController" bundle:nil];
     actionDetailVC.barActivity = actionList[indexPath.section - 1];
     actionDetailVC.title = @"活动详情";

@@ -33,13 +33,13 @@
 //    _collectViewInside.contentInset = UIEdgeInsetsMake(90, 0, 0, 0);
     
 }
-/*
+
 
 - (void)setJiubaArray:(NSArray *)jiubaArray{
     _jiubaArray = jiubaArray;
-    [_collectViewInside reloadData];
+    
 }
-
+/*
 - (void)setBannerList:(NSArray *)bannerList{
     _bannerList = bannerList;
     [_collectViewInside reloadData];

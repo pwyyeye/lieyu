@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LPImageView.h"
 @interface HDDetailImageCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet LPImageView *image;
 - (void)configureImageView:(NSString *)imageUrl;
 @end

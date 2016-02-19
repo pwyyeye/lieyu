@@ -56,6 +56,7 @@
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.showsVerticalScrollIndicator = NO;
     [self getData];
+    [MTA trackCustomEvent:@"ZJDetail" args:nil];
 //    orderInfo = _YUModel.orderInfo;
 //    pinkeModel = orderInfo.pinkerinfo;
 //    self.tableView.showsHorizontalScrollIndicator = NO;

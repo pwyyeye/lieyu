@@ -7,7 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeerNewBarViewController">
             <connections>
+                <outlet property="bottomEffectView" destination="TgT-YK-qid" id="A0b-mC-jhW"/>
                 <outlet property="btnBack" destination="0zl-aU-4MY" id="K4O-KC-iy2"/>
+                <outlet property="btnShare" destination="7V2-dl-Wyd" id="zTE-c5-ro2"/>
                 <outlet property="btn_collect" destination="Gu7-Ag-jA3" id="aWT-vR-blt"/>
                 <outlet property="btn_like" destination="gEV-Ne-pSz" id="cAr-Du-NHT"/>
                 <outlet property="image_layer" destination="Fwq-Sp-gAa" id="gm4-Ff-hA9"/>
@@ -29,6 +31,52 @@
                         <outlet property="delegate" destination="-1" id="8ds-cG-jhp"/>
                     </connections>
                 </tableView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9E-Dm-l7q">
+                    <rect key="frame" x="130" y="519" width="60" height="60"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gO0-r1-Ell">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cE4-0h-nKR">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="awU-eI-FfP"/>
+                                    <constraint firstAttribute="height" constant="60" id="jVp-lN-JHE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                <inset key="titleEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="-31"/>
+                                <inset key="imageEdgeInsets" minX="17" minY="-20" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="签到" image="sign.png">
+                                    <color key="titleColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signClick:" destination="-1" eventType="touchUpInside" id="owg-XS-xox"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <constraints>
+                        <constraint firstItem="cE4-0h-nKR" firstAttribute="centerX" secondItem="y9E-Dm-l7q" secondAttribute="centerX" id="8BT-iV-tW9"/>
+                        <constraint firstAttribute="width" constant="60" id="Bpw-WZ-jEG"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="eF7-2u-RXT"/>
+                        <constraint firstAttribute="height" constant="60" id="hgF-aI-C2t"/>
+                        <constraint firstItem="cE4-0h-nKR" firstAttribute="centerY" secondItem="y9E-Dm-l7q" secondAttribute="centerY" id="sDb-gZ-A8z"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="yV3-MG-FAM"/>
+                    </constraints>
+                    <blurEffect style="extraLight"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="eF7-2u-RXT"/>
+                            <exclude reference="yV3-MG-FAM"/>
+                        </mask>
+                    </variation>
+                </visualEffectView>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgT-YK-qid">
                     <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5px-QE-bIu">
@@ -177,7 +225,7 @@
                         <constraint firstAttribute="width" constant="32" id="btq-HD-hcK"/>
                         <constraint firstAttribute="height" constant="32" id="kLc-bQ-Kkw"/>
                     </constraints>
-                    <state key="normal" backgroundImage="icon_like_2.png"/>
+                    <state key="normal" backgroundImage="点赞white.png"/>
                     <connections>
                         <action selector="likeClick:" destination="-1" eventType="touchUpInside" id="Th1-CI-XFS"/>
                     </connections>
@@ -188,7 +236,7 @@
                         <constraint firstAttribute="width" constant="32" id="RlT-1k-jRb"/>
                         <constraint firstAttribute="height" constant="32" id="kkT-qY-5Wt"/>
                     </constraints>
-                    <state key="normal" backgroundImage="icon_collect_2.png"/>
+                    <state key="normal" backgroundImage="收藏white.png"/>
                     <connections>
                         <action selector="soucangAct:" destination="-1" eventType="touchUpInside" id="SRA-lw-Xnu"/>
                     </connections>
@@ -201,7 +249,7 @@
                         <constraint firstAttribute="height" constant="32" id="oh6-O5-MUK"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="zBM-uT-kIe"/>
                     </constraints>
-                    <state key="normal" image="backBtn.png"/>
+                    <state key="normal" image="return_white.png"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="RYY-Lv-qTz"/>
@@ -218,64 +266,18 @@
                         <constraint firstAttribute="height" constant="32" id="0uc-8b-LHS"/>
                         <constraint firstAttribute="width" constant="32" id="rv1-JU-Ycd"/>
                     </constraints>
-                    <state key="normal" image="share_black.png"/>
+                    <state key="normal" image="分享white.png"/>
                     <connections>
                         <action selector="shareClick:" destination="-1" eventType="touchUpInside" id="ozD-PH-aVk"/>
                     </connections>
                 </button>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y9E-Dm-l7q">
-                    <rect key="frame" x="137" y="454" width="60" height="60"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gO0-r1-Ell">
-                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cE4-0h-nKR">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="awU-eI-FfP"/>
-                                    <constraint firstAttribute="height" constant="60" id="jVp-lN-JHE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
-                                <inset key="titleEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="-31"/>
-                                <inset key="imageEdgeInsets" minX="17" minY="-20" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="签到" image="sign.png">
-                                    <color key="titleColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="signClick:" destination="-1" eventType="touchUpInside" id="owg-XS-xox"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                    </view>
-                    <constraints>
-                        <constraint firstItem="cE4-0h-nKR" firstAttribute="centerX" secondItem="y9E-Dm-l7q" secondAttribute="centerX" id="8BT-iV-tW9"/>
-                        <constraint firstAttribute="width" constant="60" id="Bpw-WZ-jEG"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="eF7-2u-RXT"/>
-                        <constraint firstAttribute="height" constant="60" id="hgF-aI-C2t"/>
-                        <constraint firstItem="cE4-0h-nKR" firstAttribute="centerY" secondItem="y9E-Dm-l7q" secondAttribute="centerY" id="sDb-gZ-A8z"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="yV3-MG-FAM"/>
-                    </constraints>
-                    <blurEffect style="extraLight"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="30"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="eF7-2u-RXT"/>
-                            <exclude reference="yV3-MG-FAM"/>
-                        </mask>
-                    </variation>
-                </visualEffectView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="3nz-fQ-7yP" secondAttribute="trailing" id="08g-kq-kjU"/>
                 <constraint firstItem="fcE-SZ-V8q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4m6-m3-8HN"/>
                 <constraint firstAttribute="bottom" secondItem="TgT-YK-qid" secondAttribute="bottom" id="AYU-Dq-1sm"/>
-                <constraint firstItem="3nz-fQ-7yP" firstAttribute="top" secondItem="y9E-Dm-l7q" secondAttribute="bottom" constant="10" id="Bnn-a1-zcf"/>
+                <constraint firstItem="3nz-fQ-7yP" firstAttribute="top" secondItem="y9E-Dm-l7q" secondAttribute="bottom" constant="-60" id="Bnn-a1-zcf"/>
                 <constraint firstAttribute="bottom" secondItem="3nz-fQ-7yP" secondAttribute="bottom" id="CEA-o9-BSt"/>
                 <constraint firstAttribute="trailing" secondItem="7V2-dl-Wyd" secondAttribute="trailing" constant="7" id="Gyp-uV-AHv"/>
                 <constraint firstItem="0zl-aU-4MY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="J60-fb-jUq"/>
@@ -300,14 +302,14 @@
         </view>
     </objects>
     <resources>
-        <image name="backBtn.png" width="25" height="24"/>
-        <image name="icon_collect_2.png" width="24" height="24"/>
         <image name="icon_eatdrinkspecial" width="30" height="30"/>
-        <image name="icon_like_2.png" width="24" height="24"/>
         <image name="icon_ordersits" width="30" height="30"/>
         <image name="icon_pinke" width="30" height="30"/>
         <image name="navBarbg" width="2" height="64"/>
-        <image name="share_black.png" width="15" height="14"/>
+        <image name="return_white.png" width="25" height="24"/>
         <image name="sign.png" width="13" height="28"/>
+        <image name="分享white.png" width="24" height="24"/>
+        <image name="收藏white.png" width="24" height="24"/>
+        <image name="点赞white.png" width="24" height="24"/>
     </resources>
 </document>

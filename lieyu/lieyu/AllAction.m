@@ -90,7 +90,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HDZTHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HDZTHeaderCell" forIndexPath:indexPath];
     cell.action_image.backgroundColor = [UIColor grayColor];
-    cell.topicInfo = [dataList objectAtIndex:indexPath.section];
+    if (dataList.count > 0) {
+        cell.topicInfo = [dataList objectAtIndex:indexPath.section];
+    }
     cell.action_discript.hidden = YES;
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     return cell;

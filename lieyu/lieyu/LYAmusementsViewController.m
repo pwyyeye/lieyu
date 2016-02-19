@@ -45,6 +45,7 @@
     // Do any additional setup after loading the view.
     [self setupAllProperty];
     
+    [MTA trackCustomEvent:@"ZJList" args:nil];
     
 }
 
