@@ -260,7 +260,6 @@
                            @"titleName":@"活动详情",
                            @"value":((BarActivityList *)actionList[indexPath.section - 1]).id};
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:dict];
-
     ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]initWithNibName:@"ActionDetailViewController" bundle:nil];
     actionDetailVC.barActivity = actionList[indexPath.section - 1];
     actionDetailVC.title = @"活动详情";

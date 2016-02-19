@@ -834,6 +834,7 @@
     woYaoDinWeiMainViewController.endTime = _beerBarDetail.endTime;
     [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"我要订位"]];
+    [MTA trackCustomEvent:@"YDList" args:nil];
 }
 
 - (IBAction)chiHeAct:(UIButton *)sender {
@@ -856,6 +857,7 @@
     zujuVC.endTime = _beerBarDetail.endTime;
     [self.navigationController pushViewController:zujuVC animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"组局"]];
+    [MTA trackCustomEvent:@"PKList" args:nil];
     /**/
     
     
