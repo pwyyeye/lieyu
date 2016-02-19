@@ -66,6 +66,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UICollectionView *_collectView;
     BOOL _isCollectView;
     RecommendedTopic *_recommendedTopic;
+    NSMutableArray *_newbannerListArray;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -88,6 +89,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _contentOffSet_Height_YD = 1;
     
     _dataArray = [[NSMutableArray alloc]initWithCapacity:2];
+    _newbannerListArray = [[NSMutableArray alloc]initWithCapacity:2];
     _recommendedBarArray= [[NSMutableArray alloc]initWithCapacity:2];
     for (int i = 0; i < 2; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
@@ -1028,8 +1030,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray *array = nil;
-    
     if (collectionView != _collectView) {
         if(indexPath.item == 2){
             HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;

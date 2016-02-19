@@ -736,15 +736,15 @@
 }
 
 #pragma mark - 签到
-+ (void)signWith:(NSDictionary *)paraDic{
++ (void)signWith:(NSDictionary *)paraDic complete:(void(^)(bool))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GOTOSIGN baseURL:LY_SERVER params:paraDic success:^(id response) {
-      //  NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"] ];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"] ];
         [MyUtil showCleanMessage:response[@"message"]];
-//        if ([code isEqualToString:@"1"]) {
-////            complete(YES);
-//        }else{
-////            complete(NO);
-//        }
+        if ([code isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
     }failure:^(NSError *err) {
         [MyUtil showCleanMessage:@"获取数据失败"];
     }];

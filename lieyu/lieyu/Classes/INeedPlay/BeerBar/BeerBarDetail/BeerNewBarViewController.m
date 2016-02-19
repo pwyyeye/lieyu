@@ -147,7 +147,7 @@
     [_signBtn setTitle:@"签到" forState:UIControlStateNormal];
     [_signBtn setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal ];
     _signBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,17, 0, 0);
+    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,18, 0, 0);
     _signBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -16, -31, 0);
     [_signBtn setImage:[UIImage imageNamed:@"sign"] forState:UIControlStateNormal];
     
@@ -651,7 +651,21 @@
 #pragma mark － 签到
 - (void)signClick:(id)sender {
     NSDictionary *dic = @{@"barid":_beerBarId};
-    [LYHomePageHttpTool signWith:dic];
+    [LYHomePageHttpTool signWith:dic complete:^(bool result) {
+        if (result) {
+            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            CustomerModel *customerM = [[CustomerModel alloc]init];
+            UserModel *userM = [[UserModel alloc]init];
+            userM.avatar_img = app.userModel.avatar_img;
+            customerM.userInfo = userM;
+            if (_beerBarDetail.signUsers.count) {
+                [_beerBarDetail.signUsers insertObject:customerM atIndex:0];
+            }else {
+                [_beerBarDetail.signUsers addObject:customerM];
+            }
+            [_tableView reloadData];
+        }
+    }];
 }
 #pragma mark - 签到头像action
 - (void)iconClick:(UIButton *)button{
@@ -665,6 +679,11 @@
     addressBook.birthday = cum.userInfo.birthday;
     addressBook.sex = cum.userInfo.sex;
     addressBook.usernick = cum.userInfo.usernick;
+    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (addressBook.userid == app.userModel.userid) {
+        return;
+    }
     
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     friendDetailViewController.title=@"详细信息";
@@ -755,7 +774,7 @@
             break;
         case 3:
         {
-            if(_beerBarDetail.signCount.integerValue) return 60;
+            if(_beerBarDetail.signUsers.count) return 60;
             else return 0;
         }
             break;
@@ -764,6 +783,7 @@
             if(_activityArray.count) return 213;
             else return 0;
         }
+            break;
             
         case 5:
         {
