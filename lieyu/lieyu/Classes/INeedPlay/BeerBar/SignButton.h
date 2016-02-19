@@ -1,5 +1,5 @@
 //
-//  SignDateTableViewCell.h
+//  SignButton.h
 //  lieyu
 //
 //  Created by 狼族 on 16/2/18.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignDateTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *label_time;
-
+@interface SignButton : UIButton
+@property (nonatomic,unsafe_unretained) NSInteger section;
 @end

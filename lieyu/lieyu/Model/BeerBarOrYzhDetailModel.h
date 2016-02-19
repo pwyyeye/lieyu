@@ -10,6 +10,7 @@
 
 @class AnnouncementModel;
 @class RecommendPackageModel;
+@class CustomerModel;
 
 @interface BeerBarOrYzhDetailModel : NSObject
 @property(nonatomic,copy)NSString * address;
@@ -58,6 +59,9 @@
 @property (nonatomic,copy) NSString *sort;
 @property (nonatomic,copy) NSString *subids;
 @property (nonatomic,copy) NSString *telephone;
+
+@property (nonatomic,copy) NSString *signCount;
+@property (nonatomic,strong) NSArray *signUsers;
 
 +(BeerBarOrYzhDetailModel *)initFormDictionary:(NSDictionary *)dic;
 

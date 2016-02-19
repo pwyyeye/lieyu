@@ -12,6 +12,7 @@
 #import "LYCache.h"
 #import "LYCoreDataUtil.h"
 #import "HomePageModel.h"
+#import "RecommendedTopic.h"
 
 @implementation LYToPlayRestfulBusiness
 
@@ -54,6 +55,8 @@
              homePageM.filterImages = [dataDic valueForKey:@"filterImages"];
              NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
              homePageM.recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+             NSDictionary *recommendedTopicDic = [dataDic valueForKey:@"recommendedTopic"];
+             homePageM.recommendedTopic = [RecommendedTopic mj_objectWithKeyValues:recommendedTopicDic];
          }
          block(erMsg,homePageM);
          

@@ -625,6 +625,7 @@
 		851806C81C2EB32900006804 /* LYPictiureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851806C71C2EB32900006804 /* LYPictiureView.m */; };
 		851806CA1C2EB33A00006804 /* LYPictiureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851806C91C2EB33A00006804 /* LYPictiureView.xib */; };
 		85390A621C2C149700FF53F9 /* LYFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85390A611C2C149700FF53F9 /* LYFriendsViewController.m */; };
+		853BCC971C76BA4D00DE0324 /* RecommendedTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 853BCC961C76BA4D00DE0324 /* RecommendedTopic.m */; };
 		853C360A1C72B43200F1703B /* LYBarIconTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C36081C72B43200F1703B /* LYBarIconTableViewCell.m */; };
 		853C360B1C72B43200F1703B /* LYBarIconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853C36091C72B43200F1703B /* LYBarIconTableViewCell.xib */; };
 		853C360F1C72BA8400F1703B /* LYBarScrollTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853C360D1C72BA8400F1703B /* LYBarScrollTableViewCell.m */; };
@@ -697,6 +698,11 @@
 		85514E4F1C7563CA00E24C78 /* SignDateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85514E4D1C7563CA00E24C78 /* SignDateTableViewCell.xib */; };
 		85514E951C757B7600E24C78 /* BarActivityList.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E941C757B7600E24C78 /* BarActivityList.m */; };
 		85514E981C75904500E24C78 /* BarTopicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E971C75904500E24C78 /* BarTopicInfo.m */; };
+		85514E9C1C75BB4500E24C78 /* SignIconTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E9A1C75BB4500E24C78 /* SignIconTableViewCell.m */; };
+		85514E9D1C75BB4500E24C78 /* SignIconTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85514E9B1C75BB4500E24C78 /* SignIconTableViewCell.xib */; };
+		85514EA01C75F8BF00E24C78 /* sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85514E9E1C75F8BF00E24C78 /* sign@2x.png */; };
+		85514EA11C75F8BF00E24C78 /* sign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85514E9F1C75F8BF00E24C78 /* sign@3x.png */; };
+		85514EE31C761B1600E24C78 /* SignButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514EE21C761B1600E24C78 /* SignButton.m */; };
 		855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */; };
 		8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */; };
 		8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */; };
@@ -2105,6 +2111,8 @@
 		851806C91C2EB33A00006804 /* LYPictiureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYPictiureView.xib; sourceTree = "<group>"; };
 		85390A601C2C149700FF53F9 /* LYFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsViewController.h; sourceTree = "<group>"; };
 		85390A611C2C149700FF53F9 /* LYFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsViewController.m; sourceTree = "<group>"; };
+		853BCC951C76BA4D00DE0324 /* RecommendedTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedTopic.h; sourceTree = "<group>"; };
+		853BCC961C76BA4D00DE0324 /* RecommendedTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedTopic.m; sourceTree = "<group>"; };
 		853C36071C72B43200F1703B /* LYBarIconTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarIconTableViewCell.h; sourceTree = "<group>"; };
 		853C36081C72B43200F1703B /* LYBarIconTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarIconTableViewCell.m; sourceTree = "<group>"; };
 		853C36091C72B43200F1703B /* LYBarIconTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarIconTableViewCell.xib; sourceTree = "<group>"; };
@@ -2223,6 +2231,13 @@
 		85514E941C757B7600E24C78 /* BarActivityList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarActivityList.m; sourceTree = "<group>"; };
 		85514E961C75904500E24C78 /* BarTopicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarTopicInfo.h; sourceTree = "<group>"; };
 		85514E971C75904500E24C78 /* BarTopicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarTopicInfo.m; sourceTree = "<group>"; };
+		85514E991C75BB4500E24C78 /* SignIconTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignIconTableViewCell.h; sourceTree = "<group>"; };
+		85514E9A1C75BB4500E24C78 /* SignIconTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignIconTableViewCell.m; sourceTree = "<group>"; };
+		85514E9B1C75BB4500E24C78 /* SignIconTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignIconTableViewCell.xib; sourceTree = "<group>"; };
+		85514E9E1C75F8BF00E24C78 /* sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign@2x.png"; sourceTree = "<group>"; };
+		85514E9F1C75F8BF00E24C78 /* sign@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign@3x.png"; sourceTree = "<group>"; };
+		85514EE11C761B1600E24C78 /* SignButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignButton.h; sourceTree = "<group>"; };
+		85514EE21C761B1600E24C78 /* SignButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignButton.m; sourceTree = "<group>"; };
 		855192661C0B30E0007B9949 /* LYHotJiuBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotJiuBarViewController.h; sourceTree = "<group>"; };
 		855192671C0B30E0007B9949 /* LYHotJiuBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotJiuBarViewController.m; sourceTree = "<group>"; };
 		855192681C0B30E0007B9949 /* LYHotJiuBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotJiuBarViewController.xib; sourceTree = "<group>"; };
@@ -5022,6 +5037,11 @@
 				85514E4B1C7563CA00E24C78 /* SignDateTableViewCell.h */,
 				85514E4C1C7563CA00E24C78 /* SignDateTableViewCell.m */,
 				85514E4D1C7563CA00E24C78 /* SignDateTableViewCell.xib */,
+				85514E991C75BB4500E24C78 /* SignIconTableViewCell.h */,
+				85514E9A1C75BB4500E24C78 /* SignIconTableViewCell.m */,
+				85514E9B1C75BB4500E24C78 /* SignIconTableViewCell.xib */,
+				85514EE11C761B1600E24C78 /* SignButton.h */,
+				85514EE21C761B1600E24C78 /* SignButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -5092,6 +5112,8 @@
 			children = (
 				855393F11C58F57F00575048 /* HomePageModel.h */,
 				855393F21C58F57F00575048 /* HomePageModel.m */,
+				853BCC951C76BA4D00DE0324 /* RecommendedTopic.h */,
+				853BCC961C76BA4D00DE0324 /* RecommendedTopic.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -5109,6 +5131,8 @@
 		85589C791C16C65C000E342E /* 酒吧详情整改 */ = {
 			isa = PBXGroup;
 			children = (
+				85514E9E1C75F8BF00E24C78 /* sign@2x.png */,
+				85514E9F1C75F8BF00E24C78 /* sign@3x.png */,
 				385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */,
 				385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */,
 				8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */,
@@ -6993,6 +7017,7 @@
 				38E5D6BF1C0EA458004B49D2 /* CustomBtn_unSelected@3x.png in Resources */,
 				8550E70D1C2FC130001FF2DE /* LYFriendsCommentView.xib in Resources */,
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
+				85514EA11C75F8BF00E24C78 /* sign@3x.png in Resources */,
 				AD4EA8571C546B110056E560 /* MineBigBG@3x.jpg in Resources */,
 				8550E7141C301740001FF2DE /* LYFriendsMessageDetailViewController.xib in Resources */,
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
@@ -7142,6 +7167,7 @@
 				52D4F8FE1C5742E800691BEF /* LYHotBarViewController.xib in Resources */,
 				381A01EB1C14301A00592485 /* fanli.png in Resources */,
 				ADE1C5BD1C730E1C0011D4AB /* 更新8@2x.png in Resources */,
+				85514EA01C75F8BF00E24C78 /* sign@2x.png in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				ADF88E631C102E4F00CF5DED /* huiseStar@2x.png in Resources */,
 				15E184841BB51A9500681BB2 /* LYZSApplicationViewController.xib in Resources */,
@@ -7451,6 +7477,7 @@
 				3806563C1C489A1A003094C9 /* AddCar_red.png in Resources */,
 				15E240B61BB3A1FC0090D240 /* OrderDetailSectionBottomForDanPinView.xib in Resources */,
 				85F66E591C5282FE005D1CD8 /* chzcBackground@2x.png in Resources */,
+				85514E9D1C75BB4500E24C78 /* SignIconTableViewCell.xib in Resources */,
 				38D8764A1C1703B600E2F284 /* purper_fanli@2x.png in Resources */,
 				850099CB1C61EEE700DDE626 /* 发起人@3x.png in Resources */,
 				ADE1C5BB1C730E1C0011D4AB /* 更新6@2x.png in Resources */,
@@ -7746,6 +7773,7 @@
 				38DBCD851C59B04100A1E207 /* ZujuViewController.m in Sources */,
 				85F625A11C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
+				85514EE31C761B1600E24C78 /* SignButton.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
 				85EE80461C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m in Sources */,
 				85F43BAB1C11459400B04466 /* LYOrderWriteTableViewCell.m in Sources */,
@@ -8051,6 +8079,7 @@
 				15B8668F1BE0B04C002E2BB6 /* MyMessageListViewController.m in Sources */,
 				15FD2AB11BD7231C00D66920 /* LYTaoCanXQCell.m in Sources */,
 				15A4CF7B1BD871C000C22C01 /* chiheDetailCollectionCell.m in Sources */,
+				85514E9C1C75BB4500E24C78 /* SignIconTableViewCell.m in Sources */,
 				15B8662C1BDB6D29002E2BB6 /* CHDoOrderell.m in Sources */,
 				D7A1D42E1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m in Sources */,
 				8540B6831C2CED9100F16463 /* LYFriendsCommentTableViewCell.m in Sources */,
@@ -8068,6 +8097,7 @@
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
 				853D3ABA1C35331300B4FEAD /* LYFriendsVideoTableViewCell.m in Sources */,
 				15844BFD1BE2101200247FBC /* SaoYiSaoViewController.m in Sources */,
+				853BCC971C76BA4D00DE0324 /* RecommendedTopic.m in Sources */,
 				15ED32721BE2F49800E086A1 /* YaoYiYaoViewController.m in Sources */,
 				15B8661F1BDB5C73002E2BB6 /* CHDoOrderBottomView.m in Sources */,
 				D74C60851BB69F6300A49598 /* RTLabel.m in Sources */,

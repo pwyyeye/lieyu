@@ -23,6 +23,7 @@
 #import "JiuBaModel.h"
 #import "BeerBarDetailViewController.h"
 #import "LYHotsCollectionViewCell.h"
+#import "BeerNewBarViewController.h"
 
 #define PAGESIZE  10
 
@@ -560,11 +561,10 @@
 }
 
 - (void)hotsCollectionViewCellClickWithJiubaModel:(JiuBaModel *)jiubaM{
-    BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
     controller.beerBarId = @(jiubaM.barid);
     [self.navigationController pushViewController:controller animated:YES];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <HCSStarRatingView.h>
+@class BeerBarOrYzhDetailModel;
+
 @interface LYBarTitleTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_header;
 @property (weak, nonatomic) IBOutlet UILabel *label_name;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView_rectRight;
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageView_starArray;
+@property (weak, nonatomic) IBOutlet UIButton *btnBuy;
 @property (weak, nonatomic) IBOutlet UILabel *label_price;
-@property (weak, nonatomic) IBOutlet UILabel *label_line;
-@property (weak, nonatomic) IBOutlet UILabel *label_fanli_num;
-
-@property (weak, nonatomic) IBOutlet HCSStarRatingView *barStar;
+@property (weak, nonatomic) IBOutlet UILabel *label_time;
+@property (nonatomic,strong) BeerBarOrYzhDetailModel *beerM;
 @end

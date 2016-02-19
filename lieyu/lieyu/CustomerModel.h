@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TagModel.h"
+@class UserModel;
 @interface CustomerModel : NSObject
 //"avatar_img": "null",
 //"id": 0,
@@ -61,4 +62,10 @@
 @property(strong,nonatomic) NSString *birthday;
 @property NSInteger sectionNumber;
 @property BOOL rowSelected;
+
+@property (nonatomic,copy) NSString *barid;
+@property (nonatomic,copy) NSString *createdate;
+@property (nonatomic,copy) NSString *signdate;
+@property (nonatomic,strong) UserModel *userInfo;
+
 @end

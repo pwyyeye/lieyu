@@ -9,5 +9,5 @@
 #import "LYBaseViewController.h"
 
 @interface SignViewController : LYBaseViewController
-
+@property (nonatomic,copy) NSString *barid;
 @end

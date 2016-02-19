@@ -8,6 +8,7 @@
 #import "MJExtension.h"
 #import "BeerBarOrYzhDetailModel.h"
 #import "RecommendPackageModel.h"
+#import "CustomerModel.h"
 
 @implementation BeerBarOrYzhDetailModel
 
@@ -15,7 +16,7 @@
 {
     [BeerBarOrYzhDetailModel mj_setupObjectClassInArray:^NSDictionary *{
         return @{
-                    @"recommend_package":@"RecommendPackageModel"
+                    @"recommend_package":@"RecommendPackageModel",@"signUsers":@"CustomerModel"
                 };
     }];
 }

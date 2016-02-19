@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SignIconTableViewCell" rowHeight="54" id="KGk-i7-Jjw" customClass="SignIconTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0m7-Aa-Bu6" customClass="SignButton">
+                        <rect key="frame" x="274" y="7" width="34" height="34"/>
+                        <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="0m7-Aa-Bu6" secondAttribute="height" multiplier="1:1" id="UvU-0c-MQC"/>
+                        </constraints>
+                    </button>
+                    <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piL-st-2uo" customClass="SignButton">
+                        <rect key="frame" x="222" y="7" width="33" height="34"/>
+                        <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="piL-st-2uo" secondAttribute="height" multiplier="1:1" id="htl-Jd-HhJ"/>
+                        </constraints>
+                    </button>
+                    <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PnU-gp-KpJ" customClass="SignButton">
+                        <rect key="frame" x="169" y="7" width="34" height="34"/>
+                        <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="PnU-gp-KpJ" secondAttribute="height" multiplier="1:1" id="JbN-yd-GNP"/>
+                        </constraints>
+                    </button>
+                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2v4-mk-aSH" customClass="SignButton">
+                        <rect key="frame" x="117" y="7" width="33" height="34"/>
+                        <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="2v4-mk-aSH" secondAttribute="height" multiplier="1:1" id="FGn-Rh-2Co"/>
+                        </constraints>
+                    </button>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPX-3j-HnI" customClass="SignButton">
+                        <rect key="frame" x="64" y="7" width="34" height="34"/>
+                        <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="nPX-3j-HnI" secondAttribute="height" multiplier="1:1" id="mZu-vm-ngP"/>
+                        </constraints>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PnU-gp-KpJ" firstAttribute="leading" secondItem="2v4-mk-aSH" secondAttribute="trailing" constant="19" id="5Pz-qG-Ejf"/>
+                    <constraint firstItem="nPX-3j-HnI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="CsI-Fi-gFk"/>
+                    <constraint firstItem="piL-st-2uo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="ESP-Ep-fwk"/>
+                    <constraint firstItem="piL-st-2uo" firstAttribute="width" secondItem="nPX-3j-HnI" secondAttribute="width" id="FOd-23-nRf"/>
+                    <constraint firstItem="PnU-gp-KpJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="G2q-td-kgH"/>
+                    <constraint firstItem="nPX-3j-HnI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="64" id="GZp-wV-zMH"/>
+                    <constraint firstItem="2v4-mk-aSH" firstAttribute="height" secondItem="nPX-3j-HnI" secondAttribute="height" id="K1I-gT-oex"/>
+                    <constraint firstItem="2v4-mk-aSH" firstAttribute="width" secondItem="nPX-3j-HnI" secondAttribute="width" id="MC3-Az-G93"/>
+                    <constraint firstItem="0m7-Aa-Bu6" firstAttribute="leading" secondItem="piL-st-2uo" secondAttribute="trailing" constant="19" id="RDG-ek-krg"/>
+                    <constraint firstItem="2v4-mk-aSH" firstAttribute="leading" secondItem="nPX-3j-HnI" secondAttribute="trailing" constant="19" id="Vc2-yE-n0R"/>
+                    <constraint firstItem="2v4-mk-aSH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="YMZ-JE-UmS"/>
+                    <constraint firstItem="PnU-gp-KpJ" firstAttribute="height" secondItem="nPX-3j-HnI" secondAttribute="height" id="ZnN-KT-oCF"/>
+                    <constraint firstItem="0m7-Aa-Bu6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="cRy-Ck-sXh"/>
+                    <constraint firstItem="PnU-gp-KpJ" firstAttribute="width" secondItem="nPX-3j-HnI" secondAttribute="width" id="eIn-NB-rZo"/>
+                    <constraint firstItem="0m7-Aa-Bu6" firstAttribute="height" secondItem="nPX-3j-HnI" secondAttribute="height" id="fFW-Fm-Dtt"/>
+                    <constraint firstItem="piL-st-2uo" firstAttribute="height" secondItem="nPX-3j-HnI" secondAttribute="height" id="fZB-6O-OjG"/>
+                    <constraint firstItem="0m7-Aa-Bu6" firstAttribute="width" secondItem="nPX-3j-HnI" secondAttribute="width" id="pnV-ii-2P3"/>
+                    <constraint firstAttribute="trailing" secondItem="0m7-Aa-Bu6" secondAttribute="trailing" constant="12" id="sc8-hK-dv8"/>
+                    <constraint firstItem="piL-st-2uo" firstAttribute="leading" secondItem="PnU-gp-KpJ" secondAttribute="trailing" constant="19" id="uVi-lf-IDZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outletCollection property="btnArray" destination="nPX-3j-HnI" id="YpU-rf-Jg5"/>
+                <outletCollection property="btnArray" destination="2v4-mk-aSH" id="2QD-Zj-dSU"/>
+                <outletCollection property="btnArray" destination="PnU-gp-KpJ" id="tvI-7C-Tfb"/>
+                <outletCollection property="btnArray" destination="piL-st-2uo" id="SFR-h9-j1o"/>
+                <outletCollection property="btnArray" destination="0m7-Aa-Bu6" id="yHh-HL-9xg"/>
+            </connections>
+            <point key="canvasLocation" x="368" y="356"/>
+        </tableViewCell>
+    </objects>
+</document>

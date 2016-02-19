@@ -21,7 +21,7 @@
 #import "UIImage+GIF.h"
 #import "LYCache.h"
 #import "JiuBaModel.h"
-#import "BeerBarDetailViewController.h"
+#import "BeerNewBarViewController.h"
 
 #define PAGESIZE 20
 
@@ -476,7 +476,7 @@
         NSArray *array = _dataArray[collectionView.tag];
         if (array.count) {
             JiuBaModel *jiuM = array[indexPath.item];
-            BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+            BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
             controller.beerBarId = @(jiuM.barid);
             [self.navigationController pushViewController:controller animated:YES];
            // [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
