@@ -44,8 +44,13 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self ConfigureRightItem];
     [self registerTableViewCell];
-    [self getData];
     [self addRefreshAction];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self initAllPropertites];
+    [self getData];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -61,13 +66,27 @@
 
 #pragma mark - 更多专题按钮
 - (void)ConfigureRightItem{
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"更多专题" style:UIBarButtonItemStylePlain target:self action:@selector(MoreTopic)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"更多专题" style:UIBarButtonItemStylePlain target:self action:@selector(MoreTopic:)];
+    rightItem.tag = 1;
     rightItem.tintColor = [UIColor blackColor];
     [rightItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:14],NSFontAttributeName, nil] forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
-- (void)MoreTopic{
+- (void)MoreTopic:(UIButton *)button{
+    NSDictionary *dict ;
+    if (button.tag == 1) {
+        dict = @{@"actionName":@"跳转",
+                               @"pageName":@"活动专题",
+                               @"titleName":@"全部专题",
+                               @"value":@"右侧按钮"};
+    }else if(button.tag == 2){
+        dict = @{@"actionName":@"跳转",
+                 @"pageName":@"活动专题",
+                 @"titleName":@"全部专题",
+                 @"value":@"底部按钮"};
+    }
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:dict];
     AllAction *allActionVC = [[AllAction alloc]init];
     [self.navigationController pushViewController:allActionVC animated:YES];
 }
@@ -76,16 +95,28 @@
 - (void)StopBottomBounds:(BOOL) isIn{
     if (isIn) {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0);
-        button = [[UIButton alloc]initWithFrame:CGRectMake(10, self.tableView.contentSize.height + 10, SCREEN_WIDTH - 20, 44)];
+//        self.tableView.conte
+        CGPoint point = self.tableView.contentOffset;
+        [UIView animateWithDuration:1 animations:^{
+            self.tableView.contentOffset = CGPointMake(point.x, point.y + 64);
+        }];
+        button = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 55, self.tableView.contentSize.height + 18, 110, 28)];
         //    NSLog(@"tableView的总长度：%f",self.tableView.contentOffset.y);
         contentOffsetY = self.tableView.contentOffset.y;
     }
     else{
-        button = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 118, SCREEN_WIDTH - 20, 44)];
+        button = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 55, SCREEN_HEIGHT - 118, 110, 28)];
         self.tableView.bounces = NO;
     }
-    button.backgroundColor = [UIColor blackColor];
-    [button addTarget:self action:@selector(MoreTopic) forControlEvents:UIControlEventTouchUpInside];
+    button.backgroundColor = [UIColor clearColor];
+    [button setTitle:@"更多活动专题" forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:12];
+    [button setTitleColor:RGB(186, 40, 227) forState:UIControlStateNormal];
+    button.layer.cornerRadius = 2;
+    button.layer.borderColor = [RGBA(186, 40, 227, 1)CGColor];
+    button.layer.borderWidth = 1;
+    button.tag = 2;
+    [button addTarget:self action:@selector(MoreTopic:) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:button];
     self.tableView.mj_footer.hidden = YES;
 }
@@ -96,6 +127,7 @@
     start = 0;
     [button removeFromSuperview];
     [actionList removeAllObjects];
+    self.tableView.bounces = YES;
     self.tableView.mj_footer.hidden = NO;
     contentOffsetY = MAXFLOAT;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -180,6 +212,7 @@
         cell.action_image.backgroundColor = [UIColor grayColor];
         cell.topicInfo = ((BarActivityList *)[actionList objectAtIndex:indexPath.section]).topicInfo;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.userInteractionEnabled = NO;
         return cell;
     }else{
         HDZTListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HDZTListCell" forIndexPath:indexPath];
@@ -199,7 +232,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *dict = @{@"actionName":@"跳转",
+                           @"pageName":@"活动专题",
+                           @"titleName":@"活动详情",
+                           @"value":((BarActivityList *)actionList[indexPath.section - 1]).id};
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:dict];
+
     ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]initWithNibName:@"ActionDetailViewController" bundle:nil];
+    actionDetailVC.barActivity = actionList[indexPath.section - 1];
     actionDetailVC.title = @"活动详情";
     [self.navigationController pushViewController:actionDetailVC animated:YES];
 }

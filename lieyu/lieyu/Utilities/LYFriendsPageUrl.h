@@ -46,4 +46,7 @@
 //根据动态id获取动态
 #define LY_Friends_GetAMessage @"lyMomentsAction.do?action=importExcel"
 
+//举报
+#define LY_Friends_JuBaoDT @"lyMomentCommentAction.do?action=update"
+
 #endif /* LYFriendsPageUrl_h */

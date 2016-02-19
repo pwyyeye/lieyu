@@ -37,9 +37,6 @@
                             </mask>
                         </variation>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XmH-Of-Xu5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="176.5"/>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="r2H-If-FlI" secondAttribute="trailing" constant="3" id="601-NC-38x"/>
@@ -53,7 +50,6 @@
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
-                <outlet property="action_button" destination="XmH-Of-Xu5" id="7AH-cr-uih"/>
                 <outlet property="action_discript" destination="lDK-uW-2AV" id="Akv-Ys-mdM"/>
                 <outlet property="action_image" destination="r2H-If-FlI" id="oJ9-bR-2Xn"/>
             </connections>
