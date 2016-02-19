@@ -147,8 +147,8 @@
     [_signBtn setTitle:@"签到" forState:UIControlStateNormal];
     [_signBtn setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal ];
     _signBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,18, 0, 0);
-    _signBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -16, -31, 0);
+    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,20, 0, 0);
+    _signBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -13, -31, 0);
     [_signBtn setImage:[UIImage imageNamed:@"sign"] forState:UIControlStateNormal];
     
     [effectView addSubview:_signBtn];
@@ -737,7 +737,7 @@
         return 0.00001;
     }else{
         if (section == 3) {
-            if(_beerBarDetail.signCount.integerValue) return 8;
+            if(_beerBarDetail.signUsers.count) return 8;
             else return 0;
         }else if(section == 4){
             if(_activityArray.count) return 8;
