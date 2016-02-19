@@ -256,16 +256,19 @@
             [weakSelf.nodataView setHidden:YES];
             pageCount++;
             [weakSelf.tableView.mj_footer resetNoMoreData];
+            [self.tableView.mj_footer endRefreshing];
         }else{
             [weakSelf.tableView setHidden:YES];
             [weakSelf.nodataView setHidden:NO];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         [weakSelf.tableView reloadData];
         
         
         
     }];
-//    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+    
     
 }
 #pragma mark 获取更多订单数据

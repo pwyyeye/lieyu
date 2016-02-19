@@ -82,8 +82,11 @@
         ActionPage *actionPage=[[ActionPage alloc] initWithNibName:@"ActionPage" bundle:nil];
         actionPage.topicid=str2;
         [self.navigationController pushViewController:actionPage animated:YES];
+        NSString *str = [NSString stringWithFormat:@"活动html打开专题ID%@",str2];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }else if (![MyUtil isEmptyString:str1]&& [str1 isEqualToString:@"activity"]){//专题活动
-        
+        NSString *str = [NSString stringWithFormat:@"活动html打开专题活动ID%@",str2];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
         ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
         actionDetailVC.actionID=str2;
         [self.navigationController pushViewController:actionDetailVC animated:YES];

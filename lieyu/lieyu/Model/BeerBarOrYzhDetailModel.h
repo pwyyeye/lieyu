@@ -61,7 +61,7 @@
 @property (nonatomic,copy) NSString *telephone;
 
 @property (nonatomic,copy) NSString *signCount;
-@property (nonatomic,strong) NSArray *signUsers;
+@property (nonatomic,strong) NSMutableArray *signUsers;
 
 +(BeerBarOrYzhDetailModel *)initFormDictionary:(NSDictionary *)dic;
 
