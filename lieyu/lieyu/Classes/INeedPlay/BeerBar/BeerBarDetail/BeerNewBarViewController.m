@@ -57,9 +57,12 @@
     CGFloat offSet;
     EScrollerView *_scroller;
     BOOL _userLiked;
+    UIVisualEffectView *effectView;
     BOOL _userCollected;
     UIImageView *_tableHeaderImgView;
     NSArray *_activityArray;
+    CGFloat _contentOffSetY;
+    UIButton *_signBtn;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -71,6 +74,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_like;
 @property(nonatomic,assign)CGFloat dyBarDetailH;
 @property(nonatomic,strong) BeerBarOrYzhDetailModel *beerBarDetail;
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *bottomEffectView;
 
 @end
 
@@ -130,7 +134,34 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setHidden:YES];
     [_timer setFireDate:[NSDate distantPast]];
+   
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 30, SCREEN_HEIGHT - 60, 60, 60)];
+    effectView.layer.cornerRadius = effectView.frame.size.width/2.f;
+    effectView.layer.masksToBounds = YES;
+    effectView.effect = effect;
+    [self.view addSubview:effectView];
     
+    _signBtn = [[UIButton alloc]initWithFrame:CGRectMake((effectView.frame.size.width - 60)/2.f,(effectView.frame.size.height - 60)/2.f , 60, 60)];
+    [_signBtn addTarget:self action:@selector(signClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_signBtn setTitle:@"签到" forState:UIControlStateNormal];
+    [_signBtn setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal ];
+    _signBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,17, 0, 0);
+    _signBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -16, -31, 0);
+    [_signBtn setImage:[UIImage imageNamed:@"sign"] forState:UIControlStateNormal];
+    
+    [effectView addSubview:_signBtn];
+    [self.view bringSubviewToFront:_bottomEffectView];
+    [self.view bringSubviewToFront:_view_bottom];
+    
+    [UIView animateWithDuration:.4 animations:^{
+        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+    }completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+        }];
+    }];
 }
 
 - (void)viewWillLayoutSubviews{
@@ -140,13 +171,14 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_timer setFireDate:[NSDate distantFuture]];
     [self.navigationController.navigationBar setHidden:NO];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    
+    [effectView removeFromSuperview];
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
@@ -199,7 +231,7 @@
     
     
     NSDictionary *dic = @{@"barid":_beerBarId};
-    [LYHomePageHttpTool getActivityListWithPara:dic compelte:^(NSMutableArray *result) {
+    [LYHomePageHttpTool getActivityListNoAppLoadingWithPara:dic compelte:^(NSMutableArray *result) {
         _activityArray = result;
         [_tableView reloadData];
     }];
@@ -213,7 +245,12 @@
             for (MyBarModel *barModel in result) {
                 if([_beerBarDetail.barid isEqual:@(barModel.barid)]){
                     _userCollected = YES;
-                    [_btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+                    
+                    if (_image_layer.alpha <= 0.f) {//white
+                         [_btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏whited"] forState:UIControlStateNormal];
+                    }else{
+                        [_btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+                    }
                 }
             }
         }];
@@ -222,7 +259,11 @@
             for (MyBarModel *barModel in result) {
                 if([_beerBarDetail.barid isEqual:@(barModel.barid)]){
                     _userLiked = YES;
-                    [_btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+                    if (_image_layer.alpha <= 0.f) {//white
+                        [_btn_like setBackgroundImage:[UIImage imageNamed:@"点赞whited"] forState:UIControlStateNormal];
+                    }else{
+                        [_btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+                    }
                 }
             }
         }];
@@ -252,6 +293,12 @@
         }else{
             [_btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏white"] forState:UIControlStateNormal];
         }
+        if (_userLiked) {
+            [_btn_like setBackgroundImage:[UIImage imageNamed:@"点赞whited"] forState:UIControlStateNormal];
+        }else{
+            [_btn_like setBackgroundImage:[UIImage imageNamed:@"点赞white"] forState:UIControlStateNormal];
+        }
+        [_btnShare setImage:[UIImage imageNamed:@"分享white"] forState:UIControlStateNormal];
     }else{//black
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
          [_btnBack setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
@@ -260,6 +307,12 @@
         }else{
             [_btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
         }
+        if (_userLiked) {
+            [_btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+        }else{
+            [_btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+        }
+                [_btnShare setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
     }
     
     if (_tableView.contentOffset.y < 0) {
@@ -267,6 +320,60 @@
         CGFloat hegiht = SCREEN_WIDTH * 95 / 183.f;
         _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 183 / 95.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 183 / 95.f, hegiht -y);
     }
+    
+   /* if (scrollView.contentOffset.y > _contentOffSetY) {
+        if (scrollView.contentOffset.y <= 0.f) {
+            [UIView animateWithDuration:0.2 animations:^{
+                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+            }];
+        }else{
+        [UIView animateWithDuration:0.4 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+        }];
+        }
+    }else{
+        if (scrollView.contentOffset.y <= 0.f) {
+            
+        }else{
+        if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){
+            [UIView animateWithDuration:.4 animations:^{
+                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+            }completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.2 animations:^{
+                    effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+                }];
+            }];
+        }
+        }
+    } */
+    if (scrollView.contentOffset.y > _contentOffSetY) {
+//        [UIView animateWithDuration:0.4 animations:^{
+//            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+//        }];
+        if (scrollView.contentOffset.y <= 0.f) {
+            [UIView animateWithDuration:0.2 animations:^{
+                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+            }];
+        }else{
+            [UIView animateWithDuration:0.4 animations:^{
+                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+            }];
+        }
+    }else{
+        if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){
+            [UIView animateWithDuration:.4 animations:^{
+                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+            }completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.2 animations:^{
+                    effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+                }];
+            }];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    _contentOffSetY = scrollView.contentOffset.y;
 }
 
 // load webView
@@ -318,7 +425,12 @@
             [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
                 //收藏过
                 if(result){
-                    [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+                    if (self.image_layer.alpha <= 0.f) {//white
+                        [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"点赞white"] forState:UIControlStateNormal];
+                    }else{
+                        [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
+                    }
+                    
                     _userLiked = NO;
                 }
             }];
@@ -326,7 +438,11 @@
         }else{
             [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
                 if (result) {
-                    [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+                    if (self.image_layer.alpha <= 0.f) {//white
+                        [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"点赞whited"] forState:UIControlStateNormal];
+                    }else{
+                        [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
+                    }
                     _userLiked = YES;
                     
                 }
@@ -495,8 +611,10 @@
             case 4://activity
         {
             LYBarScrollTableViewCell *scrollCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarScrollTableViewCell" forIndexPath:indexPath];
+            //_activityArray = @[@"http://source.lie98.com/37680ChaletPlusLounge2.jpg"];
             scrollCell.activtyArray = _activityArray;
-            for (int i = 0; i < scrollCell.activtyBtnArray.count; i ++) {
+            for (int i = 0 ;  i < _activityArray.count; i ++) {
+                
                 UIButton *btn = scrollCell.activtyBtnArray[i];
                 btn.tag = i;
                 [btn addTarget:self action:@selector(activtyClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -531,7 +649,7 @@
 }
 
 #pragma mark － 签到
-- (IBAction)signClick:(id)sender {
+- (void)signClick:(id)sender {
     NSDictionary *dic = @{@"barid":_beerBarId};
     [LYHomePageHttpTool signWith:dic];
 }
@@ -764,7 +882,12 @@
             
             [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
                 //收藏过
-                [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
+                if (self.image_layer.alpha <= 0.f) {//white
+                    [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏white"] forState:UIControlStateNormal];
+                }else{
+                    [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
+                    
+                }
                 _userCollected = NO;
                 
             }];
@@ -772,7 +895,12 @@
         }else{
             
             [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
-                [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+                if (self.image_layer.alpha <= 0.f) {//white
+                    [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏whited"] forState:UIControlStateNormal];
+                }else{
+                    [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
+                    
+                }
                 _userCollected = YES;
             }];
             [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消收藏" pageName:BEERBARDETAIL_MTA titleName:weakSelf.beerBarDetail.barname]];

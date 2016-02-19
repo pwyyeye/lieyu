@@ -475,9 +475,13 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.y > _contentOffSetY) {
+         if (scrollView.contentOffset.y <= 0.f) {
+             effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+         }else{
         [UIView animateWithDuration:0.4 animations:^{
             effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
         }];
+         }
     }else{
         if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){
         [UIView animateWithDuration:.4 animations:^{
@@ -489,6 +493,7 @@
         }];
         }
     }
+    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{

@@ -18,6 +18,7 @@ NeedHideNavigationBar
 >
 
 @property (weak, nonatomic) IBOutlet UIView *view_bottom;
+@property (weak, nonatomic) IBOutlet UIButton *btnShare;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_collect;
 @property (weak, nonatomic) IBOutlet UIButton *btnBack;
