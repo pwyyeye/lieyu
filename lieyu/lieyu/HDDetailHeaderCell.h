@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface HDDetailHeaderCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *environmentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *musicLabel;
 
+
+@property (nonatomic, strong) NSDictionary *dict;
 @end

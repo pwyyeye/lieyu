@@ -11,5 +11,6 @@
 #import "BarActivityList.h"
 @interface ActionDetailViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)YuDingClick:(UIButton *)sender;
 @property (nonatomic, strong) BarActivityList *barActivity;
 @end
