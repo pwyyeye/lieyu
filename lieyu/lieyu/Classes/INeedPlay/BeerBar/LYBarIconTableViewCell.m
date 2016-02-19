@@ -15,7 +15,7 @@
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    CGFloat btnWidth = (SCREEN_WIDTH - 16 - (_btnArray.count - 1) * 7)/_btnArray.count;
+    CGFloat btnWidth = (SCREEN_WIDTH - 14 - (_btnArray.count - 1) * 7)/_btnArray.count;
     for (UIButton *btn in _btnArray) {
         btn.hidden = YES;
         btn.layer.cornerRadius = btnWidth/2.f;

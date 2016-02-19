@@ -664,6 +664,25 @@
     }];
 }
 
+#pragma mark 获取酒吧的活动列表
++ (void)getActivityListNoAppLoadingWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSMutableArray * result))compelete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_BAR_ACTIVITYLIST baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message = [NSString stringWithFormat:@"%@",response[@"message"]];
+        NSArray *dataList = response[@"data"];
+        if([code isEqualToString:@"1"]){
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[BarActivityList mj_objectArrayWithKeyValuesArray:dataList]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                compelete(tempArr);
+            });
+        }else{
+            [MyUtil showCleanMessage:message];
+        }
+    } failure:^(NSError *err) {
+        [MyUtil showCleanMessage:@"获取数据失败！"];
+    }];
+}
+
 #pragma mark - 获取所有专题列表
 + (void)getActionList:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ACTION_LIST baseURL:LY_SERVER params:paraDic success:^(id response) {

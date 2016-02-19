@@ -20,6 +20,13 @@
 
 @implementation LYMyFriendDetailViewController
 
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+//    if(self.navigationController.navigationBarHidden == YES){
+        [self.navigationController.navigationBar setHidden:NO];
+//    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;

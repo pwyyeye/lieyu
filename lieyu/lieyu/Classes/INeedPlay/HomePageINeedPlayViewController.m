@@ -394,6 +394,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    _index = 0;
     [_collectView setContentOffset:CGPointZero];
     [self createNavButton];
 }
@@ -729,6 +730,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (collectionView == _collectView) {
         return CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
     }else{
+        if (!_recommendedTopic) {
+            if (indexPath.item == 3) {
+                return CGSizeZero;
+            }
+        }
         return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
     }
 }
@@ -980,12 +986,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     if (imageV) {
                         [imageV removeFromSuperview];
                     }
+                    if (_recommendedTopic) {
                     UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
                     imageV.layer.cornerRadius = 2;
                     imageV.layer.masksToBounds = YES;
                     imgV.tag = 10010;
                     [imgV sd_setImageWithURL:[NSURL URLWithString:_recommendedTopic.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                     [cell addSubview:imgV];
+                    }
                     return cell;
                 }
                     break;
@@ -1040,9 +1048,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if(indexPath.item == 1){
         jiuBaM = _recommendedBar;
     }else if(indexPath.item == 3){
+        if(_recommendedTopic){
         ActionPage *aPage = [[ActionPage alloc]init];
         aPage.topicid = _recommendedTopic.id;
         [self.navigationController pushViewController:aPage animated:YES];
+        }
         return;
     }else if(indexPath.item >= 4){
         if(array.count) jiuBaM = array[indexPath.item - 4];
