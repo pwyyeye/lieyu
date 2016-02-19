@@ -181,6 +181,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if(scrollView == _collectView){
+        _index = (NSInteger)_collectView.contentOffset.x/SCREEN_WIDTH;
             CGFloat offsetWidth = _collectView.contentOffset.x;
             CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
             _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
@@ -228,12 +229,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    _index = (NSInteger)_collectView.contentOffset.x/SCREEN_WIDTH;
+    
     LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (_dataArray.count) {
         NSArray *array = _dataArray[_index];
         if(!array.count) {
-            //[cell.collectViewInside.mj_header beginRefreshing];
+//            [cell.collectViewInside.mj_header beginRefreshing];
             [self getDataWith:1];
         }
     }
@@ -1015,6 +1016,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *array = nil;
+    
     if (collectionView != _collectView) {
         if(indexPath.item == 2){
             HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
@@ -1026,13 +1029,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
             }
         }else if (indexPath.item > 3) {
+            array = _dataArray[_index];
             HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
-            JiuBaModel *jiubaM = _dataArray[_index][indexPath.item - 4];
+            NSLog(@"---->%ld",indexPath.item);
+            JiuBaModel *jiubaM = array[indexPath.item - 4];
             homeCell.jiuBaM = jiubaM;
         }
-        
-       
-        
     }else{
         LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)cell;
         if (hcell.collectViewInside) {
