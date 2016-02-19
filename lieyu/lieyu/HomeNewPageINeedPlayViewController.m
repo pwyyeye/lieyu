@@ -39,6 +39,7 @@
 
 #import "HomeMenusCollectionViewCell.h"
 #import "LYHomeCollectionViewCell.h"
+#import "HuoDongLinkViewController.h"
 
 
 #define PAGESIZE 20
@@ -1169,6 +1170,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
             huodong.content=[dic objectForKey:@"content"];
             [self.navigationController pushViewController:huodong animated:YES];
+        }else if([dic objectForKey:@"linkurl"]){
+            HuoDongLinkViewController *huodong2=[[HuoDongLinkViewController alloc] init];
+            huodong2.linkUrl=[dic objectForKey:@"linkUrl"];
+            [self.navigationController pushViewController:huodong2 animated:YES];
+            
         }
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"活动"]];
     }else if (ad_type.intValue ==3){

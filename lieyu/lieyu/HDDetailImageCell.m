@@ -20,7 +20,9 @@
 }
 
 - (void)configureImageView:(NSString *)imageUrl{
-    [_image sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+//    [_image sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    _image.image = [UIImage imageNamed:@"zhanwei"];
+//    _image.image = [UIImage imageNamed:@"zhanwei2"];
     float height = CGRectGetHeight(_image.frame);
     float width = CGRectGetWidth(_image.frame);
     float bili = height / width ;

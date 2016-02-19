@@ -213,9 +213,11 @@
     }];
 }
 
-+ (void)friendsJuBaoWithParams:(NSDictionary *)params complete:(void(^)(void))complete{
++ (void)friendsJuBaoWithParams:(NSDictionary *)params complete:(void(^)(NSString *))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_JuBaoDT baseURL:LY_SERVER params:params success:^(id response) {
-        [MyUtil showCleanMessage:response[@"message"]];
+//        [MyUtil showCleanMessage:response[@"message"]];
+        NSString *message = response[@"message"];
+        complete(message);
     } failure:^(NSError *err) {
         [MyUtil showCleanMessage:@"举报失败，请检查网络！"];
     }];

@@ -293,6 +293,19 @@ NSString * const ID = @"cycleCell";
     _imageURLStringsGroup = imageURLStringsGroup;
     
     NSMutableArray *temp = [NSMutableArray new];
+//
+//    for (id obj in imageURLStringsGroup) {
+//        NSString *urlString;
+//        if ([obj isKindOfClass:[NSString class]]) {
+//            urlString = obj;
+//        } else if ([obj isKindOfClass:[NSURL class]]) {
+//            NSURL *url = (NSURL *)obj;
+//            urlString = [url absoluteString];
+//        }
+//        if (urlString) {
+//            [temp addObject:urlString];
+//        }
+//    }
     [_imageURLStringsGroup enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * stop) {
         NSString *urlString;
         if ([obj isKindOfClass:[NSString class]]) {

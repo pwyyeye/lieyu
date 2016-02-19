@@ -26,14 +26,17 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.title = @"活动详情";
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.estimatedRowHeight = 100;
-    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailImageCell" bundle:nil] forCellReuseIdentifier:@"HDDetailImageCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailHeaderCell" bundle:nil] forCellReuseIdentifier:@"HDDetailHeaderCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailFootCell" bundle:nil] forCellReuseIdentifier:@"HDDetailFootCell"];
+//    _actionID = @"7";
+    if (_actionID) {
+        [self getData];
+    }
+    [self registerCell];
 //    [self configureRightItem];
 }
 
@@ -45,9 +48,30 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
+- (void)registerCell{
+    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailImageCell" bundle:nil] forCellReuseIdentifier:@"HDDetailImageCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailHeaderCell" bundle:nil] forCellReuseIdentifier:@"HDDetailHeaderCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailFootCell" bundle:nil] forCellReuseIdentifier:@"HDDetailFootCell"];
+}
+
+- (void)getData{
+    NSDictionary *dict = @{@"id":_actionID};
+    [LYHomePageHttpTool getActionDetail:dict complete:^(BarActivityList *action) {
+        _barActivity = action;
+        [self.tableView reloadData];
+    }];
+}
+
 #pragma mark - 分享
 - (void)shareAction{
 //微信，微博，朋友圈
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    if (self.navigationController.navigationBar.hidden == YES) {
+        [self.navigationController.navigationBar setHidden:NO];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -55,7 +79,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    if (_barActivity) {
+        return 3;
+    }else{
+        return 0;
+    }
 }
 
 - (NSDictionary *)feedBackDictionary{
@@ -83,13 +111,7 @@
     }else{
         HDDetailFootCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"HDDetailFootCell" owner:nil options:nil]firstObject];
         cell.decriptLbl.text = _barActivity.content;
-      cell.decriptLbl.text = @"fjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljk";
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailFooterCell"];
-//        if (!cell) {
-//            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ActionDetailFooterCell"];
-//            UIWebView *webView = [[UIWebView alloc]init];
-//            [cell addSubview:webView];
-//        }
+//      cell.decriptLbl.text = @"fjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljk";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -130,7 +152,7 @@
 #pragma mark - 查看套餐
 - (IBAction)YuDingClick:(UIButton *)sender {
     LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
-    woYaoDinWeiMainViewController.barid=_barActivity.barInfo.barid.intValue;
+    woYaoDinWeiMainViewController.barid=[_barActivity.barInfo.id intValue];
     woYaoDinWeiMainViewController.startTime = _barActivity.barInfo.startTime;
     woYaoDinWeiMainViewController.endTime = _barActivity.barInfo.endTime;
     [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];

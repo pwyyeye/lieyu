@@ -36,11 +36,12 @@
 #import "LYHotBarsViewController.h"
 #import "UIButton+WebCache.h"
 #import "BeerNewBarViewController.h"
-
+#import "HuoDongLinkViewController.h"
 #import "HomeMenusCollectionViewCell.h"
 #import "LYHomeCollectionViewCell.h"
 #import "recommendedTopic.h"
 #import "ActionPage.h"
+#import "ActionDetailViewController.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -956,7 +957,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 {
                     UICollectionViewCell *spaceCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
                     SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
-                    cycleScrollView.imageURLStringsGroup = self.bannerList;
+                    NSMutableArray *bannerList=[NSMutableArray new];
+                    for (NSDictionary *dic in self.newbannerList) {
+                        if ([dic objectForKey:@"img_url"]) {
+                            [bannerList addObject:[dic objectForKey:@"img_url"]];
+                        }
+                    }
+                    cycleScrollView.imageURLStringsGroup =bannerList;// self.bannerList;
                     cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
                     cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
                     [spaceCell addSubview:cycleScrollView];
@@ -1158,7 +1165,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }else if(ad_type.intValue ==2){
         //有活动内容才跳转
-        if ([dic objectForKey:@"content"]) {
+        if(![MyUtil isEmptyString:[dic objectForKey:@"linkurl"]]){
+            HuoDongLinkViewController *huodong2=[[HuoDongLinkViewController alloc] init];
+            huodong2.linkUrl=[dic objectForKey:@"linkurl"];
+            [self.navigationController pushViewController:huodong2 animated:YES];
+            
+        }else if ([dic objectForKey:@"content"]) {
             HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
             huodong.content=[dic objectForKey:@"content"];
             [self.navigationController pushViewController:huodong animated:YES];
@@ -1178,7 +1190,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSString *str = [NSString stringWithFormat:@"首页滑动视图套餐详情ID%@",linkid];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }else if (ad_type.intValue ==4){
-        //    4：拼客
+        //    4：拼客－>改为专题活动
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
         playTogetherMainViewController.title=@"我要拼客";
@@ -1186,6 +1198,21 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
         NSString *str = [NSString stringWithFormat:@"首页滑动视图我要拼客ID%@",linkid];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+    }else if (ad_type.intValue ==5){//专题
+        if (linkid==nil) {
+            return;
+        }
+        ActionPage *actionPage=[[ActionPage alloc] initWithNibName:@"ActionPage" bundle:nil];
+        actionPage.topicid=[linkid stringValue];
+        [self.navigationController pushViewController:actionPage animated:YES];
+    }else if (ad_type.intValue ==6){//专题活动
+        if (linkid==nil) {
+            return;
+        }
+        ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
+//        actionDetailVC.barActivity = aBarList;
+        actionDetailVC.actionID=[linkid stringValue];
+        [self.navigationController pushViewController:actionDetailVC animated:YES];
     }
     
 }
