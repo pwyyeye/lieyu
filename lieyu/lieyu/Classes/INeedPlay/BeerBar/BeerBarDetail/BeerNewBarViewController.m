@@ -774,7 +774,8 @@
             break;
         case 3:
         {
-            if(_beerBarDetail.signUsers.count) return 60;
+            CGFloat btnWidth = (SCREEN_WIDTH - 14 - (7 - 1) * 7)/7.f;
+            if(_beerBarDetail.signUsers.count) return btnWidth + 16;
             else return 0;
         }
             break;
