@@ -54,4 +54,7 @@
 @property(strong,nonatomic) NSString *wechat;
 @property(strong,nonatomic) NSString *qq;
 
+@property (nonatomic,copy) NSString *introduction;
+@property (nonatomic,copy) NSString *sex;
+
 @end

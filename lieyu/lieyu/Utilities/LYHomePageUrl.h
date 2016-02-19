@@ -62,4 +62,8 @@
 #define LY_ACTION_LIST @"activitiesOutAction.do?action=expand"
 //获取活动详情
 #define LY_ACTIVITY_DETAIL @"activitiesOutAction.do?action=custom"
+//获取所有签到
+#define LY_SIGN @"userSignAction.do?action=list"
+//签到
+#define LY_GOTOSIGN @"userSignAction.do?action=add"
 #endif

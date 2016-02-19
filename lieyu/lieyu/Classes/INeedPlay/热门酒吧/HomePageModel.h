@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @class JiuBaModel;
+@class RecommendedTopic;
 
 @interface HomePageModel : NSObject
 @property (nonatomic,strong) NSArray *banner;
@@ -16,4 +17,5 @@
 @property (nonatomic,strong) NSArray *filterImages;
 @property (nonatomic,strong) NSArray *newbanner;
 @property (nonatomic,strong) JiuBaModel *recommendedBar;
+@property (nonatomic,strong) RecommendedTopic *recommendedTopic;
 @end

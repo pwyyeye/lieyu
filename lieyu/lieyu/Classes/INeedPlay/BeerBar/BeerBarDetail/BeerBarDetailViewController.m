@@ -625,6 +625,9 @@
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"地图导航" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
     }
 }
+- (IBAction)signClick:(id)sender {
+    
+}
 
 #pragma 进入地图
 - (void)daohang{

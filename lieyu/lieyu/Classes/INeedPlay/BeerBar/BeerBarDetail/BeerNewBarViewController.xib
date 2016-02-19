@@ -20,11 +20,31 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-SZ-V8q">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="1ky-r2-Maa"/>
+                        <outlet property="delegate" destination="-1" id="8ds-cG-jhp"/>
+                    </connections>
+                </tableView>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgT-YK-qid">
+                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5px-QE-bIu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="N7U-S9-Cov"/>
+                    </constraints>
+                    <blurEffect style="extraLight"/>
+                </visualEffectView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nz-fQ-7yP">
                     <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单点" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tin-Bb-P53">
                             <rect key="frame" x="107" y="33" width="106" height="21"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="qlC-U1-uTl"/>
                             </constraints>
@@ -112,6 +132,7 @@
                             </connections>
                         </button>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="6JT-Ua-fUY" secondAttribute="trailing" id="0HE-M2-daS"/>
                         <constraint firstItem="1l6-iT-1e7" firstAttribute="centerX" secondItem="Tin-Bb-P53" secondAttribute="centerX" id="4Dc-BP-seH"/>
@@ -142,14 +163,6 @@
                         <constraint firstItem="Tin-Bb-P53" firstAttribute="width" secondItem="nnS-mG-iG5" secondAttribute="width" id="z1n-hM-Z1f"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-SZ-V8q">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="1ky-r2-Maa"/>
-                        <outlet property="delegate" destination="-1" id="8ds-cG-jhp"/>
-                    </connections>
-                </tableView>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navBarbg" translatesAutoresizingMaskIntoConstraints="NO" id="Fwq-Sp-gAa">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <constraints>
@@ -209,11 +222,59 @@
                         <action selector="shareClick:" destination="-1" eventType="touchUpInside" id="ozD-PH-aVk"/>
                     </connections>
                 </button>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y9E-Dm-l7q">
+                    <rect key="frame" x="137" y="454" width="60" height="60"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gO0-r1-Ell">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cE4-0h-nKR">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="awU-eI-FfP"/>
+                                    <constraint firstAttribute="height" constant="60" id="jVp-lN-JHE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                <inset key="titleEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="-31"/>
+                                <inset key="imageEdgeInsets" minX="17" minY="-20" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="签到" image="sign.png">
+                                    <color key="titleColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signClick:" destination="-1" eventType="touchUpInside" id="owg-XS-xox"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <constraints>
+                        <constraint firstItem="cE4-0h-nKR" firstAttribute="centerX" secondItem="y9E-Dm-l7q" secondAttribute="centerX" id="8BT-iV-tW9"/>
+                        <constraint firstAttribute="width" constant="60" id="Bpw-WZ-jEG"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="eF7-2u-RXT"/>
+                        <constraint firstAttribute="height" constant="60" id="hgF-aI-C2t"/>
+                        <constraint firstItem="cE4-0h-nKR" firstAttribute="centerY" secondItem="y9E-Dm-l7q" secondAttribute="centerY" id="sDb-gZ-A8z"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="yV3-MG-FAM"/>
+                    </constraints>
+                    <blurEffect style="extraLight"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="eF7-2u-RXT"/>
+                            <exclude reference="yV3-MG-FAM"/>
+                        </mask>
+                    </variation>
+                </visualEffectView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="3nz-fQ-7yP" secondAttribute="trailing" id="08g-kq-kjU"/>
                 <constraint firstItem="fcE-SZ-V8q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4m6-m3-8HN"/>
+                <constraint firstAttribute="bottom" secondItem="TgT-YK-qid" secondAttribute="bottom" id="AYU-Dq-1sm"/>
+                <constraint firstItem="3nz-fQ-7yP" firstAttribute="top" secondItem="y9E-Dm-l7q" secondAttribute="bottom" constant="10" id="Bnn-a1-zcf"/>
                 <constraint firstAttribute="bottom" secondItem="3nz-fQ-7yP" secondAttribute="bottom" id="CEA-o9-BSt"/>
                 <constraint firstAttribute="trailing" secondItem="7V2-dl-Wyd" secondAttribute="trailing" constant="7" id="Gyp-uV-AHv"/>
                 <constraint firstItem="0zl-aU-4MY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="J60-fb-jUq"/>
@@ -223,12 +284,15 @@
                 <constraint firstItem="Fwq-Sp-gAa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="SmD-vi-UpA"/>
                 <constraint firstItem="7V2-dl-Wyd" firstAttribute="leading" secondItem="gEV-Ne-pSz" secondAttribute="trailing" constant="22" id="YKJ-MU-qt4"/>
                 <constraint firstItem="Gu7-Ag-jA3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="26" id="ZH7-9B-flS"/>
+                <constraint firstItem="TgT-YK-qid" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="a5K-GJ-kCA"/>
                 <constraint firstItem="3nz-fQ-7yP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ant-Fv-Vlo"/>
+                <constraint firstItem="y9E-Dm-l7q" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cuz-qi-YvG"/>
                 <constraint firstAttribute="trailing" secondItem="Fwq-Sp-gAa" secondAttribute="trailing" id="h3E-PS-6Pc"/>
                 <constraint firstItem="gEV-Ne-pSz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="26" id="hLV-2G-cpN"/>
                 <constraint firstItem="fcE-SZ-V8q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iYH-Tw-FCl"/>
                 <constraint firstItem="0zl-aU-4MY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="ioj-ye-ZAo"/>
-                <constraint firstItem="3nz-fQ-7yP" firstAttribute="top" secondItem="fcE-SZ-V8q" secondAttribute="bottom" id="mtd-KR-gda"/>
+                <constraint firstItem="3nz-fQ-7yP" firstAttribute="top" secondItem="fcE-SZ-V8q" secondAttribute="bottom" constant="-49" id="mtd-KR-gda"/>
+                <constraint firstAttribute="trailing" secondItem="TgT-YK-qid" secondAttribute="trailing" id="rCu-qD-JVu"/>
                 <constraint firstAttribute="trailing" secondItem="fcE-SZ-V8q" secondAttribute="trailing" id="rMo-fR-Fak"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -243,5 +307,6 @@
         <image name="icon_pinke" width="30" height="30"/>
         <image name="navBarbg" width="2" height="64"/>
         <image name="share_black.png" width="15" height="14"/>
+        <image name="sign.png" width="13" height="28"/>
     </resources>
 </document>

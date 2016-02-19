@@ -36,6 +36,9 @@
 #import "LYBarIconTableViewCell.h"
 #import "LYBarScrollTableViewCell.h"
 #import "SignViewController.h"
+#import "ActionDetailViewController.h"
+#import "BarActivityList.h"
+#import "LYMyFriendDetailViewController.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
@@ -83,11 +86,7 @@
     //    _tableView.layer.zPosition = 2.0;
     
     //    self.navigationController.navigationBarHidden=YES;
-    _scrollView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,self.tableView.frame.size.height+2500);
-    self.scrollView.showsVerticalScrollIndicator=NO;
-    self.scrollView.showsHorizontalScrollIndicator=NO;
-    [self.scrollView setScrollEnabled:YES];
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     [self setupViewStyles];                                                     //tableView registe cell
     _scrollView.bounces = NO;
     
@@ -462,6 +461,7 @@
         case 3://iconlist
         {
             LYBarIconTableViewCell *iconCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarIconTableViewCell" forIndexPath:indexPath];
+            iconCell.iconArray = _beerBarDetail.signUsers;
             for (int i = 0; i < iconCell.btnArray.count; i ++) {
                 UIButton *btn = iconCell.btnArray[i];
                 btn.tag = i;
@@ -476,14 +476,16 @@
             case 4://activity
         {
             LYBarScrollTableViewCell *scrollCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarScrollTableViewCell" forIndexPath:indexPath];
-           // NSArray *array = @[@"http://source.lie98.com/20160127212540923.jpg?imageView2/0/w/160/h/160",@"http://source.lie98.com/20160127212540923.jpg?imageView2/0/w/160/h/160",@"http://source.lie98.com/20160127212540923.jpg?imageView2/0/w/160/h/160"];
+            scrollCell.activtyArray = _activityArray;
             for (int i = 0; i < scrollCell.activtyBtnArray.count; i ++) {
                 UIButton *btn = scrollCell.activtyBtnArray[i];
                 btn.tag = i;
                 [btn addTarget:self action:@selector(activtyClick:) forControlEvents:UIControlEventTouchUpInside];
             }
-            scrollCell.activtyArray = _activityArray;
             return scrollCell;
+           /* UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.backgroundColor = [UIColor redColor];
+            return cell; */
         }
             break;
         case 5:
@@ -509,20 +511,44 @@
     return cell;
 }
 
+#pragma mark － 签到
+- (IBAction)signClick:(id)sender {
+    NSDictionary *dic = @{@"barid":_beerBarId};
+    [LYHomePageHttpTool signWith:dic];
+}
 #pragma mark - 签到头像action
 - (void)iconClick:(UIButton *)button{
+    CustomerModel *cum = _beerBarDetail.signUsers[button.tag];
+    CustomerModel *addressBook = [[CustomerModel alloc]init];
+    addressBook.userid = cum.userid;
+    addressBook.username = cum.userInfo.username;
+    addressBook.userTag = cum.tag;
+    addressBook.tag = cum.tag;
+    addressBook.avatar_img = cum.userInfo.avatar_img;
+    addressBook.birthday = cum.userInfo.birthday;
+    addressBook.sex = cum.userInfo.sex;
+    addressBook.usernick = cum.userInfo.usernick;
     
+    LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    friendDetailViewController.title=@"详细信息";
+    friendDetailViewController.type=@"4";
+    friendDetailViewController.customerModel=addressBook;
+    [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }
 
 #pragma mark - 所有签到action
 - (void)moreClick:(UIButton *)button{
     SignViewController *signVC = [[SignViewController alloc]init];
+    signVC.barid = [NSString stringWithFormat:@"%@",_beerBarId];
     [self.navigationController pushViewController:signVC animated:YES];
 }
 
 #pragma mark - 活动action
 - (void)activtyClick:(UIButton *)button{
-    
+    BarActivityList *aBarList = _activityArray[button.tag];
+    ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
+    actionDetailVC.barActivity = aBarList;
+    [self.navigationController pushViewController:actionDetailVC animated:YES];
 }
 
 - (void)onTime{

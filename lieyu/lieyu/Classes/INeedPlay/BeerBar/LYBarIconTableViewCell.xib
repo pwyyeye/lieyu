@@ -18,7 +18,6 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMX-ZV-Uf7">
                         <rect key="frame" x="7" y="8" width="38" height="27"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" title="Button"/>
                     </button>
                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYU-5T-kZT">
                         <rect key="frame" x="52" y="8" width="37" height="27"/>
@@ -26,7 +25,6 @@
                         <constraints>
                             <constraint firstAttribute="width" secondItem="sYU-5T-kZT" secondAttribute="height" multiplier="1:1" id="6eC-Mn-m1p"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="6eC-Mn-m1p"/>
@@ -36,27 +34,22 @@
                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hMv-Zm-Ice">
                         <rect key="frame" x="96" y="8" width="38" height="27"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" title="Button"/>
                     </button>
                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8E-8Q-u5I">
                         <rect key="frame" x="141" y="8" width="38" height="27"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" title="Button"/>
                     </button>
                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqX-Ws-TQt">
                         <rect key="frame" x="186" y="8" width="38" height="27"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" title="Button"/>
                     </button>
                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2s-YW-f1I">
                         <rect key="frame" x="231" y="8" width="37" height="27"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" title="Button"/>
                     </button>
                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaC-Y8-mdD">
                         <rect key="frame" x="275" y="8" width="38" height="27"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" title="Button"/>
                     </button>
                 </subviews>
                 <constraints>
@@ -104,7 +97,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outletCollection property="btnArray" destination="IMX-ZV-Uf7" id="Eqs-BG-TST"/>
                 <outletCollection property="btnArray" destination="sYU-5T-kZT" id="5Yd-Ph-0gX"/>

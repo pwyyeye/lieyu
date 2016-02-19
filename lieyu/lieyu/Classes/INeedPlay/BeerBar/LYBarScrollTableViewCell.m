@@ -17,7 +17,7 @@
     // Initialization code
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.frame.size.height)];
-    _scrollView.backgroundColor = [UIColor redColor];
+//    _scrollView.backgroundColor = [UIColor redColor];
     [self addSubview:_scrollView];
     _scrollView.alwaysBounceHorizontal = NO;
     _scrollView.alwaysBounceHorizontal = YES;

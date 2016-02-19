@@ -11,4 +11,5 @@
 @interface LYBarIconTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
 @property (nonatomic,strong) UIButton *moreBtn;
+@property (nonatomic,strong) NSArray *iconArray;
 @end

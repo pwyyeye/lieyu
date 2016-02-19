@@ -17,6 +17,7 @@
         btn.layer.cornerRadius = btnWidth/2.f;
         btn.layer.masksToBounds = YES;
     }
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)layoutSubviews{

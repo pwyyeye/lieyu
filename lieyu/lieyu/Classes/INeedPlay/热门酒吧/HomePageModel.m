@@ -9,6 +9,7 @@
 #import "HomePageModel.h"
 #import "JiuBaModel.h"
 #import "bartypeslistModel.h"
+#import "RecommendedTopic.h"
 
 @implementation HomePageModel
 + (NSDictionary *)objectClassInArray

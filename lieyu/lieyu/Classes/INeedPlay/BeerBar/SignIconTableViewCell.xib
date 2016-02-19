@@ -15,45 +15,40 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0m7-Aa-Bu6">
+                    <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0m7-Aa-Bu6" customClass="SignButton">
                         <rect key="frame" x="274" y="7" width="34" height="34"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="0m7-Aa-Bu6" secondAttribute="height" multiplier="1:1" id="UvU-0c-MQC"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
                     </button>
-                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piL-st-2uo">
+                    <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="piL-st-2uo" customClass="SignButton">
                         <rect key="frame" x="222" y="7" width="33" height="34"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="piL-st-2uo" secondAttribute="height" multiplier="1:1" id="htl-Jd-HhJ"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
                     </button>
-                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PnU-gp-KpJ">
+                    <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PnU-gp-KpJ" customClass="SignButton">
                         <rect key="frame" x="169" y="7" width="34" height="34"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="PnU-gp-KpJ" secondAttribute="height" multiplier="1:1" id="JbN-yd-GNP"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
                     </button>
-                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2v4-mk-aSH">
+                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2v4-mk-aSH" customClass="SignButton">
                         <rect key="frame" x="117" y="7" width="33" height="34"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="2v4-mk-aSH" secondAttribute="height" multiplier="1:1" id="FGn-Rh-2Co"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPX-3j-HnI">
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPX-3j-HnI" customClass="SignButton">
                         <rect key="frame" x="64" y="7" width="34" height="34"/>
                         <color key="backgroundColor" red="0.3437237836" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="nPX-3j-HnI" secondAttribute="height" multiplier="1:1" id="mZu-vm-ngP"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
                     </button>
                 </subviews>
                 <constraints>

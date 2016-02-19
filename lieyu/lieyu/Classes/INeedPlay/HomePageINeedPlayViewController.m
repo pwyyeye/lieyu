@@ -39,7 +39,7 @@
 
 #import "HomeMenusCollectionViewCell.h"
 #import "LYHomeCollectionViewCell.h"
-
+#import "recommendedTopic.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -63,6 +63,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     CGFloat _contentOffSet_Height_YD,_contentOffSet_Height_BAR,_contentOffSetWidth;
     UICollectionView *_collectView;
     BOOL _isCollectView;
+    RecommendedTopic *_recommendedTopic;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -164,9 +165,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (_menuView.center.y < 45) {
+        [UIView animateWithDuration:0.3 animations:^{
+            
         [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
+        }];
     }else{
-        [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
+        [UIView animateWithDuration:0.3 animations:^{
+            [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
+        }];
     }
 }
 
@@ -206,6 +212,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     }completion:^(BOOL finished) {
                         NSLog(@"------>%f",cell.collectViewInside.contentInset.top);
 //                        cell.collectViewInside.contentInset = UIEdgeInsetsMake(91, 0, 0, 0);
+                        
                     }];
                 }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_YD > 90) {
                     [UIView animateWithDuration:0.3 animations:^{
@@ -579,6 +586,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 _fiterArray = homePageM.filterImages;
             }
             _recommendedBar = homePageM.recommendedBar;
+            _recommendedTopic = homePageM.recommendedTopic;
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
             
             LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
@@ -699,16 +707,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    //    NSArray *array = _dataArray[collectionView.tag];
-    //    if(array.count){
-    //    return array.count + 3;
-    //    }else{
-    //        return 0;
-    //    }
     if(collectionView == _collectView){
         return _dataArray.count;
     }else{
-        return ((NSArray *)_dataArray[_index]).count + 3;
+        NSArray *array =_dataArray[_index];
+        if (array.count) {
+            return array.count + 4;
+        }else{
+            return 0;
+        }
     }
 }
 
@@ -965,6 +972,22 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                
             }
                 break;
+                case 3:
+                {
+                    UICollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+                    UIImageView *imageV = [cell viewWithTag:10010];
+                    if (imageV) {
+                        [imageV removeFromSuperview];
+                    }
+                    UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
+                    imageV.layer.cornerRadius = 2;
+                    imageV.layer.masksToBounds = YES;
+                    imgV.tag = 10010;
+                    [imgV sd_setImageWithURL:[NSURL URLWithString:_recommendedTopic.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                    [cell addSubview:imgV];
+                    return cell;
+                }
+                    break;
             default:{
                 HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
                 return cell;
@@ -982,15 +1005,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if(_fiterArray.count == 4){
             for (int i = 0;i < 4;i++) {
                 UIButton *btn = menucell.btnArray[i];
-                [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
+                [btn sd_setImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
             }
             }
-        }else if (indexPath.item > 2) {
+        }else if (indexPath.item > 3) {
             HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
-            JiuBaModel *jiubaM = _dataArray[_index][indexPath.item - 3];
+            JiuBaModel *jiubaM = _dataArray[_index][indexPath.item - 4];
             homeCell.jiuBaM = jiubaM;
         }
+        
+       
+        
     }else{
         LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)cell;
         if (hcell.collectViewInside) {
@@ -1012,7 +1038,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     if(indexPath.item == 1){
         jiuBaM = _recommendedBar;
-    }else if(indexPath.item >= 3){
+    }else if(indexPath.item == 3){
+        
+    }else if(indexPath.item >= 4){
         if(array.count) jiuBaM = array[indexPath.item - 3];
     }else /*if(indexPath.item >= 2&& indexPath.item <= 5)*/ if (indexPath.item == 2){
         return;
