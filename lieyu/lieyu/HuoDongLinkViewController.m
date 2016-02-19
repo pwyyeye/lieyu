@@ -8,7 +8,8 @@
 
 #import "HuoDongLinkViewController.h"
 #import "BeerBarDetailViewController.h"
-
+#import "ActionDetailViewController.h"
+#import "ActionPage.h"
 #define HOMEPAGE_MTA @"HOMEPAGE"
 
 @interface HuoDongLinkViewController ()
@@ -38,7 +39,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-    self.navigationController.navigationBarHidden=YES;
+//    self.navigationController.navigationBarHidden=YES;
 }
 
 -(void)viewWillLayoutSubviews{
@@ -64,6 +65,9 @@
 
 -(void)getParam1:(NSString*)str1 withParam2:(NSString*)str2
 {
+    if ([MyUtil isEmptyString:str2]) {
+        return;
+    }
     NSLog(@"收到html传过来的参数：str1=%@,str2=%@",str1,str2);
     if (![MyUtil isEmptyString:str1]&& [str1 isEqualToString:@"bar"]) {
         //酒吧
@@ -73,7 +77,19 @@
         NSString *str = [NSString stringWithFormat:@"活动html打开酒吧ID%@",controller.beerBarId];
         [self.navigationController pushViewController:controller animated:YES];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+    }if (![MyUtil isEmptyString:str1]&& [str1 isEqualToString:@"topic"]){//专题
+      
+        ActionPage *actionPage=[[ActionPage alloc] initWithNibName:@"ActionPage" bundle:nil];
+        actionPage.topicid=str2;
+        [self.navigationController pushViewController:actionPage animated:YES];
+    }else if (![MyUtil isEmptyString:str1]&& [str1 isEqualToString:@"activity"]){//专题活动
+        
+        ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
+        actionDetailVC.actionID=str2;
+        [self.navigationController pushViewController:actionDetailVC animated:YES];
     }
+    
+    
 }
 
 

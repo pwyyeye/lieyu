@@ -1201,6 +1201,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
         ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
 //        actionDetailVC.barActivity = aBarList;
+        actionDetailVC.actionID=[linkid stringValue];
         [self.navigationController pushViewController:actionDetailVC animated:YES];
     }
     
