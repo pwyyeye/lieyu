@@ -13,6 +13,7 @@
 #import "CheHeModel.h"
 #import "CarInfoModel.h"
 #import "CarModel.h"
+@class BarActivityList;
 @interface LYHomePageHttpTool : NSObject
 + (LYHomePageHttpTool *)shareInstance;
 //一起玩列表
@@ -91,6 +92,9 @@
 + (void)getActivityListWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSMutableArray * result))compelete;
 //获取所有活动专题
 + (void)getActionList:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete;
+//获取活动详情
++ (void)getActionDetail:(NSDictionary *)paraDic complete:(void(^)(BarActivityList *action))complete;
+
 //获取所有签到
 + (void)getSignListWidth:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete;
 //签到
