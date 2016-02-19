@@ -568,7 +568,7 @@
             }
             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 95/183.f)];
             _tableHeaderImgView.tag = 10086;
-            [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject]];
+            [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             [_headerCell addSubview:_tableHeaderImgView];
             
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -658,6 +658,7 @@
         if (result) {
             AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
             CustomerModel *customerM = [[CustomerModel alloc]init];
+            customerM.userid = app.userModel.userid;
             UserModel *userM = [[UserModel alloc]init];
             userM.avatar_img = app.userModel.avatar_img;
             customerM.userInfo = userM;
@@ -691,6 +692,7 @@
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"4";
+    friendDetailViewController.navigationController.navigationBarHidden = NO;
     friendDetailViewController.customerModel=addressBook;
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }
