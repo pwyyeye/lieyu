@@ -11,4 +11,6 @@
 @interface HDDetailFootCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *decriptLbl;
 
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
 @end
