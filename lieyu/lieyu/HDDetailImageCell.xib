@@ -14,27 +14,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="263.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUc-yo-xDp">
-                        <rect key="frame" x="6" y="6" width="308" height="257.5"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UHb-zh-F6g" customClass="LPImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="308" height="257.5"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="UHb-zh-F6g" firstAttribute="top" secondItem="IUc-yo-xDp" secondAttribute="top" id="0ZY-Vc-fe4"/>
-                            <constraint firstAttribute="bottom" secondItem="UHb-zh-F6g" secondAttribute="bottom" id="H80-ao-3fM"/>
-                            <constraint firstItem="UHb-zh-F6g" firstAttribute="leading" secondItem="IUc-yo-xDp" secondAttribute="leading" id="ceC-m1-ERS"/>
-                            <constraint firstAttribute="trailing" secondItem="UHb-zh-F6g" secondAttribute="trailing" id="fmf-hC-x6w"/>
-                        </constraints>
-                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UHb-zh-F6g" customClass="LPImageView">
+                        <rect key="frame" x="6" y="4" width="308" height="259.5"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="IUc-yo-xDp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="0xk-gh-6vQ"/>
-                    <constraint firstAttribute="bottom" secondItem="IUc-yo-xDp" secondAttribute="bottom" id="3Sm-aV-3gj"/>
-                    <constraint firstAttribute="trailing" secondItem="IUc-yo-xDp" secondAttribute="trailing" constant="6" id="MaE-qA-5Jb"/>
-                    <constraint firstItem="IUc-yo-xDp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="eDH-tM-6So"/>
+                    <constraint firstAttribute="bottom" secondItem="UHb-zh-F6g" secondAttribute="bottom" id="AVv-k9-v8U"/>
+                    <constraint firstItem="UHb-zh-F6g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="DSN-Gf-NBO"/>
+                    <constraint firstItem="UHb-zh-F6g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Usk-oB-faH"/>
+                    <constraint firstAttribute="trailing" secondItem="UHb-zh-F6g" secondAttribute="trailing" constant="6" id="f7w-6R-58M"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
