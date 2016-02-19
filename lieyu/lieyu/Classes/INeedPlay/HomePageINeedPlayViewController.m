@@ -136,7 +136,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     [self setupViewStyles];
     //    if (_collectViewArray.count) {
-            [self getDataLocalAndReload];
+//            [self getDataLocalAndReload];
     //        UICollectionView *collectV = _collectViewArray[0];
     //        [collectV.mj_header beginRefreshing];
     //    }
