@@ -235,7 +235,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y > SCREEN_WIDTH/16*9 - self.image_layer.size.height) {
+    if (scrollView.contentOffset.y > SCREEN_WIDTH/183*95 - self.image_layer.size.height) {
         self.image_layer.hidden = NO;
         self.image_layer.layer.shadowRadius = 2;
         self.image_layer.layer.shadowOpacity = 0.5;
@@ -247,8 +247,8 @@
     
     if (_tableView.contentOffset.y < 0) {
         CGFloat y = scrollView.contentOffset.y;
-        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
-        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
+        CGFloat hegiht = SCREEN_WIDTH * 95 / 183.f;
+        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 183 / 95.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 183 / 95.f, hegiht -y);
     }
 }
 
@@ -408,7 +408,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if(_beerBarDetail)
     return 6;
+    else return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -580,6 +582,13 @@
     if(section == 0 || section == 5){
         return 0.00001;
     }else{
+        if (section == 3) {
+            if(_beerBarDetail.signCount.integerValue) return 8;
+            else return 0;
+        }else if(section == 4){
+            if(_activityArray.count) return 8;
+            else return 0;
+        }
         return 8;
     }
 }
@@ -611,12 +620,14 @@
             break;
         case 3:
         {
-            return 60;
+            if(_beerBarDetail.signCount.integerValue) return 60;
+            else return 0;
         }
             break;
             case 4:
         {
-            return 213;
+            if(_activityArray.count) return 213;
+            else return 0;
         }
             
         case 5:

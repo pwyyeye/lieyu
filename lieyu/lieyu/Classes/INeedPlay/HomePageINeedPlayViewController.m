@@ -40,6 +40,7 @@
 #import "HomeMenusCollectionViewCell.h"
 #import "LYHomeCollectionViewCell.h"
 #import "recommendedTopic.h"
+#import "ActionPage.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -204,15 +205,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }else{
                 if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 90) {
                     [UIView animateWithDuration:0.3 animations:^{
-                        
                         _menuView.center = CGPointMake(_menuView.center.x,45);
                         _titleImageView.alpha = 1.0;
                         _cityChooseBtn.alpha = 1.f;
                         _searchBtn.alpha = 1.f;
                     }completion:^(BOOL finished) {
-                        NSLog(@"------>%f",cell.collectViewInside.contentInset.top);
 //                        cell.collectViewInside.contentInset = UIEdgeInsetsMake(91, 0, 0, 0);
-                        
                     }];
                 }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_YD > 90) {
                     [UIView animateWithDuration:0.3 animations:^{
@@ -234,7 +232,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (_dataArray.count) {
         NSArray *array = _dataArray[_index];
         if(!array.count) {
-            [cell.collectViewInside.mj_header beginRefreshing];
+            //[cell.collectViewInside.mj_header beginRefreshing];
+            [self getDataWith:1];
         }
     }
     
@@ -410,7 +409,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self removeNavButtonAndImageView];
     
     self.navigationController.navigationBar.hidden = NO;
-    //    self.navigationController.navigationBarHidden = NO;
+        self.navigationController.navigationBarHidden = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -848,6 +847,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
         [cell.collectViewInside registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
         [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeMenusCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenusCollectionViewCell"];
+        cell.collectViewInside.alwaysBounceHorizontal = NO;
+        cell.collectViewInside.alwaysBounceVertical = YES;
         cell.collectViewInside.contentInset = UIEdgeInsetsMake(90, 0, 0, 0);
     __weak HomePageINeedPlayViewController *weakSelf = self;
     cell.collectViewInside.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
@@ -1039,7 +1040,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if(indexPath.item == 1){
         jiuBaM = _recommendedBar;
     }else if(indexPath.item == 3){
-        
+        ActionPage *aPage = [[ActionPage alloc]init];
+        aPage.topicid = _recommendedTopic.id;
+        [self.navigationController pushViewController:aPage animated:YES];
+        return;
     }else if(indexPath.item >= 4){
         if(array.count) jiuBaM = array[indexPath.item - 3];
     }else /*if(indexPath.item >= 2&& indexPath.item <= 5)*/ if (indexPath.item == 2){
