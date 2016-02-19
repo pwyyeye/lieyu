@@ -1045,7 +1045,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [self.navigationController pushViewController:aPage animated:YES];
         return;
     }else if(indexPath.item >= 4){
-        if(array.count) jiuBaM = array[indexPath.item - 3];
+        if(array.count) jiuBaM = array[indexPath.item - 4];
     }else /*if(indexPath.item >= 2&& indexPath.item <= 5)*/ if (indexPath.item == 2){
         return;
         //        LYHotBarViewController *hotJiuBarVC = [[LYHotBarViewController alloc]init];
