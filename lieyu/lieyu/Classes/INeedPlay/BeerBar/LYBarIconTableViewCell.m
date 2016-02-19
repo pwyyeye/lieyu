@@ -40,7 +40,7 @@
 - (void)setIconArray:(NSArray *)iconArray{
     _iconArray = iconArray;
     [_moreBtn setTitle:[NSString stringWithFormat:@"%u",iconArray.count] forState:UIControlStateNormal];
-    if(iconArray.count < 7) _moreBtn.hidden = YES;
+//    if(iconArray.count < 7) _moreBtn.hidden = YES;
     for (int i = 0; i < iconArray.count; i ++) {
         UIButton *btn = _btnArray[i];
         CustomerModel *customerM = iconArray[i];

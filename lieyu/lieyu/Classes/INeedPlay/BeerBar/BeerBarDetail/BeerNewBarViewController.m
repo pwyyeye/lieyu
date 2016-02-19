@@ -689,6 +689,7 @@
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"4";
+    friendDetailViewController.navigationController.navigationBarHidden = NO;
     friendDetailViewController.customerModel=addressBook;
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }
