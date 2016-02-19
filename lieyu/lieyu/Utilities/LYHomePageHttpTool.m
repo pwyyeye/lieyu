@@ -659,7 +659,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        [MyUtil showCleanMessage:@"获取数据失败！"];
+//        [MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }
@@ -679,7 +679,7 @@
             [MyUtil showCleanMessage:message];
         }
     } failure:^(NSError *err) {
-        [MyUtil showCleanMessage:@"获取数据失败"];
+//        [MyUtil showCleanMessage:@"获取数据失败"];
     }];
 }
 

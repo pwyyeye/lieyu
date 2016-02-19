@@ -23,7 +23,7 @@
     float contentOffsetY;
     int rows;
     UIButton *button;
-    
+    UILabel *warningLabel;
     int start;
 }
 @end
@@ -35,7 +35,9 @@
 //    _tableView.backgroundColor = [UIColor whiteColor];
     contentOffsetY = MAXFLOAT;
     page = 1;
+    _topicid = @"0";
     actionList = [NSMutableArray array];
+    self.title = @"活动专题";
     self.tableView.bounces = YES;
     _tableView.dataSource = self;
     _tableView.delegate = self;
@@ -137,9 +139,14 @@
     //获取数据
     NSDictionary *dic = @{@"start":[NSString stringWithFormat:@"%d",start],
                           @"limit":@"10",
-                          @"topicid":_topicid};
+//                          @"topicid":@"0",
+                          @"topicid":_topicid
+                          };
     [LYHomePageHttpTool getActivityListWithPara:dic compelte:^(NSMutableArray *result) {
         if (result.count > 0) {
+            if(warningLabel){
+                [warningLabel removeFromSuperview];
+            }
             [actionList addObjectsFromArray:result];
             [self.tableView reloadData];
             if(self.tableView.contentSize.height < SCREEN_HEIGHT - 64){
@@ -147,7 +154,19 @@
             }
         }else{
             //没有更多数据了
-            [self StopBottomBounds:YES];
+            if (actionList.count <= 0) {
+                //没有活动
+                warningLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 75, SCREEN_HEIGHT / 2 - 60, 150, 20)];
+                warningLabel.font = [UIFont systemFontOfSize:14];
+                warningLabel.textColor = RGB(186, 40, 227);
+                warningLabel.text = @"该专题暂无活动";
+                warningLabel.textAlignment = NSTextAlignmentCenter;
+                [self.tableView addSubview:warningLabel];
+                [self StopBottomBounds:NO];
+                
+            }else{
+                [self StopBottomBounds:YES];
+            }
         }
     }];
 }
