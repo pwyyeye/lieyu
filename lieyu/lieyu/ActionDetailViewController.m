@@ -26,6 +26,7 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.title = @"活动详情";
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.showsVerticalScrollIndicator = NO;
@@ -48,6 +49,13 @@
 #pragma mark - 分享
 - (void)shareAction{
 //微信，微博，朋友圈
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    if (self.navigationController.navigationBar.hidden == YES) {
+        [self.navigationController.navigationBar setHidden:NO];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -83,13 +91,7 @@
     }else{
         HDDetailFootCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"HDDetailFootCell" owner:nil options:nil]firstObject];
         cell.decriptLbl.text = _barActivity.content;
-      cell.decriptLbl.text = @"fjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljk";
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActionDetailFooterCell"];
-//        if (!cell) {
-//            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ActionDetailFooterCell"];
-//            UIWebView *webView = [[UIWebView alloc]init];
-//            [cell addSubview:webView];
-//        }
+//      cell.decriptLbl.text = @"fjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljkfjdkshakjfdhsfhsdkjhfjsfgkdsiuoewuroipweutrihdjskfkdlsanfjdkslhfjkladhsjklfhdsajfhlkdshfkljhakdshlfkdhsajlkfhdklsjhfkyuyroietyireytuiowrhfjlkdsvnl,vnkjshjfklhgfdlsjgl;jwoiretpuuriehjgllskghfjkdlhgjklfdhlgjkhfugoeujfsljfkldjglfdhgiurheuihrkjlehjkrehgljk";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
