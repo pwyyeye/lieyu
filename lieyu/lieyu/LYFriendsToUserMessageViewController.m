@@ -604,6 +604,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    _section = indexPath.section;
     FriendsRecentModel *recentM = _dataArray[indexPath.section];
     _section = indexPath.section;
     if (indexPath.row >= 4 && indexPath.row <= 8) {
@@ -740,7 +741,8 @@
 //    SCREEN_HEIGHT - 249- 100 - 129
     
     if(_isCommentToUser){
-        FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_section];
+        FriendsRecentModel *recentM = _dataArray[_section];
+//        FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_section];
         FriendsCommentModel *commentM = recentM.commentList[_indexRow - 4];
         _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
     }
@@ -841,7 +843,6 @@
     __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsCommentWithParams:paraDic compelte:^(bool resutl,NSString *commentId) {
         if (resutl) {
-            NSLog(@"--->%ld",recentM.commentList.count + 2);
             defaultComment = nil;
             FriendsCommentModel *commentModel = [[FriendsCommentModel alloc]init];
             commentModel.comment = _commentView.textField.text;
