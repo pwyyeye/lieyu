@@ -12,10 +12,13 @@
 #import "EScrollerView.h"
 #import "LYAlert.h"
 #import "CityChooseButton.h"
+#import "EmptyView.h"
 
 @interface HomePageINeedPlayViewController : LYBaseViewController<UINavigationControllerDelegate,LYChooseCityDelegate>
 
 @property(strong,nonatomic) LYAlert *alertView;
+
+@property(strong,nonatomic) UIView *emptyView;
 
 
 @end

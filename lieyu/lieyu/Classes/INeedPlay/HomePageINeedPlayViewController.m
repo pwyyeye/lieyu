@@ -78,6 +78,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 @end
 
 @implementation HomePageINeedPlayViewController
+{
+    SDCycleScrollView *cycleScrollView ;
+}
 
 - (void)viewDidLoad
 {
@@ -106,6 +109,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.view addSubview:_collectView];
     
+//    _emptyView=[[UIView alloc] initWithFrame:self.view.bounds];
+//    _emptyView.backgroundColor=[UIColor whiteColor];
+//    EmptyView *empView=[[EmptyView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-50, 100, 100)];
+//    [empView addUntitled1Animation];
+//    [_emptyView addSubview:empView];
+    
+//    [self.view addSubview:_emptyView];
+    cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+
+    [self getDataLocalAndReload];
     [self getDataWith:0];
     
     //    for (int i = 0; i < 2; i ++) {
@@ -126,15 +139,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //    }
     
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
-        //        self.edgesForExtendedLayout = UIRectEdgeNone;
-        //        self.extendedLayoutIncludesOpaqueBars = NO;
-        //        self.modalPresentationCapturesStatusBarAppearance = NO;
-    }
-    [self setupViewStyles];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    
+//    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
+//        //        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        //        self.extendedLayoutIncludesOpaqueBars = NO;
+//        //        self.modalPresentationCapturesStatusBarAppearance = NO;
+//    }
+//    [self setupViewStyles];
     //    if (_collectViewArray.count) {
 //            [self getDataLocalAndReload];
     //        UICollectionView *collectV = _collectViewArray[0];
@@ -421,9 +434,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [super viewWillDisappear:animated];
     [self removeNavButtonAndImageView];
     
-    self.navigationController.navigationBar.hidden = NO;
-        self.navigationController.navigationBarHidden = NO;
-    [self.navigationController setNavigationBarHidden:NO];
+//    self.navigationController.navigationBar.hidden = NO;
+//        self.navigationController.navigationBarHidden = NO;
+//    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -593,9 +606,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     __weak __typeof(self)weakSelf = self;
     [bus getToPlayOnHomeList2:hList pageIndex:_index results:^(LYErrorMessage * ermsg,HomePageModel *homePageM){
+//         [_emptyView removeFromSuperview];
         if (ermsg.state == Req_Success)
         {
             if(tag >= 2) return;
+           
             //            UICollectionView *collectView = _collectViewArray[tag];
             NSMutableArray *array = _dataArray[tag];
             if((tag == 0 && _currentPage_YD == 1) || (tag == 1 && _currentPage_Bar == 1)) {
@@ -611,6 +626,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             
             LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
             [cell.collectViewInside reloadData];
+            
+            
 //            cell.recommendedBar = _recommendedBarArray[_index];
 //            cell.recommendedBar = homePageM.recommendedBar;
 //            cell.bannerList = homePageM.banner;
@@ -869,7 +886,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == _collectView) {
         LYHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeCollectionViewCell" forIndexPath:indexPath];
-        
         cell.collectViewInside.dataSource = self;
         cell.collectViewInside.delegate = self;
         [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
@@ -973,13 +989,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         return cell;
     }else{
 //        LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-          LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
+//          LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
             switch (indexPath.item) {
                 case 0:
                 {
-                    UICollectionViewCell *spaceCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-                    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
-                    NSMutableArray *bannerList=[NSMutableArray new];
+                    UICollectionViewCell *spaceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+                                      NSMutableArray *bannerList=[NSMutableArray new];
+                    [cycleScrollView removeFromSuperview];
                     for (NSDictionary *dic in self.newbannerList) {
                         if ([dic objectForKey:@"img_url"]) {
                             [bannerList addObject:[dic objectForKey:@"img_url"]];
@@ -993,16 +1009,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
                 break;
             case 1:{
-                HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                if (_recommendedBar) {
-                    cell.jiuBaM = _recommendedBar;
-                }
+                HomeBarCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+             
                 return cell;
                 }
                     break;
             case 2://才当
             {
-                HomeMenusCollectionViewCell *menucell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@
+                HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@
                                                          "HomeMenusCollectionViewCell"forIndexPath:indexPath];
                 return menucell;
                
@@ -1010,7 +1024,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 break;
                 case 3:
                 {
-                    UICollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+                    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
                     UIImageView *imageV = [cell viewWithTag:10010];
                     if (imageV) {
                         [imageV removeFromSuperview];
@@ -1028,7 +1042,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     break;
             default:{
                 NSLog(@"---->%ld",indexPath.item);
-                HomeBarCollectionViewCell *barCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+                HomeBarCollectionViewCell *barCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
                 return barCell;
                 
                /* HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
@@ -1042,7 +1056,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     if (collectionView != _collectView) {
-        if(indexPath.item == 2){
+        if (indexPath.item==1) {
+            if (_recommendedBar) {
+                ((HomeBarCollectionViewCell *)cell).jiuBaM = _recommendedBar;
+            }
+        }else if(indexPath.item == 2){
             HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
             if(_fiterArray.count == 4){
             for (int i = 0;i < 4;i++) {

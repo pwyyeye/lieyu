@@ -44,7 +44,7 @@
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
     [self ConfigureRightItem];
     [self registerTableViewCell];
     [self addRefreshAction];
@@ -52,17 +52,16 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
 
-    
     [self initAllPropertites];
     [self getData];
 
 }
 
 -(void)viewWillLayoutSubviews{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"滑动了多少：%f",scrollView.contentOffset.y);
