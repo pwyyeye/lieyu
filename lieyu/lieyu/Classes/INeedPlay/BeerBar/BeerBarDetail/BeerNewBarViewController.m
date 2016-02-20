@@ -76,6 +76,8 @@
 @property(nonatomic,assign)CGFloat dyBarDetailH;
 @property(nonatomic,strong) BeerBarOrYzhDetailModel *beerBarDetail;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *bottomEffectView;
+@property (weak, nonatomic) IBOutlet UILabel *label_yuding;
+@property (weak, nonatomic) IBOutlet UIImageView *imgV_yuding;
 
 @end
 
@@ -228,12 +230,12 @@
              
              if (!_beerBarDetail.isSign) {
                  _bottomEffectView.hidden = YES;
-//                 _bottomBarView.hidden = YES;
-//                 [_bottomBarView removeFromSuperview];
-//                 [self.view sendSubviewToBack:_bottomBarView];
                  [self.view bringSubviewToFront:_tableView];
                  [self.view bringSubviewToFront:effectView];
-                 
+                 [self.view bringSubviewToFront:_btnBack];
+                 [self.view bringSubviewToFront:_btn_collect];
+                 [self.view bringSubviewToFront:_btn_like];
+                 [self.view bringSubviewToFront:_btnShare];
              }
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
