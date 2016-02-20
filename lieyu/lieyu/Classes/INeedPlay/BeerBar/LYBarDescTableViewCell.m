@@ -13,6 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,13 +23,7 @@
 }
 
 - (void)drawRect:(CGRect)rect{
-    _image_yinHao_left = [[UIImageView alloc]initWithFrame:CGRectMake(-40, 23, 24, 24)];
-    _image_yinHao_left.image = [UIImage imageNamed:@"yinHao"];
-    [self addSubview:_image_yinHao_left];
-    
-    _image_yinHao_right = [[UIImageView alloc]initWithFrame:CGRectMake(-100, 23, 24, 24)];
-    _image_yinHao_right.image = [UIImage imageNamed:@"yinHaoRight"];
-    [self addSubview:_image_yinHao_right];
+   
     
 //    _label_left = [[UILabel alloc]initWithFrame:CGRectMake(0, 23, 25, 25)];
 //    _label_left.text = @"“";
@@ -45,17 +40,41 @@
 //    [self addSubview:_label_right];
     
     
-    _label_descr = [[UILabel alloc]initWithFrame:CGRectMake(87, 10, 144, 48)];
-    _label_descr.numberOfLines = 0;
-    _label_descr.textAlignment = NSTextAlignmentCenter;
-    _label_descr.font = [UIFont boldSystemFontOfSize:18];
-    _label_descr.textColor = RGBA(26, 26, 26, 1);
-    [self addSubview:_label_descr];
+    
 }
 
 - (void)setTitle:(NSString *)title{
     _title = title;
+    UILabel *view_label = (UILabel *)[self viewWithTag:10086];
+    if (view_label) {
+        [view_label removeFromSuperview];
+    }
+    UIImageView *view_imgLeft = (UIImageView *)[self viewWithTag:100861];
+    if (view_imgLeft) {
+        [view_imgLeft removeFromSuperview];
+    }
+    UIImageView *view_imgRight = (UIImageView *)[self viewWithTag:100862];
+    if (view_imgRight) {
+        [view_imgRight removeFromSuperview];
+    }
+    _label_descr = [[UILabel alloc]initWithFrame:CGRectMake(87, 10, 144, 48)];
+    _label_descr.numberOfLines = 0;
+    _label_descr.tag = 10086;
+    _label_descr.textAlignment = NSTextAlignmentCenter;
+    _label_descr.font = [UIFont boldSystemFontOfSize:18];
+    _label_descr.textColor = RGBA(26, 26, 26, 1);
+    [self addSubview:_label_descr];
     _label_descr.text = title;
+    
+    _image_yinHao_left = [[UIImageView alloc]initWithFrame:CGRectMake(-40, 23, 24, 24)];
+    _image_yinHao_left.image = [UIImage imageNamed:@"yinHao"];
+    _image_yinHao_left.tag = 100861;
+    [self addSubview:_image_yinHao_left];
+    
+    _image_yinHao_right = [[UIImageView alloc]initWithFrame:CGRectMake(-100, 23, 24, 24)];
+    _image_yinHao_right.image = [UIImage imageNamed:@"yinHaoRight"];
+    _image_yinHao_right.tag = 100862;
+    [self addSubview:_image_yinHao_right];
     
     CGSize strSize = [title boundingRectWithSize:CGSizeMake(MAXFLOAT, 48.0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:18]} context:nil].size;
     
