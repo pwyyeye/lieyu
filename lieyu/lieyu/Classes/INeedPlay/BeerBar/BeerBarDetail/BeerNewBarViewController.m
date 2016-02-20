@@ -235,7 +235,7 @@
                  [self.view bringSubviewToFront:_btnBack];
                  [self.view bringSubviewToFront:_btn_collect];
                  [self.view bringSubviewToFront:_btn_like];
-                 [self.view bringSubviewToFront:_btnShare];
+                 [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ];
              }
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
@@ -395,7 +395,7 @@
 // load webView
 - (void)loadWebView{
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2500)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0,55, SCREEN_WIDTH, 2500)];
     _webView.backgroundColor = [UIColor redColor];
     _webView.tintColor = [UIColor redColor];
     _webView.delegate = self;
@@ -644,8 +644,6 @@
         case 5:
         {
             LYBarDescTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTableViewCell" forIndexPath:indexPath];
-            barDescTitleCell.title = self.beerBarDetail.subtitle;
-            barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
 //            barDescTitleCell con
             
             UIWebView *webV = [barDescTitleCell viewWithTag:10086];
@@ -653,7 +651,9 @@
                 [webV removeFromSuperview];
             }
             
+            barDescTitleCell.title = self.beerBarDetail.subtitle;
             [barDescTitleCell addSubview:_webView];
+            barDescTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             return barDescTitleCell;
             
