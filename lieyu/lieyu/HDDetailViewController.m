@@ -216,7 +216,7 @@
         }else if ([_YUModel.allowSex isEqualToString:@"1"]){
             _HDDetailCell.joinedpro_label.text = @"只邀请男生";
         }else{
-            _HDDetailCell.joinedpro_label.text = @"全部";
+            _HDDetailCell.joinedpro_label.text = @"邀请所有人";
         }
         _HDDetailCell.address_label.text = orderInfo.barinfo.address;
         _HDDetailCell.barName_label.text = orderInfo.barinfo.barname;
