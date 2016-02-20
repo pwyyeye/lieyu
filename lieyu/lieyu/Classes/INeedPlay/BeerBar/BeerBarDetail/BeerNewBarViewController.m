@@ -673,7 +673,7 @@
         [alertView show];
     }else{
         CGFloat distance = [[LYUserLocation alloc] configureDistance:_beerBarDetail.latitude And:_beerBarDetail.longitude];
-    if (distance >=0 && distance <= _beerBarDetail.allowDistance.floatValue) {
+        if ((distance >=0 && distance <= _beerBarDetail.allowDistance.floatValue)||_beerBarDetail.allowDistance==nil?YES:_beerBarDetail.allowDistance.intValue==0) {
         NSDictionary *dic = @{@"barid":_beerBarId};
         [LYHomePageHttpTool signWith:dic complete:^(bool result) {
             if (result) {

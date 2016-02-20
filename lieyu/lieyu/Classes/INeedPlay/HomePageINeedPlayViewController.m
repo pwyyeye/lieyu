@@ -78,7 +78,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 @end
 
 @implementation HomePageINeedPlayViewController
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -106,7 +105,17 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.view addSubview:_collectView];
     
-    [self getDataWith:0]; 
+//    _emptyView=[[UIView alloc] initWithFrame:self.view.bounds];
+//    _emptyView.backgroundColor=[UIColor whiteColor];
+//    EmptyView *empView=[[EmptyView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-50, 100, 100)];
+//    [empView addUntitled1Animation];
+//    [_emptyView addSubview:empView];
+    
+//    [self.view addSubview:_emptyView];
+    
+
+    [self getDataLocalAndReload];
+    [self getDataWith:0];
     
     //    for (int i = 0; i < 2; i ++) {
     //
@@ -126,15 +135,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //    }
     
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
-        //        self.edgesForExtendedLayout = UIRectEdgeNone;
-        //        self.extendedLayoutIncludesOpaqueBars = NO;
-        //        self.modalPresentationCapturesStatusBarAppearance = NO;
-    }
-    [self setupViewStyles];
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    
+//    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)) {
+//        //        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        //        self.extendedLayoutIncludesOpaqueBars = NO;
+//        //        self.modalPresentationCapturesStatusBarAppearance = NO;
+//    }
+//    [self setupViewStyles];
     //    if (_collectViewArray.count) {
 //            [self getDataLocalAndReload];
     //        UICollectionView *collectV = _collectViewArray[0];
@@ -424,9 +433,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [super viewWillDisappear:animated];
     [self removeNavButtonAndImageView];
     
-    self.navigationController.navigationBar.hidden = NO;
-        self.navigationController.navigationBarHidden = NO;
-    [self.navigationController setNavigationBarHidden:NO];
+//    self.navigationController.navigationBar.hidden = NO;
+//        self.navigationController.navigationBarHidden = NO;
+//    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -596,9 +605,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     __weak __typeof(self)weakSelf = self;
     [bus getToPlayOnHomeList2:hList pageIndex:_index results:^(LYErrorMessage * ermsg,HomePageModel *homePageM){
+//         [_emptyView removeFromSuperview];
         if (ermsg.state == Req_Success)
         {
             if(tag >= 2) return;
+           
             //            UICollectionView *collectView = _collectViewArray[tag];
             NSMutableArray *array = _dataArray[tag];
             if((tag == 0 && _currentPage_YD == 1) || (tag == 1 && _currentPage_Bar == 1)) {
@@ -614,6 +625,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             
             LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
             [cell.collectViewInside reloadData];
+            
+            
 //            cell.recommendedBar = _recommendedBarArray[_index];
 //            cell.recommendedBar = homePageM.recommendedBar;
 //            cell.bannerList = homePageM.banner;
@@ -871,7 +884,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == _collectView) {
         LYHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeCollectionViewCell" forIndexPath:indexPath];
-        
         cell.collectViewInside.dataSource = self;
         cell.collectViewInside.delegate = self;
         [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
@@ -975,18 +987,19 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         return cell;
     }else{
 //        LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-          LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
+//          LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
             switch (indexPath.item) {
                 case 0:
                 {
-                    UICollectionViewCell *spaceCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-                    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
-                    NSMutableArray *bannerList=[NSMutableArray new];
+                    UICollectionViewCell *spaceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+                                      NSMutableArray *bannerList=[NSMutableArray new];
+//                    [cycleScrollView removeFromSuperview];
                     for (NSDictionary *dic in self.newbannerList) {
                         if ([dic objectForKey:@"img_url"]) {
                             [bannerList addObject:[dic objectForKey:@"img_url"]];
                         }
                     }
+                     SDCycleScrollView *cycleScrollView  = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
                     cycleScrollView.imageURLStringsGroup =bannerList;// self.bannerList;
                     cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
                     cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
@@ -995,16 +1008,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
                 break;
             case 1:{
-                HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                if (_recommendedBar) {
-                    cell.jiuBaM = _recommendedBar;
-                }
+                HomeBarCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+             
                 return cell;
                 }
                     break;
             case 2://才当
             {
-                HomeMenusCollectionViewCell *menucell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@
+                HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@
                                                          "HomeMenusCollectionViewCell"forIndexPath:indexPath];
                 return menucell;
                
@@ -1012,7 +1023,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 break;
                 case 3:
                 {
-                    UICollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+                    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
                     UIImageView *imageV = [cell viewWithTag:10010];
                     if (imageV) {
                         [imageV removeFromSuperview];
@@ -1030,7 +1041,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     break;
             default:{
                 NSLog(@"---->%ld",indexPath.item);
-                HomeBarCollectionViewCell *barCell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+                HomeBarCollectionViewCell *barCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
                 return barCell;
                 
                /* HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
@@ -1044,7 +1055,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     if (collectionView != _collectView) {
-        if(indexPath.item == 2){
+        if (indexPath.item==1) {
+            if (_recommendedBar) {
+                ((HomeBarCollectionViewCell *)cell).jiuBaM = _recommendedBar;
+            }
+        }else if(indexPath.item == 2){
             HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
             if(_fiterArray.count == 4){
             for (int i = 0;i < 4;i++) {
@@ -1248,55 +1263,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     
 }
-/*
- -(void)EScrollerViewDidClicked:(NSUInteger)index{
- NSDictionary *dic = _newbannerList [index];
- NSNumber *ad_type=[dic objectForKey:@"ad_type"];
- NSNumber *linkid=[dic objectForKey:@"linkid"];
- //    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客
- //    "linkid": 1 //对应的id  比如酒吧 就是对应酒吧id  套餐就是对应套餐id 活动就对应活动页面的id
- if(ad_type.intValue ==1){
- //酒吧
- BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
- 
- controller.beerBarId = linkid;
- NSString *str = [NSString stringWithFormat:@"首页滑动视图酒吧ID%@",linkid];
- [self.navigationController pushViewController:controller animated:YES];
- [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
- }else if(ad_type.intValue ==2){
- //有活动内容才跳转
- if ([dic objectForKey:@"content"]) {
- HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
- huodong.content=[dic objectForKey:@"content"];
- [self.navigationController pushViewController:huodong animated:YES];
- }
- [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"活动"]];
- }else if (ad_type.intValue ==3){
- //    套餐/3
- NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
- [dateFormatter setDateFormat:@"yyyy-MM-dd"];
- NSString *dateStr=[dateFormatter stringFromDate:[NSDate new]];
- UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
- DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
- taoCanXQViewController.title=@"套餐详情";
- taoCanXQViewController.smid=linkid.intValue;
- taoCanXQViewController.dateStr=dateStr;
- [self.navigationController pushViewController:taoCanXQViewController animated:YES];
- NSString *str = [NSString stringWithFormat:@"首页滑动视图套餐详情ID%@",linkid];
- [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
- }else if (ad_type.intValue ==4){
- //    4：拼客
- UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
- LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
- playTogetherMainViewController.title=@"我要拼客";
- playTogetherMainViewController.smid=linkid.intValue;
- [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
- NSString *str = [NSString stringWithFormat:@"首页滑动视图我要拼客ID%@",linkid];
- [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
- }
- 
- }
- */
+
 /*
  #pragma mark - Navigation
  

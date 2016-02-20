@@ -976,6 +976,8 @@
 		AD79E0851C775DFC00C45B97 /* empyImage120@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0811C775DFC00C45B97 /* empyImage120@3x.png */; };
 		AD79E0861C775DFC00C45B97 /* empyImage300@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0821C775DFC00C45B97 /* empyImage300@2x.png */; };
 		AD79E0871C775DFC00C45B97 /* empyImage300@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0831C775DFC00C45B97 /* empyImage300@3x.png */; };
+		AD79E0921C781C9300C45B97 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E08F1C781C9300C45B97 /* EmptyView.m */; };
+		AD79E0931C781C9300C45B97 /* QCMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E0911C781C9300C45B97 /* QCMethod.m */; };
 		AD8899BC1B9AFE61007BCC7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BB1B9AFE61007BCC7C /* main.m */; };
 		AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BE1B9AFE61007BCC7C /* AppDelegate.m */; };
 		AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */; };
@@ -2644,6 +2646,10 @@
 		AD79E0811C775DFC00C45B97 /* empyImage120@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empyImage120@3x.png"; sourceTree = "<group>"; };
 		AD79E0821C775DFC00C45B97 /* empyImage300@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empyImage300@2x.png"; sourceTree = "<group>"; };
 		AD79E0831C775DFC00C45B97 /* empyImage300@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empyImage300@3x.png"; sourceTree = "<group>"; };
+		AD79E08E1C781C9300C45B97 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
+		AD79E08F1C781C9300C45B97 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
+		AD79E0901C781C9300C45B97 /* QCMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCMethod.h; sourceTree = "<group>"; };
+		AD79E0911C781C9300C45B97 /* QCMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCMethod.m; sourceTree = "<group>"; };
 		AD8899B61B9AFE61007BCC7C /* lieyu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lieyu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899BA1B9AFE61007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8899BB1B9AFE61007BCC7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -6664,6 +6670,12 @@
 				D7A230CA1BA7152000E8B51B /* Cell */,
 				D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */,
 				D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */,
+				AD79E08E1C781C9300C45B97 /* EmptyView.h */,
+				AD79E08F1C781C9300C45B97 /* EmptyView.m */,
+				AD79E0901C781C9300C45B97 /* QCMethod.h */,
+				AD79E0911C781C9300C45B97 /* QCMethod.m */,
+				853C36161C72F41300F1703B /* HomeNewPageINeedPlayViewController.h */,
+				853C36171C72F41300F1703B /* HomeNewPageINeedPlayViewController.m */,
 			);
 			name = iNeedPaly;
 			sourceTree = "<group>";
@@ -7829,6 +7841,7 @@
 				15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */,
 				15CC31E41BEB2C5B00DDD03F /* FMResultSet.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
+				AD79E0931C781C9300C45B97 /* QCMethod.m in Sources */,
 				3879F2061C0BE19500B72629 /* LPSelectButton.m in Sources */,
 				A20100E11BA94404009283D1 /* WQCalendarGridView.m in Sources */,
 				ADF88E531C1029F600CF5DED /* LYEvaluationController.m in Sources */,
@@ -8161,6 +8174,7 @@
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
 				8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */,
 				ADF88EAE1C1197C400CF5DED /* UIScrollView+MJRefresh.m in Sources */,
+				AD79E0921C781C9300C45B97 /* EmptyView.m in Sources */,
 				15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */,
 				38E5D6EA1C0F106F004B49D2 /* LPBuyPriceCell.m in Sources */,
 				15CC31E31BEB2C5B00DDD03F /* FMDatabaseQueue.m in Sources */,
