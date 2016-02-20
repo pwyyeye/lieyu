@@ -31,6 +31,7 @@
     [super viewDidLoad];
     _currentPage = 0;
     PAGESIZE = 20;
+    self.title = @"所有签到";
     self.navigationController.title = @"所有签到";
     // Do any additional setup after loading the view from its nib.
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -44,7 +45,12 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)getData{
@@ -145,22 +151,28 @@
 }
 
 - (void)iconClick:(SignButton *)button{
+    
     NSArray *array = _dataArray[button.section];
     CustomerModel *cum = array[button.tag];
     CustomerModel *addressBook = [[CustomerModel alloc]init];
-    addressBook.userid = cum.userid;
-    addressBook.username = cum.userInfo.username;
-    addressBook.userTag = cum.tag;
-    addressBook.tag = cum.tag;
-    addressBook.avatar_img = cum.userInfo.avatar_img;
-    addressBook.birthday = cum.userInfo.birthday;
-    addressBook.sex = cum.userInfo.sex;
-    addressBook.usernick = cum.userInfo.usernick;
-    LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
-    friendDetailViewController.title=@"详细信息";
-    friendDetailViewController.type=@"4";
-    friendDetailViewController.customerModel=addressBook;
-    [self.navigationController pushViewController:friendDetailViewController animated:YES];
+    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    if(app.userModel.userid != cum.userid){
+        addressBook.userid = cum.userid;
+        addressBook.username = cum.userInfo.username;
+        addressBook.userTag = cum.tag;
+        addressBook.tag = cum.tag;
+        addressBook.avatar_img = cum.userInfo.avatar_img;
+        addressBook.birthday = cum.userInfo.birthday;
+        addressBook.sex = cum.userInfo.sex;
+        addressBook.usernick = cum.userInfo.usernick;
+        LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+        friendDetailViewController.title=@"详细信息";
+        friendDetailViewController.type=@"4";
+        friendDetailViewController.customerModel=addressBook;
+        [self.navigationController pushViewController:friendDetailViewController animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
