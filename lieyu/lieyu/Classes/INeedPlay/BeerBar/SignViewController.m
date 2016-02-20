@@ -39,7 +39,12 @@
     [_tableView registerNib:[UINib nibWithNibName:@"SignIconTableViewCell" bundle:nil] forCellReuseIdentifier:@"SignIconTableViewCell"];
     [self getData];
     
-    [self setupRefresh];
+    //[self setupRefresh];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)getData{
@@ -112,7 +117,7 @@
         SignDateTableViewCell *dateCell = [_tableView dequeueReusableCellWithIdentifier:@"SignDateTableViewCell" forIndexPath:indexPath];
         NSArray *array = _dataArray[indexPath.section];
         CustomerModel *cum = array.firstObject;
-        dateCell.label_time.text = cum.signdate;
+        dateCell.label_time.text = [NSString stringWithFormat:@"%@(%@)",cum.signdate,[MyUtil weekday2StringFromDate:cum.signdate]];
         return dateCell;
     }else{
         SignIconTableViewCell *iconCell = [_tableView dequeueReusableCellWithIdentifier:@"SignIconTableViewCell" forIndexPath:indexPath];
@@ -134,7 +139,8 @@
     if (indexPath.row == 0) {
         return 34;
     }else{
-        return 51;
+        CGFloat width = (SCREEN_WIDTH - 152) / 5.f;
+        return width + 7;
     }
 }
 

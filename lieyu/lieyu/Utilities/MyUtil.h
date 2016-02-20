@@ -98,6 +98,8 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 + (int)countTheStrLength:(NSString*)strtemp;
 //根据日期获取星期
 + (NSString*)weekdayStringFromDate:(NSString *)dateString;
+//根据日期获取星期
++ (NSString*)weekday2StringFromDate:(NSString *)dateString;
 //剩余时间计算
 + (NSString *)residueTimeFromDate:(NSString *)dateString;
 

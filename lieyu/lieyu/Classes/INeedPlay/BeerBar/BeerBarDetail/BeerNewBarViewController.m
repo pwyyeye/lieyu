@@ -167,16 +167,19 @@
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     [self.navigationController.navigationBar setHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
+//    [self.navigationController.navigationBar setHidden:YES];
+//    [self.navigationController setNavigationBarHidden:YES];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_timer setFireDate:[NSDate distantFuture]];
     [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [effectView removeFromSuperview];
 }
@@ -655,6 +658,7 @@
         if (result) {
             AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
             CustomerModel *customerM = [[CustomerModel alloc]init];
+            customerM.userid = app.userModel.userid;
             UserModel *userM = [[UserModel alloc]init];
             userM.avatar_img = app.userModel.avatar_img;
             customerM.userInfo = userM;
@@ -688,6 +692,7 @@
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"4";
+    friendDetailViewController.navigationController.navigationBarHidden = NO;
     friendDetailViewController.customerModel=addressBook;
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }

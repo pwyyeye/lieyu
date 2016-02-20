@@ -76,6 +76,12 @@
     _itemButton1.selected=true;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+
 
 #pragma mark 获取数据
 -(void)getData:(NSDictionary *)dic{
@@ -312,6 +318,11 @@
     [self getData:nowDic];
 }
 -(void)showcarAct{
+    if (![MyUtil isUserLogin]) {
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
+        return;
+    }
     LYCarListViewController *carListViewController=[[LYCarListViewController alloc]initWithNibName:@"LYCarListViewController" bundle:nil];
     carListViewController.title=@"购物车";
     [self.navigationController pushViewController:carListViewController animated:YES];

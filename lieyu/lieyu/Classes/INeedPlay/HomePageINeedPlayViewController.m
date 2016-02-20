@@ -136,7 +136,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     [self setupViewStyles];
     //    if (_collectViewArray.count) {
-    //        [self getDataLocalAndReload];
+//            [self getDataLocalAndReload];
     //        UICollectionView *collectV = _collectViewArray[0];
     //        [collectV.mj_header beginRefreshing];
     //    }
@@ -398,11 +398,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES];
    /* _index = 0;
     [_collectView setContentOffset:CGPointZero]; */
     [self createNavButton];
@@ -410,7 +412,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
+
     
 }
 
@@ -421,6 +423,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     self.navigationController.navigationBar.hidden = NO;
         self.navigationController.navigationBarHidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -452,9 +455,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)getDataLocalAndReload{
     NSArray *array = [self getDataFromLocal];
-    UICollectionView *collectView = nil;
+    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (array.count == 2) {
-        if (((NSArray *)array[0]).count) {
+        NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
+        NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
+         self.newbannerList = dataDic[@"newbanner"];
+        _fiterArray = [dataDic valueForKey:@"filterImages"];
+         NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+        _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+        [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
+      /*  if (((NSArray *)array[0]).count) {
             NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
             NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
             self.bannerList = dataDic[@"banner"];
@@ -476,8 +486,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
             [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
             //            collectView = _collectViewArray[1];
-        }
-        [collectView reloadData];
+        }*/
+        [cell.collectViewInside reloadData];
     }
 }
 

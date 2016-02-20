@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LYNavigationController : UINavigationController<UINavigationControllerDelegate>
+@interface LYNavigationController : UINavigationController
 @property (nonatomic,strong) UIVisualEffectView *navBar;
 @end

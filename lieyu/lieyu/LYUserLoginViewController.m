@@ -80,11 +80,11 @@
     
 }
 -(void)wait{
-    [self.navigationController setNavigationBarHidden:YES];
-    if (_step==2) {
+//    [self.navigationController setNavigationBarHidden:YES];
+//    if (_step==2) {
         [_timer invalidate];
-    }
-    _step++;
+//    }
+//    _step++;
 }
 - (IBAction)goBackClick:(id)sender {
     //    NSLog(@"-------pop:%@",self.popoverPresentationController);
@@ -127,11 +127,16 @@
     //    }
     //
     self.navigationController.navigationBarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES];
     //self.userNameTex.layer.borderWidth = 0.5;
     //  self.userNameTex.layer.borderColor = RGBA(255,255,255, 0.2).CGColor;
     // self.userNameTex.layer.masksToBounds = YES;
 }
 
+//-(void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//     self.navigationController.navigationBarHidden = NO;
+//}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

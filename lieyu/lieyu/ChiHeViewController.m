@@ -128,11 +128,14 @@
     if(((AppDelegate*)[[UIApplication sharedApplication] delegate]).userModel){
         [self getGoodsNum];
     }
+    [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark viewDidAppear
@@ -141,6 +144,7 @@
     if(num > 0){
         [_badge setHidden:NO];
     }
+//    [self.navigationController.navigationBar setHidden:NO];
 }
 
 #pragma mark 获取酒品种类信息
@@ -248,6 +252,11 @@
 
 #pragma mark 展示购物车
 - (void)showcarAct{
+    if (![MyUtil isUserLogin]) {
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
+        return;
+    }
     NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"吃喝专场",@"titleName":@"进入购物车",@"value":self.barName};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     

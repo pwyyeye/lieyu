@@ -33,7 +33,15 @@
     [self addRefreshAction];
     [self getData];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
