@@ -29,6 +29,8 @@ NeedHideNavigationBar
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttomViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableView_Height;
 
+@property(strong,nonatomic) UIWebView *phoneCallWebView;
+
 
 
 @end

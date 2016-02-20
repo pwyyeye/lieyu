@@ -978,6 +978,8 @@
 		AD79E0871C775DFC00C45B97 /* empyImage300@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0831C775DFC00C45B97 /* empyImage300@3x.png */; };
 		AD79E0921C781C9300C45B97 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E08F1C781C9300C45B97 /* EmptyView.m */; };
 		AD79E0931C781C9300C45B97 /* QCMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E0911C781C9300C45B97 /* QCMethod.m */; };
+		AD79E0991C7882A500C45B97 /* telephone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0971C7882A400C45B97 /* telephone@2x.png */; };
+		AD79E09A1C7882A500C45B97 /* telephone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0981C7882A400C45B97 /* telephone@3x.png */; };
 		AD8899BC1B9AFE61007BCC7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BB1B9AFE61007BCC7C /* main.m */; };
 		AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BE1B9AFE61007BCC7C /* AppDelegate.m */; };
 		AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */; };
@@ -2650,6 +2652,8 @@
 		AD79E08F1C781C9300C45B97 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
 		AD79E0901C781C9300C45B97 /* QCMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCMethod.h; sourceTree = "<group>"; };
 		AD79E0911C781C9300C45B97 /* QCMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCMethod.m; sourceTree = "<group>"; };
+		AD79E0971C7882A400C45B97 /* telephone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "telephone@2x.png"; sourceTree = "<group>"; };
+		AD79E0981C7882A400C45B97 /* telephone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "telephone@3x.png"; sourceTree = "<group>"; };
 		AD8899B61B9AFE61007BCC7C /* lieyu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lieyu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899BA1B9AFE61007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD8899BB1B9AFE61007BCC7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -5161,6 +5165,8 @@
 		85589C791C16C65C000E342E /* 酒吧详情整改 */ = {
 			isa = PBXGroup;
 			children = (
+				AD79E0971C7882A400C45B97 /* telephone@2x.png */,
+				AD79E0981C7882A400C45B97 /* telephone@3x.png */,
 				853BCCA81C76EAE800DE0324 /* 分享white@2x.png */,
 				853BCCA91C76EAE800DE0324 /* 分享white@3x.png */,
 				853BCC981C76E90500DE0324 /* 收藏white@2x.png */,
@@ -6674,8 +6680,6 @@
 				AD79E08F1C781C9300C45B97 /* EmptyView.m */,
 				AD79E0901C781C9300C45B97 /* QCMethod.h */,
 				AD79E0911C781C9300C45B97 /* QCMethod.m */,
-				853C36161C72F41300F1703B /* HomeNewPageINeedPlayViewController.h */,
-				853C36171C72F41300F1703B /* HomeNewPageINeedPlayViewController.m */,
 			);
 			name = iNeedPaly;
 			sourceTree = "<group>";
@@ -7000,6 +7004,7 @@
 				85EE80331C0AF09B00958F76 /* LYHeaderTableViewCell.xib in Resources */,
 				85F66E5A1C5282FE005D1CD8 /* chzcBackground@3x.png in Resources */,
 				52D4F9031C57466D00691BEF /* LYHotCollectionViewCell.xib in Resources */,
+				AD79E09A1C7882A500C45B97 /* telephone@3x.png in Resources */,
 				ADFFA6B31C181B9900D9BD2A /* 1@3x.jpg in Resources */,
 				A2FD57671BAFE6E500CFFF92 /* KuCunCell.xib in Resources */,
 				ADE1C46A1C70588E0011D4AB /* HomeMenusCollectionViewCell.xib in Resources */,
@@ -7340,6 +7345,7 @@
 				15844BFE1BE2101200247FBC /* SaoYiSaoViewController.xib in Resources */,
 				ADC367511C633963006C2AE5 /* logo@2x.png in Resources */,
 				A2020D741BA67FA40090B92A /* classic20@3x.png in Resources */,
+				AD79E0991C7882A500C45B97 /* telephone@2x.png in Resources */,
 				3879F2671C0D361000B72629 /* LiuchengTableViewCell.xib in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,

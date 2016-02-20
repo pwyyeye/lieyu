@@ -23,7 +23,8 @@
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
 //    if(self.navigationController.navigationBarHidden == YES){
-        [self.navigationController.navigationBar setHidden:NO];
+//        [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
 //    }
 }
 

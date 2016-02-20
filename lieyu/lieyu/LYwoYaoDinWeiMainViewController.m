@@ -114,6 +114,9 @@
         NSString *minDate = [formatter stringFromDate:chooseTimeAlert.timePicker.date];
         time = [minDate substringFromIndex:10];
         timeView.label3.text = time;
+        if (oldIndex) {
+            [self PayMoneyNow];
+        }
     }
 }
 
@@ -161,7 +164,15 @@
 #pragma mark - 立即支付
 - (void)PayMoneyNow{
     if(time == nil){
-        [MyUtil showCleanMessage:@"请选择到店时间！"];
+        LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定",  nil];
+        chooseTimeAlert = [[[NSBundle mainBundle]loadNibNamed:@"ChooseTime" owner:nil options:nil]firstObject];
+        chooseTimeAlert.tag = 11;
+        alertView.contentView = chooseTimeAlert;
+        chooseTimeAlert.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200) ;
+        if (oldDate == 0) {
+            [chooseTimeAlert configure];
+        }
+        [alertView show];
         return;
     }else{
         NSString *dataAndTime = [[[weekDateArr objectAtIndex:oldDate][@"date"] stringByAppendingString:time] stringByAppendingString:@":00"];

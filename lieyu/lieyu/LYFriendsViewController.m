@@ -542,6 +542,7 @@
 
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataFriendsWithSetContentOffSet:(BOOL)need{
+    
        __weak LYFriendsViewController *weakSelf = self;
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountFriends * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
@@ -1144,7 +1145,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 
 #pragma mark － 删除我的动态
 - (void)deleteClick:(UIButton *)button{
-    if([button.titleLabel.text isEqualToString:@"删除"]){
+    if(_index){
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"确定删除这条动态" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
         _deleteMessageTag = button.tag;
@@ -1312,7 +1313,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 }
 
 - (void)jubaoDT:(UIButton *)button{
-    if(![button.titleLabel.text isEqualToString:@"删除"]){
+    if(!_index){
         NSArray *dataArr = _dataArray[_index];
         FriendsRecentModel *recentM = dataArr[button.tag];
         jubaoMomentID = recentM.id;

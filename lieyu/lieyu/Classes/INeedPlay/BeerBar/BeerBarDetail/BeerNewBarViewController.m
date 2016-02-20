@@ -44,7 +44,7 @@
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 #define BEERBARDETAIL_MTA @"酒吧详情"
 
-@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
+@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate>
 {
     NSManagedObjectContext *_context;
     NSString *_userid;
@@ -133,7 +133,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    if (_image_layer.alpha == 0.f) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }else{
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    }
     [self.navigationController.navigationBar setHidden:YES];
     [_timer setFireDate:[NSDate distantPast]];
    
@@ -149,7 +153,7 @@
     [_signBtn setTitle:@"签到" forState:UIControlStateNormal];
     [_signBtn setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal ];
     _signBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,20, 0, 0);
+    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,21, 0, 0);
     _signBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -13, -31, 0);
     [_signBtn setImage:[UIImage imageNamed:@"sign"] forState:UIControlStateNormal];
     
@@ -396,8 +400,8 @@
 - (void)loadWebView{
     
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0,55, SCREEN_WIDTH, 2500)];
-    _webView.backgroundColor = [UIColor redColor];
-    _webView.tintColor = [UIColor redColor];
+//    _webView.backgroundColor = [UIColor redColor];
+//    _webView.tintColor = [UIColor redColor];
     _webView.delegate = self;
     _webView.tag = 10086;
     
@@ -593,6 +597,7 @@
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             _barTitleCell.beerM = _beerBarDetail;
             _barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [_barTitleCell.btnBuy addTarget:self action:@selector(telephoneClick:) forControlEvents:UIControlEventTouchUpInside];
             return _barTitleCell;
             
         }
@@ -740,6 +745,21 @@
     [self.navigationController pushViewController:actionDetailVC animated:YES];
 }
 
+#pragma mark - 电话
+- (void)telephoneClick:(UIButton *)button{
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",_beerBarDetail.telephone]];
+    
+    if ( !_phoneCallWebView ) {
+        
+        _phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的容易 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+        
+    }
+    
+    [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+//    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"拨打电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"%@",_beerBarDetail.telephone], nil];
+//    [sheet showInView:self.view];
+}
+
 - (void)onTime{
     _timeCount ++;
     _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH - _timeCount, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
@@ -832,6 +852,16 @@
 //            break;
     }
     return h;
+}
+
+#pragma mark - UIACTIONSheetDelegate 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+//        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel://%@",_beerBarDetail.telephone];
+        //            NSLog(@"str======%@",str);
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+       
+    }
 }
 
 #pragma mark 分享按钮
