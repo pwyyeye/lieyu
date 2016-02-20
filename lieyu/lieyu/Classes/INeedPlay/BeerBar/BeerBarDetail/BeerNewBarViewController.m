@@ -133,7 +133,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    if (_image_layer.alpha == 0.f) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }else{
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    }
     [self.navigationController.navigationBar setHidden:YES];
     [_timer setFireDate:[NSDate distantPast]];
    
@@ -743,8 +747,17 @@
 
 #pragma mark - 电话
 - (void)telephoneClick:(UIButton *)button{
-    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"拨打电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"%@",_beerBarDetail.telephone], nil];
-    [sheet showInView:self.view];
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",_beerBarDetail.telephone]];
+    
+    if ( !_phoneCallWebView ) {
+        
+        _phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的容易 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+        
+    }
+    
+    [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+//    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"拨打电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"%@",_beerBarDetail.telephone], nil];
+//    [sheet showInView:self.view];
 }
 
 - (void)onTime{
@@ -844,9 +857,10 @@
 #pragma mark - UIACTIONSheetDelegate 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_beerBarDetail.telephone];
+//        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel://%@",_beerBarDetail.telephone];
         //            NSLog(@"str======%@",str);
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+       
     }
 }
 
