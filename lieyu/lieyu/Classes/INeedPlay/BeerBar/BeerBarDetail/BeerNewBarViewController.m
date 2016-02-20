@@ -400,8 +400,8 @@
 - (void)loadWebView{
     
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0,55, SCREEN_WIDTH, 2500)];
-    _webView.backgroundColor = [UIColor redColor];
-    _webView.tintColor = [UIColor redColor];
+//    _webView.backgroundColor = [UIColor redColor];
+//    _webView.tintColor = [UIColor redColor];
     _webView.delegate = self;
     _webView.tag = 10086;
     
