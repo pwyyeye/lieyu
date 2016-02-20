@@ -44,6 +44,7 @@
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.navigationController setNavigationBarHidden:NO];
     [self ConfigureRightItem];
     [self registerTableViewCell];
     [self addRefreshAction];
@@ -51,9 +52,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+
+    
     [self initAllPropertites];
     [self getData];
-    [self.navigationController setNavigationBarHidden:NO];
 
 }
 

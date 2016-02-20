@@ -88,12 +88,15 @@
 //微信，微博，朋友圈
 }
 
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if (self.navigationController.navigationBar.hidden == YES) {
-        [self.navigationController.navigationBar setHidden:NO];
-    }
-}
+//- (void)viewDidLayoutSubviews{
+//    [super viewDidLayoutSubviews];
+//    if (self.navigationController.navigationBar.hidden == YES) {
+//        [self.navigationController.navigationBar setHidden:NO];
+//        
+//    }
+//    
+//     [self.navigationController setNavigationBarHidden:NO];
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
