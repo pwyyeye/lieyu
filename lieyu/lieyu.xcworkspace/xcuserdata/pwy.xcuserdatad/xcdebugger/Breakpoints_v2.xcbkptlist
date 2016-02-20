@@ -974,9 +974,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1165"
-            endingLineNumber = "1165"
-            landmarkName = "-menusClickCell:"
-            landmarkType = "5">
+            endingLineNumber = "1165">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1006,9 +1004,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "470"
-            endingLineNumber = "470"
-            landmarkName = "-getDataLocalAndReload"
-            landmarkType = "5">
+            endingLineNumber = "470">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
