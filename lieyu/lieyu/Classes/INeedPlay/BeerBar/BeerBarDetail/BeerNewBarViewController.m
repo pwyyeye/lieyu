@@ -225,17 +225,17 @@
              [weakSelf loadMyBarInfo];
              //加载webview
              [weakSelf loadWebView];
-             [weakSelf setTimer];
+//             [weakSelf setTimer];
              
              if (!_beerBarDetail.isSign) {
                  _bottomEffectView.hidden = YES;
-                 [self.view bringSubviewToFront:_tableView];
-                 [self.view bringSubviewToFront:effectView];
-                 [self.view bringSubviewToFront:_image_layer];
-                 [self.view bringSubviewToFront:_btnBack];
-                 [self.view bringSubviewToFront:_btn_collect];
-                 [self.view bringSubviewToFront:_btn_like];
-                 [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ];
+                 [weakSelf.view bringSubviewToFront:_tableView];
+                 [weakSelf.view bringSubviewToFront:effectView];
+                 [weakSelf.view bringSubviewToFront:_image_layer];
+                 [weakSelf.view bringSubviewToFront:_btnBack];
+                 [weakSelf.view bringSubviewToFront:_btn_collect];
+                 [weakSelf.view bringSubviewToFront:_btn_like];
+                 [weakSelf.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ];
              }
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
@@ -441,7 +441,7 @@
             [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
                 //收藏过
                 if(result){
-                    if (self.image_layer.alpha <= 0.f) {//white
+                    if (weakSelf.image_layer.alpha <= 0.f) {//white
                         [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"点赞white"] forState:UIControlStateNormal];
                     }else{
                         [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
@@ -454,7 +454,7 @@
         }else{
             [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
                 if (result) {
-                    if (self.image_layer.alpha <= 0.f) {//white
+                    if (weakSelf.image_layer.alpha <= 0.f) {//white
                         [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"点赞whited"] forState:UIControlStateNormal];
                     }else{
                         [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
@@ -536,7 +536,7 @@
     NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
     float clientheight = [clientheight_str floatValue];
     //设置到WebView上
-    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight);
+    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight + 20);
     //获取WebView最佳尺寸（点）
     CGSize frame = [webView sizeThatFits:webView.frame.size];
 
@@ -583,11 +583,8 @@
             _tableHeaderImgView.tag = 10086;
             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             [_headerCell addSubview:_tableHeaderImgView];
-            
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             return _headerCell;
-            
         }
             break;
         case 1:
@@ -693,12 +690,15 @@
         }];
 
     }else if (distance >= _beerBarDetail.allowDistance.floatValue){
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您当前与该酒吧距离过远，请前往该酒吧再签到" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您需要在酒吧，才能签到!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
     }
     }
     
 }
+
+
+
 #pragma mark - 签到头像action
 - (void)iconClick:(UIButton *)button{
     CustomerModel *cum = _beerBarDetail.signUsers[button.tag];
@@ -865,7 +865,7 @@
         [_timer invalidate];
         _timer = nil;
     }
-    
+    _webView = nil;
     NSLog(@"dealoc bardetail viewcontroller");
 }
 /*
@@ -938,7 +938,7 @@
             
             [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
                 //收藏过
-                if (self.image_layer.alpha <= 0.f) {//white
+                if (weakSelf.image_layer.alpha <= 0.f) {//white
                     [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏white"] forState:UIControlStateNormal];
                 }else{
                     [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
@@ -951,7 +951,7 @@
         }else{
             
             [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
-                if (self.image_layer.alpha <= 0.f) {//white
+                if (weakSelf.image_layer.alpha <= 0.f) {//white
                     [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏whited"] forState:UIControlStateNormal];
                 }else{
                     [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
