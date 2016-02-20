@@ -76,7 +76,6 @@
     _collectView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     _collectView.pagingEnabled = YES;
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _collectView.backgroundColor = [UIColor cyanColor];
     [self.view addSubview:_collectView];
     [self.view sendSubviewToBack:_collectView];
     //[self installFreshEvent];
