@@ -1068,7 +1068,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             for (int i = 0;i < 4;i++) {
                 UIButton *btn = menucell.btnArray[i];
                 [btn sd_setImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
-                btn.imageView.contentMode = UIViewContentModeScaleAspectFill;
+//                btn.imageView.contentMode = UIViewContentModeScaleAspectFill;
                 [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
             }
             }
