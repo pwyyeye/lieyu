@@ -44,7 +44,7 @@
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 #define BEERBARDETAIL_MTA @"酒吧详情"
 
-@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
+@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate>
 {
     NSManagedObjectContext *_context;
     NSString *_userid;
@@ -596,6 +596,7 @@
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             _barTitleCell.beerM = _beerBarDetail;
             _barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [_barTitleCell.btnBuy addTarget:self action:@selector(telephoneClick:) forControlEvents:UIControlEventTouchUpInside];
             return _barTitleCell;
             
         }
@@ -740,6 +741,12 @@
     [self.navigationController pushViewController:actionDetailVC animated:YES];
 }
 
+#pragma mark - 电话
+- (void)telephoneClick:(UIButton *)button{
+    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"拨打电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"%@",_beerBarDetail.telephone], nil];
+    [sheet showInView:self.view];
+}
+
 - (void)onTime{
     _timeCount ++;
     _headerCell.label_laBa.frame = CGRectMake(SCREEN_WIDTH - _timeCount, CGRectGetMinY(_headerCell.label_laBa.frame), _size.width, 18);
@@ -832,6 +839,15 @@
 //            break;
     }
     return h;
+}
+
+#pragma mark - UIACTIONSheetDelegate 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_beerBarDetail.telephone];
+        //            NSLog(@"str======%@",str);
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
 }
 
 #pragma mark 分享按钮

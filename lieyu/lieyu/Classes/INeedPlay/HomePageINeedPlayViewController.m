@@ -780,7 +780,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (collectionView == _collectView) {
         return 0;
     }else{
-        return 0;
+        return 3;
     }
 }
 
@@ -788,7 +788,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (collectionView == _collectView) {
         return 0;
     }else{
-        return 0;
+        return 3;
     }
 }
 
@@ -797,7 +797,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         return UIEdgeInsetsMake(0,0,0,0);
     }else{
 //        return UIEdgeInsetsMake(3, 3, 3, 3);
-        return UIEdgeInsetsMake(3, 3, 0, 3);
+        return UIEdgeInsetsMake(3, 3, 3, 3);
     }
 }
 
