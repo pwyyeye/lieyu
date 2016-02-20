@@ -7,7 +7,7 @@
 //
 
 #import "HuoDongLinkViewController.h"
-#import "BeerBarDetailViewController.h"
+#import "BeerNewBarViewController.h"
 #import "ActionDetailViewController.h"
 #import "ActionPage.h"
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -71,7 +71,7 @@
     NSLog(@"收到html传过来的参数：str1=%@,str2=%@",str1,str2);
     if (![MyUtil isEmptyString:str1]&& [str1 isEqualToString:@"bar"]) {
         //酒吧
-        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+        BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
         
         controller.beerBarId = [NSNumber numberWithInt:str2.intValue] ;
         NSString *str = [NSString stringWithFormat:@"活动html打开酒吧ID%@",controller.beerBarId];
