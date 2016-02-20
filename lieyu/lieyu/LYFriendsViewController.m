@@ -399,7 +399,7 @@
     
     CGFloat friendsBtn_Width = 42;
     _friendsBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f - friendsBtn_Width - 16 , 12, friendsBtn_Width, 20)];
-    [_friendsBtn setTitle:@"玩圈" forState:UIControlStateNormal];
+    [_friendsBtn setTitle:@"玩友圈" forState:UIControlStateNormal];
    // _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
     _friendsBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_friendsBtn addTarget:self action:@selector(friendsClick:) forControlEvents:UIControlEventTouchUpInside];
