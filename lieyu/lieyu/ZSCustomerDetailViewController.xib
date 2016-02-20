@@ -86,7 +86,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzv-Cy-6o3">
-                    <rect key="frame" x="30" y="239" width="260" height="43"/>
+                    <rect key="frame" x="30" y="412" width="260" height="43"/>
                     <color key="backgroundColor" red="0.50384859859999998" green="0.053062808160000002" blue="0.64369815239999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="43" id="gPZ-1d-sUV"/>
@@ -100,7 +100,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJd-XP-YcE">
-                    <rect key="frame" x="30" y="317" width="260" height="43"/>
+                    <rect key="frame" x="30" y="485" width="260" height="43"/>
                     <color key="backgroundColor" red="0.50384859859999998" green="0.053062808160000002" blue="0.64369815239999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="43" id="ztz-bb-jp7"/>
@@ -116,11 +116,11 @@
             </subviews>
             <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="NJd-XP-YcE" secondAttribute="bottom" constant="208" id="4Mg-cc-FBG"/>
+                <constraint firstAttribute="bottom" secondItem="NJd-XP-YcE" secondAttribute="bottom" constant="40" id="4Mg-cc-FBG"/>
                 <constraint firstAttribute="trailing" secondItem="NJd-XP-YcE" secondAttribute="trailing" constant="30" id="AGu-ks-gq5"/>
                 <constraint firstItem="lhn-mq-rAA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Abl-IO-58a"/>
                 <constraint firstItem="lhn-mq-rAA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="27" id="GHV-eB-OfO"/>
-                <constraint firstItem="NJd-XP-YcE" firstAttribute="top" secondItem="zzv-Cy-6o3" secondAttribute="bottom" constant="35" id="X3b-bZ-Y4v"/>
+                <constraint firstItem="NJd-XP-YcE" firstAttribute="top" secondItem="zzv-Cy-6o3" secondAttribute="bottom" constant="30" id="X3b-bZ-Y4v"/>
                 <constraint firstAttribute="trailing" secondItem="zzv-Cy-6o3" secondAttribute="trailing" constant="30" id="cnP-g5-S4I"/>
                 <constraint firstAttribute="trailing" secondItem="lhn-mq-rAA" secondAttribute="trailing" id="uiu-l3-K4x"/>
                 <constraint firstItem="NJd-XP-YcE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="vD4-eU-xSj"/>
