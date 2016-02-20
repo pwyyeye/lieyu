@@ -540,7 +540,7 @@
     NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
     float clientheight = [clientheight_str floatValue];
     //设置到WebView上
-    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight + 20);
+    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight+20);
     //获取WebView最佳尺寸（点）
     CGSize frame = [webView sizeThatFits:webView.frame.size];
 
