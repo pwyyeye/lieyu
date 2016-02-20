@@ -605,6 +605,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FriendsRecentModel *recentM = _dataArray[indexPath.section];
+    _section = indexPath.section;
     if (indexPath.row >= 4 && indexPath.row <= 8) {
         if(!recentM.commentList.count) {
             [self pushFriendsMessageDetailVCWithIndex:indexPath.section];

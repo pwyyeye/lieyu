@@ -47,6 +47,8 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
+    
 }
 
 - (void)viewWillLayoutSubviews{
@@ -130,7 +132,8 @@
     }else{
         SignIconTableViewCell *iconCell = [_tableView dequeueReusableCellWithIdentifier:@"SignIconTableViewCell" forIndexPath:indexPath];
          NSArray *array = _dataArray[indexPath.section];
-        for (int i = 0; i < array.count; i ++) {
+        for (int i = 0; i < 5; i ++) {
+            if((5 * (indexPath.row - 1) + i) >= array.count) break;
             CustomerModel *cum = array[5 * (indexPath.row-1) + i];
             SignButton *btn = iconCell.btnArray[i];
             btn.section = indexPath.section;

@@ -222,6 +222,10 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         PinKeModel *pkModel = [dataList objectAtIndex:oldIndex.section];
+        if (zsList.count==0) {
+            [MyUtil showCleanMessage:@"该酒吧暂无专属经理，无法下单！"];
+            return;
+        }
         ZSDetailModel *zsModel = [zsList objectAtIndex:index];
         NSDictionary *dic=@{
                             @"pinkerid":[NSNumber numberWithInt:pkModel.id],
