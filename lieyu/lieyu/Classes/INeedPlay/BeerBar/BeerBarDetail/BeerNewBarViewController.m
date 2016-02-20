@@ -673,7 +673,7 @@
         [alertView show];
     }else{
         CGFloat distance = [[LYUserLocation alloc] configureDistance:_beerBarDetail.latitude And:_beerBarDetail.longitude];
-    if (distance >=0 && distance <= _beerBarDetail.allowDistance.floatValue) {
+        if ((distance >=0 && distance <= _beerBarDetail.allowDistance.floatValue)||_beerBarDetail.allowDistance==nil?YES:_beerBarDetail.allowDistance.intValue==0) {
         NSDictionary *dic = @{@"barid":_beerBarId};
         [LYHomePageHttpTool signWith:dic complete:^(bool result) {
             if (result) {
@@ -693,7 +693,7 @@
         }];
 
     }else if (distance >= _beerBarDetail.allowDistance.floatValue){
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您当 前与该酒吧距离过远，请前往该酒吧再签到" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您需要在酒吧，才能签到!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
     }
     }
