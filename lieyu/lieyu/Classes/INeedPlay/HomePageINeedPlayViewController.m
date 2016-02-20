@@ -199,6 +199,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     _searchBtn.alpha = 1.f;
                 }completion:nil];
             }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_BAR > 90) {
+                if(cell.collectViewInside.contentOffset.y < - 91) return;
                 [UIView animateWithDuration:0.3 animations:^{
                     _menuView.center = CGPointMake( _menuView.center.x,8 );
                     _titleImageView.alpha = 0.0;
@@ -207,6 +208,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 } completion:nil];
             }
         }else{
+            NSLog(@"---->%f",cell.collectViewInside.contentOffset.y);
                 if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 90) {
                     [UIView animateWithDuration:0.3 animations:^{
                         _menuView.center = CGPointMake(_menuView.center.x,45);
@@ -217,6 +219,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //                        cell.collectViewInside.contentInset = UIEdgeInsetsMake(91, 0, 0, 0);
                     }];
                 }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_YD > 90) {
+                    if(cell.collectViewInside.contentOffset.y < - 91) return;
                     [UIView animateWithDuration:0.3 animations:^{
                         _menuView.center = CGPointMake( _menuView.center.x,8 );
                         _titleImageView.alpha = 0.0;
@@ -342,7 +345,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _btn_bar.isHomePageMenuViewSelected = NO;
     if (_dataArray.count) {
         NSArray *array = _dataArray[0];
-        if (!array.count) {
+        if (array.count == 0) {
             [self getDataWith:0];
         }
     }
@@ -367,7 +370,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _btn_yedian.isHomePageMenuViewSelected = NO;
     if (_dataArray.count) {
         NSArray *array = _dataArray[1];
-        if (!array.count) {
+        if (array.count == 0) {
             [self getDataWith:1];
         }
     }
@@ -762,19 +765,17 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     if (collectionView == _collectView) {
-        
         return 0;
     }else{
-        return 3;
+        return 0;
     }
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     if (collectionView == _collectView) {
-        
         return 0;
     }else{
-        return 3;
+        return 0;
     }
 }
 
@@ -782,10 +783,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (collectionView == _collectView) {
         return UIEdgeInsetsMake(0,0,0,0);
     }else{
-        return UIEdgeInsetsMake(3, 3, 3, 3);
+//        return UIEdgeInsetsMake(3, 3, 3, 3);
+        return UIEdgeInsetsMake(3, 3, 0, 3);
     }
-    
 }
+
 
 /*
  - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

@@ -86,8 +86,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
     self.automaticallyAdjustsScrollViewInsets=NO;
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
@@ -135,6 +133,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController.navigationBar setHidden:YES];
     [_timer setFireDate:[NSDate distantPast]];
    
@@ -232,6 +231,7 @@
                  _bottomEffectView.hidden = YES;
                  [self.view bringSubviewToFront:_tableView];
                  [self.view bringSubviewToFront:effectView];
+                 [self.view bringSubviewToFront:_image_layer];
                  [self.view bringSubviewToFront:_btnBack];
                  [self.view bringSubviewToFront:_btn_collect];
                  [self.view bringSubviewToFront:_btn_like];
@@ -693,7 +693,7 @@
         }];
 
     }else if (distance >= _beerBarDetail.allowDistance.floatValue){
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您当 前与该酒吧距离过远，请前往该酒吧再签到" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您当前与该酒吧距离过远，请前往该酒吧再签到" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
     }
     }
