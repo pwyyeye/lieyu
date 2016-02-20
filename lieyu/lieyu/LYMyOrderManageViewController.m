@@ -257,7 +257,7 @@
             [weakSelf.tableView setHidden:NO];
             [weakSelf.nodataView setHidden:YES];
             pageCount++;
-            [weakSelf.tableView.mj_footer resetNoMoreData];
+//            [weakSelf.tableView.mj_footer resetNoMoreData];
             [self.tableView.mj_footer endRefreshing];
         }else{
             [weakSelf.tableView setHidden:YES];
@@ -288,7 +288,7 @@
         
         
     }];
-//    [self.tableView.mj_footer endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
     
 }
 #pragma mark 获取顶部菜单
