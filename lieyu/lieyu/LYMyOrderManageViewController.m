@@ -136,13 +136,11 @@
     }
 
 }
-//-(void)viewWillLayoutSubviews{
-//    [super viewWillLayoutSubviews];
-////    if (self.navigationController.navigationBar.hidden) {
-//        self.navigationController.navigationBar.hidden=NO;
-////    }
-//｝
-//
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 -(void)BaseGoBack{
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[ChoosePayController class]]) {
