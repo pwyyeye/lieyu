@@ -106,7 +106,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.view addSubview:_collectView];
     
-    [self getDataWith:0];
+    [self getDataWith:0]; 
     
     //    for (int i = 0; i < 2; i ++) {
     //

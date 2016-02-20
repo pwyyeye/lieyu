@@ -63,6 +63,7 @@
     NSArray *_activityArray;
     CGFloat _contentOffSetY;
     UIButton *_signBtn;
+    __weak IBOutlet NSLayoutConstraint *bottomView_conHeight;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -224,6 +225,16 @@
              //加载webview
              [weakSelf loadWebView];
              [weakSelf setTimer];
+             
+             if (!_beerBarDetail.isSign) {
+                 _bottomEffectView.hidden = YES;
+//                 _bottomBarView.hidden = YES;
+//                 [_bottomBarView removeFromSuperview];
+//                 [self.view sendSubviewToBack:_bottomBarView];
+                 [self.view bringSubviewToFront:_tableView];
+                 [self.view bringSubviewToFront:effectView];
+                 
+             }
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
          //本地加载酒吧详情数据
