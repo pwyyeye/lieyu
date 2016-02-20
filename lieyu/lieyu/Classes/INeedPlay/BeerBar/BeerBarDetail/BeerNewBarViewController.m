@@ -153,7 +153,7 @@
     [_signBtn setTitle:@"签到" forState:UIControlStateNormal];
     [_signBtn setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal ];
     _signBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,20, 0, 0);
+    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,21, 0, 0);
     _signBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -13, -31, 0);
     [_signBtn setImage:[UIImage imageNamed:@"sign"] forState:UIControlStateNormal];
     
@@ -540,7 +540,7 @@
     NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
     float clientheight = [clientheight_str floatValue];
     //设置到WebView上
-    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight);
+    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight+20);
     //获取WebView最佳尺寸（点）
     CGSize frame = [webView sizeThatFits:webView.frame.size];
 
