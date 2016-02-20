@@ -65,9 +65,10 @@
 -(void)tabbarChagne{
     //单独启动新线程
 //    [NSThread detachNewThreadSelector:@selector(doChange) toTarget:self withObject:nil];
+    __weak __typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         // 更UI
-        [self doChange];
+        [weakSelf doChange];
     });
 }
 
@@ -229,6 +230,7 @@
     return YES;
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     NSLog(@"----pass-tabBarController%d---",self.selectedIndex);
     if (self.selectedIndex==3||self.selectedIndex==4) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
