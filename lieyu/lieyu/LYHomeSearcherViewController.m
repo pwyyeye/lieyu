@@ -16,7 +16,7 @@
 #import "BiaoQianBtn.h"
 #import "TypeChooseCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import "BeerBarDetailViewController.h"
+#import "BeerNewBarViewController.h"
 #import "JiuBaModel.h"
 #import "IQKeyboardManager.h"
 
@@ -307,7 +307,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    BeerBarDetailViewController *detailVC = [[BeerBarDetailViewController alloc]init];
+    BeerNewBarViewController *detailVC = [[BeerNewBarViewController alloc]init];
     JiuBaModel *model = [searchlist objectAtIndex:indexPath.row];
     detailVC.beerBarId = @(model.barid);
     [self.navigationController pushViewController:detailVC animated:YES];
