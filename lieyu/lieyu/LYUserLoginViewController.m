@@ -45,8 +45,8 @@
     
     // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationController setNavigationBarHidden:YES];
-    _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(wait) userInfo:nil repeats:YES];
-    [_timer setFireDate:[NSDate distantPast]];
+    //_timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(wait) userInfo:nil repeats:YES];
+   // [_timer setFireDate:[NSDate distantPast]];
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
     _step=1;
     
@@ -82,7 +82,7 @@
 -(void)wait{
 //    [self.navigationController setNavigationBarHidden:YES];
 //    if (_step==2) {
-        [_timer invalidate];
+//        [_timer invalidate];
 //    }
 //    _step++;
 }
