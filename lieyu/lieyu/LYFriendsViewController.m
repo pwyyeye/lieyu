@@ -1584,11 +1584,14 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     _section = indexPath.section;
     FriendsRecentModel *recentM = _dataArray[_index][indexPath.section];
     if(indexPath.row == 0){
-        if([MyUtil isEmptyString:recentM.id]) return;
-        [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+//        if([MyUtil isEmptyString:recentM.id]) return;
+//        [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
     }
     if (indexPath.row >= 4 && indexPath.row <= 8) {
-        if(!recentM.commentList.count) return;
+        if(!recentM.commentList.count) {
+             [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+            return;
+        }
         _indexRow = indexPath.row;
         if(indexPath.row - 4 == recentM.commentList.count)
         {
