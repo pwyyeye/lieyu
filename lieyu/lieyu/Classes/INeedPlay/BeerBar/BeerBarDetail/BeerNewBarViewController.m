@@ -716,6 +716,8 @@
     addressBook.birthday = cum.userInfo.birthday;
     addressBook.sex = cum.userInfo.sex;
     addressBook.usernick = cum.userInfo.usernick;
+    addressBook.imUserId = cum.imUserId;
+    addressBook.imuserid = cum.imuserid;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (addressBook.userid == app.userModel.userid) {

@@ -169,6 +169,8 @@
         addressBook.birthday = cum.userInfo.birthday;
         addressBook.sex = cum.userInfo.sex;
         addressBook.usernick = cum.userInfo.usernick;
+        addressBook.imUserId = cum.imUserId;
+        addressBook.imuserid = cum.imuserid;
         LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
         friendDetailViewController.title=@"详细信息";
         friendDetailViewController.type=@"4";
