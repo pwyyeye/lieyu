@@ -164,11 +164,13 @@
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     self.navigationController.navigationBar.hidden = YES;
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 

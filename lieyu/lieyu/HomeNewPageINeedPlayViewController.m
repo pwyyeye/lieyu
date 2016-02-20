@@ -415,17 +415,19 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 {
     [super viewWillLayoutSubviews];
     //    ((LYNavigationController *)self.navigationController).navBar.hidden = NO;
-    self.navigationController.navigationBarHidden = YES;
-    //    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
+        self.navigationController.navigationBar.hidden = YES;
     
-    if (self.navigationController.navigationBarHidden != NO) {
+    if (self.navigationController.navigationBarHidden != YES) {
         //        [self.navigationController setNavigationBarHidden:NO];
-    }
+        
+    }[self.navigationController setNavigationBarHidden:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [self.navigationController setNavigationBarHidden:YES];
     //    [_scrollView setContentOffset:CGPointZero];
     //    ((LYNavigationController *)self.navigationController).navBar.hidden = NO;
     [self createNavButton];
@@ -441,7 +443,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [super viewWillDisappear:animated];
     [self removeNavButtonAndImageView];
     
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
     //    self.navigationController.navigationBarHidden = NO;
 }
 

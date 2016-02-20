@@ -10,6 +10,8 @@
 
 @implementation LPImageView
 
+
+
 - (CGSize)intrinsicContentSize {
     
     CGSize s =[super intrinsicContentSize];

@@ -116,6 +116,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.navigationController.navigationBar.hidden = NO;
     self.navigationController.navigationBarHidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewEnd:self.title];
     }

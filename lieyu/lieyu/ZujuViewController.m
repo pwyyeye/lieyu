@@ -87,6 +87,7 @@
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark 获取七天日期

@@ -707,7 +707,9 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ACTIVITY_DETAIL baseURL:LY_SERVER params:paraDic success:^(id response) {
-        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+
+        if ([code isEqualToString:@"1"]) {
             BarActivityList *actionDetail = [BarActivityList mj_objectWithKeyValues:response[@"data"]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 complete(actionDetail);

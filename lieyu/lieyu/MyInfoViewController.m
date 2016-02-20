@@ -59,6 +59,7 @@
     [super viewWillDisappear:animated];
     if (self.navigationController.navigationBarHidden != NO) {
         self.navigationController.navigationBarHidden = NO;
+        [self.navigationController setNavigationBarHidden:NO];
     }
 }
 
