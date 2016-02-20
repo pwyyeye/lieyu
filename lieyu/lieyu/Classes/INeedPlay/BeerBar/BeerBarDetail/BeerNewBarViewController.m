@@ -63,6 +63,7 @@
     NSArray *_activityArray;
     CGFloat _contentOffSetY;
     UIButton *_signBtn;
+    __weak IBOutlet NSLayoutConstraint *bottomView_conHeight;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
@@ -224,6 +225,16 @@
              //加载webview
              [weakSelf loadWebView];
              [weakSelf setTimer];
+             
+             if (!_beerBarDetail.isSign) {
+                 _bottomEffectView.hidden = YES;
+//                 _bottomBarView.hidden = YES;
+//                 [_bottomBarView removeFromSuperview];
+//                 [self.view sendSubviewToBack:_bottomBarView];
+                 [self.view bringSubviewToFront:_tableView];
+                 [self.view bringSubviewToFront:effectView];
+                 
+             }
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
          //本地加载酒吧详情数据
@@ -653,23 +664,38 @@
 
 #pragma mark － 签到
 - (void)signClick:(id)sender {
-    NSDictionary *dic = @{@"barid":_beerBarId};
-    [LYHomePageHttpTool signWith:dic complete:^(bool result) {
-        if (result) {
-            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            CustomerModel *customerM = [[CustomerModel alloc]init];
-            customerM.userid = app.userModel.userid;
-            UserModel *userM = [[UserModel alloc]init];
-            userM.avatar_img = app.userModel.avatar_img;
-            customerM.userInfo = userM;
-            if (_beerBarDetail.signUsers.count) {
-                [_beerBarDetail.signUsers insertObject:customerM atIndex:0];
-            }else {
-                [_beerBarDetail.signUsers addObject:customerM];
+    
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"定位功能不可用" message:@"请前往设置隐私中开启定位服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }else{
+        CGFloat distance = [[LYUserLocation alloc] configureDistance:_beerBarDetail.latitude And:_beerBarDetail.longitude];
+    if (distance >=0 && distance <= _beerBarDetail.allowDistance.floatValue) {
+        NSDictionary *dic = @{@"barid":_beerBarId};
+        [LYHomePageHttpTool signWith:dic complete:^(bool result) {
+            if (result) {
+                AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                CustomerModel *customerM = [[CustomerModel alloc]init];
+                customerM.userid = app.userModel.userid;
+                UserModel *userM = [[UserModel alloc]init];
+                userM.avatar_img = app.userModel.avatar_img;
+                customerM.userInfo = userM;
+                if (_beerBarDetail.signUsers.count) {
+                    [_beerBarDetail.signUsers insertObject:customerM atIndex:0];
+                }else {
+                    [_beerBarDetail.signUsers addObject:customerM];
+                }
+                [_tableView reloadData];
             }
-            [_tableView reloadData];
-        }
-    }];
+        }];
+
+    }else if (distance >= _beerBarDetail.allowDistance.floatValue){
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您当 前与该酒吧距离过远，请前往该酒吧再签到" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
+    }
+    }
+    
 }
 #pragma mark - 签到头像action
 - (void)iconClick:(UIButton *)button{

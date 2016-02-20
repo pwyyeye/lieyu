@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeerNewBarViewController">
             <connections>
                 <outlet property="bottomEffectView" destination="TgT-YK-qid" id="A0b-mC-jhW"/>
+                <outlet property="bottomView_conHeight" destination="bvB-uS-EAn" id="uiT-qb-sKP"/>
                 <outlet property="btnBack" destination="0zl-aU-4MY" id="K4O-KC-iy2"/>
                 <outlet property="btnShare" destination="7V2-dl-Wyd" id="zTE-c5-ro2"/>
                 <outlet property="btn_collect" destination="Gu7-Ag-jA3" id="aWT-vR-blt"/>
@@ -31,7 +32,7 @@
                         <outlet property="delegate" destination="-1" id="8ds-cG-jhp"/>
                     </connections>
                 </tableView>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9E-Dm-l7q">
+                <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9E-Dm-l7q">
                     <rect key="frame" x="130" y="519" width="60" height="60"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gO0-r1-Ell">
                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>

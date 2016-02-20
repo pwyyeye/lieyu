@@ -2144,8 +2144,6 @@
 		853C36111C72BC4700F1703B /* BeerNewBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeerNewBarViewController.h; sourceTree = "<group>"; };
 		853C36121C72BC4700F1703B /* BeerNewBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeerNewBarViewController.m; sourceTree = "<group>"; };
 		853C36131C72BC4700F1703B /* BeerNewBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BeerNewBarViewController.xib; sourceTree = "<group>"; };
-		853C36161C72F41300F1703B /* HomeNewPageINeedPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeNewPageINeedPlayViewController.h; sourceTree = "<group>"; };
-		853C36171C72F41300F1703B /* HomeNewPageINeedPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeNewPageINeedPlayViewController.m; sourceTree = "<group>"; };
 		853C36191C73082100F1703B /* HOT@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HOT@2x.png"; sourceTree = "<group>"; };
 		853C361A1C73082200F1703B /* HOT@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HOT@3x.png"; sourceTree = "<group>"; };
 		853C361D1C7308D900F1703B /* yuding@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yuding@2x.png"; sourceTree = "<group>"; };

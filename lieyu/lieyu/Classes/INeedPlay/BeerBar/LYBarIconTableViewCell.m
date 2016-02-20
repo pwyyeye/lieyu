@@ -42,6 +42,7 @@
     [_moreBtn setTitle:[NSString stringWithFormat:@"%u",iconArray.count] forState:UIControlStateNormal];
     if(iconArray.count < 7) _moreBtn.hidden = YES;
     for (int i = 0; i < iconArray.count; i ++) {
+        if(i >= 7) return;
         UIButton *btn = _btnArray[i];
         CustomerModel *customerM = iconArray[i];
         btn.hidden = NO;

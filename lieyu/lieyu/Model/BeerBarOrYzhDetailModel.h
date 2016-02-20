@@ -27,6 +27,7 @@
 @property (nonatomic,strong) NSString * descriptions;
 @property(nonatomic,copy)NSString * distance;
 @property(nonatomic,copy)NSString * environment_num;
+@property (nonatomic,copy) NSString *allowDistance;
 @property(nonatomic,strong)NSNumber *  fav_num;
 @property(nonatomic,strong)NSNumber * id;
 @property(nonatomic,copy)NSString * latitude;
