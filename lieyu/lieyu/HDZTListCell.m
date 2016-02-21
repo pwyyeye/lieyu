@@ -35,7 +35,7 @@
 }
 
 - (void)setBarActivity:(BarActivityList *)barActivity{
-    [_action_page sd_setImageWithURL:[NSURL URLWithString:barActivity.topicInfo.imageUrl] placeholderImage:[UIImage imageNamed:@"emptyImage_rect"]];
+    [_action_page sd_setImageWithURL:[NSURL URLWithString:barActivity.imageUrl] placeholderImage:[UIImage imageNamed:@"emptyImage_rect"]];
     _action_title.text = barActivity.name;
     
     NSString *lowstPrice = [NSString stringWithFormat:@"¥%@起",barActivity.barInfo.lowest_consumption];

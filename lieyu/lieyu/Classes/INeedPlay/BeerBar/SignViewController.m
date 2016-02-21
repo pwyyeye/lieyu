@@ -47,6 +47,8 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController setNavigationBarHidden:NO];
+    
 }
 
 - (void)viewWillLayoutSubviews{
@@ -130,7 +132,8 @@
     }else{
         SignIconTableViewCell *iconCell = [_tableView dequeueReusableCellWithIdentifier:@"SignIconTableViewCell" forIndexPath:indexPath];
          NSArray *array = _dataArray[indexPath.section];
-        for (int i = 0; i < array.count; i ++) {
+        for (int i = 0; i < 5; i ++) {
+            if((5 * (indexPath.row - 1) + i) >= array.count) break;
             CustomerModel *cum = array[5 * (indexPath.row-1) + i];
             SignButton *btn = iconCell.btnArray[i];
             btn.section = indexPath.section;
@@ -169,8 +172,8 @@
         addressBook.birthday = cum.userInfo.birthday;
         addressBook.sex = cum.userInfo.sex;
         addressBook.usernick = cum.userInfo.usernick;
-        addressBook.imUserId = cum.imUserId;
-        addressBook.imuserid = cum.imuserid;
+        addressBook.imUserId = cum.userInfo.imuserId;
+        addressBook.imuserid = cum.userInfo.imuserId;
         LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
         friendDetailViewController.title=@"详细信息";
         friendDetailViewController.type=@"4";

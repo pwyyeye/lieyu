@@ -36,10 +36,12 @@
 }
 
 - (void)backClick{
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)back{
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

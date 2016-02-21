@@ -179,6 +179,10 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 //        NSString *reachtime = [formatter stringFromDate:_timeView.timePicker.date];
+        if (zsList.count==0) {
+            [MyUtil showCleanMessage:@"该酒吧暂无专属经理，无法下单！"];
+            return;
+        }
         tcModel = jiubaModel.recommend_package[oldIndex.section];
         ZSDetailModel *zsModel = zsList[index];
         NSLog(@"%@",tcModel.smid);

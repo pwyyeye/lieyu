@@ -32,7 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor=[UIColor whiteColor];
     contentOffsetY = MAXFLOAT;
     page = 1;
 //    _topicid = @"0";
@@ -44,7 +45,6 @@
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    [self.navigationController setNavigationBarHidden:NO];
     [self ConfigureRightItem];
     [self registerTableViewCell];
     [self addRefreshAction];
@@ -60,8 +60,15 @@
 }
 
 -(void)viewWillLayoutSubviews{
+     [super viewWillLayoutSubviews];
+//    [self.navigationController setNavigationBarHidden:NO];
+   
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [super viewWillLayoutSubviews];
+    
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"滑动了多少：%f",scrollView.contentOffset.y);
@@ -141,6 +148,7 @@
     self.tableView.mj_footer.hidden = NO;
     contentOffsetY = MAXFLOAT;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    NSLog(@"----pass-%@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
 
 - (void)getData{
