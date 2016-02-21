@@ -45,6 +45,8 @@
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    _tableView.backgroundColor = RGBA(237, 237, 237, 1);
     [self ConfigureRightItem];
     [self registerTableViewCell];
     [self addRefreshAction];
@@ -77,7 +79,7 @@
         self.tableView.bounces = YES;
     }
     if (scrollView.contentOffset.y >= contentOffsetY) {
-        self.tableView.bounces = NO;
+//        self.tableView.bounces = NO;
     }
 }
 
@@ -123,7 +125,7 @@
     }
     else{
         button = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 55, SCREEN_HEIGHT - 118, 110, 28)];
-        self.tableView.bounces = NO;
+//        self.tableView.bounces = NO;
     }
     button.backgroundColor = [UIColor clearColor];
     [button setTitle:@"更多活动专题" forState:UIControlStateNormal];
