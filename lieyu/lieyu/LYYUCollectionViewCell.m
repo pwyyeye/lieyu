@@ -179,7 +179,7 @@
 
     }
     
-    for (int i = 0; i < orderModel.orderInfo.pinkerCount; i ++) {
+    for (int i = 0; i < orderModel.orderInfo.pinkerList.count; i ++) {
         if (i >= 5) {
             break;
         }
