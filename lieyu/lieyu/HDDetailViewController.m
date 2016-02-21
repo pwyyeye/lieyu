@@ -238,6 +238,26 @@
         }else{
             _HDDetailCell.joinedpro_label.text = @"邀请所有人";
         }
+        
+        
+        double payamout;
+        if ([orderInfo.pinkerType isEqualToString:@"0"]) {
+            //发起人请客
+            payamout = 0 ;
+            _HDDetailCell.label_priceWay.text = @"发起人请客";
+        }else if([orderInfo.pinkerType isEqualToString:@"1"]){
+            //AA付款
+            payamout = orderInfo.amountPay.doubleValue / [orderInfo.allnum intValue];
+                        _HDDetailCell.label_priceWay.text = @"AA付款";
+        }else if ([orderInfo.pinkerType isEqualToString:@"2"]){
+            //发起人自由付款，其他人AA
+             payamout = orderInfo.amountPay.doubleValue / ([orderInfo.allnum intValue] - 1);
+                        _HDDetailCell.label_priceWay.text = @"AA付款";
+        }
+
+        NSString *payStr = [NSString stringWithFormat:@"¥%.2f",payamout];
+        _HDDetailCell.label_prieceWayRight.text = payStr;
+        
         _HDDetailCell.address_label.text = orderInfo.barinfo.address;
         _HDDetailCell.barName_label.text = orderInfo.barinfo.barname;
         [_HDDetailCell.checkAddress_button addTarget:self action:@selector(checkAddress) forControlEvents:UIControlEventTouchUpInside];
@@ -286,7 +306,7 @@
     }else if (indexPath.section == 1){
         height = 104;
     }else if(indexPath.section == 2){
-        height = 200;
+        height = 238;
     }else if (indexPath.section == 3){
         int width = SCREEN_WIDTH - 24;
         int shang = width / 50;
@@ -413,7 +433,8 @@
             }else{
                 ChoosePayController *detailVC = [[ChoosePayController alloc]init];
                 detailVC.orderNo = result;
-                detailVC.payAmount = payamout;
+                NSString *payStr = [NSString stringWithFormat:@"%.2f",payamout];
+                detailVC.payAmount = payStr.doubleValue;
                 detailVC.productName = pinkeModel.smname;
                 detailVC.productDescription = @"暂无";
                 UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
