@@ -90,6 +90,9 @@
 }
 
 - (void)getData{
+    if (_YUModel!=nil&&_YUid==nil) {
+        _YUid=_YUModel.id;
+    }
     NSDictionary *dict = @{@"id":_YUid};
     [LYYUHttpTool yuGetYuModelWithParams:dict complete:^(YUOrderShareModel *YUModel) {
         _YUModel = YUModel;
@@ -157,8 +160,25 @@
         self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
     }
     if ([[MyUtil residueTimeFromDate:orderInfo.reachtime] isEqualToString:@"已过期"]) {
+        [self.joinBtn setTitle:@"已过期" forState:UIControlStateNormal];
         self.joinBtn.enabled = NO;
         self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
+    }
+    AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    for (YUPinkerListModel *pinker in orderInfo.pinkerList) {
+        if (delegate.userModel!=nil) {
+            if (pinker.inmember.intValue==delegate.userModel.userid) {
+                self.joinBtn.enabled = NO;
+                if (pinker.paymentStatus!=nil&& pinker.paymentStatus.intValue==1) {
+                    [self.joinBtn setTitle:@"已参与" forState:UIControlStateNormal];
+                }else{
+                    [self.joinBtn setTitle:@"已参与(待付款)" forState:UIControlStateNormal];
+                }
+                
+                self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
+                break;
+            }
+        }
     }
 }
 
@@ -473,7 +493,6 @@
 - (void)gotoUserPage:(UIButton *)button{
         NSInteger index = button.tag;
 //    NSInteger index = tap.view.tag;
-    
     NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"活动详情",@"titleName":@"个人主页",@"value":((YUPinkerListModel *)[orderInfo.pinkerList objectAtIndex:index]).inmember};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
