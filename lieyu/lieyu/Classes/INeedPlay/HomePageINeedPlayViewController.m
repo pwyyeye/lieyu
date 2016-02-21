@@ -419,6 +419,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self.navigationController setNavigationBarHidden:YES];
    /* _index = 0;
     [_collectView setContentOffset:CGPointZero]; */
+    
+//    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)
+    
     [self createNavButton];
 }
 
