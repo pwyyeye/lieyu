@@ -1002,7 +1002,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                             [bannerList addObject:[dic objectForKey:@"img_url"]];
                         }
                     }
+                    [[spaceCell viewWithTag:1999] removeFromSuperview];
                      SDCycleScrollView *cycleScrollView  = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+                    cycleScrollView.tag=1999;
                     cycleScrollView.imageURLStringsGroup =bannerList;// self.bannerList;
                     cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
                     cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];

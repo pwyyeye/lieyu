@@ -17,12 +17,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Awy-CP-LEe">
                         <rect key="frame" x="6" y="0.0" width="308" height="191.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="piM-nB-vS8">
-                                <rect key="frame" x="0.0" y="0.0" width="134" height="191.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="134" id="n6R-pE-hTq"/>
-                                </constraints>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot_triangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="CMa-c5-6A1">
                                 <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                 <constraints>
@@ -122,6 +116,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="piM-nB-vS8">
+                                <rect key="frame" x="0.0" y="0.0" width="134" height="191.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="134" id="n6R-pE-hTq"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
