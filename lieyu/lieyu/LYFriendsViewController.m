@@ -121,7 +121,6 @@
 
 /*
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    NSLog(@"------>%@",change);
     if (change[@"new"]) {
         
     }else{
@@ -312,7 +311,6 @@
         
     }
     pvModel.imageLink = imageLink;
-    NSLog(@"------>%@------%@",pvModel.imageLink,imageLink);
     recentM.lyMomentsAttachList = @[pvModel];
     
     NSMutableArray *arr1 = _dataArray[0];
@@ -977,7 +975,6 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     [UIView animateWithDuration:.25 animations:^{
     _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
-        NSLog(@"--->%@------->%@",NSStringFromCGRect(rect),NSStringFromCGRect(_commentView.frame));
     }];
 }
 

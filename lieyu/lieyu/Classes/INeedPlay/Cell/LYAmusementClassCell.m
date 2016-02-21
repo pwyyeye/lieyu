@@ -39,7 +39,6 @@
     
     [self.button_page_left addTarget:self action:@selector(pageClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.button_page_right addTarget:self action:@selector(pageClick:) forControlEvents:UIControlEventTouchUpInside];
-    NSLog(@"---->%@",NSStringFromCGSize(_scrollView.contentSize));
 }
 
 - (void)pageClick:(UIButton *)buton{
