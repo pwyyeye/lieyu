@@ -33,7 +33,7 @@
             //UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - imgVWidth)/2.f, 8, imgVWidth, 213)];
             UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0,SCREEN_WIDTH,self.frame.size.height )];
             BarActivityList *activityL = _activtyArray.firstObject;
-            [btn sd_setImageWithURL:[NSURL URLWithString:activityL.topicInfo.imageUrl]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
+            [btn sd_setImageWithURL:[NSURL URLWithString:activityL.imageUrl]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
             btn.imageView.contentMode = UIViewContentModeScaleAspectFill;        [_activtyBtnArray addObject:btn];
             [_scrollView addSubview:btn];
             UIImageView *hotImgV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 4 - 32, 4, 32, 32)];
@@ -46,7 +46,7 @@
             for (int i = 0; i < activtyArray.count; i ++) {
                 UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i % activtyArray.count * (imgVWidth + 8) +8 , 0, imgVWidth, 213)];
                 BarActivityList *activityL = _activtyArray[i];
-                [btn sd_setImageWithURL:[NSURL URLWithString:activityL.topicInfo.imageUrl]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
+                [btn sd_setImageWithURL:[NSURL URLWithString:activityL.imageUrl]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
                 btn.imageView.contentMode = UIViewContentModeScaleAspectFill;         [_activtyBtnArray addObject:btn];
                 [_scrollView addSubview:btn];
                 UIImageView *hotImgV = [[UIImageView alloc]initWithFrame:CGRectMake(imgVWidth - 4 - 32, 4, 32, 32)];
