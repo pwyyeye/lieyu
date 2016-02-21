@@ -29,7 +29,7 @@
                                 <rect key="frame" x="68" y="8" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="bNL-Wt-YiM"/>
-                                    <constraint firstAttribute="width" constant="42" id="pQn-U6-P33"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="pQn-U6-P33"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
@@ -267,7 +267,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgH-Gx-EOF">
-                                <rect key="frame" x="256" y="160" width="40" height="16"/>
+                                <rect key="frame" x="256.5" y="160" width="39.5" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="bxL-fq-dSQ"/>
                                     <constraint firstAttribute="height" constant="16" id="tOr-0o-LtX"/>
@@ -337,6 +337,7 @@
                             <constraint firstItem="orb-CI-4eM" firstAttribute="leading" secondItem="R4n-Gt-h6A" secondAttribute="trailing" constant="20" id="89n-lF-BDN"/>
                             <constraint firstItem="tGK-W2-cxv" firstAttribute="width" secondItem="R4n-Gt-h6A" secondAttribute="width" id="8YU-Wi-iTa"/>
                             <constraint firstItem="dny-wF-wGE" firstAttribute="leading" secondItem="rQL-mG-nNL" secondAttribute="trailing" constant="20" id="9Gb-Od-YS3"/>
+                            <constraint firstItem="FAm-C9-m8g" firstAttribute="leading" secondItem="iU1-ep-3Qc" secondAttribute="trailing" constant="12" id="Aer-SX-Jyi"/>
                             <constraint firstItem="wcU-hc-CpD" firstAttribute="leading" secondItem="eR7-PE-0B1" secondAttribute="leading" constant="8" id="Awz-mz-I35"/>
                             <constraint firstItem="qXm-4B-jRG" firstAttribute="leading" secondItem="eR7-PE-0B1" secondAttribute="leading" constant="8" id="Azf-T5-XeM"/>
                             <constraint firstAttribute="trailing" secondItem="tGK-W2-cxv" secondAttribute="trailing" constant="10" id="BPD-5A-KYt"/>
@@ -355,6 +356,7 @@
                             <constraint firstItem="7oy-52-woV" firstAttribute="centerY" secondItem="ZoQ-ZB-kHR" secondAttribute="centerY" id="Mxj-DC-klT"/>
                             <constraint firstItem="FAm-C9-m8g" firstAttribute="leading" secondItem="iU1-ep-3Qc" secondAttribute="trailing" constant="12" id="NO1-ty-eSV"/>
                             <constraint firstItem="7oy-52-woV" firstAttribute="top" secondItem="sGp-TK-6pD" secondAttribute="bottom" constant="14" id="Ouu-3D-6kk"/>
+                            <constraint firstItem="sGp-TK-6pD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FAm-C9-m8g" secondAttribute="trailing" constant="8" id="PEd-sS-jNK"/>
                             <constraint firstItem="tm8-eF-3qf" firstAttribute="leading" secondItem="9b9-UY-Mzx" secondAttribute="leading" id="TtB-Q6-xa5"/>
                             <constraint firstItem="qXm-4B-jRG" firstAttribute="top" secondItem="eR7-PE-0B1" secondAttribute="top" constant="8" id="UAO-so-br9"/>
                             <constraint firstItem="Vo3-iv-fC9" firstAttribute="top" secondItem="xft-gI-DY6" secondAttribute="bottom" constant="10" id="UG6-2P-fVd"/>
@@ -395,6 +397,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="kNh-fT-cYX"/>
+                                <exclude reference="NO1-ty-eSV"/>
                                 <exclude reference="FZx-M2-XkA"/>
                                 <exclude reference="Ouu-3D-6kk"/>
                                 <exclude reference="gdS-tg-E7e"/>

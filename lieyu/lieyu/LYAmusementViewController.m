@@ -491,7 +491,7 @@
     }
     YUOrderShareModel *orderM = _dataArray[collectionView.tag][indexPath.row];
     cell.orderModel = orderM;
-    if (orderM.orderInfo.pinkerList.count >= 5) {
+    if (orderM.orderInfo.pinkerCount >= 5) {
         cell.btn_more.tag = indexPath.item;
         [cell.btn_more addTarget:self action:@selector(btnMoreClick:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -535,7 +535,7 @@
         return;
     }
     YUOrderShareModel *orderModel = array[tag];
-    if (tag + 1 > orderModel.orderInfo.pinkerList.count) {
+    if (tag + 1 > orderModel.orderInfo.pinkerCount) {
         return;
     }
     YUPinkerListModel *pinkerListM = orderModel.orderInfo.pinkerList[tag];

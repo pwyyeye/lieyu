@@ -161,33 +161,44 @@
 //        _label_barName.frame = CGRectMake(_label_barName.bounds.origin.x - 18, _label_barName.bounds.origin.y, _label_barName.bounds.size.width, _label_barName.bounds.size.height);
     }
     //    _label_distance.text = orderModel.orderInfo.
+
+    if(orderModel.orderInfo.pinkerCount >= 5) [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerCount] forState:UIControlStateNormal];
     
-  /*  for (int i = 0; i < orderModel.orderInfo.pinkerList.count; i ++) {
+    
+    for (int i = 0; i < orderModel.orderInfo.pinkerCount; i ++) {
         if (i >= 5) {
-            return;
+            break;
         }
+        
         YUPinkerListModel *pinkerInfo = orderModel.orderInfo.pinkerList[i];
         UIButton *btn = _btnArray[i];
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal];
-        btn.hidden = NO;
-    } */
-    
-    if(orderModel.orderInfo.pinkerList.count >= 5) [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerList.count] forState:UIControlStateNormal];
-    
-    
-    for (int i = 0; i < orderModel.orderInfo.pinkerList.count; i ++) {
-        if (i >= 5) {
-            return;
-        }
-        YUPinkerListModel *pinkerInfo = orderModel.orderInfo.pinkerList[i];
-        UIButton *btn = _btnArray[i];
+        
+//        [[self.contentView viewWithTag:(1111+i)] removeFromSuperview];
+
         [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
+//        if (pinkerInfo.quantity.intValue>1 && i!=4) {
+//            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(btn.frame.origin.x+10+ btn.frame.size.width/2, btn.frame.origin.y-btn.frame.size.height+5, 16, 16)];
+//            label.layer.masksToBounds=YES;
+//            label.layer.cornerRadius=8;
+//            label.tag=1111+i;
+//            label.font = [UIFont systemFontOfSize:12];
+//            label.layer.masksToBounds = YES;
+//            label.backgroundColor =RGB(186, 40, 227);
+//            label.textAlignment=NSTextAlignmentCenter;
+//            label.text=pinkerInfo.quantity;
+//            label.layer.zPosition = 20.0;
+//            label.textColor=[UIColor whiteColor];
+//            [self.contentView addSubview:label];
+//        }
         btn.hidden = NO;
     }
     
-    if (orderModel.orderInfo.pinkerList.count >= 5) {
-        [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerList.count] forState:UIControlStateNormal];
-    _btn_more.hidden = NO;
+    if (orderModel.orderInfo.pinkerCount >= 5) {
+        [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerCount] forState:UIControlStateNormal];
+        _btn_more.hidden = NO;
+    }else{
+        
+        _btn_more.hidden = YES;
     }
 }
 
