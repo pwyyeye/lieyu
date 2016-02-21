@@ -306,7 +306,7 @@
     }else if (indexPath.section == 1){
         height = 104;
     }else if(indexPath.section == 2){
-        height = 238;
+        height = 243;
     }else if (indexPath.section == 3){
         int width = SCREEN_WIDTH - 24;
         int shang = width / 50;
