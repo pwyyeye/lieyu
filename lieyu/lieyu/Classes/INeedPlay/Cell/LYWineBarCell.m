@@ -107,7 +107,6 @@
     NSString *perscent = [NSString stringWithFormat:@"%d%@",fanli,@"%"];
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:perscent];
     NSInteger location;
-    NSLog(@"--------%d---%ld----%@",fanli,perscent.integerValue,perscent);
     if (perscent.integerValue < 10) {
         location = 1;
     }else{

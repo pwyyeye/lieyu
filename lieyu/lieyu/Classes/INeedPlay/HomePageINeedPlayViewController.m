@@ -217,7 +217,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 } completion:nil];
             }
         }else{
-            NSLog(@"---->%f",cell.collectViewInside.contentOffset.y);
                 if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 90) {
                     [UIView animateWithDuration:0.3 animations:^{
                         _menuView.center = CGPointMake(_menuView.center.x,45);
@@ -930,6 +929,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                              break;
                      }
 //                         cell.collectViewInside.mj_footer.hidden = NO;
+                     [cell.collectViewInside.mj_footer resetNoMoreData];
                      }else{
                          // collectView.mj_footer.hidden = YES;
                          [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
@@ -1048,7 +1048,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 }
                     break;
             default:{
-                NSLog(@"---->%ld",indexPath.item);
                 HomeBarCollectionViewCell *barCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
                 return barCell;
                 
@@ -1081,7 +1080,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //            array = _dataArray[_index];
             LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
             HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
-            NSLog(@"---->%ld",indexPath.item);
             if (indexPath.item - 4 >= hcell.jiubaArray.count) {
                 return;
             }

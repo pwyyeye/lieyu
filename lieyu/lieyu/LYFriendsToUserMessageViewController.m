@@ -323,7 +323,6 @@
     CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     [UIView animateWithDuration:.25 animations:^{
        // _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
-        NSLog(@"--->%@------->%@",NSStringFromCGRect(rect),NSStringFromCGRect(_commentView.frame));
     }];
 }
 
@@ -675,7 +674,6 @@
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
                     NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_section]).commentList;
-                    NSLog(@"------>%@------%ld",commentArr,_indexRow);
                     [commentArr removeObjectAtIndex:_indexRow - 4];
                     recetnM.commentNum = [NSString stringWithFormat:@"%ld",recetnM.commentNum.integerValue - 1];
                     [weakSelf.tableView reloadData];
