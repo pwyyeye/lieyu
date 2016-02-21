@@ -200,7 +200,7 @@
     if ([MyUtil isEmptyString:_orderNo]) {
         return;
     }
-    if (_payAmount==0) { 
+    if (_payAmount==0) {
         return;
     }
     if ([MyUtil isEmptyString:_productName]) {

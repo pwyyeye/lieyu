@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *barName_label;
 @property (weak, nonatomic) IBOutlet UIButton *checkAddress_button;
 @property (weak, nonatomic) IBOutlet UIButton *checkBar_button;
+@property (weak, nonatomic) IBOutlet UILabel *label_priceWay;
+@property (weak, nonatomic) IBOutlet UILabel *label_prieceWayRight;
 
 @property (weak, nonatomic) IBOutlet UIView *backView;
 @end
