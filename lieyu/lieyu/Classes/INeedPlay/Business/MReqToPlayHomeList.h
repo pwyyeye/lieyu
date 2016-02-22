@@ -15,10 +15,13 @@
 @property(nonatomic,strong)NSDecimalNumber *latitude;
 @property(nonatomic,strong)NSString *city;
 @property(nonatomic,strong)NSString *bartype;
+@property(strong,nonatomic) NSString *bartypename;
 @property(nonatomic,strong)NSString *subtype;
 @property(nonatomic,strong)NSString *barname;
 @property (nonatomic,copy) NSString *subids;
 @property (nonatomic,copy) NSString *sort;
+@property(assign,nonatomic) int bannertypeid;
+@property(strong,nonatomic) NSString *bannerTypeName;
 
 @property (nonatomic,copy) NSString *titleStr;
 

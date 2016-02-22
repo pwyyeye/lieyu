@@ -426,7 +426,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-
+    [self.navigationController setNavigationBarHidden:YES];
     
 }
 
@@ -602,8 +602,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     hList.per = @(PAGESIZE);
     if (tag == 0) {
         hList.subids = @"2";
+//        hList.bannertypeid=5;
+//        hList.bannerTypeName=@"我要玩";
+
     }else{
         hList.subids = @"1,6,7";
+        hList.bannerTypeName=@"一起玩";
     }
     __weak __typeof(self)weakSelf = self;
     [bus getToPlayOnHomeList2:hList pageIndex:_index results:^(LYErrorMessage * ermsg,HomePageModel *homePageM){
