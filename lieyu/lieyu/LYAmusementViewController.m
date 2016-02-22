@@ -522,23 +522,26 @@
     if (button.tag + 1 > array.count) {
         return;
     }
+    
     YUOrderShareModel *orderModel = array[button.tag];
+    NSLog(@"--->%@",orderModel.orderInfo.username);
     LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsVC.friendsId = orderModel.orderInfo.userid;
     [self.navigationController pushViewController:friendsVC animated:YES];
 }
 
 - (void)pinkerClick:(UIButton *)button{
-    NSInteger tag = button.tag %5;
+    NSInteger tag = button.tag /5;
     NSArray *array = _dataArray[_index];
     if (tag + 1 > array.count) {
         return;
     }
     YUOrderShareModel *orderModel = array[tag];
-    if (tag + 1 > orderModel.orderInfo.pinkerCount) {
-        return;
-    }
-    YUPinkerListModel *pinkerListM = orderModel.orderInfo.pinkerList[tag];
+//    if (button.tag + 1 > orderModel.orderInfo.pinkerCount) {
+//        return;
+//    }
+    YUPinkerListModel *pinkerListM = orderModel.orderInfo.pinkerList[button.tag % 5];
+     NSLog(@"---->%@----->%@",pinkerListM.inmemberName,pinkerListM.inmenberAvatar_img);
     LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsVC.friendsId = pinkerListM.inmember;
     [self.navigationController pushViewController:friendsVC animated:YES];

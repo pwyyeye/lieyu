@@ -21,7 +21,7 @@
 //    self.view_cell.layer.shadowRadius = 1;
 //    self.view_cell.layer.shadowOpacity = 1;
     
-    self.view_cell.layer.cornerRadius = 2;
+//    self.view_cell.layer.cornerRadius = 2;
     self.view_cell.layer.borderWidth = 0.5;
     self.view_cell.layer.borderColor = RGBA(204, 204, 204, 1).CGColor;
 //    self.view_cell.layer.masksToBounds = YES;
@@ -97,9 +97,17 @@
     _label_message.text = orderModel.shareContent;
     
     if([orderModel.orderInfo.pinkerType isEqualToString:@"0"]){
-    _label_fanshi.text = @"[我请客]";
+    _label_fanshi.text = @"[免费]";
 }else if([orderModel.orderInfo.pinkerType isEqualToString:@"1"]){
-    _label_fanshi.text = @"[AA付款]";
+    double payamout;
+    payamout = orderModel.orderInfo.amountPay.doubleValue / [orderModel.orderInfo.allnum intValue];
+    NSString *payStr = [NSString stringWithFormat:@"%2.f",payamout];
+    _label_fanshi.text = [NSString stringWithFormat:@"[AA-¥%@]",payStr];
+}else if([orderModel.orderInfo.pinkerType isEqualToString:@"2"]){
+    double payamout;
+    payamout = orderModel.orderInfo.amountPay.doubleValue / ([orderModel.orderInfo.allnum intValue] - 1);
+    NSString *payStr = [NSString stringWithFormat:@"%2.f",payamout];
+    _label_fanshi.text = [NSString stringWithFormat:@"[AA-¥%@]",payStr];
 }
 
     if (orderModel.orderInfo.tags.count) {
@@ -143,8 +151,9 @@
     if (![MyUtil isEmptyString:orderModel.orderInfo.barinfo.address]) {
         _label_address.text = orderModel.orderInfo.barinfo.addressabb;
     }
-    
-    _label_time.text = [MyUtil residueTimeFromDate:orderModel.orderInfo.reachtime];
+    if(![orderModel.orderInfo.orderStatus isEqualToString:@"0"]) _label_time.text = @"已拼成";
+    else  _label_time.text = [MyUtil residueTimeFromDate:orderModel.orderInfo.reachtime];
+        
     //    _label_time.text = [MyUtil residueTimeFromDate:@"2016-02-01 20:45:39"];
     
     _label_barName.text = orderModel.orderInfo.barinfo.barname;
@@ -194,7 +203,7 @@
          _btn_more.layer.masksToBounds = YES;
         _btn_more.layer.zPosition=100;
         [imageView sd_setImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
-        
+        NSLog(@"----->%@--->%@",pinkerInfo.inmemberName,pinkerInfo.inmenberAvatar_img);
         imageView.tag=2222+i;
         [btn addSubview:imageView];
         

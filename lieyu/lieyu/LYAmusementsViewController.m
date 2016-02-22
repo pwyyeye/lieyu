@@ -545,6 +545,7 @@
         return;
     }
     YUPinkerListModel *pinkerListM = orderModel.orderInfo.pinkerList[button.tag];
+    NSLog(@"---->%@",pinkerListM.inmemberName);
     LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsVC.friendsId = pinkerListM.inmember;
     [self.navigationController pushViewController:friendsVC animated:YES];
