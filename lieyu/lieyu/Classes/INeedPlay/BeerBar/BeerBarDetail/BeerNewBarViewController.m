@@ -227,13 +227,14 @@
         
         if (!_beerBarDetail.isSign) {
             _bottomEffectView.hidden = YES;
-            [self.view bringSubviewToFront:_tableView];
+            /*[self.view bringSubviewToFront:_tableView];
             [self.view bringSubviewToFront:effectView];
             [self.view bringSubviewToFront:_image_layer];
             [self.view bringSubviewToFront:_btnBack];
             [self.view bringSubviewToFront:_btn_collect];
             [self.view bringSubviewToFront:_btn_like];
-            [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ];
+            [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]; */
+            _view_bottom.hidden = YES;
         }
         return;
     }
@@ -262,13 +263,14 @@
              
              if (!_beerBarDetail.isSign) {
                  _bottomEffectView.hidden = YES;
-                 [weakSelf.view bringSubviewToFront:_tableView];
+                 _view_bottom.hidden = YES;
+             /*    [weakSelf.view bringSubviewToFront:_tableView];
                  [weakSelf.view bringSubviewToFront:effectView];
                  [weakSelf.view bringSubviewToFront:_image_layer];
                  [weakSelf.view bringSubviewToFront:_btnBack];
                  [weakSelf.view bringSubviewToFront:_btn_collect];
                  [weakSelf.view bringSubviewToFront:_btn_like];
-                 [weakSelf.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ];
+                 [weakSelf.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]; */
              }
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
@@ -713,8 +715,6 @@
 
 #pragma mark － 签到
 - (void)signClick:(id)sender {
-    
-    
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"定位功能不可用" message:@"请前往设置隐私中开启定位服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
@@ -744,7 +744,6 @@
         [alertView show];
     }
     }
-    
 }
 
 
