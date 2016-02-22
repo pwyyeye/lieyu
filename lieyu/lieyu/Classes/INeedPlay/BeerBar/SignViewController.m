@@ -33,6 +33,7 @@
     PAGESIZE = 20;
     self.title = @"所有签到";
     self.navigationController.title = @"所有签到";
+    _tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     // Do any additional setup after loading the view from its nib.
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -46,14 +47,15 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController setNavigationBarHidden:NO];
+//    self.navigationController.navigationBar.hidden = NO;
+//    [self.navigationController setNavigationBarHidden:NO];
     
 }
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     
+    [self.navigationController.navigationBar setHidden:NO];
     [self.navigationController setNavigationBarHidden:NO];
 }
 
