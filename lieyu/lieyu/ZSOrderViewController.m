@@ -723,6 +723,11 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -783,6 +788,7 @@
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"XiaoFeiMaUiew" owner:nil options:nil];
     xiaoFeiMaUiew= (XiaoFeiMaUiew *)[nibView objectAtIndex:0];
     xiaoFeiMaUiew.top=-xiaoFeiMaUiew.height;
+    xiaoFeiMaUiew.width=SCREEN_WIDTH;
     [xiaoFeiMaUiew.xiaofeiMaTextField addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
     xiaoFeiMaUiew.xiaofeiMaTextField.tag=sender.tag;
     xiaoFeiMaUiew.xiaofeiMaTextField.keyboardType = UIKeyboardTypeNumberPad;
@@ -839,8 +845,18 @@
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     // 把单聊视图控制器添加到导航栈。
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-    conversationVC.navigationItem.leftBarButtonItem = left;
+//    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+//    conversationVC.navigationItem.leftBarButtonItem = left;
+//    
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 40, 40)];
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    conversationVC.navigationItem.leftBarButtonItem = item;
+
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
