@@ -796,6 +796,7 @@
     xiaoFeiMaUiew.xiaofeiMaTextField.keyboardType = UIKeyboardTypeNumberPad;
     xiaoFeiMaUiew.xiaofeiMaTextField.returnKeyType=UIReturnKeyDone;
     xiaoFeiMaUiew.xiaofeiMaTextField.delegate=self;
+    [xiaoFeiMaUiew.xiaofeiMaTextField setCustomDoneTarget:self action:@selector(duimaReturn:)];
     [_bgView addSubview:xiaoFeiMaUiew];
     [UIView beginAnimations:@"animationID" context:nil];
     [UIView setAnimationDuration:0.3];
@@ -828,6 +829,22 @@
         }
     }];
     return YES;
+}
+
+- (void)duimaReturn:(UITextField *)textField{
+    [self SetViewDisappearForDuiMa:nil];
+    //对码
+    
+    OrderInfoModel *orderInfoModel=serchDaiXiaoFei[textField.tag];
+    
+    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id],@"consumptionCode":textField.text};
+    __weak __typeof(self)weakSelf = self;
+    [[ZSManageHttpTool shareInstance] setManagerConfirmOrderWithParams:dic complete:^(BOOL result) {
+        if(result){
+            [self showMessage:@"消费码兑换成功！"];
+            [weakSelf getDaiXiaoFei];
+        }
+    }];
 }
 
 #pragma mark 私聊
