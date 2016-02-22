@@ -842,7 +842,7 @@
             if(_activityArray.count) return 8;
             else return 0;
         }
-        return 8;
+        return 3;
     }
 }
 
