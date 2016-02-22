@@ -11,17 +11,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugo-A0-5x2">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugo-A0-5x2">
                     <rect key="frame" x="0.0" y="80" width="320" height="49"/>
                     <color key="backgroundColor" red="0.13725490200000001" green="0.65098039220000004" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="SXv-YF-jwK"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="确定">
                         <color key="titleColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pv-ye-qwm">
+                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pv-ye-qwm">
                     <rect key="frame" x="27" y="32" width="83" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="83" id="4GW-as-vae"/>
+                        <constraint firstAttribute="height" constant="22" id="n3n-1Y-2oL"/>
+                    </constraints>
                     <state key="normal" title="无卡座" image="danxuan">
                         <color key="titleColor" red="0.20392156862745098" green="0.20392156862745098" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,8 +38,12 @@
                         <action selector="noKaZuoAct:" destination="iN0-l3-epB" eventType="touchUpInside" id="2mj-nY-ghl"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8Z-x4-Hxg">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8Z-x4-Hxg">
                     <rect key="frame" x="209" y="32" width="83" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="83" id="5So-0u-y39"/>
+                        <constraint firstAttribute="height" constant="22" id="bvS-Ui-Plu"/>
+                    </constraints>
                     <state key="normal" title="有卡座" image="danxuan">
                         <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,6 +55,15 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ugo-A0-5x2" secondAttribute="bottom" id="Dut-1E-dyI"/>
+                <constraint firstItem="ugo-A0-5x2" firstAttribute="top" secondItem="6Pv-ye-qwm" secondAttribute="bottom" constant="26" id="Efz-LL-ynz"/>
+                <constraint firstAttribute="trailing" secondItem="ugo-A0-5x2" secondAttribute="trailing" id="Mil-a2-MmX"/>
+                <constraint firstItem="ugo-A0-5x2" firstAttribute="top" secondItem="c8Z-x4-Hxg" secondAttribute="bottom" constant="26" id="d9U-7z-l6J"/>
+                <constraint firstItem="6Pv-ye-qwm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="gNu-hx-Jj5"/>
+                <constraint firstAttribute="trailing" secondItem="c8Z-x4-Hxg" secondAttribute="trailing" constant="28" id="tOd-5m-Ezj"/>
+                <constraint firstItem="ugo-A0-5x2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="x83-mI-dg7"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
