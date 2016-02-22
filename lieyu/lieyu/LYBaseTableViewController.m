@@ -40,7 +40,7 @@
     //navigationBar的标题
     //self.navigationItem.title=@"登录";
     
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     button.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
     [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];

@@ -279,8 +279,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             
-            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 40, 40)];
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
             [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
             [view addSubview:button];
             [button addTarget:self action:@selector(backForword) forControlEvents:UIControlEventTouchUpInside];

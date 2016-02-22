@@ -58,7 +58,7 @@
 }
 
 - (void)configureRightButton{
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [button setImage:[UIImage imageNamed:@"jubao_btn"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(jubaoDT:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];

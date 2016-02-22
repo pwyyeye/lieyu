@@ -69,8 +69,8 @@
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.edgesForExtendedLayout = UIRectEdgeAll;
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 40, 40)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [button setImage:[UIImage imageNamed:@"CHshop"] forState:UIControlStateNormal];
     [view addSubview:button];
     [button addTarget:self action:@selector(showcarAct) forControlEvents:UIControlEventTouchUpInside];
