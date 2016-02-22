@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lieyu/SingletonTenpay.m"
-            timestampString = "476186213.200151"
+            timestampString = "477841038.342453"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "-onResp:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1050,11 +1050,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lieyu/LYOrderDetailViewController.m"
-            timestampString = "477829971.770612"
+            timestampString = "477839870.093535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1468"
-            endingLineNumber = "1468"
+            startingLineNumber = "1474"
+            endingLineNumber = "1474"
             landmarkName = "-dianhuaAct:"
             landmarkType = "5">
          </BreakpointContent>

@@ -1279,6 +1279,12 @@
                     detailViewController.orderNo=pinkInfoModel.sn;
                     detailViewController.payAmount=pinkInfoModel.price.doubleValue;
                     detailViewController.isPinker=YES;
+                    if (pinkInfoModel.inmember==orderInfoModel.userid) {
+                        detailViewController.isFaqi=YES;
+                    }else{
+                        detailViewController.isFaqi=NO;
+                    }
+
                 }
             }
         }

@@ -247,6 +247,7 @@
                     detailViewController.payAmount=oldmoney;
                     detailViewController.productName=pkModel.title;
                     detailViewController.isPinker=YES;
+                    detailViewController.isFaqi=YES;
                     detailViewController.productDescription=@"暂无";
                     UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
                     self.navigationItem.backBarButtonItem = left;
