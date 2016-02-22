@@ -28,5 +28,5 @@
 }
 @property (nonatomic, assign)  BOOL isHaveBtn;
 @property (nonatomic, retain)  OrderInfoModel *orderInfoModel;
-@property (nonatomic, weak) id <OrderDetailDelegate> delegate;
+@property (nonatomic, assign) id <OrderDetailDelegate> delegate;
 @end
