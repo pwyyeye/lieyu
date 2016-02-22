@@ -52,7 +52,7 @@
 UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 ,UIScrollViewDelegate>{
     UIButton *_cityChooseBtn,*_searchBtn;
-    UIImageView *_titleImageView;
+    UIButton *_titleImageView;
     CGFloat _scale;
     NSInteger _index;
     NSMutableArray *_dataArray,*_recommendedBarArray;
@@ -252,9 +252,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     _index = (NSInteger)_collectView.contentOffset.x/SCREEN_WIDTH;
-    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+    //LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (_dataArray.count) {
         NSArray *array = _dataArray[_index];
+        [self getDataLocalAndReload];
         if(!array.count) {
 //            [cell.collectViewInside.mj_header beginRefreshing];
             [self getDataWith:_index];
@@ -276,7 +277,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark - 点击到达顶部
 - (void)clickToTop:(UITapGestureRecognizer *)gesture{
-    
+    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+    [cell.collectViewInside scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] atScrollPosition:(UICollectionViewScrollPositionTop) animated:YES];
 }
 
 #pragma mark 创建导航的按钮(选择城市和搜索)
@@ -319,10 +321,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuView addSubview:_searchBtn];
     
     CGFloat titleImgViewWidth = 40;
-    _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5 + 10, titleImgViewWidth, titleImgViewWidth)];
-    _titleImageView.image = [UIImage imageNamed:@"logo"];
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickToTop:)];
-    [_titleImageView addGestureRecognizer:tapGesture];
+    _titleImageView = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5 + 10, titleImgViewWidth, titleImgViewWidth)];
+    [_titleImageView setBackgroundImage:[UIImage imageNamed:@"logo"] forState:UIControlStateNormal];
+    [_titleImageView addTarget:self action:@selector(clickToTop:) forControlEvents:UIControlEventTouchUpInside];
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickToTop:)];
+//    [_titleImageView addGestureRecognizer:tapGesture];
     [_menuView addSubview:_titleImageView];
     
     __block HomePageINeedPlayViewController *weakSelf = self;
@@ -487,7 +490,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     NSArray *array = [self getDataFromLocal];
     LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (array.count == 2) {
-        NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
+        NSDictionary *dataDic = ((LYCache *)((NSArray *)array[_index]).firstObject).lyCacheValue;
         NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
         _fiterArray = [dataDic valueForKey:@"filterImages"];
          NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
@@ -500,38 +503,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             self.newbannerList2 = dataDic[@"newbanner"];
 
         }
-        
-        [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
-      /*  if (((NSArray *)array[0]).count) {
-            NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
-            NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
-            self.bannerList = dataDic[@"banner"];
-            self.newbannerList = dataDic[@"newbanner"];
-            self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
-            _fiterArray = [dataDic valueForKey:@"filterImages"];
-            NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
-            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+        if (_index == 0) {
             [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
-            //            collectView = _collectViewArray[0];
-        }else if(((NSArray *)array[1]).count){
-            NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
-            NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
-            self.bannerList = dataDic[@"banner"];
-            self.newbannerList = dataDic[@"newbanner"];
-            self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
-            _fiterArray = [dataDic valueForKey:@"filterImages"];
-            NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
-            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
-            [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
-            //            collectView = _collectViewArray[1];
-        }*/
+        }else{
+            [_dataArray replaceObjectAtIndex:1 withObject:array_YD];
+        }
         [cell.collectViewInside reloadData];
     }
 }
 
 #pragma mark 获取数据
 -(void)getDataWith:(NSInteger)tag{
-    if([MyUtil configureNetworkConnect] == 0){
+   /* if([MyUtil configureNetworkConnect] == 0){
         NSArray *array = [self getDataFromLocal];
         UICollectionView *collectView = nil;
         if (array.count == 2) {
@@ -580,10 +563,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
              [collectView reloadData];
              }completion: ^(BOOL isFinished){
              
-             }]; */
+             }];
             return;
         }
-    }
+    } */
     __weak HomePageINeedPlayViewController * weakSelf = self;
     [weakSelf loadHomeListWith:tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {

@@ -292,14 +292,12 @@
      NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_JIUBADETAIL,_beerBarId.stringValue];
 //     NSPredicate *pre = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"lyCacheKey == '%@'",keyStr]];
     NSDictionary *paraDic = @{@"lyCacheKey":keyStr};
-//    NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" andSearchPara:paraDic];
-    NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre];
-    if(dataArray.count){
+    NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" andSearchPara:paraDic];
+// NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre];
         NSDictionary *dataDic = ((LYCache *)dataArray.firstObject).lyCacheValue;
         BeerBarOrYzhDetailModel *beerModel = [BeerBarOrYzhDetailModel initFormDictionary:dataDic];
-    
-    return @[beerModel];
-    }else return nil;
+
+    return beerModel?@[beerModel]:nil;
    
 //    NSPredicate *pre = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"lyCacheKey == %@",keyStr]];
 //    NSArray *array = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre];
