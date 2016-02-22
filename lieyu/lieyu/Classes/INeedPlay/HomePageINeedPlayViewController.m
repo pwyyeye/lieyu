@@ -683,7 +683,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             //            [collectView reloadData];
         }
         block !=nil? block(ermsg,homePageM.banner,homePageM.barlist):nil;
-    }];
+    }];   
 }
 
 #pragma mark 本地获取数据
