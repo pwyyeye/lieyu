@@ -57,7 +57,7 @@
     [self.navigationController setNavigationBarHidden:NO];
 }
 - (void)configureRightItem{
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [button setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];

@@ -232,8 +232,8 @@
         [IQKeyboardManager sharedManager].isAdd = YES;
         // 把单聊视图控制器添加到导航栈。
         
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 40, 40)];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
         [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
         [view addSubview:button];
         [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];

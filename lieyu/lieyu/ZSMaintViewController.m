@@ -86,7 +86,7 @@
     
     
     //返回按钮
-    _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(15, 40, 40, 40)];
+    _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(15, 40, 44, 44)];
     [_btnBack setImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [_btnBack addTarget:self action:@selector(backAct:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:_btnBack];
