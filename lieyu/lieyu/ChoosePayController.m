@@ -14,7 +14,7 @@
 #import "HDDetailViewController.h"
 #import "CHDoOrderViewController.h"
 #import "ZujuViewController.h"
-
+#import "LYwoYaoDinWeiMainViewController.h"
 @interface ChoosePayController ()
 {
     UITableViewCell *_payCell;
@@ -148,7 +148,7 @@
     //    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
     for (UIViewController *controller in self.navigationController.viewControllers) {
-        if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]]){
+        if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]){
             LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
             [self.navigationController pushViewController:detailViewController animated:YES];
             return;
