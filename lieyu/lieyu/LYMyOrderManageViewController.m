@@ -40,7 +40,7 @@
     
     [self.btn_yue addTarget:self action:@selector(jumpToYue) forControlEvents:UIControlEventTouchUpInside];
     self.btn_yue.layer.cornerRadius = 5;
-    self.btn_yue.layer.masksToBounds = YES;
+    self.btn_yue.layer.masksToBounds = YES;  
     
     //自定义返回
 //    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
