@@ -1316,8 +1316,11 @@
 }
 #pragma mark 电话咨询
 - (void)dhzxAct:(UIButton *)sender{
+    AppDelegate * app=(AppDelegate *)[UIApplication sharedApplication].delegate;
+
     if( [MyUtil isPureInt:_orderInfoModel.checkUserMobile]){
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
+//        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",app.userModel.userid==  _orderInfoModel.userid?_orderInfoModel.checkUserMobile:_orderInfoModel.phone];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
     }
