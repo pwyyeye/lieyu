@@ -1104,7 +1104,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     [cell addSubview:imgV];
                     }
                     
-                    if (_recommendedTopic2.id&&_index==0) {
+                    if (_recommendedTopic2.id&&_index==1) {
                         UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
                         imageV.layer.cornerRadius = 2;
                         imageV.layer.masksToBounds = YES;
