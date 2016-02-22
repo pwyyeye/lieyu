@@ -15,8 +15,8 @@
                     <rect key="frame" x="0.0" y="37" width="106.5" height="37"/>
                     <color key="backgroundColor" red="1" green="0.62352941176470589" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <inset key="titleEdgeInsets" minX="-54" minY="5" maxX="0.0" maxY="0.0"/>
-                    <inset key="imageEdgeInsets" minX="50" minY="10" maxX="80" maxY="8"/>
+                    <inset key="titleEdgeInsets" minX="16" minY="5" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="45" minY="1" maxX="75" maxY="-2"/>
                     <state key="normal" title="对码" image="duima">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

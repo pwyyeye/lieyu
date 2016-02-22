@@ -31,7 +31,7 @@
     self.tableView.bounces=NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
+//    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
     [self getDataForShowList];
     
     
@@ -46,12 +46,12 @@
     NSDictionary *dic1=@{@"colorRGB":RGB(136, 223, 121),@"imageContent":@"Fill20179",@"title":@"通知中心",@"delInfo":@"您有客户留言请及时查收"};
     NSDictionary *dic2=@{@"colorRGB":RGB(254, 147, 87),@"imageContent":@"Fill20219",@"title":@"订单管理",@"delInfo":@"您有订单要确认请及时确定"};
     NSDictionary *dic3=@{@"colorRGB":RGB(65, 241, 221),@"imageContent":@"Fill20176",@"title":@"我的客户",@"delInfo":@""};
-    NSDictionary *dic4=@{@"colorRGB":RGB(84, 225, 255),@"imageContent":@"Fill2097",@"title":@"商铺管理",@"delInfo":@""};
+//    NSDictionary *dic4=@{@"colorRGB":RGB(84, 225, 255),@"imageContent":@"Fill2097",@"title":@"商铺管理",@"delInfo":@""};
     [listArr addObject:dic];
     [listArr addObject:dic1];
     [listArr addObject:dic2];
     [listArr addObject:dic3];
-    [listArr addObject:dic4];
+//    [listArr addObject:dic4];
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 228)];
     
 //    view.backgroundColor=RGB(35, 166, 116);
@@ -97,6 +97,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
 }
@@ -111,6 +112,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self.navigationController setNavigationBarHidden:NO];
 }
 #pragma mark tableview代理方法
@@ -200,8 +202,8 @@
             
         default:
         {
-            ZSMyShopsManageViewController *myShopManageViewController=[[ZSMyShopsManageViewController alloc]initWithNibName:@"ZSMyShopsManageViewController" bundle:nil];
-            [self.navigationController pushViewController:myShopManageViewController animated:YES];
+//            ZSMyShopsManageViewController *myShopManageViewController=[[ZSMyShopsManageViewController alloc]initWithNibName:@"ZSMyShopsManageViewController" bundle:nil];
+//            [self.navigationController pushViewController:myShopManageViewController animated:YES];
             break;
         }
         
