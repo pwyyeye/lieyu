@@ -96,11 +96,16 @@
     
     _label_message.text = orderModel.shareContent;
     
-    if([orderModel.orderInfo.ordertype isEqualToString:@"0"]){
+    if([orderModel.orderInfo.pinkerType isEqualToString:@"0"]){
     _label_fanshi.text = @"[免费]";
-}else if([orderModel.orderInfo.ordertype isEqualToString:@"1"]){
+}else if([orderModel.orderInfo.pinkerType isEqualToString:@"1"]){
     double payamout;
     payamout = orderModel.orderInfo.amountPay.doubleValue / [orderModel.orderInfo.allnum intValue];
+    NSString *payStr = [NSString stringWithFormat:@"%2.f",payamout];
+    _label_fanshi.text = [NSString stringWithFormat:@"[AA-¥%@]",payStr];
+}else if([orderModel.orderInfo.pinkerType isEqualToString:@"2"]){
+    double payamout;
+    payamout = orderModel.orderInfo.amountPay.doubleValue / ([orderModel.orderInfo.allnum intValue] - 1);
     NSString *payStr = [NSString stringWithFormat:@"%2.f",payamout];
     _label_fanshi.text = [NSString stringWithFormat:@"[AA-¥%@]",payStr];
 }
@@ -146,8 +151,9 @@
     if (![MyUtil isEmptyString:orderModel.orderInfo.barinfo.address]) {
         _label_address.text = orderModel.orderInfo.barinfo.addressabb;
     }
-    
-    _label_time.text = [MyUtil residueTimeFromDate:orderModel.orderInfo.reachtime];
+    if(![orderModel.orderInfo.orderStatus isEqualToString:@"0"]) _label_time.text = @"已拼成";
+    else  _label_time.text = [MyUtil residueTimeFromDate:orderModel.orderInfo.reachtime];
+        
     //    _label_time.text = [MyUtil residueTimeFromDate:@"2016-02-01 20:45:39"];
     
     _label_barName.text = orderModel.orderInfo.barinfo.barname;
