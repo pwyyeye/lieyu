@@ -109,6 +109,7 @@
                 <outlet property="nameLal" destination="23D-LT-uDa" id="Kir-Pf-JxC"/>
                 <outlet property="yjBtn" destination="bbX-Bk-og4" id="h92-0K-apd"/>
             </connections>
+            <point key="canvasLocation" x="269" y="341.5"/>
         </tableViewCell>
     </objects>
     <resources>

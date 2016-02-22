@@ -722,10 +722,12 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 
 }
 - (void)didReceiveMemoryWarning {
@@ -849,8 +851,8 @@
 //    conversationVC.navigationItem.leftBarButtonItem = left;
 //    
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 40, 40)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
     [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [view addSubview:button];
     [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
