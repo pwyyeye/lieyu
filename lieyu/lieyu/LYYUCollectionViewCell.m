@@ -96,9 +96,9 @@
     
     _label_message.text = orderModel.shareContent;
     
-    if([orderModel.orderInfo.ordertype isEqualToString:@"0"]){
+    if([orderModel.orderInfo.pinkerType isEqualToString:@"0"]){
     _label_fanshi.text = @"[我请客]";
-}else if([orderModel.orderInfo.ordertype isEqualToString:@"1"]){
+}else if([orderModel.orderInfo.pinkerType isEqualToString:@"1"]){
     _label_fanshi.text = @"[AA付款]";
 }
 
