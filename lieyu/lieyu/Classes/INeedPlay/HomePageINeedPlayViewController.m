@@ -74,6 +74,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     RecommendedTopic *_recommendedTopic2;
     NSMutableArray *_newbannerListArray2;
     
+    BOOL _isGetDataFromNet_YD,_isGetDataFromNet_BAR;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -254,11 +255,22 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _index = (NSInteger)_collectView.contentOffset.x/SCREEN_WIDTH;
     //LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (_dataArray.count) {
-        NSArray *array = _dataArray[_index];
-        [self getDataLocalAndReload];
-        if(!array.count) {
-//            [cell.collectViewInside.mj_header beginRefreshing];
-            [self getDataWith:_index];
+        switch (_index) {
+            case 0:{
+                if (_isGetDataFromNet_YD) {
+                    _isGetDataFromNet_YD = NO;
+                    [self getDataWith:0];
+                }
+            }
+                break;
+                
+            case 1:{
+                if (_isGetDataFromNet_BAR) {
+                    _isGetDataFromNet_BAR = NO;
+                    [self getDataWith:1];
+                }
+            }
+                break;
         }
     }
     
@@ -395,9 +407,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _btn_bar.isHomePageMenuViewSelected = YES;
     _btn_yedian.isHomePageMenuViewSelected = NO;
     if (_dataArray.count) {
-        NSArray *array = _dataArray[1];
-        if (array.count == 0) {
-            [self getDataLocalAndReload];
+        if (_isGetDataFromNet_BAR) {
+            _isGetDataFromNet_BAR = NO;
             [self getDataWith:1];
         }
     }
@@ -488,27 +499,32 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)getDataLocalAndReload{
     NSArray *array = [self getDataFromLocal];
-    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+  //  LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (array.count == 2) {
-        NSDictionary *dataDic = ((LYCache *)((NSArray *)array[_index]).firstObject).lyCacheValue;
-        NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
-        _fiterArray = [dataDic valueForKey:@"filterImages"];
-         NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+        NSDictionary *dataDic1 = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
+         NSDictionary *dataDic2 = ((LYCache *)((NSArray *)array[1]).firstObject).lyCacheValue;
+        NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic1[@"barlist"]]] ;
+        NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic2[@"barlist"]]] ;
+        _fiterArray = [dataDic1 valueForKey:@"filterImages"];
+         NSDictionary *recommendedBarDic1 = [dataDic1 valueForKey:@"recommendedBar"];
+                 NSDictionary *recommendedBarDic2 = [dataDic2 valueForKey:@"recommendedBar"];
         if (_index==0) {
-            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
-            self.newbannerList = dataDic[@"newbanner"];
+            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic1];
+            self.newbannerList = dataDic1[@"newbanner"];
 
         }else{
-            _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
-            self.newbannerList2 = dataDic[@"newbanner"];
+            _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic2];
+            self.newbannerList2 = dataDic2[@"newbanner"];
 
         }
         if (_index == 0) {
             [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
         }else{
-            [_dataArray replaceObjectAtIndex:1 withObject:array_YD];
+            [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
         }
-        [cell.collectViewInside reloadData];
+        [_collectView reloadData];
+        _isGetDataFromNet_BAR = YES;
+        _isGetDataFromNet_YD = YES;
     }
 }
 
@@ -663,6 +679,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             
             LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
             [cell.collectViewInside reloadData];
+//            NSIndexPath *indexP = [NSIndexPath indexPathForItem:_index inSection:0];
+//            [_collectView reloadItemsAtIndexPaths:@[];
             
             
 //            cell.recommendedBar = _recommendedBarArray[_index];
@@ -777,7 +795,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    return 1;    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
