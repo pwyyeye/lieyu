@@ -61,16 +61,24 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UIView *_lineView;
     UIVisualEffectView *_navView,*_menuView;
     NSArray *_fiterArray;
-    JiuBaModel *_recommendedBar;
+    
     CGFloat _contentOffSet_Height_YD,_contentOffSet_Height_BAR,_contentOffSetWidth;
     UICollectionView *_collectView;
     BOOL _isCollectView;
+    
+    JiuBaModel *_recommendedBar;
     RecommendedTopic *_recommendedTopic;
     NSMutableArray *_newbannerListArray;
+    
+    JiuBaModel *_recommendedBar2;
+    RecommendedTopic *_recommendedTopic2;
+    NSMutableArray *_newbannerListArray2;
+    
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
+@property(nonatomic,strong)NSMutableArray *newbannerList2;
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property (nonatomic,strong) NSArray *bartypeslistArray;
 @property(nonatomic,assign) NSInteger curPageIndex;
@@ -89,6 +97,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     _dataArray = [[NSMutableArray alloc]initWithCapacity:2];
     _newbannerListArray = [[NSMutableArray alloc]initWithCapacity:2];
+    _newbannerListArray2 = [[NSMutableArray alloc]initWithCapacity:2];
     _recommendedBarArray= [[NSMutableArray alloc]initWithCapacity:2];
     for (int i = 0; i < 2; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
@@ -473,10 +482,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (array.count == 2) {
         NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
         NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
-         self.newbannerList = dataDic[@"newbanner"];
         _fiterArray = [dataDic valueForKey:@"filterImages"];
          NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
-        _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+        if (_index==0) {
+            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+            self.newbannerList = dataDic[@"newbanner"];
+
+        }else{
+            _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+            self.newbannerList2 = dataDic[@"newbanner"];
+
+        }
+        
         [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
       /*  if (((NSArray *)array[0]).count) {
             NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
@@ -515,22 +532,36 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
                 NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
                 self.bannerList = dataDic[@"banner"];
-                self.newbannerList = dataDic[@"newbanner"];
+                if (_index==0) {
+                    self.newbannerList = dataDic[@"newbanner"];
+                    NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+                    _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+                }else{
+                    self.newbannerList2 = dataDic[@"newbanner"];
+                    NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+                    _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+                }
+                
                 self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
                 _fiterArray = [dataDic valueForKey:@"filterImages"];
-                NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
-                _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+                
                 [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
                 //                collectView = _collectViewArray[0];
             }else if(((NSArray *)array[1]).count){
                 NSDictionary *dataDic = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
                 NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
                 self.bannerList = dataDic[@"banner"];
-                self.newbannerList = dataDic[@"newbanner"];
+                if (_index==0) {
+                    self.newbannerList = dataDic[@"newbanner"];
+                    NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+                    _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+                }else{
+                    self.newbannerList2 = dataDic[@"newbanner"];
+                    NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+                    _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
+                }
                 self.bartypeslistArray = [[NSMutableArray alloc]initWithArray:[bartypeslistModel mj_objectArrayWithKeyValuesArray:dataDic[@"bartypeslist"]]];
                 _fiterArray = [dataDic valueForKey:@"filterImages"];
-                NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
-                _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic];
                 [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
                 //                collectView = _collectViewArray[1];
             }
@@ -621,12 +652,23 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if((tag == 0 && _currentPage_YD == 1) || (tag == 1 && _currentPage_Bar == 1)) {
                 [array removeAllObjects];
                 weakSelf.bannerList = homePageM.banner.mutableCopy;
-                weakSelf.newbannerList = homePageM.newbanner.mutableCopy;
+                if (_index==0) {
+                    weakSelf.newbannerList = homePageM.newbanner.mutableCopy;
+                }else{
+                    weakSelf.newbannerList2 = homePageM.newbanner.mutableCopy;
+                }
+                
                 weakSelf.bartypeslistArray = homePageM.bartypeslist;
                 _fiterArray = homePageM.filterImages;
             }
-            _recommendedBar = homePageM.recommendedBar;
-            _recommendedTopic = homePageM.recommendedTopic;
+            if (_index==0) {
+                _recommendedBar = homePageM.recommendedBar;
+                _recommendedTopic = homePageM.recommendedTopic;
+            }else{
+                _recommendedBar2 = homePageM.recommendedBar;
+                _recommendedTopic2 = homePageM.recommendedTopic;
+            }
+            
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
             
             LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
@@ -774,11 +816,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (collectionView == _collectView) {
         return CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
     }else{
-        if (!_recommendedTopic.id) {
+        if (!_recommendedTopic.id&&_index==0) {
             if (indexPath.item == 3) {
                 return CGSizeZero;
             }
         }
+        
+        if (!_recommendedTopic2.id&&_index==1) {
+            if (indexPath.item == 3) {
+                return CGSizeZero;
+            }
+        }
+        
         if (indexPath.item==2) {
             return CGSizeMake(SCREEN_WIDTH - 6, ((SCREEN_WIDTH-9)/2)*95/183*2+3);
         }
@@ -1003,14 +1052,19 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 case 0:
                 {
                     UICollectionViewCell *spaceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-                                      NSMutableArray *bannerList=[NSMutableArray new];
+                    NSMutableArray *bannerList=[NSMutableArray new];
 //                    [cycleScrollView removeFromSuperview];
-                    for (NSDictionary *dic in self.newbannerList) {
+                   
+                    for (NSDictionary *dic in _index==0?self.newbannerList:self.newbannerList2) {
                         if ([dic objectForKey:@"img_url"]) {
                             [bannerList addObject:[dic objectForKey:@"img_url"]];
                         }
                     }
-                    [[spaceCell viewWithTag:1999] removeFromSuperview];
+                    
+                    UIView *view= [spaceCell viewWithTag:1999];
+                    [view removeFromSuperview];
+                    view=nil;
+                    
                      SDCycleScrollView *cycleScrollView  = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
                     cycleScrollView.tag=1999;
                     cycleScrollView.imageURLStringsGroup =bannerList;// self.bannerList;
@@ -1022,7 +1076,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 break;
             case 1:{
                 HomeBarCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-             
+                
                 return cell;
                 }
                     break;
@@ -1041,14 +1095,24 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     if (imageV) {
                         [imageV removeFromSuperview];
                     }
-                    if (_recommendedTopic.id) {
+                    if (_recommendedTopic.id&&_index==0) {
                     UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
                     imageV.layer.cornerRadius = 2;
                     imageV.layer.masksToBounds = YES;
                     imgV.tag = 10010;
-                    [imgV sd_setImageWithURL:[NSURL URLWithString:_recommendedTopic.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                        [imgV sd_setImageWithURL:[NSURL URLWithString: _recommendedTopic.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                     [cell addSubview:imgV];
                     }
+                    
+                    if (_recommendedTopic2.id&&_index==0) {
+                        UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
+                        imageV.layer.cornerRadius = 2;
+                        imageV.layer.masksToBounds = YES;
+                        imgV.tag = 10010;
+                        [imgV sd_setImageWithURL:[NSURL URLWithString: _recommendedTopic2.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                        [cell addSubview:imgV];
+                    }
+                    
                     return cell;
                 }
                     break;
@@ -1068,9 +1132,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     if (collectionView != _collectView) {
         if (indexPath.item==1) {
-            if (_recommendedBar) {
-                ((HomeBarCollectionViewCell *)cell).jiuBaM = _recommendedBar;
+            if (_recommendedBar&&_index==0) {
+                ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBar;
             }
+            if (_recommendedBar2&&_index==1) {
+                ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBar2;
+            }
+            
         }else if(indexPath.item == 2){
             HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
             if(_fiterArray.count == 4){
@@ -1112,13 +1180,22 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         array = _dataArray[_index];
     }
     if(indexPath.item == 1){
-        jiuBaM = _recommendedBar;
+        jiuBaM =_index==0? _recommendedBar:_recommendedBar2;
     }else if(indexPath.item == 3){
-        if(_recommendedTopic.id){
-        ActionPage *aPage = [[ActionPage alloc]init];
-        aPage.topicid = _recommendedTopic.id;
-        [self.navigationController pushViewController:aPage animated:YES];
+        if (_index==0) {
+            if(_recommendedTopic.id){
+                ActionPage *aPage = [[ActionPage alloc]init];
+                aPage.topicid = _recommendedTopic.id;
+                [self.navigationController pushViewController:aPage animated:YES];
+            }
+        }else{
+            if(_recommendedTopic2.id){
+                ActionPage *aPage = [[ActionPage alloc]init];
+                aPage.topicid = _recommendedTopic2.id;
+                [self.navigationController pushViewController:aPage animated:YES];
+            }
         }
+        
         return;
     }else if(indexPath.item >= 4){
         if(array.count) jiuBaM = array[indexPath.item - 4];
@@ -1209,7 +1286,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    NSDictionary *dic = _newbannerList [index];
+    NSDictionary *dic =_index==0? _newbannerList [index]:_newbannerList2 [index];
     NSNumber *ad_type=[dic objectForKey:@"ad_type"];
     NSNumber *linkid=[dic objectForKey:@"linkid"];
     //    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客
