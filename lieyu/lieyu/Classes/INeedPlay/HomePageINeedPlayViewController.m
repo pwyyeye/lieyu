@@ -274,6 +274,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
 }
 
+#pragma mark - 点击到达顶部
+- (void)clickToTop:(UITapGestureRecognizer *)gesture{
+    
+}
 
 #pragma mark 创建导航的按钮(选择城市和搜索)
 - (void)createNavButton{
@@ -317,6 +321,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     CGFloat titleImgViewWidth = 40;
     _titleImageView = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5 + 10, titleImgViewWidth, titleImgViewWidth)];
     _titleImageView.image = [UIImage imageNamed:@"logo"];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickToTop:)];
+    [_titleImageView addGestureRecognizer:tapGesture];
     [_menuView addSubview:_titleImageView];
     
     __block HomePageINeedPlayViewController *weakSelf = self;
@@ -388,6 +394,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (_dataArray.count) {
         NSArray *array = _dataArray[1];
         if (array.count == 0) {
+            [self getDataLocalAndReload];
             [self getDataWith:1];
         }
     }

@@ -437,6 +437,7 @@
                 detailVC.payAmount = payStr.doubleValue;
                 detailVC.productName = pinkeModel.smname;
                 detailVC.productDescription = @"暂无";
+                [MyUtil showMessage:@"请在五分钟之内完成支付，否则订单将自动取消！"];
                 UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
                 self.navigationItem.backBarButtonItem = left;
                 [self.navigationController pushViewController:detailVC animated:YES];
