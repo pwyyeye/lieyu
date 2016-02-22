@@ -39,6 +39,7 @@
 #import "ActionDetailViewController.h"
 #import "BarActivityList.h"
 #import "LYMyFriendDetailViewController.h"
+#import "LYCache.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
@@ -209,6 +210,34 @@
 
 - (void)loadBarDetail
 {
+    
+    
+    
+    NSArray *array = [self getDataFromLocal];
+    if (array.count) {
+        BeerBarOrYzhDetailModel *beerM = array.firstObject;
+        self.beerBarDetail = beerM;
+        self.title=self.beerBarDetail.barname;
+        
+        [self updateViewConstraints];
+        [self.tableView reloadData];
+        [self loadMyBarInfo];
+        //加载webview
+        [self loadWebView];
+        
+        if (!_beerBarDetail.isSign) {
+            _bottomEffectView.hidden = YES;
+            [self.view bringSubviewToFront:_tableView];
+            [self.view bringSubviewToFront:effectView];
+            [self.view bringSubviewToFront:_image_layer];
+            [self.view bringSubviewToFront:_btnBack];
+            [self.view bringSubviewToFront:_btn_collect];
+            [self.view bringSubviewToFront:_btn_like];
+            [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ];
+        }
+        return;
+    }
+    
     __weak __typeof(self ) weakSelf = self;
     LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
     [bus getBearBarOrYzhDetail:_beerBarId results:^(LYErrorMessage *erMsg, BeerBarOrYzhDetailModel *detailItem)
@@ -255,6 +284,22 @@
         _activityArray = result;
         [_tableView reloadData];
     }];
+}
+
+- (NSArray *)getDataFromLocal{
+     NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_JIUBADETAIL,_beerBarId.stringValue];
+     NSPredicate *pre = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"lyCacheKey == '%@'",keyStr]];
+    NSDictionary *paraDic = @{@"lyCacheKey":keyStr};
+//    NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" andSearchPara:paraDic];
+ NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre];
+        NSDictionary *dataDic = ((LYCache *)dataArray.firstObject).lyCacheValue;
+        BeerBarOrYzhDetailModel *beerModel = [BeerBarOrYzhDetailModel initFormDictionary:dataDic];
+    
+    return @[beerModel];
+   
+//    NSPredicate *pre = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"lyCacheKey == %@",keyStr]];
+//    NSArray *array = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre];
+//    return array;
 }
 
 - (void)loadMyBarInfo{

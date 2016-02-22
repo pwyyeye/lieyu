@@ -48,11 +48,17 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    
+//    self.navigationController.navigationBar.hidden = NO;
+//    [self.navigationController setNavigationBarHidden:NO];
+    
 }
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
+    
+    [self.navigationController.navigationBar setHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)getData{
