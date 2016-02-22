@@ -236,7 +236,7 @@
             [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]; */
             _view_bottom.hidden = YES;
         }
-        return;
+//        return;
     }
     
     __weak __typeof(self ) weakSelf = self;
