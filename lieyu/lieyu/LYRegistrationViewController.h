@@ -37,6 +37,7 @@
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (nonatomic, weak) id <LYRegistrationDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *btn_regist;
+- (IBAction)checkProtocol:(UIButton *)sender;
 
 + (instancetype)shareRegist;
 @end

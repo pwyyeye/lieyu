@@ -405,6 +405,7 @@
 		386AE3A71C5B6F2B0062105F /* banner_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A31C5B6F2B0062105F /* banner_s@3x.png */; };
 		386AE3A81C5B6F2B0062105F /* banner_us@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A41C5B6F2B0062105F /* banner_us@2x.png */; };
 		386AE3A91C5B6F2B0062105F /* banner_us@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A51C5B6F2B0062105F /* banner_us@3x.png */; };
+		3879D0631C7AE423000F5795 /* CheckProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879D0621C7AE423000F5795 /* CheckProtocol.m */; };
 		3879F2061C0BE19500B72629 /* LPSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2051C0BE19500B72629 /* LPSelectButton.m */; };
 		3879F24A1C0D325D00B72629 /* BarInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879F2481C0D325D00B72629 /* BarInfoTableViewCell.m */; };
 		3879F24B1C0D325D00B72629 /* BarInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3879F2491C0D325D00B72629 /* BarInfoTableViewCell.xib */; };
@@ -1865,6 +1866,8 @@
 		386AE3A31C5B6F2B0062105F /* banner_s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_s@3x.png"; sourceTree = "<group>"; };
 		386AE3A41C5B6F2B0062105F /* banner_us@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_us@2x.png"; sourceTree = "<group>"; };
 		386AE3A51C5B6F2B0062105F /* banner_us@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_us@3x.png"; sourceTree = "<group>"; };
+		3879D0611C7AE423000F5795 /* CheckProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProtocol.h; sourceTree = "<group>"; };
+		3879D0621C7AE423000F5795 /* CheckProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProtocol.m; sourceTree = "<group>"; };
 		3879F2041C0BE19500B72629 /* LPSelectButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LPSelectButton.h; path = ../LPSelectButton.h; sourceTree = "<group>"; };
 		3879F2051C0BE19500B72629 /* LPSelectButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LPSelectButton.m; path = ../LPSelectButton.m; sourceTree = "<group>"; };
 		3879F2471C0D325D00B72629 /* BarInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarInfoTableViewCell.h; sourceTree = "<group>"; };
@@ -3814,6 +3817,8 @@
 				15E240D01BB3D5940090D240 /* LYRegistrationViewController.xib */,
 				85589CB61C16D41D000E342E /* SingletonRegiste.h */,
 				85589CB71C16D41D000E342E /* SingletonRegiste.m */,
+				3879D0611C7AE423000F5795 /* CheckProtocol.h */,
+				3879D0621C7AE423000F5795 /* CheckProtocol.m */,
 			);
 			name = "注册";
 			sourceTree = "<group>";
@@ -7857,6 +7862,7 @@
 				15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */,
 				AD106BBD1C0DDEFF007F5FBA /* NSObject+MJProperty.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
+				3879D0631C7AE423000F5795 /* CheckProtocol.m in Sources */,
 				AD106B901C0AF044007F5FBA /* LYUserCenterHeader.m in Sources */,
 				8550E70B1C2FC11C001FF2DE /* LYFriendsCommentView.m in Sources */,
 				AD106BB61C0DDEFF007F5FBA /* MJFoundation.m in Sources */,

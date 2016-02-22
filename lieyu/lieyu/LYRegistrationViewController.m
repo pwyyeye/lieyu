@@ -12,6 +12,7 @@
 #import "LYUserLoginViewController.h"
 #import "HomePageINeedPlayViewController.h"
 #import "IQKeyboardManager.h"
+#import "CheckProtocol.h"
 @interface LYRegistrationViewController (){
     BOOL _isRegisted;
     NSString *_flag;
@@ -21,6 +22,11 @@
 
 @implementation LYRegistrationViewController
 static LYRegistrationViewController *_registe;
+
+- (IBAction)checkProtocol:(UIButton *)sender {
+    CheckProtocol *checkPage = [[CheckProtocol alloc]init];
+    [self.navigationController pushViewController:checkPage animated:YES];
+}
 
 + (instancetype)shareRegist{
         static dispatch_once_t onceToken;
