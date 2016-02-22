@@ -195,7 +195,7 @@
     [self.view addSubview:_bigView];
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
-    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 110 , SCREEN_WIDTH, 54);
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 110 , SCREEN_WIDTH, 48);
     _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
@@ -205,7 +205,7 @@
     [_commentView.textField becomeFirstResponder];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
-    
+    _commentView.btn_send_cont_width = 0 ;
     if(_isCommentToUser){
         NSInteger likeCount = _recentM.likeList.count == 0 ? 1:2;
 //        for (FriendsCommentModel *com in _recentM.commentList) {
