@@ -913,7 +913,8 @@
     kaZuoView= (KaZuoView *)[nibView objectAtIndex:0];
     kaZuoView.top=SCREEN_HEIGHT;
     [kaZuoView.SureBtn addTarget:self action:@selector(SetViewDisappearForKaZuoSure:) forControlEvents:UIControlEventTouchDown];
-    
+//    kaZuoView.frame = CGRectMake(0, SCREEN_HEIGHT - 129, SCREEN_WIDTH, 129);
+    kaZuoView.width = SCREEN_WIDTH;
     [_bgView addSubview:kaZuoView];
     [UIView beginAnimations:@"animationID" context:nil];
     [UIView setAnimationDuration:0.3];
