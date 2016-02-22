@@ -228,7 +228,7 @@
     if (indexPath.section == 2) {
         return WebView.frame.size.height + 50;
     }else{
-        return 109;
+        return UITableViewAutomaticDimension;
     }
 }
 
