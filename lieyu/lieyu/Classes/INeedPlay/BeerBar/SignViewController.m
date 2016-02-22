@@ -33,7 +33,9 @@
     PAGESIZE = 20;
     self.title = @"所有签到";
     self.navigationController.title = @"所有签到";
-    _tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+//    if (![[MyUtil deviceString] isEqualToString:@"iPhone 4S"]) {
+//        _tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+//    }
     // Do any additional setup after loading the view from its nib.
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -56,11 +58,11 @@
     [super viewWillLayoutSubviews];
     
     [self.navigationController.navigationBar setHidden:NO];
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)getData{
-    NSDictionary *dic = @{@"start":[NSString stringWithFormat:@"%ld",_currentPage ],@"limit":[NSString stringWithFormat:@"%ld",PAGESIZE],@"barid":_barid};
+    NSDictionary *dic = @{@"start":[NSString stringWithFormat:@"%ld",(long)_currentPage ],@"limit":[NSString stringWithFormat:@"%ld",(long)PAGESIZE],@"barid":_barid};
     [LYHomePageHttpTool getSignListWidth:dic complete:^(NSMutableArray *result) {
         
         NSMutableArray *dateMutablearray = [@[] mutableCopy];
