@@ -19,6 +19,7 @@
 @interface LYCarListViewController ()
 {
     NSMutableArray *dataList;
+    UILabel *warningLabel;
 }
 @end
 
@@ -61,12 +62,23 @@
         [weakSelf.tableView.mj_header endRefreshing];
         [dataList removeAllObjects];
         dataList=[result mutableCopy];
-        for (CarInfoModel *carInfoModel in dataList) {
-            carInfoModel.isSel=true;
-            for (CarModel *carModel in carInfoModel.cartlist) {
-                carModel.isSel=true;
+        if(dataList.count > 0){
+            [warningLabel removeFromSuperview];
+            for (CarInfoModel *carInfoModel in dataList) {
+                carInfoModel.isSel=true;
+                for (CarModel *carModel in carInfoModel.cartlist) {
+                    carModel.isSel=true;
+                }
             }
+        }else{
+            warningLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 40, 200, 20)];
+            warningLabel.textAlignment = NSTextAlignmentCenter;
+            warningLabel.textColor = RGB(186, 40, 227);
+            warningLabel.text = @"购物车空空如也～";
+            warningLabel.font = [UIFont systemFontOfSize:14];
+            [self.view addSubview:warningLabel];
         }
+        
         [weakSelf.tableView reloadData];
     }];
     [_tableView.mj_header endRefreshing];
@@ -181,8 +193,7 @@
         NSDictionary *dic=@{@"ids":[NSNumber numberWithInt:carModel.id]};
         [[LYHomePageHttpTool shareInstance] delcarWithParams:dic complete:^(BOOL result) {
             if(result){
-                
-                [MyUtil showMessage:@"删除成功"];
+                [MyUtil showLikePlaceMessage:@"删除成功"];
                 [weakSelf getData];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"lessGood" object:nil];
             }

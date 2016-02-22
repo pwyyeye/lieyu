@@ -184,8 +184,8 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_timer setFireDate:[NSDate distantFuture]];
-    [self.navigationController.navigationBar setHidden:NO];
-    [self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController.navigationBar setHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [effectView removeFromSuperview];
 }

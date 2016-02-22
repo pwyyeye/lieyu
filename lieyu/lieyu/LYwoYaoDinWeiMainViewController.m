@@ -211,10 +211,10 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 0);
     self.navigationController.navigationBar.layer.borderWidth = 0;
 //    [[UINavigationBar appearance]setBackgroundImage:nil forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 
 }

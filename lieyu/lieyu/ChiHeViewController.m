@@ -186,7 +186,11 @@
 //        [self setSuperScript:goodsList.count];
         num = 0 ;
         for(int i = 0 ; i < goodsList.count ; i ++){
-            num = num + ((CarInfoModel *)goodsList[i]).cartlist.count;
+//            num = num + ((CarInfoModel *)goodsList[i]).cartlist.count;
+            for (int j = 0 ; j < ((CarInfoModel *)goodsList[i]).cartlist.count; j ++) {
+                CarModel *shoppingCar = ((CarModel *)((CarInfoModel *)goodsList[i]).cartlist[j]);
+                num = num + [shoppingCar.quantity intValue];
+            }
         }
         [weakSelf setSuperScript:num];
     }];
