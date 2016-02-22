@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     _image.layer.cornerRadius = 2;
     _image.layer.masksToBounds = YES;
+    _image.contentMode=UIViewContentModeScaleAspectFit;
     self.layer.cornerRadius = 2;
     self.layer.masksToBounds = YES;
 //    _image.clipsToBounds = YES;

@@ -217,7 +217,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 } completion:nil];
             }
         }else{
-            NSLog(@"---->%f",cell.collectViewInside.contentOffset.y);
                 if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 90) {
                     [UIView animateWithDuration:0.3 animations:^{
                         _menuView.center = CGPointMake(_menuView.center.x,45);
@@ -419,6 +418,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self.navigationController setNavigationBarHidden:YES];
    /* _index = 0;
     [_collectView setContentOffset:CGPointZero]; */
+    
+//    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)
+    
     [self createNavButton];
 }
 
@@ -749,6 +751,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //        NSArray *array =_dataArray[_index];
         LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
         if (hcell.jiubaArray.count) {
+            NSLog(@"---->%ld",hcell.jiubaArray.count);
             return hcell.jiubaArray.count + 4;
         }else{
             return 0;
@@ -772,6 +775,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 return CGSizeZero;
             }
         }
+        if (indexPath.item==2) {
+            return CGSizeMake(SCREEN_WIDTH - 6, ((SCREEN_WIDTH-9)/2)*95/183*2+3);
+        }
         return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
     }
 }
@@ -780,7 +786,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (collectionView == _collectView) {
         return 0;
     }else{
-        return 0;
+        return 3;
     }
 }
 
@@ -788,7 +794,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (collectionView == _collectView) {
         return 0;
     }else{
-        return 0;
+        return 3;
     }
 }
 
@@ -797,7 +803,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         return UIEdgeInsetsMake(0,0,0,0);
     }else{
 //        return UIEdgeInsetsMake(3, 3, 3, 3);
-        return UIEdgeInsetsMake(3, 3, 0, 3);
+        return UIEdgeInsetsMake(3, 3, 3, 3);
     }
 }
 
@@ -924,6 +930,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                              break;
                      }
 //                         cell.collectViewInside.mj_footer.hidden = NO;
+                     [cell.collectViewInside.mj_footer resetNoMoreData];
                      }else{
                          // collectView.mj_footer.hidden = YES;
                          [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
@@ -999,7 +1006,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                             [bannerList addObject:[dic objectForKey:@"img_url"]];
                         }
                     }
+                    [[spaceCell viewWithTag:1999] removeFromSuperview];
                      SDCycleScrollView *cycleScrollView  = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+                    cycleScrollView.tag=1999;
                     cycleScrollView.imageURLStringsGroup =bannerList;// self.bannerList;
                     cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
                     cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
@@ -1040,7 +1049,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 }
                     break;
             default:{
-                NSLog(@"---->%ld",indexPath.item);
                 HomeBarCollectionViewCell *barCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
                 return barCell;
                 
@@ -1065,6 +1073,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             for (int i = 0;i < 4;i++) {
                 UIButton *btn = menucell.btnArray[i];
                 [btn sd_setImageWithURL:[NSURL URLWithString:_fiterArray[i]] forState:UIControlStateNormal];
+//                btn.imageView.contentMode = UIViewContentModeScaleAspectFill;
                 [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
             }
             }
@@ -1072,7 +1081,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //            array = _dataArray[_index];
             LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
             HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
-            NSLog(@"---->%ld",indexPath.item);
             if (indexPath.item - 4 >= hcell.jiubaArray.count) {
                 return;
             }

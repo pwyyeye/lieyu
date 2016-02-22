@@ -211,17 +211,21 @@
     if(time == nil){
         [MyUtil showCleanMessage:@"请选择到店时间！"];
         return;
-    }else if(oldPeople == 1){
-        [MyUtil showCleanMessage:@"请选择拼客人数！"];
-        return;
     }else if (_defaultIndex == -1){
         [MyUtil showCleanMessage:@"请选择拼客方式！"];
+        return;
+    }else if(oldPeople == 1){
+        [MyUtil showCleanMessage:@"请选择拼客人数！"];
         return;
     }else{
         NSString *dataAndTime = [[[weekDateArr objectAtIndex:oldDate][@"date"] stringByAppendingString:time] stringByAppendingString:@":00"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         PinKeModel *pkModel = [dataList objectAtIndex:oldIndex.section];
+        if (zsList.count==0) {
+            [MyUtil showCleanMessage:@"该酒吧暂无专属经理，无法下单！"];
+            return;
+        }
         ZSDetailModel *zsModel = [zsList objectAtIndex:index];
         NSDictionary *dic=@{
                             @"pinkerid":[NSNumber numberWithInt:pkModel.id],
@@ -335,16 +339,16 @@
 }
 
 - (void)chooseNumber:(UITapGestureRecognizer *)tap{
-    if(_defaultIndex == -1){//未选择拼客方式
-        [MyUtil showCleanMessage:@"请先选择拼客方式"];
-        return;
-    }else{
+//    if(_defaultIndex == -1){//未选择拼客方式
+//        [MyUtil showCleanMessage:@"请先选择拼客方式"];
+//        return;
+//    }else{
         chooseNumberAlert = [[[NSBundle mainBundle]loadNibNamed:@"ChoosePeople" owner:nil options:nil]firstObject];
         chooseNumberAlert.tag = 14;
         chooseNumberAlert.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200) ;
         [chooseNumberAlert configure:oldPeople];
         [self initAlertView:chooseNumberAlert];
-    }
+//    }
 }
 
 #pragma mark - LPAlertViewDelegate 

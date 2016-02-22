@@ -32,7 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    _tableView.backgroundColor = [UIColor whiteColor];
+    _tableView.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor=[UIColor whiteColor];
     contentOffsetY = MAXFLOAT;
     page = 1;
 //    _topicid = @"0";
@@ -44,7 +45,8 @@
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    [self.navigationController setNavigationBarHidden:NO];
+
+    _tableView.backgroundColor = RGBA(237, 237, 237, 1);
     [self ConfigureRightItem];
     [self registerTableViewCell];
     [self addRefreshAction];
@@ -60,8 +62,15 @@
 }
 
 -(void)viewWillLayoutSubviews{
+     [super viewWillLayoutSubviews];
+//    [self.navigationController setNavigationBarHidden:NO];
+   
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [super viewWillLayoutSubviews];
+    
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"滑动了多少：%f",scrollView.contentOffset.y);
@@ -70,7 +79,7 @@
         self.tableView.bounces = YES;
     }
     if (scrollView.contentOffset.y >= contentOffsetY) {
-        self.tableView.bounces = NO;
+//        self.tableView.bounces = NO;
     }
 }
 
@@ -116,7 +125,7 @@
     }
     else{
         button = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 55, SCREEN_HEIGHT - 118, 110, 28)];
-        self.tableView.bounces = NO;
+//        self.tableView.bounces = NO;
     }
     button.backgroundColor = [UIColor clearColor];
     [button setTitle:@"更多活动专题" forState:UIControlStateNormal];
@@ -141,6 +150,7 @@
     self.tableView.mj_footer.hidden = NO;
     contentOffsetY = MAXFLOAT;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    NSLog(@"----pass-%@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
 
 - (void)getData{

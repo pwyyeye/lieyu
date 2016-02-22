@@ -81,7 +81,6 @@
     
     int fanli=jiuBaM.rebate.floatValue * 100;
     
-    NSLog(@"------>%@",jiuBaM.isSign);
     if([jiuBaM.isSign isEqualToString:@"0"]) _imgYu.hidden = YES;
     else _imgYu.hidden = NO;
     if (!fanli) {

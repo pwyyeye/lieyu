@@ -15,7 +15,7 @@
 #import "YUOrderInfo.h"
 #import "LYUserLocation.h"
 #import "LYHomePageHttpTool.h"
-#import "BeerBarDetailViewController.h"
+#import "BeerNewBarViewController.h"
 #import "YUPinkerinfo.h"
 #import "YUPinkerListModel.h"
 #import "LYMyOrderManageViewController.h"
@@ -90,6 +90,9 @@
 }
 
 - (void)getData{
+    if (_YUModel!=nil&&_YUid==nil) {
+        _YUid=_YUModel.id;
+    }
     NSDictionary *dict = @{@"id":_YUid};
     [LYYUHttpTool yuGetYuModelWithParams:dict complete:^(YUOrderShareModel *YUModel) {
         _YUModel = YUModel;
@@ -157,8 +160,25 @@
         self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
     }
     if ([[MyUtil residueTimeFromDate:orderInfo.reachtime] isEqualToString:@"已过期"]) {
+        [self.joinBtn setTitle:@"已过期" forState:UIControlStateNormal];
         self.joinBtn.enabled = NO;
         self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
+    }
+    AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+    for (YUPinkerListModel *pinker in orderInfo.pinkerList) {
+        if (delegate.userModel!=nil) {
+            if (pinker.inmember.intValue==delegate.userModel.userid) {
+                self.joinBtn.enabled = NO;
+                if (pinker.paymentStatus!=nil&& pinker.paymentStatus.intValue==1) {
+                    [self.joinBtn setTitle:@"已参与" forState:UIControlStateNormal];
+                }else{
+                    [self.joinBtn setTitle:@"已参与(待付款)" forState:UIControlStateNormal];
+                }
+                
+                self.joinBtn.backgroundColor = RGBA(181, 181, 181, 1);
+                break;
+            }
+        }
     }
 }
 
@@ -216,8 +236,28 @@
         }else if ([_YUModel.allowSex isEqualToString:@"1"]){
             _HDDetailCell.joinedpro_label.text = @"只邀请男生";
         }else{
-            _HDDetailCell.joinedpro_label.text = @"全部";
+            _HDDetailCell.joinedpro_label.text = @"邀请所有人";
         }
+        
+        
+        double payamout;
+        if ([orderInfo.pinkerType isEqualToString:@"0"]) {
+            //发起人请客
+            payamout = 0 ;
+            _HDDetailCell.label_priceWay.text = @"发起人请客";
+        }else if([orderInfo.pinkerType isEqualToString:@"1"]){
+            //AA付款
+            payamout = orderInfo.amountPay.doubleValue / [orderInfo.allnum intValue];
+                        _HDDetailCell.label_priceWay.text = @"AA付款";
+        }else if ([orderInfo.pinkerType isEqualToString:@"2"]){
+            //发起人自由付款，其他人AA
+             payamout = orderInfo.amountPay.doubleValue / ([orderInfo.allnum intValue] - 1);
+                        _HDDetailCell.label_priceWay.text = @"AA付款";
+        }
+
+        NSString *payStr = [NSString stringWithFormat:@"¥%.2f",payamout];
+        _HDDetailCell.label_prieceWayRight.text = payStr;
+        
         _HDDetailCell.address_label.text = orderInfo.barinfo.address;
         _HDDetailCell.barName_label.text = orderInfo.barinfo.barname;
         [_HDDetailCell.checkAddress_button addTarget:self action:@selector(checkAddress) forControlEvents:UIControlEventTouchUpInside];
@@ -266,7 +306,7 @@
     }else if (indexPath.section == 1){
         height = 104;
     }else if(indexPath.section == 2){
-        height = 200;
+        height = 243;
     }else if (indexPath.section == 3){
         int width = SCREEN_WIDTH - 24;
         int shang = width / 50;
@@ -393,7 +433,8 @@
             }else{
                 ChoosePayController *detailVC = [[ChoosePayController alloc]init];
                 detailVC.orderNo = result;
-                detailVC.payAmount = payamout;
+                NSString *payStr = [NSString stringWithFormat:@"%.2f",payamout];
+                detailVC.payAmount = payStr.doubleValue;
                 detailVC.productName = pinkeModel.smname;
                 detailVC.productDescription = @"暂无";
                 UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
@@ -460,7 +501,7 @@
 }
 
 - (void)checkBar{
-    BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
     controller.beerBarId = [NSNumber numberWithInt:orderInfo.barinfo.id];
     [self.navigationController pushViewController:controller animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"活动详情" titleName:orderInfo.barinfo.barname]];
@@ -473,7 +514,6 @@
 - (void)gotoUserPage:(UIButton *)button{
         NSInteger index = button.tag;
 //    NSInteger index = tap.view.tag;
-    
     NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"活动详情",@"titleName":@"个人主页",@"value":((YUPinkerListModel *)[orderInfo.pinkerList objectAtIndex:index]).inmember};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     

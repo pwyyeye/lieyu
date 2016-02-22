@@ -15,11 +15,11 @@
     self.label_name.text = @"酒吧名";
     self.imageView_header.layer.cornerRadius = 2;
     self.imageView_header.layer.masksToBounds = YES;
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_btnBuy.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerTopLeft cornerRadii:CGSizeMake(_btnBuy.frame.size.height/2.f, _btnBuy.frame.size.height/2.f)];
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = _btnBuy.bounds;
-    maskLayer.path = maskPath.CGPath;
-    _btnBuy.layer.mask = maskLayer;
+//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_btnBuy.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerTopLeft cornerRadii:CGSizeMake(_btnBuy.frame.size.height/2.f, _btnBuy.frame.size.height/2.f)];
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = _btnBuy.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    _btnBuy.layer.mask = maskLayer;
     
     _imageView_header.layer.cornerRadius = CGRectGetWidth(_imageView_header.frame)/2.f;
     _imageView_header.layer.masksToBounds = YES;

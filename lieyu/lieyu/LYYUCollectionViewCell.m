@@ -46,10 +46,10 @@
     
 
     CGFloat btnWidth = (SCREEN_WIDTH - 16 - 68 - 10 - 20 * 4)/5.f;
-    for (UIButton *btn in _btnArray) {
-        btn.layer.cornerRadius = btnWidth/2.f;
-        btn.layer.masksToBounds = YES;
-    }
+//    for (UIButton *btn in _btnArray) {
+//        btn.layer.cornerRadius = btnWidth/2.f;
+//        btn.layer.masksToBounds = YES;
+//    }
     
     
     _btn_more = [[UIButton alloc]init];
@@ -161,33 +161,68 @@
 //        _label_barName.frame = CGRectMake(_label_barName.bounds.origin.x - 18, _label_barName.bounds.origin.y, _label_barName.bounds.size.width, _label_barName.bounds.size.height);
     }
     //    _label_distance.text = orderModel.orderInfo.
+
+    if(orderModel.orderInfo.pinkerCount >= 5) [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerCount] forState:UIControlStateNormal];
     
-  /*  for (int i = 0; i < orderModel.orderInfo.pinkerList.count; i ++) {
+    
+    for (int j=0; j<5; j++) {
+        UIButton *btn = _btnArray[j];
+        UIView *view2=[btn viewWithTag:(1111+j) ];
+        
+        [view2 removeFromSuperview];
+        view2=nil;
+        
+        UIView *view=[btn viewWithTag:2222+j];
+        
+        [view removeFromSuperview];
+        view=nil;
+
+    }
+    
+    for (int i = 0; i < orderModel.orderInfo.pinkerCount; i ++) {
         if (i >= 5) {
-            return;
+            break;
         }
-        YUPinkerListModel *pinkerInfo = orderModel.orderInfo.pinkerList[i];
         UIButton *btn = _btnArray[i];
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal];
-        btn.hidden = NO;
-    } */
-    
-    if(orderModel.orderInfo.pinkerList.count >= 5) [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerList.count] forState:UIControlStateNormal];
-    
-    
-    for (int i = 0; i < orderModel.orderInfo.pinkerList.count; i ++) {
-        if (i >= 5) {
-            return;
+        YUPinkerListModel *pinkerInfo = orderModel.orderInfo.pinkerList[i];
+        
+        CGFloat btnWidth = (SCREEN_WIDTH - 16 - 68 - 10 - 20 * 4)/5.f;
+        UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, btnWidth, btnWidth)];
+        imageView.layer.cornerRadius = btnWidth/2.f;
+        imageView.layer.masksToBounds = YES;
+        _btn_more.layer.cornerRadius = btnWidth/2.f;
+         _btn_more.layer.masksToBounds = YES;
+        _btn_more.layer.zPosition=100;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
+        
+        imageView.tag=2222+i;
+        [btn addSubview:imageView];
+        
+//        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
+        if (pinkerInfo.quantity.intValue>1 && i!=4) {
+            UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(btnWidth-16,-3,16,16)];
+            label.layer.masksToBounds=YES;
+            label.layer.cornerRadius=8;
+            label.tag=1111+i;
+            label.font = [UIFont systemFontOfSize:12];
+            label.layer.masksToBounds = YES;
+            label.backgroundColor =RGB(186, 40, 227);
+            label.textAlignment=NSTextAlignmentCenter;
+            label.text=pinkerInfo.quantity;
+            label.layer.zPosition = 20.0;
+            label.textColor=[UIColor whiteColor];
+            [btn addSubview:label];
         }
-        YUPinkerListModel *pinkerInfo = orderModel.orderInfo.pinkerList[i];
-        UIButton *btn = _btnArray[i];
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:pinkerInfo.inmenberAvatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
         btn.hidden = NO;
     }
     
-    if (orderModel.orderInfo.pinkerList.count >= 5) {
-        [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerList.count] forState:UIControlStateNormal];
-    _btn_more.hidden = NO;
+    if (orderModel.orderInfo.pinkerCount >= 5) {
+        [_btn_more setTitle:[NSString stringWithFormat:@"%u",orderModel.orderInfo.pinkerCount] forState:UIControlStateNormal];
+        
+        _btn_more.hidden = NO;
+    }else{
+        
+        _btn_more.hidden = YES;
     }
 }
 

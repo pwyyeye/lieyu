@@ -40,7 +40,7 @@
     
     [self.btn_yue addTarget:self action:@selector(jumpToYue) forControlEvents:UIControlEventTouchUpInside];
     self.btn_yue.layer.cornerRadius = 5;
-    self.btn_yue.layer.masksToBounds = YES;
+    self.btn_yue.layer.masksToBounds = YES;  
     
     //自定义返回
 //    UIImage *buttonImage = [UIImage imageNamed:@"btn_back"];
@@ -53,8 +53,8 @@
 //    [view addSubview:button];
 //    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
 //    self.navigationItem.leftBarButtonItem = customBarItem;
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.backBarButtonItem = left;
+//    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
+//    self.navigationItem.backBarButtonItem = left;
     self.title=@"我的订单";
     pageCount=1;
     perCount=5;
@@ -65,16 +65,16 @@
     [self getMenuHrizontal];
     
     
-    
+    __weak LYMyOrderManageViewController *weakSelf = self;
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        [self refreshData];
+        [weakSelf refreshData];
     }];
     MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
     [self initMJRefeshHeaderForGif:header];
     // 设置header
     //    [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.tableView.mj_footer =[MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [self loadMoreData];
+        [weakSelf loadMoreData];
     }];
     
     MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
@@ -122,6 +122,11 @@
 //    LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
 //}
+
+
+- (void)dealloc{
+    NSLog(@"----->dealloc");
+}
 
 - (void)jumpToYue{
     
@@ -256,11 +261,11 @@
             [weakSelf.nodataView setHidden:YES];
             pageCount++;
 //            [weakSelf.tableView.mj_footer resetNoMoreData];
-            [self.tableView.mj_footer endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
         }else{
             [weakSelf.tableView setHidden:YES];
             [weakSelf.nodataView setHidden:NO];
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         [weakSelf.tableView reloadData];
         
@@ -1188,7 +1193,7 @@
     
     orderInfoModel=dataList[sender.tag];
     
-//    __weak __typeof(self)weakSelf = self;
+    __weak __typeof(self)weakSelf = self;
     AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"选择分享平台" message:@"" cancelButtonTitle:@"分享到娱" otherButtonTitles:@"其他平台" block:^(NSInteger buttonIndex){
         //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
         if (buttonIndex == 0) {
@@ -1199,18 +1204,18 @@
             
             PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
             zujuVC.orderid=orderInfoModel.id;
-            [self.navigationController pushViewController:zujuVC animated:YES];
+            [weakSelf.navigationController pushViewController:zujuVC animated:YES];
         }else if (buttonIndex == 1){
             //确定
             NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"订单详情",@"titleName":@"分享",@"value":@"分享到其他平台"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
             //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
-            NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩～",self.userModel.usernick,orderInfoModel.barinfo.barname];
+            NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩～",weakSelf.userModel.usernick,orderInfoModel.barinfo.barname];
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
             [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
             [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
             @try {
-                [UMSocialSnsService presentSnsIconSheetView:self
+                [UMSocialSnsService presentSnsIconSheetView:weakSelf
                                                      appKey:UmengAppkey
                                                   shareText:ss
                                                  shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfoModel.pinkerinfo.linkUrl]]]

@@ -25,7 +25,7 @@
                         <rect key="frame" x="0.0" y="176" width="320" height="64"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="9Qf-hl-OGd"/>
+                            <constraint firstAttribute="height" constant="64" id="9Qf-hl-OGd"/>
                             <constraint firstAttribute="height" constant="64" id="E27-a4-eKh"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -47,6 +47,11 @@
                     <constraint firstItem="r2H-If-FlI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rUC-72-mhx"/>
                     <constraint firstItem="r2H-If-FlI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="shf-Tv-X4g"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="oiD-ZB-8jz"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>

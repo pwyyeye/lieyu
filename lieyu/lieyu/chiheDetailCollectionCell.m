@@ -13,7 +13,8 @@
 @implementation chiheDetailCollectionCell
 
 - (void)awakeFromNib{
-    
+    _addToShoppingCarBtn.layer.cornerRadius = 2;
+    _addToShoppingCarBtn.layer.masksToBounds = YES;
 }
 
 - (IBAction)ChangeGoodsNumberClick:(UIButton *)sender{

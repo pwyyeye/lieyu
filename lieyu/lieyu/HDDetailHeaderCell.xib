@@ -178,6 +178,7 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="7Uf-FD-bWZ"/>
+                        <exclude reference="23R-dT-q8m"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>

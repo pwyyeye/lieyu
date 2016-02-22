@@ -44,7 +44,7 @@
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 #define BEERBARDETAIL_MTA @"酒吧详情"
 
-@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
+@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate>
 {
     NSManagedObjectContext *_context;
     NSString *_userid;
@@ -133,7 +133,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    if (_image_layer.alpha == 0.f) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }else{
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    }
     [self.navigationController.navigationBar setHidden:YES];
     [_timer setFireDate:[NSDate distantPast]];
    
@@ -149,7 +153,7 @@
     [_signBtn setTitle:@"签到" forState:UIControlStateNormal];
     [_signBtn setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal ];
     _signBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,20, 0, 0);
+    _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,21, 0, 0);
     _signBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -13, -31, 0);
     [_signBtn setImage:[UIImage imageNamed:@"sign"] forState:UIControlStateNormal];
     
@@ -225,17 +229,17 @@
              [weakSelf loadMyBarInfo];
              //加载webview
              [weakSelf loadWebView];
-             [weakSelf setTimer];
+//             [weakSelf setTimer];
              
              if (!_beerBarDetail.isSign) {
                  _bottomEffectView.hidden = YES;
-                 [self.view bringSubviewToFront:_tableView];
-                 [self.view bringSubviewToFront:effectView];
-                 [self.view bringSubviewToFront:_image_layer];
-                 [self.view bringSubviewToFront:_btnBack];
-                 [self.view bringSubviewToFront:_btn_collect];
-                 [self.view bringSubviewToFront:_btn_like];
-                 [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ];
+                 [weakSelf.view bringSubviewToFront:_tableView];
+                 [weakSelf.view bringSubviewToFront:effectView];
+                 [weakSelf.view bringSubviewToFront:_image_layer];
+                 [weakSelf.view bringSubviewToFront:_btnBack];
+                 [weakSelf.view bringSubviewToFront:_btn_collect];
+                 [weakSelf.view bringSubviewToFront:_btn_like];
+                 [weakSelf.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ];
              }
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
@@ -441,7 +445,7 @@
             [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
                 //收藏过
                 if(result){
-                    if (self.image_layer.alpha <= 0.f) {//white
+                    if (weakSelf.image_layer.alpha <= 0.f) {//white
                         [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"点赞white"] forState:UIControlStateNormal];
                     }else{
                         [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
@@ -454,7 +458,7 @@
         }else{
             [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
                 if (result) {
-                    if (self.image_layer.alpha <= 0.f) {//white
+                    if (weakSelf.image_layer.alpha <= 0.f) {//white
                         [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"点赞whited"] forState:UIControlStateNormal];
                     }else{
                         [weakSelf.btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like2"] forState:UIControlStateNormal];
@@ -536,7 +540,7 @@
     NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
     float clientheight = [clientheight_str floatValue];
     //设置到WebView上
-    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight);
+    webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight+20);
     //获取WebView最佳尺寸（点）
     CGSize frame = [webView sizeThatFits:webView.frame.size];
 
@@ -583,11 +587,8 @@
             _tableHeaderImgView.tag = 10086;
             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             [_headerCell addSubview:_tableHeaderImgView];
-            
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
             return _headerCell;
-            
         }
             break;
         case 1:
@@ -596,6 +597,7 @@
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             _barTitleCell.beerM = _beerBarDetail;
             _barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [_barTitleCell.btnBuy addTarget:self action:@selector(telephoneClick:) forControlEvents:UIControlEventTouchUpInside];
             return _barTitleCell;
             
         }
@@ -693,12 +695,15 @@
         }];
 
     }else if (distance >= _beerBarDetail.allowDistance.floatValue){
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您当前与该酒吧距离过远，请前往该酒吧再签到" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您需要在酒吧，才能签到!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
     }
     }
     
 }
+
+
+
 #pragma mark - 签到头像action
 - (void)iconClick:(UIButton *)button{
     CustomerModel *cum = _beerBarDetail.signUsers[button.tag];
@@ -711,6 +716,8 @@
     addressBook.birthday = cum.userInfo.birthday;
     addressBook.sex = cum.userInfo.sex;
     addressBook.usernick = cum.userInfo.usernick;
+    addressBook.imUserId = cum.userInfo.imuserId;
+    addressBook.imuserid = cum.userInfo.imuserId;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (addressBook.userid == app.userModel.userid) {
@@ -738,6 +745,21 @@
     ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
     actionDetailVC.barActivity = aBarList;
     [self.navigationController pushViewController:actionDetailVC animated:YES];
+}
+
+#pragma mark - 电话
+- (void)telephoneClick:(UIButton *)button{
+    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",_beerBarDetail.telephone]];
+    
+    if ( !_phoneCallWebView ) {
+        
+        _phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的容易 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+        
+    }
+    
+    [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+//    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"拨打电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"%@",_beerBarDetail.telephone], nil];
+//    [sheet showInView:self.view];
 }
 
 - (void)onTime{
@@ -834,6 +856,16 @@
     return h;
 }
 
+#pragma mark - UIACTIONSheetDelegate 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+//        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel://%@",_beerBarDetail.telephone];
+        //            NSLog(@"str======%@",str);
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+       
+    }
+}
+
 #pragma mark 分享按钮
 - (IBAction)shareClick:(id)sender {
     NSString *string= [NSString stringWithFormat:@"我要推荐下～%@酒吧!下载猎娱App猎寻更多特色酒吧。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barname,self.beerBarDetail.barid];
@@ -865,7 +897,7 @@
         [_timer invalidate];
         _timer = nil;
     }
-    
+    _webView = nil;
     NSLog(@"dealoc bardetail viewcontroller");
 }
 /*
@@ -938,7 +970,7 @@
             
             [[LYUserHttpTool shareInstance] delMyBarWithParams:dic complete:^(BOOL result) {
                 //收藏过
-                if (self.image_layer.alpha <= 0.f) {//white
+                if (weakSelf.image_layer.alpha <= 0.f) {//white
                     [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏white"] forState:UIControlStateNormal];
                 }else{
                     [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect_2"] forState:UIControlStateNormal];
@@ -951,7 +983,7 @@
         }else{
             
             [[LYUserHttpTool shareInstance] addMyBarWithParams:dic complete:^(BOOL result) {
-                if (self.image_layer.alpha <= 0.f) {//white
+                if (weakSelf.image_layer.alpha <= 0.f) {//white
                     [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏whited"] forState:UIControlStateNormal];
                 }else{
                     [weakSelf.btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];

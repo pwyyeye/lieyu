@@ -55,8 +55,9 @@
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMj-I1-BV5">
                         <rect key="frame" x="0.0" y="248" width="152" height="39"/>
+                        <color key="backgroundColor" red="0.64125195509999999" green="0.043137254899999998" blue="0.80657017949999998" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="加入购物车" backgroundImage="AddCar_red.png">
+                        <state key="normal" title="加入购物车">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -178,7 +179,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="AddCar_red.png" width="165" height="36"/>
         <image name="chzcBackground.png" width="167" height="52"/>
         <image name="gray_less.png" width="32" height="32"/>
         <image name="purper_add.png" width="32" height="32"/>

@@ -543,8 +543,8 @@
     label.numberOfLines=0;
     [showview addSubview:label];
     showview.frame = CGRectMake((CGRectGetWidth([UIScreen mainScreen].bounds) - LabelSize.width - 20)/2, CGRectGetWidth([UIScreen mainScreen].bounds) - 100, LabelSize.width+20, LabelSize.height+10);
-    [UIView animateWithDuration:2 animations:^{
-        showview.alpha = 0;
+    [UIView animateWithDuration:1 animations:^{
+        showview.alpha = 0.79;
     } completion:^(BOOL finished) {
         [showview removeFromSuperview];
     }];
