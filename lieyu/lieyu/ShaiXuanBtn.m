@@ -10,7 +10,7 @@
 
 @implementation ShaiXuanBtn
 - (void)awakeFromNib{
-    _lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, self.frame.size.height - 2, self.frame.size.width - 20, 2)];
+    _lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, self.frame.size.height - 2, SCREEN_WIDTH / 5 - 30, 2)];
     [self addSubview:_lineLabel];
 }
 

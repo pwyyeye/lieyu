@@ -109,7 +109,7 @@
     self.collectionView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-        [self getDataWithDicMore:nowDic];
+        [weakSelf getDataWithDicMore:nowDic];
     }];
     MJRefreshBackGifFooter *footer = (MJRefreshBackGifFooter *)self.collectionView.mj_footer;
     [self initMJRefeshFooterForGif:footer];
@@ -151,11 +151,11 @@
 -(void)geBiaoQianData{
     //获取酒水类型
     [biaoqianList removeAllObjects];
-//    __weak __typeof(self)weakSelf = self;
+    __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance] getProductCategoryListWithParams:nil block:^(NSMutableArray *result) {
 //        biaoqianList = [weakSelf setRow:result];
         biaoqianList = [result mutableCopy];
-        [self setItemsData];
+        [weakSelf setItemsData];
     }];
 }
 
@@ -174,6 +174,7 @@
 
 #pragma mark 获取购物车数据
 -(void)getGoodsNum{
+    __weak __typeof(self) weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getCarListWithParams:nil block:^(NSMutableArray *result) {
         goodsList=[result mutableCopy];
 //        for (CarInfoModel *carInfoModel in goodsList) {
@@ -187,7 +188,7 @@
         for(int i = 0 ; i < goodsList.count ; i ++){
             num = num + ((CarInfoModel *)goodsList[i]).cartlist.count;
         }
-        [self setSuperScript:num];
+        [weakSelf setSuperScript:num];
     }];
 }
 
@@ -278,12 +279,12 @@
     __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getCHListWithParams:dic block:^(NSMutableArray *result) {
         if(((AppDelegate*)[[UIApplication sharedApplication] delegate]).userModel){
-            [self getGoodsNum];
+            [weakSelf getGoodsNum];
         }
         [dataList removeAllObjects];
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
-        self.collectionView.contentOffset = CGPointMake(0, 0);
+        weakSelf.collectionView.contentOffset = CGPointMake(0, 0);
         if(dataList.count>0){
             [kongImageView removeFromSuperview];
             [kongLabel removeFromSuperview];
@@ -300,13 +301,13 @@
                 kongLabel.text = @"伦家还没有这个啦～";
 //                [kongImageView addSubview:kongLabel];
             }
-            [self.view addSubview:kongLabel];
-            [self.view addSubview:kongImageView];
+            [weakSelf.view addSubview:kongLabel];
+            [weakSelf.view addSubview:kongImageView];
         }
         [weakSelf.collectionView reloadData];
         
         if(!biaoqianList){
-            [self geBiaoQianData];
+            [weakSelf geBiaoQianData];
         }
     }];
     [weakSelf.collectionView.mj_header endRefreshing];
