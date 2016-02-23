@@ -939,7 +939,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     [window addSubview:_bigView];
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
-    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 54);
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 58);
     _commentView.bgView.layer.borderColor = RGBA(0,0,0, .5).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];

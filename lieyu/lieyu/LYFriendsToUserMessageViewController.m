@@ -726,7 +726,7 @@
     [self.view addSubview:_bigView];
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
-    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 110, SCREEN_WIDTH, 54);
+    _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 110, SCREEN_WIDTH, 48);
     _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];

@@ -9,6 +9,7 @@
 #import "SingletonTenpay.h"
 #import "MJExtension.h"
 #import "LYMyOrderManageViewController.h"
+#import "PinkerShareController.h"
 @implementation SingletonTenpay
 //获取支付单例
 +(SingletonTenpay *)singletonTenpay{
@@ -55,6 +56,14 @@
                 
                 [MyUtil showMessage:@"支付成功！"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+                if (_isPinker && _isFaqi) {
+                    PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
+                    zujuVC.sn=_orderNO;
+                    AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+                    [delegate.navigationController pushViewController:zujuVC animated:YES];
+                    return;
+                }
+                
                 break;
             }
             default:
