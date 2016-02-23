@@ -47,6 +47,7 @@
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         _tableView.bounds = CGRectMake(0, 0, SCREEN_WIDTH, 431);
     }
+    self.navigationItem.hidesBackButton=YES;
     self.title=@"填写完整信息";
     [self setSeparator];//设置tableView分割线
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
