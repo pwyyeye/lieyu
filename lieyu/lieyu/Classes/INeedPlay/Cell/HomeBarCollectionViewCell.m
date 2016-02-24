@@ -42,8 +42,8 @@
     
     _label_barDescr.text = jiuBaM.subtitle;
     _label_price.text = [NSString stringWithFormat:@"%@元起",jiuBaM.lowest_consumption];
+    _label_address.text = jiuBaM.addressabb;
     if([MyUtil isEmptyString:jiuBaM.addressabb]){
-        _label_address.text = jiuBaM.addressabb;
         _view_line_distance.hidden = YES;
         _label_disstance_left_cons.constant = -7;
     }
