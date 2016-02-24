@@ -70,15 +70,13 @@
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property (weak, nonatomic) IBOutlet UIImageView *image_layer;
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *image_like;
 @property(nonatomic,weak)IBOutlet UIView *bottomBarView;
 @property (weak, nonatomic) IBOutlet UIButton *btn_like;
 @property(nonatomic,assign)CGFloat dyBarDetailH;
 @property(nonatomic,strong) BeerBarOrYzhDetailModel *beerBarDetail;
 @property (weak, nonatomic) IBOutlet UIVisualEffectView *bottomEffectView;
-@property (weak, nonatomic) IBOutlet UILabel *label_yuding;
-@property (weak, nonatomic) IBOutlet UIImageView *imgV_yuding;
+
 
 @end
 
@@ -96,7 +94,6 @@
     //    self.navigationController.navigationBarHidden=YES;
     _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     [self setupViewStyles];                                                     //tableView registe cell
-    _scrollView.bounces = NO;
     
 //    self.image_layer.hidden = YES;
     self.image_layer.alpha = 0.f;
@@ -109,8 +106,6 @@
     self.view_bottom.layer.shadowOffset = CGSizeMake(0, -1);
     self.view_bottom.layer.shadowOpacity = 0.8;
     self.view_bottom.layer.shadowRadius = 2;
-    
-    
     
     [self loadBarDetail];                                                       //load data
   
