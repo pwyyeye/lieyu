@@ -46,6 +46,9 @@
     if([MyUtil isEmptyString:jiuBaM.addressabb]){
         _view_line_distance.hidden = YES;
         _label_disstance_left_cons.constant = -7;
+    }else{
+        _view_line_distance.hidden = NO;
+        _label_disstance_left_cons.constant = 8;
     }
     
     if(![MyUtil isEmptyString:jiuBaM.distance] && jiuBaM.distance.floatValue != 0.f){
