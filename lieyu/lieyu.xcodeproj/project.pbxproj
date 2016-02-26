@@ -319,6 +319,7 @@
 		380659DD1C5639F4003094C9 /* ManagersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 380659DC1C5639F4003094C9 /* ManagersView.m */; };
 		380659E61C56562D003094C9 /* ManagerChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 380659E51C56562D003094C9 /* ManagerChooseButton.m */; };
 		380659E81C565646003094C9 /* ManagerChooseButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380659E71C565646003094C9 /* ManagerChooseButton.xib */; };
+		3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3807B3321C7DB4BE001C5323 /* LPLoginInView.m */; };
 		3812C50E1C57621D00F4DD6B /* ChooseTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3812C50D1C57621D00F4DD6B /* ChooseTime.m */; };
 		3812C5101C57622E00F4DD6B /* ChooseTime.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3812C50F1C57622E00F4DD6B /* ChooseTime.xib */; };
 		3812C5121C57A37300F4DD6B /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3812C5111C57A37300F4DD6B /* DetailView.xib */; };
@@ -403,6 +404,8 @@
 		386AE3A71C5B6F2B0062105F /* banner_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A31C5B6F2B0062105F /* banner_s@3x.png */; };
 		386AE3A81C5B6F2B0062105F /* banner_us@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A41C5B6F2B0062105F /* banner_us@2x.png */; };
 		386AE3A91C5B6F2B0062105F /* banner_us@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A51C5B6F2B0062105F /* banner_us@3x.png */; };
+		386C65341C7D4D7800567D2B /* LPUserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */; };
+		386C65351C7D4D7800567D2B /* LPUserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */; };
 		3879D0631C7AE423000F5795 /* CheckProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879D0621C7AE423000F5795 /* CheckProtocol.m */; };
 		3879D0661C7B26AB000F5795 /* icon_share2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0641C7B26AB000F5795 /* icon_share2@2x.png */; };
 		3879D0671C7B26AB000F5795 /* icon_share2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0651C7B26AB000F5795 /* icon_share2@3x.png */; };
@@ -1761,6 +1764,8 @@
 		380659E41C56562D003094C9 /* ManagerChooseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerChooseButton.h; sourceTree = "<group>"; };
 		380659E51C56562D003094C9 /* ManagerChooseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerChooseButton.m; sourceTree = "<group>"; };
 		380659E71C565646003094C9 /* ManagerChooseButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerChooseButton.xib; sourceTree = "<group>"; };
+		3807B3311C7DB4BE001C5323 /* LPLoginInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLoginInView.h; sourceTree = "<group>"; };
+		3807B3321C7DB4BE001C5323 /* LPLoginInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLoginInView.m; sourceTree = "<group>"; };
 		3812C50C1C57621D00F4DD6B /* ChooseTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTime.h; sourceTree = "<group>"; };
 		3812C50D1C57621D00F4DD6B /* ChooseTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseTime.m; sourceTree = "<group>"; };
 		3812C50F1C57622E00F4DD6B /* ChooseTime.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseTime.xib; sourceTree = "<group>"; };
@@ -1864,6 +1869,9 @@
 		386AE3A31C5B6F2B0062105F /* banner_s@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_s@3x.png"; sourceTree = "<group>"; };
 		386AE3A41C5B6F2B0062105F /* banner_us@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_us@2x.png"; sourceTree = "<group>"; };
 		386AE3A51C5B6F2B0062105F /* banner_us@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner_us@3x.png"; sourceTree = "<group>"; };
+		386C65311C7D4D7800567D2B /* LPUserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPUserLoginViewController.h; sourceTree = "<group>"; };
+		386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUserLoginViewController.m; sourceTree = "<group>"; };
+		386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPUserLoginViewController.xib; sourceTree = "<group>"; };
 		3879D0611C7AE423000F5795 /* CheckProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProtocol.h; sourceTree = "<group>"; };
 		3879D0621C7AE423000F5795 /* CheckProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProtocol.m; sourceTree = "<group>"; };
 		3879D0641C7B26AB000F5795 /* icon_share2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share2@2x.png"; sourceTree = "<group>"; };
@@ -3789,6 +3797,7 @@
 		15E240BC1BB3A9590090D240 /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
+				386C65361C7D4D8400567D2B /* 登录动画 */,
 				15EA6DC61BC0149700620C9E /* model */,
 				15E240CD1BB3D56A0090D240 /* 注册 */,
 				15E240C21BB3CA880090D240 /* 忘记密码 */,
@@ -4408,6 +4417,18 @@
 				386AE3941C5B61B70062105F /* TAPageControl.m */,
 			);
 			path = PageControl;
+			sourceTree = "<group>";
+		};
+		386C65361C7D4D8400567D2B /* 登录动画 */ = {
+			isa = PBXGroup;
+			children = (
+				386C65311C7D4D7800567D2B /* LPUserLoginViewController.h */,
+				386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */,
+				386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */,
+				3807B3311C7DB4BE001C5323 /* LPLoginInView.h */,
+				3807B3321C7DB4BE001C5323 /* LPLoginInView.m */,
+			);
+			name = "登录动画";
 			sourceTree = "<group>";
 		};
 		3879F2461C0D31B300B72629 /* 套餐详情 */ = {
@@ -7046,6 +7067,7 @@
 				85F66F161C565559005D1CD8 /* HomeBarCollectionViewCell.xib in Resources */,
 				853C4C841C311A9900D48BA2 /* dizhi_icon.png in Resources */,
 				15EB35511BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				386C65351C7D4D7800567D2B /* LPUserLoginViewController.xib in Resources */,
 				15F54A911BB030420020EB4C /* ChanPinListViewController.xib in Resources */,
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
 				ADF88E601C102E4F00CF5DED /* hongseStar@2x.png in Resources */,
@@ -7953,6 +7975,7 @@
 				15E240771BB24F510090D240 /* MyCollectionViewController.m in Sources */,
 				38AA7CC51C315A0000D9BCE8 /* preview.m in Sources */,
 				AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */,
+				3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				380659DD1C5639F4003094C9 /* ManagersView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
@@ -8166,6 +8189,7 @@
 				ADF88EA31C1197C400CF5DED /* MJRefreshAutoNormalFooter.m in Sources */,
 				D73652471BAEBF60002541CE /* PinKeModel.m in Sources */,
 				15013AF51BBA33BE00061FAF /* MKAnnotationView+WebCache.m in Sources */,
+				386C65341C7D4D7800567D2B /* LPUserLoginViewController.m in Sources */,
 				152247B31BEB064600E68A2B /* IQSegmentedNextPrevious.m in Sources */,
 				85F625861C0BDFC9002858C8 /* LYLMenuDropViewController.m in Sources */,
 				A2020D451BA660B50090B92A /* LYBaseViewController.m in Sources */,
