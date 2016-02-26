@@ -39,8 +39,6 @@
     [_CartoonView setTransform:affineTransform];
     _CartoonView.center=self.view.center;
 //    [_CartoonView addSubview:loginView];
-
-    
     [_CartoonView addUntitled1Animation];
 }
 
