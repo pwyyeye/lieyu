@@ -59,6 +59,7 @@
     NSString *defaultComment;//未发送的评论
     
     NSString *juBaoMomentID;//要举报的动态ID
+    NSString *pingBiUserID;//要屏蔽的用户ID
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -366,11 +367,20 @@
     return _dataArray.count;
 }
 
-- (void)jubaoDT:(UIButton *)button{
-    FriendsRecentModel *recentM = _dataArray[button.tag];
-    juBaoMomentID = recentM.id;
+- (void)jubaoDT{
+//    FriendsRecentModel *recentM = _dataArray[button.tag];
+//    juBaoMomentID = recentM.id;
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",@"其他原因", nil];
     actionSheet.tag = 100;
+    [actionSheet showInView:self.view];
+}
+
+- (void)warningSheet:(UIButton *)button{
+    FriendsRecentModel *recentM = _dataArray[button.tag];
+    juBaoMomentID = recentM.id;
+    pingBiUserID = recentM.userId;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"屏蔽此人",@"举报动态", nil];
+    actionSheet.tag = 131;
     [actionSheet showInView:self.view];
 }
 
@@ -385,7 +395,7 @@
             [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
             [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
             nameCell.btn_delete.tag = indexPath.section;
-            [nameCell.btn_delete addTarget:self action:@selector(jubaoDT:) forControlEvents:UIControlEventTouchUpInside];
+            [nameCell.btn_delete addTarget:self action:@selector(warningSheet:) forControlEvents:UIControlEventTouchUpInside];
             return nameCell;
             
         }
@@ -664,8 +674,16 @@
                 [MyUtil showPlaceMessage:message];
             }];
         }
-    }
-    else{
+    }else if(actionSheet.tag == 131){
+        if (buttonIndex == 0) {
+            NSDictionary *dict = @{@"shieldUserid":pingBiUserID};
+            [LYFriendsHttpTool friendsPingBiUserWithParams:dict complete:^(NSString *message) {
+                [MyUtil showLikePlaceMessage:message];
+            }];
+        }else if (buttonIndex == 1){
+            [self jubaoDT];
+        }
+    }else{
         if(!buttonIndex){
             FriendsRecentModel *recetnM = _dataArray[_section];
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];

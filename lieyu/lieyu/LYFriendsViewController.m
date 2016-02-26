@@ -1252,6 +1252,18 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                 [MyUtil showPlaceMessage:message];
             }];
         }
+    }else if (actionSheet.tag == 131){
+        __weak __typeof(self) weakSelf = self;
+        if (buttonIndex == 0) {
+            NSDictionary *dict = @{@"shieldUserid":jubaoUserID};
+            [LYFriendsHttpTool friendsPingBiUserWithParams:dict complete:^(NSString *message) {
+                [MyUtil showLikePlaceMessage:message];
+                        _pageStartCountFriends = 0;
+                [weakSelf getDataFriendsWithSetContentOffSet:NO];
+            }];
+        }else if (buttonIndex == 1){
+            [self jubaoDT];
+        }
     }
 }
 
@@ -1309,17 +1321,30 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     }
 }
 
-- (void)jubaoDT:(UIButton *)button{
+- (void)jubaoDT{
+//    if(!_index){
+//        NSArray *dataArr = _dataArray[_index];
+//        FriendsRecentModel *recentM = dataArr[button.tag];
+//        jubaoMomentID = recentM.id;
+//        jubaoUserID = recentM.userId;
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",@"其他原因", nil];
+        actionSheet.tag = 400;
+        [actionSheet showInView:self.view];
+//    }
+}
+
+- (void)warningSheet:(UIButton *)button{
     if(!_index){
         NSArray *dataArr = _dataArray[_index];
         FriendsRecentModel *recentM = dataArr[button.tag];
         jubaoMomentID = recentM.id;
         jubaoUserID = recentM.userId;
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",@"其他原因", nil];
-        actionSheet.tag = 400;
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"屏蔽此人",@"举报动态", nil];
+        actionSheet.tag = 131;
         [actionSheet showInView:self.view];
     }
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -1337,7 +1362,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                         
                         [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
                         [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
-                        [nameCell.btn_delete addTarget:self action:@selector(jubaoDT:) forControlEvents:UIControlEventTouchUpInside];
+                        [nameCell.btn_delete addTarget:self action:@selector(warningSheet:) forControlEvents:UIControlEventTouchUpInside];
                         if ([recentM.userId isEqualToString:[NSString stringWithFormat:@"%d",self.userModel.userid]]) {
                             nameCell.btn_delete.hidden = YES;
                             nameCell.btn_delete.enabled = NO;

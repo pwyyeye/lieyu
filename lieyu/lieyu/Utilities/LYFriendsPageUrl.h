@@ -49,4 +49,6 @@
 //举报
 #define LY_Friends_JuBaoDT @"lyMomentCommentAction.do?action=update"
 
+//屏蔽
+#define LY_Friends_PingBiUser @"lyMomentsAction.do?action=update"
 #endif /* LYFriendsPageUrl_h */
