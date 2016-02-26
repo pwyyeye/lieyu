@@ -219,7 +219,17 @@
         NSString *message = response[@"message"];
         complete(message);
     } failure:^(NSError *err) {
-        [MyUtil showCleanMessage:@"举报失败，请检查网络！"];
+//        [MyUtil showCleanMessage:@"举报失败，请检查网络！"];
+        [MyUtil showLikePlaceMessage:@"举报失败，请检查网络！"];
+    }];
+}
+
++ (void)friendsPingBiUserWithParams:(NSDictionary *)params complete:(void(^)(NSString *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_PingBiUser baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *message = response[@"message"];
+        complete(message);
+    } failure:^(NSError *err) {
+        [MyUtil showLikePlaceMessage:@"屏蔽失败，请检查网络"];
     }];
 }
 @end

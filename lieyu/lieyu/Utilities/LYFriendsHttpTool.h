@@ -40,4 +40,6 @@
 + (void)friendsGetAMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsRecentModel *))compelte;
 //举报
 + (void)friendsJuBaoWithParams:(NSDictionary *)params complete:(void(^)(NSString *))complete;
+//屏蔽
++ (void)friendsPingBiUserWithParams:(NSDictionary *)params complete:(void(^)(NSString *))complete;
 @end

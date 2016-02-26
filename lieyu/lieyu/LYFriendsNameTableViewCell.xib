@@ -59,9 +59,9 @@
                         </variation>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rw-eO-sKU">
-                        <rect key="frame" x="288" y="25" width="22" height="30"/>
+                        <rect key="frame" x="266" y="25" width="44" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="22" id="MLM-HE-kpV"/>
+                            <constraint firstAttribute="width" constant="44" id="MLM-HE-kpV"/>
                             <constraint firstAttribute="height" constant="30" id="gVN-s4-uzW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
