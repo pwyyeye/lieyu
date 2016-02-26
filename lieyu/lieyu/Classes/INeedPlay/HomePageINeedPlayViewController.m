@@ -679,16 +679,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             
             LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
             [cell.collectViewInside reloadData];
-//            NSIndexPath *indexP = [NSIndexPath indexPathForItem:_index inSection:0];
-//            [_collectView reloadItemsAtIndexPaths:@[];
             
-            
-//            cell.recommendedBar = _recommendedBarArray[_index];
-//            cell.recommendedBar = homePageM.recommendedBar;
-//            cell.bannerList = homePageM.banner;
-//            cell.fiterArray = _fiterArray;
-            
-            //            [collectView reloadData];
         }
         block !=nil? block(ermsg,homePageM.banner,homePageM.barlist):nil;
     }];   
@@ -950,7 +941,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == _collectView) {
-        LYHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeCollectionViewCell" forIndexPath:indexPath];
+      __weak  LYHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeCollectionViewCell" forIndexPath:indexPath];
         cell.collectViewInside.dataSource = self;
         cell.collectViewInside.delegate = self;
         [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
@@ -1043,9 +1034,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                         case 1:{
                             _currentPage_Bar ++;
                         }
+                            break;
                     }
-                    if(barList.count) [cell.collectViewInside.mj_footer endRefreshing];
-                    else [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if(barList.count) [cell.collectViewInside.mj_footer endRefreshing];
+                        else [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
+                    });
                 }
         }];
     }];

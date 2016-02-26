@@ -13,7 +13,8 @@
 #import "PinkerShareController.h"
 #import "HDDetailViewController.h"
 #import "CHDoOrderViewController.h"
-
+#import "ZujuViewController.h"
+#import "LYwoYaoDinWeiMainViewController.h"
 @interface ChoosePayController ()
 {
     UITableViewCell *_payCell;
@@ -52,6 +53,7 @@
             ];
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
     _selectIndex = 1;
+    _isFaqi=YES;
     [self createPayButton];//创建支付按钮
 }
 
@@ -97,7 +99,9 @@
         [alipay payOrder:order];
     }else{//微信
         SingletonTenpay *tenpay=[SingletonTenpay singletonTenpay];
-        
+        tenpay.orderNO=_orderNo;
+        tenpay.isFaqi=_isFaqi;
+        tenpay.isPinker=_isPinker;
         [tenpay preparePay:@{@"orderNo":_orderNo,@"payAmount":[NSString stringWithFormat:@"%.0f",_payAmount*100],@"productDescription":_productName} complete:^(BaseReq *result) {
             if (result) {
                 [tenpay onReq:result];
@@ -144,7 +148,7 @@
     //    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
     for (UIViewController *controller in self.navigationController.viewControllers) {
-        if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]]){
+        if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]){
             LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
             [self.navigationController pushViewController:detailViewController animated:YES];
             return;
@@ -359,7 +363,7 @@
         NSDictionary *dict = @{@"result":@"支付宝支付成功"};
         [MTA trackCustomKeyValueEvent:@"payEvent" props:dict];
         
-        if (_isPinker) {
+        if (_isPinker && _isFaqi) {
             PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
             zujuVC.sn=_orderNo;
             [self.navigationController pushViewController:zujuVC animated:YES];

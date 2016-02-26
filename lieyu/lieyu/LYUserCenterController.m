@@ -255,13 +255,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"我的主页面",@"titleName":@"分享"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
-            [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-            [UMSocialSnsService presentSnsIconSheetView:self
-                                                 appKey:UmengAppkey
-                                              shareText:@"猎娱带你玩转酒吧夜店，无需再担心隐形消费，遇到酒托，所有商家均严格筛选认证，明码标价，尊享专属VIP经理一对一服务，喝酒消费更有超额返利等你来拿！http://www.lie98.com"
-                                             shareImage:[UIImage imageNamed:@"lieyuIcon"]
-                                        shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToWechatSession,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
-                                               delegate:nil];
+            NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653"];
+            [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+            [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+            [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+            [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
             break;
         }
         case 3:// 反馈

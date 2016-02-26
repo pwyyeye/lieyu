@@ -24,4 +24,6 @@
 @property(strong,nonatomic) NSArray *data;
 
 @property(assign,nonatomic) NSInteger isPinker;
+
+@property(assign,nonatomic) BOOL isFaqi;
 @end

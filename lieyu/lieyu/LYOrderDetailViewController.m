@@ -1021,11 +1021,22 @@
             [cell.pkUserimageView  setImageWithURL:[NSURL URLWithString:str]];
             NSString *inmemberName;
             if(pinkInfoModel.paymentStatus==1&&pinkInfoModel.price.doubleValue==0.0){
-                inmemberName=[NSString stringWithFormat:@"%@(%@)",pinkInfoModel.inmemberName,isFaqi?@"免费发起":@"发起人"];
+                AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
+                if (isFaqi &&pinkInfoModel.inmember==delegate.userModel.userid) {
+                     inmemberName=[NSString stringWithFormat:@"%@(%@)",pinkInfoModel.inmemberName,@"发起人"];
+                }else{
+                      inmemberName=[NSString stringWithFormat:@"%@(%@ 人数%@)",pinkInfoModel.inmemberName,@"免费参与",pinkInfoModel.quantity];
+                }
+                
             }else if(pinkInfoModel.paymentStatus==1&&pinkInfoModel.price.doubleValue>0.0){
-                inmemberName=[NSString stringWithFormat:@"%@(已付款)",pinkInfoModel.inmemberName];
+                if(isFaqi){
+                    inmemberName=[NSString stringWithFormat:@"%@发起人(已付款)",pinkInfoModel.inmemberName];
+                }else{
+                    inmemberName=[NSString stringWithFormat:@"%@(已付款 人数%@)",pinkInfoModel.inmemberName,pinkInfoModel.quantity];
+                }
+                
             }else{
-                inmemberName=[NSString stringWithFormat:@"%@(待付款)",pinkInfoModel.inmemberName];
+                inmemberName=[NSString stringWithFormat:@"%@(待付款 人数%@)",pinkInfoModel.inmemberName,pinkInfoModel.quantity];
             }
             cell.pkNameLal.text=inmemberName;
             if(userId!=pinkInfoModel.inmember){
@@ -1268,6 +1279,12 @@
                     detailViewController.orderNo=pinkInfoModel.sn;
                     detailViewController.payAmount=pinkInfoModel.price.doubleValue;
                     detailViewController.isPinker=YES;
+                    if (pinkInfoModel.inmember==orderInfoModel.userid) {
+                        detailViewController.isFaqi=YES;
+                    }else{
+                        detailViewController.isFaqi=NO;
+                    }
+
                 }
             }
         }
@@ -1316,8 +1333,11 @@
 }
 #pragma mark 电话咨询
 - (void)dhzxAct:(UIButton *)sender{
+    AppDelegate * app=(AppDelegate *)[UIApplication sharedApplication].delegate;
+
     if( [MyUtil isPureInt:_orderInfoModel.checkUserMobile]){
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
+//        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",app.userModel.userid==  _orderInfoModel.userid?_orderInfoModel.checkUserMobile:_orderInfoModel.phone];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
     }

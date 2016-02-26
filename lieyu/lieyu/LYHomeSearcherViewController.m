@@ -239,6 +239,7 @@
              else
              {
                  weakSelf.tableView.mj_footer.hidden = YES;
+                 [MyUtil showCleanMessage:@"搜索无结果"];
              }
              //             [weakSelf.tableView.header endRefreshing];
          }
