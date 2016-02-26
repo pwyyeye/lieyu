@@ -124,7 +124,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:NO];
 }
 
 -(void)viewWillLayoutSubviews{
