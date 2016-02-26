@@ -255,7 +255,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"我的主页面",@"titleName":@"分享"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
-            NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653"];
+            NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！"];
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
             [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
             [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
