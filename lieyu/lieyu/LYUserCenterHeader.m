@@ -129,7 +129,6 @@
 }
 //加载角标
 -(void)loadBadge:(OrderTTL *)orderTTL{
-   
     if (orderTTL) {
         if (orderTTL.waitPay>0) {//待付款
             if(![_waitPay viewWithTag:100]){

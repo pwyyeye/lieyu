@@ -17,7 +17,7 @@
     [self.button setImage:[UIImage imageNamed:@"imageSelected"] forState:UIControlStateNormal];
     self.imageView.image = self.image;
     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    
+    self.imageView.center = self.center;
     self.button.selected = YES;
 }
 

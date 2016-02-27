@@ -60,15 +60,21 @@
 - (void)configureRightButton{
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [button setImage:[UIImage imageNamed:@"jubao_btn"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(jubaoDT:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(warningSheet:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = item;
 }
 
-- (void)jubaoDT:(UIButton *)button{
+- (void)jubaoDT{
         UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",@"其他原因",  nil];
         actionSheet.tag = 100;
         [actionSheet showInView:self.view];
+}
+
+- (void)warningSheet:(UIButton *)button{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"屏蔽此人",@"举报动态", nil];
+    actionSheet.tag = 131;
+    [actionSheet showInView:self.view];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -522,6 +528,15 @@
 //                [MyUtil showCleanMessage:message];
                 [MyUtil showPlaceMessage:message];
             }];
+        }
+    }else if (actionSheet.tag == 131){
+        if (buttonIndex == 0) {//pingbi
+            NSDictionary *dict = @{@"shieldUserid":_recentM.userId};
+            [LYFriendsHttpTool friendsPingBiUserWithParams:dict complete:^(NSString *message) {
+                [MyUtil showLikePlaceMessage:message];
+            }];
+        }else if (buttonIndex == 1){
+            [self jubaoDT];
         }
     }else{
         NSInteger count = _recentM.likeList.count == 0 ? 1 : 2;
