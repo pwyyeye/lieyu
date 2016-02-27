@@ -1063,6 +1063,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                         }
                     }
                     
+                    UIImageView *imageV = [spaceCell viewWithTag:10010];
+                    if (imageV) {
+                        [imageV removeFromSuperview];
+                    }
+                    
                     UIView *view= [spaceCell viewWithTag:1999];
                     [view removeFromSuperview];
                     view=nil;
@@ -1093,6 +1098,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 case 3:
                 {
                     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+                    UIView *view= [cell viewWithTag:1999];
+                    [view removeFromSuperview];
+                    view=nil;
                     UIImageView *imageV = [cell viewWithTag:10010];
                     if (imageV) {
                         [imageV removeFromSuperview];
