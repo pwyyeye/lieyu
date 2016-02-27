@@ -31,6 +31,7 @@
     UIVisualEffectView *_menuView;
     UILabel *_titelLabel;
     UIView *_purpleLineView;
+    UILabel *_palceLabel;
 //    NSInteger _currentPageHot,_currentPageDistance,_currentPagePrice,_currentPageTime;
         NSInteger _currentPageDistance,_currentPageTime;
     NSInteger _index;
@@ -373,12 +374,13 @@
             }
             if(array.count > 0){
                 [tableView reloadData];
+                [_palceLabel removeFromSuperview];
             }else{
-                UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT  / 2, SCREEN_WIDTH, 20)];
-                label.text = @"对不起，该区域暂无组局";
-                label.textColor = RGBA(0, 0, 0, 0.5);
-                label.textAlignment = NSTextAlignmentCenter;
-                [self.view addSubview:label];
+                _palceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT  / 2, SCREEN_WIDTH, 20)];
+                _palceLabel.text = @"对不起，该区域暂无组局";
+                _palceLabel.textColor = RGBA(0, 0, 0, 0.5);
+                _palceLabel.textAlignment = NSTextAlignmentCenter;
+                [self.view addSubview:_palceLabel];
             }
             //                [tableView reloadData];
 //            [UIView transitionWithView:tableView
