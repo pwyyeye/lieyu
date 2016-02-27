@@ -1339,7 +1339,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
         FriendsRecentModel *recentM = dataArr[button.tag];
         jubaoMomentID = recentM.id;
         jubaoUserID = recentM.userId;
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"屏蔽此人",@"举报动态", nil];
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"屏蔽此人",@"举报内容", nil];
         actionSheet.tag = 131;
         [actionSheet showInView:self.view];
     }
