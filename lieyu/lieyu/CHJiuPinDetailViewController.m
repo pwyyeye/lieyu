@@ -154,7 +154,7 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor=[UIColor whiteColor];
-            UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(15, 37, 320-30, 25)];
+            UILabel *lal1=[[UILabel alloc]initWithFrame:CGRectMake(15, 37, SCREEN_WIDTH-30, 25)];
             [lal1 setTag:1];
             lal1.textAlignment=NSTextAlignmentLeft;
             lal1.font=[UIFont systemFontOfSize:14];
