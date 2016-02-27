@@ -121,7 +121,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ActionPage *actionPage = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
     actionPage.topicid = ((BarTopicInfo *)[dataList objectAtIndex:indexPath.section]).id;
-    
+    actionPage.ActionImage = ((HDZTHeaderCell *)[self.tableView cellForRowAtIndexPath:indexPath]).action_image.image;
     NSDictionary *dict = @{@"actionName":@"跳转",
                            @"pageName":@"所有专题",
                            @"titleName":@"活动专题",

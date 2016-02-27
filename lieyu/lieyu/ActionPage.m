@@ -174,7 +174,7 @@
             //没有更多数据了
             if (actionList.count <= 0) {
                 //没有活动
-                warningLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 75, SCREEN_HEIGHT / 2 - 60, 150, 20)];
+                warningLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 75, SCREEN_HEIGHT / 2 - 10, 150, 20)];
                 warningLabel.font = [UIFont systemFontOfSize:14];
                 warningLabel.textColor = RGB(186, 40, 227);
                 warningLabel.text = @"该专题暂无活动";
@@ -222,7 +222,7 @@
     if (actionList.count > 0) {
         return actionList.count + 1;
     }else{
-        return 0;
+        return 1;
     }
 //    return rows;
 }
@@ -246,9 +246,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         HDZTHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HDZTHeaderCell" forIndexPath:indexPath];
-        cell.action_image.backgroundColor = [UIColor grayColor];
+//        cell.action_image.backgroundColor = [UIColor grayColor];
         if (actionList.count > 0) {
             cell.topicInfo = ((BarActivityList *)[actionList objectAtIndex:indexPath.section]).topicInfo;
+        }else{
+            cell.action_image.image = self.ActionImage;
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.userInteractionEnabled = NO;
