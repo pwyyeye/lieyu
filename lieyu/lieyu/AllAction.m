@@ -99,7 +99,7 @@
     HDZTHeaderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HDZTHeaderCell" forIndexPath:indexPath];
     cell.action_image.backgroundColor = [UIColor grayColor];
     if (dataList.count > 0) {
-        cell.topicInfo = [dataList objectAtIndex:indexPath.section];
+        cell.topicInfo = (BarTopicInfo *)[dataList objectAtIndex:indexPath.section];
     }
     cell.action_discript.hidden = YES;
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;

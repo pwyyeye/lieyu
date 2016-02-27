@@ -181,7 +181,7 @@
                 warningLabel.textAlignment = NSTextAlignmentCenter;
                 [self.tableView addSubview:warningLabel];
                 [self StopBottomBounds:NO];
-                
+                [self.tableView reloadData];
             }else{
                 [self StopBottomBounds:YES];
             }
