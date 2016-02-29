@@ -274,8 +274,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
             
             NSDictionary *test = [placemark addressDictionary];
             //  Country(国家)  State(城市)  SubLocality(区)
-            NSLog(@"%@", [test objectForKey:@"State"]);
-            NSLog(@"%@", placemark.locality);
+//            NSLog(@"%@", [test objectForKey:@"State"]);
+//            NSLog(@"%@", placemark.locality);
             _citystr= placemark.locality;
             
         }
@@ -441,7 +441,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
     NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
-    NSLog(@"%@",contents);
+//    NSLog(@"%@",contents);
     NSEnumerator *e = [contents objectEnumerator];
     NSString *filename;
     while (filename = [e nextObject]) {
@@ -467,8 +467,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 }
 #pragma mark - 心跳获取7牛key
 -(void)doHeart{
-    
-    NSLog(@"----pass-doheart%@---",@"1111111");
     //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     //    [app startLoading];
     
@@ -499,7 +497,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //获取IMToken
 -(void)getImToken{
     if(_userModel){
-        NSLog(@"userid=%d",_userModel.userid);
+//        NSLog(@"userid=%d",_userModel.userid);
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
         [[LYCommonHttpTool shareInstance] getTokenByIMWithParams:dic block:^(NSString *result) {
             _im_token=result;
@@ -510,7 +508,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 //IM连接服务器
 -(void)connectWithToken{
-    NSLog(@"_im_token=%@",_im_token);
+//    NSLog(@"_im_token=%@",_im_token);
 //    _im_token=@"aqw73LOC9fju/Zfr+G0uCIZ6iyJm4gkQBO3AbCIB4IoMo7IJ9CyOesCxoHF0+KU1I2fSIds0iGGsdNrAeyA1L6CePnAuGYiF";
     @try {
         [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
@@ -734,7 +732,6 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
 
 #pragma mark - alert 代理
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSLog(@"----pass-%ld---",buttonIndex);
     if(buttonIndex==0){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id1056569271"]];
     }

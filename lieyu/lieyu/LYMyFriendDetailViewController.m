@@ -40,7 +40,6 @@
     self.title = @"个人信息";
     self.userImageView.layer.masksToBounds =YES;
     
-    
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
     if(_customerModel.tag.count>0){
         NSMutableString *mytags=[[NSMutableString alloc] init];
@@ -253,6 +252,10 @@
     [IQKeyboardManager sharedManager].isAdd = NO;
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)dealloc{
+    NSLog(@"delloc");
 }
 
 @end

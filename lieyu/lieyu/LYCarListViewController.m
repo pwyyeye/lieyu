@@ -29,6 +29,12 @@
     self.navigationController.navigationBarHidden = NO;
     [self getData];
 }
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title=@"购物车";

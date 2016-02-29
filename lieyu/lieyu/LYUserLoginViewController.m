@@ -465,7 +465,6 @@
                 userModel.openID = snsAccount.usid;
                 
                 NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:snsAccount.usid]};
-                NSLog(@"---->%@",paraDic);
                 __block LYUserLoginViewController *weakSelf = self;
                 [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
                     if (sucess) {//登录成功

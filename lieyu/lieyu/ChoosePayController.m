@@ -292,7 +292,6 @@
 }
 
 - (void)selectClick:(PayButton *)button{
-    NSLog(@"------>%ld",button.tag);
     _selectIndex = button.tag;
     for (PayButton *btn in _btnArray) {
         btn.isSelect = NO;

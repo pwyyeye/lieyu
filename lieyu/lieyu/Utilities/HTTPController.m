@@ -40,7 +40,7 @@
              success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
                  if (success) {
                      NSString *code = [NSString stringWithFormat:@"%@",responseObj[@"errorcode"]];
-                     NSLog(@"---->%@",responseObj);
+//                     NSLog(@"---->%@",responseObj);
                      if ([code isEqualToString:@"-1"]) {
                          LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
                          UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
@@ -182,7 +182,7 @@
 //     [self showToast:@"查询中....."];
     [manager GET:urlPam parameters:pamDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         if ([urlName isEqual:@"login"]) {
-            NSLog(@"JSON: %@", responseObject);
+//            NSLog(@"JSON: %@", responseObject);
 
         }
         //判断是否登录如果未登录 则进入登录页面

@@ -330,13 +330,13 @@
 
 #pragma mark - 赞的人头像
 - (void)zangBtnClick:(UIButton *)button{
-    NSInteger i = button.tag % 7;
-    NSInteger section = (button.tag - i) / 7 ;
+    NSInteger i = button.tag % 8;
+    NSInteger section = button.tag / 8 ;
  
     if(section >=0 && i>=0){
         FriendsRecentModel *recentM = _dataArray[section];
-        if(i > recentM.likeList.count) return;
-        FriendsLikeModel *likeM = recentM.likeList[i - 1];
+        if(i >= recentM.likeList.count) return;
+        FriendsLikeModel *likeM = recentM.likeList[i];
         if([likeM.userId isEqualToString:_useridStr]) return;
         LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
         messageVC.friendsId = likeM.userId;
@@ -472,7 +472,7 @@
                 if(recentM.likeList.count <= 8) likeCell.btn_more.hidden = YES;
                 for (int i = 0; i< likeCell.btnArray.count; i ++) {
                     UIButton *btn = likeCell.btnArray[i];
-                    btn.tag = likeCell.btnArray.count * (indexPath.section + 1) - 7 + i +1;
+                    btn.tag = likeCell.btnArray.count * indexPath.section + i;
                     [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                 }
                 return likeCell;
@@ -636,6 +636,9 @@
             [self createCommentView];
         }
     }else if(indexPath.row == 9){
+        [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+    }else if(indexPath.row == 0){
+        if([MyUtil isEmptyString:recentM.id]) return;
         [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
     }
 }
