@@ -98,7 +98,7 @@
     __weak __typeof(self)weakSelf = self;
     self.collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         pageCount=1;
-        
+//
         [nowDic removeObjectForKey:@"p"];
         [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
         [weakSelf getData:nowDic];
@@ -120,6 +120,10 @@
     [super viewWillDisappear:animated];
 //    _badge.hidden = YES;
     [_badge setHidden:YES];
+    [kongImageView removeFromSuperview];
+    [kongLabel removeFromSuperview];
+    kongImageView = nil;
+    kongLabel = nil;
 }
 
 #pragma mark viewWillAppear
@@ -572,6 +576,10 @@
         }
     }
     [self getData:nowDic];
+}
+
+- (void)dealloc{
+    NSLog(@"dealloc");
 }
 
 
