@@ -552,6 +552,10 @@
 }
 
 
+- (void)dealloc{
+    NSLog(@"dea");
+}
+
 
 
 @end

@@ -340,7 +340,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //    [_titleImageView addGestureRecognizer:tapGesture];
     [_menuView addSubview:_titleImageView];
     
-    __block HomePageINeedPlayViewController *weakSelf = self;
     _btn_yedian = [[HotMenuButton alloc]init];
     _btn_yedian.titleLabel.font = [UIFont systemFontOfSize:12];
     _btn_yedian.isHomePageMenuViewSelected = YES;
