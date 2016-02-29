@@ -84,8 +84,17 @@
     if ([MyUtil isEmptyString:_productDescription]) {
         return;
     }
+    if (_isPinker&&_createDate!=nil) {
+        NSTimeInterval orderTime = [_createDate timeIntervalSinceNow];
+        NSLog(@"----pass-pass=%.f---",orderTime);
+
+       if(orderTime < 60){
+            return;
+       }
+
+    }
     
-    NSLog(@"------>%ld",_selectIndex);
+//    NSLog(@"------>%ld",_selectIndex);
     
     if (_selectIndex == 1l) {//支付宝
         AlipayOrder *order=[[AlipayOrder alloc] init];

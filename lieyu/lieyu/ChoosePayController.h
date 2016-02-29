@@ -25,5 +25,7 @@
 
 @property(assign,nonatomic) NSInteger isPinker;
 
+@property(strong,nonatomic) NSDate *createDate;
+
 @property(assign,nonatomic) BOOL isFaqi;
 @end

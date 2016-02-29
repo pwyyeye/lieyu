@@ -986,10 +986,8 @@
 		AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */; };
 		AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD798A361BB99A1F006D08F5 /* libPods.a */; };
 		AD79E07F1C76EE5000C45B97 /* HuoDongLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E07E1C76EE5000C45B97 /* HuoDongLinkViewController.m */; };
-		AD79E0841C775DFC00C45B97 /* empyImage120@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0801C775DFC00C45B97 /* empyImage120@2x.png */; };
-		AD79E0851C775DFC00C45B97 /* empyImage120@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0811C775DFC00C45B97 /* empyImage120@3x.png */; };
-		AD79E0861C775DFC00C45B97 /* empyImage300@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0821C775DFC00C45B97 /* empyImage300@2x.png */; };
-		AD79E0871C775DFC00C45B97 /* empyImage300@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0831C775DFC00C45B97 /* empyImage300@3x.png */; };
+		AD79E0841C775DFC00C45B97 /* empyImage120.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0801C775DFC00C45B97 /* empyImage120.png */; };
+		AD79E0861C775DFC00C45B97 /* empyImage300.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0821C775DFC00C45B97 /* empyImage300.png */; };
 		AD79E0921C781C9300C45B97 /* EmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E08F1C781C9300C45B97 /* EmptyView.m */; };
 		AD79E0931C781C9300C45B97 /* QCMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E0911C781C9300C45B97 /* QCMethod.m */; };
 		AD79E0991C7882A500C45B97 /* telephone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0971C7882A400C45B97 /* telephone@2x.png */; };
@@ -2673,10 +2671,8 @@
 		AD798A361BB99A1F006D08F5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		AD79E07D1C76EE5000C45B97 /* HuoDongLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongLinkViewController.h; sourceTree = "<group>"; };
 		AD79E07E1C76EE5000C45B97 /* HuoDongLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongLinkViewController.m; sourceTree = "<group>"; };
-		AD79E0801C775DFC00C45B97 /* empyImage120@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empyImage120@2x.png"; sourceTree = "<group>"; };
-		AD79E0811C775DFC00C45B97 /* empyImage120@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empyImage120@3x.png"; sourceTree = "<group>"; };
-		AD79E0821C775DFC00C45B97 /* empyImage300@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empyImage300@2x.png"; sourceTree = "<group>"; };
-		AD79E0831C775DFC00C45B97 /* empyImage300@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empyImage300@3x.png"; sourceTree = "<group>"; };
+		AD79E0801C775DFC00C45B97 /* empyImage120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empyImage120.png; sourceTree = "<group>"; };
+		AD79E0821C775DFC00C45B97 /* empyImage300.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empyImage300.png; sourceTree = "<group>"; };
 		AD79E08E1C781C9300C45B97 /* EmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyView.h; sourceTree = "<group>"; };
 		AD79E08F1C781C9300C45B97 /* EmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyView.m; sourceTree = "<group>"; };
 		AD79E0901C781C9300C45B97 /* QCMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCMethod.h; sourceTree = "<group>"; };
@@ -6389,10 +6385,8 @@
 		ADF88E691C115FC600CF5DED /* 空态图 */ = {
 			isa = PBXGroup;
 			children = (
-				AD79E0801C775DFC00C45B97 /* empyImage120@2x.png */,
-				AD79E0811C775DFC00C45B97 /* empyImage120@3x.png */,
-				AD79E0821C775DFC00C45B97 /* empyImage300@2x.png */,
-				AD79E0831C775DFC00C45B97 /* empyImage300@3x.png */,
+				AD79E0801C775DFC00C45B97 /* empyImage120.png */,
+				AD79E0821C775DFC00C45B97 /* empyImage300.png */,
 				386AE3A21C5B6F2B0062105F /* banner_s@2x.png */,
 				386AE3A31C5B6F2B0062105F /* banner_s@3x.png */,
 				386AE3A41C5B6F2B0062105F /* banner_us@2x.png */,
@@ -7026,7 +7020,7 @@
 			files = (
 				380659A51C5353D8003094C9 /* comment.png in Resources */,
 				15EB354E1BD4839D00BA6161 /* UMSLoginViewController.xib in Resources */,
-				AD79E0861C775DFC00C45B97 /* empyImage300@2x.png in Resources */,
+				AD79E0861C775DFC00C45B97 /* empyImage300.png in Resources */,
 				ADF88E651C102E4F00CF5DED /* pingjiaxiangji.png in Resources */,
 				52D4F9A31C57B2B700691BEF /* 返利@3x.png in Resources */,
 				AD106B911C0AF044007F5FBA /* LYUserCenterHeader.xib in Resources */,
@@ -7137,7 +7131,7 @@
 				38EDEC621C5B9CDC00694758 /* CHshop@3x.png in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */,
-				AD79E0841C775DFC00C45B97 /* empyImage120@2x.png in Resources */,
+				AD79E0841C775DFC00C45B97 /* empyImage120.png in Resources */,
 				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
 				381FF0031C168755002A47BA /* icon_zixun_normal@3x.png in Resources */,
 				3812C54C1C57B76100F4DD6B /* add_purper_circle@2x.png in Resources */,
@@ -7150,7 +7144,6 @@
 				AD4EA85F1C546D610056E560 /* qq_s2@3x.png in Resources */,
 				ADFFA69F1C181A7200D9BD2A /* 1_retina.jpg in Resources */,
 				3812C5101C57622E00F4DD6B /* ChooseTime.xib in Resources */,
-				AD79E0851C775DFC00C45B97 /* empyImage120@3x.png in Resources */,
 				85F5454D1C1454010013B92B /* camera@2x.png in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
 				858B3A2A1C7A05F5000C6589 /* JoinedNumber@2x.png in Resources */,
@@ -7243,7 +7236,6 @@
 				381A01DC1C14229F00592485 /* more_purper.png in Resources */,
 				15E240631BB1237E0090D240 /* BiaoQianChooseViewController.xib in Resources */,
 				ADE1C5D01C730E1C0011D4AB /* 更新27@2x.png in Resources */,
-				AD79E0871C775DFC00C45B97 /* empyImage300@3x.png in Resources */,
 				3812C5521C57B76100F4DD6B /* backViewWithCorner@2x.png in Resources */,
 				15844BCF1BE1EF5000247FBC /* LYAddFriendViewController.xib in Resources */,
 				38E5D7C31C128C44004B49D2 /* triangle_down@2x.png in Resources */,
@@ -8411,8 +8403,8 @@
 			baseConfigurationReference = 5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8450,7 +8442,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7ffa5ecb-1b3f-4400-a675-1bfca8e7d17e";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -8460,8 +8452,8 @@
 			baseConfigurationReference = 60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8499,7 +8491,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7ffa5ecb-1b3f-4400-a675-1bfca8e7d17e";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

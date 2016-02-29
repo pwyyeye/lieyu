@@ -1279,6 +1279,7 @@
                     detailViewController.orderNo=pinkInfoModel.sn;
                     detailViewController.payAmount=pinkInfoModel.price.doubleValue;
                     detailViewController.isPinker=YES;
+                    detailViewController.createDate=[MyUtil getFullDateFromString:pinkInfoModel.createDate];
                     if (pinkInfoModel.inmember==orderInfoModel.userid) {
                         detailViewController.isFaqi=YES;
                     }else{

@@ -499,7 +499,8 @@
         
         //根据订单类型 订单状态设置底部按钮
         if(orderInfoModel.ordertype==0){
-            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
+            
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.2f",(orderInfoModel.amountPay==nil?orderInfoModel.amountPay.doubleValue:0)];
             NSString *str=orderInfoModel.checkUserAvatar_img ;
             [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
             orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
@@ -572,7 +573,7 @@
                     }
                 }
             }
-            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",moneyStr];
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.2f",moneyStr.doubleValue];
             if(isFaqi){
                 NSString *str=orderInfoModel.checkUserAvatar_img;
                 [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
@@ -1123,6 +1124,7 @@
                      detailViewController.orderNo=pinkInfoModel.sn;
                      detailViewController.payAmount=pinkInfoModel.price.doubleValue;
                     detailViewController.isPinker=YES;
+                    detailViewController.createDate=[MyUtil getFullDateFromString:pinkInfoModel.createDate];
                     if (pinkInfoModel.inmember==orderInfoModel.userid) {
                         detailViewController.isFaqi=YES;
                     }else{
