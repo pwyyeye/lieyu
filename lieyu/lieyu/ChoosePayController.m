@@ -88,7 +88,8 @@
         NSTimeInterval orderTime = [_createDate timeIntervalSinceNow];
         NSLog(@"----pass-pass=%.f---",orderTime);
 
-       if(orderTime < 60){
+       if(orderTime < -300){
+           [MyUtil showLikePlaceMessage:@"订单超时无法支付"];
             return;
        }
 
