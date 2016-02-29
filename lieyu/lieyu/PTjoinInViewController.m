@@ -32,6 +32,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
     [self getdata];
 }
 #pragma mark - 获取数据
@@ -230,6 +231,9 @@
                 detailViewController.payAmount=pinKeModel.pinkerNeedPayAmount.doubleValue;
                 detailViewController.productName=pinKeModel.fullname;
                 detailViewController.productDescription=@"暂无";
+                detailViewController.isFaqi=NO;
+                detailViewController.isPinker=YES;
+                detailViewController.createDate=[NSDate date];
                 UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
                 weakSelf.navigationItem.backBarButtonItem = left;
                 [weakSelf.navigationController pushViewController:detailViewController animated:YES];
