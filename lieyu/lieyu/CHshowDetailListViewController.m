@@ -93,7 +93,7 @@
         NSMutableArray *arr=[result mutableCopy];
         [dataList addObjectsFromArray:arr];
         
-        NSLog(@"****block%d******",dataList.count);
+//        NSLog(@"****block%d******",dataList.count);
 //        if(dataList.count>0){
 //            
 //            pageCount++;

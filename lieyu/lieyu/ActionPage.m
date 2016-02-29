@@ -150,7 +150,7 @@
     self.tableView.mj_footer.hidden = NO;
     contentOffsetY = MAXFLOAT;
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    NSLog(@"----pass-%@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
+//    NSLog(@"----pass-%@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
 
 - (void)getData{
