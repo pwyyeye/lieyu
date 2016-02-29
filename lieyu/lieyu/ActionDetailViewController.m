@@ -72,13 +72,14 @@
 
 - (void)getData{
     NSDictionary *dict = @{@"id":_actionID};
+    __weak __typeof(self)weakSelf = self;
     [LYHomePageHttpTool getActionDetail:dict complete:^(BarActivityList *action) {
         _barActivity = action;
         if (_barActivity.id==nil) {
             return ;
         }
-        [self loadWebView];
-        [self.tableView reloadData];
+        [weakSelf loadWebView];
+        [weakSelf.tableView reloadData];
         
     }];
 }
