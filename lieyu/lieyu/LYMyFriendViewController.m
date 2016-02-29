@@ -224,8 +224,8 @@
             if(result){
                 
                 [MyUtil showMessage:@"删除成功"];
-                if (tableView == self.searchDisplayController.searchResultsTableView){
-                    [self.searchDisplayController setActive:NO animated:YES];
+                if (tableView == weakSelf.searchDisplayController.searchResultsTableView){
+                    [weakSelf.searchDisplayController setActive:NO animated:YES];
                 }
                 [weakSelf getMyCustomerslist];
             }

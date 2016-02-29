@@ -142,7 +142,7 @@
     if(app.userModel == nil)return;
     
     NSDictionary *paraDic = @{@"userId":_useridStr};
-    //__weak LYFriendsViewController *weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
         _results = reslults;
         _icon = icon;
@@ -150,8 +150,8 @@
         else _myBadge.hidden = YES;
         if(_results.integerValue && _index == 1){
             _myBadge.hidden = NO;
-            [self removeTableViewHeader];
-            [self addTableViewHeader];
+            [weakSelf removeTableViewHeader];
+            [weakSelf addTableViewHeader];
         }
     }];
 }
@@ -540,8 +540,7 @@
 
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataFriendsWithSetContentOffSet:(BOOL)need{
-    
-       __weak LYFriendsViewController *weakSelf = self;
+       __weak __typeof(self) weakSelf = self;
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountFriends * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"start":startStr,@"limit":pageCountStr};
@@ -561,7 +560,7 @@
                 }
             _pageStartCountFriends ++;
             
-            [self.tableView.mj_footer endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
@@ -583,7 +582,7 @@
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountMys * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
-         __weak LYFriendsViewController *weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
         _userBgImageUrl = userInfo.friends_img;
         _index = 1;
@@ -595,7 +594,7 @@
                         [muArr addObjectsFromArray:dataArray];
                     }
             _pageStartCountMys ++;
-            [self.tableView.mj_footer endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
         }else{
             if(_isMysPageUpLoad){
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];

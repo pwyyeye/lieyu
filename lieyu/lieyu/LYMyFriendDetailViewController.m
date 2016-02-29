@@ -140,6 +140,7 @@
         return;
     }
     NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
+    __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
         
         NSString *typeStr = nil;
@@ -154,35 +155,35 @@
                 continue;
             }
         }
-        self.type = [NSString stringWithFormat:@"%@",typeStr];
+        weakSelf.type = [NSString stringWithFormat:@"%@",typeStr];
         if([_type isEqualToString:@"0"]){
-            self.namelal.text=_customerModel.friendName == nil ? _customerModel.name?_customerModel.name:_customerModel.usernick  : _customerModel.friendName;
+            weakSelf.namelal.text=_customerModel.friendName == nil ? _customerModel.name?_customerModel.name:_customerModel.usernick  : _customerModel.friendName;
             
             if (_customerModel.sex.integerValue==0) {
-                self.sexImageView.image=[UIImage imageNamed:@"woman"];
+                weakSelf.sexImageView.image=[UIImage imageNamed:@"woman"];
             }else{
-                self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+                weakSelf.sexImageView.image=[UIImage imageNamed:@"manIcon"];
             }
             if (_customerModel.tag.count>0) {
                 //            _zhiwuLal.text=_customerModel.tag.firstObject;
             }
             
         }else if([_type isEqualToString:@"4"]){
-            if([MyUtil isEmptyString:self.namelal.text]){
-                self.namelal.text=_customerModel.friendName == nil ? _customerModel.name?_customerModel.name:_customerModel.usernick : _customerModel.friendName;
+            if([MyUtil isEmptyString:weakSelf.namelal.text]){
+                weakSelf.namelal.text=_customerModel.friendName == nil ? _customerModel.name?_customerModel.name:_customerModel.usernick : _customerModel.friendName;
             }
             
             [_setBtn setTitle:@"打招呼" forState:0];
-            [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img?_customerModel.avatar_img:_customerModel.mark]];
+            [weakSelf.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img?_customerModel.avatar_img:_customerModel.mark]];
             if([_customerModel.sex isEqualToString:@"1"]){
                 _sexImageView.image=[UIImage imageNamed:@"manIcon"];
             }
         }else{
             [_setBtn setTitle:@"打招呼" forState:0];
             if (_customerModel.distance) {
-                self.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
+                weakSelf.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
                 if (_customerModel.distance.doubleValue>1000) {
-                    self.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
+                    weakSelf.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
                 }
             }
 
@@ -190,7 +191,7 @@
                 _sexImageView.image=[UIImage imageNamed:@"manIcon"];
             }
             
-            [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img]];
+            [weakSelf.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img]];
         }
     }];
 }

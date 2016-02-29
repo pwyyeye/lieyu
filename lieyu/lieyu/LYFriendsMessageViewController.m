@@ -67,10 +67,11 @@
     FriendsNewsModel *friendNewM = _dataArray[indexPath.row];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSDictionary *dic = @{@"userId":[NSString stringWithFormat:@"%d",app.userModel.userid],@"messageId":friendNewM.messageId};
+    __weak __typeof(self) weakSelf = self;
     [LYFriendsHttpTool friendsGetAMessageWithParams:dic compelte:^(FriendsRecentModel *recentM) {
         LYFriendsMessageDetailViewController *friendDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
         friendDetailVC.recentM = recentM;
-        [self.navigationController pushViewController:friendDetailVC animated:YES];
+        [weakSelf.navigationController pushViewController:friendDetailVC animated:YES];
     }];
 }
 

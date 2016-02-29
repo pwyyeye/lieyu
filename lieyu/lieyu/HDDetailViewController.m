@@ -94,14 +94,15 @@
         _YUid=_YUModel.id;
     }
     NSDictionary *dict = @{@"id":_YUid};
+    __weak __typeof(self) weakSelf = self;
     [LYYUHttpTool yuGetYuModelWithParams:dict complete:^(YUOrderShareModel *YUModel) {
         _YUModel = YUModel;
         orderInfo = _YUModel.orderInfo;
         pinkeModel = orderInfo.pinkerinfo;
-        [self configurePinkeStatus];
-        [self configureStore];
-        [self.tableView reloadData];
-        self.joinBtn.hidden = NO;
+        [weakSelf configurePinkeStatus];
+        [weakSelf configureStore];
+        [weakSelf.tableView reloadData];
+        weakSelf.joinBtn.hidden = NO;
     }];
 }
 
@@ -426,10 +427,11 @@
         NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.id],
                               @"payamount":[NSString stringWithFormat:@"%.2f",payamout],
                               @"allnum":_chooseNumber.numberField.text};
+        __weak __typeof(self) weakSelf = self;
         [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:dic complete:^(NSString *result) {
             if(payamout == 0.0){
                 LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-                [self.navigationController pushViewController:detailVC animated:YES];
+                [weakSelf.navigationController pushViewController:detailVC animated:YES];
             }else{
                 ChoosePayController *detailVC = [[ChoosePayController alloc]init];
                 detailVC.orderNo = result;
@@ -438,9 +440,9 @@
                 detailVC.productName = pinkeModel.smname;
                 detailVC.productDescription = @"暂无";
                 [MyUtil showMessage:@"请在五分钟之内完成支付，否则订单将自动取消！"];
-                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-                self.navigationItem.backBarButtonItem = left;
-                [self.navigationController pushViewController:detailVC animated:YES];
+                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
+                weakSelf.navigationItem.backBarButtonItem = left;
+                [weakSelf.navigationController pushViewController:detailVC animated:YES];
             }
         }];
     }

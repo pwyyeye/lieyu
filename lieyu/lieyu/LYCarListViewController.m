@@ -76,7 +76,7 @@
             warningLabel.textColor = RGB(186, 40, 227);
             warningLabel.text = @"购物车空空如也～";
             warningLabel.font = [UIFont systemFontOfSize:14];
-            [self.view addSubview:warningLabel];
+            [weakSelf.view addSubview:warningLabel];
         }
         
         [weakSelf.tableView reloadData];

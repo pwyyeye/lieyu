@@ -65,14 +65,14 @@
 
 -(void)logout{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
+    __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] userLogOutWithParams:@{@"sessionid":app.s_app_id,@"id":[NSString stringWithFormat:@"%d",app.userModel.userid]} block:^(BOOL result) {
         if (result) {
             app.s_app_id=@"";
             app.userModel=nil;
             [USER_DEFAULT removeObjectForKey:@"username"];
             [USER_DEFAULT removeObjectForKey:@"password"];
-             [self.navigationController popViewControllerAnimated:YES ];
+             [weakSelf.navigationController popViewControllerAnimated:YES ];
         }
     }];
 

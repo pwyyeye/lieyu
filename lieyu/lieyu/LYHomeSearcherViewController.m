@@ -204,7 +204,7 @@
                     weakSelf.tableView.mj_footer.hidden = YES;
                 }
                 weakSelf.curPageIndex ++;
-                [self.tableView.mj_footer endRefreshing];
+                [weakSelf.tableView.mj_footer endRefreshing];
             }
             
         }];
@@ -283,7 +283,7 @@
              
              [searchlist addObjectsFromArray:barList];
              if (searchlist.count) {
-                 [self saveHisData:_searchBar.text];
+                 [weakSelf saveHisData:_searchBar.text];
              }
              [weakSelf.tableView reloadData];
          }

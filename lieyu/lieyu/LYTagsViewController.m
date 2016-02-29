@@ -42,9 +42,10 @@ static NSString *cellIdentifier = @"cell";
 }
 
 - (void)getData{
+    __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] getUserTags:nil block:^(NSMutableArray *result) {
         _dataArray = result;
-        [self.collectionView reloadData];
+        [weakSelf.collectionView reloadData];
     }];
 }
 

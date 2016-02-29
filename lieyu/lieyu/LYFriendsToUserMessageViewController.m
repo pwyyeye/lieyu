@@ -200,9 +200,9 @@
         }
         [weakSelf reloadTableViewAndSetUpProperty];
         _pageStartCount ++;
-            [self.tableView.mj_footer endRefreshing];
+            [weakSelf.tableView.mj_footer endRefreshing];
         }else {
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         [weakSelf addTableViewHeader];
     }];

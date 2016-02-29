@@ -117,7 +117,7 @@
 //        self.tableView.conte
         CGPoint point = self.tableView.contentOffset;
         [UIView animateWithDuration:1 animations:^{
-            self.tableView.contentOffset = CGPointMake(point.x, point.y + 64);
+            _tableView.contentOffset = CGPointMake(point.x, point.y + 64);
         }];
         button = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 55, self.tableView.contentSize.height + 18, 110, 28)];
         //    NSLog(@"tableView的总长度：%f",self.tableView.contentOffset.y);
@@ -160,15 +160,16 @@
 //                          @"topicid":@"0",
                           @"topicid":_topicid
                           };
+    __weak __typeof(self) weakSelf = self;
     [LYHomePageHttpTool getActivityListWithPara:dic compelte:^(NSMutableArray *result) {
         if (result.count > 0) {
             if(warningLabel){
                 [warningLabel removeFromSuperview];
             }
             [actionList addObjectsFromArray:result];
-            [self.tableView reloadData];
-            if(self.tableView.contentSize.height < SCREEN_HEIGHT - 64){
-                [self StopBottomBounds:NO];
+            [weakSelf.tableView reloadData];
+            if(weakSelf.tableView.contentSize.height < SCREEN_HEIGHT - 64){
+                [weakSelf StopBottomBounds:NO];
             }
         }else{
             //没有更多数据了
@@ -179,11 +180,11 @@
                 warningLabel.textColor = RGB(186, 40, 227);
                 warningLabel.text = @"该专题暂无活动";
                 warningLabel.textAlignment = NSTextAlignmentCenter;
-                [self.tableView addSubview:warningLabel];
-                [self StopBottomBounds:NO];
-                [self.tableView reloadData];
+                [weakSelf.tableView addSubview:warningLabel];
+                [weakSelf StopBottomBounds:NO];
+                [weakSelf.tableView reloadData];
             }else{
-                [self StopBottomBounds:YES];
+                [weakSelf StopBottomBounds:YES];
             }
         }
     }];
@@ -197,7 +198,7 @@
 - (void)addRefreshAction{
     __weak __typeof(self)weakSelf = self;
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        [self initAllPropertites];
+        [weakSelf initAllPropertites];
         [weakSelf getData];
         [_tableView.mj_header endRefreshing];
     }];

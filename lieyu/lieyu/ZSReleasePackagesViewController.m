@@ -86,11 +86,12 @@
     if (_bgView)
     {
         _bgView.backgroundColor=[UIColor clearColor];
+        __weak __typeof(self) weakSelf = self;
         [UIView animateWithDuration:.5
                          animations:^{
                              
                              seditView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300);
-                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
                              _bgView.alpha=0.0;
                          }];
         [_bgView performSelector:@selector(removeFromSuperview)
@@ -555,6 +556,7 @@
     [dic setObject:[NSNumber numberWithInt:userModel.barid] forKey:@"barid"];
     // [dic setObject:@"" forKey:@"price"];
     //网络访问
+    __weak __typeof(self) weakSelf = self;
     [[ZSManageHttpTool shareInstance] addTaoCanWithParams:dic complete:^(BOOL result) {
         if (result) {
             //看缓存中是否有数据 有去掉
@@ -579,8 +581,8 @@
                 
                 
             }
-            [self.delegate addTaoCan];
-            [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.delegate addTaoCan];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         
     }];
