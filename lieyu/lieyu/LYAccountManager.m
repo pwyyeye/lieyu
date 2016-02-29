@@ -274,12 +274,13 @@
         return;
     }
     NSDictionary *paraDic = @{@"id": [NSString stringWithFormat:@"%d",delegate.userModel.userid] ,plantType:string};
+    __weak typeof(self) weakself=self;
     [LYUserHttpTool tieQQWeixinAndSinaWithPara2:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
         if (flag) {//绑定
             if(type==1) delegate.userModel.qq=string;
             else if(type==2) delegate.userModel.wechat=string;
             else delegate.userModel.weibo=string;
-            [self.tableView reloadData];
+            [weakself.tableView reloadData];
             [MyUtil showPlaceMessage:@"绑定成功"];
         }else{
             [MyUtil showPlaceMessage:@"绑定失败"];
