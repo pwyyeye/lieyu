@@ -50,14 +50,15 @@
 - (void)getData{
     NSDictionary *dict = @{@"start":[NSString stringWithFormat:@"%d",start],
                            @"limit":@"10"};
+    __weak __typeof(self) weakSelf = self;
     [LYHomePageHttpTool getActionList:dict complete:^(NSMutableArray *result) {
         if (result.count > 0) {
             [dataList addObjectsFromArray:result];
-            [self.tableView reloadData];
-            if (self.tableView.contentSize.height < SCREEN_HEIGHT - 64) {
-                self.tableView.mj_footer.hidden = YES;
+            [weakSelf.tableView reloadData];
+            if (weakSelf.tableView.contentSize.height < SCREEN_HEIGHT - 64) {
+                weakSelf.tableView.mj_footer.hidden = YES;
             }else{
-                self.tableView.mj_footer.hidden = NO;
+                weakSelf.tableView.mj_footer.hidden = NO;
             }
         }
     }];

@@ -35,7 +35,7 @@
     int oldDate;//选择的是第几天
     NSString *oldWay;//选择的方式
     int oldPeople;//选择的人数
-    float oldmoney;//需要支付的钱款
+    double oldmoney;//需要支付的钱款
     
     NSMutableArray *dataList;
     NSMutableArray *zsList;
@@ -232,7 +232,7 @@
                             @"reachtime":dataAndTime,
                             @"checkuserid":[NSNumber numberWithInt:zsModel.userid],
                             @"allnum":[NSNumber numberWithInt:oldPeople],
-                            @"payamount":[NSNumber numberWithInt:oldmoney],
+                            @"payamount":[NSNumber numberWithDouble:oldmoney],
                             @"pinkerType":[NSNumber numberWithInt:_defaultIndex],
                             @"pinkerNum":[NSNumber numberWithInt:oldNumber],
                             @"memo":@""};
@@ -541,7 +541,7 @@
         }
     }else if(_defaultIndex == 2){
         //免费发起
-        oldmoney = 0;
+        oldmoney = 0.01;
     }
     self.moneyLbl.text = [NSString stringWithFormat:@"总需支付:¥%g",oldmoney];
     return oldmoney;
