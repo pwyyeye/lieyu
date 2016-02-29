@@ -163,7 +163,6 @@
 
 - (void)loadWebView{
     WebView = [[UIWebView alloc]initWithFrame:CGRectMake(12, 40, SCREEN_WIDTH - 36, 2500)];
-    NSLog(@"------>%@",NSStringFromCGRect(WebView.frame));
     WebView.tag = 45;
     WebView.delegate = self;
     [WebView sizeToFit];
@@ -180,7 +179,7 @@
     webView.frame = CGRectMake(12, 40, SCREEN_WIDTH - 36, clientHeight + 24);
 //    //获取WebView最佳尺寸（点）
 //    CGSize frame = [webView sizeThatFits:webView.frame.size];
-    NSLog(@"%@",NSStringFromCGRect(webView.frame));
+//    NSLog(@"%@",NSStringFromCGRect(webView.frame));
     [_tableView reloadData];
 }
 
@@ -205,7 +204,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        NSLog(@"%@",NSStringFromCGRect(DetailImageCell.image.frame));
+//        NSLog(@"%@",NSStringFromCGRect(DetailImageCell.image.frame));
 //        return DetailImageCell.image.frame.size.height;
         return UITableViewAutomaticDimension;
 //        return 100;

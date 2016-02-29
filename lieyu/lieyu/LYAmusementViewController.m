@@ -325,6 +325,7 @@
             break;
     }
 //    dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude};
+    __weak typeof(self) weakself=self;
     [LYYUHttpTool yuGetDataOrderShareWithParams:dic compelte:^(NSArray *dataArray) {
         if(tag >= 4) return ;
         NSMutableArray *array = _dataArray[tag];
@@ -380,7 +381,7 @@
                 _palceLabel.text = @"对不起，该区域暂无组局";
                 _palceLabel.textColor = RGBA(0, 0, 0, 0.5);
                 _palceLabel.textAlignment = NSTextAlignmentCenter;
-                [self.view addSubview:_palceLabel];
+                [weakself.view addSubview:_palceLabel];
             }
             //                [tableView reloadData];
 //            [UIView transitionWithView:tableView
