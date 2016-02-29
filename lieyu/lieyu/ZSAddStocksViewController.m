@@ -78,10 +78,11 @@
     [dic setObject:[NSNumber numberWithInt:userModel.barid] forKey:@"barid"];
     [dic setObject:self.priceTex.text forKey:@"price"];
     //网络访问
+    __weak __typeof(self) weakSelf = self;
     [[ZSManageHttpTool shareInstance] addItemProductWithParams:dic complete:^(BOOL result) {
         if (result) {
-            [self.delegate addStocks];
-            [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.delegate addStocks];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
         
     }];
@@ -397,11 +398,12 @@
     if (_bgView)
     {
         _bgView.backgroundColor=[UIColor clearColor];
+        __weak __typeof(self) weakSelf = self;
         [UIView animateWithDuration:.5
                          animations:^{
                              
                              seditView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300);
-                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
                              _bgView.alpha=0.0;
                          }];
         [_bgView performSelector:@selector(removeFromSuperview)

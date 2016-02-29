@@ -322,7 +322,7 @@
             pageCount++;
             [weakSelf.tableView reloadData];
         }else{
-            [weakSelf.tableView.mj_footer noticeNoMoreData];
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
     [weakSelf.tableView.mj_footer endRefreshing];

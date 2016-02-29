@@ -471,6 +471,7 @@
         }
         
         NSDictionary *dic=@{@"smid":[NSNumber numberWithInt:taoCanModel.smid],@"reachtime":reachtime,@"checkuserid":[NSNumber numberWithInt:userId],@"allnum":_writeCell.label_count.text,@"consumptionStatus":gotype};
+        __weak DWSureOrderViewController *weakSelf = self;
         [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
                 //支付宝页面"data": "P130637201510181610220",
@@ -481,11 +482,11 @@
                 detailViewController.payAmount=taoCanModel.price*num;
                 detailViewController.productName=taoCanModel.title;
                 detailViewController.productDescription=@"暂无";
-                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-                self.navigationItem.backBarButtonItem = left;
-                [self.navigationController pushViewController:detailViewController animated:YES];
+                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
+                weakSelf.navigationItem.backBarButtonItem = left;
+                [weakSelf.navigationController pushViewController:detailViewController animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-                [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SUREORDERPAGE_MTA titleName:@"马上支付"]];
+                [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[weakSelf createMTADctionaryWithActionName:@"跳转" pageName:SUREORDERPAGE_MTA titleName:@"马上支付"]];
             }
         }];
         

@@ -270,6 +270,7 @@
             [self.textView resignFirstResponder];
         }
         
+        __weak __typeof(self) weakSelf = self;
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(queue, ^{
             __block NSString *firstString;
@@ -277,7 +278,7 @@
             __block NSString *thirdString;
             __block NSString *forthString;
             dispatch_group_t group = dispatch_group_create();
-            for (int i = 0; i < (int)self.fodderArray.count; i ++) {
+            for (int i = 0; i < (int)weakSelf.fodderArray.count; i ++) {
                 dispatch_group_async(group, queue, ^{
                     [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                         if(![MyUtil isEmptyString:key]){
@@ -300,39 +301,39 @@
 //                                [self.shangchuanString appendString:key];
 //                                [self.shangchuanString appendString:@","];//字符串拼接
                             }
-                            if (qiniuPages == self.fodderArray.count) {
+                            if (qiniuPages == weakSelf.fodderArray.count) {
                                 dispatch_group_notify(group, queue, ^{
-                                    switch (self.fodderArray.count) {
+                                    switch (weakSelf.fodderArray.count) {
                                         case 1:
-                                            [self.shangchuanString appendString:firstString];
+                                            [weakSelf.shangchuanString appendString:firstString];
                                             break;
                                         
                                         case 2:
-                                            [self.shangchuanString appendString:firstString];
-                                            [self.shangchuanString appendString:@","];
-                                            [self.shangchuanString appendString:secondString];
+                                            [weakSelf.shangchuanString appendString:firstString];
+                                            [weakSelf.shangchuanString appendString:@","];
+                                            [weakSelf.shangchuanString appendString:secondString];
                                             break;
                                         case 3:
-                                            [self.shangchuanString appendString:firstString];
-                                            [self.shangchuanString appendString:@","];
-                                            [self.shangchuanString appendString:secondString];
-                                            [self.shangchuanString appendString:@","];
-                                            [self.shangchuanString appendString:thirdString];
+                                            [weakSelf.shangchuanString appendString:firstString];
+                                            [weakSelf.shangchuanString appendString:@","];
+                                            [weakSelf.shangchuanString appendString:secondString];
+                                            [weakSelf.shangchuanString appendString:@","];
+                                            [weakSelf.shangchuanString appendString:thirdString];
                                             break;
                                         case 4:
-                                            [self.shangchuanString appendString:firstString];
-                                            [self.shangchuanString appendString:@","];
-                                            [self.shangchuanString appendString:secondString];
-                                            [self.shangchuanString appendString:@","];
-                                            [self.shangchuanString appendString:thirdString];
-                                            [self.shangchuanString appendString:@","];
-                                            [self.shangchuanString appendString:forthString];
+                                            [weakSelf.shangchuanString appendString:firstString];
+                                            [weakSelf.shangchuanString appendString:@","];
+                                            [weakSelf.shangchuanString appendString:secondString];
+                                            [weakSelf.shangchuanString appendString:@","];
+                                            [weakSelf.shangchuanString appendString:thirdString];
+                                            [weakSelf.shangchuanString appendString:@","];
+                                            [weakSelf.shangchuanString appendString:forthString];
                                             break;
                                         default:
                                             break;
                                     }
                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                        [self sendTrends:self.shangchuanString];
+                                        [weakSelf sendTrends:self.shangchuanString];
                                     });
                                 });
                             }
@@ -395,9 +396,10 @@
 
 #pragma mark 上传文件到七牛
 - (void)sendFilesToQiniu{
+    __weak __typeof(self) weakSelf = self;
     [HTTPController uploadFileToQiuNiu:self.mediaUrl complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
         if(![MyUtil isEmptyString:key]){
-            [self sendTrends:key];
+            [weakSelf sendTrends:key];
         }else{
             [MyUtil showCleanMessage:@"上传失败！"];
         }
@@ -412,10 +414,11 @@
     }else{
         paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"0",@"attach":string};
     }
+    __weak __typeof(self) weakSelf = self;
     [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result, NSString *messageId) {
         if(result){
 //            [MyUtil showCleanMessage:@"恭喜，发布成功!"];
-            [self.delegate sendSucceed:messageId];
+            [weakSelf.delegate sendSucceed:messageId];
             //发布成功后删除该文件
             //            [self deleteFile:self.mediaUrl];
         }else{

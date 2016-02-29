@@ -42,6 +42,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
+    __weak HuoDongViewController *weakSelf = self;
     [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_HOMELIST  baseURL:LY_SERVER params:@{@"bartype":@"0"} success:^(id response)
      {
          
@@ -55,7 +56,7 @@
                  NSString *linkid=[dic objectForKey:@"linkid"];
                  if ([dic objectForKey:@"linkid"]!=nil && _linkid==linkid.intValue) {
                      _content=[dic objectForKey:@"content"];
-                     [self loadData];
+                     [weakSelf loadData];
                  }
              }
          }else{

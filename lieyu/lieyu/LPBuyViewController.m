@@ -370,6 +370,7 @@
             @"payamount":self.InfoDict[@"money"],
             @"pinkerType":self.InfoDict[@"type"],
             @"memo":@""};
+        __weak __typeof(self) weakSelf = self;
         [[LYHomePageHttpTool shareInstance]setTogetherOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
                 //支付宝页面"data": "P130637201510181610220",
@@ -380,9 +381,9 @@
                 detailViewController.payAmount=[self.InfoDict[@"money"] doubleValue];
                 detailViewController.productName=self.pinkeModel.title;
                 detailViewController.productDescription=@"暂无";
-                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-                self.navigationItem.backBarButtonItem = left;
-                [self.navigationController pushViewController:detailViewController animated:YES];
+                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
+                weakSelf.navigationItem.backBarButtonItem = left;
+                [weakSelf.navigationController pushViewController:detailViewController animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
 
             }

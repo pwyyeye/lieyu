@@ -77,6 +77,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     UIImage *image = info[UIImagePickerControllerEditedImage];
+    __weak __typeof(self) weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
 //        for (UIViewController *vc in self.navigationController.viewControllers) {
 //            if ([vc isKindOfClass:[LYFriendsViewController class]]) {
@@ -89,7 +90,7 @@
             NSDictionary *paraDic = @{@"userId":userIdStr,@"friends_img":key};
             [LYFriendsHttpTool friendsChangeBGImageWithParams:paraDic compelte:^(bool result) {
                 if (result) {
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
                     _passImage(key,image);
                 }
             }];

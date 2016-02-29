@@ -269,11 +269,11 @@
         //统计从吃喝明细页面添加购物车
         NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"吃喝明细",@"titleName":@"确认数量后加入购物车",@"value":chiHeModel.name};
         [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
-        
+        __weak CHJiuPinDetailViewController *weakSelf = self;
         [[LYHomePageHttpTool shareInstance] addCarWithParams:dic block:^(BOOL result) {
             if (result) {
                 [MyUtil showCleanMessage:@"添加购物车成功!"];
-                [self.refreshNumDelegate getNumAdd];
+                [weakSelf.refreshNumDelegate getNumAdd];
             }
         }];
     }
