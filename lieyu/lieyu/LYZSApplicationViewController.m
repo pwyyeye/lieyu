@@ -88,6 +88,11 @@
     [MyUtil showMessage:@"至少选一种支付方式！"];
     return false;
 }
+
+- (void)dealloc{
+    NSLog(@"deall");
+}
+
 #pragma mark - 选择酒吧代理
 - (void)chooseJiuBa:(JiuBaModel *)jiuBaModel{
     jiuBaNow=jiuBaModel;
