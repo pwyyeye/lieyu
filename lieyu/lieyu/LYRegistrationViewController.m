@@ -215,7 +215,7 @@ static LYRegistrationViewController *_registe;
                 [_timer setFireDate:[NSDate distantPast]];
                 
                 [weakself.delegate registration];
-                [USER_DEFAULT setObject:self.phoneTex.text forKey:@"username"];
+                [USER_DEFAULT setObject:weakself.phoneTex.text forKey:@"username"];
                 [USER_DEFAULT setObject:[MyUtil md5HexDigest:self.passWordTex.text] forKey:@"pass"];
                 
                 LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
@@ -244,13 +244,14 @@ static LYRegistrationViewController *_registe;
             return;
         }
         NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text]};
+        __weak __typeof(self) weakSelf = self;
         [[LYUserHttpTool shareInstance] setZhuCe:dic complete:^(BOOL result) {
             if (result) {
                 [_timer setFireDate:[NSDate distantPast]];
                 
-                [self.delegate registration];
-                [USER_DEFAULT setObject:self.phoneTex.text forKey:@"username"];
-                [USER_DEFAULT setObject:[MyUtil md5HexDigest:self.passWordTex.text] forKey:@"pass"];
+                [weakSelf.delegate registration];
+                [USER_DEFAULT setObject:weakSelf.phoneTex.text forKey:@"username"];
+                [USER_DEFAULT setObject:[MyUtil md5HexDigest:weakSelf.passWordTex.text] forKey:@"pass"];
                 
                 LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
                 [loginVC autoLogin];
@@ -260,7 +261,7 @@ static LYRegistrationViewController *_registe;
                 detailVC.thirdLoginType = _thirdLoginType;
                 detailVC.isAutoLogin = YES;
                 
-                [self.navigationController pushViewController:detailVC animated:YES];
+                [weakSelf.navigationController pushViewController:detailVC animated:YES];
             }
         }];
 

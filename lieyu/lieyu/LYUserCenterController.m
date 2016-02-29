@@ -81,9 +81,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 
 -(void)loadData{
+    __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         // 更UI
-        [self.collectionView reloadData];
+        [weakSelf.collectionView reloadData];
     });
     
 }

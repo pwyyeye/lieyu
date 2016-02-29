@@ -165,6 +165,7 @@
     NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":[MyUtil md5HexDigest:self.passWordTex.text] };
     NSLog(@"----pass-[MyUtil md5HexDigest:self.passWordTex.text]=%@---",[MyUtil md5HexDigest:self.passWordTex.text]);
     //    NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":self.passWordTex.text};
+    __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] userLoginWithParams:dic block:^(UserModel *result) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         app.s_app_id=result.token;
@@ -172,7 +173,7 @@
         [app getImToken];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [USER_DEFAULT setObject:self.userNameTex.text forKey:@"username"];
-        [USER_DEFAULT setObject:[MyUtil md5HexDigest:self.passWordTex.text] forKey:@"pass"];
+        [USER_DEFAULT setObject:[MyUtil md5HexDigest:weakSelf.passWordTex.text] forKey:@"pass"];
         //      [self dismissViewControllerAnimated:YES completion:^{
         //
         //      }];
@@ -189,10 +190,10 @@
             NSLog(@"----pass-addAlias%@---%@",responseObject,error);
         }];
         
-        [self getUserCollectJiuBaList];
-        [self getUserZangJiuBaList];
+        [weakSelf getUserCollectJiuBaList];
+        [weakSelf getUserZangJiuBaList];
         
-        [self.navigationController popViewControllerAnimated:YES ];
+        [weakSelf.navigationController popViewControllerAnimated:YES ];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
@@ -205,7 +206,7 @@
 
 //从服务器获取用户是否收藏过酒吧
 - (void)getUserCollectJiuBaList{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    __weak AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NEEDGETLIKE"]) {
         [LYUserHttpTool getUserCollectionJiuBarListWithCompelet:^(NSArray *array) {
             //  NSLog(@"------->%d",array.count);
@@ -220,7 +221,7 @@
 
 //从服务器获取用户是否赞过酒吧
 - (void)getUserZangJiuBaList{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    __weak AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NEEDGETCOLLECT"]) {
         [LYUserHttpTool getUserZangJiuBarListWithCompelet:^(NSArray *array) {
             //    NSLog(@"------->%d",array.count);

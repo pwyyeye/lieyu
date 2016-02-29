@@ -65,13 +65,14 @@
 -(void)savaUserInfo:(NSMutableDictionary *)userInfo needReload:(BOOL)isNeed{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     UserModel *mod= app.userModel;
+    __weak __typeof(self) weakSelf = self;
     [userInfo setObject:[NSString stringWithFormat:@"%d",mod.userid] forKey:@"userid"];
     [[LYUserHttpTool shareInstance] saveUserInfo:[userInfo copy] complete:^(BOOL result) {
         if (result) {
             [MyUtil showMessage:@"修改成功！"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             if (isNeed) {
-                [self.tableView reloadData];
+                [weakSelf.tableView reloadData];
             }
             
         }
@@ -474,6 +475,7 @@
     UIImageView *imageView= (UIImageView *)[_selectcedCell viewWithTag:888];
     imageView.image=scaledImage ;
     
+    __weak __typeof(self) weakSelf = self;
     [HTTPController uploadImageToQiuNiu:scaledImage complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
         if (![MyUtil isEmptyString:key]) {
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -484,7 +486,7 @@
             
             [userinfo setObject:key forKey:@"avatar_img"];
             
-            [self savaUserInfo:userinfo needReload:YES];
+            [weakSelf savaUserInfo:userinfo needReload:YES];
         }
     }];
 

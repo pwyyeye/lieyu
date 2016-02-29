@@ -236,6 +236,7 @@
                             @"pinkerType":[NSNumber numberWithInt:_defaultIndex],
                             @"pinkerNum":[NSNumber numberWithInt:oldNumber],
                             @"memo":@""};
+        __weak ZujuViewController *weakSelf = self;
         [[LYHomePageHttpTool shareInstance]setTogetherOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
                 //支付宝页面"data": "P130637201510181610220",
@@ -249,9 +250,9 @@
                     detailViewController.isPinker=YES;
                     detailViewController.isFaqi=YES;
                     detailViewController.productDescription=@"暂无";
-                    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-                    self.navigationItem.backBarButtonItem = left;
-                    [self.navigationController pushViewController:detailViewController animated:YES];
+                    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
+                    weakSelf.navigationItem.backBarButtonItem = left;
+                    [weakSelf.navigationController pushViewController:detailViewController animated:YES];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                     
                     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"组局" titleName:@"马上支付"]];
@@ -259,8 +260,8 @@
                 }else{
                     PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
                     zujuVC.sn=result;
-                    [self.navigationController pushViewController:zujuVC animated:YES];
-                    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"组局" titleName:@"分享组局"]];
+                    [weakSelf.navigationController pushViewController:zujuVC animated:YES];
+                    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[weakSelf createMTADctionaryWithActionName:@"跳转" pageName:@"组局" titleName:@"分享组局"]];
 //                    LYMyOrderManageViewController *detailViewController  =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //                    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
 //                    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:nil action:nil];

@@ -212,7 +212,7 @@
 */
 #pragma mark - 立即支付
 - (IBAction)payAct:(id)sender {
-    
+    __weak __typeof(self) weakSelf = self;
     [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:@{@"id":[NSString stringWithFormat:@"%d",pinKeModel.id],@"payamount":pinKeModel.pinkerNeedPayAmount} complete:^(NSString *result) {
         if(result){
             //支付宝页面"data": "P130637201510181610220",
@@ -222,7 +222,7 @@
                 
                 detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
     
-                [self.navigationController pushViewController:detailViewController animated:YES];
+                [weakSelf.navigationController pushViewController:detailViewController animated:YES];
 
             }else{
                 ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
@@ -230,9 +230,9 @@
                 detailViewController.payAmount=pinKeModel.pinkerNeedPayAmount.doubleValue;
                 detailViewController.productName=pinKeModel.fullname;
                 detailViewController.productDescription=@"暂无";
-                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-                self.navigationItem.backBarButtonItem = left;
-                [self.navigationController pushViewController:detailViewController animated:YES];
+                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
+                weakSelf.navigationItem.backBarButtonItem = left;
+                [weakSelf.navigationController pushViewController:detailViewController animated:YES];
             }
            
         }

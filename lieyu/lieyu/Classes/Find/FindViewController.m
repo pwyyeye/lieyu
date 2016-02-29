@@ -136,10 +136,11 @@
     [super viewWillAppear:animated];
     //角标
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    __weak __typeof(self) weakSelf = self;
     if (![MyUtil isEmptyString:app.s_app_id]) {
         [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
             _orderTTL=result;
-            [self loadBadge:_orderTTL];
+            [weakSelf loadBadge:_orderTTL];
         }];
     }
     

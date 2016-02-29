@@ -22,9 +22,10 @@
 - (void)setFriendsNesM:(FriendsNewsModel *)friendsNesM{
     _friendsNesM = friendsNesM;
     [_btn_name setTitle:friendsNesM.likeNickName forState:UIControlStateNormal];
-    if([friendsNesM.type isEqualToString:@"0"]){
+    if([friendsNesM.type isEqualToString:@"0"]){//赞
         _label_message.hidden = YES;
-    }else{
+    }else{//评论
+        _label_message.hidden = NO;
         _label_message.text = friendsNesM.comment;
         _imageView_zang.hidden = YES;
     }

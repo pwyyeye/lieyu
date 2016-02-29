@@ -824,7 +824,7 @@
     __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance] setManagerConfirmOrderWithParams:dic complete:^(BOOL result) {
         if(result){
-            [self showMessage:@"消费码兑换成功！"];
+            [weakSelf showMessage:@"消费码兑换成功！"];
             [weakSelf getDaiXiaoFei];
         }
     }];
@@ -841,7 +841,7 @@
     __weak __typeof(self)weakSelf = self;
     [[ZSManageHttpTool shareInstance] setManagerConfirmOrderWithParams:dic complete:^(BOOL result) {
         if(result){
-            [self showMessage:@"消费码兑换成功！"];
+            [weakSelf showMessage:@"消费码兑换成功！"];
             [weakSelf getDaiXiaoFei];
         }
     }];
@@ -1026,11 +1026,12 @@
     if (_bgView)
     {
         _bgView.backgroundColor=[UIColor clearColor];
+        __weak __typeof(self) weakSelf = self;
         [UIView animateWithDuration:.5
                          animations:^{
                              
                              self.calendarView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300);
-                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+                             _bgView.frame=CGRectMake(0, SCREEN_HEIGHT, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
                              _bgView.alpha=0.0;
                          }];
         [_bgView performSelector:@selector(removeFromSuperview)
@@ -1106,11 +1107,12 @@
     if (_bgView)
     {
         _bgView.backgroundColor=[UIColor clearColor];
+        __weak __typeof(self) weakSelf = self;
         [UIView animateWithDuration:.5
                          animations:^{
                              
                              xiaoFeiMaUiew.top=-xiaoFeiMaUiew.height;
-                             _bgView.frame=CGRectMake(0, -SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+                             _bgView.frame=CGRectMake(0, -SCREEN_HEIGHT, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
                              _bgView.alpha=0.0;
                          }];
         [_bgView performSelector:@selector(removeFromSuperview)
@@ -1131,7 +1133,7 @@
         
         [[ZSManageHttpTool shareInstance] setManagerConfirmSeatWithParams:dic complete:^(BOOL result) {
             if(result){
-                [self showMessage:@"留座成功！"];
+                [weakSelf showMessage:@"留座成功！"];
                 [weakSelf getDaiLiuWei];
             }
         }];
@@ -1141,7 +1143,7 @@
         
         [[ZSManageHttpTool shareInstance] setMangerCancelWithParams:dic complete:^(BOOL result) {
             if(result){
-                [self showMessage:@"取消订单成功！"];
+                [weakSelf showMessage:@"取消订单成功！"];
                 [weakSelf getDaiLiuWei];
             }
         }];
@@ -1153,11 +1155,12 @@
     if (_bgView)
     {
         _bgView.backgroundColor=[UIColor clearColor];
+        __weak __typeof(self) weakSelf = self;
         [UIView animateWithDuration:.5
                          animations:^{
                              
                              kaZuoView.top=SCREEN_HEIGHT;
-                             _bgView.frame=CGRectMake(0,SCREEN_HEIGHT, self.view.frame.size.width, self.view.frame.size.height);
+                             _bgView.frame=CGRectMake(0,SCREEN_HEIGHT, weakSelf.view.frame.size.width, weakSelf.view.frame.size.height);
                              _bgView.alpha=0.0;
                          }];
         [_bgView performSelector:@selector(removeFromSuperview)

@@ -101,12 +101,13 @@ static LYResetPasswordViewController *_reset;
         return;
     }
     NSDictionary *dic=@{@"mobile":self.getPassWordTypeTex.text,@"captchas":self.yzmText.text,@"newpassword":[MyUtil md5HexDigest: self.passWordTex.text],@"password":[MyUtil md5HexDigest: self.againPassWordTex.text]};
+    __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] setNewPassWord:dic complete:^(BOOL result) {
         if (result) {
             [MyUtil showMessage:@"修改成功！"];
             [_timer setFireDate:[NSDate distantPast]];
-            [self.delegate resetPassword];
-            [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.delegate resetPassword];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
 //            LYSurePassWordViewController *surePassWordViewController=[[LYSurePassWordViewController alloc]initWithNibName:@"LYSurePassWordViewController" bundle:nil];
 //            surePassWordViewController.title=@"确定密码";
 //            [self.navigationController pushViewController:surePassWordViewController animated:YES];
@@ -122,10 +123,11 @@ static LYResetPasswordViewController *_reset;
         return;
     }
     NSDictionary *dic=@{@"mobile":self.getPassWordTypeTex.text};
+    __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] getResetYanZhengMa:dic complete:^(BOOL result) {
         if (result) {
             [_timer setFireDate:[NSDate distantPast]];
-            [self showMessage:@"验证码发送成功!"];
+            [weakSelf showMessage:@"验证码发送成功!"];
         }
     }];
 }

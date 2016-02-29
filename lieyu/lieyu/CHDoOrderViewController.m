@@ -226,6 +226,7 @@
         }
         
         NSDictionary *dic=@{@"ids":self.ids,@"checkuserid":[NSNumber numberWithInt:userId]};
+        __weak CHDoOrderViewController *weakSelf = self;
         [[LYHomePageHttpTool shareInstance]setChiHeOrderInWithParams:dic complete:^(NSString *result) {
             if(result){
 //                [MyUtil showMessage:result];
@@ -239,11 +240,11 @@
                 CarModel *mo=carInfoModel.cartlist.firstObject;
                 detailViewController.productName=mo.product.fullname;
                 detailViewController.productDescription=@"暂无";
-                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-                self.navigationItem.backBarButtonItem = left;
+                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
+                weakSelf.navigationItem.backBarButtonItem = left;
 //                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:detailViewController action:@selector(backForward)];
 //                detailViewController.navigationItem.leftBarButtonItem = left;
-                [self.navigationController pushViewController:detailViewController animated:YES];
+                [weakSelf.navigationController pushViewController:detailViewController animated:YES];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
 
             }

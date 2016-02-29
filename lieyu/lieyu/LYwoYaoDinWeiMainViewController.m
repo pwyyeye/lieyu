@@ -187,6 +187,7 @@
         ZSDetailModel *zsModel = zsList[index];
         NSLog(@"%@",tcModel.smid);
         NSDictionary *dic=@{@"smid":tcModel.smid,@"reachtime":dataAndTime,@"checkuserid":[NSNumber numberWithInt:zsModel.userid],@"allnum":[NSNumber numberWithInt:oldNumber],@"consumptionStatus":@"1"};
+        __weak LYwoYaoDinWeiMainViewController *weakSelf = self;
             [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
                 if(result){
                     //支付宝页面"data": "P130637201510181610220",
@@ -196,9 +197,9 @@
                     detailViewController.payAmount=[tcModel.price intValue]*oldNumber;
                     detailViewController.productName=tcModel.title;
                     detailViewController.productDescription=@"暂无";
-                    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-                    self.navigationItem.backBarButtonItem = left;
-                    [self.navigationController pushViewController:detailViewController animated:YES];
+                    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
+                    weakSelf.navigationItem.backBarButtonItem = left;
+                    [weakSelf.navigationController pushViewController:detailViewController animated:YES];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"预定" titleName:@"马上支付"]];
                 }
@@ -330,7 +331,7 @@
             [weakSelf.tableView reloadData];
             weakSelf.tableView.contentOffset = CGPointMake(0, -200);
 //        });
-            [self initTimeView];
+            [weakSelf initTimeView];
             [weakSelf removeNoGoodView];
         }else{
             [weakSelf createNoGoodView];
@@ -466,7 +467,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideBigView:)];
     [bigView addGestureRecognizer:tap];
     
-    DetailView *detailView = [[[NSBundle mainBundle]loadNibNamed:@"DetailView" owner:nil options:nil]firstObject];
+    __weak DetailView *detailView = [[[NSBundle mainBundle]loadNibNamed:@"DetailView" owner:nil options:nil]firstObject];
     detailView.frame = CGRectMake(8, 64, SCREEN_WIDTH - 16, 268 + SCREEN_WIDTH / 3);
     detailView.center = self.view.center;
     RecommendPackageModel *model = [jiubaModel.recommend_package objectAtIndex:sender.tag];

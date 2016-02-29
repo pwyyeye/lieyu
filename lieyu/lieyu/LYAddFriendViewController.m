@@ -46,12 +46,12 @@
     }else{
         dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.userid?_customerModel.userid:_customerModel.friend],@"message":_messagetext.text,@"type":_type};
     }
-    
+    __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] addFriends:dic complete:^(BOOL result) {
         if(result){
             
             [MyUtil showMessage:@"发送请求成功"];
-            [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         }
     }];
 
