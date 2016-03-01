@@ -25,8 +25,8 @@
     NSMutableArray *dataList;
     NSMutableArray *goodsList;
     
-    NSMutableDictionary *nowDic;
-    int pageCount;
+//    NSMutableDictionary *_nowDic;
+//    int _pageCount;
     int perCount;
     UIBarButtonItem *rightBtn;
     int goodsNumber;
@@ -47,6 +47,7 @@
 @property (nonatomic, strong) NSArray *buttonsArray;
 @property (nonatomic, strong) UIView *MoreView;
 @property (nonatomic, assign) BOOL moreShow;
+
 
 @property (nonatomic, strong) UIBarButtonItem *rightItem;
 
@@ -85,31 +86,31 @@
     dataList = [[NSMutableArray alloc]init];
     goodsList = [[NSMutableArray alloc]init];
     
-    pageCount = 1;
+    _pageCount = 1;
     goodsNumber = 1;
     self.buttonsArray = @[_sxBtn1,_sxBtn2,_sxBtn3,_sxBtn4];
     
-    nowDic=[[NSMutableDictionary alloc]initWithDictionary:@{@"barid":[NSString stringWithFormat:@"%d",self.barid]}];
-    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-    [nowDic setObject:@"20" forKey:@"per"];
-    [self getData:nowDic];
+    _nowDic=[[NSMutableDictionary alloc]initWithDictionary:@{@"barid":[NSString stringWithFormat:@"%d",self.barid]}];
+    [_nowDic setObject:[NSNumber numberWithInt:_pageCount] forKey:@"p"];
+    [_nowDic setObject:@"20" forKey:@"per"];
+    [self getData:_nowDic];
 //    [self geBiaoQianData];
     
     __weak __typeof(self)weakSelf = self;
     self.collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        pageCount=1;
+        weakSelf.pageCount=1;
 //
-        [nowDic removeObjectForKey:@"p"];
-        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-        [weakSelf getData:nowDic];
+        [weakSelf.nowDic removeObjectForKey:@"p"];
+        [weakSelf.nowDic setObject:[NSNumber numberWithInt:weakSelf.pageCount] forKey:@"p"];
+        [weakSelf getData:weakSelf.nowDic];
     }];
     MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.collectionView.mj_header;
     [self initMJRefeshHeaderForGif:header];
     
     self.collectionView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [nowDic removeObjectForKey:@"p"];
-        [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-        [weakSelf getDataWithDicMore:nowDic];
+        [weakSelf.nowDic removeObjectForKey:@"p"];
+        [weakSelf.nowDic setObject:[NSNumber numberWithInt:weakSelf.pageCount] forKey:@"p"];
+        [weakSelf getDataWithDicMore:weakSelf.nowDic];
     }];
     MJRefreshBackGifFooter *footer = (MJRefreshBackGifFooter *)self.collectionView.mj_footer;
     [self initMJRefeshFooterForGif:footer];
@@ -296,7 +297,7 @@
         if(dataList.count>0){
             [kongImageView removeFromSuperview];
             [kongLabel removeFromSuperview];
-            pageCount++;
+            _pageCount++;
             [weakSelf.collectionView.mj_footer resetNoMoreData];
             weakSelf.collectionView.contentOffset = CGPointMake(0, -100);
         }else{//改种酒类为空
@@ -327,7 +328,7 @@
     [[LYHomePageHttpTool shareInstance]getCHListWithParams:dic block:^(NSMutableArray *result) {
         if(result.count>0){
             [dataList addObjectsFromArray:result];
-            pageCount++;
+            _pageCount++;
             [weakSelf.collectionView reloadData];
             [weakSelf.collectionView.mj_footer endRefreshing];
         }else{
@@ -468,17 +469,17 @@
 
 #pragma mark 选取好条件后进行筛选
 - (void)chooseWineBy:(int)sortkey{
-    pageCount=1;
+    _pageCount=1;
     
-    [nowDic removeObjectForKey:@"p"];
-    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-    [nowDic removeObjectForKey:@"categoryid"];
-    [nowDic setObject:[NSString stringWithFormat:@"%d",sortkey] forKey:@"categoryid"];
+    [_nowDic removeObjectForKey:@"p"];
+    [_nowDic setObject:[NSNumber numberWithInt:_pageCount] forKey:@"p"];
+    [_nowDic removeObjectForKey:@"categoryid"];
+    [_nowDic setObject:[NSString stringWithFormat:@"%d",sortkey] forKey:@"categoryid"];
 
     NSDictionary *dict = @{@"actionName":@"筛选",@"pageName":@"吃喝专场",@"titleName":buttonTitle};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
-    [self getData:nowDic];
+    [self getData:_nowDic];
 }
 
 #pragma mark 点击更多按钮弹出界面
@@ -551,34 +552,35 @@
 }
 
 - (void)addShaiXuan:(NSMutableArray *)arr{
-    pageCount=1;
+    _pageCount=1;
     
-    [nowDic removeObjectForKey:@"p"];
-    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
-    [nowDic removeObjectForKey:@"minprice"];
-    [nowDic removeObjectForKey:@"sort"];
-    [nowDic removeObjectForKey:@"maxprice"];
-    [nowDic removeObjectForKey:@"categoryid"];
-    [nowDic removeObjectForKey:@"brandid"];
+    [_nowDic removeObjectForKey:@"p"];
+    [_nowDic setObject:[NSNumber numberWithInt:_pageCount] forKey:@"p"];
+    [_nowDic removeObjectForKey:@"minprice"];
+    [_nowDic removeObjectForKey:@"sort"];
+    [_nowDic removeObjectForKey:@"maxprice"];
+    [_nowDic removeObjectForKey:@"categoryid"];
+    [_nowDic removeObjectForKey:@"brandid"];
     for (ProductCategoryModel *mode in arr) {
         if(mode.type==0){
             if([mode.minprice isEqualToString:@"10000"]){
-                [nowDic setObject:mode.minprice forKey:@"minprice"];
+                [_nowDic setObject:mode.minprice forKey:@"minprice"];
             }else{
-                [nowDic setObject:mode.maxprice forKey:@"maxprice"];
-                [nowDic setObject:mode.minprice forKey:@"minprice"];
+                [_nowDic setObject:mode.maxprice forKey:@"maxprice"];
+                [_nowDic setObject:mode.minprice forKey:@"minprice"];
             }
             
         }else if(mode.type==1){
-            [nowDic setObject:[NSString stringWithFormat:@"%d",mode.id] forKey:@"categoryid"];
+            [_nowDic setObject:[NSString stringWithFormat:@"%d",mode.id] forKey:@"categoryid"];
         }else{
-            [nowDic setObject:[NSString stringWithFormat:@"%d",mode.id] forKey:@"brandid"];
+            [_nowDic setObject:[NSString stringWithFormat:@"%d",mode.id] forKey:@"brandid"];
         }
     }
-    [self getData:nowDic];
+    [self getData:_nowDic];
 }
 
 - (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"lessGood" object:nil];
     NSLog(@"dealloc");
 }
 
