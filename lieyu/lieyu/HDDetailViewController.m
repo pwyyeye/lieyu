@@ -252,7 +252,8 @@
                         _HDDetailCell.label_priceWay.text = @"AA付款";
         }else if ([orderInfo.pinkerType isEqualToString:@"2"]){
             //发起人自由付款，其他人AA
-             payamout = orderInfo.amountPay.doubleValue / ([orderInfo.allnum intValue] - 1);
+            NSLog(@"amountPay:%f",orderInfo.amountPay.doubleValue - 0.01);
+             payamout = (orderInfo.amountPay.doubleValue - 0.01) / ([orderInfo.allnum intValue] - 1);
                         _HDDetailCell.label_priceWay.text = @"AA付款";
         }
 
@@ -342,7 +343,7 @@
         
         _chooseNumber.store = store;
         _chooseNumber.frame = CGRectMake(10, SCREEN_HEIGHT - 320, SCREEN_WIDTH - 20, 250);
-        
+        [_chooseNumber configureTitle];
         alertView.contentView = _chooseNumber;
         [alertView show];
     }else{
@@ -357,7 +358,7 @@
         NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"活动详情",@"titleName":@"想要参加",@"value":[NSString stringWithFormat:@"%d",app.userModel.userid]};
         [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
         
-        allMoney = [orderInfo.pinkerNum intValue] * [pinkeModel.price doubleValue];
+        allMoney = [orderInfo.amountPay doubleValue];
         //    orderInfo.pinkerType
         //    0、请客 1、AA付款 2、自由付款 （发起人自由 其他AA）
         //    _YUModel.allowSex
@@ -408,7 +409,7 @@
                 [self configureRestMoney];
                 payamout = allMoney;
             }else{
-                payamout = allMoney / ([orderInfo.allnum intValue] - 1);
+                payamout = (allMoney - 0.01) / ([orderInfo.allnum intValue] - 1);
                 payamout = payamout * [_chooseNumber.numberField.text intValue];
             }
         }
@@ -438,6 +439,9 @@
                 NSString *payStr = [NSString stringWithFormat:@"%.2f",payamout];
                 detailVC.payAmount = payStr.doubleValue;
                 detailVC.productName = pinkeModel.smname;
+                detailVC.createDate=[NSDate date];
+                detailVC.isPinker=YES;
+                detailVC.isFaqi=NO;
                 detailVC.productDescription = @"暂无";
                 [MyUtil showMessage:@"请在五分钟之内完成支付，否则订单将自动取消！"];
                 UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];

@@ -499,7 +499,8 @@
         
         //根据订单类型 订单状态设置底部按钮
         if(orderInfoModel.ordertype==0){
-            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
+            
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.2f",(orderInfoModel.amountPay==nil?orderInfoModel.amountPay.doubleValue:0)];
             NSString *str=orderInfoModel.checkUserAvatar_img ;
             [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
             orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
@@ -572,7 +573,7 @@
                     }
                 }
             }
-            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",moneyStr];
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.2f",moneyStr.doubleValue];
             if(isFaqi){
                 NSString *str=orderInfoModel.checkUserAvatar_img;
                 [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
@@ -936,8 +937,17 @@
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             // 把单聊视图控制器添加到导航栈。
-            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-            conversationVC.navigationItem.leftBarButtonItem = left;
+//            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+//            conversationVC.navigationItem.leftBarButtonItem = left;
+            
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
+            [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+            [view addSubview:button];
+            [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+            conversationVC.navigationItem.leftBarButtonItem = item;
+            
             [self.navigationController pushViewController:conversationVC animated:YES];
         }else{
             RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
@@ -949,8 +959,16 @@
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             // 把单聊视图控制器添加到导航栈。
-            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-            conversationVC.navigationItem.leftBarButtonItem = left;
+//            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+//            conversationVC.navigationItem.leftBarButtonItem = left;
+            
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
+            [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+            [view addSubview:button];
+            [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+            conversationVC.navigationItem.leftBarButtonItem = item;
             [self.navigationController pushViewController:conversationVC animated:YES];
         }
     }else{
@@ -1123,6 +1141,7 @@
                      detailViewController.orderNo=pinkInfoModel.sn;
                      detailViewController.payAmount=pinkInfoModel.price.doubleValue;
                     detailViewController.isPinker=YES;
+                    detailViewController.createDate=[MyUtil getFullDateFromString:pinkInfoModel.createDate];
                     if (pinkInfoModel.inmember==orderInfoModel.userid) {
                         detailViewController.isFaqi=YES;
                     }else{

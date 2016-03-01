@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ChoosePeople : UIView
+
+@property (nonatomic, assign) int store;
+
 @property (weak, nonatomic) IBOutlet UIButton *lessBtn;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 @property (weak, nonatomic) IBOutlet UITextField *numberField;

@@ -15,6 +15,7 @@
 #import "CHDoOrderViewController.h"
 #import "ZujuViewController.h"
 #import "LYwoYaoDinWeiMainViewController.h"
+#import "PTjoinInViewController.h"
 @interface ChoosePayController ()
 {
     UITableViewCell *_payCell;
@@ -53,7 +54,7 @@
             ];
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
     _selectIndex = 1;
-    _isFaqi=YES;
+//    _isFaqi=YES;
     [self createPayButton];//创建支付按钮
 }
 
@@ -84,8 +85,18 @@
     if ([MyUtil isEmptyString:_productDescription]) {
         return;
     }
+    if (_isPinker&&_createDate!=nil) {
+        NSTimeInterval orderTime = [_createDate timeIntervalSinceNow];
+        NSLog(@"----pass-pass=%.f---",orderTime);
+
+       if(orderTime < -300){
+           [MyUtil showLikePlaceMessage:@"订单超时无法支付"];
+            return;
+       }
+
+    }
     
-    NSLog(@"------>%ld",_selectIndex);
+//    NSLog(@"------>%ld",_selectIndex);
     
     if (_selectIndex == 1l) {//支付宝
         AlipayOrder *order=[[AlipayOrder alloc] init];
@@ -148,7 +159,7 @@
     //    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
     for (UIViewController *controller in self.navigationController.viewControllers) {
-        if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]){
+        if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]||[controller isKindOfClass:[PTjoinInViewController class]]){
             LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
             [self.navigationController pushViewController:detailViewController animated:YES];
             return;
