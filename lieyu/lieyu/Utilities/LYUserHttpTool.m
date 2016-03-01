@@ -898,8 +898,6 @@
 #pragma mark 收藏的店铺
 -(void) getMyBarWithParams:(NSDictionary*)params
                      block:(void(^)(NSMutableArray* result)) block{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_LIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -914,18 +912,14 @@
         }else{
             [MyUtil showMessage:message];
         }
-        [app stopLoading];
     } failure:^(NSError *err) {
         //[MyUtil showCleanMessage:@"获取数据失败！"];
-        [app stopLoading];
     }];
 }
 
 #pragma mark - 点赞的酒吧
 -(void) getMyBarZangWithParams:(NSDictionary*)params
                      block:(void(^)(NSMutableArray* result)) block{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_ZANG baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -940,10 +934,8 @@
         }else{
             [MyUtil showMessage:message];
         }
-        [app stopLoading];
     } failure:^(NSError *err) {
         //[MyUtil showCleanMessage:@"获取数据失败！"];
-        [app stopLoading];
     }];
 }
 
