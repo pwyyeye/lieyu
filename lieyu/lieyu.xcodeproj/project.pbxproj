@@ -1097,6 +1097,7 @@
 		ADE2AD731C23AE5500B0A54B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE2AD721C23AE5500B0A54B /* libz.tbd */; };
 		ADE2AD751C23AE6600B0A54B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE2AD741C23AE6600B0A54B /* libsqlite3.tbd */; };
 		ADE2AD771C23AE8E00B0A54B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE2AD761C23AE8E00B0A54B /* Security.framework */; };
+		ADEF513F1C84A8D6006C7385 /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADEF513E1C84A8D6006C7385 /* Images-2.xcassets */; };
 		ADF38F421BE8D8B400A80B08 /* CityChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF38F411BE8D8B400A80B08 /* CityChooseButton.m */; };
 		ADF88E531C1029F600CF5DED /* LYEvaluationController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF88E511C1029F600CF5DED /* LYEvaluationController.m */; };
 		ADF88E541C1029F600CF5DED /* LYEvaluationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADF88E521C1029F600CF5DED /* LYEvaluationController.xib */; };
@@ -2893,6 +2894,7 @@
 		ADE2AD721C23AE5500B0A54B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		ADE2AD741C23AE6600B0A54B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		ADE2AD761C23AE8E00B0A54B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		ADEF513E1C84A8D6006C7385 /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
 		ADF38F401BE8D8B400A80B08 /* CityChooseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityChooseButton.h; sourceTree = "<group>"; };
 		ADF38F411BE8D8B400A80B08 /* CityChooseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityChooseButton.m; sourceTree = "<group>"; };
 		ADF88E501C1029F600CF5DED /* LYEvaluationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYEvaluationController.h; sourceTree = "<group>"; };
@@ -5985,6 +5987,7 @@
 				15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */,
 				AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */,
 				AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */,
+				ADEF513E1C84A8D6006C7385 /* Images-2.xcassets */,
 				AD8899B91B9AFE61007BCC7C /* Supporting Files */,
 			);
 			path = lieyu;
@@ -7648,6 +7651,7 @@
 				AD4EA8671C5476AF0056E560 /* launchImage@3x.png in Resources */,
 				853BCC9F1C76E90500DE0324 /* 收藏whited@3x.png in Resources */,
 				8567A4A51C43E14E00982882 /* biaoqing_icon.png in Resources */,
+				ADEF513F1C84A8D6006C7385 /* Images-2.xcassets in Resources */,
 				38E5D7B71C128A74004B49D2 /* 拼客流程@2x.png in Resources */,
 				8540B68A1C2CF40B00F16463 /* LYFriendsSendViewController.xib in Resources */,
 				38E5D7F61C13355A004B49D2 /* PayMoney.xib in Resources */,
@@ -8403,8 +8407,8 @@
 			baseConfigurationReference = 5F1976CA650CCDDDC83F63D3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8442,7 +8446,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7ffa5ecb-1b3f-4400-a675-1bfca8e7d17e";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -8452,8 +8456,8 @@
 			baseConfigurationReference = 60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8491,7 +8495,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7ffa5ecb-1b3f-4400-a675-1bfca8e7d17e";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

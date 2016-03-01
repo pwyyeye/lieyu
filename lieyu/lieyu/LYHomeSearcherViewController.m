@@ -239,7 +239,7 @@
              else
              {
                  weakSelf.tableView.mj_footer.hidden = YES;
-                 [MyUtil showCleanMessage:@"搜索无结果"];
+                 
              }
              //             [weakSelf.tableView.header endRefreshing];
          }
@@ -284,6 +284,8 @@
              [searchlist addObjectsFromArray:barList];
              if (searchlist.count) {
                  [weakSelf saveHisData:_searchBar.text];
+             }else{
+                 [MyUtil showCleanMessage:@"搜索无结果"];
              }
              [weakSelf.tableView reloadData];
          }
