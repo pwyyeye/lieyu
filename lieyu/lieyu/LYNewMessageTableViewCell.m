@@ -30,7 +30,7 @@
         _label_message.text = friendsNesM.comment;
         _imageView_zang.hidden = YES;
     }
-    _label_time.text = [MyUtil calculateDateFromNowWith:friendsNesM.date];
+    _label_time.text = [MyUtil calculatedDateFromNowWith:friendsNesM.date];
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:friendsNesM.likeUserIcon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     
     CGSize size = [friendsNesM.message boundingRectWithSize:CGSizeMake(57, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11]} context:nil].size;
