@@ -671,6 +671,8 @@
 		853D3ABF1C35347A00B4FEAD /* dabofangqi_icon @3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853D3ABC1C35347A00B4FEAD /* dabofangqi_icon @3x.png */; };
 		853D3AC01C35347A00B4FEAD /* dabofangqi_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 853D3ABD1C35347A00B4FEAD /* dabofangqi_icon.png */; };
 		853D3AC11C35347A00B4FEAD /* dabofangqi_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853D3ABE1C35347A00B4FEAD /* dabofangqi_icon@2x.png */; };
+		853D4E2B1C87E73D003277E5 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853D4E291C87E73D003277E5 /* SettingTableViewCell.m */; };
+		853D4E2C1C87E73D003277E5 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853D4E2A1C87E73D003277E5 /* SettingTableViewCell.xib */; };
 		8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */; };
 		8540B6631C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */; };
 		8540B6791C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6771C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m */; };
@@ -2199,6 +2201,9 @@
 		853D3ABC1C35347A00B4FEAD /* dabofangqi_icon @3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dabofangqi_icon @3x.png"; sourceTree = "<group>"; };
 		853D3ABD1C35347A00B4FEAD /* dabofangqi_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dabofangqi_icon.png; sourceTree = "<group>"; };
 		853D3ABE1C35347A00B4FEAD /* dabofangqi_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dabofangqi_icon@2x.png"; sourceTree = "<group>"; };
+		853D4E281C87E73D003277E5 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewCell.h; sourceTree = "<group>"; };
+		853D4E291C87E73D003277E5 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewCell.m; sourceTree = "<group>"; };
+		853D4E2A1C87E73D003277E5 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		853DB5EB1C12C19B004227BA /* MenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuButton.h; sourceTree = "<group>"; };
 		853DB5EC1C12C19B004227BA /* MenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuButton.m; sourceTree = "<group>"; };
 		853E3A121C15232A0088CD86 /* bartypeslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bartypeslistModel.h; sourceTree = "<group>"; };
@@ -5446,6 +5451,9 @@
 				858B22891C29653000BF70AD /* LYTagCollectionViewCell.m */,
 				8540BFAB1C2A3CA7008CB825 /* LYTagLabel.h */,
 				8540BFAC1C2A3CA7008CB825 /* LYTagLabel.m */,
+				853D4E281C87E73D003277E5 /* SettingTableViewCell.h */,
+				853D4E291C87E73D003277E5 /* SettingTableViewCell.m */,
+				853D4E2A1C87E73D003277E5 /* SettingTableViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -7275,6 +7283,7 @@
 				38E5D7F41C12DF0C004B49D2 /* comment@3x.png in Resources */,
 				ADE1C5CC1C730E1C0011D4AB /* 更新23@2x.png in Resources */,
 				15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */,
+				853D4E2C1C87E73D003277E5 /* SettingTableViewCell.xib in Resources */,
 				85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */,
 				8512BCA81C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
@@ -8044,6 +8053,7 @@
 				15CC31E21BEB2C5B00DDD03F /* FMDatabasePool.m in Sources */,
 				151BB6D41BBB78E000E7A81C /* UzysAssetsViewCell.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
+				853D4E2B1C87E73D003277E5 /* SettingTableViewCell.m in Sources */,
 				154D30DE1BEB972A00CDD251 /* ZSMyShopsManageViewController.m in Sources */,
 				D7A1D4341BC2CE0900BCE47C /* RecommendPackageModel.m in Sources */,
 				151BB6D21BBB78E000E7A81C /* UzysAssetsPickerController.m in Sources */,

@@ -592,6 +592,7 @@
                     }else{
                         NSMutableArray *muArr = _dataArray[_index];
                         [muArr addObjectsFromArray:dataArray];
+                        _isMysPageUpLoad = NO;
                     }
             _pageStartCountMys ++;
             [weakSelf.tableView.mj_footer endRefreshing];
