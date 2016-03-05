@@ -340,6 +340,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
    // if (scrollView.contentOffset.y > SCREEN_WIDTH/183*95 - self.image_layer.size.height) {
 //        self.image_layer.hidden = NO;
         self.image_layer.alpha = scrollView.contentOffset.y / 64.f;
@@ -816,7 +817,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0.001;
+//    return 0.001;
+    if (section == 0 || section == 1) {
+        return 0.0001;
+    }else {
+        if (section == 3) {
+            if(_beerBarDetail.signUsers.count) return 3;
+            else return 0;
+        }else if(section == 4){
+            if(_activityArray.count) return 3;
+            else return 0;
+        }
+        return 3;
+
+    }
 }
 
 //-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -827,7 +841,7 @@
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if(section == 0 || section == 5){
+  /*  if(section == 0 || section == 5){
         return 0.00001;
     }else{
         if (section == 3) {
@@ -838,7 +852,8 @@
             else return 0;
         }
         return 3;
-    }
+    } */
+    return 0.0001;
 }
 
 //- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{

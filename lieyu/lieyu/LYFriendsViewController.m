@@ -183,6 +183,22 @@
     [self getDataFriendsWithSetContentOffSet:NO];
     
     [self getRecentMessage];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(myClickSel)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [_tableView addGestureRecognizer:swipeRight];
+    
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(friendsClickSel)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
+    [_tableView addGestureRecognizer:swipeLeft];
+}
+
+- (void)friendsClickSel{
+    [self friendsClick:_friendsBtn];
+}
+
+- (void)myClickSel{
+    [self myClick:_myBtn];
 }
 
 - (void)getRecentMessage{
@@ -589,6 +605,7 @@
         if(dataArray.count){
                     if(_pageStartCountMys == 0){
                         [_dataArray replaceObjectAtIndex:1 withObject:dataArray];
+                        _isMysPageUpLoad = YES;
                     }else{
                         NSMutableArray *muArr = _dataArray[_index];
                         [muArr addObjectsFromArray:dataArray];
@@ -614,12 +631,12 @@
     [self.tableView.mj_header endRefreshing];
     if(_index) {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
-        if(_isMysPageUpLoad) [self.tableView setContentOffset:CGPointMake(0,0) animated:YES];
+        if(_isMysPageUpLoad) [self.tableView setContentOffset:CGPointMake(0,0) animated:NO];
         [self addTableViewHeader];
     }
     else{
         self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
-        if(_isFriendsPageUpLoad)  [self.tableView setContentOffset:CGPointMake(0, -64) animated:YES];
+        if(_isFriendsPageUpLoad)  [self.tableView setContentOffset:CGPointMake(0, -64) animated:NO];
         [self removeTableViewHeader];
     }
     
