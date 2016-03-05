@@ -634,10 +634,10 @@
     NSLog(@"--->%@",dic);
 
     UserModel *userM = [[UserModel alloc]init];
-    userM.avatar_img = dic[@"headimgurl"];
-    userM.usernick = dic[@"nickname"];
-    userM.gender = dic[@"sex"];
-    userM.openID = dic[@"openi                                                                                                                                                                                                                                        d"];
+    userM.avatar_img =[dic objectForKey:@"headimgurl"];
+    userM.usernick = [dic objectForKey:@"nickname"];
+    userM.gender =[dic objectForKey:@"sex"];
+    userM.openID =[dic objectForKey:@"openid"];  //dic[@"openi                                                                                                                                                                                                                                        d"];
     compelete(userM);  
 }
 
