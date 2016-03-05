@@ -409,8 +409,16 @@
                 [self configureRestMoney];
                 payamout = allMoney;
             }else{
-                payamout = (allMoney - 0.01) / ([orderInfo.allnum intValue] - 1);
-                payamout = payamout * [_chooseNumber.numberField.text intValue];
+                for (YUPinkerListModel *userModel in orderInfo.pinkerList) {
+                    if ([userModel.inmember isEqualToString:orderInfo.userid]) {//检索到发起人
+                        payamout = (allMoney - [userModel.price doubleValue]) / ([orderInfo.allnum intValue] - 1);
+                        payamout = payamout * [_chooseNumber.numberField.text intValue];
+                        break;
+                    }
+                }
+                
+//                payamout = (allMoney - 0.01) / ([orderInfo.allnum intValue] - 1);
+//                payamout = payamout * [_chooseNumber.numberField.text intValue];
             }
         }
 //        NSString *string = [NSString stringWithFormat:@"%f",payamout];
