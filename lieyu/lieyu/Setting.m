@@ -50,8 +50,7 @@
     [logoutButton setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
     [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:logoutButton];
-
-    
+     
 }
 
 - (void)backClick{
