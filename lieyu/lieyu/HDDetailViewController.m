@@ -447,6 +447,9 @@
                 NSString *payStr = [NSString stringWithFormat:@"%.2f",payamout];
                 detailVC.payAmount = payStr.doubleValue;
                 detailVC.productName = pinkeModel.smname;
+                detailVC.createDate=[NSDate date];
+                detailVC.isPinker=YES;
+                detailVC.isFaqi=NO;
                 detailVC.productDescription = @"暂无";
                 [MyUtil showMessage:@"请在五分钟之内完成支付，否则订单将自动取消！"];
                 UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];

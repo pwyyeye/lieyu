@@ -1298,7 +1298,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     NSDictionary *dic =_index==0? _newbannerList [index]:_newbannerList2 [index];
     NSNumber *ad_type=[dic objectForKey:@"ad_type"];
     NSNumber *linkid=[dic objectForKey:@"linkid"];
-    //    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客
+    //    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客 5：专题 6:专题活动
     //    "linkid": 1 //对应的id  比如酒吧 就是对应酒吧id  套餐就是对应套餐id 活动就对应活动页面的id
     if(ad_type.intValue ==1){
         //酒吧
@@ -1335,7 +1335,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSString *str = [NSString stringWithFormat:@"首页滑动视图套餐详情ID%@",linkid];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }else if (ad_type.intValue ==4){
-        //    4：拼客－>改为专题活动
+        //    4：拼客
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
         playTogetherMainViewController.title=@"我要拼客";

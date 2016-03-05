@@ -62,6 +62,7 @@
 @property(strong,nonatomic) NSString *birthday;
 @property NSInteger sectionNumber;
 @property BOOL rowSelected;
+@property(strong,nonatomic) NSString *ordernum;
 
 @property (nonatomic,copy) NSString *barid;
 @property (nonatomic,copy) NSString *createdate;

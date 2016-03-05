@@ -23,7 +23,8 @@
 @property (assign, nonatomic) int barid;
 @property (copy, nonatomic) NSString *barName;
 
-
+@property (nonatomic,strong) NSMutableDictionary *nowDic;
+@property (nonatomic,unsafe_unretained) int pageCount;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 - (IBAction)sxBtnClick:(ShaiXuanBtn *)sender;

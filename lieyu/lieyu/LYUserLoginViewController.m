@@ -177,7 +177,6 @@
         //      [self dismissViewControllerAnimated:YES completion:^{
         //
         //      }];
-        
         //先删除别名，然后再注册新的－－－友盟 消息推送
         if ([USER_DEFAULT objectForKey:@"userid"]) {
             [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {

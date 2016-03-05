@@ -24,12 +24,13 @@
     [_btn_name setTitle:friendsNesM.likeNickName forState:UIControlStateNormal];
     if([friendsNesM.type isEqualToString:@"0"]){//赞
         _label_message.hidden = YES;
+        _imageView_zang.hidden = NO;
     }else{//评论
         _label_message.hidden = NO;
         _label_message.text = friendsNesM.comment;
         _imageView_zang.hidden = YES;
     }
-    _label_time.text = [MyUtil calculateDateFromNowWith:friendsNesM.date];
+    _label_time.text = [MyUtil calculatedDateFromNowWith:friendsNesM.date];
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:friendsNesM.likeUserIcon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     
     CGSize size = [friendsNesM.message boundingRectWithSize:CGSizeMake(57, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11]} context:nil].size;

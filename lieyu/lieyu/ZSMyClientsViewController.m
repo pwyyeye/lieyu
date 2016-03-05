@@ -185,6 +185,14 @@
         
         cell.nameLal.text = @"No Name";
     }
+    
+    if (![MyUtil isEmptyString:addressBook.ordernum]&&![@"null" isEqualToString:addressBook.ordernum]) {
+        
+        cell.countLal.text=addressBook.ordernum;
+    }else{
+        cell.countLal.text=@"0";
+    }
+    
     [cell.cusImageView setImageWithURL:[NSURL URLWithString:addressBook.avatar_img]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //    cell.backgroundColor=[UIColor clearColor];

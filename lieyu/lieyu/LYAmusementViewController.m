@@ -377,11 +377,12 @@
                 [tableView reloadData];
                 [_palceLabel removeFromSuperview];
             }else{
-                _palceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT  / 2, SCREEN_WIDTH, 20)];
+                [_palceLabel removeFromSuperview];
+                _palceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, (SCREEN_HEIGHT - 139) / 2, SCREEN_WIDTH, 20)];
                 _palceLabel.text = @"对不起，该区域暂无组局";
                 _palceLabel.textColor = RGBA(0, 0, 0, 0.5);
                 _palceLabel.textAlignment = NSTextAlignmentCenter;
-                [weakself.view addSubview:_palceLabel];
+                [tableView addSubview:_palceLabel];
             }
             //                [tableView reloadData];
 //            [UIView transitionWithView:tableView
