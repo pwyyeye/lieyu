@@ -49,7 +49,8 @@
                @{@"image":@"lianxiren",@"title":@"玩友列表"},
 //               @{@"image":@"fujinwanyou",@"title":@"附近玩客"},
               // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-               @{@"image":@"saoyisao",@"title":@"扫一扫"}];
+               @{@"image":@"saoyisao",@"title":@"扫一扫"},
+               @{@"image":@"GameIcon",@"title":@"酒吧小游戏"}];
     _tableView.contentInset = UIEdgeInsetsMake(70, 0, -49, 0);
    /* self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 0.5);
@@ -183,12 +184,15 @@
 {
     if(section==0){
         return 3;
-    }
+    }else if (section == 1){
         return 1;
+    }else{
+        return 1;
+    }
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -227,7 +231,7 @@
         }
 
     }
-    else{
+    else if(indexPath.section == 1){
         if(indexPath.row==0){
             [[cell viewWithTag:100] removeFromSuperview];
             dic=[datalist objectAtIndex:3];
@@ -237,6 +241,17 @@
             [cell addSubview:lineLal];
         }else{
 //            dic=[datalist objectAtIndex:4];
+        }
+    }else{
+        if (indexPath.row == 0) {
+            [[cell viewWithTag:100] removeFromSuperview];
+            dic=[datalist objectAtIndex:4];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
+            lineLal.tag=100;
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
+        }else{
+            
         }
     }
     [cell.imageView setImage:[UIImage imageNamed:[dic objectForKey:@"image"]]];
@@ -303,7 +318,7 @@
             //附近玩客
         }
         [self.tableView reloadData];
-    }else{
+    }else if(indexPath.section == 1){
         if(indexPath.row == 0 && NO){
             //摇一摇
             YaoYiYaoViewController *yaoYiYaoViewController;
@@ -333,6 +348,7 @@
 //            [self.navigationController pushViewController:loginVC animated:YES];
             
         }
+    }else{//进入酒吧小游戏
     }
 }
 

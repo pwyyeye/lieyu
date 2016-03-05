@@ -263,6 +263,9 @@
         if (actionList.count > 0) {
             cell.barActivity = [actionList objectAtIndex:indexPath.section - 1];
         }
+        if([[MyUtil deviceString]isEqualToString:@"iPhone 4"] || [[MyUtil deviceString]isEqualToString:@"iPhone 4S"] || [[MyUtil deviceString]isEqualToString:@"iPhone 5"] || [[MyUtil deviceString]isEqualToString:@"iPhone 5C"] || [[MyUtil deviceString]isEqualToString:@"iPhone 5S"]){
+            cell.action_title.font = [UIFont systemFontOfSize:12];
+        }
         return cell;
     }
 }

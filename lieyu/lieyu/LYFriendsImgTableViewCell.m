@@ -39,7 +39,7 @@
         case 2:
         {
             CGFloat btnW = (SCREEN_WIDTH - 6) / 2.f;
-            NSInteger picWidth = 450;
+            NSInteger picWidth = 0;
             if (recentModel.isMeSendMessage) picWidth = 0;
             for (int i = 0; i < 2; i ++) {
                 
@@ -90,7 +90,7 @@
                     default:
                     {
                         btn = [[UIButton alloc]initWithFrame:CGRectMake((i - 1)%3 *(btnW + 2) + 2, SCREEN_WIDTH + 2, btnW, btnW)];
-                        picWidth = 450;
+                        picWidth = 0;
                     }
                         break;
                         
