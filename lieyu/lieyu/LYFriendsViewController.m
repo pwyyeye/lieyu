@@ -184,6 +184,7 @@
     
     [self getRecentMessage];
     
+    
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(myClickSel)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [_tableView addGestureRecognizer:swipeRight];
@@ -191,6 +192,7 @@
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(friendsClickSel)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
     [_tableView addGestureRecognizer:swipeLeft];
+
 }
 
 - (void)friendsClickSel{
@@ -625,7 +627,11 @@
 
 #pragma mark － 刷新表
 - (void)reloadTableViewAndSetUpPropertyneedSetContentOffset:(BOOL)need{
-    [self.tableView reloadData];
+    __weak __typeof(self) weakSelf = self;
+    [UIView transitionWithView:_tableView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        
+        [weakSelf.tableView reloadData];
+    } completion:nil];
     // if(need)  [self.tableView setContentOffset:CGPointZero animated:YES];
     
     [self.tableView.mj_header endRefreshing];
@@ -658,13 +664,31 @@
 //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
     _friendsBtnSelect = YES;
     _pageStartCountFriends = 0;
-        [self getDataFriendsWithSetContentOffSet:YES];
+    if(((NSArray *)_dataArray[0]).count == 0) [self getDataFriendsWithSetContentOffSet:YES];
+    else [self getDataFromRAM:0];
     _friendsBtn.isFriendsMenuViewSelected = YES;
     _myBtn.isFriendsMenuViewSelected = NO;
     [UIView animateWithDuration:0.5 animations:^{
         _lineView.center = CGPointMake(friendsBtn.center.x, _lineView.center.y);
     }];
 //    [self removeTableViewHeader];
+}
+
+#pragma mark - 内存数据
+- (void)getDataFromRAM:(NSInteger)indexRAM{
+    _index = indexRAM;
+//    if(_index != indexRAM){
+//        switch (indexRAM) {
+//            case 0:
+//                _isFriendsPageUpLoad = NO;
+//                break;
+//                
+//            case 1:
+//                _isMysPageUpLoad = NO;
+//                break;
+//        }
+//    }
+    [self reloadTableViewAndSetUpPropertyneedSetContentOffset:NO];
 }
 
 #pragma mark - 我的action
@@ -680,7 +704,8 @@
     _pageStartCountMys = 0;
     _friendsBtn.isFriendsMenuViewSelected = NO;
     _myBtn.isFriendsMenuViewSelected = YES;
-        [self getDataMysWithSetContentOffSet:YES];
+    if(((NSArray *)_dataArray[1]).count == 0) [self getDataMysWithSetContentOffSet:YES];
+    else [self getDataFromRAM:1];
     [UIView animateWithDuration:0.5 animations:^{
         _lineView.center = CGPointMake(myBtn.center.x, _lineView.center.y);
     }];
