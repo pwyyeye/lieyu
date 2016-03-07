@@ -17,6 +17,7 @@
 #import "LYUserHttpTool.h"
 #import "OrderTTL.h"
 #import "MyMessageListViewController.h"
+#import "FindGameCenterViewController.h"
 #import "LPUserLoginViewController.h"
 
 @interface FindViewController ()
@@ -49,7 +50,8 @@
                @{@"image":@"lianxiren",@"title":@"玩友列表"},
 //               @{@"image":@"fujinwanyou",@"title":@"附近玩客"},
               // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-               @{@"image":@"saoyisao",@"title":@"扫一扫"}];
+               @{@"image":@"saoyisao",@"title":@"扫一扫"},
+               @{@"image":@"saoyisao",@"title":@"酒吧小游戏"}];
     _tableView.contentInset = UIEdgeInsetsMake(70, 0, -49, 0);
    /* self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 0.5);
@@ -184,7 +186,7 @@
     if(section==0){
         return 3;
     }
-        return 1;
+        return 2;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -228,9 +230,9 @@
 
     }
     else{
-        if(indexPath.row==0){
+        if(indexPath.row==0 || indexPath.row == 1){
             [[cell viewWithTag:100] removeFromSuperview];
-            dic=[datalist objectAtIndex:3];
+            dic=[datalist objectAtIndex:indexPath.row + 3];
             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
             lineLal.tag=100;
             lineLal.backgroundColor=RGB(199, 199, 199);
@@ -304,7 +306,7 @@
         }
         [self.tableView reloadData];
     }else{
-        if(indexPath.row == 0 && NO){
+       /* if(indexPath.row == 0 && NO){
             //摇一摇
             YaoYiYaoViewController *yaoYiYaoViewController;
             if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
@@ -318,7 +320,7 @@
 //            yaoYiYaoViewController.is4s=true;
             yaoYiYaoViewController.title=@"摇一摇";
             [self.navigationController pushViewController:yaoYiYaoViewController  animated:YES];
-        }else{
+        }else */if(indexPath.row == 0){
             //扫一扫
             
             //统计发现页面的选择
@@ -332,6 +334,9 @@
 //            LPUserLoginViewController *loginVC = [[LPUserLoginViewController alloc]initWithNibName:@"LPUserLoginViewController" bundle:nil];
 //            [self.navigationController pushViewController:loginVC animated:YES];
             
+        }else{
+            FindGameCenterViewController *findGameVC = [[FindGameCenterViewController alloc]init];
+            [self.navigationController pushViewController:findGameVC animated:YES];
         }
     }
 }

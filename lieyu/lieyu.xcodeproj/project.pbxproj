@@ -719,6 +719,13 @@
 		8551926F1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551926D1C0B3339007B9949 /* LYHotBarMenuTableViewCell.m */; };
 		855192701C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */; };
 		855393F31C58F57F00575048 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 855393F21C58F57F00575048 /* HomePageModel.m */; };
+		855396FD1C8D310C00289D18 /* FindGameCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855396FB1C8D310C00289D18 /* FindGameCenterViewController.m */; };
+		855396FE1C8D310C00289D18 /* FindGameCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855396FC1C8D310C00289D18 /* FindGameCenterViewController.xib */; };
+		855397031C8D31A000289D18 /* FindGameCenterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 855397011C8D31A000289D18 /* FindGameCenterCollectionViewCell.m */; };
+		855397041C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855397021C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib */; };
+		855397091C8D41C100289D18 /* 大话骰.png in Resources */ = {isa = PBXBuildFile; fileRef = 855397061C8D41C100289D18 /* 大话骰.png */; };
+		8553970A1C8D41C100289D18 /* 咬手鲨鱼牙.png in Resources */ = {isa = PBXBuildFile; fileRef = 855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */; };
+		8553970B1C8D41C100289D18 /* 真心话大冒险.png in Resources */ = {isa = PBXBuildFile; fileRef = 855397081C8D41C100289D18 /* 真心话大冒险.png */; };
 		85539EBA1C3DFE0B001031B6 /* ISEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85539EB91C3DFE0B001031B6 /* ISEmojiView.m */; };
 		85539EBC1C3E06BA001031B6 /* ISEmojiList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */; };
 		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
@@ -2289,6 +2296,15 @@
 		8551926E1C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHotBarMenuTableViewCell.xib; sourceTree = "<group>"; };
 		855393F11C58F57F00575048 /* HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
 		855393F21C58F57F00575048 /* HomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
+		855396FA1C8D310C00289D18 /* FindGameCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindGameCenterViewController.h; sourceTree = "<group>"; };
+		855396FB1C8D310C00289D18 /* FindGameCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindGameCenterViewController.m; sourceTree = "<group>"; };
+		855396FC1C8D310C00289D18 /* FindGameCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindGameCenterViewController.xib; sourceTree = "<group>"; };
+		855397001C8D31A000289D18 /* FindGameCenterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindGameCenterCollectionViewCell.h; sourceTree = "<group>"; };
+		855397011C8D31A000289D18 /* FindGameCenterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindGameCenterCollectionViewCell.m; sourceTree = "<group>"; };
+		855397021C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindGameCenterCollectionViewCell.xib; sourceTree = "<group>"; };
+		855397061C8D41C100289D18 /* 大话骰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "大话骰.png"; sourceTree = "<group>"; };
+		855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "咬手鲨鱼牙.png"; sourceTree = "<group>"; };
+		855397081C8D41C100289D18 /* 真心话大冒险.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "真心话大冒险.png"; sourceTree = "<group>"; };
 		85539EB81C3DFE0B001031B6 /* ISEmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISEmojiView.h; sourceTree = "<group>"; };
 		85539EB91C3DFE0B001031B6 /* ISEmojiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISEmojiView.m; sourceTree = "<group>"; };
 		85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ISEmojiList.plist; sourceTree = "<group>"; };
@@ -4465,6 +4481,9 @@
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				855397061C8D41C100289D18 /* 大话骰.png */,
+				855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */,
+				855397081C8D41C100289D18 /* 真心话大冒险.png */,
 				38C98CF21C60EC950084E6BD /* add5@2x.png */,
 				38C98CF31C60EC950084E6BD /* add5@3x.png */,
 				85F66E4F1C525E51005D1CD8 /* xitongtongzhi@2x.png */,
@@ -5203,6 +5222,27 @@
 				853BCC961C76BA4D00DE0324 /* RecommendedTopic.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		855396F91C8D30E800289D18 /* 酒吧小游戏 */ = {
+			isa = PBXGroup;
+			children = (
+				855396FF1C8D318500289D18 /* View */,
+				855396FA1C8D310C00289D18 /* FindGameCenterViewController.h */,
+				855396FB1C8D310C00289D18 /* FindGameCenterViewController.m */,
+				855396FC1C8D310C00289D18 /* FindGameCenterViewController.xib */,
+			);
+			name = "酒吧小游戏";
+			sourceTree = "<group>";
+		};
+		855396FF1C8D318500289D18 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				855397001C8D31A000289D18 /* FindGameCenterCollectionViewCell.h */,
+				855397011C8D31A000289D18 /* FindGameCenterCollectionViewCell.m */,
+				855397021C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		85539EB71C3DFDF8001031B6 /* 键盘表情 */ = {
@@ -6760,6 +6800,7 @@
 		D761F0271BA5B8D5000757B0 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				855396F91C8D30E800289D18 /* 酒吧小游戏 */,
 				153F08B61BE87BCD00B7749E /* 最近联系 */,
 				15ED326E1BE2F48100E086A1 /* 摇一摇 */,
 				15844BF91BE20F4100247FBC /* 扫一扫 */,
@@ -7159,6 +7200,7 @@
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
 				858B3A2A1C7A05F5000C6589 /* JoinedNumber@2x.png in Resources */,
 				ADFFA6AD1C181B9100D9BD2A /* 5@2x.jpg in Resources */,
+				855396FE1C8D310C00289D18 /* FindGameCenterViewController.xib in Resources */,
 				380385E81C327C2B007C8DC0 /* imageSelected@3x.png in Resources */,
 				15E240B11BB39DD40090D240 /* OrderDetailSectionBottomView.xib in Resources */,
 				ADFFA6A21C181A7200D9BD2A /* 4_retina.jpg in Resources */,
@@ -7294,10 +7336,12 @@
 				85514EA01C75F8BF00E24C78 /* sign@2x.png in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				ADF88E631C102E4F00CF5DED /* huiseStar@2x.png in Resources */,
+				8553970A1C8D41C100289D18 /* 咬手鲨鱼牙.png in Resources */,
 				15E184841BB51A9500681BB2 /* LYZSApplicationViewController.xib in Resources */,
 				151BB6D11BBB78E000E7A81C /* UzysAssetPickerController.bundle in Resources */,
 				381A01C81C141EE300592485 /* CHshowDetailListViewController.xib in Resources */,
 				ADE1C5C11C730E1C0011D4AB /* 更新12@2x.png in Resources */,
+				855397091C8D41C100289D18 /* 大话骰.png in Resources */,
 				A2020D7E1BA67FA40090B92A /* Fill20219.png in Resources */,
 				385665071C75CFBA000DCFA5 /* empyImage16_9@2x.png in Resources */,
 				52D4F9AB1C57B2B700691BEF /* 收藏2@3x.png in Resources */,
@@ -7426,6 +7470,7 @@
 				85F545461C14338D0013B92B /* biaoQianAdd.png in Resources */,
 				38EDED5D1C5E254800694758 /* HDDetailViewController.xib in Resources */,
 				3812C5121C57A37300F4DD6B /* DetailView.xib in Resources */,
+				855397041C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib in Resources */,
 				3812C5681C57B78800F4DD6B /* hot_triangle@3x.png in Resources */,
 				38D876491C1703B600E2F284 /* purper_fanli.png in Resources */,
 				853C4C721C311A6D00D48BA2 /* fabudongtai_xuanzedizhi.png in Resources */,
@@ -7585,6 +7630,7 @@
 				85F545481C14338D0013B92B /* biaoQianAdd@3x.png in Resources */,
 				381D1E981C453F1A0039687C /* shadow@3x.png in Resources */,
 				ADC367521C633963006C2AE5 /* logo@3x.png in Resources */,
+				8553970B1C8D41C100289D18 /* 真心话大冒险.png in Resources */,
 				85F672BD1C09D7F8001BEE5B /* LYCityChooseViewController.xib in Resources */,
 				85EC6A081C186A170082AA3E /* icon_liwozuijin.png in Resources */,
 				381A01E01C14229F00592485 /* more_white@2x.png in Resources */,
@@ -7913,6 +7959,7 @@
 				85F43BAB1C11459400B04466 /* LYOrderWriteTableViewCell.m in Sources */,
 				AD198CC41C00368300AA654D /* TenpayModel.m in Sources */,
 				AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */,
+				855396FD1C8D310C00289D18 /* FindGameCenterViewController.m in Sources */,
 				15EB7C461BC3751300756153 /* PinkInfoModel.m in Sources */,
 				15CC31E41BEB2C5B00DDD03F /* FMResultSet.m in Sources */,
 				A2F9DA6F1BAA665C009DEAF3 /* OrderHeadView.m in Sources */,
@@ -8153,6 +8200,7 @@
 				152247B11BEB064600E68A2B /* IQKeyboardManager.m in Sources */,
 				858B22941C2977C800BF70AD /* LYTagsViewController.m in Sources */,
 				D7545E011BB99A3A005B854F /* HTTPController.m in Sources */,
+				855397031C8D31A000289D18 /* FindGameCenterCollectionViewCell.m in Sources */,
 				85F66F0E1C564AC3005D1CD8 /* HomeMenuCollectionViewCell.m in Sources */,
 				D7A1D4311BC2CD1B00BCE47C /* AnnouncementModel.m in Sources */,
 				AD106B951C0B1A7C007F5FBA /* LYUserCenterCell.m in Sources */,
