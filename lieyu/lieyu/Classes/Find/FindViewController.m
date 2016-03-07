@@ -17,6 +17,7 @@
 #import "LYUserHttpTool.h"
 #import "OrderTTL.h"
 #import "MyMessageListViewController.h"
+#import "FindGameCenterViewController.h"
 #import "LPUserLoginViewController.h"
 
 @interface FindViewController ()
@@ -184,15 +185,12 @@
 {
     if(section==0){
         return 3;
-    }else if (section == 1){
-        return 1;
-    }else{
-        return 1;
     }
+        return 2;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -232,9 +230,9 @@
 
     }
     else if(indexPath.section == 1){
-        if(indexPath.row==0){
+        if(indexPath.row==0 || indexPath.row == 1){
             [[cell viewWithTag:100] removeFromSuperview];
-            dic=[datalist objectAtIndex:3];
+            dic=[datalist objectAtIndex:indexPath.row + 3];
             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
             lineLal.tag=100;
             lineLal.backgroundColor=RGB(199, 199, 199);
@@ -242,18 +240,19 @@
         }else{
 //            dic=[datalist objectAtIndex:4];
         }
-    }else{
-        if (indexPath.row == 0) {
-            [[cell viewWithTag:100] removeFromSuperview];
-            dic=[datalist objectAtIndex:4];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
-            lineLal.tag=100;
-            lineLal.backgroundColor=RGB(199, 199, 199);
-            [cell addSubview:lineLal];
-        }else{
-            
-        }
     }
+//    else{
+//        if (indexPath.row == 0) {
+//            [[cell viewWithTag:100] removeFromSuperview];
+//            dic=[datalist objectAtIndex:4];
+//            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
+//            lineLal.tag=100;
+//            lineLal.backgroundColor=RGB(199, 199, 199);
+//            [cell addSubview:lineLal];
+//        }else{
+//            
+//        }
+//    }
     [cell.imageView setImage:[UIImage imageNamed:[dic objectForKey:@"image"]]];
     cell.titleLal.text=[dic objectForKey:@"title"];
     
@@ -319,7 +318,7 @@
         }
         [self.tableView reloadData];
     }else if(indexPath.section == 1){
-        if(indexPath.row == 0 && NO){
+       /* if(indexPath.row == 0 && NO){
             //摇一摇
             YaoYiYaoViewController *yaoYiYaoViewController;
             if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||[[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
@@ -333,7 +332,7 @@
 //            yaoYiYaoViewController.is4s=true;
             yaoYiYaoViewController.title=@"摇一摇";
             [self.navigationController pushViewController:yaoYiYaoViewController  animated:YES];
-        }else{
+        }else */if(indexPath.row == 0){
             //扫一扫
             
             //统计发现页面的选择
@@ -347,9 +346,18 @@
 //            LPUserLoginViewController *loginVC = [[LPUserLoginViewController alloc]initWithNibName:@"LPUserLoginViewController" bundle:nil];
 //            [self.navigationController pushViewController:loginVC animated:YES];
             
+        }else{
+            //统计发现页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"酒吧小游戏"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
+            FindGameCenterViewController *findGameVC = [[FindGameCenterViewController alloc]init];
+            [self.navigationController pushViewController:findGameVC animated:YES];
         }
-    }else{//进入酒吧小游戏
     }
+//    else{//进入酒吧小游戏
+//        NSLog(@"dfdsafd");
+//    }
 }
 
 

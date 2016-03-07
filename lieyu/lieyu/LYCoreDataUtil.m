@@ -18,6 +18,7 @@
     });
     return instance;
 }
+
 #pragma mark --保存数据
 - (BOOL)saveOrUpdateCoreData:(NSString *)entryName withParam:(NSDictionary *)dic andSearchPara:(NSDictionary *)searchDic{
 

@@ -11,6 +11,7 @@
 #import "UserModel.h"
 #import "LYTagsViewController.h"
 #import "LYUserHttpTool.h"
+#import "MyCodeViewController.h"
 
 @interface LYUserDetailController ()<LYTagsViewControllerDelegate>{
     NSString *_tagString;
@@ -31,7 +32,7 @@
     
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     self.title=@"个人信息";
-    data=@[@"头像",@"昵称",@"性别",@"生日",@"标签"];
+    data=@[@"头像",@"昵称",@"性别",@"生日",@"标签",@"我的二维码"];
     _datePicker=[[UIDatePicker alloc] init];
     _datePicker.center = CGPointMake(SCREEN_WIDTH/2.f,_datePicker.center.y);
     _datePicker.datePickerMode=UIDatePickerModeDate;
@@ -271,6 +272,9 @@
 //        taglist.selectedArray=mod.tags;
         taglist.selectedTag = _tagString;
         [self.navigationController pushViewController:taglist animated:YES];
+    }else if (indexPath.row == 5){
+        MyCodeViewController *codeViewController = [[MyCodeViewController alloc]initWithNibName:@"MyCodeViewController" bundle:nil];
+        [self.navigationController pushViewController:codeViewController animated:YES];
     }
 }
 

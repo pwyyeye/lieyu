@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FindGameCenterCollectionViewCell" id="gTV-IL-0wX" customClass="FindGameCenterCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="125" height="155"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="125" height="155"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2jM-i2-TvV">
+                        <rect key="frame" x="12" y="12" width="101" height="101"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="2jM-i2-TvV" secondAttribute="height" multiplier="1:1" id="xWq-xq-AGd"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="咬手鲨鱼牙" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJM-eV-ags">
+                        <rect key="frame" x="10" y="128" width="105" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="2jM-i2-TvV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="B8i-a5-Gx1"/>
+                <constraint firstAttribute="trailing" secondItem="VJM-eV-ags" secondAttribute="trailing" constant="10" id="DAA-Jp-zeB"/>
+                <constraint firstAttribute="bottom" secondItem="VJM-eV-ags" secondAttribute="bottom" constant="10" id="EsO-BF-pvT"/>
+                <constraint firstItem="VJM-eV-ags" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="cQz-5F-xhl"/>
+                <constraint firstItem="2jM-i2-TvV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="ihO-wg-DXU"/>
+                <constraint firstAttribute="trailing" secondItem="2jM-i2-TvV" secondAttribute="trailing" constant="12" id="of2-f7-lax"/>
+            </constraints>
+            <size key="customSize" width="336" height="221"/>
+            <connections>
+                <outlet property="imgView" destination="2jM-i2-TvV" id="tsU-Lj-TPd"/>
+                <outlet property="label_title" destination="VJM-eV-ags" id="IRI-KG-Tx2"/>
+            </connections>
+            <point key="canvasLocation" x="371.5" y="364.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
