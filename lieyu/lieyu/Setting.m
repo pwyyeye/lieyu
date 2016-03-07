@@ -16,7 +16,9 @@
 #import "MyZSManageViewController.h"
 #import "LYZSApplicationViewController.h"
 
-@interface Setting ()
+@interface Setting (){
+    UIButton *_logoutButton;
+}
 
 @end
 
@@ -42,14 +44,7 @@
     self.tableView.frame=CGRectMake(8, 64, SCREEN_WIDTH - 16, SCREEN_HEIGHT);
 //    self.tableView.bounces=NO;
     
-    UIButton *logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-40-64, SCREEN_WIDTH, 40)];
-    logoutButton.backgroundColor=[UIColor clearColor];
     
-    [logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
-    logoutButton.titleLabel.font=[UIFont systemFontOfSize:13];
-    [logoutButton setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
-    [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:logoutButton];
      
 }
 
@@ -133,13 +128,13 @@
     [cell.layer addSublayer:layerShadow];
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
-    if(indexPath.row==0||indexPath.row==1||indexPath.row == 2){
+//    if(indexPath.row==0||indexPath.row==1||indexPath.row == 2){
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
         UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(2, 2)];
         cell.layer.shadowPath = path.CGPath;
-    }else{
-        cell.accessoryType=UITableViewCellAccessoryNone;
-    }
+//    }else{
+//        cell.accessoryType=UITableViewCellAccessoryNone;
+//    }
 
     return cell;
 }
@@ -183,6 +178,29 @@
    /* UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
     self.navigationItem.backBarButtonItem = left;*/
     [self.navigationController pushViewController:detailViewController animated:YES];
+   
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(_logoutButton == nil){
+    _logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, self.tableView.contentSize.height , SCREEN_WIDTH, 40)];
+    _logoutButton.backgroundColor=[UIColor clearColor];
+    
+    [_logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+    _logoutButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_logoutButton setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+    [_logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    
+    __weak __typeof(self) weakSelf = self;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [weakSelf.view addSubview:_logoutButton];
+        weakSelf.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height + 40);
+    });
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
    
 }
 
