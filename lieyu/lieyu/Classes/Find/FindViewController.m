@@ -190,7 +190,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -239,6 +239,17 @@
             [cell addSubview:lineLal];
         }else{
 //            dic=[datalist objectAtIndex:4];
+        }
+    }else{
+        if (indexPath.row == 0) {
+            [[cell viewWithTag:100] removeFromSuperview];
+            dic=[datalist objectAtIndex:4];
+            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
+            lineLal.tag=100;
+            lineLal.backgroundColor=RGB(199, 199, 199);
+            [cell addSubview:lineLal];
+        }else{
+            
         }
     }
     [cell.imageView setImage:[UIImage imageNamed:[dic objectForKey:@"image"]]];
@@ -338,6 +349,7 @@
             FindGameCenterViewController *findGameVC = [[FindGameCenterViewController alloc]init];
             [self.navigationController pushViewController:findGameVC animated:YES];
         }
+    }else{//进入酒吧小游戏
     }
 }
 

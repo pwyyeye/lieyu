@@ -630,7 +630,7 @@
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openIdStr]]];
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
-    NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    NSDictionary *dic= (NSDictionary *)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"--->%@",dic);
 
     UserModel *userM = [[UserModel alloc]init];
