@@ -406,9 +406,22 @@
 		386AE3A91C5B6F2B0062105F /* banner_us@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A51C5B6F2B0062105F /* banner_us@3x.png */; };
 		386C65341C7D4D7800567D2B /* LPUserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */; };
 		386C65351C7D4D7800567D2B /* LPUserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */; };
-		387781331C8B1B850047088B /* GameIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781301C8B1B850047088B /* GameIcon.png */; };
-		387781341C8B1B850047088B /* GameIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781311C8B1B850047088B /* GameIcon@2x.png */; };
-		387781351C8B1B850047088B /* GameIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781321C8B1B850047088B /* GameIcon@3x.png */; };
+		387781D51C8D5BCB0047088B /* GameIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781D21C8D5BCB0047088B /* GameIcon.png */; };
+		387781D61C8D5BCB0047088B /* GameIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781D31C8D5BCB0047088B /* GameIcon@2x.png */; };
+		387781D71C8D5BCB0047088B /* GameIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781D41C8D5BCB0047088B /* GameIcon@3x.png */; };
+		387781DB1C8D61E20047088B /* MyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 387781D91C8D61E20047088B /* MyCodeViewController.m */; };
+		387781DC1C8D61E20047088B /* MyCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387781DA1C8D61E20047088B /* MyCodeViewController.xib */; };
+		387781E11C8D68D10047088B /* QRCodebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781DD1C8D68D10047088B /* QRCodebg@2x.png */; };
+		387781E21C8D68D10047088B /* QRCodebg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781DE1C8D68D10047088B /* QRCodebg@3x.png */; };
+		387781E31C8D68D10047088B /* QRCodeHeaderbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781DF1C8D68D10047088B /* QRCodeHeaderbg@2x.png */; };
+		387781E41C8D68D10047088B /* QRCodeHeaderbg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781E01C8D68D10047088B /* QRCodeHeaderbg@3x.png */; };
+		3877820A1C8D7B320047088B /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 387781FC1C8D7B320047088B /* bitstream.c */; };
+		3877820B1C8D7B320047088B /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = 387781FE1C8D7B320047088B /* mask.c */; };
+		3877820C1C8D7B320047088B /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782001C8D7B320047088B /* qrencode.c */; };
+		3877820D1C8D7B320047088B /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782021C8D7B320047088B /* qrinput.c */; };
+		3877820E1C8D7B320047088B /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782041C8D7B320047088B /* qrspec.c */; };
+		3877820F1C8D7B320047088B /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782061C8D7B320047088B /* rscode.c */; };
+		387782101C8D7B320047088B /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782081C8D7B320047088B /* split.c */; };
 		3879D0631C7AE423000F5795 /* CheckProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879D0621C7AE423000F5795 /* CheckProtocol.m */; };
 		3879D0661C7B26AB000F5795 /* icon_share2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0641C7B26AB000F5795 /* icon_share2@2x.png */; };
 		3879D0671C7B26AB000F5795 /* icon_share2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0651C7B26AB000F5795 /* icon_share2@3x.png */; };
@@ -1883,9 +1896,30 @@
 		386C65311C7D4D7800567D2B /* LPUserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPUserLoginViewController.h; sourceTree = "<group>"; };
 		386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUserLoginViewController.m; sourceTree = "<group>"; };
 		386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPUserLoginViewController.xib; sourceTree = "<group>"; };
-		387781301C8B1B850047088B /* GameIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameIcon.png; sourceTree = "<group>"; };
-		387781311C8B1B850047088B /* GameIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@2x.png"; sourceTree = "<group>"; };
-		387781321C8B1B850047088B /* GameIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@3x.png"; sourceTree = "<group>"; };
+		387781D21C8D5BCB0047088B /* GameIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameIcon.png; sourceTree = "<group>"; };
+		387781D31C8D5BCB0047088B /* GameIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@2x.png"; sourceTree = "<group>"; };
+		387781D41C8D5BCB0047088B /* GameIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@3x.png"; sourceTree = "<group>"; };
+		387781D81C8D61E20047088B /* MyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCodeViewController.h; sourceTree = "<group>"; };
+		387781D91C8D61E20047088B /* MyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCodeViewController.m; sourceTree = "<group>"; };
+		387781DA1C8D61E20047088B /* MyCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCodeViewController.xib; sourceTree = "<group>"; };
+		387781DD1C8D68D10047088B /* QRCodebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@2x.png"; sourceTree = "<group>"; };
+		387781DE1C8D68D10047088B /* QRCodebg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@3x.png"; sourceTree = "<group>"; };
+		387781DF1C8D68D10047088B /* QRCodeHeaderbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@2x.png"; sourceTree = "<group>"; };
+		387781E01C8D68D10047088B /* QRCodeHeaderbg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@3x.png"; sourceTree = "<group>"; };
+		387781FC1C8D7B320047088B /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		387781FD1C8D7B320047088B /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		387781FE1C8D7B320047088B /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		387781FF1C8D7B320047088B /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		387782001C8D7B320047088B /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		387782011C8D7B320047088B /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		387782021C8D7B320047088B /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		387782031C8D7B320047088B /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		387782041C8D7B320047088B /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		387782051C8D7B320047088B /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		387782061C8D7B320047088B /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		387782071C8D7B320047088B /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		387782081C8D7B320047088B /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		387782091C8D7B320047088B /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		3879D0611C7AE423000F5795 /* CheckProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProtocol.h; sourceTree = "<group>"; };
 		3879D0621C7AE423000F5795 /* CheckProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProtocol.m; sourceTree = "<group>"; };
 		3879D0641C7B26AB000F5795 /* icon_share2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share2@2x.png"; sourceTree = "<group>"; };
@@ -3117,6 +3151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15844C091BE22A8800247FBC /* QuartzCore.framework in Frameworks */,
 				85653B691C508E100012B718 /* libstdc++.tbd in Frameworks */,
 				85653B671C508DF40012B718 /* CoreGraphics.framework in Frameworks */,
 				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
@@ -3128,7 +3163,6 @@
 				AD8FAB5D1C1570F600C45F1A /* libHCSStarRatingView.a in Frameworks */,
 				AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */,
 				AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */,
-				15844C091BE22A8800247FBC /* QuartzCore.framework in Frameworks */,
 				15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */,
 				15844C051BE22A7500247FBC /* CoreMedia.framework in Frameworks */,
 				15844C031BE22A6900247FBC /* AVFoundation.framework in Frameworks */,
@@ -4456,6 +4490,27 @@
 			name = "登录动画";
 			sourceTree = "<group>";
 		};
+		387781FB1C8D7B320047088B /* libqrencode */ = {
+			isa = PBXGroup;
+			children = (
+				387781FC1C8D7B320047088B /* bitstream.c */,
+				387781FD1C8D7B320047088B /* bitstream.h */,
+				387781FE1C8D7B320047088B /* mask.c */,
+				387781FF1C8D7B320047088B /* mask.h */,
+				387782001C8D7B320047088B /* qrencode.c */,
+				387782011C8D7B320047088B /* qrencode.h */,
+				387782021C8D7B320047088B /* qrinput.c */,
+				387782031C8D7B320047088B /* qrinput.h */,
+				387782041C8D7B320047088B /* qrspec.c */,
+				387782051C8D7B320047088B /* qrspec.h */,
+				387782061C8D7B320047088B /* rscode.c */,
+				387782071C8D7B320047088B /* rscode.h */,
+				387782081C8D7B320047088B /* split.c */,
+				387782091C8D7B320047088B /* split.h */,
+			);
+			path = libqrencode;
+			sourceTree = "<group>";
+		};
 		3879F2461C0D31B300B72629 /* 套餐详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4487,6 +4542,9 @@
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				387781D21C8D5BCB0047088B /* GameIcon.png */,
+				387781D31C8D5BCB0047088B /* GameIcon@2x.png */,
+				387781D41C8D5BCB0047088B /* GameIcon@3x.png */,
 				855397061C8D41C100289D18 /* 大话骰.png */,
 				855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */,
 				855397081C8D41C100289D18 /* 真心话大冒险.png */,
@@ -5719,6 +5777,10 @@
 		A2020D5C1BA67CCB0090B92A /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				387781DD1C8D68D10047088B /* QRCodebg@2x.png */,
+				387781DE1C8D68D10047088B /* QRCodebg@3x.png */,
+				387781DF1C8D68D10047088B /* QRCodeHeaderbg@2x.png */,
+				387781E01C8D68D10047088B /* QRCodeHeaderbg@3x.png */,
 				A2020D5D1BA67E9E0090B92A /* disClosure.png */,
 				A2020D5E1BA67E9E0090B92A /* disClosure@2x.png */,
 				A2020D5F1BA67E9E0090B92A /* disClosure@3x.png */,
@@ -6302,6 +6364,9 @@
 				85F545131C13DE000013B92B /* LYUserDetailInfoViewController.h */,
 				85F545141C13DE000013B92B /* LYUserDetailInfoViewController.m */,
 				85F545151C13DE000013B92B /* LYUserDetailInfoViewController.xib */,
+				387781D81C8D61E20047088B /* MyCodeViewController.h */,
+				387781D91C8D61E20047088B /* MyCodeViewController.m */,
+				387781DA1C8D61E20047088B /* MyCodeViewController.xib */,
 				858B22911C2977C800BF70AD /* LYTagsViewController.h */,
 				858B22921C2977C800BF70AD /* LYTagsViewController.m */,
 				858B22931C2977C800BF70AD /* LYTagsViewController.xib */,
@@ -6861,6 +6926,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				387781FB1C8D7B320047088B /* libqrencode */,
 				85539EB71C3DFDF8001031B6 /* 键盘表情 */,
 				38EE91A11C3405C500361D07 /* AMapSearchKit.framework */,
 				AD078C3E1C2BAF5E00A056D1 /* UITabBarItem-CustomBadge */,
@@ -7119,6 +7185,7 @@
 				85F66F161C565559005D1CD8 /* HomeBarCollectionViewCell.xib in Resources */,
 				853C4C841C311A9900D48BA2 /* dizhi_icon.png in Resources */,
 				15EB35511BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				387781DC1C8D61E20047088B /* MyCodeViewController.xib in Resources */,
 				386C65351C7D4D7800567D2B /* LPUserLoginViewController.xib in Resources */,
 				15F54A911BB030420020EB4C /* ChanPinListViewController.xib in Resources */,
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
@@ -7136,6 +7203,7 @@
 				525CA0F11C5C6930009ED9DA /* pinglun_icon@3x.png in Resources */,
 				3879D0671C7B26AB000F5795 /* icon_share2@3x.png in Resources */,
 				853BCCA61C76EA1F00DE0324 /* 点赞whited@2x.png in Resources */,
+				387781D61C8D5BCB0047088B /* GameIcon@2x.png in Resources */,
 				3879D06B1C7B26B4000F5795 /* share_black@3x.png in Resources */,
 				3812C5561C57B76100F4DD6B /* purper_less@3x.png in Resources */,
 				151BB6D31BBB78E000E7A81C /* UzysAssetsPickerController.xib in Resources */,
@@ -7182,6 +7250,7 @@
 				8550E70D1C2FC130001FF2DE /* LYFriendsCommentView.xib in Resources */,
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
 				85514EA11C75F8BF00E24C78 /* sign@3x.png in Resources */,
+				387781E21C8D68D10047088B /* QRCodebg@3x.png in Resources */,
 				AD4EA8571C546B110056E560 /* MineBigBG@3x.jpg in Resources */,
 				8550E7141C301740001FF2DE /* LYFriendsMessageDetailViewController.xib in Resources */,
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
@@ -7279,7 +7348,6 @@
 				853C4C861C311A9900D48BA2 /* dizhi_icon@3x.png in Resources */,
 				52D4F9A41C57B2B700691BEF /* 附近@2x.png in Resources */,
 				853C4C741C311A6D00D48BA2 /* fabudongtai_xuanzedizhi@3x.png in Resources */,
-				387781341C8B1B850047088B /* GameIcon@2x.png in Resources */,
 				85514E431C75619400E24C78 /* SignViewController.xib in Resources */,
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				3812C55A1C57B76100F4DD6B /* purper_star@3x.png in Resources */,
@@ -7320,12 +7388,14 @@
 				38D876561C17DEA100E2F284 /* typeBorder@2x.png in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
 				52D4F9A81C57B2B700691BEF /* 热门@2x.png in Resources */,
+				387781E31C8D68D10047088B /* QRCodeHeaderbg@2x.png in Resources */,
 				380385DD1C327C19007C8DC0 /* play .png in Resources */,
 				850099C81C61EEE700DDE626 /* 剩余@2x.png in Resources */,
 				85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */,
 				525CA0D11C5B7257009ED9DA /* haoyou_pinglun@3x.png in Resources */,
 				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
 				8567A4A71C43E14E00982882 /* biaoqing_icon@3x.png in Resources */,
+				387781E41C8D68D10047088B /* QRCodeHeaderbg@3x.png in Resources */,
 				A2FD57801BAFE97000CFFF92 /* FBTaoCanSectionHead.xib in Resources */,
 				853C4C3F1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib in Resources */,
 				ADF88E5F1C102E4F00CF5DED /* hongseStar.png in Resources */,
@@ -7382,7 +7452,6 @@
 				A2F9DA841BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib in Resources */,
 				386AE3A81C5B6F2B0062105F /* banner_us@2x.png in Resources */,
 				380659A91C537482003094C9 /* INeedYou@3x.png in Resources */,
-				387781351C8B1B850047088B /* GameIcon@3x.png in Resources */,
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
 				15844BC91BE1CAEB00247FBC /* FindMenuTwoCell.xib in Resources */,
 				ADF88E541C1029F600CF5DED /* LYEvaluationController.xib in Resources */,
@@ -7400,7 +7469,6 @@
 				15E240BB1BB3A4CD0090D240 /* MyChooseZSCell.xib in Resources */,
 				A2F9DA761BAA6AE2009DEAF3 /* OrderBottomView.xib in Resources */,
 				381A01DF1C14229F00592485 /* more_white.png in Resources */,
-				387781331C8B1B850047088B /* GameIcon.png in Resources */,
 				853BCC9C1C76E90500DE0324 /* 收藏white@2x.png in Resources */,
 				A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */,
 				15B866211BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib in Resources */,
@@ -7426,6 +7494,7 @@
 				AD078C761C33CDE800A056D1 /* iphoneIcon@2x.png in Resources */,
 				8540B67F1C2CE89900F16463 /* LYFriendsLikeTableViewCell.xib in Resources */,
 				85EC6A091C186A170082AA3E /* icon_liwozuijin@2x.png in Resources */,
+				387781D51C8D5BCB0047088B /* GameIcon.png in Resources */,
 				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
 				853C4C8B1C311AAD00D48BA2 /* gengduo_icon@2x.png in Resources */,
 				85FBBDB91C606CB80084E3F2 /* home_list_mask.png in Resources */,
@@ -7482,6 +7551,7 @@
 				855397041C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib in Resources */,
 				3812C5681C57B78800F4DD6B /* hot_triangle@3x.png in Resources */,
 				38D876491C1703B600E2F284 /* purper_fanli.png in Resources */,
+				387781D71C8D5BCB0047088B /* GameIcon@3x.png in Resources */,
 				853C4C721C311A6D00D48BA2 /* fabudongtai_xuanzedizhi.png in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				3879F2621C0D32EE00B72629 /* ContentTableViewCell.xib in Resources */,
@@ -7607,6 +7677,7 @@
 				85FBBDC41C6073ED0084E3F2 /* 首页列表点赞@2x.png in Resources */,
 				ADFFA6A01C181A7200D9BD2A /* 2_retina.jpg in Resources */,
 				850099CD1C61EEE700DDE626 /* 地址yu@3x.png in Resources */,
+				387781E11C8D68D10047088B /* QRCodebg@2x.png in Resources */,
 				A2FD57631BAFE6C000CFFF92 /* CaoCanCell.xib in Resources */,
 				38E5D6C81C0EA4DF004B49D2 /* CustomBtn_Selected@3x.png in Resources */,
 				15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */,
@@ -8013,6 +8084,7 @@
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
 				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
 				38EE91A61C3BE0A800361D07 /* Reachability.m in Sources */,
+				3877820B1C8D7B320047088B /* mask.c in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
 				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,
 				15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */,
@@ -8061,6 +8133,7 @@
 				3879F26A1C0D363500B72629 /* LPPlayTogetherViewController.m in Sources */,
 				15B866981BE0C183002E2BB6 /* MessageCell.m in Sources */,
 				38EDED5C1C5E254800694758 /* HDDetailViewController.m in Sources */,
+				3877820E1C8D7B320047088B /* qrspec.c in Sources */,
 				15013B011BBA33BF00061FAF /* UIImage+WebP.m in Sources */,
 				15B8661B1BDB5894002E2BB6 /* CHDoOrderViewController.m in Sources */,
 				38E5D6D51C0EF90D004B49D2 /* LPAttentionViewController.m in Sources */,
@@ -8071,6 +8144,7 @@
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
+				3877820F1C8D7B320047088B /* rscode.c in Sources */,
 				3879F2611C0D32EE00B72629 /* ContentTableViewCell.m in Sources */,
 				85514E421C75619400E24C78 /* SignViewController.m in Sources */,
 				15EB35101BD1F67200BA6161 /* PTShowIntroductionsCell.m in Sources */,
@@ -8107,6 +8181,7 @@
 				15A4CF3B1BD7309500C22C01 /* LYTitleInfoCell.m in Sources */,
 				85F545291C13EB450013B92B /* LYUserDetailCameraTableViewCell.m in Sources */,
 				15CC31E21BEB2C5B00DDD03F /* FMDatabasePool.m in Sources */,
+				3877820A1C8D7B320047088B /* bitstream.c in Sources */,
 				151BB6D41BBB78E000E7A81C /* UzysAssetsViewCell.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				853D4E2B1C87E73D003277E5 /* SettingTableViewCell.m in Sources */,
@@ -8127,6 +8202,7 @@
 				15844BBE1BE1C70600247FBC /* LYSearchFriendViewController.m in Sources */,
 				8540B67E1C2CE89900F16463 /* LYFriendsLikeTableViewCell.m in Sources */,
 				15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */,
+				387782101C8D7B320047088B /* split.c in Sources */,
 				ADF88E9F1C1197C400CF5DED /* MJRefreshComponent.m in Sources */,
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
 				854538641C2D5B430020AC2C /* FriendsRecentModel.m in Sources */,
@@ -8233,6 +8309,7 @@
 				1559DCFE1BD9E1C800F3FE9B /* CHPorTypeCell.m in Sources */,
 				1559DCF81BD9E16600F3FE9B /* CHTopDetailCell.m in Sources */,
 				386AE39D1C5B61B70062105F /* TADotView.m in Sources */,
+				3877820C1C8D7B320047088B /* qrencode.c in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				15E1847D1BB4FEF900681BB2 /* LYZSeditView.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
@@ -8244,6 +8321,7 @@
 				152247AE1BEB064600E68A2B /* IQUIView+Hierarchy.m in Sources */,
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				38E5D6F41C0F10E7004B49D2 /* LPBuyManagerCell.m in Sources */,
+				3877820D1C8D7B320047088B /* qrinput.c in Sources */,
 				853C4C4E1C31189E00D48BA2 /* LYFriendsCommentDetailTableViewCell.m in Sources */,
 				853C36141C72BC4700F1703B /* BeerNewBarViewController.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
@@ -8319,6 +8397,7 @@
 				15EB350A1BD1F61800BA6161 /* PTTimeChooseCell.m in Sources */,
 				ADE103BB1BDFA5F200D9EC38 /* LYUserDetailController.m in Sources */,
 				3812C5151C57A38F00F4DD6B /* DetailView.m in Sources */,
+				387781DB1C8D61E20047088B /* MyCodeViewController.m in Sources */,
 				151BB6BF1BBAB80900E7A81C /* DeckFullModel.m in Sources */,
 				15E240A11BB37EF60090D240 /* LYOrderDetailViewController.m in Sources */,
 				85C4282E1C116ED90028FC21 /* LYHotBarMenuDropView.m in Sources */,
@@ -8409,6 +8488,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = lieyu/lieyu.pch;
@@ -8454,6 +8534,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = lieyu/lieyu.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -8485,6 +8566,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				HEADER_SEARCH_PATHS = (
@@ -8534,6 +8616,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				HEADER_SEARCH_PATHS = (
