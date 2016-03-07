@@ -406,9 +406,6 @@
 		386AE3A91C5B6F2B0062105F /* banner_us@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A51C5B6F2B0062105F /* banner_us@3x.png */; };
 		386C65341C7D4D7800567D2B /* LPUserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */; };
 		386C65351C7D4D7800567D2B /* LPUserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */; };
-		387781331C8B1B850047088B /* GameIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781301C8B1B850047088B /* GameIcon.png */; };
-		387781341C8B1B850047088B /* GameIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781311C8B1B850047088B /* GameIcon@2x.png */; };
-		387781351C8B1B850047088B /* GameIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781321C8B1B850047088B /* GameIcon@3x.png */; };
 		3879D0631C7AE423000F5795 /* CheckProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879D0621C7AE423000F5795 /* CheckProtocol.m */; };
 		3879D0661C7B26AB000F5795 /* icon_share2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0641C7B26AB000F5795 /* icon_share2@2x.png */; };
 		3879D0671C7B26AB000F5795 /* icon_share2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0651C7B26AB000F5795 /* icon_share2@3x.png */; };
@@ -729,6 +726,9 @@
 		855397091C8D41C100289D18 /* 大话骰.png in Resources */ = {isa = PBXBuildFile; fileRef = 855397061C8D41C100289D18 /* 大话骰.png */; };
 		8553970A1C8D41C100289D18 /* 咬手鲨鱼牙.png in Resources */ = {isa = PBXBuildFile; fileRef = 855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */; };
 		8553970B1C8D41C100289D18 /* 真心话大冒险.png in Resources */ = {isa = PBXBuildFile; fileRef = 855397081C8D41C100289D18 /* 真心话大冒险.png */; };
+		855397111C8D785100289D18 /* GameList.m in Sources */ = {isa = PBXBuildFile; fileRef = 855397101C8D785100289D18 /* GameList.m */; };
+		855397171C8D7F2F00289D18 /* GamePlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855397151C8D7F2F00289D18 /* GamePlayViewController.xib */; };
+		855397191C8D808900289D18 /* GamePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855397141C8D7F2F00289D18 /* GamePlayViewController.m */; };
 		85539EBA1C3DFE0B001031B6 /* ISEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85539EB91C3DFE0B001031B6 /* ISEmojiView.m */; };
 		85539EBC1C3E06BA001031B6 /* ISEmojiList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */; };
 		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
@@ -1883,9 +1883,6 @@
 		386C65311C7D4D7800567D2B /* LPUserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPUserLoginViewController.h; sourceTree = "<group>"; };
 		386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUserLoginViewController.m; sourceTree = "<group>"; };
 		386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPUserLoginViewController.xib; sourceTree = "<group>"; };
-		387781301C8B1B850047088B /* GameIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameIcon.png; sourceTree = "<group>"; };
-		387781311C8B1B850047088B /* GameIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@2x.png"; sourceTree = "<group>"; };
-		387781321C8B1B850047088B /* GameIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@3x.png"; sourceTree = "<group>"; };
 		3879D0611C7AE423000F5795 /* CheckProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProtocol.h; sourceTree = "<group>"; };
 		3879D0621C7AE423000F5795 /* CheckProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProtocol.m; sourceTree = "<group>"; };
 		3879D0641C7B26AB000F5795 /* icon_share2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share2@2x.png"; sourceTree = "<group>"; };
@@ -2311,6 +2308,11 @@
 		855397061C8D41C100289D18 /* 大话骰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "大话骰.png"; sourceTree = "<group>"; };
 		855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "咬手鲨鱼牙.png"; sourceTree = "<group>"; };
 		855397081C8D41C100289D18 /* 真心话大冒险.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "真心话大冒险.png"; sourceTree = "<group>"; };
+		8553970F1C8D785100289D18 /* GameList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameList.h; sourceTree = "<group>"; };
+		855397101C8D785100289D18 /* GameList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameList.m; sourceTree = "<group>"; };
+		855397131C8D7F2F00289D18 /* GamePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayViewController.h; sourceTree = "<group>"; };
+		855397141C8D7F2F00289D18 /* GamePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayViewController.m; sourceTree = "<group>"; };
+		855397151C8D7F2F00289D18 /* GamePlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GamePlayViewController.xib; sourceTree = "<group>"; };
 		85539EB81C3DFE0B001031B6 /* ISEmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISEmojiView.h; sourceTree = "<group>"; };
 		85539EB91C3DFE0B001031B6 /* ISEmojiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISEmojiView.m; sourceTree = "<group>"; };
 		85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ISEmojiList.plist; sourceTree = "<group>"; };
@@ -5233,10 +5235,14 @@
 		855396F91C8D30E800289D18 /* 酒吧小游戏 */ = {
 			isa = PBXGroup;
 			children = (
+				855397121C8D785800289D18 /* Model */,
 				855396FF1C8D318500289D18 /* View */,
 				855396FA1C8D310C00289D18 /* FindGameCenterViewController.h */,
 				855396FB1C8D310C00289D18 /* FindGameCenterViewController.m */,
 				855396FC1C8D310C00289D18 /* FindGameCenterViewController.xib */,
+				855397131C8D7F2F00289D18 /* GamePlayViewController.h */,
+				855397141C8D7F2F00289D18 /* GamePlayViewController.m */,
+				855397151C8D7F2F00289D18 /* GamePlayViewController.xib */,
 			);
 			name = "酒吧小游戏";
 			sourceTree = "<group>";
@@ -5249,6 +5255,15 @@
 				855397021C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		855397121C8D785800289D18 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8553970F1C8D785100289D18 /* GameList.h */,
+				855397101C8D785100289D18 /* GameList.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		85539EB71C3DFDF8001031B6 /* 键盘表情 */ = {
@@ -7279,7 +7294,6 @@
 				853C4C861C311A9900D48BA2 /* dizhi_icon@3x.png in Resources */,
 				52D4F9A41C57B2B700691BEF /* 附近@2x.png in Resources */,
 				853C4C741C311A6D00D48BA2 /* fabudongtai_xuanzedizhi@3x.png in Resources */,
-				387781341C8B1B850047088B /* GameIcon@2x.png in Resources */,
 				85514E431C75619400E24C78 /* SignViewController.xib in Resources */,
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				3812C55A1C57B76100F4DD6B /* purper_star@3x.png in Resources */,
@@ -7382,7 +7396,6 @@
 				A2F9DA841BAA9ABE009DEAF3 /* XiaoFeiMaUiew.xib in Resources */,
 				386AE3A81C5B6F2B0062105F /* banner_us@2x.png in Resources */,
 				380659A91C537482003094C9 /* INeedYou@3x.png in Resources */,
-				387781351C8B1B850047088B /* GameIcon@3x.png in Resources */,
 				A2FD578F1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib in Resources */,
 				15844BC91BE1CAEB00247FBC /* FindMenuTwoCell.xib in Resources */,
 				ADF88E541C1029F600CF5DED /* LYEvaluationController.xib in Resources */,
@@ -7400,7 +7413,6 @@
 				15E240BB1BB3A4CD0090D240 /* MyChooseZSCell.xib in Resources */,
 				A2F9DA761BAA6AE2009DEAF3 /* OrderBottomView.xib in Resources */,
 				381A01DF1C14229F00592485 /* more_white.png in Resources */,
-				387781331C8B1B850047088B /* GameIcon.png in Resources */,
 				853BCC9C1C76E90500DE0324 /* 收藏white@2x.png in Resources */,
 				A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */,
 				15B866211BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib in Resources */,
@@ -7544,6 +7556,7 @@
 				380659A31C53522A003094C9 /* image_Unselected@2x.png in Resources */,
 				ADFFA6931C16DFE900D9BD2A /* camera@3x.png in Resources */,
 				855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */,
+				855397171C8D7F2F00289D18 /* GamePlayViewController.xib in Resources */,
 				ADFFA68C1C16DFB800D9BD2A /* purpleBtnBG.png in Resources */,
 				850099C31C61EEE700DDE626 /* hotImg@3x.png in Resources */,
 				AD106B961C0B1A7C007F5FBA /* LYUserCenterCell.xib in Resources */,
@@ -8074,6 +8087,7 @@
 				3879F2611C0D32EE00B72629 /* ContentTableViewCell.m in Sources */,
 				85514E421C75619400E24C78 /* SignViewController.m in Sources */,
 				15EB35101BD1F67200BA6161 /* PTShowIntroductionsCell.m in Sources */,
+				855397191C8D808900289D18 /* GamePlayViewController.m in Sources */,
 				D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */,
 				15E1848D1BB5220C00681BB2 /* LyZSuploadIdCardViewController.m in Sources */,
 				152247AC1BEB064600E68A2B /* IQNSArray+Sort.m in Sources */,
@@ -8171,6 +8185,7 @@
 				15E240C61BB3CAC20090D240 /* LYResetPasswordViewController.m in Sources */,
 				AD3B2C141C5E445300E9E71A /* CellSelectButon.m in Sources */,
 				151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */,
+				855397111C8D785100289D18 /* GameList.m in Sources */,
 				152247AF1BEB064600E68A2B /* IQUIViewController+Additions.m in Sources */,
 				853D3AB61C350B3300B4FEAD /* FriendsNewsModel.m in Sources */,
 				855393F31C58F57F00575048 /* HomePageModel.m in Sources */,

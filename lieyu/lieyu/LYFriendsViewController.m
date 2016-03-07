@@ -196,11 +196,35 @@
 }
 
 - (void)friendsClickSel{
-    [self friendsClick:_friendsBtn];
+//    [self friendsClick:_friendsBtn];
+    _friendsBtnSelect = YES;
+    if(((NSArray *)_dataArray[0]).count == 0) [self getDataFriendsWithSetContentOffSet:YES];
+    else [self getDataFromRAM:0];
+    _friendsBtn.isFriendsMenuViewSelected = YES;
+    _myBtn.isFriendsMenuViewSelected = NO;
+    [UIView animateWithDuration:0.5 animations:^{
+        _lineView.center = CGPointMake(_friendsBtn.center.x, _lineView.center.y);
+    }];
 }
 
 - (void)myClickSel{
-    [self myClick:_myBtn];
+//    [self myClick:_myBtn];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
+        return;
+    }
+    //    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
+    //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
+    _friendsBtnSelect = NO;
+    _friendsBtn.isFriendsMenuViewSelected = NO;
+    _myBtn.isFriendsMenuViewSelected = YES;
+    if(((NSArray *)_dataArray[1]).count == 0) [self getDataMysWithSetContentOffSet:YES];
+    else [self getDataFromRAM:1];
+    [UIView animateWithDuration:0.5 animations:^{
+        _lineView.center = CGPointMake(_myBtn.center.x, _lineView.center.y);
+    }];
+
 }
 
 - (void)getRecentMessage{
@@ -664,8 +688,8 @@
 //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
     _friendsBtnSelect = YES;
     _pageStartCountFriends = 0;
-    if(((NSArray *)_dataArray[0]).count == 0) [self getDataFriendsWithSetContentOffSet:YES];
-    else [self getDataFromRAM:0];
+    /*if(((NSArray *)_dataArray[0]).count == 0)*/ [self getDataFriendsWithSetContentOffSet:YES];
+//    else [self getDataFromRAM:0];
     _friendsBtn.isFriendsMenuViewSelected = YES;
     _myBtn.isFriendsMenuViewSelected = NO;
     [UIView animateWithDuration:0.5 animations:^{
@@ -688,6 +712,16 @@
 //                break;
 //        }
 //    }
+    switch (_index) {
+        case 0:
+            _isFriendsPageUpLoad = YES;
+            break;
+            
+        default:
+            _isMysPageUpLoad = YES;
+            break;
+    }
+        [self.tableView.mj_footer resetNoMoreData];
     [self reloadTableViewAndSetUpPropertyneedSetContentOffset:NO];
 }
 
@@ -704,8 +738,8 @@
     _pageStartCountMys = 0;
     _friendsBtn.isFriendsMenuViewSelected = NO;
     _myBtn.isFriendsMenuViewSelected = YES;
-    if(((NSArray *)_dataArray[1]).count == 0) [self getDataMysWithSetContentOffSet:YES];
-    else [self getDataFromRAM:1];
+/*    if(((NSArray *)_dataArray[1]).count == 0)*/ [self getDataMysWithSetContentOffSet:YES];
+//    else [self getDataFromRAM:1];
     [UIView animateWithDuration:0.5 animations:^{
         _lineView.center = CGPointMake(myBtn.center.x, _lineView.center.y);
     }];
