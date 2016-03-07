@@ -9,7 +9,7 @@
 #import "MyCodeViewController.h"
 #import "UIImageView+WebCache.h"
 #import "LYMineUrl.h"
-#import "qrencode.h"
+#import "qrencode.h"  
 @interface MyCodeViewController ()
 
 @end
