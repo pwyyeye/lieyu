@@ -51,7 +51,7 @@
 //               @{@"image":@"fujinwanyou",@"title":@"附近玩客"},
               // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"saoyisao",@"title":@"扫一扫"},
-               @{@"image":@"saoyisao",@"title":@"酒吧小游戏"}];
+               @{@"image":@"GameIcon",@"title":@"酒吧小游戏"}];
     _tableView.contentInset = UIEdgeInsetsMake(70, 0, -49, 0);
    /* self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 0.5);
@@ -190,7 +190,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -229,7 +229,7 @@
         }
 
     }
-    else{
+    else if(indexPath.section == 1){
         if(indexPath.row==0 || indexPath.row == 1){
             [[cell viewWithTag:100] removeFromSuperview];
             dic=[datalist objectAtIndex:indexPath.row + 3];
@@ -240,18 +240,19 @@
         }else{
 //            dic=[datalist objectAtIndex:4];
         }
-    }else{
-        if (indexPath.row == 0) {
-            [[cell viewWithTag:100] removeFromSuperview];
-            dic=[datalist objectAtIndex:4];
-            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
-            lineLal.tag=100;
-            lineLal.backgroundColor=RGB(199, 199, 199);
-            [cell addSubview:lineLal];
-        }else{
-            
-        }
     }
+//    else{
+//        if (indexPath.row == 0) {
+//            [[cell viewWithTag:100] removeFromSuperview];
+//            dic=[datalist objectAtIndex:4];
+//            UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
+//            lineLal.tag=100;
+//            lineLal.backgroundColor=RGB(199, 199, 199);
+//            [cell addSubview:lineLal];
+//        }else{
+//            
+//        }
+//    }
     [cell.imageView setImage:[UIImage imageNamed:[dic objectForKey:@"image"]]];
     cell.titleLal.text=[dic objectForKey:@"title"];
     
@@ -316,7 +317,7 @@
             //附近玩客
         }
         [self.tableView reloadData];
-    }else{
+    }else if(indexPath.section == 1){
        /* if(indexPath.row == 0 && NO){
             //摇一摇
             YaoYiYaoViewController *yaoYiYaoViewController;
@@ -346,11 +347,17 @@
 //            [self.navigationController pushViewController:loginVC animated:YES];
             
         }else{
+            //统计发现页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"酒吧小游戏"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
             FindGameCenterViewController *findGameVC = [[FindGameCenterViewController alloc]init];
             [self.navigationController pushViewController:findGameVC animated:YES];
         }
-    }else{//进入酒吧小游戏
     }
+//    else{//进入酒吧小游戏
+//        NSLog(@"dfdsafd");
+//    }
 }
 
 
