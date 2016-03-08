@@ -9,9 +9,12 @@
 
 #import "FindGameCenterViewController.h"
 #import "FindGameCenterCollectionViewCell.h"
+#import "GameList.h"
+#import "LYHomePageHttpTool.h"
+#import "GamePlayViewController.h"
 
 @interface FindGameCenterViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
-    NSArray *_titleArray;
+    NSArray *_titleArray,*_gameListArray;
 }
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -25,13 +28,37 @@
     self.navigationItem.title = @"酒吧小游戏";
     _titleArray = @[@"咬手鲨鱼牙",@"真心话大冒险",@"大话骰"];
     [_collectionView registerNib:[UINib nibWithNibName:@"FindGameCenterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"FindGameCenterCollectionViewCell"];
+    [self getData];
     
 //    UIScreenEdgePanGestureRecognizer *ges = self.view.gestureRecognizers;
-    NSLog(@"--------->%@",self.view.gestureRecognizers);
+    NSLog(@"--------->%@", self.navigationController.view.gestureRecognizers);
+    
+//    UIScreenEdgePanGestureRecognizer  * screenEdge = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(screenEdge:)];
+//    screenEdge.edges = UIRectEdgeLeft;
+//    [self.view addGestureRecognizer:screenEdge];
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
+//     NSLog(@"--------->%@", self.navigationController.view.gestureRecognizers.firstObject);
+    screenGes.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:screenGes];
 }
 
+- (void)getData{
+//    NSDictionary *paraDic =
+    __weak __typeof(self) weakSelf = self;
+    [LYHomePageHttpTool getGameFromWith:nil complete:^(NSArray *gameListArray) {
+        _gameListArray = gameListArray;
+        [weakSelf.collectionView reloadData];
+    }];
+}
+
+- (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
+    
+}
+
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 3;
+    return _gameListArray.count;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
@@ -52,16 +79,22 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     FindGameCenterCollectionViewCell *cell = [_collectionView dequeueReusableCellWithReuseIdentifier:@"FindGameCenterCollectionViewCell" forIndexPath:indexPath];
-    cell.label_title.text = _titleArray[indexPath.row];
-    cell.imgView.image = [UIImage imageNamed:_titleArray[indexPath.row]];
+    GameList *gList = _gameListArray[indexPath.row];
+    cell.label_title.text = gList.gameName;
+    [cell.imgView sd_setImageWithURL:[NSURL URLWithString:gList.gameIcon] placeholderImage:[UIImage imageNamed:@"emptyImage120"]];
     if (indexPath.row % 2 != 0) {
-        
+        cell.lineView_right.hidden = YES;
+    }else{
+        cell.lineView_right.hidden = NO;
     }
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
+    GameList *gList = _gameListArray[indexPath.item];
+    GamePlayViewController *gamePlayVC = [[GamePlayViewController alloc]init];
+    gamePlayVC.gameLink = gList.gameLink;
+    [self presentViewController:gamePlayVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

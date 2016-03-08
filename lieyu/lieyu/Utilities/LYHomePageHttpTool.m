@@ -15,6 +15,7 @@
 #import "BarActivityList.h"
 #import "BarTopicInfo.h"
 #import "CustomerModel.h"
+#import "GameList.h"
 
 @implementation LYHomePageHttpTool
 + (LYHomePageHttpTool *)shareInstance
@@ -752,4 +753,20 @@
     }];
 }
 
+#pragma mark - 获取游戏列表
++ (void)getGameFromWith:(NSDictionary *)paraDic complete:(void(^)(NSArray *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GAMELIST baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"] ];
+        if ([code isEqualToString:@"1"]) {
+            NSArray *dataArray = [response objectForKey:@"data"];
+            NSArray *gameListArray = (NSArray *)[GameList mj_objectArrayWithKeyValuesArray:dataArray];
+            complete(gameListArray);
+        }else{
+            complete(nil);
+        }
+
+    } failure:^(NSError *err) {
+        
+    }];
+}
 @end

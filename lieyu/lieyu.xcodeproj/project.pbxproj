@@ -406,22 +406,6 @@
 		386AE3A91C5B6F2B0062105F /* banner_us@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A51C5B6F2B0062105F /* banner_us@3x.png */; };
 		386C65341C7D4D7800567D2B /* LPUserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */; };
 		386C65351C7D4D7800567D2B /* LPUserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */; };
-		387781D51C8D5BCB0047088B /* GameIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781D21C8D5BCB0047088B /* GameIcon.png */; };
-		387781D61C8D5BCB0047088B /* GameIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781D31C8D5BCB0047088B /* GameIcon@2x.png */; };
-		387781D71C8D5BCB0047088B /* GameIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781D41C8D5BCB0047088B /* GameIcon@3x.png */; };
-		387781DB1C8D61E20047088B /* MyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 387781D91C8D61E20047088B /* MyCodeViewController.m */; };
-		387781DC1C8D61E20047088B /* MyCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387781DA1C8D61E20047088B /* MyCodeViewController.xib */; };
-		387781E11C8D68D10047088B /* QRCodebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781DD1C8D68D10047088B /* QRCodebg@2x.png */; };
-		387781E21C8D68D10047088B /* QRCodebg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781DE1C8D68D10047088B /* QRCodebg@3x.png */; };
-		387781E31C8D68D10047088B /* QRCodeHeaderbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781DF1C8D68D10047088B /* QRCodeHeaderbg@2x.png */; };
-		387781E41C8D68D10047088B /* QRCodeHeaderbg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387781E01C8D68D10047088B /* QRCodeHeaderbg@3x.png */; };
-		3877820A1C8D7B320047088B /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 387781FC1C8D7B320047088B /* bitstream.c */; };
-		3877820B1C8D7B320047088B /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = 387781FE1C8D7B320047088B /* mask.c */; };
-		3877820C1C8D7B320047088B /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782001C8D7B320047088B /* qrencode.c */; };
-		3877820D1C8D7B320047088B /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782021C8D7B320047088B /* qrinput.c */; };
-		3877820E1C8D7B320047088B /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782041C8D7B320047088B /* qrspec.c */; };
-		3877820F1C8D7B320047088B /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782061C8D7B320047088B /* rscode.c */; };
-		387782101C8D7B320047088B /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 387782081C8D7B320047088B /* split.c */; };
 		3879D0631C7AE423000F5795 /* CheckProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879D0621C7AE423000F5795 /* CheckProtocol.m */; };
 		3879D0661C7B26AB000F5795 /* icon_share2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0641C7B26AB000F5795 /* icon_share2@2x.png */; };
 		3879D0671C7B26AB000F5795 /* icon_share2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0651C7B26AB000F5795 /* icon_share2@3x.png */; };
@@ -742,6 +726,18 @@
 		855397091C8D41C100289D18 /* 大话骰.png in Resources */ = {isa = PBXBuildFile; fileRef = 855397061C8D41C100289D18 /* 大话骰.png */; };
 		8553970A1C8D41C100289D18 /* 咬手鲨鱼牙.png in Resources */ = {isa = PBXBuildFile; fileRef = 855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */; };
 		8553970B1C8D41C100289D18 /* 真心话大冒险.png in Resources */ = {isa = PBXBuildFile; fileRef = 855397081C8D41C100289D18 /* 真心话大冒险.png */; };
+		855397111C8D785100289D18 /* GameList.m in Sources */ = {isa = PBXBuildFile; fileRef = 855397101C8D785100289D18 /* GameList.m */; };
+		855397171C8D7F2F00289D18 /* GamePlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855397151C8D7F2F00289D18 /* GamePlayViewController.xib */; };
+		855397191C8D808900289D18 /* GamePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855397141C8D7F2F00289D18 /* GamePlayViewController.m */; };
+		8553971D1C8D894300289D18 /* MyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8553971B1C8D894300289D18 /* MyCodeViewController.m */; };
+		8553971E1C8D894300289D18 /* MyCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8553971C1C8D894300289D18 /* MyCodeViewController.xib */; };
+		8553972D1C8DA01C00289D18 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 8553971F1C8DA01C00289D18 /* bitstream.c */; };
+		8553972E1C8DA01C00289D18 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397211C8DA01C00289D18 /* mask.c */; };
+		8553972F1C8DA01C00289D18 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397231C8DA01C00289D18 /* qrencode.c */; };
+		855397301C8DA01C00289D18 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397251C8DA01C00289D18 /* qrinput.c */; };
+		855397311C8DA01C00289D18 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397271C8DA01C00289D18 /* qrspec.c */; };
+		855397321C8DA01C00289D18 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397291C8DA01C00289D18 /* rscode.c */; };
+		855397331C8DA01C00289D18 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 8553972B1C8DA01C00289D18 /* split.c */; };
 		85539EBA1C3DFE0B001031B6 /* ISEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85539EB91C3DFE0B001031B6 /* ISEmojiView.m */; };
 		85539EBC1C3E06BA001031B6 /* ISEmojiList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */; };
 		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
@@ -1896,30 +1892,6 @@
 		386C65311C7D4D7800567D2B /* LPUserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPUserLoginViewController.h; sourceTree = "<group>"; };
 		386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUserLoginViewController.m; sourceTree = "<group>"; };
 		386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPUserLoginViewController.xib; sourceTree = "<group>"; };
-		387781D21C8D5BCB0047088B /* GameIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameIcon.png; sourceTree = "<group>"; };
-		387781D31C8D5BCB0047088B /* GameIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@2x.png"; sourceTree = "<group>"; };
-		387781D41C8D5BCB0047088B /* GameIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@3x.png"; sourceTree = "<group>"; };
-		387781D81C8D61E20047088B /* MyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCodeViewController.h; sourceTree = "<group>"; };
-		387781D91C8D61E20047088B /* MyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCodeViewController.m; sourceTree = "<group>"; };
-		387781DA1C8D61E20047088B /* MyCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCodeViewController.xib; sourceTree = "<group>"; };
-		387781DD1C8D68D10047088B /* QRCodebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@2x.png"; sourceTree = "<group>"; };
-		387781DE1C8D68D10047088B /* QRCodebg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@3x.png"; sourceTree = "<group>"; };
-		387781DF1C8D68D10047088B /* QRCodeHeaderbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@2x.png"; sourceTree = "<group>"; };
-		387781E01C8D68D10047088B /* QRCodeHeaderbg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@3x.png"; sourceTree = "<group>"; };
-		387781FC1C8D7B320047088B /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
-		387781FD1C8D7B320047088B /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
-		387781FE1C8D7B320047088B /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
-		387781FF1C8D7B320047088B /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
-		387782001C8D7B320047088B /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
-		387782011C8D7B320047088B /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
-		387782021C8D7B320047088B /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
-		387782031C8D7B320047088B /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
-		387782041C8D7B320047088B /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
-		387782051C8D7B320047088B /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
-		387782061C8D7B320047088B /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
-		387782071C8D7B320047088B /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
-		387782081C8D7B320047088B /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
-		387782091C8D7B320047088B /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		3879D0611C7AE423000F5795 /* CheckProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProtocol.h; sourceTree = "<group>"; };
 		3879D0621C7AE423000F5795 /* CheckProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProtocol.m; sourceTree = "<group>"; };
 		3879D0641C7B26AB000F5795 /* icon_share2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share2@2x.png"; sourceTree = "<group>"; };
@@ -2345,6 +2317,28 @@
 		855397061C8D41C100289D18 /* 大话骰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "大话骰.png"; sourceTree = "<group>"; };
 		855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "咬手鲨鱼牙.png"; sourceTree = "<group>"; };
 		855397081C8D41C100289D18 /* 真心话大冒险.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "真心话大冒险.png"; sourceTree = "<group>"; };
+		8553970F1C8D785100289D18 /* GameList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameList.h; sourceTree = "<group>"; };
+		855397101C8D785100289D18 /* GameList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameList.m; sourceTree = "<group>"; };
+		855397131C8D7F2F00289D18 /* GamePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlayViewController.h; sourceTree = "<group>"; };
+		855397141C8D7F2F00289D18 /* GamePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlayViewController.m; sourceTree = "<group>"; };
+		855397151C8D7F2F00289D18 /* GamePlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GamePlayViewController.xib; sourceTree = "<group>"; };
+		8553971A1C8D894300289D18 /* MyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCodeViewController.h; sourceTree = "<group>"; };
+		8553971B1C8D894300289D18 /* MyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCodeViewController.m; sourceTree = "<group>"; };
+		8553971C1C8D894300289D18 /* MyCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCodeViewController.xib; sourceTree = "<group>"; };
+		8553971F1C8DA01C00289D18 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		855397201C8DA01C00289D18 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		855397211C8DA01C00289D18 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		855397221C8DA01C00289D18 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		855397231C8DA01C00289D18 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		855397241C8DA01C00289D18 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		855397251C8DA01C00289D18 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		855397261C8DA01C00289D18 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		855397271C8DA01C00289D18 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		855397281C8DA01C00289D18 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		855397291C8DA01C00289D18 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		8553972A1C8DA01C00289D18 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		8553972B1C8DA01C00289D18 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		8553972C1C8DA01C00289D18 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		85539EB81C3DFE0B001031B6 /* ISEmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISEmojiView.h; sourceTree = "<group>"; };
 		85539EB91C3DFE0B001031B6 /* ISEmojiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISEmojiView.m; sourceTree = "<group>"; };
 		85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ISEmojiList.plist; sourceTree = "<group>"; };
@@ -4493,20 +4487,20 @@
 		387781FB1C8D7B320047088B /* libqrencode */ = {
 			isa = PBXGroup;
 			children = (
-				387781FC1C8D7B320047088B /* bitstream.c */,
-				387781FD1C8D7B320047088B /* bitstream.h */,
-				387781FE1C8D7B320047088B /* mask.c */,
-				387781FF1C8D7B320047088B /* mask.h */,
-				387782001C8D7B320047088B /* qrencode.c */,
-				387782011C8D7B320047088B /* qrencode.h */,
-				387782021C8D7B320047088B /* qrinput.c */,
-				387782031C8D7B320047088B /* qrinput.h */,
-				387782041C8D7B320047088B /* qrspec.c */,
-				387782051C8D7B320047088B /* qrspec.h */,
-				387782061C8D7B320047088B /* rscode.c */,
-				387782071C8D7B320047088B /* rscode.h */,
-				387782081C8D7B320047088B /* split.c */,
-				387782091C8D7B320047088B /* split.h */,
+				8553971F1C8DA01C00289D18 /* bitstream.c */,
+				855397201C8DA01C00289D18 /* bitstream.h */,
+				855397211C8DA01C00289D18 /* mask.c */,
+				855397221C8DA01C00289D18 /* mask.h */,
+				855397231C8DA01C00289D18 /* qrencode.c */,
+				855397241C8DA01C00289D18 /* qrencode.h */,
+				855397251C8DA01C00289D18 /* qrinput.c */,
+				855397261C8DA01C00289D18 /* qrinput.h */,
+				855397271C8DA01C00289D18 /* qrspec.c */,
+				855397281C8DA01C00289D18 /* qrspec.h */,
+				855397291C8DA01C00289D18 /* rscode.c */,
+				8553972A1C8DA01C00289D18 /* rscode.h */,
+				8553972B1C8DA01C00289D18 /* split.c */,
+				8553972C1C8DA01C00289D18 /* split.h */,
 			);
 			path = libqrencode;
 			sourceTree = "<group>";
@@ -4542,9 +4536,6 @@
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
-				387781D21C8D5BCB0047088B /* GameIcon.png */,
-				387781D31C8D5BCB0047088B /* GameIcon@2x.png */,
-				387781D41C8D5BCB0047088B /* GameIcon@3x.png */,
 				855397061C8D41C100289D18 /* 大话骰.png */,
 				855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */,
 				855397081C8D41C100289D18 /* 真心话大冒险.png */,
@@ -5291,10 +5282,14 @@
 		855396F91C8D30E800289D18 /* 酒吧小游戏 */ = {
 			isa = PBXGroup;
 			children = (
+				855397121C8D785800289D18 /* Model */,
 				855396FF1C8D318500289D18 /* View */,
 				855396FA1C8D310C00289D18 /* FindGameCenterViewController.h */,
 				855396FB1C8D310C00289D18 /* FindGameCenterViewController.m */,
 				855396FC1C8D310C00289D18 /* FindGameCenterViewController.xib */,
+				855397131C8D7F2F00289D18 /* GamePlayViewController.h */,
+				855397141C8D7F2F00289D18 /* GamePlayViewController.m */,
+				855397151C8D7F2F00289D18 /* GamePlayViewController.xib */,
 			);
 			name = "酒吧小游戏";
 			sourceTree = "<group>";
@@ -5307,6 +5302,15 @@
 				855397021C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		855397121C8D785800289D18 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8553970F1C8D785100289D18 /* GameList.h */,
+				855397101C8D785100289D18 /* GameList.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		85539EB71C3DFDF8001031B6 /* 键盘表情 */ = {
@@ -5777,10 +5781,6 @@
 		A2020D5C1BA67CCB0090B92A /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
-				387781DD1C8D68D10047088B /* QRCodebg@2x.png */,
-				387781DE1C8D68D10047088B /* QRCodebg@3x.png */,
-				387781DF1C8D68D10047088B /* QRCodeHeaderbg@2x.png */,
-				387781E01C8D68D10047088B /* QRCodeHeaderbg@3x.png */,
 				A2020D5D1BA67E9E0090B92A /* disClosure.png */,
 				A2020D5E1BA67E9E0090B92A /* disClosure@2x.png */,
 				A2020D5F1BA67E9E0090B92A /* disClosure@3x.png */,
@@ -6355,6 +6355,9 @@
 		ADE103B21BDF285C00D9EC38 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
+				8553971A1C8D894300289D18 /* MyCodeViewController.h */,
+				8553971B1C8D894300289D18 /* MyCodeViewController.m */,
+				8553971C1C8D894300289D18 /* MyCodeViewController.xib */,
 				AD92AEAE1BE2359A009F2A34 /* View */,
 				AD92AEA51BE229B3009F2A34 /* Model */,
 				ADE103B31BDF286A00D9EC38 /* Setting.h */,
@@ -6364,9 +6367,6 @@
 				85F545131C13DE000013B92B /* LYUserDetailInfoViewController.h */,
 				85F545141C13DE000013B92B /* LYUserDetailInfoViewController.m */,
 				85F545151C13DE000013B92B /* LYUserDetailInfoViewController.xib */,
-				387781D81C8D61E20047088B /* MyCodeViewController.h */,
-				387781D91C8D61E20047088B /* MyCodeViewController.m */,
-				387781DA1C8D61E20047088B /* MyCodeViewController.xib */,
 				858B22911C2977C800BF70AD /* LYTagsViewController.h */,
 				858B22921C2977C800BF70AD /* LYTagsViewController.m */,
 				858B22931C2977C800BF70AD /* LYTagsViewController.xib */,
@@ -7185,7 +7185,6 @@
 				85F66F161C565559005D1CD8 /* HomeBarCollectionViewCell.xib in Resources */,
 				853C4C841C311A9900D48BA2 /* dizhi_icon.png in Resources */,
 				15EB35511BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle in Resources */,
-				387781DC1C8D61E20047088B /* MyCodeViewController.xib in Resources */,
 				386C65351C7D4D7800567D2B /* LPUserLoginViewController.xib in Resources */,
 				15F54A911BB030420020EB4C /* ChanPinListViewController.xib in Resources */,
 				A20100781BA7ADCB009283D1 /* ZSReleaseMBViewController.xib in Resources */,
@@ -7203,7 +7202,6 @@
 				525CA0F11C5C6930009ED9DA /* pinglun_icon@3x.png in Resources */,
 				3879D0671C7B26AB000F5795 /* icon_share2@3x.png in Resources */,
 				853BCCA61C76EA1F00DE0324 /* 点赞whited@2x.png in Resources */,
-				387781D61C8D5BCB0047088B /* GameIcon@2x.png in Resources */,
 				3879D06B1C7B26B4000F5795 /* share_black@3x.png in Resources */,
 				3812C5561C57B76100F4DD6B /* purper_less@3x.png in Resources */,
 				151BB6D31BBB78E000E7A81C /* UzysAssetsPickerController.xib in Resources */,
@@ -7250,7 +7248,6 @@
 				8550E70D1C2FC130001FF2DE /* LYFriendsCommentView.xib in Resources */,
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
 				85514EA11C75F8BF00E24C78 /* sign@3x.png in Resources */,
-				387781E21C8D68D10047088B /* QRCodebg@3x.png in Resources */,
 				AD4EA8571C546B110056E560 /* MineBigBG@3x.jpg in Resources */,
 				8550E7141C301740001FF2DE /* LYFriendsMessageDetailViewController.xib in Resources */,
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
@@ -7388,14 +7385,13 @@
 				38D876561C17DEA100E2F284 /* typeBorder@2x.png in Resources */,
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
 				52D4F9A81C57B2B700691BEF /* 热门@2x.png in Resources */,
-				387781E31C8D68D10047088B /* QRCodeHeaderbg@2x.png in Resources */,
 				380385DD1C327C19007C8DC0 /* play .png in Resources */,
 				850099C81C61EEE700DDE626 /* 剩余@2x.png in Resources */,
 				85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */,
 				525CA0D11C5B7257009ED9DA /* haoyou_pinglun@3x.png in Resources */,
 				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
 				8567A4A71C43E14E00982882 /* biaoqing_icon@3x.png in Resources */,
-				387781E41C8D68D10047088B /* QRCodeHeaderbg@3x.png in Resources */,
+				8553971E1C8D894300289D18 /* MyCodeViewController.xib in Resources */,
 				A2FD57801BAFE97000CFFF92 /* FBTaoCanSectionHead.xib in Resources */,
 				853C4C3F1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib in Resources */,
 				ADF88E5F1C102E4F00CF5DED /* hongseStar.png in Resources */,
@@ -7494,7 +7490,6 @@
 				AD078C761C33CDE800A056D1 /* iphoneIcon@2x.png in Resources */,
 				8540B67F1C2CE89900F16463 /* LYFriendsLikeTableViewCell.xib in Resources */,
 				85EC6A091C186A170082AA3E /* icon_liwozuijin@2x.png in Resources */,
-				387781D51C8D5BCB0047088B /* GameIcon.png in Resources */,
 				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
 				853C4C8B1C311AAD00D48BA2 /* gengduo_icon@2x.png in Resources */,
 				85FBBDB91C606CB80084E3F2 /* home_list_mask.png in Resources */,
@@ -7551,7 +7546,6 @@
 				855397041C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib in Resources */,
 				3812C5681C57B78800F4DD6B /* hot_triangle@3x.png in Resources */,
 				38D876491C1703B600E2F284 /* purper_fanli.png in Resources */,
-				387781D71C8D5BCB0047088B /* GameIcon@3x.png in Resources */,
 				853C4C721C311A6D00D48BA2 /* fabudongtai_xuanzedizhi.png in Resources */,
 				A2020D731BA67FA40090B92A /* classic20@2x.png in Resources */,
 				3879F2621C0D32EE00B72629 /* ContentTableViewCell.xib in Resources */,
@@ -7614,6 +7608,7 @@
 				380659A31C53522A003094C9 /* image_Unselected@2x.png in Resources */,
 				ADFFA6931C16DFE900D9BD2A /* camera@3x.png in Resources */,
 				855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */,
+				855397171C8D7F2F00289D18 /* GamePlayViewController.xib in Resources */,
 				ADFFA68C1C16DFB800D9BD2A /* purpleBtnBG.png in Resources */,
 				850099C31C61EEE700DDE626 /* hotImg@3x.png in Resources */,
 				AD106B961C0B1A7C007F5FBA /* LYUserCenterCell.xib in Resources */,
@@ -7677,7 +7672,6 @@
 				85FBBDC41C6073ED0084E3F2 /* 首页列表点赞@2x.png in Resources */,
 				ADFFA6A01C181A7200D9BD2A /* 2_retina.jpg in Resources */,
 				850099CD1C61EEE700DDE626 /* 地址yu@3x.png in Resources */,
-				387781E11C8D68D10047088B /* QRCodebg@2x.png in Resources */,
 				A2FD57631BAFE6C000CFFF92 /* CaoCanCell.xib in Resources */,
 				38E5D6C81C0EA4DF004B49D2 /* CustomBtn_Selected@3x.png in Resources */,
 				15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */,
@@ -7919,6 +7913,7 @@
 				15A4CF4C1BD7689F00C22C01 /* DWOrderTopCell.m in Sources */,
 				A20100CA1BA9212A009283D1 /* ZSCustomerDetailViewController.m in Sources */,
 				8545385A1C2D3A8D0020AC2C /* LYFriendsHttpTool.m in Sources */,
+				855397331C8DA01C00289D18 /* split.c in Sources */,
 				A2020D891BA6A5AA0090B92A /* KaZuoCell.m in Sources */,
 				85EE80321C0AF09B00958F76 /* LYHeaderTableViewCell.m in Sources */,
 				386AE39E1C5B61B70062105F /* TAPageControl.m in Sources */,
@@ -7926,6 +7921,7 @@
 				D71E1D911BAE8F3100915F37 /* BusinessPublicNoteCell.m in Sources */,
 				8518067A1C2E5F0000006804 /* LYFriendsAllCommentTableViewCell.m in Sources */,
 				3879F2661C0D361000B72629 /* LiuchengTableViewCell.m in Sources */,
+				8553971D1C8D894300289D18 /* MyCodeViewController.m in Sources */,
 				38E5D6E51C0F1018004B49D2 /* LPBuyTaocanCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
@@ -8059,6 +8055,7 @@
 				1559DCFB1BD9E1AD00F3FE9B /* CHBarCell.m in Sources */,
 				ADE103B51BDF286A00D9EC38 /* Setting.m in Sources */,
 				8518066D1C2E28F500006804 /* FriendsLikeModel.m in Sources */,
+				8553972F1C8DA01C00289D18 /* qrencode.c in Sources */,
 				15013B001BBA33BF00061FAF /* UIImage+MultiFormat.m in Sources */,
 				85F625971C0C20C6002858C8 /* LYDinWeiTableViewCell.m in Sources */,
 				15E240671BB1243A0090D240 /* TypeChooseCell.m in Sources */,
@@ -8084,7 +8081,6 @@
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
 				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
 				38EE91A61C3BE0A800361D07 /* Reachability.m in Sources */,
-				3877820B1C8D7B320047088B /* mask.c in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
 				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,
 				15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */,
@@ -8109,6 +8105,7 @@
 				38AA7CC51C315A0000D9BCE8 /* preview.m in Sources */,
 				AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */,
 				3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */,
+				855397301C8DA01C00289D18 /* qrinput.c in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				380659DD1C5639F4003094C9 /* ManagersView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
@@ -8133,7 +8130,6 @@
 				3879F26A1C0D363500B72629 /* LPPlayTogetherViewController.m in Sources */,
 				15B866981BE0C183002E2BB6 /* MessageCell.m in Sources */,
 				38EDED5C1C5E254800694758 /* HDDetailViewController.m in Sources */,
-				3877820E1C8D7B320047088B /* qrspec.c in Sources */,
 				15013B011BBA33BF00061FAF /* UIImage+WebP.m in Sources */,
 				15B8661B1BDB5894002E2BB6 /* CHDoOrderViewController.m in Sources */,
 				38E5D6D51C0EF90D004B49D2 /* LPAttentionViewController.m in Sources */,
@@ -8144,10 +8140,12 @@
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
-				3877820F1C8D7B320047088B /* rscode.c in Sources */,
 				3879F2611C0D32EE00B72629 /* ContentTableViewCell.m in Sources */,
+				8553972D1C8DA01C00289D18 /* bitstream.c in Sources */,
 				85514E421C75619400E24C78 /* SignViewController.m in Sources */,
 				15EB35101BD1F67200BA6161 /* PTShowIntroductionsCell.m in Sources */,
+				855397191C8D808900289D18 /* GamePlayViewController.m in Sources */,
+				8553972E1C8DA01C00289D18 /* mask.c in Sources */,
 				D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */,
 				15E1848D1BB5220C00681BB2 /* LyZSuploadIdCardViewController.m in Sources */,
 				152247AC1BEB064600E68A2B /* IQNSArray+Sort.m in Sources */,
@@ -8181,7 +8179,6 @@
 				15A4CF3B1BD7309500C22C01 /* LYTitleInfoCell.m in Sources */,
 				85F545291C13EB450013B92B /* LYUserDetailCameraTableViewCell.m in Sources */,
 				15CC31E21BEB2C5B00DDD03F /* FMDatabasePool.m in Sources */,
-				3877820A1C8D7B320047088B /* bitstream.c in Sources */,
 				151BB6D41BBB78E000E7A81C /* UzysAssetsViewCell.m in Sources */,
 				D748BC501BA1C52E005AA996 /* NSDictionary+Json.m in Sources */,
 				853D4E2B1C87E73D003277E5 /* SettingTableViewCell.m in Sources */,
@@ -8202,7 +8199,6 @@
 				15844BBE1BE1C70600247FBC /* LYSearchFriendViewController.m in Sources */,
 				8540B67E1C2CE89900F16463 /* LYFriendsLikeTableViewCell.m in Sources */,
 				15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */,
-				387782101C8D7B320047088B /* split.c in Sources */,
 				ADF88E9F1C1197C400CF5DED /* MJRefreshComponent.m in Sources */,
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
 				854538641C2D5B430020AC2C /* FriendsRecentModel.m in Sources */,
@@ -8231,6 +8227,7 @@
 				85EE803C1C0AF3FD00958F76 /* LYBarPointTableViewCell.m in Sources */,
 				ADE103C11BE0EAAA00D9EC38 /* EAIntroPage.m in Sources */,
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
+				855397311C8DA01C00289D18 /* qrspec.c in Sources */,
 				15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
@@ -8247,6 +8244,7 @@
 				15E240C61BB3CAC20090D240 /* LYResetPasswordViewController.m in Sources */,
 				AD3B2C141C5E445300E9E71A /* CellSelectButon.m in Sources */,
 				151BB6D81BBB78E000E7A81C /* UzysWrapperPickerController.m in Sources */,
+				855397111C8D785100289D18 /* GameList.m in Sources */,
 				152247AF1BEB064600E68A2B /* IQUIViewController+Additions.m in Sources */,
 				853D3AB61C350B3300B4FEAD /* FriendsNewsModel.m in Sources */,
 				855393F31C58F57F00575048 /* HomePageModel.m in Sources */,
@@ -8295,6 +8293,7 @@
 				153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
 				8518067E1C2E796300006804 /* LYFriendsUserHeaderView.m in Sources */,
+				855397321C8DA01C00289D18 /* rscode.c in Sources */,
 				15A4CF5C1BD86CF800C22C01 /* ShaiXuanBtn.m in Sources */,
 				38E5D7051C1044F3004B49D2 /* ManagerInfoCell.m in Sources */,
 				15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */,
@@ -8309,7 +8308,6 @@
 				1559DCFE1BD9E1C800F3FE9B /* CHPorTypeCell.m in Sources */,
 				1559DCF81BD9E16600F3FE9B /* CHTopDetailCell.m in Sources */,
 				386AE39D1C5B61B70062105F /* TADotView.m in Sources */,
-				3877820C1C8D7B320047088B /* qrencode.c in Sources */,
 				D748BC401BA1C24B005AA996 /* NetPublic.m in Sources */,
 				15E1847D1BB4FEF900681BB2 /* LYZSeditView.m in Sources */,
 				A20100831BA7AFAB009283D1 /* LYProductslistViewController.m in Sources */,
@@ -8321,7 +8319,6 @@
 				152247AE1BEB064600E68A2B /* IQUIView+Hierarchy.m in Sources */,
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				38E5D6F41C0F10E7004B49D2 /* LPBuyManagerCell.m in Sources */,
-				3877820D1C8D7B320047088B /* qrinput.c in Sources */,
 				853C4C4E1C31189E00D48BA2 /* LYFriendsCommentDetailTableViewCell.m in Sources */,
 				853C36141C72BC4700F1703B /* BeerNewBarViewController.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
@@ -8397,7 +8394,6 @@
 				15EB350A1BD1F61800BA6161 /* PTTimeChooseCell.m in Sources */,
 				ADE103BB1BDFA5F200D9EC38 /* LYUserDetailController.m in Sources */,
 				3812C5151C57A38F00F4DD6B /* DetailView.m in Sources */,
-				387781DB1C8D61E20047088B /* MyCodeViewController.m in Sources */,
 				151BB6BF1BBAB80900E7A81C /* DeckFullModel.m in Sources */,
 				15E240A11BB37EF60090D240 /* LYOrderDetailViewController.m in Sources */,
 				85C4282E1C116ED90028FC21 /* LYHotBarMenuDropView.m in Sources */,

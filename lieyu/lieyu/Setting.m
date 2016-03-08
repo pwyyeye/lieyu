@@ -15,6 +15,7 @@
 #import "LYAccountManager.h"
 #import "MyZSManageViewController.h"
 #import "LYZSApplicationViewController.h"
+#import "UMSocial.h"
 
 @interface Setting (){
     UIButton *_logoutButton;
@@ -32,15 +33,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱",@"收货地址"];
-    
+//    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱",@"收货地址"];
+    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱"];
     
     self.title=@"个人设置";
     
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
     
-    
+    self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
     self.tableView.frame=CGRectMake(8, 64, SCREEN_WIDTH - 16, SCREEN_HEIGHT);
 //    self.tableView.bounces=NO;
     
@@ -98,6 +99,11 @@
     // Configure the cell...
     UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     [cell setBackgroundColor:[UIColor clearColor]];
+    
+    UILabel *label = [cell viewWithTag:10086];
+    if (label) {
+        [label removeFromSuperview];
+    }
 //    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, cell.frame.size.height-10)];
 //    label.backgroundColor=[UIColor whiteColor];
 //    //清除cell背景颜色 在底部添加白色背景label 高度小于cell 使之看起来有间隔
@@ -105,36 +111,43 @@
 //    cell.contentView.backgroundColor=[UIColor clearColor];
 //    
 //    [cell.contentView insertSubview:label atIndex:0];
-//    
-    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(8, 3, (SCREEN_WIDTH - 14), 50)];
+//
+    
+    UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(8, 0, (SCREEN_WIDTH - 16), 50)];
+    titleLabel.tag = 10086;
     titleLabel.backgroundColor = [UIColor whiteColor];
     titleLabel.font=[UIFont systemFontOfSize:14];
+    titleLabel.layer.masksToBounds = YES;
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    
+    if(indexPath.row == 0 || indexPath.row == 2){
+            shapeLayer.path = [UIBezierPath bezierPathWithRoundedRect:titleLabel.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(2, 2)].CGPath;
+            titleLabel.layer.mask = shapeLayer;
+    }else if(indexPath.row == 1 || indexPath.row == 5){
+        shapeLayer.path = [UIBezierPath bezierPathWithRoundedRect:titleLabel.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(2, 2)].CGPath;
+        titleLabel.layer.mask = shapeLayer;
+    }else if(indexPath.row == 6|| indexPath.row == 7){
+        titleLabel.layer.cornerRadius = 2;
+    }
     titleLabel.text=[NSString stringWithFormat:@"  %@",_data[indexPath.row]];
     [cell.contentView addSubview:titleLabel];
     
     
     CALayer *layerShadow=[[CALayer alloc]init];
-    if (indexPath.row == 1 && indexPath.row == 5 && indexPath.row == 6 && indexPath.row == 7) {
-        layerShadow.frame=CGRectMake(0, cell.frame.origin.y, SCREEN_WIDTH, 10);
-            layerShadow.borderColor=[RGB(237, 237, 237) CGColor];
-//        layerShadow.borderColor = [UIColor redColor].CGColor;
-        layerShadow.borderWidth=10;
+    layerShadow.backgroundColor = RGB(237, 237, 237).CGColor;
+    if (indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7) {
+        layerShadow.frame=CGRectMake(0,50 , SCREEN_WIDTH, 10);
     }else{
-    layerShadow.frame=CGRectMake(0, cell.frame.origin.y, SCREEN_WIDTH, 5);
-    layerShadow.borderColor=[RGB(237, 237, 237) CGColor];
-//    layerShadow.borderColor = [UIColor redColor].CGColor;
-    layerShadow.borderWidth=5;
+    layerShadow.frame=CGRectMake(0, 49, SCREEN_WIDTH,  1);
     }
     [cell.layer addSublayer:layerShadow];
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
-//    if(indexPath.row==0||indexPath.row==1||indexPath.row == 2){
-        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:cell.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(2, 2)];
-        cell.layer.shadowPath = path.CGPath;
-//    }else{
-//        cell.accessoryType=UITableViewCellAccessoryNone;
-//    }
+
+    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"downArrow"]];
+    imgView.frame = CGRectMake(SCREEN_WIDTH - 36, 20, 15, 15 * 7 / 11.f);
+    imgView.transform = CGAffineTransformMakeRotation(3 * M_PI_2);
+    [cell addSubview:imgView];
 
     return cell;
 }
@@ -164,6 +177,12 @@
         [MyUtil showCleanMessage:@"通知"];
     }else if(indexPath.row==3){
         detailViewController=[[LYAccountManager alloc] init];
+    }else if(indexPath.row == 4){
+        NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！"];
+        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+        [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+        [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     }else if(indexPath.row==6){
         detailViewController=[[AboutLieyu alloc] initWithNibName:@"AboutLieyu" bundle:nil];
     }else if (indexPath.row == 5){
@@ -182,6 +201,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row != 0) {
+        return;
+    }
+    if(self.tableView.contentSize.height + 40 >= SCREEN_HEIGHT){
     if(_logoutButton == nil){
     _logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, self.tableView.contentSize.height , SCREEN_WIDTH, 40)];
     _logoutButton.backgroundColor=[UIColor clearColor];
@@ -191,18 +214,31 @@
     [_logoutButton setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
     [_logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     
-    __weak __typeof(self) weakSelf = self;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [weakSelf.view addSubview:_logoutButton];
-        weakSelf.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height + 40);
-    });
+//    __weak __typeof(self) weakSelf = self;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+        [self.view addSubview:_logoutButton];
+        self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height + 40);
+//    });
+    }
+        
+    }else{
+        _logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 40 - 64 , SCREEN_WIDTH, 40)];
+        _logoutButton.backgroundColor=[UIColor clearColor];
+        
+        [_logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+        _logoutButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_logoutButton setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
+        [_logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+//        __weak __typeof(self) weakSelf = self;
+//        static dispatch_once_t onceToken;
+//        dispatch_once(&onceToken, ^{
+            [self.view addSubview:_logoutButton];
+//        });
     }
 }
 
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-   
-}
+
 
 - (void)dealloc{
     NSLog(@"dealloc");

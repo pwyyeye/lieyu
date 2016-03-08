@@ -26,7 +26,7 @@
 #define LYFriendsLikeDetailCellID @"LYFriendsLikeDetailTableViewCell"
 #define LYFriendsCommentDetailCellID @"LYFriendsCommentDetailTableViewCell"
 
-@interface LYFriendsMessageDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LYFriendsHeaderTableViewCellDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate,UIActionSheetDelegate>
+@interface LYFriendsMessageDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LYFriendsHeaderTableViewCellDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate,UIActionSheetDelegate,UIGestureRecognizerDelegate>
 {
     NSMutableArray *_dataArray;
     NSInteger _indexStart;
@@ -55,6 +55,15 @@
         //不是自己的动态详情
         [self configureRightButton];
     }
+    
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
+    screenGes.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:screenGes];
+}
+
+- (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
+    
 }
 
 - (void)configureRightButton{
