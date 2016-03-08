@@ -21,4 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *sexImageView;
 @property (retain, nonatomic)  CustomerModel *customerModel;
 @property (copy, nonatomic)  NSString *type;
+
+@property (nonatomic, strong) NSString *userID;
 @end

@@ -24,7 +24,10 @@
     _userHeader.layer.cornerRadius = CGRectGetHeight(_userHeader.frame) / 2;
     _userHeader.layer.masksToBounds = YES;
     _userNick.text = self.userModel.usernick;
-    NSString *string = [NSString stringWithFormat:@"%@%@?userid=%d",LY_SERVER,LY_GREETINGS_LIST,self.userModel.userid];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dataString = [formatter stringFromDate:[NSDate date]];
+    NSString *string = [NSString stringWithFormat:@"%@%@?userid=%d&CurrentTime=%@",LY_SERVER,LY_GREETINGS_LIST,self.userModel.userid,dataString];
     CGFloat qrcodeLength = 178;
     UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, qrcodeLength, qrcodeLength)];
     imageV.image = [self qrImageForString:string imageSize:qrcodeLength];

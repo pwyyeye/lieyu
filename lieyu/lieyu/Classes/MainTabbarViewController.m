@@ -42,6 +42,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToFirstView) name:@"jumpToFirstViewController" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToSecondView) name:@"jumpToSecondViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToforthPage) name:@"jumpToForthViewController" object:nil];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
     if([USER_DEFAULT objectForKey:@"badgeValue"]!=nil){
@@ -267,13 +268,17 @@
 -(void)layoutSublayersOfLayer:(CALayer *)layer{
     [super layoutSublayersOfLayer:layer];
 }
-
+//跳到猎
 - (void)jumpToFirstView{
     self.selectedIndex = 0;
 }
-
+//跳到娱
 - (void)jumpToSecondView{
     self.selectedIndex = 1;
+}
+//跳到发现
+- (void)jumpToforthPage{
+    self.selectedIndex = 3;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -289,6 +294,9 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:RECEIVES_MESSAGE object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:COMPLETE_MESSAGE object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"jumpToFirstViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"jumpToSecondViewController" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"jumpToForthViewController" object:nil];
 }
 
 @end

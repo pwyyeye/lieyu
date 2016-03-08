@@ -181,4 +181,9 @@
 //绑定手机后用openId登录
 + (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void(^)(UserModel *))compelte;
 
+//扫描述二维码加好友或订单验码
++ (void)userScanQRCodeWithPara:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete;
+
+//根据用户ID，获取好友详情
++ (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete;
 @end
