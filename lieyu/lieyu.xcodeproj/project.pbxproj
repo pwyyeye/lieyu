@@ -731,6 +731,13 @@
 		855397191C8D808900289D18 /* GamePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855397141C8D7F2F00289D18 /* GamePlayViewController.m */; };
 		8553971D1C8D894300289D18 /* MyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8553971B1C8D894300289D18 /* MyCodeViewController.m */; };
 		8553971E1C8D894300289D18 /* MyCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8553971C1C8D894300289D18 /* MyCodeViewController.xib */; };
+		8553972D1C8DA01C00289D18 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 8553971F1C8DA01C00289D18 /* bitstream.c */; };
+		8553972E1C8DA01C00289D18 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397211C8DA01C00289D18 /* mask.c */; };
+		8553972F1C8DA01C00289D18 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397231C8DA01C00289D18 /* qrencode.c */; };
+		855397301C8DA01C00289D18 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397251C8DA01C00289D18 /* qrinput.c */; };
+		855397311C8DA01C00289D18 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397271C8DA01C00289D18 /* qrspec.c */; };
+		855397321C8DA01C00289D18 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = 855397291C8DA01C00289D18 /* rscode.c */; };
+		855397331C8DA01C00289D18 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = 8553972B1C8DA01C00289D18 /* split.c */; };
 		85539EBA1C3DFE0B001031B6 /* ISEmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85539EB91C3DFE0B001031B6 /* ISEmojiView.m */; };
 		85539EBC1C3E06BA001031B6 /* ISEmojiList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */; };
 		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
@@ -2318,6 +2325,20 @@
 		8553971A1C8D894300289D18 /* MyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCodeViewController.h; sourceTree = "<group>"; };
 		8553971B1C8D894300289D18 /* MyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCodeViewController.m; sourceTree = "<group>"; };
 		8553971C1C8D894300289D18 /* MyCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCodeViewController.xib; sourceTree = "<group>"; };
+		8553971F1C8DA01C00289D18 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		855397201C8DA01C00289D18 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		855397211C8DA01C00289D18 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		855397221C8DA01C00289D18 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		855397231C8DA01C00289D18 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		855397241C8DA01C00289D18 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		855397251C8DA01C00289D18 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		855397261C8DA01C00289D18 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		855397271C8DA01C00289D18 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		855397281C8DA01C00289D18 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		855397291C8DA01C00289D18 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		8553972A1C8DA01C00289D18 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		8553972B1C8DA01C00289D18 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		8553972C1C8DA01C00289D18 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		85539EB81C3DFE0B001031B6 /* ISEmojiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISEmojiView.h; sourceTree = "<group>"; };
 		85539EB91C3DFE0B001031B6 /* ISEmojiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISEmojiView.m; sourceTree = "<group>"; };
 		85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ISEmojiList.plist; sourceTree = "<group>"; };
@@ -4466,6 +4487,20 @@
 		387781FB1C8D7B320047088B /* libqrencode */ = {
 			isa = PBXGroup;
 			children = (
+				8553971F1C8DA01C00289D18 /* bitstream.c */,
+				855397201C8DA01C00289D18 /* bitstream.h */,
+				855397211C8DA01C00289D18 /* mask.c */,
+				855397221C8DA01C00289D18 /* mask.h */,
+				855397231C8DA01C00289D18 /* qrencode.c */,
+				855397241C8DA01C00289D18 /* qrencode.h */,
+				855397251C8DA01C00289D18 /* qrinput.c */,
+				855397261C8DA01C00289D18 /* qrinput.h */,
+				855397271C8DA01C00289D18 /* qrspec.c */,
+				855397281C8DA01C00289D18 /* qrspec.h */,
+				855397291C8DA01C00289D18 /* rscode.c */,
+				8553972A1C8DA01C00289D18 /* rscode.h */,
+				8553972B1C8DA01C00289D18 /* split.c */,
+				8553972C1C8DA01C00289D18 /* split.h */,
 			);
 			path = libqrencode;
 			sourceTree = "<group>";
@@ -7878,6 +7913,7 @@
 				15A4CF4C1BD7689F00C22C01 /* DWOrderTopCell.m in Sources */,
 				A20100CA1BA9212A009283D1 /* ZSCustomerDetailViewController.m in Sources */,
 				8545385A1C2D3A8D0020AC2C /* LYFriendsHttpTool.m in Sources */,
+				855397331C8DA01C00289D18 /* split.c in Sources */,
 				A2020D891BA6A5AA0090B92A /* KaZuoCell.m in Sources */,
 				85EE80321C0AF09B00958F76 /* LYHeaderTableViewCell.m in Sources */,
 				386AE39E1C5B61B70062105F /* TAPageControl.m in Sources */,
@@ -8019,6 +8055,7 @@
 				1559DCFB1BD9E1AD00F3FE9B /* CHBarCell.m in Sources */,
 				ADE103B51BDF286A00D9EC38 /* Setting.m in Sources */,
 				8518066D1C2E28F500006804 /* FriendsLikeModel.m in Sources */,
+				8553972F1C8DA01C00289D18 /* qrencode.c in Sources */,
 				15013B001BBA33BF00061FAF /* UIImage+MultiFormat.m in Sources */,
 				85F625971C0C20C6002858C8 /* LYDinWeiTableViewCell.m in Sources */,
 				15E240671BB1243A0090D240 /* TypeChooseCell.m in Sources */,
@@ -8068,6 +8105,7 @@
 				38AA7CC51C315A0000D9BCE8 /* preview.m in Sources */,
 				AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */,
 				3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */,
+				855397301C8DA01C00289D18 /* qrinput.c in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				380659DD1C5639F4003094C9 /* ManagersView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
@@ -8103,9 +8141,11 @@
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
 				3879F2611C0D32EE00B72629 /* ContentTableViewCell.m in Sources */,
+				8553972D1C8DA01C00289D18 /* bitstream.c in Sources */,
 				85514E421C75619400E24C78 /* SignViewController.m in Sources */,
 				15EB35101BD1F67200BA6161 /* PTShowIntroductionsCell.m in Sources */,
 				855397191C8D808900289D18 /* GamePlayViewController.m in Sources */,
+				8553972E1C8DA01C00289D18 /* mask.c in Sources */,
 				D7A1D4211BC2690C00BCE47C /* LYToPlayRestfulBusiness.m in Sources */,
 				15E1848D1BB5220C00681BB2 /* LyZSuploadIdCardViewController.m in Sources */,
 				152247AC1BEB064600E68A2B /* IQNSArray+Sort.m in Sources */,
@@ -8187,6 +8227,7 @@
 				85EE803C1C0AF3FD00958F76 /* LYBarPointTableViewCell.m in Sources */,
 				ADE103C11BE0EAAA00D9EC38 /* EAIntroPage.m in Sources */,
 				A2020D501BA662140090B92A /* ZSMaintViewController.m in Sources */,
+				855397311C8DA01C00289D18 /* qrspec.c in Sources */,
 				15E1846E1BB4DCF100681BB2 /* MyZSManageViewController.m in Sources */,
 				AD8899BC1B9AFE61007BCC7C /* main.m in Sources */,
 				A2F9DA961BABDF66009DEAF3 /* OrderBottomForXFView.m in Sources */,
@@ -8252,6 +8293,7 @@
 				153F08B91BE87C0D00B7749E /* LYRecentContactViewController.m in Sources */,
 				A20100E51BA94404009283D1 /* WQDraggableCalendarView.m in Sources */,
 				8518067E1C2E796300006804 /* LYFriendsUserHeaderView.m in Sources */,
+				855397321C8DA01C00289D18 /* rscode.c in Sources */,
 				15A4CF5C1BD86CF800C22C01 /* ShaiXuanBtn.m in Sources */,
 				38E5D7051C1044F3004B49D2 /* ManagerInfoCell.m in Sources */,
 				15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */,

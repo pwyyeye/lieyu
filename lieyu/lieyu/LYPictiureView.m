@@ -68,6 +68,7 @@
              UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_WIDTH)];
             [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
+//            imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
             imageView.tag = i+1;
             [imageView addGestureRecognizer:doubleTap];
@@ -97,14 +98,14 @@
         CGRect rect = CGRectFromString(oldFrame[index]);
         imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
         
-        [UIView animateWithDuration:.5 animations:^{
+        [UIView animateWithDuration:5 animations:^{
             imgView.alpha = 1;
             imgView.bounds = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
             imgView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             self.backgroundColor = RGBA(255, 255, 255, 1);
         } completion:^(BOOL finished) {
             for (UIImageView *imgView_ce in _imageViewArray) {
-               // imgView_ce.contentMode = UIViewContentModeScaleAspectFit;
+//                imgView_ce.contentMode = UIViewContentModeScaleAspectFit;
                 imgView_ce.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             }
         }];
@@ -269,7 +270,10 @@
     }else{
         [UIView animateWithDuration:.5 animations:^{
             CGRect rect = CGRectFromString(_oldFrameArr[_index]);
-            imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
+//            imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
+            imgView.bounds = CGRectMake(0, 0, imgView.bounds.size.width * 1.5, imgView.bounds.size.height * 1.5);
+            imgView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT/2.f);
+            imgView.alpha = 0.f;
             self.backgroundColor = RGBA(255, 255, 255, 0);
         } completion:^(BOOL finished) {
             [self removeFromSuperview];

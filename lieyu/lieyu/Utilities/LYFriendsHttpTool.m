@@ -19,7 +19,7 @@
 
 //获取最新的玩友圈动态
 + (void)friendsGetRecentInfoWithParams:(NSDictionary *)params compelte:(void(^)(NSMutableArray *dataArray))compelte{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Recent baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
@@ -32,27 +32,25 @@
         }
         
         
-        [app stopLoading];
+//        [app stopLoading];
     } failure:^(NSError *err) {
         [MyUtil showMessage:@"请求失败"];
-        [app stopLoading];
+        compelte([NSMutableArray arrayWithCapacity:0]);
+//        [app stopLoading];
     }];
 }
 
 //获取指定用户的玩友圈动态
 + (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSLog(@"------>%@",params);
-//    [app startLoading];
+   
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_User baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
         NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[FriendsRecentModel mj_objectArrayWithKeyValuesArray:dictionary[@"moments"]]];
         FriendsUserInfoModel *userInfo = [FriendsUserInfoModel mj_objectWithKeyValues:dictionary];
         compelte(userInfo, array);
-        [app stopLoading];
     }failure:^(NSError *err) {
+        compelte(nil,nil);
         [MyUtil showMessage:@"请求失败"];
-        [app stopLoading];
     }];
 }
 
@@ -184,7 +182,7 @@
 //更改玩友圈背景图片
 + (void)friendsChangeBGImageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app startLoading];
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SAVE_USERINFO baseURL:LY_SERVER params:params success:^(id response) {
         [app stopLoading];
         NSLog(@"------->%@",response);

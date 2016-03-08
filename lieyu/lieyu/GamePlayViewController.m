@@ -19,10 +19,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    self.navigationController.navigationBarHidden = YES;
+    [_webView sizeToFit];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_gameLink]];
+    [_webView loadRequest:request];
+//    [_webView loadHTMLString:_gameLink baseURL:nil];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    
+    NSLog(@"---->%@",request.URL.absoluteString);
+    NSString *absoluteStr = request.URL.absoluteString;
+    NSArray *bigArray = [absoluteStr componentsSeparatedByString:@":"];
+    if (bigArray.count >= 2) {
+        NSString *smallUrlStr = bigArray[1];
+        NSArray *smallArray = [smallUrlStr componentsSeparatedByString:@"/"];
+        if (smallArray.count >= 3) {
+            NSString *goback = smallArray[2];
+            if ([goback isEqualToString:@"goback"]) {
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+        }
+    }
     return YES;
     
 }

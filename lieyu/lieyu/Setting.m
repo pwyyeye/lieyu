@@ -15,6 +15,7 @@
 #import "LYAccountManager.h"
 #import "MyZSManageViewController.h"
 #import "LYZSApplicationViewController.h"
+#import "UMSocial.h"
 
 @interface Setting (){
     UIButton *_logoutButton;
@@ -32,8 +33,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱",@"收货地址"];
-    
+//    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱",@"收货地址"];
+    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱"];
     
     self.title=@"个人设置";
     
@@ -176,6 +177,12 @@
         [MyUtil showCleanMessage:@"通知"];
     }else if(indexPath.row==3){
         detailViewController=[[LYAccountManager alloc] init];
+    }else if(indexPath.row == 4){
+        NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！"];
+        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+        [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+        [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     }else if(indexPath.row==6){
         detailViewController=[[AboutLieyu alloc] initWithNibName:@"AboutLieyu" bundle:nil];
     }else if (indexPath.row == 5){
@@ -194,6 +201,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row != 0) {
+        return;
+    }
     if(self.tableView.contentSize.height + 40 >= SCREEN_HEIGHT){
     if(_logoutButton == nil){
     _logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, self.tableView.contentSize.height , SCREEN_WIDTH, 40)];
@@ -204,12 +214,12 @@
     [_logoutButton setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
     [_logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     
-    __weak __typeof(self) weakSelf = self;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [weakSelf.view addSubview:_logoutButton];
-        weakSelf.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height + 40);
-    });
+//    __weak __typeof(self) weakSelf = self;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+        [self.view addSubview:_logoutButton];
+        self.tableView.contentSize = CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height + 40);
+//    });
     }
         
     }else{
@@ -220,11 +230,11 @@
         _logoutButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_logoutButton setTitleColor:RGB(128, 128, 128) forState:UIControlStateNormal];
         [_logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-        __weak __typeof(self) weakSelf = self;
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [weakSelf.view addSubview:_logoutButton];
-        });
+//        __weak __typeof(self) weakSelf = self;
+//        static dispatch_once_t onceToken;
+//        dispatch_once(&onceToken, ^{
+            [self.view addSubview:_logoutButton];
+//        });
     }
 }
 

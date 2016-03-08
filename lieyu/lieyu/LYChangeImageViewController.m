@@ -84,13 +84,15 @@
 //                [self.navigationController popToViewController:vc animated:YES];
 //            }
 //        }
+        [weakSelf.navigationController popViewControllerAnimated:YES];
         [HTTPController uploadImageToQiuNiu:image withDegree:0.5 complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [app startLoading];
             NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
             NSDictionary *paraDic = @{@"userId":userIdStr,@"friends_img":key};
             [LYFriendsHttpTool friendsChangeBGImageWithParams:paraDic compelte:^(bool result) {
                 if (result) {
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
+//                    [weakSelf.navigationController popViewControllerAnimated:YES];
                     _passImage(key,image);
                 }
             }];
