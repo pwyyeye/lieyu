@@ -12,9 +12,11 @@
 #import "UIImageView+WebCache.h"
 #import "LYUserHttpTool.h"
 #import "preview.h"
+#import "UserModel.h"
 @interface LYMyFriendDetailViewController ()
 {
     preview *_subView;
+    NSDictionary *_result;
 }
 @end
 
@@ -39,63 +41,66 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"个人信息";
     self.userImageView.layer.masksToBounds =YES;
-    
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
-    if(_customerModel.tag.count>0){
-        NSMutableString *mytags=[[NSMutableString alloc] init];
-        for (int i=0; i<_customerModel.tag.count; i++) {
-            if (i==_customerModel.tag.count-1) {
-                [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
-            }else{
-                [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
-                [mytags appendString:@","];
+    if (_customerModel) {
+        if(_customerModel.tag.count>0){
+            NSMutableString *mytags=[[NSMutableString alloc] init];
+            for (int i=0; i<_customerModel.tag.count; i++) {
+                if (i==_customerModel.tag.count-1) {
+                    [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
+                }else{
+                    [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
+                    [mytags appendString:@","];
+                }
             }
+            _zhiwuLal.text=mytags;
         }
-        _zhiwuLal.text=mytags;
-    }
-    if(_customerModel.tag.count==0 && _customerModel.userTag.count>0){
-         NSMutableString *mytags=[[NSMutableString alloc] init];
-        for (int i=0; i<_customerModel.userTag.count; i++) {
-            if (i==_customerModel.userTag.count-1) {
-                [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
-            }else{
-                [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
-                [mytags appendString:@","];
+        if(_customerModel.tag.count==0 && _customerModel.userTag.count>0){
+            NSMutableString *mytags=[[NSMutableString alloc] init];
+            for (int i=0; i<_customerModel.userTag.count; i++) {
+                if (i==_customerModel.userTag.count-1) {
+                    [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
+                }else{
+                    [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
+                    [mytags appendString:@","];
+                }
             }
+            _zhiwuLal.text=mytags;
         }
-        _zhiwuLal.text=mytags;
-    }
-    if(_customerModel.tag.count==0 && _customerModel.tags.count>0){
-        NSMutableString *mytags=[[NSMutableString alloc] init];
-        for (int i=0; i<_customerModel.tags.count; i++) {
-            if (i==_customerModel.tags.count-1) {
-                [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
-            }else{
-                [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
-                [mytags appendString:@","];
+        if(_customerModel.tag.count==0 && _customerModel.tags.count>0){
+            NSMutableString *mytags=[[NSMutableString alloc] init];
+            for (int i=0; i<_customerModel.tags.count; i++) {
+                if (i==_customerModel.tags.count-1) {
+                    [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
+                }else{
+                    [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
+                    [mytags appendString:@","];
+                }
             }
+            _zhiwuLal.text=mytags;
         }
-        _zhiwuLal.text=mytags;
-    }
-    
-    if (![MyUtil isEmptyString:_customerModel.age]) {
-        _age.text=_customerModel.age;
-    }
-    
-    if (![MyUtil isEmptyString:_customerModel.birthday]) {
-        _xingzuo.text=[MyUtil getAstroWithBirthday:_customerModel.birthday];
-        _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
-    }
-    
-    self.namelal.text=_customerModel.usernick;
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
-    [self getData];
-    [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
-    if (_customerModel.sex.integerValue==0) {
-        self.sexImageView.image=[UIImage imageNamed:@"woman"];
+        
+        if (![MyUtil isEmptyString:_customerModel.age]) {
+            _age.text=_customerModel.age;
+        }
+        
+        if (![MyUtil isEmptyString:_customerModel.birthday]) {
+            _xingzuo.text=[MyUtil getAstroWithBirthday:_customerModel.birthday];
+            _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
+        }
+        
+        self.namelal.text=_customerModel.friendName?_customerModel.friendName : (_customerModel.usernick ?_customerModel.usernick : _customerModel.username);
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
+        [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
+        if (_customerModel.sex.integerValue==0) {
+            self.sexImageView.image=[UIImage imageNamed:@"woman"];
+        }else{
+            self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+        }
     }else{
-        self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+        [self getData];
     }
+    
 }
 
 //- (void)viewWillAppear:(BOOL)animated{
@@ -109,17 +114,20 @@
     _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
     _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _subView.button.hidden = YES;
-    NSArray *array = [_customerModel.icon componentsSeparatedByString:@"?"];
-    NSLog(@"%@",_customerModel);
+    NSArray *array ;
+    if (_customerModel) {
+        array = [_customerModel.icon componentsSeparatedByString:@"?"];
+        
+//        NSLog(@"%@",_customerModel);
+    }else{
+        array = [_result[@"avatar_img"] componentsSeparatedByString:@"?"];
+    }
     NSLog(@"%@",array);
     if(array == nil){
         _subView.image = self.userImageView.image;
     }else{
         _subView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[array objectAtIndex:0]]]];
     }
-//    _subView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:array == nil ? self.userImageView.image : [array objectAtIndex:0]]]];
-//    [_subView.imageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
-    //    _subView.image = [self.collectionData objectAtIndex:indexPath.item];
     [_subView viewConfigure];
     _subView.imageView.center = _subView.center;
     UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideSubView:)];
@@ -135,65 +143,38 @@
 }
 
 -(void)getData{
-    if (self.userModel==nil) {
-        return;
-    }
-    NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
-    __weak __typeof(self) weakSelf = self;
-    [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
-        
-        NSString *typeStr = nil;
-        for(CustomerModel *csm in result){
-            int i=csm.userid?csm.userid:csm.friend;
-            int j=_customerModel.userid?_customerModel.userid:_customerModel.friend;
-            if (i == j) {
-                typeStr = @"0";
-                break;
-            }else{
-                typeStr = @"4";
-                continue;
-            }
-        }
-        weakSelf.type = [NSString stringWithFormat:@"%@",typeStr];
-        if([_type isEqualToString:@"0"]){
-            weakSelf.namelal.text=_customerModel.friendName == nil ? _customerModel.name?_customerModel.name:_customerModel.usernick  : _customerModel.friendName;
-            
-            if (_customerModel.sex.integerValue==0) {
-                weakSelf.sexImageView.image=[UIImage imageNamed:@"woman"];
-            }else{
-                weakSelf.sexImageView.image=[UIImage imageNamed:@"manIcon"];
-            }
-            if (_customerModel.tag.count>0) {
-                //            _zhiwuLal.text=_customerModel.tag.firstObject;
-            }
-            
-        }else if([_type isEqualToString:@"4"]){
-            if([MyUtil isEmptyString:weakSelf.namelal.text]){
-                weakSelf.namelal.text=_customerModel.friendName == nil ? _customerModel.name?_customerModel.name:_customerModel.usernick : _customerModel.friendName;
-            }
-            
-            [_setBtn setTitle:@"打招呼" forState:0];
-            [weakSelf.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img?_customerModel.avatar_img:_customerModel.mark]];
-            if([_customerModel.sex isEqualToString:@"1"]){
-                _sexImageView.image=[UIImage imageNamed:@"manIcon"];
-            }
+    NSDictionary *dict = @{@"userid":self.userID};
+    [LYUserHttpTool GetUserInfomationWithID:dict complete:^(NSDictionary *result) {
+        _result = result;
+        _namelal.text = [result valueForKey:@""];
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:result[@"avatar_img"]]];
+        [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
+        if ([[result valueForKey:@"gender"]integerValue]==0) {
+            self.sexImageView.image=[UIImage imageNamed:@"woman"];
         }else{
-            [_setBtn setTitle:@"打招呼" forState:0];
-            if (_customerModel.distance) {
-                weakSelf.delLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
-                if (_customerModel.distance.doubleValue>1000) {
-                    weakSelf.delLal.text=[NSString stringWithFormat:@"%.2f千米",_customerModel.distance.doubleValue/1000];
+            self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+        }
+        _delLal.text = ((NSString *)[result valueForKey:@"introduction"]).length?[result valueForKey:@"introduction"]:@"相约随时";
+        NSArray *tagsArrayy = [result valueForKey:@"tags"];
+        if(tagsArrayy.count > 0){
+            NSMutableString *mytags=[[NSMutableString alloc] init];
+            for (int i=0; i<tagsArrayy.count; i++) {
+                if (i==tagsArrayy.count-1) {
+                    [mytags appendString:[tagsArrayy[i] objectForKey:@"tagName"]?[tagsArrayy[i] objectForKey:@"tagName"]:[tagsArrayy[i] objectForKey:@"tagname"]];
+                }else{
+                    [mytags appendString:[tagsArrayy[i] objectForKey:@"tagName"]?[tagsArrayy[i] objectForKey:@"tagName"]:[tagsArrayy[i] objectForKey:@"tagname"]];
+                    [mytags appendString:@","];
                 }
             }
-
-            if([_customerModel.sex isEqualToString:@"1"]){
-                _sexImageView.image=[UIImage imageNamed:@"manIcon"];
-            }
-            
-            [weakSelf.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img]];
+            _zhiwuLal.text=mytags;
+        }
+        _age.text = [result valueForKey:@"age"];
+        if (![MyUtil isEmptyString:[result valueForKey:@"birthday"]]) {
+            _xingzuo.text=[MyUtil getAstroWithBirthday:[result valueForKey:@"birthday"]];
         }
     }];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -224,9 +205,16 @@
         
         RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-        conversationVC.targetId = _customerModel.imUserId; // 接收者的 targetId，这里为举例。
-        conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 接受者的 username，这里为举例。
-        conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
+        if (_customerModel) {
+            conversationVC.targetId = _customerModel.imUserId; // 接收者的 targetId，这里为举例。
+            conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 接受者的 username，这里为举例。
+            conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
+        }else{
+            conversationVC.targetId = _result[@"userid"];
+            conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
+            conversationVC.title = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
+        }
+        
         [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
         [IQKeyboardManager sharedManager].enable = NO;
         [IQKeyboardManager sharedManager].isAdd = YES;

@@ -93,4 +93,10 @@
 //openId登录
 #define LY_OPENID_LOGIN @"accountAction.do?action=login"
 
+//扫描述二维码加好友或订单验码
+#define LY_QRCODE_SCAN @"tasklyQRCodeAction.do?action=custom"
+
+//根据用户ID，获取好友详情
+#define LY_GET_USERINFO @"tasklyQRCodeAction.do?action=expand"
+
 #endif

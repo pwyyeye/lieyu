@@ -1244,5 +1244,40 @@
     }];
 }
 
+#pragma mark - 扫描述二维码加好友或订单验码
++ (void)userScanQRCodeWithPara:(NSDictionary *)paraDic complete:(void (^)(NSDictionary *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QRCODE_SCAN baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *errorCode = [response valueForKey:@"erroecode"];
+//        NSString *message = [response valueForKey:@"message"];
+//        NSArray *arrayData = [response valueForKey:@"data"];
+        if ([errorCode isEqualToString:@"0"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(response);
+            });
+        }else{
+            [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
+        }
+    } failure:^(NSError *err) {
+        NSLog(@"------>%@",err.description);
+    }];
+}
+
+#pragma mark - 根据用户ID，获取好友详情
++ (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SERVER baseURL:LY_GET_USERINFO params:paraDic success:^(id response) {
+        NSString *errorCode = [response valueForKey:@"errorcode"];
+        NSString *message = [response valueForKey:@"message"];
+        NSDictionary *result = [response valueForKey:@"data"];
+        if([errorCode isEqualToString:@"0"]){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(result);
+            });
+        }else{
+            [MyUtil showLikePlaceMessage:message];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
 
 @end

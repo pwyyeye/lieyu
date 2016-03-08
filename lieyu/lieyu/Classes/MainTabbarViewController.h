@@ -15,4 +15,5 @@
 
 @property(assign,nonatomic) NSInteger lastSelectIndex;
 
+- (void)jumpToforthPage;
 @end
