@@ -11,5 +11,6 @@
 @interface FindGameCenterCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *label_title;
-
+@property (nonatomic,strong) UIView *lineView_right;
+@property (nonatomic,strong) UIView *lineView_bottom;
 @end

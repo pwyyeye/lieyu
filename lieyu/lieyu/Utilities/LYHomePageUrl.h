@@ -66,4 +66,7 @@
 #define LY_SIGN @"userSignAction.do?action=list"
 //签到
 #define LY_GOTOSIGN @"userSignAction.do?action=add"
+
+//获取游戏列表
+#define LY_GAMELIST @"gameAction.do?action=custom"
 #endif

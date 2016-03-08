@@ -119,6 +119,31 @@
     //[_tableView addObserver:self forKeyPath:@"contentOffset" options:nske context:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAndLoadData) name:@"loginAndLoadData" object:nil];
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
+    if(self.navigationController.navigationBarHidden == YES){
+        self.navigationController.navigationBarHidden = NO;
+    }
+        [self setupNavMenuView];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    
+    //    NSArray *array = _dataArray[0];
+    //    if(array.count){
+    //        [self getDataFriendsWithSetContentOffSet:NO];
+    //    }
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [self removeNavMenuView];
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
+}
+
 /*
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if (change[@"new"]) {
@@ -180,7 +205,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel)  _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
 //    else return;
-    [self getDataFriendsWithSetContentOffSet:NO];
+    [self getDataFriendsWithSetContentOffSet:NO needLoading:YES];
     
     [self getRecentMessage];
     
@@ -196,11 +221,35 @@
 }
 
 - (void)friendsClickSel{
-    [self friendsClick:_friendsBtn];
+//    [self friendsClick:_friendsBtn];
+    _friendsBtnSelect = YES;
+    if(((NSArray *)_dataArray[0]).count == 0) [self getDataFriendsWithSetContentOffSet:YES needLoading:YES];
+    else [self getDataFromRAM:0];
+    _friendsBtn.isFriendsMenuViewSelected = YES;
+    _myBtn.isFriendsMenuViewSelected = NO;
+    [UIView animateWithDuration:0.5 animations:^{
+        _lineView.center = CGPointMake(_friendsBtn.center.x, _lineView.center.y);
+    }];
 }
 
 - (void)myClickSel{
-    [self myClick:_myBtn];
+//    [self myClick:_myBtn];
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
+        return;
+    }
+    //    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
+    //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
+    _friendsBtnSelect = NO;
+    _friendsBtn.isFriendsMenuViewSelected = NO;
+    _myBtn.isFriendsMenuViewSelected = YES;
+    if(((NSArray *)_dataArray[1]).count == 0) [self getDataMysWithSetContentOffSet:YES needLoading:YES];
+    else [self getDataFromRAM:1];
+    [UIView animateWithDuration:0.5 animations:^{
+        _lineView.center = CGPointMake(_myBtn.center.x, _lineView.center.y);
+    }];
+
 }
 
 - (void)getRecentMessage{
@@ -223,7 +272,7 @@
     else return;
     if(_dataArray.count == 2) [_dataArray[1] removeAllObjects];
     _friendsBtnSelect = YES;
-    [self getDataFriendsWithSetContentOffSet:NO];
+    [self getDataFriendsWithSetContentOffSet:NO needLoading:YES];
     self.navigationController.navigationBarHidden = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loginAndLoadData" object:nil];
 }
@@ -366,14 +415,14 @@
             case 0:
             {
                 _pageStartCountFriends = 0;
-                [self getDataFriendsWithSetContentOffSet:NO];
+                [self getDataFriendsWithSetContentOffSet:NO needLoading:NO];
             }
                 break;
                 
             default:
             {
                 _pageStartCountMys = 0;
-                [self getDataMysWithSetContentOffSet:NO];
+                [self getDataMysWithSetContentOffSet:NO needLoading:NO];
             }
                 break;
         }
@@ -387,14 +436,14 @@
             case 0:
             {
                 _isFriendsPageUpLoad = YES;
-                [self getDataFriendsWithSetContentOffSet:NO];
+                [self getDataFriendsWithSetContentOffSet:NO needLoading:NO];
             }
                 break;
                 
             default:
             {
                _isMysPageUpLoad = YES;
-                [self getDataMysWithSetContentOffSet:NO];
+                [self getDataMysWithSetContentOffSet:NO needLoading:NO];
             }
                 break;
         }
@@ -516,30 +565,7 @@
     _contentOffSetY = scrollView.contentOffset.y;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAndLoadData) name:@"loginAndLoadData" object:nil];
-    [IQKeyboardManager sharedManager].enable = NO;
-    [IQKeyboardManager sharedManager].isAdd = YES;
-    if(self.navigationController.navigationBarHidden == YES){
-        self.navigationController.navigationBarHidden = NO;
-    }
-    [self setupNavMenuView];
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    
-//    NSArray *array = _dataArray[0];
-//    if(array.count){
-//        [self getDataFriendsWithSetContentOffSet:NO];
-//    }
-    
-}
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [self removeNavMenuView];
-    [IQKeyboardManager sharedManager].enable = YES;
-    [IQKeyboardManager sharedManager].isAdd = NO;
-}
 
 #pragma mark - 移除导航栏的按钮
 - (void)removeNavMenuView{
@@ -557,14 +583,14 @@
 }
 
 #pragma mark - 获取最新玩友圈数据
-- (void)getDataFriendsWithSetContentOffSet:(BOOL)need{
+- (void)getDataFriendsWithSetContentOffSet:(BOOL)need needLoading:(BOOL)isLoad{
        __weak __typeof(self) weakSelf = self;
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountFriends * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"start":startStr,@"limit":pageCountStr};
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(isLoad) [app startLoading];
     [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
-        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [app stopLoading];
         _index = 0;
         if(dataArray.count){
                 if(_pageStartCountFriends == 0){
@@ -584,11 +610,12 @@
             _isFriendsPageUpLoad = NO;
         }
         [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:NO];
+        [app stopLoading];
     }];
 }
 
 #pragma mark - 获取最新我的数据
-- (void)getDataMysWithSetContentOffSet:(BOOL)need{
+- (void)getDataMysWithSetContentOffSet:(BOOL)need needLoading:(BOOL)isLoad{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
@@ -600,6 +627,7 @@
     NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCountMys * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
+    if(isLoad) [app startLoading];
     __weak __typeof(self) weakSelf = self;
     [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
         _userBgImageUrl = userInfo.friends_img;
@@ -622,6 +650,7 @@
             _isMysPageUpLoad = NO;
         }
         [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
+        [app stopLoading];
     }];
 }
 
@@ -629,7 +658,10 @@
 - (void)reloadTableViewAndSetUpPropertyneedSetContentOffset:(BOOL)need{
     __weak __typeof(self) weakSelf = self;
     [UIView transitionWithView:_tableView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        
+    
+//    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, ((NSArray *)_dataArray[_index]).count ) ];
+//   
+//        [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
         [weakSelf.tableView reloadData];
     } completion:nil];
     // if(need)  [self.tableView setContentOffset:CGPointZero animated:YES];
@@ -639,8 +671,7 @@
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
         if(_isMysPageUpLoad) [self.tableView setContentOffset:CGPointMake(0,0) animated:NO];
         [self addTableViewHeader];
-    }
-    else{
+    }else{
         self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
         if(_isFriendsPageUpLoad)  [self.tableView setContentOffset:CGPointMake(0, -64) animated:NO];
         [self removeTableViewHeader];
@@ -664,8 +695,8 @@
 //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
     _friendsBtnSelect = YES;
     _pageStartCountFriends = 0;
-    if(((NSArray *)_dataArray[0]).count == 0) [self getDataFriendsWithSetContentOffSet:YES];
-    else [self getDataFromRAM:0];
+    /*if(((NSArray *)_dataArray[0]).count == 0)*/ [self getDataFriendsWithSetContentOffSet:YES needLoading:YES];
+//    else [self getDataFromRAM:0];
     _friendsBtn.isFriendsMenuViewSelected = YES;
     _myBtn.isFriendsMenuViewSelected = NO;
     [UIView animateWithDuration:0.5 animations:^{
@@ -688,6 +719,16 @@
 //                break;
 //        }
 //    }
+    switch (_index) {
+        case 0:
+            _isFriendsPageUpLoad = YES;
+            break;
+            
+        default:
+            _isMysPageUpLoad = YES;
+            break;
+    }
+        [self.tableView.mj_footer resetNoMoreData];
     [self reloadTableViewAndSetUpPropertyneedSetContentOffset:NO];
 }
 
@@ -704,8 +745,8 @@
     _pageStartCountMys = 0;
     _friendsBtn.isFriendsMenuViewSelected = NO;
     _myBtn.isFriendsMenuViewSelected = YES;
-    if(((NSArray *)_dataArray[1]).count == 0) [self getDataMysWithSetContentOffSet:YES];
-    else [self getDataFromRAM:1];
+/*    if(((NSArray *)_dataArray[1]).count == 0)*/ [self getDataMysWithSetContentOffSet:YES needLoading:YES];
+//    else [self getDataFromRAM:1];
     [UIView animateWithDuration:0.5 animations:^{
         _lineView.center = CGPointMake(myBtn.center.x, _lineView.center.y);
     }];
@@ -823,6 +864,7 @@
     ImagePickerViewController *imagePicker = [[ImagePickerViewController alloc]init];
     imagePicker.imagesCount = self.pagesCount;
     imagePicker.delegate = self;
+    imagePicker.title = @"相册";
     [self.navigationController pushViewController:imagePicker animated:YES];
     
 //    YBImgPickerViewController *ybImagePicker = [[YBImgPickerViewController alloc]init];
@@ -1301,7 +1343,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             [LYFriendsHttpTool friendsPingBiUserWithParams:dict complete:^(NSString *message) {
                 [MyUtil showLikePlaceMessage:message];
                         _pageStartCountFriends = 0;
-                [weakSelf getDataFriendsWithSetContentOffSet:NO];
+                [weakSelf getDataFriendsWithSetContentOffSet:NO needLoading:YES];
             }];
         }else if (buttonIndex == 1){
             [self jubaoDT];

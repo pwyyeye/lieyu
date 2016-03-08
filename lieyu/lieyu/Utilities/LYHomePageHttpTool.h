@@ -101,4 +101,7 @@
 + (void)getSignListWidth:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete;
 //签到
 + (void)signWith:(NSDictionary *)paraDic complete:(void(^)(bool))complete;
+
+//获取游戏列表
++ (void)getGameFromWith:(NSDictionary *)paraDic complete:(void(^)(NSArray *))complete;
 @end
