@@ -13,6 +13,7 @@
 #import "LYUserHttpTool.h"
 #import "preview.h"
 #import "UserModel.h"
+#import "SaoYiSaoViewController.h"
 @interface LYMyFriendDetailViewController ()
 {
     preview *_subView;
@@ -89,8 +90,8 @@
             _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
         }
         
-        self.namelal.text=_customerModel.friendName?_customerModel.friendName : (_customerModel.usernick ?_customerModel.usernick : _customerModel.username);
-        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img == nil ? _customerModel.icon : _customerModel.avatar_img]];
+        self.namelal.text=_customerModel.friendName?_customerModel.friendName : (_customerModel.usernick ?_customerModel.usernick : (_customerModel.username?_customerModel.username:_customerModel.name));
+        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img ? _customerModel.avatar_img : (_customerModel.icon ? _customerModel.icon : _customerModel.mark)]];
         [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
         if (_customerModel.sex.integerValue==0) {
             self.sexImageView.image=[UIImage imageNamed:@"woman"];
@@ -103,10 +104,15 @@
     
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    self.navigationController.navigationBar.hidden = NO;
-//}
+-(void)BaseGoBack{
+    for (UIViewController *VC in self.navigationController.viewControllers) {
+        if ([VC isKindOfClass:[SaoYiSaoViewController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)checkFriendAvatar{
     self.navigationController.navigationBarHidden = YES;
@@ -146,7 +152,7 @@
     NSDictionary *dict = @{@"userid":self.userID};
     [LYUserHttpTool GetUserInfomationWithID:dict complete:^(NSDictionary *result) {
         _result = result;
-        _namelal.text = [result valueForKey:@""];
+        _namelal.text = [result valueForKey:@"usernick"]?[result valueForKey:@"usernick"] : [result valueForKey:@"username"];
         [self.userImageView sd_setImageWithURL:[NSURL URLWithString:result[@"avatar_img"]]];
         [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
         if ([[result valueForKey:@"gender"]integerValue]==0) {
@@ -170,7 +176,8 @@
         }
         _age.text = [result valueForKey:@"age"];
         if (![MyUtil isEmptyString:[result valueForKey:@"birthday"]]) {
-            _xingzuo.text=[MyUtil getAstroWithBirthday:[result valueForKey:@"birthday"]];
+            NSString *birth = [[result valueForKey:@"birthday"] substringToIndex:10];
+            _xingzuo.text=[MyUtil getAstroWithBirthday:birth];
         }
     }];
 }
@@ -195,7 +202,7 @@
         [MyUtil showCleanMessage:@"请先登录"];
         return;
     }
-    if(![_type isEqualToString:@"0"]){
+    if(![_type isEqualToString:@"0"] && _type){
         LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
         addFriendViewController.title=@"加好友";
         addFriendViewController.customerModel=_customerModel;
@@ -210,7 +217,7 @@
             conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 接受者的 username，这里为举例。
             conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
         }else{
-            conversationVC.targetId = _result[@"userid"];
+            conversationVC.targetId = [NSString stringWithFormat:@"%@",[_result valueForKey:@"userid"]];
             conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
             conversationVC.title = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
         }

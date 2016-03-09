@@ -20,6 +20,8 @@
         btn.hidden = YES;
         btn.layer.cornerRadius = btnWidth/2.f;
         btn.layer.masksToBounds = YES;
+        btn.layer.borderColor = RGBA(243, 243, 243, 1).CGColor;
+        btn.layer.borderWidth = 0.5;
     }
     UIButton *lastBtn = [_btnArray lastObject];
     _moreBtn = [[UIButton alloc]initWithFrame:CGRectMake(lastBtn.frame.origin.x, lastBtn.frame.origin.y, btnWidth, btnWidth)];
@@ -46,7 +48,12 @@
         UIButton *btn = _btnArray[i];
         CustomerModel *customerM = iconArray[i];
         btn.hidden = NO;
-        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:customerM.userInfo.avatar_img] forState:UIControlStateNormal];
+        if ([customerM.userInfo.avatar_img isEqualToString:@""]) {
+            [btn setBackgroundImage:[UIImage imageNamed:@"CommonIcon"] forState:UIControlStateNormal];
+        }else{
+            [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:customerM.userInfo.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
+            
+        }
     }
 }
 

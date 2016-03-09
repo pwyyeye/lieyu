@@ -8,6 +8,7 @@
 
 #import "FindNotificationDetailViewController.h"
 #import "FindNotificatinDetailTableViewCell.h"
+#import "LYFindHttpTool.h"
 
 @interface FindNotificationDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -19,7 +20,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.title = @"消息通知"; 
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"FindNotificatinDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"FindNotificatinDetailTableViewCell"];
+    
+    [self getData];
+}
+
+- (void)getData{
+//    NSDictionary *dic = @{};
+//    [LYFindHttpTool getNotificationMessageListWithParams:dic compelte:^(NSArray *dataArray) {
+    
+//    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

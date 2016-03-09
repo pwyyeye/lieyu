@@ -31,6 +31,7 @@
 #import "ISEmojiView.h"
 #import "LYFriendsVideoTableViewCell.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "LYUserHttpTool.h"
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsAddressCellID @"LYFriendsAddressTableViewCell"
@@ -60,6 +61,7 @@
     
     NSString *juBaoMomentID;//要举报的动态ID
     NSString *pingBiUserID;//要屏蔽的用户ID
+    LYMyFriendDetailViewController *_friendDetailVC ;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -245,7 +247,7 @@
 }
 
 - (void)headerImgClick:(UIButton *)button{
-    CustomerModel *customerM = [[CustomerModel alloc]init];
+     CustomerModel *customerM = [[CustomerModel alloc]init];
     customerM.avatar_img = _userInfo.avatar_img;
     customerM.icon = _userInfo.avatar_img;
     customerM.sex = [_userInfo.gender isEqualToString:@"0"] ? @"0" : @"1";
@@ -261,12 +263,21 @@
     customerM.tag=_userInfo.tags;
     
     __weak __typeof(self)weakSelf = self;
-    LYMyFriendDetailViewController *friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
-    friendDetailVC.customerModel = customerM;
-    [weakSelf.navigationController pushViewController:friendDetailVC animated:YES];
-
-
-    
+    _friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
+    _friendDetailVC.customerModel = customerM;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",app.userModel.userid]};
+    [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
+        for (CustomerModel *cusM in result) {
+            if (_userInfo.userId.intValue == cusM.friend) {
+                _friendDetailVC.type = @"0";
+            }else{
+                _friendDetailVC.type = @"4";
+            }
+        }
+        [weakSelf.navigationController pushViewController:_friendDetailVC animated:YES];
+    }];
+   
 }
 
 #pragma mark - 表白action

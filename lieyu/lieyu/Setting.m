@@ -145,9 +145,8 @@
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
 
-    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"downArrow"]];
-    imgView.frame = CGRectMake(SCREEN_WIDTH - 36, 20, 15, 15 * 7 / 11.f);
-    imgView.transform = CGAffineTransformMakeRotation(3 * M_PI_2);
+    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrowRight"]];
+    imgView.frame = CGRectMake(SCREEN_WIDTH - 26, 17, 8, 15 );
     [cell addSubview:imgView];
 
     return cell;

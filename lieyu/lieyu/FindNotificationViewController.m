@@ -10,9 +10,11 @@
 #import "FindNotificationTableViewCell.h"
 #import "FindNotificationDetailViewController.h"
 #import "MyMessageListViewController.h"
+#import "LYFindHttpTool.h"
+#import "FindNewMessage.h"
 
 @interface FindNotificationViewController ()<UITableViewDataSource,UITableViewDelegate>{
-    NSArray *_titleArray,*_titleImageArray;
+    NSArray *_titleArray,*_titleImageArray,*_dataArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -23,11 +25,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationController.title = @"消息通知";
+    self.navigationItem.title = @"消息通知";
     _titleArray = @[@"表白",@"评论",@"打招呼",@"系统通知"];
     _titleImageArray = @[@"表白",@"评论",@"打招呼",@"打招呼"];
-    _tableView.separatorColor = UITableViewCellSeparatorStyleNone;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"FindNotificationTableViewCell" bundle:nil] forCellReuseIdentifier:@"FindNotificationTableViewCell"];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    __weak __typeof(self) weakSelf = self;
+    [LYFindHttpTool getNotificationMessageWithParams:nil compelte:^(NSArray *dataArray) {
+        _dataArray = dataArray;
+        [weakSelf.tableView reloadData];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -36,9 +47,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FindNotificationTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"FindNotificationTableViewCell" forIndexPath:indexPath];
-    cell.label_title.text = _titleArray[indexPath.row];
+//    cell.label_title.text = _titleArray[indexPath.row];
     cell.imgView.image = [UIImage imageNamed:_titleImageArray[indexPath.row]];
-    
+    if (_dataArray.count) {
+        FindNewMessage *findNewM = _dataArray[indexPath.row];
+        cell.label_badge.text = findNewM.count;
+        cell.label_badge.hidden = NO;
+        cell.imageView.hidden = YES;
+    }else{
+        cell.label_badge.hidden = YES;
+        cell.imageView.hidden = NO;
+    }
     return cell;
 }
 

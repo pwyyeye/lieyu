@@ -14,17 +14,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7qW-vB-xpE">
-                        <rect key="frame" x="0.0" y="3" width="320" height="110"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qW-vB-xpE">
+                        <rect key="frame" x="0.0" y="3" width="320" height="69"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pSZ-eJ-Bmn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CommonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pSZ-eJ-Bmn">
                                 <rect key="frame" x="8" y="8" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="LXS-nd-fFa"/>
                                     <constraint firstAttribute="width" constant="46" id="jbE-aq-EVC"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="阿斯顿发送地方撒地方撒地方撒地方都是反攻倒算反攻倒算发噶地方撒地方 阿斯顿发送地方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPP-Do-C4U">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="阿斯顿发送地方撒地方撒地方撒地方都是反攻倒算反攻倒算发噶地方撒地方 阿斯顿发送地方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPP-Do-C4U">
                                 <rect key="frame" x="63" y="37" width="249" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="NIl-G6-Q84"/>
@@ -60,7 +60,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX1-UA-FGN">
-                                <rect key="frame" x="285" y="37" width="27" height="14"/>
+                                <rect key="frame" x="285" y="38" width="27" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="I0d-4q-Ku9"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="cfD-4v-z4e"/>
@@ -84,7 +84,7 @@
                             <constraint firstAttribute="trailing" secondItem="KPP-Do-C4U" secondAttribute="trailing" constant="8" id="ei5-S7-l8i"/>
                             <constraint firstItem="umE-94-iTy" firstAttribute="top" secondItem="7qW-vB-xpE" secondAttribute="top" id="fja-P2-XV0"/>
                             <constraint firstItem="pSZ-eJ-Bmn" firstAttribute="top" secondItem="7qW-vB-xpE" secondAttribute="top" constant="8" id="gPK-mt-vfr"/>
-                            <constraint firstItem="XX1-UA-FGN" firstAttribute="top" secondItem="0sb-aK-pde" secondAttribute="bottom" constant="9" id="hJG-j7-IBf"/>
+                            <constraint firstItem="XX1-UA-FGN" firstAttribute="top" secondItem="0sb-aK-pde" secondAttribute="bottom" constant="10" id="hJG-j7-IBf"/>
                             <constraint firstAttribute="trailing" secondItem="umE-94-iTy" secondAttribute="trailing" id="jKD-e0-UFw"/>
                             <constraint firstItem="KPP-Do-C4U" firstAttribute="leading" secondItem="pSZ-eJ-Bmn" secondAttribute="trailing" constant="9" id="juI-xh-Rzf"/>
                             <constraint firstItem="a5j-2I-i9k" firstAttribute="top" secondItem="7qW-vB-xpE" secondAttribute="top" constant="12" id="wHN-LT-qtK"/>
@@ -108,6 +108,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="CommonIcon" width="43" height="43"/>
         <image name="findMaskWhite.png" width="187" height="70"/>
     </resources>
 </document>

@@ -406,6 +406,16 @@
 		386AE3A91C5B6F2B0062105F /* banner_us@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 386AE3A51C5B6F2B0062105F /* banner_us@3x.png */; };
 		386C65341C7D4D7800567D2B /* LPUserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */; };
 		386C65351C7D4D7800567D2B /* LPUserLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */; };
+		387782151C8FBFA70047088B /* CheckOrderWithQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 387782131C8FBFA70047088B /* CheckOrderWithQRViewController.m */; };
+		387782161C8FBFA70047088B /* CheckOrderWithQRViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387782141C8FBFA70047088B /* CheckOrderWithQRViewController.xib */; };
+		3877821B1C8FEF3F0047088B /* QRCheckOrderHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 387782191C8FEF3F0047088B /* QRCheckOrderHeader.m */; };
+		3877821C1C8FEF3F0047088B /* QRCheckOrderHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3877821A1C8FEF3F0047088B /* QRCheckOrderHeader.xib */; };
+		387782201C8FEF570047088B /* QRCheckOrderBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3877821E1C8FEF570047088B /* QRCheckOrderBody.m */; };
+		387782211C8FEF570047088B /* QRCheckOrderBody.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3877821F1C8FEF570047088B /* QRCheckOrderBody.xib */; };
+		387782241C8FF2CA0047088B /* Line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387782221C8FF2CA0047088B /* Line@2x.png */; };
+		387782251C8FF2CA0047088B /* Line@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 387782231C8FF2CA0047088B /* Line@3x.png */; };
+		387782291C8FF5300047088B /* QRCheckOrderFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 387782271C8FF5300047088B /* QRCheckOrderFooter.m */; };
+		3877822A1C8FF5300047088B /* QRCheckOrderFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 387782281C8FF5300047088B /* QRCheckOrderFooter.xib */; };
 		3879D0631C7AE423000F5795 /* CheckProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 3879D0621C7AE423000F5795 /* CheckProtocol.m */; };
 		3879D0661C7B26AB000F5795 /* icon_share2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0641C7B26AB000F5795 /* icon_share2@2x.png */; };
 		3879D0671C7B26AB000F5795 /* icon_share2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3879D0651C7B26AB000F5795 /* icon_share2@3x.png */; };
@@ -738,10 +748,13 @@
 		8551B5181C8ECF730057F0E7 /* 评论@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8551B5121C8ECF730057F0E7 /* 评论@3x.png */; };
 		8551B51D1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551B51B1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.m */; };
 		8551B51E1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551B51C1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.xib */; };
-		8551B5211C8EEBE00057F0E7 /* findMaskWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8551B51F1C8EEBE00057F0E7 /* findMaskWhite@2x.png */; };
-		8551B5221C8EEBE00057F0E7 /* findMaskWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8551B5201C8EEBE00057F0E7 /* findMaskWhite@3x.png */; };
 		8551B52B1C8EED020057F0E7 /* FindNotificationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551B5291C8EED020057F0E7 /* FindNotificationDetailViewController.m */; };
 		8551B52C1C8EED020057F0E7 /* FindNotificationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551B52A1C8EED020057F0E7 /* FindNotificationDetailViewController.xib */; };
+		85529C1B1C8FC854005D8F0D /* findMaskWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85529C191C8FC854005D8F0D /* findMaskWhite@2x.png */; };
+		85529C1C1C8FC854005D8F0D /* findMaskWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85529C1A1C8FC854005D8F0D /* findMaskWhite@3x.png */; };
+		85529C1F1C904346005D8F0D /* LYFindHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 85529C1E1C904346005D8F0D /* LYFindHttpTool.m */; };
+		85529C241C90445F005D8F0D /* FindNewMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 85529C231C90445F005D8F0D /* FindNewMessage.m */; };
+		85529C271C9047B5005D8F0D /* FindNewMessageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 85529C261C9047B5005D8F0D /* FindNewMessageList.m */; };
 		855393F31C58F57F00575048 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 855393F21C58F57F00575048 /* HomePageModel.m */; };
 		855396FD1C8D310C00289D18 /* FindGameCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855396FB1C8D310C00289D18 /* FindGameCenterViewController.m */; };
 		855396FE1C8D310C00289D18 /* FindGameCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855396FC1C8D310C00289D18 /* FindGameCenterViewController.xib */; };
@@ -1916,6 +1929,20 @@
 		386C65311C7D4D7800567D2B /* LPUserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPUserLoginViewController.h; sourceTree = "<group>"; };
 		386C65321C7D4D7800567D2B /* LPUserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPUserLoginViewController.m; sourceTree = "<group>"; };
 		386C65331C7D4D7800567D2B /* LPUserLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPUserLoginViewController.xib; sourceTree = "<group>"; };
+		387782121C8FBFA70047088B /* CheckOrderWithQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckOrderWithQRViewController.h; sourceTree = "<group>"; };
+		387782131C8FBFA70047088B /* CheckOrderWithQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckOrderWithQRViewController.m; sourceTree = "<group>"; };
+		387782141C8FBFA70047088B /* CheckOrderWithQRViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckOrderWithQRViewController.xib; sourceTree = "<group>"; };
+		387782181C8FEF3F0047088B /* QRCheckOrderHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCheckOrderHeader.h; sourceTree = "<group>"; };
+		387782191C8FEF3F0047088B /* QRCheckOrderHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCheckOrderHeader.m; sourceTree = "<group>"; };
+		3877821A1C8FEF3F0047088B /* QRCheckOrderHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCheckOrderHeader.xib; sourceTree = "<group>"; };
+		3877821D1C8FEF570047088B /* QRCheckOrderBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCheckOrderBody.h; sourceTree = "<group>"; };
+		3877821E1C8FEF570047088B /* QRCheckOrderBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCheckOrderBody.m; sourceTree = "<group>"; };
+		3877821F1C8FEF570047088B /* QRCheckOrderBody.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCheckOrderBody.xib; sourceTree = "<group>"; };
+		387782221C8FF2CA0047088B /* Line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Line@2x.png"; sourceTree = "<group>"; };
+		387782231C8FF2CA0047088B /* Line@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Line@3x.png"; sourceTree = "<group>"; };
+		387782261C8FF5300047088B /* QRCheckOrderFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCheckOrderFooter.h; sourceTree = "<group>"; };
+		387782271C8FF5300047088B /* QRCheckOrderFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCheckOrderFooter.m; sourceTree = "<group>"; };
+		387782281C8FF5300047088B /* QRCheckOrderFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCheckOrderFooter.xib; sourceTree = "<group>"; };
 		3879D0611C7AE423000F5795 /* CheckProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProtocol.h; sourceTree = "<group>"; };
 		3879D0621C7AE423000F5795 /* CheckProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProtocol.m; sourceTree = "<group>"; };
 		3879D0641C7B26AB000F5795 /* icon_share2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_share2@2x.png"; sourceTree = "<group>"; };
@@ -2356,11 +2383,18 @@
 		8551B51A1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNotificatinDetailTableViewCell.h; sourceTree = "<group>"; };
 		8551B51B1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNotificatinDetailTableViewCell.m; sourceTree = "<group>"; };
 		8551B51C1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindNotificatinDetailTableViewCell.xib; sourceTree = "<group>"; };
-		8551B51F1C8EEBE00057F0E7 /* findMaskWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findMaskWhite@2x.png"; sourceTree = "<group>"; };
-		8551B5201C8EEBE00057F0E7 /* findMaskWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findMaskWhite@3x.png"; sourceTree = "<group>"; };
 		8551B5281C8EED020057F0E7 /* FindNotificationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNotificationDetailViewController.h; sourceTree = "<group>"; };
 		8551B5291C8EED020057F0E7 /* FindNotificationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNotificationDetailViewController.m; sourceTree = "<group>"; };
 		8551B52A1C8EED020057F0E7 /* FindNotificationDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindNotificationDetailViewController.xib; sourceTree = "<group>"; };
+		85529C191C8FC854005D8F0D /* findMaskWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findMaskWhite@2x.png"; sourceTree = "<group>"; };
+		85529C1A1C8FC854005D8F0D /* findMaskWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findMaskWhite@3x.png"; sourceTree = "<group>"; };
+		85529C1D1C904346005D8F0D /* LYFindHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFindHttpTool.h; sourceTree = "<group>"; };
+		85529C1E1C904346005D8F0D /* LYFindHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFindHttpTool.m; sourceTree = "<group>"; };
+		85529C201C9043D9005D8F0D /* LYFindUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYFindUrl.h; sourceTree = "<group>"; };
+		85529C221C90445F005D8F0D /* FindNewMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNewMessage.h; sourceTree = "<group>"; };
+		85529C231C90445F005D8F0D /* FindNewMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNewMessage.m; sourceTree = "<group>"; };
+		85529C251C9047B5005D8F0D /* FindNewMessageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNewMessageList.h; sourceTree = "<group>"; };
+		85529C261C9047B5005D8F0D /* FindNewMessageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNewMessageList.m; sourceTree = "<group>"; };
 		855393F11C58F57F00575048 /* HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
 		855393F21C58F57F00575048 /* HomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
 		855396FA1C8D310C00289D18 /* FindGameCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindGameCenterViewController.h; sourceTree = "<group>"; };
@@ -4560,6 +4594,33 @@
 			path = libqrencode;
 			sourceTree = "<group>";
 		};
+		387782111C8FBF520047088B /* 订单选择核对 */ = {
+			isa = PBXGroup;
+			children = (
+				387782171C8FEF110047088B /* cells */,
+				387782121C8FBFA70047088B /* CheckOrderWithQRViewController.h */,
+				387782131C8FBFA70047088B /* CheckOrderWithQRViewController.m */,
+				387782141C8FBFA70047088B /* CheckOrderWithQRViewController.xib */,
+			);
+			name = "订单选择核对";
+			sourceTree = "<group>";
+		};
+		387782171C8FEF110047088B /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				387782181C8FEF3F0047088B /* QRCheckOrderHeader.h */,
+				387782191C8FEF3F0047088B /* QRCheckOrderHeader.m */,
+				3877821A1C8FEF3F0047088B /* QRCheckOrderHeader.xib */,
+				3877821D1C8FEF570047088B /* QRCheckOrderBody.h */,
+				3877821E1C8FEF570047088B /* QRCheckOrderBody.m */,
+				3877821F1C8FEF570047088B /* QRCheckOrderBody.xib */,
+				387782261C8FF5300047088B /* QRCheckOrderFooter.h */,
+				387782271C8FF5300047088B /* QRCheckOrderFooter.m */,
+				387782281C8FF5300047088B /* QRCheckOrderFooter.xib */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
 		3879F2461C0D31B300B72629 /* 套餐详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4591,8 +4652,8 @@
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
-				8551B51F1C8EEBE00057F0E7 /* findMaskWhite@2x.png */,
-				8551B5201C8EEBE00057F0E7 /* findMaskWhite@3x.png */,
+				85529C191C8FC854005D8F0D /* findMaskWhite@2x.png */,
+				85529C1A1C8FC854005D8F0D /* findMaskWhite@3x.png */,
 				8551B50D1C8ECF730057F0E7 /* 表白@2x.png */,
 				8551B50E1C8ECF730057F0E7 /* 表白@3x.png */,
 				8551B50F1C8ECF730057F0E7 /* 打招呼@2x.png */,
@@ -4602,6 +4663,8 @@
 				8551B5071C8ECCD00057F0E7 /* arrowRight.png */,
 				8551B5081C8ECCD00057F0E7 /* arrowRight@2x.png */,
 				8551B5091C8ECCD00057F0E7 /* arrowRight@3x.png */,
+				387782221C8FF2CA0047088B /* Line@2x.png */,
+				387782231C8FF2CA0047088B /* Line@3x.png */,
 				855397061C8D41C100289D18 /* 大话骰.png */,
 				855397071C8D41C100289D18 /* 咬手鲨鱼牙.png */,
 				855397081C8D41C100289D18 /* 真心话大冒险.png */,
@@ -5376,6 +5439,7 @@
 		8551B4FA1C8EC9CF0057F0E7 /* 消息通知 */ = {
 			isa = PBXGroup;
 			children = (
+				85529C211C904441005D8F0D /* Model */,
 				8551B5191C8ED3C20057F0E7 /* C */,
 				8551B5011C8ECA620057F0E7 /* V */,
 			);
@@ -5406,6 +5470,17 @@
 				8551B52A1C8EED020057F0E7 /* FindNotificationDetailViewController.xib */,
 			);
 			name = C;
+			sourceTree = "<group>";
+		};
+		85529C211C904441005D8F0D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85529C221C90445F005D8F0D /* FindNewMessage.h */,
+				85529C231C90445F005D8F0D /* FindNewMessage.m */,
+				85529C251C9047B5005D8F0D /* FindNewMessageList.h */,
+				85529C261C9047B5005D8F0D /* FindNewMessageList.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		855393F01C58F56800575048 /* Model */ = {
@@ -6191,6 +6266,7 @@
 				15EB7C691BCF8B8600756153 /* LYHomePageUrl.h */,
 				854538611C2D40590020AC2C /* LYFriendsPageUrl.h */,
 				8588C44C1C5E49DF0092259E /* LYYUUrl.h */,
+				85529C201C9043D9005D8F0D /* LYFindUrl.h */,
 			);
 			name = URL;
 			sourceTree = "<group>";
@@ -7012,6 +7088,7 @@
 		D761F0271BA5B8D5000757B0 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				387782111C8FBF520047088B /* 订单选择核对 */,
 				8551B4FA1C8EC9CF0057F0E7 /* 消息通知 */,
 				855396F91C8D30E800289D18 /* 酒吧小游戏 */,
 				153F08B61BE87BCD00B7749E /* 最近联系 */,
@@ -7121,6 +7198,8 @@
 				854538591C2D3A8D0020AC2C /* LYFriendsHttpTool.m */,
 				8588C44D1C5E4A220092259E /* LYYUHttpTool.h */,
 				8588C44E1C5E4A220092259E /* LYYUHttpTool.m */,
+				85529C1D1C904346005D8F0D /* LYFindHttpTool.h */,
+				85529C1E1C904346005D8F0D /* LYFindHttpTool.m */,
 				D794ED0A1BB7872A000DC568 /* PFRect.h */,
 				D794ED0B1BB7872A000DC568 /* PFRect.m */,
 				D794ED071BB786AA000DC568 /* PFImage.h */,
@@ -7398,6 +7477,7 @@
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
 				D71E1D921BAE8F3100915F37 /* BusinessPublicNoteCell.xib in Resources */,
 				38EDEC621C5B9CDC00694758 /* CHshop@3x.png in Resources */,
+				3877821C1C8FEF3F0047088B /* QRCheckOrderHeader.xib in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */,
 				AD79E0841C775DFC00C45B97 /* empyImage120.png in Resources */,
@@ -7408,7 +7488,6 @@
 				853C361B1C73082200F1703B /* HOT@2x.png in Resources */,
 				38E72B521C155FC7002EFBDD /* chiheDetailCollectionCell.xib in Resources */,
 				38E5D7BE1C128B7D004B49D2 /* Location@3x.png in Resources */,
-				8551B5221C8EEBE00057F0E7 /* findMaskWhite@3x.png in Resources */,
 				525CA0F01C5C6930009ED9DA /* pinglun_icon@2x.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
 				AD4EA85F1C546D610056E560 /* qq_s2@3x.png in Resources */,
@@ -7434,6 +7513,7 @@
 				853C4C731C311A6D00D48BA2 /* fabudongtai_xuanzedizhi@2x.png in Resources */,
 				AD4EA8611C546D610056E560 /* sina_weibo_s2@3x.png in Resources */,
 				3812C5501C57B76100F4DD6B /* advance@2x.png in Resources */,
+				387782211C8FEF570047088B /* QRCheckOrderBody.xib in Resources */,
 				38E5D7A11C113879004B49D2 /* choose@2x.png in Resources */,
 				A20100841BA7AFAB009283D1 /* LYProductslistViewController.xib in Resources */,
 				8567A4A61C43E14E00982882 /* biaoqing_icon@2x.png in Resources */,
@@ -7496,6 +7576,7 @@
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				8551B50A1C8ECCD00057F0E7 /* arrowRight.png in Resources */,
 				3812C55A1C57B76100F4DD6B /* purper_star@3x.png in Resources */,
+				85529C1B1C8FC854005D8F0D /* findMaskWhite@2x.png in Resources */,
 				853C36151C72BC4700F1703B /* BeerNewBarViewController.xib in Resources */,
 				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
 				3806566D1C4E5D5B003094C9 /* MyCell.xib in Resources */,
@@ -7534,7 +7615,6 @@
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
 				52D4F9A81C57B2B700691BEF /* 热门@2x.png in Resources */,
 				380385DD1C327C19007C8DC0 /* play .png in Resources */,
-				8551B5211C8EEBE00057F0E7 /* findMaskWhite@2x.png in Resources */,
 				850099C81C61EEE700DDE626 /* 剩余@2x.png in Resources */,
 				85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */,
 				525CA0D11C5B7257009ED9DA /* haoyou_pinglun@3x.png in Resources */,
@@ -7683,6 +7763,7 @@
 				AD79E0991C7882A500C45B97 /* telephone@2x.png in Resources */,
 				3879F2671C0D361000B72629 /* LiuchengTableViewCell.xib in Resources */,
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
+				387782241C8FF2CA0047088B /* Line@2x.png in Resources */,
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,
 				1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */,
 				385664A11C731D89000DCFA5 /* huanjing_HD@3x.png in Resources */,
@@ -7723,6 +7804,7 @@
 				38C98D001C61B1380084E6BD /* backBtn@2x.png in Resources */,
 				38E5D7AD1C113879004B49D2 /* purper_less@2x.png in Resources */,
 				A2020D7A1BA67FA40090B92A /* Fill20176@3x.png in Resources */,
+				387782161C8FBFA70047088B /* CheckOrderWithQRViewController.xib in Resources */,
 				38E5D6E61C0F1018004B49D2 /* LPBuyTaocanCell.xib in Resources */,
 				385664751C72B933000DCFA5 /* HDZTListCell.xib in Resources */,
 				38C98CF11C60E0D20084E6BD /* PinkerShareController.xib in Resources */,
@@ -7779,6 +7861,7 @@
 				38E5D7A71C113879004B49D2 /* gray_less@2x.png in Resources */,
 				85EE803D1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib in Resources */,
 				ADE1C5C21C730E1C0011D4AB /* 更新13@2x.png in Resources */,
+				3877822A1C8FF5300047088B /* QRCheckOrderFooter.xib in Resources */,
 				38D876571C17DEA100E2F284 /* typeBorder@3x.png in Resources */,
 				ADB164BE1C167095000BAD3C /* lieyuIcon@3x.png in Resources */,
 				38E5D7C21C128C44004B49D2 /* triangle_down.png in Resources */,
@@ -7909,6 +7992,7 @@
 				8504B9351C702263008E5C6B /* LYHotsCollectionViewCell.xib in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
 				85539EBC1C3E06BA001031B6 /* ISEmojiList.plist in Resources */,
+				85529C1C1C8FC854005D8F0D /* findMaskWhite@3x.png in Resources */,
 				ADE1C5BA1C730E1C0011D4AB /* 更新5@2x.png in Resources */,
 				858B3A371C7A06BC000C6589 /* priceBlack@3x.png in Resources */,
 				3812C5541C57B76100F4DD6B /* purper_less_circle@2x.png in Resources */,
@@ -7954,6 +8038,7 @@
 				ADFFA68D1C16DFBA00D9BD2A /* purpleBtnBG@2x.png in Resources */,
 				525CA0D01C5B7257009ED9DA /* haoyou_pinglun@2x.png in Resources */,
 				15E240A21BB37EF60090D240 /* LYOrderDetailViewController.xib in Resources */,
+				387782251C8FF2CA0047088B /* Line@3x.png in Resources */,
 				52D4F9A91C57B2B700691BEF /* 热门@3x.png in Resources */,
 				38E5D7A91C113879004B49D2 /* purper_add.png in Resources */,
 				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
@@ -8063,6 +8148,7 @@
 				ADE103C21BE0EAAA00D9EC38 /* EAIntroView.m in Sources */,
 				15E1849A1BB5319900681BB2 /* Toast+UIView.m in Sources */,
 				AD106BB41C0DDEFF007F5FBA /* MJDictionaryCache.m in Sources */,
+				85529C241C90445F005D8F0D /* FindNewMessage.m in Sources */,
 				AD92AEB11BE235D9009F2A34 /* LYUserTagButton.m in Sources */,
 				AD106B8B1C0AEF16007F5FBA /* LYUserCenterController.m in Sources */,
 				38E5D7F91C13356F004B49D2 /* PayMoney.m in Sources */,
@@ -8165,6 +8251,7 @@
 				15844BD41BE1FA3600247FBC /* LYNearFriendViewController.m in Sources */,
 				15CC31D01BEB2BF100DDD03F /* RCDataBaseManager.m in Sources */,
 				8540B6791C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m in Sources */,
+				387782291C8FF5300047088B /* QRCheckOrderFooter.m in Sources */,
 				386AE39F1C5B61B70062105F /* SDCollectionViewCell.m in Sources */,
 				ADE1039B1BDE49BC00D9EC38 /* MD5DataSigner.m in Sources */,
 				3879F25C1C0D32D100B72629 /* BitianTableViewCell.m in Sources */,
@@ -8186,6 +8273,7 @@
 				85F66EF61C5628F3005D1CD8 /* LYWineBarCell.m in Sources */,
 				15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */,
 				15CC31DF1BEB2C5B00DDD03F /* DBHelper.m in Sources */,
+				85529C1F1C904346005D8F0D /* LYFindHttpTool.m in Sources */,
 				8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */,
 				38DBCD851C59B04100A1E207 /* ZujuViewController.m in Sources */,
 				85F625A11C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m in Sources */,
@@ -8213,6 +8301,7 @@
 				ADF8E1C81C21536400943E4D /* LYCoreDataUtil.m in Sources */,
 				A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */,
 				ADE103A91BDE4B2300D9EC38 /* AlipayOrder.m in Sources */,
+				387782151C8FBFA70047088B /* CheckOrderWithQRViewController.m in Sources */,
 				AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */,
 				1559DCFB1BD9E1AD00F3FE9B /* CHBarCell.m in Sources */,
 				ADE103B51BDF286A00D9EC38 /* Setting.m in Sources */,
@@ -8268,6 +8357,7 @@
 				AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */,
 				3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */,
 				855397301C8DA01C00289D18 /* qrinput.c in Sources */,
+				85529C271C9047B5005D8F0D /* FindNewMessageList.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				380659DD1C5639F4003094C9 /* ManagersView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
@@ -8276,6 +8366,7 @@
 				152247AD1BEB064600E68A2B /* IQUITextFieldView+Additions.m in Sources */,
 				151BB6E21BBB913E00E7A81C /* DejalActivityView.m in Sources */,
 				15A4CF421BD7605200C22C01 /* DWSureOrderViewController.m in Sources */,
+				387782201C8FEF570047088B /* QRCheckOrderBody.m in Sources */,
 				D729DB611BADB8D3005A9E60 /* BeerBarDetailViewController.m in Sources */,
 				ADF88EA91C1197C400CF5DED /* MJRefreshNormalHeader.m in Sources */,
 				3879F26E1C0D557400B72629 /* DetailTableViewCell.m in Sources */,
@@ -8482,6 +8573,7 @@
 				D71E1D951BAE963900915F37 /* LYShareSnsView.m in Sources */,
 				15E240D11BB3D5940090D240 /* LYRegistrationViewController.m in Sources */,
 				152247AE1BEB064600E68A2B /* IQUIView+Hierarchy.m in Sources */,
+				3877821B1C8FEF3F0047088B /* QRCheckOrderHeader.m in Sources */,
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				38E5D6F41C0F10E7004B49D2 /* LPBuyManagerCell.m in Sources */,
 				853C4C4E1C31189E00D48BA2 /* LYFriendsCommentDetailTableViewCell.m in Sources */,
