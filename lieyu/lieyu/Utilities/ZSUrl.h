@@ -19,7 +19,8 @@
 //IMtoken
 #define LY_IMTOKEN  @"friendAction.do?action=custom"
 //7牛token
-#define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"
+#define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"cx
+
 
 //7牛视频上传token
 #define LY_QINIU_MEDIA_TOKEN  @"fileServerAction.do?action=login"
