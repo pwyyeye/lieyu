@@ -183,7 +183,11 @@
 
 //获取用户的推送配置
 + (void)getUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(NSArray *))compelte;
+//扫描述二维码加好友或订单验码
++ (void)userScanQRCodeWithPara:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete;
 
 //修改用户的推送配置
 + (void)changeUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(bool))compelte;
+//根据用户ID，获取好友详情
++ (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete;
 @end
