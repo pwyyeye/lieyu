@@ -1247,13 +1247,26 @@
 #pragma mark - 扫描述二维码加好友或订单验码
 + (void)userScanQRCodeWithPara:(NSDictionary *)paraDic complete:(void (^)(NSDictionary *))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QRCODE_SCAN baseURL:LY_SERVER params:paraDic success:^(id response) {
-        NSString *errorCode = [response valueForKey:@"erroecode"];
-//        NSString *message = [response valueForKey:@"message"];
-//        NSArray *arrayData = [response valueForKey:@"data"];
+        NSString *errorCode = [response valueForKey:@"errorcode"];
+        
         if ([errorCode isEqualToString:@"0"]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                complete(response);
-            });
+            if ([[paraDic valueForKey:@"usertype"] isEqualToString:@"1"]) {
+                //普通用户进行扫码
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    complete(response);
+                });
+            }else if ([[paraDic valueForKey:@"usertype"] isEqualToString:@"2"]){
+                //商家扫码
+                NSString *message = [response valueForKey:@"message"];
+                NSArray *dataArr = [response valueForKey:@"data"];
+                NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel mj_objectArrayWithKeyValuesArray:dataArr]];
+                NSDictionary *dict = @{@"errorcode":errorCode,
+                                       @"message":message,
+                                       @"data":tempArr};
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    complete(dict);
+                });
+            }
         }else{
             [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
         }

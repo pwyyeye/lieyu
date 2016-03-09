@@ -8,7 +8,8 @@
 
 #import "SaoYiSaoViewController.h"
 #import "LYUserHttpTool.h"
-#import "IQKeyboardManager.h"
+#import "LYMyFriendDetailViewController.h"
+#import "CheckOrderWithQRViewController.h"
 
 @interface SaoYiSaoViewController ()
 @property (strong, nonatomic) UIView *boxView;
@@ -102,9 +103,7 @@
     if (metadataObjects != nil && [metadataObjects count] > 0) {
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         //判断回传的数据类型
-//69         http://www.lie98.com/lieyu/lyUserShakeAction.do?action=custom?userid=
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
-            //            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
             NSString *dataString = [metadataObj stringValue];
             NSString *subString = [dataString substringToIndex:68];
             if([subString isEqualToString:@"http://www.lie98.com/lieyu/lyUserShakeAction.do?action=custom?userid="]){
@@ -116,39 +115,30 @@
                                        @"currentTime":currentTime,
                                        @"usertype":self.userModel.usertype};
                 [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
-                    if([[result valueForKey:@"message"] isEqualToString:@""]){
-                        //如果还未加好友，打招呼成功
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToForthViewController" object:nil];
-                    }else if ([[result valueForKey:@"message"] isEqualToString:@""]){
-                        //如果已经是好友了，扫描聊天
-                        [[result valueForKey:@"data"]valueForKey:@"userid"];
-                        [LYUserHttpTool GetUserInfomationWithID:[result valueForKey:@"data"] complete:^(NSDictionary *result) {
-                            RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
-                            conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-                            conversationVC.targetId = [result valueForKey:@"userid"]; // 接收者的 targetId，这里为举例。
-                            conversationVC.userName =[result valueForKey:@"usernick"]; // 接受者的 username，这里为举例。
-                            conversationVC.title = [result valueForKey:@"usernick"]; // 会话的 title。
-                            [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
-                            [IQKeyboardManager sharedManager].enable = NO;
-                            [IQKeyboardManager sharedManager].isAdd = YES;
-                            // 把单聊视图控制器添加到导航栈。
-                            
-                            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-                            UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
-                            [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-                            [view addSubview:button];
-                            [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
-                            UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
-                            conversationVC.navigationItem.leftBarButtonItem = item;
-                            [self.navigationController pushViewController:conversationVC animated:YES];
-                        }];
-                    }else{
+                    if ([self.userModel.usertype isEqualToString:@"1"]) {
+                        if([[result valueForKey:@"message"] isEqualToString:@""]){
+                            //如果还未加好友，打招呼成功
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToForthViewController" object:nil];
+                        }else if ([[result valueForKey:@"message"] isEqualToString:@""]){
+                            //如果已经是好友了，进入玩友详情
+                            LYMyFriendDetailViewController *MyFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+                            MyFriendDetailVC.userID = [[result valueForKey:@"data"] valueForKey:@"userid"];
+                        }
+                    }
+                    else if ([self.userModel.usertype isEqualToString:@"2"]){
                         //商户扫码，进行核实订单
-                        if (((NSArray *)[result valueForKey:@"data"]).count <= 1) {
+                        NSArray *tempArr = [result valueForKey:@"data"];
+                        if([[result valueForKey:@"message"] isEqualToString:@"无有效订单！"]){
+                            //无有效订单！
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToForthViewController" object:nil];
+                        }else if (tempArr.count <= 1) {
                             //只有一个订单，扫码核单成功
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToForthViewController" object:nil];
                         }else{
                             //多于一单，进入订单选择页面
+                            CheckOrderWithQRViewController *checkorderVC = [[CheckOrderWithQRViewController alloc]initWithNibName:@"CheckOrderWithQRViewController" bundle:nil];
+                            checkorderVC.tempArr = tempArr;
+                            [self.navigationController pushViewController:checkorderVC animated:YES];
                         }
                     }
                 }];
@@ -159,10 +149,6 @@
             }
         }
     }
-}
-
-- (void)backForward{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)moveScanLayer:(NSTimer *)timer

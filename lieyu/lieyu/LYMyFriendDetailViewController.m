@@ -13,6 +13,7 @@
 #import "LYUserHttpTool.h"
 #import "preview.h"
 #import "UserModel.h"
+#import "SaoYiSaoViewController.h"
 @interface LYMyFriendDetailViewController ()
 {
     preview *_subView;
@@ -103,10 +104,15 @@
     
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    self.navigationController.navigationBar.hidden = NO;
-//}
+-(void)BaseGoBack{
+    for (UIViewController *VC in self.navigationController.viewControllers) {
+        if ([VC isKindOfClass:[SaoYiSaoViewController class]]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToForthViewController" object:nil];
+            return;
+        }
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)checkFriendAvatar{
     self.navigationController.navigationBarHidden = YES;
