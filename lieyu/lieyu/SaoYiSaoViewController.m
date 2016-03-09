@@ -31,7 +31,8 @@
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     _captureSession = nil;
     _isReading = NO;
-    [self startReading];
+    [self scanQRCode];
+//    [self startReading];
     // Do any additional setup after loading the view from its nib.
 }
 - (BOOL)startReading {
@@ -194,4 +195,45 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)scanQRCode{
+    NSString *dataString = @"http://www.lie98.com/lieyu/lyUserShakeAction.do?action=custom?userid=130616&currentTime=2016-03-09 16:06:34";
+    NSString *subString = [dataString substringToIndex:69];
+    if([subString isEqualToString:@"http://www.lie98.com/lieyu/lyUserShakeAction.do?action=custom?userid="]){
+        //如果是速核码
+        NSArray *array = [dataString componentsSeparatedByString:@"&"];
+        NSString *userId = [array[0] substringFromIndex:69];
+        NSString *currentTime = [array[1] substringFromIndex:12];
+        NSDictionary *dict = @{@"userid":userId,
+                               @"currentTime":currentTime,
+                               @"usertype":self.userModel.usertype};
+        NSLog(@"%d",self.userModel.userid);
+        [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
+            if ([self.userModel.usertype isEqualToString:@"1"]) {
+               if ([[result valueForKey:@"message"] isEqualToString:@"已经是好友！"]){
+                    //如果已经是好友了，进入玩友详情
+                    LYMyFriendDetailViewController *MyFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+                    MyFriendDetailVC.userID = [NSString stringWithFormat:@"%@",[result valueForKey:@"data"] ];
+                   [self.navigationController pushViewController:MyFriendDetailVC animated:YES];
+                }else{
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+                }
+            }
+            else if ([self.userModel.usertype isEqualToString:@"2"]){
+                //商户扫码，进行核实订单
+                NSArray *tempArr = [result valueForKey:@"data"];
+                if (tempArr.count <= 1) {
+                    //只有一个订单，扫码核单成功
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+                }else{
+                    //多于一单，进入订单选择页面
+                    CheckOrderWithQRViewController *checkorderVC = [[CheckOrderWithQRViewController alloc]initWithNibName:@"CheckOrderWithQRViewController" bundle:nil];
+                    checkorderVC.tempArr = tempArr;
+                    [self.navigationController pushViewController:checkorderVC animated:YES];
+                }
+            }
+        }];
+    }
+}
 @end

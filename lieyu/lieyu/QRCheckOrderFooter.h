@@ -11,4 +11,5 @@
 @interface QRCheckOrderFooter : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *OrderMoney;
 
+@property (nonatomic, strong) NSString *payment;
 @end

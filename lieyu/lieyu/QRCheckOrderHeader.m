@@ -7,7 +7,7 @@
 //
 
 #import "QRCheckOrderHeader.h"
-
+#import "UIImageView+WebCache.h"
 @implementation QRCheckOrderHeader
 
 - (void)awakeFromNib {
@@ -17,8 +17,16 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)setOrderinfo:(OrderInfoModel *)orderinfo{
+    [_user_avater sd_setImageWithURL:[NSURL URLWithString:orderinfo.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    _OrderNumber.text = [NSString stringWithFormat:@"%d",orderinfo.id];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yy-MM-dd"];
+    NSDate *date = [formatter dateFromString:orderinfo.createDate];
+    NSString *dateString = [NSString stringWithFormat:@"%@",date];
+    _OrderTime.text = dateString;
 }
 
 @end

@@ -1288,7 +1288,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QRCODE_SCAN baseURL:LY_SERVER params:paraDic success:^(id response) {
         NSString *errorCode = [response valueForKey:@"errorcode"];
         
-        if ([errorCode isEqualToString:@"0"]) {
+//        if ([errorCode isEqualToString:@"1"]) {
             if ([[paraDic valueForKey:@"usertype"] isEqualToString:@"1"]) {
                 //普通用户进行扫码
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -1305,7 +1305,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     complete(dict);
                 });
-            }
+//            }
         }else{
             [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
         }
@@ -1316,11 +1316,11 @@
 
 #pragma mark - 根据用户ID，获取好友详情
 + (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SERVER baseURL:LY_GET_USERINFO params:paraDic success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_USERINFO baseURL:LY_SERVER params:paraDic success:^(id response) {
         NSString *errorCode = [response valueForKey:@"errorcode"];
         NSString *message = [response valueForKey:@"message"];
         NSDictionary *result = [response valueForKey:@"data"];
-        if([errorCode isEqualToString:@"0"]){
+        if([errorCode isEqualToString:@"1"]){
             dispatch_async(dispatch_get_main_queue(), ^{
                 complete(result);
             });

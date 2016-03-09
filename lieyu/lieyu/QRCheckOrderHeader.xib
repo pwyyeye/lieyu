@@ -62,9 +62,20 @@
                                 <state key="normal" image="CustomBtn_unSelected.png"/>
                                 <state key="selected" image="CustomBtn_Selected.png"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDk-z7-YGQ">
+                                <rect key="frame" x="57" y="20.5" width="42" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="D37-J1-TLB"/>
+                                    <constraint firstAttribute="width" constant="42" id="um6-BM-NZU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zDk-z7-YGQ" firstAttribute="leading" secondItem="P1o-tr-hpK" secondAttribute="trailing" constant="10" id="2CZ-4w-UVk"/>
                             <constraint firstItem="P1o-tr-hpK" firstAttribute="top" secondItem="mJW-R9-XgM" secondAttribute="top" constant="12" id="3u2-6w-Bod"/>
                             <constraint firstItem="QLj-bJ-va4" firstAttribute="height" secondItem="W41-vh-vvy" secondAttribute="height" id="7eo-uL-PPK"/>
                             <constraint firstItem="QLj-bJ-va4" firstAttribute="baseline" secondItem="z9b-rZ-wnX" secondAttribute="baseline" id="7qA-a4-r2a"/>
@@ -76,6 +87,7 @@
                             <constraint firstItem="QLj-bJ-va4" firstAttribute="centerY" secondItem="W41-vh-vvy" secondAttribute="centerY" id="bIX-Vg-Wf5"/>
                             <constraint firstItem="W41-vh-vvy" firstAttribute="leading" secondItem="mJW-R9-XgM" secondAttribute="leading" constant="12" id="dzP-BZ-XvN"/>
                             <constraint firstItem="W41-vh-vvy" firstAttribute="top" secondItem="P1o-tr-hpK" secondAttribute="bottom" constant="12" id="gfa-fA-Fgq"/>
+                            <constraint firstItem="zDk-z7-YGQ" firstAttribute="centerY" secondItem="P1o-tr-hpK" secondAttribute="centerY" id="lC4-39-vza"/>
                             <constraint firstAttribute="trailing" secondItem="z9b-rZ-wnX" secondAttribute="trailing" constant="12" id="oLE-Lx-iMX"/>
                             <constraint firstItem="z9b-rZ-wnX" firstAttribute="leading" secondItem="QLj-bJ-va4" secondAttribute="trailing" constant="91" id="vCD-OW-C4G"/>
                             <constraint firstItem="z9b-rZ-wnX" firstAttribute="centerY" secondItem="QLj-bJ-va4" secondAttribute="centerY" id="wKz-re-Ja0"/>
@@ -101,7 +113,9 @@
             <connections>
                 <outlet property="IsSelected" destination="gdF-69-TvG" id="MHy-zx-R2Q"/>
                 <outlet property="OrderNumber" destination="QLj-bJ-va4" id="qqy-cY-F70"/>
+                <outlet property="OrderTime" destination="z9b-rZ-wnX" id="D4P-Se-IXC"/>
                 <outlet property="user_avater" destination="P1o-tr-hpK" id="0os-VP-zD5"/>
+                <outlet property="user_name" destination="zDk-z7-YGQ" id="WOm-3V-sgk"/>
             </connections>
             <point key="canvasLocation" x="159" y="454.5"/>
         </tableViewCell>

@@ -4642,6 +4642,17 @@
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				8551B51F1C8EEBE00057F0E7 /* findMaskWhite@2x.png */,
+				8551B5201C8EEBE00057F0E7 /* findMaskWhite@3x.png */,
+				8551B50D1C8ECF730057F0E7 /* 表白@2x.png */,
+				8551B50E1C8ECF730057F0E7 /* 表白@3x.png */,
+				8551B50F1C8ECF730057F0E7 /* 打招呼@2x.png */,
+				8551B5101C8ECF730057F0E7 /* 打招呼@3x.png */,
+				8551B5111C8ECF730057F0E7 /* 评论@2x.png */,
+				8551B5121C8ECF730057F0E7 /* 评论@3x.png */,
+				8551B5071C8ECCD00057F0E7 /* arrowRight.png */,
+				8551B5081C8ECCD00057F0E7 /* arrowRight@2x.png */,
+				8551B5091C8ECCD00057F0E7 /* arrowRight@3x.png */,
 				387782221C8FF2CA0047088B /* Line@2x.png */,
 				387782231C8FF2CA0047088B /* Line@3x.png */,
 				855397061C8D41C100289D18 /* 大话骰.png */,
@@ -7055,6 +7066,7 @@
 			isa = PBXGroup;
 			children = (
 				387782111C8FBF520047088B /* 订单选择核对 */,
+				8551B4FA1C8EC9CF0057F0E7 /* 消息通知 */,
 				855396F91C8D30E800289D18 /* 酒吧小游戏 */,
 				153F08B61BE87BCD00B7749E /* 最近联系 */,
 				15ED326E1BE2F48100E086A1 /* 摇一摇 */,
