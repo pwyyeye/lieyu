@@ -1269,7 +1269,7 @@
 + (void)changeUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(bool))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USERNOTIFITION baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USERCHANGENOTIFICATION baseURL:QINIU_SERVER params:paraDic success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([code isEqualToString:@"1"]) {
             compelte(YES);

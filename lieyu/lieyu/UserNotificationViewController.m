@@ -12,7 +12,6 @@
 #import "MineUserNotification.h"
 
 @interface UserNotificationViewController ()<UITableViewDataSource,UITableViewDelegate>{
-    NSArray *_titleArray;
     NSArray *_dataArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -23,10 +22,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.title = @"消息通知";
-    _titleArray = @[@"打招呼",@"关注",@"评论",@"表白"];
+    self.navigationItem.title = @"消息通知";
     [self getData];
     // Do any additional setup after loading the view from its nib.
+    
+    NSLog(@"---->%@",[[UIApplication sharedApplication] currentUserNotificationSettings]);
+//    NSLog(@"---->%@",setting.types);
     [_tableView registerNib:[UINib nibWithNibName:@"UserNotificationTableViewCell" bundle:nil] forCellReuseIdentifier:@"UserNotificationTableViewCell"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -51,11 +52,23 @@
             UILabel *titalLabel = [[UILabel alloc]init];
             titalLabel.backgroundColor = [UIColor whiteColor];
             titalLabel.frame = CGRectMake(8, 10, SCREEN_WIDTH - 16, 50);
-            titalLabel.text = @" 接受推送通知";
+            titalLabel.text = @"  接受推送通知";
             titalLabel.font = [UIFont systemFontOfSize:14];
             titalLabel.layer.cornerRadius = 2;
             titalLabel.layer.masksToBounds = YES;
+            titalLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightLight];
             [cell.contentView addSubview:titalLabel];
+            
+            UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 8 - 18, 28, 8, 15)];
+            imgView.image = [UIImage imageNamed:@"arrowRight"];
+            [cell.contentView addSubview:imgView];
+            
+            UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50 - 25, 10, 50,50 )];
+            detailLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightLight];
+            UIUserNotificationSettings *setting = [[UIApplication sharedApplication] currentUserNotificationSettings];
+            detailLabel.text = setting.types == UIUserNotificationTypeNone ? @"未开启" : @"开启";
+            [cell.contentView addSubview:detailLabel];
+            
             return cell;
         }
             break;
@@ -75,11 +88,23 @@
         default:{
             
             UserNotificationTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"UserNotificationTableViewCell" forIndexPath:indexPath];
-            cell.notificationLabel.text = [NSString stringWithFormat:@" %@", _titleArray[indexPath.row - 2]];
             MineUserNotification *userNotificationM = _dataArray[indexPath.row - 2];
-             cell.notificationLabel.text = [NSString stringWithFormat:@" %@", userNotificationM.typeName];
+             cell.notificationLabel.text = [NSString stringWithFormat:@"  %@", userNotificationM.typeName];
             cell.notificationSwitch.on = [userNotificationM.on isEqual:@"0"] ? NO:YES;
             cell.notificationSwitch.tag = indexPath.row - 2;
+            if (indexPath.row == 2) {
+                CAShapeLayer *shapeL = [CAShapeLayer layer];
+                UIBezierPath *topRect = [UIBezierPath bezierPathWithRoundedRect:cell.notificationLabel.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(2, 2)];
+                shapeL.path = topRect.CGPath;
+                cell.notificationLabel.layer.mask = shapeL;
+            }else if(indexPath.row - 1 == _dataArray.count){
+                CAShapeLayer *shapeL = [CAShapeLayer layer];
+                UIBezierPath *topRect = [UIBezierPath bezierPathWithRoundedRect:cell.notificationLabel.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(2, 2)];
+                shapeL.path = topRect.CGPath;
+                cell.notificationLabel.layer.mask = shapeL;
+            }else{
+                cell.notificationLabel.maskView = nil;
+            }
             [cell.notificationSwitch addTarget:self action:@selector(swichClick:) forControlEvents:UIControlEventValueChanged];
                                                    return cell;
         }
