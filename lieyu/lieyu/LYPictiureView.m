@@ -68,7 +68,6 @@
              UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_WIDTH)];
             [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
-//            imageView.contentMode = UIViewContentModeScaleAspectFill;
             imageView.clipsToBounds = YES;
             imageView.tag = i+1;
             [imageView addGestureRecognizer:doubleTap];
@@ -98,7 +97,7 @@
         CGRect rect = CGRectFromString(oldFrame[index]);
         imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
         
-        [UIView animateWithDuration:5 animations:^{
+        [UIView animateWithDuration:.5 animations:^{
             imgView.alpha = 1;
             imgView.bounds = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
             imgView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);

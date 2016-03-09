@@ -16,6 +16,7 @@
 #import "MyZSManageViewController.h"
 #import "LYZSApplicationViewController.h"
 #import "UMSocial.h"
+#import "UserNotificationViewController.h"
 
 @interface Setting (){
     UIButton *_logoutButton;
@@ -174,7 +175,8 @@
         [MyUtil showMessage:@"清除成功！"];
         
     }else if(indexPath.row == 2){
-        [MyUtil showCleanMessage:@"通知"];
+        UserNotificationViewController *userNotifitionVC = [[UserNotificationViewController alloc]init];
+        [self.navigationController pushViewController:userNotifitionVC animated:YES];
     }else if(indexPath.row==3){
         detailViewController=[[LYAccountManager alloc] init];
     }else if(indexPath.row == 4){

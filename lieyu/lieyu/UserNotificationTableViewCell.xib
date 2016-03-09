@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserNotificationTableViewCell" rowHeight="53" id="KGk-i7-Jjw" customClass="UserNotificationTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打招呼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVM-ae-WtW">
+                        <rect key="frame" x="8" y="0.0" width="304" height="51"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZ8-to-xLg">
+                        <rect key="frame" x="253" y="10" width="51" height="31"/>
+                    </switch>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="gZ8-to-xLg" firstAttribute="centerY" secondItem="qVM-ae-WtW" secondAttribute="centerY" id="6cM-A5-0aV"/>
+                    <constraint firstItem="qVM-ae-WtW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MMG-mR-BU4"/>
+                    <constraint firstAttribute="trailing" secondItem="gZ8-to-xLg" secondAttribute="trailing" constant="18" id="ZaU-l2-zus"/>
+                    <constraint firstAttribute="trailing" secondItem="qVM-ae-WtW" secondAttribute="trailing" constant="8" id="hmu-15-5cb"/>
+                    <constraint firstItem="qVM-ae-WtW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ndf-NF-aJd"/>
+                    <constraint firstAttribute="bottom" secondItem="qVM-ae-WtW" secondAttribute="bottom" constant="1" id="xJN-eU-9US"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="notificationLabel" destination="qVM-ae-WtW" id="yaz-2m-Q5n"/>
+                <outlet property="notificationSwitch" destination="gZ8-to-xLg" id="zT5-Ku-4PH"/>
+            </connections>
+            <point key="canvasLocation" x="387" y="353.5"/>
+        </tableViewCell>
+    </objects>
+</document>
