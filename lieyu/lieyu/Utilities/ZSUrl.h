@@ -19,7 +19,7 @@
 //IMtoken
 #define LY_IMTOKEN  @"friendAction.do?action=custom"
 //7牛token
-#define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"cx
+#define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"
 
 
 //7牛视频上传token
