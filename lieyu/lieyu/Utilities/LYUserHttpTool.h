@@ -181,4 +181,9 @@
 //绑定手机后用openId登录
 + (void)userLoginFromOpenIdWithPara:(NSDictionary *)paraDic compelte:(void(^)(UserModel *))compelte;
 
+//获取用户的推送配置
++ (void)getUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(NSArray *))compelte;
+
+//修改用户的推送配置
++ (void)changeUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(bool))compelte;
 @end

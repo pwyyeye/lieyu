@@ -93,4 +93,10 @@
 //openId登录
 #define LY_OPENID_LOGIN @"accountAction.do?action=login"
 
+//获取用户的推送配置
+#define LY_USERNOTIFITION @"userPushAction.do?action=list"
+
+//修改用户的推送配置
+#define LY_USERCHANGENOTIFICATION @"userPushAction.do?action=update"
+
 #endif

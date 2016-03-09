@@ -1,0 +1,136 @@
+//
+//  UserNotificationViewController.m
+//  lieyu
+//
+//  Created by 狼族 on 16/3/8.
+//  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
+//
+
+#import "UserNotificationViewController.h"
+#import "UserNotificationTableViewCell.h"
+#import "LYUserHttpTool.h"
+#import "MineUserNotification.h"
+
+@interface UserNotificationViewController ()<UITableViewDataSource,UITableViewDelegate>{
+    NSArray *_titleArray;
+    NSArray *_dataArray;
+}
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@end
+
+@implementation UserNotificationViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationController.title = @"消息通知";
+    _titleArray = @[@"打招呼",@"关注",@"评论",@"表白"];
+    [self getData];
+    // Do any additional setup after loading the view from its nib.
+    [_tableView registerNib:[UINib nibWithNibName:@"UserNotificationTableViewCell" bundle:nil] forCellReuseIdentifier:@"UserNotificationTableViewCell"];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+}
+
+- (void)getData{
+    [LYUserHttpTool getUserNotificationWithPara:nil compelte:^(NSArray *dataArray) {
+        _dataArray = dataArray;
+        [_tableView reloadData];
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2 + _dataArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:{//接受推送通知
+            UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.backgroundColor = RGBA(243, 243, 243, 1);
+            UILabel *titalLabel = [[UILabel alloc]init];
+            titalLabel.backgroundColor = [UIColor whiteColor];
+            titalLabel.frame = CGRectMake(8, 10, SCREEN_WIDTH - 16, 50);
+            titalLabel.text = @" 接受推送通知";
+            titalLabel.font = [UIFont systemFontOfSize:14];
+            titalLabel.layer.cornerRadius = 2;
+            titalLabel.layer.masksToBounds = YES;
+            [cell.contentView addSubview:titalLabel];
+            return cell;
+        }
+            break;
+        case 1:{
+            UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.backgroundColor = RGBA(243, 243, 243, 1);
+            UILabel *titalLabel = [[UILabel alloc]init];
+            titalLabel.frame = CGRectMake(20, 8, SCREEN_WIDTH -40, 60);
+            titalLabel.text = @"要开启或关闭猎娱的推送通知，请在iPhone的“设置”－“通知”中找到“猎娱”进行设置\n\n猎娱通知";
+            titalLabel.font = [UIFont systemFontOfSize:12];
+            titalLabel.textColor = RGBA(0, 0, 0, .4);
+            titalLabel.numberOfLines = 0;
+            [cell.contentView addSubview:titalLabel];
+            return cell;
+        }
+            break;
+        default:{
+            
+            UserNotificationTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"UserNotificationTableViewCell" forIndexPath:indexPath];
+            cell.notificationLabel.text = [NSString stringWithFormat:@" %@", _titleArray[indexPath.row - 2]];
+            MineUserNotification *userNotificationM = _dataArray[indexPath.row - 2];
+             cell.notificationLabel.text = [NSString stringWithFormat:@" %@", userNotificationM.typeName];
+            cell.notificationSwitch.on = [userNotificationM.on isEqual:@"0"] ? NO:YES;
+            cell.notificationSwitch.tag = indexPath.row - 2;
+            [cell.notificationSwitch addTarget:self action:@selector(swichClick:) forControlEvents:UIControlEventValueChanged];
+                                                   return cell;
+        }
+            break;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+            return 60;
+            break;
+        case 1:
+            return 80;
+            break;
+            
+        default:
+            return 50;
+            break;
+    }
+}
+
+- (void)swichClick:(UISwitch *)sch{
+    MineUserNotification *userNotificationM = _dataArray[sch.tag];
+    NSString *typeStr = userNotificationM.typeName;
+    NSDictionary *dic = nil;
+    if (sch.on) {//关闭通知
+        dic = @{@"type":typeStr,@"on":@"0"};
+    }else{//开启通知
+        dic = @{@"type":typeStr,@"on":@"1"};
+    }
+    [LYUserHttpTool changeUserNotificationWithPara:dic compelte:^(bool result) {
+        if (!result) {
+            sch.on = !sch.on;
+        }
+    }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
