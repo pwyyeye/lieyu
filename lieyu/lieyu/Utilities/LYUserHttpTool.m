@@ -13,6 +13,7 @@
 #import "OrderInfoModel.h"
 #import "MyBarModel.h"
 #import "UserTagModel.h"
+#import "MineUserNotification.h"
 @implementation LYUserHttpTool
 
 + (LYUserHttpTool *)shareInstance{
@@ -1244,6 +1245,44 @@
     }];
 }
 
+#pragma mark - 获取用户的推送配置
++ (void)getUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(NSArray *))compelte{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USERNOTIFITION baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if ([code isEqualToString:@"1"]) {
+            NSArray *itemsArray = response[@"items"];
+            NSArray *dataArray = [MineUserNotification mj_objectArrayWithKeyValuesArray:itemsArray];
+            compelte(dataArray);
+        }else{
+            compelte(nil);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        compelte(nil);
+                [app stopLoading];
+    }];
+}
+
+#pragma mark - 修改用户的推送配置
++ (void)changeUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(bool))compelte{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USERNOTIFITION baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if ([code isEqualToString:@"1"]) {
+            compelte(YES);
+        }else{
+            compelte(NO);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        compelte(NO);
+        [app stopLoading];
+    }];
+}
+
 #pragma mark - 扫描述二维码加好友或订单验码
 + (void)userScanQRCodeWithPara:(NSDictionary *)paraDic complete:(void (^)(NSDictionary *))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QRCODE_SCAN baseURL:LY_SERVER params:paraDic success:^(id response) {
@@ -1292,5 +1331,7 @@
         
     }];
 }
+
+
 
 @end

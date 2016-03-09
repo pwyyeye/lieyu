@@ -19,6 +19,7 @@
 #import "MyMessageListViewController.h"
 #import "FindGameCenterViewController.h"
 #import "LPUserLoginViewController.h"
+#import "FindNotificationViewController.h"
 
 @interface FindViewController ()
 {
@@ -230,16 +231,16 @@
 
     }
     else if(indexPath.section == 1){
-        if(indexPath.row==0 || indexPath.row == 1){
+//        if(indexPath.row==0 || indexPath.row == 1){
             [[cell viewWithTag:100] removeFromSuperview];
             dic=[datalist objectAtIndex:indexPath.row + 3];
             UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(0, 59.5, SCREEN_WIDTH, 0.3)];
             lineLal.tag=100;
             lineLal.backgroundColor=RGB(199, 199, 199);
             [cell addSubview:lineLal];
-        }else{
+//        }else{
 //            dic=[datalist objectAtIndex:4];
-        }
+//        }
     }
 //    else{
 //        if (indexPath.row == 0) {
@@ -274,10 +275,9 @@
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择系统通知"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
-            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            MyMessageListViewController *messageListViewController=[[MyMessageListViewController alloc]initWithNibName:@"MyMessageListViewController" bundle:nil];
-            messageListViewController.title=@"信息中心";
-            [app.navigationController pushViewController:messageListViewController animated:YES];
+          /*   */
+            FindNotificationViewController *findNotificationVC = [[FindNotificationViewController alloc]init];
+            [self.navigationController pushViewController:findNotificationVC animated:YES];
             
         }else if(indexPath.row==1){
             if([USER_DEFAULT objectForKey:@"badgeValue"]==nil){
@@ -346,13 +346,15 @@
 //            LPUserLoginViewController *loginVC = [[LPUserLoginViewController alloc]initWithNibName:@"LPUserLoginViewController" bundle:nil];
 //            [self.navigationController pushViewController:loginVC animated:YES];
             
-        }else{
+        }else if(indexPath.row == 1){
             //统计发现页面的选择
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"酒吧小游戏"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             FindGameCenterViewController *findGameVC = [[FindGameCenterViewController alloc]init];
             [self.navigationController pushViewController:findGameVC animated:YES];
+        }else{
+            
         }
     }
 //    else{//进入酒吧小游戏
