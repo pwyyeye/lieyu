@@ -59,10 +59,14 @@
 
 - (IBAction)loginClick:(UIButton *)sender {
     LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]initWithNibName:@"LYUserLoginViewController" bundle:nil];
+//    [self presentViewController:loginVC animated:YES completion:^{
+//    }];
     [self.navigationController pushViewController:loginVC animated:YES];
 }
 - (IBAction)registerClick:(UIButton *)sender {
     LYRegistrationViewController *registerVC = [[LYRegistrationViewController alloc]initWithNibName:@"LYRegistrationViewController" bundle:nil];
+//    [self presentViewController:registerVC animated:YES completion:^{
+//    }];
     [self.navigationController pushViewController:registerVC animated:YES];
 }
 
