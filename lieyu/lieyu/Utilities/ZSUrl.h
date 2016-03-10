@@ -21,6 +21,7 @@
 //7牛token
 #define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"
 
+
 //7牛视频上传token
 #define LY_QINIU_MEDIA_TOKEN  @"fileServerAction.do?action=login"
 

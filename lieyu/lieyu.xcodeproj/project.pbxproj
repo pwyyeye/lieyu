@@ -748,10 +748,17 @@
 		8551B5181C8ECF730057F0E7 /* 评论@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8551B5121C8ECF730057F0E7 /* 评论@3x.png */; };
 		8551B51D1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551B51B1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.m */; };
 		8551B51E1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551B51C1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.xib */; };
-		8551B5211C8EEBE00057F0E7 /* findMaskWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8551B51F1C8EEBE00057F0E7 /* findMaskWhite@2x.png */; };
-		8551B5221C8EEBE00057F0E7 /* findMaskWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8551B5201C8EEBE00057F0E7 /* findMaskWhite@3x.png */; };
 		8551B52B1C8EED020057F0E7 /* FindNotificationDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8551B5291C8EED020057F0E7 /* FindNotificationDetailViewController.m */; };
 		8551B52C1C8EED020057F0E7 /* FindNotificationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551B52A1C8EED020057F0E7 /* FindNotificationDetailViewController.xib */; };
+		85529C1B1C8FC854005D8F0D /* findMaskWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85529C191C8FC854005D8F0D /* findMaskWhite@2x.png */; };
+		85529C1C1C8FC854005D8F0D /* findMaskWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85529C1A1C8FC854005D8F0D /* findMaskWhite@3x.png */; };
+		85529C1F1C904346005D8F0D /* LYFindHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 85529C1E1C904346005D8F0D /* LYFindHttpTool.m */; };
+		85529C241C90445F005D8F0D /* FindNewMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 85529C231C90445F005D8F0D /* FindNewMessage.m */; };
+		85529C271C9047B5005D8F0D /* FindNewMessageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 85529C261C9047B5005D8F0D /* FindNewMessageList.m */; };
+		85529C2A1C9058F7005D8F0D /* notificationSystem@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85529C281C9058F7005D8F0D /* notificationSystem@3x.png */; };
+		85529C2B1C9058F7005D8F0D /* notificationSystem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85529C291C9058F7005D8F0D /* notificationSystem@2x.png */; };
+		85529C2F1C90642C005D8F0D /* FindNotificationNextDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85529C2D1C90642C005D8F0D /* FindNotificationNextDetailViewController.m */; };
+		85529C301C90642C005D8F0D /* FindNotificationNextDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85529C2E1C90642C005D8F0D /* FindNotificationNextDetailViewController.xib */; };
 		855393F31C58F57F00575048 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 855393F21C58F57F00575048 /* HomePageModel.m */; };
 		855396FD1C8D310C00289D18 /* FindGameCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855396FB1C8D310C00289D18 /* FindGameCenterViewController.m */; };
 		855396FE1C8D310C00289D18 /* FindGameCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855396FC1C8D310C00289D18 /* FindGameCenterViewController.xib */; };
@@ -2380,11 +2387,23 @@
 		8551B51A1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNotificatinDetailTableViewCell.h; sourceTree = "<group>"; };
 		8551B51B1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNotificatinDetailTableViewCell.m; sourceTree = "<group>"; };
 		8551B51C1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindNotificatinDetailTableViewCell.xib; sourceTree = "<group>"; };
-		8551B51F1C8EEBE00057F0E7 /* findMaskWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findMaskWhite@2x.png"; sourceTree = "<group>"; };
-		8551B5201C8EEBE00057F0E7 /* findMaskWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findMaskWhite@3x.png"; sourceTree = "<group>"; };
 		8551B5281C8EED020057F0E7 /* FindNotificationDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNotificationDetailViewController.h; sourceTree = "<group>"; };
 		8551B5291C8EED020057F0E7 /* FindNotificationDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNotificationDetailViewController.m; sourceTree = "<group>"; };
 		8551B52A1C8EED020057F0E7 /* FindNotificationDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindNotificationDetailViewController.xib; sourceTree = "<group>"; };
+		85529C191C8FC854005D8F0D /* findMaskWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findMaskWhite@2x.png"; sourceTree = "<group>"; };
+		85529C1A1C8FC854005D8F0D /* findMaskWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findMaskWhite@3x.png"; sourceTree = "<group>"; };
+		85529C1D1C904346005D8F0D /* LYFindHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFindHttpTool.h; sourceTree = "<group>"; };
+		85529C1E1C904346005D8F0D /* LYFindHttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFindHttpTool.m; sourceTree = "<group>"; };
+		85529C201C9043D9005D8F0D /* LYFindUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYFindUrl.h; sourceTree = "<group>"; };
+		85529C221C90445F005D8F0D /* FindNewMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNewMessage.h; sourceTree = "<group>"; };
+		85529C231C90445F005D8F0D /* FindNewMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNewMessage.m; sourceTree = "<group>"; };
+		85529C251C9047B5005D8F0D /* FindNewMessageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNewMessageList.h; sourceTree = "<group>"; };
+		85529C261C9047B5005D8F0D /* FindNewMessageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNewMessageList.m; sourceTree = "<group>"; };
+		85529C281C9058F7005D8F0D /* notificationSystem@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationSystem@3x.png"; sourceTree = "<group>"; };
+		85529C291C9058F7005D8F0D /* notificationSystem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationSystem@2x.png"; sourceTree = "<group>"; };
+		85529C2C1C90642C005D8F0D /* FindNotificationNextDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNotificationNextDetailViewController.h; sourceTree = "<group>"; };
+		85529C2D1C90642C005D8F0D /* FindNotificationNextDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNotificationNextDetailViewController.m; sourceTree = "<group>"; };
+		85529C2E1C90642C005D8F0D /* FindNotificationNextDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindNotificationNextDetailViewController.xib; sourceTree = "<group>"; };
 		855393F11C58F57F00575048 /* HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
 		855393F21C58F57F00575048 /* HomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
 		855396FA1C8D310C00289D18 /* FindGameCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindGameCenterViewController.h; sourceTree = "<group>"; };
@@ -4642,10 +4661,12 @@
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
-				8551B51F1C8EEBE00057F0E7 /* findMaskWhite@2x.png */,
-				8551B5201C8EEBE00057F0E7 /* findMaskWhite@3x.png */,
+				85529C191C8FC854005D8F0D /* findMaskWhite@2x.png */,
+				85529C1A1C8FC854005D8F0D /* findMaskWhite@3x.png */,
 				8551B50D1C8ECF730057F0E7 /* 表白@2x.png */,
 				8551B50E1C8ECF730057F0E7 /* 表白@3x.png */,
+				85529C281C9058F7005D8F0D /* notificationSystem@3x.png */,
+				85529C291C9058F7005D8F0D /* notificationSystem@2x.png */,
 				8551B50F1C8ECF730057F0E7 /* 打招呼@2x.png */,
 				8551B5101C8ECF730057F0E7 /* 打招呼@3x.png */,
 				8551B5111C8ECF730057F0E7 /* 评论@2x.png */,
@@ -5429,6 +5450,7 @@
 		8551B4FA1C8EC9CF0057F0E7 /* 消息通知 */ = {
 			isa = PBXGroup;
 			children = (
+				85529C211C904441005D8F0D /* Model */,
 				8551B5191C8ED3C20057F0E7 /* C */,
 				8551B5011C8ECA620057F0E7 /* V */,
 			);
@@ -5457,8 +5479,22 @@
 				8551B5281C8EED020057F0E7 /* FindNotificationDetailViewController.h */,
 				8551B5291C8EED020057F0E7 /* FindNotificationDetailViewController.m */,
 				8551B52A1C8EED020057F0E7 /* FindNotificationDetailViewController.xib */,
+				85529C2C1C90642C005D8F0D /* FindNotificationNextDetailViewController.h */,
+				85529C2D1C90642C005D8F0D /* FindNotificationNextDetailViewController.m */,
+				85529C2E1C90642C005D8F0D /* FindNotificationNextDetailViewController.xib */,
 			);
 			name = C;
+			sourceTree = "<group>";
+		};
+		85529C211C904441005D8F0D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85529C221C90445F005D8F0D /* FindNewMessage.h */,
+				85529C231C90445F005D8F0D /* FindNewMessage.m */,
+				85529C251C9047B5005D8F0D /* FindNewMessageList.h */,
+				85529C261C9047B5005D8F0D /* FindNewMessageList.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		855393F01C58F56800575048 /* Model */ = {
@@ -6244,6 +6280,7 @@
 				15EB7C691BCF8B8600756153 /* LYHomePageUrl.h */,
 				854538611C2D40590020AC2C /* LYFriendsPageUrl.h */,
 				8588C44C1C5E49DF0092259E /* LYYUUrl.h */,
+				85529C201C9043D9005D8F0D /* LYFindUrl.h */,
 			);
 			name = URL;
 			sourceTree = "<group>";
@@ -7175,6 +7212,8 @@
 				854538591C2D3A8D0020AC2C /* LYFriendsHttpTool.m */,
 				8588C44D1C5E4A220092259E /* LYYUHttpTool.h */,
 				8588C44E1C5E4A220092259E /* LYYUHttpTool.m */,
+				85529C1D1C904346005D8F0D /* LYFindHttpTool.h */,
+				85529C1E1C904346005D8F0D /* LYFindHttpTool.m */,
 				D794ED0A1BB7872A000DC568 /* PFRect.h */,
 				D794ED0B1BB7872A000DC568 /* PFRect.m */,
 				D794ED071BB786AA000DC568 /* PFImage.h */,
@@ -7350,6 +7389,7 @@
 				386AE3A91C5B6F2B0062105F /* banner_us@3x.png in Resources */,
 				380385EA1C327C2B007C8DC0 /* imageUnselected@2x.png in Resources */,
 				ADE1C5C81C730E1C0011D4AB /* 更新19@2x.png in Resources */,
+				85529C301C90642C005D8F0D /* FindNotificationNextDetailViewController.xib in Resources */,
 				3812C5631C57B78800F4DD6B /* gray_less_circle@3x.png in Resources */,
 				38E5D7BD1C128B7D004B49D2 /* Location@2x.png in Resources */,
 				15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */,
@@ -7463,7 +7503,6 @@
 				853C361B1C73082200F1703B /* HOT@2x.png in Resources */,
 				38E72B521C155FC7002EFBDD /* chiheDetailCollectionCell.xib in Resources */,
 				38E5D7BE1C128B7D004B49D2 /* Location@3x.png in Resources */,
-				8551B5221C8EEBE00057F0E7 /* findMaskWhite@3x.png in Resources */,
 				525CA0F01C5C6930009ED9DA /* pinglun_icon@2x.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
 				AD4EA85F1C546D610056E560 /* qq_s2@3x.png in Resources */,
@@ -7506,6 +7545,7 @@
 				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
 				389C010A1C1488F000FE9412 /* seeGirls@3x.png in Resources */,
 				ADD1B4671C528EE100A5237C /* sina_weibo_s@2x.png in Resources */,
+				85529C2A1C9058F7005D8F0D /* notificationSystem@3x.png in Resources */,
 				ADE1C5CA1C730E1C0011D4AB /* 更新21@2x.png in Resources */,
 				ADE1C5CB1C730E1C0011D4AB /* 更新22@2x.png in Resources */,
 				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
@@ -7552,6 +7592,7 @@
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				8551B50A1C8ECCD00057F0E7 /* arrowRight.png in Resources */,
 				3812C55A1C57B76100F4DD6B /* purper_star@3x.png in Resources */,
+				85529C1B1C8FC854005D8F0D /* findMaskWhite@2x.png in Resources */,
 				853C36151C72BC4700F1703B /* BeerNewBarViewController.xib in Resources */,
 				15EB35501BD4839D00BA6161 /* UMSShareListController.xib in Resources */,
 				3806566D1C4E5D5B003094C9 /* MyCell.xib in Resources */,
@@ -7590,7 +7631,6 @@
 				A20100B31BA7FDE6009283D1 /* ZSSeatControlView.xib in Resources */,
 				52D4F9A81C57B2B700691BEF /* 热门@2x.png in Resources */,
 				380385DD1C327C19007C8DC0 /* play .png in Resources */,
-				8551B5211C8EEBE00057F0E7 /* findMaskWhite@2x.png in Resources */,
 				850099C81C61EEE700DDE626 /* 剩余@2x.png in Resources */,
 				85F625871C0BDFC9002858C8 /* LYLMenuDropViewController.xib in Resources */,
 				525CA0D11C5B7257009ED9DA /* haoyou_pinglun@3x.png in Resources */,
@@ -7795,6 +7835,7 @@
 				380659C81C54AC02003094C9 /* icon_collect_2@2x.png in Resources */,
 				855941781C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3812C5651C57B78800F4DD6B /* gray_star@2x.png in Resources */,
+				85529C2B1C9058F7005D8F0D /* notificationSystem@2x.png in Resources */,
 				ADFFA68E1C16DFBD00D9BD2A /* purpleBtnBG@3x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				850099CA1C61EEE700DDE626 /* 发起人@2x.png in Resources */,
@@ -7968,6 +8009,7 @@
 				8504B9351C702263008E5C6B /* LYHotsCollectionViewCell.xib in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
 				85539EBC1C3E06BA001031B6 /* ISEmojiList.plist in Resources */,
+				85529C1C1C8FC854005D8F0D /* findMaskWhite@3x.png in Resources */,
 				ADE1C5BA1C730E1C0011D4AB /* 更新5@2x.png in Resources */,
 				858B3A371C7A06BC000C6589 /* priceBlack@3x.png in Resources */,
 				3812C5541C57B76100F4DD6B /* purper_less_circle@2x.png in Resources */,
@@ -8123,6 +8165,7 @@
 				ADE103C21BE0EAAA00D9EC38 /* EAIntroView.m in Sources */,
 				15E1849A1BB5319900681BB2 /* Toast+UIView.m in Sources */,
 				AD106BB41C0DDEFF007F5FBA /* MJDictionaryCache.m in Sources */,
+				85529C241C90445F005D8F0D /* FindNewMessage.m in Sources */,
 				AD92AEB11BE235D9009F2A34 /* LYUserTagButton.m in Sources */,
 				AD106B8B1C0AEF16007F5FBA /* LYUserCenterController.m in Sources */,
 				38E5D7F91C13356F004B49D2 /* PayMoney.m in Sources */,
@@ -8167,6 +8210,7 @@
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
 				380659D41C5639BB003094C9 /* TimeView.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
+				85529C2F1C90642C005D8F0D /* FindNotificationNextDetailViewController.m in Sources */,
 				15EB350D1BD1F63F00BA6161 /* PTChooseNumCell.m in Sources */,
 				855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */,
 				858B228A1C29653000BF70AD /* LYTagCollectionViewCell.m in Sources */,
@@ -8247,6 +8291,7 @@
 				85F66EF61C5628F3005D1CD8 /* LYWineBarCell.m in Sources */,
 				15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */,
 				15CC31DF1BEB2C5B00DDD03F /* DBHelper.m in Sources */,
+				85529C1F1C904346005D8F0D /* LYFindHttpTool.m in Sources */,
 				8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */,
 				38DBCD851C59B04100A1E207 /* ZujuViewController.m in Sources */,
 				85F625A11C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m in Sources */,
@@ -8330,6 +8375,7 @@
 				AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */,
 				3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */,
 				855397301C8DA01C00289D18 /* qrinput.c in Sources */,
+				85529C271C9047B5005D8F0D /* FindNewMessageList.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				380659DD1C5639F4003094C9 /* ManagersView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,

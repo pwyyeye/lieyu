@@ -269,10 +269,10 @@
     }else{
         [UIView animateWithDuration:.5 animations:^{
             CGRect rect = CGRectFromString(_oldFrameArr[_index]);
-//            imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
-            imgView.bounds = CGRectMake(0, 0, imgView.bounds.size.width * 1.5, imgView.bounds.size.height * 1.5);
-            imgView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT/2.f);
-            imgView.alpha = 0.f;
+            imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
+//            imgView.bounds = CGRectMake(0, 0, imgView.bounds.size.width * 1.5, imgView.bounds.size.height * 1.5);
+//            imgView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT/2.f);
+//            imgView.alpha = 0.f;
             self.backgroundColor = RGBA(255, 255, 255, 0);
         } completion:^(BOOL finished) {
             [self removeFromSuperview];

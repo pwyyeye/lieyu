@@ -55,6 +55,12 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 //des解密
 + (NSString *) decryptUseDES:(NSString*)cipherText;
 
+//des加密
++ (NSString *) encryptUseDES:(NSString *)plainText withKey:(NSString *)key;
+
++ (NSString *) decryptUseDES:(NSString*)cipherText withKey:(NSString *)key;
+
+
 + (BOOL) validateIdentityCard: (NSString *)identityCard;
 //判断是否数字
 + (BOOL)isPureInt:(NSString*)string;

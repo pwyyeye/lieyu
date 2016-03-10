@@ -42,7 +42,7 @@
             NSInteger picWidth = 0;
             if (recentModel.isMeSendMessage) picWidth = 0;
             for (int i = 0; i < 2; i ++) {
-                
+                picWidth = 450;
                 UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i%2 *(btnW + 2) + 2, 0, btnW, btnW)];
                 [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                 btn.adjustsImageWhenHighlighted = NO;
@@ -90,7 +90,7 @@
                     default:
                     {
                         btn = [[UIButton alloc]initWithFrame:CGRectMake((i - 1)%3 *(btnW + 2) + 2, SCREEN_WIDTH + 2, btnW, btnW)];
-                        picWidth = 0;
+                        picWidth = 450;
                     }
                         break;
                         
