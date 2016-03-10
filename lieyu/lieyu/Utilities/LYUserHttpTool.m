@@ -87,39 +87,6 @@
     }];
 }
 
-#pragma mark - 获取远程版本 判断是否强制升级
--(void) getAppUpdateStatus:(NSDictionary*)params
-                  complete:(void (^)(BOOL result))result{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FORCED_UPDATE baseURL:LY_SERVER params:params success:^(id response) {
-        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-        if ([code isEqualToString:@"1"]) {
-            NSDictionary *dataDic = response[@"data"];
-            NSString *forced_update=[dataDic objectForKey:@"forced_update"];
-            NSString *version=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-            NSString *remote_version=[dataDic objectForKey:@"version"];
-            BOOL b=NO;
-            //对比班底
-            if (![MyUtil isEmptyString:remote_version]) {
-                if (![version isEqualToString:remote_version] ) {
-                    b=YES;
-                }
-            }
-            if (![MyUtil isEmptyString:forced_update]&&forced_update.intValue==1 &&b) {
-                
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
-                    result(YES);
-                });
-            }else{
-                result(NO);
-            }
-            
-        }else{
-            result(NO);
-        }
-    } failure:^(NSError *err) {
-    }];
-    
-}
 
 #pragma mark - 登出
 -(void) userLogOutWithParams:(NSDictionary*)params
@@ -1332,21 +1299,58 @@
     }];
 }
 
-#pragma mark - 扫码选择快速核对订单
-+ (void)QuickCheckOrderWithParam:(NSDictionary *)paraDic complete:(void(^)(NSString *))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QUICK_CHECK baseURL:LY_SERVER params:paraDic success:^(id response) {
-        NSString *errorcode = [response valueForKey:@"errorcode"];
-        NSString *message = [response valueForKey:@"message"];
-        if ([errorcode isEqualToString:@"1"]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                complete(message);
-            });
+
+#pragma mark - 获取远程版本 判断是否强制升级
+- (void) getAppUpdateStatus:(NSDictionary*)params
+                  complete:(void (^)(BOOL result))result{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FORCED_UPDATE baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if ([code isEqualToString:@"1"]) {
+            NSDictionary *dataDic = response[@"data"];
+            NSString *forced_update=[dataDic objectForKey:@"forced_update"];
+            NSString *version=[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+            NSString *remote_version=[dataDic objectForKey:@"version"];
+            BOOL b=NO;
+            //对比班底
+            if (![MyUtil isEmptyString:remote_version]) {
+                if (![version isEqualToString:remote_version] ) {
+                    b=YES;
+                }
+            }
+            if (![MyUtil isEmptyString:forced_update]&&forced_update.intValue==1 &&b) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    result(YES);
+                });
+            }else{
+                result(NO);
+            }
+            
         }else{
-            [MyUtil showLikePlaceMessage:message];
+            result(NO);
         }
     } failure:^(NSError *err) {
-        
     }];
+    
 }
+
+
+#pragma mark - 获取DES KEY
+-(void) getAppDesKey:(NSDictionary*)params
+                  complete:(void (^)(NSString * result))result{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_DES baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if ([code isEqualToString:@"1"]) {
+            NSString *key = response[@"data"];
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    result(key);
+                });
+        }
+    } failure:^(NSError *err) {
+    }];
+    
+}
+
+
 
 @end
