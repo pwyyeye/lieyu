@@ -32,6 +32,7 @@
 @property(strong,nonatomic) NSString *qiniu_media_token;
 @property(strong,nonatomic) NSString *im_token;
 @property(strong,nonatomic) NSString *im_userId;
+@property(strong,nonatomic) NSString *desKey;
 @property(strong,nonatomic) NSString *citystr;
 @property(retain,nonatomic) CLLocation * userLocation;
 @property(strong,nonatomic) UINavigationController *navigationController;
@@ -46,6 +47,7 @@
 - (void)stopLoading;
 -(void)getImToken;
 -(void)connectWithToken;
+-(void)getDESKey;
 
 @end
 

@@ -188,6 +188,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     //是否需要统计IM消息角标
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
+    
      return YES;
 }
 
@@ -481,6 +482,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [[LYCommonHttpTool shareInstance] getMediaTokenByqiNiuWithParams:nil block:^(NSString *result) {
             _qiniu_media_token=result;
         }];
+        
     }
 }
 
@@ -726,6 +728,15 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
             
             [alert show];
         }
+    }];
+    
+}
+
+
+-(void)getDESKey{
+    __weak typeof(self) weakself=self;
+    [[LYUserHttpTool shareInstance] getAppDesKey:nil complete:^(NSString *result) {
+        weakself.desKey=result;
     }];
     
 }

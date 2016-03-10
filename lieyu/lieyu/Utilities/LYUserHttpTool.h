@@ -190,4 +190,6 @@
 + (void)changeUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(bool))compelte;
 //根据用户ID，获取好友详情
 + (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete;
+//获取deskey
+- (void) getAppDesKey:(NSDictionary*)params complete:(void (^)(NSString * result))result;
 @end
