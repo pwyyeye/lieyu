@@ -31,8 +31,8 @@
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     _captureSession = nil;
     _isReading = NO;
-    [self scanQRCode];
-//    [self startReading];
+//    [self scanQRCode];
+    [self startReading];
     // Do any additional setup after loading the view from its nib.
 }
 - (BOOL)startReading {
@@ -106,35 +106,34 @@
         //判断回传的数据类型
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
             NSString *dataString = [metadataObj stringValue];
-            NSString *subString = [dataString substringToIndex:68];
+            NSString *subString = [dataString substringToIndex:69];
             if([subString isEqualToString:@"http://www.lie98.com/lieyu/lyUserShakeAction.do?action=custom?userid="]){
                 //如果是速核码
                 NSArray *array = [dataString componentsSeparatedByString:@"&"];
-                NSString *userId = [array[0] substringFromIndex:68];
-                NSString *currentTime = [array[1] substringFromIndex:11];
+                NSString *userId = [array[0] substringFromIndex:69];
+                NSString *currentTime = [array[1] substringFromIndex:12];
                 NSDictionary *dict = @{@"userid":userId,
                                        @"currentTime":currentTime,
                                        @"usertype":self.userModel.usertype};
                 [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
                     if ([self.userModel.usertype isEqualToString:@"1"]) {
-                        if([[result valueForKey:@"message"] isEqualToString:@""]){
-                            //如果还未加好友，打招呼成功
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToForthViewController" object:nil];
-                        }else if ([[result valueForKey:@"message"] isEqualToString:@""]){
+                        if ([[result valueForKey:@"message"] isEqualToString:@"已经是好友！"]){
                             //如果已经是好友了，进入玩友详情
                             LYMyFriendDetailViewController *MyFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
-                            MyFriendDetailVC.userID = [[result valueForKey:@"data"] valueForKey:@"userid"];
+                            MyFriendDetailVC.userID = [NSString stringWithFormat:@"%@",[result valueForKey:@"data"] ];
+                            [self.navigationController pushViewController:MyFriendDetailVC animated:YES];
+                        }else{
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
                         }
                     }
                     else if ([self.userModel.usertype isEqualToString:@"2"]){
                         //商户扫码，进行核实订单
                         NSArray *tempArr = [result valueForKey:@"data"];
-                        if([[result valueForKey:@"message"] isEqualToString:@"无有效订单！"]){
-                            //无有效订单！
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToForthViewController" object:nil];
-                        }else if (tempArr.count <= 1) {
+                        if (tempArr.count <= 1) {
                             //只有一个订单，扫码核单成功
-                            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToForthViewController" object:nil];
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
                         }else{
                             //多于一单，进入订单选择页面
                             CheckOrderWithQRViewController *checkorderVC = [[CheckOrderWithQRViewController alloc]initWithNibName:@"CheckOrderWithQRViewController" bundle:nil];

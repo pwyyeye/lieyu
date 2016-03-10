@@ -102,5 +102,7 @@
 #define LY_USERCHANGENOTIFICATION @"userPushAction.do?action=update"
 //根据用户ID，获取好友详情
 #define LY_GET_USERINFO @"lyQRCodeAction.do?action=expand"
+//传入消费码以及订单号进行速核
+#define LY_QUICK_CHECK @"lyQRCodeAction.do?action=update"
 
 #endif

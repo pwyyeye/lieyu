@@ -13,4 +13,5 @@
 
 #define LYNewMessageDetail @"userPushLogAction.do?action=list"
 
+#define LYNewMessageReaded @"userPushLogAction.do?action=update"
 #endif /* LYFindUrl_h */
