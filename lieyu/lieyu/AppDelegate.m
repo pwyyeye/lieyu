@@ -33,6 +33,7 @@
 #import "LYCache.h"
 
 #import "HuoDongViewController.h"
+#import "LPUserLoginViewController.h"
 
 @interface AppDelegate ()
 <
@@ -180,6 +181,14 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         self.window.rootViewController=view;
     }
     
+    NSString *username=[USER_DEFAULT objectForKey:@"username"];
+    NSString *password=[USER_DEFAULT objectForKey:@"pass"];
+    if([MyUtil isEmptyString:username] || [MyUtil isEmptyString:password]){
+         LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+        [self.navigationController pushViewController:login animated:YES];
+//         self.window.rootViewController=login;
+    }
+
     //处理消息推送
     if (launchOptions.count>0) {
         NSDictionary * userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];

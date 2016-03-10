@@ -112,6 +112,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 
 }
 //-(void)viewDidAppear:(BOOL)animated{
@@ -122,7 +123,7 @@
 {
     [super viewWillLayoutSubviews];
     //    if (self.navigationController.navigationBarHidden == NO) {
-    //        [self.navigationController setNavigationBarHidden:YES];
+            [self.navigationController setNavigationBarHidden:NO];
     //    }
     //
     //self.userNameTex.layer.borderWidth = 0.5;
@@ -188,7 +189,7 @@
         
         [weakSelf getUserCollectJiuBaList];
         [weakSelf getUserZangJiuBaList];
-        
+       
         [weakSelf.navigationController popViewControllerAnimated:YES ];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
