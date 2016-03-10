@@ -51,7 +51,8 @@
     [dataList removeAllObjects];
     __weak __typeof(self)weakSelf = self;
     [[LYUserHttpTool shareInstance]getAddMeListWithParams:nil block:^(NSMutableArray *result) {
-        [dataList addObjectsFromArray:result];
+//        [dataList addObjectsFromArray:result];
+        dataList = result;
         [weakSelf.tableView reloadData];
         if (result.count) {
             NSDictionary *dic = @{@"type":@"11",@"read":@"1"};
