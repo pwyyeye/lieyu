@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *OrderName;
 @property (weak, nonatomic) IBOutlet UILabel *OrderPrice;
 @property (weak, nonatomic) IBOutlet UILabel *OrderNumber;
+@property (weak, nonatomic) IBOutlet UIImageView *lineImage;
 
 @property (nonatomic, strong) ShopDetailmodel *model;
 @end

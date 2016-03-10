@@ -1299,6 +1299,19 @@
     }];
 }
 
++ (void)QuickCheckOrderWithParam:(NSDictionary *)paraDic complete:(void (^)(NSString *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QUICK_CHECK baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *message = [response valueForKey:@"message"];
+        NSString *errorCode = [response valueForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(message);
+        }else{
+            [MyUtil showLikePlaceMessage:message];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
 
 #pragma mark - 获取远程版本 判断是否强制升级
 - (void) getAppUpdateStatus:(NSDictionary*)params
@@ -1333,7 +1346,6 @@
     }];
     
 }
-
 
 #pragma mark - 获取DES KEY
 -(void) getAppDesKey:(NSDictionary*)params
