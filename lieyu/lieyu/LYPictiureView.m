@@ -39,6 +39,7 @@
         
         _oldFrameArr = oldFrame;
         _scrollView = [[UIScrollView alloc]initWithFrame:frame];
+        _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.delegate = self;
 //        _scrollView.maximumZoomScale = 2.0;
         self.backgroundColor = RGBA(255, 255, 255, 0);
@@ -66,7 +67,10 @@
             [_scrollView addSubview:s];
             
              UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH, SCREEN_WIDTH)];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+            SDImageCache *mamager = [SDImageCache sharedImageCache];
+//            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+            
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]]];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             imageView.clipsToBounds = YES;
             imageView.tag = i+1;
@@ -134,7 +138,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     _index = (_scrollView.contentOffset.x / SCREEN_WIDTH);
-    NSLog(@"----->%f-------->%d",_scrollView.contentOffset.x,((int)_scrollView.contentOffset.x % (int)SCREEN_WIDTH));
+//    NSLog(@"----->%f-------->%d",_scrollView.contentOffset.x,((int)_scrollView.contentOffset.x % (int)SCREEN_WIDTH));
 //    if(((int)_scrollView.contentOffset.x % (int)SCREEN_WIDTH) != 0){
 //        for (UIScrollView *s in _scrollViewArray) {
 //            s.delegate = nil;
@@ -193,11 +197,11 @@
     
     float newScale = [(UIScrollView*)gesture.view.superview zoomScale] * 1.5;
     CGRect zoomRect = [self zoomRectForScale:newScale  inView:(UIScrollView*)gesture.view.superview withCenter:[gesture locationInView:gesture.view]];
+//    CGRect zoomRect = [self zoomRectForScale:newScale  inView:(UIScrollView*)gesture.view.superview withCenter:[gesture locationInView:self]];
     UIView *view = gesture.view.superview;
     if ([view isKindOfClass:[UIScrollView class]]){
         UIScrollView *s = (UIScrollView *)view;
         [s zoomToRect:zoomRect animated:YES];
-        
     }
 }
 
@@ -260,7 +264,6 @@
 - (void)tapGes{
     UIImageView *imgView = _imageViewArray[_index];
     UIScrollView *scrollView = _scrollViewArray[_index];
-    NSLog(@"----------->%f",imgView.frame.size.width);
     if (scrollView.contentSize.width > SCREEN_WIDTH) {
         [UIView animateWithDuration:.5 animations:^{
             scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
