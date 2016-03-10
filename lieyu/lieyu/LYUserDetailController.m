@@ -32,7 +32,8 @@
     
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     self.title=@"个人信息";
-    data=@[@"头像",@"昵称",@"性别",@"生日",@"标签",@"我的二维码"];
+//    data=@[@"头像",@"昵称",@"性别",@"生日",@"标签",@"我的二维码"];
+        data=@[@"头像",@"昵称",@"性别",@"生日",@"标签"];
     _datePicker=[[UIDatePicker alloc] init];
     _datePicker.center = CGPointMake(SCREEN_WIDTH/2.f,_datePicker.center.y);
     _datePicker.datePickerMode=UIDatePickerModeDate;
