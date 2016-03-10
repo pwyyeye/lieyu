@@ -1332,6 +1332,21 @@
     }];
 }
 
-
+#pragma mark - 扫码选择快速核对订单
++ (void)QuickCheckOrderWithParam:(NSDictionary *)paraDic complete:(void(^)(NSString *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QUICK_CHECK baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *errorcode = [response valueForKey:@"errorcode"];
+        NSString *message = [response valueForKey:@"message"];
+        if ([errorcode isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(message);
+            });
+        }else{
+            [MyUtil showLikePlaceMessage:message];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
 
 @end

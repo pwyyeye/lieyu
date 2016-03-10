@@ -17,6 +17,7 @@
 #import "ProductVOModel.h"
 #import "ShopDetailmodel.h"
 #import "NSObject+MJKeyValue.h"
+#import "LYUserHttpTool.h"
 
 @interface CheckOrderWithQRViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate>
 {
@@ -180,7 +181,15 @@
         }//将消费码以及订单号拼接好，但是末尾多了一个“，”
         [orderID deleteCharactersInRange:NSMakeRange(orderID.length - 1, 1)];
         [consumerID deleteCharactersInRange:NSMakeRange(consumerID.length - 1, 1)];
-        NSString *DNS_consumerID = [MyUtil encryptUseDES:consumerID];
+        NSString *DNS_consumerID = [MyUtil encryptUseDES:consumerID withKey:@"LY123456"];
+        NSDictionary *dic = @{@"ids":orderID,
+                              @"consumptionCodes":DNS_consumerID};
+        [LYUserHttpTool QuickCheckOrderWithParam:dic complete:^(NSString *message) {
+//            if ([message isEqualToString:@""]) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                [MyUtil showLikePlaceMessage:message];
+//            }
+        }];
     }else if (buttonIndex == 1){
         NSLog(@"1");
     }
