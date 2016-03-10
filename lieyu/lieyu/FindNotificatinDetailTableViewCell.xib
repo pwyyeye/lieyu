@@ -17,7 +17,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7qW-vB-xpE">
                         <rect key="frame" x="0.0" y="3" width="320" height="69"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CommonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="pSZ-eJ-Bmn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notificationSystem.png" translatesAutoresizingMaskIntoConstraints="NO" id="pSZ-eJ-Bmn">
                                 <rect key="frame" x="8" y="8" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="LXS-nd-fFa"/>
@@ -59,7 +59,7 @@
                                 <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX1-UA-FGN">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX1-UA-FGN">
                                 <rect key="frame" x="285" y="38" width="27" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="I0d-4q-Ku9"/>
@@ -104,11 +104,18 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="img_icon" destination="pSZ-eJ-Bmn" id="Z5N-Na-ky6"/>
+                <outlet property="label_detail" destination="KPP-Do-C4U" id="dvT-Mc-17g"/>
+                <outlet property="label_state" destination="XX1-UA-FGN" id="Tcg-Pi-gjM"/>
+                <outlet property="label_time" destination="0sb-aK-pde" id="597-Xk-Ncy"/>
+                <outlet property="label_title" destination="a5j-2I-i9k" id="RoM-vZ-0dh"/>
+            </connections>
             <point key="canvasLocation" x="387" y="384"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CommonIcon" width="43" height="43"/>
         <image name="findMaskWhite.png" width="187" height="70"/>
+        <image name="notificationSystem.png" width="46" height="46"/>
     </resources>
 </document>

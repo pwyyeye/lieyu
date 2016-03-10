@@ -9,5 +9,5 @@
 #import "LYBaseViewController.h"
 
 @interface FindNotificationDetailViewController : LYBaseViewController
-
+@property (nonatomic,copy) NSString *type;
 @end

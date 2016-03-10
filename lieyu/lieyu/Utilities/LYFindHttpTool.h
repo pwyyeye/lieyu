@@ -14,4 +14,7 @@
 
 //获取用户推送记录
 + (void)getNotificationMessageListWithParams:(NSDictionary *)params compelte:(void (^)(NSArray *))compelte;
+
+//推送信息标识为已读
++ (void)NotificationMessageListReadedWithParams:(NSDictionary *)params compelte:(void (^)(NSArray *))compelte;
 @end

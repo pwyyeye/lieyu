@@ -9,8 +9,11 @@
 #import "FindNotificationDetailViewController.h"
 #import "FindNotificatinDetailTableViewCell.h"
 #import "LYFindHttpTool.h"
+#import "FindNotificationNextDetailViewController.h"
 
-@interface FindNotificationDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface FindNotificationDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSArray *_dataArray;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -28,20 +31,34 @@
 }
 
 - (void)getData{
-//    NSDictionary *dic = @{};
-//    [LYFindHttpTool getNotificationMessageListWithParams:dic compelte:^(NSArray *dataArray) {
-    
-//    }];
+    NSDictionary *dic = @{@"type":_type};
+    __weak __typeof(self) weakSelf = self;
+    [LYFindHttpTool getNotificationMessageListWithParams:dic compelte:^(NSArray *dataArray) {
+        _dataArray = dataArray;
+        [weakSelf.tableView reloadData];
+        if (dataArray.count) {
+            NSDictionary *dic = @{@"type":_type,@"read":@"1"};
+            [LYFindHttpTool NotificationMessageListReadedWithParams:dic compelte:nil];
+        }
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FindNotificatinDetailTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"FindNotificatinDetailTableViewCell" forIndexPath:indexPath];
-    
+    FindNewMessageList *findNewMessList = _dataArray[indexPath.row];
+    cell.findMessList = findNewMessList;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+     FindNewMessageList *findNewMessList = _dataArray[indexPath.row];
+    FindNotificationNextDetailViewController *findNextDetailVC = [[FindNotificationNextDetailViewController alloc]init];
+    findNextDetailVC.findNewList = findNewMessList;
+    [self.navigationController pushViewController:findNextDetailVC animated:YES];
 }
 
 

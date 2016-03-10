@@ -35,7 +35,7 @@
 
 #pragma mark - 获取用户推送记录
 + (void)getNotificationMessageListWithParams:(NSDictionary *)params compelte:(void (^)(NSArray *))compelte{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LYNewMessage baseURL:QINIU_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LYNewMessageDetail baseURL:QINIU_SERVER params:params success:^(id response) {
         NSLog(@"---->%@",response);
         NSString *errorCodeStr = response[@"errorcode"];
         if ([errorCodeStr isEqualToString:@"1"]) {
@@ -44,6 +44,21 @@
             compelte(newMessageArr);
         }else{
             compelte(nil);
+        }
+    } failure:^(NSError *err) {
+        compelte(nil);
+    }];
+}
+
+#pragma mark - 推送信息标识为已读
++ (void)NotificationMessageListReadedWithParams:(NSDictionary *)params compelte:(void (^)(NSArray *))compelte{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LYNewMessageReaded baseURL:QINIU_SERVER params:params success:^(id response) {
+        NSLog(@"---->%@",response);
+        NSString *errorCodeStr = response[@"errorcode"];
+        if ([errorCodeStr isEqualToString:@"1"]) {
+            
+        }else{
+            
         }
     } failure:^(NSError *err) {
         compelte(nil);

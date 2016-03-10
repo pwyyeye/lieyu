@@ -11,6 +11,7 @@
 #import "MessageCell.h"
 #import "CustomerModel.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "LYFindHttpTool.h"
 @interface MyMessageListViewController ()
 {
     NSMutableArray *dataList;
@@ -32,6 +33,8 @@
     _tableView.backgroundColor=RGB(237, 237, 237);
     [self setupViewStyles];
     [self getData];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 - (void)setupViewStyles
@@ -50,6 +53,10 @@
     [[LYUserHttpTool shareInstance]getAddMeListWithParams:nil block:^(NSMutableArray *result) {
         [dataList addObjectsFromArray:result];
         [weakSelf.tableView reloadData];
+        if (result.count) {
+            NSDictionary *dic = @{@"type":@"11",@"read":@"1"};
+            [LYFindHttpTool NotificationMessageListReadedWithParams:dic compelte:nil];
+        }
     }];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

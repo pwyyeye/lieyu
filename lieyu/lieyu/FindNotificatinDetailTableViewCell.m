@@ -7,12 +7,23 @@
 //
 
 #import "FindNotificatinDetailTableViewCell.h"
+#import "FindNewMessageList.h"
 
 @implementation FindNotificatinDetailTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+
+- (void)setFindMessList:(FindNewMessageList *)findMessList{
+    _findMessList = findMessList;
+//    _img_icon = findMessList.
+    _label_time.text = findMessList.createDate;
+    _label_title.text = findMessList.title;
+    _label_detail.text = findMessList.content;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
