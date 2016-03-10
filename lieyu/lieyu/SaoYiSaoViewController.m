@@ -35,6 +35,16 @@
     [self startReading];
     // Do any additional setup after loading the view from its nib.
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [self stopReading];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 - (BOOL)startReading {
     NSError *error;
     //1.初始化捕捉设备（AVCaptureDevice），类型为AVMediaTypeVideo
@@ -90,8 +100,8 @@
     _scanLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH - 100, 1);
     _scanLayer.backgroundColor = [UIColor brownColor].CGColor;
     [_viewPreview.layer addSublayer:_scanLayer];
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(moveScanLayer:) userInfo:nil repeats:YES];
-    [timer fire];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(moveScanLayer:) userInfo:nil repeats:YES];
+    [_timer fire];
     //10.开始扫描
     [_captureSession startRunning];
     return YES;
@@ -100,14 +110,19 @@
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
+    [_captureSession stopRunning];
+    [_timer invalidate];
     //判断是否有数据
     if (metadataObjects != nil && [metadataObjects count] > 0) {
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         //判断回传的数据类型
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
             NSString *dataString = [metadataObj stringValue];
-            NSString *subString = [dataString substringToIndex:69];
-            if([subString isEqualToString:@"http://www.lie98.com/lieyu/lyUserShakeAction.do?action=custom?userid="]){
+//            NSString *subString = [dataString substringToIndex:69];
+            NSString *myUrl=[NSString stringWithFormat:@"%@lyQRCodeAction?action=custom",LY_SERVER];
+            
+            if ([dataString containsString:myUrl]) {
+//            if([subString isEqualToString:@"http://www.lie98.com/lieyu/lyQRCodeAction?action=custom?userid="]){
                 //如果是速核码
                 NSArray *array = [dataString componentsSeparatedByString:@"&"];
                 NSString *userId = [array[0] substringFromIndex:69];
@@ -115,30 +130,32 @@
                 NSDictionary *dict = @{@"userid":userId,
                                        @"currentTime":currentTime,
                                        @"usertype":self.userModel.usertype};
+                __weak typeof(self) weakSelf=self;
                 [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
-                    if ([self.userModel.usertype isEqualToString:@"1"]) {
+                    if ([weakSelf.userModel.usertype isEqualToString:@"1"]) {
                         if ([[result valueForKey:@"message"] isEqualToString:@"已经是好友！"]){
                             //如果已经是好友了，进入玩友详情
                             LYMyFriendDetailViewController *MyFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
                             MyFriendDetailVC.userID = [NSString stringWithFormat:@"%@",[result valueForKey:@"data"] ];
-                            [self.navigationController pushViewController:MyFriendDetailVC animated:YES];
+                            [weakSelf.navigationController pushViewController:MyFriendDetailVC animated:YES];
                         }else{
-                            [self.navigationController popToRootViewControllerAnimated:YES];
-                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+                            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+                            [MyUtil showLikePlaceMessage:@"已发送好友申请！"];
                         }
                     }
-                    else if ([self.userModel.usertype isEqualToString:@"2"]){
+                    else if ([weakSelf.userModel.usertype isEqualToString:@"2"]){
                         //商户扫码，进行核实订单
                         NSArray *tempArr = [result valueForKey:@"data"];
                         if (tempArr.count <= 1) {
                             //只有一个订单，扫码核单成功
-                            [self.navigationController popToRootViewControllerAnimated:YES];
+                            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                             [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
                         }else{
                             //多于一单，进入订单选择页面
                             CheckOrderWithQRViewController *checkorderVC = [[CheckOrderWithQRViewController alloc]initWithNibName:@"CheckOrderWithQRViewController" bundle:nil];
                             checkorderVC.tempArr = tempArr;
-                            [self.navigationController pushViewController:checkorderVC animated:YES];
+                            [weakSelf.navigationController pushViewController:checkorderVC animated:YES];
                         }
                     }
                 }];
@@ -178,9 +195,7 @@
     _isReading = !_isReading;
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [self stopReading];
-}
+
 
 -(void)stopReading{
     [_captureSession stopRunning];
@@ -234,5 +249,8 @@
             }
         }];
     }
+}
+-(void)dealloc{
+    NSLog(@"----pass-pass%@---",@"test");
 }
 @end
