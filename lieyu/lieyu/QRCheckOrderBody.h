@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ShopDetailmodel.h"
 @interface QRCheckOrderBody : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *OrderImage;
 @property (weak, nonatomic) IBOutlet UILabel *OrderName;
 @property (weak, nonatomic) IBOutlet UILabel *OrderPrice;
 @property (weak, nonatomic) IBOutlet UILabel *OrderNumber;
 
+@property (nonatomic, strong) ShopDetailmodel *model;
 @end

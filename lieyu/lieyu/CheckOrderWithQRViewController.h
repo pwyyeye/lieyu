@@ -10,4 +10,5 @@
 
 @interface CheckOrderWithQRViewController : LYBaseViewController
 @property (nonatomic, strong) NSArray *tempArr;
+@property (weak, nonatomic) IBOutlet UIButton *checkBtn;
 @end

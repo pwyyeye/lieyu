@@ -516,7 +516,9 @@
             orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
             orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
             orderHeadView.nameLal.text=orderInfoModel.username;
-            orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
+            AppDelegate *app=(AppDelegate *)[UIApplication sharedApplication].delegate;
+            NSString *consumptionCode=[MyUtil decryptUseDES:orderInfoModel.consumptionCode withKey:app.desKey];
+            orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",consumptionCode];
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
             NSString *str=orderInfoModel.avatar_img ;
@@ -546,7 +548,9 @@
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
             OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
             orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
-            orderHeadView.nameLal.text=[NSString stringWithFormat:@"消费码:%@",orderInfoModel.consumptionCode];
+            AppDelegate *app=(AppDelegate *)[UIApplication sharedApplication].delegate;
+            NSString *consumptionCode=[MyUtil decryptUseDES:orderInfoModel.consumptionCode withKey:app.desKey];
+            orderHeadView.nameLal.text=[NSString stringWithFormat:@"消费码:%@",consumptionCode];
             orderHeadView.nameLal.text=orderInfoModel.username;
             orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
             orderHeadView.userImgeView.layer.masksToBounds =YES;

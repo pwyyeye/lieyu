@@ -818,14 +818,18 @@
             if(isFaqi){
                 if(_orderInfoModel.consumptionCode){
                     if(_orderInfoModel.consumptionCode.length>0){
-                        orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",_orderInfoModel.consumptionCode];
+                        AppDelegate *app=(AppDelegate *)[UIApplication sharedApplication].delegate;
+                        NSString *consumptionCode=[MyUtil decryptUseDES:_orderInfoModel.consumptionCode withKey:app.desKey];
+                        orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",consumptionCode];
                     }
                 }
             }
         }else{
             if(_orderInfoModel.consumptionCode){
                 if(_orderInfoModel.consumptionCode.length>0){
-                    orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",_orderInfoModel.consumptionCode];
+                    AppDelegate *app=(AppDelegate *)[UIApplication sharedApplication].delegate;
+                    NSString *consumptionCode=[MyUtil decryptUseDES:_orderInfoModel.consumptionCode withKey:app.desKey];
+                    orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",consumptionCode];
                 }
             }
         }

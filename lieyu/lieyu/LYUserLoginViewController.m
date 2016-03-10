@@ -254,6 +254,9 @@
                 app.s_app_id=userM.token;
                 app.userModel=userM;
                 [app getImToken];
+                if ([MyUtil isEmptyString:app.desKey] ) {
+                    [app getDESKey];
+                }
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -276,6 +279,9 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
+        if ([MyUtil isEmptyString:app.desKey] ) {
+            [app getDESKey];
+        }
         //        [self.navigationController popToRootViewControllerAnimated:YES ];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
     }];
