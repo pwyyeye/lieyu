@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckOrderWithQRViewController">
             <connections>
+                <outlet property="checkBtn" destination="Ejo-Np-N6f" id="0Iz-JB-rEO"/>
                 <outlet property="myTableView" destination="Q8c-06-xho" id="9VE-KP-qFl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,17 +18,51 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Q8c-06-xho">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="548"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wD9-cz-Q1b">
+                    <rect key="frame" x="0.0" y="548" width="600" height="0.5"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10158943970000001" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="mJt-k8-s4a"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejo-Np-N6f">
+                    <rect key="frame" x="15" y="556" width="570" height="36"/>
+                    <color key="backgroundColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="V23-0Y-Nib"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="确认核定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="wD9-cz-Q1b" firstAttribute="top" secondItem="Q8c-06-xho" secondAttribute="bottom" id="8RQ-tT-Aqc"/>
+                <constraint firstItem="Ejo-Np-N6f" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="FEL-qs-T9l"/>
+                <constraint firstItem="wD9-cz-Q1b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="J6O-Kv-bgc"/>
                 <constraint firstAttribute="bottom" secondItem="Q8c-06-xho" secondAttribute="bottom" id="K3g-9i-BgC"/>
                 <constraint firstAttribute="trailing" secondItem="Q8c-06-xho" secondAttribute="trailing" id="Ndl-yx-G6I"/>
                 <constraint firstItem="Q8c-06-xho" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VuN-dq-Fv9"/>
+                <constraint firstAttribute="trailing" secondItem="wD9-cz-Q1b" secondAttribute="trailing" id="fDy-mG-4Hf"/>
                 <constraint firstItem="Q8c-06-xho" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iUX-PS-9i9"/>
+                <constraint firstItem="Ejo-Np-N6f" firstAttribute="top" secondItem="Q8c-06-xho" secondAttribute="bottom" constant="8" id="kCi-TA-z8Z"/>
+                <constraint firstAttribute="trailing" secondItem="Ejo-Np-N6f" secondAttribute="trailing" constant="15" id="kk0-ji-d9Q"/>
+                <constraint firstAttribute="bottom" secondItem="Ejo-Np-N6f" secondAttribute="bottom" constant="8" id="oss-5y-qyH"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="K3g-9i-BgC"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="210" y="367"/>
         </view>
     </objects>
 </document>

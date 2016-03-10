@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     _user_avater.layer.cornerRadius = CGRectGetHeight(_user_avater.frame) / 2;
     _user_avater.layer.masksToBounds = YES;
+    _IsSelected.selected = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,11 +23,9 @@
 - (void)setOrderinfo:(OrderInfoModel *)orderinfo{
     [_user_avater sd_setImageWithURL:[NSURL URLWithString:orderinfo.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _OrderNumber.text = [NSString stringWithFormat:@"%d",orderinfo.id];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yy-MM-dd"];
-    NSDate *date = [formatter dateFromString:orderinfo.createDate];
-    NSString *dateString = [NSString stringWithFormat:@"%@",date];
+    NSString *dateString = [orderinfo.createDate substringWithRange:NSMakeRange(2, 8)];
     _OrderTime.text = dateString;
+    _user_name.text = orderinfo.username;
 }
 
 @end
