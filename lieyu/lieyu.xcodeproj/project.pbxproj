@@ -716,6 +716,8 @@
 		854CCA841C918E2700368C72 /* sina_weibo_s2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 854CCA7E1C918E2700368C72 /* sina_weibo_s2@3x.png */; };
 		854CCA851C918E2700368C72 /* qq_s2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 854CCA7F1C918E2700368C72 /* qq_s2@3x.png */; };
 		854CCA861C918E2700368C72 /* wechat_s2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 854CCA801C918E2700368C72 /* wechat_s2@2x.png */; };
+		854CCA891C919B2B00368C72 /* GameIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 854CCA871C919B2B00368C72 /* GameIcon@2x.png */; };
+		854CCA8A1C919B2B00368C72 /* GameIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 854CCA881C919B2B00368C72 /* GameIcon@3x.png */; };
 		8550E70B1C2FC11C001FF2DE /* LYFriendsCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8550E70A1C2FC11C001FF2DE /* LYFriendsCommentView.m */; };
 		8550E70D1C2FC130001FF2DE /* LYFriendsCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8550E70C1C2FC130001FF2DE /* LYFriendsCommentView.xib */; };
 		8550E7131C301740001FF2DE /* LYFriendsMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8550E7111C301740001FF2DE /* LYFriendsMessageDetailViewController.m */; };
@@ -2342,6 +2344,8 @@
 		854CCA7E1C918E2700368C72 /* sina_weibo_s2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sina_weibo_s2@3x.png"; sourceTree = "<group>"; };
 		854CCA7F1C918E2700368C72 /* qq_s2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_s2@3x.png"; sourceTree = "<group>"; };
 		854CCA801C918E2700368C72 /* wechat_s2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wechat_s2@2x.png"; sourceTree = "<group>"; };
+		854CCA871C919B2B00368C72 /* GameIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@2x.png"; sourceTree = "<group>"; };
+		854CCA881C919B2B00368C72 /* GameIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GameIcon@3x.png"; sourceTree = "<group>"; };
 		8550E7091C2FC11C001FF2DE /* LYFriendsCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsCommentView.h; sourceTree = "<group>"; };
 		8550E70A1C2FC11C001FF2DE /* LYFriendsCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsCommentView.m; sourceTree = "<group>"; };
 		8550E70C1C2FC130001FF2DE /* LYFriendsCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYFriendsCommentView.xib; sourceTree = "<group>"; };
@@ -4669,6 +4673,8 @@
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				854CCA871C919B2B00368C72 /* GameIcon@2x.png */,
+				854CCA881C919B2B00368C72 /* GameIcon@3x.png */,
 				854CCA731C9187B800368C72 /* saoyisao@2x.png */,
 				854CCA741C9187B800368C72 /* saoyisao@3x.png */,
 				85529C191C8FC854005D8F0D /* findMaskWhite@2x.png */,
@@ -5753,6 +5759,8 @@
 			children = (
 				854CCA771C918BDB00368C72 /* LoginNew@2x.png */,
 				854CCA781C918BDB00368C72 /* LoginNew@3x.png */,
+				38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */,
+				38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */,
 				853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */,
 				AD4EA8541C546B110056E560 /* MineBigBG@2x.jpg */,
 				AD4EA8551C546B110056E560 /* MineBigBG@3x.jpg */,
@@ -7461,6 +7469,7 @@
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
 				15EB35491BD4839D00BA6161 /* UMSCommentDetailController.xib in Resources */,
 				A2F9DA6B1BAA58B1009DEAF3 /* DetailCell.xib in Resources */,
+				854CCA891C919B2B00368C72 /* GameIcon@2x.png in Resources */,
 				15E240901BB283C70090D240 /* LYOrderBottomView.xib in Resources */,
 				ADE1C5C91C730E1C0011D4AB /* 更新20@2x.png in Resources */,
 				A2020D751BA67FA40090B92A /* Fill2097.png in Resources */,
@@ -8074,6 +8083,7 @@
 				15E240A21BB37EF60090D240 /* LYOrderDetailViewController.xib in Resources */,
 				387782251C8FF2CA0047088B /* Line@3x.png in Resources */,
 				52D4F9A91C57B2B700691BEF /* 热门@3x.png in Resources */,
+				854CCA8A1C919B2B00368C72 /* GameIcon@3x.png in Resources */,
 				38E5D7A91C113879004B49D2 /* purper_add.png in Resources */,
 				D729DB621BADB8D3005A9E60 /* BeerBarDetailViewController.xib in Resources */,
 				15F54A961BB0393C0020EB4C /* TimeChooseTwoViewController.xib in Resources */,
