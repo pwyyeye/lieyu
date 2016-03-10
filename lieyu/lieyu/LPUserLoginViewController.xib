@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fds-fI-1a1">
-                    <rect key="frame" x="37" y="395" width="246" height="37"/>
+                    <rect key="frame" x="37" y="415" width="246" height="37"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="gpQ-qU-gEU"/>
@@ -48,7 +48,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKG-Zb-pJd">
-                    <rect key="frame" x="37" y="452" width="246" height="37"/>
+                    <rect key="frame" x="37" y="472" width="246" height="37"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="py2-WJ-a1k"/>
@@ -73,7 +73,7 @@
                 <constraint firstAttribute="bottom" secondItem="mVj-6w-TWd" secondAttribute="bottom" constant="34" id="3ke-e0-q67"/>
                 <constraint firstItem="mVj-6w-TWd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Be6-CU-ywN"/>
                 <constraint firstAttribute="trailing" secondItem="pKG-Zb-pJd" secondAttribute="trailing" constant="37" id="DeM-v3-8Su"/>
-                <constraint firstItem="mVj-6w-TWd" firstAttribute="top" secondItem="pKG-Zb-pJd" secondAttribute="bottom" constant="20" id="J9h-Y6-jG6"/>
+                <constraint firstItem="mVj-6w-TWd" firstAttribute="top" secondItem="pKG-Zb-pJd" secondAttribute="bottom" id="J9h-Y6-jG6"/>
                 <constraint firstAttribute="trailing" secondItem="Fds-fI-1a1" secondAttribute="trailing" constant="37" id="Kqc-mh-jB3"/>
                 <constraint firstItem="L7f-uZ-LaU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="Rbw-dz-QG8"/>
                 <constraint firstItem="pKG-Zb-pJd" firstAttribute="top" secondItem="Fds-fI-1a1" secondAttribute="bottom" constant="20" id="fTO-4n-TbN"/>
