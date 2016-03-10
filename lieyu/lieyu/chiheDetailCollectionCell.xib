@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -83,14 +83,19 @@
                         <size key="shadowOffset" width="0.0" height="1"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="现价" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVO-iV-OEc">
-                        <rect key="frame" x="5" y="181" width="44" height="17"/>
+                        <rect key="frame" x="5" y="181" width="66" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="N4t-xp-rO8"/>
+                            <constraint firstAttribute="width" constant="60" id="N4t-xp-rO8"/>
                             <constraint firstAttribute="height" constant="17" id="Xoz-zc-QBS"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.98431372549999996" green="0.1450980392" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="N4t-xp-rO8"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AU-rC-Rg0">
                         <rect key="frame" x="60" y="7" width="50" height="18"/>
@@ -113,8 +118,8 @@
                         <color key="textColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原价" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiR-PV-fkl">
-                        <rect key="frame" x="69" y="181" width="78" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原价" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AiR-PV-fkl">
+                        <rect key="frame" x="81" y="181" width="66" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="lVk-86-ld8"/>
                         </constraints>
@@ -137,6 +142,7 @@
                 <constraint firstItem="lyz-qi-0Ac" firstAttribute="centerX" secondItem="NGu-7m-seR" secondAttribute="centerX" id="Mq2-6X-ZcX"/>
                 <constraint firstItem="EP2-JQ-vqp" firstAttribute="trailing" secondItem="1bj-jn-mzG" secondAttribute="trailing" id="OCN-6h-Flk"/>
                 <constraint firstItem="AiR-PV-fkl" firstAttribute="centerY" secondItem="DVO-iV-OEc" secondAttribute="centerY" id="Q3x-gh-gpJ"/>
+                <constraint firstItem="AiR-PV-fkl" firstAttribute="width" secondItem="DVO-iV-OEc" secondAttribute="width" id="QSj-Pg-c0O"/>
                 <constraint firstItem="rMj-I1-BV5" firstAttribute="leading" secondItem="NGu-7m-seR" secondAttribute="leading" id="V2f-aL-uwP"/>
                 <constraint firstAttribute="trailing" secondItem="rMj-I1-BV5" secondAttribute="trailing" id="VB4-H3-p0e"/>
                 <constraint firstItem="ZLh-Rw-ujw" firstAttribute="leading" secondItem="lyz-qi-0Ac" secondAttribute="trailing" constant="8" id="Woy-1K-6JM"/>
@@ -145,6 +151,7 @@
                 <constraint firstItem="1bj-jn-mzG" firstAttribute="top" secondItem="NGu-7m-seR" secondAttribute="top" id="dYs-ym-fUp"/>
                 <constraint firstAttribute="bottom" secondItem="rMj-I1-BV5" secondAttribute="bottom" id="dmD-2g-LTg"/>
                 <constraint firstItem="I9F-Qq-oYs" firstAttribute="leading" secondItem="NGu-7m-seR" secondAttribute="leading" constant="8" id="dqO-g5-uj2"/>
+                <constraint firstItem="AiR-PV-fkl" firstAttribute="leading" secondItem="DVO-iV-OEc" secondAttribute="trailing" constant="10" id="ecc-sO-KGP"/>
                 <constraint firstAttribute="trailing" secondItem="Loi-ON-iF8" secondAttribute="trailing" constant="5" id="f2p-hk-fIL"/>
                 <constraint firstItem="I9F-Qq-oYs" firstAttribute="top" secondItem="NGu-7m-seR" secondAttribute="top" constant="8" id="fPd-bX-P4G"/>
                 <constraint firstItem="lyz-qi-0Ac" firstAttribute="leading" secondItem="RuI-O3-4a6" secondAttribute="trailing" constant="8" id="iqZ-oD-Md3"/>
@@ -161,6 +168,7 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="uGx-6N-lII"/>
+                    <exclude reference="zZE-6k-R4u"/>
                 </mask>
             </variation>
             <connections>
