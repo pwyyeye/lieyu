@@ -802,7 +802,7 @@
         
     }
     
-    //            orderHeadView.detLal.text=orderInfoModel.paytime;
+    //    orderHeadView.detLal.text=orderInfoModel.paytime;
     //    view.backgroundColor=[UIColor yellowColor];
     return orderHeadView;
     
