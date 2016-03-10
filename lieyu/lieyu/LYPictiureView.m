@@ -67,10 +67,10 @@
             [_scrollView addSubview:s];
             
              UIImageView *imageView = [[UIImageView alloc]init];
-//            SDImageCache *mamager = [SDImageCache sharedImageCache];
-            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+            SDImageCache *mamager = [SDImageCache sharedImageCache];
+//            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             
-//            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]]];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
 //            imageView.contentMode = UIViewContentModeCenter;
             imageView.clipsToBounds = YES;

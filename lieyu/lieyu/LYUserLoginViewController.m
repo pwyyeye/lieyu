@@ -25,6 +25,7 @@
 
 @interface LYUserLoginViewController ()<LYRegistrationDelegate,LYResetPasswordDelegate>{
     UIButton *_qqBtn;
+    __weak IBOutlet NSLayoutConstraint *btn_login_cons_top;
     UIButton *_weixinBtn;
     UIButton *_weiboBtn;
     TencentOAuth *_tencentOAuth;
@@ -51,8 +52,15 @@
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
     _step=1;
     
+    if([[MyUtil deviceString]isEqualToString:@"iPhone 4"] || [[MyUtil deviceString]isEqualToString:@"iPhone 4S"]){
+        btn_login_cons_top.constant = 53;
+        [self updateViewConstraints];
+    }
+
+    
     CGFloat _qqBtnWidth = 44;
     _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 30 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+    NSLog(@"------>%f----%f",SCREEN_HEIGHT - 30 - _qqBtnWidth,self.view.frame.size.height);
     [_qqBtn setImage:[UIImage imageNamed:@"qq_s2"] forState:UIControlStateNormal];
 
     [self.view addSubview:_qqBtn];
@@ -71,8 +79,8 @@
     [self.view addSubview:_weiboBtn];
     [_weiboBtn addTarget:self action:@selector(weiboLogin) forControlEvents:UIControlEventTouchUpInside];
     
-    if(![WXApi isWXAppInstalled]) _weixinBtn.hidden = YES;
-    if(![TencentOAuth iphoneQQInstalled]) _qqBtn.hidden = YES;
+//    if(![WXApi isWXAppInstalled]) _weixinBtn.hidden = YES;
+//    if(![TencentOAuth iphoneQQInstalled]) _qqBtn.hidden = YES;
     
     _btn_submit.layer.masksToBounds=YES;
     _btn_submit.layer.cornerRadius=3;
