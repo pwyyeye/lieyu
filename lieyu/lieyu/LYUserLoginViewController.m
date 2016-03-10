@@ -37,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets=NO;
+    self.navigationItem.title = @"登录";
     // Do any additional setup after loading the view from its nib.
     
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
@@ -44,15 +45,13 @@
     //    [self.navigationItem setLeftBarButtonItem:item];
     
     // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController setNavigationBarHidden:YES];
+//    [self.navigationController setNavigationBarHidden:YES];
     //_timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(wait) userInfo:nil repeats:YES];
    // [_timer setFireDate:[NSDate distantPast]];
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
     _step=1;
     
-    
-    
-    CGFloat _qqBtnWidth = 35;
+    CGFloat _qqBtnWidth = 44;
     _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 30 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
     [_qqBtn setImage:[UIImage imageNamed:@"qq_s2"] forState:UIControlStateNormal];
 
@@ -113,7 +112,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+
 }
 //-(void)viewDidAppear:(BOOL)animated{
 //    [super viewDidAppear:animated];
@@ -126,8 +125,6 @@
     //        [self.navigationController setNavigationBarHidden:YES];
     //    }
     //
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController setNavigationBarHidden:YES];
     //self.userNameTex.layer.borderWidth = 0.5;
     //  self.userNameTex.layer.borderColor = RGBA(255,255,255, 0.2).CGColor;
     // self.userNameTex.layer.masksToBounds = YES;

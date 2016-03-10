@@ -27,6 +27,8 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WXApi.h"
 #import "LYHomePageHttpTool.h"
+#import "SaoYiSaoViewController.h"
+#import "MyCodeViewController.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
     
@@ -69,7 +71,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //  @{@"title":@"专属经理",@"icon":@"userManager"},
   @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
   @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
-  @{@"title":@"扫一扫",@"icon":@""}, @{@"title":@"二维码",@"icon":@""}];
+  @{@"title":@"扫一扫",@"icon":@"saoyisao"}, @{@"title":@"二维码",@"icon":@""}];
  
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
@@ -287,10 +289,22 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [self.navigationController pushViewController:conversationVC animated:YES];
             break;
         }
-        case 4:// 信息中心
+        case 4:// 扫一扫
         {
-            break;
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择扫一扫"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
+            SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
+            saoYiSaoViewController.title=@"扫一扫";
+            [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
+            
         }
+            break;
+        case 5:{//二维码
+            MyCodeViewController *codeViewController = [[MyCodeViewController alloc]initWithNibName:@"MyCodeViewController" bundle:nil];
+            [self.navigationController pushViewController:codeViewController animated:YES];
+        }
+            break;
             
         default://推荐商户
         {

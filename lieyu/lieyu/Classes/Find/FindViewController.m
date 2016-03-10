@@ -51,7 +51,6 @@
                @{@"image":@"lianxiren",@"title":@"玩友列表"},
 //               @{@"image":@"fujinwanyou",@"title":@"附近玩客"},
               // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-               @{@"image":@"saoyisao",@"title":@"扫一扫"},
                @{@"image":@"GameIcon",@"title":@"酒吧小游戏"}];
     _tableView.contentInset = UIEdgeInsetsMake(70, 0, -49, 0);
    /* self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
@@ -187,7 +186,7 @@
     if(section==0){
         return 3;
     }
-        return 2;
+        return 1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -332,29 +331,21 @@
 //            yaoYiYaoViewController.is4s=true;
             yaoYiYaoViewController.title=@"摇一摇";
             [self.navigationController pushViewController:yaoYiYaoViewController  animated:YES];
-        }else */if(indexPath.row == 0){
-            //扫一扫
+        }else */            //扫一扫
             
             //统计发现页面的选择
-            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择扫一扫"};
-            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
-            SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
-            saoYiSaoViewController.title=@"扫一扫";
-            [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
             
 //            LPUserLoginViewController *loginVC = [[LPUserLoginViewController alloc]initWithNibName:@"LPUserLoginViewController" bundle:nil];
 //            [self.navigationController pushViewController:loginVC animated:YES];
             
-        }else if(indexPath.row == 1){
+         if(indexPath.row == 0){
             //统计发现页面的选择
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"酒吧小游戏"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             FindGameCenterViewController *findGameVC = [[FindGameCenterViewController alloc]init];
             [self.navigationController pushViewController:findGameVC animated:YES];
-        }else{
-            
         }
     }
 //    else{//进入酒吧小游戏

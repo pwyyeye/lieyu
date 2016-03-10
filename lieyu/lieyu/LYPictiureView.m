@@ -88,7 +88,7 @@
            
             imageView.frame =  CGRectMake(0, (SCREEN_HEIGHT -SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
             
-            imageView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
+//            imageView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             s.center = CGPointMake(SCREEN_WIDTH *i + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             
             UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
@@ -106,7 +106,7 @@
         _scrollView.contentOffset = CGPointMake(SCREEN_WIDTH * index, 0);
         _scrollView.pagingEnabled = YES;
         
-        if(_imageViewArray.count <= index){
+        if(_imageViewArray.count <= index || oldFrame.count <= index){
             return nil;
         }
         UIImageView *imgView = _imageViewArray[index];
@@ -116,10 +116,10 @@
         [UIView animateWithDuration:.5 animations:^{
             imgView.alpha = 1;
             SDImageCache *cache = [SDImageCache sharedImageCache];
-//            if (_urlArray.count <= _index) {
-//                return nil;
-//            }
-            UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]];
+            if (_urlArray.count <= _index) {
+                return ;
+            }
+            UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]] == nil ? [cache imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]] : [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]];
             if (img == nil) {
                 img = [UIImage imageNamed:@"empyImage300"];
             }
@@ -132,7 +132,7 @@
                 UIImageView *imgView_ce = _imageViewArray[i];
                 SDImageCache *cache = [SDImageCache sharedImageCache];
                 if(_urlArray.count > _index){
-                UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]];
+                UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] == nil ? [cache imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] : [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]];
                     if (img == nil) {
                         img = [UIImage imageNamed:@"empyImage300"];
                     }
@@ -203,7 +203,7 @@
 //                    image.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
                     SDImageCache *cache = [SDImageCache sharedImageCache];
                     if(_urlArray.count > _index){
-                        UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]];
+                        UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] == nil ? [cache imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] : [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]];
                         if (img == nil) {
                             img = [UIImage imageNamed:@"empyImage300"];
                         }
@@ -317,7 +317,7 @@
 //            imgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             if(_urlArray.count > _index){
             SDImageCache *cache = [SDImageCache sharedImageCache];
-                UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]];
+                UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]] == nil ? [cache imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]] : [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]];
                 if (img == nil) {
                     img = [UIImage imageNamed:@"empyImage300"];
                 }
