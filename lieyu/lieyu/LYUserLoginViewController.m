@@ -191,7 +191,7 @@
         
         [weakSelf getUserCollectJiuBaList];
         [weakSelf getUserZangJiuBaList];
-        
+       
         [weakSelf.navigationController popViewControllerAnimated:YES ];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
