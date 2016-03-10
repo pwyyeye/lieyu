@@ -69,7 +69,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //  @{@"title":@"专属经理",@"icon":@"userManager"},
   @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
   @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
-  @{@"title":@"",@"icon":@""}];
+  @{@"title":@"扫一扫",@"icon":@""}, @{@"title":@"二维码",@"icon":@""}];
  
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
@@ -162,7 +162,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
 //     NSLog(@"----pass-------%@---", NSStringFromCGRect(cell.icon.frame));
     cell.text.text=@"";
-    if (indexPath.row<5) {
+    if (indexPath.row<6) {
         NSDictionary *dic=_data[indexPath.row];
         cell.icon.image=[UIImage imageNamed:[dic objectForKey:@"icon"]];
         cell.text.text=[dic objectForKey:@"title"];
