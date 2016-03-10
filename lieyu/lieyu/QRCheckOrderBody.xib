@@ -17,7 +17,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5MO-pR-kSA">
                         <rect key="frame" x="3" y="0.0" width="314" height="108.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line.png" translatesAutoresizingMaskIntoConstraints="NO" id="EW6-jf-CBF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EW6-jf-CBF">
                                 <rect key="frame" x="0.0" y="0.0" width="314" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="rVP-FH-bzd"/>
@@ -90,11 +90,9 @@
                 <outlet property="OrderName" destination="vM4-He-tIc" id="ZXp-YQ-XJP"/>
                 <outlet property="OrderNumber" destination="5ZC-CV-1MJ" id="y5m-Kr-Pxt"/>
                 <outlet property="OrderPrice" destination="Xxp-Ha-p4z" id="JwV-WC-YHs"/>
+                <outlet property="lineImage" destination="EW6-jf-CBF" id="aGn-pP-M1a"/>
             </connections>
             <point key="canvasLocation" x="194" y="380.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="Line.png" width="342" height="2"/>
-    </resources>
 </document>

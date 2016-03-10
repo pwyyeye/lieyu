@@ -451,6 +451,8 @@
 		389C010A1C1488F000FE9412 /* seeGirls@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C01011C1488EF00FE9412 /* seeGirls@3x.png */; };
 		38AA7CC51C315A0000D9BCE8 /* preview.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AA7CC21C315A0000D9BCE8 /* preview.m */; };
 		38AA7CC61C315A0000D9BCE8 /* preview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA7CC31C315A0000D9BCE8 /* preview.xib */; };
+		38B11BFC1C9192A400AD3EB8 /* startingPage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */; };
+		38B11BFD1C9192A400AD3EB8 /* startingPage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */; };
 		38C98CD11C60782D0084E6BD /* YUGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCE1C60782D0084E6BD /* YUGroup.png */; };
 		38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */; };
 		38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CD01C60782D0084E6BD /* YUGroup@3x.png */; };
@@ -1992,6 +1994,8 @@
 		38AA7CC21C315A0000D9BCE8 /* preview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = preview.m; sourceTree = "<group>"; };
 		38AA7CC31C315A0000D9BCE8 /* preview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = preview.xib; sourceTree = "<group>"; };
 		38AA7CC41C315A0000D9BCE8 /* preview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preview.h; sourceTree = "<group>"; };
+		38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startingPage@2x.png"; sourceTree = "<group>"; };
+		38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startingPage@3x.png"; sourceTree = "<group>"; };
 		38C98CCE1C60782D0084E6BD /* YUGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUGroup.png; sourceTree = "<group>"; };
 		38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@2x.png"; sourceTree = "<group>"; };
 		38C98CD01C60782D0084E6BD /* YUGroup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@3x.png"; sourceTree = "<group>"; };
@@ -5197,8 +5201,8 @@
 				8540B6761C2CE4E300F16463 /* LYFriendsAddressTableViewCell.h */,
 				8540B6771C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m */,
 				8540B6781C2CE4E300F16463 /* LYFriendsAddressTableViewCell.xib */,
-				8540B67B1C2CE89900F16463 /* LYFriendsLikeTableViewCell.h */,
 				8540B67C1C2CE89900F16463 /* LYFriendsLikeTableViewCell.m */,
+				8540B67B1C2CE89900F16463 /* LYFriendsLikeTableViewCell.h */,
 				8540B67D1C2CE89900F16463 /* LYFriendsLikeTableViewCell.xib */,
 				8540B6801C2CED9100F16463 /* LYFriendsCommentTableViewCell.h */,
 				8540B6811C2CED9100F16463 /* LYFriendsCommentTableViewCell.m */,
@@ -5743,6 +5747,8 @@
 		85F545121C13D8B80013B92B /* 登录 */ = {
 			isa = PBXGroup;
 			children = (
+				38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */,
+				38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */,
 				853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */,
 				AD4EA8541C546B110056E560 /* MineBigBG@2x.jpg */,
 				AD4EA8551C546B110056E560 /* MineBigBG@3x.jpg */,
@@ -7465,6 +7471,7 @@
 				381D1E971C453F1A0039687C /* shadow@2x.png in Resources */,
 				85F66E421C524F32005D1CD8 /* zuijinlianxiren@3x.png in Resources */,
 				850099CC1C61EEE700DDE626 /* 地址yu@2x.png in Resources */,
+				38B11BFC1C9192A400AD3EB8 /* startingPage@2x.png in Resources */,
 				AD4EA8561C546B110056E560 /* MineBigBG@2x.jpg in Resources */,
 				38E5D7E61C12DC43004B49D2 /* icon_collect.png in Resources */,
 				15ED32791BE318A800E086A1 /* 5018.wav in Resources */,
@@ -7914,6 +7921,7 @@
 				15E184751BB4EB7A00681BB2 /* LYZSdetailCell.xib in Resources */,
 				A2020D8A1BA6A5AA0090B92A /* KaZuoCell.xib in Resources */,
 				3824CA6A1C5B47F300C00732 /* ChoosePeople.xib in Resources */,
+				38B11BFD1C9192A400AD3EB8 /* startingPage@3x.png in Resources */,
 				38E5D7AB1C113879004B49D2 /* purper_add@3x.png in Resources */,
 				AD078C751C33CDE800A056D1 /* iphoneIcon.png in Resources */,
 				AD92AE9C1BE1D339009F2A34 /* lieyu_default_female@2x.png in Resources */,

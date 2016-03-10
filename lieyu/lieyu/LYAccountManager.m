@@ -12,13 +12,15 @@
 #import "LYHomePageHttpTool.h"
 #import "UMSocial.h"
 #import "LYUserHttpTool.h"
+#import "LYUserDetailController.h"
 
 @implementation LYAccountManager
 
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.title=@"账户管理"; 
-    _data=@[@"修改密码",@"绑定微信",@"绑定QQ",@"绑定微博"];
+//    _data=@[@"修改密码",@"绑定微信",@"绑定QQ",@"绑定微博"];
+    _data=@[@"编辑个人资料",@"修改密码",@"绑定微信",@"绑定QQ",@"绑定微博"];
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
      self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
@@ -36,7 +38,8 @@
     return _data.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row==0) {
+    if ( indexPath.row == 1 || indexPath.row == 0) {
+        if(!indexPath.row) return 60;
         return 70;
     }else{
         return 50;
@@ -49,23 +52,25 @@
     UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     
 
-    if(indexPath.row==0){
+    if(indexPath.row==1 || indexPath.row == 0){
         UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(20, 10 , SCREEN_WIDTH, 50)];
         titleLabel.font=[UIFont systemFontOfSize:15.0];
         titleLabel.text=_data[indexPath.row];
         [cell.contentView addSubview:titleLabel];
         
+//        if(!indexPath.row) titleLabel.frame = CGRectMake(20, 10, SCREEN_WIDTH, 60);
+        
         CALayer *layerShadow=[[CALayer alloc]init];
         layerShadow.frame=CGRectMake(0, cell.frame.origin.y, SCREEN_WIDTH,10);
         layerShadow.borderColor=[RGB(237, 237, 237) CGColor];
         layerShadow.borderWidth=10;
-        [cell.layer addSublayer:layerShadow];
+         [cell.layer addSublayer:layerShadow];
         
         CALayer *layerShadow2=[[CALayer alloc]init];
         layerShadow2.frame=CGRectMake(0, cell.frame.origin.y+60, SCREEN_WIDTH,10);
         layerShadow2.borderColor=[RGB(237, 237, 237) CGColor];
         layerShadow2.borderWidth=10;
-        [cell.layer addSublayer:layerShadow2];
+        if(indexPath.row) [cell.layer addSublayer:layerShadow2];
     }else{
         UILabel *titleLabel=[[UILabel alloc] initWithFrame:CGRectMake(50, 0 , SCREEN_WIDTH, 50)];
         titleLabel.font=[UIFont systemFontOfSize:15.0];
@@ -78,21 +83,21 @@
         NSString *isBingding;
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
-        if (indexPath.row==1) {
+        if (indexPath.row==2) {
             imageName=@"wechat_s";
             if (![MyUtil isEmptyString: app.userModel.wechat]) {
                 isBingding=@"已绑定";
             }else{
                 isBingding=@"立即绑定";
             }
-        }else if (indexPath.row==2){
+        }else if (indexPath.row==3){
             imageName=@"qq_s";
             if (![MyUtil isEmptyString: app.userModel.qq]) {
                 isBingding=@"已绑定";
             }else{
                 isBingding=@"立即绑定";
             }
-        }else if (indexPath.row==3){
+        }else if (indexPath.row==4){
             imageName=@"sina_weibo_s";
             if (![MyUtil isEmptyString: app.userModel.weibo]) {
                 isBingding=@"已绑定";
@@ -136,11 +141,15 @@
     // Create the next view controller.
     UIViewController *detailViewController;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-
-    if (indexPath.row==0) {
-        detailViewController=[[LYResetPasswordViewController alloc] initWithNibName:@"LYResetPasswordViewController" bundle:nil];
+    
+    if (indexPath.row == 0) {
+        LYUserDetailController *detailViewController = [[LYUserDetailController alloc]init];
+        detailViewController=[[LYUserDetailController alloc] init];
         [self.navigationController pushViewController:detailViewController animated:YES];
     }else if (indexPath.row==1) {
+        detailViewController=[[LYResetPasswordViewController alloc] initWithNibName:@"LYResetPasswordViewController" bundle:nil];
+        [self.navigationController pushViewController:detailViewController animated:YES];
+    }else if (indexPath.row==2) {
         if(![WXApi isWXAppInstalled]){
             [MyUtil showCleanMessage:@"未安装微信"];
             return;
@@ -151,7 +160,7 @@
         actionSheet.tag=255;
         
         [actionSheet showInView:self.view];
-    }else if(indexPath.row==2){
+    }else if(indexPath.row==3){
         if(![TencentOAuth iphoneQQInstalled]){
             [MyUtil showCleanMessage:@"未安装QQ"];
             return;
@@ -163,9 +172,9 @@
         [actionSheet showInView:self.view];
         
       
-    }else if(indexPath.row==3){
+    }else if(indexPath.row==4){
 //        [MyUtil showCleanMessage:@"暂不支持微博绑定！"];
-        UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[MyUtil isEmptyString: app.userModel.weibo]?@"立即绑定":@"更换微播",@"取消绑定", nil];
+        UIActionSheet *actionSheet=[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[MyUtil isEmptyString: app.userModel.weibo]?@"立即绑定":@"更换微博",@"取消绑定", nil];
         
         actionSheet.tag=257;
         

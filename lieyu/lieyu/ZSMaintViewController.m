@@ -17,6 +17,7 @@
 #import "ZSListCell.h"
 #import "LYRecentContactViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "SaoYiSaoViewController.h"
 @interface ZSMaintViewController ()
 
 @end
@@ -46,11 +47,14 @@
     NSDictionary *dic1=@{@"colorRGB":RGB(136, 223, 121),@"imageContent":@"Fill20179",@"title":@"通知中心",@"delInfo":@"您有客户留言请及时查收"};
     NSDictionary *dic2=@{@"colorRGB":RGB(254, 147, 87),@"imageContent":@"Fill20219",@"title":@"订单管理",@"delInfo":@"您有订单要确认请及时确定"};
     NSDictionary *dic3=@{@"colorRGB":RGB(65, 241, 221),@"imageContent":@"Fill20176",@"title":@"我的客户",@"delInfo":@""};
+    NSDictionary *dic4=@{@"colorRGB":RGB(186, 40, 227),@"imageContent":@"Fill20176",@"title":@"速核码扫描",@"delInfo":@""};
 //    NSDictionary *dic4=@{@"colorRGB":RGB(84, 225, 255),@"imageContent":@"Fill2097",@"title":@"商铺管理",@"delInfo":@""};
-    [listArr addObject:dic];
-    [listArr addObject:dic1];
-    [listArr addObject:dic2];
-    [listArr addObject:dic3];
+    
+    [listArr addObject:dic2];//订单管理
+    [listArr addObject:dic4];//速核码扫描
+    [listArr addObject:dic];//卡座已满
+    [listArr addObject:dic1];//通知中心
+    [listArr addObject:dic3];//我的客户
 //    [listArr addObject:dic4];
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 228)];
     
@@ -170,14 +174,14 @@
     
     switch (indexPath.row) {
             
-        case 0://卡座
+        case 2://卡座
         {
             ZSSeatControlView *seatControlView=[[ZSSeatControlView alloc]initWithNibName:@"ZSSeatControlView" bundle:nil];
             [self.navigationController pushViewController:seatControlView animated:YES];
             break;
         }
             
-        case 1:// 通知中心
+        case 3:// 通知中心
         {
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             chat.title=@"最近联系";
@@ -185,21 +189,25 @@
             break;
         }
             
-        case 2:// 订单管理
+        case 0:// 订单管理
         {
             ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
             [self.navigationController pushViewController:orderManageViewController animated:YES];
             break;
         }
             
-        case 3:// 我的客户
+        case 4:// 我的客户
         {
             ZSMyClientsViewController *myClientViewController=[[ZSMyClientsViewController alloc]initWithNibName:@"ZSMyClientsViewController" bundle:nil];
             
             [self.navigationController pushViewController:myClientViewController animated:YES];
             break;
         }
-            
+        case 1://速核码扫描
+        {
+            SaoYiSaoViewController *saoyisaoVC = [[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
+            [self.navigationController pushViewController:saoyisaoVC animated:YES];
+        }
         default:
         {
 //            ZSMyShopsManageViewController *myShopManageViewController=[[ZSMyShopsManageViewController alloc]initWithNibName:@"ZSMyShopsManageViewController" bundle:nil];

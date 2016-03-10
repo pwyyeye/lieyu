@@ -35,7 +35,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 //    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱",@"收货地址"];
-    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱"];
+//    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱"];
+    _data = @[@"账户管理",@"申请专属经理",@"通知设置",@"分享猎娱",@"清除缓存",@"关于猎娱"];
     
     self.title=@"个人设置";
     
@@ -91,7 +92,7 @@
     return _data.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7) return 60;
+    if(indexPath.row == 1 || indexPath.row == 4  || indexPath.row == 5) return 60;
     else return 50;
     
     
@@ -157,11 +158,11 @@
     // Create the next view controller.
     UIViewController *detailViewController;
     
-    if (indexPath.row==0) {
+   /* if (indexPath.row==0) {
 //        [self gotoAppStorePageRaisal:@""];//app评价地址
 //        detailViewController=[[LYUserDetailInfoViewController alloc] init];
-        detailViewController=[[LYUserDetailController alloc] init];
-    }else if (indexPath.row==1) {
+        
+    }else*/ if (indexPath.row==4) {
         [USER_DEFAULT removeObjectForKey:@"user_name"];
         [USER_DEFAULT removeObjectForKey:@"user_pass"];
         
@@ -176,17 +177,17 @@
     }else if(indexPath.row == 2){
         UserNotificationViewController *userNotifitionVC = [[UserNotificationViewController alloc]init];
         [self.navigationController pushViewController:userNotifitionVC animated:YES];
-    }else if(indexPath.row==3){
+    }else if(indexPath.row==0){
         detailViewController=[[LYAccountManager alloc] init];
-    }else if(indexPath.row == 4){
+    }else if(indexPath.row == 3){
         NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！"];
         [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
         [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
         [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
         [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
-    }else if(indexPath.row==6){
+    }else if(indexPath.row==5){
         detailViewController=[[AboutLieyu alloc] initWithNibName:@"AboutLieyu" bundle:nil];
-    }else if (indexPath.row == 5){
+    }else if (indexPath.row == 1){
         
         detailViewController = [[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
         detailViewController.title=@"申请专属经理";
@@ -224,7 +225,7 @@
     }
         
     }else{
-        _logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 40 - 64 , SCREEN_WIDTH, 40)];
+        _logoutButton=[[UIButton alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 40 - 64 -10, SCREEN_WIDTH, 40)];
         _logoutButton.backgroundColor=[UIColor clearColor];
         
         [_logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];

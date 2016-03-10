@@ -169,19 +169,22 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     NSMutableString *orderID = [NSMutableString string];
     NSMutableString *consumerID = [NSMutableString string];
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    
     if(buttonIndex == 0){
         for(int i = 0 ; i < selectedArray.count ; i ++){
             if ([[selectedArray objectAtIndex:i] isEqualToString:@"1"]) {
                 OrderInfoModel *model = [_tempArr objectAtIndex:i];
                 [orderID appendString:[NSString stringWithFormat:@"%d",model.id]];
                 [orderID appendString:@","];
-                [consumerID appendString:model.consumptionCode];
+                NSString *consumer = [MyUtil decryptUseDES:model.consumptionCode withKey:app.desKey];
+                [consumerID appendString:consumer];
                 [consumerID appendString:@","];
             }
         }//将消费码以及订单号拼接好，但是末尾多了一个“，”
         [orderID deleteCharactersInRange:NSMakeRange(orderID.length - 1, 1)];
         [consumerID deleteCharactersInRange:NSMakeRange(consumerID.length - 1, 1)];
-        NSString *DNS_consumerID = [MyUtil encryptUseDES:consumerID withKey:@"LY123456"];
+        NSString *DNS_consumerID = [MyUtil encryptUseDES:consumerID withKey:app.desKey];
         NSDictionary *dic = @{@"ids":orderID,
                               @"consumptionCodes":DNS_consumerID};
         [LYUserHttpTool QuickCheckOrderWithParam:dic complete:^(NSString *message) {
