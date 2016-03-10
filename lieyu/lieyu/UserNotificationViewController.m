@@ -48,6 +48,7 @@
     switch (indexPath.row) {
         case 0:{//接受推送通知
             UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = RGBA(243, 243, 243, 1);
             UILabel *titalLabel = [[UILabel alloc]init];
             titalLabel.backgroundColor = [UIColor whiteColor];
@@ -74,6 +75,7 @@
             break;
         case 1:{
             UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+                        cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = RGBA(243, 243, 243, 1);
             UILabel *titalLabel = [[UILabel alloc]init];
             titalLabel.frame = CGRectMake(20, 8, SCREEN_WIDTH -40, 60);
@@ -88,6 +90,7 @@
         default:{
             
             UserNotificationTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"UserNotificationTableViewCell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             MineUserNotification *userNotificationM = _dataArray[indexPath.row - 2];
              cell.notificationLabel.text = [NSString stringWithFormat:@"  %@", userNotificationM.typeName];
             cell.notificationSwitch.on = [userNotificationM.on isEqual:@"0"] ? NO:YES;
