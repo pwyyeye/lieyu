@@ -190,6 +190,8 @@
 + (void)changeUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(bool))compelte;
 //根据用户ID，获取好友详情
 + (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete;
+//速核码校验订单
++ (void)QuickCheckOrderWithParam:(NSDictionary *)paraDic complete:(void(^)(NSString *))complete;
 //获取deskey
 - (void) getAppDesKey:(NSDictionary*)params complete:(void (^)(NSString * result))result;
 @end
