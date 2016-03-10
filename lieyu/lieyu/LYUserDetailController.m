@@ -274,8 +274,7 @@
         taglist.selectedTag = _tagString;
         [self.navigationController pushViewController:taglist animated:YES];
     }else if (indexPath.row == 5){
-        MyCodeViewController *codeViewController = [[MyCodeViewController alloc]initWithNibName:@"MyCodeViewController" bundle:nil];
-        [self.navigationController pushViewController:codeViewController animated:YES];
+       
     }
 }
 
