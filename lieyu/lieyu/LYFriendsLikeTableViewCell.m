@@ -35,7 +35,7 @@
         count = array.count;
     }
     for (int i = 0; i<count; i++ ) {
-        
+        if(_btnArray.count <= i || array.count <= i) return;
         UIButton *btn = _btnArray[i];
         btn.hidden = NO;
         FriendsLikeModel *likeModel = array[i];
