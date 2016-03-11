@@ -70,7 +70,12 @@
             SDImageCache *mamager = [SDImageCache sharedImageCache];
 //            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]] == nil? [mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] : [mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]]];
+            UIImage *localImg = [mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]] == nil? [mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] : [mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]];
+            if (localImg == nil) {
+                localImg = [UIImage imageNamed:@"empyImage300"];
+            }
+            
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:localImg];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
 //            imageView.contentMode = UIViewContentModeCenter;
             imageView.clipsToBounds = YES;
