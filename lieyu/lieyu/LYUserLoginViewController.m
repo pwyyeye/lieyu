@@ -79,8 +79,8 @@
     [self.view addSubview:_weiboBtn];
     [_weiboBtn addTarget:self action:@selector(weiboLogin) forControlEvents:UIControlEventTouchUpInside];
     
-//    if(![WXApi isWXAppInstalled]) _weixinBtn.hidden = YES;
-//    if(![TencentOAuth iphoneQQInstalled]) _qqBtn.hidden = YES;
+    if(![WXApi isWXAppInstalled]) _weixinBtn.hidden = YES;
+    if(![TencentOAuth iphoneQQInstalled]) _qqBtn.hidden = YES;
     
     _btn_submit.layer.masksToBounds=YES;
     _btn_submit.layer.cornerRadius=3;
