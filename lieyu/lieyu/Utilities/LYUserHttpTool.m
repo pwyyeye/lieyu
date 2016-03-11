@@ -1235,7 +1235,7 @@
 #pragma mark - 修改用户的推送配置
 + (void)changeUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(bool))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app startLoading];
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USERCHANGENOTIFICATION baseURL:QINIU_SERVER params:paraDic success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([code isEqualToString:@"1"]) {
@@ -1276,7 +1276,8 @@
                 });
 //            }
         }else{
-            [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
+//            [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
+            [MyUtil showMessage:[response valueForKey:@"message"]];
         }
         [app stopLoading];
     } failure:^(NSError *err) {
@@ -1310,7 +1311,8 @@
         if ([errorCode isEqualToString:@"1"]) {
             complete(message);
         }else{
-            [MyUtil showLikePlaceMessage:message];
+//            [MyUtil showLikePlaceMessage:message];
+            [MyUtil showMessage:message];
         }
     } failure:^(NSError *err) {
         

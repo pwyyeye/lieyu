@@ -190,7 +190,8 @@
         [LYUserHttpTool QuickCheckOrderWithParam:dic complete:^(NSString *message) {
 //            if ([message isEqualToString:@""]) {
                 [self.navigationController popToRootViewControllerAnimated:YES];
-                [MyUtil showLikePlaceMessage:message];
+//                [MyUtil showLikePlaceMessage:message];
+            [MyUtil showMessage:message];
 //            }
         }];
     }else if (buttonIndex == 1){

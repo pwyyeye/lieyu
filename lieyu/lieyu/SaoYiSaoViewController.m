@@ -146,7 +146,8 @@
                         }else{
                             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
 //                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
-                            [MyUtil showLikePlaceMessage:@"已发送好友申请！"];
+//                            [MyUtil showLikePlaceMessage:@"已发送好友申请！"];
+                            [MyUtil showMessage:@"已发送好友申请！"];
                         }
                     }
                     else if ([weakSelf.userModel.usertype isEqualToString:@"2"]){
@@ -155,7 +156,8 @@
                         if (tempArr.count <= 1) {
                             //只有一个订单，扫码核单成功
                             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+//                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+                            [MyUtil showMessage:[result valueForKey:@"message"]];
                         }else{
                             //多于一单，进入订单选择页面
                             CheckOrderWithQRViewController *checkorderVC = [[CheckOrderWithQRViewController alloc]initWithNibName:@"CheckOrderWithQRViewController" bundle:nil];

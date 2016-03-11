@@ -39,7 +39,10 @@
     NSString *string = [NSString stringWithFormat:@"%@%@?userid=%d&CurrentTime=%@",LY_SERVER,@"lyQRCodeAction?action=custom",self.userModel.userid,dataString];
     CGFloat qrcodeLength = 178;
     UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, qrcodeLength, qrcodeLength)];
-    imageV.image = [self qrImageForString:string imageSize:qrcodeLength];
+    imageV.layer.cornerRadius = 6;
+    imageV.layer.masksToBounds = YES;
+    imageV.backgroundColor = [UIColor whiteColor];
+    imageV.image = [self qrImageForString:string imageSize:200];
     [self.QRCodeView addSubview:imageV];
 }
 

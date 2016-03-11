@@ -71,7 +71,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //  @{@"title":@"专属经理",@"icon":@"userManager"},
   @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
   @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
-  @{@"title":@"扫一扫",@"icon":@"saoyisao"}, @{@"title":@"二维码",@"icon":@""}];
+  @{@"title":@"扫一扫",@"icon":@"CheckQRCode"},
+  @{@"title":@"速核码",@"icon":@"QRCode"}];
  
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);

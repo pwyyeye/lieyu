@@ -14,7 +14,8 @@
     self.userImageView.layer.masksToBounds =YES;
     
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
-
+    _okBtn.layer.cornerRadius = 2;
+    _okBtn.layer.masksToBounds = YES;
     // Initialization code
 }
 

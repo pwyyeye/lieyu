@@ -14,7 +14,7 @@
 #import "FindNewMessage.h"
 
 @interface FindNotificationViewController ()<UITableViewDataSource,UITableViewDelegate>{
-    NSArray *_titleArray,*_titleImageArray,*_dataArray,*_typeArray;
+    NSArray *_titleArray,*_dataArray,*_typeArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -27,7 +27,6 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"消息通知";
     _titleArray = @[@"表白",@"评论",@"打招呼",@"系统通知"];
-    _titleImageArray = @[@"表白",@"评论",@"打招呼",@"打招呼"];
     _typeArray = @[@"14",@"13",@"11",@"1"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"FindNotificationTableViewCell" bundle:nil] forCellReuseIdentifier:@"FindNotificationTableViewCell"];
@@ -59,7 +58,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FindNotificationTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"FindNotificationTableViewCell" forIndexPath:indexPath];
     cell.label_title.text = _titleArray[indexPath.row];
-    cell.imgView.image = [UIImage imageNamed:_titleImageArray[indexPath.row]];
+    cell.imgView.image = [UIImage imageNamed:_titleArray[indexPath.row]];
     if (_dataArray.count) {
         FindNewMessage *findNewM = nil;
         for( FindNewMessage *findM in _dataArray){
