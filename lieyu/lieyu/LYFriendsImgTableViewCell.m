@@ -43,6 +43,7 @@
             if (recentModel.isMeSendMessage) picWidth = 0;
             for (int i = 0; i < 2; i ++) {
                 picWidth = 450;
+                if(urlArray.count <= i) return;
                 UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(i%2 *(btnW + 2) + 2, 0, btnW, btnW)];
                 [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                 btn.adjustsImageWhenHighlighted = NO;
@@ -97,6 +98,9 @@
                 }
                 if( recentModel.isMeSendMessage ){
                     picWidth = 0;
+                }
+                if (urlArray.count <= i) {
+                    return;
                 }
                 [btn sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:picWidth andHeight:picWidth]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                 btn.imageView.contentMode = UIViewContentModeScaleAspectFill;
