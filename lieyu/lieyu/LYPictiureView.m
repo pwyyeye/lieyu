@@ -70,7 +70,7 @@
             SDImageCache *mamager = [SDImageCache sharedImageCache];
 //            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             
-            [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] placeholderImage:[mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]] == nil? [mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:0 andHeight:0]] : [mamager imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:urlArray[i] width:450 andHeight:450]]];
             imageView.contentMode = UIViewContentModeScaleAspectFill;
 //            imageView.contentMode = UIViewContentModeCenter;
             imageView.clipsToBounds = YES;
@@ -232,8 +232,14 @@
     if(scrollView.subviews.count){
     UIView *v = [scrollView.subviews objectAtIndex:0];
     if ([v isKindOfClass:[UIImageView class]]){
-        if (scrollView.zoomScale<1.0){
-                     v.center = CGPointMake(scrollView.frame.size.width/2.0, scrollView.frame.size.height/2.0);
+        if (scrollView.zoomScale>1.0){
+            CGFloat height = 0.f;
+            if (scrollView.contentSize.height <= SCREEN_HEIGHT) {
+                height = SCREEN_HEIGHT;
+            }else{
+                height = scrollView.contentSize.height;
+            }
+                     v.center = CGPointMake(scrollView.contentSize.width/2.0, height/2.0);
         }
     }
     }
