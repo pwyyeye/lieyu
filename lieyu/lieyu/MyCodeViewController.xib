@@ -45,7 +45,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzh-q1-N0C">
-                    <rect key="frame" x="211" y="314" width="178" height="178"/>
+                    <rect key="frame" x="211" y="334" width="178" height="178"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="178" id="h3F-Tb-3Jq"/>
                         <constraint firstAttribute="width" constant="178" id="v5l-cw-DDV"/>
@@ -59,7 +59,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户扫一扫加为好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeO-mk-dbd">
-                    <rect key="frame" x="242" y="268" width="117" height="15"/>
+                    <rect key="frame" x="242" y="288" width="117" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="117" id="bNl-ot-Zyc"/>
                         <constraint firstAttribute="height" constant="15" id="pEH-ez-csE"/>
@@ -69,7 +69,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家扫一扫核对订单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfF-YK-NMD">
-                    <rect key="frame" x="245" y="291" width="110" height="15"/>
+                    <rect key="frame" x="245" y="311" width="110" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="110" id="aD5-MH-sf9"/>
                         <constraint firstAttribute="height" constant="15" id="hiN-qn-LTF"/>
@@ -81,7 +81,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="gzh-q1-N0C" secondAttribute="bottom" constant="108" id="072-wq-Tq7"/>
+                <constraint firstAttribute="bottom" secondItem="gzh-q1-N0C" secondAttribute="bottom" constant="88" id="072-wq-Tq7"/>
                 <constraint firstAttribute="trailing" secondItem="Prj-fF-wjH" secondAttribute="trailing" constant="30" id="5Sc-IF-Af0"/>
                 <constraint firstItem="Prj-fF-wjH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="6NU-3C-iK7"/>
                 <constraint firstItem="gzh-q1-N0C" firstAttribute="centerX" secondItem="Prj-fF-wjH" secondAttribute="centerX" id="DNH-KH-P1U"/>
