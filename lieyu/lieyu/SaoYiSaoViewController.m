@@ -88,6 +88,9 @@
     //10.设置扫描范围
     captureMetadataOutput.rectOfInterest = CGRectMake(0, 0, 1, 1);
     
+//    _viewPreview.layer.borderColor = [[UIColor blackColor]CGColor];
+//    _viewPreview.layer.borderWidth = 1;
+//    _viewPreview.backgroundColor = [UIColor redColor];
     
     
     
@@ -102,8 +105,10 @@
 //    [_viewPreview addSubview:_boxView];
     //10.2.扫描线
     _scanLayer = [[CALayer alloc] init];
-    _scanLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH - 100, 1);
-    _scanLayer.backgroundColor = [UIColor brownColor].CGColor;
+    _scanLayer.frame = CGRectMake(7, 0, SCREEN_WIDTH - 114, 4);
+    _scanLayer.cornerRadius = 1;
+    _scanLayer.masksToBounds = YES;
+    _scanLayer.backgroundColor = [RGBA(105, 255, 45, 0.7) CGColor];
     [_viewPreview.layer addSublayer:_scanLayer];
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(moveScanLayer:) userInfo:nil repeats:YES];
     [_timer fire];
