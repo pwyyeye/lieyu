@@ -17,6 +17,7 @@
 #import "LYZSApplicationViewController.h"
 #import "UMSocial.h"
 #import "UserNotificationViewController.h"
+#import "LPUserLoginViewController.h"
 
 @interface Setting (){
     UIButton *_logoutButton;
@@ -65,11 +66,20 @@
     __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] userLogOutWithParams:@{@"sessionid":app.s_app_id,@"id":[NSString stringWithFormat:@"%d",app.userModel.userid]} block:^(BOOL result) {
         if (result) {
-            app.s_app_id=@"";
+            app.s_app_id=nil;
             app.userModel=nil;
             [USER_DEFAULT removeObjectForKey:@"username"];
             [USER_DEFAULT removeObjectForKey:@"password"];
-             [weakSelf.navigationController popViewControllerAnimated:YES ];
+//            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            
+//            if([MyUtil isEmptyString:app.s_app_id]){
+                LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+                [self.navigationController pushViewController:login animated:YES];
+                
+//            }
+
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToFirstViewController" object:nil];
+//             [weakSelf.navigationController popViewControllerAnimated:YES ];
         }
     }];
 

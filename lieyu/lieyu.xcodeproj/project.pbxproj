@@ -453,6 +453,10 @@
 		38AA7CC61C315A0000D9BCE8 /* preview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA7CC31C315A0000D9BCE8 /* preview.xib */; };
 		38B11BFC1C9192A400AD3EB8 /* startingPage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */; };
 		38B11BFD1C9192A400AD3EB8 /* startingPage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */; };
+		38B11C081C92AFC200AD3EB8 /* QRCode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11C061C92AFC200AD3EB8 /* QRCode@2x.png */; };
+		38B11C091C92AFC200AD3EB8 /* QRCode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11C071C92AFC200AD3EB8 /* QRCode@3x.png */; };
+		38B11C0C1C92AFCC00AD3EB8 /* CheckQRCode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11C0A1C92AFCC00AD3EB8 /* CheckQRCode@2x.png */; };
+		38B11C0D1C92AFCC00AD3EB8 /* CheckQRCode@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11C0B1C92AFCC00AD3EB8 /* CheckQRCode@3x.png */; };
 		38C98CD11C60782D0084E6BD /* YUGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCE1C60782D0084E6BD /* YUGroup.png */; };
 		38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */; };
 		38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CD01C60782D0084E6BD /* YUGroup@3x.png */; };
@@ -2005,6 +2009,10 @@
 		38AA7CC41C315A0000D9BCE8 /* preview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preview.h; sourceTree = "<group>"; };
 		38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startingPage@2x.png"; sourceTree = "<group>"; };
 		38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startingPage@3x.png"; sourceTree = "<group>"; };
+		38B11C061C92AFC200AD3EB8 /* QRCode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCode@2x.png"; sourceTree = "<group>"; };
+		38B11C071C92AFC200AD3EB8 /* QRCode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCode@3x.png"; sourceTree = "<group>"; };
+		38B11C0A1C92AFCC00AD3EB8 /* CheckQRCode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckQRCode@2x.png"; sourceTree = "<group>"; };
+		38B11C0B1C92AFCC00AD3EB8 /* CheckQRCode@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckQRCode@3x.png"; sourceTree = "<group>"; };
 		38C98CCE1C60782D0084E6BD /* YUGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUGroup.png; sourceTree = "<group>"; };
 		38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@2x.png"; sourceTree = "<group>"; };
 		38C98CD01C60782D0084E6BD /* YUGroup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@3x.png"; sourceTree = "<group>"; };
@@ -6751,6 +6759,10 @@
 		ADF88E551C102E2D00CF5DED /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				38B11C0A1C92AFCC00AD3EB8 /* CheckQRCode@2x.png */,
+				38B11C0B1C92AFCC00AD3EB8 /* CheckQRCode@3x.png */,
+				38B11C061C92AFC200AD3EB8 /* QRCode@2x.png */,
+				38B11C071C92AFC200AD3EB8 /* QRCode@3x.png */,
 				85416E0B1C9258FA0016BF0B /* QRCodeHeaderbg@2x.png */,
 				85416E0C1C9258FA0016BF0B /* QRCodeHeaderbg@3x.png */,
 				85416E071C9258DD0016BF0B /* QRCodebg@2x.png */,
@@ -7543,6 +7555,7 @@
 				38E72B521C155FC7002EFBDD /* chiheDetailCollectionCell.xib in Resources */,
 				38E5D7BE1C128B7D004B49D2 /* Location@3x.png in Resources */,
 				525CA0F01C5C6930009ED9DA /* pinglun_icon@2x.png in Resources */,
+				38B11C0C1C92AFCC00AD3EB8 /* CheckQRCode@2x.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
 				ADFFA69F1C181A7200D9BD2A /* 1_retina.jpg in Resources */,
 				3812C5101C57622E00F4DD6B /* ChooseTime.xib in Resources */,
@@ -7892,6 +7905,7 @@
 				ADFFA6B41C181B9900D9BD2A /* 2@3x.jpg in Resources */,
 				8551B5151C8ECF730057F0E7 /* 打招呼@2x.png in Resources */,
 				85C428731C119D3E0028FC21 /* LYCloseMeViewController.xib in Resources */,
+				38B11C081C92AFC200AD3EB8 /* QRCode@2x.png in Resources */,
 				853D3AC01C35347A00B4FEAD /* dabofangqi_icon.png in Resources */,
 				ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */,
 				385664B91C756CE4000DCFA5 /* AllAction.xib in Resources */,
@@ -8033,6 +8047,7 @@
 				853BCCA71C76EA1F00DE0324 /* 点赞whited@3x.png in Resources */,
 				853C4C8A1C311AAD00D48BA2 /* gengduo_icon.png in Resources */,
 				ADF88E641C102E4F00CF5DED /* huiseStar@3x.png in Resources */,
+				38B11C091C92AFC200AD3EB8 /* QRCode@3x.png in Resources */,
 				854CCA7A1C918BDB00368C72 /* LoginNew@3x.png in Resources */,
 				85FBBDBA1C606CB80084E3F2 /* home_list_mask@2x.png in Resources */,
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
@@ -8115,6 +8130,7 @@
 				850099C71C61EEE700DDE626 /* 人数yu@3x.png in Resources */,
 				386AE3A71C5B6F2B0062105F /* banner_s@3x.png in Resources */,
 				15AE63411BA84FD500FFAD1A /* NoticeCell.xib in Resources */,
+				38B11C0D1C92AFCC00AD3EB8 /* CheckQRCode@3x.png in Resources */,
 				AD92AE9D1BE1D339009F2A34 /* lieyu_default_male@2x.png in Resources */,
 				15ED32731BE2F49800E086A1 /* YaoYiYaoViewController.xib in Resources */,
 				A2F9DA931BABD62F009DEAF3 /* OrderBottomForCCView.xib in Resources */,
