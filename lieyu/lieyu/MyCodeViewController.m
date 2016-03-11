@@ -21,7 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的二维码";
-    if ([[MyUtil deviceString] isEqualToString:@"iPhone 4"] || [[MyUtil deviceString] isEqualToString:@"iPhone 4S"]) {
+//    if ([[MyUtil deviceString] isEqualToString:@"iPhone 4"] || [[MyUtil deviceString] isEqualToString:@"iPhone 4S"]) {
+    if (SCREEN_WIDTH == 320) {
         _QRCodeViewBottom.constant = 40;
         _QRCodeBGBottom.constant = 20;
         _QRCodeBGTop.constant = 20;

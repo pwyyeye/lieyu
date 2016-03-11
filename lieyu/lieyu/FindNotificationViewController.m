@@ -81,7 +81,7 @@
     cell.label_title.text = userNotification.typeName;
     cell.imgView.image = [UIImage imageNamed:userNotification.typeName];
     if (!cell.imgView.image) {
-        cell.imgView.image = [UIImage imageNamed:@"CommonIcon"];
+        cell.imgView.image = [UIImage imageNamed:@"findtongyong"];
     }
     if (_dataArray.count) {
         FindNewMessage *findNewM = nil;
