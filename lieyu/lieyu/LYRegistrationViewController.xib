@@ -10,6 +10,7 @@
                 <outlet property="againPassWordTex" destination="6M5-7o-vSY" id="XYY-u7-lIj"/>
                 <outlet property="btn_regist" destination="giJ-N8-FTm" id="TSr-qH-PJm"/>
                 <outlet property="getYzmBtn" destination="jDb-YS-mg1" id="Zol-gT-CBO"/>
+                <outlet property="line_view_three" destination="zEH-Gn-xXF" id="ap7-5b-wic"/>
                 <outlet property="passWordTex" destination="dyr-sn-p1K" id="3xM-y1-nIs"/>
                 <outlet property="phoneTex" destination="1hx-6G-8MK" id="Rsr-Fo-g9C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -82,8 +83,8 @@
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="XlH-up-bgS"/>
                     </connections>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="注册即同意:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5x-ba-4do">
-                    <rect key="frame" x="38" y="279" width="62" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册即同意:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5x-ba-4do">
+                    <rect key="frame" x="38" y="347" width="59" height="14"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

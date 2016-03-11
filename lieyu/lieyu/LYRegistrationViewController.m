@@ -17,6 +17,7 @@
     BOOL _isRegisted;
     NSString *_flag;
 }
+@property (weak, nonatomic) IBOutlet UIView *line_view_three;
 
 @end
 
@@ -56,6 +57,7 @@ static LYRegistrationViewController *_registe;
         _againPassWordTex.hidden = YES;
         _textField_psw_little.hidden = YES;
         [_btn_regist setTitle:@"立即绑定" forState:UIControlStateNormal];
+        _line_view_three.hidden = YES;
     }
 }
 
