@@ -89,7 +89,7 @@
 
 //加载角标
 -(void)loadBadge:(OrderTTL *)orderTTL{
-    if (orderTTL.messageNum>0) {//消息中心
+    if (orderTTL.pushMessageNum>0) {//消息中心
 //        UILabel *badge=[[UILabel alloc] init];
 //        badge.backgroundColor=[UIColor redColor];
 //        badge.font=[UIFont systemFontOfSize:8];
@@ -275,6 +275,7 @@
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
           /*   */
+            
             FindNotificationViewController *findNotificationVC = [[FindNotificationViewController alloc]init];
             [self.navigationController pushViewController:findNotificationVC animated:YES];
             

@@ -16,4 +16,5 @@
 @property(nonatomic,assign) NSInteger waitPayBack;
 @property(nonatomic,assign) NSInteger waitRebate;
 @property(nonatomic,assign) NSInteger messageNum;
+@property(assign,nonatomic) NSInteger pushMessageNum;
 @end
