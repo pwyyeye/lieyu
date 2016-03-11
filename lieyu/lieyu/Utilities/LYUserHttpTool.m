@@ -1215,7 +1215,7 @@
 #pragma mark - 获取用户的推送配置
 + (void)getUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(NSArray *))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app startLoading];
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USERNOTIFITION baseURL:QINIU_SERVER params:paraDic success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([code isEqualToString:@"1"]) {
