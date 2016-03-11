@@ -39,6 +39,7 @@
     self.checkBtn.layer.cornerRadius = 2;
     self.checkBtn.layer.masksToBounds = YES;
     self.checkBtn.backgroundColor = [UIColor lightGrayColor];
+    [self.checkBtn setTitle:@"请选择核对订单" forState:UIControlStateNormal];
     self.checkBtn.enabled = NO;
     [self.checkBtn addTarget:self action:@selector(checkOrders) forControlEvents:UIControlEventTouchUpInside];
     selectedArray = [NSMutableArray array];
@@ -148,6 +149,7 @@
         if (count > 0 && _checkBtn.enabled == NO) {//count大于0，_checkBtn不可用，即止修改一次
             _checkBtn.backgroundColor = RGB(186, 40, 227);
             _checkBtn.enabled = YES;
+            [self.checkBtn setTitle:@"确认核定" forState:UIControlStateNormal];
         }
     }else{
         button.selected = NO;
@@ -156,6 +158,7 @@
         if (count <= 0) {
             _checkBtn.backgroundColor = [UIColor lightGrayColor];
             _checkBtn.enabled = NO;
+            [self.checkBtn setTitle:@"请选择核对订单" forState:UIControlStateNormal];
         }
     }
 }

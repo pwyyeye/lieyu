@@ -25,17 +25,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRCodebg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Prj-fF-wjH">
-                    <rect key="frame" x="30" y="30" width="540" height="522"/>
+                    <rect key="frame" x="30" y="39" width="540" height="522"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRCodeHeaderbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Oyl-lY-YQH">
-                    <rect key="frame" x="264" y="55" width="72" height="72"/>
+                    <rect key="frame" x="264" y="64" width="72" height="72"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="72" id="amg-Bb-bKO"/>
                         <constraint firstAttribute="height" constant="72" id="hkx-uW-F0A"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCD-CN-Cav">
-                    <rect key="frame" x="279" y="143" width="42" height="20"/>
+                    <rect key="frame" x="279" y="152" width="42" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="16w-Rp-frZ"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="FRZ-ff-InL"/>
@@ -52,7 +52,7 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h7S-Ar-OsJ">
-                    <rect key="frame" x="268" y="59" width="64" height="64"/>
+                    <rect key="frame" x="268" y="68" width="64" height="64"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="64" id="47J-sB-ETY"/>
                         <constraint firstAttribute="height" constant="64" id="sh5-uX-uef"/>
@@ -83,12 +83,12 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="gzh-q1-N0C" secondAttribute="bottom" constant="88" id="072-wq-Tq7"/>
                 <constraint firstAttribute="trailing" secondItem="Prj-fF-wjH" secondAttribute="trailing" constant="30" id="5Sc-IF-Af0"/>
-                <constraint firstItem="Prj-fF-wjH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="6NU-3C-iK7"/>
+                <constraint firstItem="Prj-fF-wjH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="39" id="6NU-3C-iK7"/>
                 <constraint firstItem="gzh-q1-N0C" firstAttribute="centerX" secondItem="Prj-fF-wjH" secondAttribute="centerX" id="DNH-KH-P1U"/>
                 <constraint firstItem="Oyl-lY-YQH" firstAttribute="centerX" secondItem="Prj-fF-wjH" secondAttribute="centerX" id="F6t-Gu-qws"/>
                 <constraint firstItem="Prj-fF-wjH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="Jdc-PI-YN8"/>
-                <constraint firstItem="Oyl-lY-YQH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="SLL-08-2er"/>
-                <constraint firstAttribute="bottom" secondItem="Prj-fF-wjH" secondAttribute="bottom" constant="48" id="W1E-fX-0Iq"/>
+                <constraint firstItem="Oyl-lY-YQH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="SLL-08-2er"/>
+                <constraint firstAttribute="bottom" secondItem="Prj-fF-wjH" secondAttribute="bottom" constant="39" id="W1E-fX-0Iq"/>
                 <constraint firstItem="gzh-q1-N0C" firstAttribute="top" secondItem="NfF-YK-NMD" secondAttribute="bottom" constant="8" id="WZw-PQ-mCj"/>
                 <constraint firstItem="gzh-q1-N0C" firstAttribute="centerX" secondItem="NfF-YK-NMD" secondAttribute="centerX" id="YXM-5i-t8R"/>
                 <constraint firstItem="h7S-Ar-OsJ" firstAttribute="centerY" secondItem="Oyl-lY-YQH" secondAttribute="centerY" id="YYt-sg-Bwd"/>
