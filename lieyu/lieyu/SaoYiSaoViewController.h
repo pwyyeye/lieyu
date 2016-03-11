@@ -14,6 +14,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UIButton *startBtn;
 
+@property(assign,nonatomic) int countStep;
+
+@property(strong,nonatomic) NSTimer *timer;
+
 - (IBAction)startStopReading:(id)sender;
 
 @end

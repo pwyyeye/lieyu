@@ -42,13 +42,13 @@
     // Do any additional setup after loading the view from its nib.
     
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-    //    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-    //    [self.navigationItem setLeftBarButtonItem:item];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(goBackClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = item;
     
-    // [self.btn_getBack addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
-//    [self.navigationController setNavigationBarHidden:YES];
-    //_timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(wait) userInfo:nil repeats:YES];
-   // [_timer setFireDate:[NSDate distantPast]];
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
     _step=1;
     
@@ -109,7 +109,7 @@
     }
     
     
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
     //    if([self.navigationController.childViewControllers objectAtIndex:1])
 }
 
@@ -198,7 +198,8 @@
         [weakSelf getUserCollectJiuBaList];
         [weakSelf getUserZangJiuBaList];
        
-        [weakSelf.navigationController popViewControllerAnimated:YES ];
+//        [weakSelf.navigationController popViewControllerAnimated:YES ];
+        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
