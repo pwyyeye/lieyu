@@ -14,6 +14,7 @@
 #import "UITabBarItem+CustomBadge.h"
 #import "LYUserLoginViewController.h"
 #import "LYFriendsHttpTool.h"
+#import "LPUserLoginViewController.h"
 @interface MainTabbarViewController ()
 
 <
@@ -233,14 +234,16 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     NSLog(@"----pass-tabBarController%d---",self.selectedIndex);
-    if (self.selectedIndex==3||self.selectedIndex==4) {
+    if (YES||self.selectedIndex==3||self.selectedIndex==4) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if([MyUtil isEmptyString:app.s_app_id]){
-            LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+//            LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+            LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+            
 //            [self.navigationController presentViewController:login animated:YES completion:^{
 //               
 //            }];
-            login.delegate=self;
+//            login.delegate=self;
             [self.navigationController pushViewController:login animated:YES];
             
         }
@@ -271,6 +274,7 @@
 //跳到猎
 - (void)jumpToFirstView{
     self.selectedIndex = 0;
+//    [self setSelectedIndex:0];
 }
 //跳到娱
 - (void)jumpToSecondView{
