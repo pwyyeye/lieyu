@@ -19,5 +19,6 @@
 - (IBAction)rambleClick:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cartoonLeft;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CartoonTop;
 
 @end

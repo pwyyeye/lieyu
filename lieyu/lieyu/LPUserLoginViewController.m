@@ -29,18 +29,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _rambleBtn.hidden = YES;
-////    LPLoginInView *loginView = [[LPLoginInView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_CartoonView.frame), CGRectGetHeight(_CartoonView.frame))];
-//    float height = SCREEN_HEIGHT - 268;
-////    NSLog(@"%@",NSStringFromCGRect(loginView.frame));
-////    NSLog(@"%@",NSStringFromCGRect(_CartoonView.frame));
-//    CGAffineTransform affineTransform;
-//    affineTransform = CGAffineTransformScale(_CartoonView.transform, height / 313, height / 313);
-////    affineTransform = CGAffineTransformScale(loginView.transform, 0.8, 0.8);
-////    _cartoonLeft.constant =( SCREEN_WIDTH - height / 313 * 194 ) / 2;
-//    [_CartoonView setTransform:affineTransform];
-//    _CartoonView.center=self.view.center;
-////    [_CartoonView addSubview:loginView];
-//    [_CartoonView addUntitled1Animation];
+    if ([[MyUtil deviceString] isEqualToString:@"iPhone 5"] ||
+        [[MyUtil deviceString] isEqualToString:@"iPhone 5S"] ||
+        [[MyUtil deviceString] isEqualToString:@"iPhone 5C"]) {
+        _CartoonTop.constant = 60;
+    }else if([[MyUtil deviceString] isEqualToString:@"iPhone 6"] ||
+             [[MyUtil deviceString] isEqualToString:@"iPhone 6S"]){
+        _CartoonTop.constant = 80;
+    }else if ([[MyUtil deviceString] isEqualToString:@"iPhone 6 Plus"] ||
+              [[MyUtil deviceString] isEqualToString:@"iPhone 6S Plus"]){
+        _CartoonTop.constant = 80;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

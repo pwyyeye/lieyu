@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LPUserLoginViewController">
             <connections>
+                <outlet property="CartoonTop" destination="Rbw-dz-QG8" id="ROE-2k-1eZ"/>
                 <outlet property="RegisterBtn" destination="pKG-Zb-pJd" id="4Do-e6-2d3"/>
                 <outlet property="loginInBtn" destination="Fds-fI-1a1" id="Cax-9h-dHj"/>
                 <outlet property="rambleBtn" destination="mVj-6w-TWd" id="pZf-7y-58g"/>
@@ -21,12 +22,11 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fds-fI-1a1">
                     <rect key="frame" x="37" y="415" width="246" height="37"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="gpQ-qU-gEU"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="登录">
+                    <state key="normal" title="登录" backgroundImage="LoginNew.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -49,12 +49,11 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKG-Zb-pJd">
                     <rect key="frame" x="37" y="472" width="246" height="37"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="py2-WJ-a1k"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="注册">
+                    <state key="normal" title="注册" backgroundImage="LoginNew.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -86,6 +85,7 @@
         </view>
     </objects>
     <resources>
+        <image name="LoginNew.png" width="301" height="37"/>
         <image name="startingPage.png" width="251" height="368"/>
     </resources>
 </document>
