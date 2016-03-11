@@ -43,6 +43,13 @@
     self.title = @"个人信息";
     self.userImageView.layer.masksToBounds =YES;
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
+    if (_type != nil) {        
+        if ([_type isEqualToString:@"0"]) {
+            [_setBtn setTitle:@"聊天" forState:UIControlStateNormal];
+        }else{
+            [_setBtn setTitle:@"打招呼" forState:UIControlStateNormal];
+        }
+    }
     if (_customerModel) {
         if(_customerModel.tag.count>0){
             NSMutableString *mytags=[[NSMutableString alloc] init];
@@ -203,6 +210,7 @@
         return;
     }
     if(![_type isEqualToString:@"0"] && _type){
+       
         LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
         addFriendViewController.title=@"加好友";
         addFriendViewController.customerModel=_customerModel;
