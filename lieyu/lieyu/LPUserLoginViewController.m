@@ -33,11 +33,9 @@
         [[MyUtil deviceString] isEqualToString:@"iPhone 5S"] ||
         [[MyUtil deviceString] isEqualToString:@"iPhone 5C"]) {
         _CartoonTop.constant = 60;
-    }else if([[MyUtil deviceString] isEqualToString:@"iPhone 6"] ||
-             [[MyUtil deviceString] isEqualToString:@"iPhone 6S"]){
+    }else if(SCREEN_WIDTH == 375){
         _CartoonTop.constant = 80;
-    }else if ([[MyUtil deviceString] isEqualToString:@"iPhone 6 Plus"] ||
-              [[MyUtil deviceString] isEqualToString:@"iPhone 6S Plus"]){
+    }else if (SCREEN_WIDTH == 414){
         _CartoonTop.constant = 80;
     }
 }
