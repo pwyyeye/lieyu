@@ -92,6 +92,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(_gameListArray.count <= indexPath.item) return;
     GameList *gList = _gameListArray[indexPath.item];
     GamePlayViewController *gamePlayVC = [[GamePlayViewController alloc]init];
     gamePlayVC.gameLink = gList.gameLink;
