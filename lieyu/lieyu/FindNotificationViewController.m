@@ -31,7 +31,17 @@
     _typeArray = @[@"14",@"13",@"11",@"1"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"FindNotificationTableViewCell" bundle:nil] forCellReuseIdentifier:@"FindNotificationTableViewCell"];
+    
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
+    screenGes.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:screenGes];
 }
+
+- (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
+    
+}
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
