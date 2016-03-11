@@ -60,7 +60,7 @@
     perCount=5;
     [self.tableView setHidden:YES];
     [self.nodataView setHidden:NO];
-    [self.kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
+//    [self.kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
     dataList=[[NSMutableArray alloc]init];
     [self getMenuHrizontal];
     

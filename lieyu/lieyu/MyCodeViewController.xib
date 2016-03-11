@@ -14,6 +14,7 @@
                 <outlet property="QRCodeViewBottom" destination="072-wq-Tq7" id="ukS-zc-vnq"/>
                 <outlet property="QRCodebg" destination="Prj-fF-wjH" id="aHF-Yo-cQT"/>
                 <outlet property="userHeader" destination="h7S-Ar-OsJ" id="w1z-zx-pOY"/>
+                <outlet property="userNameTop" destination="tch-IM-LDk" id="hck-yo-lpP"/>
                 <outlet property="userNick" destination="jCD-CN-Cav" id="luN-dw-lM9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -43,13 +44,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h7S-Ar-OsJ">
-                    <rect key="frame" x="268" y="59" width="64" height="64"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="64" id="47J-sB-ETY"/>
-                        <constraint firstAttribute="height" constant="64" id="sh5-uX-uef"/>
-                    </constraints>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzh-q1-N0C">
                     <rect key="frame" x="211" y="314" width="178" height="178"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,6 +52,33 @@
                         <constraint firstAttribute="width" constant="178" id="v5l-cw-DDV"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h7S-Ar-OsJ">
+                    <rect key="frame" x="268" y="59" width="64" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="47J-sB-ETY"/>
+                        <constraint firstAttribute="height" constant="64" id="sh5-uX-uef"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户扫一扫加为好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeO-mk-dbd">
+                    <rect key="frame" x="242" y="268" width="117" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="117" id="bNl-ot-Zyc"/>
+                        <constraint firstAttribute="height" constant="15" id="pEH-ez-csE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家扫一扫核对订单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfF-YK-NMD">
+                    <rect key="frame" x="245" y="291" width="110" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110" id="aD5-MH-sf9"/>
+                        <constraint firstAttribute="height" constant="15" id="hiN-qn-LTF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -69,10 +90,14 @@
                 <constraint firstItem="Prj-fF-wjH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="Jdc-PI-YN8"/>
                 <constraint firstItem="Oyl-lY-YQH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="55" id="SLL-08-2er"/>
                 <constraint firstAttribute="bottom" secondItem="Prj-fF-wjH" secondAttribute="bottom" constant="48" id="W1E-fX-0Iq"/>
+                <constraint firstItem="gzh-q1-N0C" firstAttribute="top" secondItem="NfF-YK-NMD" secondAttribute="bottom" constant="8" id="WZw-PQ-mCj"/>
+                <constraint firstItem="gzh-q1-N0C" firstAttribute="centerX" secondItem="NfF-YK-NMD" secondAttribute="centerX" id="YXM-5i-t8R"/>
                 <constraint firstItem="h7S-Ar-OsJ" firstAttribute="centerY" secondItem="Oyl-lY-YQH" secondAttribute="centerY" id="YYt-sg-Bwd"/>
                 <constraint firstItem="h7S-Ar-OsJ" firstAttribute="centerX" secondItem="Oyl-lY-YQH" secondAttribute="centerX" id="dXs-nF-SvU"/>
+                <constraint firstItem="NfF-YK-NMD" firstAttribute="top" secondItem="SeO-mk-dbd" secondAttribute="bottom" constant="8" id="h0z-OD-6Mo"/>
                 <constraint firstItem="jCD-CN-Cav" firstAttribute="centerX" secondItem="Oyl-lY-YQH" secondAttribute="centerX" id="lyf-Kf-wlk"/>
                 <constraint firstItem="jCD-CN-Cav" firstAttribute="top" secondItem="Oyl-lY-YQH" secondAttribute="bottom" constant="16" id="tch-IM-LDk"/>
+                <constraint firstItem="gzh-q1-N0C" firstAttribute="centerX" secondItem="SeO-mk-dbd" secondAttribute="centerX" id="x2c-vQ-2bR"/>
             </constraints>
             <point key="canvasLocation" x="199" y="393"/>
         </view>

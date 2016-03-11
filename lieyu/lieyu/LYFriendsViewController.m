@@ -210,13 +210,13 @@
     [self getRecentMessage];
     
     
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(myClickSel)];
-    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
-    [_tableView addGestureRecognizer:swipeRight];
-    
-    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(friendsClickSel)];
-    swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
-    [_tableView addGestureRecognizer:swipeLeft];
+//    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(myClickSel)];
+//    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+//    [_tableView addGestureRecognizer:swipeRight];
+//    
+//    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(friendsClickSel)];
+//    swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
+//    [_tableView addGestureRecognizer:swipeLeft];
 
 }
 
