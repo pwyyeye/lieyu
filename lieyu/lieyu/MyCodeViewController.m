@@ -26,6 +26,7 @@
         _QRCodeBGBottom.constant = 20;
         _QRCodeBGTop.constant = 20;
         _QRCodeHeaderTop.constant = 40;
+        _userNameTop.constant = 11;
     }
     [_userHeader sd_setImageWithURL:[NSURL URLWithString:self.userModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _userHeader.backgroundColor = [UIColor clearColor];

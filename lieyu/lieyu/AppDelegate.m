@@ -104,7 +104,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [UMSocialData setAppKey:UmengAppkey];
     
     //打开调试log的开关
-    [UMSocialData openLog:YES];
+    [UMSocialData openLog:NO];
     //AppID：wxf1e19b28e6b1613c
     //设置微信AppId，设置分享url，默认使用友盟的网址
     [UMSocialWechatHandler setWXAppId:@"wxb1f5e1de5d4778b9" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.lie98.com"];
@@ -119,6 +119,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 
     //友盟推送
     [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
+    [UMessage setAutoAlert:NO];
     
     [MTA startWithAppkey:@"I9IU4CZP47CE"];
     
@@ -171,7 +172,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
  
     //for log
-    [UMessage setLogEnabled:YES];
+    [UMessage setLogEnabled:NO];
     
     //引导页启动
     if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
