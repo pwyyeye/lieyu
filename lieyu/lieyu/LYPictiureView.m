@@ -218,6 +218,12 @@
 }
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
+//    if (_imageViewArray.count > _index || _scrollViewArray.count > _index) {
+//        UIImageView *imgView = [_imageViewArray objectAtIndex:_index];
+//        UIScrollView *scrollV = [_scrollViewArray objectAtIndex:_index];
+//        imgView.center = scrollV.center;
+//        
+//    }
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView{
@@ -227,7 +233,7 @@
     UIView *v = [scrollView.subviews objectAtIndex:0];
     if ([v isKindOfClass:[UIImageView class]]){
         if (scrollView.zoomScale<1.0){
-            //         v.center = CGPointMake(scrollView.frame.size.width/2.0, scrollView.frame.size.height/2.0);
+                     v.center = CGPointMake(scrollView.frame.size.width/2.0, scrollView.frame.size.height/2.0);
         }
     }
     }
@@ -243,6 +249,7 @@
     if ([view isKindOfClass:[UIScrollView class]]){
         UIScrollView *s = (UIScrollView *)view;
         [s zoomToRect:zoomRect animated:YES];
+        
     }
 }
 
@@ -322,6 +329,8 @@
                     img = [UIImage imageNamed:@"empyImage300"];
                 }
                 imgView.frame = CGRectMake(0,(SCREEN_HEIGHT - SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+                NSLog(@"----->%@",NSStringFromCGRect(imgView.frame));
+                  NSLog(@"----->%@",NSStringFromCGRect(scrollView.frame));
             }
         }];
     }else{
