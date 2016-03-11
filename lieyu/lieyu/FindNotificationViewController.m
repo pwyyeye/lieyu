@@ -114,7 +114,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MineUserNotification *mineUserNot = _titleArray[indexPath.row];
-    if ([mineUserNot.type isEqualToString:@"2"]) {
+    if ([mineUserNot.type isEqualToString:@"11"]) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         MyMessageListViewController *messageListViewController=[[MyMessageListViewController alloc]initWithNibName:@"MyMessageListViewController" bundle:nil];
         messageListViewController.title=@"信息中心";
