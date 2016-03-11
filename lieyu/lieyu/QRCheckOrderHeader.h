@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *OrderTime;
 
 @property (nonatomic, strong) OrderInfoModel *orderinfo;
+@property (strong, nonatomic) IBOutlet UIView *bgView;
 
 @end
