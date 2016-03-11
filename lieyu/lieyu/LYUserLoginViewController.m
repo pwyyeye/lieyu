@@ -109,7 +109,7 @@
     }
     
     
-//    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
     //    if([self.navigationController.childViewControllers objectAtIndex:1])
 }
 
