@@ -30,9 +30,9 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     _captureSession = nil;
-    _isReading = NO;
-//    [self scanQRCode];
-    [self startReading];
+//    _isReading = NO;
+    [self scanQRCode];
+//    [self startReading];
     // Do any additional setup after loading the view from its nib.
 }
 
