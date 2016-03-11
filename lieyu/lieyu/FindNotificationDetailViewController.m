@@ -28,8 +28,16 @@
     [_tableView registerNib:[UINib nibWithNibName:@"FindNotificatinDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"FindNotificatinDetailTableViewCell"];
     
     [self getData];
+    
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
+    screenGes.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:screenGes];
 }
 
+- (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
+    
+}
 - (void)getData{
     NSDictionary *dic = @{@"type":_type};
     __weak __typeof(self) weakSelf = self;

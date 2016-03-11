@@ -700,6 +700,10 @@
 		8540B6891C2CF40B00F16463 /* LYFriendsSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6871C2CF40B00F16463 /* LYFriendsSendViewController.m */; };
 		8540B68A1C2CF40B00F16463 /* LYFriendsSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6881C2CF40B00F16463 /* LYFriendsSendViewController.xib */; };
 		8540BFAD1C2A3CA7008CB825 /* LYTagLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540BFAC1C2A3CA7008CB825 /* LYTagLabel.m */; };
+		85416E091C9258DD0016BF0B /* QRCodebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E071C9258DD0016BF0B /* QRCodebg@2x.png */; };
+		85416E0A1C9258DD0016BF0B /* QRCodebg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E081C9258DD0016BF0B /* QRCodebg@3x.png */; };
+		85416E0D1C9258FA0016BF0B /* QRCodeHeaderbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E0B1C9258FA0016BF0B /* QRCodeHeaderbg@2x.png */; };
+		85416E0E1C9258FA0016BF0B /* QRCodeHeaderbg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E0C1C9258FA0016BF0B /* QRCodeHeaderbg@3x.png */; };
 		8545385A1C2D3A8D0020AC2C /* LYFriendsHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 854538591C2D3A8D0020AC2C /* LYFriendsHttpTool.m */; };
 		8545385F1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8545385D1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m */; };
 		854538601C2D3E1B0020AC2C /* LYFriendsMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8545385E1C2D3E1B0020AC2C /* LYFriendsMessageViewController.xib */; };
@@ -2324,6 +2328,10 @@
 		8540B6881C2CF40B00F16463 /* LYFriendsSendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYFriendsSendViewController.xib; sourceTree = "<group>"; };
 		8540BFAB1C2A3CA7008CB825 /* LYTagLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTagLabel.h; sourceTree = "<group>"; };
 		8540BFAC1C2A3CA7008CB825 /* LYTagLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTagLabel.m; sourceTree = "<group>"; };
+		85416E071C9258DD0016BF0B /* QRCodebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@2x.png"; sourceTree = "<group>"; };
+		85416E081C9258DD0016BF0B /* QRCodebg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@3x.png"; sourceTree = "<group>"; };
+		85416E0B1C9258FA0016BF0B /* QRCodeHeaderbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@2x.png"; sourceTree = "<group>"; };
+		85416E0C1C9258FA0016BF0B /* QRCodeHeaderbg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@3x.png"; sourceTree = "<group>"; };
 		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
 		8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuView.m; sourceTree = "<group>"; };
 		854538581C2D3A8D0020AC2C /* LYFriendsHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsHttpTool.h; sourceTree = "<group>"; };

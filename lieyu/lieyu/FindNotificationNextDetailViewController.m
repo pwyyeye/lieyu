@@ -20,11 +20,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"消息通知详情";
     // Do any additional setup after loading the view from its nib.
     _label_title.text = _findNewList.title;
     _label_time.text = _findNewList.createDate;
     _label_content.text = _findNewList.content;
     
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
+    screenGes.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:screenGes];
+}
+
+- (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
     
 }
 
