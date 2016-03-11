@@ -703,6 +703,8 @@
 		85416E0A1C9258DD0016BF0B /* QRCodebg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E081C9258DD0016BF0B /* QRCodebg@3x.png */; };
 		85416E0D1C9258FA0016BF0B /* QRCodeHeaderbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E0B1C9258FA0016BF0B /* QRCodeHeaderbg@2x.png */; };
 		85416E0E1C9258FA0016BF0B /* QRCodeHeaderbg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E0C1C9258FA0016BF0B /* QRCodeHeaderbg@3x.png */; };
+		85416E111C92B1B20016BF0B /* 系统通知@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E0F1C92B1B20016BF0B /* 系统通知@2x.png */; };
+		85416E121C92B1B20016BF0B /* 系统通知@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E101C92B1B20016BF0B /* 系统通知@3x.png */; };
 		8545385A1C2D3A8D0020AC2C /* LYFriendsHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 854538591C2D3A8D0020AC2C /* LYFriendsHttpTool.m */; };
 		8545385F1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8545385D1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m */; };
 		854538601C2D3E1B0020AC2C /* LYFriendsMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8545385E1C2D3E1B0020AC2C /* LYFriendsMessageViewController.xib */; };
@@ -2330,6 +2332,8 @@
 		85416E081C9258DD0016BF0B /* QRCodebg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@3x.png"; sourceTree = "<group>"; };
 		85416E0B1C9258FA0016BF0B /* QRCodeHeaderbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@2x.png"; sourceTree = "<group>"; };
 		85416E0C1C9258FA0016BF0B /* QRCodeHeaderbg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@3x.png"; sourceTree = "<group>"; };
+		85416E0F1C92B1B20016BF0B /* 系统通知@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "系统通知@2x.png"; sourceTree = "<group>"; };
+		85416E101C92B1B20016BF0B /* 系统通知@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "系统通知@3x.png"; sourceTree = "<group>"; };
 		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
 		8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuView.m; sourceTree = "<group>"; };
 		854538581C2D3A8D0020AC2C /* LYFriendsHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsHttpTool.h; sourceTree = "<group>"; };
@@ -4686,6 +4690,8 @@
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				85416E0F1C92B1B20016BF0B /* 系统通知@2x.png */,
+				85416E101C92B1B20016BF0B /* 系统通知@3x.png */,
 				854CCA871C919B2B00368C72 /* GameIcon@2x.png */,
 				854CCA881C919B2B00368C72 /* GameIcon@3x.png */,
 				854CCA731C9187B800368C72 /* saoyisao@2x.png */,
@@ -7441,6 +7447,7 @@
 				8551B4F51C8EB8FA0057F0E7 /* UserNotificationTableViewCell.xib in Resources */,
 				851806801C2E797600006804 /* LYFriendsUserHeaderView.xib in Resources */,
 				380385DF1C327C19007C8DC0 /* play@2x.png in Resources */,
+				85416E111C92B1B20016BF0B /* 系统通知@2x.png in Resources */,
 				1559DD111BDA2A3E00F3FE9B /* CarInfoCell.xib in Resources */,
 				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
 				8550E7211C302A33001FF2DE /* daohang_fabu@2x.png in Resources */,
@@ -7529,6 +7536,7 @@
 				38E5D6BF1C0EA458004B49D2 /* CustomBtn_unSelected@3x.png in Resources */,
 				8550E70D1C2FC130001FF2DE /* LYFriendsCommentView.xib in Resources */,
 				85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */,
+				85416E121C92B1B20016BF0B /* 系统通知@3x.png in Resources */,
 				85514EA11C75F8BF00E24C78 /* sign@3x.png in Resources */,
 				AD4EA8571C546B110056E560 /* MineBigBG@3x.jpg in Resources */,
 				8550E7141C301740001FF2DE /* LYFriendsMessageDetailViewController.xib in Resources */,
