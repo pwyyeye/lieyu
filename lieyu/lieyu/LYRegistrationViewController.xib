@@ -10,7 +10,8 @@
                 <outlet property="againPassWordTex" destination="6M5-7o-vSY" id="XYY-u7-lIj"/>
                 <outlet property="btn_regist" destination="giJ-N8-FTm" id="TSr-qH-PJm"/>
                 <outlet property="getYzmBtn" destination="jDb-YS-mg1" id="Zol-gT-CBO"/>
-                <outlet property="line_view_three" destination="zEH-Gn-xXF" id="ap7-5b-wic"/>
+                <outlet property="line_view_four" destination="zEH-Gn-xXF" id="i3Y-NF-4aQ"/>
+                <outlet property="line_view_three" destination="Hst-HR-Eqv" id="ZF2-Wa-htU"/>
                 <outlet property="passWordTex" destination="dyr-sn-p1K" id="3xM-y1-nIs"/>
                 <outlet property="phoneTex" destination="1hx-6G-8MK" id="Rsr-Fo-g9C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
