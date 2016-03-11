@@ -15,21 +15,23 @@
     shapeLayer.bounds = _lineImage.bounds;
     [shapeLayer setPosition:_lineImage.center];
     [shapeLayer setFillColor:[[UIColor clearColor] CGColor]];
-    [shapeLayer setStrokeColor:[[UIColor lightGrayColor] CGColor]];
+    [shapeLayer setStrokeColor:[RGBA(0, 0, 0, 0.2) CGColor]];
     [shapeLayer setLineWidth:0.5];
     [shapeLayer setLineJoin:kCALineJoinRound];
     [shapeLayer setLineDashPattern:
     [NSArray arrayWithObjects:[NSNumber numberWithInt:3],
       [NSNumber numberWithInt:1],nil]];
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 0, 0);
-    CGPathAddLineToPoint(path, NULL, SCREEN_WIDTH - 6,0);
+    CGPathMoveToPoint(path, NULL, 12, 0);
+    CGPathAddLineToPoint(path, NULL, SCREEN_WIDTH - 18,0);
     // Setup the path CGMutablePathRef path = CGPathCreateMutable(); // 0,10代表初始坐标的x，y
     // 320,10代表初始坐标的x，y CGPathMoveToPoint(path, NULL, 0, 10);
 //    CGPathAddLineToPoint(path, NULL, 320,10);
     [shapeLayer setPath:path];
     CGPathRelease(path);
     [[_lineImage layer] addSublayer:shapeLayer];
+//    _OrderImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//    _OrderImage.layer.borderWidth = 0.5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

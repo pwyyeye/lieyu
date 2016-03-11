@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -54,16 +54,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdF-69-TvG">
-                                <rect key="frame" x="256" y="7" width="46" height="46"/>
+                                <rect key="frame" x="268" y="7" width="46" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="7OZ-YL-ujK"/>
                                     <constraint firstAttribute="width" constant="46" id="QAR-DK-K8d"/>
                                 </constraints>
-                                <state key="normal" image="CustomBtn_unSelected.png"/>
-                                <state key="selected" image="CustomBtn_Selected.png"/>
+                                <state key="normal" image="black_UnSelected.png"/>
+                                <state key="selected" image="black_Selected.png"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDk-z7-YGQ">
-                                <rect key="frame" x="57" y="20.5" width="189" height="18"/>
+                                <rect key="frame" x="57" y="20.5" width="201" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="D37-J1-TLB"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="um6-BM-NZU"/>
@@ -86,7 +86,7 @@
                             <constraint firstItem="QLj-bJ-va4" firstAttribute="height" secondItem="W41-vh-vvy" secondAttribute="height" id="7eo-uL-PPK"/>
                             <constraint firstItem="QLj-bJ-va4" firstAttribute="baseline" secondItem="z9b-rZ-wnX" secondAttribute="baseline" id="7qA-a4-r2a"/>
                             <constraint firstItem="QLj-bJ-va4" firstAttribute="leading" secondItem="W41-vh-vvy" secondAttribute="trailing" constant="8" symbolic="YES" id="MGL-63-plb"/>
-                            <constraint firstAttribute="trailing" secondItem="gdF-69-TvG" secondAttribute="trailing" constant="12" id="Nd3-Vo-1zR"/>
+                            <constraint firstAttribute="trailing" secondItem="gdF-69-TvG" secondAttribute="trailing" id="Nd3-Vo-1zR"/>
                             <constraint firstItem="gdF-69-TvG" firstAttribute="centerY" secondItem="P1o-tr-hpK" secondAttribute="centerY" id="OnC-id-O3o"/>
                             <constraint firstItem="P1o-tr-hpK" firstAttribute="leading" secondItem="mJW-R9-XgM" secondAttribute="leading" constant="12" id="Xhj-DI-eth"/>
                             <constraint firstAttribute="bottom" secondItem="W41-vh-vvy" secondAttribute="bottom" constant="6" id="ZIe-cS-tWh"/>
@@ -120,6 +120,7 @@
                 <outlet property="IsSelected" destination="gdF-69-TvG" id="MHy-zx-R2Q"/>
                 <outlet property="OrderNumber" destination="QLj-bJ-va4" id="qqy-cY-F70"/>
                 <outlet property="OrderTime" destination="z9b-rZ-wnX" id="D4P-Se-IXC"/>
+                <outlet property="bgView" destination="mJW-R9-XgM" id="pe5-XF-0BF"/>
                 <outlet property="user_avater" destination="P1o-tr-hpK" id="0os-VP-zD5"/>
                 <outlet property="user_name" destination="zDk-z7-YGQ" id="WOm-3V-sgk"/>
             </connections>
@@ -127,7 +128,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="CustomBtn_Selected.png" width="21" height="21"/>
-        <image name="CustomBtn_unSelected.png" width="21" height="21"/>
+        <image name="black_Selected.png" width="24" height="24"/>
+        <image name="black_UnSelected.png" width="24" height="24"/>
     </resources>
 </document>

@@ -128,6 +128,8 @@
             
             if ([dataString containsString:myUrl]) {
 //            if([subString isEqualToString:@"http://www.lie98.com/lieyu/lyQRCodeAction?action=custom?userid="]){
+//                AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//                [app startLoading];
                 //如果是速核码
                 NSArray *array = [dataString componentsSeparatedByString:@"&"];
                 NSString *userId = [array[0] substringFromIndex:69];
@@ -137,6 +139,7 @@
                                        @"usertype":self.userModel.usertype};
                 __weak typeof(self) weakSelf=self;
                 [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
+//                    [app stopLoading];
                     if ([weakSelf.userModel.usertype isEqualToString:@"1"]) {
                         if ([[result valueForKey:@"message"] isEqualToString:@"已经是好友！"]){
                             //如果已经是好友了，进入玩友详情
