@@ -453,6 +453,10 @@
 		38AA7CC61C315A0000D9BCE8 /* preview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA7CC31C315A0000D9BCE8 /* preview.xib */; };
 		38B11BFC1C9192A400AD3EB8 /* startingPage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */; };
 		38B11BFD1C9192A400AD3EB8 /* startingPage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */; };
+		38B11C021C91C1B900AD3EB8 /* QRCodebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFE1C91C1B900AD3EB8 /* QRCodebg@2x.png */; };
+		38B11C031C91C1B900AD3EB8 /* QRCodebg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFF1C91C1B900AD3EB8 /* QRCodebg@3x.png */; };
+		38B11C041C91C1B900AD3EB8 /* QRCodeHeaderbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11C001C91C1B900AD3EB8 /* QRCodeHeaderbg@2x.png */; };
+		38B11C051C91C1B900AD3EB8 /* QRCodeHeaderbg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11C011C91C1B900AD3EB8 /* QRCodeHeaderbg@3x.png */; };
 		38C98CD11C60782D0084E6BD /* YUGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCE1C60782D0084E6BD /* YUGroup.png */; };
 		38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */; };
 		38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CD01C60782D0084E6BD /* YUGroup@3x.png */; };
@@ -2000,6 +2004,10 @@
 		38AA7CC41C315A0000D9BCE8 /* preview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preview.h; sourceTree = "<group>"; };
 		38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startingPage@2x.png"; sourceTree = "<group>"; };
 		38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startingPage@3x.png"; sourceTree = "<group>"; };
+		38B11BFE1C91C1B900AD3EB8 /* QRCodebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@2x.png"; sourceTree = "<group>"; };
+		38B11BFF1C91C1B900AD3EB8 /* QRCodebg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@3x.png"; sourceTree = "<group>"; };
+		38B11C001C91C1B900AD3EB8 /* QRCodeHeaderbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@2x.png"; sourceTree = "<group>"; };
+		38B11C011C91C1B900AD3EB8 /* QRCodeHeaderbg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@3x.png"; sourceTree = "<group>"; };
 		38C98CCE1C60782D0084E6BD /* YUGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUGroup.png; sourceTree = "<group>"; };
 		38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@2x.png"; sourceTree = "<group>"; };
 		38C98CD01C60782D0084E6BD /* YUGroup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@3x.png"; sourceTree = "<group>"; };
@@ -6740,6 +6748,10 @@
 		ADF88E551C102E2D00CF5DED /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				38B11BFE1C91C1B900AD3EB8 /* QRCodebg@2x.png */,
+				38B11BFF1C91C1B900AD3EB8 /* QRCodebg@3x.png */,
+				38B11C001C91C1B900AD3EB8 /* QRCodeHeaderbg@2x.png */,
+				38B11C011C91C1B900AD3EB8 /* QRCodeHeaderbg@3x.png */,
 				ADF88E561C102E4F00CF5DED /* hongseStar.png */,
 				ADF88E571C102E4F00CF5DED /* hongseStar@2x.png */,
 				ADF88E581C102E4F00CF5DED /* hongseStar@3x.png */,
@@ -7533,6 +7545,7 @@
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
 				858B3A2A1C7A05F5000C6589 /* JoinedNumber@2x.png in Resources */,
 				ADFFA6AD1C181B9100D9BD2A /* 5@2x.jpg in Resources */,
+				38B11C031C91C1B900AD3EB8 /* QRCodebg@3x.png in Resources */,
 				855396FE1C8D310C00289D18 /* FindGameCenterViewController.xib in Resources */,
 				380385E81C327C2B007C8DC0 /* imageSelected@3x.png in Resources */,
 				15E240B11BB39DD40090D240 /* OrderDetailSectionBottomView.xib in Resources */,
@@ -7595,6 +7608,7 @@
 				38E5D6BD1C0EA458004B49D2 /* CustomBtn_unSelected.png in Resources */,
 				15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */,
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,
+				38B11C021C91C1B900AD3EB8 /* QRCodebg@2x.png in Resources */,
 				15EB354C1BD4839D00BA6161 /* UMShareEditViewController.xib in Resources */,
 				3812C54D1C57B76100F4DD6B /* add_purper_circle@3x.png in Resources */,
 				15EB354F1BD4839D00BA6161 /* UMSnsAccountViewController.xib in Resources */,
@@ -7669,6 +7683,7 @@
 				85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */,
 				8512BCA81C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
+				38B11C041C91C1B900AD3EB8 /* QRCodeHeaderbg@2x.png in Resources */,
 				389C01071C1488F000FE9412 /* seeBoys@3x.png in Resources */,
 				52D4F8FE1C5742E800691BEF /* LYHotBarViewController.xib in Resources */,
 				381A01EB1C14301A00592485 /* fanli.png in Resources */,
@@ -7723,6 +7738,7 @@
 				38C98CF41C60EC950084E6BD /* add5@2x.png in Resources */,
 				380659A11C53522A003094C9 /* image_Selected@2x.png in Resources */,
 				85F5453B1C1408040013B92B /* circleWhite.png in Resources */,
+				38B11C051C91C1B900AD3EB8 /* QRCodeHeaderbg@3x.png in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
 				855192701C0B3339007B9949 /* LYHotBarMenuTableViewCell.xib in Resources */,
 				38E5D7B81C128A74004B49D2 /* 拼客流程@3x.png in Resources */,
