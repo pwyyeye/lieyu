@@ -198,4 +198,8 @@
     }
 }
 
+- (void)BaseGoBack{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 @end

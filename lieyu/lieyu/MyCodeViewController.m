@@ -16,9 +16,17 @@
 
 @implementation MyCodeViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的二维码";
+    if ([[MyUtil deviceString] isEqualToString:@"iPhone 4"] || [[MyUtil deviceString] isEqualToString:@"iPhone 4S"]) {
+        _QRCodeViewBottom.constant = 40;
+        _QRCodeBGBottom.constant = 20;
+        _QRCodeBGTop.constant = 20;
+        _QRCodeHeaderTop.constant = 40;
+    }
     [_userHeader sd_setImageWithURL:[NSURL URLWithString:self.userModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _userHeader.backgroundColor = [UIColor clearColor];
     _userHeader.layer.cornerRadius = CGRectGetHeight(_userHeader.frame) / 2;

@@ -13,5 +13,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNick;
 @property (weak, nonatomic) IBOutlet UIImageView *userHeader;
 @property (weak, nonatomic) IBOutlet UIView *QRCodeView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *QRCodeHeaderTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *QRCodeViewBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *QRCodeBGBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *QRCodeBGTop;
 
 @end

@@ -453,6 +453,10 @@
 		38AA7CC61C315A0000D9BCE8 /* preview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38AA7CC31C315A0000D9BCE8 /* preview.xib */; };
 		38B11BFC1C9192A400AD3EB8 /* startingPage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */; };
 		38B11BFD1C9192A400AD3EB8 /* startingPage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */; };
+		38B11C021C91C1B900AD3EB8 /* QRCodebg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFE1C91C1B900AD3EB8 /* QRCodebg@2x.png */; };
+		38B11C031C91C1B900AD3EB8 /* QRCodebg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11BFF1C91C1B900AD3EB8 /* QRCodebg@3x.png */; };
+		38B11C041C91C1B900AD3EB8 /* QRCodeHeaderbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11C001C91C1B900AD3EB8 /* QRCodeHeaderbg@2x.png */; };
+		38B11C051C91C1B900AD3EB8 /* QRCodeHeaderbg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11C011C91C1B900AD3EB8 /* QRCodeHeaderbg@3x.png */; };
 		38C98CD11C60782D0084E6BD /* YUGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCE1C60782D0084E6BD /* YUGroup.png */; };
 		38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */; };
 		38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CD01C60782D0084E6BD /* YUGroup@3x.png */; };
@@ -2004,6 +2008,10 @@
 		38AA7CC41C315A0000D9BCE8 /* preview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = preview.h; sourceTree = "<group>"; };
 		38B11BFA1C9192A400AD3EB8 /* startingPage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startingPage@2x.png"; sourceTree = "<group>"; };
 		38B11BFB1C9192A400AD3EB8 /* startingPage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startingPage@3x.png"; sourceTree = "<group>"; };
+		38B11BFE1C91C1B900AD3EB8 /* QRCodebg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@2x.png"; sourceTree = "<group>"; };
+		38B11BFF1C91C1B900AD3EB8 /* QRCodebg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodebg@3x.png"; sourceTree = "<group>"; };
+		38B11C001C91C1B900AD3EB8 /* QRCodeHeaderbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@2x.png"; sourceTree = "<group>"; };
+		38B11C011C91C1B900AD3EB8 /* QRCodeHeaderbg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeHeaderbg@3x.png"; sourceTree = "<group>"; };
 		38C98CCE1C60782D0084E6BD /* YUGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUGroup.png; sourceTree = "<group>"; };
 		38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@2x.png"; sourceTree = "<group>"; };
 		38C98CD01C60782D0084E6BD /* YUGroup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@3x.png"; sourceTree = "<group>"; };

@@ -30,7 +30,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     _captureSession = nil;
-    _isReading = NO;
+//    _isReading = NO;
 //    [self scanQRCode];
     [self startReading];
     // Do any additional setup after loading the view from its nib.
@@ -38,6 +38,11 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [self stopReading];
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

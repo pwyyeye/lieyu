@@ -1252,6 +1252,8 @@
 
 #pragma mark - 扫描述二维码加好友或订单验码
 + (void)userScanQRCodeWithPara:(NSDictionary *)paraDic complete:(void (^)(NSDictionary *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QRCODE_SCAN baseURL:LY_SERVER params:paraDic success:^(id response) {
         NSString *errorCode = [response valueForKey:@"errorcode"];
         
@@ -1276,8 +1278,10 @@
         }else{
             [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
         }
+        [app stopLoading];
     } failure:^(NSError *err) {
         NSLog(@"------>%@",err.description);
+        [app stopLoading];
     }];
 }
 
