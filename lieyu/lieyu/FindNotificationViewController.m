@@ -12,9 +12,12 @@
 #import "MyMessageListViewController.h"
 #import "LYFindHttpTool.h"
 #import "FindNewMessage.h"
+#import "LYUserHttpTool.h"
+#import "MineUserNotification.h"
 
 @interface FindNotificationViewController ()<UITableViewDataSource,UITableViewDelegate>{
-    NSArray *_titleArray,*_dataArray,*_typeArray;
+    NSMutableArray *_titleArray;
+    NSArray *_dataArray,*_typeArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -26,15 +29,35 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"消息通知";
-    _titleArray = @[@"表白",@"评论",@"打招呼",@"系统通知"];
-    _typeArray = @[@"14",@"13",@"11",@"1"];
+    MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
+    minUserNotification.typeName = @"系统通知";
+    minUserNotification.type = @"1";
+    _titleArray = [[NSMutableArray alloc]initWithObjects:minUserNotification,nil];
+//    _typeArray = @[@"14",@"13",@"11",@"1"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"FindNotificationTableViewCell" bundle:nil] forCellReuseIdentifier:@"FindNotificationTableViewCell"];
+   
     
     id target = self.navigationController.interactivePopGestureRecognizer.delegate;
     UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
     screenGes.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:screenGes];
+}
+
+- (void)getData{
+    [_titleArray removeAllObjects];
+    MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
+    minUserNotification.typeName = @"系统通知";
+    minUserNotification.type = @"1";
+    [_titleArray addObject:minUserNotification];
+    [LYUserHttpTool getUserNotificationWithPara:nil compelte:^(NSArray *dataArray) {
+        [_titleArray addObjectsFromArray:dataArray];
+        [_tableView reloadData];
+        [LYFindHttpTool getNotificationMessageWithParams:nil compelte:^(NSArray *dataArray) {
+            _dataArray = dataArray;
+            [_tableView reloadData];
+        }];
+    }];
 }
 
 - (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
@@ -44,33 +67,36 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    __weak __typeof(self) weakSelf = self;
-    [LYFindHttpTool getNotificationMessageWithParams:nil compelte:^(NSArray *dataArray) {
-        _dataArray = dataArray;
-        [weakSelf.tableView reloadData];
-    }];
+   
+    [self getData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return _titleArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     FindNotificationTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"FindNotificationTableViewCell" forIndexPath:indexPath];
-    cell.label_title.text = _titleArray[indexPath.row];
-    cell.imgView.image = [UIImage imageNamed:_titleArray[indexPath.row]];
+    MineUserNotification *userNotification =_titleArray[indexPath.row];
+    cell.label_title.text = userNotification.typeName;
+    cell.imgView.image = [UIImage imageNamed:userNotification.typeName];
+    if (!cell.imgView.image) {
+        cell.imgView.image = [UIImage imageNamed:@"CommonIcon"];
+    }
     if (_dataArray.count) {
         FindNewMessage *findNewM = nil;
         for( FindNewMessage *findM in _dataArray){
-            if ([findM.type isEqualToString:_typeArray[indexPath.row]]) {
+            if ([findM.type isEqualToString:userNotification.type]) {
                 findNewM = findM;
                 break;
             }
         }
+//        if([cell.label_title.text isEqualToString:findNewM.type]){
         if (findNewM.count) {
             cell.label_badge.text = findNewM.count;
             cell.label_badge.hidden = NO;
             cell.imgArrow.hidden = YES;
+//        }
         }else{
             cell.label_badge.hidden = YES;
             cell.imgArrow.hidden = NO;
@@ -87,14 +113,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 2) {
+    MineUserNotification *mineUserNot = _titleArray[indexPath.row];
+    if ([mineUserNot.type isEqualToString:@"2"]) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         MyMessageListViewController *messageListViewController=[[MyMessageListViewController alloc]initWithNibName:@"MyMessageListViewController" bundle:nil];
         messageListViewController.title=@"信息中心";
         [app.navigationController pushViewController:messageListViewController animated:YES];
     }else{
         FindNotificationDetailViewController *notificationDetailVC = [[FindNotificationDetailViewController alloc]init];
-        switch (indexPath.row) {
+       /* switch (indexPath.row) {
             case 0:
             {
                 notificationDetailVC.type = @"14";
@@ -109,7 +136,8 @@
                  notificationDetailVC.type = @"1";
             }
                 break;
-        }
+        }*/
+        notificationDetailVC.type = mineUserNot.type;
         [self.navigationController pushViewController:notificationDetailVC animated:YES];
     }
 }

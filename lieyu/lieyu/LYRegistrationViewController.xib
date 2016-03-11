@@ -104,7 +104,7 @@
                     <rect key="frame" x="38" y="147" width="244" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="0.5" id="gl9-Gs-n6q"/>
+                        <constraint firstAttribute="height" constant="1" id="gl9-Gs-n6q"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgg-in-hed">
@@ -119,21 +119,21 @@
                     <rect key="frame" x="38" y="210" width="244" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="0.5" id="Gi2-hT-30w"/>
+                        <constraint firstAttribute="height" constant="1" id="Gi2-hT-30w"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hst-HR-Eqv">
                     <rect key="frame" x="38" y="268" width="244" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="0.5" id="KWc-T5-ggk"/>
+                        <constraint firstAttribute="height" constant="1" id="KWc-T5-ggk"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEH-Gn-xXF">
                     <rect key="frame" x="38" y="326" width="244" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="0.5" id="SJo-s1-p8V"/>
+                        <constraint firstAttribute="height" constant="1" id="SJo-s1-p8V"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giJ-N8-FTm">

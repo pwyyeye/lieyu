@@ -20,6 +20,7 @@
     // Do any additional setup after loading the view from its nib.
 //    self.navigationController.navigationBarHidden = YES;
     [_webView sizeToFit];
+    _webView.scrollView.scrollEnabled = NO;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_gameLink]];
     [_webView loadRequest:request];
 //    [_webView loadHTMLString:_gameLink baseURL:nil];
