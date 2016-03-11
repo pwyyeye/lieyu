@@ -97,12 +97,12 @@
             cell.notificationSwitch.tag = indexPath.row - 2;
             if (indexPath.row == 2) {
                 CAShapeLayer *shapeL = [CAShapeLayer layer];
-                UIBezierPath *topRect = [UIBezierPath bezierPathWithRoundedRect:cell.notificationLabel.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(2, 2)];
+                UIBezierPath *topRect = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 16, cell.notificationLabel.size.height) byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(2,2)];
                 shapeL.path = topRect.CGPath;
                 cell.notificationLabel.layer.mask = shapeL;
             }else if(indexPath.row - 1 == _dataArray.count){
                 CAShapeLayer *shapeL = [CAShapeLayer layer];
-                UIBezierPath *topRect = [UIBezierPath bezierPathWithRoundedRect:cell.notificationLabel.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(2, 2)];
+                UIBezierPath *topRect = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0,0, SCREEN_WIDTH - 16, cell.notificationLabel.size.height) byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(2,2)];
                 shapeL.path = topRect.CGPath;
                 cell.notificationLabel.layer.mask = shapeL;
             }else{
