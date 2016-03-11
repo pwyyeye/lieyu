@@ -81,7 +81,7 @@
     [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     //8.设置图层的frame 115
 //    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 46, SCREEN_HEIGHT - 115 - 64)];
-    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 100, SCREEN_WIDTH - 100)];
+    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 130, SCREEN_WIDTH - 130)];
     NSLog(@"%@",NSStringFromCGRect(_videoPreviewLayer.frame));
         //9.将图层添加到预览view的图层上
     [_viewPreview.layer addSublayer:_videoPreviewLayer];
@@ -105,7 +105,7 @@
 //    [_viewPreview addSubview:_boxView];
     //10.2.扫描线
     _scanLayer = [[CALayer alloc] init];
-    _scanLayer.frame = CGRectMake(7, 0, SCREEN_WIDTH - 114, 4);
+    _scanLayer.frame = CGRectMake(17, 0, SCREEN_WIDTH - 164, 4);
     _scanLayer.cornerRadius = 1;
     _scanLayer.masksToBounds = YES;
     _scanLayer.backgroundColor = [RGBA(105, 255, 45, 0.7) CGColor];
@@ -187,7 +187,7 @@
 {
     CGRect frame = _scanLayer.frame;
     if (_viewPreview.frame.size.height < _scanLayer.frame.origin.y) {
-        frame.origin.y = 0;
+        frame.origin.y = -40;
         _scanLayer.frame = frame;
     }else{
         frame.origin.y += 5;
