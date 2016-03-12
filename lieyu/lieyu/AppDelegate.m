@@ -28,7 +28,6 @@
 #import "UMSocialQQHandler.h"
 #import "SingletonTenpay.h"
 #import <AVFoundation/AVFoundation.h>
-#import "qidongye.h"
 #import "LYCoreDataUtil.h"
 #import "LYCache.h"
 

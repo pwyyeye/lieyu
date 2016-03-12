@@ -493,11 +493,15 @@
         
         return;
     }
+    
     if(_keyStr == nil && _userM.avatar_img != nil){
         [userinfo setObject:_userM.avatar_img forKey:@"avatar_img"];
     }
     else{
-        if([MyUtil isEmptyString:_keyStr]) return;
+        if([MyUtil isEmptyString:_keyStr]) {
+            [MyUtil showCleanMessage:@"头像未上传成功，请重新选择头像"];
+            return;
+        }
         [userinfo setObject:_keyStr forKey:@"avatar_img"];
 
     }
