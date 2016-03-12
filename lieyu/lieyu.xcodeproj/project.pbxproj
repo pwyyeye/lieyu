@@ -715,7 +715,6 @@
 		85416E1C1C92EB100016BF0B /* 订单通知@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E181C92EB100016BF0B /* 订单通知@3x.png */; };
 		85416E1D1C92EB100016BF0B /* findtongyong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E191C92EB100016BF0B /* findtongyong@2x.png */; };
 		85416E1E1C92EB100016BF0B /* findtongyong@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E1A1C92EB100016BF0B /* findtongyong@3x.png */; };
-		85416E251C930B710016BF0B /* qidongye.m in Sources */ = {isa = PBXBuildFile; fileRef = 85416E231C930B710016BF0B /* qidongye.m */; };
 		85416E2B1C930E2A0016BF0B /* QCQDYMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 85416E2A1C930E2A0016BF0B /* QCQDYMethod.m */; };
 		8545385A1C2D3A8D0020AC2C /* LYFriendsHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 854538591C2D3A8D0020AC2C /* LYFriendsHttpTool.m */; };
 		8545385F1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8545385D1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m */; };
@@ -2404,8 +2403,6 @@
 		85416E181C92EB100016BF0B /* 订单通知@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "订单通知@3x.png"; sourceTree = "<group>"; };
 		85416E191C92EB100016BF0B /* findtongyong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findtongyong@2x.png"; sourceTree = "<group>"; };
 		85416E1A1C92EB100016BF0B /* findtongyong@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findtongyong@3x.png"; sourceTree = "<group>"; };
-		85416E221C930B710016BF0B /* qidongye.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qidongye.h; sourceTree = "<group>"; };
-		85416E231C930B710016BF0B /* qidongye.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = qidongye.m; sourceTree = "<group>"; };
 		85416E291C930E2A0016BF0B /* QCQDYMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCQDYMethod.h; sourceTree = "<group>"; };
 		85416E2A1C930E2A0016BF0B /* QCQDYMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCQDYMethod.m; sourceTree = "<group>"; };
 		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
@@ -5392,8 +5389,6 @@
 			children = (
 				85416E291C930E2A0016BF0B /* QCQDYMethod.h */,
 				85416E2A1C930E2A0016BF0B /* QCQDYMethod.m */,
-				85416E221C930B710016BF0B /* qidongye.h */,
-				85416E231C930B710016BF0B /* qidongye.m */,
 			);
 			name = "启动页";
 			path = "../Utilities/启动页";
@@ -7779,7 +7774,6 @@
 				525CA0F01C5C6930009ED9DA /* pinglun_icon@2x.png in Resources */,
 				38B11C0C1C92AFCC00AD3EB8 /* CheckQRCode@2x.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
-				ADFFA69F1C181A7200D9BD2A /* 1_retina.jpg in Resources */,
 				855091C51C93F139000B8003 /* logo35@2x.jpg in Resources */,
 				3812C5101C57622E00F4DD6B /* ChooseTime.xib in Resources */,
 				85F5454D1C1454010013B92B /* camera@2x.png in Resources */,
@@ -8473,7 +8467,6 @@
 				85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */,
 				85589C311C167E49000E342E /* PayButton.m in Sources */,
 				385665101C75EFFF000DCFA5 /* HDDetailImageCell.m in Sources */,
-				85416E251C930B710016BF0B /* qidongye.m in Sources */,
 				AD79E07F1C76EE5000C45B97 /* HuoDongLinkViewController.m in Sources */,
 				381FEFF41C166AB8002A47BA /* bartypeslistModel.m in Sources */,
 				38E5D7FA1C13DFA1004B49D2 /* MenuButton.m in Sources */,
