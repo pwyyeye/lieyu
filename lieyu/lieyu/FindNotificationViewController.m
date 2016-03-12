@@ -32,7 +32,7 @@
     self.navigationItem.title = @"消息通知";
     MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
     minUserNotification.typeName = @"系统通知";
-    minUserNotification.type = @"1";
+    minUserNotification.type = @"0";
     _titleArray = [[NSMutableArray alloc]initWithObjects:minUserNotification,nil];
 //    _typeArray = @[@"14",@"13",@"11",@"1"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -50,7 +50,7 @@
            [_titleArray removeAllObjects];
            MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
            minUserNotification.typeName = @"系统通知";
-           minUserNotification.type = @"1";
+           minUserNotification.type = @"0";
            [_titleArray addObject:minUserNotification];
 
         [_titleArray addObjectsFromArray:dataArray];
@@ -78,7 +78,7 @@
         _titleArray = [[NSMutableArray alloc]initWithArray:dataArr];
         MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
         minUserNotification.typeName = @"系统通知";
-        minUserNotification.type = @"1";
+        minUserNotification.type = @"0";
         [_titleArray insertObject:minUserNotification atIndex:0];
         [self.tableView reloadData];
     }
