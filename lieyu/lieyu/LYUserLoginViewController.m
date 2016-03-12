@@ -177,6 +177,7 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
+        [app getTTL];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [USER_DEFAULT setObject:self.userNameTex.text forKey:@"username"];
         [USER_DEFAULT setObject:[MyUtil md5HexDigest:weakSelf.passWordTex.text] forKey:@"pass"];
@@ -261,6 +262,7 @@
                 app.s_app_id=userM.token;
                 app.userModel=userM;
                 [app getImToken];
+                [app getTTL];
                 if ([MyUtil isEmptyString:app.desKey] ) {
                     [app getDESKey];
                 }
@@ -286,6 +288,7 @@
         app.s_app_id=result.token;
         app.userModel=result;
         [app getImToken];
+        [app getTTL];
         if ([MyUtil isEmptyString:app.desKey] ) {
             [app getDESKey];
         }
@@ -373,6 +376,7 @@
             app.s_app_id=userM.token;
             app.userModel=userM;
             [app getImToken];
+            [app getTTL];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
@@ -447,6 +451,7 @@
             app.s_app_id=userM.token;
             app.userModel=userM;
             [app getImToken];
+            [app getTTL];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
@@ -485,6 +490,7 @@
                         app.s_app_id=userM.token;
                         app.userModel=userM;
                         [app getImToken];
+                        [app getTTL];
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                     }else{//去绑定手机好

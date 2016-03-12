@@ -1369,6 +1369,20 @@
     
 }
 
+#pragma mark - 专属经理直接核对消费码
++ (void)zsCheckConsumerIDWith:(NSDictionary *)params complete:(void(^)())complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_CHECK_CONSUMERID baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [response valueForKey:@"errorcode"];
+//        if ([code isEqualToString:@"1"]) {
+        [MyUtil showMessage:[response valueForKey:@"message"]];
+        [app stopLoading];
+//        }
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
 
 
 @end

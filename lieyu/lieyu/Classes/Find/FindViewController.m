@@ -51,7 +51,7 @@
                @{@"image":@"lianxiren",@"title":@"玩友列表"},
 //               @{@"image":@"fujinwanyou",@"title":@"附近玩客"},
               // @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
-               @{@"image":@"GameIcon",@"title":@"酒吧小游戏"}];
+               @{@"image":@"GameIcon",@"title":@"娱乐宝典"}];
     _tableView.contentInset = UIEdgeInsetsMake(70, 0, -49, 0);
    /* self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 0.5);
@@ -142,6 +142,8 @@
     if (![MyUtil isEmptyString:app.s_app_id]) {
         [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
             _orderTTL=result;
+            app.orderTTL=result;
+            [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
             [weakSelf loadBadge:_orderTTL];
         }];
     }
@@ -342,7 +344,7 @@
             
          if(indexPath.row == 0){
             //统计发现页面的选择
-            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"酒吧小游戏"};
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"娱乐宝典"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             FindGameCenterViewController *findGameVC = [[FindGameCenterViewController alloc]init];

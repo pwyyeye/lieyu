@@ -147,7 +147,7 @@
         button.selected = YES;
         count ++;
         if (count > 0 && _checkBtn.enabled == NO) {//count大于0，_checkBtn不可用，即止修改一次
-            _checkBtn.backgroundColor = RGB(186, 40, 227);
+            _checkBtn.backgroundColor = [UIColor clearColor];
             _checkBtn.enabled = YES;
             [self.checkBtn setTitle:@"确认核定" forState:UIControlStateNormal];
         }

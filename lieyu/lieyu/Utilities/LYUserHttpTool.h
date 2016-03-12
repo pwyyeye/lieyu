@@ -194,4 +194,6 @@
 + (void)QuickCheckOrderWithParam:(NSDictionary *)paraDic complete:(void(^)(NSString *))complete;
 //获取deskey
 - (void) getAppDesKey:(NSDictionary*)params complete:(void (^)(NSString * result))result;
+#pragma mark - 专属经理直接核对消费码
++ (void)zsCheckConsumerIDWith:(NSDictionary *)params complete:(void(^)())complete;
 @end

@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"酒吧小游戏";
+    self.navigationItem.title = @"娱乐宝典";
     _titleArray = @[@"咬手鲨鱼牙",@"真心话大冒险",@"大话骰"];
     [_collectionView registerNib:[UINib nibWithNibName:@"FindGameCenterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"FindGameCenterCollectionViewCell"];
     [self getData];
