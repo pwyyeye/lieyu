@@ -137,9 +137,19 @@
 //                AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //                [app startLoading];
                 //如果是速核码
-                NSArray *array = [dataString componentsSeparatedByString:@"&"];
-                NSString *userId = [array[0] substringFromIndex:69];
-                NSString *currentTime = [array[1] substringFromIndex:12];
+                NSArray *array;
+                NSString *userId;
+                NSString *currentTime;
+
+                @try {
+                    array = [dataString componentsSeparatedByString:@"&"];
+                    userId = [array[1] substringFromIndex:7];
+                    currentTime = [array[2] substringFromIndex:12];
+                }
+                @catch (NSException *exception) {
+                    return;
+                }
+                
                 NSDictionary *dict = @{@"userid":userId,
                                        @"currentTime":currentTime,
                                        @"usertype":self.userModel.usertype};

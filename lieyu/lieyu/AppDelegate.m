@@ -210,7 +210,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 //    [qidongView addUntitled1Animation];
 //    [awindow addSubview:qidongView];
 //    [awindow bringSubviewToFront:qidongView];
-    UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo45.jpg"]];
+    UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo90.jpg"]];
     imgV.tag = 10086;
     imgV.frame = CGRectMake(0, -100, SCREEN_WIDTH, SCREEN_HEIGHT + 100);
     imgV.backgroundColor = RGBA(5, 5, 5, 1);
@@ -247,6 +247,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
 //        imgV.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 1.5, (SCREEN_HEIGHT + 100) * 1.5);
+        
+    }completion:^(BOOL finished) {
         [imgV removeFromSuperview];
     }];
 }
