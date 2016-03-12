@@ -248,7 +248,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
 //        imgV.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 1.5, (SCREEN_HEIGHT + 100) * 1.5);
-        [imgV removeFromSuperview];1
+        [imgV removeFromSuperview];
     }];
 }
   
