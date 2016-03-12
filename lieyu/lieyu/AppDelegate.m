@@ -686,31 +686,34 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
         page4.bgImage = [UIImage imageNamed:@"4.jpg"];
     }
     
-    EAIntroPage *page5 = [EAIntroPage page];
-    
-    if (isRetina) {
-        page5.bgImage = [UIImage imageNamed:@"5_retina.jpg"];
-    }else{
-        page5.bgImage = [UIImage imageNamed:@"5.jpg"];
-    }
+//    EAIntroPage *page5 = [EAIntroPage page];
+//    
+//    if (isRetina) {
+//        page5.bgImage = [UIImage imageNamed:@"5_retina.jpg"];
+//    }else{
+//        page5.bgImage = [UIImage imageNamed:@"5.jpg"];
+//    }
 
     //    page4.titleImage = [UIImage imageNamed:@"skip-btn"];
     //
     //    page4.imgPositionY = SCREEN_HEIGHT-100;
     
-    page5.customView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-155, SCREEN_WIDTH, 40)];
-    _intro = [[EAIntroView alloc] initWithFrame:self.window.bounds andPages:@[page1,page2,page3,page4,page5]];
+    page4.customView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-122, SCREEN_WIDTH, 40)];
+    _intro = [[EAIntroView alloc] initWithFrame:self.window.bounds andPages:@[page1,page2,page3,page4]];
     
-    UIButton *button=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-55, 0, 110, 40)];
+    UIButton *button=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-55, 0, 112, 36)];
     [button setBackgroundImage:[UIImage imageNamed:@"skip-btn"] forState:UIControlStateNormal];
     [button addTarget:_intro action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
-    [page5.customView addSubview:button];
-    [page5.customView bringSubviewToFront:button];//显示到最前面
+    [page4.customView addSubview:button];
+    [page4.customView bringSubviewToFront:button];//显示到最前面
     
     
     
     
     _intro.skipButton = [[UIButton alloc] initWithFrame:CGRectZero];
+    _intro.pageControl.currentPageIndicatorTintColor = RGB(211, 20, 237);
+    _intro.pageControl.pageIndicatorTintColor = RGB(219, 217, 217);
+//    _intro.pageControlY=35;
     
     [_intro setDelegate:self];
     [_intro showInView:self.window animateDuration:1.0];
