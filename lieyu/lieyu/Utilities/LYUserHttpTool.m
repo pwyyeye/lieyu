@@ -1222,12 +1222,19 @@
             NSArray *itemsArray = response[@"items"];
             NSArray *dataArray = [MineUserNotification mj_objectArrayWithKeyValuesArray:itemsArray];
             compelte(dataArray);
+            //成功获取数据后则存储或更新最新数据
+            LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+            [core saveOrUpdateCoreData:@"LYCache" withParam:@{
+                                                              @"lyCacheKey":CACHE_SYSTEM_NOTIFICATION,
+                                                              @"lyCacheValue":dataArray,
+                                                              @"createDate":[NSDate date]}
+                         andSearchPara:@{@"lyCacheKey":CACHE_SYSTEM_NOTIFICATION}];
         }else{
-            compelte(nil);
+//            compelte(nil);
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-        compelte(nil);
+//        compelte(nil);
                 [app stopLoading];
     }];
 }
