@@ -22,5 +22,9 @@
 //酒吧详情
 #define CACHE_JIUBADETAIL @"JIUBADETAIL"
 
+//系统通知
+#define CACHE_SYSTEM_NOTIFICATION @"CACHE_SYSTEM_NOTIFICATION"
+
+
 
 #endif /* LYCacheDefined_h */

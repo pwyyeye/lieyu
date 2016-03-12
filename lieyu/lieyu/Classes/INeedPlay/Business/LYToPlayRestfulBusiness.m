@@ -40,7 +40,11 @@
              if(index == 0){
                  //存储缓存讯息 首页
                  LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-                 [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_YD,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_YD}];
+                 [core saveOrUpdateCoreData:@"LYCache" withParam:@{
+                                                                   @"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_YD,
+                                                                   @"lyCacheValue":dataDic,
+                                                                   @"createDate":[NSDate date]}
+                              andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_YD}];
              }else if(index == 1){
                  LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
                  [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_BAR,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_BAR}];
