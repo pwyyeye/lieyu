@@ -715,7 +715,6 @@
 		85416E1C1C92EB100016BF0B /* 订单通知@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E181C92EB100016BF0B /* 订单通知@3x.png */; };
 		85416E1D1C92EB100016BF0B /* findtongyong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E191C92EB100016BF0B /* findtongyong@2x.png */; };
 		85416E1E1C92EB100016BF0B /* findtongyong@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85416E1A1C92EB100016BF0B /* findtongyong@3x.png */; };
-		85416E2B1C930E2A0016BF0B /* QCQDYMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 85416E2A1C930E2A0016BF0B /* QCQDYMethod.m */; };
 		8545385A1C2D3A8D0020AC2C /* LYFriendsHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 854538591C2D3A8D0020AC2C /* LYFriendsHttpTool.m */; };
 		8545385F1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8545385D1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m */; };
 		854538601C2D3E1B0020AC2C /* LYFriendsMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8545385E1C2D3E1B0020AC2C /* LYFriendsMessageViewController.xib */; };
@@ -1064,7 +1063,6 @@
 		AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD198CBB1C00308400AA654D /* libWeChatSDK.a */; };
 		AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC01C00357C00AA654D /* SingletonTenpay.m */; };
 		AD198CC41C00368300AA654D /* TenpayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC31C00368300AA654D /* TenpayModel.m */; };
-		AD399E251C93FB6F00028F23 /* qidongye.m in Sources */ = {isa = PBXBuildFile; fileRef = AD399E241C93FB6F00028F23 /* qidongye.m */; };
 		AD399E801C940D4D00028F23 /* logo1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD399E261C940D4D00028F23 /* logo1@2x.jpg */; };
 		AD399E811C940D4D00028F23 /* logo2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD399E271C940D4D00028F23 /* logo2@2x.jpg */; };
 		AD399E821C940D4D00028F23 /* logo3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD399E281C940D4D00028F23 /* logo3@2x.jpg */; };
@@ -2447,8 +2445,6 @@
 		85416E181C92EB100016BF0B /* 订单通知@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "订单通知@3x.png"; sourceTree = "<group>"; };
 		85416E191C92EB100016BF0B /* findtongyong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findtongyong@2x.png"; sourceTree = "<group>"; };
 		85416E1A1C92EB100016BF0B /* findtongyong@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findtongyong@3x.png"; sourceTree = "<group>"; };
-		85416E291C930E2A0016BF0B /* QCQDYMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCQDYMethod.h; sourceTree = "<group>"; };
-		85416E2A1C930E2A0016BF0B /* QCQDYMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCQDYMethod.m; sourceTree = "<group>"; };
 		8541D5B61C0D693A006BC45A /* LYHotBarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHotBarMenuView.h; sourceTree = "<group>"; };
 		8541D5B71C0D693A006BC45A /* LYHotBarMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHotBarMenuView.m; sourceTree = "<group>"; };
 		854538581C2D3A8D0020AC2C /* LYFriendsHttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsHttpTool.h; sourceTree = "<group>"; };
@@ -2955,8 +2951,6 @@
 		AD198CC01C00357C00AA654D /* SingletonTenpay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SingletonTenpay.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD198CC21C00368300AA654D /* TenpayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenpayModel.h; sourceTree = "<group>"; };
 		AD198CC31C00368300AA654D /* TenpayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenpayModel.m; sourceTree = "<group>"; };
-		AD399E231C93FB6F00028F23 /* qidongye.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qidongye.h; sourceTree = "<group>"; };
-		AD399E241C93FB6F00028F23 /* qidongye.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = qidongye.m; sourceTree = "<group>"; };
 		AD399E261C940D4D00028F23 /* logo1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo1@2x.jpg"; sourceTree = "<group>"; };
 		AD399E271C940D4D00028F23 /* logo2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo2@2x.jpg"; sourceTree = "<group>"; };
 		AD399E281C940D4D00028F23 /* logo3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo3@2x.jpg"; sourceTree = "<group>"; };
@@ -5475,16 +5469,6 @@
 			name = "发布动态";
 			sourceTree = "<group>";
 		};
-		85416E1F1C930B710016BF0B /* 启动页 */ = {
-			isa = PBXGroup;
-			children = (
-				85416E291C930E2A0016BF0B /* QCQDYMethod.h */,
-				85416E2A1C930E2A0016BF0B /* QCQDYMethod.m */,
-			);
-			name = "启动页";
-			path = "../Utilities/启动页";
-			sourceTree = "<group>";
-		};
 		8545385B1C2D3DD80020AC2C /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7541,7 +7525,6 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				85416E1F1C930B710016BF0B /* 启动页 */,
 				387781FB1C8D7B320047088B /* libqrencode */,
 				85539EB71C3DFDF8001031B6 /* 键盘表情 */,
 				38EE91A11C3405C500361D07 /* AMapSearchKit.framework */,
@@ -7918,7 +7901,6 @@
 				525CA0F01C5C6930009ED9DA /* pinglun_icon@2x.png in Resources */,
 				38B11C0C1C92AFCC00AD3EB8 /* CheckQRCode@2x.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
-				855091C51C93F139000B8003 /* logo35@2x.jpg in Resources */,
 				3812C5101C57622E00F4DD6B /* ChooseTime.xib in Resources */,
 				85F5454D1C1454010013B92B /* camera@2x.png in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
@@ -8009,8 +7991,6 @@
 				38B11C141C93B92A00AD3EB8 /* zsQRCodeScan@2x.png in Resources */,
 				1559DD171BDB27DB00F3FE9B /* CarHeadView.xib in Resources */,
 				8551B50A1C8ECCD00057F0E7 /* arrowRight.png in Resources */,
-				855091BE1C93F139000B8003 /* logo28@2x.jpg in Resources */,
-				ADD264961C93CD4B002894AC /* skip-btn@3x.png in Resources */,
 				3812C55A1C57B76100F4DD6B /* purper_star@3x.png in Resources */,
 				85529C1B1C8FC854005D8F0D /* findMaskWhite@2x.png in Resources */,
 				853C36151C72BC4700F1703B /* BeerNewBarViewController.xib in Resources */,
@@ -8458,8 +8438,6 @@
 				38E5D7001C103E17004B49D2 /* LPmanager@2x.png in Resources */,
 				AD399EA21C940D4D00028F23 /* logo35@2x.jpg in Resources */,
 				AD106B9B1C0BE898007F5FBA /* LYUserCenterFooter.xib in Resources */,
-				855091BA1C93F139000B8003 /* logo24@2x.jpg in Resources */,
-				ADD264881C93CD1A002894AC /* 2@2x.jpg in Resources */,
 				15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */,
 				38E72B451C15239A002EFBDD /* ManagerInfoCell.xib in Resources */,
 				15E240C11BB3A9AA0090D240 /* LYUserLoginViewController.xib in Resources */,
@@ -8802,7 +8780,6 @@
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
 				8551B4ED1C8EB8370057F0E7 /* UserNotificationViewController.m in Sources */,
 				85514EE31C761B1600E24C78 /* SignButton.m in Sources */,
-				85416E2B1C930E2A0016BF0B /* QCQDYMethod.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
 				85EE80461C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m in Sources */,
 				85F43BAB1C11459400B04466 /* LYOrderWriteTableViewCell.m in Sources */,
