@@ -250,7 +250,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 //        imgV.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 1.5, (SCREEN_HEIGHT + 100) * 1.5);
     }];
 }
-
+  
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object{
     NSLog(@"ndifadhfjkhsajkdfaygfhrajkfhdskfjhdkjads");
 }
