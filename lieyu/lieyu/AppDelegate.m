@@ -225,7 +225,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     NSMutableArray *imgArr = [[NSMutableArray alloc]init];
     for(int i = 0; i < imgNameArr.count; i ++){
         UIImage *img =[UIImage imageNamed:imgNameArr[i]];
-        [imgArr addObject:(__bridge_transfer UIImage*)img.CGImage];
+        [imgArr addObject:(__bridge UIImage*)img.CGImage];
     }
     
     CAKeyframeAnimation *keyA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
@@ -248,6 +248,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
 //        imgV.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 1.5, (SCREEN_HEIGHT + 100) * 1.5);
+        [imgV removeFromSuperview];1
     }];
 }
   
