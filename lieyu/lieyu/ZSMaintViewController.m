@@ -99,11 +99,12 @@
     label.text = @"速核码";
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = RGBA(0, 0, 0, 0.5);
-    label.font = [UIFont systemFontOfSize:14];
+    label.font = [UIFont fontWithName:@"Arial-BoldMT" size:12];
     [view addSubview:label];
     
     UITextField *textView = [[UITextField alloc]initWithFrame:CGRectMake(8, 161, SCREEN_WIDTH - 16, 43)];
     textView.placeholder = @"输入用户消费码";
+    textView.font = [UIFont fontWithName:@"Arial-BoldMT" size:28];
     textView.delegate = self;
     textView.tag = 123;
     textView.borderStyle = UITextBorderStyleRoundedRect;

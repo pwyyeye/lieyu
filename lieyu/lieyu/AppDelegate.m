@@ -48,14 +48,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self.window makeKeyAndVisible];
-    [self animationWithApp];
     // Override point for customization after application launch.
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-    
-    [NSThread sleepForTimeInterval:1.0];//设置启动页面时间
     
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
@@ -178,10 +175,13 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     //引导页启动
     if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+        
         [self showIntroWithCrossDissolve];
         UIViewController *view=[[UIViewController alloc] init];
         view.view=_intro;
         self.window.rootViewController=view;
+    }else{
+        [self animationWithApp];
     }
     
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
@@ -214,12 +214,12 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo45.jpg"]];
     imgV.tag = 10086;
     imgV.frame = CGRectMake(0, -100, SCREEN_WIDTH, SCREEN_HEIGHT + 100);
-    imgV.backgroundColor = [UIColor blackColor];
+    imgV.backgroundColor = RGBA(5, 5, 5, 1);
     imgV.contentMode = UIViewContentModeCenter;
     [self.window addSubview:imgV];
     
-    NSMutableArray *imgNameArr = [[NSMutableArray alloc]initWithCapacity:45];
-    for(int i = 1; i < 46; i ++){
+    NSMutableArray *imgNameArr = [[NSMutableArray alloc]initWithCapacity:90];
+    for(int i = 1; i < 91; i ++){
         [imgNameArr addObject:[NSString stringWithFormat:@"logo%d.jpg",i]];
     }
     NSMutableArray *imgArr = [[NSMutableArray alloc]init];

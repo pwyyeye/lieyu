@@ -14,6 +14,7 @@
 #import "FindNewMessage.h"
 #import "LYUserHttpTool.h"
 #import "MineUserNotification.h"
+#import "LYCache.h"
 
 @interface FindNotificationViewController ()<UITableViewDataSource,UITableViewDelegate>{
     NSMutableArray *_titleArray;
@@ -45,12 +46,13 @@
 }
 
 - (void)getData{
-    [_titleArray removeAllObjects];
-    MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
-    minUserNotification.typeName = @"系统通知";
-    minUserNotification.type = @"1";
-    [_titleArray addObject:minUserNotification];
-    [LYUserHttpTool getUserNotificationWithPara:nil compelte:^(NSArray *dataArray) {
+       [LYUserHttpTool getUserNotificationWithPara:nil compelte:^(NSArray *dataArray) {
+           [_titleArray removeAllObjects];
+           MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
+           minUserNotification.typeName = @"系统通知";
+           minUserNotification.type = @"1";
+           [_titleArray addObject:minUserNotification];
+
         [_titleArray addObjectsFromArray:dataArray];
         [_tableView reloadData];
         [LYFindHttpTool getNotificationMessageWithParams:nil compelte:^(NSArray *dataArray) {
@@ -67,7 +69,19 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-   
+   //查询数据库有没有缓存，如果有缓存泽先利用缓存赋值
+    LYCoreDataUtil *core  = [LYCoreDataUtil shareInstance];
+    NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_SYSTEM_NOTIFICATION}];
+    if(dataArray.count > 0){
+        NSArray *dataArr = ((LYCache *)dataArray.firstObject).lyCacheValue;
+        //        NSLog(@"%@",dataArr);
+        _titleArray = [[NSMutableArray alloc]initWithArray:dataArr];
+        MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
+        minUserNotification.typeName = @"系统通知";
+        minUserNotification.type = @"1";
+        [_titleArray insertObject:minUserNotification atIndex:0];
+        [self.tableView reloadData];
+    }
     [self getData];
 }
 
