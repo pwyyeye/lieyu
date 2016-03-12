@@ -60,6 +60,7 @@
 
 
 
+
 - (void)postANotification{
     [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
 }
@@ -78,25 +79,25 @@
     NSArray *items = self.tabBar.items;
     UITabBarItem *item=[items objectAtIndex:3];
     
-//    if ([MyUtil isEmptyString:item.badgeValue]) {
-//        item.badgeValue=[NSString stringWithFormat:@"%d",1];
-//    }else{
-//        if (item.badgeValue.intValue<99) {
-//            item.badgeValue=[NSString stringWithFormat:@"%d",item.badgeValue.intValue+1];
-//        }
-//        
-//    }
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    OrderTTL *ttl=app.orderTTL;
+    
     NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
     if (![MyUtil isEmptyString:count]) {
-        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue+1]  forKey:@"badgeValue"];
+        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue+1+ttl.pushMessageNum]  forKey:@"badgeValue"];
     }else{
-        [USER_DEFAULT setObject:@"1" forKey:@"badgeValue"];
+        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",1+ttl.pushMessageNum] forKey:@"badgeValue"];
     }
     
     if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"badgeValue"]]) {
         NSString *badgeValue=(NSString *)[USER_DEFAULT objectForKey:@"badgeValue"];
-        item.badgeValue=badgeValue.intValue>99?@"99":badgeValue;
-        [UIApplication sharedApplication].applicationIconBadgeNumber=badgeValue.intValue>99?99:badgeValue.intValue;
+        item.badgeValue=badgeValue.intValue+ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%d",+ttl.pushMessageNum+badgeValue.intValue] ;
+        [UIApplication sharedApplication].applicationIconBadgeNumber=badgeValue.intValue+ttl.pushMessageNum>99?99:badgeValue.intValue+ttl.pushMessageNum;
+    }else if(ttl.pushMessageNum>0){
+        //设置应用icon角标
+        [UIApplication sharedApplication].applicationIconBadgeNumber=ttl.pushMessageNum>99?99:ttl.pushMessageNum;
+        //设置发现角标
+        item.badgeValue=ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%d",ttl.pushMessageNum];
     }else{
         item.badgeValue=nil;
         [UIApplication sharedApplication].applicationIconBadgeNumber=0;
@@ -112,12 +113,14 @@
 }
 
 -(void)doComplete{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    OrderTTL *ttl=app.orderTTL;
     NSString *delBadgeValue=[USER_DEFAULT objectForKey:@"delBadgeValue"];
     NSString *badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
     NSArray *items= self.tabBar.items;
     UITabBarItem *item=[items objectAtIndex:3];
     
-    if (![MyUtil isEmptyString:badgeValue]) {//判断角标是否存在 －－存在
+    if (![MyUtil isEmptyString:badgeValue] || ttl.pushMessageNum>0) {//判断角标是否存在 －－存在
         //减去已读角标
         if (![MyUtil isEmptyString:delBadgeValue]) {
             int result=badgeValue.intValue-delBadgeValue.intValue;
@@ -130,9 +133,14 @@
         if ([USER_DEFAULT objectForKey:@"badgeValue"]) {
             NSString *badgeValue=(NSString *)[USER_DEFAULT objectForKey:@"badgeValue"];
             //设置应用icon角标
-            [UIApplication sharedApplication].applicationIconBadgeNumber=badgeValue.intValue>99?99:badgeValue.intValue;
+            [UIApplication sharedApplication].applicationIconBadgeNumber=(badgeValue.intValue+ttl.pushMessageNum)>99?99:badgeValue.intValue+ttl.pushMessageNum;
             //设置发现角标
-            item.badgeValue=badgeValue.intValue>99?@"99":badgeValue;
+            item.badgeValue=badgeValue.intValue+ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%d",ttl.pushMessageNum+badgeValue.intValue];
+        }else if(ttl.pushMessageNum>0){
+            //设置应用icon角标
+            [UIApplication sharedApplication].applicationIconBadgeNumber=ttl.pushMessageNum>99?99:ttl.pushMessageNum;
+            //设置发现角标
+            item.badgeValue=ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%d",ttl.pushMessageNum];
         }else{
             [UIApplication sharedApplication].applicationIconBadgeNumber=0;
             item.badgeValue=nil;

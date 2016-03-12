@@ -142,6 +142,8 @@
     if (![MyUtil isEmptyString:app.s_app_id]) {
         [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
             _orderTTL=result;
+            app.orderTTL=result;
+            [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
             [weakSelf loadBadge:_orderTTL];
         }];
     }

@@ -410,6 +410,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             huodong.linkid=linkid.integerValue;
             [self.navigationController pushViewController:huodong animated:YES];
         }
+        [self getTTL];
         
     }else if(dic.count>0){//否则认为是im推送
 //        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
@@ -642,6 +643,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 didReceiveLocalNotification:(UILocalNotification *)notification {
     //震动
 //    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+    NSLog(@"----pass-pass%@---",notification);
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     AudioServicesPlaySystemSound(1007);
 }
@@ -748,6 +750,16 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     [[LYUserHttpTool shareInstance] getAppDesKey:nil complete:^(NSString *result) {
         weakself.desKey=result;
     }];
+    
+}
+
+-(void)getTTL{
+    if (![MyUtil isEmptyString:self.s_app_id]) {
+        [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
+            _orderTTL=result;
+            [[NSNotificationCenter defaultCenter] postNotificationName:COMPLETE_MESSAGE object:nil];
+        }];
+    }
     
 }
 
