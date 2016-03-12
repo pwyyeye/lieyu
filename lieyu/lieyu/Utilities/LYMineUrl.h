@@ -104,5 +104,6 @@
 #define LY_GET_USERINFO @"lyQRCodeAction.do?action=expand"
 //传入消费码以及订单号进行速核
 #define LY_QUICK_CHECK @"lyQRCodeAction.do?action=update"
-
+//专属经理直接核对消费码
+#define LP_CHECK_CONSUMERID @"lyOrderAction.do?action=update"
 #endif
