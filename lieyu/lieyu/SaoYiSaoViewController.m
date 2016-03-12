@@ -28,6 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.title = @"扫一扫";
 //    self.automaticallyAdjustsScrollViewInsets = NO;
     _captureSession = nil;
 //    _isReading = NO;

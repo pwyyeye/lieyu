@@ -18,7 +18,9 @@
 #import "LYRecentContactViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "SaoYiSaoViewController.h"
-@interface ZSMaintViewController ()
+#import "LYUserHttpTool.h"
+
+@interface ZSMaintViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -51,43 +53,63 @@
 //    NSDictionary *dic4=@{@"colorRGB":RGB(84, 225, 255),@"imageContent":@"Fill2097",@"title":@"商铺管理",@"delInfo":@""};
     
     [listArr addObject:dic2];//订单管理
-    [listArr addObject:dic4];//速核码扫描
+//    [listArr addObject:dic4];//速核码扫描
     [listArr addObject:dic];//卡座已满
     [listArr addObject:dic1];//通知中心
     [listArr addObject:dic3];//我的客户
-//    [listArr addObject:dic4];
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 228)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 212)];
     
 //    view.backgroundColor=RGB(35, 166, 116);
-    view.backgroundColor = RGB(114, 5, 147);
+    view.backgroundColor = RGB(186, 40, 227);
     
     //外部圆
-    cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 44, 68, 88, 88)];
-    [view addSubview:cImageView];
-    [cImageView setImage:[UIImage imageNamed:@"yuanhuan"]];
-    myPhotoImageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, 81.7, 60, 60)];
-    //照片圆形
-    myPhotoImageView.layer.masksToBounds =YES;
+//    cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 44, 68, 88, 88)];
+//    [view addSubview:cImageView];
+//    [cImageView setImage:[UIImage imageNamed:@"yuanhuan"]];
+//    myPhotoImageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, 81.7, 60, 60)];
+//    //照片圆形
+//    myPhotoImageView.layer.masksToBounds =YES;
+//    
+//    myPhotoImageView.layer.cornerRadius =myPhotoImageView.frame.size.width/2;
+//    myPhotoImageView.backgroundColor=[UIColor lightGrayColor];
+//    [myPhotoImageView setImageWithURL:[NSURL URLWithString:self.userModel.avatar_img]];
+//    [view addSubview:myPhotoImageView];
+//    namelal=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 50,167,100,18)];
+//    [namelal setTextColor:RGB(255,255,255)];
+//    namelal.font=[UIFont boldSystemFontOfSize:12];
+//    namelal.backgroundColor=[UIColor clearColor];
+//    namelal.text=@"我是VIP专属经理";
+//    namelal.textAlignment=NSTextAlignmentLeft;
+//    [view addSubview:namelal];
+//    orderInfoLal=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 133,200,266,16)];
+//    [orderInfoLal setTextColor:RGB(255,255,255)];
+//    orderInfoLal.font=[UIFont boldSystemFontOfSize:10];
+//    orderInfoLal.backgroundColor=[UIColor clearColor];
+////    orderInfoLal.text=@"您有30个订单要处理，请即时处理！";
+//    orderInfoLal.textAlignment=NSTextAlignmentLeft;
+//    [view addSubview:orderInfoLal];
     
-    myPhotoImageView.layer.cornerRadius =myPhotoImageView.frame.size.width/2;
-    myPhotoImageView.backgroundColor=[UIColor lightGrayColor];
-    [myPhotoImageView setImageWithURL:[NSURL URLWithString:self.userModel.avatar_img]];
-    [view addSubview:myPhotoImageView];
-    namelal=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 50,167,100,18)];
-    [namelal setTextColor:RGB(255,255,255)];
-    namelal.font=[UIFont boldSystemFontOfSize:12];
-    namelal.backgroundColor=[UIColor clearColor];
-    namelal.text=@"我是VIP专属经理";
-    namelal.textAlignment=NSTextAlignmentLeft;
-    [view addSubview:namelal];
-    orderInfoLal=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 133,200,266,16)];
-    [orderInfoLal setTextColor:RGB(255,255,255)];
-    orderInfoLal.font=[UIFont boldSystemFontOfSize:10];
-    orderInfoLal.backgroundColor=[UIColor clearColor];
-//    orderInfoLal.text=@"您有30个订单要处理，请即时处理！";
-    orderInfoLal.textAlignment=NSTextAlignmentLeft;
-    [view addSubview:orderInfoLal];
+    UIButton *ScanButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 28, 70, 56, 56)];
+    ScanButton.backgroundColor = [UIColor clearColor];
+    [ScanButton setImage:[UIImage imageNamed:@"zsQRCodeScan"] forState:UIControlStateNormal];
+    [ScanButton addTarget:self action:@selector(zsQRCodeScanClick) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:ScanButton];
     
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 28, 134, 56, 18)];
+    label.text = @"速核码";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = RGBA(0, 0, 0, 0.5);
+    label.font = [UIFont systemFontOfSize:14];
+    [view addSubview:label];
+    
+    UITextField *textView = [[UITextField alloc]initWithFrame:CGRectMake(8, 161, SCREEN_WIDTH - 16, 43)];
+    textView.placeholder = @"请输入消费码";
+    textView.delegate = self;
+    textView.tag = 123;
+    textView.borderStyle = UITextBorderStyleRoundedRect;
+    textView.keyboardType = UIKeyboardTypeNumberPad;
+    textView.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:textView];
     
     //返回按钮
     _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(15, 40, 44, 44)];
@@ -116,9 +138,34 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    UITextField *text = [self.view viewWithTag:123];
+    text.text = @"";
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self.navigationController setNavigationBarHidden:NO];
 }
+
+#pragma mark - 扫一扫
+- (void)zsQRCodeScanClick{
+    SaoYiSaoViewController *saoyisaoVC = [[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
+    [self.navigationController pushViewController:saoyisaoVC animated:YES];
+}
+
+#pragma mark - 输入完消费码之后
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField.text.length > 0) {
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        NSString *consuer = [MyUtil encryptUseDES:textField.text withKey:app.desKey];
+        NSDictionary *dic = @{@"consumptionCode":consuer};
+        [LYUserHttpTool zsCheckConsumerIDWith:dic complete:^{
+            
+        }];
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    textField.text = @"";
+}
+
 #pragma mark tableview代理方法
 #pragma mark tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -174,14 +221,14 @@
     
     switch (indexPath.row) {
             
-        case 2://卡座
+        case 1://卡座
         {
             ZSSeatControlView *seatControlView=[[ZSSeatControlView alloc]initWithNibName:@"ZSSeatControlView" bundle:nil];
             [self.navigationController pushViewController:seatControlView animated:YES];
             break;
         }
             
-        case 3:// 通知中心
+        case 2:// 通知中心
         {
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             chat.title=@"最近联系";
@@ -196,18 +243,18 @@
             break;
         }
             
-        case 4:// 我的客户
+        case 3:// 我的客户
         {
             ZSMyClientsViewController *myClientViewController=[[ZSMyClientsViewController alloc]initWithNibName:@"ZSMyClientsViewController" bundle:nil];
             
             [self.navigationController pushViewController:myClientViewController animated:YES];
             break;
         }
-        case 1://速核码扫描
-        {
-            SaoYiSaoViewController *saoyisaoVC = [[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
-            [self.navigationController pushViewController:saoyisaoVC animated:YES];
-        }
+//        case 1://速核码扫描
+//        {
+//            SaoYiSaoViewController *saoyisaoVC = [[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
+//            [self.navigationController pushViewController:saoyisaoVC animated:YES];
+//        }
         default:
         {
 //            ZSMyShopsManageViewController *myShopManageViewController=[[ZSMyShopsManageViewController alloc]initWithNibName:@"ZSMyShopsManageViewController" bundle:nil];
