@@ -16,13 +16,19 @@
 - (void)awakeFromNib {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     for (UIButton *btn in _btnArray) {
-        btn.layer.cornerRadius = CGRectGetHeight(btn.frame) / 2.f;
+        btn.layer.cornerRadius = (SCREEN_WIDTH - 114)/8.f / 2.f;
         btn.layer.masksToBounds = YES;
     }
+    _btn_more.layer.cornerRadius = (SCREEN_WIDTH - 114)/8.f / 2.f;
+    _btn_more.layer.masksToBounds = YES;
 }
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
+    
+//    NSArray *array1 = @[recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],recentM.likeList[0],];
+//    recentM.likeList = array1.mutableCopy;
+    
     for (UIButton *btn in _btnArray) {
         btn.hidden = YES;
     }

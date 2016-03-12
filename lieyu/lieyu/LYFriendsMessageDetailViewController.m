@@ -311,10 +311,10 @@
 #pragma mark - 点赞的人的头像跳转到个人动态
 - (void)zangBtnClick:(UIButton *)button{
     NSInteger index = button.tag % 16;
-    NSInteger section = (button.tag - index)/16;
+//    NSInteger section = (button.tag - index)/16;
     if(index > _recentM.likeList.count) return;
-    if(section >=0 && index>=0){
-        FriendsLikeModel *likeM = _recentM.likeList[index - 1];
+    if( index>=0){
+        FriendsLikeModel *likeM = _recentM.likeList[index];
         if([likeM.userId isEqualToString:_useridStr]) return;
         LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
         messageVC.friendsId = likeM.userId;
@@ -406,7 +406,7 @@
                 likeCell.recentM = _recentM;
                     for (int i = 0; i< likeCell.btnArray.count; i ++) {
                         UIButton *btn = likeCell.btnArray[i];
-                        btn.tag = likeCell.btnArray.count * indexPath.section  + i + 1;
+                        btn.tag = likeCell.btnArray.count * indexPath.section  + i ;
                         [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                     }
                 return likeCell;
@@ -472,7 +472,7 @@
                 
                 if (indexPath.row == 1) {
                     _indexStart = 2;
-                    return  _recentM.likeList.count <= 8 ? 42 : 82;
+                    return  _recentM.likeList.count <= 8 ? (SCREEN_WIDTH - 98)/8.f + 20 : (SCREEN_WIDTH - 98)/8.f * 2 + 30;
                 }
             }
             FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
