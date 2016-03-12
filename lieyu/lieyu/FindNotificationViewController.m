@@ -152,6 +152,7 @@
                 break;
         }*/
         notificationDetailVC.type = mineUserNot.type;
+        notificationDetailVC.navigationItem.title = mineUserNot.typeName;
         [self.navigationController pushViewController:notificationDetailVC animated:YES];
     }
 }
