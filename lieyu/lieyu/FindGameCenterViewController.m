@@ -12,6 +12,7 @@
 #import "GameList.h"
 #import "LYHomePageHttpTool.h"
 #import "GamePlayViewController.h"
+#define FINDGAMENAME_MTA @"FINDGAMENAME"
 
 @interface FindGameCenterViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     NSArray *_titleArray,*_gameListArray;
@@ -25,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"酒吧小游戏";
+    self.navigationItem.title = @"娱乐宝典";
     _titleArray = @[@"咬手鲨鱼牙",@"真心话大冒险",@"大话骰"];
     [_collectionView registerNib:[UINib nibWithNibName:@"FindGameCenterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"FindGameCenterCollectionViewCell"];
     [self getData];
@@ -91,14 +92,17 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(_gameListArray.count <= indexPath.item) return;
     GameList *gList = _gameListArray[indexPath.item];
     GamePlayViewController *gamePlayVC = [[GamePlayViewController alloc]init];
     gamePlayVC.gameLink = gList.gameLink;
     [self presentViewController:gamePlayVC animated:YES completion:nil];
+    
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:FINDGAMENAME_MTA titleName:gList.gameName]];
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    [super didReceiveMemoryWarning];  
     // Dispose of any resources that can be recreated.
 }
 
