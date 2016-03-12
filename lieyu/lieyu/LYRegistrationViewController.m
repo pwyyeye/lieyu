@@ -66,7 +66,7 @@ static LYRegistrationViewController *_registe;
 - (void)backForword{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+   
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     self.navigationController.navigationBarHidden = NO;
