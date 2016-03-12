@@ -28,7 +28,7 @@
 #import "UMSocialQQHandler.h"
 #import "SingletonTenpay.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "qidongye.h"
 #import "LYCoreDataUtil.h"
 #import "LYCache.h"
 
@@ -47,6 +47,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self.window makeKeyAndVisible];
+    [self animationWithApp];
     // Override point for customization after application launch.
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
@@ -200,6 +202,53 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     
      return YES;
+}
+
+- (void)animationWithApp{
+//    UIWindow *awindow = [UIApplication sharedApplication].delegate.window;
+//    qidongye *qidongView = [[qidongye alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+////    qidongView.backgroundColor = [UIColor redColor];
+//    [qidongView addUntitled1Animation];
+//    [awindow addSubview:qidongView];
+//    [awindow bringSubviewToFront:qidongView];
+    UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo45.jpg"]];
+    imgV.tag = 10086;
+    imgV.frame = CGRectMake(0, -100, SCREEN_WIDTH, SCREEN_HEIGHT + 100);
+    imgV.backgroundColor = [UIColor blackColor];
+    imgV.contentMode = UIViewContentModeCenter;
+    [self.window addSubview:imgV];
+    
+    NSMutableArray *imgNameArr = [[NSMutableArray alloc]initWithCapacity:45];
+    for(int i = 1; i < 46; i ++){
+        [imgNameArr addObject:[NSString stringWithFormat:@"logo%d.jpg",i]];
+    }
+    NSMutableArray *imgArr = [[NSMutableArray alloc]init];
+    for(int i = 0; i < imgNameArr.count; i ++){
+        UIImage *img =[UIImage imageNamed:imgNameArr[i]];
+        [imgArr addObject:(__bridge_transfer UIImage*)img.CGImage];
+    }
+    
+    CAKeyframeAnimation *keyA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+    keyA.duration = 3;
+    keyA.delegate = self;
+    keyA.values = imgArr;
+    keyA.repeatCount = 1;
+    [imgV.layer addAnimation:keyA forKey:nil];
+    
+//    imgV.animationImages = imgArr;
+//    imgV.animationDuration = 3;
+//    imgV.animationRepeatCount = 1;
+//    [imgV startAnimating];
+    
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
+//    imgV.contentMode = UIViewContentModeScaleAspectFill;
+    [UIView animateWithDuration:.5 animations:^{
+        imgV.alpha = 0.0;
+//        imgV.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 1.5, (SCREEN_HEIGHT + 100) * 1.5);
+    }];
 }
 
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object{
