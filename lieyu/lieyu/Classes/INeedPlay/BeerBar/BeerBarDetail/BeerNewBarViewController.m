@@ -113,6 +113,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMyCollectedAndLikeBar) name:@"loadMyCollectedAndLikeBar" object:nil];
     
     [MTA trackCustomKeyValueEvent:@"BarDetail" props:nil];
+    
+   
 
 }
 
@@ -134,7 +136,7 @@
     }else{
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     }
-    [self.navigationController.navigationBar setHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
     [_timer setFireDate:[NSDate distantPast]];
    
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
@@ -168,20 +170,16 @@
 
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
-    [self.navigationController.navigationBar setHidden:YES];
-    [self.navigationController setNavigationBarHidden:YES];
+//    [self.navigationController.navigationBar setHidden:YES];
+//    [self.navigationController setNavigationBarHidden:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    [self.navigationController.navigationBar setHidden:YES];
-//    [self.navigationController setNavigationBarHidden:YES];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_timer setFireDate:[NSDate distantFuture]];
-//    [self.navigationController.navigationBar setHidden:NO];
-//    [self.navigationController setNavigationBarHidden:NO];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [effectView removeFromSuperview];
 }
@@ -658,6 +656,7 @@
         {
             LYBarIconTableViewCell *iconCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarIconTableViewCell" forIndexPath:indexPath];
             iconCell.iconArray = _beerBarDetail.signUsers;
+            iconCell.signCount = _beerBarDetail.signCount.integerValue;
             for (int i = 0; i < iconCell.btnArray.count; i ++) {
                 UIButton *btn = iconCell.btnArray[i];
                 btn.tag = i;
