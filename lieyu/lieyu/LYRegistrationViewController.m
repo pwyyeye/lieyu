@@ -66,6 +66,12 @@ static LYRegistrationViewController *_registe;
 - (void)backForword{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+
+}
       
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];

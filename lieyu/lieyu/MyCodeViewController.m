@@ -37,7 +37,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *dataString = [formatter stringFromDate:[NSDate date]];
-    NSString *string = [NSString stringWithFormat:@"%@%@?userid=%d&CurrentTime=%@",LY_SERVER,@"lyQRCodeAction?action=custom",self.userModel.userid,dataString];
+    NSString *string = [NSString stringWithFormat:@"%@%@&userid=%d&CurrentTime=%@",LY_SERVER,@"lyQRCodeAction?action=custom",self.userModel.userid,dataString];
     CGFloat qrcodeLength = 178;
     UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, qrcodeLength, qrcodeLength)];
     imageV.layer.cornerRadius = 6;
