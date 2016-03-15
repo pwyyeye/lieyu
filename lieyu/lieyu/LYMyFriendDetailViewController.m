@@ -25,90 +25,120 @@
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-//    if(self.navigationController.navigationBarHidden == YES){
-//        [self.navigationController.navigationBar setHidden:NO];
-    [self.navigationController setNavigationBarHidden:NO];
-//    }
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"个人信息";
     self.userImageView.layer.masksToBounds =YES;
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
-    if (_type != nil) {        
-        if ([_type isEqualToString:@"0"]) {
-            [_setBtn setTitle:@"聊天" forState:UIControlStateNormal];
-        }else{
-            [_setBtn setTitle:@"打招呼" forState:UIControlStateNormal];
-        }
-    }
-    if (_customerModel) {
-        if(_customerModel.tag.count>0){
-            NSMutableString *mytags=[[NSMutableString alloc] init];
-            for (int i=0; i<_customerModel.tag.count; i++) {
-                if (i==_customerModel.tag.count-1) {
-                    [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
-                }else{
-                    [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
-                    [mytags appendString:@","];
-                }
-            }
-            _zhiwuLal.text=mytags;
-        }
-        if(_customerModel.tag.count==0 && _customerModel.userTag.count>0){
-            NSMutableString *mytags=[[NSMutableString alloc] init];
-            for (int i=0; i<_customerModel.userTag.count; i++) {
-                if (i==_customerModel.userTag.count-1) {
-                    [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
-                }else{
-                    [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
-                    [mytags appendString:@","];
-                }
-            }
-            _zhiwuLal.text=mytags;
-        }
-        if(_customerModel.tag.count==0 && _customerModel.tags.count>0){
-            NSMutableString *mytags=[[NSMutableString alloc] init];
-            for (int i=0; i<_customerModel.tags.count; i++) {
-                if (i==_customerModel.tags.count-1) {
-                    [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
-                }else{
-                    [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
-                    [mytags appendString:@","];
-                }
-            }
-            _zhiwuLal.text=mytags;
-        }
-        
-        if (![MyUtil isEmptyString:_customerModel.age]) {
-            _age.text=_customerModel.age;
-        }
-        
-        if (![MyUtil isEmptyString:_customerModel.birthday]) {
-            _xingzuo.text=[MyUtil getAstroWithBirthday:_customerModel.birthday];
-            _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
-        }
-        
-        self.namelal.text=_customerModel.friendName?_customerModel.friendName : (_customerModel.usernick ?_customerModel.usernick : (_customerModel.username?_customerModel.username:_customerModel.name));
-        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img ? _customerModel.avatar_img : (_customerModel.icon ? _customerModel.icon : _customerModel.mark)]];
-        [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
-        if (_customerModel.sex.integerValue==0) {
-            self.sexImageView.image=[UIImage imageNamed:@"woman"];
-        }else{
-            self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
-        }
-    }else{
+    self.xingzuo.layer.cornerRadius = 10;
+    self.xingzuo.layer.masksToBounds = YES;
+    self.zhiwuLal.layer.cornerRadius = 10;
+    self.zhiwuLal.layer.masksToBounds = YES;
+    self.guanzhuBtn.layer.cornerRadius = 4;
+    self.guanzhuBtn.layer.masksToBounds = YES;
+    self.guanzhuBtn.layer.borderColor = [UIColor blackColor].CGColor;
+    self.guanzhuBtn.layer.borderWidth = 0.5;
+    if (_userID) {
         [self getData];
+    }else{
+        if (_type != nil) {
+            if ([_type isEqualToString:@"0"]) {
+                [_setBtn setTitle:@"聊天" forState:UIControlStateNormal];
+            }else{
+                [_setBtn setTitle:@"打招呼" forState:UIControlStateNormal];
+            }
+        }
+        if (_customerModel) {
+            if(_customerModel.tag.count>0){
+                NSMutableString *mytags=[[NSMutableString alloc] init];
+                for (int i=0; i<_customerModel.tag.count; i++) {
+                    if (i==_customerModel.tag.count-1) {
+                        [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
+                    }else{
+                        [mytags appendString:[_customerModel.tag[i] objectForKey:@"tagName"]?[_customerModel.tag[i] objectForKey:@"tagName"]:[_customerModel.tag[i] objectForKey:@"tagname"]];
+                        [mytags appendString:@","];
+                    }
+                }
+                _zhiwuLal.text=[NSString stringWithFormat:@" %@ ",mytags];
+            }
+            if(_customerModel.tag.count==0 && _customerModel.userTag.count>0){
+                NSMutableString *mytags=[[NSMutableString alloc] init];
+                for (int i=0; i<_customerModel.userTag.count; i++) {
+                    if (i==_customerModel.userTag.count-1) {
+                        [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
+                    }else{
+                        [mytags appendString:[_customerModel.userTag[i] objectForKey:@"tagName"]?[_customerModel.userTag[i] objectForKey:@"tagName"]:[_customerModel.userTag[i] objectForKey:@"tagname"]];
+                        [mytags appendString:@","];
+                    }
+                }
+                _zhiwuLal.text=[NSString stringWithFormat:@" %@ ",mytags];
+            }
+            if(_customerModel.tag.count==0 && _customerModel.tags.count>0){
+                NSMutableString *mytags=[[NSMutableString alloc] init];
+                for (int i=0; i<_customerModel.tags.count; i++) {
+                    if (i==_customerModel.tags.count-1) {
+                        [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
+                    }else{
+                        [mytags appendString:[_customerModel.tags[i] objectForKey:@"tagName"]?[_customerModel.tags[i] objectForKey:@"tagName"]:[_customerModel.tags[i] objectForKey:@"tagname"]];
+                        [mytags appendString:@","];
+                    }
+                }
+                _zhiwuLal.text=[NSString stringWithFormat:@" %@ ",mytags];
+            }
+            if(_customerModel.tag.count == 0 && _customerModel.tags.count == 0 && _customerModel.userTag.count == 0){
+                _zhiwuLal.text = @"保密";
+            }
+            if (![MyUtil isEmptyString:_customerModel.age]) {
+                _age.text=_customerModel.age;
+            }
+            
+            if (![MyUtil isEmptyString:_customerModel.birthday]) {
+                _xingzuo.text=[MyUtil getAstroWithBirthday:_customerModel.birthday];
+                _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
+            }
+            
+            self.namelal.text=_customerModel.friendName?_customerModel.friendName : (_customerModel.usernick ?_customerModel.usernick : (_customerModel.username?_customerModel.username:_customerModel.name));
+            [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img ? _customerModel.avatar_img : (_customerModel.icon ? _customerModel.icon : _customerModel.mark)]];
+            [self.headerBGView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img ? _customerModel.avatar_img : (_customerModel.icon ? _customerModel.icon : _customerModel.mark)]];
+            [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
+            if (_customerModel.sex.integerValue==0) {
+                self.sexImageView.image=[UIImage imageNamed:@"woman"];
+            }else{
+                self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+            }
+        }
     }
-    
+}
+
+- (void)backForward:(UIButton *)sender{
+    for (UIViewController *VC in self.navigationController.viewControllers) {
+        if ([VC isKindOfClass:[SaoYiSaoViewController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)BaseGoBack{
@@ -155,37 +185,43 @@
     [_subView removeFromSuperview];
 }
 
+- (void)configureThisView{
+    _namelal.text = [_result valueForKey:@"usernick"]?[_result valueForKey:@"usernick"] : [_result valueForKey:@"username"];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_result[@"avatar_img"]]];
+    [self.headerBGView sd_setImageWithURL:[NSURL URLWithString:_result[@"avatar_img"]]];
+    [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
+    if ([[_result valueForKey:@"gender"]integerValue]==0) {
+        self.sexImageView.image=[UIImage imageNamed:@"woman"];
+    }else{
+        self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
+    }
+    _delLal.text = ((NSString *)[_result valueForKey:@"introduction"]).length?[_result valueForKey:@"introduction"]:@"相约随时";
+    NSArray *tagsArrayy = [_result valueForKey:@"tags"];
+    if(tagsArrayy.count > 0){
+        NSMutableString *mytags=[[NSMutableString alloc] init];
+        for (int i=0; i<tagsArrayy.count; i++) {
+            if (i==tagsArrayy.count-1) {
+                [mytags appendString:[tagsArrayy[i] objectForKey:@"tagName"]?[tagsArrayy[i] objectForKey:@"tagName"]:[tagsArrayy[i] objectForKey:@"tagname"]];
+            }else{
+                [mytags appendString:[tagsArrayy[i] objectForKey:@"tagName"]?[tagsArrayy[i] objectForKey:@"tagName"]:[tagsArrayy[i] objectForKey:@"tagname"]];
+                [mytags appendString:@","];
+            }
+        }
+        _zhiwuLal.text=mytags;
+    }
+    _age.text = [_result valueForKey:@"age"];
+    if (![MyUtil isEmptyString:[_result valueForKey:@"birthday"]]) {
+        NSString *birth = [[_result valueForKey:@"birthday"] substringToIndex:10];
+        _xingzuo.text=[MyUtil getAstroWithBirthday:birth];
+    }
+}
+
 -(void)getData{
     NSDictionary *dict = @{@"userid":self.userID};
+//    NSLog(@"%d",self.userModel.userid);
     [LYUserHttpTool GetUserInfomationWithID:dict complete:^(NSDictionary *result) {
         _result = result;
-        _namelal.text = [result valueForKey:@"usernick"]?[result valueForKey:@"usernick"] : [result valueForKey:@"username"];
-        [self.userImageView sd_setImageWithURL:[NSURL URLWithString:result[@"avatar_img"]]];
-        [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
-        if ([[result valueForKey:@"gender"]integerValue]==0) {
-            self.sexImageView.image=[UIImage imageNamed:@"woman"];
-        }else{
-            self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
-        }
-        _delLal.text = ((NSString *)[result valueForKey:@"introduction"]).length?[result valueForKey:@"introduction"]:@"相约随时";
-        NSArray *tagsArrayy = [result valueForKey:@"tags"];
-        if(tagsArrayy.count > 0){
-            NSMutableString *mytags=[[NSMutableString alloc] init];
-            for (int i=0; i<tagsArrayy.count; i++) {
-                if (i==tagsArrayy.count-1) {
-                    [mytags appendString:[tagsArrayy[i] objectForKey:@"tagName"]?[tagsArrayy[i] objectForKey:@"tagName"]:[tagsArrayy[i] objectForKey:@"tagname"]];
-                }else{
-                    [mytags appendString:[tagsArrayy[i] objectForKey:@"tagName"]?[tagsArrayy[i] objectForKey:@"tagName"]:[tagsArrayy[i] objectForKey:@"tagname"]];
-                    [mytags appendString:@","];
-                }
-            }
-            _zhiwuLal.text=mytags;
-        }
-        _age.text = [result valueForKey:@"age"];
-        if (![MyUtil isEmptyString:[result valueForKey:@"birthday"]]) {
-            NSString *birth = [[result valueForKey:@"birthday"] substringToIndex:10];
-            _xingzuo.text=[MyUtil getAstroWithBirthday:birth];
-        }
+        [self configureThisView];
     }];
 }
 
@@ -261,4 +297,9 @@
     NSLog(@"delloc");
 }
 
+- (IBAction)checkFans:(UIButton *)sender {
+}
+
+- (IBAction)checkCares:(UIButton *)sender {
+}
 @end

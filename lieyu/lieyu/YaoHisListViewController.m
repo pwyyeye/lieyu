@@ -105,6 +105,7 @@
     friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"3";
     friendDetailViewController.customerModel=customerModel;
+    friendDetailViewController.userID = [NSString stringWithFormat:@"%d",customerModel.userid];
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
     
     

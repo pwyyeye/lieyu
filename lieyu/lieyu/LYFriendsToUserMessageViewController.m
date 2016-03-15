@@ -265,6 +265,7 @@
     __weak __typeof(self)weakSelf = self;
     _friendDetailVC = [[LYMyFriendDetailViewController alloc]init];
     _friendDetailVC.customerModel = customerM;
+    _friendDetailVC.userID = _userInfo.userId;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",app.userModel.userid]};
     [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {

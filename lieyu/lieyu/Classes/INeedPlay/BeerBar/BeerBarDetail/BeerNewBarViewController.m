@@ -769,6 +769,7 @@
     friendDetailViewController.type=@"4";
     friendDetailViewController.navigationController.navigationBarHidden = NO;
     friendDetailViewController.customerModel=addressBook;
+    friendDetailViewController.userID = [NSString stringWithFormat:@"%d",addressBook.userid];
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }
 

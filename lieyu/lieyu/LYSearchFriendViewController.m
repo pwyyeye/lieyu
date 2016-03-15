@@ -137,6 +137,7 @@
         LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
         friendDetailViewController.title=@"详细信息";
         friendDetailViewController.type=@"4";
+        friendDetailViewController.userID = [NSString stringWithFormat:@"%d",customerModel.id];
         friendDetailViewController.customerModel=customerModel;
         [self.navigationController pushViewController:friendDetailViewController animated:YES];
     }else{

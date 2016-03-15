@@ -193,6 +193,7 @@
     friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"0";
     friendDetailViewController.customerModel=addressBook;
+    friendDetailViewController.userID = [NSString stringWithFormat:@"%d",addressBook.friend];
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }
 

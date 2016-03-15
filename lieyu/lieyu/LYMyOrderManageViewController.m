@@ -500,7 +500,7 @@
         //根据订单类型 订单状态设置底部按钮
         if(orderInfoModel.ordertype==0){
             
-            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.2f",(orderInfoModel.amountPay==nil?orderInfoModel.amountPay.doubleValue:0)];
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%.2f",(orderInfoModel.amountPay!=nil?orderInfoModel.amountPay.doubleValue:0)];
             NSString *str=orderInfoModel.checkUserAvatar_img ;
             [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
             orderBottomView.zsUserNameLal.text=orderInfoModel.checkUserName;
@@ -565,6 +565,7 @@
             if(pinkerList.count>0){
                 for (PinkInfoModel *pinkInfoModel in pinkerList) {
                     if(pinkInfoModel.inmember==self.userModel.userid){
+                        
                         moneyStr=pinkInfoModel.price;
                         if(pinkInfoModel.paymentStatus==1){
                             isfu=true;
@@ -583,7 +584,6 @@
                 [orderBottomView.zsUserImageView setImageWithURL:[NSURL URLWithString:str]];
                 orderBottomView.zsUserNameLal.text=orderInfoModel.username;
             }
-            
             //订单为8 待评价
             if (orderInfoModel.orderStatus==8&&isFaqi) {
                 [orderBottomView.secondBtn setTitle:@"立即评价" forState:UIControlStateNormal];
