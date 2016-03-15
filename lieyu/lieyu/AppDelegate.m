@@ -33,11 +33,14 @@
 
 #import "HuoDongViewController.h"
 #import "LPUserLoginViewController.h"
+#import "MBProgressHUD.h"
 
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
->
+>{
+    MBProgressHUD *_hudView ;
+}
 @end
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -222,11 +225,14 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     NSMutableArray *imgNameArr = [[NSMutableArray alloc]initWithCapacity:90];
     for(int i = 1; i < 91; i ++){
-        [imgNameArr addObject:[NSString stringWithFormat:@"logo%d.jpg",i]];
+        [imgNameArr addObject:[NSString stringWithFormat:@"logo%d@2x.jpg",i]];
     }
+    
     NSMutableArray *imgArr = [[NSMutableArray alloc]init];
     for(int i = 0; i < imgNameArr.count; i ++){
-        UIImage *img =[UIImage imageNamed:imgNameArr[i]];
+//        UIImage *img =[UIImage imageNamed:imgNameArr[i]];
+        NSString *path = [[NSBundle mainBundle] pathForResource:imgNameArr[i] ofType:nil];
+        UIImage *img = [UIImage imageWithContentsOfFile:path];
         [imgArr addObject:(__bridge UIImage*)img.CGImage];
     }
     
@@ -235,7 +241,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     keyA.delegate = self;
     keyA.values = imgArr;
     keyA.repeatCount = 1;
-    [imgV.layer addAnimation:keyA forKey:nil];
+    [imgV.layer addAnimation:keyA forKey:@"keyA"];
     
 //    imgV.animationImages = imgArr;
 //    imgV.animationDuration = 3;
@@ -245,16 +251,19 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
+     UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
+    [imgV.layer removeAllAnimations];
 //    imgV.contentMode = UIViewContentModeScaleAspectFill;
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
-//        imgV.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 1.5, (SCREEN_HEIGHT + 100) * 1.5);
         
+        [imgV.layer removeAllAnimations];
     }completion:^(BOOL finished) {
         [imgV removeFromSuperview];
+
         self.window.userInteractionEnabled = YES;
     }];
+    
 }
   
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object{
@@ -554,12 +563,42 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)startLoading
 {
-    [DejalBezelActivityView activityViewForView:self.window];
+//    [DejalBezelActivityView activityViewForView:self.window];
+    
+    UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loading60.png"]];
+    imgV.tag = 10086;
+    imgV.userInteractionEnabled = NO;
+    imgV.frame = CGRectMake(0, 0, 100, 100);
+    imgV.contentMode = UIViewContentModeCenter;
+    
+    NSMutableArray *imgNameArr = [[NSMutableArray alloc]initWithCapacity:90];
+    for(int i = 1; i < 61; i ++){
+        [imgNameArr addObject:[NSString stringWithFormat:@"loading%d.png",i]];
+    }
+    NSMutableArray *imgArr = [[NSMutableArray alloc]init];
+    for(int i = 0; i < imgNameArr.count; i ++){
+        UIImage *img =[UIImage imageNamed:imgNameArr[i]];
+        [imgArr addObject:(__bridge UIImage*)img.CGImage];
+    }
+    
+    CAKeyframeAnimation *keyA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+    keyA.duration = 3;
+    keyA.delegate = self;
+    keyA.values = imgArr;
+    keyA.repeatCount = 99;
+    [imgV.layer addAnimation:keyA forKey:nil];
+    
+    _hudView = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
+    _hudView.customView = imgV;
+
+    _hudView.backgroundColor = [UIColor whiteColor];
+    _hudView.mode = MBProgressHUDModeCustomView;
 }
 
 - (void)stopLoading
 {
-    [DejalBezelActivityView removeViewAnimated:YES];
+//    [DejalBezelActivityView removeViewAnimated:YES];
+    [_hudView hideAnimated:YES];
 }
 
 //获取IMToken

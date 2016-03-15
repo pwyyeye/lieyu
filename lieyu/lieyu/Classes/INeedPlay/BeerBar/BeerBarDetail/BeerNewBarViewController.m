@@ -620,12 +620,12 @@
         case 0:
         {
             _headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
-            UIImageView *imgV = [_headerCell viewWithTag:10086];
+            UIImageView *imgV = [_headerCell viewWithTag:1008611];
             if (imgV) {
                 [imgV removeFromSuperview];
             }
             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 95/183.f)];
-            _tableHeaderImgView.tag = 10086;
+            _tableHeaderImgView.tag = 1008611;
             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
             [_headerCell addSubview:_tableHeaderImgView];
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
