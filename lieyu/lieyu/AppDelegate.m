@@ -212,10 +212,13 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 //    [awindow bringSubviewToFront:qidongView];
     UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo90.jpg"]];
     imgV.tag = 10086;
+    imgV.userInteractionEnabled = NO;
     imgV.frame = CGRectMake(0, -100, SCREEN_WIDTH, SCREEN_HEIGHT + 100);
     imgV.backgroundColor = RGBA(5, 5, 5, 1);
     imgV.contentMode = UIViewContentModeCenter;
     [self.window addSubview:imgV];
+//    [self.window bringSubviewToFront:imgV];
+    self.window.userInteractionEnabled = NO;
     
     NSMutableArray *imgNameArr = [[NSMutableArray alloc]initWithCapacity:90];
     for(int i = 1; i < 91; i ++){
@@ -250,6 +253,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         
     }completion:^(BOOL finished) {
         [imgV removeFromSuperview];
+        self.window.userInteractionEnabled = YES;
     }];
 }
   

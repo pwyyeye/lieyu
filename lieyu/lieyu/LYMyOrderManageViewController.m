@@ -28,6 +28,7 @@
 #import "LYEvaluationController.h"
 #import "IQKeyboardManager.h"
 #import "PinkerShareController.h"
+#import "FindNotificationNextDetailViewController.h"
 
 @interface LYMyOrderManageViewController ()
 
@@ -153,6 +154,10 @@
             return;
         }
         if ([controller isKindOfClass:[PinkerShareController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+        if ([controller isKindOfClass:[FindNotificationNextDetailViewController class]]) {
             [self.navigationController popToRootViewControllerAnimated:YES];
             return;
         }

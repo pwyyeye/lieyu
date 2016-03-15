@@ -12,4 +12,5 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
 @property (nonatomic,strong) UIButton *moreBtn;
 @property (nonatomic,strong) NSArray *iconArray;
+@property (nonatomic,unsafe_unretained) NSInteger signCount;
 @end

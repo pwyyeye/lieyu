@@ -41,7 +41,7 @@
 
 - (void)setIconArray:(NSArray *)iconArray{
     _iconArray = iconArray;
-    [_moreBtn setTitle:[NSString stringWithFormat:@"%u",iconArray.count] forState:UIControlStateNormal];
+    
     if(iconArray.count < 7) _moreBtn.hidden = YES;
     for (int i = 0; i < iconArray.count; i ++) {
         if(i >= 7) return;
@@ -55,6 +55,11 @@
             
         }
     }
+}
+
+- (void)setSignCount:(NSInteger )signCount{
+    _signCount = signCount;
+    [_moreBtn setTitle:[NSString stringWithFormat:@"%ld",signCount] forState:UIControlStateNormal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
