@@ -9,6 +9,8 @@
 #import "LYRecentContactViewController.h"
 #import "IQKeyboardManager.h"
 #import <RongIMKit/RongIMKit.h>
+#import "LYFindConversationViewController.h"
+
 //#import "RCDChatViewController.h"
 @interface LYRecentContactViewController ()
 
@@ -55,7 +57,7 @@
 }
 -(void)onSelectedTableRow:(RCConversationModelType)conversationModelType conversationModel:(RCConversationModel *)model atIndexPath:(NSIndexPath *)indexPath
 {
-    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
     conversationVC.conversationType =model.conversationType;
     conversationVC.targetId = model.targetId;
     conversationVC.userName =model.conversationTitle;

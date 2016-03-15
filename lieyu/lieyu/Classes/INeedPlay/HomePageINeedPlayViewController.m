@@ -8,7 +8,6 @@
 #import "LYAdshowCell.h"
 #import "HomePageINeedPlayViewController.h"
 #import "MJRefresh.h"
-#import "BeerBarDetailViewController.h"
 #import "BearBarListViewController.h"
 #import "LYToPlayRestfulBusiness.h"
 #import "LYUserLocation.h"
@@ -1285,7 +1284,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 搜索代理
 - (void)addCondition:(JiuBaModel *)model{
-    BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
     
     controller.beerBarId = @(model.barid);
     [self.navigationController pushViewController:controller animated:YES];
@@ -1302,7 +1301,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //    "linkid": 1 //对应的id  比如酒吧 就是对应酒吧id  套餐就是对应套餐id 活动就对应活动页面的id
     if(ad_type.intValue ==1){
         //酒吧
-        BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+        BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
         
         controller.beerBarId = linkid;
         NSString *str = [NSString stringWithFormat:@"首页滑动视图酒吧ID%@",linkid];

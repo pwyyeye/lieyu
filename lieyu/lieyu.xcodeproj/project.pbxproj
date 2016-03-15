@@ -694,6 +694,7 @@
 		850918251C97E6BA007981C0 /* loading7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850917E91C97E6BA007981C0 /* loading7@2x.png */; };
 		850918261C97E6BA007981C0 /* loading8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850917EA1C97E6BA007981C0 /* loading8@2x.png */; };
 		850918271C97E6BA007981C0 /* loading9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850917EB1C97E6BA007981C0 /* loading9@2x.png */; };
+		850918881C982D23007981C0 /* LYFindConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850918871C982D23007981C0 /* LYFindConversationViewController.m */; };
 		8512BCA81C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */; };
 		8512BCA91C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */; };
 		8512BCAA1C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */; };
@@ -2451,6 +2452,8 @@
 		850917E91C97E6BA007981C0 /* loading7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading7@2x.png"; sourceTree = "<group>"; };
 		850917EA1C97E6BA007981C0 /* loading8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading8@2x.png"; sourceTree = "<group>"; };
 		850917EB1C97E6BA007981C0 /* loading9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading9@2x.png"; sourceTree = "<group>"; };
+		850918861C982D23007981C0 /* LYFindConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFindConversationViewController.h; sourceTree = "<group>"; };
+		850918871C982D23007981C0 /* LYFindConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFindConversationViewController.m; sourceTree = "<group>"; };
 		8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zhuyishixiang_normal.png; sourceTree = "<group>"; };
 		8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@2x.png"; sourceTree = "<group>"; };
 		8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@3x.png"; sourceTree = "<group>"; };
@@ -4075,6 +4078,7 @@
 		15B866811BE06D40002E2BB6 /* 玩友列表 */ = {
 			isa = PBXGroup;
 			children = (
+				850918851C9829DA007981C0 /* 聊天界面 */,
 				15844BCA1BE1EF3300247FBC /* 加好友 */,
 				15844BBA1BE1C64100247FBC /* 搜索玩友 */,
 				15844BB01BE1B15600247FBC /* 玩友详情 */,
@@ -5499,6 +5503,15 @@
 				850917EB1C97E6BA007981C0 /* loading9@2x.png */,
 			);
 			path = loading;
+			sourceTree = "<group>";
+		};
+		850918851C9829DA007981C0 /* 聊天界面 */ = {
+			isa = PBXGroup;
+			children = (
+				850918861C982D23007981C0 /* LYFindConversationViewController.h */,
+				850918871C982D23007981C0 /* LYFindConversationViewController.m */,
+			);
+			name = "聊天界面";
 			sourceTree = "<group>";
 		};
 		851806811C2E899F00006804 /* messageCells */ = {
@@ -9176,6 +9189,7 @@
 				15E240A51BB381450090D240 /* OrderDetailHeadView.m in Sources */,
 				AD92AEB51BE24165009F2A34 /* LYAlert.m in Sources */,
 				15E240531BB0FF1D0090D240 /* ZSReleaseGoodViewController.m in Sources */,
+				850918881C982D23007981C0 /* LYFindConversationViewController.m in Sources */,
 				D794ED091BB786AA000DC568 /* PFImage.m in Sources */,
 				D7A1D4271BC26C4700BCE47C /* MReqToPlayHomeList.m in Sources */,
 				3879F2611C0D32EE00B72629 /* ContentTableViewCell.m in Sources */,
