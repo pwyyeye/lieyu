@@ -95,6 +95,7 @@
     for (int i = 0; i < 2; i ++) {
         UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc]init];
         UICollectionView *tableView = [[UICollectionView alloc]initWithFrame:CGRectMake(i%2 * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
+        if(i) tableView.scrollsToTop = NO;
         tableView.tag = i;
         tableView.dataSource = self;
         tableView.delegate = self;
@@ -108,6 +109,7 @@
         [_collectviewArray addObject:tableView];
     }
     [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _collectviewArray.count, 0)];
+    _scrollView.scrollsToTop = NO;
     [self installFreshEvent];
     UICollectionView *tableView = _collectviewArray[0];
     [tableView.mj_header beginRefreshing];
@@ -196,6 +198,11 @@
     if (_scrollView == scrollView) {
         CGFloat offX = scrollView.contentOffset.x;
         _index = offX/SCREEN_WIDTH;
+        for (UICollectionView *coll in _collectviewArray) {
+            coll.scrollsToTop = NO;
+        }
+        UICollectionView *collevtV = _collectviewArray[_index];
+        collevtV.scrollsToTop = YES;
         for (HotMenuButton *btn in _menuBtnArray) {
             btn.isMenuSelected = NO;
         }

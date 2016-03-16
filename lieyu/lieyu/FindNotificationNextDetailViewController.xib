@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FindNotificationNextDetailViewController">
             <connections>
+                <outlet property="View_bg" destination="OvW-Ph-wiC" id="M2o-rw-qop"/>
                 <outlet property="label_content" destination="eKc-uK-ooq" id="TOF-8v-KL4"/>
                 <outlet property="label_time" destination="Kbf-yZ-SYl" id="DVp-H1-dp8"/>
                 <outlet property="label_title" destination="9sB-Il-bbm" id="Gr0-12-Lto"/>

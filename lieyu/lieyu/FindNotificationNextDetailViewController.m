@@ -8,10 +8,15 @@
 
 #import "FindNotificationNextDetailViewController.h"
 #import "FindNewMessageList.h"
+#import "LYMyOrderManageViewController.h"
+#import "MainTabbarViewController.h"
+#import "LYFriendsMessageViewController.h"
+#import "ZSOrderViewController.h"
 
 @interface FindNotificationNextDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *label_title;
 @property (weak, nonatomic) IBOutlet UILabel *label_time;
+@property (weak, nonatomic) IBOutlet UIView *View_bg;
 @property (weak, nonatomic) IBOutlet UILabel *label_content;
 
 @end
@@ -30,11 +35,34 @@
     UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
     screenGes.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:screenGes];
+    
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
+    [_View_bg addGestureRecognizer:tapGes];
 }
 
 - (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
     
 }
+
+- (void)tapClick{
+    if ([_findNewList.type isEqualToString:@"1"]) {//订单1.普通用户，2.专属经理
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if ([app.userModel.usertype isEqualToString:@"1"]) {
+            LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            detailVC.title=@"我的订单";
+            detailVC.orderType=0;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }else{
+            ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
+            [self.navigationController pushViewController:orderManageViewController animated:YES];
+        }
+    }else if([_findNewList.type isEqualToString:@"13"] ||[_findNewList.type isEqualToString:@"14"]) {
+        LYFriendsMessageViewController *messageVC = [[LYFriendsMessageViewController alloc]init];
+        [self.navigationController pushViewController:messageVC animated:YES];
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

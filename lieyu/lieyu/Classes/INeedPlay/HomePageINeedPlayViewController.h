@@ -14,7 +14,7 @@
 #import "CityChooseButton.h"
 #import "EmptyView.h"
 
-@interface HomePageINeedPlayViewController : LYBaseViewController<UINavigationControllerDelegate,LYChooseCityDelegate>
+@interface HomePageINeedPlayViewController : LYBaseViewController<UINavigationControllerDelegate>
 
 @property(strong,nonatomic) LYAlert *alertView;
 

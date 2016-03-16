@@ -46,6 +46,11 @@
     [self getData];
     
     //[self setupRefresh];
+    
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
+    screenGes.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:screenGes];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -138,6 +143,7 @@
     }else{
         SignIconTableViewCell *iconCell = [_tableView dequeueReusableCellWithIdentifier:@"SignIconTableViewCell" forIndexPath:indexPath];
          NSArray *array = _dataArray[indexPath.section];
+        for(UIButton *btn in iconCell.btnArray) btn.hidden = YES;
         for (int i = 0; i < 5; i ++) {
             if((5 * (indexPath.row - 1) + i) >= array.count) break;
             CustomerModel *cum = array[5 * (indexPath.row-1) + i];
@@ -184,6 +190,7 @@
         friendDetailViewController.title=@"详细信息";
         friendDetailViewController.type=@"4";
         friendDetailViewController.customerModel=addressBook;
+        friendDetailViewController.userID = [NSString stringWithFormat:@"%d",addressBook.userid];
         [self.navigationController pushViewController:friendDetailViewController animated:YES];
     }
 }

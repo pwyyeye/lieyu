@@ -27,7 +27,11 @@
 - (void)setActivtyArray:(NSArray *)activtyArray{
     _activtyArray = activtyArray;
     CGFloat imgVWidth = 160;
+    [_activtyBtnArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+         if(obj)   [obj removeFromSuperview];
+    }];
     [_activtyBtnArray removeAllObjects];
+    
     switch (activtyArray.count) {
         case 1:{
             //UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - imgVWidth)/2.f, 8, imgVWidth, 213)];
