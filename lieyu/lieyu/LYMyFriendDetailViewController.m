@@ -14,6 +14,7 @@
 #import "preview.h"
 #import "UserModel.h"
 #import "SaoYiSaoViewController.h"
+#import "LYFindConversationViewController.h"
 #import "find_userInfoModel.h"
 #import "LYFriendsToUserMessageViewController.h"
 #import "CareofViewController.h"
