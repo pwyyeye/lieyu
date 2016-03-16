@@ -30,6 +30,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "LYCoreDataUtil.h"
 #import "LYCache.h"
+#import "LoadingView.h"
 
 #import "HuoDongViewController.h"
 #import "LPUserLoginViewController.h"
@@ -40,6 +41,7 @@
 UINavigationControllerDelegate,RCIMUserInfoDataSource
 >{
     MBProgressHUD *_hudView ;
+    LoadingView *_loadV;
 }
 @end
 
@@ -565,40 +567,16 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 {
 //    [DejalBezelActivityView activityViewForView:self.window];
     
-    UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loading60.png"]];
-    imgV.tag = 10086;
-    imgV.userInteractionEnabled = NO;
-    imgV.frame = CGRectMake(0, 0, 100, 100);
-    imgV.contentMode = UIViewContentModeCenter;
     
-    NSMutableArray *imgNameArr = [[NSMutableArray alloc]initWithCapacity:90];
-    for(int i = 1; i < 61; i ++){
-        [imgNameArr addObject:[NSString stringWithFormat:@"loading%d.png",i]];
-    }
-    NSMutableArray *imgArr = [[NSMutableArray alloc]init];
-    for(int i = 0; i < imgNameArr.count; i ++){
-        UIImage *img =[UIImage imageNamed:imgNameArr[i]];
-        [imgArr addObject:(__bridge UIImage*)img.CGImage];
-    }
     
-    CAKeyframeAnimation *keyA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-    keyA.duration = 3;
-    keyA.delegate = self;
-    keyA.values = imgArr;
-    keyA.repeatCount = 99;
-    [imgV.layer addAnimation:keyA forKey:nil];
-    
-    _hudView = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
-    _hudView.customView = imgV;
-
-    _hudView.backgroundColor = [UIColor whiteColor];
-    _hudView.mode = MBProgressHUDModeCustomView;
+    _loadV = [[LoadingView alloc]initWith:self.window];
 }
 
 - (void)stopLoading
 {
 //    [DejalBezelActivityView removeViewAnimated:YES];
-    [_hudView hideAnimated:YES];
+//    [_hudView hideAnimated:YES];
+    [_loadV hideAnimation:YES afterDelay:1];
 }
 
 //获取IMToken
