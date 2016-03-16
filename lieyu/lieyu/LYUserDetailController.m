@@ -199,7 +199,9 @@
     layerShadow.borderColor=[RGB(237, 237, 237) CGColor];
     layerShadow.borderWidth=0.5;
     [cell.layer addSublayer:layerShadow];
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.row != 2) {
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    }
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
     
@@ -426,26 +428,28 @@
 }
 #pragma mark -  修改昵称
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    UITextField *tf=[alertView textFieldAtIndex:0];
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    UserModel *mod= app.userModel;
-    if ([MyUtil isEmptyString:tf.text] || [tf.text isEqualToString:mod.usernick]) {
-        return;
+    if(buttonIndex != 0){
+        UITextField *tf=[alertView textFieldAtIndex:0];
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        UserModel *mod= app.userModel;
+        if ([MyUtil isEmptyString:tf.text] || [tf.text isEqualToString:mod.usernick]) {
+            return;
+        }
+        
+        if([MyUtil countTheStrLength:tf.text] > 8) {
+            [MyUtil showCleanMessage:@"昵称不能超过八个汉字"];
+            return;
+        }
+        
+        NSLog(@"----pass-pass%@---",tf.text);
+        _modifyNick=tf.text;
+        
+        NSMutableDictionary *userinfo=[NSMutableDictionary new];
+        [userinfo setObject:_modifyNick forKey:@"usernick"];
+        mod.usernick=_modifyNick;
+        [self savaUserInfo:userinfo needReload:YES];
+
     }
-    
-    if([MyUtil countTheStrLength:tf.text] > 8) {
-        [MyUtil showCleanMessage:@"昵称不能超过八个汉字"];
-        return;
-    }
-    
-    NSLog(@"----pass-pass%@---",tf.text);
-    _modifyNick=tf.text;
-    
-    NSMutableDictionary *userinfo=[NSMutableDictionary new];
-    [userinfo setObject:_modifyNick forKey:@"usernick"];
-    mod.usernick=_modifyNick;
-    [self savaUserInfo:userinfo needReload:YES];
     
     
 }
