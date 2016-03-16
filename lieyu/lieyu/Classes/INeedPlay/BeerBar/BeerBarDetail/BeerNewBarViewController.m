@@ -171,7 +171,7 @@
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
 //    [self.navigationController.navigationBar setHidden:YES];
-//    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

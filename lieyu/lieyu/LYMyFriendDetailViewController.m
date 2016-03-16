@@ -15,10 +15,15 @@
 #import "UserModel.h"
 #import "SaoYiSaoViewController.h"
 #import "LYFindConversationViewController.h"
+#import "find_userInfoModel.h"
+#import "LYFriendsToUserMessageViewController.h"
+#import "CareofViewController.h"
+
 @interface LYMyFriendDetailViewController ()
 {
     preview *_subView;
-    NSDictionary *_result;
+    find_userInfoModel *_result;
+    NSArray *imgArray;
 }
 @end
 
@@ -26,27 +31,30 @@
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"个人信息";
@@ -60,6 +68,9 @@
     self.guanzhuBtn.layer.masksToBounds = YES;
     self.guanzhuBtn.layer.borderColor = [UIColor blackColor].CGColor;
     self.guanzhuBtn.layer.borderWidth = 0.5;
+    self.DTView.layer.cornerRadius = 4;
+    self.DTView.layer.masksToBounds = YES;
+    imgArray = @[_image1,_image2,_image3,_image4];
     if (_userID) {
         [self getData];
     }else{
@@ -164,7 +175,8 @@
         
 //        NSLog(@"%@",_customerModel);
     }else{
-        array = [_result[@"avatar_img"] componentsSeparatedByString:@"?"];
+        array = [_result.avatar_img componentsSeparatedByString:@"?"];
+//        array = [_result.avatar_img]
     }
     NSLog(@"%@",array);
     if(array == nil){
@@ -187,42 +199,56 @@
 }
 
 - (void)configureThisView{
-    _namelal.text = [_result valueForKey:@"usernick"]?[_result valueForKey:@"usernick"] : [_result valueForKey:@"username"];
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_result[@"avatar_img"]]];
-    [self.headerBGView sd_setImageWithURL:[NSURL URLWithString:_result[@"avatar_img"]]];
+    _namelal.text = _result.usernick;
+    [_userImageView sd_setImageWithURL:[NSURL URLWithString:_result.avatar_img]];
+    [_headerBGView sd_setImageWithURL:[NSURL URLWithString:_result.avatar_img]];
+//    _namelal.text = [_result valueForKey:@"usernick"]?[_result valueForKey:@"usernick"] : [_result valueForKey:@"username"];
+//    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_result[@"avatar_img"]]];
+//    [self.headerBGView sd_setImageWithURL:[NSURL URLWithString:_result[@"avatar_img"]]];
     [self.userimageBtn addTarget:self action:@selector(checkFriendAvatar) forControlEvents:UIControlEventTouchUpInside];
-    if ([[_result valueForKey:@"gender"]integerValue]==0) {
+    if (_result.gender == 0) {
         self.sexImageView.image=[UIImage imageNamed:@"woman"];
     }else{
         self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
     }
-    _delLal.text = ((NSString *)[_result valueForKey:@"introduction"]).length?[_result valueForKey:@"introduction"]:@"相约随时";
-    NSArray *tagsArrayy = [_result valueForKey:@"tags"];
+    _delLal.text = _result.introduction.length?_result.introduction:@"相约随时";
+    NSArray *tagsArrayy = _result.tags;
     if(tagsArrayy.count > 0){
-        NSMutableString *mytags=[[NSMutableString alloc] init];
-        for (int i=0; i<tagsArrayy.count; i++) {
-            if (i==tagsArrayy.count-1) {
-                [mytags appendString:[tagsArrayy[i] objectForKey:@"tagName"]?[tagsArrayy[i] objectForKey:@"tagName"]:[tagsArrayy[i] objectForKey:@"tagname"]];
-            }else{
-                [mytags appendString:[tagsArrayy[i] objectForKey:@"tagName"]?[tagsArrayy[i] objectForKey:@"tagName"]:[tagsArrayy[i] objectForKey:@"tagname"]];
-                [mytags appendString:@","];
-            }
-        }
-        _zhiwuLal.text=mytags;
+        _zhiwuLal.text = [tagsArrayy[0] objectForKey:@"tagname"];
+    }else{
+        _zhiwuLal.text = @"秘密";
     }
-    _age.text = [_result valueForKey:@"age"];
-    if (![MyUtil isEmptyString:[_result valueForKey:@"birthday"]]) {
-        NSString *birth = [[_result valueForKey:@"birthday"] substringToIndex:10];
+    _age.text = _result.age;
+    if (![MyUtil isEmptyString:_result.birthday]) {
+        NSString *birth = [_result.birthday substringToIndex:10];
         _xingzuo.text=[MyUtil getAstroWithBirthday:birth];
+    }else{
+        _xingzuo.text = @"秘密";
+    }
+    // 设置Label的字体 HelveticaNeue  Courier
+    UIFont *fnt = [UIFont systemFontOfSize:12];
+//    _nameLabel.font = fnt;
+    // 根据字体得到NSString的尺寸
+    CGSize size = [_zhiwuLal.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:fnt,NSFontAttributeName, nil]];
+    // 名字的H
+//    CGFloat nameH = size.height;
+    // 名字的W
+    CGFloat nameW = size.width;
+    _zhiwuWidth.constant = nameW + 20;
+
+    for(int i = 0 ; i < _result.recentImages.count ; i ++){
+        UIImageView *image = [imgArray objectAtIndex:i];
+        [image sd_setImageWithURL:[NSURL URLWithString:[_result.recentImages objectAtIndex:i]]];
     }
 }
 
 -(void)getData{
     NSDictionary *dict = @{@"userid":self.userID};
 //    NSLog(@"%d",self.userModel.userid);
-    [LYUserHttpTool GetUserInfomationWithID:dict complete:^(NSDictionary *result) {
+    __weak __typeof(self) weakSelf = self;
+    [LYUserHttpTool GetUserInfomationWithID:dict complete:^(find_userInfoModel *result) {
         _result = result;
-        [self configureThisView];
+        [weakSelf configureThisView];
     }];
 }
 
@@ -263,8 +289,8 @@
             conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
         }else{
             conversationVC.targetId = [NSString stringWithFormat:@"%@",[_result valueForKey:@"userid"]];
-            conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
-            conversationVC.title = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
+//            conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
+//            conversationVC.title = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
         }
         
         [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
@@ -279,12 +305,12 @@
         [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
         conversationVC.navigationItem.leftBarButtonItem = item;
-//
-//        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-//        conversationVC.navigationItem.leftBarButtonItem = left;
-        
         [self.navigationController pushViewController:conversationVC animated:YES];
     }
+}
+
+- (IBAction)addCareof:(UIButton *)sender {
+    
 }
 
 - (void)backForward{
@@ -299,8 +325,22 @@
 }
 
 - (IBAction)checkFans:(UIButton *)sender {
+    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
+    caresViewController.userId = self.userID;
+    caresViewController.type = @"1";
+    [self.navigationController pushViewController:caresViewController animated:YES];
 }
 
 - (IBAction)checkCares:(UIButton *)sender {
+    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
+    caresViewController.userId = self.userID;
+    caresViewController.type = @"0";
+    [self.navigationController pushViewController:caresViewController animated:YES];
+}
+
+- (IBAction)checkTrends:(UIButton *)sender {
+    LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]initWithNibName:@"LYFriendsToUserMessageViewController" bundle:nil];
+    friendsVC.friendsId = self.userID;
+    [self.navigationController pushViewController:friendsVC animated:YES];
 }
 @end

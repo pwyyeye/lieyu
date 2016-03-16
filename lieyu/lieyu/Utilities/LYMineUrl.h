@@ -106,4 +106,8 @@
 #define LY_QUICK_CHECK @"lyQRCodeAction.do?action=update"
 //专属经理直接核对消费码
 #define LP_CHECK_CONSUMERID @"lyOrderAction.do?action=update"
+//根据用户ID获取粉丝或关注列表
+#define LP_GET_FANSORCARESLIST @"lyMomentAttentionAction.do?action=list"
+//添加关注或取关
+#define LP_ADD_CARE @"lyMomentAttentionAction.do?action=add"
 #endif
