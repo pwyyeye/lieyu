@@ -154,6 +154,7 @@
 #pragma mark - 输入完消费码之后
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField.text.length > 0) {
+        textField.text = @"";
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         NSString *consuer = [MyUtil encryptUseDES:textField.text withKey:app.desKey];
         NSDictionary *dic = @{@"consumptionCode":consuer};

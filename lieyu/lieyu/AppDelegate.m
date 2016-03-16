@@ -30,14 +30,19 @@
 #import <AVFoundation/AVFoundation.h>
 #import "LYCoreDataUtil.h"
 #import "LYCache.h"
+#import "LoadingView.h"
 
 #import "HuoDongViewController.h"
 #import "LPUserLoginViewController.h"
+#import "MBProgressHUD.h"
 
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
->
+>{
+    MBProgressHUD *_hudView ;
+    LoadingView *_loadV;
+}
 @end
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -222,20 +227,23 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     NSMutableArray *imgNameArr = [[NSMutableArray alloc]initWithCapacity:90];
     for(int i = 1; i < 91; i ++){
-        [imgNameArr addObject:[NSString stringWithFormat:@"logo%d.jpg",i]];
+        [imgNameArr addObject:[NSString stringWithFormat:@"logo%d@2x.jpg",i]];
     }
+    
     NSMutableArray *imgArr = [[NSMutableArray alloc]init];
     for(int i = 0; i < imgNameArr.count; i ++){
-        UIImage *img =[UIImage imageNamed:imgNameArr[i]];
+//        UIImage *img =[UIImage imageNamed:imgNameArr[i]];
+        NSString *path = [[NSBundle mainBundle] pathForResource:imgNameArr[i] ofType:nil];
+        UIImage *img = [UIImage imageWithContentsOfFile:path];
         [imgArr addObject:(__bridge UIImage*)img.CGImage];
     }
     
     CAKeyframeAnimation *keyA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-    keyA.duration = 3;
+    keyA.duration = 2.5;
     keyA.delegate = self;
     keyA.values = imgArr;
     keyA.repeatCount = 1;
-    [imgV.layer addAnimation:keyA forKey:nil];
+    [imgV.layer addAnimation:keyA forKey:@"keyA"];
     
 //    imgV.animationImages = imgArr;
 //    imgV.animationDuration = 3;
@@ -245,16 +253,19 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
+     UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
+    [imgV.layer removeAllAnimations];
 //    imgV.contentMode = UIViewContentModeScaleAspectFill;
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
-//        imgV.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 1.5, (SCREEN_HEIGHT + 100) * 1.5);
         
+        [imgV.layer removeAllAnimations];
     }completion:^(BOOL finished) {
         [imgV removeFromSuperview];
+
         self.window.userInteractionEnabled = YES;
     }];
+    
 }
   
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object{
@@ -554,12 +565,18 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)startLoading
 {
-    [DejalBezelActivityView activityViewForView:self.window];
+//    [DejalBezelActivityView activityViewForView:self.window];
+    
+    
+    
+    _loadV = [[LoadingView alloc]initWith:self.window];
 }
 
 - (void)stopLoading
 {
-    [DejalBezelActivityView removeViewAnimated:YES];
+//    [DejalBezelActivityView removeViewAnimated:YES];
+//    [_hudView hideAnimated:YES];
+    [_loadV hideAnimation:YES afterDelay:1];
 }
 
 //获取IMToken

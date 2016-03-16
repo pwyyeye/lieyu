@@ -280,7 +280,7 @@
         [self.navigationController pushViewController:addFriendViewController animated:YES];
     }else{
         
-        RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+        LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
         if (_customerModel) {
             conversationVC.targetId = _customerModel.imUserId; // 接收者的 targetId，这里为举例。
