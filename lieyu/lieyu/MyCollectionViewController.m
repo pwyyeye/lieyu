@@ -42,6 +42,12 @@
     [self.navigationController setNavigationBarHidden:NO];
     [self getData];
 }
+
+-(void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     

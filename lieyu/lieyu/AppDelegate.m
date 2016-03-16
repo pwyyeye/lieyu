@@ -228,7 +228,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     }
     
     CAKeyframeAnimation *keyA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-    keyA.duration = 3;
+    keyA.duration = 2.5;
     keyA.delegate = self;
     keyA.values = imgArr;
     keyA.repeatCount = 1;
