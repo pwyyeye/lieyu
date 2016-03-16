@@ -15,16 +15,26 @@
 @property (weak, nonatomic) IBOutlet UILabel *namelal;
 @property (weak, nonatomic) IBOutlet UILabel *zhiwuLal;
 @property (weak, nonatomic) IBOutlet UILabel *xingzuo;
-- (IBAction)sendMessageAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *sexImageView;
 @property (retain, nonatomic)  CustomerModel *customerModel;
 @property (copy, nonatomic)  NSString *type;
 @property (weak, nonatomic) IBOutlet UILabel *fansNum;
 @property (weak, nonatomic) IBOutlet UILabel *guanzhuNum;
+@property (weak, nonatomic) IBOutlet UIView *DTView;
+@property (weak, nonatomic) IBOutlet UIImageView *image1;
+@property (weak, nonatomic) IBOutlet UIImageView *image2;
+@property (weak, nonatomic) IBOutlet UIImageView *image3;
+@property (weak, nonatomic) IBOutlet UIImageView *image4;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *zhiwuWidth;
 
 - (IBAction)backForward:(UIButton *)sender;
 - (IBAction)checkFans:(UIButton *)sender;
 - (IBAction)checkCares:(UIButton *)sender;
+- (IBAction)checkTrends:(UIButton *)sender;
+
+- (IBAction)sendMessageAct:(UIButton *)sender;
+- (IBAction)addCareof:(UIButton *)sender;
 
 @property (nonatomic, strong) NSString *userID;
 
