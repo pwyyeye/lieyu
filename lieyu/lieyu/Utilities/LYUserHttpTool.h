@@ -14,6 +14,8 @@
 #import "LYMineUrl.h"
 #import "OrderTTL.h"
 #import "OrderInfoModel.h"
+
+#import "find_userInfoModel.h"
 @interface LYUserHttpTool : NSObject
 + (LYUserHttpTool *)shareInstance;
 // 登录
@@ -189,11 +191,15 @@
 //修改用户的推送配置
 + (void)changeUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(bool))compelte;
 //根据用户ID，获取好友详情
-+ (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete;
++ (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void(^)(find_userInfoModel *))complete;
 //速核码校验订单
 + (void)QuickCheckOrderWithParam:(NSDictionary *)paraDic complete:(void(^)(NSString *))complete;
 //获取deskey
 - (void) getAppDesKey:(NSDictionary*)params complete:(void (^)(NSString * result))result;
 #pragma mark - 专属经理直接核对消费码
 + (void)zsCheckConsumerIDWith:(NSDictionary *)params complete:(void(^)())complete;
+//根据用户ID获取关注或粉丝列表
++ (void)getCaresOrFansList:(NSDictionary *)params complete:(void(^)(NSMutableArray *))result;
+#pragma mark - 关注或取关
++ (void)addCareOrDeleteCare:(NSDictionary *)params complete:(void(^)())result;
 @end

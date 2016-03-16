@@ -14,6 +14,8 @@
 #import "MyBarModel.h"
 #import "UserTagModel.h"
 #import "MineUserNotification.h"
+#import "LPFriendBriefInfo.h"
+
 @implementation LYUserHttpTool
 
 + (LYUserHttpTool *)shareInstance{
@@ -717,7 +719,11 @@
                 block(tempArr);
             });
         }else{
-            [MyUtil showMessage:message];
+            if(message.length > 1){
+                [MyUtil showMessage:message];
+            }else{
+                [MyUtil showMessage:@"获取玩友列表失败"];
+            }
         }
         
         [app stopLoading];
@@ -1294,20 +1300,24 @@
 }
 
 #pragma mark - 根据用户ID，获取好友详情
-+ (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void(^)(NSDictionary *))complete{
++ (void)GetUserInfomationWithID:(NSDictionary *)paraDic complete:(void (^)(find_userInfoModel *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_USERINFO baseURL:LY_SERVER params:paraDic success:^(id response) {
         NSString *errorCode = [response valueForKey:@"errorcode"];
         NSString *message = [response valueForKey:@"message"];
         NSDictionary *result = [response valueForKey:@"data"];
+        find_userInfoModel *userModel = [find_userInfoModel mj_objectWithKeyValues:result];
         if([errorCode isEqualToString:@"1"]){
             dispatch_async(dispatch_get_main_queue(), ^{
-                complete(result);
+                complete(userModel);
             });
         }else{
             [MyUtil showLikePlaceMessage:message];
         }
+        [app stopLoading];
     } failure:^(NSError *err) {
-        
+        [app stopLoading];
     }];
 }
 
@@ -1391,5 +1401,34 @@
     }];
 }
 
+#pragma mark - 获取关注或粉丝列表
++ (void)getCaresOrFansList:(NSDictionary *)params complete:(void (^)(NSMutableArray *))result{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_GET_FANSORCARESLIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *code = [response valueForKey:@"errorcode"];
+        NSArray *items = [[response valueForKey:@"data"] valueForKey:@"items"];
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[LPFriendBriefInfo mj_keyValuesArrayWithObjectArray:items]];
+            result(tempArr);
+        }else{
+            [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 关注或取关
++ (void)addCareOrDeleteCare:(NSDictionary *)params complete:(void(^)())result{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_ADD_CARE baseURL:LY_SERVER params:params success:^(id response) {
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
 
 @end
