@@ -209,12 +209,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 }
 
 - (void)animationWithApp{
-//    UIWindow *awindow = [UIApplication sharedApplication].delegate.window;
-//    qidongye *qidongView = [[qidongye alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-////    qidongView.backgroundColor = [UIColor redColor];
-//    [qidongView addUntitled1Animation];
-//    [awindow addSubview:qidongView];
-//    [awindow bringSubviewToFront:qidongView];
     UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo90.jpg"]];
     imgV.tag = 10086;
     imgV.userInteractionEnabled = NO;
@@ -245,11 +239,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     keyA.repeatCount = 1;
     [imgV.layer addAnimation:keyA forKey:@"keyA"];
     
-//    imgV.animationImages = imgArr;
-//    imgV.animationDuration = 3;
-//    imgV.animationRepeatCount = 1;
-//    [imgV startAnimating];
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
@@ -264,6 +254,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         [imgV removeFromSuperview];
 
         self.window.userInteractionEnabled = YES;
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     }];
     
 }
@@ -567,16 +558,18 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 {
 //    [DejalBezelActivityView activityViewForView:self.window];
     
+    [MBProgressHUD showHUDAddedTo:self.window animated:YES];
     
     
-    _loadV = [[LoadingView alloc]initWith:self.window];
+//    _loadV = [[LoadingView alloc]initWith:self.window];
 }
 
 - (void)stopLoading
 {
+    [MBProgressHUD hideHUDForView:self.window animated:YES];
 //    [DejalBezelActivityView removeViewAnimated:YES];
 //    [_hudView hideAnimated:YES];
-    [_loadV hideAnimation:YES afterDelay:1];
+//    [_loadV hideAnimation:YES afterDelay:1];
 }
 
 //获取IMToken
