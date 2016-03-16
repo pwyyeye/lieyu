@@ -306,8 +306,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuView addSubview:_cityChooseBtn];
     
     CGFloat searchBtnWidth = 24;
-    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 10 - searchBtnWidth, 10 + 20, searchBtnWidth, searchBtnWidth)];
-    [_searchBtn setBackgroundImage:[UIImage imageNamed:@"搜索"] forState:UIControlStateNormal];
+    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH  -20- searchBtnWidth, 20 , searchBtnWidth + 20, searchBtnWidth + 20)];
+    [_searchBtn setImage:[UIImage imageNamed:@"搜索"] forState:UIControlStateNormal];
     [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_searchBtn];
     
