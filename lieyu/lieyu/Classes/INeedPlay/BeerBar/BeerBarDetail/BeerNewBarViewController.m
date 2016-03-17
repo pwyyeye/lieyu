@@ -788,6 +788,8 @@
 
 #pragma mark - 电话
 - (void)telephoneClick:(UIButton *)button{
+    
+    
     NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",_beerBarDetail.telephone]];
     
     if ( !_phoneCallWebView ) {

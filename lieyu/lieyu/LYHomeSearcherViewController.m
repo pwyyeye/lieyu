@@ -12,7 +12,7 @@
 #import "NetPublic.h"
 #import "LYToPlayRestfulBusiness.h"
 #import "MReqToPlayHomeList.h"
-#import "LYWineBarCell.h"
+#import "HomeBarCollectionViewCell.h"
 #import "BiaoQianBtn.h"
 #import "TypeChooseCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
@@ -23,7 +23,7 @@
 #define PAGESIZE 20
 #define SEARCHPAGE_MTA @"SEARCHPAGE"
 
-@interface LYHomeSearcherViewController ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface LYHomeSearcherViewController ()<UISearchBarDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSArray *datalist;
     NSMutableArray *searchlist;
@@ -48,15 +48,21 @@
 //    [_tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [self setupViewStyles];
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBarCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
-    self.tableView.hidden = YES;
+    [self.collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
+    self.collectView.hidden = YES;
     [self loadHisData];
     hisSerchArr=[[NSMutableArray alloc]init];
     self.curPageIndex = 1;
     datalist=[[NSMutableArray alloc]init];
     _searchBar.returnKeyType = UIReturnKeySearch;
-    self.tableView.tableFooterView = [[UIView alloc]init];
-    
+
+    for (id img in _searchBar.subviews)
+    {
+        if ([img isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
+        {
+            [img removeFromSuperview];
+        }
+    }
     
 }
 
@@ -167,7 +173,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if (!searchBar.text.length) {
-        self.tableView.hidden = YES;
+        self.collectView.hidden = YES;
         [self loadHisData];
     }
 }
@@ -176,12 +182,12 @@
     NSString *string = [searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     [searchBar endEditing:NO];
     if (!string.length) {
-        self.tableView.hidden = YES;
+        self.collectView.hidden = YES;
         [MyUtil showCleanMessage:@"请输入正确字符"];
         [self loadHisData];
         return;
     }
-    [self.tableView setHidden:NO];
+    [self.collectView setHidden:NO];
     _curPageIndex=1;
     keyStr= searchBar.text;
     [self getData];
@@ -191,25 +197,25 @@
 - (void)setupViewStyles
 {
     __weak LYHomeSearcherViewController * weakSelf = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"LYWineBaraCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
-    self.tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+//    [self.collectView registerNib:[UINib nibWithNibName:@"LYWineBaraCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
+    self.collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
                 if (barList.count == PAGESIZE)
                 {
-                    weakSelf.tableView.mj_footer.hidden = NO;
+                    weakSelf.collectView.mj_footer.hidden = NO;
                 }
                 else
                 {
-                    weakSelf.tableView.mj_footer.hidden = YES;
+                    weakSelf.collectView.mj_footer.hidden = YES;
                 }
                 weakSelf.curPageIndex ++;
-                [weakSelf.tableView.mj_footer endRefreshing];
+                [weakSelf.collectView.mj_footer endRefreshing];
             }
             
         }];
     }];
-    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
+    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.collectView.mj_footer;
     [self initMJRefeshFooterForGif:footer];
 }
 
@@ -234,11 +240,11 @@
              if (barList.count == PAGESIZE)
              {
                  weakSelf.curPageIndex = 2;
-                 weakSelf.tableView.mj_footer.hidden = NO;
+                 weakSelf.collectView.mj_footer.hidden = NO;
              }
              else
              {
-                 weakSelf.tableView.mj_footer.hidden = YES;
+                 weakSelf.collectView.mj_footer.hidden = YES;
                  
              }
              //             [weakSelf.tableView.header endRefreshing];
@@ -287,13 +293,13 @@
              }else{
                  [MyUtil showCleanMessage:@"搜索无结果"];
              }
-             [weakSelf.tableView reloadData];
+             [weakSelf.collectView reloadData];
          }
          block !=nil? block(ermsg,bannerList,barList):nil;
      }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if(searchlist.count){
         return searchlist.count;
     }else {
@@ -301,17 +307,32 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LYWineBarCell *wineCell = [tableView dequeueReusableCellWithIdentifier:@"wineBarCell" forIndexPath:indexPath];
-    wineCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    JiuBaModel *model = [searchlist objectAtIndex:indexPath.row];
-    wineCell.jiuBaModel = model;
-    return wineCell;
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 3;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 3;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(3, 3, 3, 3);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    HomeBarCollectionViewCell *cell = [_collectView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+    JiuBaModel *jiubaM = searchlist[indexPath.item];
+    cell.jiuBaM = jiubaM;
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     BeerNewBarViewController *detailVC = [[BeerNewBarViewController alloc]init];
-    JiuBaModel *model = [searchlist objectAtIndex:indexPath.row];
+    JiuBaModel *model = [searchlist objectAtIndex:indexPath.item];
     detailVC.beerBarId = @(model.barid);
     [self.navigationController pushViewController:detailVC animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SEARCHPAGE_MTA titleName:model.barname]];
@@ -322,8 +343,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 94 + SCREEN_WIDTH / 16 * 9;
-}
+
 
 @end

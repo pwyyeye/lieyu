@@ -8496,6 +8496,7 @@
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
 				851806861C2E89DC00006804 /* LYNewMessageTableViewCell.xib in Resources */,
 				850917FD1C97E6BA007981C0 /* loading26@2x.png in Resources */,
+				85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */,
 				ADD1B4661C528EE100A5237C /* qq_s@3x.png in Resources */,
 				853C4C6C1C311A5C00D48BA2 /* zengjia_icon.png in Resources */,
 				3879F2581C0D32B900B72629 /* TaocanTableViewCell.xib in Resources */,

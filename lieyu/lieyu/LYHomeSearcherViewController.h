@@ -13,7 +13,8 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnHistoryArray;
 @property (weak, nonatomic) IBOutlet UIButton *btnClearHistory;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectView;
 @property (weak, nonatomic) IBOutlet UIButton *btn_clean;
 
 @end
