@@ -567,7 +567,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)stopLoading
 {
 //    [MBProgressHUD hideHUDForView:self.window animated:YES];
-//    [DejalBezelActivityView removeViewAnimated:NO];
+    [DejalBezelActivityView removeViewAnimated:NO];
 //    [_hudView hideAnimated:YES];
 //    [_loadV hideAnimation:YES afterDelay:1];
 }

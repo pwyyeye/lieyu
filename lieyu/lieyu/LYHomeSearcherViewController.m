@@ -187,6 +187,8 @@
         [self loadHisData];
         return;
     }
+    [searchlist removeAllObjects];
+    [self.collectView reloadData];
     [self.collectView setHidden:NO];
     _curPageIndex=1;
     keyStr= searchBar.text;
@@ -232,7 +234,6 @@
 
 -(void)getData{
     __weak LYHomeSearcherViewController * weakSelf = self;
-    //    __weak UITableView *tableView = self.tableView;
     [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {
          if (Req_Success == ermsg.state)
