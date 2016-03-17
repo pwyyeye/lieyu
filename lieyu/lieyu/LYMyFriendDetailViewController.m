@@ -118,6 +118,7 @@
                 }
                 _zhiwuLal.text=[NSString stringWithFormat:@" %@ ",mytags];
             }
+            
             if(_customerModel.tag.count == 0 && _customerModel.tags.count == 0 && _customerModel.userTag.count == 0){
                 _zhiwuLal.text = @"保密";
             }
