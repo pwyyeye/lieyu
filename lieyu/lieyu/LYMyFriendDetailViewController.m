@@ -244,6 +244,8 @@
     for(int i = 0 ; i < _result.recentImages.count ; i ++){
         UIImageView *image = [imgArray objectAtIndex:i];
         [image sd_setImageWithURL:[NSURL URLWithString:[_result.recentImages objectAtIndex:i]]];
+        image.contentMode = UIViewContentModeScaleAspectFill;
+        image.clipsToBounds = YES;
     }
 }
 
