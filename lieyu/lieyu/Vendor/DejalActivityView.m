@@ -81,7 +81,7 @@ static DejalActivityView *dejalActivityView = nil;
 
 + (DejalActivityView *)activityViewForView:(UIView *)addToView;
 {
-    return [self activityViewForView:addToView withLabel:NSLocalizedString(@"加载中...", @"Default DejalActivtyView label text") width:0];
+    return [self activityViewForView:addToView withLabel:nil width:0];
 }
 
 /*
@@ -234,7 +234,6 @@ static DejalActivityView *dejalActivityView = nil;
     
     view.opaque = NO;
     view.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-    
     return view;
 }
 
@@ -604,7 +603,7 @@ static DejalActivityView *dejalActivityView = nil;
 - (void)animateShow;
 {
     self.alpha = 0.0;
-    self.borderView.transform = CGAffineTransformMakeScale(3.0, 3.0);
+//    self.borderView.transform = CGAffineTransformMakeScale(3.0, 3.0);
     
 	[UIView beginAnimations:nil context:nil];
 //	[UIView setAnimationDuration:5.0];            // Uncomment to see the animation in slow motion
