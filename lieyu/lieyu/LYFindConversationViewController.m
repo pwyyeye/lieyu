@@ -7,6 +7,7 @@
 //
 
 #import "LYFindConversationViewController.h"
+#import "LYMyFriendDetailViewController.h"
 
 @interface LYFindConversationViewController ()
 
@@ -22,6 +23,9 @@
 
 - (void)didTapCellPortrait:(NSString *)userId{
     NSLog(@"------>%@",userId);
+    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
+    myFriendVC.userID = userId;
+    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

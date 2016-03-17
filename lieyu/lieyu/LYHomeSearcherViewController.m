@@ -239,7 +239,7 @@
          if (Req_Success == ermsg.state)
          {
              if (barList.count == PAGESIZE)
-             {
+             { 
                  weakSelf.curPageIndex = 2;
                  weakSelf.collectView.mj_footer.hidden = NO;
              }
