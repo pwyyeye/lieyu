@@ -547,7 +547,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             _qiniu_token=result;
         }];
         
-        [[LYCommonHttpTool shareInstance] getMediaTokenByqiNiuWithParams:nil block:^(NSString *result) {
+        [[LYCommonHttpTool shareInstance]   getMediaTokenByqiNiuWithParams:nil block:^(NSString *result) {
             _qiniu_media_token=result;
         }];
         
@@ -556,9 +556,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)startLoading
 {
-//    [DejalBezelActivityView activityViewForView:self.window];
+     [DejalBezelActivityView activityViewForView:self.window];
     
-    [MBProgressHUD showHUDAddedTo:self.window animated:YES];
+//    [MBProgressHUD showHUDAddedTo:self.window animated:YES];
     
     
 //    _loadV = [[LoadingView alloc]initWith:self.window];
@@ -566,8 +566,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)stopLoading
 {
-    [MBProgressHUD hideHUDForView:self.window animated:YES];
-//    [DejalBezelActivityView removeViewAnimated:YES];
+//    [MBProgressHUD hideHUDForView:self.window animated:YES];
+    [DejalBezelActivityView removeViewAnimated:NO];
 //    [_hudView hideAnimated:YES];
 //    [_loadV hideAnimation:YES afterDelay:1];
 }

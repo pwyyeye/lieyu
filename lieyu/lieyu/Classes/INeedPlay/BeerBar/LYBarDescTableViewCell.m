@@ -66,12 +66,12 @@
     [self addSubview:_label_descr];
     _label_descr.text = title;
     
-    _image_yinHao_left = [[UIImageView alloc]initWithFrame:CGRectMake(-40, 23, 24, 24)];
+    _image_yinHao_left = [[UIImageView alloc]initWithFrame:CGRectMake(-40, 30, 16, 12)];
     _image_yinHao_left.image = [UIImage imageNamed:@"yinHao"];
     _image_yinHao_left.tag = 100861;
     [self addSubview:_image_yinHao_left];
     
-    _image_yinHao_right = [[UIImageView alloc]initWithFrame:CGRectMake(-100, 23, 24, 24)];
+    _image_yinHao_right = [[UIImageView alloc]initWithFrame:CGRectMake(-100, 30, 16, 12)];
     _image_yinHao_right.image = [UIImage imageNamed:@"yinHaoRight"];
     _image_yinHao_right.tag = 100862;
     [self addSubview:_image_yinHao_right];
@@ -90,8 +90,8 @@
             _label_descr.bounds = CGRectMake(0, 0, maxWidth, CGRectGetHeight(_label_descr.frame));
         }
     }
-    _image_yinHao_left.frame = CGRectMake(self.label_descr.frame.origin.x - 34, _image_yinHao_left.frame.origin.y, 24, 24);
-    _image_yinHao_right.frame = CGRectMake(CGRectGetMaxX(self.label_descr.frame) +10, _image_yinHao_left.frame.origin.y, 24, 24);
+    _image_yinHao_left.frame = CGRectMake(self.label_descr.frame.origin.x - 22, _image_yinHao_left.frame.origin.y, 16, 12);
+    _image_yinHao_right.frame = CGRectMake(CGRectGetMaxX(self.label_descr.frame) +10, _image_yinHao_left.frame.origin.y, 16, 12);
 }
 
 

@@ -23,7 +23,6 @@
 #import "LYBarTitleTableViewCell.h"
 #import "LYBarPointTableViewCell.h"
 #import "LYBarSpecialTableViewCell.h"
-#import "LYBarDescTitleTableViewCell.h"
 #import "LYBarDescTableViewCell.h"
 #import "LYUserHttpTool.h"
 #import "LYHomePageHttpTool.h"

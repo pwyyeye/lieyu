@@ -2,17 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "yinhaozuo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "yinhaozuo@2x.png",
+      "filename" : "左@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "yinhaozuo@3x.png",
+      "filename" : "左@3x.png",
       "scale" : "3x"
     }
   ],

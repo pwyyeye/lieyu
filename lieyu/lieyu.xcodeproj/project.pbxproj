@@ -882,8 +882,6 @@
 		85EE803D1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE803B1C0AF3FD00958F76 /* LYBarPointTableViewCell.xib */; };
 		85EE80411C0AF49900958F76 /* LYBarSpecialTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE803F1C0AF49900958F76 /* LYBarSpecialTableViewCell.m */; };
 		85EE80421C0AF49900958F76 /* LYBarSpecialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE80401C0AF49900958F76 /* LYBarSpecialTableViewCell.xib */; };
-		85EE80461C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80441C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m */; };
-		85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85EE80451C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib */; };
 		85F43BAB1C11459400B04466 /* LYOrderWriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F43BA31C11459400B04466 /* LYOrderWriteTableViewCell.m */; };
 		85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F43BA41C11459400B04466 /* LYOrderWriteTableViewCell.xib */; };
 		85F43BAD1C11459400B04466 /* LYOrderInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F43BA61C11459400B04466 /* LYOrderInfoTableViewCell.m */; };
@@ -2753,9 +2751,6 @@
 		85EE803E1C0AF49900958F76 /* LYBarSpecialTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarSpecialTableViewCell.h; sourceTree = "<group>"; };
 		85EE803F1C0AF49900958F76 /* LYBarSpecialTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarSpecialTableViewCell.m; sourceTree = "<group>"; };
 		85EE80401C0AF49900958F76 /* LYBarSpecialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarSpecialTableViewCell.xib; sourceTree = "<group>"; };
-		85EE80431C0AF76E00958F76 /* LYBarDescTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarDescTitleTableViewCell.h; sourceTree = "<group>"; };
-		85EE80441C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarDescTitleTableViewCell.m; sourceTree = "<group>"; };
-		85EE80451C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarDescTitleTableViewCell.xib; sourceTree = "<group>"; };
 		85F43BA21C11459400B04466 /* LYOrderWriteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYOrderWriteTableViewCell.h; sourceTree = "<group>"; };
 		85F43BA31C11459400B04466 /* LYOrderWriteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYOrderWriteTableViewCell.m; sourceTree = "<group>"; };
 		85F43BA41C11459400B04466 /* LYOrderWriteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYOrderWriteTableViewCell.xib; sourceTree = "<group>"; };
@@ -6267,9 +6262,6 @@
 				85EE803E1C0AF49900958F76 /* LYBarSpecialTableViewCell.h */,
 				85EE803F1C0AF49900958F76 /* LYBarSpecialTableViewCell.m */,
 				85EE80401C0AF49900958F76 /* LYBarSpecialTableViewCell.xib */,
-				85EE80431C0AF76E00958F76 /* LYBarDescTitleTableViewCell.h */,
-				85EE80441C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m */,
-				85EE80451C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib */,
 				85EC6A011C18109A0082AA3E /* LYBarDescTableViewCell.h */,
 				85EC6A021C18109A0082AA3E /* LYBarDescTableViewCell.m */,
 				853C36071C72B43200F1703B /* LYBarIconTableViewCell.h */,
@@ -8738,6 +8730,7 @@
 				38D876551C17DEA100E2F284 /* typeBorder.png in Resources */,
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
 				851806861C2E89DC00006804 /* LYNewMessageTableViewCell.xib in Resources */,
+				850917FD1C97E6BA007981C0 /* loading26@2x.png in Resources */,
 				85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */,
 				ADD1B4661C528EE100A5237C /* qq_s@3x.png in Resources */,
 				853C4C6C1C311A5C00D48BA2 /* zengjia_icon.png in Resources */,
@@ -9127,7 +9120,6 @@
 				8551B4ED1C8EB8370057F0E7 /* UserNotificationViewController.m in Sources */,
 				85514EE31C761B1600E24C78 /* SignButton.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
-				85EE80461C0AF76E00958F76 /* LYBarDescTitleTableViewCell.m in Sources */,
 				85F43BAB1C11459400B04466 /* LYOrderWriteTableViewCell.m in Sources */,
 				AD198CC41C00368300AA654D /* TenpayModel.m in Sources */,
 				AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */,
