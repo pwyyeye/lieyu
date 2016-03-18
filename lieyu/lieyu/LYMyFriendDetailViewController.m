@@ -118,6 +118,7 @@
                 }
                 _zhiwuLal.text=[NSString stringWithFormat:@" %@ ",mytags];
             }
+            
             if(_customerModel.tag.count == 0 && _customerModel.tags.count == 0 && _customerModel.userTag.count == 0){
                 _zhiwuLal.text = @"保密";
             }
@@ -200,6 +201,7 @@
 
 - (void)configureThisView{
     _namelal.text = _result.usernick;
+    
     [_userImageView sd_setImageWithURL:[NSURL URLWithString:_result.avatar_img]];
     [_headerBGView sd_setImageWithURL:[NSURL URLWithString:_result.avatar_img]];
 //    _namelal.text = [_result valueForKey:@"usernick"]?[_result valueForKey:@"usernick"] : [_result valueForKey:@"username"];
@@ -235,10 +237,16 @@
     // 名字的W
     CGFloat nameW = size.width;
     _zhiwuWidth.constant = nameW + 20;
-
+    if([_result.isFriend isEqualToString:@"1"]){
+        [_setBtn setTitle:@"聊天" forState:UIControlStateNormal];
+    }else{
+        [_setBtn setTitle:@"打招呼" forState:UIControlStateNormal];
+    }
     for(int i = 0 ; i < _result.recentImages.count ; i ++){
         UIImageView *image = [imgArray objectAtIndex:i];
         [image sd_setImageWithURL:[NSURL URLWithString:[_result.recentImages objectAtIndex:i]]];
+        image.contentMode = UIViewContentModeScaleAspectFill;
+        image.clipsToBounds = YES;
     }
 }
 
@@ -272,7 +280,7 @@
         [MyUtil showCleanMessage:@"请先登录"];
         return;
     }
-    if(![_type isEqualToString:@"0"] && _type){
+    if([_result.isFriend isEqualToString:@"0"]){
        
         LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
         addFriendViewController.title=@"加好友";
