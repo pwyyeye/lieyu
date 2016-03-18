@@ -27,6 +27,8 @@
     NSString *_mp4Path;
     
     UIImage *mediaImage;
+    
+    BOOL isntFirstEdit;
 }
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 //@property (nonatomic, strong) NSMutableArray *shangchuanArray;
@@ -48,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupAllProperty];
-    
+//    self.TopicTitle = @"#今晚吃什么#";
     self.pageCount = 4;
     self.initCount = 0;
     
@@ -68,6 +70,10 @@
     
     self.title = @"发布动态";
     self.textView.delegate = self;
+
+    if(self.TopicTitle.length){
+        self.textView.text = self.TopicTitle;
+    }
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.extendedLayoutIncludesOpaqueBars = NO;
@@ -133,22 +139,41 @@
             self.label.text = [NSString stringWithFormat:@"%lu/800",self.textView.text.length];
         }
     }
+    
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if([text isEqualToString:@"\n"]){
         [self.textView resignFirstResponder];
         return NO;
+    }else if ([text isEqualToString:@"#"] && range.location == 0 && range.length == 0){
+        //每一次侦察，textview中第一个字符是＃
+        UIAlertView *alertview = [[UIAlertView alloc]initWithTitle:@"#" message:@"#" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok", nil];
+        alertview.tag = 100;
+        [alertview show];
     }
     return YES;
 }
+//
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    
+//}
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
-    if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+    if (!isntFirstEdit) {
         self.textView.text = @"";
-//        [self.textView setKeyboardAppearance:UIKeyboardAppearanceAlert];
+        isntFirstEdit = YES;
     }
-    
+//    if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+//        if (self.TopicTitle.length) {
+//            if ([self.textView.text isEqualToString:self.TopicTitle]) {
+//                self.textView.text = @"";
+//            }
+//        }else{
+//            self.textView.text = @"";
+//        }
+////        [self.textView setKeyboardAppearance:UIKeyboardAppearanceAlert];
+//    }
     [self.textView becomeFirstResponder];
 //    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 //    self.returnHandler = [[IQKeyboardReturnKeyHandler alloc]initWithViewController:self];
@@ -168,13 +193,19 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if([self.textView isFirstResponder]){
-        [self.textView resignFirstResponder];
-    }
-    if(buttonIndex == 1){
-        //退出编辑界面之后删除视频文件
-        [self deleteFile:self.mediaUrl];
-        [self.navigationController popViewControllerAnimated:YES];
+    if (alertView.tag == 100) {
+        if (buttonIndex == 1) {
+            NSLog(@"#");
+        }
+    }else{
+        if([self.textView isFirstResponder]){
+            [self.textView resignFirstResponder];
+        }
+        if(buttonIndex == 1){
+            //退出编辑界面之后删除视频文件
+            [self deleteFile:self.mediaUrl];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 

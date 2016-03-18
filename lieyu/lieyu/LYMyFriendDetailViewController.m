@@ -71,7 +71,7 @@
     self.DTView.layer.cornerRadius = 4;
     self.DTView.layer.masksToBounds = YES;
     imgArray = @[_image1,_image2,_image3,_image4];
-    if (_userID) {
+    if (_userID || _imUserId) {
         [self getData];
     }else{
         if (_type != nil) {
@@ -251,12 +251,23 @@
 }
 
 -(void)getData{
-    NSDictionary *dict = @{@"userid":self.userID};
+    NSDictionary *dict;
+    if (_userID) {
+        dict = @{@"userid":self.userID};
+    }else if(_imUserId){
+        dict = @{@"imuserId":self.imUserId};
+    }
+//    _imUserId = @"4S/qx5Cyu3Y=";
+//    dict = @{@"imuserId":_imUserId};
+//    = @{@"userid":self.userID};
 //    NSLog(@"%d",self.userModel.userid);
     __weak __typeof(self) weakSelf = self;
     [LYUserHttpTool GetUserInfomationWithID:dict complete:^(find_userInfoModel *result) {
         _result = result;
         [weakSelf configureThisView];
+        if (_imUserId) {
+            _userID = [NSString stringWithFormat:@"%d",_result.userid];
+        }
     }];
 }
 
@@ -284,8 +295,11 @@
        
         LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
         addFriendViewController.title=@"加好友";
-        addFriendViewController.customerModel=_customerModel;
+        if (_customerModel) {
+            addFriendViewController.customerModel=_customerModel;
+        }
         addFriendViewController.type=self.type;
+        addFriendViewController.userID = self.userID;
         [self.navigationController pushViewController:addFriendViewController animated:YES];
     }else{
         
@@ -296,7 +310,9 @@
             conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 接受者的 username，这里为举例。
             conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
         }else{
-            conversationVC.targetId = [NSString stringWithFormat:@"%@",[_result valueForKey:@"userid"]];
+            conversationVC.targetId = [NSString stringWithFormat:@"%d",_result.userid];
+            conversationVC.userName = _customerModel.usernick;
+            conversationVC.title = _customerModel.usernick;
 //            conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
 //            conversationVC.title = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
         }
@@ -331,20 +347,20 @@
 -(void)dealloc{
     NSLog(@"delloc");
 }
-
-- (IBAction)checkFans:(UIButton *)sender {
-    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
-    caresViewController.userId = self.userID;
-    caresViewController.type = @"1";
-    [self.navigationController pushViewController:caresViewController animated:YES];
-}
-
-- (IBAction)checkCares:(UIButton *)sender {
-    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
-    caresViewController.userId = self.userID;
-    caresViewController.type = @"0";
-    [self.navigationController pushViewController:caresViewController animated:YES];
-}
+//
+//- (IBAction)checkFans:(UIButton *)sender {
+//    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
+//    caresViewController.userId = self.userID;
+//    caresViewController.type = @"1";
+//    [self.navigationController pushViewController:caresViewController animated:YES];
+//}
+//
+//- (IBAction)checkCares:(UIButton *)sender {
+//    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
+//    caresViewController.userId = self.userID;
+//    caresViewController.type = @"0";
+//    [self.navigationController pushViewController:caresViewController animated:YES];
+//}
 
 - (IBAction)checkTrends:(UIButton *)sender {
     LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]initWithNibName:@"LYFriendsToUserMessageViewController" bundle:nil];

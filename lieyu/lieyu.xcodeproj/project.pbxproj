@@ -471,6 +471,8 @@
 		38B11C2D1C98303200AD3EB8 /* CareofViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B11C2B1C98303200AD3EB8 /* CareofViewController.m */; };
 		38B11C2E1C98303200AD3EB8 /* CareofViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B11C2C1C98303200AD3EB8 /* CareofViewController.xib */; };
 		38B11C361C98FB6200AD3EB8 /* LPFriendBriefInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B11C351C98FB6200AD3EB8 /* LPFriendBriefInfo.m */; };
+		38B11D2D1C9BE8A900AD3EB8 /* ChooseTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B11D2B1C9BE8A900AD3EB8 /* ChooseTopicViewController.m */; };
+		38B11D2E1C9BE8A900AD3EB8 /* ChooseTopicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B11D2C1C9BE8A900AD3EB8 /* ChooseTopicViewController.xib */; };
 		38C98CD11C60782D0084E6BD /* YUGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCE1C60782D0084E6BD /* YUGroup.png */; };
 		38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */; };
 		38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CD01C60782D0084E6BD /* YUGroup@3x.png */; };
@@ -2142,6 +2144,9 @@
 		38B11C2C1C98303200AD3EB8 /* CareofViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CareofViewController.xib; sourceTree = "<group>"; };
 		38B11C341C98FB6200AD3EB8 /* LPFriendBriefInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPFriendBriefInfo.h; sourceTree = "<group>"; };
 		38B11C351C98FB6200AD3EB8 /* LPFriendBriefInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPFriendBriefInfo.m; sourceTree = "<group>"; };
+		38B11D2A1C9BE8A900AD3EB8 /* ChooseTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTopicViewController.h; sourceTree = "<group>"; };
+		38B11D2B1C9BE8A900AD3EB8 /* ChooseTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseTopicViewController.m; sourceTree = "<group>"; };
+		38B11D2C1C9BE8A900AD3EB8 /* ChooseTopicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseTopicViewController.xib; sourceTree = "<group>"; };
 		38C98CCE1C60782D0084E6BD /* YUGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUGroup.png; sourceTree = "<group>"; };
 		38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@2x.png"; sourceTree = "<group>"; };
 		38C98CD01C60782D0084E6BD /* YUGroup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@3x.png"; sourceTree = "<group>"; };
@@ -5001,6 +5006,16 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		38B11D291C9BE86400AD3EB8 /* 选择话题 */ = {
+			isa = PBXGroup;
+			children = (
+				38B11D2A1C9BE8A900AD3EB8 /* ChooseTopicViewController.h */,
+				38B11D2B1C9BE8A900AD3EB8 /* ChooseTopicViewController.m */,
+				38B11D2C1C9BE8A900AD3EB8 /* ChooseTopicViewController.xib */,
+			);
+			name = "选择话题";
+			sourceTree = "<group>";
+		};
 		38C98DF61C61CF710084E6BD /* 刷新 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5534,6 +5549,7 @@
 		8540B6851C2CF3E800F16463 /* 发布动态 */ = {
 			isa = PBXGroup;
 			children = (
+				38B11D291C9BE86400AD3EB8 /* 选择话题 */,
 				380656601C4E5D1E003094C9 /* imagepicker */,
 				38EE91A31C3BE09C00361D07 /* AppleAPI */,
 				38AA7CC41C315A0000D9BCE8 /* preview.h */,
@@ -8139,6 +8155,7 @@
 				ADF88E5F1C102E4F00CF5DED /* hongseStar.png in Resources */,
 				38E5D7F41C12DF0C004B49D2 /* comment@3x.png in Resources */,
 				ADE1C5CC1C730E1C0011D4AB /* 更新23@2x.png in Resources */,
+				38B11D2E1C9BE8A900AD3EB8 /* ChooseTopicViewController.xib in Resources */,
 				15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */,
 				853D4E2C1C87E73D003277E5 /* SettingTableViewCell.xib in Resources */,
 				85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */,
@@ -8495,8 +8512,6 @@
 				38D876551C17DEA100E2F284 /* typeBorder.png in Resources */,
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
 				851806861C2E89DC00006804 /* LYNewMessageTableViewCell.xib in Resources */,
-				850917FD1C97E6BA007981C0 /* loading26@2x.png in Resources */,
-				85EE80471C0AF76E00958F76 /* LYBarDescTitleTableViewCell.xib in Resources */,
 				ADD1B4661C528EE100A5237C /* qq_s@3x.png in Resources */,
 				853C4C6C1C311A5C00D48BA2 /* zengjia_icon.png in Resources */,
 				3879F2581C0D32B900B72629 /* TaocanTableViewCell.xib in Resources */,
@@ -9128,6 +9143,7 @@
 				15A4CF3E1BD7321C00C22C01 /* DWTaoCanXQViewController.m in Sources */,
 				386AE3A01C5B61B70062105F /* SDCycleScrollView.m in Sources */,
 				8551B51D1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.m in Sources */,
+				38B11D2D1C9BE8A900AD3EB8 /* ChooseTopicViewController.m in Sources */,
 				385665591C773C10000DCFA5 /* LPImageView.m in Sources */,
 				ADF88EA51C1197C400CF5DED /* MJRefreshBackGifFooter.m in Sources */,
 				3824CA681C5B47E000C00732 /* ChoosePeople.m in Sources */,
