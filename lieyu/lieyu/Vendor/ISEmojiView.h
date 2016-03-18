@@ -35,6 +35,8 @@
  */
 @property (nonatomic, strong) UIView *inputView;
 
+@property (nonatomic,strong) UIButton *sendBtn;
+
 /**
  *  Are animation allowed (default:YES)
  *
@@ -67,6 +69,8 @@
  *  @param deletebutton The delete button
  */
 -(void)emojiView:(ISEmojiView *)emojiView didPressDeleteButton:(UIButton *)deletebutton;
+
+- (void)emojiView:(ISEmojiView *)emojiView didPressSendButton:(UIButton *)sendbutton;
 
 @end
 

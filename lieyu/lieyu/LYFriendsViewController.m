@@ -93,6 +93,7 @@
         
         NSString *jubaoMomentID;//要删除的动态ID
         NSString *jubaoUserID;//被举报人的ID
+        ISEmojiView *_emojiView;//表情键盘
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -131,11 +132,6 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
-    //    NSArray *array = _dataArray[0];
-    //    if(array.count){
-    //        [self getDataFriendsWithSetContentOffSet:NO];
-    //    }
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -143,21 +139,6 @@
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
 }
-
-/*
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    if (change[@"new"]) {
-        
-    }else{
-        [UIView animateWithDuration:.4 animations:^{
-            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
-        }completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.2 animations:^{
-                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
-            }];
-        }];
-    }
-} */
 
 #pragma mark - 获取我的未读消息数
 - (void)getFriendsNewMessage{
@@ -208,16 +189,6 @@
     [self getDataFriendsWithSetContentOffSet:NO needLoading:YES];
     
     [self getRecentMessage];
-    
-    
-//    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(myClickSel)];
-//    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
-//    [_tableView addGestureRecognizer:swipeRight];
-//    
-//    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(friendsClickSel)];
-//    swipeRight.direction = UISwipeGestureRecognizerDirectionLeft;
-//    [_tableView addGestureRecognizer:swipeLeft];
-
 }
 
 - (void)friendsClickSel{
@@ -453,10 +424,6 @@
 
 #pragma mark - 设置导航栏玩友圈和我的按钮及发布动态按钮
 - (void)setupNavMenuView{
-  /*  self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor]CGColor];
-    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 1);
-    self.navigationController.navigationBar.layer.shadowOpacity = 0.5;
-    self.navigationController.navigationBar.layer.shadowRadius = 1; */
     
     _vLine = [[UIView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 1) / 2.f, 16, 0.3, 12)];
     _vLine.backgroundColor = RGBA(255, 255, 255, 0.5);
@@ -1024,7 +991,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(0, SCREEN_HEIGHT , SCREEN_WIDTH, 58);
-    _commentView.bgView.layer.borderColor = RGBA(0,0,0, .5).CGColor;
+    _commentView.bgView.layer.borderColor = RGBA(200,200,200, .2).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
     
@@ -1051,6 +1018,20 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 //    } completion:^(BOOL finished) {
 //        
 //    }];
+    
+        [_commentView.textField addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptionNew) context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    NSLog(@"-->%@",change[@"new"]);
+    NSString *newStr =change[@"new"];
+    if (newStr.length) {
+        [_emojiView.sendBtn setBackgroundColor:RGBA(10, 96, 255, 1)];
+         [_emojiView.sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }else {
+         [_emojiView.sendBtn setTitleColor:RGBA(114, 114, 114, 1) forState:UIControlStateNormal];
+        [_emojiView.sendBtn setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 - (void)keyBorderApearce:(NSNotification *)note{
@@ -1073,22 +1054,29 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
+        [button setImage:[UIImage imageNamed:@"biaoqing_icon_keybo"] forState:UIControlStateNormal];
         _commentView.btn_send_cont_width.constant = 60;
         [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
         [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
         [self updateViewConstraints];
     [_commentView.textField endEditing:YES];
-    ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
-    emojiView.delegate = self;
-    emojiView.inputView = _commentView.textField;
-    _commentView.textField.inputView = emojiView;
+    _emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
+    _emojiView.delegate = self;
+        _emojiView.backgroundColor = RGBA(244, 244, 246, 1);
+    _emojiView.inputView = _commentView.textField;
+    _commentView.textField.inputView = _emojiView;
     [_commentView.textField becomeFirstResponder];
     [UIView animateWithDuration:.1 animations:^{
-        CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(emojiView.frame);
+        CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(_emojiView.frame);
         _commentView.frame = CGRectMake(0,y , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
         NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
     }];
+        if (_commentView.textField.text.length) {
+            [_emojiView.sendBtn setBackgroundColor:RGBA(10, 96, 255, 1)];
+            [_emojiView.sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
     }else{
+        [button setImage:[UIImage imageNamed:@"biaoqing_icon"] forState:UIControlStateNormal];
         [_commentView.textField endEditing:YES];
         _commentView.textField.inputView = UIKeyboardAppearanceDefault;
         _commentView.btn_send_cont_width.constant = 0;
@@ -1100,6 +1088,10 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 }
 #pragma mark - WTT
 - (void)sendMessageClick:(UIButton *)button{
+    [self textFieldShouldReturn:_commentView.textField];
+}
+
+- (void)emojiView:(ISEmojiView *)emojiView didPressSendButton:(UIButton *)sendbutton{
     [self textFieldShouldReturn:_commentView.textField];
 }
 
@@ -1116,6 +1108,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [_commentView.textField removeObserver:self forKeyPath:@"text"];
     [_bigView removeFromSuperview];
     [textField endEditing:YES];
     if(!_commentView.textField.text.length) return NO;
@@ -1461,6 +1454,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                         [nameCell.btn_delete setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
                         [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
                         nameCell.btn_delete.hidden = NO;
+                        nameCell.btn_delete.enabled = YES;
                     }
                     if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){
                         nameCell.btn_delete.enabled = NO;
