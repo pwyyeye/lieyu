@@ -41,11 +41,20 @@
 
 - (IBAction)sendAct:(UIButton *)sender {
     NSDictionary *dic;
-    if([_type isEqualToString:@"4"]){
-        dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.id?_customerModel.id:_customerModel.userid?_customerModel.userid:_customerModel.friend],@"message":_messagetext.text,@"type":_type};
+    if(_userID){
+        if([_type isEqualToString:@"4"]){
+            dic=@{@"friendUserid":self.userID,@"message":_messagetext.text,@"type":_type};
+        }else{
+            dic=@{@"friendUserid":self.userID,@"message":_messagetext.text,@"type":_type};
+        }
     }else{
-        dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.userid?_customerModel.userid:_customerModel.friend],@"message":_messagetext.text,@"type":_type};
+        if([_type isEqualToString:@"4"]){
+            dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.id?_customerModel.id:_customerModel.userid?_customerModel.userid:_customerModel.friend],@"message":_messagetext.text,@"type":_type};
+        }else{
+            dic=@{@"friendUserid":[NSNumber numberWithInt:_customerModel.userid?_customerModel.userid:_customerModel.friend],@"message":_messagetext.text,@"type":_type};
+        }
     }
+    
     __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] addFriends:dic complete:^(BOOL result) {
         if(result){

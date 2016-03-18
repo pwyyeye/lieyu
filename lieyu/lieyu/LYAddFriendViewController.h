@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *messagetext;
 @property (retain, nonatomic)  CustomerModel *customerModel;
 @property (copy, nonatomic)  NSString *type;
+
+@property (nonatomic, strong) NSString *userID;
 @end
