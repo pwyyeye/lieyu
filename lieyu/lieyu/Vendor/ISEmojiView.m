@@ -32,7 +32,7 @@ static const CGFloat EmojiFontSize = 32;
         self.emojis = [NSArray arrayWithContentsOfFile:plistPath];
         
         //
-        NSInteger rowNum = (CGRectGetHeight(frame) / EmojiHeight);
+        NSInteger rowNum = ((CGRectGetHeight(frame) - 40) / EmojiHeight);
         NSInteger colNum = (CGRectGetWidth(frame) / EmojiWidth);
         NSInteger numOfPage = ceil((float)[self.emojis count] / (float)(rowNum * colNum));
         
@@ -74,8 +74,9 @@ static const CGFloat EmojiFontSize = 32;
             if (row == (rowNum - 1) && column == (colNum - 1)) {
                 // last position of page, add delete button
                 
-                ISDeleteButton *deleteButton = [ISDeleteButton buttonWithType:UIButtonTypeCustom];
+                UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
                 [deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+                [deleteButton setImage:[UIImage imageNamed:@"emojDelete"] forState:UIControlStateNormal];
                 deleteButton.frame = currentRect;
                 deleteButton.tintColor = [UIColor blackColor];
                 [self.scrollView addSubview:deleteButton];
@@ -102,9 +103,11 @@ static const CGFloat EmojiFontSize = 32;
         self.pageControl.currentPage = 0;
         self.pageControl.backgroundColor = [UIColor clearColor];
         self.pageControl.numberOfPages = numOfPage;
+        self.pageControl.pageIndicatorTintColor = RGBA(200, 200,200, 1);
+        self.pageControl.currentPageIndicatorTintColor = RGBA(120, 120, 120, 1);
         CGSize pageControlSize = [self.pageControl sizeForNumberOfPages:numOfPage];
         self.pageControl.frame = CGRectMake(CGRectGetMidX(frame) - (pageControlSize.width / 2),
-                                            CGRectGetHeight(frame) - pageControlSize.height + 5,
+                                            CGRectGetHeight(frame) - pageControlSize.height + 5 - 40,
                                             pageControlSize.width,
                                             pageControlSize.height);
         [self.pageControl addTarget:self action:@selector(pageControlTouched:) forControlEvents:UIControlEventValueChanged];
@@ -114,8 +117,42 @@ static const CGFloat EmojiFontSize = 32;
         self.popAnimationEnable = YES;
         
         self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        
+        UIView *sendView = [[UIView alloc]initWithFrame:CGRectMake(0, frame.size.height - 40, SCREEN_WIDTH, 40)];
+        sendView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:sendView];
+        
+        UIImageView *shadowImgView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60 - 37, 0, 37, 40)];
+        shadowImgView.image = [UIImage imageNamed:@"emojShadow"];
+        [sendView addSubview:shadowImgView];
+        
+        _sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 0, 60, 40)];
+        [_sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+        [_sendBtn setTitleColor:RGBA(114, 114, 114, 1) forState:UIControlStateNormal];
+        _sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+
+        [_sendBtn setBackgroundColor:RGBA(250, 250, 250, 1)];
+//        _sendBtn.layer.borderColor = RGBA(244, 244, 246, 1).CGColor;
+//        _sendBtn.layer.borderWidth = 0.3;
+        [_sendBtn addTarget:self action:@selector(sendClick:) forControlEvents:UIControlEventTouchUpInside];
+        [sendView addSubview:_sendBtn];
+        
+        UIView *grayView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+        grayView.backgroundColor = RGBA(244, 244, 246, 1);
+        [sendView addSubview:grayView];
+        
+        UIButton *emojNormal = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 20, 20)];
+        emojNormal.backgroundColor = RGBA(244, 244, 246, 1);
+        [emojNormal setImage:[UIImage imageNamed:@"emojNormal"] forState:UIControlStateNormal];
+        [sendView addSubview:emojNormal];
     }
     return self;
+}
+
+- (void)sendClick:(UIButton *)button{
+    if ([_delegate respondsToSelector:@selector(emojiView:didPressSendButton:)]) {
+        [_delegate emojiView:self didPressSendButton:button];
+    }
 }
 
 - (void)pageControlTouched:(UIPageControl *)sender {
@@ -201,12 +238,12 @@ static const CGFloat EmojiFontSize = 32;
 
     // Rectangle Drawing
     UIBezierPath* rectanglePath = UIBezierPath.bezierPath;
-    [rectanglePath moveToPoint: CGPointMake(5, 25.05)];
-    [rectanglePath addLineToPoint: CGPointMake(20.16, 36)];
-    [rectanglePath addLineToPoint: CGPointMake(45.5, 36)];
-    [rectanglePath addLineToPoint: CGPointMake(45.5, 13.5)];
-    [rectanglePath addLineToPoint: CGPointMake(20.16, 13.5)];
-    [rectanglePath addLineToPoint: CGPointMake(5, 25.05)];
+    [rectanglePath moveToPoint: CGPointMake(10, 25.05)];
+    [rectanglePath addLineToPoint: CGPointMake(20.16, 33)];
+    [rectanglePath addLineToPoint: CGPointMake(40.5, 33)];
+    [rectanglePath addLineToPoint: CGPointMake(40.5, 16.5)];
+    [rectanglePath addLineToPoint: CGPointMake(20.16, 16.5)];
+    [rectanglePath addLineToPoint: CGPointMake(10, 25.05)];
     [rectanglePath closePath];
     [self.tintColor setStroke];
     rectanglePath.lineWidth = 1;
