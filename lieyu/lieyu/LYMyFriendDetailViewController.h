@@ -37,6 +37,7 @@
 - (IBAction)addCareof:(UIButton *)sender;
 
 @property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *imUserId;
 
 @property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
 @property (weak, nonatomic) IBOutlet UIButton *setBtn;

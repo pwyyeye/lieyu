@@ -23,7 +23,7 @@
 @property (nonatomic, assign) int userid;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *usernick;
-
+@property (nonatomic, strong) NSString *isFriend;
 
 
 @end

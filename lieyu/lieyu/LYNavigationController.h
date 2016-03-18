@@ -10,4 +10,5 @@
 
 @interface LYNavigationController : UINavigationController
 @property (nonatomic,strong) UIVisualEffectView *navBar;
+@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *percentDrivenInteractiveTransition;
 @end

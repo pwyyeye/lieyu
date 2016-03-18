@@ -30,18 +30,6 @@
     _titleArray = @[@"咬手鲨鱼牙",@"真心话大冒险",@"大话骰"];
     [_collectionView registerNib:[UINib nibWithNibName:@"FindGameCenterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"FindGameCenterCollectionViewCell"];
     [self getData];
-    
-//    UIScreenEdgePanGestureRecognizer *ges = self.view.gestureRecognizers;
-    NSLog(@"--------->%@", self.navigationController.view.gestureRecognizers);
-    
-//    UIScreenEdgePanGestureRecognizer  * screenEdge = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:self action:@selector(screenEdge:)];
-//    screenEdge.edges = UIRectEdgeLeft;
-//    [self.view addGestureRecognizer:screenEdge];
-    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
-    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
-//     NSLog(@"--------->%@", self.navigationController.view.gestureRecognizers.firstObject);
-    screenGes.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:screenGes];
 }
 
 - (void)getData{
@@ -51,10 +39,6 @@
         _gameListArray = gameListArray;
         [weakSelf.collectionView reloadData];
     }];
-}
-
-- (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
-    
 }
 
 

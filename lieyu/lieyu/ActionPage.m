@@ -163,9 +163,7 @@
     __weak __typeof(self) weakSelf = self;
     [LYHomePageHttpTool getActivityListWithPara:dic compelte:^(NSMutableArray *result) {
         if (result.count > 0) {
-//            if(warningLabel){
-                [warningLabel removeFromSuperview];
-//            }
+            [warningLabel removeFromSuperview];
             [actionList addObjectsFromArray:result];
             [weakSelf.tableView reloadData];
             if(weakSelf.tableView.contentSize.height < SCREEN_HEIGHT - 64){

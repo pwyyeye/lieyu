@@ -1,31 +1,22 @@
 //
-//  LYFindConversationViewController.m
+//  ChooseTopicViewController.m
 //  lieyu
 //
-//  Created by 狼族 on 16/3/15.
+//  Created by 王婷婷 on 16/3/18.
 //  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "LYFindConversationViewController.h"
-#import "LYMyFriendDetailViewController.h"
+#import "ChooseTopicViewController.h"
 
-@interface LYFindConversationViewController ()
+@interface ChooseTopicViewController ()
 
 @end
 
-@implementation LYFindConversationViewController
+@implementation ChooseTopicViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-}
-
-- (void)didTapCellPortrait:(NSString *)userId{
-    NSLog(@"------>%@",userId);
-    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
-    myFriendVC.imUserId = userId;
-    [self.navigationController pushViewController:myFriendVC animated:YES];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {

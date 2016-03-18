@@ -71,7 +71,7 @@
     self.DTView.layer.cornerRadius = 4;
     self.DTView.layer.masksToBounds = YES;
     imgArray = @[_image1,_image2,_image3,_image4];
-    if (_userID) {
+    if (_userID || _imUserId) {
         [self getData];
     }else{
         if (_type != nil) {
@@ -118,6 +118,7 @@
                 }
                 _zhiwuLal.text=[NSString stringWithFormat:@" %@ ",mytags];
             }
+            
             if(_customerModel.tag.count == 0 && _customerModel.tags.count == 0 && _customerModel.userTag.count == 0){
                 _zhiwuLal.text = @"保密";
             }
@@ -200,6 +201,7 @@
 
 - (void)configureThisView{
     _namelal.text = _result.usernick;
+    
     [_userImageView sd_setImageWithURL:[NSURL URLWithString:_result.avatar_img]];
     [_headerBGView sd_setImageWithURL:[NSURL URLWithString:_result.avatar_img]];
 //    _namelal.text = [_result valueForKey:@"usernick"]?[_result valueForKey:@"usernick"] : [_result valueForKey:@"username"];
@@ -235,20 +237,37 @@
     // 名字的W
     CGFloat nameW = size.width;
     _zhiwuWidth.constant = nameW + 20;
-
+    if([_result.isFriend isEqualToString:@"1"]){
+        [_setBtn setTitle:@"聊天" forState:UIControlStateNormal];
+    }else{
+        [_setBtn setTitle:@"打招呼" forState:UIControlStateNormal];
+    }
     for(int i = 0 ; i < _result.recentImages.count ; i ++){
         UIImageView *image = [imgArray objectAtIndex:i];
         [image sd_setImageWithURL:[NSURL URLWithString:[_result.recentImages objectAtIndex:i]]];
+        image.contentMode = UIViewContentModeScaleAspectFill;
+        image.clipsToBounds = YES;
     }
 }
 
 -(void)getData{
-    NSDictionary *dict = @{@"userid":self.userID};
+    NSDictionary *dict;
+    if (_userID) {
+        dict = @{@"userid":self.userID};
+    }else if(_imUserId){
+        dict = @{@"imuserId":self.imUserId};
+    }
+//    _imUserId = @"4S/qx5Cyu3Y=";
+//    dict = @{@"imuserId":_imUserId};
+//    = @{@"userid":self.userID};
 //    NSLog(@"%d",self.userModel.userid);
     __weak __typeof(self) weakSelf = self;
     [LYUserHttpTool GetUserInfomationWithID:dict complete:^(find_userInfoModel *result) {
         _result = result;
         [weakSelf configureThisView];
+        if (_imUserId) {
+            _userID = [NSString stringWithFormat:@"%d",_result.userid];
+        }
     }];
 }
 
@@ -272,12 +291,15 @@
         [MyUtil showCleanMessage:@"请先登录"];
         return;
     }
-    if(![_type isEqualToString:@"0"] && _type){
+    if([_result.isFriend isEqualToString:@"0"]){
        
         LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
         addFriendViewController.title=@"加好友";
-        addFriendViewController.customerModel=_customerModel;
+        if (_customerModel) {
+            addFriendViewController.customerModel=_customerModel;
+        }
         addFriendViewController.type=self.type;
+        addFriendViewController.userID = self.userID;
         [self.navigationController pushViewController:addFriendViewController animated:YES];
     }else{
         
@@ -288,7 +310,9 @@
             conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 接受者的 username，这里为举例。
             conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
         }else{
-            conversationVC.targetId = [NSString stringWithFormat:@"%@",[_result valueForKey:@"userid"]];
+            conversationVC.targetId = [NSString stringWithFormat:@"%d",_result.userid];
+            conversationVC.userName = _customerModel.usernick;
+            conversationVC.title = _customerModel.usernick;
 //            conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
 //            conversationVC.title = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
         }
@@ -323,20 +347,20 @@
 -(void)dealloc{
     NSLog(@"delloc");
 }
-
-- (IBAction)checkFans:(UIButton *)sender {
-    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
-    caresViewController.userId = self.userID;
-    caresViewController.type = @"1";
-    [self.navigationController pushViewController:caresViewController animated:YES];
-}
-
-- (IBAction)checkCares:(UIButton *)sender {
-    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
-    caresViewController.userId = self.userID;
-    caresViewController.type = @"0";
-    [self.navigationController pushViewController:caresViewController animated:YES];
-}
+//
+//- (IBAction)checkFans:(UIButton *)sender {
+//    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
+//    caresViewController.userId = self.userID;
+//    caresViewController.type = @"1";
+//    [self.navigationController pushViewController:caresViewController animated:YES];
+//}
+//
+//- (IBAction)checkCares:(UIButton *)sender {
+//    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
+//    caresViewController.userId = self.userID;
+//    caresViewController.type = @"0";
+//    [self.navigationController pushViewController:caresViewController animated:YES];
+//}
 
 - (IBAction)checkTrends:(UIButton *)sender {
     LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]initWithNibName:@"LYFriendsToUserMessageViewController" bundle:nil];

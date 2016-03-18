@@ -38,11 +38,6 @@
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"FindNotificationTableViewCell" bundle:nil] forCellReuseIdentifier:@"FindNotificationTableViewCell"];
    
-    
-    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
-    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
-    screenGes.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:screenGes];
 }
 
 - (void)getData{
@@ -60,10 +55,6 @@
             [_tableView reloadData];
         }];
     }];
-}
-
-- (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
-    
 }
 
 

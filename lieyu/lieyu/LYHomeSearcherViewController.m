@@ -56,14 +56,29 @@
     datalist=[[NSMutableArray alloc]init];
     _searchBar.returnKeyType = UIReturnKeySearch;
 
-    for (id img in _searchBar.subviews)
+    for (id img in (_searchBar.subviews[0]).subviews)
     {
+        NSLog(@"%@",(_searchBar.subviews[0]).subviews);
         if ([img isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
         {
-            [img removeFromSuperview];
+//            [img removeFromSuperview];
+
         }
+        if ([img isKindOfClass:NSClassFromString(@"UISearchBarTextField")])
+        {
+            UITextField *textField = (UITextField *)img;
+//            textField.clipsToBounds = YES;
+            textField.backgroundColor = RGBA(234, 235, 240, 1);
+        }
+        
     }
+    _searchBar.backgroundImage = [MyUtil getImageFromColor:[UIColor whiteColor]];
+    _searchBar.barTintColor = [UIColor whiteColor];
     
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_searchBar.frame), SCREEN_WIDTH, 0.5)];
+    lineView.backgroundColor = RGBA(228, 229, 230, 1);
+    [self.view addSubview:lineView];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -239,7 +254,7 @@
          if (Req_Success == ermsg.state)
          {
              if (barList.count == PAGESIZE)
-             {
+             { 
                  weakSelf.curPageIndex = 2;
                  weakSelf.collectView.mj_footer.hidden = NO;
              }
