@@ -31,17 +31,8 @@
     _label_time.text = _findNewList.createDate;
     _label_content.text = _findNewList.content;
     
-    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
-    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
-    screenGes.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:screenGes];
-    
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
     [_View_bg addGestureRecognizer:tapGes];
-}
-
-- (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
-    
 }
 
 - (void)tapClick{
