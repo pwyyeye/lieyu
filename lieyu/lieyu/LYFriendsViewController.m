@@ -1556,20 +1556,6 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                     }
                 }
                     break;
-                case 9://无赞时为评论 有赞为赞
-                {
-                    if (recentM.commentNum.integerValue >= 1) {
-                        LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
-                        allCommentCell.recentM = recentM;
-                        return allCommentCell;
-                    }else{
-                        FriendsCommentModel *commentModel = recentM.commentList[indexPath.row - 4];
-                        LYFriendsCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCommentCellID forIndexPath:indexPath];
-                        commentCell.imageV_comment.hidden = YES;
-                        commentCell.commentM = commentModel;
-                        return commentCell;
-                    }
-                }
                     
                 default:{ //评论 4-8
                     if(!recentM.commentList.count){
