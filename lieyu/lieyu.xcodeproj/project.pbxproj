@@ -1172,6 +1172,8 @@
 		AD44F95D1C9D27730030F5C2 /* emojNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = AD44F9541C9D27730030F5C2 /* emojNormal.png */; };
 		AD44F95E1C9D27730030F5C2 /* emojShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD44F9551C9D27730030F5C2 /* emojShadow@2x.png */; };
 		AD44F95F1C9D27730030F5C2 /* emojShadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD44F9561C9D27730030F5C2 /* emojShadow@3x.png */; };
+		AD44F9601C9D28AF0030F5C2 /* transparentBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11D341C9D24DC00AD3EB8 /* transparentBG@3x.png */; };
+		AD44F9611C9D28B10030F5C2 /* transparentBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B11D331C9D24DC00AD3EB8 /* transparentBG@2x.png */; };
 		AD4EA8561C546B110056E560 /* MineBigBG@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD4EA8541C546B110056E560 /* MineBigBG@2x.jpg */; };
 		AD4EA8571C546B110056E560 /* MineBigBG@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD4EA8551C546B110056E560 /* MineBigBG@3x.jpg */; };
 		AD4EA8661C5476AF0056E560 /* launchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD4EA8641C5476AF0056E560 /* launchImage@2x.png */; };
@@ -8107,6 +8109,7 @@
 				A2FD57671BAFE6E500CFFF92 /* KuCunCell.xib in Resources */,
 				ADE1C46A1C70588E0011D4AB /* HomeMenusCollectionViewCell.xib in Resources */,
 				38EDEC6E1C5CB29D00694758 /* shoppingCar_High@3x.png in Resources */,
+				AD44F9611C9D28B10030F5C2 /* transparentBG@2x.png in Resources */,
 				ADFFA6921C16DFD600D9BD2A /* smallPlace.png in Resources */,
 				85F66F161C565559005D1CD8 /* HomeBarCollectionViewCell.xib in Resources */,
 				853C4C841C311A9900D48BA2 /* dizhi_icon.png in Resources */,
@@ -8342,6 +8345,7 @@
 				381A01DC1C14229F00592485 /* more_purper.png in Resources */,
 				15E240631BB1237E0090D240 /* BiaoQianChooseViewController.xib in Resources */,
 				ADE1C5D01C730E1C0011D4AB /* 更新27@2x.png in Resources */,
+				AD44F9601C9D28AF0030F5C2 /* transparentBG@3x.png in Resources */,
 				3812C5521C57B76100F4DD6B /* backViewWithCorner@2x.png in Resources */,
 				15844BCF1BE1EF5000247FBC /* LYAddFriendViewController.xib in Resources */,
 				38E5D7C31C128C44004B49D2 /* triangle_down@2x.png in Resources */,
