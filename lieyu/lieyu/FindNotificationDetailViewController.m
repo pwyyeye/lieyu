@@ -36,10 +36,10 @@
     [LYFindHttpTool getNotificationMessageListWithParams:dic compelte:^(NSArray *dataArray) {
         _dataArray = dataArray;
         [weakSelf.tableView reloadData];
-        if (dataArray.count) {
+//        if (dataArray.count) {
             NSDictionary *dic = @{@"type":_type,@"read":@"1"};
             [LYFindHttpTool NotificationMessageListReadedWithParams:dic compelte:nil];
-        }
+//        }
     }];
 }
 
