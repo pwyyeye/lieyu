@@ -15,6 +15,7 @@
 #import "UserTagModel.h"
 #import "MineUserNotification.h"
 #import "LPFriendBriefInfo.h"
+#import "TopicModel.h"
 
 @implementation LYUserHttpTool
 
@@ -1409,8 +1410,10 @@
         NSString *code = [response valueForKey:@"errorcode"];
         NSArray *items = [[response valueForKey:@"data"] valueForKey:@"items"];
         if ([code isEqualToString:@"1"]) {
-            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[LPFriendBriefInfo mj_keyValuesArrayWithObjectArray:items]];
-            result(tempArr);
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[LPFriendBriefInfo mj_objectArrayWithKeyValuesArray:items]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                result(tempArr);
+            });
         }else{
             [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
         }
@@ -1427,6 +1430,28 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_ADD_CARE baseURL:LY_SERVER params:params success:^(id response) {
         [app stopLoading];
     } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 获取话题列表
++ (void)getTopicList:(NSDictionary *)params complete:(void (^)(NSArray *))result{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_GET_TOPICLIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorcode = [response valueForKey:@"errorcode"];
+        if([errorcode isEqualToString:@"1"]){
+            NSArray *dataArray = [[response valueForKey:@"data"] valueForKey:@"items"];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[TopicModel mj_objectArrayWithKeyValuesArray:dataArray]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                result(tempArr);
+            });
+        }else{
+            [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        NSLog(@"%@",err);
         [app stopLoading];
     }];
 }

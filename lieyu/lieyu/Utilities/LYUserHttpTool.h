@@ -202,4 +202,7 @@
 + (void)getCaresOrFansList:(NSDictionary *)params complete:(void(^)(NSMutableArray *))result;
 #pragma mark - 关注或取关
 + (void)addCareOrDeleteCare:(NSDictionary *)params complete:(void(^)())result;
+
+//获取话题列表
++ (void)getTopicList:(NSDictionary *)params complete:(void(^)(NSArray *))result;
 @end
