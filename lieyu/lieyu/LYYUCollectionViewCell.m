@@ -79,6 +79,8 @@
         _label_constell_consWidth.constant = size.width + 20;
         [self updateConstraints];
         _label_constell.text = [MyUtil getAstroWithBirthday:orderModel.orderInfo.birthday];
+        _label_age.hidden = NO;
+        _label_constell.hidden = NO;
     }else{
         _label_age.hidden = YES;
         _label_constell.hidden = YES;
