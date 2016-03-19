@@ -75,10 +75,12 @@
     
     if (![MyUtil isEmptyString:orderModel.orderInfo.birthday]) {
         _label_age.text = [NSString stringWithFormat:@"%@岁",[MyUtil getAgefromDate:orderModel.orderInfo.birthday]];
-        CGSize size = [[MyUtil getAstroWithBirthday:orderModel.orderInfo.birthday] boundingRectWithSize:CGSizeMake(MAXFLOAT, 21) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+        CGSize size = [[MyUtil getAstroWithBirthday:orderModel.orderInfo.birthday] boundingRectWithSize:CGSizeMake(MAXFLOAT, 21) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;  
         _label_constell_consWidth.constant = size.width + 20;
         [self updateConstraints];
         _label_constell.text = [MyUtil getAstroWithBirthday:orderModel.orderInfo.birthday];
+//        _label_age.hidden = NO;
+        _label_constell.hidden = NO;
     }else{
         _label_age.hidden = YES;
         _label_constell.hidden = YES;
@@ -115,6 +117,7 @@
         _label_work_consWidth.constant = size.width + 20;
         [self updateConstraints];
         _label_work.text = orderModel.orderInfo.tags[0][@"tagname"];
+        _label_work.hidden = NO;
     }else{
         _label_work.hidden = YES;
     }

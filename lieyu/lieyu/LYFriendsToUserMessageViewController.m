@@ -76,10 +76,6 @@
     [self setupTableView];
     [self setupTableViewFresh];
     
-    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
-    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
-    screenGes.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:screenGes];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

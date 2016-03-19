@@ -47,17 +47,11 @@
     
     //[self setupRefresh];
     
-    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
-    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
-    screenGes.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:screenGes];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
-//    self.navigationController.navigationBar.hidden = NO;
-//    [self.navigationController setNavigationBarHidden:NO];
     
 }
 

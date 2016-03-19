@@ -53,10 +53,10 @@
     [[LYUserHttpTool shareInstance]getAddMeListWithParams:nil block:^(NSMutableArray *result) {
         [dataList addObjectsFromArray:result];
         [weakSelf.tableView reloadData];
-        if (result.count) {
+//        if (result.count) {
             NSDictionary *dic = @{@"type":@"11",@"read":@"1"};
             [LYFindHttpTool NotificationMessageListReadedWithParams:dic compelte:nil];
-        }
+//        }
     }];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

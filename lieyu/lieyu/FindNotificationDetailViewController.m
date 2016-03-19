@@ -29,15 +29,6 @@
     [_tableView registerNib:[UINib nibWithNibName:@"FindNotificatinDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"FindNotificatinDetailTableViewCell"];
     
     [self getData];
-    
-    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
-    UIScreenEdgePanGestureRecognizer *screenGes = [[UIScreenEdgePanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
-    screenGes.edges = UIRectEdgeLeft;
-    [self.view addGestureRecognizer:screenGes];
-}
-
-- (void)handleNavigationTransition:(UIGestureRecognizer *)ges{
-    
 }
 - (void)getData{
     NSDictionary *dic = @{@"type":_type};
@@ -45,10 +36,10 @@
     [LYFindHttpTool getNotificationMessageListWithParams:dic compelte:^(NSArray *dataArray) {
         _dataArray = dataArray;
         [weakSelf.tableView reloadData];
-        if (dataArray.count) {
+//        if (dataArray.count) {
             NSDictionary *dic = @{@"type":_type,@"read":@"1"};
             [LYFindHttpTool NotificationMessageListReadedWithParams:dic compelte:nil];
-        }
+//        }
     }];
 }
 

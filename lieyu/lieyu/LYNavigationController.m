@@ -8,7 +8,7 @@
 
 #import "LYNavigationController.h"
 
-@interface LYNavigationController ()
+@interface LYNavigationController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -65,20 +65,9 @@
     self.delegate=self;
     
     
-    
-    // 获取系统自带滑动手势的target对象
-   /* id target = self.interactivePopGestureRecognizer.delegate;
-    // 创建全屏滑动手势，调用系统自带滑动手势的target的action方法
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:target action:@selector(handleNavigationTransition:)];
-    // 设置手势代理，拦截手势触发
-    pan.delegate = self;
-    // 给导航控制器的view添加全屏滑动手势
-    [self.view addGestureRecognizer:pan];
-    // 禁止使用系统自带的滑动手势
-    self.interactivePopGestureRecognizer.enabled = NO; */
-
 }
-/*
+
+
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     // 注意：只有非根控制器才有滑动返回功能，根控制器没有。
@@ -88,7 +77,9 @@
         return NO;
     }
     return YES;
-} */
+}
+
+
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
