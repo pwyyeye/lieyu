@@ -8,11 +8,13 @@
 
 #import "ISEmojiView.h"
 
-static const CGFloat EmojiWidth = 53;
+
 static const CGFloat EmojiHeight = 50;
 static const CGFloat EmojiFontSize = 32;
 
-@interface ISEmojiView()<UIScrollViewDelegate>
+@interface ISEmojiView()<UIScrollViewDelegate>{
+    CGFloat EmojiWidth;
+}
 
 /**
  *  All emoji characters
@@ -26,6 +28,11 @@ static const CGFloat EmojiFontSize = 32;
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+        EmojiWidth = 53;
+        
+        if ([[MyUtil deviceString] isEqualToString:@"iPhone 6 Plus"]||[[MyUtil deviceString] isEqualToString:@"iPhone 6S Plus"]) {
+            EmojiWidth = 51;
+        }
         
         // init emojis
         NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ISEmojiList" ofType:@"plist"];
@@ -70,7 +77,7 @@ static const CGFloat EmojiFontSize = 32;
                                             row * EmojiHeight,
                                             EmojiWidth,
                                             EmojiHeight);
-            
+            NSLog(@"----%ld",column);
             if (row == (rowNum - 1) && column == (colNum - 1)) {
                 // last position of page, add delete button
                 
