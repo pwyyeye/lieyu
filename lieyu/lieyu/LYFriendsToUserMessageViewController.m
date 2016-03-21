@@ -62,8 +62,10 @@
     NSString *juBaoMomentID;//要举报的动态ID
     NSString *pingBiUserID;//要屏蔽的用户ID
     LYMyFriendDetailViewController *_friendDetailVC ;
+    ISEmojiView *_emojiView;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
@@ -784,10 +786,24 @@
     } completion:^(BOOL finished) {
         
     }];
+    
+    [_commentView.textField addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptionNew) context:nil];
 }
 
 - (void)sendMessageClick:(UIButton *)button{
     [self textFieldShouldReturn:_commentView.textField];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    NSLog(@"-->%@",change[@"new"]);
+    NSString *newStr =change[@"new"];
+    if (newStr.length) {
+        [_emojiView.sendBtn setBackgroundColor:RGBA(10, 96, 255, 1)];
+        [_emojiView.sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }else {
+        [_emojiView.sendBtn setTitleColor:RGBA(114, 114, 114, 1) forState:UIControlStateNormal];
+        [_emojiView.sendBtn setBackgroundColor:[UIColor whiteColor]];
+    }
 }
 
 
@@ -805,22 +821,29 @@
 - (void)emotionClick:(UIButton *)button{
     button.selected = !button.selected;
     if(button.selected){
+        [button setImage:[UIImage imageNamed:@"biaoqing_icon_keybo"] forState:UIControlStateNormal];
         _commentView.btn_send_cont_width.constant = 60;
         [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
         [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
         [self updateViewConstraints];
         [_commentView.textField endEditing:YES];
-        ISEmojiView *emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
-        emojiView.delegate = self;
-        emojiView.inputView = _commentView.textField;
-        _commentView.textField.inputView = emojiView;
+        _emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
+        _emojiView.delegate = self;
+        _emojiView.backgroundColor = RGBA(244, 244, 246, 1);
+        _emojiView.inputView = _commentView.textField;
+        _commentView.textField.inputView = _emojiView;
         [_commentView.textField becomeFirstResponder];
         [UIView animateWithDuration:.1 animations:^{
-            CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(emojiView.frame);
+            CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(_emojiView.frame);
           //  _commentView.frame = CGRectMake(0,y - 60 , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
             NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
         }];
+        if (_commentView.textField.text.length) {
+            [_emojiView.sendBtn setBackgroundColor:RGBA(10, 96, 255, 1)];
+            [_emojiView.sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
     }else{
+         [button setImage:[UIImage imageNamed:@"biaoqing_icon"] forState:UIControlStateNormal];
         _commentView.btn_send_cont_width.constant = 0;
         [_commentView.btn_send setTitle:@"" forState:UIControlStateNormal];
         [self updateViewConstraints];
@@ -833,17 +856,24 @@
         }];
     }
 }
+- (void)emojiView:(ISEmojiView *)emojiView didPressSendButton:(UIButton *)sendbutton{
+    [self textFieldShouldReturn:_commentView.textField];
+}
 
 - (void)bigViewGes{
 //    if (_commentView.textField.text.length) {
         defaultComment = _commentView.textField.text;
 //    }
+    [_commentView.textField removeObserver:self forKeyPath:@"text"];
+
     [_bigView removeFromSuperview];
     
 }
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [_commentView.textField removeObserver:self forKeyPath:@"text"];
+
     [_bigView removeFromSuperview];
     [textField endEditing:YES];
     if(!_commentView.textField.text.length) return NO;
