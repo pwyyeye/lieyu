@@ -15,6 +15,7 @@
 #import "IQKeyboardManager.h"
 #import "IQKeyboardReturnKeyHandler.h"
 #import "ImagePickerViewController.h"
+#import "ChooseTopicViewController.h"
 
 #define IMGwidth ( [UIScreen mainScreen].bounds.size.width - 20 ) / 3
 
@@ -111,7 +112,6 @@
 
 //退出程序以后删除tmp文件中所有内容
 -(void)dealloc{
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
@@ -146,12 +146,22 @@
     if([text isEqualToString:@"\n"]){
         [self.textView resignFirstResponder];
         return NO;
-    }else if ([text isEqualToString:@"#"] && range.location == 0 && range.length == 0){
-        //每一次侦察，textview中第一个字符是＃
-        UIAlertView *alertview = [[UIAlertView alloc]initWithTitle:@"#" message:@"#" delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok", nil];
-        alertview.tag = 100;
-        [alertview show];
     }
+//    else if ([text isEqualToString:@"#"] && range.location == 0 && range.length == 0){
+//        //每一次侦察，textview中第一个字符是＃
+//        if(!_TopicID.length && !_TopicTitle.length){
+//            //没有topicID也没有TopicTitle，是在外部打＃号
+//            ChooseTopicViewController *chooseTopicVC = [[ChooseTopicViewController alloc]initWithNibName:@"ChooseTopicViewController" bundle:nil];
+//            
+//            if(_barid){
+//                chooseTopicVC.barid = self.barid;
+//            }
+//            if (_type) {
+//                chooseTopicVC.type = self.type;
+//            }
+//            [self presentViewController:chooseTopicVC animated:YES completion:nil];
+//        }
+//    }
     return YES;
 }
 //

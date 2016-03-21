@@ -19,8 +19,12 @@
 @end
 
 @interface LYFriendsSendViewController : LYBaseViewController<UIActionSheetDelegate,UINavigationControllerDelegate,PullLocationInfo>
-@property (nonatomic, strong) NSString *TopicID;
-@property (nonatomic, strong) NSString *TopicTitle;
+@property (nonatomic, strong) NSString *TopicID;//话题ID
+@property (nonatomic, strong) NSString *TopicTitle;//话题名称
+
+@property (nonatomic, strong) NSString *type;//话题类型
+@property (nonatomic, strong) NSString *barid;//酒吧名字
+
 
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;

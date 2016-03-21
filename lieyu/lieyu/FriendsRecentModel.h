@@ -36,6 +36,8 @@
 @property (nonatomic,copy) NSString *usernick;
 @property (nonatomic,copy) NSString *friends_img;
 @property (nonatomic,copy) NSArray *tags;
+@property (nonatomic,copy) NSString *topicTypeId;
+@property (nonatomic,copy) NSString *topicTypeName;
 @property (nonatomic,unsafe_unretained) BOOL isMeSendMessage;
 +(NSArray *)initFormNSArray:(NSArray *)arr;
 + (FriendsRecentModel *)initFromNSDictionary:(NSDictionary *)dic;

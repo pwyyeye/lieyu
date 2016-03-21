@@ -9,5 +9,10 @@
 #import "LYBaseViewController.h"
 
 @interface ChooseTopicViewController : LYBaseViewController
+@property (nonatomic, strong) NSString *type;
+@property (nonatomic, strong) NSString *barid;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UITableView *myTableView;
 
+- (IBAction)cancelClick:(UIButton *)sender;
 @end
