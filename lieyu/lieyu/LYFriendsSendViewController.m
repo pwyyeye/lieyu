@@ -147,21 +147,21 @@
         [self.textView resignFirstResponder];
         return NO;
     }
-//    else if ([text isEqualToString:@"#"] && range.location == 0 && range.length == 0){
-//        //每一次侦察，textview中第一个字符是＃
-//        if(!_TopicID.length && !_TopicTitle.length){
-//            //没有topicID也没有TopicTitle，是在外部打＃号
-//            ChooseTopicViewController *chooseTopicVC = [[ChooseTopicViewController alloc]initWithNibName:@"ChooseTopicViewController" bundle:nil];
-//            
-//            if(_barid){
-//                chooseTopicVC.barid = self.barid;
-//            }
-//            if (_type) {
-//                chooseTopicVC.type = self.type;
-//            }
-//            [self presentViewController:chooseTopicVC animated:YES completion:nil];
-//        }
-//    }
+    else if ([text isEqualToString:@"#"] && range.location == 0 && range.length == 0){
+        //每一次侦察，textview中第一个字符是＃
+        if(!_TopicID.length && !_TopicTitle.length){
+            //没有topicID也没有TopicTitle，是在外部打＃号
+            ChooseTopicViewController *chooseTopicVC = [[ChooseTopicViewController alloc]initWithNibName:@"ChooseTopicViewController" bundle:nil];
+            
+            if(_barid){
+                chooseTopicVC.barid = self.barid;
+            }
+            if (_type) {
+                chooseTopicVC.type = self.type;
+            }
+            [self presentViewController:chooseTopicVC animated:YES completion:nil];
+        }
+    }
     return YES;
 }
 //
