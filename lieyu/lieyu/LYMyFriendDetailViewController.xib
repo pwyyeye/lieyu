@@ -14,6 +14,7 @@
                 <outlet property="image3" destination="7zg-ZK-djV" id="W4v-jX-ABW"/>
                 <outlet property="image4" destination="SAp-fA-go3" id="v6d-Qd-2AX"/>
                 <outlet property="namelal" destination="7jR-Td-yoH" id="I8H-lo-x5s"/>
+                <outlet property="setBG" destination="QJO-1e-oxG" id="4r2-NL-0Vc"/>
                 <outlet property="setBtn" destination="b8L-1u-jer" id="n4h-oR-Ckz"/>
                 <outlet property="sexImageView" destination="7pG-d2-QDP" id="yam-K6-BQW"/>
                 <outlet property="userImageView" destination="4CY-ix-pKh" id="d8y-ww-31e"/>

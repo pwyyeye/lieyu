@@ -41,6 +41,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *guanzhuBtn;
 @property (weak, nonatomic) IBOutlet UIButton *setBtn;
+@property (weak, nonatomic) IBOutlet UIView *setBG;
 
 @property (weak, nonatomic) IBOutlet UILabel *age;
 @property (weak, nonatomic) IBOutlet UILabel *delLal;
