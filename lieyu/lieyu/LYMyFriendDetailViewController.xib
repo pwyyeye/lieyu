@@ -66,6 +66,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparentBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="h5B-pU-ApY">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4CY-ix-pKh">
                                 <rect key="frame" x="128" y="69" width="64" height="64"/>
                                 <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -146,9 +149,6 @@
                                     <action selector="backForward:" destination="-1" eventType="touchUpInside" id="hJt-oc-4MI"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparentBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="h5B-pU-ApY">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
-                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="syu-JO-m7k" firstAttribute="top" secondItem="SzL-Zp-jLY" secondAttribute="top" constant="20" id="0Lw-a1-zMA"/>
