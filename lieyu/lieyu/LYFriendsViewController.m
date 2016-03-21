@@ -1047,6 +1047,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 //    if (_commentView.textField.text.length) {
         defaultComment = _commentView.textField.text;
 //    }
+    [_commentView.textField removeObserver:self forKeyPath:@"text"];
     [_bigView removeFromSuperview];
     
 }

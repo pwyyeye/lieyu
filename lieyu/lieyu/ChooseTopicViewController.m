@@ -13,6 +13,7 @@
 @interface ChooseTopicViewController ()<UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 {
     NSArray *dataArray;
+    NSMutableArray *newDataArr;//进行筛选的新的话题数组
 }
 @end
 
@@ -52,7 +53,11 @@
         dict = nil;
     }
     [LYUserHttpTool getTopicList:dict complete:^(NSArray *dataList) {
+        for(TopicModel *model in dataList){
+            model.name = [NSString stringWithFormat:@"#%@#",model.name];
+        }
         dataArray = dataList;
+        newDataArr = [[NSMutableArray alloc]initWithArray:dataArray];
         [self.myTableView reloadData];
     }];
 }
@@ -68,14 +73,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return dataArray.count;
+        return newDataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchTopicCell"];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchTopicCell"];
-        cell.textLabel.text = [NSString stringWithFormat:@"#%@#",((TopicModel *)[dataArray objectAtIndex:indexPath.row]).name];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",((TopicModel *)[newDataArr objectAtIndex:indexPath.row]).name];
     }
     return cell;
 }
@@ -96,7 +101,14 @@
 
 //文本框已有值
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    NSLog(@"didChange:%@",searchText);
+//    NSLog(@"didChange:%@",searchText);
+    [newDataArr removeAllObjects];
+    for (TopicModel *model in dataArray) {
+        if ([model.name containsString:searchText]) {
+            [newDataArr addObject:model];
+        }
+    }
+    [self.myTableView reloadData];
 }
 
 - (IBAction)cancelClick:(UIButton *)sender {

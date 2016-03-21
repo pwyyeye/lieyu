@@ -37,6 +37,15 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+//    NSLog(@"%@",self.navigationController.viewControllers);
+    UIViewController *VC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
+    if([VC isKindOfClass:[LYFindConversationViewController class]]){
+        self.setBtn.backgroundColor = [UIColor grayColor];
+        self.setBtn.enabled = NO;
+    }else{
+        self.setBtn.enabled = YES;
+        self.setBtn.backgroundColor = [UIColor clearColor];
+    }
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController setNavigationBarHidden:YES];
 }
