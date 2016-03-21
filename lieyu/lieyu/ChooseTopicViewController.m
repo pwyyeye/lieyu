@@ -20,12 +20,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.searchBar.text = @"#";
     [self.searchBar becomeFirstResponder];
     self.searchBar.delegate = self;
     [self getData];
     self.myTableView.dataSource = self;
     self.myTableView.delegate = self;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.searchBar.text = @"#";
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.searchBar resignFirstResponder];
 }
 
 - (void)getData{
@@ -76,11 +85,16 @@
 }
 
 #pragma mark - searchBar代理
+//当前输入值
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     NSLog(@"shouldChange:%@",text);
+    if([text isEqualToString:@""]){
+        NSLog(@"delete");
+    }
     return YES;
 }
 
+//文本框已有值
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     NSLog(@"didChange:%@",searchText);
 }

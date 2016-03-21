@@ -469,6 +469,7 @@
 		38B11C2D1C98303200AD3EB8 /* CareofViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B11C2B1C98303200AD3EB8 /* CareofViewController.m */; };
 		38B11C361C98FB6200AD3EB8 /* LPFriendBriefInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B11C351C98FB6200AD3EB8 /* LPFriendBriefInfo.m */; };
 		38B11D2D1C9BE8A900AD3EB8 /* ChooseTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B11D2B1C9BE8A900AD3EB8 /* ChooseTopicViewController.m */; };
+		38B11D371C9F916300AD3EB8 /* ChooseTopicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38B11D2C1C9BE8A900AD3EB8 /* ChooseTopicViewController.xib */; };
 		38C98CD11C60782D0084E6BD /* YUGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCE1C60782D0084E6BD /* YUGroup.png */; };
 		38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */; };
 		38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CD01C60782D0084E6BD /* YUGroup@3x.png */; };
@@ -8452,6 +8453,7 @@
 				850099C91C61EEE700DDE626 /* 剩余@3x.png in Resources */,
 				85416E161C92C1DB0016BF0B /* 关注@3x.png in Resources */,
 				ADFE1B8A1C994F1D00700EA3 /* loading34@2x.png in Resources */,
+				38B11D371C9F916300AD3EB8 /* ChooseTopicViewController.xib in Resources */,
 				858B3A261C7A05C6000C6589 /* date@2x.png in Resources */,
 				38E5D7F01C12DF0C004B49D2 /* call@2x.png in Resources */,
 				385665161C76A566000DCFA5 /* HDDetailFootCell.xib in Resources */,
