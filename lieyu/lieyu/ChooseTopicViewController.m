@@ -24,13 +24,19 @@
     [self.searchBar becomeFirstResponder];
     self.searchBar.delegate = self;
     [self getData];
+    self.searchBar.placeholder = @"#话题#";
     self.myTableView.dataSource = self;
     self.myTableView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.searchBar.text = @"#";
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+//    self.searchBar.text = @"#";
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -80,13 +86,20 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchTopicCell"];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchTopicCell"];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@",((TopicModel *)[newDataArr objectAtIndex:indexPath.row]).name];
     }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",((TopicModel *)[newDataArr objectAtIndex:indexPath.row]).name];
     return cell;
+}
+
+- (void)returnTopicID:(ReturnTopicID)block{
+    self.returnTopicID = block;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self dismissViewControllerAnimated:YES completion:nil];
+    TopicModel *model = [newDataArr objectAtIndex:indexPath.row];
+    self.returnTopicID(model.id,model.name);
 }
 
 #pragma mark - searchBar代理
@@ -102,16 +115,41 @@
 //文本框已有值
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 //    NSLog(@"didChange:%@",searchText);
+    [self searchTextWithSearchBar];
+}
+
+- (void)searchTextWithSearchBar{
+    NSString *searchText = self.searchBar.text;
     [newDataArr removeAllObjects];
-    for (TopicModel *model in dataArray) {
-        if ([model.name containsString:searchText]) {
-            [newDataArr addObject:model];
+    if ([searchText isEqualToString:@""]) {
+        [newDataArr addObjectsFromArray:dataArray];
+    }else{
+        NSString *regEx = [NSString stringWithFormat:@"%@", searchText];
+        for (TopicModel *model in dataArray) {
+            NSRange r = [model.name rangeOfString:regEx options:NSCaseInsensitiveSearch];
+            if (r.location != NSNotFound) {
+                [newDataArr addObject:model];
+            }
         }
+        NSLog(@"%@",newDataArr);
     }
     [self.myTableView reloadData];
+}
+
+#pragma mark - 键盘收起
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [self.searchBar resignFirstResponder];
+    [self searchTextWithSearchBar];
+}
+
+#pragma mark - 拖动表
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    [self.searchBar resignFirstResponder];
 }
 
 - (IBAction)cancelClick:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 @end

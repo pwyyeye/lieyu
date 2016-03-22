@@ -73,7 +73,8 @@
     self.textView.delegate = self;
 
     if(self.TopicTitle.length){
-        self.textView.text = self.TopicTitle;
+//        self.textView.text = self.TopicTitle;
+        [self addTopicLabel];
     }
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -108,6 +109,29 @@
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
+}
+
+- (void)addTopicLabel{
+    UILabel *TopicLbl = [[UILabel alloc]init];
+    TopicLbl.text = self.TopicTitle;
+    TopicLbl.textColor = [UIColor blueColor];
+    TopicLbl.font = [UIFont systemFontOfSize:14];
+    CGSize size = [TopicLbl.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:TopicLbl.font, NSFontAttributeName, nil]];
+    [TopicLbl setFrame:CGRectMake(5, 7, size.width, size.height)];
+    [self.textView addSubview:TopicLbl];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init
+                                               ];
+    paragraphStyle.firstLineHeadIndent = size.width + 10;
+    paragraphStyle.lineSpacing = 5;
+    
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
+    self.textView.attributedText = [[NSAttributedString alloc]initWithString:@"说点这个时刻的感受吧!" attributes:attributes];
+    isntFirstEdit = NO;
+}
+
+- (void)setPlaceHolder{
+    
 }
 
 //退出程序以后删除tmp文件中所有内容
@@ -160,6 +184,13 @@
                 chooseTopicVC.type = self.type;
             }
             [self presentViewController:chooseTopicVC animated:YES completion:nil];
+            [chooseTopicVC returnTopicID:^(NSString *topicID, NSString *topicName) {
+                self.TopicID = topicID;
+                self.TopicTitle = topicName;
+//                self.textView.text = self.TopicTitle;
+                [self addTopicLabel];
+//                isntFirstEdit = NO;
+            }];
         }
     }
     return YES;
@@ -327,20 +358,12 @@
                             qiniuPages ++;
                             if (i == 0) {
                                 firstString = key;
-//                                [self.shangchuanString appendString:key];
-//                                [self.shangchuanString appendString:@","];//字符串拼接
                             }else if(i == 1){
                                 secondString = key;
-//                                [self.shangchuanString appendString:key];
-//                                [self.shangchuanString appendString:@","];//字符串拼接
                             }else if (i == 2){
                                 thirdString = key;
-//                                [self.shangchuanString appendString:key];
-//                                [self.shangchuanString appendString:@","];//字符串拼接
                             }else{
                                 forthString = key;
-//                                [self.shangchuanString appendString:key];
-//                                [self.shangchuanString appendString:@","];//字符串拼接
                             }
                             if (qiniuPages == weakSelf.fodderArray.count) {
                                 dispatch_group_notify(group, queue, ^{
@@ -382,55 +405,7 @@
                     }];
                 });
             }
-            
         });
-        
-        
-        
-//        //用异步串行队列进行图片的上传
-////        dispatch_queue_t queue = dispatch_queue_create("", DISPATCH_QUEUE_SERIAL);
-//        for (int i = (int)self.fodderArray.count - 1; i >= 0 ; i --) {
-//            dispatch_async(queue, ^{
-//                [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-//                    if(![MyUtil isEmptyString:key]){//上传成功
-//                        qiniuPages ++;
-//                        [self.keysArray addObject:key];
-//                        [self.shangchuanString appendString:key];
-//                        [self.shangchuanString appendString:@","];//字符串拼接
-//                        if(qiniuPages == self.fodderArray.count){
-//                            [self.shangchuanString deleteCharactersInRange:NSMakeRange([self.shangchuanString length]-1, 1)];
-//                            [self sendTrends:self.shangchuanString];
-//                        }
-//                    }else{
-//                        
-//                    }
-//                }];
-//            });
-//        }
-        
-        
-//        for(int i = (int)self.fodderArray.count - 1 ; i >= 0; i --){
-//            [HTTPController uploadImageToQiuNiu:[self.fodderArray objectAtIndex:i] complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-//                if(![MyUtil isEmptyString:key]){
-//                    qiniuPages ++;
-//                    [self.keysArray addObject:key];
-//                    [self.shangchuanString appendString:key];
-//                    [self.shangchuanString appendString:@","];
-//                    if(qiniuPages == self.fodderArray.count){
-////                        [self.keysArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-////                            NSString *str1 = (NSString *)obj1;
-////                            NSString *str2 = (NSString *)obj2;
-////                            return [str1 compare:str2];
-////                        }];
-////                        NSLog(@"%@",self.keysArray);
-//                        [self.shangchuanString deleteCharactersInRange:NSMakeRange([self.shangchuanString length]-1, 1)];
-//                        [self sendTrends:self.shangchuanString];
-//                    }
-//                }else{
-//                    
-//                }
-//            }];
-//        }
     }
 }
 
@@ -451,9 +426,22 @@
     NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     NSDictionary *paraDic;
     if(_isVedio){
-        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"1",@"attach":string};
+        if(!self.TopicID.length){//没有话题
+            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"1",@"attach":string};
+        }else{
+            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,
+                            @"type":@"0",@"message":[NSString stringWithFormat:@"%@%@",self.TopicTitle,self.content],
+                        @"attachType":@"1",@"attach":string,@"topicTypeId":self.TopicID};
+        }
     }else{
-        paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"0",@"attach":string};
+        if (!self.TopicID.length) {
+            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"0",@"attach":string};
+        }else{
+            
+            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,
+                        @"type":@"0",@"message":[NSString stringWithFormat:@"%@%@",self.TopicTitle,self.content],
+                        @"attachType":@"0",@"attach":string,@"topicTypeId":self.TopicID};
+        }
     }
     __weak __typeof(self) weakSelf = self;
     [LYFriendsHttpTool friendsSendMessageWithParams:paraDic compelte:^(bool result, NSString *messageId) {

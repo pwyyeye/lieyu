@@ -76,6 +76,23 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
+    
+    
+    
+    
+    //引导页启动
+    if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+        
+        [self showIntroWithCrossDissolve];
+        UIViewController *view=[[UIViewController alloc] init];
+        view.view=_intro;
+        self.window.rootViewController=view;
+    }else{
+        [self animationWithApp];
+    }
+
+    [self startLocation];
+    
     //IM推送
     if ([application
          respondsToSelector:@selector(registerUserNotificationSettings:)]) {
@@ -118,8 +135,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-    [self startLocation];
-
+    
     //友盟推送
     [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
     [UMessage setAutoAlert:NO];
@@ -177,16 +193,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //for log
     [UMessage setLogEnabled:NO];
     
-    //引导页启动
-    if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
-        
-        [self showIntroWithCrossDissolve];
-        UIViewController *view=[[UIViewController alloc] init];
-        view.view=_intro;
-        self.window.rootViewController=view;
-    }else{
-        [self animationWithApp];
-    }
+   
     
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
