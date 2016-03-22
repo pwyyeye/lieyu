@@ -318,7 +318,7 @@
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     NSString *imageLink = nil;
     NSString *appendLink = nil;
-    CGFloat picWidth = 0;  
+    CGFloat picWidth = 0;
     for (int i = 0;i < imagesArray.count;i ++) {
         UIImage *image = imagesArray[i];
      //   pvModel.imageLink = [pvModel.imageLink stringByAppendingString:[[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] stringByAppendingString:@","]];
@@ -1642,7 +1642,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     switch (indexPath.row) {
         case 0://头像和动态
         {
-            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 14, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
            // if(size.height >= 47) size.height = 47;
             if(![MyUtil isEmptyString:recentM.message]) {
                 if(size.height >= 47) size.height = 47;
@@ -1653,6 +1653,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                     size.height = 20;
                 }
             }
+            NSLog(@"------>%f",size.height);
              return 55 + size.height ;
         }
             break;

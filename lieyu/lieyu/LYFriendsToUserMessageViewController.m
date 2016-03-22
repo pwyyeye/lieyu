@@ -552,13 +552,7 @@
     switch (indexPath.row) {
         case 0://头像和动态
         {
-            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-          //  if(size.height >= 47) size.height = 47;
-//            if(![MyUtil isEmptyString:recentM.message]) {
-//                if(size.height >= 47 ) size.height = 47;
-//            if(![MyUtil isEmptyString:recentM.message]) {
-//                size.height = 15 + size.height;
-//            }
+            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 14, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             if(![MyUtil isEmptyString:recentM.message]) {
                 if(size.height >= 47 ) size.height = 47;
                 size.height = 14 + size.height;

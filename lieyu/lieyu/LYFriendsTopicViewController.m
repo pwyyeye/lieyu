@@ -59,7 +59,7 @@
         _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
     }completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 animations:^{
-            _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+            _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
         }];
     }];
 }
@@ -69,7 +69,7 @@
 - (void)carmerClick:(UIButton *)carmerClick{
     LYFriendsSendViewController *friendsSendVC = [[LYFriendsSendViewController alloc]init];
     friendsSendVC.TopicID = _topicTypeId;
-    friendsSendVC.TopicTitle = _topicName;
+    friendsSendVC.TopicTitle = [NSString stringWithFormat:@"#%@#", _topicName];
     [self.navigationController pushViewController:friendsSendVC animated:YES];
 }
 
@@ -109,7 +109,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.y > _contentOffSetY) {
         if (scrollView.contentOffset.y <= 0.f) {
-            _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+            _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
         }else{
             [UIView animateWithDuration:0.4 animations:^{
                 _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
@@ -118,15 +118,14 @@
     }else{
         if(CGRectGetMaxY(_effectView.frame) > SCREEN_HEIGHT - 5){
             [UIView animateWithDuration:.4 animations:^{
-                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 133, 60, 60);
             }completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.2 animations:^{
-                    _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+                    _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
                 }];
             }];
         }
     }
-    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
@@ -152,15 +151,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
