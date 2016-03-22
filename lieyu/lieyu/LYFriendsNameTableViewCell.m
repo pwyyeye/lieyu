@@ -59,8 +59,12 @@
         }
     }
     
+    NSString *topicNameStr = nil;
+    if(_recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",_recentM.topicTypeName];
+    CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.firstLineHeadIndent = topicSize.width+3;
     [paragraphStyle setLineSpacing:3];
     [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
     
@@ -70,6 +74,9 @@
     }else{
         _label_content.text = @" ";
     }
+    
+    [_btn_topic setTitle:topicNameStr forState:UIControlStateNormal];
+    
 }
 
 - (void)updateConstraints{
