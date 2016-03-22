@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0 auto;
+				padding: 0;
+				border: 0;
+				outline: 0 none;
+			}
+			.topBar{position: absolute;left: 0;width: 100%;}
+    			.topBar li{float: left;width: 33.33333%;list-style-type:none;margin-top:14px;}
+    			.endBack{float: left;text-align:center;margin-left: 10px;height: 40px;width: 90px;}
+    			.endRefresh{display:block;text-align:center;height: 40px;width: 33.3333%;}
+    			
+		</style>
+		<script>
+			function backToindex(){
+				self.location = "start.html";
+			}
+			function refreshToStart(){
+				self.location = "index.html";
+			}
+			function EndNoVoice(ev){
+				var voiceImg = document.getElementById(ev.target.id);
+				if(voiceImg.src.match("noVoice.png")){
+					voiceImg.src = "noVoice2.png";
+				}else if(voiceImg.src.match("noVoice2.png")){
+					voiceImg.src = "noVoice.png";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<img style="width: 100%; height: 100%; position: absolute;" src="sharkending.jpg" />
+		<ul class="topBar">
+			<li><img class="endBack" src="sharkback.png" onclick="backToindex()"></li>
+			<li><img class="endRefresh" src="sharkrefresh.png" onclick="refreshToStart()"></li>
+		</ul>
+	</body>
+</html>
