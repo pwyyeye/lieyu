@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+<style type="text/css">
+		 	/**{margin: 0px auto;padding: 0px;border: 0;outline: 0 none;}
+    			.images{position: absolute;}*/
+    		
+*{
+			margin: 0 auto;
+			padding: 0;
+			border: 0;
+			outline: 0 none;
+}
+#bigbg5{height: 100%;width: 100%;position: absolute;}
+#start{position: absolute;z-index: 1;bottom: 5%;width: 80%;left:10%;height:8%}
+#back3{position:absolute;left:10px;top:14px;width:90px;height: 40px;background-image:url(sharkback.png);background-size: 90px 40px;background-position:0 3px;}
+</style>
+		<script>
+			document.addEventListener("plusready",onPlusReady,false); 
+			// 扩展API加载完毕，现在可以正常调用扩展API
+			function onPlusReady() {
+				// 输入提示信息框
+				plus.ui.setFullscreen(true);
+			}
+			function startGame(){
+				self.location = "index.html";
+		//		var p = null;
+		//		function startPlay() {
+//					if ( plus.audio == undefined ) {
+//						alert( "Device not ready!" );
+//					}
+//					p = plus.audio.createPlayer( "img/music.aac" );
+//					alert(p);
+//					p.loop = true;
+//					p.looping = true;
+//					p.play() ;
+////						p.play();
+//					}, function ( e ) {
+////						alert( "Audio play error: " + e.message ); 
+//					} );
+//				}
+//				function stopPlay() {
+//					p.stop();
+//				}
+			}
+			function back(){
+				  window.location.href="objc://goback:/shark";
+			}
+		</script>
+		<!--<script src="js/shark.js"></script>-->
+		<title></title>
+	</head>
+	<body>
+		<!--<div class="bigbox">-->		
+			<img id="bigbg5" src="sharkstart.jpg"/>
+			<button id="back3" onclick="back()"></button>
+			<button id="start" onclick="startGame()"></button>
+		<!--</div>-->
+	</body>
+</html>

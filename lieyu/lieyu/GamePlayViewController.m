@@ -21,9 +21,21 @@
 //    self.navigationController.navigationBarHidden = YES;
     [_webView sizeToFit];
     _webView.scrollView.scrollEnabled = NO;
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_gameLink]];
-    [_webView loadRequest:request];
-//    [_webView loadHTMLString:_gameLink baseURL:nil];
+    if (![_gameLink containsString:@"http://"]) {
+        NSString *basePath = [[NSBundle mainBundle]bundlePath];
+        _gameLink = [basePath stringByAppendingPathComponent:_gameLink];
+//        [MyUtil showMessage:_gameLink];
+        // get the model which is a html file for the webView
+        NSString * htmlCont = [NSString stringWithContentsOfFile:_gameLink encoding:NSUTF8StringEncoding error:nil];
+        
+        // load the html file to webView
+        NSURL *baseURL = [NSURL fileURLWithPath:basePath];
+        [_webView loadHTMLString:htmlCont baseURL:baseURL];
+    }else{
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_gameLink]];
+        [_webView loadRequest:request];
+
+    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{

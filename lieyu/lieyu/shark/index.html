@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>shark</title>
+    <style>
+    	*{margin: 0px auto;padding: 0px;border: 0;outline: 0 none;}
+    	.images{position: absolute;}
+    	#bigbg{height: 100%;width: 100%;position: absolute;}
+    	.navbar{position: absolute;left: 0;width: 100%;}
+    	.navbar li{float: right;width: 33.33333%;list-style-type:none;margin-top:14px;}
+    	.bt1{float: right;margin-right: 10px;width:94px;height: 40px;}
+    	.bt2{display:block;margin: 0 auto;width:40px;height: 40px;}
+    	.bt3{margin-left: 10px;width:90px;height: 40px;}
+    	
+    	/*.navbar{position: absolute;left: 0;width: 100%;}
+    			.navbar li{float: left;width: 33.33333%;list-style-type:none;margin-top:14px;}
+    			.bt3{float: left;text-align:center;margin-left: 10px;height: 40px;width: 90px;}
+    			.bt2{display:block;text-align:center;height: 40px;width: 33.3333%;}*/
+    	
+    .image_trans{
+    		-moz-transform: scaleX(-1);
+    		-webkit-transform: scaleX(-1);
+    		transform: scaleX(-1);
+    		filter: FlipH;
+    		position: absolute;
+    }
+    </style>
+    <script  type="text/javascript">
+   	 	var randomNum = Math.floor(Math.random()*12);//取到0-11的随机数
+   	 	//WTT
+   	 	window.p = null;
+   	 	var timer = null;
+   	 	var isPlay=true;
+// 	 	alert(p);
+	    // 扩展API加载完毕后调用onPlusReady回调函数
+		document.addEventListener("plusready",onPlusReady,false); 
+		// 扩展API加载完毕，现在可以正常调用扩展API
+		function onPlusReady() {
+//			plus.ui.setFullscreen(true);
+//			//WTT
+// 	 		window.p = plus.audio.createPlayer("img/music.aac");
+//			//WTT
+// 	 		window.p.play();
+//			timer = setInterval(function(){
+//				//WTT
+// 	 			window.p = plus.audio.createPlayer("img/music.aac");
+//				//WTT
+// 	 			window.p	.play();
+//			},16050);
+		}
+		window.onload=function(){
+//			plus.ui.setFullscreen(true);
+			//WTT
+   	 		window.p =document.getElementById("endMusic");;
+			window.p.src="music.aac";
+			//WTT
+   	 		window.p.play();
+   	 		window.isPlay=isPlay;
+			timer = setInterval(function(){
+				//WTT
+   	 			window.p =document.getElementById("endMusic");;
+				window.p.src="music.aac";
+				//WTT
+				if(window.isPlay==true){
+					window.p.play();
+				}else{
+					window.p.pause();
+				}
+   	 			
+			},16050);
+			
+		}
+	function indexBack(){
+		self.location = "start.html";
+		//WTT
+   	 	window.p.stop();
+	}
+	
+	function actionSheetShow(){
+		// 弹出系统选择按钮框
+		plus.nativeUI.actionSheet(
+			{title:"确认重置?",
+			 cancel:"取消",
+			 buttons:[{title:"确认"}]
+			 }, function(e){
+				alert("1");
+		});
+	}
+//	function indexOfActionSheet(ev){
+////		alert(ev.index);
+//		alert("3");
+//	}
+//	
+	function IndexRefresh(){
+//		if(window.plus){
+//			actionSheetShow();
+//		}else{
+//			document.addEventListener("plusready",actionSheetShow(),false);
+//		}
+//		p.stop();
+//		self.location = "index.html";
+//		function initPage(){
+		document.getElementById("0").src = "shark9.png";
+		document.getElementById("1").src = "shark8.png";
+		document.getElementById("2").src = "shark7.png";
+		document.getElementById("3").src = "shark7.png";
+		document.getElementById("4").src = "shark8.png";
+		document.getElementById("5").src = "shark9.png";
+		document.getElementById("6").src = "shark12.png";
+		document.getElementById("7").src = "shark11.png";
+		document.getElementById("8").src = "shark10.png";
+		document.getElementById("9").src = "shark10.png";
+		document.getElementById("10").src = "shark11.png";
+		document.getElementById("11").src = "shark12.png";
+		randomNum = Math.floor(Math.random()*12);
+	}
+	//静音／启动音乐
+	function noVoice(ev){
+		var voiceImg = document.getElementById(ev.target.id);
+
+		if(voiceImg.src.match("noVoice.png")){
+			//WTT
+			voiceImg.src = "noVoice2.png";
+   	 		window.p.pause();
+//			window.clearInterval(timer);
+			window.isPlay=false;
+			
+		}else if(voiceImg.src.match("noVoice2.png")){
+			voiceImg.src = "noVoice.png";
+			setInterval();
+			window.isPlay=true;
+			//WTT
+// 	 		window.p = plus.audio.createPlayer("img/music.aac");
+//			//WTT
+// 	 		window.p.play();
+				//WTT
+   	 		window.p.play();
+//			timer = setInterval(function(){
+//				//WTT
+//// 	 			window.p = plus.audio.createPlayer("img/music.aac");
+////				//WTT
+//// 	 			window.p.play();
+//				//WTT
+// 	 			window.p.play();
+//			},16050);
+		}
+	}
+	function clickImage(ev){
+//		var toothMusic=document.getElementById("toothMusic");
+// 		toothMusic.src="img/friendship.mp3";
+// 		toothMusic.play();
+//		alert(randomNum); 
+		if(randomNum == ev.target.id){
+			self.location = "ending.html";
+			//WTT
+   	 		window.p.stop();
+// 	 		plus.device.vibrate(3);
+		}else{
+			var toothMusic=document.getElementById("toothMusic");
+	   		toothMusic.src = "6983.mp3";
+	   		toothMusic.play();
+			var myImage = document.getElementById(ev.target.id);
+			switch(ev.target.id){
+				case "0":
+					myImage.src = "shark3.png";break;
+				case "1":
+					myImage.src = "shark2.png";break;
+				case "2":
+					myImage.src = "shark1.png";break;
+				case "3":
+					myImage.src = "shark1.png";break;
+				case "4":
+					myImage.src = "shark2.png";break;
+				case "5":
+					myImage.src = "shark3.png";break;
+				case "6":
+					myImage.src = "shark6.png";break;
+				case "7":
+					myImage.src = "shark5.png";break;
+				case "8":
+					myImage.src = "shark4.png";break;
+				case "9":
+					myImage.src = "shark4.png";break;
+				case "10":
+					myImage.src = "shark5.png";break;
+				case "11":
+					myImage.src = "shark6.png";break;
+				default:
+					alert("error");break;
+			}
+		}
+	}
+    </script>
+</head>
+<body>
+<!--<div style="max-height: 100%; max-width: 100%; border: 5px solid black; background: gray;" id="div1">-->
+	<div class="bg">
+		<img id="bigbg" src="notooth.jpg"/>
+		<ul class="navbar">
+			<li><img class="bt1" src="noVoice2.png" id="novoice" onclick="noVoice(event)"</li>
+			<li><img class="bt2" src="sharkrefresh.png" onclick="IndexRefresh()"</li>
+			<li><img class="bt3" src="sharkback.png" onclick="indexBack()"</li>
+		</ul>
+			
+		<img class="image_trans" id="0" src="shark9.png" style="margin-left: 11.5%;bottom: 43%;width: 12%;height: 6%;"onclick="clickImage(event)" />
+		<img class="image_trans" id="1" src="shark8.png" style="margin-left: 20%;bottom: 50%;width: 13.5%;height: 7.65%;"onclick="clickImage(event)" />
+		<img class="image_trans" id="2" src="shark7.png" style="margin-left: 34%;bottom: 54%;width: 13.75%;height: 8.91%;"onclick="clickImage(event)" />
+		<img class="images" id="3" src="shark7.png" style="margin-left: 52%; bottom: 54%;width: 13.75%;height: 8.91%;" onclick="clickImage(event)" />
+		<img class="images" id="4" src="shark8.png" style="margin-left: 67%; bottom: 51%;width: 13.5%; height: 7.65%;"onclick="clickImage(event)" />
+		<img class="images" id="5" src="shark9.png" style="margin-left: 77%;bottom: 43%;width: 12%;height: 6%;"onclick="clickImage(event)" />
+		<img class="image_trans" id="6" src="shark12.png" style="margin-left: 13%;bottom: 24.5%;width: 12%;height: 6%;"onclick="clickImage(event)"/>
+		<img class="image_trans" id="7" src="shark11.png" style="margin-left: 21%;bottom: 15%;width: 15%;height: 8.5%;"onclick="clickImage(event)"/>
+		<img class="image_trans" id="8" src="shark10.png" style="margin-left: 35%;bottom: 10%;width: 14.45%;height: 9%;"onclick="clickImage(event)"/>
+		<img class="images" id="9" src="shark10.png" style="margin-left: 51%;bottom: 10%; width: 14.45%;height: 9%;"onclick="clickImage(event)"/>
+		<img class="images" id="10" src="shark11.png" style="margin-left: 65%;bottom: 15%; width: 15%;height: 8.5%;"onclick="clickImage(event)"/>
+		<img class="images" id="11" src="shark12.png" style="margin-left: 75%;bottom: 24%; width: 12%; height: 6%;" onclick="clickImage(event)"/>
+		<audio autoplay="autoplay" loop="loop" src="" id="endMusic"></audio>
+		<audio  id="toothMusic"></audio>
+		<!--<embed src="" id="endMusic" autostart="true" loop="99999" hidden="true" style="height: 0;width: 0;">-->
+	</div>
+<!--</div>-->
+</body>
+</html>
