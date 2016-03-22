@@ -279,7 +279,7 @@
             }
             //地址返回
             NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
-            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:self.content andLocation:location];
+            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:self.content andLocation:location andTopicID:_TopicID ? _TopicID : @"" andTopicName:_TopicTitle ? _TopicTitle : @""];
         }
         
         AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
@@ -337,7 +337,7 @@
         }
         //地址返回
         NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
-        [self.delegate sendImagesArray:self.fodderArray andContent:self.content andLocation:location];
+        [self.delegate sendImagesArray:self.fodderArray andContent:self.content andLocation:location andTopicID:_TopicID ? _TopicID : @"" andTopicName:_TopicTitle ? _TopicTitle : @""];
         if([self.textView isFirstResponder]){
             [self.textView resignFirstResponder];
         }
