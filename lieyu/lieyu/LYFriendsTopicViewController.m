@@ -123,7 +123,7 @@
                 [UIView animateWithDuration:0.2 animations:^{
                     _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
                 }];
-            }];
+            }];  
         }
     }
 }
