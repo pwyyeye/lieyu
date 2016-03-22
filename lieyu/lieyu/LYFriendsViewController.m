@@ -253,7 +253,12 @@
 }
 
 #pragma mark - 作为代理收取视频路径地址与截图
-- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location{
+- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
+    if (topicID.length && topicName.length) {
+        
+    }else{
+        
+    }
     self.mediaImage = image;
     self.mediaUrl = mediaUrl;
     self.content = content;
@@ -291,7 +296,12 @@
 }
 
 #pragma mark - 作为代理接受返回的图片
-- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location{
+- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
+    if (topicID.length && topicName.length) {
+        
+    }else{
+        
+    }
     self.imageArray = imagesArray;
     self.content = content;
     
