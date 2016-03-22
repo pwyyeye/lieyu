@@ -318,7 +318,7 @@
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     NSString *imageLink = nil;
     NSString *appendLink = nil;
-    CGFloat picWidth = 0;
+    CGFloat picWidth = 0;  
     for (int i = 0;i < imagesArray.count;i ++) {
         UIImage *image = imagesArray[i];
      //   pvModel.imageLink = [pvModel.imageLink stringByAppendingString:[[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] stringByAppendingString:@","]];
