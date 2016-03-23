@@ -132,7 +132,7 @@
     if(self.navigationController.navigationBarHidden == YES){
         self.navigationController.navigationBarHidden = NO;
     }
-        [self setupNavMenuView];
+    [self setupNavMenuView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     

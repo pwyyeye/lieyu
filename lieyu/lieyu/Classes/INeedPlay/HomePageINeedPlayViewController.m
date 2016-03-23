@@ -432,34 +432,35 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)getDataLocalAndReload{
-    NSArray *array = [self getDataFromLocal];
-  //  LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-    if (array.count == 2) {
-        NSDictionary *dataDic1 = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
-         NSDictionary *dataDic2 = ((LYCache *)((NSArray *)array[1]).firstObject).lyCacheValue;
-        NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic1[@"barlist"]]] ;
-        NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic2[@"barlist"]]] ;
-        _fiterArray = [dataDic1 valueForKey:@"filterImages"];
-         NSDictionary *recommendedBarDic1 = [dataDic1 valueForKey:@"recommendedBar"];
-                 NSDictionary *recommendedBarDic2 = [dataDic2 valueForKey:@"recommendedBar"];
-        if (_index==0) {
-            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic1];
-            self.newbannerList = dataDic1[@"newbanner"];
-
-        }else{
-            _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic2];
-            self.newbannerList2 = dataDic2[@"newbanner"];
-
-        }
-        if (_index == 0) {
-            [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
-        }else{
-            [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
-        }
-        [_collectView reloadData];
+//    NSArray *array = [self getDataFromLocal];
+//  //  LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+//    if (array.count == 2) {
+//        NSDictionary *dataDic1 = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
+//         NSDictionary *dataDic2 = ((LYCache *)((NSArray *)array[1]).firstObject).lyCacheValue;
+//        NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic1[@"barlist"]]] ;
+//        NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic2[@"barlist"]]] ;
+//        _fiterArray = [dataDic1 valueForKey:@"filterImages"];
+//         NSDictionary *recommendedBarDic1 = [dataDic1 valueForKey:@"recommendedBar"];
+//                 NSDictionary *recommendedBarDic2 = [dataDic2 valueForKey:@"recommendedBar"];
+//        if (_index==0) {
+//            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic1];
+//            self.newbannerList = dataDic1[@"newbanner"];
+//
+//        }else{
+//            _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic2];
+//            self.newbannerList2 = dataDic2[@"newbanner"];
+//
+//        }
+//        if (_index == 0) {
+//            [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
+//        }else{
+//            [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
+//        }
+//        [_collectView reloadData];
+    
         _isGetDataFromNet_BAR = YES;
         _isGetDataFromNet_YD = YES;
-    }
+//    }
 }
 
 #pragma mark 获取数据
@@ -467,6 +468,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     __weak HomePageINeedPlayViewController * weakSelf = self;
     [weakSelf loadHomeListWith:tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {
+         NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------getData--------@@@@@@@@@@@@@@@@@@@");
          if (Req_Success == ermsg.state)
          {
              //             UICollectionView *collectView = _collectViewArray[_index];
@@ -494,6 +496,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)loadHomeListWith:(NSInteger)tag block:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
 {
+    NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------loadHomeListWith--------@@@@@@@@@@@@@@@@@@@");
     MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
     LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
     
@@ -533,7 +536,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (ermsg.state == Req_Success)
         {
             if(tag >= 2) return;
-           
+            
+            NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------loadHomeListWithSuccess--------@@@@@@@@@@@@@@@@@@@");
             //            UICollectionView *collectView = _collectViewArray[tag];
             NSMutableArray *array = _dataArray[tag];
             if((tag == 0 && _currentPage_YD == 1) || (tag == 1 && _currentPage_Bar == 1)) {
@@ -598,7 +602,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             NSLog(@"---->%ld",hcell.jiubaArray.count);
             return hcell.jiubaArray.count + 4;
         }else{
-            return 0;
+            //WTT
+            return 5;
         }
     }
 }
@@ -660,7 +665,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView == _collectView) {
-      __weak  LYHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeCollectionViewCell" forIndexPath:indexPath];
+      __weak LYHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeCollectionViewCell" forIndexPath:indexPath];
         cell.collectViewInside.dataSource = self;
         cell.collectViewInside.delegate = self;
         [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
@@ -670,7 +675,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         cell.collectViewInside.alwaysBounceVertical = YES;
         cell.collectViewInside.contentInset = UIEdgeInsetsMake(90, 0, 0, 0);
     __weak HomePageINeedPlayViewController *weakSelf = self;
-    cell.collectViewInside.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        cell.collectViewInside.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         switch (indexPath.item) {
             case 0:
             {
@@ -769,7 +774,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else{
 //        LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
 //          LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
-            switch (indexPath.item) {
+        
+        NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------cellATIndex--------@@@@@@@@@@@@@@@@@@@");
+        switch (indexPath.item) {
                 case 0:
                 {
                     UICollectionViewCell *spaceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
@@ -806,7 +813,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 return cell;
                 }
                     break;
-            case 2://才当
+            case 2://菜单
             {
                 HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@
                                                          "HomeMenusCollectionViewCell"forIndexPath:indexPath];
@@ -860,14 +867,21 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     if (collectionView != _collectView) {
+        
+        NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------willDisplayCell--------@@@@@@@@@@@@@@@@@@@");
         if (indexPath.item==1) {
             if (_recommendedBar&&_index==0) {
                 ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBar;
             }
-            if (_recommendedBar2&&_index==1) {
+//            if (_recommendedBar2&&_index==1) {
+//                ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBar2;
+//            }
+                //WTT
+            else if (_recommendedBar2&&_index==1) {
                 ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBar2;
+            }else{
+                [((HomeBarCollectionViewCell *)cell).imgView_bg  setImage:[UIImage imageNamed:@"empyImage16_9"]];
             }
-            
         }else if(indexPath.item == 2){
             HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
             if(_fiterArray.count == 4){
@@ -878,11 +892,19 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
             }
             }
+            //WTT
+            else{
+                for (int i = 0;i < 4;i++) {
+                    UIButton *btn = menucell.btnArray[i];
+                    [btn setImage:[UIImage imageNamed:@"empyImage16_9"] forState:UIControlStateNormal];
+                }
+            }
         }else if (indexPath.item > 3) {
 //            array = _dataArray[_index];
             LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
             HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
             if (indexPath.item - 4 >= hcell.jiubaArray.count) {
+                [homeCell.imgView_bg setImage:[UIImage imageNamed:@"empyImage16_9"]];
                 return;
             }
             JiuBaModel *jiubaM = hcell.jiubaArray[indexPath.item - 4];
@@ -890,6 +912,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
     }else{
         LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)cell;
+        //WTT
+        if (_dataArray.count < indexPath.item) {
+            return;
+        }
+        //WTT
         hcell.jiubaArray = _dataArray[indexPath.item];
         if (hcell.collectViewInside) {
             if (_menuView.center.y < 45) {
