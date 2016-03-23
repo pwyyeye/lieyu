@@ -254,11 +254,6 @@
 
 #pragma mark - 作为代理收取视频路径地址与截图
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
-    if (topicID.length && topicName.length) {
-        
-    }else{
-        
-    }
     self.mediaImage = image;
     self.mediaUrl = mediaUrl;
     self.content = content;
@@ -280,6 +275,14 @@
     recentM.commentList = [[NSMutableArray alloc]init];
     recentM.likeList = [[NSMutableArray alloc]init];
     recentM.location = location;
+    if (topicID.length && topicName.length) {
+        recentM.topicTypeId = topicID;
+        NSArray *strArray = [topicName componentsSeparatedByString:@"#"];
+        if(strArray.count >= 2) recentM.topicTypeName = strArray[1];
+    }else{
+        recentM.topicTypeId = @"";
+        recentM.topicTypeName = @"";
+    }
     
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     pvModel.imageLink = mediaUrl;
@@ -297,11 +300,7 @@
 
 #pragma mark - 作为代理接受返回的图片
 - (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
-    if (topicID.length && topicName.length) {
-        
-    }else{
-        
-    }
+    
     self.imageArray = imagesArray;
     self.content = content;
     
@@ -315,6 +314,14 @@
     recentM.likeList = [[NSMutableArray alloc]init];
     recentM.location = location;
     recentM.isMeSendMessage = YES;
+    if (topicID.length && topicName.length) {
+        recentM.topicTypeId = topicID;
+        NSArray *strArray = [topicName componentsSeparatedByString:@"#"];
+        if(strArray.count >= 2) recentM.topicTypeName = strArray[1];
+    }else{
+        recentM.topicTypeId = @"";
+        recentM.topicTypeName = @"";
+    }
     
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
     [dateFmt setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
