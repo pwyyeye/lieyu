@@ -28,7 +28,7 @@
                             <constraint firstAttribute="width" constant="10" id="zi7-tC-W9e"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvD-Nq-F2d">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvD-Nq-F2d">
                         <rect key="frame" x="249" y="147" width="26" height="12"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="bT3-jy-9ZI"/>
@@ -40,7 +40,7 @@
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                         <size key="shadowOffset" width="0.0" height="1"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uj8-rt-rwS">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uj8-rt-rwS">
                         <rect key="frame" x="13" y="10" width="40" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="qD2-I2-I0D"/>
@@ -52,7 +52,7 @@
                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="酒吧地址名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5D-Hp-sL6">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5D-Hp-sL6">
                         <rect key="frame" x="13" y="171" width="72" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="51" id="HKN-R3-dGJ"/>
@@ -70,7 +70,7 @@
                             </mask>
                         </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="返利30%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgJ-8v-c3X">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgJ-8v-c3X">
                         <rect key="frame" x="272" y="171" width="51" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="mFP-cT-Etf"/>
@@ -87,7 +87,7 @@
                             </mask>
                         </variation>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1V-0q-hZf">
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k1V-0q-hZf">
                         <rect key="frame" x="264" y="174" width="1" height="8"/>
                         <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -95,7 +95,7 @@
                             <constraint firstAttribute="height" constant="8" id="nAa-7t-Ccy"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpj-pa-Sql">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpj-pa-Sql">
                         <rect key="frame" x="206" y="171" width="51" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="15j-om-z89"/>
@@ -107,7 +107,7 @@
                         <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlo-bG-9q8">
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vlo-bG-9q8">
                         <rect key="frame" x="92" y="174" width="1" height="8"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -115,7 +115,7 @@
                             <constraint firstAttribute="height" constant="8" id="a4Y-Du-bhd"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="酒吧的一句话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81W-Pb-AU9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81W-Pb-AU9">
                         <rect key="frame" x="13" y="145" width="212" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="6DK-14-tHS"/>
@@ -134,14 +134,14 @@
                             </mask>
                         </variation>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="首页列表点赞.png" translatesAutoresizingMaskIntoConstraints="NO" id="93H-eR-C3b">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="首页列表点赞.png" translatesAutoresizingMaskIntoConstraints="NO" id="93H-eR-C3b">
                         <rect key="frame" x="284" y="148" width="11" height="10"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="11" id="a1y-T8-9Ig"/>
                             <constraint firstAttribute="height" constant="10" id="mJP-gp-8KU"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij4-ox-Ajh">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij4-ox-Ajh">
                         <rect key="frame" x="299" y="147" width="26" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="RVa-la-HSs"/>
@@ -153,7 +153,7 @@
                         <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                         <size key="shadowOffset" width="0.0" height="1"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRw-CJ-AP7">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRw-CJ-AP7">
                         <rect key="frame" x="101" y="171" width="51" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="KhM-Na-dq4"/>
@@ -180,7 +180,7 @@
                             <constraint firstAttribute="width" constant="40" id="wIJ-un-KgP"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yuding.png" translatesAutoresizingMaskIntoConstraints="NO" id="fCg-e2-Ld5">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="yuding.png" translatesAutoresizingMaskIntoConstraints="NO" id="fCg-e2-Ld5">
                         <rect key="frame" x="61" y="13" width="14" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="HLC-lw-4K3"/>
