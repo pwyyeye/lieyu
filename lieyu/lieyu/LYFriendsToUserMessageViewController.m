@@ -762,8 +762,6 @@
     
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 110, SCREEN_WIDTH, 48);
-//    _commentView.bgView.layer.borderColor = RGBA(143, 2, 195, 1).CGColor;
-//    _commentView.bgView.layer.borderWidth = 0.5;
     [_bigView addSubview:_commentView];
     if(defaultComment && ![defaultComment isEqualToString:@""]){
         _commentView.textField.text = defaultComment;
@@ -775,7 +773,6 @@
     
     if(_isCommentToUser){
         FriendsRecentModel *recentM = _dataArray[_section];
-//        FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_section];
         FriendsCommentModel *commentM = recentM.commentList[_indexRow - 4];
         _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
     }
