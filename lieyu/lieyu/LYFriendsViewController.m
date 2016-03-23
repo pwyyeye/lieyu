@@ -1775,7 +1775,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     if (friendRecentM.topicTypeName.length && friendRecentM.topicTypeId.length) {
         LYFriendsTopicViewController *friendsTopicVC = [[LYFriendsTopicViewController alloc]init];
         friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
-        friendRecentM.topicTypeName = friendRecentM.topicTypeName;
+        friendsTopicVC.topicName = friendRecentM.topicTypeName;
         [self.navigationController pushViewController:friendsTopicVC animated:YES];
     }
 }
