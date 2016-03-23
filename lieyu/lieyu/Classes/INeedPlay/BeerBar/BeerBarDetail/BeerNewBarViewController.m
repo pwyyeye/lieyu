@@ -655,7 +655,7 @@
             break;
         case 3:{
             LYBarPhoneAndCommentsTableViewCell *barPhoneAndCommentCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPhoneAndCommentsTableViewCell" forIndexPath:indexPath];
-            [barPhoneAndCommentCell.btn_phone setTitle:_beerBarDetail.telephone forState:UIControlStateNormal];
+            [barPhoneAndCommentCell.btn_phone setTitle:[NSString stringWithFormat:@"联系电话:%@",_beerBarDetail.telephone] forState:UIControlStateNormal];
             [barPhoneAndCommentCell.btn_phone addTarget:self action:@selector(telephoneClick:) forControlEvents:UIControlEventTouchUpInside];
             [barPhoneAndCommentCell.btn_comment setTitle:_beerBarDetail.topicTypeMommentNum forState:UIControlStateNormal];
             [barPhoneAndCommentCell.btn_comment addTarget:self action:@selector(barCommentClick) forControlEvents:UIControlEventTouchUpInside];
