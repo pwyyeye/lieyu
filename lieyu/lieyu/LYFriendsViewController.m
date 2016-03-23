@@ -793,13 +793,12 @@
             [topicBtn setTitle:topicM.name forState:UIControlStateNormal];
             topicBtn.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightMedium];
             topicBtn.titleLabel.layer.shadowColor = RGBA(0, 0, 0, .5).CGColor;
-            topicBtn.backgroundColor = [UIColor redColor];
             topicBtn.titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
             topicBtn.titleLabel.layer.shadowOpacity = 1;
             topicBtn.titleLabel.layer.shadowRadius = 2;
             topicBtn.layer.cornerRadius = 4;
             topicBtn.clipsToBounds = YES;
-//            [topicBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:topicM.linkurl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+            [topicBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:topicM.linkurl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
             [topicScrollView addSubview:topicBtn];
             topicBtn.tag = i;
             [topicBtn addTarget:self action:@selector(topicClick:) forControlEvents:UIControlEventTouchUpInside];

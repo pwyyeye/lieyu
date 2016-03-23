@@ -599,7 +599,7 @@
         case 3://评论
         {
             NSInteger count = recentM.likeList.count;
-            return count == 0 ? 0 : 46;
+            return count == 0 ? 0 : (SCREEN_WIDTH - 114)/8.f + 20;
         }
             break;
         case 9:{

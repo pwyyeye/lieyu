@@ -42,6 +42,7 @@
             [_scrollView addSubview:btn];
             UIImageView *hotImgV = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 4 - 32, 4, 32, 32)];
             hotImgV.image = [UIImage imageNamed:@"HOT"];
+            hotImgV.hidden = YES;
             [btn addSubview:hotImgV];
             _scrollView.scrollEnabled = NO;
         }
@@ -55,6 +56,7 @@
                 [_scrollView addSubview:btn];
                 UIImageView *hotImgV = [[UIImageView alloc]initWithFrame:CGRectMake(imgVWidth - 4 - 32, 4, 32, 32)];
                 hotImgV.image = [UIImage imageNamed:@"HOT"];
+                hotImgV.hidden = YES;
                 [btn addSubview:hotImgV];
             }
             UIButton *lastBtn = _activtyBtnArray.lastObject;

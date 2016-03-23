@@ -31,6 +31,7 @@
 @property (nonatomic,strong) JiuBaModel *jiuBaM;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_fanli_right_const;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view_fanli_right_const;
+@property (weak, nonatomic) IBOutlet UIImageView *img_hot;
 
 
 @end

@@ -38,7 +38,9 @@
 #import "ActionDetailViewController.h"
 #import "BarActivityList.h"
 #import "LYMyFriendDetailViewController.h"
+#import "LYBarPhoneAndCommentsTableViewCell.h"
 #import "LYCache.h"
+#import "LYFriendsTopicViewController.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
@@ -524,7 +526,7 @@
     [_tableView registerClass:[LYBarDescTableViewCell class] forCellReuseIdentifier:@"LYBarDescTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarIconTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarIconTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarScrollTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarScrollTableViewCell"];
-    
+    [_tableView registerNib:[UINib nibWithNibName:@"LYBarPhoneAndCommentsTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarPhoneAndCommentsTableViewCell"];
     self.bottomBarView.backgroundColor = [LYColors tabbarBgColor];
     //_dyBarDetailH = [BeerBarDetailCell adjustCellHeight:nil];
 }
@@ -602,7 +604,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if(_beerBarDetail)
-    return 6;
+    return 7;
     else return 0;
 }
 
@@ -651,7 +653,16 @@
             return barPointCell;
         }
             break;
-        case 3://iconlist
+        case 3:{
+            LYBarPhoneAndCommentsTableViewCell *barPhoneAndCommentCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPhoneAndCommentsTableViewCell" forIndexPath:indexPath];
+            [barPhoneAndCommentCell.btn_phone setTitle:_beerBarDetail.telephone forState:UIControlStateNormal];
+            [barPhoneAndCommentCell.btn_phone addTarget:self action:@selector(telephoneClick:) forControlEvents:UIControlEventTouchUpInside];
+            [barPhoneAndCommentCell.btn_comment setTitle:_beerBarDetail.topicTypeMommentNum forState:UIControlStateNormal];
+            [barPhoneAndCommentCell.btn_comment addTarget:self action:@selector(barCommentClick) forControlEvents:UIControlEventTouchUpInside];
+            return barPhoneAndCommentCell;
+        }
+            break;
+        case 4://iconlist
         {
             LYBarIconTableViewCell *iconCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarIconTableViewCell" forIndexPath:indexPath];
             iconCell.iconArray = _beerBarDetail.signUsers;
@@ -667,7 +678,7 @@
         }
             break;
             
-            case 4://activity
+            case 5://activity
         {
             LYBarScrollTableViewCell *scrollCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarScrollTableViewCell" forIndexPath:indexPath];
             //_activityArray = @[@"http://source.lie98.com/37680ChaletPlusLounge2.jpg"];
@@ -684,7 +695,7 @@
             return cell; */
         }
             break;
-        case 5:
+        case 6:
         {
             LYBarDescTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTableViewCell" forIndexPath:indexPath];
 //            barDescTitleCell con
@@ -705,6 +716,16 @@
             
     }
     return cell;
+}
+
+#pragma mark - 酒吧评论
+- (void)barCommentClick{
+    if(self.beerBarDetail.topicTypeId.length){
+    LYFriendsTopicViewController *friendTopicVC = [[LYFriendsTopicViewController alloc]init];
+    friendTopicVC.topicTypeId = self.beerBarDetail.topicTypeId;
+    friendTopicVC.topicName = _beerBarDetail.topicTypeName;
+    [self.navigationController pushViewController:friendTopicVC animated:YES];
+    }
 }
 
 #pragma mark － 签到
@@ -818,14 +839,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-//    return 0.001;
     if (section == 0 || section == 1) {
         return 0.0001;
     }else {
-        if (section == 3) {
+        if (section == 4) {
             if(_beerBarDetail.signUsers.count) return 3;
             else return 0;
-        }else if(section == 4){
+        }else if(section == 5){
             if(_activityArray.count) return 3;
             else return 0;
         }
@@ -833,35 +853,9 @@
 
     }
 }
-
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UIView *headerView = [[UIView alloc]init];
-//    headerView.backgroundColor = [UIColor clearColor];
-//    return headerView;
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-  /*  if(section == 0 || section == 5){
-        return 0.00001;
-    }else{
-        if (section == 3) {
-            if(_beerBarDetail.signUsers.count) return 8;
-            else return 0;
-        }else if(section == 4){
-            if(_activityArray.count) return 8;
-            else return 0;
-        }
-        return 3;
-    } */
     return 0.0001;
 }
-
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//    UIView *headerView = [[UIView alloc]init];
-//    headerView.backgroundColor = [UIColor clearColor];
-//    return headerView;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -882,21 +876,25 @@
             return 60;
         }
             break;
-        case 3:
+        case 3:{
+            return 60;
+        }
+            break;
+        case 4:
         {
             CGFloat btnWidth = (SCREEN_WIDTH - 14 - (7 - 1) * 7)/7.f;
             if(_beerBarDetail.signUsers.count) return btnWidth + 16;
             else return 0;
         }
             break;
-            case 4:
+            case 5:
         {
             if(_activityArray.count) return 213;
             else return 0;
         }
             break;
             
-        case 5:
+        case 6:
         {
 //            return 76;
             return _webView.frame.size.height + 55;
