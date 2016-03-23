@@ -51,4 +51,8 @@
 
 //屏蔽
 #define LY_Friends_PingBiUser @"lyMomentsAction.do?action=update"
+
+//根据话题ID获取玩友圈动态
+#define LY_Friends_TopicMessage @"lyMomentsOutAction.do?action=expand"
+
 #endif /* LYFriendsPageUrl_h */

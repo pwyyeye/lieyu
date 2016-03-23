@@ -42,4 +42,6 @@
 + (void)friendsJuBaoWithParams:(NSDictionary *)params complete:(void(^)(NSString *))complete;
 //屏蔽
 + (void)friendsPingBiUserWithParams:(NSDictionary *)params complete:(void(^)(NSString *))complete;
+//根据话题ID获取玩友圈动态
++ (void)friendsGetFriendsTopicWithParams:(NSDictionary *)params complete:(void(^)(NSArray *))complete;
 @end

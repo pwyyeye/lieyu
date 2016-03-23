@@ -8,6 +8,14 @@
 
 #import "LYBaseViewController.h"
 
-@interface LYFriendsToUserMessageViewController : LYBaseViewController
+@interface LYFriendsToUserMessageViewController : LYBaseViewController{
+      NSString *_useridStr;
+    NSMutableArray *_dataArray;
+}
 @property (nonatomic,copy) NSString *friendsId;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (void)getData;
+- (void)reloadTableViewAndSetUpProperty;
+- (void)addTableViewHeader;
+- (void)setupTableViewFresh;
 @end

@@ -44,8 +44,8 @@
 #define LYFriendsCellID @"cell"
 
 @interface LYFriendsToUserMessageViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UIActionSheetDelegate,ISEmojiViewDelegate>{
-     NSString *_useridStr;
-    NSMutableArray *_dataArray;
+   
+    
      LYFriendsUserHeaderView *_headerView;
     NSInteger _pageStartCount;//开始的数量
     NSInteger _pageCount;//每页数
@@ -64,7 +64,7 @@
     LYMyFriendDetailViewController *_friendDetailVC ;
     ISEmojiView *_emojiView;
 }
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 
 @end
@@ -98,6 +98,8 @@
 }
 
 - (void)setupAllProperty{
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _useridStr = app.userModel==nil?@"0":[NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -550,18 +552,15 @@
     switch (indexPath.row) {
         case 0://头像和动态
         {
-            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-          //  if(size.height >= 47) size.height = 47;
-//            if(![MyUtil isEmptyString:recentM.message]) {
-//                if(size.height >= 47 ) size.height = 47;
-//            if(![MyUtil isEmptyString:recentM.message]) {
-//                size.height = 15 + size.height;
-//            }
+            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 14, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
             if(![MyUtil isEmptyString:recentM.message]) {
                 if(size.height >= 47 ) size.height = 47;
                 size.height = 14 + size.height;
             }else{
                 size.height = 10;
+                if(![MyUtil isEmptyString:recentM.topicTypeName]){
+                    size.height = 25;
+                }
             }
             return 50 + size.height;
         }

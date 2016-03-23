@@ -225,6 +225,7 @@
         [UIView setAnimationDuration:.8];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
         _menuDropView.frame = CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - 65);
+        _menuDropView.alpha = 0;
         [UIView commitAnimations];
         [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
         [UIView animateWithDuration:.5 animations:^{
@@ -244,7 +245,6 @@
     _menuDropView.backgroundColor = [UIColor whiteColor];
     [_menuDropView deployWithItemArrayWith:array withTitle:button.currentTitle];
     _menuDropView.delegate = self;
-    _menuDropView.alpha = 0;
     [self.view addSubview:_menuDropView];
     [self.view bringSubviewToFront:_menuView];
     

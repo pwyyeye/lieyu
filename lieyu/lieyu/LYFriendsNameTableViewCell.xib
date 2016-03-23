@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="98.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUG-zY-dHD">
@@ -69,8 +69,8 @@
                             <color key="titleColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEG-lw-pcv">
-                        <rect key="frame" x="7" y="89" width="306" height="0.0"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEG-lw-pcv">
+                        <rect key="frame" x="7" y="65" width="306" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -86,6 +86,11 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMI-Vc-28l">
+                        <rect key="frame" x="7" y="49" width="46" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="Button"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="wDA-11-w3k" firstAttribute="centerX" secondItem="luc-9F-P2m" secondAttribute="centerX" id="6Ra-c3-gYu"/>
@@ -95,6 +100,7 @@
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="D2S-PB-lbF"/>
                     <constraint firstItem="wDA-11-w3k" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="3" id="FFD-to-mjk"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="HtG-7k-6eO"/>
+                    <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="7Rw-eO-sKU" secondAttribute="bottom" id="OXT-yJ-6be"/>
                     <constraint firstItem="wDA-11-w3k" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="3" id="Qdi-v1-Qip"/>
                     <constraint firstItem="pH5-Po-Wwa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="SAK-0Z-MSb"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="8" id="U3g-ed-wTL"/>
@@ -108,6 +114,8 @@
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="lM4-4y-ffP" secondAttribute="bottom" constant="8" id="mqS-7C-HcM"/>
                     <constraint firstAttribute="trailing" secondItem="7Rw-eO-sKU" secondAttribute="trailing" constant="10" id="qPa-oc-FyU"/>
                     <constraint firstItem="lM4-4y-ffP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tf2-KC-5iH"/>
+                    <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="dMI-Vc-28l" secondAttribute="leading" id="xXU-fZ-1HE"/>
+                    <constraint firstItem="dMI-Vc-28l" firstAttribute="top" secondItem="mUG-zY-dHD" secondAttribute="bottom" constant="5" id="yPW-bo-noS"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -115,6 +123,7 @@
                         <exclude reference="ADn-Dl-lWm"/>
                         <exclude reference="U3g-ed-wTL"/>
                         <exclude reference="6Ra-c3-gYu"/>
+                        <exclude reference="c2Y-AQ-Lhv"/>
                         <exclude reference="mqS-7C-HcM"/>
                     </mask>
                 </variation>
@@ -123,6 +132,7 @@
                 <outlet property="btn_delete" destination="7Rw-eO-sKU" id="l4v-Wi-3bH"/>
                 <outlet property="btn_headerImg" destination="mUG-zY-dHD" id="JyA-Na-UQd"/>
                 <outlet property="btn_name" destination="pH5-Po-Wwa" id="pcs-dU-JVE"/>
+                <outlet property="btn_topic" destination="dMI-Vc-28l" id="NPN-SO-J5E"/>
                 <outlet property="label_constellation" destination="luc-9F-P2m" id="4m4-iv-rYT"/>
                 <outlet property="label_constellation_constraint_width" destination="n0S-eC-rkf" id="yMl-9H-kgu"/>
                 <outlet property="label_content" destination="FEG-lw-pcv" id="f9C-Hy-cXB"/>

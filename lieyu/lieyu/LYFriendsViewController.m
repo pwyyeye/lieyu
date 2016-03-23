@@ -37,6 +37,9 @@
 #import "ISEmojiView.h"
 #import "ImagePickerViewController.h"
 #import "HotMenuButton.h"
+#import "LYUserHttpTool.h"
+#import "TopicModel.h"
+#import "LYFriendsTopicViewController.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
@@ -94,6 +97,7 @@
         NSString *jubaoMomentID;//要删除的动态ID
         NSString *jubaoUserID;//被举报人的ID
         ISEmojiView *_emojiView;//表情键盘
+        NSArray *_topicArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -128,7 +132,7 @@
     if(self.navigationController.navigationBarHidden == YES){
         self.navigationController.navigationBarHidden = NO;
     }
-        [self setupNavMenuView];
+    [self setupNavMenuView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
@@ -249,7 +253,7 @@
 }
 
 #pragma mark - 作为代理收取视频路径地址与截图
-- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location{
+- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
     self.mediaImage = image;
     self.mediaUrl = mediaUrl;
     self.content = content;
@@ -271,6 +275,14 @@
     recentM.commentList = [[NSMutableArray alloc]init];
     recentM.likeList = [[NSMutableArray alloc]init];
     recentM.location = location;
+    if (topicID.length && topicName.length) {
+        recentM.topicTypeId = topicID;
+        NSArray *strArray = [topicName componentsSeparatedByString:@"#"];
+        if(strArray.count >= 2) recentM.topicTypeName = strArray[1];
+    }else{
+        recentM.topicTypeId = @"";
+        recentM.topicTypeName = @"";
+    }
     
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     pvModel.imageLink = mediaUrl;
@@ -287,7 +299,8 @@
 }
 
 #pragma mark - 作为代理接受返回的图片
-- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location{
+- (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
+    
     self.imageArray = imagesArray;
     self.content = content;
     
@@ -301,6 +314,14 @@
     recentM.likeList = [[NSMutableArray alloc]init];
     recentM.location = location;
     recentM.isMeSendMessage = YES;
+    if (topicID.length && topicName.length) {
+        recentM.topicTypeId = topicID;
+        NSArray *strArray = [topicName componentsSeparatedByString:@"#"];
+        if(strArray.count >= 2) recentM.topicTypeName = strArray[1];
+    }else{
+        recentM.topicTypeId = @"";
+        recentM.topicTypeName = @"";
+    }
     
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
     [dateFmt setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
@@ -501,10 +522,6 @@
 }
 
 #pragma mark - UIScrollViewDelegate
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-   
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentOffset.y > _contentOffSetY) {
          if (scrollView.contentOffset.y <= 0.f) {
@@ -642,6 +659,7 @@
         self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
         if(_isFriendsPageUpLoad)  [self.tableView setContentOffset:CGPointMake(0, -64) animated:NO];
         [self removeTableViewHeader];
+        [self addTableViewHeaderViewForTopic];
     }
     
 //    if(!((NSArray *)_dataArray[_index]).count || _section >= 10){
@@ -752,6 +770,55 @@
     _headerView.ImageView_bg.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseBgImage)];
     [_headerView.ImageView_bg addGestureRecognizer:tapGes];
+}
+
+#pragma mark - 话题
+- (void)addTableViewHeaderViewForTopic{
+    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 86)];
+    topicScrollView.scrollsToTop = NO;
+    topicScrollView.backgroundColor  = RGB(237, 237, 237);
+    topicScrollView.showsHorizontalScrollIndicator = NO;
+    topicScrollView.showsVerticalScrollIndicator = NO;
+    _tableView.tableHeaderView = topicScrollView;
+    
+
+    NSDictionary *dic = @{@"type":@"2"};
+    [LYUserHttpTool getTopicList:dic complete:^(NSArray *dataList) {
+        _topicArray = dataList;
+        CGFloat btnWidth = 128;
+        for (int i = 0; i < dataList.count; i ++) {
+            
+            UIButton *topicBtn = [[UIButton alloc]initWithFrame:CGRectMake(i *(btnWidth  + 8) + 8, 8, btnWidth, 70)];
+            TopicModel *topicM = dataList[i];
+            [topicBtn setTitle:topicM.name forState:UIControlStateNormal];
+            topicBtn.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightMedium];
+            topicBtn.titleLabel.layer.shadowColor = RGBA(0, 0, 0, .5).CGColor;
+            topicBtn.backgroundColor = [UIColor redColor];
+            topicBtn.titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
+            topicBtn.titleLabel.layer.shadowOpacity = 1;
+            topicBtn.titleLabel.layer.shadowRadius = 2;
+            topicBtn.layer.cornerRadius = 4;
+            topicBtn.clipsToBounds = YES;
+//            [topicBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:topicM.linkurl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+            [topicScrollView addSubview:topicBtn];
+            topicBtn.tag = i;
+            [topicBtn addTarget:self action:@selector(topicClick:) forControlEvents:UIControlEventTouchUpInside];
+            if(i == dataList.count - 1){
+                topicScrollView.contentSize = CGSizeMake(CGRectGetMaxX(topicBtn.frame) + 8, topicScrollView.contentSize.height);
+            }
+        }
+    }];
+    
+}
+
+#pragma mark - 话题action
+- (void)topicClick:(UIButton *)button{
+    TopicModel *topicM = _topicArray[button.tag];
+    LYFriendsTopicViewController *fridendTopicVC = [[LYFriendsTopicViewController alloc]init];
+    fridendTopicVC.topicTypeId = topicM.id;
+    fridendTopicVC.topicName = topicM.name;
+    fridendTopicVC.headerViewImgLink = topicM.linkurl;
+    [self.navigationController pushViewController:fridendTopicVC animated:YES];
 }
 
 #pragma mark - 表头选择背景action
@@ -1434,10 +1501,9 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                     LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
                     nameCell.recentM = recentM;
                     nameCell.btn_delete.tag = indexPath.section;
-                    
+                    nameCell.btn_topic.tag = indexPath.section;
+                    [nameCell.btn_topic addTarget:self action:@selector(topicNameClick:) forControlEvents:UIControlEventTouchUpInside];
                     if (!_index) {
-//                        nameCell.btn_delete.hidden = YES;
-                        
                         [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
                         [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
                         [nameCell.btn_delete addTarget:self action:@selector(warningSheet:) forControlEvents:UIControlEventTouchUpInside];
@@ -1593,14 +1659,18 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     switch (indexPath.row) {
         case 0://头像和动态
         {
-            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(306, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 14, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
            // if(size.height >= 47) size.height = 47;
             if(![MyUtil isEmptyString:recentM.message]) {
                 if(size.height >= 47) size.height = 47;
                 size.height = 10 + size.height;
             }else{
                 size.height = 0;
+                if(![MyUtil isEmptyString:recentM.topicTypeName]){
+                    size.height = 20;
+                }
             }
+            NSLog(@"------>%f",size.height);
              return 55 + size.height ;
         }
             break;
@@ -1696,6 +1766,17 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
         }
     }else if(indexPath.row == 9){
         [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+    }
+}
+
+#pragma mark - 点击动态中话题文字
+- (void)topicNameClick:(UIButton *)button{
+    FriendsRecentModel *friendRecentM = _dataArray[_index][button.tag];
+    if (friendRecentM.topicTypeName.length && friendRecentM.topicTypeId.length) {
+        LYFriendsTopicViewController *friendsTopicVC = [[LYFriendsTopicViewController alloc]init];
+        friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
+        friendRecentM.topicTypeName = friendRecentM.topicTypeName;
+        [self.navigationController pushViewController:friendsTopicVC animated:YES];
     }
 }
 
@@ -1799,6 +1880,8 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 //- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
 //    return UIInterfaceOrientationMaskLandscape;
 //}
+
+#pragma mark 话题
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

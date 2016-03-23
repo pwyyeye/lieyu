@@ -864,6 +864,8 @@
 		85C428871C11D25D0028FC21 /* ContentViewTaocan.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428861C11D25D0028FC21 /* ContentViewTaocan.m */; };
 		85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428881C11D2710028FC21 /* ContentViewTaocan.xib */; };
 		85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */; };
+		85DB12501CA00DC5002D6042 /* LYFriendsTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DB124E1CA00DC5002D6042 /* LYFriendsTopicViewController.m */; };
+		85DB12511CA00DC5002D6042 /* LYFriendsTopicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85DB124F1CA00DC5002D6042 /* LYFriendsTopicViewController.xib */; };
 		85EC69FA1C17D4A10082AA3E /* sorry.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85EC69F91C17D4A10082AA3E /* sorry.gif */; };
 		85EC69FB1C17F71F0082AA3E /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
 		85EC6A031C18109A0082AA3E /* LYBarDescTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC6A021C18109A0082AA3E /* LYBarDescTableViewCell.m */; };
@@ -2770,6 +2772,9 @@
 		85C428881C11D2710028FC21 /* ContentViewTaocan.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentViewTaocan.xib; sourceTree = "<group>"; };
 		85C8F2321C3A4DE700288844 /* FriendsUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsUserInfoModel.h; sourceTree = "<group>"; };
 		85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsUserInfoModel.m; sourceTree = "<group>"; };
+		85DB124D1CA00DC5002D6042 /* LYFriendsTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsTopicViewController.h; sourceTree = "<group>"; };
+		85DB124E1CA00DC5002D6042 /* LYFriendsTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsTopicViewController.m; sourceTree = "<group>"; };
+		85DB124F1CA00DC5002D6042 /* LYFriendsTopicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYFriendsTopicViewController.xib; sourceTree = "<group>"; };
 		85EC69F91C17D4A10082AA3E /* sorry.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = sorry.gif; sourceTree = "<group>"; };
 		85EC6A011C18109A0082AA3E /* LYBarDescTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarDescTableViewCell.h; sourceTree = "<group>"; };
 		85EC6A021C18109A0082AA3E /* LYBarDescTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarDescTableViewCell.m; sourceTree = "<group>"; };
@@ -5595,6 +5600,7 @@
 			children = (
 				853C4C3B1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.h */,
 				853C4C3C1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.m */,
+				853C4C3D1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib */,
 			);
 			name = "好友动态";
 			sourceTree = "<group>";
@@ -5687,7 +5693,6 @@
 				854CC9861C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib */,
 				85138DFB1C33A49500BD6F6C /* LYFriendsCommentButton.h */,
 				85138DFC1C33A49500BD6F6C /* LYFriendsCommentButton.m */,
-				853C4C3D1C30E2EC00D48BA2 /* LYFriendsToUserMessageViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -5695,6 +5700,7 @@
 		8540B65D1C2CD68C00F16463 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				85DB124C1CA00DA2002D6042 /* 话题动态 */,
 				854CC9881C32622400A6CA60 /* 更该相册封面 */,
 				853C4C401C30E2F400D48BA2 /* 好友动态 */,
 				8550E70F1C301719001FF2DE /* 消息详情 */,
@@ -6318,6 +6324,16 @@
 			);
 			name = CoreDataModel;
 			path = Model/CoreDataModel;
+			sourceTree = "<group>";
+		};
+		85DB124C1CA00DA2002D6042 /* 话题动态 */ = {
+			isa = PBXGroup;
+			children = (
+				85DB124D1CA00DC5002D6042 /* LYFriendsTopicViewController.h */,
+				85DB124E1CA00DC5002D6042 /* LYFriendsTopicViewController.m */,
+				85DB124F1CA00DC5002D6042 /* LYFriendsTopicViewController.xib */,
+			);
+			name = "话题动态";
 			sourceTree = "<group>";
 		};
 		85EC6A041C186A090082AA3E /* 离我最近 */ = {
@@ -8691,6 +8707,7 @@
 				AD399E9E1C940D4D00028F23 /* logo31@2x.jpg in Resources */,
 				525CA0C91C5B626E009ED9DA /* daohang_xiangji@3x.png in Resources */,
 				A2020D781BA67FA40090B92A /* Fill20176.png in Resources */,
+				85DB12511CA00DC5002D6042 /* LYFriendsTopicViewController.xib in Resources */,
 				AD399EBD1C940D4D00028F23 /* logo62@2x.jpg in Resources */,
 				AD399E891C940D4D00028F23 /* logo10@2x.jpg in Resources */,
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
@@ -9618,6 +9635,7 @@
 				15E240D11BB3D5940090D240 /* LYRegistrationViewController.m in Sources */,
 				152247AE1BEB064600E68A2B /* IQUIView+Hierarchy.m in Sources */,
 				3877821B1C8FEF3F0047088B /* QRCheckOrderHeader.m in Sources */,
+				85DB12501CA00DC5002D6042 /* LYFriendsTopicViewController.m in Sources */,
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				38E5D6F41C0F10E7004B49D2 /* LPBuyManagerCell.m in Sources */,
 				853C4C4E1C31189E00D48BA2 /* LYFriendsCommentDetailTableViewCell.m in Sources */,
