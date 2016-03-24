@@ -22,7 +22,6 @@
 #import "LYHeaderTableViewCell.h"
 #import "LYBarTitleTableViewCell.h"
 #import "LYBarPointTableViewCell.h"
-#import "LYBarSpecialTableViewCell.h"
 #import "LYBarDescTableViewCell.h"
 #import "LYUserHttpTool.h"
 #import "LYHomePageHttpTool.h"
@@ -38,7 +37,6 @@
 #import "ActionDetailViewController.h"
 #import "BarActivityList.h"
 #import "LYMyFriendDetailViewController.h"
-#import "LYBarPhoneAndCommentsTableViewCell.h"
 #import "LYCache.h"
 #import "LYFriendsTopicViewController.h"
 
@@ -526,7 +524,6 @@
     [_tableView registerClass:[LYBarDescTableViewCell class] forCellReuseIdentifier:@"LYBarDescTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarIconTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarIconTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LYBarScrollTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarScrollTableViewCell"];
-    [_tableView registerNib:[UINib nibWithNibName:@"LYBarPhoneAndCommentsTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYBarPhoneAndCommentsTableViewCell"];
     self.bottomBarView.backgroundColor = [LYColors tabbarBgColor];
     //_dyBarDetailH = [BeerBarDetailCell adjustCellHeight:nil];
 }
@@ -639,27 +636,28 @@
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
             _barTitleCell.beerM = _beerBarDetail;
             _barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [_barTitleCell.btnBuy addTarget:self action:@selector(telephoneClick:) forControlEvents:UIControlEventTouchUpInside];
+            [_barTitleCell.btn_comment addTarget:self action:@selector(barCommentClick) forControlEvents:UIControlEventTouchUpInside];
             return _barTitleCell;
             
         }
             break;
-        case 2:
+        case 3:
         {
             LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
+            [barPointCell.img_icon setImage:[UIImage imageNamed:@"beerBarPoint"]];
             barPointCell.label_point.text = self.beerBarDetail.address;
             barPointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return barPointCell;
         }
             break;
-        case 3:{
-            LYBarPhoneAndCommentsTableViewCell *barPhoneAndCommentCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPhoneAndCommentsTableViewCell" forIndexPath:indexPath];
-            [barPhoneAndCommentCell.btn_phone setTitle:[NSString stringWithFormat:@"联系电话:%@",_beerBarDetail.telephone] forState:UIControlStateNormal];
-            [barPhoneAndCommentCell.btn_phone addTarget:self action:@selector(telephoneClick:) forControlEvents:UIControlEventTouchUpInside];
-            [barPhoneAndCommentCell.btn_comment setTitle:_beerBarDetail.topicTypeMommentNum forState:UIControlStateNormal];
-            [barPhoneAndCommentCell.btn_comment addTarget:self action:@selector(barCommentClick) forControlEvents:UIControlEventTouchUpInside];
-            return barPhoneAndCommentCell;
+        case 2:{
+            LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
+            barPointCell.label_point.text = [NSString stringWithFormat:@"电话%@",self.beerBarDetail.telephone];
+            [barPointCell.img_icon setImage:[UIImage imageNamed:@"beerBarTel"]];
+            barPointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return barPointCell;
         }
             break;
         case 4://iconlist
@@ -811,15 +809,7 @@
 - (void)telephoneClick:(UIButton *)button{
     
     
-    NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",_beerBarDetail.telephone]];
-    
-    if ( !_phoneCallWebView ) {
-        
-        _phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的容易 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
-        
-    }
-    
-    [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+   
 //    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"拨打电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"%@",_beerBarDetail.telephone], nil];
 //    [sheet showInView:self.view];
 }
@@ -931,10 +921,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         //        _image_layer.userInteractionEnabled = NO;
         [self daohang];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"地图导航" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
+    }else if(indexPath.section == 2){
+        NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",_beerBarDetail.telephone]];
+        
+        if ( !_phoneCallWebView ) {
+            
+            _phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的容易 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+            
+        }
+        
+        [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
     }
 }
 

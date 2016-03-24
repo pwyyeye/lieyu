@@ -13,7 +13,8 @@
 @interface LYBarTitleTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imageView_header;
 @property (weak, nonatomic) IBOutlet UILabel *label_name;
-@property (weak, nonatomic) IBOutlet UIButton *btnBuy;
+@property (weak, nonatomic) IBOutlet UIButton *btn_comment;
+
 @property (weak, nonatomic) IBOutlet UILabel *label_price;
 @property (weak, nonatomic) IBOutlet UILabel *label_time;
 @property (nonatomic,strong) BeerBarOrYzhDetailModel *beerM;

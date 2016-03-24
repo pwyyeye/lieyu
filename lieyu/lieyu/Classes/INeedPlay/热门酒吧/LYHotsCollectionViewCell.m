@@ -9,7 +9,6 @@
 #import "LYHotsCollectionViewCell.h"
 #import "HomeBarCollectionViewCell.h"
 #import "JiuBaModel.h"
-#import "BeerBarDetailViewController.h"
 
 @interface LYHotsCollectionViewCell()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>{
 

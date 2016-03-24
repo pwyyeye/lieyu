@@ -19,7 +19,7 @@
 @interface SignViewController ()<UITableViewDataSource,UITableViewDelegate>{
     NSInteger _currentPage;
     NSInteger PAGESIZE;
-    NSArray *_dataArray;
+    NSMutableArray *_dataArray,*_beforeDataArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _currentPage = 0;
-    PAGESIZE = 20;
+    PAGESIZE = 40;
     self.title = @"所有签到";
     
     [self.navigationController setNavigationBarHidden:NO];
@@ -45,7 +45,7 @@
     [_tableView registerNib:[UINib nibWithNibName:@"SignIconTableViewCell" bundle:nil] forCellReuseIdentifier:@"SignIconTableViewCell"];
     [self getData];
     
-    //[self setupRefresh];
+    [self setupRefresh];
     
 }
 
@@ -63,9 +63,10 @@
 }
 
 - (void)getData{
-    NSDictionary *dic = @{@"start":[NSString stringWithFormat:@"%ld",(long)_currentPage ],@"limit":[NSString stringWithFormat:@"%ld",(long)PAGESIZE],@"barid":_barid};
+    NSDictionary *dic = @{@"start":[NSString stringWithFormat:@"%ld",(long)_currentPage * (long)PAGESIZE  ],@"limit":[NSString stringWithFormat:@"%ld",(long)PAGESIZE],@"barid":_barid};
     [LYHomePageHttpTool getSignListWidth:dic complete:^(NSMutableArray *result) {
-        
+        if(_currentPage == 0) _beforeDataArray = result;
+        else [_beforeDataArray addObjectsFromArray:result];
         NSMutableArray *dateMutablearray = [@[] mutableCopy];
         /*NSArray *array1 = @[@"2014-04-01",@"2014-04-02",@"2014-04-03",
                             @"2014-04-01",@"2014-04-02",@"2014-04-03",
@@ -75,7 +76,7 @@
                             @"2014-04-01",@"2014-04-02",@"2014-04-03",
                             @"2014-04-04",@"2014-04-06",@"2014-04-08",
                             @"2014-04-05",@"2014-04-07",@"2014-04-09",]; */
-        NSMutableArray *array = [NSMutableArray arrayWithArray:result];
+        NSMutableArray *array = [NSMutableArray arrayWithArray:_beforeDataArray];
         for (int i = 0; i < array.count; i ++) {
             CustomerModel *cuM = array[i];
             NSString *string = cuM.signdate;
@@ -93,18 +94,19 @@
             [dateMutablearray addObject:tempArray];
         }
         
+//        if(_currentPage == 0) _dataArray = dateMutablearray;
+//        else [_dataArray addObjectsFromArray:dateMutablearray];
         _dataArray = dateMutablearray;
-        
-        
         [_tableView reloadData];
         [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
     }];
 }
 
 - (void)setupRefresh{
     __weak SignViewController *weakSelf = self;
     _tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        _currentPage = 1;
+        _currentPage = 0;
         [weakSelf getData];
     }];
     MJRefreshGifHeader *header=(MJRefreshGifHeader *)_tableView.mj_header;

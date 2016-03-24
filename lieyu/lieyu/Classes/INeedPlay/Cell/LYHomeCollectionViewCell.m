@@ -9,7 +9,6 @@
 #import "LYHomeCollectionViewCell.h"
 #import "HomeBarCollectionViewCell.h"
 #import "JiuBaModel.h"
-#import "BeerBarDetailViewController.h"
 #import "SDCycleScrollView.h"
 #import "HomeMenusCollectionViewCell.h"
 #import "UIButton+WebCache.h"

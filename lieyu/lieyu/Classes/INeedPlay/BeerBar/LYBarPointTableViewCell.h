@@ -10,5 +10,6 @@
 
 @interface LYBarPointTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *label_point;
+@property (weak, nonatomic) IBOutlet UIImageView *img_icon;
 
 @end

@@ -19,7 +19,6 @@
 #import "LYToPlayRestfulBusiness.h"
 #import "LYUserLocation.h"
 #import "LYHotBarMenuDropView.h"
-#import "BeerBarDetailViewController.h"
 #import "bartypeslistModel.h"
 #import "UIImage+GIF.h"
 #import "MenuButton.h"
@@ -429,9 +428,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JiuBaModel *jiuBaModel = self.aryList[indexPath.section];
-    BeerBarDetailViewController *detailVC = [[BeerBarDetailViewController alloc]init];
-    detailVC.beerBarId = @(jiuBaModel.barid);
-    [self.navigationController pushViewController:detailVC animated:YES];
+//    BeerBarDetailViewController *detailVC = [[BeerBarDetailViewController alloc]init];
+//    detailVC.beerBarId = @(jiuBaModel.barid);
+//    [self.navigationController pushViewController:detailVC animated:YES];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOTJIUBAPAGE_MTA titleName:jiuBaModel.barname]];
 }
 
