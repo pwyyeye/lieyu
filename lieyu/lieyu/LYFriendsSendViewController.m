@@ -270,7 +270,7 @@
         PrepareDelete = NO;
         _TopicTitle = @"";
         _TopicID = @"";
-        return NO;
+        return NO; 
     }
     
     
