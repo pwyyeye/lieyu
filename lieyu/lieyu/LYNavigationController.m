@@ -55,7 +55,6 @@
     
     
     //设置标题颜色
-    
     UIColor * color = [UIColor blackColor];
     
     NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
@@ -64,9 +63,7 @@
     
     self.delegate=self;
     
-    
 }
-
 
 //- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 //{
@@ -78,8 +75,6 @@
 //    }
 //    return YES;
 //}
-
-
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -124,7 +119,6 @@
     lastController = viewController;
     
     //    [viewController viewWillAppear:animated];
-    
     
 }
 

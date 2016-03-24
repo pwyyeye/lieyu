@@ -64,6 +64,10 @@
 @property (nonatomic,copy) NSString *signCount;
 @property (nonatomic,strong) NSMutableArray *signUsers;
 
+@property (nonatomic,copy) NSString *topicTypeMommentNum;
+@property (nonatomic,copy) NSString *topicTypeId;
+@property (nonatomic,copy) NSString *topicTypeName;
+
 +(BeerBarOrYzhDetailModel *)initFormDictionary:(NSDictionary *)dic;
 
 @end

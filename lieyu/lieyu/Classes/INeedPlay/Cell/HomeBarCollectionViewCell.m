@@ -99,6 +99,12 @@
     _label_fanli_right_const.constant = 10;
     _view_fanli_right_const.constant = 7;
     _label_fanli.text =[NSString stringWithFormat:@"返利%d%@",fanli,@"%"];
+    
+    if ([jiuBaM.recommended isEqualToString:@"1"]) {
+        _img_hot.hidden = NO;
+    }else{
+        _img_hot.hidden = YES;
+    }
 }
 
 

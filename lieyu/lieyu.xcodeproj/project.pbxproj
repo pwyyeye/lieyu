@@ -636,6 +636,8 @@
 		8504B9351C702263008E5C6B /* LYHotsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8504B9331C702263008E5C6B /* LYHotsCollectionViewCell.xib */; };
 		8504B9391C71C36B008E5C6B /* LYHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8504B9371C71C36B008E5C6B /* LYHomeCollectionViewCell.m */; };
 		8504B93A1C71C36B008E5C6B /* LYHomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */; };
+		850839EF1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 850839ED1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.m */; };
+		850839F01CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850839EE1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.xib */; };
 		850917AD1C97E68B007981C0 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 850917AC1C97E68B007981C0 /* MBProgressHUD.m */; };
 		850918881C982D23007981C0 /* LYFindConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850918871C982D23007981C0 /* LYFindConversationViewController.m */; };
 		8509188C1C984B25007981C0 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509188B1C984B25007981C0 /* LoadingView.m */; };
@@ -2442,6 +2444,9 @@
 		8504B9361C71C36B008E5C6B /* LYHomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeCollectionViewCell.h; sourceTree = "<group>"; };
 		8504B9371C71C36B008E5C6B /* LYHomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeCollectionViewCell.m; sourceTree = "<group>"; };
 		8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		850839EC1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarPhoneAndCommentsTableViewCell.h; sourceTree = "<group>"; };
+		850839ED1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarPhoneAndCommentsTableViewCell.m; sourceTree = "<group>"; };
+		850839EE1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBarPhoneAndCommentsTableViewCell.xib; sourceTree = "<group>"; };
 		850917AB1C97E68B007981C0 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		850917AC1C97E68B007981C0 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		850918861C982D23007981C0 /* LYFindConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFindConversationViewController.h; sourceTree = "<group>"; };
@@ -6369,6 +6374,9 @@
 				853C360C1C72BA8400F1703B /* LYBarScrollTableViewCell.h */,
 				853C360D1C72BA8400F1703B /* LYBarScrollTableViewCell.m */,
 				853C360E1C72BA8400F1703B /* LYBarScrollTableViewCell.xib */,
+				850839EC1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.h */,
+				850839ED1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.m */,
+				850839EE1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.xib */,
 			);
 			name = Cell;
 			path = ..;
@@ -8329,6 +8337,7 @@
 				3812C5581C57B76100F4DD6B /* purper_less@2x.png in Resources */,
 				389C01091C1488F000FE9412 /* seeGirls@2x.png in Resources */,
 				85F43BB01C11459400B04466 /* LYOrderManagerTableViewCell.xib in Resources */,
+				850839F01CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.xib in Resources */,
 				85F5451C1C13DF5A0013B92B /* cameraCircle.png in Resources */,
 				ADE1C5C31C730E1C0011D4AB /* 更新14@2x.png in Resources */,
 				AD44F9571C9D27730030F5C2 /* biaoqing_icon_keybo@2x.png in Resources */,
@@ -9388,6 +9397,7 @@
 				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
 				38EE91A61C3BE0A800361D07 /* Reachability.m in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,
+				850839EF1CA2808B00A2D6A9 /* LYBarPhoneAndCommentsTableViewCell.m in Sources */,
 				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,
 				15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */,
 				85F545161C13DE000013B92B /* LYUserDetailInfoViewController.m in Sources */,
