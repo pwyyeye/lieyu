@@ -14,6 +14,8 @@
 {
     NSArray *dataArray;
     NSMutableArray *newDataArr;//进行筛选的新的话题数组
+    NSMutableArray *newBarTopic;//实时更新酒吧话题
+    NSMutableArray *newHotTopic;//实时更新热门话题
 }
 @end
 
@@ -21,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.searchBar becomeFirstResponder];
     self.searchBar.delegate = self;
     [self getData];
@@ -36,7 +39,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-//    self.searchBar.text = @"#";
+    self.searchBar.text = @"";
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -75,20 +78,81 @@
 
 #pragma mark - tableview代理
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-        return newDataArr.count;
+//    int i = 0 ;
+    newBarTopic = [[NSMutableArray alloc]init];
+    newHotTopic = [[NSMutableArray alloc]init];
+    for (TopicModel *model in newDataArr) {
+        if (![model.barid isEqualToString:@"0"] && model.barname.length) {
+//            i ++;
+            [newBarTopic addObject:model];
+        }else{
+            [newHotTopic addObject:model];
+        }
+    }
+    if (section == 0) {
+//        return newDataArr.count - i ;
+        return newHotTopic.count;
+    }else{
+//        return i;
+        return newBarTopic.count;
+    }
+//    return newDataArr.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 34;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 55;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 34)];
+    [sectionView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(8, 9, SCREEN_WIDTH - 16, 16)];
+    [label setTextColor:RGBA(128, 128, 128, 1)];
+    [label setFont:[UIFont systemFontOfSize:12]];
+    [label setBackgroundColor:[UIColor clearColor]];
+    if (section == 1) {
+        label.text = @"酒吧话题";
+    }else if (section == 0){
+        label.text = @"热门话题";
+    }
+    [sectionView addSubview:label];
+    return sectionView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchTopicCell"];
+    UIImageView *imageView;
+    UILabel *TopicLabel;
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchTopicCell"];
+        imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 35, 35)];
+        imageView.layer.cornerRadius = 17.5;
+        imageView.layer.masksToBounds = YES;
+        
+        TopicLabel = [[UILabel alloc]initWithFrame:CGRectMake(65, 18, SCREEN_WIDTH - 75, 15)];
+        [TopicLabel setTextColor:[UIColor blackColor]];
+        [TopicLabel setFont:[UIFont systemFontOfSize:14]];
+        
+        [cell addSubview:imageView];
+        [cell addSubview:TopicLabel];
     }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",((TopicModel *)[newDataArr objectAtIndex:indexPath.row]).name];
+    if (indexPath.section == 0) {
+        TopicModel *model = [newHotTopic objectAtIndex:indexPath.row];
+        TopicLabel.text = model.name;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.linkurl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    }else if (indexPath.section == 1){
+        TopicModel *model = [newBarTopic objectAtIndex:indexPath.row];
+        TopicLabel.text = model.name;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.linkurl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    }
     return cell;
 }
 
@@ -98,7 +162,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self dismissViewControllerAnimated:YES completion:nil];
-    TopicModel *model = [newDataArr objectAtIndex:indexPath.row];
+    TopicModel *model ;
+    if (indexPath.section == 0) {
+        model = [newHotTopic objectAtIndex:indexPath.row];
+    }else if (indexPath.section == 1) {
+        model = [newBarTopic objectAtIndex:indexPath.row];
+    }
     self.returnTopicID(model.id,model.name);
 }
 

@@ -60,6 +60,7 @@
 @property (nonatomic,copy) NSString *rebate;
 @property (nonatomic,copy) NSString *isSign;
 @property (nonatomic,copy) NSString *addressabb;
+@property (nonatomic,copy) NSString *recommended;
 @property BOOL rowSelected;
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString *endTime;
