@@ -30,6 +30,8 @@
     UIImage *mediaImage;
     
     BOOL isntFirstEdit;
+    BOOL PrepareDelete;
+    UILabel *TopicLbl;//话题label
 }
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 //@property (nonatomic, strong) NSMutableArray *shangchuanArray;
@@ -54,7 +56,7 @@
 //    self.TopicTitle = @"#今晚吃什么#";
     self.pageCount = 4;
     self.initCount = 0;
-    
+    self.textView.font = [UIFont systemFontOfSize:14];
     self.fodderArray = [[NSMutableArray alloc]init];
     self.imageViewArray = [[NSMutableArray alloc]init];
     self.shangchuanString = [[NSMutableString alloc]init];
@@ -69,11 +71,12 @@
     
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     
+    NSLog(@"%@",self.textView.gestureRecognizers);
+    
     self.title = @"发布动态";
     self.textView.delegate = self;
 
     if(self.TopicTitle.length){
-//        self.textView.text = self.TopicTitle;
         [self addTopicLabel];
     }
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -111,23 +114,35 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
 }
 
+#pragma 设置话题
 - (void)addTopicLabel{
-    UILabel *TopicLbl = [[UILabel alloc]init];
-    TopicLbl.text = self.TopicTitle;
-    TopicLbl.textColor = [UIColor blueColor];
-    TopicLbl.font = [UIFont systemFontOfSize:14];
-    CGSize size = [TopicLbl.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:TopicLbl.font, NSFontAttributeName, nil]];
-    [TopicLbl setFrame:CGRectMake(5, 7, size.width, size.height)];
-    [self.textView addSubview:TopicLbl];
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init
-                                               ];
-    paragraphStyle.firstLineHeadIndent = size.width + 10;
-    paragraphStyle.lineSpacing = 5;
-    
-    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
-    self.textView.attributedText = [[NSAttributedString alloc]initWithString:@"说点这个时刻的感受吧!" attributes:attributes];
-    isntFirstEdit = NO;
+//    if(!TopicLbl){
+//        TopicLbl = [[UILabel alloc]init];
+//        TopicLbl.textColor = RGBA(186, 40, 227, 1);
+//        TopicLbl.font = [UIFont systemFontOfSize:14];
+//    }
+//    TopicLbl.backgroundColor = [UIColor whiteColor];
+//    TopicLbl.text = self.TopicTitle;
+//    CGSize size = [TopicLbl.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:TopicLbl.font, NSFontAttributeName, nil]];
+//    [TopicLbl setFrame:CGRectMake(5, 8, size.width, size.height)];
+//    [self.textView addSubview:TopicLbl];
+//    
+//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init
+//                                               ];
+//    paragraphStyle.firstLineHeadIndent = size.width + 10;
+//    paragraphStyle.lineSpacing = 5;
+//    
+//    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
+//    self.textView.attributedText = [[NSAttributedString alloc]initWithString:@"说点这个时刻的感受吧!" attributes:attributes];
+//    self.textView.textColor = [UIColor lightGrayColor];
+    NSDictionary *attribute = @{NSForegroundColorAttributeName:RGBA(186, 40, 227, 1),
+                                NSFontAttributeName:[UIFont systemFontOfSize:14]};
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ ",_TopicTitle]];
+    [attributeString addAttributes:attribute range:NSMakeRange(0, _TopicTitle.length)];
+    self.textView.attributedText = attributeString;
+    [self.textView becomeFirstResponder];
+    [self.textView setSelectedRange:NSMakeRange(_TopicTitle.length + 1, 0)];
+    isntFirstEdit = YES;
 }
 
 - (void)setPlaceHolder{
@@ -155,6 +170,9 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
+#pragma mark - textView －delegate
+
+
 - (void)textViewDidChange:(UITextView *)textView{
     if(textView == self.textView){
         if(self.textView.text.length >= 800){
@@ -163,18 +181,16 @@
             self.label.text = [NSString stringWithFormat:@"%lu/800",self.textView.text.length];
         }
     }
-    
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if([text isEqualToString:@"\n"]){
         [self.textView resignFirstResponder];
         return NO;
-    }
-    else if ([text isEqualToString:@"#"] && range.location == 0 && range.length == 0){
+    }else if ([text isEqualToString:@"#"] && range.location == 0 && range.length == 0){
         //每一次侦察，textview中第一个字符是＃
         if(!_TopicID.length && !_TopicTitle.length){
-            //没有topicID也没有TopicTitle，是在外部打＃号
+            //没有topicID也没有TopicTitle，是在外部打＃号o
             ChooseTopicViewController *chooseTopicVC = [[ChooseTopicViewController alloc]initWithNibName:@"ChooseTopicViewController" bundle:nil];
             
             if(_barid){
@@ -192,17 +208,97 @@
 //                isntFirstEdit = NO;
             }];
         }
+    }else if ([text isEqualToString:@""] && range.location == _TopicTitle.length-1 && range.length == 1){//即将删除话题
+//        NSLog(@"DELETE");
+//        NSLog(@"%ld-----%ld",range.location,range.length);
+//        if (PrepareDelete == NO) {//初次删除
+//            TopicLbl.backgroundColor = RGBA(132, 207, 248, 0.7);
+//            PrepareDelete = YES;
+//        }else{
+//            [TopicLbl removeFromSuperview];
+//            PrepareDelete = NO;
+//            
+//            //设初值
+//            _TopicID = nil;
+//            _TopicTitle = nil;
+//            //将光标移至前方
+//            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+//            paragraphStyle.firstLineHeadIndent = 0;
+//            paragraphStyle.lineSpacing = 5;
+//            
+//            NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
+//            self.textView.attributedText = [[NSAttributedString alloc]initWithString:@"" attributes:attributes];
+//            self.textView.textColor = [UIColor lightGrayColor];
+//            isntFirstEdit = NO;
+//        }
+        if (PrepareDelete == NO) {//初次删除
+            NSDictionary *attribute = @{NSBackgroundColorAttributeName:RGBA(116, 200, 252, 0.8),
+                                    NSForegroundColorAttributeName:RGBA(186, 40, 227, 1),
+                                    NSFontAttributeName:[UIFont systemFontOfSize:14]};
+            NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ ",_TopicTitle]];
+            [attributeString addAttributes:attribute range:NSMakeRange(0, _TopicTitle.length)];
+            self.textView.attributedText = attributeString;
+            PrepareDelete = YES;
+            if (![self.textView respondsToSelector:@selector(oneFingerTapTextView)]) {
+                [self.textView.gestureRecognizers enumerateObjectsUsingBlock:^(__kindof UIGestureRecognizer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([obj isKindOfClass:[UITapGestureRecognizer class]]) {
+                        if (((UITapGestureRecognizer *)obj).numberOfTapsRequired != 2) {
+                            [obj addTarget:self action:@selector(oneFingerTapTextView)];
+                        }
+                    }
+                }];
+            }
+        }else if (PrepareDelete == YES){//继续确认删除话题
+            NSDictionary *attribute = @{NSBackgroundColorAttributeName:[UIColor clearColor],
+                                        NSForegroundColorAttributeName:[UIColor blackColor],
+                                        NSFontAttributeName:[UIFont systemFontOfSize:14]};
+            NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:@" "];
+            [attributeString addAttributes:attribute range:NSMakeRange(0, 1)];
+            self.textView.attributedText = attributeString;
+            [self.textView setSelectedRange:NSMakeRange(0, 0)];
+            PrepareDelete = NO;
+            _TopicTitle = @"";
+            _TopicID = @"";
+        }
+    }else if(PrepareDelete == YES){
+        NSDictionary *attribute = @{NSBackgroundColorAttributeName:[UIColor clearColor],
+                                    NSForegroundColorAttributeName:[UIColor blackColor],
+                                    NSFontAttributeName:[UIFont systemFontOfSize:14]};
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:text];
+        [attributeString addAttributes:attribute range:NSMakeRange(0, text.length)];
+        self.textView.attributedText = attributeString;
+        PrepareDelete = NO;
+        _TopicTitle = @"";
+        _TopicID = @"";
+        return NO;
     }
+    
+    
     return YES;
 }
 //
 //- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
 //    
 //}
+- (void)oneFingerTapTextView{
+    if (_TopicTitle.length && PrepareDelete == YES) {
+        NSDictionary *attribute = @{NSForegroundColorAttributeName:RGBA(186, 40, 227, 1),
+                                    NSFontAttributeName:[UIFont systemFontOfSize:14]};
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ ",_TopicTitle]];
+        [attributeString addAttributes:attribute range:NSMakeRange(0, _TopicTitle.length)];
+        self.textView.attributedText = attributeString;
+        [self.textView becomeFirstResponder];
+        [self.textView setFont:[UIFont systemFontOfSize:14]];
+        isntFirstEdit = YES;
+        PrepareDelete = NO;
+    }
+}
+
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if (!isntFirstEdit) {
         self.textView.text = @"";
+        self.textView.textColor = [UIColor blackColor];
         isntFirstEdit = YES;
     }
 //    if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
@@ -215,6 +311,7 @@
 //        }
 ////        [self.textView setKeyboardAppearance:UIKeyboardAppearanceAlert];
 //    }
+    self.textView.font = [UIFont systemFontOfSize:14];
     [self.textView becomeFirstResponder];
 //    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 //    self.returnHandler = [[IQKeyboardReturnKeyHandler alloc]initWithViewController:self];
@@ -259,6 +356,32 @@
         [MyUtil showCleanMessage:@"内容过长，限800字！"];
         return;
     }
+    NSString *newContent;
+    if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+        self.content = @"";
+    }else{
+        self.content = [[NSString alloc]initWithString:self.textView.text];
+    }
+    if(_TopicTitle.length && _TopicID.length){
+        //存在topic
+        NSArray *array = [self.content componentsSeparatedByString:@"#"];
+        if (array.count >= 3) {
+            //内容中话题格式未错误
+            NSLog(@"%@",[_TopicTitle substringWithRange:NSMakeRange(1, _TopicTitle.length - 2)]);
+            if ([array[1] isEqualToString:[_TopicTitle substringWithRange:NSMakeRange(1, _TopicTitle.length - 2)]]) {
+                newContent = [self.content substringFromIndex:_TopicTitle.length + 1];
+            }else{
+                newContent = self.content;
+                _TopicID = @"";
+            }
+        }else{
+            newContent = self.content;
+            _TopicID = @"";
+        }
+    }else{
+        newContent = self.content;
+    }
+
 //    [app startLoading];
     //上传视频或者图片到七牛
     if(_isVedio){
@@ -272,14 +395,14 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
         if(self.delegate){
             
-            if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
-                self.content = @"";
-            }else{
-                self.content = [[NSString alloc]initWithString:self.textView.text];
-            }
+//            if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+//                self.content = @"";
+//            }else{
+//                self.content = [[NSString alloc]initWithString:self.textView.text];
+//            }
             //地址返回
             NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
-            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:self.content andLocation:location andTopicID:_TopicID ? _TopicID : @"" andTopicName:_TopicTitle ? _TopicTitle : @""];
+            [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:newContent andLocation:location andTopicID:_TopicID ? _TopicID : @"" andTopicName:_TopicTitle ? _TopicTitle : @""];
         }
         
         AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
@@ -330,14 +453,14 @@
         }
         //点击发布按钮后将图片数组返回
         [self.navigationController popViewControllerAnimated:YES];
-        if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
-            self.content = @"";
-        }else{
-            self.content = [[NSString alloc]initWithString:self.textView.text];
-        }
+//        if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
+//            self.content = @"";
+//        }else{
+//            self.content = [[NSString alloc]initWithString:self.textView.text];
+//        }
         //地址返回
         NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
-        [self.delegate sendImagesArray:self.fodderArray andContent:self.content andLocation:location andTopicID:_TopicID ? _TopicID : @"" andTopicName:_TopicTitle ? _TopicTitle : @""];
+        [self.delegate sendImagesArray:self.fodderArray andContent:newContent andLocation:location andTopicID:_TopicID ? _TopicID : @"" andTopicName:_TopicTitle ? _TopicTitle : @""];
         if([self.textView isFirstResponder]){
             [self.textView resignFirstResponder];
         }
@@ -430,7 +553,7 @@
             paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"1",@"attach":string};
         }else{
             paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,
-                            @"type":@"0",@"message":[NSString stringWithFormat:@"%@%@",self.TopicTitle,self.content],
+                            @"type":@"0",@"message":self.content,
                         @"attachType":@"1",@"attach":string,@"topicTypeId":self.TopicID};
         }
     }else{
@@ -439,7 +562,7 @@
         }else{
             
             paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,
-                        @"type":@"0",@"message":[NSString stringWithFormat:@"%@%@",self.TopicTitle,self.content],
+                        @"type":@"0",@"message":self.content,
                         @"attachType":@"0",@"attach":string,@"topicTypeId":self.TopicID};
         }
     }
