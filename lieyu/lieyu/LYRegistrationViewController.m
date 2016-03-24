@@ -128,10 +128,10 @@ static LYRegistrationViewController *_registe;
     
     NSDictionary *dic=@{@"mobile":self.phoneTex.text};
     __block LYRegistrationViewController *weakSelf = self;
+    [_timer setFireDate:[NSDate distantPast]];
     if(_isTheThirdLogin){
         [LYUserHttpTool getYZMForThirdthLoginWithPara:dic compelte:^(NSString *flag) {//1 注册过 0 未注册过
             _flag = flag;
-            [_timer setFireDate:[NSDate distantPast]];
             if([flag isEqualToString:@"0"]){
                 //未注册显示注册等控件
                 weakSelf.title = @"注册";
@@ -141,6 +141,8 @@ static LYRegistrationViewController *_registe;
                 _imgView_icon_four.hidden = NO;
                 _againPassWordTex.hidden = NO;
                 _textField_psw_little.hidden = NO;
+                _line_view_three.hidden = NO;
+                _line_view_four.hidden = NO;
                 [_btn_regist setTitle:@"立即注册" forState:UIControlStateNormal];
                 _isRegisted = YES;
             }else{//已注册去绑定
@@ -196,6 +198,7 @@ static LYRegistrationViewController *_registe;
                         [app getImToken];
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                        
                     }];
                 }else{
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
