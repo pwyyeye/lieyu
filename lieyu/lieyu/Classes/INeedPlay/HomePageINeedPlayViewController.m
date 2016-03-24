@@ -468,7 +468,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     __weak HomePageINeedPlayViewController * weakSelf = self;
     [weakSelf loadHomeListWith:tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {
-         NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------getData--------@@@@@@@@@@@@@@@@@@@");
+//         NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------getData--------@@@@@@@@@@@@@@@@@@@");
          if (Req_Success == ermsg.state)
          {
              //             UICollectionView *collectView = _collectViewArray[_index];
@@ -496,7 +496,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)loadHomeListWith:(NSInteger)tag block:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
 {
-    NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------loadHomeListWith--------@@@@@@@@@@@@@@@@@@@");
+//    NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------loadHomeListWith--------@@@@@@@@@@@@@@@@@@@");
     MReqToPlayHomeList * hList = [[MReqToPlayHomeList alloc] init];
     LYToPlayRestfulBusiness * bus = [[LYToPlayRestfulBusiness alloc] init];
     
@@ -537,7 +537,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         {
             if(tag >= 2) return;
             
-            NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------loadHomeListWithSuccess--------@@@@@@@@@@@@@@@@@@@");
+//            NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------loadHomeListWithSuccess--------@@@@@@@@@@@@@@@@@@@");
             //            UICollectionView *collectView = _collectViewArray[tag];
             NSMutableArray *array = _dataArray[tag];
             if((tag == 0 && _currentPage_YD == 1) || (tag == 1 && _currentPage_Bar == 1)) {
@@ -603,7 +603,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             return hcell.jiubaArray.count + 4;
         }else{
             //WTT
-            return 5;
+            return 10;
         }
     }
 }
@@ -775,7 +775,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //        LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
 //          LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
         
-        NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------cellATIndex--------@@@@@@@@@@@@@@@@@@@");
+//        NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------cellATIndex--------@@@@@@@@@@@@@@@@@@@");
         switch (indexPath.item) {
                 case 0:
                 {
@@ -868,7 +868,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     if (collectionView != _collectView) {
         
-        NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------willDisplayCell--------@@@@@@@@@@@@@@@@@@@");
+//        NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------willDisplayCell--------@@@@@@@@@@@@@@@@@@@");
         if (indexPath.item==1) {
             if (_recommendedBar&&_index==0) {
                 ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBar;
