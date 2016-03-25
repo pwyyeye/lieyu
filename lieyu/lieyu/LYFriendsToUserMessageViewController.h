@@ -8,7 +8,9 @@
 
 #import "LYBaseViewController.h"
 
-@interface LYFriendsToUserMessageViewController : LYBaseViewController{
+#import "EmojisView.h"
+@interface LYFriendsToUserMessageViewController : LYBaseViewController<emojiClickDelegate>
+{
       NSString *_useridStr;
     NSMutableArray *_dataArray;
 }

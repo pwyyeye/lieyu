@@ -32,6 +32,7 @@
 - (IBAction)checkFans:(UIButton *)sender;
 - (IBAction)checkCares:(UIButton *)sender;
 - (IBAction)checkTrends:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *checkTrendsBtn;
 
 - (IBAction)sendMessageAct:(UIButton *)sender;
 - (IBAction)addCareof:(UIButton *)sender;

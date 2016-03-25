@@ -10,8 +10,8 @@
 #import "UIImageView+WebCache.h"
 #import "LYMineUrl.h"
 #import "qrencode.h"
-@interface MyCodeViewController ()
-
+@interface MyCodeViewController ()<UIActionSheetDelegate>
+@property(strong,nonatomic) UIWebView *phoneCallWebView;
 @end
 
 @implementation MyCodeViewController
@@ -45,6 +45,10 @@
     imageV.backgroundColor = [UIColor whiteColor];
     imageV.image = [self qrImageForString:string imageSize:200];
     [self.QRCodeView addSubview:imageV];
+    
+    UIBarButtonItem *itemBar = [[UIBarButtonItem alloc]initWithTitle:@"客服" style:UIBarButtonItemStylePlain target:self action:@selector(ClickSale)];
+    [itemBar setTintColor:[UIColor blackColor]];
+    self.navigationItem.rightBarButtonItem = itemBar;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -60,6 +64,25 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)ClickSale{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"速核码客服帮助" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"客服（021-36512128）", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 0){
+        NSURL *phoneURL = [NSURL URLWithString:@"tel:02136512128"];
+        
+        if ( !_phoneCallWebView ) {
+            
+            _phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的容易 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+            
+        }
+        
+        [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    }
 }
 
 - (UIImage *)qrImageForString:(NSString *)string imageSize:(CGFloat)size {

@@ -491,6 +491,7 @@
         
     }];
 }
+
 -(void) getBarVipWithParams:(NSDictionary*)params
                       block:(void(^)(NSMutableArray* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];

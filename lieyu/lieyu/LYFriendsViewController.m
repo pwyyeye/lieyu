@@ -98,6 +98,19 @@
         NSString *jubaoUserID;//被举报人的ID
         ISEmojiView *_emojiView;//表情键盘
         NSArray *_topicArray;
+        
+        
+        EmojisView *emojisView;
+        UIVisualEffectView *emojiEffectView;
+        BOOL isExidtEffectView;
+        UIButton *emoji_angry;
+        UIButton *emoji_sad;
+        UIButton *emoji_wow;
+        UIButton *emoji_kawayi;
+        UIButton *emoji_happy;
+        UIButton *emoji_zan;
+        
+        int gestureViewTag;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -120,7 +133,6 @@
     [self setupTableViewFresh];//配置表的刷新和加载
     [self getFriendsNewMessage];
     
-
     //[_tableView addObserver:self forKeyPath:@"contentOffset" options:nske context:nil];
 }
 
@@ -135,14 +147,22 @@
     [self setupNavMenuView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [self removeNavMenuView];
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
+//    [self hideEmojiEffectView];
+    if (isExidtEffectView) {
+        isExidtEffectView = NO;
+        [emojisView hideEmojiEffectView];
+    }
 }
+
+
+
+
 
 #pragma mark - 获取我的未读消息数
 - (void)getFriendsNewMessage{
@@ -523,6 +543,13 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    if (isExidtEffectView) {
+//        [self hideEmojiEffectView];
+    if (isExidtEffectView) {
+        isExidtEffectView = NO;
+        [emojisView hideEmojiEffectView];
+    }
+//    }
     if (scrollView.contentOffset.y > _contentOffSetY) {
          if (scrollView.contentOffset.y <= 0.f) {
              effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
@@ -991,6 +1018,56 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+
+- (void)likeFriendsClickEmoji:(NSString *)likeType{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
+        return;
+    }
+    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:gestureViewTag]];
+    cell.btn_like.enabled = NO;
+    FriendsRecentModel *recentM = _dataArray[_index][gestureViewTag];
+    NSDictionary *paraDic = @{@"userId":_useridStr,
+                              @"messageId":recentM.id,
+                              @"type":@"1",
+                              @"likeType":likeType};
+    __weak LYFriendsViewController *weakSelf = self;
+    [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
+        if (result) {//点赞成功
+            if ([recentM.liked isEqualToString:@"1"]) {
+                //之前已经点赞过
+                for (int i = 0; i< recentM.likeList.count;i ++) {
+                    FriendsLikeModel *likeM = recentM.likeList[i];
+                    if ([likeM.userId isEqualToString:_useridStr]) {
+                        [recentM.likeList removeObject:likeM];
+                        break;
+                    }
+                }
+                //删除点赞［前记录］
+            }
+            //增加点赞［］
+            FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
+            likeModel.icon = app.userModel.avatar_img;
+            likeModel.userId = _useridStr;
+            [recentM.likeList insertObject:likeModel atIndex:0];
+            likeModel.likeType = likeType;
+            recentM.liked = @"1";
+        }else{
+            for (int i = 0; i< recentM.likeList.count;i ++) {
+                FriendsLikeModel *likeM = recentM.likeList[i];
+                if ([likeM.userId isEqualToString:_useridStr]) {
+                    [recentM.likeList removeObject:likeM];
+                }
+            }
+            recentM.liked = @"0";
+        }
+        [weakSelf.tableView reloadData];
+        //        cell.btn_like.enabled = YES;
+    }];
+}
+
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
     if(![MyUtil isUserLogin]){
@@ -1034,6 +1111,223 @@
         cell.btn_like.enabled = YES;
     }];
 }
+
+#pragma mark － 长按表白
+- (void)likeLongPressClick:(UILongPressGestureRecognizer *)gesture{
+//    if (!emojiEffectView) {
+//        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//        emojiEffectView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
+//        emojiEffectView.tag = 577;
+//        [emojiEffectView setFrame:CGRectMake(-80, 0, 80, SCREEN_HEIGHT)];
+//        [emojiEffectView setAlpha:1];
+//        emojiEffectView.layer.shadowColor = [RGBA(0, 0, 0, 1) CGColor];
+//        emojiEffectView.layer.shadowOffset = CGSizeMake(0.5, 0);
+//        emojiEffectView.layer.shadowRadius = 1;
+//        emojiEffectView.layer.shadowOpacity = 0.3;
+////        [self.view bringSubviewToFront:emojiEffectView];
+//    
+//        
+//        int margin = ( SCREEN_HEIGHT - 240 ) / 7;
+//        
+//        emoji_angry = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin, 80, 40)];
+//        [emoji_angry setImage:[UIImage imageNamed:@"angry0"] forState:UIControlStateNormal];
+//        [emoji_angry.imageView setContentMode:UIViewContentModeScaleAspectFit];
+//        emoji_angry.tag = 201;
+//        [emoji_angry addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        emoji_sad = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 2 + 40, 80, 40)];
+//        [emoji_sad setImage:[UIImage imageNamed:@"sad0"] forState:UIControlStateNormal];
+//        [emoji_sad.imageView setContentMode:UIViewContentModeScaleAspectFit];
+//        emoji_sad.tag = 202;
+//        [emoji_sad addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        emoji_wow = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 3 + 80, 80, 40)];
+//        [emoji_wow setImage:[UIImage imageNamed:@"wow0"] forState:UIControlStateNormal];
+//        [emoji_wow.imageView setContentMode:UIViewContentModeScaleAspectFit];
+//        emoji_wow.tag = 203;
+//        [emoji_wow addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        emoji_kawayi = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 4 + 120, 80, 40)];
+//        [emoji_kawayi setImage:[UIImage imageNamed:@"kawayi0"] forState:UIControlStateNormal];
+//        [emoji_kawayi.imageView setContentMode:UIViewContentModeScaleAspectFit];
+//        emoji_kawayi.tag = 204;
+//        [emoji_kawayi addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        emoji_happy = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 5 + 160, 80, 40)];
+//        [emoji_happy setImage:[UIImage imageNamed:@"happy0"] forState:UIControlStateNormal];
+//        [emoji_happy.imageView setContentMode:UIViewContentModeScaleAspectFit];
+//        emoji_happy.tag = 205;
+//        [emoji_happy addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        emoji_zan = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 6 + 200, 80, 40)];
+//        [emoji_zan setImage:[UIImage imageNamed:@"dianzan0"] forState:UIControlStateNormal];
+//        [emoji_zan.imageView setContentMode:UIViewContentModeScaleAspectFit];
+//        emoji_zan.tag = 206;
+//        [emoji_zan addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [_mainWindow addSubview:emojiEffectView];
+//        [_mainWindow addSubview:emoji_zan];
+//        [_mainWindow addSubview:emoji_happy];
+//        [_mainWindow addSubview:emoji_kawayi];
+//        [_mainWindow addSubview:emoji_wow];
+//        [_mainWindow addSubview:emoji_angry];
+//        [_mainWindow addSubview:emoji_sad];
+//        
+//    }
+    isExidtEffectView = YES;
+    gestureViewTag = gesture.view.tag;
+//    [UIView animateWithDuration:3
+//                     animations:^{
+//        [self.view addSubview:emojiEffectView];
+//    }];
+//    self.tableView.userInteractionEnabled = !isExidtEffectView;
+//    self.tableView.scrollEnabled = YES;
+    if (!emojiEffectView) {
+        emojisView = [EmojisView shareInstanse];
+        emojisView.delegate = self;
+        NSDictionary *dict = [emojisView getEmojisView];
+        emojiEffectView = [dict objectForKey:@"emojiEffectView"];
+        emoji_angry = [[dict objectForKey:@"emojiButtons"]objectAtIndex:0];
+        emoji_sad = [[dict objectForKey:@"emojiButtons"]objectAtIndex:1];
+        emoji_wow = [[dict objectForKey:@"emojiButtons"]objectAtIndex:2];
+        emoji_kawayi = [[dict objectForKey:@"emojiButtons"]objectAtIndex:3];
+        emoji_happy = [[dict objectForKey:@"emojiButtons"]objectAtIndex:4];
+        emoji_zan = [[dict objectForKey:@"emojiButtons"]objectAtIndex:5];
+    }
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        [emojiEffectView setFrame:CGRectMake(0, 0, 80, SCREEN_HEIGHT)];
+    } completion:^(BOOL finished) {
+//
+    }];
+    
+    NSArray *emojiArr = @[emoji_angry,emoji_sad,emoji_wow,emoji_kawayi,emoji_happy,emoji_zan];
+    for (int i = 0 ; i < emojiArr.count; i ++) {
+        UIButton *emojiBtn = [emojiArr objectAtIndex:i];
+        double y = emojiBtn.frame.origin.y;
+        [UIView animateWithDuration:0.8 delay:i * 0.1 usingSpringWithDamping:0.3 initialSpringVelocity:0.3 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            [emojiBtn setFrame:CGRectMake(0, y, 80, 40)];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+}
+
+//- (void)clickEmojiBtn:(UIButton *)btn{
+//    NSString *emojiName ;
+//    int emojiNumber;
+//    if (btn.tag == 201) {
+//        emojiName = @"angry";
+//        emojiNumber = 34;
+//    }else if (btn.tag == 202){
+//        emojiName = @"sad";
+//        emojiNumber = 24;
+//    }else if (btn.tag == 203){
+//        emojiName = @"wow";
+//        emojiNumber = 24;
+//    }else if (btn.tag == 204){
+//        emojiName = @"kawayi";
+//        emojiNumber = 24;
+//    }else if (btn.tag == 205){
+//        emojiName = @"happy";
+//        emojiNumber = 24;
+//    }else if (btn.tag == 206){
+//        emojiName = @"dianzan";
+//        emojiNumber = 24;
+//    }
+//    [self hideEmojiEffectView];
+//    [self windowShowEmoji:emojiName And:emojiNumber];
+//}
+//
+//#pragma mark - 显示动画
+//- (void)windowShowEmoji:(NSString *)emojiName And:(int)emojiNumber{
+//    NSMutableArray *array = [[NSMutableArray alloc]init];
+//    NSString *string;
+//    UIImage *image;
+//    UIImageView *ImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@0",emojiName]]];
+//    for (int i = 0 ; i <= emojiNumber; i ++) {
+//        string = [[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"%@%d",emojiName,i] ofType:@"png"];
+//        image = [UIImage imageWithContentsOfFile:string];
+//        [array addObject:image];
+//    }
+//    
+//    [ImageView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50, 100, 100)];
+//    
+//    [_mainWindow addSubview:ImageView];
+//    ImageView.animationImages = array;
+//    ImageView.animationDuration = emojiNumber * 0.1;
+//    ImageView.animationRepeatCount = 1;
+////    [imgView removeFromSuperview];
+//    [ImageView startAnimating];
+////    [self performSelector:@selector(removeImageView:) withObject:ImageView afterDelay:emojiNumber * 0.1];
+////    dispatch_queue_t *queue = dispatch_get_global_queue(@"global", 1);
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(emojiNumber * 0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [UIView animateWithDuration:0.3 animations:^{
+//                ImageView.alpha = 0 ;
+//            }completion:^(BOOL finished) {
+//                [ImageView removeFromSuperview];
+//                //        [NSThread currentThread]
+//            }];
+//        });
+//    });
+//    
+////    [self performSelector:@selector(removeImageView:) onThread:[NSThread new] withObject:ImageView waitUntilDone:YES];
+//}
+//
+//- (void)removeImageView:(UIImageView *)imageView{
+////    NSThread *thread = [[NSThread alloc]initWithTarget:self selector:@selector(ThreadForImageView:) object:imageView];
+////    [NSThread detachNewThreadSelector:@selector(ThreadForImageView:) toTarget:self withObject:imageView];
+////    [thread start];
+////    [imageView performSelectorInBackground:@selector(ThreadForImageView:) withObject:imageView];
+//    [UIView animateWithDuration:0.3 animations:^{
+//        imageView.alpha = 0 ;
+//    }completion:^(BOOL finished) {
+//        [imageView removeFromSuperview];
+//        //        [NSThread currentThread]
+//    }];
+//}
+//
+//- (void)ThreadForImageView:(UIImageView *)imageView{
+//    [UIView animateWithDuration:0.8 animations:^{
+//        imageView.alpha = 0 ;
+//    }completion:^(BOOL finished) {
+//        [imageView removeFromSuperview];
+////        [NSThread currentThread] 
+//    }];
+//}
+//
+//#pragma mark - 隐藏左侧表情栏
+//- (void)hideEmojiEffectView{
+//    if (isExidtEffectView == YES) {
+//        isExidtEffectView = NO;
+//        NSArray *emojiArr = @[emoji_zan,emoji_happy,emoji_kawayi,emoji_wow,emoji_sad,emoji_angry];
+//        [UIView animateWithDuration:.3 delay:0.4 options:(UIViewAnimationOptionTransitionNone) animations:^{
+//            emojiEffectView.frame = CGRectMake(-80,0,80, emojiEffectView.frame.size.height);
+//        } completion:^(BOOL finished) {
+//            
+//        }];
+//        for (int i = 0 ; i < emojiArr.count; i ++) {
+//            UIButton *emojiBtn = [emojiArr objectAtIndex:i];
+//            double y = emojiBtn.frame.origin.y;
+//            [UIView animateWithDuration:0.8 delay:i * 0.1 usingSpringWithDamping:0.3 initialSpringVelocity:0.3 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+//                [emojiBtn setFrame:CGRectMake(-80, y, 80, 40)];
+//            } completion:^(BOOL finished) {
+//                
+//            }];
+//        }
+////        self.tableView.userInteractionEnabled = !isExidtEffectView;
+//    }
+//}
+//
+//- (void)hideEffectView{
+//    [UIView animateWithDuration:3 delay:10 options:UIViewAnimationOptionTransitionNone
+//        animations:^{
+//            int y = emojiEffectView.frame.origin.y;
+//            [emojiEffectView setFrame:CGRectMake(-80, y, 80, SCREEN_HEIGHT)];
+//        } completion:^(BOOL finished) {
+//                         
+//    }];
+//}
 
 #pragma mark - 评论action
 - (void)commentClick:(UIButton *)button{
@@ -1586,6 +1880,10 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                     addressCell.btn_like.tag = indexPath.section;
                     addressCell.btn_comment.tag = indexPath.section;
                     [addressCell.btn_like addTarget:self action:@selector(likeFriendsClick:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    UILongPressGestureRecognizer *likeLongPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(likeLongPressClick:)];
+                    [addressCell.btn_like addGestureRecognizer:likeLongPress];
+                    
                     [addressCell.btn_comment addTarget:self action:@selector(commentClick:) forControlEvents:UIControlEventTouchUpInside];
                     if([MyUtil isEmptyString:recentM.id]){
                         addressCell.btn_comment.enabled = NO;
