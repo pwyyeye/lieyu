@@ -16,10 +16,10 @@
 - (void)awakeFromNib {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     for (UIButton *btn in _btnArray) {
-        btn.layer.cornerRadius = (SCREEN_WIDTH - 114)/8.f / 2.f;
+        btn.layer.cornerRadius = (SCREEN_WIDTH - 114)/7.f / 2.f;
         btn.layer.masksToBounds = YES;
     }
-    _btn_more.layer.cornerRadius = (SCREEN_WIDTH - 114)/8.f / 2.f;
+    _btn_more.layer.cornerRadius = (SCREEN_WIDTH - 114)/7.f / 2.f;
     _btn_more.layer.masksToBounds = YES;
 }
 
@@ -40,12 +40,46 @@
     }else{
         count = array.count;
     }
+    for(UIImageView *imageView in _imageArray){
+        imageView.hidden = YES;
+    }
     for (int i = 0; i<count; i++ ) {
         if(_btnArray.count <= i || array.count <= i) return;
         UIButton *btn = _btnArray[i];
         btn.hidden = NO;
         FriendsLikeModel *likeModel = array[i];
         [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeModel.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
+        
+        UIImageView *image = _imageArray[i];
+        NSString *emojiString ;
+        switch ([likeModel.likeType intValue]) {
+            case 0:
+                emojiString = @"dianzan";
+                break;
+            case 1:
+                emojiString = @"angry";
+                break;
+            case 2:
+                emojiString = @"sad";
+                break;
+            case 3:
+                emojiString = @"wow";
+                break;
+            case 4 :
+                emojiString = @"kawayi";
+                break;
+            case 5:
+                emojiString = @"happy";
+                break;
+            case 6:
+                emojiString = @"dianzan";
+                break;
+            default:
+                emojiString = @"dianzan";
+                break;
+        }
+        image.hidden = NO;
+        [image setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@0",emojiString]]];
     }
     
  /*   if (!recentM.likeList.count) {

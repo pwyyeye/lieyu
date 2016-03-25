@@ -24,6 +24,7 @@
     preview *_subView;
     find_userInfoModel *_result;
     NSArray *imgArray;
+    UILabel *clearLabel;
 }
 @end
 
@@ -251,11 +252,24 @@
     }else{
         [_setBtn setTitle:@"打招呼" forState:UIControlStateNormal];
     }
-    for(int i = 0 ; i < _result.recentImages.count ; i ++){
-        UIImageView *image = [imgArray objectAtIndex:i];
-        [image sd_setImageWithURL:[NSURL URLWithString:[_result.recentImages objectAtIndex:i]]];
-        image.contentMode = UIViewContentModeScaleAspectFill;
-        image.clipsToBounds = YES;
+    if (_result.recentImages.count == 0) {
+        if (!clearLabel) {
+            clearLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 32, 150, 20)];
+            [clearLabel setFont:[UIFont systemFontOfSize:14]];
+            [clearLabel setTextColor:[UIColor darkGrayColor]];
+            [clearLabel setText:@"抱歉，暂无动态！"];
+        }
+        self.checkTrendsBtn.enabled = NO;
+        [self.DTView addSubview:clearLabel];
+    }else{
+        [clearLabel removeFromSuperview];
+        self.checkTrendsBtn.enabled = YES;
+        for(int i = 0 ; i < _result.recentImages.count ; i ++){
+            UIImageView *image = [imgArray objectAtIndex:i];
+            [image sd_setImageWithURL:[NSURL URLWithString:[_result.recentImages objectAtIndex:i]]];
+            image.contentMode = UIViewContentModeScaleAspectFill;
+            image.clipsToBounds = YES;
+        }
     }
 }
 
@@ -346,20 +360,20 @@
 -(void)dealloc{
     NSLog(@"delloc");
 }
-//
-//- (IBAction)checkFans:(UIButton *)sender {
-//    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
-//    caresViewController.userId = self.userID;
-//    caresViewController.type = @"1";
-//    [self.navigationController pushViewController:caresViewController animated:YES];
-//}
-//
-//- (IBAction)checkCares:(UIButton *)sender {
-//    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
-//    caresViewController.userId = self.userID;
-//    caresViewController.type = @"0";
-//    [self.navigationController pushViewController:caresViewController animated:YES];
-//}
+
+- (IBAction)checkFans:(UIButton *)sender {
+    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
+    caresViewController.userId = self.userID;
+    caresViewController.type = @"1";
+    [self.navigationController pushViewController:caresViewController animated:YES];
+}
+
+- (IBAction)checkCares:(UIButton *)sender {
+    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
+    caresViewController.userId = self.userID;
+    caresViewController.type = @"0";
+    [self.navigationController pushViewController:caresViewController animated:YES];
+}
 
 - (IBAction)checkTrends:(UIButton *)sender {
     LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]initWithNibName:@"LYFriendsToUserMessageViewController" bundle:nil];

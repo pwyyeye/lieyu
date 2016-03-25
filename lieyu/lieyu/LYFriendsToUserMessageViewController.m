@@ -33,6 +33,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "LYUserHttpTool.h"
 
+
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
 #define LYFriendsAddressCellID @"LYFriendsAddressTableViewCell"
 #define LYFriendsLikeCellID @"LYFriendsLikeTableViewCell"
@@ -63,6 +64,18 @@
     NSString *pingBiUserID;//要屏蔽的用户ID
     LYMyFriendDetailViewController *_friendDetailVC ;
     ISEmojiView *_emojiView;
+    
+    EmojisView *emojisView;
+    UIVisualEffectView *emojiEffectView;
+    BOOL isExidtEffectView;
+    UIButton *emoji_angry;
+    UIButton *emoji_sad;
+    UIButton *emoji_wow;
+    UIButton *emoji_kawayi;
+    UIButton *emoji_happy;
+    UIButton *emoji_zan;
+    
+    int gestureViewTag;
 }
 
 
@@ -281,6 +294,49 @@
    
 }
 
+- (void)likeFriendsClickEmoji:(NSString *)likeType{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
+        return;
+    }
+    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:gestureViewTag]];
+    cell.btn_like.enabled = NO;
+    FriendsRecentModel *recentM = _dataArray[gestureViewTag];
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":@"1",@"likeType":likeType};
+    __weak LYFriendsToUserMessageViewController *weakSelf = self;
+    [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
+        if (result) {//点赞成功
+            if ([recentM.liked isEqualToString:@"1"]) {
+                for (int i = 0; i< recentM.likeList.count;i ++) {
+                    FriendsLikeModel *likeM = recentM.likeList[i];
+                    if ([likeM.userId isEqualToString:_useridStr]) {
+                        [recentM.likeList removeObject:likeM];
+                        break;
+                    }
+                }
+            }
+            FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
+            likeModel.icon = app.userModel.avatar_img;
+            likeModel.userId = _useridStr;
+            likeModel.likeType = likeType;
+            [recentM.likeList insertObject:likeModel atIndex:0];
+            recentM.liked = @"1";
+        }else{
+            for (int i = 0; i< recentM.likeList.count;i ++) {
+                FriendsLikeModel *likeM = recentM.likeList[i];
+                if ([likeM.userId isEqualToString:_useridStr]) {
+                    [recentM.likeList removeObject:likeM];
+                }
+            }
+            recentM.liked = @"0";
+        }
+        [weakSelf.tableView reloadData];
+                cell.btn_like.enabled = YES;
+    }];
+}
+
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -321,6 +377,47 @@
         [weakSelf.tableView reloadData];
         cell.btn_like.enabled = YES;
     }];
+}
+
+#pragma mark - 长按表白
+- (void)likeLongPressClick:(UILongPressGestureRecognizer *)gesture{
+    isExidtEffectView = YES;
+//    NSLog(@"%@",gesture.view);
+    gestureViewTag = (int)gesture.view.tag;
+    //    [UIView animateWithDuration:3
+    //                     animations:^{
+    //        [self.view addSubview:emojiEffectView];
+    //    }];
+    //    self.tableView.userInteractionEnabled = !isExidtEffectView;
+    //    self.tableView.scrollEnabled = YES;
+    if (!emojiEffectView) {
+        emojisView = [EmojisView shareInstanse];
+        emojisView.delegate = self;
+        NSDictionary *dict = [emojisView getEmojisView];
+        emojiEffectView = [dict objectForKey:@"emojiEffectView"];
+        emoji_angry = [[dict objectForKey:@"emojiButtons"]objectAtIndex:0];
+        emoji_sad = [[dict objectForKey:@"emojiButtons"]objectAtIndex:1];
+        emoji_wow = [[dict objectForKey:@"emojiButtons"]objectAtIndex:2];
+        emoji_kawayi = [[dict objectForKey:@"emojiButtons"]objectAtIndex:3];
+        emoji_happy = [[dict objectForKey:@"emojiButtons"]objectAtIndex:4];
+        emoji_zan = [[dict objectForKey:@"emojiButtons"]objectAtIndex:5];
+    }
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        [emojiEffectView setFrame:CGRectMake(0, 0, 80, SCREEN_HEIGHT)];
+    } completion:^(BOOL finished) {
+        //
+    }];
+    
+    NSArray *emojiArr = @[emoji_angry,emoji_sad,emoji_wow,emoji_kawayi,emoji_happy,emoji_zan];
+    for (int i = 0 ; i < emojiArr.count; i ++) {
+        UIButton *emojiBtn = [emojiArr objectAtIndex:i];
+        double y = emojiBtn.frame.origin.y;
+        [UIView animateWithDuration:0.8 delay:i * 0.1 usingSpringWithDamping:0.3 initialSpringVelocity:0.3 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            [emojiBtn setFrame:CGRectMake(0, y, 80, 40)];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
 }
 
 #pragma mark - 评论action
@@ -475,6 +572,9 @@
             addressCell.btn_like.tag = indexPath.section;
             addressCell.btn_comment.tag = indexPath.section;
             [addressCell.btn_like addTarget:self action:@selector(likeFriendsClick:) forControlEvents:UIControlEventTouchUpInside];
+            UILongPressGestureRecognizer *likeLongPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(likeLongPressClick:)];
+            [addressCell.btn_like addGestureRecognizer:likeLongPress];
+            
             [addressCell.btn_comment addTarget:self action:@selector(commentClick:) forControlEvents:UIControlEventTouchUpInside];
             return addressCell;
         }
@@ -544,6 +644,12 @@
             return commentCell;
         }
             break;
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (isExidtEffectView) {
+        [emojisView hideEmojiEffectView];
     }
 }
 

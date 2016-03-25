@@ -13,6 +13,15 @@
 @end
 
 @implementation LYAddFriendViewController
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController.navigationBar setHidden:NO];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -15,4 +15,7 @@
 @property (nonatomic,copy) NSString *type;
 @property (nonatomic,copy) NSString *userId;
 @property (nonatomic,copy) NSString *icon;
+@property (nonatomic, copy) NSString *imUserId;
+@property (nonatomic, copy) NSString *likeType;
+@property (nonatomic, copy) NSString *userNick;
 @end
