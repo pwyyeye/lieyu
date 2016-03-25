@@ -662,7 +662,7 @@
     [dateFmter setDateFormat:@"HH:mm:ss"];
     NSString *dateStringPart = [dateFmter stringFromDate:date];
     
-    NSTimeInterval spacingDate = 8 *60 * 60;
+    NSTimeInterval spacingDate = 8 *60 * 60;  
     NSTimeInterval secondsPerDay = 24  * 60 * 60;
     NSDate *today = [[NSDate alloc] init];
     NSDate *qiantian, *yesterday;
