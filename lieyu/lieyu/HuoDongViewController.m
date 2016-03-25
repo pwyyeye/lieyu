@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title=@"活动详情";
+//    self.title=@"活动详情";
     self.webView=[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
 ;
     self.scrollView=[[UIScrollView alloc] initWithFrame:CGRectZero];

@@ -1059,11 +1059,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if(![MyUtil isEmptyString:[dic objectForKey:@"linkurl"]]){
             HuoDongLinkViewController *huodong2=[[HuoDongLinkViewController alloc] init];
             huodong2.linkUrl=[dic objectForKey:@"linkurl"];
+            huodong2.title=[dic objectForKey:@"title"]==nil?@"活动详情":[dic objectForKey:@"title"];
             [self.navigationController pushViewController:huodong2 animated:YES];
             
         }else if ([dic objectForKey:@"content"]) {
             HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
             huodong.content=[dic objectForKey:@"content"];
+            huodong.title=[dic objectForKey:@"title"]==nil?@"活动详情":[dic objectForKey:@"title"];
             [self.navigationController pushViewController:huodong animated:YES];
         }
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"活动"]];
