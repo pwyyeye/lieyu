@@ -8,7 +8,6 @@
 #import "LYAdshowCell.h"
 #import "HomePageINeedPlayViewController.h"
 #import "MJRefresh.h"
-#import "BearBarListViewController.h"
 #import "LYToPlayRestfulBusiness.h"
 #import "LYUserLocation.h"
 #import "JiuBaModel.h"

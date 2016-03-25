@@ -8,7 +8,6 @@
 
 #import "LYHomeSearcherViewController.h"
 #import "LYWineBarCell.h"
-#import "BeerBarDetailViewController.h"
 #import "NetPublic.h"
 #import "LYToPlayRestfulBusiness.h"
 #import "MReqToPlayHomeList.h"

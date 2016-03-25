@@ -10,6 +10,8 @@
 @class FriendsRecentModel;
 
 @interface LYFriendsLikeDetailTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
+@property (strong, nonatomic)  NSMutableArray *btnArray;
 @property (nonatomic,strong) FriendsRecentModel *recentM;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *like_icon_cons_top;
+@property (strong,nonatomic) NSMutableArray *emojiImgVArray;
 @end

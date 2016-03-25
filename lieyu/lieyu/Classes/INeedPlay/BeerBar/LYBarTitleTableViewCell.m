@@ -26,6 +26,11 @@
     
     _imageView_header.layer.borderColor = RGBA(204, 204, 204, 1).CGColor;
     _imageView_header.layer.borderWidth = 0.5;
+    
+    CAShapeLayer *btn_commentLayer = [CAShapeLayer layer];
+    UIBezierPath *bezierP = [UIBezierPath bezierPathWithRoundedRect:_btn_comment.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerBottomLeft cornerRadii:CGSizeMake(_btn_comment.frame.size.height/2.f, _btn_comment.frame.size.height/2.f)];
+    btn_commentLayer.path = bezierP.CGPath;
+    _btn_comment.layer.mask = btn_commentLayer;
 }
 
 - (void)setBeerM:(BeerBarOrYzhDetailModel *)beerM{
@@ -34,6 +39,7 @@
     [_imageView_header sd_setImageWithURL:[NSURL URLWithString:beerM.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _label_price.text = [NSString stringWithFormat:@"%@元／人起-返利%0.f%@",beerM.lowest_consumption,beerM.rebate * 100,@"%"];
     _label_time.text = [NSString stringWithFormat:@"营业时间:\t%@-%@",beerM.startTime,beerM.endTime];
+    [_btn_comment setTitle:[NSString stringWithFormat:@"%@条评论",beerM.topicTypeMommentNum] forState:UIControlStateNormal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

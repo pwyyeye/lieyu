@@ -662,13 +662,15 @@
     [dateFmter setDateFormat:@"HH:mm:ss"];
     NSString *dateStringPart = [dateFmter stringFromDate:date];
     
-    NSTimeInterval secondsPerDay = 24 * 60 * 60;
+    NSTimeInterval spacingDate = 8 *60 * 60;  
+    NSTimeInterval secondsPerDay = 24  * 60 * 60;   
     NSDate *today = [[NSDate alloc] init];
     NSDate *qiantian, *yesterday;
     
+    today = [today dateByAddingTimeInterval:spacingDate];
     qiantian = [today dateByAddingTimeInterval: - 2 *secondsPerDay];
     yesterday = [today dateByAddingTimeInterval: -secondsPerDay];
-    
+
     // 10 first characters of description is the calendar date:
     NSString * todayString = [[today description] substringToIndex:10];
     NSString * yesterdayString = [[yesterday description] substringToIndex:10];

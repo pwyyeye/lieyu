@@ -21,7 +21,6 @@
 #import "UIImage+GIF.h"
 #import "LYCache.h"
 #import "JiuBaModel.h"
-#import "BeerBarDetailViewController.h"
 #import "LYHotsCollectionViewCell.h"
 #import "BeerNewBarViewController.h"
 

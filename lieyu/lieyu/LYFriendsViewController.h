@@ -9,7 +9,8 @@
 #import "LYBaseViewController.h"
 #import "LYFriendsSendViewController.h"
 
-@interface LYFriendsViewController : LYBaseViewController<sendBackVedioAndImage>
+#import "EmojisView.h"
+@interface LYFriendsViewController : LYBaseViewController<sendBackVedioAndImage,emojiClickDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableview_top;
 
 @property (nonatomic, strong) NSString *mediaUrl;//视频地址

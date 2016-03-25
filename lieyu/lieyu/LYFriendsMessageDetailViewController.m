@@ -38,6 +38,16 @@
     NSInteger _indexRow;//点的第几个行
     NSString *defaultCommnet;//未发送的评论
     ISEmojiView *_emojiView;
+    
+    EmojisView *emojisView;
+    UIVisualEffectView *emojiEffectView;
+    BOOL isExidtEffectView;
+    UIButton *emoji_angry;
+    UIButton *emoji_sad;
+    UIButton *emoji_wow;
+    UIButton *emoji_kawayi;
+    UIButton *emoji_happy;
+    UIButton *emoji_zan;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -94,6 +104,7 @@
 }
 
 - (void)setupAllProperty{
+    
     _indexStart = 1;
     [self getData];
     self.tableView.tableFooterView = [[UIView alloc]init];
@@ -128,6 +139,9 @@
 
 #pragma mark - 跳转到个人动态界面
 - (void)pushUserMessageClick{
+    if (isExidtEffectView) {
+        [emojisView hideEmojiEffectView];
+    }
         if([_recentM.userId isEqualToString:_useridStr]) return;
     LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
     friendsUserMegVC.friendsId = _recentM.userId;
@@ -136,6 +150,9 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick{
+    if (isExidtEffectView) {
+        [emojisView hideEmojiEffectView];
+    }
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
@@ -180,8 +197,99 @@
     }];
 }
 
+- (void)likeFriendsClickEmoji:(NSString *)likeType{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(![MyUtil isUserLogin]){
+        [MyUtil showCleanMessage:@"请先登录！"];
+        [MyUtil gotoLogin];
+        return;
+    }
+    LYFriendsHeaderTableViewCell *cell = (LYFriendsHeaderTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    cell.btn_like.enabled = NO;
+    NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"type":@"1",@"likeType":likeType};
+    __weak LYFriendsMessageDetailViewController *weakSelf = self;
+    [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
+        //        if([_likeStr isEqualToString:@"1"]){
+        //            _likeStr = @"0";
+        //        }else{
+        //            _likeStr = @"1";
+        //        }
+        if (result) {//点赞成功
+            if ([_recentM.liked isEqualToString:@"1"]) {
+                for (int i = 0; i< _recentM.likeList.count;i ++) {
+                    FriendsLikeModel *likeM = _recentM.likeList[i];
+                    if ([likeM.userId isEqualToString:_useridStr]) {
+                        [_recentM.likeList removeObject:likeM];
+                        break;
+                    }
+                }
+            }
+            FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
+            likeModel.icon = app.userModel.avatar_img;
+            likeModel.userId = _useridStr;
+            likeModel.likeType = likeType;
+            [_recentM.likeList insertObject:likeModel atIndex:0];
+            _indexStart = 2;
+            _recentM.liked = @"1";
+        }else{
+            for (int i = 0; i< _recentM.likeList.count;i ++) {
+                FriendsLikeModel *likeM = _recentM.likeList[i];
+                if ([likeM.userId isEqualToString:_useridStr]) {
+                    [_recentM.likeList removeObject:likeM];
+                }
+            }
+            _indexStart = 1;
+            _recentM.liked = @"0";
+        }
+        cell.btn_like.enabled = YES;
+        [weakSelf.tableView reloadData];
+    }];
+}
+
+#pragma mark - 长按表白
+- (void)likeLongPressClick:(UILongPressGestureRecognizer *)gesture{
+    isExidtEffectView = YES;
+    if (!emojiEffectView) {
+        emojisView = [EmojisView shareInstanse];
+        emojisView.delegate = self;
+        NSDictionary *dict = [emojisView getEmojisView];
+        emojiEffectView = [dict objectForKey:@"emojiEffectView"];
+        emoji_angry = [[dict objectForKey:@"emojiButtons"]objectAtIndex:0];
+        emoji_sad = [[dict objectForKey:@"emojiButtons"]objectAtIndex:1];
+        emoji_wow = [[dict objectForKey:@"emojiButtons"]objectAtIndex:2];
+        emoji_kawayi = [[dict objectForKey:@"emojiButtons"]objectAtIndex:3];
+        emoji_happy = [[dict objectForKey:@"emojiButtons"]objectAtIndex:4];
+        emoji_zan = [[dict objectForKey:@"emojiButtons"]objectAtIndex:5];
+    }
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        [emojiEffectView setFrame:CGRectMake(0, 0, 80, SCREEN_HEIGHT)];
+    } completion:^(BOOL finished) {
+        //
+    }];
+    
+    NSArray *emojiArr = @[emoji_angry,emoji_sad,emoji_wow,emoji_kawayi,emoji_happy,emoji_zan];
+    for (int i = 0 ; i < emojiArr.count; i ++) {
+        UIButton *emojiBtn = [emojiArr objectAtIndex:i];
+        double y = emojiBtn.frame.origin.y;
+        [UIView animateWithDuration:0.8 delay:i * 0.1 usingSpringWithDamping:0.3 initialSpringVelocity:0.3 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            [emojiBtn setFrame:CGRectMake(0, y, 80, 40)];
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (isExidtEffectView) {
+        [emojisView hideEmojiEffectView];
+    }
+}
+
 #pragma mark - 评论action
 - (void)commentClick{
+    if (isExidtEffectView) {
+        [emojisView hideEmojiEffectView];
+    }
     if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
         [MyUtil gotoLogin];
@@ -318,6 +426,9 @@
     }
 }
 - (void)bigViewGes{
+    if (isExidtEffectView) {
+        [emojisView hideEmojiEffectView];
+    }
 //    if(_commentView.textField.text.length){
         defaultCommnet = _commentView.textField.text;
 //    }
@@ -328,11 +439,14 @@
 
 #pragma mark - 点赞的人的头像跳转到个人动态
 - (void)zangBtnClick:(UIButton *)button{
-    NSInteger index = button.tag % 16;
+    if (isExidtEffectView) {
+        [emojisView hideEmojiEffectView];
+    }
+//    NSInteger index = button.tag % 16;
 //    NSInteger section = (button.tag - index)/16;
-    if(index > _recentM.likeList.count) return;
+    if(button.tag >= _recentM.likeList.count) return;
     if( index>=0){
-        FriendsLikeModel *likeM = _recentM.likeList[index];
+        FriendsLikeModel *likeM = _recentM.likeList[button.tag];
         if([likeM.userId isEqualToString:_useridStr]) return;
         LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
         messageVC.friendsId = likeM.userId;
@@ -411,6 +525,9 @@
             headerCell.recentM = _recentM;
             [headerCell.btn_headerImg addTarget:self action:@selector(pushUserMessageClick) forControlEvents:UIControlEventTouchUpInside];
             [headerCell.btn_like addTarget:self action:@selector(likeFriendsClick) forControlEvents:UIControlEventTouchUpInside];
+            UILongPressGestureRecognizer *longPressLike = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(likeLongPressClick:)];
+            [headerCell.btn_like addGestureRecognizer:longPressLike];
+            
             [headerCell.btn_comment addTarget:self action:@selector(commentClick) forControlEvents:UIControlEventTouchUpInside];
             return headerCell;
         }
@@ -425,7 +542,8 @@
                 likeCell.recentM = _recentM;
                     for (int i = 0; i< likeCell.btnArray.count; i ++) {
                         UIButton *btn = likeCell.btnArray[i];
-                        btn.tag = likeCell.btnArray.count * indexPath.section  + i ;
+//                        btn.tag = likeCell.btnArray.count * indexPath.section  + i ;
+                        btn.tag = i;
                         [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                     }
                 return likeCell;
@@ -491,7 +609,10 @@
                 
                 if (indexPath.row == 1) {
                     _indexStart = 2;
-                    return  _recentM.likeList.count <= 8 ? (SCREEN_WIDTH - 98)/8.f + 20 : (SCREEN_WIDTH - 98)/8.f * 2 + 30;
+//                    return  _recentM.likeList.count <= 8 ? (SCREEN_WIDTH - 98)/8.f + 20 : (SCREEN_WIDTH - 98)/8.f * 2 + 30;
+                     CGFloat btnWidth = (SCREEN_WIDTH - 91) /7.f;
+                    NSInteger rowNum = (_recentM.likeList.count + 6)/ 7.f;
+                    return rowNum * (btnWidth + 7) + 10;
                 }
             }
             FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];

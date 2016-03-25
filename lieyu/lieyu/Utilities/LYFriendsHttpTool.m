@@ -71,10 +71,10 @@
         NSLog(@"-->%@",response[@"message"]);
         if([response[@"message"] isEqualToString:@"取消点赞成功"]){
             compelte(NO);
-            [MyUtil showLikePlaceMessage:@"取消表白成功"];
+//            [MyUtil showLikePlaceMessage:@"取消表白成功"];
         }else{
             compelte(YES);
-            [MyUtil showLikePlaceMessage:@"表白成功"];
+//            [MyUtil showLikePlaceMessage:@"表白成功"];
         }
         
         

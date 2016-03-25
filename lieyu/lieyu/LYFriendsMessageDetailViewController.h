@@ -7,8 +7,11 @@
 //
 
 #import "LYBaseViewController.h"
+
+#import "EmojisView.h"
+
 @class FriendsRecentModel;
 
-@interface LYFriendsMessageDetailViewController : LYBaseViewController
+@interface LYFriendsMessageDetailViewController : LYBaseViewController<emojiClickDelegate>
 @property (nonatomic,strong) FriendsRecentModel *recentM;
 @end
