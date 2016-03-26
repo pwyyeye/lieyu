@@ -75,6 +75,7 @@
     UIButton *emoji_kawayi;
     UIButton *emoji_happy;
     UIButton *emoji_zan;
+    NSInteger _deleteMessageTag;
     
     int gestureViewTag;
 }
@@ -136,6 +137,7 @@
 
 #pragma mark - 查看图片
 - (void)checkImageClick:(UIButton *)button{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSLog(@"--->%ld",button.tag);
     NSMutableArray *oldFrameArray = [[NSMutableArray alloc]init];
@@ -300,6 +302,7 @@
 }
 
 - (void)likeFriendsClickEmoji:(NSString *)likeType{
+    
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
@@ -344,6 +347,7 @@
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
@@ -428,6 +432,7 @@
 
 #pragma mark - 评论action
 - (void)commentClick:(UIButton *)button{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
         [MyUtil gotoLogin];
@@ -450,8 +455,9 @@
 
 #pragma mark - 赞的人头像
 - (void)zangBtnClick:(UIButton *)button{
-    NSInteger i = button.tag % 8;
-    NSInteger section = button.tag / 8 ;
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
+    NSInteger i = button.tag % 7;
+    NSInteger section = button.tag / 7 ;
  
     if(section >=0 && i>=0){
         FriendsRecentModel *recentM = _dataArray[section];
@@ -500,12 +506,40 @@
 }
 
 - (void)warningSheet:(UIButton *)button{
+     if (isExidtEffectView) [emojisView hideEmojiEffectView];
     FriendsRecentModel *recentM = _dataArray[button.tag];
-    juBaoMomentID = recentM.id;
-    pingBiUserID = recentM.userId;
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"屏蔽此人",@"举报动态", nil];
-    actionSheet.tag = 131;
-    [actionSheet showInView:self.view];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if ([recentM.userId isEqualToString:[NSString stringWithFormat:@"%d",app.userModel.userid]]) {//我
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"确定删除这条动态" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+        _deleteMessageTag = button.tag;
+    }else{
+        juBaoMomentID = recentM.id;
+        pingBiUserID = recentM.userId;
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"屏蔽此人",@"举报动态", nil];
+        actionSheet.tag = 131;
+        [actionSheet showInView:self.view];
+    }
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex) {
+        FriendsRecentModel *recentM = _dataArray[_deleteMessageTag];
+        if(![MyUtil isUserLogin]){
+            [MyUtil showCleanMessage:@"请先登录！"];
+            [MyUtil gotoLogin];
+            return;
+        }
+        NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
+        __weak __typeof(self) weakSelf = self;
+        [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
+            if (result) {
+                [_dataArray removeObjectAtIndex:_deleteMessageTag];
+                [weakSelf.tableView reloadData];
+            }
+        }];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -517,9 +551,14 @@
             nameCell.recentM = recentM;
             nameCell.btn_topic.tag = indexPath.section;
             [nameCell.btn_topic addTarget:self action:@selector(topicNameClick:) forControlEvents:UIControlEventTouchUpInside];
-            [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
-            [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
             nameCell.btn_delete.tag = indexPath.section;
+            if ([recentM.userId isEqualToString:[NSString stringWithFormat:@"%d",self.userModel.userid]]) {//wo
+                [nameCell.btn_delete setTitle:@"删除" forState:UIControlStateNormal];
+                [nameCell.btn_delete setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+            }else{
+                [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
+                [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+            }
             [nameCell.btn_delete addTarget:self action:@selector(warningSheet:) forControlEvents:UIControlEventTouchUpInside];
             return nameCell;
             
@@ -597,7 +636,7 @@
                 likeCell.btn_more.tag = indexPath.section;
                 [likeCell.btn_more addTarget:self action:@selector(likeMoreClick:) forControlEvents:UIControlEventTouchUpInside];
                 likeCell.recentM = recentM;
-                if(recentM.likeList.count <= 8) likeCell.btn_more.hidden = YES;
+                if(recentM.likeList.count <= 7) likeCell.btn_more.hidden = YES;
                 for (int i = 0; i< likeCell.btnArray.count; i ++) {
                     UIButton *btn = likeCell.btnArray[i];
                     btn.tag = likeCell.btnArray.count * indexPath.section + i;
@@ -665,6 +704,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     FriendsRecentModel *recentM = _dataArray[indexPath.section];
     switch (indexPath.row) {
         case 0://头像和动态
@@ -672,7 +712,7 @@
             CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             NSString *topicNameStr = nil;
             if(recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",recentM.topicTypeName];
-            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
             [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, recentM.message.length )];
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
@@ -740,7 +780,7 @@
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
-            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 81, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 81, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             CGFloat height;
             if (size.height + 20 < 36) {
                 height = 36;

@@ -653,6 +653,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     _indexRow = indexPath.row;
     if (indexPath.row - _indexStart >= _dataArray.count) {
         return;
@@ -681,7 +682,7 @@
             
             NSString *topicNameStr = nil;
             if(_recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",_recentM.topicTypeName];
-            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:_recentM.message];
             [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, _recentM.message.length )];
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
@@ -898,6 +899,7 @@
 
 #pragma mark - 查看图片
 - (void)checkImageClick:(UIButton *)button{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSLog(@"--->%ld",button.tag);
     NSMutableArray *oldFrameArray = [[NSMutableArray alloc]init];
@@ -970,7 +972,7 @@
 }
 #pragma mark - 点击头像跳转到指定用户界面
 - (void)pushUserMessagePage{
-
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     //    if([recentM.userId isEqualToString:_useridStr]) return;
     if([_recentM.userId isEqualToString:_useridStr]) {
         //        [self myClick:nil];
