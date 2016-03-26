@@ -794,7 +794,7 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
 }
 - (void)introDidFinish{
     NSLog(@"----pass-introDidFinish%@---",@"introDidFinish");
-    [USER_DEFAULT setObject:@"NO" forKey:@"firstUseApp"];
+//    [USER_DEFAULT setObject:@"NO" forKey:@"firstUseApp"];
     self.window.rootViewController=_navigationController;
     
 }

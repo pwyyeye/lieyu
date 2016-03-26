@@ -598,6 +598,7 @@
 		38979AC81CA40919002946F5 /* angry9.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979A281CA40919002946F5 /* angry9.png */; };
 		38979ACE1CA4D2F2002946F5 /* EmojisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979ACD1CA4D2F2002946F5 /* EmojisView.m */; };
 		38979ACF1CA65ABB002946F5 /* kawayi0.png in Resources */ = {isa = PBXBuildFile; fileRef = 389799B81CA40919002946F5 /* kawayi0.png */; };
+		38979AD11CA672EF002946F5 /* friendsDefaultPage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38979AD01CA672EF002946F5 /* friendsDefaultPage.jpg */; };
 		389C01021C1488EF00FE9412 /* seeAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00F91C1488EF00FE9412 /* seeAll.png */; };
 		389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FA1C1488EF00FE9412 /* seeAll@2x.png */; };
 		389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FB1C1488EF00FE9412 /* seeAll@3x.png */; };
@@ -2522,6 +2523,7 @@
 		38979A281CA40919002946F5 /* angry9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = angry9.png; sourceTree = "<group>"; };
 		38979ACC1CA4D2F2002946F5 /* EmojisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmojisView.h; sourceTree = "<group>"; };
 		38979ACD1CA4D2F2002946F5 /* EmojisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmojisView.m; sourceTree = "<group>"; };
+		38979AD01CA672EF002946F5 /* friendsDefaultPage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = friendsDefaultPage.jpg; sourceTree = "<group>"; };
 		389C00F91C1488EF00FE9412 /* seeAll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeAll.png; sourceTree = "<group>"; };
 		389C00FA1C1488EF00FE9412 /* seeAll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@2x.png"; sourceTree = "<group>"; };
 		389C00FB1C1488EF00FE9412 /* seeAll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@3x.png"; sourceTree = "<group>"; };
@@ -6136,6 +6138,7 @@
 		853C4C561C31199C00D48BA2 /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
+				38979AD01CA672EF002946F5 /* friendsDefaultPage.jpg */,
 				85009ACE1C624C9B00DDE626 /* friendPresentBG.jpg */,
 				525CA0E61C5C67A3009ED9DA /* addressFriend@2x.png */,
 				525CA0E71C5C67A3009ED9DA /* addressFriend@3x.png */,
@@ -8920,6 +8923,7 @@
 				AD399E9B1C940D4D00028F23 /* logo28@2x.jpg in Resources */,
 				AD399E851C940D4D00028F23 /* logo6@2x.jpg in Resources */,
 				525CA0F01C5C6930009ED9DA /* pinglun_icon@2x.png in Resources */,
+				38979AD11CA672EF002946F5 /* friendsDefaultPage.jpg in Resources */,
 				38B11C0C1C92AFCC00AD3EB8 /* CheckQRCode@2x.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
 				3812C5101C57622E00F4DD6B /* ChooseTime.xib in Resources */,
