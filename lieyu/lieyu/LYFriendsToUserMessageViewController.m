@@ -32,6 +32,7 @@
 #import "LYFriendsVideoTableViewCell.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "LYUserHttpTool.h"
+#import "LYFriendsTopicViewController.h"
 
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
@@ -402,6 +403,7 @@
         emoji_happy = [[dict objectForKey:@"emojiButtons"]objectAtIndex:4];
         emoji_zan = [[dict objectForKey:@"emojiButtons"]objectAtIndex:5];
     }
+    [[UIApplication sharedApplication].delegate.window addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:emojisView action:@selector(hideEmojiEffectView)]];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
         [emojiEffectView setFrame:CGRectMake(0, 0, 80, SCREEN_HEIGHT)];
     } completion:^(BOOL finished) {
@@ -505,7 +507,8 @@
         {
             LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
             nameCell.recentM = recentM;
-//                nameCell.btn_delete.hidden = YES;
+            nameCell.btn_topic.tag = indexPath.section;
+            [nameCell.btn_topic addTarget:self action:@selector(topicNameClick:) forControlEvents:UIControlEventTouchUpInside];
             [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
             [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
             nameCell.btn_delete.tag = indexPath.section;
@@ -658,17 +661,27 @@
     switch (indexPath.row) {
         case 0://头像和动态
         {
-            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 14, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+            NSString *topicNameStr = nil;
+            if(recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",recentM.topicTypeName];
+            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
+            [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, recentM.message.length )];
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+            if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width+3;
+            [paragraphStyle setLineSpacing:3];
+            [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
+            size =  [attributeStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;
             if(![MyUtil isEmptyString:recentM.message]) {
-                if(size.height >= 47 ) size.height = 47;
-                size.height = 14 + size.height;
+                if(size.height >= 57 ) size.height = 57;
+                size.height =  size.height;
             }else{
-                size.height = 10;
+                size.height = 0;
                 if(![MyUtil isEmptyString:recentM.topicTypeName]){
-                    size.height = 25;
+                    size.height = 20;
                 }
             }
-            return 50 + size.height;
+            return 67 + size.height;
         }
             break;
             
@@ -678,20 +691,21 @@
             switch (urlArray.count) {
                 case 1:
                 {
-                    return SCREEN_WIDTH;
+                    return SCREEN_WIDTH - 70;
                 }
                     break;
                 case 2:
                 {
-                    return (SCREEN_WIDTH - 2)/2.f;
+                    return (SCREEN_WIDTH - 75)/2.f;
                 }
                     break;
                 case 3:{
-                    return 3 * SCREEN_WIDTH / 2 + 2;
+                    return (SCREEN_WIDTH - 75)/2.f + 5 + SCREEN_WIDTH - 70;
                 }
+                    break;
                     
                 default:
-                    return SCREEN_WIDTH + (SCREEN_WIDTH - 6) / 3.f + 2;
+                    return (SCREEN_WIDTH - 75) + 5;
                     break;
             }
             
@@ -760,6 +774,18 @@
     }else if(indexPath.row == 0){
         if([MyUtil isEmptyString:recentM.id]) return;
         [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
+    }
+}
+
+#pragma mark - 点击动态中话题文字
+- (void)topicNameClick:(UIButton *)button{
+    FriendsRecentModel *friendRecentM = _dataArray[button.tag];
+    if (friendRecentM.topicTypeName.length && friendRecentM.topicTypeId.length) {
+        LYFriendsTopicViewController *friendsTopicVC = [[LYFriendsTopicViewController alloc]init];
+        friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
+        friendsTopicVC.topicName = friendRecentM.topicTypeName;
+        if([friendRecentM.isBarTopicType isEqualToString:@"0"]) friendsTopicVC.isFriendsTopic = YES;
+        [self.navigationController pushViewController:friendsTopicVC animated:YES];
     }
 }
 #pragma mark － 跳转消息详情页面

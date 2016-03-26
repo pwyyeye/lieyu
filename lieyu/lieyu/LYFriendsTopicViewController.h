@@ -13,4 +13,5 @@
 @property (nonatomic,copy) NSString *topicTypeId;
 @property (nonatomic,copy) NSString *topicName;
 @property (nonatomic,copy) NSString *headerViewImgLink;
+@property (nonatomic,unsafe_unretained) BOOL isFriendsTopic;
 @end

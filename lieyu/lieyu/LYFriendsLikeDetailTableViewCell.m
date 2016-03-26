@@ -61,13 +61,13 @@
 ////        NSLog(@"------>%ld------%@",array.count,commentModel.icon);
 //        [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
 //    }
-    CGFloat btnWidth = (SCREEN_WIDTH - 91) /7.f;
+    CGFloat btnWidth = (SCREEN_WIDTH - 117) /7.f;
     CGFloat emojWidth = btnWidth * 0.4f;
     for (int i = 0;i < array.count ;i ++) {
         FriendsLikeModel *likeM = array[i];
         NSInteger rowNum = i / 7;
         NSInteger cloNum = i % 7;
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(34 + (btnWidth + 7) * cloNum, rowNum* ( 7 + btnWidth) + 10, btnWidth, btnWidth)];
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(60 + (btnWidth + 7) * cloNum, rowNum* ( 7 + btnWidth) + 10, btnWidth, btnWidth)];
         btn.layer.cornerRadius = btnWidth/2.f;
         btn.layer.masksToBounds = YES;
          [btn sd_setBackgroundImageWithURL:[NSURL URLWithString:likeM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];

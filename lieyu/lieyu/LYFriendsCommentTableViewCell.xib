@@ -11,24 +11,24 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="94.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pinglun_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="og9-JM-rfO">
-                        <rect key="frame" x="7" y="7" width="24" height="24"/>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pinglun_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="og9-JM-rfO">
+                        <rect key="frame" x="18" y="6" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="VUE-Sk-lKp"/>
                             <constraint firstAttribute="width" constant="24" id="fqZ-T8-UX7"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2a1-5q-Rjt">
-                        <rect key="frame" x="71" y="5" width="239" height="84"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="96" y="5" width="214" height="84"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="0.80880926724137936" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-dc-DES" customClass="LYFriendsCommentButton">
-                        <rect key="frame" x="35" y="5" width="26" height="26"/>
+                        <rect key="frame" x="60" y="5" width="26" height="26"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="26" id="40D-ui-XM1"/>
                             <constraint firstAttribute="height" constant="26" id="dFJ-sJ-DpZ"/>
@@ -41,10 +41,10 @@
                     <constraint firstItem="2a1-5q-Rjt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="TCX-R7-TDj"/>
                     <constraint firstAttribute="bottom" secondItem="2a1-5q-Rjt" secondAttribute="bottom" constant="5" id="WpP-bw-LOj"/>
                     <constraint firstItem="hDf-dc-DES" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="YS8-n9-fZ7"/>
-                    <constraint firstItem="og9-JM-rfO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="Yda-dY-ahs"/>
+                    <constraint firstItem="og9-JM-rfO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="Yda-dY-ahs"/>
                     <constraint firstItem="hDf-dc-DES" firstAttribute="centerY" secondItem="og9-JM-rfO" secondAttribute="centerY" id="bmQ-ro-aCg"/>
                     <constraint firstItem="og9-JM-rfO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="g3e-Un-yEQ"/>
-                    <constraint firstItem="hDf-dc-DES" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35" id="jem-8b-glP"/>
+                    <constraint firstItem="hDf-dc-DES" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="jem-8b-glP"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

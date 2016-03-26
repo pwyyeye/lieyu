@@ -22,6 +22,10 @@
     
     _label_work.layer.cornerRadius = 2;
     _label_work.layer.masksToBounds = YES;
+//    _label_work.layer.cornerRadius = CGRectGetHeight(_label_work.frame)/2.f;
+//    _label_work.layer.borderColor = RGBA(186, 20, 227, 1).CGColor;
+//    _label_work.layer.borderWidth = 0.5;
+//    _label_work.layer.masksToBounds = YES;
 }
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{
