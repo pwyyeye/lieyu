@@ -21,7 +21,7 @@
 #import "LYYUCollectionViewCell.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import "LYUserLocation.h"
-
+#import "LYMyFriendDetailViewController.h"
 
 #define PAGESIZE 20
 
@@ -536,9 +536,12 @@
     
     YUOrderShareModel *orderModel = array[button.tag];
     NSLog(@"--->%@",orderModel.orderInfo.username);
-    LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
-    friendsVC.friendsId = orderModel.orderInfo.userid;
-    [self.navigationController pushViewController:friendsVC animated:YES];
+//    LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
+//    friendsVC.friendsId = orderModel.orderInfo.userid;
+//    [self.navigationController pushViewController:friendsVC animated:YES];
+    LYMyFriendDetailViewController *myFriendsDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    myFriendsDetailVC.userID = orderModel.orderInfo.userid;
+    [self.navigationController pushViewController:myFriendsDetailVC animated:YES];
 }
 
 - (void)pinkerClick:(UIButton *)button{
@@ -553,10 +556,12 @@
 //    }
     YUPinkerListModel *pinkerListM = orderModel.orderInfo.pinkerList[button.tag % 5];
      NSLog(@"---->%@----->%@",pinkerListM.inmemberName,pinkerListM.inmenberAvatar_img);
-    LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
-    friendsVC.friendsId = pinkerListM.inmember;
-    [self.navigationController pushViewController:friendsVC animated:YES];
-    
+//    LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]init];
+//    friendsVC.friendsId = pinkerListM.inmember;
+//    [self.navigationController pushViewController:friendsVC animated:YES];
+    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    myFriendVC.userID = pinkerListM.inmember;
+    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 
 

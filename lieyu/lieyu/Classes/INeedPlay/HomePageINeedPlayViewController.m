@@ -598,7 +598,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //        NSArray *array =_dataArray[_index];
         LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
         if (hcell.jiubaArray.count) {
-            NSLog(@"---->%ld",hcell.jiubaArray.count);
             return hcell.jiubaArray.count + 4;
         }else{
             //WTT

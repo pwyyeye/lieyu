@@ -11,13 +11,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="81.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPO-F5-sam">
-                        <rect key="frame" x="7" y="0.0" width="306" height="81"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="81"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biaobai_iconBlack.png" translatesAutoresizingMaskIntoConstraints="NO" id="DS8-Mz-DJN">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biaobai_iconBlack.png" translatesAutoresizingMaskIntoConstraints="NO" id="DS8-Mz-DJN">
                                 <rect key="frame" x="3" y="10" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="8kM-OT-8zQ"/>
@@ -25,7 +25,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DS8-Mz-DJN" firstAttribute="leading" secondItem="zPO-F5-sam" secondAttribute="leading" constant="3" id="9ZE-Je-SEQ"/>
                             <constraint firstItem="DS8-Mz-DJN" firstAttribute="top" secondItem="zPO-F5-sam" secondAttribute="top" constant="10" id="XRT-OV-6Js"/>
@@ -34,9 +34,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="zPO-F5-sam" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="12q-C8-DoI"/>
-                    <constraint firstItem="zPO-F5-sam" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="185-0g-InW"/>
+                    <constraint firstItem="zPO-F5-sam" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="185-0g-InW"/>
                     <constraint firstAttribute="bottom" secondItem="zPO-F5-sam" secondAttribute="bottom" id="dMv-fG-TW1"/>
-                    <constraint firstAttribute="trailing" secondItem="zPO-F5-sam" secondAttribute="trailing" constant="7" id="q7W-wb-duV"/>
+                    <constraint firstAttribute="trailing" secondItem="zPO-F5-sam" secondAttribute="trailing" id="q7W-wb-duV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

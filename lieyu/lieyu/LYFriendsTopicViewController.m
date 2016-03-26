@@ -207,17 +207,27 @@
     FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
     NSString *imageLink = nil;
     NSString *appendLink = nil;
-
+CGFloat picWidth = 0;
     for (int i = 0;i < imagesArray.count;i ++) {
         UIImage *image = imagesArray[i];
-        //   pvModel.imageLink = [pvModel.imageLink stringByAppendingString:[[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] stringByAppendingString:@","]];
+           pvModel.imageLink = [pvModel.imageLink stringByAppendingString:[[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] stringByAppendingString:@","]];
         
         appendLink = [NSString stringWithFormat:@"myPicture%ld%d,",_saveImageAndVideoIndex,i];
         if(i == imagesArray.count - 1) appendLink = [NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i];
         NSLog(@"--->%@",imageLink);
         if(!i) imageLink = appendLink;
         else imageLink = [imageLink stringByAppendingString:appendLink];
-       
+        switch (imagesArray.count) {
+            case 1:
+            {
+                picWidth = 0;
+            }
+                break;
+            default:{
+                picWidth = 450;
+            }
+                break;
+        }
         
         [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil getQiniuUrl:[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] width:0 andHeight:0]]];
         _saveImageAndVideoIndex ++;
@@ -329,8 +339,43 @@
         }else {
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
-        [weakSelf addTableViewHeader];
+        if(_isFriendsTopic) [weakSelf addTableViewHeader];
     }];
+    
+}
+#pragma mark － 刷新表
+- (void)reloadTableViewAndSetUpProperty{
+    [self.tableView reloadData];
+    [self.tableView.mj_header endRefreshing];
+    
+    if (_dataArray.count) {
+        [self createPlaceView];
+    }else{
+        [self removePlaceView];
+    }
+}
+
+- (void)createPlaceView{
+    UILabel *placeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    placeLabel.center = self.view.center;
+    if (_isFriendsTopic) {
+        placeLabel.text = @"暂无话题";
+    }else{
+        placeLabel.text = @"暂无评论";
+    }
+    placeLabel.textAlignment = NSTextAlignmentCenter;
+//    [placeLabel  sizeToFit] ;
+    placeLabel.textColor = [UIColor darkGrayColor];
+    [self.view addSubview:placeLabel];
+    
+}
+
+- (void)removePlaceView{
+    
+}
+
+#pragma mark - 点击动态中话题文字
+- (void)topicNameClick:(UIButton *)button{
     
 }
 

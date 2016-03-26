@@ -39,7 +39,12 @@
     [_imageView_header sd_setImageWithURL:[NSURL URLWithString:beerM.baricon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _label_price.text = [NSString stringWithFormat:@"%@元／人起-返利%0.f%@",beerM.lowest_consumption,beerM.rebate * 100,@"%"];
     _label_time.text = [NSString stringWithFormat:@"营业时间:\t%@-%@",beerM.startTime,beerM.endTime];
-    [_btn_comment setTitle:[NSString stringWithFormat:@"%@条评论",beerM.topicTypeMommentNum] forState:UIControlStateNormal];
+    
+    if ( beerM.topicTypeMommentNum.length) {
+        [_btn_comment setTitle:[NSString stringWithFormat:@"%@条评论",beerM.topicTypeMommentNum] forState:UIControlStateNormal];
+    }else{
+        [_btn_comment setTitle:@"0条评论" forState:UIControlStateNormal];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

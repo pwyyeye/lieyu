@@ -310,9 +310,10 @@
         addFriendViewController.title=@"加好友";
         if (_customerModel) {
             addFriendViewController.customerModel=_customerModel;
+        }else{
+            addFriendViewController.type=self.type;
+            addFriendViewController.userID = self.userID;
         }
-        addFriendViewController.type=self.type;
-        addFriendViewController.userID = self.userID;
         [self.navigationController pushViewController:addFriendViewController animated:YES];
     }else{
         
@@ -324,8 +325,8 @@
             conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
         }else{
             conversationVC.targetId = [NSString stringWithFormat:@"%d",_result.userid];
-            conversationVC.userName = _customerModel.usernick;
-            conversationVC.title = _customerModel.usernick;
+            conversationVC.userName = _result.usernick;
+            conversationVC.title = _result.usernick;
 //            conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
 //            conversationVC.title = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
         }

@@ -20,4 +20,6 @@
 - (void)reloadTableViewAndSetUpProperty;
 - (void)addTableViewHeader;
 - (void)setupTableViewFresh;
+#pragma mark - 点击动态中话题文字
+- (void)topicNameClick:(UIButton *)button;
 @end
