@@ -197,7 +197,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
-    if([MyUtil isEmptyString:username] || [MyUtil isEmptyString:password]){
+    NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"OPENIDSTR"];
+
+    if((([MyUtil isEmptyString:username] || [MyUtil isEmptyString:password]) && [MyUtil isEmptyString:openID])){
          LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
         [self.navigationController pushViewController:login animated:YES];
 //         self.window.rootViewController=login;

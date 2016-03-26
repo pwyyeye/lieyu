@@ -9,6 +9,10 @@
 #import "EmojisView.h"
 #import "LYFriendsHttpTool.h"
 #import "UserModel.h"
+@interface EmojisView()
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+//@property (nonatomic, assign) BOOL isExists;
+@end
 
 @implementation EmojisView
 
@@ -27,6 +31,7 @@ static EmojisView *shareView = nil;
 - (NSDictionary *)getEmojisView{
     if (!_emojiEffectView && !_emoji_sad && !_emoji_wow && !_emoji_zan && !_emoji_angry && !_emoji_happy && !_emoji_kawayi) {
         _mainWindow = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
+        
         
         UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         _emojiEffectView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
@@ -86,6 +91,7 @@ static EmojisView *shareView = nil;
         [_mainWindow addSubview:_emoji_angry];
         [_mainWindow addSubview:_emoji_sad];
     }
+//    _isExists = YES;
     return @{@"emojiEffectView":_emojiEffectView,
              @"emojiButtons":@[_emoji_angry,_emoji_sad,_emoji_wow,_emoji_kawayi,_emoji_happy,_emoji_zan]};
 }
@@ -194,6 +200,12 @@ static EmojisView *shareView = nil;
 
 #pragma mark - 隐藏左侧表情栏
 - (void)hideEmojiEffectView{
+//    if (_isExists == YES) {
+//        _isExists = NO;
+//    _mainWindow ges
+    for (UITapGestureRecognizer *tapgesture in _mainWindow.gestureRecognizers) {
+        [_mainWindow removeGestureRecognizer:tapgesture];
+    }
         NSArray *emojiArr = @[_emoji_zan,_emoji_happy,_emoji_kawayi,_emoji_wow,_emoji_sad,_emoji_angry];
         [UIView animateWithDuration:.3 delay:0.4 options:(UIViewAnimationOptionTransitionNone) animations:^{
             _emojiEffectView.frame = CGRectMake(-80,0,80, _emojiEffectView.frame.size.height);
@@ -209,6 +221,7 @@ static EmojisView *shareView = nil;
                 
             }];
         }
+//    }
 }
 
 @end
