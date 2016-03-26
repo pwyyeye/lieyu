@@ -865,13 +865,13 @@
 		853D3AC11C35347A00B4FEAD /* dabofangqi_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853D3ABE1C35347A00B4FEAD /* dabofangqi_icon@2x.png */; };
 		853D4E2B1C87E73D003277E5 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853D4E291C87E73D003277E5 /* SettingTableViewCell.m */; };
 		853D4E2C1C87E73D003277E5 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853D4E2A1C87E73D003277E5 /* SettingTableViewCell.xib */; };
+		853F27D41CA5706500CFA4B1 /* LYFriendsCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6811C2CED9100F16463 /* LYFriendsCommentTableViewCell.m */; };
 		8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */; };
 		8540B6631C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */; };
 		8540B6791C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6771C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m */; };
 		8540B67A1C2CE4E300F16463 /* LYFriendsAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6781C2CE4E300F16463 /* LYFriendsAddressTableViewCell.xib */; };
 		8540B67E1C2CE89900F16463 /* LYFriendsLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B67C1C2CE89900F16463 /* LYFriendsLikeTableViewCell.m */; };
 		8540B67F1C2CE89900F16463 /* LYFriendsLikeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B67D1C2CE89900F16463 /* LYFriendsLikeTableViewCell.xib */; };
-		8540B6831C2CED9100F16463 /* LYFriendsCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6811C2CED9100F16463 /* LYFriendsCommentTableViewCell.m */; };
 		8540B6841C2CED9100F16463 /* LYFriendsCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6821C2CED9100F16463 /* LYFriendsCommentTableViewCell.xib */; };
 		8540B6891C2CF40B00F16463 /* LYFriendsSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6871C2CF40B00F16463 /* LYFriendsSendViewController.m */; };
 		8540B68A1C2CF40B00F16463 /* LYFriendsSendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6881C2CF40B00F16463 /* LYFriendsSendViewController.xib */; };
@@ -8877,6 +8877,7 @@
 				3812C5581C57B76100F4DD6B /* purper_less@2x.png in Resources */,
 				389C01091C1488F000FE9412 /* seeGirls@2x.png in Resources */,
 				85F43BB01C11459400B04466 /* LYOrderManagerTableViewCell.xib in Resources */,
+				38979A3B1CA40919002946F5 /* dianzan3.png in Resources */,
 				85F5451C1C13DF5A0013B92B /* cameraCircle.png in Resources */,
 				38979A6F1CA40919002946F5 /* kawayi5.png in Resources */,
 				ADE1C5C31C730E1C0011D4AB /* 更新14@2x.png in Resources */,
@@ -9028,6 +9029,7 @@
 				858B3A2E1C7A0629000C6589 /* 地址YUD@2x.png in Resources */,
 				38EDEC611C5B9CDC00694758 /* CHshop@2x.png in Resources */,
 				854CF48E1CA3BF1900F7F95B /* beerBarPoint@3x.png in Resources */,
+				38979A5B1CA40919002946F5 /* kawayi0.png in Resources */,
 				853C36101C72BA8400F1703B /* LYBarScrollTableViewCell.xib in Resources */,
 				ADFE1B8F1C994F1D00700EA3 /* loading39@2x.png in Resources */,
 				52D4F9A71C57B2B700691BEF /* 价格@3x.png in Resources */,
@@ -9628,6 +9630,8 @@
 				38E5D7001C103E17004B49D2 /* LPmanager@2x.png in Resources */,
 				AD399EA21C940D4D00028F23 /* logo35@2x.jpg in Resources */,
 				854CF48B1CA3BEAB00F7F95B /* beerBarTel@3x.png in Resources */,
+				38979ABC1CA40919002946F5 /* angry29.png in Resources */,
+				38979ABA1CA40919002946F5 /* angry27.png in Resources */,
 				AD106B9B1C0BE898007F5FBA /* LYUserCenterFooter.xib in Resources */,
 				15EB354D1BD4839D00BA6161 /* UMShareEditViewControlleriPad.xib in Resources */,
 				38E72B451C15239A002EFBDD /* ManagerInfoCell.xib in Resources */,
@@ -10204,6 +10208,7 @@
 				15EB7C521BC3BE4D00756153 /* GoodsModel.m in Sources */,
 				ADF88EA71C1197C400CF5DED /* MJRefreshBackStateFooter.m in Sources */,
 				15013AF71BBA33BE00061FAF /* SDImageCache.m in Sources */,
+				853F27D41CA5706500CFA4B1 /* LYFriendsCommentTableViewCell.m in Sources */,
 				A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */,
 				15EB35781BD495ED00BA6161 /* CYInfoCell.m in Sources */,
 				85F625A61C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m in Sources */,
@@ -10355,7 +10360,6 @@
 				85514E9C1C75BB4500E24C78 /* SignIconTableViewCell.m in Sources */,
 				15B8662C1BDB6D29002E2BB6 /* CHDoOrderell.m in Sources */,
 				D7A1D42E1BC2CCA600BCE47C /* BeerBarOrYzhDetailModel.m in Sources */,
-				8540B6831C2CED9100F16463 /* LYFriendsCommentTableViewCell.m in Sources */,
 				A2F9DA7D1BAA8C83009DEAF3 /* SerchHeadView.m in Sources */,
 				A2F9DA7A1BAA6F68009DEAF3 /* OrderHandleButton.m in Sources */,
 				15FD2A611BD5125A00D66920 /* PTContactCell.m in Sources */,

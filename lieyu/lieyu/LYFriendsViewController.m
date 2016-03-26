@@ -358,7 +358,7 @@
     CGFloat picWidth = 0;
     for (int i = 0;i < imagesArray.count;i ++) {
         UIImage *image = imagesArray[i];
-     //   pvModel.imageLink = [pvModel.imageLink stringByAppendingString:[[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] stringByAppendingString:@","]];
+        pvModel.imageLink = [pvModel.imageLink stringByAppendingString:[[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] stringByAppendingString:@","]];
         
         appendLink = [NSString stringWithFormat:@"myPicture%ld%d,",_saveImageAndVideoIndex,i];
         if(i == imagesArray.count - 1) appendLink = [NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i];
@@ -367,23 +367,17 @@
         else imageLink = [imageLink stringByAppendingString:appendLink];
         NSLog(@"--->%@",imageLink);
         
-//        switch (imagesArray.count) {
-//            case 1:
-//            {
-//                picWidth = 0;
-//            }
-//                break;
-//            case 2:
-//            {
-//                picWidth = 450;
-//            }
-//                break;
-//            default:{
-//                if(!i) picWidth = 0;
-//                else picWidth = 450;
-//            }
-//                break;
-//        }
+        switch (imagesArray.count) {
+            case 1:
+            {
+                picWidth = 0;
+            }
+                break;
+            default:{
+                 picWidth = 450;
+            }
+                break;
+        }
         
          [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil getQiniuUrl:[NSString stringWithFormat:@"myPicture%ld%d",_saveImageAndVideoIndex,i] width:0 andHeight:0]]];
         _saveImageAndVideoIndex ++;
@@ -843,6 +837,7 @@
     LYFriendsTopicViewController *fridendTopicVC = [[LYFriendsTopicViewController alloc]init];
     fridendTopicVC.topicTypeId = topicM.id;
     fridendTopicVC.topicName = topicM.name;
+    fridendTopicVC.isFriendsTopic = YES;
     fridendTopicVC.headerViewImgLink = topicM.linkurl;
     [self.navigationController pushViewController:fridendTopicVC animated:YES];
 }
@@ -1194,6 +1189,7 @@
         emoji_happy = [[dict objectForKey:@"emojiButtons"]objectAtIndex:4];
         emoji_zan = [[dict objectForKey:@"emojiButtons"]objectAtIndex:5];
     }
+    [[UIApplication sharedApplication].delegate.window addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:emojisView action:@selector(hideEmojiEffectView)]];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
         [emojiEffectView setFrame:CGRectMake(0, 0, 80, SCREEN_HEIGHT)];
     } completion:^(BOOL finished) {
@@ -1707,8 +1703,8 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 
 #pragma mark - 赞的人头像
 - (void)zangBtnClick:(UIButton *)button{
-    NSInteger i = button.tag % 8;
-    NSInteger section = button.tag / 8 ;
+    NSInteger i = button.tag % 7;
+    NSInteger section = button.tag / 7 ;
     if(section >=0 && i>=0){
     FriendsRecentModel *recentM = _dataArray[_index][section];
         if(i >= recentM.likeList.count) return;
@@ -1935,11 +1931,11 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                     }
                     FriendsCommentModel *commentModel = recentM.commentList[indexPath.row - 4];
                     LYFriendsCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCommentCellID forIndexPath:indexPath];
-                    if (indexPath.row == 4) {
-                        commentCell.imageV_comment.hidden = NO;
-                    }else{
-                        commentCell.imageV_comment.hidden = YES;
-                    }
+//                    if (indexPath.row == 4) {
+//                        commentCell.imageV_comment.hidden = NO;
+//                    }else{
+//                        commentCell.imageV_comment.hidden = YES;
+//                    }
                     commentCell.btn_headerImg.tag = indexPath.section;
                     commentCell.btn_headerImg.indexTag = indexPath.row;
                     [commentCell.btn_headerImg addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
@@ -1953,14 +1949,26 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *arr = _dataArray[_index];
     FriendsRecentModel *recentM = arr[indexPath.section];
+    NSLog(@"--->%ld",indexPath.section);
     switch (indexPath.row) {
         case 0://头像和动态
         {
-            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 14, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [recentM.message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+            
+            NSString *topicNameStr = nil;
+            if(recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",recentM.topicTypeName];
+            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
+            [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, recentM.message.length )];
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+            if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width+3;
+            [paragraphStyle setLineSpacing:3];
+            [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
+            size =  [attributeStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;
            // if(size.height >= 47) size.height = 47;
             if(![MyUtil isEmptyString:recentM.message]) {
-                if(size.height >= 47) size.height = 47;
-                size.height = 10 + size.height;
+                if(size.height >= 56) size.height = 56;
+                size.height = size.height;
             }else{
                 size.height = 0;
                 if(![MyUtil isEmptyString:recentM.topicTypeName]){
@@ -1968,7 +1976,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
                 }
             }
             NSLog(@"------>%f",size.height);
-             return 55 + size.height ;
+             return 67 + size.height ;
         }
             break;
             
@@ -1978,20 +1986,21 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             switch (urlArray.count) {
                 case 1:
                 {
-                    return SCREEN_WIDTH;
+                    return SCREEN_WIDTH - 70;
                 }
                     break;
                 case 2:
                 {
-                    return (SCREEN_WIDTH - 2)/2.f;
+                    return (SCREEN_WIDTH - 75)/2.f;
                 }
                     break;
                 case 3:{
-                    return 3 * SCREEN_WIDTH / 2 + 2;
+                    return (SCREEN_WIDTH - 75)/2.f + 5 + SCREEN_WIDTH - 70;
                 }
+                    break;
                     
                 default:
-                    return SCREEN_WIDTH + (SCREEN_WIDTH - 6) / 3.f + 2;
+                    return (SCREEN_WIDTH - 75) + 5;
                     break;
             }
             
@@ -1999,7 +2008,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             break;
         case 2://地址
         {
-            return 50;
+             return 50;
         }
             break;
         case 3:
@@ -2020,7 +2029,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
-            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 81, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 104, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             CGFloat height;
             if (size.height + 20 < 36) {
                 height = 36;
@@ -2073,6 +2082,7 @@ NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
         LYFriendsTopicViewController *friendsTopicVC = [[LYFriendsTopicViewController alloc]init];
         friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
         friendsTopicVC.topicName = friendRecentM.topicTypeName;
+        if([friendRecentM.isBarTopicType isEqualToString:@"0"]) friendsTopicVC.isFriendsTopic = YES;
         [self.navigationController pushViewController:friendsTopicVC animated:YES];
     }
 }

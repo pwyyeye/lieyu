@@ -690,6 +690,7 @@
     }else{
         [dateFmter setDateFormat:@"yy-MM-dd"];
         strDiff = [dateFmter stringFromDate:date];
+        return strDiff;
     }
     
   return  [NSString stringWithFormat:@"%@ %@",strDiff,dateStringPart];

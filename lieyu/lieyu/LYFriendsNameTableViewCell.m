@@ -20,7 +20,9 @@
     _label_constellation.layer.cornerRadius = 2;
     _label_constellation.layer.masksToBounds = YES;
     
-    _label_work.layer.cornerRadius = 2;
+    _label_work.layer.cornerRadius = CGRectGetHeight(_label_work.frame)/2.f;
+    _label_work.layer.borderColor = RGBA(186, 20, 227, 1).CGColor;
+    _label_work.layer.borderWidth = 0.5;
     _label_work.layer.masksToBounds = YES;
 }
 
@@ -48,7 +50,7 @@
     }
     if(recentM.tags.count){
         CGSize size = [((FriendsTagModel *)recentM.tags[0]).tagname boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size;
-        self.label_work_contraint_width.constant = size.width + 6;
+        self.label_work_contraint_width.constant = size.width + 15;
         [self updateConstraints];
         
         if(recentM.tags.count){
