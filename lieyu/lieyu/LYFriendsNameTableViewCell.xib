@@ -82,39 +82,42 @@
                             <color key="titleColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDA-11-w3k">
-                        <rect key="frame" x="109" y="17" width="5" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w85-Wu-Jkm">
+                        <rect key="frame" x="73" y="41" width="5" height="15"/>
+                        <color key="backgroundColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="15" id="MmO-a0-OP1"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="k5P-5U-gso"/>
+                            <constraint firstAttribute="height" constant="15" id="ZRU-0V-Uhq"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="rrz-FZ-GR9"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="x3o-zh-jlU"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <color key="textColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="x3o-zh-jlU"/>
+                            </mask>
+                        </variation>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="wDA-11-w3k" firstAttribute="centerX" secondItem="luc-9F-P2m" secondAttribute="centerX" id="6Ra-c3-gYu"/>
+                    <constraint firstItem="w85-Wu-Jkm" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="8" id="4Ys-5i-ROP"/>
                     <constraint firstItem="pH5-Po-Wwa" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="10" id="6Ug-AU-1wx"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="7" id="73s-LP-wYE"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="8" id="ADn-Dl-lWm"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="D2S-PB-lbF"/>
-                    <constraint firstItem="wDA-11-w3k" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="3" id="FFD-to-mjk"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="pH5-Po-Wwa" secondAttribute="leading" id="HWf-XL-Uih"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="HtG-7k-6eO"/>
                     <constraint firstItem="lM4-4y-ffP" firstAttribute="centerY" secondItem="pH5-Po-Wwa" secondAttribute="centerY" id="Kfn-lS-Ddb"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="7Rw-eO-sKU" secondAttribute="bottom" id="OXT-yJ-6be"/>
-                    <constraint firstItem="wDA-11-w3k" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="3" id="Qdi-v1-Qip"/>
-                    <constraint firstItem="wDA-11-w3k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="Qno-bC-Xii"/>
                     <constraint firstItem="pH5-Po-Wwa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="SAK-0Z-MSb"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="8" id="U3g-ed-wTL"/>
                     <constraint firstAttribute="trailing" secondItem="lM4-4y-ffP" secondAttribute="trailing" constant="8" id="YpK-Iw-Kmq"/>
                     <constraint firstAttribute="trailing" secondItem="FEG-lw-pcv" secondAttribute="trailing" constant="7" id="aE3-5V-07U"/>
                     <constraint firstAttribute="bottom" secondItem="FEG-lw-pcv" secondAttribute="bottom" constant="10" id="c2Y-AQ-Lhv"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="e3o-98-IHy"/>
-                    <constraint firstItem="wDA-11-w3k" firstAttribute="centerY" secondItem="pH5-Po-Wwa" secondAttribute="centerY" id="eZP-zo-DCb"/>
-                    <constraint firstItem="wDA-11-w3k" firstAttribute="leading" secondItem="pH5-Po-Wwa" secondAttribute="trailing" constant="3" id="gKc-Cc-aii"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="8" id="i5T-JJ-Xlc"/>
+                    <constraint firstItem="w85-Wu-Jkm" firstAttribute="top" secondItem="luc-9F-P2m" secondAttribute="top" id="kLX-wz-zyf"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="khM-s2-mFp"/>
                     <constraint firstItem="7Rw-eO-sKU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="lQB-Zj-3uX"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="lM4-4y-ffP" secondAttribute="bottom" constant="8" id="mqS-7C-HcM"/>
@@ -135,10 +138,6 @@
                         <exclude reference="OXT-yJ-6be"/>
                         <exclude reference="c2Y-AQ-Lhv"/>
                         <exclude reference="mqS-7C-HcM"/>
-                        <exclude reference="6Ra-c3-gYu"/>
-                        <exclude reference="FFD-to-mjk"/>
-                        <exclude reference="Qdi-v1-Qip"/>
-                        <exclude reference="Qno-bC-Xii"/>
                         <exclude reference="tf2-KC-5iH"/>
                     </mask>
                 </variation>
@@ -152,10 +151,10 @@
                 <outlet property="label_constellation_constraint_width" destination="n0S-eC-rkf" id="yMl-9H-kgu"/>
                 <outlet property="label_content" destination="FEG-lw-pcv" id="f9C-Hy-cXB"/>
                 <outlet property="label_time" destination="lM4-4y-ffP" id="XyU-bd-dc6"/>
-                <outlet property="label_work" destination="wDA-11-w3k" id="HUb-Jw-hnn"/>
-                <outlet property="label_work_contraint_width" destination="k5P-5U-gso" id="Ih3-MN-AWw"/>
+                <outlet property="label_work" destination="w85-Wu-Jkm" id="WKB-uq-Hwz"/>
+                <outlet property="label_work_contraint_width" destination="rrz-FZ-GR9" id="WYp-G9-560"/>
             </connections>
-            <point key="canvasLocation" x="240" y="395.5"/>
+            <point key="canvasLocation" x="389" y="536.5"/>
         </tableViewCell>
     </objects>
 </document>
