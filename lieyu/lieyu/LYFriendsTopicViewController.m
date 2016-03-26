@@ -348,15 +348,15 @@ CGFloat picWidth = 0;
     [self.tableView reloadData];
     [self.tableView.mj_header endRefreshing];
     
-    if (_dataArray.count) {
+    [self removePlaceView];
+    if (!_dataArray.count) {
         [self createPlaceView];
-    }else{
-        [self removePlaceView];
     }
 }
 
 - (void)createPlaceView{
     UILabel *placeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    placeLabel.tag = 800;
     placeLabel.center = self.view.center;
     if (_isFriendsTopic) {
         placeLabel.text = @"暂无话题";
@@ -371,7 +371,11 @@ CGFloat picWidth = 0;
 }
 
 - (void)removePlaceView{
-    
+    UILabel *label = (UILabel *)[self.view viewWithTag:800];
+    if (label) {
+        [label removeFromSuperview];
+        label = nil;
+    }
 }
 
 #pragma mark - 点击动态中话题文字
