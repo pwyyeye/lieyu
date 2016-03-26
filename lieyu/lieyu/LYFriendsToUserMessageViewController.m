@@ -234,9 +234,13 @@
     FriendsRecentModel *recentM = _dataArray[button.tag];
     FriendsCommentModel *commentModel = recentM.commentList[button.indexTag - 4];
     if([commentModel.userId isEqualToString:_useridStr]) return;
-    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
-    friendsUserMegVC.friendsId = commentModel.userId;
-    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
+//    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
+//    friendsUserMegVC.friendsId = commentModel.userId;
+//    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
+    
+    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    myFriendVC.userID = commentModel.userId;
+    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 
 #pragma mark － 刷新表
@@ -454,9 +458,13 @@
         if(i >= recentM.likeList.count) return;
         FriendsLikeModel *likeM = recentM.likeList[i];
         if([likeM.userId isEqualToString:_useridStr]) return;
-        LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
-        messageVC.friendsId = likeM.userId;
-        [self.navigationController pushViewController:messageVC animated:YES];
+//        LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
+//        messageVC.friendsId = likeM.userId;
+//        [self.navigationController pushViewController:messageVC animated:YES];
+        
+        LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+        myFriendVC.userID = likeM.userId;
+        [self.navigationController pushViewController:myFriendVC animated:YES];
     }
 }
 
