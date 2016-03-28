@@ -26,6 +26,7 @@
 #import "UMSocial.h"
 #import "LYYUHttpTool.h"
 #import "LYUserLoginViewController.h"
+#import "LYMyFriendDetailViewController.h"
 
 @interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate,showImageInPreview>
 {
@@ -537,9 +538,13 @@
 
 
 - (void)HDDetailJumpToFriendDetail:(NSString *)friendId{
-    LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
-    messageVC.friendsId = friendId;
-    [self.navigationController pushViewController:messageVC animated:YES];
+//    LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
+//    messageVC.friendsId = friendId;
+//    [self.navigationController pushViewController:messageVC animated:YES];
+    
+    LYMyFriendDetailViewController *myFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    myFriendDetailVC.userID = friendId;
+    [self.navigationController pushViewController:myFriendDetailVC animated:YES];
 }
 
 - (void)clickThisImageView{
