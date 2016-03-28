@@ -114,7 +114,7 @@
         int gestureViewTag;
         
         __block UIImageView *imageView;//引导页
-        UIView *imageSubview;
+        __block UIView *imageSubview;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -1109,7 +1109,7 @@
     __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (![USER_DEFAULT objectForKey:@"firstUseFriendLike"]) {
-            float distance = button.superview.superview.frame.origin.y - self.tableView.contentOffset.y;
+            float distance = button.superview.superview.frame.origin.y - weakSelf.tableView.contentOffset.y;
             imageSubview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
 //            imageSubview.backgroundColor = RGBA(0, 0, 0, 0.1);
             imageSubview.backgroundColor = [UIColor clearColor];
@@ -1117,10 +1117,10 @@
             [imageSubview addGestureRecognizer:tapImageSubview];
             [weakSelf.view addSubview:imageSubview];
             if (distance < SCREEN_HEIGHT / 2) {
-                imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"emojiTipBottom"]];
+                imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"emojiTIpBottom"]];
                 [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, distance + 30, 206, 70)];
             }else{
-                imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"emojiTipTop"]];
+                imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"emojiTIpTop"]];
                 [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, distance - 45, 206, 70)];
             }
             [imageSubview addSubview:imageView];
