@@ -602,6 +602,9 @@
 		38979AD71CA68494002946F5 /* emojiTIpBottom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AD31CA68494002946F5 /* emojiTIpBottom@3x.png */; };
 		38979AD81CA68494002946F5 /* emojiTIpTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AD41CA68494002946F5 /* emojiTIpTop@2x.png */; };
 		38979AD91CA68494002946F5 /* emojiTIpTop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AD51CA68494002946F5 /* emojiTIpTop@3x.png */; };
+		38979ADA1CA6B320002946F5 /* angry27.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979A1A1CA40919002946F5 /* angry27.png */; };
+		38979ADB1CA6B320002946F5 /* angry29.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979A1C1CA40919002946F5 /* angry29.png */; };
+		38979ADC1CA6B330002946F5 /* dianzan3.png in Resources */ = {isa = PBXBuildFile; fileRef = 389799961CA40919002946F5 /* dianzan3.png */; };
 		389C01021C1488EF00FE9412 /* seeAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00F91C1488EF00FE9412 /* seeAll.png */; };
 		389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FA1C1488EF00FE9412 /* seeAll@2x.png */; };
 		389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FB1C1488EF00FE9412 /* seeAll@3x.png */; };
@@ -8735,6 +8738,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38979ADC1CA6B330002946F5 /* dianzan3.png in Resources */,
+				38979ADA1CA6B320002946F5 /* angry27.png in Resources */,
+				38979ADB1CA6B320002946F5 /* angry29.png in Resources */,
 				38979ACF1CA65ABB002946F5 /* kawayi0.png in Resources */,
 				380659A51C5353D8003094C9 /* comment.png in Resources */,
 				15EB354E1BD4839D00BA6161 /* UMSLoginViewController.xib in Resources */,
