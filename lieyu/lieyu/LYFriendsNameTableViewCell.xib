@@ -22,9 +22,9 @@
                         </constraints>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pH5-Po-Wwa">
-                        <rect key="frame" x="60" y="14" width="46" height="20"/>
+                        <rect key="frame" x="60" y="14" width="46" height="19"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="zLP-cd-KBf"/>
+                            <constraint firstAttribute="height" constant="19" id="zLP-cd-KBf"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <state key="normal" title="于啊aA">
@@ -32,22 +32,22 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lM4-4y-ffP">
-                        <rect key="frame" x="212" y="17" width="100" height="15"/>
+                        <rect key="frame" x="212" y="16" width="100" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="IDB-j5-Qcy"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="cct-SI-aBQ"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luc-9F-P2m">
-                        <rect key="frame" x="60" y="41" width="5" height="15"/>
+                        <rect key="frame" x="60" y="38" width="5" height="16"/>
                         <color key="backgroundColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="jTI-kj-bnC"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="n0S-eC-rkf"/>
-                            <constraint firstAttribute="height" constant="15" id="no2-Kf-XYw"/>
+                            <constraint firstAttribute="height" constant="16" id="no2-Kf-XYw"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,10 +83,10 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w85-Wu-Jkm">
-                        <rect key="frame" x="73" y="41" width="5" height="15"/>
+                        <rect key="frame" x="73" y="38" width="5" height="16"/>
                         <color key="backgroundColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="15" id="ZRU-0V-Uhq"/>
+                            <constraint firstAttribute="height" constant="16" id="ZRU-0V-Uhq"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="rrz-FZ-GR9"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="5" id="x3o-zh-jlU"/>
                         </constraints>
@@ -103,7 +103,7 @@
                 <constraints>
                     <constraint firstItem="w85-Wu-Jkm" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="8" id="4Ys-5i-ROP"/>
                     <constraint firstItem="pH5-Po-Wwa" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="10" id="6Ug-AU-1wx"/>
-                    <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="7" id="73s-LP-wYE"/>
+                    <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="5" id="73s-LP-wYE"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="8" id="ADn-Dl-lWm"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="D2S-PB-lbF"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="pH5-Po-Wwa" secondAttribute="leading" id="HWf-XL-Uih"/>
