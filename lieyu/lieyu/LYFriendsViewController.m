@@ -132,8 +132,8 @@
     // Do any additional setup after loading the view.
     self.pagesCount = 4;
     _notificationDict = [[NSMutableDictionary alloc]init];
-    [self setupAllProperty];//设置全局属性
     [self setupTableView];
+    [self setupAllProperty];//设置全局属性
     [self setupTableViewFresh];//配置表的刷新和加载
     [self getFriendsNewMessage];
     

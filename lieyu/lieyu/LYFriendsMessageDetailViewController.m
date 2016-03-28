@@ -67,8 +67,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setupAllProperty];
     [self setupTableView];
+    [self setupAllProperty];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *MyUserid = [NSString stringWithFormat:@"%d",app.userModel.userid];
     if (![MyUserid isEqualToString:_recentM.userId]) {
@@ -533,7 +533,7 @@
     switch (indexPath.row) {
         case 0:
         {
-            LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];
+             LYFriendsNameTableViewCell *nameCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsNameCellID forIndexPath:indexPath];   
             nameCell.recentM = _recentM;
             nameCell.label_content.numberOfLines = 99;
             nameCell.btn_delete.tag = indexPath.section;

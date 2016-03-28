@@ -870,8 +870,6 @@
 		853D4E2B1C87E73D003277E5 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 853D4E291C87E73D003277E5 /* SettingTableViewCell.m */; };
 		853D4E2C1C87E73D003277E5 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853D4E2A1C87E73D003277E5 /* SettingTableViewCell.xib */; };
 		853F27D41CA5706500CFA4B1 /* LYFriendsCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6811C2CED9100F16463 /* LYFriendsCommentTableViewCell.m */; };
-		8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */; };
-		8540B6631C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */; };
 		8540B6791C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6771C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m */; };
 		8540B67A1C2CE4E300F16463 /* LYFriendsAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6781C2CE4E300F16463 /* LYFriendsAddressTableViewCell.xib */; };
 		8540B67E1C2CE89900F16463 /* LYFriendsLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B67C1C2CE89900F16463 /* LYFriendsLikeTableViewCell.m */; };
@@ -1006,6 +1004,8 @@
 		855941781C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 855941741C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle */; };
 		85653B671C508DF40012B718 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B661C508DF40012B718 /* CoreGraphics.framework */; };
 		85653B691C508E100012B718 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B681C508E100012B718 /* libstdc++.tbd */; };
+		857AD68C1CA8CDBB0032E0C4 /* LYFriendsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */; };
+		857AD68D1CA8CDC00032E0C4 /* LYFriendsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */; };
 		8588C4261C5DF90A0092259E /* LYYUTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C4241C5DF90A0092259E /* LYYUTableViewCell.m */; };
 		8588C4271C5DF90A0092259E /* LYYUTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8588C4251C5DF90A0092259E /* LYYUTableViewCell.xib */; };
 		8588C44F1C5E4A220092259E /* LYYUHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8588C44E1C5E4A220092259E /* LYYUHttpTool.m */; };
@@ -8840,6 +8840,7 @@
 				38979AAE1CA40919002946F5 /* angry16.png in Resources */,
 				15B866901BE0B04C002E2BB6 /* MyMessageListViewController.xib in Resources */,
 				85F545171C13DE000013B92B /* LYUserDetailInfoViewController.xib in Resources */,
+				857AD68C1CA8CDBB0032E0C4 /* LYFriendsNameTableViewCell.xib in Resources */,
 				ADAFCD3A1CA0E261008BF959 /* sharkrefresh.png in Resources */,
 				38C98D011C61B1380084E6BD /* backBtn@3x.png in Resources */,
 				A2020D7F1BA67FA40090B92A /* Fill20219@2x.png in Resources */,
@@ -9218,7 +9219,6 @@
 				38979A641CA40919002946F5 /* kawayi17.png in Resources */,
 				38E5D7F01C12DF0C004B49D2 /* call@2x.png in Resources */,
 				385665161C76A566000DCFA5 /* HDDetailFootCell.xib in Resources */,
-				8540B6631C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib in Resources */,
 				AD399E971C940D4D00028F23 /* logo24@2x.jpg in Resources */,
 				38979A951CA40919002946F5 /* sad16.png in Resources */,
 				381FF0021C168755002A47BA /* icon_zixun_normal@2x.png in Resources */,
@@ -9929,6 +9929,7 @@
 				3879F2661C0D361000B72629 /* LiuchengTableViewCell.m in Sources */,
 				8553971D1C8D894300289D18 /* MyCodeViewController.m in Sources */,
 				38E5D6E51C0F1018004B49D2 /* LPBuyTaocanCell.m in Sources */,
+				857AD68D1CA8CDC00032E0C4 /* LYFriendsNameTableViewCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
@@ -10034,7 +10035,6 @@
 				15E240871BB280DC0090D240 /* LYOrderHeadForWaitView.m in Sources */,
 				15CC31DF1BEB2C5B00DDD03F /* DBHelper.m in Sources */,
 				85529C1F1C904346005D8F0D /* LYFindHttpTool.m in Sources */,
-				8540B6621C2CD8E200F16463 /* LYFriendsNameTableViewCell.m in Sources */,
 				38DBCD851C59B04100A1E207 /* ZujuViewController.m in Sources */,
 				85F625A11C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
