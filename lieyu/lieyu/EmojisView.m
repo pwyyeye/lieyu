@@ -10,8 +10,12 @@
 #import "LYFriendsHttpTool.h"
 #import "UserModel.h"
 @interface EmojisView()
+{
+    UIView *imageContent;
+}
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 //@property (nonatomic, assign) BOOL isExists;
+
 @end
 
 @implementation EmojisView
@@ -132,16 +136,23 @@ static EmojisView *shareView = nil;
     NSMutableArray *array = [[NSMutableArray alloc]init];
     NSString *string;
     UIImage *image;
+    
+    imageContent = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 41, SCREEN_HEIGHT / 2 - 41, 82, 82)];
+    [imageContent setBackgroundColor:[UIColor whiteColor]];
+    imageContent.layer.cornerRadius = 41;
+    imageContent.layer.masksToBounds = YES;
+    
     UIImageView *ImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@0",emojiName]]];
+//    ImageView.backgroundColor = [UIColor redColor];
     for (int i = 0 ; i <= emojiNumber; i ++) {
         string = [[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"%@%d",emojiName,i] ofType:@"png"];
         image = [UIImage imageWithContentsOfFile:string];
         [array addObject:image];
     }
-    
-    [ImageView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50, 100, 100)];
-    
-    [_mainWindow addSubview:ImageView];
+    [ImageView setFrame:CGRectMake(-9, -9, 100, 100)];
+    [imageContent addSubview:ImageView];
+    [_mainWindow addSubview:imageContent];
+//    [_mainWindow addSubview:ImageView];
     ImageView.animationImages = array;
     ImageView.animationDuration = emojiNumber * 0.1;
     ImageView.animationRepeatCount = 1;
@@ -153,8 +164,10 @@ static EmojisView *shareView = nil;
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.3 animations:^{
                 ImageView.alpha = 0 ;
+                imageContent.alpha = 0;
             }completion:^(BOOL finished) {
                 [ImageView removeFromSuperview];
+                [imageContent removeFromSuperview];
                 //        [NSThread currentThread]
             }];
         });
@@ -167,6 +180,11 @@ static EmojisView *shareView = nil;
     NSMutableArray *array = [[NSMutableArray alloc]init];
     NSString *string;
     UIImage *image;
+//    UIView *imageContent = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 55, SCREEN_HEIGHT / 2 - 55, 110, 110)];
+//    [imageContent setBackgroundColor:[UIColor redColor]];
+//    imageContent.layer.cornerRadius = 55;
+//    imageContent.layer.masksToBounds = YES;
+    
     UIImageView *ImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@0",emojiName]]];
     for (int i = 0 ; i <= emojiNumber; i ++) {
         string = [[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"%@%d",emojiName,i] ofType:@"png"];
@@ -175,8 +193,10 @@ static EmojisView *shareView = nil;
     }
     
     [ImageView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50, 100, 100)];
-    
     [_mainWindow addSubview:ImageView];
+//    [imageContent addSubview:ImageView];
+//    [_mainWindow addSubview:imageContent];
+    
     ImageView.animationImages = array;
     ImageView.animationDuration = emojiNumber * 0.1;
     ImageView.animationRepeatCount = 1;
