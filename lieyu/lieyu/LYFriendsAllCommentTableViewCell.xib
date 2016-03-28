@@ -8,29 +8,41 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LYFriendsAllCommentTableViewCell" id="KGk-i7-Jjw" customClass="LYFriendsAllCommentTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LYFriendsAllCommentTableViewCell" rowHeight="47" id="KGk-i7-Jjw" customClass="LYFriendsAllCommentTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hr1-n5-fhe">
-                        <rect key="frame" x="60" y="8" width="252" height="27"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hr1-n5-fhe">
+                        <rect key="frame" x="60" y="8" width="252" height="31"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYX-Zk-5EL">
+                        <rect key="frame" x="0.0" y="45" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="JHs-gi-7HD"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="Hr1-n5-fhe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="2Hp-uY-EcL"/>
                     <constraint firstItem="Hr1-n5-fhe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="60" id="CJa-LZ-fLX"/>
+                    <constraint firstItem="MYX-Zk-5EL" firstAttribute="top" secondItem="Hr1-n5-fhe" secondAttribute="bottom" id="dss-cY-fP8"/>
                     <constraint firstItem="Hr1-n5-fhe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="eZb-RZ-EAW"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Hr1-n5-fhe" secondAttribute="trailing" id="f2Q-zE-bB0"/>
-                    <constraint firstItem="Hr1-n5-fhe" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="qBj-0X-sTi"/>
+                    <constraint firstAttribute="bottom" secondItem="MYX-Zk-5EL" secondAttribute="bottom" id="gbl-3R-VwW"/>
+                    <constraint firstItem="Hr1-n5-fhe" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="1" id="qBj-0X-sTi"/>
+                    <constraint firstAttribute="trailing" secondItem="MYX-Zk-5EL" secondAttribute="trailing" id="ud2-Of-vwd"/>
+                    <constraint firstItem="MYX-Zk-5EL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xIG-0S-zl5"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="dss-cY-fP8"/>
                         <exclude reference="CJa-LZ-fLX"/>
                     </mask>
                 </variation>
@@ -39,7 +51,7 @@
             <connections>
                 <outlet property="label_commentCount" destination="Hr1-n5-fhe" id="g19-Zd-cRs"/>
             </connections>
-            <point key="canvasLocation" x="304" y="432"/>
+            <point key="canvasLocation" x="304" y="433.5"/>
         </tableViewCell>
     </objects>
 </document>
