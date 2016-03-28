@@ -257,7 +257,7 @@
             clearLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 32, 150, 20)];
             [clearLabel setFont:[UIFont systemFontOfSize:14]];
             [clearLabel setTextColor:[UIColor darkGrayColor]];
-            [clearLabel setText:@"抱歉，暂无动态！"];
+            [clearLabel setText:@"暂无动态！"];
         }
         self.checkTrendsBtn.enabled = NO;
         [self.DTView addSubview:clearLabel];
