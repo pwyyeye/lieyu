@@ -70,11 +70,13 @@
             app.userModel=nil;
             [USER_DEFAULT removeObjectForKey:@"username"];
             [USER_DEFAULT removeObjectForKey:@"password"];
+            [USER_DEFAULT removeObjectForKey:@"OPENIDSTR"];
+            
 //            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             
 //            if([MyUtil isEmptyString:app.s_app_id]){
                 LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
-                [self.navigationController pushViewController:login animated:YES];
+                [weakSelf.navigationController pushViewController:login animated:YES];
                 
 //            }
 
