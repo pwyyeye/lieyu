@@ -14,4 +14,5 @@
 
 @interface LYFriendsMessageDetailViewController : LYBaseViewController<emojiClickDelegate>
 @property (nonatomic,strong) FriendsRecentModel *recentM;
+@property (nonatomic,unsafe_unretained) BOOL *isTopicDetail;
 @end

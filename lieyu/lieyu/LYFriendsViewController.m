@@ -191,6 +191,7 @@
 }
 
 - (void)reloadTableViewData{
+    
     [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadTableViewData" object:nil];
 }
@@ -621,6 +622,9 @@
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
         }
+        
+
+        
         [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:NO];
         [app stopLoading];
     }];

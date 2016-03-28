@@ -794,6 +794,7 @@
 
 #pragma mark - 点击动态中话题文字
 - (void)topicNameClick{
+    if(_isTopicDetail) return;
     if (_recentM.topicTypeName.length && _recentM.topicTypeId.length) {
         LYFriendsTopicViewController *friendsTopicVC = [[LYFriendsTopicViewController alloc]init];
         friendsTopicVC.topicTypeId = _recentM.topicTypeId;

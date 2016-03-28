@@ -14,6 +14,7 @@
 @implementation LYFriendsLikeTableViewCell
 
 - (void)awakeFromNib {
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     for (UIButton *btn in _btnArray) {
         btn.layer.cornerRadius = (SCREEN_WIDTH - 114)/7.f / 2.f;

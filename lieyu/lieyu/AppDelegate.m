@@ -34,13 +34,13 @@
 
 #import "HuoDongViewController.h"
 #import "LPUserLoginViewController.h"
-#import "MBProgressHUD.h"
+
 
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource
 >{
-    MBProgressHUD *_hudView ;
+    
     LoadingView *_loadV;
 }
 @end
@@ -577,7 +577,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 {
 //    [MBProgressHUD hideHUDForView:self.window animated:YES];
     [DejalBezelActivityView removeViewAnimated:NO];
-//    [_hudView hideAnimated:YES];
+
 //    [_loadV hideAnimation:YES afterDelay:1];
 }
 
