@@ -114,7 +114,7 @@
 
 - (void)setupAllProperty{
     
-    _indexStart = 3;
+    _indexStart = 4;
     [self getData];
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.title = @"消息详情";
@@ -198,7 +198,6 @@
             likeModel.icon = app.userModel.avatar_img;
             likeModel.userId = _useridStr;
             [_recentM.likeList insertObject:likeModel atIndex:0];
-            _indexStart = 4;
             _recentM.liked = @"1";
         }else{
             for (int i = 0; i< _recentM.likeList.count;i ++) {
@@ -246,7 +245,6 @@
             likeModel.userId = _useridStr;
             likeModel.likeType = likeType;
             [_recentM.likeList insertObject:likeModel atIndex:0];
-            _indexStart = 4;
             _recentM.liked = @"1";
         }else{
             for (int i = 0; i< _recentM.likeList.count;i ++) {
@@ -255,7 +253,6 @@
                     [_recentM.likeList removeObject:likeM];
                 }
             }
-            _indexStart = 3;
             _recentM.liked = @"0";
         }
         cell.btn_like.enabled = YES;
@@ -342,7 +339,7 @@
     _commentView.btn_send_cont_width = 0 ;
     if(_isCommentToUser){
       
-        FriendsCommentModel *commentM = _dataArray[_indexRow - 4];
+        FriendsCommentModel *commentM = _dataArray[_indexRow - _indexStart];
         _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
     }
     
@@ -489,7 +486,7 @@
     NSString *toUserId = nil;
     NSString *toUserNick = nil;
     if (_isCommentToUser) {
-        FriendsCommentModel *commentModel = _dataArray[_indexRow - 4];
+        FriendsCommentModel *commentModel = _dataArray[_indexRow - _indexStart];
         toUserId = commentModel.userId;
         toUserNick = commentModel.nickName;
     }else{
@@ -629,7 +626,6 @@
         }
             break;
         case 3:{
-             _indexStart = 4;
             LYFriendsLikeDetailTableViewCell *likeCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsLikeDetailCellID forIndexPath:indexPath];
             likeCell.recentM = _recentM;
             for (int i = 0; i< likeCell.btnArray.count; i ++) {
@@ -657,12 +653,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     _indexRow = indexPath.row;
-    if (indexPath.row - 4 >= _dataArray.count) {
+    if (indexPath.row - _indexStart >= _dataArray.count) {
         return;
     }
-    FriendsCommentModel *commentM = _dataArray[indexPath.row - 4];
-    if (indexPath.row >= 4) {
+    FriendsCommentModel *commentM = _dataArray[indexPath.row - _indexStart];
+    if (indexPath.row >= _indexStart) {
         if ([commentM.userId isEqualToString:_useridStr]) {
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
             [actionSheet showInView:self.view];
@@ -685,7 +682,7 @@
             
             NSString *topicNameStr = nil;
             if(_recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",_recentM.topicTypeName];
-            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:_recentM.message];
             [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, _recentM.message.length )];
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
@@ -742,8 +739,6 @@
             break;
         case 3:{
             if (_recentM.likeList.count) {
-                
-                    _indexStart = 4;
                     //                    return  _recentM.likeList.count <= 8 ? (SCREEN_WIDTH - 98)/8.f + 20 : (SCREEN_WIDTH - 98)/8.f * 2 + 30;
                     CGFloat btnWidth = (SCREEN_WIDTH - 91) /7.f;
                     NSInteger rowNum = (_recentM.likeList.count + 6)/ 7.f;
@@ -842,12 +837,12 @@
         }
     }else{
         if (!buttonIndex) {//删除我的评论
-            FriendsCommentModel *commentM = _dataArray[_indexRow - 4];
+            FriendsCommentModel *commentM = _dataArray[_indexRow - _indexStart];
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
             __weak LYFriendsMessageDetailViewController *weakSelf = self;
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
-                    [_dataArray removeObjectAtIndex:_indexRow - 4];
+                    [_dataArray removeObjectAtIndex:_indexRow - _indexStart];
                     _recentM.commentNum = [NSString stringWithFormat:@"%ld",_recentM.commentNum.integerValue - 1];
                     [weakSelf.tableView reloadData];
                 }
@@ -904,6 +899,7 @@
 
 #pragma mark - 查看图片
 - (void)checkImageClick:(UIButton *)button{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSLog(@"--->%ld",button.tag);
     NSMutableArray *oldFrameArray = [[NSMutableArray alloc]init];
@@ -976,7 +972,7 @@
 }
 #pragma mark - 点击头像跳转到指定用户界面
 - (void)pushUserMessagePage{
-
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     //    if([recentM.userId isEqualToString:_useridStr]) return;
     if([_recentM.userId isEqualToString:_useridStr]) {
         //        [self myClick:nil];

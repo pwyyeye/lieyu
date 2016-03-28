@@ -76,8 +76,8 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMI-Vc-28l">
-                        <rect key="frame" x="60" y="59" width="38" height="27"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="60" y="58" width="43" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal" title="Button">
                             <color key="titleColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -126,7 +126,7 @@
                     <constraint firstItem="lM4-4y-ffP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="tf2-KC-5iH"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="pH5-Po-Wwa" secondAttribute="leading" id="uKn-rV-0Ix"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="dMI-Vc-28l" secondAttribute="leading" id="xXU-fZ-1HE"/>
-                    <constraint firstItem="dMI-Vc-28l" firstAttribute="top" secondItem="mUG-zY-dHD" secondAttribute="bottom" constant="5" id="yPW-bo-noS"/>
+                    <constraint firstItem="dMI-Vc-28l" firstAttribute="top" secondItem="mUG-zY-dHD" secondAttribute="bottom" constant="4" id="yPW-bo-noS"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">

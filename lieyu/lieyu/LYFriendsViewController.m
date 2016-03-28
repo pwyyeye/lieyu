@@ -220,6 +220,7 @@
 }
 
 - (void)friendsClickSel{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
 //    [self friendsClick:_friendsBtn];
     _friendsBtnSelect = YES;
     if(((NSArray *)_dataArray[0]).count == 0) [self getDataFriendsWithSetContentOffSet:YES needLoading:YES];
@@ -232,6 +233,7 @@
 }
 
 - (void)myClickSel{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
 //    [self myClick:_myBtn];
     if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
@@ -707,6 +709,7 @@
 
 #pragma mark - 玩友圈action
 - (void)friendsClick:(UIButton *)friendsBtn{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
 //    _index = 0;
 //    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
 //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
@@ -756,6 +759,7 @@
         [MyUtil gotoLogin];
         return;
     }
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
 //    _friendsBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:14];
 //    _myBtn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:14];
     _friendsBtnSelect = NO;
@@ -844,6 +848,7 @@
 
 #pragma mark - 话题action
 - (void)topicClick:(UIButton *)button{
+    
     TopicModel *topicM = _topicArray[button.tag];
     LYFriendsTopicViewController *fridendTopicVC = [[LYFriendsTopicViewController alloc]init];
     fridendTopicVC.topicTypeId = topicM.id;
@@ -904,6 +909,7 @@
 
 #pragma mark 发布动态
 - (void)carmerClick:(UIButton *)carmerClick{
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"相册",@"短视频", nil];
     actionSheet.tag = 100;
     [actionSheet showInView:self.view];
@@ -1081,6 +1087,7 @@
         [MyUtil gotoLogin];
         return;
     }
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
     cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -1357,7 +1364,7 @@
 - (void)commentClick:(UIButton *)button{
     _commentBtnTag = button.tag;
     _isCommentToUser = NO;
-    
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     [self createCommentView];
 }
 
@@ -1554,6 +1561,7 @@
 
 #pragma mark - 查看图片
 - (void)checkImageClick:(UIButton *)button{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
      AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSMutableArray *oldFrameArray = [[NSMutableArray alloc]init];
     [oldFrameArray removeAllObjects];
@@ -1604,6 +1612,7 @@
 
 #pragma mark － 删除我的动态
 - (void)deleteClick:(UIButton *)button{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     if(_index){
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"确定删除这条动态" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
@@ -1731,6 +1740,7 @@
 
 #pragma mark - 赞的人头像
 - (void)zangBtnClick:(UIButton *)button{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     NSInteger i = button.tag % 7;
     NSInteger section = button.tag / 7 ;
     if(section >=0 && i>=0){
@@ -1933,10 +1943,10 @@
                         likeCell.recentM = recentM;
                         for (int i = 0; i< likeCell.btnArray.count; i ++) {
                             UIButton *btn = likeCell.btnArray[i];
-                            btn.tag = 8 * indexPath.section + i;
+                            btn.tag = 7 * indexPath.section + i;
                             [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                         }
-                        if(recentM.likeList.count < 8) likeCell.btn_more.hidden = YES;
+                        if(recentM.likeList.count < 7) likeCell.btn_more.hidden = YES;
                         else {likeCell.btn_more.hidden = NO;
                         [likeCell.btn_more setTitle:recentM.likeNum forState:UIControlStateNormal];
                         }
@@ -1989,7 +1999,7 @@
             
             NSString *topicNameStr = nil;
             if(recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",recentM.topicTypeName];
-            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
             [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, recentM.message.length )];
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
@@ -2040,7 +2050,7 @@
             break;
         case 2://地址
         {
-             return 50;
+             return 40;
         }
             break;
         case 3:
@@ -2076,6 +2086,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (isExidtEffectView) [emojisView hideEmojiEffectView];
     _section = indexPath.section;
     FriendsRecentModel *recentM = _dataArray[_index][indexPath.section];
     if(indexPath.row == 0){

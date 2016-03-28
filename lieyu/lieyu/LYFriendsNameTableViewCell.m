@@ -65,10 +65,10 @@
     
     NSString *topicNameStr = nil;
     if(_recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",_recentM.topicTypeName];
-    CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+    CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
     NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-    if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width+3;
+    if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width;
     [paragraphStyle setLineSpacing:3];
     [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
     
