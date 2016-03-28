@@ -197,6 +197,7 @@
 
 #pragma mark - 设置全局属性
 - (void)setupAllProperty{
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView setContentInset:UIEdgeInsetsMake(64, 0, 49, 0)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData) name:@"reloadTableView" object:nil];
     _dataArray = [[NSMutableArray alloc]initWithCapacity:0];
@@ -1787,14 +1788,14 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if(_dataArray.count){
+//    if(_dataArray.count){
         NSArray *array = ((NSArray *)_dataArray[_index]);
-        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+//        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         return array.count;
-    }else{
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        return 0;
-    }
+//    }else{
+////        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//        return 0;
+//    }
 }
 
 - (void)jubaoDT{
@@ -2018,7 +2019,7 @@
                 }
             }
 //            NSLog(@"------>%f",size.height);
-             return 67 + size.height ;
+             return 70 + size.height ;
         }
             break;
             
@@ -2168,7 +2169,7 @@
 - (NSString *)stringFromImageViewFrame:(CGRect)imgFrame{
     return NSStringFromCGRect(imgFrame);
 }
-
+/*
 #pragma mark - 设置表的分割线
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     FriendsRecentModel *recentM = _dataArray[_index][indexPath.section];
@@ -2202,7 +2203,7 @@
             break;
     }
 }
-
+*/
 #pragma mark - 视频播放
 - (void)playVideo:(UIButton *)button{
     NSArray *array = _dataArray[_index];

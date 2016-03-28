@@ -50,17 +50,15 @@
     }else{
                 _label_constellation.hidden = YES;
     }
+    
     if(recentM.tags.count){
         CGSize size = [((FriendsTagModel *)recentM.tags[0]).tagname boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size;
         self.label_work_contraint_width.constant = size.width + 6;
         [self updateConstraints];
-        
-        if(recentM.tags.count){
             _label_work.text = ((FriendsTagModel *)recentM.tags[0]).tagname;
             _label_work.hidden = NO;
-        }else {
-            _label_work.hidden = YES;
-        }
+    }else{
+        _label_work.hidden = YES;
     }
     
     NSString *topicNameStr = nil;
