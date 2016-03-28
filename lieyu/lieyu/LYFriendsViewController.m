@@ -1114,10 +1114,10 @@
             [weakSelf.view addSubview:imageSubview];
             if (distance < SCREEN_HEIGHT / 2) {
                 imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"emojiTipBottom"]];
-                [imageView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 103, distance + 30, 206, 70)];
+                [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, distance + 30, 206, 70)];
             }else{
                 imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"emojiTipTop"]];
-                [imageView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 103, distance - 45, 206, 70)];
+                [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, distance - 45, 206, 70)];
             }
             [imageSubview addSubview:imageView];
         }
