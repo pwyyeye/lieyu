@@ -30,7 +30,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "LYCoreDataUtil.h"
 #import "LYCache.h"
-#import "LoadingView.h"
 
 #import "HuoDongViewController.h"
 #import "LPUserLoginViewController.h"
@@ -41,7 +40,7 @@
 UINavigationControllerDelegate,RCIMUserInfoDataSource
 >{
     
-    LoadingView *_loadV;
+    
 }
 @end
 
@@ -567,18 +566,12 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 {
      [DejalBezelActivityView activityViewForView:self.window];
     
-//    [MBProgressHUD showHUDAddedTo:self.window animated:YES];
-    
-    
-//    _loadV = [[LoadingView alloc]initWith:self.window];
 }
 
 - (void)stopLoading
 {
-//    [MBProgressHUD hideHUDForView:self.window animated:YES];
     [DejalBezelActivityView removeViewAnimated:NO];
 
-//    [_loadV hideAnimation:YES afterDelay:1];
 }
 
 //获取IMToken
