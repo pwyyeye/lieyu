@@ -14,6 +14,8 @@
 @implementation LYFriendsNameTableViewCell
 
 - (void)awakeFromNib {
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     

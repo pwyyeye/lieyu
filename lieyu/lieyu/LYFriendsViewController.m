@@ -672,6 +672,7 @@
             }
             _isMysPageUpLoad = NO;
         }
+        
         [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
         [app stopLoading];
     }];

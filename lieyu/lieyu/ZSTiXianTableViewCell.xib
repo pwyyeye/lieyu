@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ZSTiXianTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tD-P8-gcD">
+                        <rect key="frame" x="16" y="13" width="36" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disClosure.png" translatesAutoresizingMaskIntoConstraints="NO" id="l0G-t4-0B8">
+                        <rect key="frame" x="298" y="17" width="7" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="Dym-mF-Wxp"/>
+                            <constraint firstAttribute="width" constant="7" id="K0A-ap-O71"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njD-Tl-CyU">
+                        <rect key="frame" x="234" y="12" width="51" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <color key="textColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="l0G-t4-0B8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0ox-iO-685"/>
+                    <constraint firstItem="l0G-t4-0B8" firstAttribute="leading" secondItem="njD-Tl-CyU" secondAttribute="trailing" constant="13" id="5OW-eP-kbj"/>
+                    <constraint firstItem="7tD-P8-gcD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="64n-RZ-TbM"/>
+                    <constraint firstItem="njD-Tl-CyU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KmW-cv-gxj"/>
+                    <constraint firstItem="njD-Tl-CyU" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="XbH-Fa-X2d"/>
+                    <constraint firstAttribute="trailing" secondItem="l0G-t4-0B8" secondAttribute="trailing" constant="15" id="e6H-GA-fvB"/>
+                    <constraint firstItem="7tD-P8-gcD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kFJ-V5-PB9"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="XbH-Fa-X2d"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label_money" destination="njD-Tl-CyU" id="VyC-Ow-VDU"/>
+                <outlet property="label_tittle" destination="7tD-P8-gcD" id="pcu-dR-wX5"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="disClosure.png" width="7" height="10"/>
+    </resources>
+</document>

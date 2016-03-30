@@ -15,6 +15,8 @@
 #import "DeckFullModel.h"
 #import "ProductCategoryModel.h"
 #import "BrandModel.h"
+#import "ZSTiXianRecord.h"
+#import "ZSBalance.h"
 
 @implementation ZSManageHttpTool
 + (ZSManageHttpTool *)shareInstance
@@ -514,5 +516,36 @@
     }];
 }
 
+#pragma mark - 获取账户余额记录
+- (void)getPersonBalanceWithParams:(NSDictionary*)params complete:(void (^)(ZSBalance *))complete{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_BALANCE baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"%@",response);
+        NSString *errorcodeStr = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if ([errorcodeStr isEqualToString:@"1"]) {
+            NSString *balanceStrEncry = response[@"data"][@"balances"];
+            NSString *balanceStr = [MyUtil decryptUseDES:balanceStrEncry withKey:app.desKey];
+            ZSBalance *balance = [ZSBalance mj_objectWithKeyValues:response[@"data"]];
+            balance.balances = balanceStr;
+            complete(balance);
+        }
+    }failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark -  获取提现记录
+- (void)getPersonTiXianRecordWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_TIXIANRECORD baseURL:LY_SERVER params:params success:^(id response) {
+        NSLog(@"%@",response);
+        NSString *errorcodeStr = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if ([errorcodeStr isEqualToString:@"1"]) {
+            NSArray *dataArray = [ZSTiXianRecord mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
+            complete(dataArray);
+        }
+    }failure:^(NSError *err) {
+        
+    }];
+}
 
 @end

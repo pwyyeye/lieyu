@@ -100,6 +100,7 @@
         [_tableView reloadData];
         [_tableView.mj_header endRefreshing];
         [_tableView.mj_footer endRefreshing];
+        if(!result.count) [_tableView.mj_footer endRefreshingWithNoMoreData];
     }];
 }
 
