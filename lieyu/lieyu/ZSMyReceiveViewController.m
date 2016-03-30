@@ -25,19 +25,13 @@
 @end
 
 @implementation ZSMyReceiveViewController
- - (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
-}
-
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController.navigationBar setHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden  = YES;
     
     _label_balance.text = [NSString stringWithFormat:@"¥%.2f",_balance.balances.floatValue];
     _titleArray = @[@"交易中",@"提现记录"];

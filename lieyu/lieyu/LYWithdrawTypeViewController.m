@@ -25,15 +25,6 @@
     [super loadView];
 }
 
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-}
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -45,7 +36,7 @@
 
 - (void)initAllPropertites{
     self.title = @"提现操作";
-    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.accountLbl setText:[NSString stringWithFormat:@"%@ (%@)",_type,_account]];
     [self.balanceLbl setText:[NSString stringWithFormat:@"¥%@",_balance]];
     

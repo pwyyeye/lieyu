@@ -177,7 +177,6 @@
     UITextField *text = [self.view viewWithTag:123];
     text.text = @"";
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark - 扫一扫
