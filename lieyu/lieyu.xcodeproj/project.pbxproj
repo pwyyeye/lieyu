@@ -805,7 +805,6 @@
 		8504B9391C71C36B008E5C6B /* LYHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8504B9371C71C36B008E5C6B /* LYHomeCollectionViewCell.m */; };
 		8504B93A1C71C36B008E5C6B /* LYHomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */; };
 		850918881C982D23007981C0 /* LYFindConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850918871C982D23007981C0 /* LYFindConversationViewController.m */; };
-		8509188C1C984B25007981C0 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8509188B1C984B25007981C0 /* LoadingView.m */; };
 		8512BCA81C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */; };
 		8512BCA91C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */; };
 		8512BCAA1C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */; };
@@ -2798,8 +2797,6 @@
 		8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		850918861C982D23007981C0 /* LYFindConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFindConversationViewController.h; sourceTree = "<group>"; };
 		850918871C982D23007981C0 /* LYFindConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFindConversationViewController.m; sourceTree = "<group>"; };
-		8509188A1C984B25007981C0 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
-		8509188B1C984B25007981C0 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zhuyishixiang_normal.png; sourceTree = "<group>"; };
 		8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@2x.png"; sourceTree = "<group>"; };
 		8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@3x.png"; sourceTree = "<group>"; };
@@ -6144,15 +6141,6 @@
 			name = "聊天界面";
 			sourceTree = "<group>";
 		};
-		850918891C9839BF007981C0 /* Loading */ = {
-			isa = PBXGroup;
-			children = (
-				8509188A1C984B25007981C0 /* LoadingView.h */,
-				8509188B1C984B25007981C0 /* LoadingView.m */,
-			);
-			name = Loading;
-			sourceTree = "<group>";
-		};
 		851806811C2E899F00006804 /* messageCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -8651,7 +8639,6 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				850918891C9839BF007981C0 /* Loading */,
 				387781FB1C8D7B320047088B /* libqrencode */,
 				85539EB71C3DFDF8001031B6 /* 键盘表情 */,
 				38EE91A11C3405C500361D07 /* AMapSearchKit.framework */,
@@ -10433,7 +10420,6 @@
 				ADF88EA41C1197C400CF5DED /* MJRefreshAutoStateFooter.m in Sources */,
 				D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */,
 				380659E61C56562D003094C9 /* ManagerChooseButton.m in Sources */,
-				8509188C1C984B25007981C0 /* LoadingView.m in Sources */,
 				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,
 				15E2409A1BB296CF0090D240 /* OrderDetailCell.m in Sources */,
 				15ED327E1BE336C400E086A1 /* YaoSettingViewController.m in Sources */,
