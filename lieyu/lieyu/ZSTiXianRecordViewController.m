@@ -46,14 +46,17 @@
 }
 
 - (void)setupTableViewRefresh{
+    __weak __typeof(self) weakSelf = self;
     _tableview.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         _pageStart = 0;
-        [self getData];
+        [weakSelf getData];
     }];
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)_tableview.mj_header;
+    [self initMJRefeshHeaderForGif:header];
     
     _tableview.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         _pageStart ++;
-        [self getData];
+        [weakSelf getData];
     }];
 }
 
@@ -131,9 +134,12 @@
         case 0:
         {
             ZSTiXianRecordMonthTableViewCell *cell = [_tableview dequeueReusableCellWithIdentifier:ZSTiXianRecordMonthTableViewCellID forIndexPath:indexPath];
-            cell.label_tiXianSum.text = tiXianRecord.amountSum;
-            cell.label_time.text = tiXianRecord.month;
-            cell.label_receivedSum.text = tiXianRecord.receivedAmountSum;
+            NSArray *strArray = [tiXianRecord.month componentsSeparatedByString:@"-"];
+            if (strArray.count == 2) {
+                cell.label_time.text = [NSString stringWithFormat:@"%@年%@月",strArray.firstObject,strArray[1]];
+            }
+            cell.label_tiXianSum.text = [NSString stringWithFormat:@"共提现:¥%@", tiXianRecord.amountSum];
+            cell.label_receivedSum.text = [NSString stringWithFormat:@"已到账:¥%@",tiXianRecord.receivedAmountSum];
             return cell;
         }
             break;
