@@ -28,7 +28,7 @@
     }
     
     switch (tiXianR.checkMark.integerValue) {
-        case 0:
+        case 1:
             switch (tiXianR.wtype.integerValue) {
                 case 1:
                     
@@ -43,7 +43,7 @@
             }
             break;
             
-        case 1:
+        case 0:
             switch (tiXianR.wtype.integerValue) {
                 case 1:
                     
