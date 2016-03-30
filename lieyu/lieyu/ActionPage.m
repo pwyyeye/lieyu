@@ -54,22 +54,16 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:NO];
 
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self initAllPropertites];
     [self getData];
 
 }
 
--(void)viewWillLayoutSubviews{
-     [super viewWillLayoutSubviews];
-//    [self.navigationController setNavigationBarHidden:NO];
-   
-}
-
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
     
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
