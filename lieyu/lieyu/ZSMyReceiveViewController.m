@@ -88,7 +88,6 @@
             ZSTiXianRecordViewController *zsTiXianRecordVC = [[ZSTiXianRecordViewController alloc]init];
             [self.navigationController pushViewController:zsTiXianRecordVC animated:YES];
         }
-            
             break;
     }
 }
