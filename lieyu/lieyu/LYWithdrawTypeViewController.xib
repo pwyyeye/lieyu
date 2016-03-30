@@ -10,6 +10,8 @@
                 <outlet property="accountLbl" destination="XaV-kn-h5I" id="4hS-FA-vp1"/>
                 <outlet property="balanceLbl" destination="JLm-ud-oLU" id="Goq-I6-2X1"/>
                 <outlet property="introduceLbl" destination="zY7-Iq-64r" id="ChP-fh-84Y"/>
+                <outlet property="introlblLeft" destination="c0p-Cb-LEk" id="kEO-aa-v7x"/>
+                <outlet property="introlblRight" destination="pD8-EB-1TW" id="WS3-OY-yp9"/>
                 <outlet property="textview" destination="D87-kZ-ugu" id="41U-uI-OjW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="withdrawBtn" destination="1JW-Oi-sZF" id="0Zt-Y3-3aK"/>
@@ -118,7 +120,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当日到账，100元以内收取2元的手续费，100元以上收取％2的手续费。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zY7-Iq-64r">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当日到账，100元以内收取2元的手续费，100元以上收取％2的手续费" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zY7-Iq-64r">
                     <rect key="frame" x="60" y="275" width="480" height="51"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="51" id="oB8-Dy-4Lf"/>
@@ -148,7 +150,6 @@
                 <constraint firstItem="Ane-9j-lkT" firstAttribute="leading" secondItem="L5i-83-iX8" secondAttribute="leading" id="Epj-zQ-0Jn"/>
                 <constraint firstItem="XaV-kn-h5I" firstAttribute="height" secondItem="0UG-lV-WRM" secondAttribute="height" id="Et2-1u-3S0"/>
                 <constraint firstItem="cMn-k7-BeP" firstAttribute="height" secondItem="mIE-X3-PR6" secondAttribute="height" id="Fnu-du-7Re"/>
-                <constraint firstItem="zY7-Iq-64r" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="JpX-Ch-tfb"/>
                 <constraint firstItem="V1z-0T-wpb" firstAttribute="leading" secondItem="L5i-83-iX8" secondAttribute="leading" id="NHQ-fl-ABH"/>
                 <constraint firstAttribute="bottom" secondItem="1JW-Oi-sZF" secondAttribute="bottom" constant="20" id="NQZ-42-wxA"/>
                 <constraint firstAttribute="trailing" secondItem="V1z-0T-wpb" secondAttribute="trailing" constant="22" id="Nnn-1G-Fyh"/>
@@ -159,7 +160,6 @@
                 <constraint firstItem="L5i-83-iX8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="V7m-Px-bt6"/>
                 <constraint firstAttribute="trailing" secondItem="JLm-ud-oLU" secondAttribute="trailing" constant="22" id="WnQ-mc-kuA"/>
                 <constraint firstItem="JLm-ud-oLU" firstAttribute="leading" secondItem="L5i-83-iX8" secondAttribute="trailing" id="Zk4-af-8cf"/>
-                <constraint firstItem="XaV-kn-h5I" firstAttribute="width" secondItem="0UG-lV-WRM" secondAttribute="width" id="anc-bu-2Jo"/>
                 <constraint firstItem="mIE-X3-PR6" firstAttribute="leading" secondItem="L5i-83-iX8" secondAttribute="leading" id="b8K-oh-XrC"/>
                 <constraint firstItem="zY7-Iq-64r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="c0p-Cb-LEk"/>
                 <constraint firstItem="0UG-lV-WRM" firstAttribute="leading" secondItem="L5i-83-iX8" secondAttribute="leading" id="d9G-iN-KmY"/>
@@ -173,18 +173,8 @@
                 <constraint firstItem="zY7-Iq-64r" firstAttribute="top" secondItem="cMn-k7-BeP" secondAttribute="bottom" constant="45" id="sD3-gR-jMs"/>
                 <constraint firstAttribute="trailing" secondItem="D87-kZ-ugu" secondAttribute="trailing" constant="22" id="wDS-73-CHZ"/>
                 <constraint firstItem="cMn-k7-BeP" firstAttribute="leading" secondItem="mIE-X3-PR6" secondAttribute="trailing" constant="24" id="x9V-Ew-gtC"/>
-                <constraint firstItem="zY7-Iq-64r" firstAttribute="top" secondItem="mIE-X3-PR6" secondAttribute="bottom" constant="24" id="xZW-7S-86Z"/>
-                <constraint firstItem="D87-kZ-ugu" firstAttribute="bottom" secondItem="QeO-yf-5Lv" secondAttribute="bottom" id="yQg-Ou-UPn"/>
                 <constraint firstAttribute="trailing" secondItem="XaV-kn-h5I" secondAttribute="trailing" constant="22" id="zfx-yq-eRK"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="anc-bu-2Jo"/>
-                    <exclude reference="yQg-Ou-UPn"/>
-                    <exclude reference="JpX-Ch-tfb"/>
-                    <exclude reference="xZW-7S-86Z"/>
-                </mask>
-            </variation>
         </view>
     </objects>
     <resources>

@@ -134,4 +134,6 @@
 
 //获取提现记录
 #define LY_GET_TIXIANRECORD @"managerAccountAction.do?action=list"
+//申请提现
+#define LP_APPLICATION_WITHDRAW @"managerAccountAction.do?action=add"
 #endif

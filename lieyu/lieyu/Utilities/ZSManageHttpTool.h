@@ -85,4 +85,7 @@
 
 //获取提现记录
 - (void)getPersonTiXianRecordWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete;
+
+//申请提现
+- (void)applicationWithdrawWithParams:(NSDictionary *)params complete:(void (^)(NSString *))complete;
 @end

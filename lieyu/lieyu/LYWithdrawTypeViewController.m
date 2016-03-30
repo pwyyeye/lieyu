@@ -8,11 +8,16 @@
 
 #import "LYWithdrawTypeViewController.h"
 #import "IQKeyboardManager.h"
+#import "ZSManageHttpTool.h"
 
 @interface LYWithdrawTypeViewController ()<UITextFieldDelegate>
 {
     NSArray *introArray;
+    int isTody;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *introlblLeft;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *introlblRight;
+
 @end
 
 @implementation LYWithdrawTypeViewController
@@ -32,33 +37,41 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    [self initAllPropertites];
+//    _balance = @"888.22";
+//    _type = @"0";
+//    _account = @"sfdkjhsfjka";
+}
+
+- (void)initAllPropertites{
     self.title = @"提现操作";
-    _balance = @"888.22";
-    _type = @"0";
-    _account = @"sfdkjhsfjka";
-    [self.accountLbl setText:[NSString stringWithFormat:@"%@ (%@)",[_type isEqualToString:@"0"] ? @"支付宝" : @"微信钱包",_account]];
+    
+    [self.accountLbl setText:[NSString stringWithFormat:@"%@ (%@)",_type,_account]];
     [self.balanceLbl setText:[NSString stringWithFormat:@"¥%@",_balance]];
+    
     self.textview.delegate = self;
     self.textview.placeholder = _balance;
     self.textview.keyboardType = UIKeyboardTypeDecimalPad;
     self.textview.clearButtonMode = UITextFieldViewModeWhileEditing;
-//    [self.textview addObserver:self forKeyPath:@"text" options:0 context:nil];
-    [self.textview addTarget:self action:@selector(valueChanges) forControlEvents:UIControlEventEditingChanged];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-//    [self.textview becomeFirstResponder];
+    
     [self.withdrawBtn setBackgroundColor:RGBA(153, 153, 153, 1)];
     [self.withdrawBtn setEnabled:NO];
     self.withdrawBtn.layer.cornerRadius = 19;
+    
+    if (SCREEN_WIDTH == 320) {
+        _introlblLeft.constant = 40;
+        _introlblLeft.constant = 40;
+    }
+    
+    [self.withdrawBtn addTarget:self action:@selector(withdrawClick) forControlEvents:UIControlEventTouchUpInside];
+    
     introArray = @[@"当日到账，100元以内收取2元的手续费，100元以上收取％2的手续费",@"次日到账，金额将于明天24点之前到账，不收取任何手续费"];
     UIButton *button = [self.chooseButtons objectAtIndex:0];
     [button setSelected:YES];
     for (UIButton *button in self.chooseButtons) {
         [button addTarget:self action:@selector(chooseWithdrawTime:) forControlEvents:UIControlEventTouchUpInside];
     }
-}
-
-- (void)valueChanges{
-    NSLog(@"1:%@",_textview.text);
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -89,13 +102,26 @@
     return YES;
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
-    NSLog(@"---%@",change);
+//钱包管理[编辑]
+//【0001】managerAccountAction.do?action=add (已可用)申请提现[编辑]
+//{
+//    "isToday":"是否当日提现 0－今天 ，1-明天",
+//    "amountStr":"提现金额"
+//}
+
+- (void)withdrawClick{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSDictionary *dict = @{@"isToday":[NSString stringWithFormat:@"%d",isTody],
+                           @"amountStr":[MyUtil encryptUseDES:_textview.text withKey:app.desKey]};
+    [[ZSManageHttpTool shareInstance]applicationWithdrawWithParams:dict complete:^(NSString *message) {
+        [MyUtil showLikePlaceMessage:message];
+    }];
 }
 
 - (void)chooseWithdrawTime:(UIButton *)button{
     for (UIButton *btn in self.chooseButtons) {
         if (btn.tag == button.tag) {
+            isTody = btn.tag - 1;
             btn.selected = YES;
             [_introduceLbl setText:[introArray objectAtIndex:btn.tag - 1]];
         }else{

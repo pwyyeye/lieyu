@@ -548,4 +548,18 @@
     }];
 }
 
+#pragma mark - 申请提现
+- (void)applicationWithdrawWithParams:(NSDictionary *)params complete:(void (^)(NSString *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_APPLICATION_WITHDRAW baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *erroeCode = [response objectForKey:@"errorcode"];
+//        if ([erroeCode isEqualToString:@"1"]) {
+            complete([response objectForKey:@"message"]);
+//        }else{
+//            
+//        }
+    } failure:^(NSError *err) {
+//        [MyUtil showLikePlaceMessage:@"申请失败，请重新尝试！"];
+    }];
+}
+
 @end

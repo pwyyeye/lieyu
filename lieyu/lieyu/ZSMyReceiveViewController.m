@@ -11,6 +11,7 @@
 #import "ZSManageHttpTool.h"
 #import "ZSTiXianRecordViewController.h"
 #import "ZSBalance.h"
+#import "LYWithdrawTypeViewController.h"
 
 #define ZSTiXianTableViewCellID @"ZSTiXianTableViewCell"
 
@@ -24,6 +25,15 @@
 @end
 
 @implementation ZSMyReceiveViewController
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:YES];
+}
+
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    [self.navigationController.navigationBar setHidden:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,9 +45,17 @@
     _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     // Do any additional setup after loading the view from its nib.
     [_tableview registerNib:[UINib nibWithNibName:ZSTiXianTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianTableViewCellID];
-    
+    [_btn_tiXian addTarget:self action:@selector(WithdrawCash) forControlEvents:UIControlEventTouchUpInside];
     _btn_tiXian.layer.cornerRadius = CGRectGetHeight(_btn_tiXian.frame)/2.f;
     _btn_tiXian.layer.masksToBounds = YES;
+}
+
+- (void)WithdrawCash{
+        LYWithdrawTypeViewController *WithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:nil];
+    WithdrawTypeVC.type = _balance.accountType;
+    WithdrawTypeVC.account = _balance.accountName;
+    WithdrawTypeVC.balance = _balance.balances;
+        [self.navigationController pushViewController:WithdrawTypeVC animated:YES];
 }
 
 - (IBAction)goback:(UIButton *)sender {
