@@ -254,7 +254,7 @@
                     LYMyFriendDetailViewController *MyFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
                     MyFriendDetailVC.userID = [NSString stringWithFormat:@"%@",[result valueForKey:@"data"] ];
                    [self.navigationController pushViewController:MyFriendDetailVC animated:YES];
-                }else{
+                }else{ 
                     [self.navigationController popToRootViewControllerAnimated:YES];
                     [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
                 }

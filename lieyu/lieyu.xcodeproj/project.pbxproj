@@ -605,6 +605,13 @@
 		38979ADA1CA6B320002946F5 /* angry27.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979A1A1CA40919002946F5 /* angry27.png */; };
 		38979ADB1CA6B320002946F5 /* angry29.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979A1C1CA40919002946F5 /* angry29.png */; };
 		38979ADC1CA6B330002946F5 /* dianzan3.png in Resources */ = {isa = PBXBuildFile; fileRef = 389799961CA40919002946F5 /* dianzan3.png */; };
+		38979ADF1CA92EE4002946F5 /* duima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979ADD1CA92EE4002946F5 /* duima@2x.png */; };
+		38979AE01CA92EE4002946F5 /* duima@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979ADE1CA92EE4002946F5 /* duima@3x.png */; };
+		38979AE31CA9557C002946F5 /* LYWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979AE21CA9557C002946F5 /* LYWithdrawViewController.m */; };
+		38979AEC1CAA5A09002946F5 /* LYWithdrawTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979AEA1CAA5A09002946F5 /* LYWithdrawTypeViewController.m */; };
+		38979AED1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEB1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib */; };
+		38979AF01CAB7DD7002946F5 /* duima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEE1CAB7DD7002946F5 /* duima@2x.png */; };
+		38979AF11CAB7DD7002946F5 /* duima@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEF1CAB7DD7002946F5 /* duima@3x.png */; };
 		389C01021C1488EF00FE9412 /* seeAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00F91C1488EF00FE9412 /* seeAll.png */; };
 		389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FA1C1488EF00FE9412 /* seeAll@2x.png */; };
 		389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FB1C1488EF00FE9412 /* seeAll@3x.png */; };
@@ -2548,6 +2555,15 @@
 		38979AD31CA68494002946F5 /* emojiTIpBottom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpBottom@3x.png"; sourceTree = "<group>"; };
 		38979AD41CA68494002946F5 /* emojiTIpTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@2x.png"; sourceTree = "<group>"; };
 		38979AD51CA68494002946F5 /* emojiTIpTop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@3x.png"; sourceTree = "<group>"; };
+		38979ADD1CA92EE4002946F5 /* duima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "duima@2x.png"; sourceTree = "<group>"; };
+		38979ADE1CA92EE4002946F5 /* duima@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "duima@3x.png"; sourceTree = "<group>"; };
+		38979AE11CA9557C002946F5 /* LYWithdrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWithdrawViewController.h; sourceTree = "<group>"; };
+		38979AE21CA9557C002946F5 /* LYWithdrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWithdrawViewController.m; sourceTree = "<group>"; };
+		38979AE91CAA5A09002946F5 /* LYWithdrawTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWithdrawTypeViewController.h; sourceTree = "<group>"; };
+		38979AEA1CAA5A09002946F5 /* LYWithdrawTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWithdrawTypeViewController.m; sourceTree = "<group>"; };
+		38979AEB1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWithdrawTypeViewController.xib; sourceTree = "<group>"; };
+		38979AEE1CAB7DD7002946F5 /* duima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "duima@2x.png"; sourceTree = "<group>"; };
+		38979AEF1CAB7DD7002946F5 /* duima@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "duima@3x.png"; path = "Images.xcassets/其他/duima2.imageset/duima@3x.png"; sourceTree = "<group>"; };
 		389C00F91C1488EF00FE9412 /* seeAll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeAll.png; sourceTree = "<group>"; };
 		389C00FA1C1488EF00FE9412 /* seeAll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@2x.png"; sourceTree = "<group>"; };
 		389C00FB1C1488EF00FE9412 /* seeAll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@3x.png"; sourceTree = "<group>"; };
@@ -7397,6 +7413,11 @@
 				15EE51321BA6E1AB00464B74 /* 订单管理 */,
 				15EE51391BA6E21E00464B74 /* 我的客户 */,
 				15EE51381BA6E21C00464B74 /* 商铺管理 */,
+				38979AE11CA9557C002946F5 /* LYWithdrawViewController.h */,
+				38979AE21CA9557C002946F5 /* LYWithdrawViewController.m */,
+				38979AE91CAA5A09002946F5 /* LYWithdrawTypeViewController.h */,
+				38979AEA1CAA5A09002946F5 /* LYWithdrawTypeViewController.m */,
+				38979AEB1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -8118,6 +8139,8 @@
 		ADF88E551C102E2D00CF5DED /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				38979AEE1CAB7DD7002946F5 /* duima@2x.png */,
+				38979AEF1CAB7DD7002946F5 /* duima@3x.png */,
 				853CB75B1CAA2EE8006FC768 /* icon_balance@2x.png */,
 				853CB75C1CAA2EE8006FC768 /* icon_balance@3x.png */,
 				857AD6951CA956100032E0C4 /* shopMyReceive@3x.png */,
@@ -9120,6 +9143,7 @@
 				85F66EF31C5628F3005D1CD8 /* LYAmusementClassCell.xib in Resources */,
 				854CC9871C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib in Resources */,
 				38979AAD1CA40919002946F5 /* angry15.png in Resources */,
+				38979ADF1CA92EE4002946F5 /* duima@2x.png in Resources */,
 				85F5453E1C1408040013B92B /* circleWhiteSelect.png in Resources */,
 				ADAFCD3B1CA0E261008BF959 /* sharkstart.jpg in Resources */,
 				38979AB21CA40919002946F5 /* angry2.png in Resources */,
@@ -9403,6 +9427,7 @@
 				38E5D6C61C0EA4DF004B49D2 /* CustomBtn_Selected.png in Resources */,
 				AD399EA81C940D4D00028F23 /* logo41@2x.jpg in Resources */,
 				85EC6A0A1C186A170082AA3E /* icon_liwozuijin@3x.png in Resources */,
+				38979AE01CA92EE4002946F5 /* duima@3x.png in Resources */,
 				380659C31C54AB5B003094C9 /* icon_like2@3x.png in Resources */,
 				38979AB51CA40919002946F5 /* angry22.png in Resources */,
 				38979A891CA40919002946F5 /* wow6.png in Resources */,
@@ -9539,6 +9564,7 @@
 				38EDED6D1C5E261D00694758 /* JoinedTableViewCell.xib in Resources */,
 				525CA0E81C5C67A3009ED9DA /* addressFriend@2x.png in Resources */,
 				ADF88E621C102E4F00CF5DED /* huiseStar.png in Resources */,
+				38979AF11CAB7DD7002946F5 /* duima@3x.png in Resources */,
 				ADAFCD3F1CA0E261008BF959 /* start.html in Resources */,
 				ADFE1B9B1C994F1D00700EA3 /* loading4@2x.png in Resources */,
 				AD399E871C940D4D00028F23 /* logo8@2x.jpg in Resources */,
@@ -9714,6 +9740,7 @@
 				85FBBDC41C6073ED0084E3F2 /* 首页列表点赞@2x.png in Resources */,
 				8551B5141C8ECF730057F0E7 /* 表白@3x.png in Resources */,
 				850099CD1C61EEE700DDE626 /* 地址yu@3x.png in Resources */,
+				38979AF01CAB7DD7002946F5 /* duima@2x.png in Resources */,
 				A2FD57631BAFE6C000CFFF92 /* CaoCanCell.xib in Resources */,
 				38E5D6C81C0EA4DF004B49D2 /* CustomBtn_Selected@3x.png in Resources */,
 				15E240591BB101340090D240 /* ZSAddStocksViewController.xib in Resources */,
@@ -9868,6 +9895,7 @@
 				ADD1B4681C528EE100A5237C /* sina_weibo_s@3x.png in Resources */,
 				15EE515B1BA7085C00464B74 /* ZSAlreadyPayedViewController.xib in Resources */,
 				38E5D7F31C12DF0C004B49D2 /* comment@2x.png in Resources */,
+				38979AED1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib in Resources */,
 				15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */,
 				38979AA71CA40919002946F5 /* angry1.png in Resources */,
 				85F66E4A1C524F59005D1CD8 /* fujinwanyou@3x.png in Resources */,
@@ -10181,6 +10209,7 @@
 				3812C50E1C57621D00F4DD6B /* ChooseTime.m in Sources */,
 				ADF38F421BE8D8B400A80B08 /* CityChooseButton.m in Sources */,
 				ADF8E1C81C21536400943E4D /* LYCoreDataUtil.m in Sources */,
+				38979AE31CA9557C002946F5 /* LYWithdrawViewController.m in Sources */,
 				A20100771BA7ADCB009283D1 /* ZSReleaseMBViewController.m in Sources */,
 				ADE103A91BDE4B2300D9EC38 /* AlipayOrder.m in Sources */,
 				387782151C8FBFA70047088B /* CheckOrderWithQRViewController.m in Sources */,
@@ -10357,6 +10386,7 @@
 				AD078C8B1C34D17E00A056D1 /* LYZSApplicationViewController.m in Sources */,
 				853CB7541CAA253B006FC768 /* ZSTiXianRecordTableViewCell.m in Sources */,
 				AD106BBA1C0DDEFF007F5FBA /* NSObject+MJClass.m in Sources */,
+				38979AEC1CAA5A09002946F5 /* LYWithdrawTypeViewController.m in Sources */,
 				D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */,
 				15EB351F1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m in Sources */,
 				1559DCF51BD9D6AC00F3FE9B /* CHJiuPinDetailViewController.m in Sources */,

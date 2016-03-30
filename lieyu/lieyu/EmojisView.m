@@ -136,11 +136,12 @@ static EmojisView *shareView = nil;
     NSMutableArray *array = [[NSMutableArray alloc]init];
     NSString *string;
     UIImage *image;
-    
-    imageContent = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 41, SCREEN_HEIGHT / 2 - 41, 82, 82)];
-    [imageContent setBackgroundColor:[UIColor whiteColor]];
-    imageContent.layer.cornerRadius = 41;
-    imageContent.layer.masksToBounds = YES;
+    if(!imageContent){
+        imageContent = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 41, SCREEN_HEIGHT / 2 - 41, 82, 82)];
+        [imageContent setBackgroundColor:[UIColor whiteColor]];
+        imageContent.layer.cornerRadius = 41;
+        imageContent.layer.masksToBounds = YES;
+    }
     
     UIImageView *ImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@0",emojiName]]];
 //    ImageView.backgroundColor = [UIColor redColor];
@@ -166,8 +167,12 @@ static EmojisView *shareView = nil;
                 ImageView.alpha = 0 ;
                 imageContent.alpha = 0;
             }completion:^(BOOL finished) {
+//                for (UIView *view in _mainWindow.subviews) {
+//                    [view removeFromSuperview];
+//                }
                 [ImageView removeFromSuperview];
                 [imageContent removeFromSuperview];
+                imageContent = nil;
                 //        [NSThread currentThread]
             }];
         });
