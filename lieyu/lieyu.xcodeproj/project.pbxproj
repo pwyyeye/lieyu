@@ -605,8 +605,6 @@
 		38979ADA1CA6B320002946F5 /* angry27.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979A1A1CA40919002946F5 /* angry27.png */; };
 		38979ADB1CA6B320002946F5 /* angry29.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979A1C1CA40919002946F5 /* angry29.png */; };
 		38979ADC1CA6B330002946F5 /* dianzan3.png in Resources */ = {isa = PBXBuildFile; fileRef = 389799961CA40919002946F5 /* dianzan3.png */; };
-		38979ADF1CA92EE4002946F5 /* duima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979ADD1CA92EE4002946F5 /* duima@2x.png */; };
-		38979AE01CA92EE4002946F5 /* duima@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979ADE1CA92EE4002946F5 /* duima@3x.png */; };
 		38979AE31CA9557C002946F5 /* LYWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979AE21CA9557C002946F5 /* LYWithdrawViewController.m */; };
 		38979AEC1CAA5A09002946F5 /* LYWithdrawTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979AEA1CAA5A09002946F5 /* LYWithdrawTypeViewController.m */; };
 		38979AED1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEB1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib */; };
@@ -2555,8 +2553,6 @@
 		38979AD31CA68494002946F5 /* emojiTIpBottom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpBottom@3x.png"; sourceTree = "<group>"; };
 		38979AD41CA68494002946F5 /* emojiTIpTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@2x.png"; sourceTree = "<group>"; };
 		38979AD51CA68494002946F5 /* emojiTIpTop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@3x.png"; sourceTree = "<group>"; };
-		38979ADD1CA92EE4002946F5 /* duima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "duima@2x.png"; sourceTree = "<group>"; };
-		38979ADE1CA92EE4002946F5 /* duima@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "duima@3x.png"; sourceTree = "<group>"; };
 		38979AE11CA9557C002946F5 /* LYWithdrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWithdrawViewController.h; sourceTree = "<group>"; };
 		38979AE21CA9557C002946F5 /* LYWithdrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWithdrawViewController.m; sourceTree = "<group>"; };
 		38979AE91CAA5A09002946F5 /* LYWithdrawTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWithdrawTypeViewController.h; sourceTree = "<group>"; };
@@ -9143,7 +9139,6 @@
 				85F66EF31C5628F3005D1CD8 /* LYAmusementClassCell.xib in Resources */,
 				854CC9871C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib in Resources */,
 				38979AAD1CA40919002946F5 /* angry15.png in Resources */,
-				38979ADF1CA92EE4002946F5 /* duima@2x.png in Resources */,
 				85F5453E1C1408040013B92B /* circleWhiteSelect.png in Resources */,
 				ADAFCD3B1CA0E261008BF959 /* sharkstart.jpg in Resources */,
 				38979AB21CA40919002946F5 /* angry2.png in Resources */,
@@ -9427,7 +9422,6 @@
 				38E5D6C61C0EA4DF004B49D2 /* CustomBtn_Selected.png in Resources */,
 				AD399EA81C940D4D00028F23 /* logo41@2x.jpg in Resources */,
 				85EC6A0A1C186A170082AA3E /* icon_liwozuijin@3x.png in Resources */,
-				38979AE01CA92EE4002946F5 /* duima@3x.png in Resources */,
 				380659C31C54AB5B003094C9 /* icon_like2@3x.png in Resources */,
 				38979AB51CA40919002946F5 /* angry22.png in Resources */,
 				38979A891CA40919002946F5 /* wow6.png in Resources */,
