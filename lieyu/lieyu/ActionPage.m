@@ -60,12 +60,6 @@
     [self getData];
 
 }
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    
-    
-}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"滑动了多少：%f",scrollView.contentOffset.y);
 //    NSLog(@"最多为多少：%f",contentOffsetY);
