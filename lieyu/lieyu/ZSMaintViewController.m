@@ -19,8 +19,14 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "SaoYiSaoViewController.h"
 #import "LYUserHttpTool.h"
+#import "ZSMyReceiveViewController.h"
+#import "ZSManageHttpTool.h"
+#import "ZSBalance.h"
 
-@interface ZSMaintViewController ()<UITextFieldDelegate>
+@interface ZSMaintViewController ()<UITextFieldDelegate>{
+    UIButton *_balanceButton;
+    ZSBalance *_balance;
+}
 
 @end
 
@@ -37,14 +43,12 @@
 //    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
     [self getDataForShowList];
     
-    
-    
-   
 }
 
 #pragma mark 初始化数据
 -(void)getDataForShowList{
     [listArr removeAllObjects];
+    NSDictionary *myReceiveDic = @{@"colorRGB":RGB(254, 221, 87),@"imageContent":@"shopMyReceive",@"title":@"我的收入",@"delInfo":@""};
     NSDictionary *dic=@{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""};
     NSDictionary *dic1=@{@"colorRGB":RGB(136, 223, 121),@"imageContent":@"Fill20179",@"title":@"最近联系",@"delInfo":@"您有客户留言请及时查收"};
     NSDictionary *dic2=@{@"colorRGB":RGB(254, 147, 87),@"imageContent":@"Fill20219",@"title":@"订单管理",@"delInfo":@"您有订单要确认请及时确定"};
@@ -52,12 +56,13 @@
     NSDictionary *dic4=@{@"colorRGB":RGB(186, 40, 227),@"imageContent":@"Fill20176",@"title":@"速核码扫描",@"delInfo":@""};
 //    NSDictionary *dic4=@{@"colorRGB":RGB(84, 225, 255),@"imageContent":@"Fill2097",@"title":@"商铺管理",@"delInfo":@""};
     
+    [listArr addObject:myReceiveDic];
     [listArr addObject:dic2];//订单管理
 //    [listArr addObject:dic4];//速核码扫描
     [listArr addObject:dic];//卡座已满
     [listArr addObject:dic1];//通知中心
     [listArr addObject:dic3];//我的客户
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 212)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 258)];
     
 //    view.backgroundColor=RGB(35, 166, 116);
     view.backgroundColor = RGB(186, 40, 227);
@@ -88,21 +93,43 @@
 ////    orderInfoLal.text=@"您有30个订单要处理，请即时处理！";
 //    orderInfoLal.textAlignment=NSTextAlignmentLeft;
 //    [view addSubview:orderInfoLal];
-    
-    UIButton *ScanButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 28, 70, 56, 56)];
+    CGFloat btnWidth = 71;
+    UIButton *ScanButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - btnWidth/2.f, 77, btnWidth, btnWidth)];
     ScanButton.backgroundColor = [UIColor clearColor];
     [ScanButton setImage:[UIImage imageNamed:@"zsQRCodeScan"] forState:UIControlStateNormal];
     [ScanButton addTarget:self action:@selector(zsQRCodeScanClick) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:ScanButton];
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 28, 134, 56, 18)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 28, CGRectGetMaxY(ScanButton.frame) + 11, 56, 18)];
     label.text = @"速核码";
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont systemFontOfSize:12 weight:UIFontWeightLight];
     label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = RGBA(0, 0, 0, 0.5);
-    label.font = [UIFont fontWithName:@"Arial-BoldMT" size:12];
     [view addSubview:label];
     
-    UITextField *textView = [[UITextField alloc]initWithFrame:CGRectMake(8, 161, SCREEN_WIDTH - 16, 43)];
+    
+    _balanceButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 * 3 - btnWidth/2.f, 77, btnWidth, btnWidth)];
+    _balanceButton.backgroundColor = [UIColor clearColor];
+    _balanceButton.titleLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
+    [_balanceButton setBackgroundImage:[UIImage imageNamed:@"icon_balance"] forState:UIControlStateNormal];
+//    [balanceButton setTitle:@"9999.00" forState:UIControlStateNormal];
+    [_balanceButton setTitleEdgeInsets:UIEdgeInsetsMake(38, 0, 0, 0)];
+    [_balanceButton addTarget:self action:@selector(pushMyReceived) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:_balanceButton];
+    
+    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
+        _balance = balance;
+        [_balanceButton setTitle:[NSString stringWithFormat:@"%.2f",_balance.balances.floatValue] forState:UIControlStateNormal];
+    }];
+    
+    UILabel *balanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 * 3 - 28, CGRectGetMaxY(_balanceButton.frame) + 11, 56, 18)];
+    balanceLabel.text = @"余额";
+    balanceLabel.textAlignment = NSTextAlignmentCenter;
+    balanceLabel.textColor = [UIColor whiteColor];
+    balanceLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightLight];
+    [view addSubview:balanceLabel];
+    
+    UITextField *textView = [[UITextField alloc]initWithFrame:CGRectMake(5, 258 - 42 - 8, SCREEN_WIDTH - 10, 42)];
     textView.placeholder = @"输入用户消费码";
     textView.font = [UIFont fontWithName:@"Arial-BoldMT" size:28];
     textView.delegate = self;
@@ -113,13 +140,21 @@
     [view addSubview:textView];
     
     //返回按钮
-    _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(15, 40, 44, 44)];
-    [_btnBack setImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
+    _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(5, 10, 48, 48)];
+    [_btnBack setImage:[UIImage imageNamed:@"return_white"] forState:UIControlStateNormal];
     [_btnBack addTarget:self action:@selector(backAct:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:_btnBack];
     self.tableView.tableHeaderView=view;
     [self.tableView reloadData];
 }
+
+//跳转到我的帐号界面
+- (void)pushMyReceived{
+    ZSMyReceiveViewController *zsMyReceiveVC = [[ZSMyReceiveViewController alloc]init];
+    zsMyReceiveVC.balance = _balance;
+    [self.navigationController pushViewController:zsMyReceiveVC animated:YES];
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -222,15 +257,21 @@
     [_tableView deselectRowAtIndexPath:indexPath animated:false];
     
     switch (indexPath.row) {
+        case 0:{
+            ZSMyReceiveViewController *zsMyReceiveVC = [[ZSMyReceiveViewController alloc]init];
+            zsMyReceiveVC.balance = _balance;
+            [self.navigationController pushViewController:zsMyReceiveVC animated:YES];
+        }
+            break;
             
-        case 1://卡座
+        case 2://卡座
         {
             ZSSeatControlView *seatControlView=[[ZSSeatControlView alloc]initWithNibName:@"ZSSeatControlView" bundle:nil];
             [self.navigationController pushViewController:seatControlView animated:YES];
             break;
         }
             
-        case 2:// 通知中心
+        case 3:// 通知中心
         {
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             chat.title=@"最近联系";
@@ -238,14 +279,14 @@
             break;
         }
             
-        case 0:// 订单管理
+        case 1:// 订单管理
         {
             ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
             [self.navigationController pushViewController:orderManageViewController animated:YES];
             break;
         }
             
-        case 3:// 我的客户
+        case 4:// 我的客户
         {
             ZSMyClientsViewController *myClientViewController=[[ZSMyClientsViewController alloc]initWithNibName:@"ZSMyClientsViewController" bundle:nil];
             

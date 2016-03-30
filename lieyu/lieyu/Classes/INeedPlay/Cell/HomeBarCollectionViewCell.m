@@ -36,8 +36,13 @@
     _jiuBaM = jiuBaM;
     
     _label_barName.text = jiuBaM.barname;
-    if(jiuBaM.banners.count){
-        [_imgView_bg sd_setImageWithURL:[NSURL URLWithString:jiuBaM.banners[0]] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+    if(jiuBaM.banners.count ){
+        NSLog(@"---->%@----->%@",jiuBaM.banners,jiuBaM.banners.firstObject);
+        NSString *str = jiuBaM.banners.firstObject;
+        NSLog(@"-->%@",str);
+        if(![str isKindOfClass:[NSNull class]]){
+            [_imgView_bg sd_setImageWithURL:[NSURL URLWithString:jiuBaM.banners[0]] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+        }
     }
     
     _label_barDescr.text = jiuBaM.subtitle;

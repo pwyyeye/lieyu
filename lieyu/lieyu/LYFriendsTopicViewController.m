@@ -14,6 +14,7 @@
 #import "ImagePickerViewController.h"
 #import "FriendsRecentModel.h"
 #import "FriendsPicAndVideoModel.h"
+#import "LYFriendsMessageDetailViewController.h"
 
 @interface LYFriendsTopicViewController ()<UIActionSheetDelegate,ImagePickerFinish,sendBackVedioAndImage>{
     NSInteger _pageStartCount,_pageCount;
@@ -282,6 +283,8 @@ CGFloat picWidth = 0;
     [_notificationDict setObject:info forKey:@"info"];
 }
 
+
+
 #pragma mark - sendSuccess
 - (void)sendSucceed:(NSString *)messageId{
     
@@ -381,6 +384,15 @@ CGFloat picWidth = 0;
 #pragma mark - 点击动态中话题文字
 - (void)topicNameClick:(UIButton *)button{
     
+}
+
+#pragma mark － 跳转消息详情页面
+- (void)pushFriendsMessageDetailVCWithIndex:(NSInteger)index{
+    FriendsRecentModel *recentM = _dataArray[index];
+    LYFriendsMessageDetailViewController *messageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+    messageDetailVC.recentM = recentM;
+    messageDetailVC.isTopicDetail = YES;
+    [self.navigationController pushViewController:messageDetailVC animated:YES];
 }
 
 - (void)addTableViewHeader{

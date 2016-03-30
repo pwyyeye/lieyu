@@ -132,8 +132,8 @@
     // Do any additional setup after loading the view.
     self.pagesCount = 4;
     _notificationDict = [[NSMutableDictionary alloc]init];
-    [self setupAllProperty];//设置全局属性
     [self setupTableView];
+    [self setupAllProperty];//设置全局属性
     [self setupTableViewFresh];//配置表的刷新和加载
     [self getFriendsNewMessage];
     
@@ -191,6 +191,7 @@
 }
 
 - (void)reloadTableViewData{
+    
     [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"reloadTableViewData" object:nil];
 }
@@ -621,6 +622,9 @@
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
         }
+        
+
+        
         [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:NO];
         [app stopLoading];
     }];
@@ -668,6 +672,7 @@
             }
             _isMysPageUpLoad = NO;
         }
+        
         [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:need];
         [app stopLoading];
     }];

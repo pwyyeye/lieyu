@@ -22,4 +22,6 @@
 - (void)setupTableViewFresh;
 #pragma mark - 点击动态中话题文字
 - (void)topicNameClick:(UIButton *)button;
+#pragma mark － 跳转消息详情页面
+- (void)pushFriendsMessageDetailVCWithIndex:(NSInteger)index;
 @end

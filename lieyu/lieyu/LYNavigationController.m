@@ -63,6 +63,9 @@
     
     self.delegate=self;
     
+    
+    
+    
 }
 
 //- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -75,6 +78,8 @@
 //    }
 //    return YES;
 //}
+
+
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];

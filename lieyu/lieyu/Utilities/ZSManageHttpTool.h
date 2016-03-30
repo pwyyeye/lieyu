@@ -10,6 +10,8 @@
 #import "ZSUrl.h"
 #import "HTTPController.h"
 #import "OrderInfoModel.h"
+@class ZSBalance;
+
 @interface ZSManageHttpTool : NSObject
 + (ZSManageHttpTool *)shareInstance;
 //专属经理订单列表
@@ -78,5 +80,9 @@
 -(void) getUsersFriendWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block;
 
+//获取账户余额记录
+- (void)getPersonBalanceWithParams:(NSDictionary*)params complete:(void (^)(ZSBalance*))result;
 
+//获取提现记录
+- (void)getPersonTiXianRecordWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete;
 @end
