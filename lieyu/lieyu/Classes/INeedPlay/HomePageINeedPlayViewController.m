@@ -431,35 +431,35 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)getDataLocalAndReload{
-//    NSArray *array = [self getDataFromLocal];
-//  //  LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-//    if (array.count == 2) {
-//        NSDictionary *dataDic1 = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
-//         NSDictionary *dataDic2 = ((LYCache *)((NSArray *)array[1]).firstObject).lyCacheValue;
-//        NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic1[@"barlist"]]] ;
-//        NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic2[@"barlist"]]] ;
-//        _fiterArray = [dataDic1 valueForKey:@"filterImages"];
-//         NSDictionary *recommendedBarDic1 = [dataDic1 valueForKey:@"recommendedBar"];
-//                 NSDictionary *recommendedBarDic2 = [dataDic2 valueForKey:@"recommendedBar"];
-//        if (_index==0) {
-//            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic1];
-//            self.newbannerList = dataDic1[@"newbanner"];
-//
-//        }else{
-//            _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic2];
-//            self.newbannerList2 = dataDic2[@"newbanner"];
-//
-//        }
-//        if (_index == 0) {
-//            [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
-//        }else{
-//            [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
-//        }
-//        [_collectView reloadData];
+    NSArray *array = [self getDataFromLocal];
+  //  LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+    if (array.count == 2) {
+        NSDictionary *dataDic1 = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
+         NSDictionary *dataDic2 = ((LYCache *)((NSArray *)array[1]).firstObject).lyCacheValue;
+        NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic1[@"barlist"]]] ;
+        NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic2[@"barlist"]]] ;
+        _fiterArray = [dataDic1 valueForKey:@"filterImages"];
+         NSDictionary *recommendedBarDic1 = [dataDic1 valueForKey:@"recommendedBar"];
+                 NSDictionary *recommendedBarDic2 = [dataDic2 valueForKey:@"recommendedBar"];
+        if (_index==0) {
+            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic1];
+            self.newbannerList = dataDic1[@"newbanner"];
+
+        }else{
+            _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic2];
+            self.newbannerList2 = dataDic2[@"newbanner"];
+
+        }
+        if (_index == 0) {
+            [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
+        }else{
+            [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
+        }
+        [_collectView reloadData];
     
         _isGetDataFromNet_BAR = YES;
         _isGetDataFromNet_YD = YES;
-//    }
+    }
 }
 
 #pragma mark 获取数据

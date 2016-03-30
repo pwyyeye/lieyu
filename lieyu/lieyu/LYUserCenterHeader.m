@@ -13,6 +13,8 @@
 #import "MyMessageListViewController.h"
 #import "Setting.h"
 #import "LYUserDetailController.h"
+#import "LYWithdrawTypeViewController.h"
+
 @implementation LYUserCenterHeader
 
 - (void)awakeFromNib {
@@ -278,6 +280,9 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     Setting *setting =[[Setting alloc] init];
     [app.navigationController pushViewController:setting animated:YES];
+//    LYWithdrawTypeViewController *WithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:nil];
+//    [app.navigationController pushViewController:WithdrawTypeVC animated:YES];
+    
 }
 
 - (IBAction)gotoMessageList:(id)sender {

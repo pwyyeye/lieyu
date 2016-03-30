@@ -42,22 +42,25 @@
 
 //获取指定用户的玩友圈动态
 + (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte{
-   
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_User baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
         NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[FriendsRecentModel mj_objectArrayWithKeyValuesArray:dictionary[@"moments"]]];
         FriendsUserInfoModel *userInfo = [FriendsUserInfoModel mj_objectWithKeyValues:dictionary];
         compelte(userInfo, array);
+        [app stopLoading];
     }failure:^(NSError *err) {
         compelte(nil,nil);
         [MyUtil showMessage:@"请求失败"];
+        [app stopLoading];
     }];
 }
 
 //获取我的的玩友圈消息
 + (void)friendsGetMyNewsMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserMessageModel *))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_MyNewsMessage baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"-->%@",response);
+//        NSLog(@"-->%@",response);
     } failure:^(NSError *err) {
         
     }];
@@ -68,7 +71,7 @@
 //给别人玩友圈动态点赞
 + (void)friendsLikeMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Like baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"-->%@",response[@"message"]);
+//        NSLog(@"-->%@",response[@"message"]);
         if([response[@"message"] isEqualToString:@"取消点赞成功"]){
             compelte(NO);
 //            [MyUtil showLikePlaceMessage:@"取消表白成功"];
@@ -85,7 +88,7 @@
 //给动态或者某人评论
 + (void)friendsCommentWithParams:(NSDictionary *)params compelte:(void (^)(bool,NSString *))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Comment baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"------>%@",response[@"message"]);
+//        NSLog(@"------>%@",response[@"message"]);
         if ([response[@"errorcode"] isEqualToString:@"1"]) {
             compelte(YES,response[@"data"][@"commentId"]);
         }
@@ -99,7 +102,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_Send baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"------->%@---------%@",response[@"message"],response);
+//        NSLog(@"------->%@---------%@",response[@"message"],response);
        dispatch_async(dispatch_get_main_queue(), ^{
            compelte(YES,response[@"data"]);
        });
@@ -114,7 +117,7 @@
 //删除我的动态
 + (void)friendsDeleteMyMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_DeleteMyMessage baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"------->%@",response[@"message"]);
+//        NSLog(@"------->%@",response[@"message"]);
         compelte(YES);
         [MyUtil showCleanMessage:@"删除成功"];
     }failure:^(NSError *err) {
@@ -149,7 +152,7 @@
 //获取最新消息
 + (void)friendsGetFriendsMessageNotificationWithParams:(NSDictionary *)params compelte:(void (^)(NSString *,NSString*))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_NewMessage baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"------->%@",response);
+//        NSLog(@"------->%@",response);
         if ([response[@"errorcode"] isEqualToString:@"1"]) {
             NSArray *array = response[@"data"];
             if(!array.count) return;
@@ -166,7 +169,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_NewMessageDetail baseURL:LY_SERVER params:params success:^(id response) {
-        NSLog(@"------->%@",response);
+//        NSLog(@"------->%@",response);
         if ([response[@"errorcode"] isEqualToString:@"1"]) {
             NSDictionary *dic = response[@"data"];
             NSArray *array = dic[@"items"];
@@ -185,7 +188,7 @@
 //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SAVE_USERINFO baseURL:LY_SERVER params:params success:^(id response) {
         [app stopLoading];
-        NSLog(@"------->%@",response);
+//        NSLog(@"------->%@",response);
           if ([response[@"errorcode"] isEqual:@"1"]) {
               compelte(YES);
           }
@@ -200,7 +203,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_GetAMessage baseURL:LY_SERVER params:params success:^(id response) {
         [app stopLoading];
-        NSLog(@"------->%@",response);
+//        NSLog(@"------->%@",response);
         if ([response[@"errorcode"] isEqual:@"1"]) {
           FriendsRecentModel *mod = [FriendsRecentModel initFromNSDictionary:response[@"data"]];
             compelte(mod);

@@ -14,6 +14,8 @@
 @implementation LYFriendsNameTableViewCell
 
 - (void)awakeFromNib {
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -30,15 +32,13 @@
 
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
+
+    
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:recentM.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame) / 2.f;
     _btn_headerImg.layer.masksToBounds = YES;
     [_btn_name setTitle:recentM.usernick forState:UIControlStateNormal];
     [_label_time setText:[MyUtil calculatedDateFromNowWith:recentM.date]];
-    NSLog(@"---------%@-->%@",recentM.usernick,recentM.date);
-//    if(recentM.message.length >26){
-//        [_label_content setText:[recentM.message substringToIndex:25]];
-//    }else{
     
     
     if(![MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){

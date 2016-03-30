@@ -114,8 +114,13 @@
     [MTA trackCustomKeyValueEvent:@"BarDetail" props:nil];
     
    
+    NSLog(@"%@",self.navigationController.interactivePopGestureRecognizer);
+    UIGestureRecognizer *ges = self.navigationController.interactivePopGestureRecognizer;
+    [_tableView.panGestureRecognizer requireGestureRecognizerToFail:ges];
+    
 
 }
+
 
 - (void)loadMyCollectedAndLikeBar{
     [self loadMyBarInfo];
@@ -624,7 +629,9 @@
             }
             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 95/183.f)];
             _tableHeaderImgView.tag = 1008611;
+            if(_beerBarDetail.banners.count){
             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+            }
             [_headerCell addSubview:_tableHeaderImgView];
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return _headerCell;

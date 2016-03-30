@@ -89,8 +89,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setupAllProperty];//设置全局属性
     [self setupTableView];
+    [self setupAllProperty];//设置全局属性
     [self setupTableViewFresh];
     
 }
@@ -683,7 +683,7 @@
             FriendsCommentModel *commentModel = recentM.commentList[indexPath.row - 4];
             LYFriendsCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCommentCellID forIndexPath:indexPath];
             if (indexPath.row == 4) {
-                commentCell.imageV_comment.hidden = NO;
+                commentCell.imageV_comment.hidden = YES;
             }else{
                 commentCell.imageV_comment.hidden = YES;
             }

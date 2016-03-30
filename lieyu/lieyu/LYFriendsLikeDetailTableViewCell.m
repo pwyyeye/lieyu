@@ -17,10 +17,6 @@
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    for (UIButton *btn in _btnArray) {
-        btn.layer.cornerRadius = (SCREEN_WIDTH - 98)/8.f / 2.f;
-        btn.layer.masksToBounds = YES;
-    }
     
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
     _emojiImgVArray = [[NSMutableArray alloc]initWithCapacity:0];

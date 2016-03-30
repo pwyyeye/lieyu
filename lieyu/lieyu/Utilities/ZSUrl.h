@@ -129,6 +129,11 @@
 
 //一周卡座是否满座
 #define ZS_KUZUOISFULL  @"lySetDeckFullAction.do?action=list"
+//获取账户余额记录
+#define LY_GET_BALANCE @"managerAccountAction.do?action=expand"
 
-
+//获取提现记录
+#define LY_GET_TIXIANRECORD @"managerAccountAction.do?action=list"
+//申请提现
+#define LP_APPLICATION_WITHDRAW @"managerAccountAction.do?action=add"
 #endif

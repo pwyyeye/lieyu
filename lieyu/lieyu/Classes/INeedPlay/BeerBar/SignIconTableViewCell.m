@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.layer.shouldRasterize = YES;
     CGFloat btnWidth = (SCREEN_WIDTH - 64 - 12 - 4 * 19) / 5.f;
     for (UIButton *btn in _btnArray) {
         btn.layer.cornerRadius = btnWidth/2.f;
