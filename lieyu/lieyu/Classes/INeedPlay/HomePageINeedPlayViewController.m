@@ -385,7 +385,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
      [self createNavButton];
 }
 
@@ -928,6 +928,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (_index==0) {
             if(_recommendedTopic.id){
                 ActionPage *aPage = [[ActionPage alloc]init];
+                aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
                 aPage.topicid = _recommendedTopic.id;
                 [self.navigationController pushViewController:aPage animated:YES];
             }
@@ -935,6 +936,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if(_recommendedTopic2.id){
                 ActionPage *aPage = [[ActionPage alloc]init];
                 aPage.topicid = _recommendedTopic2.id;
+                aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
                 [self.navigationController pushViewController:aPage animated:YES];
             }
         }
