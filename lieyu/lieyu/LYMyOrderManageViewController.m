@@ -107,8 +107,8 @@
             break;
     }
     
-    self.navigationController.navigationBarHidden=NO;
-    [self.navigationController setNavigationBarHidden:NO];
+    
+    
     self.automaticallyAdjustsScrollViewInsets=NO;
     // Do any additional setup after loading the view from its nib.
 }
@@ -136,16 +136,16 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if (self.navigationController.navigationBar.hidden) {
-        self.navigationController.navigationBar.hidden=NO;
-        [self.navigationController setNavigationBarHidden:NO];
-    }
+//    if (self.navigationController.navigationBar.hidden) {
+    
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    }
 
 }
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
-}
+//-(void)viewWillLayoutSubviews{
+//    [super viewWillLayoutSubviews];
+//    [self.navigationController setNavigationBarHidden:NO];
+//}
 
 -(void)BaseGoBack{
     for (UIViewController *controller in self.navigationController.viewControllers) {

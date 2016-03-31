@@ -46,7 +46,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
 //    self.navigationController.delegate=self;
 
-    [self.navigationController setNavigationBarHidden:YES];
+    
     self.automaticallyAdjustsScrollViewInsets = YES;
     
     self.edgesForExtendedLayout=UIRectEdgeNone;
@@ -96,9 +96,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [super viewWillAppear:animated];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    if (self.navigationController.navigationBarHidden==NO) {
-       [self.navigationController setNavigationBarHidden:YES];
-    }
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.collectionView reloadData];
     
 }
@@ -110,32 +108,17 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         [MTA trackPageViewBegin:self.title];
     }
     [super viewWillAppear:animated];
-//    if (self.navigationController.navigationBarHidden==NO) {
-//        [self.navigationController setNavigationBarHidden:YES];
-//    }
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationController.navigationBarHidden = NO;
-    [self.navigationController setNavigationBarHidden:NO];
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewEnd:self.title];
     }
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-}
-
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    if (self.navigationController.navigationBarHidden==NO) {
-        [self.navigationController setNavigationBarHidden:YES];
-    }
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -288,6 +271,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
             conversationVC.navigationItem.leftBarButtonItem = item;
             [self.navigationController pushViewController:conversationVC animated:YES];
+            [conversationVC.navigationController setNavigationBarHidden:NO animated:YES];
             break;
         }
         case 4:// 扫一扫

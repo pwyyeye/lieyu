@@ -89,6 +89,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self createNavButton];
     _currentPage_YD = 1;
     _currentPage_Bar = 1;
@@ -381,23 +382,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
 }
 
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:YES];
-}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
      [self createNavButton];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -939,6 +928,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (_index==0) {
             if(_recommendedTopic.id){
                 ActionPage *aPage = [[ActionPage alloc]init];
+                aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
                 aPage.topicid = _recommendedTopic.id;
                 [self.navigationController pushViewController:aPage animated:YES];
             }
@@ -946,6 +936,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if(_recommendedTopic2.id){
                 ActionPage *aPage = [[ActionPage alloc]init];
                 aPage.topicid = _recommendedTopic2.id;
+                aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
                 [self.navigationController pushViewController:aPage animated:YES];
             }
         }

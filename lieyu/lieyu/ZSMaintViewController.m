@@ -107,8 +107,8 @@
     label.textAlignment = NSTextAlignmentCenter;
     [view addSubview:label];
     
-    
-    _balanceButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 * 3 - btnWidth/2.f, 77, btnWidth, btnWidth)];
+    btnWidth = 80;
+    _balanceButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 * 3 - btnWidth/2.f, 71, btnWidth, btnWidth)];
     _balanceButton.backgroundColor = [UIColor clearColor];
     _balanceButton.titleLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
     [_balanceButton setBackgroundImage:[UIImage imageNamed:@"icon_balance"] forState:UIControlStateNormal];
@@ -177,7 +177,6 @@
     UITextField *text = [self.view viewWithTag:123];
     text.text = @"";
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark - 扫一扫

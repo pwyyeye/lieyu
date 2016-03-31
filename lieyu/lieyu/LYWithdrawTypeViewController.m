@@ -25,15 +25,6 @@
     [super loadView];
 }
 
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-}
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -45,7 +36,7 @@
 
 - (void)initAllPropertites{
     self.title = @"提现操作";
-    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.accountLbl setText:[NSString stringWithFormat:@"%@ (%@)",_type,_account]];
     [self.balanceLbl setText:[NSString stringWithFormat:@"¥%@",_balance]];
     
@@ -66,7 +57,7 @@
     
     [self.withdrawBtn addTarget:self action:@selector(withdrawClick) forControlEvents:UIControlEventTouchUpInside];
     
-    introArray = @[@"当日到账，100元以内收取2元的手续费，100元以上收取％2的手续费",@"次日到账，金额将于明天24点之前到账，不收取任何手续费"];
+    introArray = @[@"当日到账，100元以内收取2元手续费，100元以上收取2‰的手续费",@"次日到账，金额将于明天24点之前到账，不收取任何手续费"];
     UIButton *button = [self.chooseButtons objectAtIndex:0];
     [button setSelected:YES];
     for (UIButton *button in self.chooseButtons) {

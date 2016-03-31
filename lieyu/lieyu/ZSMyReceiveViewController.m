@@ -12,6 +12,7 @@
 #import "ZSTiXianRecordViewController.h"
 #import "ZSBalance.h"
 #import "LYWithdrawTypeViewController.h"
+#import "LYMyOrderManageViewController.h"
 
 #define ZSTiXianTableViewCellID @"ZSTiXianTableViewCell"
 
@@ -27,17 +28,11 @@
 @implementation ZSMyReceiveViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:YES];
-}
-
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController.navigationBar setHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden  = YES;
     
     _label_balance.text = [NSString stringWithFormat:@"¥%.2f",_balance.balances.floatValue];
     _titleArray = @[@"交易中",@"提现记录"];
@@ -80,7 +75,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
-        case 0:
+        case 0:{
+            LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            myOrderManageViewController.title=@"我的订单";
+            myOrderManageViewController.orderType=2;
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            [app.navigationController pushViewController:myOrderManageViewController animated:YES];
+            
+        }
             
             break;
             
@@ -88,7 +90,6 @@
             ZSTiXianRecordViewController *zsTiXianRecordVC = [[ZSTiXianRecordViewController alloc]init];
             [self.navigationController pushViewController:zsTiXianRecordVC animated:YES];
         }
-            
             break;
     }
 }
