@@ -110,9 +110,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         [MTA trackPageViewBegin:self.title];
     }
     [super viewWillAppear:animated];
-//    if (self.navigationController.navigationBarHidden==NO) {
-//        [self.navigationController setNavigationBarHidden:YES];
-//    }
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
