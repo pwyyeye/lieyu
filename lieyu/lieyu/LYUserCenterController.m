@@ -96,9 +96,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [super viewWillAppear:animated];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//    if (self.navigationController.navigationBarHidden==NO) {
-       [self.navigationController setNavigationBarHidden:YES];
-//    }
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.collectionView reloadData];
     
 }
@@ -121,9 +119,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }
 }
 
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
