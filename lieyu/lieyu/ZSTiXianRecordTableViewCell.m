@@ -16,6 +16,19 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+- (void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
+    
+    UIColor *color = RGBA(204, 204, 204, 1);
+    [color set];
+    UIBezierPath *bezierP = [[UIBezierPath alloc]init];
+    bezierP.lineWidth = 0.5;
+    [bezierP moveToPoint:CGPointMake(14,self.frame.size.height - 0.5)];
+    [bezierP addLineToPoint:CGPointMake(self.frame.size.width, self.frame.size.height - 0.5)];
+    [bezierP stroke];
+    
+}
+
 - (void)setTiXianR:(ZSTiXianRecord *)tiXianR{
     _tiXianR = tiXianR;
     NSArray *strArray = [tiXianR.create_date componentsSeparatedByString:@" "];
