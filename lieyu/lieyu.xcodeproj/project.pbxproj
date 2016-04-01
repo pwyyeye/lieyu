@@ -610,6 +610,7 @@
 		38979AED1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEB1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib */; };
 		38979AF01CAB7DD7002946F5 /* duima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEE1CAB7DD7002946F5 /* duima@2x.png */; };
 		38979AF11CAB7DD7002946F5 /* duima@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEF1CAB7DD7002946F5 /* duima@3x.png */; };
+		38979B401CAD2144002946F5 /* CoinMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B3F1CAD2144002946F5 /* CoinMainViewController.m */; };
 		389C01021C1488EF00FE9412 /* seeAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00F91C1488EF00FE9412 /* seeAll.png */; };
 		389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FA1C1488EF00FE9412 /* seeAll@2x.png */; };
 		389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FB1C1488EF00FE9412 /* seeAll@3x.png */; };
@@ -2559,6 +2560,8 @@
 		38979AEB1CAA5A09002946F5 /* LYWithdrawTypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWithdrawTypeViewController.xib; sourceTree = "<group>"; };
 		38979AEE1CAB7DD7002946F5 /* duima@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "duima@2x.png"; sourceTree = "<group>"; };
 		38979AEF1CAB7DD7002946F5 /* duima@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "duima@3x.png"; path = "Images.xcassets/其他/duima2.imageset/duima@3x.png"; sourceTree = "<group>"; };
+		38979B3E1CAD2144002946F5 /* CoinMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinMainViewController.h; sourceTree = "<group>"; };
+		38979B3F1CAD2144002946F5 /* CoinMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinMainViewController.m; sourceTree = "<group>"; };
 		389C00F91C1488EF00FE9412 /* seeAll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeAll.png; sourceTree = "<group>"; };
 		389C00FA1C1488EF00FE9412 /* seeAll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@2x.png"; sourceTree = "<group>"; };
 		389C00FB1C1488EF00FE9412 /* seeAll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@3x.png"; sourceTree = "<group>"; };
@@ -5688,6 +5691,15 @@
 			path = 6;
 			sourceTree = "<group>";
 		};
+		38979B3D1CAD20BA002946F5 /* 硬币 */ = {
+			isa = PBXGroup;
+			children = (
+				38979B3E1CAD2144002946F5 /* CoinMainViewController.h */,
+				38979B3F1CAD2144002946F5 /* CoinMainViewController.m */,
+			);
+			name = "硬币";
+			sourceTree = "<group>";
+		};
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6762,6 +6774,7 @@
 		855396F91C8D30E800289D18 /* 酒吧小游戏 */ = {
 			isa = PBXGroup;
 			children = (
+				38979B3D1CAD20BA002946F5 /* 硬币 */,
 				855397121C8D785800289D18 /* Model */,
 				855396FF1C8D318500289D18 /* View */,
 				855396FA1C8D310C00289D18 /* FindGameCenterViewController.h */,
@@ -10265,6 +10278,7 @@
 				3879F26E1C0D557400B72629 /* DetailTableViewCell.m in Sources */,
 				15FD2AA91BD6243700D66920 /* TaoCanTitleView.m in Sources */,
 				ADF88EA81C1197C400CF5DED /* MJRefreshGifHeader.m in Sources */,
+				38979B401CAD2144002946F5 /* CoinMainViewController.m in Sources */,
 				15E2405C1BB1029C0090D240 /* FBDanPinView.m in Sources */,
 				152247B01BEB064600E68A2B /* IQUIWindow+Hierarchy.m in Sources */,
 				151BB6D51BBB78E000E7A81C /* UzysGroupPickerView.m in Sources */,
