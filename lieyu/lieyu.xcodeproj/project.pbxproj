@@ -907,7 +907,6 @@
 		8540388D1CAE154B0056C27E /* FingerAnalyseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540388B1CAE154B0056C27E /* FingerAnalyseViewController.xib */; };
 		854038941CAE5F030056C27E /* finger.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 854038931CAE5F030056C27E /* finger.mp3 */; };
 		854038961CAE60CA0056C27E /* fingerAnalyse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 854038951CAE60CA0056C27E /* fingerAnalyse.mp3 */; };
-		8540389C1CAE8C6F0056C27E /* LYScreenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540389B1CAE8C6F0056C27E /* LYScreenModel.m */; };
 		8540B6791C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6771C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m */; };
 		8540B67A1C2CE4E300F16463 /* LYFriendsAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6781C2CE4E300F16463 /* LYFriendsAddressTableViewCell.xib */; };
 		8540B67E1C2CE89900F16463 /* LYFriendsLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B67C1C2CE89900F16463 /* LYFriendsLikeTableViewCell.m */; };
@@ -2969,8 +2968,6 @@
 		8540388B1CAE154B0056C27E /* FingerAnalyseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FingerAnalyseViewController.xib; sourceTree = "<group>"; };
 		854038931CAE5F030056C27E /* finger.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finger.mp3; sourceTree = "<group>"; };
 		854038951CAE60CA0056C27E /* fingerAnalyse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fingerAnalyse.mp3; sourceTree = "<group>"; };
-		8540389A1CAE8C6F0056C27E /* LYScreenModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYScreenModel.h; sourceTree = "<group>"; };
-		8540389B1CAE8C6F0056C27E /* LYScreenModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYScreenModel.m; sourceTree = "<group>"; };
 		8540B65F1C2CD8E200F16463 /* LYFriendsNameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsNameTableViewCell.h; sourceTree = "<group>"; };
 		8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsNameTableViewCell.m; sourceTree = "<group>"; };
 		8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYFriendsNameTableViewCell.xib; sourceTree = "<group>"; };
@@ -8756,8 +8753,6 @@
 				D747142A1BAD151400611579 /* MainTabbarViewController.m */,
 				ADC66CE21C1FBB9900E597D9 /* LYNavigationController.h */,
 				ADC66CE31C1FBB9900E597D9 /* LYNavigationController.m */,
-				8540389A1CAE8C6F0056C27E /* LYScreenModel.h */,
-				8540389B1CAE8C6F0056C27E /* LYScreenModel.m */,
 			);
 			name = Modules;
 			sourceTree = "<group>";
@@ -10274,7 +10269,6 @@
 				853C360A1C72B43200F1703B /* LYBarIconTableViewCell.m in Sources */,
 				38E5D6F81C100A33004B49D2 /* TimePickerView.m in Sources */,
 				ADE103991BDE49BC00D9EC38 /* DataSigner.m in Sources */,
-				8540389C1CAE8C6F0056C27E /* LYScreenModel.m in Sources */,
 				15EFEF861BA99CD5004739A2 /* MenuHrizontal.m in Sources */,
 				AD3B2C101C5E31B400E9E71A /* LYChooseFriendsController.m in Sources */,
 				15EE515A1BA7085C00464B74 /* ZSAlreadyPayedViewController.m in Sources */,
