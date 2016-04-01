@@ -1116,7 +1116,8 @@
             imageSubview.backgroundColor = [UIColor clearColor];
             UITapGestureRecognizer *tapImageSubview = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideDefaultPage)];
             [imageSubview addGestureRecognizer:tapImageSubview];
-            [weakSelf.view addSubview:imageSubview];
+//            [weakSelf.view addSubview:imageSubview];
+            [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:imageSubview];
             if (distance < SCREEN_HEIGHT / 2) {
                 imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"emojiTIpBottom"]];
                 [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, distance + 30, 206, 70)];
