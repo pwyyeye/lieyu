@@ -18,10 +18,14 @@
 #import "UMSocial.h"
 #import "UserNotificationViewController.h"
 #import "LPUserLoginViewController.h"
+#import "ZSApplyStatusModel.h"
 
 @interface Setting (){
     UIButton *_logoutButton;
     UserModel *userModel;
+    ZSApplyStatusModel *statusModel;
+    BOOL canApply;//
+    int enterStep;//1开始、2支付
 }
 
 @end
@@ -88,7 +92,31 @@
 }
 
 - (void)getApplyType{
-    
+    [LYUserHttpTool getZSJLStatusComplete:^(ZSApplyStatusModel *model) {
+        statusModel = model;
+//        statusModel.applyType 1.支付宝 2.银行卡 3.微信
+//        statusModel.wechatAccount
+//        userModel.applyStatus 0.未申请 1.审核中 2.已审核 3.审核未通过
+        if (userModel.applyStatus == 1) {
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 20, 15, 200, 20)];
+            label.textAlignment = NSTextAlignmentRight;
+            [label setBackgroundColor:[UIColor whiteColor]];
+            [label setTextColor:RGBA(186, 40, 227, 1)];
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+            [cell addSubview:label];
+            
+            if ([statusModel.applyType isEqualToString:@"3"] && !statusModel.wechatAccount.length) {
+                [label setText:@"请完成支付确认!"];
+                canApply = YES;
+                enterStep = 2;
+            }else{
+                [label setText:@"审核中"];
+            }
+        }else if(userModel.applyStatus == 0){
+            canApply = YES;
+            enterStep = 1;
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -162,16 +190,13 @@
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
     
-    UIImageView *imgView;
-    if(indexPath.row == 1){
-        if([userModel.usertype isEqualToString:@"1"]){
-            imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrowRight"]];
-        }else{
-            
-        }
-    }else{
-        imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrowRight"]];
+    
+    if([userModel.usertype isEqualToString:@"1"]){
+        //普通用户
+        [self getApplyType];
     }
+    
+    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrowRight"]];
     imgView.frame = CGRectMake(SCREEN_WIDTH - 26, 17, 8, 15 );
     [cell addSubview:imgView];
 
@@ -213,6 +238,15 @@
     }else if(indexPath.row==5){
         detailViewController=[[AboutLieyu alloc] initWithNibName:@"AboutLieyu" bundle:nil];
     }else if (indexPath.row == 1){
+        if([userModel.usertype isEqualToString:@"2"]){
+            [MyUtil showLikePlaceMessage:@"您已经是专属经理了！"];
+            return;
+        }else if ([userModel.usertype isEqualToString:@"1"]){
+            if (userModel.applyStatus == 1 && !canApply) {
+                [MyUtil showLikePlaceMessage:@"正在审核中！"];
+                return;
+            }
+        }
         
         detailViewController = [[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
         detailViewController.title=@"申请专属经理";

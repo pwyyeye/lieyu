@@ -16,9 +16,17 @@
     UIImage *idcard_fanmian;
     
 }
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgHeaderConstrant;
+
 - (IBAction)nextAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *zmAddBtn;
 @property (weak, nonatomic) IBOutlet UIButton *fmAddBtn;
 @property (nonatomic, retain)  NSDictionary *paramdic;
 - (IBAction)addPictures:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *nextStepBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *imgQianmian;
+@property (weak, nonatomic) IBOutlet UIImageView *imgHoumian;
+
 @end

@@ -1468,10 +1468,11 @@
                 complete(model);
             });
         }else{
-            
+            [MyUtil showLikePlaceMessage:@"数据获取失败！"];
         }
+        [app stopLoading];
     } failure:^(NSError *err) {
-        
+        [app stopLoading];
     }];
 }
 

@@ -16,8 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Do any additional setup after loading the view from its nib.
+    _nextStepBtn.layer.cornerRadius = 21;
+    _imgHoumian.layer.cornerRadius = 4;
+    _imgHoumian.layer.cornerRadius = 4;
+    if (SCREEN_WIDTH == 320 && SCREEN_HEIGHT == 480) {
+        _imgHeaderConstrant.constant = 28;
+    }
 }
 #pragma mark - 添加照片
 - (IBAction)addPictures:(UIButton *)sender {
@@ -175,6 +179,7 @@
     } complete:^(BOOL result) {
         if(result){
             [MyUtil showMessage:@"申请成功!"];
+            self.userModel.applyStatus = 1;
         }
     }];
 }
