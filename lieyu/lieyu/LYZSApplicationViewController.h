@@ -9,15 +9,29 @@
 #import "LYBaseViewController.h"
 
 @interface LYZSApplicationViewController : LYBaseViewController
-- (IBAction)chooseJiuBaAct:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UITextField *zwjsTex;
-@property (weak, nonatomic) IBOutlet UITextField *zfbzhTex;
-@property (weak, nonatomic) IBOutlet UITextField *yhkkhTex;
-@property (weak, nonatomic) IBOutlet UITextField *zfbTex;
-@property (weak, nonatomic) IBOutlet UITextField *yhkKhmYhmTex;
-- (IBAction)nextAct:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UITextField *sfzTex;
-@property (weak, nonatomic) IBOutlet UITextField *yhkyhmTex;
+
 @property (weak, nonatomic) IBOutlet UILabel *jiubaLal;
+- (IBAction)chooseJiuBaAct:(UIButton *)sender;
+
 - (IBAction)exitEdit:(UITextField *)sender;
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *chooseButtons;
+
+@property (weak, nonatomic) IBOutlet UITextField *sfzTex;
+
+@property (weak, nonatomic) IBOutlet UIView *viewLine2;
+@property (weak, nonatomic) IBOutlet UILabel *viewLabel2;
+@property (weak, nonatomic) IBOutlet UITextField *yhkkhTex;
+
+@property (weak, nonatomic) IBOutlet UIView *viewLine3;
+@property (weak, nonatomic) IBOutlet UILabel *viewLabel3;
+@property (weak, nonatomic) IBOutlet UITextField *yhkKhmYhmTex;
+
+@property (weak, nonatomic) IBOutlet UIView *viewLine4;
+@property (weak, nonatomic) IBOutlet UILabel *viewLabel4;
+@property (weak, nonatomic) IBOutlet UITextField *yhkyhmTex;
+
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+- (IBAction)nextAct:(UIButton *)sender;
+
 @end

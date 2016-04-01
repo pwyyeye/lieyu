@@ -620,9 +620,6 @@
 		38979B5C1CAD503A002946F5 /* coinBackground@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B591CAD503A002946F5 /* coinBackground@3x.png */; };
 		38979B611CAD6421002946F5 /* coinBack4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38979B5F1CAD6421002946F5 /* coinBack4.jpg */; };
 		38979B621CAD6421002946F5 /* coinBack5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38979B601CAD6421002946F5 /* coinBack5.jpg */; };
-		38979B661CAE2BE1002946F5 /* CoinStart@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B631CAE2BE1002946F5 /* CoinStart@1x.png */; };
-		38979B671CAE2BE1002946F5 /* CoinStart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B641CAE2BE1002946F5 /* CoinStart@2x.png */; };
-		38979B681CAE2BE1002946F5 /* CoinStart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B651CAE2BE1002946F5 /* CoinStart@3x.png */; };
 		38979B6C1CAE5466002946F5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B6B1CAE5466002946F5 /* coinPlay.png */; };
 		38979B6F1CAE6263002946F5 /* ZSApplyStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */; };
 		389C01021C1488EF00FE9412 /* seeAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00F91C1488EF00FE9412 /* seeAll.png */; };
@@ -1299,6 +1296,18 @@
 		AD198CBC1C00308400AA654D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD198CBB1C00308400AA654D /* libWeChatSDK.a */; };
 		AD198CC11C00357C00AA654D /* SingletonTenpay.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC01C00357C00AA654D /* SingletonTenpay.m */; };
 		AD198CC41C00368300AA654D /* TenpayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AD198CC31C00368300AA654D /* TenpayModel.m */; };
+		AD203BAF1CAEA9C70014618A /* CoinBack@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BA71CAEA9C70014618A /* CoinBack@1x.png */; };
+		AD203BB01CAEA9C70014618A /* CoinBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BA81CAEA9C70014618A /* CoinBack@2x.png */; };
+		AD203BB11CAEA9C70014618A /* CoinBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BA91CAEA9C70014618A /* CoinBack@3x.png */; };
+		AD203BB21CAEA9C70014618A /* coinBack4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAA1CAEA9C70014618A /* coinBack4.jpg */; };
+		AD203BB31CAEA9C70014618A /* coinBack5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAB1CAEA9C70014618A /* coinBack5.jpg */; };
+		AD203BB41CAEA9C70014618A /* coinBackground@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAC1CAEA9C70014618A /* coinBackground@1x.png */; };
+		AD203BB51CAEA9C70014618A /* coinBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAD1CAEA9C70014618A /* coinBackground@2x.png */; };
+		AD203BB61CAEA9C70014618A /* coinBackground@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAE1CAEA9C70014618A /* coinBackground@3x.png */; };
+		AD203BB81CAEA9D30014618A /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BB71CAEA9D30014618A /* coinPlay.png */; };
+		AD203BBC1CAEAA8C0014618A /* CoinStart@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BB91CAEAA8C0014618A /* CoinStart@1x.png */; };
+		AD203BBD1CAEAA8C0014618A /* CoinStart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BBA1CAEAA8C0014618A /* CoinStart@2x.png */; };
+		AD203BBE1CAEAA8D0014618A /* CoinStart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BBB1CAEAA8C0014618A /* CoinStart@3x.png */; };
 		AD399E801C940D4D00028F23 /* logo1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD399E261C940D4D00028F23 /* logo1@2x.jpg */; };
 		AD399E811C940D4D00028F23 /* logo2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD399E271C940D4D00028F23 /* logo2@2x.jpg */; };
 		AD399E821C940D4D00028F23 /* logo3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD399E281C940D4D00028F23 /* logo3@2x.jpg */; };
@@ -2612,9 +2621,6 @@
 		38979B591CAD503A002946F5 /* coinBackground@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@3x.png"; sourceTree = "<group>"; };
 		38979B5F1CAD6421002946F5 /* coinBack4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack4.jpg; sourceTree = "<group>"; };
 		38979B601CAD6421002946F5 /* coinBack5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack5.jpg; sourceTree = "<group>"; };
-		38979B631CAE2BE1002946F5 /* CoinStart@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@1x.png"; sourceTree = "<group>"; };
-		38979B641CAE2BE1002946F5 /* CoinStart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@2x.png"; sourceTree = "<group>"; };
-		38979B651CAE2BE1002946F5 /* CoinStart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@3x.png"; sourceTree = "<group>"; };
 		38979B6B1CAE5466002946F5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
 		38979B6D1CAE6263002946F5 /* ZSApplyStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSApplyStatusModel.h; sourceTree = "<group>"; };
 		38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSApplyStatusModel.m; sourceTree = "<group>"; };
@@ -3543,6 +3549,18 @@
 		AD198CC01C00357C00AA654D /* SingletonTenpay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SingletonTenpay.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD198CC21C00368300AA654D /* TenpayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenpayModel.h; sourceTree = "<group>"; };
 		AD198CC31C00368300AA654D /* TenpayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenpayModel.m; sourceTree = "<group>"; };
+		AD203BA71CAEA9C70014618A /* CoinBack@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@1x.png"; sourceTree = "<group>"; };
+		AD203BA81CAEA9C70014618A /* CoinBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@2x.png"; sourceTree = "<group>"; };
+		AD203BA91CAEA9C70014618A /* CoinBack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@3x.png"; sourceTree = "<group>"; };
+		AD203BAA1CAEA9C70014618A /* coinBack4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack4.jpg; sourceTree = "<group>"; };
+		AD203BAB1CAEA9C70014618A /* coinBack5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack5.jpg; sourceTree = "<group>"; };
+		AD203BAC1CAEA9C70014618A /* coinBackground@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@1x.png"; sourceTree = "<group>"; };
+		AD203BAD1CAEA9C70014618A /* coinBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@2x.png"; sourceTree = "<group>"; };
+		AD203BAE1CAEA9C70014618A /* coinBackground@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@3x.png"; sourceTree = "<group>"; };
+		AD203BB71CAEA9D30014618A /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
+		AD203BB91CAEAA8C0014618A /* CoinStart@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@1x.png"; sourceTree = "<group>"; };
+		AD203BBA1CAEAA8C0014618A /* CoinStart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@2x.png"; sourceTree = "<group>"; };
+		AD203BBB1CAEAA8C0014618A /* CoinStart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@3x.png"; sourceTree = "<group>"; };
 		AD399E261C940D4D00028F23 /* logo1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo1@2x.jpg"; sourceTree = "<group>"; };
 		AD399E271C940D4D00028F23 /* logo2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo2@2x.jpg"; sourceTree = "<group>"; };
 		AD399E281C940D4D00028F23 /* logo3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo3@2x.jpg"; sourceTree = "<group>"; };
@@ -5787,25 +5805,6 @@
 			name = "硬币";
 			sourceTree = "<group>";
 		};
-		38979B441CAD4B02002946F5 /* 游戏－硬币 */ = {
-			isa = PBXGroup;
-			children = (
-				38979B5F1CAD6421002946F5 /* coinBack4.jpg */,
-				38979B601CAD6421002946F5 /* coinBack5.jpg */,
-				38979B6B1CAE5466002946F5 /* coinPlay.png */,
-				38979B571CAD503A002946F5 /* coinBackground@1x.png */,
-				38979B581CAD503A002946F5 /* coinBackground@2x.png */,
-				38979B591CAD503A002946F5 /* coinBackground@3x.png */,
-				38979B631CAE2BE1002946F5 /* CoinStart@1x.png */,
-				38979B641CAE2BE1002946F5 /* CoinStart@2x.png */,
-				38979B651CAE2BE1002946F5 /* CoinStart@3x.png */,
-				38979B511CAD4DA0002946F5 /* CoinBack@1x.png */,
-				38979B521CAD4DA0002946F5 /* CoinBack@2x.png */,
-				38979B531CAD4DA0002946F5 /* CoinBack@3x.png */,
-			);
-			name = "游戏－硬币";
-			sourceTree = "<group>";
-		};
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6399,6 +6398,7 @@
 		8540385E1CAE0F1D0056C27E /* 游戏 */ = {
 			isa = PBXGroup;
 			children = (
+				AD203BA61CAEA9B00014618A /* 硬币 */,
 				8540385F1CAE0F260056C27E /* 指纹 */,
 			);
 			name = "游戏";
@@ -7760,6 +7760,25 @@
 			name = URL;
 			sourceTree = "<group>";
 		};
+		AD203BA61CAEA9B00014618A /* 硬币 */ = {
+			isa = PBXGroup;
+			children = (
+				AD203BB91CAEAA8C0014618A /* CoinStart@1x.png */,
+				AD203BBA1CAEAA8C0014618A /* CoinStart@2x.png */,
+				AD203BBB1CAEAA8C0014618A /* CoinStart@3x.png */,
+				AD203BB71CAEA9D30014618A /* coinPlay.png */,
+				AD203BA71CAEA9C70014618A /* CoinBack@1x.png */,
+				AD203BA81CAEA9C70014618A /* CoinBack@2x.png */,
+				AD203BA91CAEA9C70014618A /* CoinBack@3x.png */,
+				AD203BAA1CAEA9C70014618A /* coinBack4.jpg */,
+				AD203BAB1CAEA9C70014618A /* coinBack5.jpg */,
+				AD203BAC1CAEA9C70014618A /* coinBackground@1x.png */,
+				AD203BAD1CAEA9C70014618A /* coinBackground@2x.png */,
+				AD203BAE1CAEA9C70014618A /* coinBackground@3x.png */,
+			);
+			name = "硬币";
+			sourceTree = "<group>";
+		};
 		AD3B2C111C5E443100E9E71A /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -9078,6 +9097,7 @@
 				ADAFCD271CA0E261008BF959 /* shark11.png in Resources */,
 				38979A321CA40919002946F5 /* dianzan17.png in Resources */,
 				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
+				AD203BB01CAEA9C70014618A /* CoinBack@2x.png in Resources */,
 				8550E7211C302A33001FF2DE /* daohang_fabu@2x.png in Resources */,
 				85416E1B1C92EB100016BF0B /* 订单通知@2x.png in Resources */,
 				38979A471CA40919002946F5 /* happy13.png in Resources */,
@@ -9169,7 +9189,6 @@
 				85F5453C1C1408040013B92B /* circleWhite@2x.png in Resources */,
 				AD399E901C940D4D00028F23 /* logo17@2x.jpg in Resources */,
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
-				38979B681CAE2BE1002946F5 /* CoinStart@3x.png in Resources */,
 				AD399E8C1C940D4D00028F23 /* logo13@2x.jpg in Resources */,
 				38979AA51CA40919002946F5 /* sad9.png in Resources */,
 				8549B04B1CAB71EA002DC462 /* zsQRCodeScan@3x.png in Resources */,
@@ -9243,6 +9262,7 @@
 				AD399E851C940D4D00028F23 /* logo6@2x.jpg in Resources */,
 				525CA0F01C5C6930009ED9DA /* pinglun_icon@2x.png in Resources */,
 				38B11C0C1C92AFCC00AD3EB8 /* CheckQRCode@2x.png in Resources */,
+				AD203BB81CAEA9D30014618A /* coinPlay.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
 				3812C5101C57622E00F4DD6B /* ChooseTime.xib in Resources */,
 				85F5454D1C1454010013B92B /* camera@2x.png in Resources */,
@@ -9288,10 +9308,8 @@
 				AD399EB81C940D4D00028F23 /* logo57@2x.jpg in Resources */,
 				ADFE1B991C994F1D00700EA3 /* loading48@2x.png in Resources */,
 				AD92AEAD1BE23521009F2A34 /* LYTagTableViewCell.xib in Resources */,
-				38979B611CAD6421002946F5 /* coinBack4.jpg in Resources */,
 				15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */,
 				85FC07F01C5A00C3006E5409 /* 选择城市@2x.png in Resources */,
-				38979B5A1CAD503A002946F5 /* coinBackground@1x.png in Resources */,
 				AD44F9591C9D27730030F5C2 /* biaoqing_icon@2x.png in Resources */,
 				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
 				854038741CAE0F2F0056C27E /* 分析背景.jpg in Resources */,
@@ -9329,8 +9347,8 @@
 				85FBBDC71C6073ED0084E3F2 /* 首页列表收藏@3x.png in Resources */,
 				ADC3674A1C6248FE006C2AE5 /* friendPresentBG.jpg in Resources */,
 				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
+				AD203BBE1CAEAA8D0014618A /* CoinStart@3x.png in Resources */,
 				AD44F95B1C9D27730030F5C2 /* emojDelete@2x.png in Resources */,
-				38979B5B1CAD503A002946F5 /* coinBackground@2x.png in Resources */,
 				ADFE1BA91C994F1D00700EA3 /* loading7@2x.png in Resources */,
 				8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */,
 				38979A631CA40919002946F5 /* kawayi16.png in Resources */,
@@ -9354,12 +9372,10 @@
 				38EDEC611C5B9CDC00694758 /* CHshop@2x.png in Resources */,
 				854CF48E1CA3BF1900F7F95B /* beerBarPoint@3x.png in Resources */,
 				853C36101C72BA8400F1703B /* LYBarScrollTableViewCell.xib in Resources */,
-				38979B5C1CAD503A002946F5 /* coinBackground@3x.png in Resources */,
 				ADFE1B8F1C994F1D00700EA3 /* loading39@2x.png in Resources */,
 				52D4F9A71C57B2B700691BEF /* 价格@3x.png in Resources */,
 				ADE1C5C61C730E1C0011D4AB /* 更新17@2x.png in Resources */,
 				853C4C861C311A9900D48BA2 /* dizhi_icon@3x.png in Resources */,
-				38979B661CAE2BE1002946F5 /* CoinStart@1x.png in Resources */,
 				ADAFCD341CA0E261008BF959 /* comeon.jpg in Resources */,
 				52D4F9A41C57B2B700691BEF /* 附近@2x.png in Resources */,
 				ADFE1BA41C994F1D00700EA3 /* loading58@2x.png in Resources */,
@@ -9409,7 +9425,6 @@
 				ADFE1B881C994F1D00700EA3 /* loading32@2x.png in Resources */,
 				858B3A271C7A05C6000C6589 /* date@3x.png in Resources */,
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
-				38979B6C1CAE5466002946F5 /* coinPlay.png in Resources */,
 				385664A31C731D89000DCFA5 /* music_HD@3x.png in Resources */,
 				3812C54F1C57B76100F4DD6B /* add_purper@3x.png in Resources */,
 				38979A401CA40919002946F5 /* dianzan8.png in Resources */,
@@ -9589,6 +9604,7 @@
 				3812C54E1C57B76100F4DD6B /* add_purper@2x.png in Resources */,
 				385664B21C745550000DCFA5 /* jubao_btn@3x.png in Resources */,
 				AD399EA91C940D4D00028F23 /* logo42@2x.jpg in Resources */,
+				AD203BB61CAEA9C70014618A /* coinBackground@3x.png in Resources */,
 				381A01ED1C14301A00592485 /* fanli@3x.png in Resources */,
 				ADD264791C92C0FD002894AC /* long_loginNew@2x.png in Resources */,
 				AD399EA31C940D4D00028F23 /* logo36@2x.jpg in Resources */,
@@ -9693,7 +9709,6 @@
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,
 				85416E1D1C92EB100016BF0B /* findtongyong@2x.png in Resources */,
 				1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */,
-				38979B551CAD4DA0002946F5 /* CoinBack@2x.png in Resources */,
 				ADAFCD351CA0E261008BF959 /* sharkending.jpg in Resources */,
 				385664A11C731D89000DCFA5 /* huanjing_HD@3x.png in Resources */,
 				85FC07F41C5A0B60006E5409 /* 搜索@2x.png in Resources */,
@@ -9773,10 +9788,13 @@
 				38979AD81CA68494002946F5 /* emojiTIpTop@2x.png in Resources */,
 				ADFE1B9C1C994F1D00700EA3 /* loading50@2x.png in Resources */,
 				380659C81C54AC02003094C9 /* icon_collect_2@2x.png in Resources */,
+				AD203BB21CAEA9C70014618A /* coinBack4.jpg in Resources */,
 				855941781C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3812C5651C57B78800F4DD6B /* gray_star@2x.png in Resources */,
+				AD203BB51CAEA9C70014618A /* coinBackground@2x.png in Resources */,
 				AD399EB01C940D4D00028F23 /* logo49@2x.jpg in Resources */,
 				85529C2B1C9058F7005D8F0D /* notificationSystem@2x.png in Resources */,
+				AD203BAF1CAEA9C70014618A /* CoinBack@1x.png in Resources */,
 				ADFFA68E1C16DFBD00D9BD2A /* purpleBtnBG@3x.png in Resources */,
 				A2020D5A1BA6781B0090B92A /* FunctionListCell.xib in Resources */,
 				850099CA1C61EEE700DDE626 /* 发起人@2x.png in Resources */,
@@ -9801,7 +9819,6 @@
 				38B11C081C92AFC200AD3EB8 /* QRCode@2x.png in Resources */,
 				ADFE1B931C994F1D00700EA3 /* loading42@2x.png in Resources */,
 				853D3AC01C35347A00B4FEAD /* dabofangqi_icon.png in Resources */,
-				38979B671CAE2BE1002946F5 /* CoinStart@2x.png in Resources */,
 				ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */,
 				385664B91C756CE4000DCFA5 /* AllAction.xib in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
@@ -9840,7 +9857,6 @@
 				38979A521CA40919002946F5 /* happy23.png in Resources */,
 				AD399EA51C940D4D00028F23 /* logo38@2x.jpg in Resources */,
 				38979A4A1CA40919002946F5 /* happy16.png in Resources */,
-				38979B621CAD6421002946F5 /* coinBack5.jpg in Resources */,
 				D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */,
 				858B22951C2977C800BF70AD /* LYTagsViewController.xib in Resources */,
 				AD399EAD1C940D4D00028F23 /* logo46@2x.jpg in Resources */,
@@ -9899,6 +9915,7 @@
 				385664B11C745550000DCFA5 /* jubao_btn@2x.png in Resources */,
 				38B11C101C92EE2E00AD3EB8 /* ScanBackGround@2x.png in Resources */,
 				ADE2AD711C23ADDE00B0A54B /* ReleaseNotes.txt in Resources */,
+				AD203BBC1CAEAA8C0014618A /* CoinStart@1x.png in Resources */,
 				15EE51491BA7063000464B74 /* ZSWaitPayViewController.xib in Resources */,
 				52D4F9A21C57B2B700691BEF /* 返利@2x.png in Resources */,
 				15E2409B1BB296CF0090D240 /* OrderDetailCell.xib in Resources */,
@@ -9974,9 +9991,8 @@
 				8550E7221C302A33001FF2DE /* daohang_fabu@3x.png in Resources */,
 				ADFE1B981C994F1D00700EA3 /* loading47@2x.png in Resources */,
 				854CF48A1CA3BEAB00F7F95B /* beerBarTel@2x.png in Resources */,
-				38979B561CAD4DA0002946F5 /* CoinBack@3x.png in Resources */,
+				AD203BB11CAEA9C70014618A /* CoinBack@3x.png in Resources */,
 				38E5D7001C103E17004B49D2 /* LPmanager@2x.png in Resources */,
-				38979B541CAD4DA0002946F5 /* CoinBack@1x.png in Resources */,
 				AD399EA21C940D4D00028F23 /* logo35@2x.jpg in Resources */,
 				854CF48B1CA3BEAB00F7F95B /* beerBarTel@3x.png in Resources */,
 				AD106B9B1C0BE898007F5FBA /* LYUserCenterFooter.xib in Resources */,
@@ -9987,6 +10003,7 @@
 				853CB7551CAA253B006FC768 /* ZSTiXianRecordTableViewCell.xib in Resources */,
 				38EDEC651C5B9DE700694758 /* return_white@2x.png in Resources */,
 				ADE1C5CF1C730E1C0011D4AB /* 更新26@2x.png in Resources */,
+				AD203BB31CAEA9C70014618A /* coinBack5.jpg in Resources */,
 				38979A8E1CA40919002946F5 /* sad1.png in Resources */,
 				A2FD576C1BAFE85900CFFF92 /* PinKeCell.xib in Resources */,
 				38979A9F1CA40919002946F5 /* sad3.png in Resources */,
@@ -10099,6 +10116,7 @@
 				ADFE1B831C994F1D00700EA3 /* loading28@2x.png in Resources */,
 				38E5D7B71C128A74004B49D2 /* 拼客流程@2x.png in Resources */,
 				38979A6E1CA40919002946F5 /* kawayi4.png in Resources */,
+				AD203BBD1CAEAA8C0014618A /* CoinStart@2x.png in Resources */,
 				8540B68A1C2CF40B00F16463 /* LYFriendsSendViewController.xib in Resources */,
 				38E5D7F61C13355A004B49D2 /* PayMoney.xib in Resources */,
 				38E5D7A51C113879004B49D2 /* gray_add@3x.png in Resources */,
@@ -10109,6 +10127,7 @@
 				AD44F95D1C9D27730030F5C2 /* emojNormal.png in Resources */,
 				AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */,
 				AD399EBA1C940D4D00028F23 /* logo59@2x.jpg in Resources */,
+				AD203BB41CAEA9C70014618A /* coinBackground@1x.png in Resources */,
 				ADAFCD2C1CA0E261008BF959 /* shark5.png in Resources */,
 				8518067B1C2E5F0000006804 /* LYFriendsAllCommentTableViewCell.xib in Resources */,
 				AD399EC71C940D4D00028F23 /* logo72@2x.jpg in Resources */,

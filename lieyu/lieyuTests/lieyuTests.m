@@ -19,11 +19,11 @@
 
 - (void)setUp {
     [super setUp];
-    [LYRestfulBussiness queryDrinksAction:@(1) maxPrice:@(2000) minnum:@(1) maxnum:@(1000) handle:^(LYErrorMessage *erMsg, id data)
-    {
-        
-    }];
-      CFRunLoopRun();
+//    [LYRestfulBussiness queryDrinksAction:@(1) maxPrice:@(2000) minnum:@(1) maxnum:@(1000) handle:^(LYErrorMessage *erMsg, id data)
+//    {
+//        
+//    }];
+//      CFRunLoopRun();
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -53,9 +53,11 @@
 //    NSString *xingzuo =[MyUtil getAstroWithMonth:@"1986-09-01"];
 //    NSLog(@"----pass-xingzuo%@---",xingzuo);
 //    XCTAssert(YES, @"Pass");
-    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+//    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
 //    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":@{@"key":@"value"},@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
-    
+    NSLog(@"----pass-pass   %@     ---",[MyUtil encryptUseDES:@"100" withKey:@"LY888888"]);
+    NSLog(@"----pass-pass  : %@    :---",[MyUtil decryptUseDES:@"RbgBxvWjxlA=" withKey:@"LY888888"]);
+    ;
 }
 
 @end
