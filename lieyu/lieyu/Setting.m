@@ -21,6 +21,7 @@
 
 @interface Setting (){
     UIButton *_logoutButton;
+    UserModel *userModel;
 }
 
 @end
@@ -29,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
 //    [self.navigationController setNavigationBarHidden:NO animated:YES];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -83,6 +85,10 @@
         }
     }];
 
+}
+
+- (void)getApplyType{
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,8 +161,17 @@
     [cell.layer addSublayer:layerShadow];
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
-
-    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrowRight"]];
+    
+    UIImageView *imgView;
+    if(indexPath.row == 1){
+        if([userModel.usertype isEqualToString:@"1"]){
+            imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrowRight"]];
+        }else{
+            
+        }
+    }else{
+        imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrowRight"]];
+    }
     imgView.frame = CGRectMake(SCREEN_WIDTH - 26, 17, 8, 15 );
     [cell addSubview:imgView];
 

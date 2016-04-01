@@ -14,6 +14,7 @@
 #import "LYMineUrl.h"
 #import "OrderTTL.h"
 #import "OrderInfoModel.h"
+#import "ZSApplyStatusModel.h"
 
 #import "find_userInfoModel.h"
 @interface LYUserHttpTool : NSObject
@@ -205,4 +206,8 @@
 
 //获取话题列表
 + (void)getTopicList:(NSDictionary *)params complete:(void(^)(NSArray *))result;
+
+//获取专属经理申请状态
++ (void)getZSJLStatusComplete:(void(^)(ZSApplyStatusModel *))complete;
+
 @end

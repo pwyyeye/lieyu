@@ -611,6 +611,20 @@
 		38979AF01CAB7DD7002946F5 /* duima@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEE1CAB7DD7002946F5 /* duima@2x.png */; };
 		38979AF11CAB7DD7002946F5 /* duima@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEF1CAB7DD7002946F5 /* duima@3x.png */; };
 		38979B401CAD2144002946F5 /* CoinMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B3F1CAD2144002946F5 /* CoinMainViewController.m */; };
+		38979B431CAD46B1002946F5 /* CoinPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B421CAD46B1002946F5 /* CoinPlayViewController.m */; };
+		38979B541CAD4DA0002946F5 /* CoinBack@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B511CAD4DA0002946F5 /* CoinBack@1x.png */; };
+		38979B551CAD4DA0002946F5 /* CoinBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B521CAD4DA0002946F5 /* CoinBack@2x.png */; };
+		38979B561CAD4DA0002946F5 /* CoinBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B531CAD4DA0002946F5 /* CoinBack@3x.png */; };
+		38979B5A1CAD503A002946F5 /* coinBackground@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B571CAD503A002946F5 /* coinBackground@1x.png */; };
+		38979B5B1CAD503A002946F5 /* coinBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B581CAD503A002946F5 /* coinBackground@2x.png */; };
+		38979B5C1CAD503A002946F5 /* coinBackground@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B591CAD503A002946F5 /* coinBackground@3x.png */; };
+		38979B611CAD6421002946F5 /* coinBack4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38979B5F1CAD6421002946F5 /* coinBack4.jpg */; };
+		38979B621CAD6421002946F5 /* coinBack5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38979B601CAD6421002946F5 /* coinBack5.jpg */; };
+		38979B661CAE2BE1002946F5 /* CoinStart@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B631CAE2BE1002946F5 /* CoinStart@1x.png */; };
+		38979B671CAE2BE1002946F5 /* CoinStart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B641CAE2BE1002946F5 /* CoinStart@2x.png */; };
+		38979B681CAE2BE1002946F5 /* CoinStart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B651CAE2BE1002946F5 /* CoinStart@3x.png */; };
+		38979B6C1CAE5466002946F5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B6B1CAE5466002946F5 /* coinPlay.png */; };
+		38979B6F1CAE6263002946F5 /* ZSApplyStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */; };
 		389C01021C1488EF00FE9412 /* seeAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00F91C1488EF00FE9412 /* seeAll.png */; };
 		389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FA1C1488EF00FE9412 /* seeAll@2x.png */; };
 		389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FB1C1488EF00FE9412 /* seeAll@3x.png */; };
@@ -2588,6 +2602,22 @@
 		38979AEF1CAB7DD7002946F5 /* duima@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "duima@3x.png"; path = "Images.xcassets/其他/duima2.imageset/duima@3x.png"; sourceTree = "<group>"; };
 		38979B3E1CAD2144002946F5 /* CoinMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinMainViewController.h; sourceTree = "<group>"; };
 		38979B3F1CAD2144002946F5 /* CoinMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinMainViewController.m; sourceTree = "<group>"; };
+		38979B411CAD46B1002946F5 /* CoinPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinPlayViewController.h; sourceTree = "<group>"; };
+		38979B421CAD46B1002946F5 /* CoinPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinPlayViewController.m; sourceTree = "<group>"; };
+		38979B511CAD4DA0002946F5 /* CoinBack@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@1x.png"; sourceTree = "<group>"; };
+		38979B521CAD4DA0002946F5 /* CoinBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@2x.png"; sourceTree = "<group>"; };
+		38979B531CAD4DA0002946F5 /* CoinBack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@3x.png"; sourceTree = "<group>"; };
+		38979B571CAD503A002946F5 /* coinBackground@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@1x.png"; sourceTree = "<group>"; };
+		38979B581CAD503A002946F5 /* coinBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@2x.png"; sourceTree = "<group>"; };
+		38979B591CAD503A002946F5 /* coinBackground@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@3x.png"; sourceTree = "<group>"; };
+		38979B5F1CAD6421002946F5 /* coinBack4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack4.jpg; sourceTree = "<group>"; };
+		38979B601CAD6421002946F5 /* coinBack5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack5.jpg; sourceTree = "<group>"; };
+		38979B631CAE2BE1002946F5 /* CoinStart@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@1x.png"; sourceTree = "<group>"; };
+		38979B641CAE2BE1002946F5 /* CoinStart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@2x.png"; sourceTree = "<group>"; };
+		38979B651CAE2BE1002946F5 /* CoinStart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@3x.png"; sourceTree = "<group>"; };
+		38979B6B1CAE5466002946F5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
+		38979B6D1CAE6263002946F5 /* ZSApplyStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSApplyStatusModel.h; sourceTree = "<group>"; };
+		38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSApplyStatusModel.m; sourceTree = "<group>"; };
 		389C00F91C1488EF00FE9412 /* seeAll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeAll.png; sourceTree = "<group>"; };
 		389C00FA1C1488EF00FE9412 /* seeAll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@2x.png"; sourceTree = "<group>"; };
 		389C00FB1C1488EF00FE9412 /* seeAll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@3x.png"; sourceTree = "<group>"; };
@@ -5751,8 +5781,29 @@
 			children = (
 				38979B3E1CAD2144002946F5 /* CoinMainViewController.h */,
 				38979B3F1CAD2144002946F5 /* CoinMainViewController.m */,
+				38979B411CAD46B1002946F5 /* CoinPlayViewController.h */,
+				38979B421CAD46B1002946F5 /* CoinPlayViewController.m */,
 			);
 			name = "硬币";
+			sourceTree = "<group>";
+		};
+		38979B441CAD4B02002946F5 /* 游戏－硬币 */ = {
+			isa = PBXGroup;
+			children = (
+				38979B5F1CAD6421002946F5 /* coinBack4.jpg */,
+				38979B601CAD6421002946F5 /* coinBack5.jpg */,
+				38979B6B1CAE5466002946F5 /* coinPlay.png */,
+				38979B571CAD503A002946F5 /* coinBackground@1x.png */,
+				38979B581CAD503A002946F5 /* coinBackground@2x.png */,
+				38979B591CAD503A002946F5 /* coinBackground@3x.png */,
+				38979B631CAE2BE1002946F5 /* CoinStart@1x.png */,
+				38979B641CAE2BE1002946F5 /* CoinStart@2x.png */,
+				38979B651CAE2BE1002946F5 /* CoinStart@3x.png */,
+				38979B511CAD4DA0002946F5 /* CoinBack@1x.png */,
+				38979B521CAD4DA0002946F5 /* CoinBack@2x.png */,
+				38979B531CAD4DA0002946F5 /* CoinBack@3x.png */,
+			);
+			name = "游戏－硬币";
 			sourceTree = "<group>";
 		};
 		389C010B1C1488FB00FE9412 /* 发现 */ = {
@@ -7679,6 +7730,8 @@
 			children = (
 				AD106BC01C0E9593007F5FBA /* OrderTTL.h */,
 				AD106BC11C0E9593007F5FBA /* OrderTTL.m */,
+				38979B6D1CAE6263002946F5 /* ZSApplyStatusModel.h */,
+				38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -9115,6 +9168,7 @@
 				85F5453C1C1408040013B92B /* circleWhite@2x.png in Resources */,
 				AD399E901C940D4D00028F23 /* logo17@2x.jpg in Resources */,
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
+				38979B681CAE2BE1002946F5 /* CoinStart@3x.png in Resources */,
 				AD399E8C1C940D4D00028F23 /* logo13@2x.jpg in Resources */,
 				38979AA51CA40919002946F5 /* sad9.png in Resources */,
 				8549B04B1CAB71EA002DC462 /* zsQRCodeScan@3x.png in Resources */,
@@ -9233,8 +9287,10 @@
 				AD399EB81C940D4D00028F23 /* logo57@2x.jpg in Resources */,
 				ADFE1B991C994F1D00700EA3 /* loading48@2x.png in Resources */,
 				AD92AEAD1BE23521009F2A34 /* LYTagTableViewCell.xib in Resources */,
+				38979B611CAD6421002946F5 /* coinBack4.jpg in Resources */,
 				15B866261BDB5D06002E2BB6 /* CHDoOrderHeardView.xib in Resources */,
 				85FC07F01C5A00C3006E5409 /* 选择城市@2x.png in Resources */,
+				38979B5A1CAD503A002946F5 /* coinBackground@1x.png in Resources */,
 				AD44F9591C9D27730030F5C2 /* biaoqing_icon@2x.png in Resources */,
 				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
 				854038741CAE0F2F0056C27E /* 分析背景.jpg in Resources */,
@@ -9273,6 +9329,7 @@
 				ADC3674A1C6248FE006C2AE5 /* friendPresentBG.jpg in Resources */,
 				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
 				AD44F95B1C9D27730030F5C2 /* emojDelete@2x.png in Resources */,
+				38979B5B1CAD503A002946F5 /* coinBackground@2x.png in Resources */,
 				ADFE1BA91C994F1D00700EA3 /* loading7@2x.png in Resources */,
 				8551926A1C0B30E0007B9949 /* LYHotJiuBarViewController.xib in Resources */,
 				38979A631CA40919002946F5 /* kawayi16.png in Resources */,
@@ -9296,10 +9353,12 @@
 				38EDEC611C5B9CDC00694758 /* CHshop@2x.png in Resources */,
 				854CF48E1CA3BF1900F7F95B /* beerBarPoint@3x.png in Resources */,
 				853C36101C72BA8400F1703B /* LYBarScrollTableViewCell.xib in Resources */,
+				38979B5C1CAD503A002946F5 /* coinBackground@3x.png in Resources */,
 				ADFE1B8F1C994F1D00700EA3 /* loading39@2x.png in Resources */,
 				52D4F9A71C57B2B700691BEF /* 价格@3x.png in Resources */,
 				ADE1C5C61C730E1C0011D4AB /* 更新17@2x.png in Resources */,
 				853C4C861C311A9900D48BA2 /* dizhi_icon@3x.png in Resources */,
+				38979B661CAE2BE1002946F5 /* CoinStart@1x.png in Resources */,
 				ADAFCD341CA0E261008BF959 /* comeon.jpg in Resources */,
 				52D4F9A41C57B2B700691BEF /* 附近@2x.png in Resources */,
 				ADFE1BA41C994F1D00700EA3 /* loading58@2x.png in Resources */,
@@ -9349,6 +9408,7 @@
 				ADFE1B881C994F1D00700EA3 /* loading32@2x.png in Resources */,
 				858B3A271C7A05C6000C6589 /* date@3x.png in Resources */,
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
+				38979B6C1CAE5466002946F5 /* coinPlay.png in Resources */,
 				385664A31C731D89000DCFA5 /* music_HD@3x.png in Resources */,
 				3812C54F1C57B76100F4DD6B /* add_purper@3x.png in Resources */,
 				38979A401CA40919002946F5 /* dianzan8.png in Resources */,
@@ -9632,6 +9692,7 @@
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,
 				85416E1D1C92EB100016BF0B /* findtongyong@2x.png in Resources */,
 				1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */,
+				38979B551CAD4DA0002946F5 /* CoinBack@2x.png in Resources */,
 				ADAFCD351CA0E261008BF959 /* sharkending.jpg in Resources */,
 				385664A11C731D89000DCFA5 /* huanjing_HD@3x.png in Resources */,
 				85FC07F41C5A0B60006E5409 /* 搜索@2x.png in Resources */,
@@ -9739,6 +9800,7 @@
 				38B11C081C92AFC200AD3EB8 /* QRCode@2x.png in Resources */,
 				ADFE1B931C994F1D00700EA3 /* loading42@2x.png in Resources */,
 				853D3AC01C35347A00B4FEAD /* dabofangqi_icon.png in Resources */,
+				38979B671CAE2BE1002946F5 /* CoinStart@2x.png in Resources */,
 				ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */,
 				385664B91C756CE4000DCFA5 /* AllAction.xib in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
@@ -9777,6 +9839,7 @@
 				38979A521CA40919002946F5 /* happy23.png in Resources */,
 				AD399EA51C940D4D00028F23 /* logo38@2x.jpg in Resources */,
 				38979A4A1CA40919002946F5 /* happy16.png in Resources */,
+				38979B621CAD6421002946F5 /* coinBack5.jpg in Resources */,
 				D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */,
 				858B22951C2977C800BF70AD /* LYTagsViewController.xib in Resources */,
 				AD399EAD1C940D4D00028F23 /* logo46@2x.jpg in Resources */,
@@ -9910,7 +9973,9 @@
 				8550E7221C302A33001FF2DE /* daohang_fabu@3x.png in Resources */,
 				ADFE1B981C994F1D00700EA3 /* loading47@2x.png in Resources */,
 				854CF48A1CA3BEAB00F7F95B /* beerBarTel@2x.png in Resources */,
+				38979B561CAD4DA0002946F5 /* CoinBack@3x.png in Resources */,
 				38E5D7001C103E17004B49D2 /* LPmanager@2x.png in Resources */,
+				38979B541CAD4DA0002946F5 /* CoinBack@1x.png in Resources */,
 				AD399EA21C940D4D00028F23 /* logo35@2x.jpg in Resources */,
 				854CF48B1CA3BEAB00F7F95B /* beerBarTel@3x.png in Resources */,
 				AD106B9B1C0BE898007F5FBA /* LYUserCenterFooter.xib in Resources */,
@@ -10216,6 +10281,7 @@
 				ADF8E1C31C214ECB00943E4D /* LYCache.m in Sources */,
 				ADF88E9E1C1197C400CF5DED /* MJRefreshBackFooter.m in Sources */,
 				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
+				38979B6F1CAE6263002946F5 /* ZSApplyStatusModel.m in Sources */,
 				38E5D6D11C0EC2DA004B49D2 /* LPAlertView.m in Sources */,
 				854CC9851C325B8C00A6CA60 /* LYFriendsChangeImageMenuView.m in Sources */,
 				A2FD577D1BAFE97000CFFF92 /* FBTaoCanSectionBottom.m in Sources */,
@@ -10370,6 +10436,7 @@
 				15013AF61BBA33BE00061FAF /* NSData+ImageContentType.m in Sources */,
 				D747142B1BAD151400611579 /* MainTabbarViewController.m in Sources */,
 				15EB35131BD26CC800BA6161 /* PTTaoCanDetailCell.m in Sources */,
+				38979B431CAD46B1002946F5 /* CoinPlayViewController.m in Sources */,
 				853CB74D1CAA24BE006FC768 /* ZSTiXianRecordViewController.m in Sources */,
 				38EE91A61C3BE0A800361D07 /* Reachability.m in Sources */,
 				A2F9DA821BAA9A4D009DEAF3 /* XiaoFeiMaUiew.m in Sources */,

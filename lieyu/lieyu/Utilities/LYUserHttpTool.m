@@ -1456,4 +1456,23 @@
     }];
 }
 
+#pragma mark - 获取专属经理申请的状态
++ (void)getZSJLStatusComplete:(void (^)(ZSApplyStatusModel *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_GET_ZSJLSTATUS baseURL:LY_SERVER params:nil success:^(id response) {
+        NSString *errorCode = [response valueForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            ZSApplyStatusModel *model = [ZSApplyStatusModel mj_objectWithKeyValues:[response objectForKey:@"data"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(model);
+            });
+        }else{
+            
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
 @end
