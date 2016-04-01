@@ -29,6 +29,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    __weak __typeof(self) weakSelf = self;
+    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
+        _balance = balance;
+        _label_balance.text = [NSString stringWithFormat:@"¥%.2f",_balance.balances.floatValue];
+        _moneyArray = @[_balance.activeAmount,_balance.withdrawalsSum];
+        [weakSelf.tableview reloadData];
+    }];
 }
 
 - (void)viewDidLoad {

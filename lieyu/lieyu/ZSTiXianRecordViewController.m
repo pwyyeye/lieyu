@@ -110,6 +110,9 @@
         
         _dataArray = dateMutablearray;
         [_tableview reloadData];
+        [_tableview.mj_header endRefreshing];
+        if(dataArray.count == 0) [_tableview.mj_footer endRefreshingWithNoMoreData];
+        else [_tableview.mj_footer endRefreshing];
     }];
 }
 
