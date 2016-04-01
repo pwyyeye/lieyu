@@ -65,9 +65,10 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 
     
     _navigationController= (UINavigationController *)self.window.rootViewController;
-    _navigationController.delegate = self;
+//    _navigationController.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];
     
+
 //    NSError *setCategoryErr=nil;
 //    NSError *activationErr=nil;
 //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
@@ -87,7 +88,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         view.view=_intro;
         self.window.rootViewController=view;
     }else{
-        [self animationWithApp];
+//        [self animationWithApp];
     }
 
     [self startLocation];

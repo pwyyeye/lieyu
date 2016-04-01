@@ -7,6 +7,7 @@
 //
 
 #import "LYBaseTableViewController.h"
+#import "LYNavigationController.h"
 
 @interface LYBaseTableViewController ()
 
@@ -18,8 +19,11 @@
     [super viewDidLoad];
   //  self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
-    self.automaticallyAdjustsScrollViewInsets=1;
-    //    self.automaticallyAdjustsScrollViewInsets = NO;
+  
+    
+//    self.automaticallyAdjustsScrollViewInsets=1;
+        self.automaticallyAdjustsScrollViewInsets = YES;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
 //    self.navigationController.navigationBar.barTintColor=RGB(35, 166, 116);
     //若为yesnavigationBar背景 会有50％的透明
 //    self.navigationController.navigationBar.translucent = YES;
