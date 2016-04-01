@@ -52,13 +52,13 @@
      
 }
 
-- (void)backClick{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
+- (void)backClick{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)logout{

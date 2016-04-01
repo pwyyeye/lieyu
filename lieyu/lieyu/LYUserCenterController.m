@@ -114,7 +114,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    [self.navigationController setNavigationBarHidden:NO animated:YES];
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewEnd:self.title];
     }
@@ -272,6 +272,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
             conversationVC.navigationItem.leftBarButtonItem = item;
             [self.navigationController pushViewController:conversationVC animated:YES];
+            [conversationVC.navigationController setNavigationBarHidden:NO animated:YES];
             break;
         }
         case 4:// 扫一扫

@@ -80,19 +80,9 @@
 
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden=YES;
-}
--(void)viewWillLayoutSubviews{
-    [super  viewWillLayoutSubviews];
-    self.navigationController.navigationBarHidden=NO;
-    
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 - (void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
