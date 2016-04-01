@@ -624,6 +624,7 @@
 		38979B671CAE2BE1002946F5 /* CoinStart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B641CAE2BE1002946F5 /* CoinStart@2x.png */; };
 		38979B681CAE2BE1002946F5 /* CoinStart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B651CAE2BE1002946F5 /* CoinStart@3x.png */; };
 		38979B6C1CAE5466002946F5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B6B1CAE5466002946F5 /* coinPlay.png */; };
+		38979B6F1CAE6263002946F5 /* ZSApplyStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */; };
 		389C01021C1488EF00FE9412 /* seeAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00F91C1488EF00FE9412 /* seeAll.png */; };
 		389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FA1C1488EF00FE9412 /* seeAll@2x.png */; };
 		389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FB1C1488EF00FE9412 /* seeAll@3x.png */; };
@@ -2589,6 +2590,8 @@
 		38979B641CAE2BE1002946F5 /* CoinStart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@2x.png"; sourceTree = "<group>"; };
 		38979B651CAE2BE1002946F5 /* CoinStart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@3x.png"; sourceTree = "<group>"; };
 		38979B6B1CAE5466002946F5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
+		38979B6D1CAE6263002946F5 /* ZSApplyStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSApplyStatusModel.h; sourceTree = "<group>"; };
+		38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSApplyStatusModel.m; sourceTree = "<group>"; };
 		389C00F91C1488EF00FE9412 /* seeAll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeAll.png; sourceTree = "<group>"; };
 		389C00FA1C1488EF00FE9412 /* seeAll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@2x.png"; sourceTree = "<group>"; };
 		389C00FB1C1488EF00FE9412 /* seeAll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@3x.png"; sourceTree = "<group>"; };
@@ -7620,6 +7623,8 @@
 			children = (
 				AD106BC01C0E9593007F5FBA /* OrderTTL.h */,
 				AD106BC11C0E9593007F5FBA /* OrderTTL.m */,
+				38979B6D1CAE6263002946F5 /* ZSApplyStatusModel.h */,
+				38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -10146,6 +10151,7 @@
 				ADF8E1C31C214ECB00943E4D /* LYCache.m in Sources */,
 				ADF88E9E1C1197C400CF5DED /* MJRefreshBackFooter.m in Sources */,
 				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
+				38979B6F1CAE6263002946F5 /* ZSApplyStatusModel.m in Sources */,
 				38E5D6D11C0EC2DA004B49D2 /* LPAlertView.m in Sources */,
 				854CC9851C325B8C00A6CA60 /* LYFriendsChangeImageMenuView.m in Sources */,
 				A2FD577D1BAFE97000CFFF92 /* FBTaoCanSectionBottom.m in Sources */,

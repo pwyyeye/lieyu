@@ -113,5 +113,7 @@
 //获取话题列表
 #define LP_GET_TOPICLIST @"lyTopicTypeAction.do?action=list"
 
+//获取专属经理状态
+#define LP_GET_ZSJLSTATUS @"lyUsersVipApplyAction.do?action=expand"
 
 #endif

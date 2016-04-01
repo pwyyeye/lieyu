@@ -69,12 +69,12 @@
     locX = locInSelf.x;
     locY = locInSelf.y;
     
-    if (SCREEN_WIDTH == 414 && SCREEN_HEIGHT == 736) {
-        [_imageCoin setFrame:CGRectMake(locInSelf.x - 64, locInSelf.y - 64, 128, 128)];
-        
-    }else{
-        [_imageCoin setFrame:CGRectMake(locInSelf.x - 70, locInSelf.y - 70, 140, 140)];
-    }
+//    if (SCREEN_WIDTH == 414 && SCREEN_HEIGHT == 736) {
+//        [_imageCoin setFrame:CGRectMake(locInSelf.x - 64, locInSelf.y - 64, 128, 128)];
+//        
+//    }else{
+        [_imageCoin setFrame:CGRectMake(locInSelf.x - 70, locInSelf.y - 70, 154, 154)];
+//    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
