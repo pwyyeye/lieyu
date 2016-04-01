@@ -612,18 +612,18 @@
 		38979AF11CAB7DD7002946F5 /* duima@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979AEF1CAB7DD7002946F5 /* duima@3x.png */; };
 		38979B401CAD2144002946F5 /* CoinMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B3F1CAD2144002946F5 /* CoinMainViewController.m */; };
 		38979B431CAD46B1002946F5 /* CoinPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B421CAD46B1002946F5 /* CoinPlayViewController.m */; };
-		38979B4E1CAD4D24002946F5 /* CoinStart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B4B1CAD4D24002946F5 /* CoinStart@2x.png */; };
-		38979B4F1CAD4D24002946F5 /* CoinStart@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B4C1CAD4D24002946F5 /* CoinStart@1x.png */; };
-		38979B501CAD4D24002946F5 /* CoinStart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B4D1CAD4D24002946F5 /* CoinStart@3x.png */; };
 		38979B541CAD4DA0002946F5 /* CoinBack@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B511CAD4DA0002946F5 /* CoinBack@1x.png */; };
 		38979B551CAD4DA0002946F5 /* CoinBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B521CAD4DA0002946F5 /* CoinBack@2x.png */; };
 		38979B561CAD4DA0002946F5 /* CoinBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B531CAD4DA0002946F5 /* CoinBack@3x.png */; };
 		38979B5A1CAD503A002946F5 /* coinBackground@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B571CAD503A002946F5 /* coinBackground@1x.png */; };
 		38979B5B1CAD503A002946F5 /* coinBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B581CAD503A002946F5 /* coinBackground@2x.png */; };
 		38979B5C1CAD503A002946F5 /* coinBackground@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B591CAD503A002946F5 /* coinBackground@3x.png */; };
-		38979B5E1CAD5E48002946F5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B5D1CAD5E48002946F5 /* coinPlay.png */; };
 		38979B611CAD6421002946F5 /* coinBack4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38979B5F1CAD6421002946F5 /* coinBack4.jpg */; };
 		38979B621CAD6421002946F5 /* coinBack5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38979B601CAD6421002946F5 /* coinBack5.jpg */; };
+		38979B661CAE2BE1002946F5 /* CoinStart@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B631CAE2BE1002946F5 /* CoinStart@1x.png */; };
+		38979B671CAE2BE1002946F5 /* CoinStart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B641CAE2BE1002946F5 /* CoinStart@2x.png */; };
+		38979B681CAE2BE1002946F5 /* CoinStart@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B651CAE2BE1002946F5 /* CoinStart@3x.png */; };
+		38979B6C1CAE5466002946F5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38979B6B1CAE5466002946F5 /* coinPlay.png */; };
 		389C01021C1488EF00FE9412 /* seeAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00F91C1488EF00FE9412 /* seeAll.png */; };
 		389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FA1C1488EF00FE9412 /* seeAll@2x.png */; };
 		389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FB1C1488EF00FE9412 /* seeAll@3x.png */; };
@@ -2577,18 +2577,18 @@
 		38979B3F1CAD2144002946F5 /* CoinMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinMainViewController.m; sourceTree = "<group>"; };
 		38979B411CAD46B1002946F5 /* CoinPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinPlayViewController.h; sourceTree = "<group>"; };
 		38979B421CAD46B1002946F5 /* CoinPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinPlayViewController.m; sourceTree = "<group>"; };
-		38979B4B1CAD4D24002946F5 /* CoinStart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@2x.png"; sourceTree = "<group>"; };
-		38979B4C1CAD4D24002946F5 /* CoinStart@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@1x.png"; sourceTree = "<group>"; };
-		38979B4D1CAD4D24002946F5 /* CoinStart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@3x.png"; sourceTree = "<group>"; };
 		38979B511CAD4DA0002946F5 /* CoinBack@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@1x.png"; sourceTree = "<group>"; };
 		38979B521CAD4DA0002946F5 /* CoinBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@2x.png"; sourceTree = "<group>"; };
 		38979B531CAD4DA0002946F5 /* CoinBack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@3x.png"; sourceTree = "<group>"; };
 		38979B571CAD503A002946F5 /* coinBackground@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@1x.png"; sourceTree = "<group>"; };
 		38979B581CAD503A002946F5 /* coinBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@2x.png"; sourceTree = "<group>"; };
 		38979B591CAD503A002946F5 /* coinBackground@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@3x.png"; sourceTree = "<group>"; };
-		38979B5D1CAD5E48002946F5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
 		38979B5F1CAD6421002946F5 /* coinBack4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack4.jpg; sourceTree = "<group>"; };
 		38979B601CAD6421002946F5 /* coinBack5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack5.jpg; sourceTree = "<group>"; };
+		38979B631CAE2BE1002946F5 /* CoinStart@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@1x.png"; sourceTree = "<group>"; };
+		38979B641CAE2BE1002946F5 /* CoinStart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@2x.png"; sourceTree = "<group>"; };
+		38979B651CAE2BE1002946F5 /* CoinStart@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinStart@3x.png"; sourceTree = "<group>"; };
+		38979B6B1CAE5466002946F5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
 		389C00F91C1488EF00FE9412 /* seeAll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeAll.png; sourceTree = "<group>"; };
 		389C00FA1C1488EF00FE9412 /* seeAll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@2x.png"; sourceTree = "<group>"; };
 		389C00FB1C1488EF00FE9412 /* seeAll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@3x.png"; sourceTree = "<group>"; };
@@ -5734,13 +5734,13 @@
 			children = (
 				38979B5F1CAD6421002946F5 /* coinBack4.jpg */,
 				38979B601CAD6421002946F5 /* coinBack5.jpg */,
-				38979B5D1CAD5E48002946F5 /* coinPlay.png */,
+				38979B6B1CAE5466002946F5 /* coinPlay.png */,
 				38979B571CAD503A002946F5 /* coinBackground@1x.png */,
 				38979B581CAD503A002946F5 /* coinBackground@2x.png */,
 				38979B591CAD503A002946F5 /* coinBackground@3x.png */,
-				38979B4C1CAD4D24002946F5 /* CoinStart@1x.png */,
-				38979B4B1CAD4D24002946F5 /* CoinStart@2x.png */,
-				38979B4D1CAD4D24002946F5 /* CoinStart@3x.png */,
+				38979B631CAE2BE1002946F5 /* CoinStart@1x.png */,
+				38979B641CAE2BE1002946F5 /* CoinStart@2x.png */,
+				38979B651CAE2BE1002946F5 /* CoinStart@3x.png */,
 				38979B511CAD4DA0002946F5 /* CoinBack@1x.png */,
 				38979B521CAD4DA0002946F5 /* CoinBack@2x.png */,
 				38979B531CAD4DA0002946F5 /* CoinBack@3x.png */,
@@ -8955,7 +8955,6 @@
 				15ED327F1BE336C400E086A1 /* YaoSettingViewController.xib in Resources */,
 				ADFE1B8E1C994F1D00700EA3 /* loading38@2x.png in Resources */,
 				38E72B571C15A18E002EFBDD /* ChiHeViewController.xib in Resources */,
-				38979B501CAD4D24002946F5 /* CoinStart@3x.png in Resources */,
 				85416E1C1C92EB100016BF0B /* 订单通知@3x.png in Resources */,
 				8551B4F51C8EB8FA0057F0E7 /* UserNotificationTableViewCell.xib in Resources */,
 				851806801C2E797600006804 /* LYFriendsUserHeaderView.xib in Resources */,
@@ -9055,6 +9054,7 @@
 				85F5453C1C1408040013B92B /* circleWhite@2x.png in Resources */,
 				AD399E901C940D4D00028F23 /* logo17@2x.jpg in Resources */,
 				15B866861BE0776D002E2BB6 /* LYMyFriendViewController.xib in Resources */,
+				38979B681CAE2BE1002946F5 /* CoinStart@3x.png in Resources */,
 				AD399E8C1C940D4D00028F23 /* logo13@2x.jpg in Resources */,
 				38979AA51CA40919002946F5 /* sad9.png in Resources */,
 				8549B04B1CAB71EA002DC462 /* zsQRCodeScan@3x.png in Resources */,
@@ -9241,6 +9241,7 @@
 				52D4F9A71C57B2B700691BEF /* 价格@3x.png in Resources */,
 				ADE1C5C61C730E1C0011D4AB /* 更新17@2x.png in Resources */,
 				853C4C861C311A9900D48BA2 /* dizhi_icon@3x.png in Resources */,
+				38979B661CAE2BE1002946F5 /* CoinStart@1x.png in Resources */,
 				ADAFCD341CA0E261008BF959 /* comeon.jpg in Resources */,
 				52D4F9A41C57B2B700691BEF /* 附近@2x.png in Resources */,
 				ADFE1BA41C994F1D00700EA3 /* loading58@2x.png in Resources */,
@@ -9290,6 +9291,7 @@
 				ADFE1B881C994F1D00700EA3 /* loading32@2x.png in Resources */,
 				858B3A271C7A05C6000C6589 /* date@3x.png in Resources */,
 				D7A230D41BA7259100E8B51B /* LYAdBannerCell.xib in Resources */,
+				38979B6C1CAE5466002946F5 /* coinPlay.png in Resources */,
 				385664A31C731D89000DCFA5 /* music_HD@3x.png in Resources */,
 				3812C54F1C57B76100F4DD6B /* add_purper@3x.png in Resources */,
 				38979A401CA40919002946F5 /* dianzan8.png in Resources */,
@@ -9540,7 +9542,6 @@
 				38E5D7E81C12DC43004B49D2 /* icon_collect@3x.png in Resources */,
 				3879F26F1C0D557400B72629 /* DetailTableViewCell.xib in Resources */,
 				A20100CB1BA9212A009283D1 /* ZSCustomerDetailViewController.xib in Resources */,
-				38979B5E1CAD5E48002946F5 /* coinPlay.png in Resources */,
 				38E5D7A41C113879004B49D2 /* gray_add@2x.png in Resources */,
 				15571BC31BE998D7006F73D0 /* YaoYiYaoViewController4.xib in Resources */,
 				381A01EC1C14301A00592485 /* fanli@2x.png in Resources */,
@@ -9673,6 +9674,7 @@
 				38B11C081C92AFC200AD3EB8 /* QRCode@2x.png in Resources */,
 				ADFE1B931C994F1D00700EA3 /* loading42@2x.png in Resources */,
 				853D3AC01C35347A00B4FEAD /* dabofangqi_icon.png in Resources */,
+				38979B671CAE2BE1002946F5 /* CoinStart@2x.png in Resources */,
 				ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */,
 				385664B91C756CE4000DCFA5 /* AllAction.xib in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
@@ -9927,7 +9929,6 @@
 				380659A21C53522A003094C9 /* image_Selected@3x.png in Resources */,
 				15E184891BB5214F00681BB2 /* LYChooseJiuBaViewController.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
-				38979B4E1CAD4D24002946F5 /* CoinStart@2x.png in Resources */,
 				AD399E9A1C940D4D00028F23 /* logo27@2x.jpg in Resources */,
 				85EC69FA1C17D4A10082AA3E /* sorry.gif in Resources */,
 				ADE1C5D11C730E1C0011D4AB /* 更新28@2x.png in Resources */,
@@ -9957,7 +9958,6 @@
 				8551B5171C8ECF730057F0E7 /* 评论@2x.png in Resources */,
 				38979A371CA40919002946F5 /* dianzan21.png in Resources */,
 				38D8764F1C170DB200E2F284 /* PayNow.png in Resources */,
-				38979B4F1CAD4D24002946F5 /* CoinStart@1x.png in Resources */,
 				AD399EB21C940D4D00028F23 /* logo51@2x.jpg in Resources */,
 				AD4EA8671C5476AF0056E560 /* launchImage@3x.png in Resources */,
 				853BCC9F1C76E90500DE0324 /* 收藏whited@3x.png in Resources */,

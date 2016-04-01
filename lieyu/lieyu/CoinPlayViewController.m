@@ -8,7 +8,11 @@
 
 #import "CoinPlayViewController.h"
 
-@interface CoinPlayViewController ()
+@interface CoinPlayViewController (){
+    double locX;
+    double locY;
+    BOOL isEnd;
+}
 @property (nonatomic, strong) UIImageView *imageCoin;
 @end
 
@@ -19,11 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:NO];
     UIButton *button = [[UIButton alloc]init];
-    [button setBackgroundColor:[UIColor brownColor]];
+    [button setBackgroundColor:[UIColor clearColor]];
     [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:imageView];
     if (SCREEN_WIDTH == 320 && SCREEN_HEIGHT == 480) {
         [imageView setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"coinBack4" ofType:@"jpg"]]];
         [button setFrame:CGRectMake(12, 32, 61, 61)];
@@ -38,11 +42,20 @@
             [button setFrame:CGRectMake(34, 40, 65, 65)];
         }
     }
-    [self.view addSubview:imageView];
     
     [self.view addSubview:button];
 //    [self.view bringSubviewToFront:button];
 //    [self.view setBackgroundColor:[UIColor grayColor]];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:NO];
 }
 
 - (void)back{
@@ -53,6 +66,9 @@
     CGPoint locInSelf = [touch locationInView:self.view];
 //    CGPoint locInWin = [touch locationInView:nil];
     NSLog(@"    touch.locationInView = {%2.3f, %2.3f}", locInSelf.x, locInSelf.y);
+    locX = locInSelf.x;
+    locY = locInSelf.y;
+    
     if (SCREEN_WIDTH == 414 && SCREEN_HEIGHT == 736) {
         [_imageCoin setFrame:CGRectMake(locInSelf.x - 64, locInSelf.y - 64, 128, 128)];
         
@@ -65,8 +81,10 @@
 //    CGPoint *point = [touches locatio]
 //    NSLog(@"%@---%@",touches.)
     
-    _imageCoin = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"coinPlay" ofType:@"png"]]];
-    [self.view addSubview:_imageCoin];
+    if (!_imageCoin) {
+        _imageCoin = [[UIImageView alloc]initWithImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"coinPlay" ofType:@"png"]]];
+        [self.view addSubview:_imageCoin];
+    }
     
     for (UITouch *touch in event.allTouches) {
         [self logtouchInfo:touch];
@@ -80,22 +98,18 @@
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [_imageCoin removeFromSuperview];
+    isEnd = YES;
+    if (isEnd == YES && (locX <= 20 || locX >= SCREEN_WIDTH - 20 || locY <= 20 || locY >= SCREEN_HEIGHT - 20) ) {
+        [_imageCoin removeFromSuperview];
+        _imageCoin = nil;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//    [super didReceiveMemoryWarning];
+    
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

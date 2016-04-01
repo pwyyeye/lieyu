@@ -1803,6 +1803,7 @@
 //    }
 }
 
+#pragma mark - 举报弹框
 - (void)jubaoDT{
 //    if(!_index){
 //        NSArray *dataArr = _dataArray[_index];

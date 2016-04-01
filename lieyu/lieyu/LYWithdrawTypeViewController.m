@@ -37,8 +37,16 @@
 - (void)initAllPropertites{
     self.title = @"提现操作";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.accountLbl setText:[NSString stringWithFormat:@"%@ (%@)",_type,_account]];
-    [self.balanceLbl setText:[NSString stringWithFormat:@"¥%@",_balance]];
+    if (!_type.length || !_account.length) {
+        [self.accountLbl setText:@"请先去绑定账号！"];
+    }else{
+        [self.accountLbl setText:[NSString stringWithFormat:@"%@ (%@)",_type,_account]];
+    }
+    if (!_balance.length) {
+        [self.balanceLbl setText:@"0.00"];
+    }else{
+        [self.balanceLbl setText:[NSString stringWithFormat:@"¥%@",_balance]];
+    }
     
     self.textview.delegate = self;
     self.textview.placeholder = _balance;
@@ -112,13 +120,14 @@
 - (void)chooseWithdrawTime:(UIButton *)button{
     for (UIButton *btn in self.chooseButtons) {
         if (btn.tag == button.tag) {
-            isTody = btn.tag - 1;
+            isTody = (int)btn.tag - 1;
             btn.selected = YES;
             [_introduceLbl setText:[introArray objectAtIndex:btn.tag - 1]];
         }else{
             btn.selected = NO;
         }
     }
+    [self textFieldDidEndEditing:_textview];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
@@ -143,19 +152,33 @@
                     [MyUtil showCleanMessage:@"请输入正确金额！"];
 //                });
             }else{
+                if([fieldText doubleValue] < 2 && !isTody){
+                    [self.withdrawBtn setBackgroundColor:RGBA(153, 153, 153, 1)];
+                    [self.withdrawBtn setEnabled:NO];
+                    [MyUtil showCleanMessage:@"提现金额不可少于两元！"];
+                }else{
+                    
+                    [self.withdrawBtn setBackgroundColor:RGB(186, 40, 227)];
+                    [self.withdrawBtn setEnabled:YES];
+                }
+            }
+        }else{
+            if([fieldText doubleValue] < 2 && !isTody){
+                [self.withdrawBtn setBackgroundColor:RGBA(153, 153, 153, 1)];
+                [self.withdrawBtn setEnabled:NO];
+                [MyUtil showCleanMessage:@"提现金额不可少于两元！"];
+            }else{
+                
                 [self.withdrawBtn setBackgroundColor:RGB(186, 40, 227)];
                 [self.withdrawBtn setEnabled:YES];
             }
-        }else{
-            [self.withdrawBtn setBackgroundColor:RGB(186, 40, 227)];
-            [self.withdrawBtn setEnabled:YES];
         }
     }else{
         [self.withdrawBtn setBackgroundColor:RGBA(153, 153, 153, 1)];
         [self.withdrawBtn setEnabled:NO];
 //        [MyUtil showLikePlaceMessage:@"请输入正确金额！"];
 //        dispatch_async(dispatch_get_main_queue(), ^{
-            [MyUtil showCleanMessage:@"请输入正确金额！"];
+            [MyUtil showCleanMessage:@"提现金额不可多于账户余额！"];
 //        });
     }
 }
