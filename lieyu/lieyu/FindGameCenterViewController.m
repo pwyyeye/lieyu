@@ -12,7 +12,8 @@
 #import "GameList.h"
 #import "LYHomePageHttpTool.h"
 #import "GamePlayViewController.h"
-#import "CoinMainViewController.h"
+#import "LYNavigationController.h"
+#import "FingerMainViewController.h"
 #define FINDGAMENAME_MTA @"FINDGAMENAME"
 
 @interface FindGameCenterViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
@@ -35,6 +36,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    LYNavigationController *nav = (LYNavigationController *)self.navigationController;
+    nav.cj_canDragBack = YES;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -82,6 +85,11 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    FingerMainViewController *finger = [FingerMainViewController new];
+    [self.navigationController pushViewController:finger animated:YES];
+    return;
+    
     if(_gameListArray.count <= indexPath.item) return;
 //    GameList *gList = _gameListArray[indexPath.item];
 //    GamePlayViewController *gamePlayVC = [[GamePlayViewController alloc]init];

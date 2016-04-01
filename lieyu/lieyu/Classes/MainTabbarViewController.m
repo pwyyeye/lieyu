@@ -34,7 +34,7 @@
     [self setupViewStyles];
     self.delegate=self;
     
-    [RCIM sharedRCIM].receiveMessageDelegate=self;
+    [RCIM sharedRCIM].receiveMessageDelegate=self;   
     
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabbarChagne) name:RECEIVES_MESSAGE object:nil];

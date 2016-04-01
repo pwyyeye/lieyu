@@ -16,7 +16,8 @@
 #import "FriendsPicAndVideoModel.h"
 #import "LYFriendsMessageDetailViewController.h"
 
-@interface LYFriendsTopicViewController ()<UIActionSheetDelegate,ImagePickerFinish,sendBackVedioAndImage>{
+@interface LYFriendsTopicViewController ()<UIActionSheetDelegate,ImagePickerFinish,sendBackVedioAndImage,UIImagePickerControllerDelegate,
+UINavigationControllerDelegate>{
     NSInteger _pageStartCount,_pageCount;
     UIVisualEffectView *_effectView;
     UIButton *_carmerBtn;
@@ -134,6 +135,25 @@
     
 }
 
+#pragma mark 选择拍照或拍摄后的操作
+- (UIImagePickerController *)imagePicker{
+    _imagePicker = [[UIImagePickerController alloc]init];
+    if([_typeOfImagePicker isEqualToString:@"takePhoto"]){//拍照
+        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//拍照
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
+        _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+    }else if([_typeOfImagePicker isEqualToString:@"filming"]){//小视频
+        _imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
+        _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//摄影
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
+        _imagePicker.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
+        _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头模式
+        _imagePicker.videoMaximumDuration = 10;
+    }
+    _imagePicker.editing = YES;
+    _imagePicker.delegate = self;
+    return _imagePicker;
+}
 
 #pragma mark - 作为代理收取视频路径地址与截图
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
