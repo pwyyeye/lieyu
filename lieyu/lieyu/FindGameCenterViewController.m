@@ -14,6 +14,7 @@
 #import "GamePlayViewController.h"
 #import "LYNavigationController.h"
 #import "FingerMainViewController.h"
+#import "CoinMainViewController.h"
 #define FINDGAMENAME_MTA @"FINDGAMENAME"
 
 @interface FindGameCenterViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
