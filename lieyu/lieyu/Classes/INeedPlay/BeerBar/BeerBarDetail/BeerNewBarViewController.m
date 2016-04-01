@@ -90,7 +90,7 @@
     _tableView.separatorColor=[UIColor clearColor];
     //    _tableView.layer.zPosition = 2.0;
     
-    //    self.navigationController.navigationBarHidden=YES;
+    
     _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     [self setupViewStyles];                                                     //tableView registe cell
     
@@ -172,12 +172,6 @@
     }];
 }
 
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-//    [self.navigationController.navigationBar setHidden:YES];
-    [self.navigationController setNavigationBarHidden:YES];
-}
-
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 }
@@ -186,11 +180,6 @@
     [_timer setFireDate:[NSDate distantFuture]];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [effectView removeFromSuperview];
-}
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-//    self.navigationController.navigationBarHidden=NO;
 }
 
 #pragma mart --约束
@@ -791,7 +780,7 @@
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"4";
-    friendDetailViewController.navigationController.navigationBarHidden = NO;
+    [friendDetailViewController.navigationController setNavigationBarHidden:NO animated:YES];
     friendDetailViewController.customerModel=addressBook;
     friendDetailViewController.userID = [NSString stringWithFormat:@"%d",addressBook.userid];
     [self.navigationController pushViewController:friendDetailViewController animated:YES];

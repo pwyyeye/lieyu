@@ -33,7 +33,7 @@
     PAGESIZE = 40;
     self.title = @"所有签到";
     
-    [self.navigationController setNavigationBarHidden:NO];
+   
     self.navigationController.title = @"所有签到";
 //    if (![[MyUtil deviceString] isEqualToString:@"iPhone 4S"]) {
 //        _tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
@@ -49,17 +49,9 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-    
-}
-
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    
-    [self.navigationController.navigationBar setHidden:NO];
-    [self.navigationController setNavigationBarHidden:NO];
+     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)getData{

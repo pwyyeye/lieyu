@@ -33,6 +33,11 @@
     [self getData];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)getData{
 //    NSDictionary *paraDic =
     __weak __typeof(self) weakSelf = self;
