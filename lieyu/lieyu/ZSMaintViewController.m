@@ -117,10 +117,7 @@
     [_balanceButton addTarget:self action:@selector(pushMyReceived) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:_balanceButton];
     
-    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
-        _balance = balance;
-        [_balanceButton setTitle:[NSString stringWithFormat:@"%.2f",_balance.balances.floatValue] forState:UIControlStateNormal];
-    }];
+    
     
     UILabel *balanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 * 3 - 28, CGRectGetMaxY(_balanceButton.frame) + 11, 56, 18)];
     balanceLabel.text = @"余额";
@@ -160,7 +157,10 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
+    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
+        _balance = balance;
+        [_balanceButton setTitle:[NSString stringWithFormat:@"%.2f",_balance.balances.floatValue] forState:UIControlStateNormal];
+    }];
     //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
 }
 

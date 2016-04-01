@@ -129,21 +129,37 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchTopicCell"];
+    
+    UIImageView *imgV = (UIImageView *) [cell viewWithTag:10086];
+    if (imgV) {
+        [imgV removeFromSuperview];
+    }
+    
+    UILabel *label = (UILabel *) [cell viewWithTag:10010];
+    if (label) {
+        [label removeFromSuperview];
+    }
+    
     UIImageView *imageView;
     UILabel *TopicLabel;
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchTopicCell"];
-        imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 35, 35)];
-        imageView.layer.cornerRadius = 17.5;
-        imageView.layer.masksToBounds = YES;
-        
-        TopicLabel = [[UILabel alloc]initWithFrame:CGRectMake(65, 18, SCREEN_WIDTH - 75, 15)];
-        [TopicLabel setTextColor:[UIColor blackColor]];
-        [TopicLabel setFont:[UIFont systemFontOfSize:14]];
-        
-        [cell addSubview:imageView];
-        [cell addSubview:TopicLabel];
     }
+    
+    
+    
+    imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 35, 35)];
+    imageView.layer.cornerRadius = 17.5;
+    imageView.layer.masksToBounds = YES;
+    imageView.tag = 10086;
+    
+    TopicLabel = [[UILabel alloc]initWithFrame:CGRectMake(65, 18, SCREEN_WIDTH - 75, 15)];
+    TopicLabel.tag = 10010;
+    [TopicLabel setTextColor:[UIColor blackColor]];
+    [TopicLabel setFont:[UIFont systemFontOfSize:14]];
+    
+    [cell addSubview:imageView];
+    [cell addSubview:TopicLabel];
     if (indexPath.section == 0) {
         TopicModel *model = [newHotTopic objectAtIndex:indexPath.row];
         TopicLabel.text = model.name;
