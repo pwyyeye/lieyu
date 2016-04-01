@@ -7,45 +7,49 @@
 //
 
 #import "CoinMainViewController.h"
-
+#import "CoinPlayViewController.h"
 @interface CoinMainViewController ()
 
 @end
 
 @implementation CoinMainViewController
-- (void)viewWillAppear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:YES];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self initView];
 }
 
 - (void)initView{
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"coinBackground"]];
+    [imageView setContentMode:UIViewContentModeScaleAspectFill];
     [imageView setFrame:self.view.bounds];
     [self.view addSubview:imageView];
     
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 20, 80, 40)];
-    [backButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 20, 80, 40)];
+    [backButton setImage:[UIImage imageNamed:@"CoinBack"] forState:UIControlStateNormal];
     [backButton setBackgroundColor:[UIColor clearColor]];
     [backButton addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
     
-    UIButton *startButton = [[UIButton alloc]initWithFrame:CGRectMake(20, 20, 80, 40)];
-    [startButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+    UIButton *startButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 16, SCREEN_HEIGHT / 19 * 12, SCREEN_WIDTH / 8 * 7, SCREEN_HEIGHT / 19 * 6)];
+    [startButton setImage:[UIImage imageNamed:@"CoinStart"] forState:UIControlStateNormal];
     [startButton setBackgroundColor:[UIColor clearColor]];
     [startButton addTarget:self action:@selector(startClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:startButton];
+    
+    if(SCREEN_WIDTH == 320 && SCREEN_HEIGHT == 480){
+        [backButton setFrame:CGRectMake(0, 20, 80, 40)];
+        [startButton setFrame:CGRectMake(SCREEN_WIDTH / 16, SCREEN_HEIGHT / 19 * 13, SCREEN_WIDTH / 8 * 7, SCREEN_HEIGHT / 19 * 6)];
+    }
 }
 
 - (void)backClick{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)startClick{
-    
+    CoinPlayViewController *coinPlayVC = [[CoinPlayViewController alloc]init];
+    [self presentViewController:coinPlayVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

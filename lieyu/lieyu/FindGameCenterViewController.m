@@ -12,6 +12,7 @@
 #import "GameList.h"
 #import "LYHomePageHttpTool.h"
 #import "GamePlayViewController.h"
+#import "CoinMainViewController.h"
 #define FINDGAMENAME_MTA @"FINDGAMENAME"
 
 @interface FindGameCenterViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
@@ -77,12 +78,15 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if(_gameListArray.count <= indexPath.item) return;
-    GameList *gList = _gameListArray[indexPath.item];
-    GamePlayViewController *gamePlayVC = [[GamePlayViewController alloc]init];
-    gamePlayVC.gameLink = gList.gameLink;
-    [self presentViewController:gamePlayVC animated:YES completion:nil];
-    
-    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:FINDGAMENAME_MTA titleName:gList.gameName]];
+//    GameList *gList = _gameListArray[indexPath.item];
+//    GamePlayViewController *gamePlayVC = [[GamePlayViewController alloc]init];
+//    gamePlayVC.gameLink = gList.gameLink;
+//    [self presentViewController:gamePlayVC animated:YES completion:nil];
+//    
+//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:FINDGAMENAME_MTA titleName:gList.gameName]];
+    CoinMainViewController *coinMainVC = [[CoinMainViewController alloc]init];
+//    [self.navigationController pushViewController:coinMainVC animated:YES];
+    [self presentViewController:coinMainVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
