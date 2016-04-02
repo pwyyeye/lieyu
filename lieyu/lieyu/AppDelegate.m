@@ -88,7 +88,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         view.view=_intro;
         self.window.rootViewController=view;
     }else{
-//        [self animationWithApp];
+        [self animationWithApp];
     }
 
     [self startLocation];

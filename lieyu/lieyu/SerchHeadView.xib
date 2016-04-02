@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SerchHeadView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSg-01-mCF">
@@ -37,27 +37,17 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lLE-Jy-biB">
-                    <rect key="frame" x="0.0" y="48" width="320" height="12"/>
-                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="12" id="3hE-rG-v3A"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="tfQ-s3-bQa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="B16-MQ-7wm"/>
-                <constraint firstItem="lLE-Jy-biB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="H2a-Ng-BQM"/>
                 <constraint firstAttribute="trailing" secondItem="CSg-01-mCF" secondAttribute="trailing" constant="15" id="LJX-ds-s7o"/>
                 <constraint firstItem="CSg-01-mCF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="UFz-uJ-L5K"/>
                 <constraint firstItem="CSg-01-mCF" firstAttribute="top" secondItem="tfQ-s3-bQa" secondAttribute="bottom" constant="2" id="UHI-b3-TvT"/>
                 <constraint firstAttribute="trailing" secondItem="tfQ-s3-bQa" secondAttribute="trailing" constant="53" id="gnM-jm-Ys2"/>
-                <constraint firstAttribute="trailing" secondItem="lLE-Jy-biB" secondAttribute="trailing" id="hbz-xt-TOC"/>
                 <constraint firstItem="jSG-fT-uZa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="19" id="iaz-25-Fhx"/>
                 <constraint firstItem="tfQ-s3-bQa" firstAttribute="leading" secondItem="jSG-fT-uZa" secondAttribute="trailing" constant="4" id="ryD-cF-rWn"/>
                 <constraint firstItem="jSG-fT-uZa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="xpH-Gm-7LN"/>
-                <constraint firstAttribute="bottom" secondItem="lLE-Jy-biB" secondAttribute="bottom" id="zGo-pW-BHN"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -65,7 +55,7 @@
                 <outlet property="lineLal" destination="CSg-01-mCF" id="x9P-SI-Mup"/>
                 <outlet property="serchText" destination="tfQ-s3-bQa" id="noS-Z2-eZU"/>
             </connections>
-            <point key="canvasLocation" x="282" y="26.5"/>
+            <point key="canvasLocation" x="282" y="17.5"/>
         </view>
     </objects>
     <resources>
