@@ -22,7 +22,11 @@
 #import "IQKeyboardManager.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <RongIMKit/RongIMKit.h>
-@interface ZSOrderViewController ()
+@interface ZSOrderViewController (){
+    int pageCount;
+    int perCount;
+    NSMutableDictionary *nowDic;
+}
 
 @end
 @implementation ZSOrderViewController
@@ -46,8 +50,31 @@
     nowDate=[NSDate new];
     self.title=@"订单管理";
     self.calendarLogic = [[WQCalendarLogic alloc] init];
+    
+    pageCount=1;
+    perCount=10;
+    
+    
     [self getMenuHrizontal];
     [self getDaiXiaoFei];
+    
+    __weak typeof(self) weakSelf = self;
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [weakSelf refreshData];
+    }];
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)self.tableView.mj_header;
+    [self initMJRefeshHeaderForGif:header];
+    // 设置header
+    //    [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    self.tableView.mj_footer =[MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMoreData];
+    }];
+    
+    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)self.tableView.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
+    
+    
+    
     
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
 //orderstatus:
@@ -65,28 +92,112 @@
 //    "consumptionStatus": 0,1  0  不一定去 1 一定去
     // Do any additional setup after loading the view from its nib.
 }
+
+
+#pragma mark 刷新
+-(void)refreshData{
+    pageCount=1;
+    [nowDic removeObjectForKey:@"p"];
+    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+    [self getOrderWithDic:nowDic];
+    
+}
+#pragma mark 下拉加载更多
+-(void)loadMoreData{
+    [nowDic removeObjectForKey:@"p"];
+    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+    [self getOrderWithDicMore:nowDic];
+    
+}
+
+#pragma mark 获取更多订单数据
+-(void)getOrderWithDicMore:(NSDictionary *)dic{
+    __weak __typeof(self)weakSelf = self;
+    [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+        if(result.count>0){
+            [daiXiaoFei addObjectsFromArray:result];
+            pageCount++;
+            [weakSelf.tableView reloadData];
+        }else{
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        
+        
+        
+    }];
+    [self.tableView.mj_footer endRefreshing];
+    
+}
+
+#pragma mark 获取待消费数据
+-(void)getOrderWithDic:(NSDictionary *)dic{
+    [daiXiaoFei removeAllObjects];
+    [serchDaiXiaoFei removeAllObjects];
+    
+    __weak __typeof(self)weakSelf = self;
+    [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+        [daiXiaoFei addObjectsFromArray:result];
+        serchDaiXiaoFei=[daiXiaoFei mutableCopy];
+        
+        if (mMenuHriZontal.selectIndex==0) {
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"SerchHeadView" owner:nil options:nil];
+            SerchHeadView *serchHeadView= (SerchHeadView *)[nibView objectAtIndex:0];
+            [serchHeadView.serchText addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+            [serchHeadView.serchText addTarget:self action:@selector(serchTextValChange:) forControlEvents:UIControlEventEditingChanged];
+            _tableView.tableHeaderView=serchHeadView;
+                
+        }else{
+            UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+            view1.backgroundColor=[UIColor whiteColor];
+            _tableView.tableHeaderView=view1;
+        }
+
+        if(daiXiaoFei.count>0){
+//            [weakSelf.tableView setHidden:NO];
+            pageCount++;
+            //            [weakSelf.tableView.mj_footer resetNoMoreData];
+            [weakSelf.tableView.mj_footer endRefreshing];
+        }else{
+//            [weakSelf.tableView setHidden:YES];
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+
+        
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
+
+    }];
+    
+    
+    
+}
+
+
 #pragma mark 获取待消费数据
 -(void)getDaiXiaoFei{
     [daiXiaoFei removeAllObjects];
     [serchDaiXiaoFei removeAllObjects];
 //    NSString *dateStr=[dateFormatterUp stringFromDate:nowDate];
 //    NSDictionary *dic=@{@"orderStatus":@"2",@"createDate":dateStr};
-    NSDictionary *dic=@{@"orderStatus":@"1,2"};
-    __weak __typeof(self)weakSelf = self;
-    [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
-        [daiXiaoFei addObjectsFromArray:result];
-        serchDaiXiaoFei=[daiXiaoFei mutableCopy];
-        
-        
-        NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"SerchHeadView" owner:nil options:nil];
-        SerchHeadView *serchHeadView= (SerchHeadView *)[nibView objectAtIndex:0];
-        [serchHeadView.serchText addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
-        [serchHeadView.serchText addTarget:self action:@selector(serchTextValChange:) forControlEvents:UIControlEventEditingChanged];
-        _tableView.tableHeaderView=serchHeadView;
-        [weakSelf.tableView reloadData];
-    }];
-    
-    
+//    NSDictionary *dic=@{@"orderStatus":@"1,2"};
+//    __weak __typeof(self)weakSelf = self;
+//    [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+//        [daiXiaoFei addObjectsFromArray:result];
+//        serchDaiXiaoFei=[daiXiaoFei mutableCopy];
+//        
+//        
+//        NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"SerchHeadView" owner:nil options:nil];
+//        SerchHeadView *serchHeadView= (SerchHeadView *)[nibView objectAtIndex:0];
+//        [serchHeadView.serchText addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+//        [serchHeadView.serchText addTarget:self action:@selector(serchTextValChange:) forControlEvents:UIControlEventEditingChanged];
+//        _tableView.tableHeaderView=serchHeadView;
+//        [weakSelf.tableView reloadData];
+//    }];
+//    
+    pageCount=1;
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"1,2"};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+    [self getOrderWithDic:dic];
     
 }
 #pragma mark 获取待留位数据
@@ -129,16 +240,20 @@
     [serchDaiXiaoFei removeAllObjects];
 //    NSString *dateStr=[dateFormatterUp stringFromDate:nowDate];
 //    NSDictionary *dic=@{@"orderStatus":@"7,8,9",@"createDate":dateStr};
-    NSDictionary *dic=@{@"orderStatus":@"7,8,9"};
-    __weak __typeof(self)weakSelf = self;
-    [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
-        [daiXiaoFei addObjectsFromArray:result];
-        UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
-        view1.backgroundColor=[UIColor whiteColor];
-        _tableView.tableHeaderView=view1;
-        [weakSelf.tableView reloadData];
-    }];
+//    NSDictionary *dic=@{@"orderStatus":@"7,8,9"};
+//    __weak __typeof(self)weakSelf = self;
+//    [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+//        [daiXiaoFei addObjectsFromArray:result];
+//        UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+//        view1.backgroundColor=[UIColor whiteColor];
+//        _tableView.tableHeaderView=view1;
+//        [weakSelf.tableView reloadData];
+//    }];
     
+    pageCount=1;
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"7,8,9"};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+     [self getOrderWithDic:dic];
 }
 
 
@@ -149,15 +264,20 @@
     [serchDaiXiaoFei removeAllObjects];
 //    NSString *dateStr=[dateFormatterUp stringFromDate:nowDate];
 //    NSDictionary *dic=@{@"orderStatus":@"3,4,5",@"createDate":dateStr};
-    NSDictionary *dic=@{@"orderStatus":@"3,4,5"};
-    __weak __typeof(self)weakSelf = self;
-    [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
-        [daiXiaoFei addObjectsFromArray:result];
-        UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
-        view1.backgroundColor=[UIColor whiteColor];
-        _tableView.tableHeaderView=view1;
-        [weakSelf.tableView reloadData];
-    }];
+//    NSDictionary *dic=@{@"orderStatus":@"3,4,5"};
+//    __weak __typeof(self)weakSelf = self;
+//    [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+//        [daiXiaoFei addObjectsFromArray:result];
+//        UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
+//        view1.backgroundColor=[UIColor whiteColor];
+//        _tableView.tableHeaderView=view1;
+//        [weakSelf.tableView reloadData];
+//    }];
+    
+    pageCount=1;
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"3,4,5"};
+    nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
+    [self getOrderWithDic:dic];
     
 }
 #pragma mark 搜索
