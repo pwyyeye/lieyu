@@ -1476,4 +1476,21 @@
     }];
 }
 
+#pragma mark - 专属经理验证微信帐号
++ (void)checkZSwechatComplete:(void (^)(NSString *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_CHECK_WECHAT baseURL:LY_SERVER params:nil success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete([response objectForKey:@"data"]);
+            });
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 @end

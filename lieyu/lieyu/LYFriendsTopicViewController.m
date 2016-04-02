@@ -55,26 +55,65 @@ UINavigationControllerDelegate>{
 }
 
 - (void)createCameraBtn{
+    
+    if (_isFriendsTopic) {
+        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+        _effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 30, SCREEN_HEIGHT - 60, 60, 60)];
+        _effectView.layer.cornerRadius = _effectView.frame.size.width/2.f;
+        _effectView.layer.masksToBounds = YES;
+        _effectView.effect = effect;
+        [self.view addSubview:_effectView];
+        [self.view bringSubviewToFront:_effectView];
+        
+        
+        _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake((_effectView.frame.size.width - 35)/2.f,(_effectView.frame.size.height - 30)/2.f , 35, 30)];
+        [_carmerBtn addTarget:self action:@selector(carmerClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_carmerBtn setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
+        [_effectView addSubview:_carmerBtn];
+        
+        [UIView animateWithDuration:.4 animations:^{
+            _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 133, 60, 60);
+        }completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.2 animations:^{
+                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
+            }];
+        }];
+
+    }else{
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    _effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 30, SCREEN_HEIGHT - 60, 60, 60)];
-    _effectView.layer.cornerRadius = _effectView.frame.size.width/2.f;
-    _effectView.layer.masksToBounds = YES;
+    _effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT -64, SCREEN_WIDTH, 47)];
     _effectView.effect = effect;
     [self.view addSubview:_effectView];
     [self.view bringSubviewToFront:_effectView];
     
-    _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake((_effectView.frame.size.width - 35)/2.f,(_effectView.frame.size.height - 30)/2.f , 35, 30)];
+    
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+    lineView.backgroundColor = RGBA(243, 243, 243, 1);
+    [_effectView addSubview:lineView];
+    
+    _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake(7,4, SCREEN_WIDTH - 14, 35)];
     [_carmerBtn addTarget:self action:@selector(carmerClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_carmerBtn setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
+    _carmerBtn.backgroundColor = [UIColor blackColor];
+    [_carmerBtn setBackgroundImage:[UIImage imageNamed:@"LoginNew"] forState:UIControlStateNormal];
+    _carmerBtn.layer.cornerRadius = 4;
+    _carmerBtn.layer.masksToBounds = YES;
+    [_carmerBtn setTitle:@"我来评一评" forState:UIControlStateNormal];
     [_effectView addSubview:_carmerBtn];
     
-    [UIView animateWithDuration:.4 animations:^{
-        _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
-    }completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
-            _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
-        }];
+//    [UIView animateWithDuration:.4 animations:^{
+//        _effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH, 47);
+//    }completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.2 animations:^{
+//            _effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 47, SCREEN_WIDTH, 47);
+//        }];
+//    }];
+    
+    [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        _effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 47 - 64, SCREEN_WIDTH, 47);
+    } completion:^(BOOL finished) {
+        
     }];
+    }
 }
 
 
@@ -424,24 +463,57 @@ CGFloat picWidth = 0;
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    
+    if(_isFriendsTopic){
+        if (scrollView.contentOffset.y > _contentOffSetY) {
+            if (scrollView.contentOffset.y <= 0.f) {
+//                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
+            }else{
+                
+                            [UIView animateWithDuration:0.4 animations:^{
+                                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+                            }];
+            }
+        }else{
+            if(CGRectGetMaxY(_effectView.frame) > SCREEN_HEIGHT - 5){
+                [UIView animateWithDuration:.4 animations:^{
+                    _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 133, 60, 60);
+                }completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.2 animations:^{
+                        _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
+                    }];
+                }];
+            }
+        }
+
+    }else{
     if (scrollView.contentOffset.y > _contentOffSetY) {
         if (scrollView.contentOffset.y <= 0.f) {
-            _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
+//            _effectView.frame = CGRectMake(0,  SCREEN_HEIGHT - 47 - 64, 60, 60);
         }else{
-            [UIView animateWithDuration:0.4 animations:^{
-                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+            
+            [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                _effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 47);
+            } completion:^(BOOL finished) {
+                
             }];
+            
+//            [UIView animateWithDuration:0.4 animations:^{
+//                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+//            }];
         }
     }else{
-        if(CGRectGetMaxY(_effectView.frame) > SCREEN_HEIGHT - 5){
-            [UIView animateWithDuration:.4 animations:^{
-                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 133, 60, 60);
-            }completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.2 animations:^{
-                    _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
-                }];
-            }];  
+        if(CGRectGetMaxY(_effectView.frame) + 64 > SCREEN_HEIGHT - 5){
+            
+            
+            [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                _effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 47 - 64, SCREEN_WIDTH, 47);
+            } completion:^(BOOL finished) {
+                
+            }];
         }
+    }
     }
 }
 

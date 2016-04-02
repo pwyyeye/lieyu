@@ -8,6 +8,7 @@
 
 #import "LyZSuploadIdCardViewController.h"
 #import "LYUserHttpTool.h"
+#import "wechatCheckAccountViewController.h"
 @interface LyZSuploadIdCardViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end
@@ -180,6 +181,12 @@
         if(result){
             [MyUtil showMessage:@"申请成功!"];
             self.userModel.applyStatus = 1;
+            if([[_paramdic objectForKey:@"applyType"] isEqualToString:@"3"]){
+                wechatCheckAccountViewController *wechatCheckVC = [[wechatCheckAccountViewController alloc]initWithNibName:@"wechatCheckAccountViewController" bundle:nil];
+                [self.navigationController pushViewController:wechatCheckVC animated:YES];
+            }else{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
         }
     }];
 }
