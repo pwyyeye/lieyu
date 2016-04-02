@@ -41,6 +41,7 @@
     //    self.automaticallyAdjustsScrollViewInsets = NO;
 
     
+    
     //修改的部分
     /* UIColor *_inputColor0 = RGBA(109, 0, 142,0.9);
      UIColor *_inputColor1 = RGBA(64, 1, 120,0.9);
@@ -86,11 +87,13 @@
     self.delegate=self;
     
     
-    self.cj_canDragBack = YES;
-    UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didHandlePanGesture:)];
-    [recognizer delaysTouchesBegan];
-    [self.view addGestureRecognizer:recognizer];
+//    self.cj_canDragBack = YES;
+//    UIPanGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(didHandlePanGesture:)];
+//    [recognizer delaysTouchesBegan];
+//    [self.view addGestureRecognizer:recognizer];
 }
+
+/*
 
 -(NSMutableArray *)mScreenShots{
     if (!_mScreenShots) {

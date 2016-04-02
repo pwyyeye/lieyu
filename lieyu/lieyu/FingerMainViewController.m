@@ -26,7 +26,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 - (IBAction)backClick:(id)sender {
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

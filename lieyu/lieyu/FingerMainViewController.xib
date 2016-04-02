@@ -22,9 +22,16 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="指纹配配看.png" translatesAutoresizingMaskIntoConstraints="NO" id="U4S-tt-tJE">
                     <rect key="frame" x="87" y="125" width="146" height="150"/>
                     <constraints>
+                        <constraint firstAttribute="width" secondItem="U4S-tt-tJE" secondAttribute="height" multiplier="73:75" id="4Up-tz-cS7"/>
                         <constraint firstAttribute="height" constant="150" id="gCM-tK-U4n"/>
                         <constraint firstAttribute="width" constant="146" id="uSQ-00-M4s"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="gCM-tK-U4n"/>
+                            <exclude reference="uSQ-00-M4s"/>
+                        </mask>
+                    </variation>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVo-LJ-dZ0">
                     <rect key="frame" x="60" y="490" width="200" height="38"/>
@@ -36,6 +43,7 @@
                     <state key="normal" backgroundImage="手指爱情返回.png"/>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="7o4-ek-q2T"/>
                             <exclude reference="ZJj-9m-7kK"/>
                         </mask>
                     </variation>
@@ -55,6 +63,7 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="1Vz-zV-veU"/>
+                            <exclude reference="UgP-ci-CwA"/>
                         </mask>
                     </variation>
                     <connections>
@@ -64,15 +73,20 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="LVo-LJ-dZ0" secondAttribute="trailing" constant="60" id="1fz-R1-x5E"/>
                 <constraint firstItem="U4S-tt-tJE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="125" id="3LX-es-fcb"/>
+                <constraint firstItem="LVo-LJ-dZ0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="3pY-qZ-Lkb"/>
+                <constraint firstItem="9Iy-cN-qa7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="4HS-qi-ouZ"/>
                 <constraint firstItem="LVo-LJ-dZ0" firstAttribute="top" secondItem="9Iy-cN-qa7" secondAttribute="bottom" constant="19" id="4jC-dq-NaW"/>
                 <constraint firstItem="5ri-pm-dFb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7E2-XV-eRD"/>
                 <constraint firstItem="9Iy-cN-qa7" firstAttribute="centerX" secondItem="5ri-pm-dFb" secondAttribute="centerX" id="8oc-t9-UFj"/>
                 <constraint firstItem="5ri-pm-dFb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EGM-9g-Olm"/>
                 <constraint firstItem="LVo-LJ-dZ0" firstAttribute="centerX" secondItem="5ri-pm-dFb" secondAttribute="centerX" id="JWH-0s-OIj"/>
                 <constraint firstItem="U4S-tt-tJE" firstAttribute="centerX" secondItem="5ri-pm-dFb" secondAttribute="centerX" id="KHO-xc-Trf"/>
+                <constraint firstAttribute="bottom" secondItem="U4S-tt-tJE" secondAttribute="bottom" constant="293" id="LJp-zF-Mbh"/>
                 <constraint firstAttribute="bottom" secondItem="LVo-LJ-dZ0" secondAttribute="bottom" constant="40" id="P7J-iy-rmN"/>
                 <constraint firstAttribute="bottom" secondItem="5ri-pm-dFb" secondAttribute="bottom" id="m9i-Ui-ZkY"/>
+                <constraint firstAttribute="trailing" secondItem="9Iy-cN-qa7" secondAttribute="trailing" constant="60" id="ohq-fb-DAH"/>
                 <constraint firstAttribute="trailing" secondItem="5ri-pm-dFb" secondAttribute="trailing" id="xyG-qN-N4m"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
