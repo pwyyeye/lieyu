@@ -86,7 +86,7 @@
             NSMutableArray *tempArray = [@[] mutableCopy];
             [tempArray addObject:ZSTiXianRM];
             CGFloat tiXianSum = ZSTiXianRM.amount.floatValue;
-            CGFloat receiveddTiXianSum = ZSTiXianRM.checkMark == 0 ? 0 : ZSTiXianRM.amount.floatValue;
+            CGFloat receiveddTiXianSum = ZSTiXianRM.checkMark.integerValue == 0 ? 0 : ZSTiXianRM.amount.floatValue;
             for (int j = i+1; j < array.count; j ++) {
                 ZSTiXianRecord *ZSTiXianRM2 = array[j];
                 NSArray *strArray2 =  [ZSTiXianRM2.create_date componentsSeparatedByString:@"-"];
@@ -97,7 +97,7 @@
                     [array removeObjectAtIndex:j];
                     j = j -1;
                     tiXianSum += ZSTiXianRM2.amount.floatValue;
-                    receiveddTiXianSum += ZSTiXianRM2.checkMark == 0 ? 0 : ZSTiXianRM2.amount.floatValue;
+                    receiveddTiXianSum += ZSTiXianRM2.checkMark.integerValue == 0 ? 0 : ZSTiXianRM2.amount.floatValue;
                 }
             }
             ZSTiXianRecord *tiXianR = [[ZSTiXianRecord alloc]init];
@@ -110,6 +110,9 @@
         
         _dataArray = dateMutablearray;
         [_tableview reloadData];
+        [_tableview.mj_header endRefreshing];
+        if(dataArray.count == 0) [_tableview.mj_footer endRefreshingWithNoMoreData];
+        else [_tableview.mj_footer endRefreshing];
     }];
 }
 
