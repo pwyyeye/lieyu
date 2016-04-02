@@ -265,7 +265,6 @@
             detailViewController = [[checkUnpassedViewController alloc]initWithNibName:@"checkUnpassedViewController" bundle:nil];
             detailViewController.title = @"申请专属经理";
         }
-    
     }
 
     
