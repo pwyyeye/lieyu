@@ -68,6 +68,8 @@
 #define LY_MY_ZSJL_DEL @"lyUsersVipStoreAction.do?action=delete"
 //申请专属经理
 #define LY_APPLY_MANAGER @"lyUsersVipApplyAction.do?action=add"
+//申请专属经理更新
+#define LY_APPLY_UPDATE @"lyUsersVipApplyAction.do?action=update"
 //获取酒吧列表
 #define LY_JIUBA_LIST  @"toPlayAction.do?action=list"
 

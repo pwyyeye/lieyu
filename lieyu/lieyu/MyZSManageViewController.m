@@ -30,7 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     zsList=[[NSMutableArray alloc]init];
     [self setupViewStyles];
     _tableView.showsHorizontalScrollIndicator=NO;

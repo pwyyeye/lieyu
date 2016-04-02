@@ -20,4 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *introduceLbl;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *shouxuLabel;
+@property (weak, nonatomic) IBOutlet UILabel *poundageLabel;
+
+
 @end

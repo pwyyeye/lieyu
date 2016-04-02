@@ -615,6 +615,9 @@
 		38979B6F1CAE6263002946F5 /* ZSApplyStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */; };
 		38979B731CAF647F002946F5 /* wechatCheckAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B711CAF647F002946F5 /* wechatCheckAccountViewController.m */; };
 		38979B741CAF6480002946F5 /* wechatCheckAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38979B721CAF647F002946F5 /* wechatCheckAccountViewController.xib */; };
+		38979B781CAF9B55002946F5 /* checkUnpassedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B761CAF9B55002946F5 /* checkUnpassedViewController.m */; };
+		38979B791CAF9B55002946F5 /* checkUnpassedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38979B771CAF9B55002946F5 /* checkUnpassedViewController.xib */; };
+		38979B7C1CAFA500002946F5 /* unPassesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B7B1CAFA500002946F5 /* unPassesModel.m */; };
 		389C01021C1488EF00FE9412 /* seeAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00F91C1488EF00FE9412 /* seeAll.png */; };
 		389C01031C1488F000FE9412 /* seeAll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FA1C1488EF00FE9412 /* seeAll@2x.png */; };
 		389C01041C1488F000FE9412 /* seeAll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 389C00FB1C1488EF00FE9412 /* seeAll@3x.png */; };
@@ -2611,6 +2614,11 @@
 		38979B701CAF647F002946F5 /* wechatCheckAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wechatCheckAccountViewController.h; sourceTree = "<group>"; };
 		38979B711CAF647F002946F5 /* wechatCheckAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wechatCheckAccountViewController.m; sourceTree = "<group>"; };
 		38979B721CAF647F002946F5 /* wechatCheckAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = wechatCheckAccountViewController.xib; sourceTree = "<group>"; };
+		38979B751CAF9B55002946F5 /* checkUnpassedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkUnpassedViewController.h; sourceTree = "<group>"; };
+		38979B761CAF9B55002946F5 /* checkUnpassedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = checkUnpassedViewController.m; sourceTree = "<group>"; };
+		38979B771CAF9B55002946F5 /* checkUnpassedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = checkUnpassedViewController.xib; sourceTree = "<group>"; };
+		38979B7A1CAFA500002946F5 /* unPassesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unPassesModel.h; sourceTree = "<group>"; };
+		38979B7B1CAFA500002946F5 /* unPassesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = unPassesModel.m; sourceTree = "<group>"; };
 		389C00F91C1488EF00FE9412 /* seeAll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = seeAll.png; sourceTree = "<group>"; };
 		389C00FA1C1488EF00FE9412 /* seeAll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@2x.png"; sourceTree = "<group>"; };
 		389C00FB1C1488EF00FE9412 /* seeAll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "seeAll@3x.png"; sourceTree = "<group>"; };
@@ -4710,6 +4718,9 @@
 				38979B701CAF647F002946F5 /* wechatCheckAccountViewController.h */,
 				38979B711CAF647F002946F5 /* wechatCheckAccountViewController.m */,
 				38979B721CAF647F002946F5 /* wechatCheckAccountViewController.xib */,
+				38979B751CAF9B55002946F5 /* checkUnpassedViewController.h */,
+				38979B761CAF9B55002946F5 /* checkUnpassedViewController.m */,
+				38979B771CAF9B55002946F5 /* checkUnpassedViewController.xib */,
 			);
 			name = "专属经理";
 			sourceTree = "<group>";
@@ -4734,6 +4745,8 @@
 				15E184781BB4EEBB00681BB2 /* ZSDetailModel.m */,
 				15E184941BB52CA200681BB2 /* JiuBaModel.h */,
 				15E184951BB52CA200681BB2 /* JiuBaModel.m */,
+				38979B7A1CAFA500002946F5 /* unPassesModel.h */,
+				38979B7B1CAFA500002946F5 /* unPassesModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -9448,6 +9461,7 @@
 				15E240541BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib in Resources */,
 				ADFE1B951C994F1D00700EA3 /* loading44@2x.png in Resources */,
 				854CCA791C918BDB00368C72 /* LoginNew@2x.png in Resources */,
+				38979B791CAF9B55002946F5 /* checkUnpassedViewController.xib in Resources */,
 				AD399E841C940D4D00028F23 /* logo5@2x.jpg in Resources */,
 				8553971E1C8D894300289D18 /* MyCodeViewController.xib in Resources */,
 				A2FD57801BAFE97000CFFF92 /* FBTaoCanSectionHead.xib in Resources */,
@@ -10305,6 +10319,7 @@
 				380659DA1C5639DD003094C9 /* WaysView.m in Sources */,
 				385664851C72DD53000DCFA5 /* ActionDetailViewController.m in Sources */,
 				8540385C1CAE0EDD0056C27E /* FingerMainViewController.m in Sources */,
+				38979B781CAF9B55002946F5 /* checkUnpassedViewController.m in Sources */,
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
 				380659D41C5639BB003094C9 /* TimeView.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
@@ -10456,6 +10471,7 @@
 				85F545161C13DE000013B92B /* LYUserDetailInfoViewController.m in Sources */,
 				D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */,
 				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
+				38979B7C1CAFA500002946F5 /* unPassesModel.m in Sources */,
 				15E184741BB4EB7A00681BB2 /* LYZSdetailCell.m in Sources */,
 				85F43BAF1C11459400B04466 /* LYOrderManagerTableViewCell.m in Sources */,
 				15CC31E11BEB2C5B00DDD03F /* FMDatabaseAdditions.m in Sources */,

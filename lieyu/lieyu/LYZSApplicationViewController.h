@@ -7,12 +7,12 @@
 //
 
 #import "LYBaseViewController.h"
-
+#import "unPassesModel.h"
 @interface LYZSApplicationViewController : LYBaseViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *jiubaLal;
 - (IBAction)chooseJiuBaAct:(UIButton *)sender;
-
+@property (weak, nonatomic) IBOutlet UIButton *jiubaButton;
 - (IBAction)exitEdit:(UITextField *)sender;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *chooseButtons;
@@ -33,5 +33,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 - (IBAction)nextAct:(UIButton *)sender;
+
+@property (nonatomic, strong) unPassesModel *checkModel;
 
 @end

@@ -15,6 +15,7 @@
 #import "OrderTTL.h"
 #import "OrderInfoModel.h"
 #import "ZSApplyStatusModel.h"
+#import "unPassesModel.h"
 
 #import "find_userInfoModel.h"
 @interface LYUserHttpTool : NSObject
@@ -211,5 +212,10 @@
 + (void)getZSJLStatusComplete:(void(^)(ZSApplyStatusModel *))complete;
 //专属经理验证微信
 + (void)checkZSwechatComplete:(void(^)(NSString *))complete;
+//pragma mark - 审核未通过
++ (void)getUnpassedReasonComplete:(void(^)(unPassesModel *))complete;
+
+//专属经理申请更新
+-(void) updateApplyVip:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block complete:(void (^)(BOOL result))result;
 
 @end

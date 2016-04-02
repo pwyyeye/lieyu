@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LyZSuploadIdCardViewController">
             <connections>
                 <outlet property="fmAddBtn" destination="53E-9X-cXg" id="3uD-d6-KDE"/>
+                <outlet property="headerBackground" destination="YgK-jH-Eq7" id="ehd-zx-253"/>
                 <outlet property="imgHeaderConstrant" destination="p0y-X6-TRd" id="3W9-nE-8E8"/>
                 <outlet property="imgHoumian" destination="ebv-KI-6Pa" id="ut9-UR-GuW"/>
                 <outlet property="imgQianmian" destination="NK7-Vw-OD4" id="0r9-tr-0xe"/>
