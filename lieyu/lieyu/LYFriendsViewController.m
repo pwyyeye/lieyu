@@ -2132,7 +2132,7 @@
     if (friendRecentM.topicTypeName.length && friendRecentM.topicTypeId.length) {
         LYFriendsTopicViewController *friendsTopicVC = [[LYFriendsTopicViewController alloc]init];
         friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
-        friendsTopicVC.topicName = friendRecentM.topicTypeName;
+        friendsTopicVC.topicName = @"玩友评论";
         if([friendRecentM.isBarTopicType isEqualToString:@"0"]) friendsTopicVC.isFriendsTopic = YES;
         [self.navigationController pushViewController:friendsTopicVC animated:YES];
     }

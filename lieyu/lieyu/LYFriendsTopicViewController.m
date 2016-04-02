@@ -395,12 +395,12 @@ CGFloat picWidth = 0;
             }else{
                 [_dataArray addObjectsFromArray:dataArray];
             }
-            [weakSelf reloadTableViewAndSetUpProperty];
             _pageStartCount ++;
             [weakSelf.tableView.mj_footer endRefreshing];
         }else {
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
+        [weakSelf reloadTableViewAndSetUpProperty];
         if(_isFriendsTopic) [weakSelf addTableViewHeader];
     }];
     
