@@ -14,7 +14,6 @@
     int picTag;
     UIImage *idcard_zhengmian;
     UIImage *idcard_fanmian;
-    
 }
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imgHeaderConstrant;
@@ -28,5 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextStepBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *imgQianmian;
 @property (weak, nonatomic) IBOutlet UIImageView *imgHoumian;
+@property (weak, nonatomic) IBOutlet UIView *headerBackground;
+
+@property (nonatomic, assign) BOOL checkUpload;
 
 @end

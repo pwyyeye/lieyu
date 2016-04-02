@@ -38,14 +38,74 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.nextButton.layer.cornerRadius = 21;
-    for (UIButton *button in self.chooseButtons) {
-        button.selected = NO;
-        [button addTarget:self action:@selector(chooseAccount:) forControlEvents:UIControlEventTouchUpInside];
+    if (!_checkModel) {
+        for (UIButton *button in self.chooseButtons) {
+            button.selected = NO;
+            [button addTarget:self action:@selector(chooseAccount:) forControlEvents:UIControlEventTouchUpInside];
+        }
     }
     _viewLine2.hidden = YES;
     _viewLine3.hidden = YES;
     _viewLine4.hidden = YES;
+    
+    if (_checkModel) {
+        [self initCheckView];
+    }
     _sfzTex.keyboardType = UIKeyboardTypeNumberPad;
+}
+
+- (void)initCheckView{
+    [self.jiubaLal setTextColor:RGBA(186, 40, 227, 1)];
+    self.jiubaLal.text=_checkModel.barname;
+    int accountNum = 0 ;
+    if ([_checkModel.applyType isEqualToString:@"1"]) {
+        accountNum = 2;
+    }else if ([_checkModel.applyType isEqualToString:@"2"]){
+        accountNum = 3;
+    }else if ([_checkModel.applyType isEqualToString:@"3"]){
+        accountNum = 1;
+    }
+    for (UIButton *button in self.chooseButtons) {
+        if (button.tag == accountNum) {
+            button.selected = YES;
+        }else{
+            button.selected = NO;
+        }
+    }
+    [_sfzTex setText:_checkModel.idcard];
+
+    if (accountNum == 1) {
+        _viewLine2.hidden = NO;
+        [_viewLabel2 setText:@"真实姓名"];
+        [_yhkkhTex setText:_checkModel.wechatName];
+        
+        _viewLine3.hidden = YES;
+        _viewLine4.hidden = YES;
+    }else if (accountNum == 2){
+        _viewLine2.hidden = NO;
+        [_viewLabel2 setText:@"支付宝账号"];
+        [_yhkkhTex setText:_checkModel.alipayaccount];
+        
+        _viewLine3.hidden = NO;
+        [_viewLabel3 setText:@"绑定姓名"];
+        [_yhkKhmYhmTex setText:_checkModel.alipayAccountName];
+        
+        _viewLine4.hidden = YES;
+    }else if (accountNum == 3){
+        _viewLine2.hidden = NO;
+        [_viewLabel2 setText:@"银行卡号"];
+        [_yhkkhTex setText:_checkModel.bankCard];
+        _yhkkhTex.keyboardType = UIKeyboardTypeNumberPad;
+        
+        _viewLine3.hidden = NO;
+        [_viewLabel3 setText:@"开户支行"];
+        [_yhkKhmYhmTex setText:_checkModel.bankCardDeposit];
+        
+        _viewLine4.hidden = NO;
+        [_viewLabel4 setText:@"开户姓名"];
+        [_yhkyhmTex setText:_checkModel.bankCardUsername];
+    }
+    self.nextButton.hidden = YES;
 }
 
 - (void)setAccountNum:(int)accountNum{

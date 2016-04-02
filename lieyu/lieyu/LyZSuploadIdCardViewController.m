@@ -23,43 +23,49 @@
     if (SCREEN_WIDTH == 320 && SCREEN_HEIGHT == 480) {
         _imgHeaderConstrant.constant = 28;
     }
+    if (_checkUpload == YES) {
+        self.nextStepBtn.hidden = YES;
+//        [self.headerBackground setBackgroundColor:RGBA(245, 245, 245, 1)];
+    }
 }
 #pragma mark - 添加照片
 - (IBAction)addPictures:(UIButton *)sender {
-    picTag=(int)sender.tag;
-    _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
-    [_bgView setTag:99999];
-    [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
-    [_bgView setAlpha:1.0];
-    [self.view addSubview:_bgView];
-    NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LYZSeditView" owner:nil options:nil];
-    seditView= (LYZSeditView *)[nibView objectAtIndex:0];
-    seditView.top=SCREEN_HEIGHT;
-    seditView.frame = CGRectMake(0, SCREEN_HEIGHT - 287, SCREEN_WIDTH, 287);
-    [seditView.quxiaoBtn addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
-    [seditView.editListBtn addTarget:self action:@selector(paizhaoAct:) forControlEvents:UIControlEventTouchDown];
-    seditView.editListBtn.hidden=NO;
-    seditView.secondLal.hidden=NO;
-    [seditView.editListBtn setImage:[UIImage imageNamed:@"paizhao"] forState:0];
-    [seditView.shenqingBtn setImage:[UIImage imageNamed:@"xiangce"] forState:0];
-    seditView.firstLal.text=@"相册";
-    seditView.secondLal.text=@"拍照";
-    [seditView.shenqingBtn addTarget:self action:@selector(xiangceAct:) forControlEvents:UIControlEventTouchDown];
-    [_bgView addSubview:seditView];
-    
-    [UIView beginAnimations:@"animationID" context:nil];
-    [UIView setAnimationDuration:0.3];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:seditView cache:NO];
-    seditView.top=SCREEN_HEIGHT-seditView.height-64;
-    [UIView commitAnimations];
-    
-    UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame=CGRectMake(0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT-seditView.height-64);
-    [button setBackgroundColor:[UIColor clearColor]];
-    [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
-    [_bgView insertSubview:button aboveSubview:_bgView];
-    button.backgroundColor=[UIColor clearColor];
+    if(!_checkUpload){
+        picTag=(int)sender.tag;
+        _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
+        [_bgView setTag:99999];
+        [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
+        [_bgView setAlpha:1.0];
+        [self.view addSubview:_bgView];
+        NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LYZSeditView" owner:nil options:nil];
+        seditView= (LYZSeditView *)[nibView objectAtIndex:0];
+        seditView.top=SCREEN_HEIGHT;
+        seditView.frame = CGRectMake(0, SCREEN_HEIGHT - 287, SCREEN_WIDTH, 287);
+        [seditView.quxiaoBtn addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
+        [seditView.editListBtn addTarget:self action:@selector(paizhaoAct:) forControlEvents:UIControlEventTouchDown];
+        seditView.editListBtn.hidden=NO;
+        seditView.secondLal.hidden=NO;
+        [seditView.editListBtn setImage:[UIImage imageNamed:@"paizhao"] forState:0];
+        [seditView.shenqingBtn setImage:[UIImage imageNamed:@"xiangce"] forState:0];
+        seditView.firstLal.text=@"相册";
+        seditView.secondLal.text=@"拍照";
+        [seditView.shenqingBtn addTarget:self action:@selector(xiangceAct:) forControlEvents:UIControlEventTouchDown];
+        [_bgView addSubview:seditView];
+        
+        [UIView beginAnimations:@"animationID" context:nil];
+        [UIView setAnimationDuration:0.3];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+        [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:seditView cache:NO];
+        seditView.top=SCREEN_HEIGHT-seditView.height-64;
+        [UIView commitAnimations];
+        
+        UIButton *button=[UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame=CGRectMake(0 ,0, SCREEN_WIDTH, SCREEN_HEIGHT-seditView.height-64);
+        [button setBackgroundColor:[UIColor clearColor]];
+        [button addTarget:self action:@selector(SetViewDisappear:) forControlEvents:UIControlEventTouchDown];
+        [_bgView insertSubview:button aboveSubview:_bgView];
+        button.backgroundColor=[UIColor clearColor];
+    }
 }
 #pragma mark - 消失
 -(void)SetViewDisappear:(id)sender
