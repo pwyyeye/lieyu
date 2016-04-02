@@ -55,7 +55,7 @@
             break;
         case 3:{
             CGFloat btnW = (SCREEN_WIDTH - 75) / 2.f;
-            NSInteger picWidth = 450;
+            NSInteger picWidth = 0;
             if (recentModel.isMeSendMessage) picWidth = 0;
             for (int i = 0; i < 3; i ++) {
                 if(urlArray.count <= i) return;

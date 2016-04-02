@@ -97,7 +97,7 @@
                     [array removeObjectAtIndex:j];
                     j = j -1;
                     tiXianSum += ZSTiXianRM2.amount.floatValue;
-                    receiveddTiXianSum += ZSTiXianRM2.checkMark == 0 ? 0 : ZSTiXianRM2.amount.floatValue;
+                    receiveddTiXianSum += ZSTiXianRM2.checkMark.integerValue == 0 ? 0 : ZSTiXianRM2.amount.floatValue;
                 }
             }
             ZSTiXianRecord *tiXianR = [[ZSTiXianRecord alloc]init];

@@ -103,7 +103,7 @@
 -(void)initViews{
     if (!self.mBgView) {
         self.mBgView = [[UIView alloc]initWithFrame:self.view.bounds];
-        self.mBgView.backgroundColor = [UIColor blackColor];
+        self.mBgView.backgroundColor = [UIColor whiteColor];
         [self.view.superview insertSubview:self.mBgView belowSubview:self.view];
     }
     self.mBgView.hidden = NO;
@@ -173,7 +173,8 @@
 #pragma mark ------------  UIPanGestureRecognizer -------
 
 -(void)didHandlePanGesture:(UIPanGestureRecognizer *)recoginzer{
-    if (self.viewControllers.count <= 1 && !self.cj_canDragBack) return;
+    if (  !self.cj_canDragBack) return;
+    if(self.viewControllers.count <= 1) return;
     CGPoint touchPoint = [recoginzer locationInView:[[UIApplication sharedApplication]keyWindow]];
     
     CGFloat offsetX = touchPoint.x - self.mStartPoint.x;

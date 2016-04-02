@@ -12,7 +12,7 @@
 #import "ZSTiXianRecordViewController.h"
 #import "ZSBalance.h"
 #import "LYWithdrawTypeViewController.h"
-#import "LYMyOrderManageViewController.h"
+#import "ZSOrderViewController.h"
 
 #define ZSTiXianTableViewCellID @"ZSTiXianTableViewCell"
 
@@ -83,11 +83,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:{
-            LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-            myOrderManageViewController.title=@"我的订单";
-            myOrderManageViewController.orderType=2;
-            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            [app.navigationController pushViewController:myOrderManageViewController animated:YES];
+            ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
+            [self.navigationController pushViewController:orderManageViewController animated:YES];
             
         }
             
