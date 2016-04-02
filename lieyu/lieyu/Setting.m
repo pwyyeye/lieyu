@@ -19,6 +19,7 @@
 #import "UserNotificationViewController.h"
 #import "LPUserLoginViewController.h"
 #import "ZSApplyStatusModel.h"
+#import "wechatCheckAccountViewController.h"
 
 @interface Setting (){
     UIButton *_logoutButton;
@@ -100,19 +101,20 @@
 //        statusModel.wechatAccount
 //        userModel.applyStatus 0.未申请 1.审核中 2.已审核 3.审核未通过
         if (userModel.applyStatus == 1) {
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 20, 15, 200, 20)];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 210, 10, 200, 30)];
             label.textAlignment = NSTextAlignmentRight;
             [label setBackgroundColor:[UIColor whiteColor]];
             [label setTextColor:RGBA(186, 40, 227, 1)];
+            [label setFont:[UIFont systemFontOfSize:14]];
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             [cell addSubview:label];
             
             if ([statusModel.applyType isEqualToString:@"3"] && !statusModel.wechatAccount.length) {
-                [label setText:@"请完成支付确认!"];
+                [label setText:@"请完成支付确认!  "];
                 canApply = YES;
                 enterStep = 2;
             }else{
-                [label setText:@"审核中"];
+                [label setText:@"审核中  "];
             }
         }else if(userModel.applyStatus == 0){
             canApply = YES;
@@ -193,7 +195,7 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
     
     
-    if([userModel.usertype isEqualToString:@"1"]){
+    if([userModel.usertype isEqualToString:@"1"] &&indexPath.row == 1){
         //普通用户
         [self getApplyType];
     }
@@ -249,9 +251,13 @@
                 return;
             }
         }
-        
-        detailViewController = [[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
-        detailViewController.title=@"申请专属经理";
+        if (canApply && enterStep == 1) {
+            detailViewController = [[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
+            detailViewController.title=@"申请专属经理";
+        }else if (canApply && enterStep == 2){
+            detailViewController = [[wechatCheckAccountViewController alloc]initWithNibName:@"wechatCheckAccountViewController" bundle:nil];
+            detailViewController.title = @"微信帐号验证";
+        }
         
     }
 

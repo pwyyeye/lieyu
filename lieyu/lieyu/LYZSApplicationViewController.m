@@ -128,8 +128,16 @@
     if(![self checkData]){
         return;
     }
+    NSString *applyType;
+    if(_accountNum == 1){
+        applyType = @"3";
+    }else if (_accountNum == 2){
+        applyType = @"1";
+    }else if (_accountNum == 3){
+        applyType = @"2";
+    }
     NSMutableDictionary *dic=
-    [[NSMutableDictionary alloc]initWithDictionary:@{@"idcard":idcard,@"barid":[NSNumber numberWithInt:jiuBaNow.barid],@"userid":[NSNumber numberWithInt:self.userModel.userid],@"applyType":[NSNumber numberWithInt:_accountNum]}];
+    [[NSMutableDictionary alloc]initWithDictionary:@{@"idcard":idcard,@"barid":[NSNumber numberWithInt:jiuBaNow.barid],@"userid":[NSNumber numberWithInt:self.userModel.userid],@"applyType":applyType}];
     if (_accountNum == 1) {
         if (wechatName.length) {
             [dic setObject:wechatName forKey:@"wechatName"];

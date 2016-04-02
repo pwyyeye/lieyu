@@ -209,5 +209,7 @@
 
 //获取专属经理申请状态
 + (void)getZSJLStatusComplete:(void(^)(ZSApplyStatusModel *))complete;
+//专属经理验证微信
++ (void)checkZSwechatComplete:(void(^)(NSString *))complete;
 
 @end

@@ -116,4 +116,6 @@
 //获取专属经理状态
 #define LP_GET_ZSJLSTATUS @"lyUsersVipApplyAction.do?action=expand"
 
+//专属经理验证微信
+#define LP_CHECK_WECHAT @"smOrderAction.do?action=login"
 #endif
