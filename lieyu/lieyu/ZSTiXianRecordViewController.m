@@ -86,7 +86,7 @@
             NSMutableArray *tempArray = [@[] mutableCopy];
             [tempArray addObject:ZSTiXianRM];
             CGFloat tiXianSum = ZSTiXianRM.amount.floatValue;
-            CGFloat receiveddTiXianSum = ZSTiXianRM.checkMark == 0 ? 0 : ZSTiXianRM.amount.floatValue;
+            CGFloat receiveddTiXianSum = ZSTiXianRM.checkMark.integerValue == 0 ? 0 : ZSTiXianRM.amount.floatValue;
             for (int j = i+1; j < array.count; j ++) {
                 ZSTiXianRecord *ZSTiXianRM2 = array[j];
                 NSArray *strArray2 =  [ZSTiXianRM2.create_date componentsSeparatedByString:@"-"];
