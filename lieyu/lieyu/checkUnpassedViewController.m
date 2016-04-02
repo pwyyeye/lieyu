@@ -37,6 +37,8 @@
     LYZSeditView *seditView;
     UIImage *idcard_zhengmian;
     UIImage *idcard_fanmian;
+    
+    BOOL notEdit;
 }
 @property (nonatomic, strong)unPassesModel *checkModel;
 @property (nonatomic, assign) int applyType;
@@ -79,8 +81,13 @@
         height2 = 264;
         applicationVC.viewLine2.hidden = NO;
         [applicationVC.viewLabel2 setText:@"真实姓名"];
-        [applicationVC.yhkkhTex setText:@""];
-        [applicationVC.yhkkhTex setPlaceholder:@"请输入您的真实姓名"];
+        if (notEdit) {
+            [applicationVC.yhkkhTex setText:@""];
+            [applicationVC.yhkkhTex setPlaceholder:@"请输入您的真实姓名"];
+        }else{
+            [applicationVC.yhkkhTex setText:_checkModel.wechatName];
+            notEdit = YES;
+        }
         
         applicationVC.viewLine3.hidden = YES;
         applicationVC.viewLine4.hidden = YES;
@@ -88,32 +95,45 @@
         height2 = 309;
         applicationVC.viewLine2.hidden = NO;
         [applicationVC.viewLabel2 setText:@"支付宝账号"];
-        [applicationVC.yhkkhTex setText:@""];
-        [applicationVC.yhkkhTex setPlaceholder:@"请输入正确的帐号"];
         
         applicationVC.viewLine3.hidden = NO;
         [applicationVC.viewLabel3 setText:@"绑定姓名"];
-        [applicationVC.yhkKhmYhmTex setText:@""];
-        [applicationVC.yhkKhmYhmTex setPlaceholder:@"用户支付宝绑定姓名"];
+        if (notEdit) {
+            [applicationVC.yhkkhTex setText:@""];
+            [applicationVC.yhkkhTex setPlaceholder:@"请输入正确的帐号"];
+            [applicationVC.yhkKhmYhmTex setText:@""];
+            [applicationVC.yhkKhmYhmTex setPlaceholder:@"用户支付宝绑定姓名"];
+        }else{
+            [applicationVC.yhkkhTex setText:_checkModel.alipayaccount];
+            [applicationVC.yhkKhmYhmTex setText:_checkModel.alipayAccountName];
+            notEdit = YES;
+        }
         
         applicationVC.viewLine4.hidden = YES;
     }else if (_applyType == 3){
         height2 = 353;
         applicationVC.viewLine2.hidden = NO;
         [applicationVC.viewLabel2 setText:@"银行卡号"];
-        [applicationVC.yhkkhTex setText:@""];
-        [applicationVC.yhkkhTex setPlaceholder:@"请输入您的卡号"];
         applicationVC.yhkkhTex.keyboardType = UIKeyboardTypeNumberPad;
         
         applicationVC.viewLine3.hidden = NO;
         [applicationVC.viewLabel3 setText:@"开户支行"];
-        [applicationVC.yhkKhmYhmTex setText:@""];
-        [applicationVC.yhkKhmYhmTex setPlaceholder:@"请输入您的开户支行"];
         
         applicationVC.viewLine4.hidden = NO;
         [applicationVC.viewLabel4 setText:@"开户姓名"];
-        [applicationVC.yhkyhmTex setText:@""];
-        [applicationVC.yhkyhmTex setPlaceholder:@"请输入您的开户姓名"];
+        if (notEdit) {
+            [applicationVC.yhkkhTex setText:@""];
+            [applicationVC.yhkkhTex setPlaceholder:@"请输入您的卡号"];
+            [applicationVC.yhkKhmYhmTex setText:@""];
+            [applicationVC.yhkKhmYhmTex setPlaceholder:@"请输入您的开户支行"];
+            [applicationVC.yhkyhmTex setText:@""];
+            [applicationVC.yhkyhmTex setPlaceholder:@"请输入您的开户姓名"];
+        }else{
+            [applicationVC.yhkkhTex setText:_checkModel.bankCard];
+            [applicationVC.yhkKhmYhmTex setText:_checkModel.bankCardDeposit];
+            [applicationVC.yhkyhmTex setText:_checkModel.bankCardUsername];
+            notEdit = YES;
+        }
     }
     [applicationVC.view setFrame:CGRectMake(0, 65 + height, SCREEN_WIDTH, height2)];
     if (![applicationVC.jiubaButton respondsToSelector:@selector(chooseJiuBaAct:)]) {
@@ -144,11 +164,14 @@
 - (void)initOtherView{
     UILabel *reasonLabel = [[UILabel alloc]init];
     [reasonLabel setText:_checkModel.note];
+//    [reasonLabel setText:@"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroundColor:[UIColor c"];
+//    [reasonLabel setText: @"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dCosetFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dColor:[UIColor clor:[UIColor c"];
     [reasonLabel setFont:[UIFont systemFontOfSize:14]];
     [reasonLabel setTextColor:RGBA(101, 101, 101, 1)];
     [reasonLabel setBackgroundColor:[UIColor clearColor]];
-    CGRect rect = [reasonLabel.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 46, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{[UIFont systemFontOfSize:14]:@"NSAttachmentAttributeName"} context:nil];
-    height = rect.size.height;
+    [reasonLabel setNumberOfLines:0];
+    CGRect rect = [reasonLabel.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 46, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+    height = rect.size.height + 10;
     [reasonLabel setFrame:CGRectMake(23, 54, SCREEN_WIDTH - 46, height)];
     [self.scrollerView addSubview:reasonLabel];
     int i;
@@ -353,7 +376,7 @@
 
 #pragma mark - 检验
 - (bool)checkData{
-    if(!jiuBaNow){
+    if(!barid.length){
         [MyUtil showMessage:@"请选择酒吧"];
         return false;
     }
@@ -371,7 +394,7 @@
             [MyUtil showMessage:@"请将信息填写完整"];
             return false;
         }else{
-            return true;
+//            return true;
         }
     }else if (self.applyType == 2){
         idcard = applicationVC.sfzTex.text;
@@ -381,7 +404,7 @@
             [MyUtil showMessage:@"请将信息填写完整"];
             return false;
         }else{
-            return true;
+//            return true;
         }
     }else if (self.applyType == 3){
         idcard = applicationVC.sfzTex.text;
@@ -392,16 +415,16 @@
             [MyUtil showMessage:@"请将信息填写完整"];
             return false;
         }else{
-            return true;
+//            return true;
         }
     }
     if (!idcard_zhengmian) {
         [MyUtil showMessage:@"请上传身份证正面"];
-        return NO;
+        return false;
     }
     if(!idcard_fanmian){
         [MyUtil showMessage:@"请上传身份证反面"];
-        return NO;
+        return false;
     }
     return YES;
 }
