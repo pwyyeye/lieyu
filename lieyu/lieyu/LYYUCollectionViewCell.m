@@ -21,6 +21,9 @@
 //    self.view_cell.layer.shadowRadius = 1;
 //    self.view_cell.layer.shadowOpacity = 1;
     
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+    
 //    self.view_cell.layer.cornerRadius = 2;
     self.view_cell.layer.borderWidth = 0.5;
     self.view_cell.layer.borderColor = RGBA(204, 204, 204, 1).CGColor;

@@ -15,6 +15,8 @@
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [[UIScreen mainScreen]scale];
     CGFloat btnWidth = (SCREEN_WIDTH - 14 - (_btnArray.count - 1) * 7)/_btnArray.count;
     for (UIButton *btn in _btnArray) {
         btn.hidden = YES;
