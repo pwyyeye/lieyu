@@ -613,8 +613,6 @@
 		38979B401CAD2144002946F5 /* CoinMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B3F1CAD2144002946F5 /* CoinMainViewController.m */; };
 		38979B431CAD46B1002946F5 /* CoinPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B421CAD46B1002946F5 /* CoinPlayViewController.m */; };
 		38979B6F1CAE6263002946F5 /* ZSApplyStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */; };
-		38979B731CAF647F002946F5 /* wechatCheckAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B711CAF647F002946F5 /* wechatCheckAccountViewController.m */; };
-		38979B741CAF6480002946F5 /* wechatCheckAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38979B721CAF647F002946F5 /* wechatCheckAccountViewController.xib */; };
 		38979B781CAF9B55002946F5 /* checkUnpassedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B761CAF9B55002946F5 /* checkUnpassedViewController.m */; };
 		38979B791CAF9B55002946F5 /* checkUnpassedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38979B771CAF9B55002946F5 /* checkUnpassedViewController.xib */; };
 		38979B7C1CAFA500002946F5 /* unPassesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38979B7B1CAFA500002946F5 /* unPassesModel.m */; };
@@ -2631,9 +2629,6 @@
 		38979B421CAD46B1002946F5 /* CoinPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinPlayViewController.m; sourceTree = "<group>"; };
 		38979B6D1CAE6263002946F5 /* ZSApplyStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSApplyStatusModel.h; sourceTree = "<group>"; };
 		38979B6E1CAE6263002946F5 /* ZSApplyStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSApplyStatusModel.m; sourceTree = "<group>"; };
-		38979B701CAF647F002946F5 /* wechatCheckAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wechatCheckAccountViewController.h; sourceTree = "<group>"; };
-		38979B711CAF647F002946F5 /* wechatCheckAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wechatCheckAccountViewController.m; sourceTree = "<group>"; };
-		38979B721CAF647F002946F5 /* wechatCheckAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = wechatCheckAccountViewController.xib; sourceTree = "<group>"; };
 		38979B751CAF9B55002946F5 /* checkUnpassedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkUnpassedViewController.h; sourceTree = "<group>"; };
 		38979B761CAF9B55002946F5 /* checkUnpassedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = checkUnpassedViewController.m; sourceTree = "<group>"; };
 		38979B771CAF9B55002946F5 /* checkUnpassedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = checkUnpassedViewController.xib; sourceTree = "<group>"; };
@@ -4755,9 +4750,6 @@
 				15E1848A1BB5220C00681BB2 /* LyZSuploadIdCardViewController.h */,
 				15E1848B1BB5220C00681BB2 /* LyZSuploadIdCardViewController.m */,
 				15E1848C1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib */,
-				38979B701CAF647F002946F5 /* wechatCheckAccountViewController.h */,
-				38979B711CAF647F002946F5 /* wechatCheckAccountViewController.m */,
-				38979B721CAF647F002946F5 /* wechatCheckAccountViewController.xib */,
 				38979B751CAF9B55002946F5 /* checkUnpassedViewController.h */,
 				38979B761CAF9B55002946F5 /* checkUnpassedViewController.m */,
 				38979B771CAF9B55002946F5 /* checkUnpassedViewController.xib */,
@@ -9691,7 +9683,6 @@
 				853BCC9C1C76E90500DE0324 /* 收藏white@2x.png in Resources */,
 				38979A9D1CA40919002946F5 /* sad23.png in Resources */,
 				A20100BE1BA901EA009283D1 /* ZSMyClientsViewController.xib in Resources */,
-				38979B741CAF6480002946F5 /* wechatCheckAccountViewController.xib in Resources */,
 				ADD264811C93CD01002894AC /* 3_retina.jpg in Resources */,
 				15B866211BDB5C7C002E2BB6 /* CHDoOrderBottomView.xib in Resources */,
 				85F625981C0C20C6002858C8 /* LYDinWeiTableViewCell.xib in Resources */,
@@ -10385,7 +10376,6 @@
 				AD106BBB1C0DDEFF007F5FBA /* NSObject+MJCoding.m in Sources */,
 				15ED32831BE336DC00E086A1 /* YaoHisListViewController.m in Sources */,
 				15A4CF4C1BD7689F00C22C01 /* DWOrderTopCell.m in Sources */,
-				38979B731CAF647F002946F5 /* wechatCheckAccountViewController.m in Sources */,
 				A20100CA1BA9212A009283D1 /* ZSCustomerDetailViewController.m in Sources */,
 				8545385A1C2D3A8D0020AC2C /* LYFriendsHttpTool.m in Sources */,
 				855397331C8DA01C00289D18 /* split.c in Sources */,
