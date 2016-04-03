@@ -729,7 +729,7 @@
                     size.height = 20;
                 }
             }
-            return 67 + size.height;
+            return 70 + size.height;
         }
             break;
             
@@ -761,7 +761,7 @@
             break;
         case 2://地址
         {
-            return 45;
+            return 40;
         }
             break;
         case 3://评论
@@ -780,12 +780,12 @@
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
-            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 81, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 104, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             CGFloat height;
             if (size.height + 20 < 36) {
                 height = 36;
             }else {
-                height = size.height + 20 + 5;
+                height = size.height + 20 + 3;
             }
             return height;
         }

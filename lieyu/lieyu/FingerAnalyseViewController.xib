@@ -9,11 +9,14 @@
             <connections>
                 <outlet property="label_fenxi" destination="ldu-gf-JL0" id="Cm0-od-0zM"/>
                 <outlet property="label_percent" destination="6dc-ft-fhS" id="h7F-e2-5mT"/>
+                <outlet property="label_percent_cons_left" destination="21K-JO-IEa" id="zQU-zc-oJe"/>
+                <outlet property="label_percent_cons_top" destination="sPy-2c-NOn" id="hR0-fj-xIS"/>
                 <outlet property="label_type" destination="d7H-op-8VU" id="bQm-Rb-TIg"/>
                 <outlet property="progressView" destination="M1G-x3-khq" id="hBs-MU-nSb"/>
                 <outlet property="progressView_cons_width" destination="tgs-Qk-eKI" id="XBd-dc-7V7"/>
                 <outlet property="textView_detail" destination="5XG-0b-h0k" id="VxO-uq-BIs"/>
                 <outlet property="textview_cons_bottom" destination="G6r-XZ-y9y" id="8Ss-Cg-OhD"/>
+                <outlet property="textview_cons_right" destination="muW-WR-blG" id="o96-up-iEe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

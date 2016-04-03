@@ -26,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView_detail;
 @property (weak, nonatomic) IBOutlet UILabel *label_fenxi;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textview_cons_bottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_percent_cons_left;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_percent_cons_top;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textview_cons_right;
 
 @end
 
@@ -43,6 +46,10 @@
     for (int i = 75; i < 101; i ++) {
         [_percentCount addObject:[NSString stringWithFormat:@"%d",i]];
     }
+    
+    _label_percent_cons_left.constant = 0.125703 *SCREEN_WIDTH;
+    _label_percent_cons_top.constant = 0.06431159 * SCREEN_HEIGHT;
+    _textview_cons_right.constant = 0.13848631 *SCREEN_WIDTH;
     
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
