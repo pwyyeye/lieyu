@@ -118,4 +118,6 @@
 
 //专属经理验证微信
 #define LP_CHECK_WECHAT @"smOrderAction.do?action=login"
+//获取
+#define LP_GET_UNPASSEDDATA @"lyUsersVipApplyAction.do?action=list"
 #endif

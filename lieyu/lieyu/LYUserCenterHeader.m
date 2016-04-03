@@ -23,7 +23,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
     self.btnMessage.hidden = YES;
     //设置背景色
-    UIImageView *bgImage = [[UIImageView alloc]initWithImage:[MyUtil getImageFromColor:RGBA(153, 50, 204, 1)] ];
+    UIImageView *bgImage = [[UIImageView alloc]initWithImage:[MyUtil getImageFromColor:RGBA(186, 40, 227, 1)] ];
 //    UIImageView *bgImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headBgColor"]];
     bgImage.frame=CGRectMake(0, 0, SCREEN_WIDTH, CGRectGetHeight(_headView.frame));
     bgImage.contentMode=UIViewContentModeScaleToFill;

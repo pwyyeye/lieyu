@@ -20,6 +20,7 @@
 #import "LPUserLoginViewController.h"
 #import "ZSApplyStatusModel.h"
 #import "wechatCheckAccountViewController.h"
+#import "checkUnpassedViewController.h"
 
 @interface Setting (){
     UIButton *_logoutButton;
@@ -100,25 +101,28 @@
 //        statusModel.applyType 1.支付宝 2.银行卡 3.微信
 //        statusModel.wechatAccount
 //        userModel.applyStatus 0.未申请 1.审核中 2.已审核 3.审核未通过
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 218, 10, 200, 30)];
+        label.textAlignment = NSTextAlignmentRight;
+        [label setBackgroundColor:[UIColor whiteColor]];
+        [label setTextColor:RGBA(186, 40, 227, 1)];
+        [label setFont:[UIFont systemFontOfSize:14]];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+        [cell addSubview:label];
         if (userModel.applyStatus == 1) {
-            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 210, 10, 200, 30)];
-            label.textAlignment = NSTextAlignmentRight;
-            [label setBackgroundColor:[UIColor whiteColor]];
-            [label setTextColor:RGBA(186, 40, 227, 1)];
-            [label setFont:[UIFont systemFontOfSize:14]];
-            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-            [cell addSubview:label];
-            
             if ([statusModel.applyType isEqualToString:@"3"] && !statusModel.wechatAccount.length) {
-                [label setText:@"请完成支付确认!  "];
+                [label setText:@"请完成支付确认!"];
                 canApply = YES;
                 enterStep = 2;
             }else{
-                [label setText:@"审核中  "];
+                [label setText:@"审核中"];
             }
         }else if(userModel.applyStatus == 0){
             canApply = YES;
             enterStep = 1;
+        }else if (userModel.applyStatus == 3){
+            [label setText:@"审核未通过"];
+            canApply = YES;
+            enterStep = 3;
         }
     }];
 }
@@ -242,7 +246,7 @@
     }else if(indexPath.row==5){
         detailViewController=[[AboutLieyu alloc] initWithNibName:@"AboutLieyu" bundle:nil];
     }else if (indexPath.row == 1){
-        if([userModel.usertype isEqualToString:@"2"]){
+        if([userModel.usertype isEqualToString:@"2"] && !canApply){
             [MyUtil showLikePlaceMessage:@"您已经是专属经理了！"];
             return;
         }else if ([userModel.usertype isEqualToString:@"1"]){
@@ -257,8 +261,10 @@
         }else if (canApply && enterStep == 2){
             detailViewController = [[wechatCheckAccountViewController alloc]initWithNibName:@"wechatCheckAccountViewController" bundle:nil];
             detailViewController.title = @"微信帐号验证";
+        }else if (canApply && enterStep == 3){
+            detailViewController = [[checkUnpassedViewController alloc]initWithNibName:@"checkUnpassedViewController" bundle:nil];
+            detailViewController.title = @"申请专属经理";
         }
-        
     }
 
     

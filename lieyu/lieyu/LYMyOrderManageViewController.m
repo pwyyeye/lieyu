@@ -58,7 +58,7 @@
 //    self.navigationItem.backBarButtonItem = left;
     self.title=@"我的订单";
     pageCount=1;
-    perCount=5;
+    perCount=10;
     [self.tableView setHidden:YES];
     [self.nodataView setHidden:NO];
 //    [self.kongImageView setImage:[UIImage sd_animatedGIFNamed:@"gouGif"]];
@@ -310,7 +310,7 @@
         // 使用颜色创建UIImage//未选中颜色
         CGSize imageSize = CGSizeMake((SCREEN_WIDTH/5.5), 34);
         UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-        [RGBA(153, 50, 204, 1) set];
+        [RGBA(186, 40, 227, 1) set];
         UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
         UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();

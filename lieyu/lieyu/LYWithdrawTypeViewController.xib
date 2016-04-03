@@ -12,6 +12,8 @@
                 <outlet property="introduceLbl" destination="zY7-Iq-64r" id="ChP-fh-84Y"/>
                 <outlet property="introlblLeft" destination="c0p-Cb-LEk" id="kEO-aa-v7x"/>
                 <outlet property="introlblRight" destination="pD8-EB-1TW" id="WS3-OY-yp9"/>
+                <outlet property="poundageLabel" destination="UWA-ju-a6S" id="BCK-pO-fuG"/>
+                <outlet property="shouxuLabel" destination="8H4-c9-wpF" id="oAF-tZ-xpY"/>
                 <outlet property="textview" destination="D87-kZ-ugu" id="41U-uI-OjW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="withdrawBtn" destination="1JW-Oi-sZF" id="0Zt-Y3-3aK"/>
@@ -120,7 +122,7 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当日到账，100元以内收取2元手续费，100元以上收取2‰的手续费" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zY7-Iq-64r">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当日到账，1000元以内收取2元手续费，1000元以上收取2‰的手续费" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zY7-Iq-64r">
                     <rect key="frame" x="60" y="275" width="480" height="51"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="51" id="oB8-Dy-4Lf"/>
@@ -137,6 +139,24 @@
                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UWA-ju-a6S">
+                    <rect key="frame" x="527.5" y="100" width="50.5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="dAq-an-fGB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <color key="textColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手续费：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8H4-c9-wpF">
+                    <rect key="frame" x="447.5" y="100" width="80" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="2t6-h0-LxA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -145,6 +165,7 @@
                 <constraint firstItem="D87-kZ-ugu" firstAttribute="centerY" secondItem="QeO-yf-5Lv" secondAttribute="centerY" id="7ZB-jT-4fR"/>
                 <constraint firstItem="L5i-83-iX8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="7ee-0x-6fD"/>
                 <constraint firstItem="XaV-kn-h5I" firstAttribute="bottom" secondItem="0UG-lV-WRM" secondAttribute="bottom" id="8Pv-x2-aqO"/>
+                <constraint firstItem="UWA-ju-a6S" firstAttribute="leading" secondItem="8H4-c9-wpF" secondAttribute="trailing" id="8uZ-XI-Hfr"/>
                 <constraint firstItem="cMn-k7-BeP" firstAttribute="width" secondItem="mIE-X3-PR6" secondAttribute="width" id="DZ5-SL-6dH"/>
                 <constraint firstItem="cMn-k7-BeP" firstAttribute="bottom" secondItem="mIE-X3-PR6" secondAttribute="bottom" id="EDq-Dl-2lq"/>
                 <constraint firstItem="Ane-9j-lkT" firstAttribute="leading" secondItem="L5i-83-iX8" secondAttribute="leading" id="Epj-zQ-0Jn"/>
@@ -155,9 +176,11 @@
                 <constraint firstAttribute="trailing" secondItem="V1z-0T-wpb" secondAttribute="trailing" constant="22" id="Nnn-1G-Fyh"/>
                 <constraint firstItem="V1z-0T-wpb" firstAttribute="top" secondItem="D87-kZ-ugu" secondAttribute="bottom" constant="10" id="RSK-qu-P1u"/>
                 <constraint firstItem="1JW-Oi-sZF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="SL3-LQ-mbU"/>
+                <constraint firstItem="8H4-c9-wpF" firstAttribute="top" secondItem="Ane-9j-lkT" secondAttribute="top" id="Scm-eG-w1u"/>
                 <constraint firstAttribute="trailing" secondItem="1JW-Oi-sZF" secondAttribute="trailing" constant="10" id="Swt-6o-27z"/>
                 <constraint firstItem="QeO-yf-5Lv" firstAttribute="top" secondItem="Ane-9j-lkT" secondAttribute="bottom" constant="22" id="Uh4-44-tWG"/>
                 <constraint firstItem="L5i-83-iX8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="V7m-Px-bt6"/>
+                <constraint firstItem="UWA-ju-a6S" firstAttribute="top" secondItem="Ane-9j-lkT" secondAttribute="top" id="VjI-22-rc1"/>
                 <constraint firstAttribute="trailing" secondItem="JLm-ud-oLU" secondAttribute="trailing" constant="22" id="WnQ-mc-kuA"/>
                 <constraint firstItem="JLm-ud-oLU" firstAttribute="leading" secondItem="L5i-83-iX8" secondAttribute="trailing" id="Zk4-af-8cf"/>
                 <constraint firstItem="mIE-X3-PR6" firstAttribute="leading" secondItem="L5i-83-iX8" secondAttribute="leading" id="b8K-oh-XrC"/>
@@ -170,7 +193,10 @@
                 <constraint firstItem="JLm-ud-oLU" firstAttribute="bottom" secondItem="L5i-83-iX8" secondAttribute="bottom" id="hXh-Ef-TWw"/>
                 <constraint firstAttribute="trailing" secondItem="zY7-Iq-64r" secondAttribute="trailing" constant="60" id="pD8-EB-1TW"/>
                 <constraint firstItem="XaV-kn-h5I" firstAttribute="leading" secondItem="0UG-lV-WRM" secondAttribute="trailing" id="pHx-MT-uRc"/>
+                <constraint firstItem="8H4-c9-wpF" firstAttribute="bottom" secondItem="Ane-9j-lkT" secondAttribute="bottom" id="piF-mo-UJt"/>
                 <constraint firstItem="zY7-Iq-64r" firstAttribute="top" secondItem="cMn-k7-BeP" secondAttribute="bottom" constant="45" id="sD3-gR-jMs"/>
+                <constraint firstAttribute="trailing" secondItem="UWA-ju-a6S" secondAttribute="trailing" constant="22" id="tJt-d6-rkX"/>
+                <constraint firstItem="UWA-ju-a6S" firstAttribute="bottom" secondItem="Ane-9j-lkT" secondAttribute="bottom" id="vDc-jU-49r"/>
                 <constraint firstAttribute="trailing" secondItem="D87-kZ-ugu" secondAttribute="trailing" constant="22" id="wDS-73-CHZ"/>
                 <constraint firstItem="cMn-k7-BeP" firstAttribute="leading" secondItem="mIE-X3-PR6" secondAttribute="trailing" constant="24" id="x9V-Ew-gtC"/>
                 <constraint firstAttribute="trailing" secondItem="XaV-kn-h5I" secondAttribute="trailing" constant="22" id="zfx-yq-eRK"/>

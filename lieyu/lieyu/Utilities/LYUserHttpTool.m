@@ -369,6 +369,29 @@
     }];
 }
 
+#pragma mark - 专属经理申请更新
+-(void) updateApplyVip:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block complete:(void (^)(BOOL result))result{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestFileWihtUrl:LY_APPLY_UPDATE  baseURL:LY_SERVER params:params block:block success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        if ([code isEqualToString:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(YES);
+            });
+            [app stopLoading];
+        }else{
+            result(NO);
+            [app stopLoading];
+            [MyUtil showMessage:message];
+        }
+        
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 #pragma mark -获取我的订单列表
 -(void) getMyOrderListWithParams:(NSDictionary*)params
                            block:(void(^)(NSMutableArray* result)) block{
@@ -1492,5 +1515,26 @@
         [app stopLoading];
     }];
 }
+
+#pragma mark - 审核未通过
++ (void)getUnpassedReasonComplete:(void (^)(unPassesModel *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_GET_UNPASSEDDATA baseURL:LY_SERVER params:nil success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            unPassesModel *model = [unPassesModel mj_objectWithKeyValues:[response objectForKey:@"data"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(model);
+            });
+        }else{
+            [MyUtil showLikePlaceMessage:@"数据获取失败"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 
 @end
