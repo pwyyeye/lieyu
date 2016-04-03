@@ -11,7 +11,8 @@ $(function(){
 	$(".over").click(function(){
 	clearInterval(time);
 	for ( var i=0;i<test.length;i++ ){
-		if ( $("#chengfa").html() == test[i] ) { openFace("tb_"+Math.floor(Math.random()*4));test.splice(i,1); }
+                     var objj="tb_"+Math.floor(Math.random()*4);
+		if ( $("#chengfa").html() == test[i] ) { openFace(objj);test.splice(i,1); }
 	}
 	$("#chengfa").animate({fontSize:"10px"}).animate({fontSize:"20px"});
 	$(".start,.over").toggle();

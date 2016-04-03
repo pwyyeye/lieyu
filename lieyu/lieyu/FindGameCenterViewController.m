@@ -88,22 +88,24 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     
-//    FingerMainViewController *finger = [FingerMainViewController new];
-//    [self.navigationController pushViewController:finger animated:YES];
-//    return;
-    
     if(_gameListArray.count <= indexPath.item) return;
     GameList *gList = _gameListArray[indexPath.item];
-    GamePlayViewController *gamePlayVC = [[GamePlayViewController alloc]init];
-//    gamePlayVC.gameLink = gList.gameLink;
-    gamePlayVC.gameLink = @"index_truth.html";
-    [self presentViewController:gamePlayVC animated:YES completion:nil];
-    return;
-//
-//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:FINDGAMENAME_MTA titleName:gList.gameName]];
-    CoinMainViewController *coinMainVC = [[CoinMainViewController alloc]init];
-//    [self.navigationController pushViewController:coinMainVC animated:YES];
-    [self presentViewController:coinMainVC animated:YES completion:nil];
+    if ([gList.gameLink isEqualToString:@"finger"]) {
+            FingerMainViewController *finger = [FingerMainViewController new];
+            [self.navigationController pushViewController:finger animated:YES];
+    }else if([gList.gameLink isEqualToString:@"coin"]){
+        CoinMainViewController *coinMainVC = [[CoinMainViewController alloc]init];
+        [self presentViewController:coinMainVC animated:YES completion:nil];
+    }else{
+        GamePlayViewController *gamePlayVC = [[GamePlayViewController alloc]init];
+        gamePlayVC.gameLink = gList.gameLink;
+        [self presentViewController:gamePlayVC animated:YES completion:nil];
+    }
+    
+   
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:FINDGAMENAME_MTA titleName:gList.gameName]];
+     return;
+
 }
 
 - (void)didReceiveMemoryWarning {
