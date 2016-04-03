@@ -10,4 +10,5 @@
 
 @interface LYFriendsCommentButton : UIButton
 @property (nonatomic,unsafe_unretained) NSInteger indexTag;
+@property (nonatomic,unsafe_unretained) BOOL isFirst;
 @end

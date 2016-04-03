@@ -1989,6 +1989,16 @@
                     commentCell.btn_headerImg.tag = indexPath.section;
                     commentCell.btn_headerImg.indexTag = indexPath.row;
                     [commentCell.btn_headerImg addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
+                    commentCell.btn_firstName.tag = indexPath.section;
+                    commentCell.btn_firstName.indexTag = indexPath.row;
+                    [commentCell.btn_firstName addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
+                    commentCell.btn_firstName.isFirst = YES;
+                    
+                    commentCell.btn_secondName.tag = indexPath.section;
+                    commentCell.btn_secondName.indexTag = indexPath.row;
+                    [commentCell.btn_secondName addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    
                     commentCell.commentM = commentModel;
                     return commentCell;
                 }
@@ -2077,16 +2087,35 @@
         {
             if(!recentM.commentList.count) return 36;
             if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
+            
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
-            NSString *str = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
-            CGSize size = [str boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 104, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-            CGFloat height;
-            if (size.height + 20 < 36) {
-                height = 36;
-            }else {
-                height = size.height + 20 + 3;
-            }
-            return height;
+            NSString *str = nil;
+             if([commentM.toUserId isEqualToString:@"0"]) {
+            str = [NSString stringWithFormat:@"%@：%@",commentM.nickName,commentM.comment];
+             }else{
+                 str = [NSString stringWithFormat:@"%@ 回复 %@：%@d",commentM.nickName,commentM.toUserNickName,commentM.comment];
+             }
+            
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init
+                                                       ];
+            paragraphStyle.lineSpacing = 5;
+            
+            NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
+            
+            
+            
+            NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:str];
+            [attributedStr addAttributes:attributes range:NSMakeRange(0, attributedStr.length)];
+            CGSize size = [attributedStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+//            [attributedStr siz]
+//            CGFloat height;
+//            if (size.height + 20 < 36) {
+//                height = 36;
+//            }else {
+//                height = size.height + 8;
+//            }
+            NSLog(@"--->%f",size.height);
+            return size.height + 10;
         }
             break;
     }
@@ -2158,17 +2187,24 @@
 #pragma mark － 评论点击头像跳转到指定用户界面
 - (void)pushUserPage:(LYFriendsCommentButton *)button{
     FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+  
     FriendsCommentModel *commentModel = recentM.commentList[button.indexTag - 4];
-    if([commentModel.userId isEqualToString:_useridStr]) {
-//        [self myClick:nil];
-        return;
+    
+    NSString *idStr = nil;
+    if (button.isFirst) {//fist
+        idStr = commentModel.userId;
+    }else{
+        idStr = commentModel.toUserId;
     }
-//    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
-//    friendsUserMegVC.friendsId = commentModel.userId;
-//    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
+    
+    
+    if([idStr isEqualToString:_useridStr]) return;
+    //    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
+    //    friendsUserMegVC.friendsId = commentModel.userId;
+    //    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
     
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
-    myFriendVC.userID = commentModel.userId;
+    myFriendVC.userID = idStr;
     [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 
