@@ -10,9 +10,13 @@
 #import "LYFriendsCommentButton.h"
 @class FriendsCommentModel;
 
-@interface LYFriendsCommentTableViewCell : UITableViewCell
+@interface LYFriendsCommentTableViewCell : UITableViewCell<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet LYFriendsCommentButton *btn_headerImg;
 @property (weak, nonatomic) IBOutlet UILabel *label_comment;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV_comment;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet LYFriendsCommentButton *btn_firstName;
+@property (weak, nonatomic) IBOutlet LYFriendsCommentButton *btn_secondName;
+@property (weak, nonatomic) IBOutlet UILabel *label_huifu;
 @property (nonatomic,strong) FriendsCommentModel *commentM;
 @end

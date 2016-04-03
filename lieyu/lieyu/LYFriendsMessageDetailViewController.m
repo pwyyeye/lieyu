@@ -644,6 +644,15 @@
             commentCell.btn_headerImg.tag = indexPath.row - _indexStart;
             [commentCell.btn_headerImg addTarget:self action:@selector(puUserMessagePageClick:) forControlEvents:UIControlEventTouchUpInside];
             commentCell.commentM = commentModel;
+            
+            commentCell.btn_firstName.tag = indexPath.section;
+            commentCell.btn_firstName.indexTag = indexPath.row;
+            [commentCell.btn_firstName addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
+            commentCell.btn_firstName.isFirst = YES;
+            
+            commentCell.btn_secondName.tag = indexPath.section;
+            commentCell.btn_secondName.indexTag = indexPath.row;
+            [commentCell.btn_secondName addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
             return commentCell;
             
         }
@@ -752,21 +761,55 @@
         default:{
            
             FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
-            NSString *string = [NSString stringWithFormat:@"%@:%@",commentModel.nickName,commentModel.comment];
-//            CGSize size = [string boundingRectWithSize:CGSizeMake(235, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-//            return size.height >= 34 ? size.height + 14 : 34;
             
-            CGSize size = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 104, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-            CGFloat height;
-            if (size.height + 10 < 36) {
-                height = 36;
-            }else {
-                height = size.height + 10 + 3;
+            NSString *str = nil;
+            if([commentModel.toUserId isEqualToString:@"0"]) {
+                str = [NSString stringWithFormat:@"%@：%@",commentModel.nickName,commentModel.comment];
+            }else{
+                str = [NSString stringWithFormat:@"%@ 回复 %@：%@",commentModel.nickName,commentModel.toUserNickName,commentModel.comment];
             }
-            return height;
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init
+                                                       ];
+            paragraphStyle.lineSpacing = 5;
+            
+            NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
+            NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:str];
+            [attributedStr addAttributes:attributes range:NSMakeRange(0, attributedStr.length)];
+            CGSize size = [attributedStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+//            CGFloat height;
+//            if (size.height < 30) {
+//                height = 30;
+//            }else {
+//                height = size.height;
+//            }
+            return size.height + 10;
+
         }
             break;
         }
+}
+
+#pragma mark － 评论点击头像跳转到指定用户界面
+- (void)pushUserPage:(LYFriendsCommentButton *)button{
+    
+    FriendsCommentModel *commentModel = _dataArray[button.indexTag - _indexStart];
+    
+    NSString *idStr = nil;
+    if (button.isFirst) {//fist
+        idStr = commentModel.userId;
+    }else{
+        idStr = commentModel.toUserId;
+    }
+    
+    
+    if([idStr isEqualToString:_useridStr]) return;
+    //    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
+    //    friendsUserMegVC.friendsId = commentModel.userId;
+    //    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
+    
+    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    myFriendVC.userID = idStr;
+    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
