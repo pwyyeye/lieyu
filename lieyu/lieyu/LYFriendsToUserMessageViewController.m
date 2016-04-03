@@ -234,6 +234,7 @@
 #pragma mark － 评论点击头像跳转到指定用户界面
 - (void)pushUserPage:(LYFriendsCommentButton *)button{
     FriendsRecentModel *recentM = _dataArray[button.tag];
+    if(button.indexTag - 4>= recentM.commentList.count) return;
     FriendsCommentModel *commentModel = recentM.commentList[button.indexTag - 4];
     
     NSString *idStr = nil;
