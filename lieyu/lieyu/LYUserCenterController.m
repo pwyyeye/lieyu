@@ -261,7 +261,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试 
             conversationVC.userName = @"猎娱客服";
             conversationVC.title = @"猎娱客服";
-            [IQKeyboardManager sharedManager].enable = NO;
+            [IQKeyboardManager sharedManager].enable = NO; 
             [IQKeyboardManager sharedManager].isAdd = YES;
             
             UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
