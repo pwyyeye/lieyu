@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -23,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YgK-jH-Eq7">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YgK-jH-Eq7">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="173"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
@@ -38,6 +38,19 @@
                     </state>
                     <connections>
                         <action selector="addPictures:" destination="-1" eventType="touchUpInside" id="5Fd-9z-VUJ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmT-nh-6sx">
+                    <rect key="frame" x="44" y="30" width="85" height="85"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="5to-Dw-NHK"/>
+                        <constraint firstAttribute="height" constant="85" id="jfM-gh-eIl"/>
+                    </constraints>
+                    <state key="normal" image="UploadImage">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="addPictures:" destination="-1" eventType="touchUpInside" id="uVd-0x-47j"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正面" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IgN-sN-rpm">
@@ -86,19 +99,6 @@
                         <constraint firstAttribute="width" secondItem="ebv-KI-6Pa" secondAttribute="height" multiplier="138:85" id="GDA-YI-EIK"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmT-nh-6sx">
-                    <rect key="frame" x="44" y="30" width="85" height="85"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="85" id="5to-Dw-NHK"/>
-                        <constraint firstAttribute="height" constant="85" id="jfM-gh-eIl"/>
-                    </constraints>
-                    <state key="normal" image="UploadImage">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="addPictures:" destination="-1" eventType="touchUpInside" id="uVd-0x-47j"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请务必上传清晰的身份证照片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hke-lz-Rsj">
                     <rect key="frame" x="0.0" y="190" width="320" height="21"/>
                     <constraints>
@@ -128,11 +128,15 @@
                 <constraint firstItem="ebv-KI-6Pa" firstAttribute="leading" secondItem="NK7-Vw-OD4" secondAttribute="trailing" constant="11" id="Dk3-xF-A8m"/>
                 <constraint firstAttribute="trailing" secondItem="ebv-KI-6Pa" secondAttribute="trailing" constant="18" id="EGq-6N-2aZ"/>
                 <constraint firstItem="IgN-sN-rpm" firstAttribute="centerX" secondItem="fmT-nh-6sx" secondAttribute="centerX" id="Ep3-pz-kT6"/>
+                <constraint firstItem="YgK-jH-Eq7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FYf-Hf-pSQ"/>
                 <constraint firstItem="hke-lz-Rsj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IEf-qU-zbR"/>
                 <constraint firstItem="53E-9X-cXg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="L48-4B-O82"/>
                 <constraint firstItem="WM9-qY-dwz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LzJ-M8-sFx"/>
                 <constraint firstItem="T7D-gH-E6E" firstAttribute="top" secondItem="53E-9X-cXg" secondAttribute="bottom" constant="14" id="QVA-ay-uG0"/>
+                <constraint firstItem="YgK-jH-Eq7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UJf-n9-hgt"/>
                 <constraint firstItem="fmT-nh-6sx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="44" id="Wy7-j1-JD7"/>
+                <constraint firstItem="hke-lz-Rsj" firstAttribute="top" secondItem="YgK-jH-Eq7" secondAttribute="bottom" constant="17" id="XRx-Kz-ZdV"/>
+                <constraint firstAttribute="trailing" secondItem="YgK-jH-Eq7" secondAttribute="trailing" id="bYP-RF-UxO"/>
                 <constraint firstItem="ebv-KI-6Pa" firstAttribute="top" secondItem="NK7-Vw-OD4" secondAttribute="top" id="bqm-3u-bo6"/>
                 <constraint firstItem="MZ6-5Z-rPj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="gga-jg-Isy"/>
                 <constraint firstAttribute="trailing" secondItem="MZ6-5Z-rPj" secondAttribute="trailing" constant="8" id="i1U-Mf-TVg"/>

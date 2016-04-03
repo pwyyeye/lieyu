@@ -8,7 +8,7 @@
 
 #import "LyZSuploadIdCardViewController.h"
 #import "LYUserHttpTool.h"
-#import "wechatCheckAccountViewController.h"
+#import "WechatCheckAccountViewController.h"
 @interface LyZSuploadIdCardViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @end

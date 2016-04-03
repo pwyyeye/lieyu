@@ -9,4 +9,5 @@
 #import "LYBaseViewController.h"
 
 @interface wechatCheckAccountViewController : LYBaseViewController
+@property (nonatomic, strong) NSString *nsCode;
 @end

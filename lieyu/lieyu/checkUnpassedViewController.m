@@ -14,7 +14,7 @@
 #import "JiuBaModel.h"
 #import "LYChooseJiuBaViewController.h"
 #import "LYZSeditView.h"
-#import "wechatCheckAccountViewController.h"
+#import "WechatCheckAccountViewController.h"
 @interface checkUnpassedViewController ()<LYChooseJiuBaDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     JiuBaModel *jiuBaNow;
@@ -114,7 +114,7 @@
         height2 = 353;
         applicationVC.viewLine2.hidden = NO;
         [applicationVC.viewLabel2 setText:@"银行卡号"];
-        applicationVC.yhkkhTex.keyboardType = UIKeyboardTypeNumberPad;
+//        applicationVC.yhkkhTex.keyboardType = UIKeyboardTypeNumberPad;
         
         applicationVC.viewLine3.hidden = NO;
         [applicationVC.viewLabel3 setText:@"开户支行"];
