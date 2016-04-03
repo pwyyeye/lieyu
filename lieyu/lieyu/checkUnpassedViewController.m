@@ -163,7 +163,7 @@
 
 - (void)initOtherView{
     UILabel *reasonLabel = [[UILabel alloc]init];
-    [reasonLabel setText:_checkModel.note];
+    [reasonLabel setText:_checkModel.note];      
 //    [reasonLabel setText:@"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroundColor:[UIColor c"];
 //    [reasonLabel setText: @"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dCosetFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dColor:[UIColor clor:[UIColor c"];
     [reasonLabel setFont:[UIFont systemFontOfSize:14]];
