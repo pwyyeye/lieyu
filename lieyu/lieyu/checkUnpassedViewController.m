@@ -167,7 +167,7 @@
 //    [reasonLabel setText:@"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroundColor:[UIColor c"];
 //    [reasonLabel setText: @"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dCosetFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dColor:[UIColor clor:[UIColor c"];
     [reasonLabel setFont:[UIFont systemFontOfSize:14]];
-    [reasonLabel setTextColor:RGBA(101, 101, 101, 1)];    
+    [reasonLabel setTextColor:RGBA(101, 101, 101, 1)];
     [reasonLabel setBackgroundColor:[UIColor clearColor]];
     [reasonLabel setNumberOfLines:0];
     CGRect rect = [reasonLabel.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 46, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
