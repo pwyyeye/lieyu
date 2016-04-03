@@ -29,6 +29,8 @@
     self.conversationListTableView.tableFooterView = [UIView new];
     
     _unreadMessageCount=0;
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
  
     // Do any additional setup after loading the view.
 }

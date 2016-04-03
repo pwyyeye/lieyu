@@ -47,9 +47,9 @@
         [_percentCount addObject:[NSString stringWithFormat:@"%d",i]];
     }
     
-    _label_percent_cons_left.constant = 0.125703 *SCREEN_WIDTH;
+    _label_percent_cons_left.constant = 0.13848631 *SCREEN_WIDTH;
     _label_percent_cons_top.constant = 0.06431159 * SCREEN_HEIGHT;
-    _textview_cons_right.constant = 0.13848631 *SCREEN_WIDTH;
+    _textview_cons_right.constant = 0.12848631 *SCREEN_WIDTH;
     
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
@@ -160,8 +160,8 @@
 - (void)onTimer:(NSTimer *)timer{
     _count ++;
 //    _progressViewWidth ++;
-    _label_percent.text = [NSString stringWithFormat:@"配对率:%ld",_count];
-    _progressView_cons_width.constant = _count / 100.f * (SCREEN_WIDTH - 100);
+    _label_percent.text = [NSString stringWithFormat:@"配对率:%ld%",_count];
+    _progressView_cons_width.constant = _count / 100.f * (SCREEN_WIDTH * (1- 0.26797262));
     _label_type.text = [NSString stringWithFormat:@"配对型:%@",_typeStr];
     _textView_detail.text = _detailStr;
     

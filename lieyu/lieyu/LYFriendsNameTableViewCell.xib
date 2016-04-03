@@ -59,7 +59,7 @@
                         </variation>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rw-eO-sKU">
-                        <rect key="frame" x="266" y="30" width="44" height="30"/>
+                        <rect key="frame" x="276" y="30" width="44" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="MLM-HE-kpV"/>
                             <constraint firstAttribute="height" constant="30" id="gVN-s4-uzW"/>
@@ -121,7 +121,7 @@
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="khM-s2-mFp"/>
                     <constraint firstItem="7Rw-eO-sKU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="lQB-Zj-3uX"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="lM4-4y-ffP" secondAttribute="bottom" constant="8" id="mqS-7C-HcM"/>
-                    <constraint firstAttribute="trailing" secondItem="7Rw-eO-sKU" secondAttribute="trailing" constant="10" id="qPa-oc-FyU"/>
+                    <constraint firstAttribute="trailing" secondItem="7Rw-eO-sKU" secondAttribute="trailing" id="qPa-oc-FyU"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="64" id="qs0-JD-e4T"/>
                     <constraint firstItem="lM4-4y-ffP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="tf2-KC-5iH"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="pH5-Po-Wwa" secondAttribute="leading" id="uKn-rV-0Ix"/>
