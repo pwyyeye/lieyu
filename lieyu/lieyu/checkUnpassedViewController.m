@@ -157,7 +157,7 @@
 //    suploadVC = [[LyZSuploadIdCardViewController alloc]initWithNibName:@"LyZSuploadIdCardViewController" bundle:nil];
     [suploadVC.view setFrame:CGRectMake(0, 80 + height + height2, SCREEN_WIDTH, 312)];
     suploadVC.nextStepBtn.hidden = YES;
-//    [self.scrollerView addSubview:suploadVC.view];
+//    [self.scrollerView addSubview:suploadVC.view];  
     self.scrollerView.contentSize = CGSizeMake(SCREEN_WIDTH, 450 + height + height2);
 }
 
