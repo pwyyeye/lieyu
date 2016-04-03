@@ -160,7 +160,7 @@
 - (void)onTimer:(NSTimer *)timer{
     _count ++;
 //    _progressViewWidth ++;
-    _label_percent.text = [NSString stringWithFormat:@"配对率:%ld%",_count];
+    _label_percent.text = [NSString stringWithFormat:@"配对率:%ld%@",_count,@"%"];
     _progressView_cons_width.constant = _count / 100.f * (SCREEN_WIDTH * (1- 0.26797262));
     _label_type.text = [NSString stringWithFormat:@"配对型:%@",_typeStr];
     _textView_detail.text = _detailStr;
