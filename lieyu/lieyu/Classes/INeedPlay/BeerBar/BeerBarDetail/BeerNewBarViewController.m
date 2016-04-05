@@ -68,6 +68,7 @@
 
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property (weak, nonatomic) IBOutlet UIImageView *image_layer;
+@property (weak, nonatomic) IBOutlet UIImageView *image_header;
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *image_like;
 @property(nonatomic,weak)IBOutlet UIView *bottomBarView;
@@ -95,6 +96,7 @@
     [self setupViewStyles];                                                     //tableView registe cell
     
 //    self.image_layer.hidden = YES;
+    //wtt
     self.image_layer.alpha = 0.f;
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -137,7 +139,9 @@
     [super viewWillAppear:animated];
     if (_image_layer.alpha == 0.f) {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+        _image_header.hidden = NO;
     }else{
+        _image_header.hidden = YES;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     }
     [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -334,11 +338,23 @@
     
    // if (scrollView.contentOffset.y > SCREEN_WIDTH/183*95 - self.image_layer.size.height) {
 //        self.image_layer.hidden = NO;
-        self.image_layer.alpha = scrollView.contentOffset.y / 64.f;
+//        self.image_layer.alpha = scrollView.contentOffset.y / 64.f;
+    
+    if (scrollView.contentOffset.y >= SCREEN_WIDTH /16 * 9 - 64) {
+        self.image_layer.alpha = 1;
         self.image_layer.layer.shadowRadius = 2;
         self.image_layer.layer.shadowOpacity = 0.5;
         self.image_layer.layer.shadowOffset = CGSizeMake(0, 1);
         self.image_layer.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    }else{
+        self.image_layer.alpha = 0;
+    }
+    
+//    self.image_layer.alpha = scrollView.contentOffset.y / (SCREEN_WIDTH / 16 * 9 - 64);
+//        self.image_layer.layer.shadowRadius = 2;
+//        self.image_layer.layer.shadowOpacity = 0.5;
+//        self.image_layer.layer.shadowOffset = CGSizeMake(0, 1);
+//        self.image_layer.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
     if (self.image_layer.alpha <= 0.f) {//white
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         [_btnBack setImage:[UIImage imageNamed:@"return_white"] forState:UIControlStateNormal];
@@ -354,6 +370,7 @@
         }
         [_btnShare setImage:[UIImage imageNamed:@"分享white"] forState:UIControlStateNormal];
     }else{//black
+        _image_header.hidden = NO;
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
          [_btnBack setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
         if (_userCollected) {
@@ -371,7 +388,8 @@
     
     if (_tableView.contentOffset.y < 0) {
         CGFloat y = scrollView.contentOffset.y;
-        CGFloat hegiht = SCREEN_WIDTH * 95 / 183.f;
+//        CGFloat hegiht = SCREEN_WIDTH * 95 / 183.f;
+        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
         _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 183 / 95.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 183 / 95.f, hegiht -y);
     }
     
@@ -616,7 +634,8 @@
             if (imgV) {
                 [imgV removeFromSuperview];
             }
-            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 95/183.f)];
+//            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 95/183.f)];
+            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
             _tableHeaderImgView.tag = 1008611;
             if(_beerBarDetail.banners.count){
             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
@@ -849,7 +868,8 @@
     switch (indexPath.section) {
         case 0:
         {
-            return SCREEN_WIDTH * 95 / 183;
+//            return SCREEN_WIDTH * 95 / 183;
+            return SCREEN_WIDTH * 9 / 16;
         }
             break;
         case 1:

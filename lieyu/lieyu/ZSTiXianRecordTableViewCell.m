@@ -74,6 +74,7 @@
     
     
     _label_money.text = [NSString stringWithFormat:@"%.2f",tiXianR.amount.floatValue];
+    _label_poundage.text = [NSString stringWithFormat:@"手续费:¥%@元",tiXianR.poundage];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
