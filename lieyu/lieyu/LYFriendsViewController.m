@@ -785,11 +785,11 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
     if(_results.integerValue){
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 344);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 240);
          _headerView.btn_newMessage.hidden = NO;
         _myBadge.hidden = NO;
     }else{
-        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 344 - 54);
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 240);
          _headerView.btn_newMessage.hidden = YES;
         _headerView.imageView_NewMessageIcon.hidden = YES;
         _myBadge.hidden = YES;
