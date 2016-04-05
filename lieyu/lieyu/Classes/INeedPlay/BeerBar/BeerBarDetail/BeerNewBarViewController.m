@@ -737,7 +737,7 @@
     if(self.beerBarDetail.topicTypeId.length){
     LYFriendsTopicViewController *friendTopicVC = [[LYFriendsTopicViewController alloc]init];
     friendTopicVC.topicTypeId = self.beerBarDetail.topicTypeId;
-    friendTopicVC.topicName = @"玩友评论";
+    friendTopicVC.topicName = self.beerBarDetail.topicTypeName;
     [self.navigationController pushViewController:friendTopicVC animated:YES];
     }
 }
