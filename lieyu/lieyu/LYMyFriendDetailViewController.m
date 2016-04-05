@@ -310,6 +310,7 @@
         addFriendViewController.title=@"加好友";
         if (_customerModel) {
             addFriendViewController.customerModel=_customerModel;
+            addFriendViewController.userID =[NSString stringWithFormat:@"%d",_result.userid];
         }else{
             addFriendViewController.type=self.type;
             addFriendViewController.userID = self.userID;

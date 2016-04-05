@@ -36,11 +36,12 @@
         _moneyArray = @[_balance.activeAmount,_balance.withdrawalsSum];
         [weakSelf.tableview reloadData];
     }];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     _label_balance.text = [NSString stringWithFormat:@"¥%.2f",_balance.balances.floatValue];
     _titleArray = @[@"交易中",@"提现记录"];
     _moneyArray = @[_balance.activeAmount,_balance.withdrawalsSum];
