@@ -8,30 +8,58 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LYFriendsAllCommentTableViewCell" rowHeight="47" id="KGk-i7-Jjw" customClass="LYFriendsAllCommentTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LYFriendsAllCommentTableViewCell" rowHeight="63" id="KGk-i7-Jjw" customClass="LYFriendsAllCommentTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="46"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无评论" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hr1-n5-fhe">
-                        <rect key="frame" x="60" y="8" width="252" height="31"/>
+                        <rect key="frame" x="60" y="8" width="252" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uf-jO-b70">
+                        <rect key="frame" x="0.0" y="54" width="320" height="10"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="TCe-yv-xuB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPq-2b-jtc">
+                        <rect key="frame" x="0.0" y="54" width="320" height="0.5"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1023976292724138" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="c4k-Oy-f1v"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.29811422413793104" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="Hr1-n5-fhe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="2Hp-uY-EcL"/>
+                    <constraint firstItem="VPq-2b-jtc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8Fl-fa-7eN"/>
+                    <constraint firstItem="0uf-jO-b70" firstAttribute="top" secondItem="Hr1-n5-fhe" secondAttribute="bottom" constant="10" id="Aw5-bn-4ix"/>
                     <constraint firstItem="Hr1-n5-fhe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="60" id="CJa-LZ-fLX"/>
+                    <constraint firstItem="VPq-2b-jtc" firstAttribute="top" secondItem="Hr1-n5-fhe" secondAttribute="bottom" constant="10" id="L6y-UF-gah"/>
+                    <constraint firstAttribute="bottom" secondItem="0uf-jO-b70" secondAttribute="bottom" id="OYE-WG-S2W"/>
+                    <constraint firstItem="0uf-jO-b70" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Qrk-Yf-QjN"/>
                     <constraint firstItem="Hr1-n5-fhe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="eZb-RZ-EAW"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Hr1-n5-fhe" secondAttribute="trailing" id="f2Q-zE-bB0"/>
+                    <constraint firstAttribute="trailing" secondItem="0uf-jO-b70" secondAttribute="trailing" id="jCh-Iw-V6L"/>
                     <constraint firstItem="Hr1-n5-fhe" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="1" id="qBj-0X-sTi"/>
+                    <constraint firstAttribute="trailing" secondItem="VPq-2b-jtc" secondAttribute="trailing" id="uU6-Vv-QfJ"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="CJa-LZ-fLX"/>
+                        <exclude reference="qBj-0X-sTi"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -39,7 +67,7 @@
             <connections>
                 <outlet property="label_commentCount" destination="Hr1-n5-fhe" id="g19-Zd-cRs"/>
             </connections>
-            <point key="canvasLocation" x="304" y="433.5"/>
+            <point key="canvasLocation" x="304" y="438.5"/>
         </tableViewCell>
     </objects>
 </document>
