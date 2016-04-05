@@ -16,9 +16,9 @@
 }
 
 - (void)drawRect:(CGRect)rect{
-    UIColor *color = [UIColor purpleColor];
+    UIColor *color = RGBA(186, 40, 227, 1);
     [color set];
-    UIBezierPath *cPath = [UIBezierPath bezierPathWithRect:CGRectMake(30, 0, 4, 200)];
+    UIBezierPath *cPath = [UIBezierPath bezierPathWithRect:CGRectMake(30, -1, 4, 200)];
     [cPath fill];
     
     //color = [UIColor redColor];

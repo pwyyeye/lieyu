@@ -843,6 +843,7 @@
         LYFriendsTopicViewController *friendsTopicVC = [[LYFriendsTopicViewController alloc]init];
         friendsTopicVC.topicTypeId = _recentM.topicTypeId;
         friendsTopicVC.topicName = _recentM.topicTypeName;
+        friendsTopicVC.headerViewImgLink = [MyUtil getQiniuUrl:_recentM.topicTypeBgUrl width:0 andHeight:0];
         if([_recentM.isBarTopicType isEqualToString:@"0"]) friendsTopicVC.isFriendsTopic = YES;
         [self.navigationController pushViewController:friendsTopicVC animated:YES];
     }

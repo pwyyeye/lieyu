@@ -81,7 +81,7 @@
             if (([self.textview.text doubleValue] <= 1000)) {
                 [_poundageLabel setText:@"2.00元"];
             }else{
-                [_poundageLabel setText:[NSString stringWithFormat:@"%.2f元",[self.textview.text doubleValue] * 0.001]];
+                [_poundageLabel setText:[NSString stringWithFormat:@"%.2f元",[self.textview.text doubleValue] * 0.002]];
             }
         }else if (isTody == 1){
             [_poundageLabel setText:@"0.00元"];
