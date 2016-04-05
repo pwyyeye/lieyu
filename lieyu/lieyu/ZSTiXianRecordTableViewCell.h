@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_type;
 @property (weak, nonatomic) IBOutlet UILabel *label_time;
 @property (weak, nonatomic) IBOutlet UILabel *label_money;
+@property (weak, nonatomic) IBOutlet UILabel *label_poundage;
 @property (nonatomic,strong) ZSTiXianRecord *tiXianR;
 @end

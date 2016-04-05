@@ -13,6 +13,7 @@
                 <outlet property="btnShare" destination="7V2-dl-Wyd" id="zTE-c5-ro2"/>
                 <outlet property="btn_collect" destination="Gu7-Ag-jA3" id="aWT-vR-blt"/>
                 <outlet property="btn_like" destination="gEV-Ne-pSz" id="cAr-Du-NHT"/>
+                <outlet property="image_header" destination="2M0-7o-qm3" id="3aY-Jn-1Kb"/>
                 <outlet property="image_layer" destination="Fwq-Sp-gAa" id="gm4-Ff-hA9"/>
                 <outlet property="tableView" destination="fcE-SZ-V8q" id="UA7-xp-pty"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -93,7 +94,7 @@
                     <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单点" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tin-Bb-P53">
-                            <rect key="frame" x="107" y="33" width="106" height="21"/>
+                            <rect key="frame" x="106" y="33" width="107" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="qlC-U1-uTl"/>
@@ -103,7 +104,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="组局" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqp-ez-5fy">
-                            <rect key="frame" x="213" y="33" width="107" height="21"/>
+                            <rect key="frame" x="213" y="33" width="106.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="8Cm-zj-RKX"/>
                             </constraints>
@@ -112,7 +113,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预定" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnS-mG-iG5">
-                            <rect key="frame" x="0.0" y="33" width="107" height="21"/>
+                            <rect key="frame" x="0.0" y="33" width="106.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="4Dl-RC-riL"/>
                             </constraints>
@@ -128,7 +129,7 @@
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_eatdrinkspecial" translatesAutoresizingMaskIntoConstraints="NO" id="1l6-iT-1e7">
-                            <rect key="frame" x="145" y="4" width="31" height="31"/>
+                            <rect key="frame" x="144" y="4" width="31" height="31"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="31" id="CdA-h1-UVb"/>
                                 <constraint firstAttribute="width" constant="31" id="lRy-DZ-vjN"/>
@@ -142,7 +143,7 @@
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6JT-Ua-fUY">
-                            <rect key="frame" x="213" y="0.0" width="107" height="49"/>
+                            <rect key="frame" x="213" y="0.0" width="106.5" height="49"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49" id="d70-4x-aQe"/>
                             </constraints>
@@ -156,7 +157,7 @@
                                 <action selector="zsliAct:" destination="-1" eventType="touchUpInside" id="Gg6-ws-LmN"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odr-SE-q5L">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odr-SE-q5L">
                             <rect key="frame" x="106" y="0.0" width="107" height="49"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49" id="iGl-Ox-jYf"/>
@@ -173,7 +174,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8Y-TO-Wm7">
-                            <rect key="frame" x="0.0" y="1" width="107" height="48"/>
+                            <rect key="frame" x="0.0" y="1" width="106.5" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="47m-es-77o"/>
                             </constraints>
@@ -213,6 +214,12 @@
                         <constraint firstItem="Tin-Bb-P53" firstAttribute="width" secondItem="nnS-mG-iG5" secondAttribute="width" id="z1n-hM-Z1f"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bardetail_mask.png" translatesAutoresizingMaskIntoConstraints="NO" id="2M0-7o-qm3">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="84" id="Wha-yJ-Fe8"/>
+                    </constraints>
+                </imageView>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navBarbg" translatesAutoresizingMaskIntoConstraints="NO" id="Fwq-Sp-gAa">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <constraints>
@@ -276,6 +283,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="3nz-fQ-7yP" secondAttribute="trailing" id="08g-kq-kjU"/>
+                <constraint firstAttribute="trailing" secondItem="2M0-7o-qm3" secondAttribute="trailing" id="4W6-q7-mPf"/>
                 <constraint firstItem="fcE-SZ-V8q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4m6-m3-8HN"/>
                 <constraint firstAttribute="bottom" secondItem="TgT-YK-qid" secondAttribute="bottom" id="AYU-Dq-1sm"/>
                 <constraint firstItem="3nz-fQ-7yP" firstAttribute="top" secondItem="y9E-Dm-l7q" secondAttribute="bottom" constant="-60" id="Bnn-a1-zcf"/>
@@ -298,11 +306,14 @@
                 <constraint firstItem="3nz-fQ-7yP" firstAttribute="top" secondItem="fcE-SZ-V8q" secondAttribute="bottom" constant="-49" id="mtd-KR-gda"/>
                 <constraint firstAttribute="trailing" secondItem="TgT-YK-qid" secondAttribute="trailing" id="rCu-qD-JVu"/>
                 <constraint firstAttribute="trailing" secondItem="fcE-SZ-V8q" secondAttribute="trailing" id="rMo-fR-Fak"/>
+                <constraint firstItem="2M0-7o-qm3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u0u-JP-18g"/>
+                <constraint firstItem="2M0-7o-qm3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xHe-RU-U1C"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
+        <image name="bardetail_mask.png" width="375" height="84"/>
         <image name="icon_eatdrinkspecial" width="30" height="30"/>
         <image name="icon_ordersits" width="30" height="30"/>
         <image name="icon_pinke" width="30" height="30"/>
