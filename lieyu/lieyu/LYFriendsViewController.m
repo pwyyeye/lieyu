@@ -2163,6 +2163,8 @@
         friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
 //        friendsTopicVC.topicName = @"玩友评论";
         friendsTopicVC.topicName = friendRecentM.topicTypeName;
+        NSString *imageUrl = [MyUtil getQiniuUrl:friendRecentM.topicTypeBgUrl width:0 andHeight:0];
+        friendsTopicVC.headerViewImgLink = imageUrl;
         if([friendRecentM.isBarTopicType isEqualToString:@"0"]) friendsTopicVC.isFriendsTopic = YES;
         [self.navigationController pushViewController:friendsTopicVC animated:YES];
     }

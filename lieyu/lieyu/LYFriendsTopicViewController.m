@@ -456,8 +456,12 @@ CGFloat picWidth = 0;
 
 - (void)addTableViewHeader{
     UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375)];
-    imgView.backgroundColor = [UIColor redColor];
-    [imgView sd_setImageWithURL:[NSURL URLWithString:_headerViewImgLink] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+//    imgView.backgroundColor = [UIColor redColor];
+//    if (_headerViewImgLink.length) {
+        [imgView sd_setImageWithURL:[NSURL URLWithString:_headerViewImgLink] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+//    }else{
+//        NSString *imageUrl = [MyUtil getQiniuUrl:(()[_dataArray objectAtIndex:0]) width:0 andHeight:0];
+//    }
     self.tableView.tableHeaderView = imgView;
 }
 

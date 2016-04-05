@@ -40,6 +40,8 @@
 @property (nonatomic,copy) NSString *topicTypeName;
 @property (nonatomic,unsafe_unretained) BOOL isMeSendMessage;
 @property (nonatomic,copy) NSString *isBarTopicType;
+@property (nonatomic,copy) NSString *topicTypeBgUrl;
+
 +(NSArray *)initFormNSArray:(NSArray *)arr;
 + (FriendsRecentModel *)initFromNSDictionary:(NSDictionary *)dic;
 @end
