@@ -840,7 +840,7 @@
             topicBtn.titleLabel.layer.shadowRadius = 2;
             topicBtn.layer.cornerRadius = 4;
             topicBtn.clipsToBounds = YES;
-            [topicBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:topicM.linkurl] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+            [topicBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?imageView2/0/w/256/h/140",topicM.linkurl] ] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
             [topicScrollView addSubview:topicBtn];
             topicBtn.tag = i;
             [topicBtn addTarget:self action:@selector(topicClick:) forControlEvents:UIControlEventTouchUpInside];

@@ -19,7 +19,7 @@
 #import "UserNotificationViewController.h"
 #import "LPUserLoginViewController.h"
 #import "ZSApplyStatusModel.h"
-#import "wechatCheckAccountViewController.h"
+#import "WechatCheckAccountViewController.h"
 #import "checkUnpassedViewController.h"
 
 @interface Setting (){
@@ -28,6 +28,7 @@
     ZSApplyStatusModel *statusModel;
     BOOL canApply;//
     int enterStep;//1开始、2支付
+    NSString *sn;
 }
 
 @end
@@ -113,6 +114,7 @@
                 [label setText:@"请完成支付确认!"];
                 canApply = YES;
                 enterStep = 2;
+                sn=statusModel.sn;
             }else{
                 [label setText:@"审核中"];
             }
@@ -260,6 +262,7 @@
             detailViewController.title=@"申请专属经理";
         }else if (canApply && enterStep == 2){
             detailViewController = [[wechatCheckAccountViewController alloc]initWithNibName:@"wechatCheckAccountViewController" bundle:nil];
+            ((wechatCheckAccountViewController *)detailViewController).nsCode=sn;
             detailViewController.title = @"微信帐号验证";
         }else if (canApply && enterStep == 3){
             detailViewController = [[checkUnpassedViewController alloc]initWithNibName:@"checkUnpassedViewController" bundle:nil];

@@ -86,6 +86,9 @@
         }else if (isTody == 1){
             [_poundageLabel setText:@"0.00元"];
         }
+    }else{
+        self.poundageLabel.hidden = YES;
+        self.shouxuLabel.hidden = YES;
     }
 }
 

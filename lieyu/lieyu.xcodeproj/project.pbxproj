@@ -1322,6 +1322,8 @@
 		AD203BF01CB0C4F30014618A /* index_truth3.html in Resources */ = {isa = PBXBuildFile; fileRef = AD203BD61CB0C4F30014618A /* index_truth3.html */; };
 		AD203BF21CB0C4F30014618A /* comm.js in Resources */ = {isa = PBXBuildFile; fileRef = AD203BD91CB0C4F30014618A /* comm.js */; };
 		AD203BF31CB0C4F30014618A /* jquery.min2.14.js in Resources */ = {isa = PBXBuildFile; fileRef = AD203BDA1CB0C4F30014618A /* jquery.min2.14.js */; };
+		AD203BF81CB165AB0014618A /* WechatCheckAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD203BF61CB165AB0014618A /* WechatCheckAccountViewController.m */; };
+		AD203BF91CB165AB0014618A /* wechatCheckAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD203BF71CB165AB0014618A /* wechatCheckAccountViewController.xib */; };
 		AD399E801C940D4D00028F23 /* logo1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD399E261C940D4D00028F23 /* logo1@2x.jpg */; };
 		AD399E811C940D4D00028F23 /* logo2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD399E271C940D4D00028F23 /* logo2@2x.jpg */; };
 		AD399E821C940D4D00028F23 /* logo3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD399E281C940D4D00028F23 /* logo3@2x.jpg */; };
@@ -3591,6 +3593,9 @@
 		AD203BD61CB0C4F30014618A /* index_truth3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index_truth3.html; sourceTree = "<group>"; };
 		AD203BD91CB0C4F30014618A /* comm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = comm.js; sourceTree = "<group>"; };
 		AD203BDA1CB0C4F30014618A /* jquery.min2.14.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min2.14.js; sourceTree = "<group>"; };
+		AD203BF51CB165AB0014618A /* wechatCheckAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wechatCheckAccountViewController.h; sourceTree = "<group>"; };
+		AD203BF61CB165AB0014618A /* WechatCheckAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatCheckAccountViewController.m; sourceTree = "<group>"; };
+		AD203BF71CB165AB0014618A /* wechatCheckAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = wechatCheckAccountViewController.xib; sourceTree = "<group>"; };
 		AD399E261C940D4D00028F23 /* logo1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo1@2x.jpg"; sourceTree = "<group>"; };
 		AD399E271C940D4D00028F23 /* logo2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo2@2x.jpg"; sourceTree = "<group>"; };
 		AD399E281C940D4D00028F23 /* logo3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "logo3@2x.jpg"; sourceTree = "<group>"; };
@@ -4753,6 +4758,9 @@
 				38979B751CAF9B55002946F5 /* checkUnpassedViewController.h */,
 				38979B761CAF9B55002946F5 /* checkUnpassedViewController.m */,
 				38979B771CAF9B55002946F5 /* checkUnpassedViewController.xib */,
+				AD203BF51CB165AB0014618A /* wechatCheckAccountViewController.h */,
+				AD203BF61CB165AB0014618A /* WechatCheckAccountViewController.m */,
+				AD203BF71CB165AB0014618A /* wechatCheckAccountViewController.xib */,
 			);
 			name = "专属经理";
 			sourceTree = "<group>";
@@ -9556,6 +9564,7 @@
 				ADE1C5CC1C730E1C0011D4AB /* 更新23@2x.png in Resources */,
 				ADFE1BAA1C994F1D00700EA3 /* loading8@2x.png in Resources */,
 				15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */,
+				AD203BF91CB165AB0014618A /* wechatCheckAccountViewController.xib in Resources */,
 				853D4E2C1C87E73D003277E5 /* SettingTableViewCell.xib in Resources */,
 				85F625A71C0C4DB7002858C8 /* LYTaoCanListTableViewCell.xib in Resources */,
 				38979A291CA40919002946F5 /* dianzan0.png in Resources */,
@@ -10742,6 +10751,7 @@
 				AD106BB81C0DDEFF007F5FBA /* MJPropertyKey.m in Sources */,
 				D7A1D4171BC2657E00BCE47C /* LYLocationManager.m in Sources */,
 				8588C4261C5DF90A0092259E /* LYYUTableViewCell.m in Sources */,
+				AD203BF81CB165AB0014618A /* WechatCheckAccountViewController.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
 				1559DD101BDA2A3E00F3FE9B /* CarInfoCell.m in Sources */,
 				ADF88EA21C1197C400CF5DED /* MJRefreshAutoGifFooter.m in Sources */,

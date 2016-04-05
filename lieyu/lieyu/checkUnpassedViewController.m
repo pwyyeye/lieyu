@@ -14,7 +14,7 @@
 #import "JiuBaModel.h"
 #import "LYChooseJiuBaViewController.h"
 #import "LYZSeditView.h"
-#import "wechatCheckAccountViewController.h"
+#import "WechatCheckAccountViewController.h"
 @interface checkUnpassedViewController ()<LYChooseJiuBaDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     JiuBaModel *jiuBaNow;
@@ -114,7 +114,7 @@
         height2 = 353;
         applicationVC.viewLine2.hidden = NO;
         [applicationVC.viewLabel2 setText:@"银行卡号"];
-        applicationVC.yhkkhTex.keyboardType = UIKeyboardTypeNumberPad;
+//        applicationVC.yhkkhTex.keyboardType = UIKeyboardTypeNumberPad;
         
         applicationVC.viewLine3.hidden = NO;
         [applicationVC.viewLabel3 setText:@"开户支行"];
@@ -157,13 +157,13 @@
 //    suploadVC = [[LyZSuploadIdCardViewController alloc]initWithNibName:@"LyZSuploadIdCardViewController" bundle:nil];
     [suploadVC.view setFrame:CGRectMake(0, 80 + height + height2, SCREEN_WIDTH, 312)];
     suploadVC.nextStepBtn.hidden = YES;
-//    [self.scrollerView addSubview:suploadVC.view];
+//    [self.scrollerView addSubview:suploadVC.view];    
     self.scrollerView.contentSize = CGSizeMake(SCREEN_WIDTH, 450 + height + height2);
 }
 
 - (void)initOtherView{
     UILabel *reasonLabel = [[UILabel alloc]init];
-    [reasonLabel setText:_checkModel.note];
+    [reasonLabel setText:_checkModel.note];      
 //    [reasonLabel setText:@"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroundColor:[UIColor c"];
 //    [reasonLabel setText: @"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dCosetFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dColor:[UIColor clor:[UIColor c"];
     [reasonLabel setFont:[UIFont systemFontOfSize:14]];

@@ -61,6 +61,14 @@
                     zujuVC.sn=_orderNO;
                     AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
                     [delegate.navigationController pushViewController:zujuVC animated:YES];
+                    _isPinker=0;
+                    _isFaqi=0;
+                    return;
+                }
+                if(_isManagerCheck==1){
+                    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
+                    [delegate.navigationController popToRootViewControllerAnimated:YES];
+                    _isManagerCheck=0;
                     return;
                 }
                 

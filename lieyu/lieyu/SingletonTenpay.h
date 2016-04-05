@@ -21,6 +21,7 @@
 @property(strong,nonatomic) id<SingletonTenpayDelegate> delegate;
 @property(strong,nonatomic) TenpayModel *tenpayModel;
 @property(assign,nonatomic) NSInteger isPinker;
+@property(assign,nonatomic) NSInteger isManagerCheck;
 
 @property(assign,nonatomic) BOOL isFaqi;
 @property(strong,nonatomic) NSString *orderNO;
