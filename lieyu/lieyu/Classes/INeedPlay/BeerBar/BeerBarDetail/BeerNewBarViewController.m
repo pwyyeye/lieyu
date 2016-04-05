@@ -390,7 +390,8 @@
         CGFloat y = scrollView.contentOffset.y;
 //        CGFloat hegiht = SCREEN_WIDTH * 95 / 183.f;
         CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
-        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 183 / 95.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 183 / 95.f, hegiht -y);
+//        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 183 / 95.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 183 / 95.f, hegiht -y);
+        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
     }
     
    /* if (scrollView.contentOffset.y > _contentOffSetY) {

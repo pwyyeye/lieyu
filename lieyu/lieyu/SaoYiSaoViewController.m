@@ -11,7 +11,10 @@
 #import "LYMyFriendDetailViewController.h"
 #import "CheckOrderWithQRViewController.h"
 
-@interface SaoYiSaoViewController ()
+@interface SaoYiSaoViewController ()<UIAlertViewDelegate>
+{
+    NSDictionary *dict;
+}
 @property (strong, nonatomic) UIView *boxView;
 @property (nonatomic) BOOL isReading;
 @property (strong, nonatomic) CALayer *scanLayer;
@@ -135,7 +138,11 @@
             if ([dataString containsString:myUrl]) {
 //            if([subString isEqualToString:@"http://www.lie98.com/lieyu/lyQRCodeAction?action=custom?userid="]){
 //                AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//                [app startLoading];
+                //                [app startLoading];
+                
+                
+                
+                
                 //如果是速核码
                 NSArray *array;
                 NSString *userId;
@@ -150,47 +157,94 @@
                     return;
                 }
                 
-                NSDictionary *dict = @{@"userid":userId,
-                                       @"currentTime":currentTime,
-                                       @"usertype":self.userModel.usertype};
-                __weak typeof(self) weakSelf=self;
-                [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
-//                    [app stopLoading];
-                    if ([weakSelf.userModel.usertype isEqualToString:@"1"]) {
-                        if ([[result valueForKey:@"message"] isEqualToString:@"已经是好友！"]){
-                            //如果已经是好友了，进入玩友详情
-                            LYMyFriendDetailViewController *MyFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
-                            MyFriendDetailVC.userID = [NSString stringWithFormat:@"%@",[result valueForKey:@"data"] ];
-                            [weakSelf.navigationController pushViewController:MyFriendDetailVC animated:YES];
-                        }else{
-                            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-//                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
-//                            [MyUtil showLikePlaceMessage:@"已发送好友申请！"];
-                            [MyUtil showMessage:@"已发送好友申请！"];
-                        }
-                    }
-                    else if ([weakSelf.userModel.usertype isEqualToString:@"2"]){
-                        //商户扫码，进行核实订单
-                        NSArray *tempArr = [result valueForKey:@"data"];
-                        if (tempArr.count <= 1) {
-                            //只有一个订单，扫码核单成功
-                            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-//                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
-                            [MyUtil showMessage:[result valueForKey:@"message"]];
-                        }else{
-                            //多于一单，进入订单选择页面
-                            CheckOrderWithQRViewController *checkorderVC = [[CheckOrderWithQRViewController alloc]initWithNibName:@"CheckOrderWithQRViewController" bundle:nil];
-                            checkorderVC.tempArr = tempArr;
-                            [weakSelf.navigationController pushViewController:checkorderVC animated:YES];
-                        }
-                    }
-                }];
-                 
+                dict = @{@"userid":userId,
+                         @"currentTime":currentTime,
+                         @"usertype":self.userModel.usertype};
+                 if ([self.userModel.usertype isEqualToString:@"2"]) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                    [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确认核单" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil]show];
+                    });
+                 }else{
+                     __weak typeof(self) weakSelf=self;
+                     [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
+                         //                    [app stopLoading];
+                         if ([weakSelf.userModel.usertype isEqualToString:@"1"]) {
+                             if ([[result valueForKey:@"message"] isEqualToString:@"已经是好友！"]){
+                                 //如果已经是好友了，进入玩友详情
+                                 LYMyFriendDetailViewController *MyFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+                                 MyFriendDetailVC.userID = [NSString stringWithFormat:@"%@",[result valueForKey:@"data"] ];
+                                 [weakSelf.navigationController pushViewController:MyFriendDetailVC animated:YES];
+                             }else{
+                                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                                 //                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+                                 //                            [MyUtil showLikePlaceMessage:@"已发送好友申请！"];
+                                 [MyUtil showMessage:@"已发送好友申请！"];
+                             }
+                         }
+                         else if ([weakSelf.userModel.usertype isEqualToString:@"2"]){
+                             //商户扫码，进行核实订单
+                             NSArray *tempArr = [result valueForKey:@"data"];
+                             if (tempArr.count <= 1) {
+                                 //只有一个订单，扫码核单成功
+                                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                                 //                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+                                 [MyUtil showMessage:[result valueForKey:@"message"]];
+                             }else{
+                                 //多于一单，进入订单选择页面
+                                 CheckOrderWithQRViewController *checkorderVC = [[CheckOrderWithQRViewController alloc]initWithNibName:@"CheckOrderWithQRViewController" bundle:nil];
+                                 checkorderVC.tempArr = tempArr;
+                                 [weakSelf.navigationController pushViewController:checkorderVC animated:YES];
+                             }
+                         }
+                     }];
+                 }
+                /*
+                
+                 */
             }else{
                 NSURL* url = [[NSURL alloc] initWithString:dataString];
                 [[ UIApplication sharedApplication]openURL:url];
             }
         }
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if (buttonIndex == 1){
+        __weak typeof(self) weakSelf=self;
+        [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
+            //                    [app stopLoading];
+            if ([weakSelf.userModel.usertype isEqualToString:@"1"]) {
+                if ([[result valueForKey:@"message"] isEqualToString:@"已经是好友！"]){
+                    //如果已经是好友了，进入玩友详情
+                    LYMyFriendDetailViewController *MyFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+                    MyFriendDetailVC.userID = [NSString stringWithFormat:@"%@",[result valueForKey:@"data"] ];
+                    [weakSelf.navigationController pushViewController:MyFriendDetailVC animated:YES];
+                }else{
+                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                    //                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+                    //                            [MyUtil showLikePlaceMessage:@"已发送好友申请！"];
+                    [MyUtil showMessage:@"已发送好友申请！"];
+                }
+            }
+            else if ([weakSelf.userModel.usertype isEqualToString:@"2"]){
+                //商户扫码，进行核实订单
+                NSArray *tempArr = [result valueForKey:@"data"];
+                if (tempArr.count <= 1) {
+                    //只有一个订单，扫码核单成功
+                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                    //                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
+                    [MyUtil showMessage:[result valueForKey:@"message"]];
+                }else{
+                    //多于一单，进入订单选择页面
+                    CheckOrderWithQRViewController *checkorderVC = [[CheckOrderWithQRViewController alloc]initWithNibName:@"CheckOrderWithQRViewController" bundle:nil];
+                    checkorderVC.tempArr = tempArr;
+                    [weakSelf.navigationController pushViewController:checkorderVC animated:YES];
+                }
+            }
+        }];
     }
 }
 
@@ -240,6 +294,9 @@
     NSString *subString = [dataString substringToIndex:69];
     if([subString isEqualToString:@"http://www.lie98.com/lieyu/lyUserShakeAction.do?action=custom?userid="]){
         //如果是速核码
+        if ([self.userModel.usertype isEqualToString:@"2"]) {
+            [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确认核单" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil]show];
+        }
         NSArray *array = [dataString componentsSeparatedByString:@"&"];
         NSString *userId = [array[0] substringFromIndex:69];
         NSString *currentTime = [array[1] substringFromIndex:12];
