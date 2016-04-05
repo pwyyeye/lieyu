@@ -20,10 +20,7 @@
    // self.automaticallyAdjustsScrollViewInsets=0;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-    NSLog(@"========>%@",self.navigationController.interactivePopGestureRecognizer.delegate);
 //     self.navigationController.interactivePopGestureRecognizer.delegate=(id)self;
-NSLog(@"========>%@",self.navigationController.interactivePopGestureRecognizer.delegate);
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     button.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
     [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
