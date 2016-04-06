@@ -138,6 +138,7 @@ static EmojisView *shareView = nil;
     NSString *string;
     UIImage *image;
     if(!imageContent){
+        [imageContent removeFromSuperview];
         imageContent = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 41, SCREEN_HEIGHT / 2 - 41, 82, 82)];
         [imageContent setBackgroundColor:[UIColor whiteColor]];
         imageContent.layer.cornerRadius = 41;
@@ -156,13 +157,13 @@ static EmojisView *shareView = nil;
     [_mainWindow addSubview:imageContent];
 //    [_mainWindow addSubview:ImageView];
     ImageView.animationImages = array;
-    ImageView.animationDuration = emojiNumber * 0.05;
+    ImageView.animationDuration = emojiNumber * 0.1;
     ImageView.animationRepeatCount = 1;
     //    [imgView removeFromSuperview];
     [ImageView startAnimating];
     //    [self performSelector:@selector(removeImageView:) withObject:ImageView afterDelay:emojiNumber * 0.1];
     //    dispatch_queue_t *queue = dispatch_get_global_queue(@"global", 1);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(emojiNumber * 0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(emojiNumber * 0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.3 animations:^{
                 ImageView.alpha = 0 ;
