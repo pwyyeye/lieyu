@@ -26,9 +26,9 @@
 
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 1, SCREEN_WIDTH,1)];
-    lineView.backgroundColor = RGBA(243, 243, 243, 1);
-        [self addSubview:lineView];
+//    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 1, SCREEN_WIDTH,1)];
+//    lineView.backgroundColor = RGBA(243, 243, 243, 1);
+//        [self addSubview:lineView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

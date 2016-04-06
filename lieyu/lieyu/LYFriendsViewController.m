@@ -1104,9 +1104,14 @@
     }else{
         likeStr = @"0";
     }
-    
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentModel.id,@"type":likeStr};
-    
+    if ([likeStr isEqualToString:@"1"]) {
+        if (!emojiEffectView) {
+            emojisView = [EmojisView shareInstanse];
+        }
+        [emojisView windowShowEmoji:@{@"emojiName":@"dianzan",
+                                      @"emojiNumber":@"24"}];
+    }
     __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (![USER_DEFAULT objectForKey:@"firstUseFriendLike"]) {
@@ -1212,13 +1217,7 @@
 //        
 //    }
     isExidtEffectView = YES;
-    gestureViewTag = gesture.view.tag;
-//    [UIView animateWithDuration:3
-//                     animations:^{
-//        [self.view addSubview:emojiEffectView];
-//    }];
-//    self.tableView.userInteractionEnabled = !isExidtEffectView;
-//    self.tableView.scrollEnabled = YES;
+    gestureViewTag = (int)gesture.view.tag;
     if (!emojiEffectView) {
         emojisView = [EmojisView shareInstanse];
         emojisView.delegate = self;
