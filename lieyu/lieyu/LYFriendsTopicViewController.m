@@ -417,9 +417,9 @@ CGFloat picWidth = 0;
 }
 
 - (void)createPlaceView{
-    UILabel *placeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
+    UILabel *placeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, (SCREEN_HEIGHT - 40)/2.f, SCREEN_WIDTH, 40)];
     placeLabel.tag = 800;
-    placeLabel.center = self.view.center;
+//    NSLog(@"--->%@",NSStringFromCGPoint(self.view.center));
     if (_isFriendsTopic) {
         placeLabel.text = @"暂无话题";
     }else{

@@ -14,8 +14,11 @@
 #import "Setting.h"
 #import "LYUserDetailController.h"
 #import "LYWithdrawTypeViewController.h"
+#import "ZSMaintViewController.h"
 
-@implementation LYUserCenterHeader
+@implementation LYUserCenterHeader{
+    UIVisualEffectView *_effctView ;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -42,6 +45,17 @@
 //    self.avatar_img.layer.borderColor=RGBA(255,255,255,0.3).CGColor; //要设置的颜色
 //    self.avatar_img.layer.borderWidth=2.5;
     [self.avatar_btn addTarget:self action:@selector(changeAvatar) forControlEvents:UIControlEventTouchUpInside];
+    
+    _img_icon.layer.cornerRadius = CGRectGetHeight(_img_icon.frame)/2.f;
+    _img_icon.layer.masksToBounds = YES;
+    
+    _label_constellation.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
+    _label_constellation.layer.masksToBounds = YES;
+    
+    _label_work.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
+    _label_work.layer.masksToBounds = YES;
+    
+    
 }
 
 - (void)changeAvatar{
@@ -64,7 +78,16 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if (app.userModel) {
         //设置头像
-        [_avatar_img setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:app.userModel.gender.intValue==0?@"lieyu_default_female":@"lieyu_default_male"]];
+        [_img_icon setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:app.userModel.gender.intValue==0?@"lieyu_default_female":@"lieyu_default_male"]];
+        [_img_bg setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:app.userModel.gender.intValue==0?@"lieyu_default_female":@"lieyu_default_male"]];
+        _label_work.text = app.userModel.tag;
+        _label_constellation.text = [MyUtil getAstroWithBirthday:app.userModel.birthday];
+        _label_name.text = app.userModel.usernick;
+        if ([app.userModel.gender isEqualToString:@"0"]) {
+            _img_sex.image=[UIImage imageNamed:@"woman"];
+        }else{
+            _img_sex.image=[UIImage imageNamed:@"manIcon"];
+        }
         if ([MyUtil isEmptyString:app.userModel.age]) {
             _age.hidden=YES;
         }else{
@@ -77,7 +100,7 @@
             _tags.hidden=YES;
         }else{
             CGSize size = [_tags.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
-            self._tagConstrant.constant = size.width + 10;
+//            self._tagConstrant.constant = size.width + 10;
             _tags.hidden=NO;
         }
         
@@ -117,12 +140,62 @@
             
             
         }
+        CGSize size = [mytags boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
+        self._tagConstrant.constant = size.width + 10;
         [_tags setTitle:mytags forState:UIControlStateNormal];
-        _userNick.text=app.userModel.usernick;
+        _label_work.text = mytags;
+         _userNick.text=app.userModel.usernick;
     }
     
 
 }
+
+- (IBAction)hederImgClick:(id)sender {
+    
+}
+
+- (IBAction)gotoShanghu:(id)sender {
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
+    [app.navigationController pushViewController:maintViewController animated:NO];
+    maintViewController.btnBackHidden = YES;
+    if(app.userModel.usertype.intValue==2){
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+        _effctView = [[UIVisualEffectView alloc]initWithEffect:effect];
+        //            effctView.frame = [UIScreen mainScreen].bounds;
+        _effctView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        [window addSubview:_effctView];
+        
+        UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+        imgV.center = _effctView.center;
+        imgV.image = [UIImage imageNamed:@"loading1"];
+        [_effctView addSubview:imgV];
+        
+        NSMutableArray *imgArray = [[NSMutableArray alloc]initWithCapacity:9];
+        for (int i = 1; i < 10; i ++) {
+            
+            UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"loading%d@2x",i] ofType:@"png"]];
+            [imgArray addObject:(__bridge UIImage *)img.CGImage];
+        }
+        
+        CAKeyframeAnimation *keyFrameA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+        keyFrameA.duration = imgArray.count * 0.1;
+        keyFrameA.delegate = self;
+        keyFrameA.values = imgArray;
+        keyFrameA.repeatCount = 1;
+        [imgV.layer addAnimation:keyFrameA forKey:nil];
+    }
+
+}
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    [UIView animateWithDuration:0.2 animations:^{
+        _effctView.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        [_effctView removeFromSuperview];
+    }];
+}
+
 
 -(void)updateConstraints{
      [super updateConstraints];
@@ -131,18 +204,19 @@
 }
 //加载角标
 -(void)loadBadge:(OrderTTL *)orderTTL{
+    UIColor *deafultColor = RGBA(186, 40, 227, 1);
     if (orderTTL) {
         if (orderTTL.waitPay>0) {//待付款
             if(![_waitPay viewWithTag:100]){
                 UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=RGBA(153, 50, 204, 1);
-                badge.font=[UIFont systemFontOfSize:8];
+                badge.backgroundColor = deafultColor;
+                badge.font=[UIFont systemFontOfSize:10];
                 badge.layer.masksToBounds=YES;
                 badge.layer.cornerRadius=6;
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitPay.frame;
-                badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+                badge.frame=CGRectMake(CGRectGetMidX(_waitPay.frame) + 11, 5, 22, 12);
                 badge.tag=100;
                 [_waitPay addSubview:badge];
             }
@@ -155,14 +229,14 @@
         if(orderTTL.waitConsumption>0){//待消费
             if (![_waitConsumption viewWithTag:101]) {
                 UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=RGBA(153, 50, 204, 1);
-                badge.font=[UIFont systemFontOfSize:8];
+                badge.backgroundColor=deafultColor;
+                badge.font=[UIFont systemFontOfSize:10];
                 badge.layer.masksToBounds=YES;
                 badge.layer.cornerRadius=6;
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitConsumption.frame;
-                badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+                badge.frame=CGRectMake(CGRectGetMidX(_waitConsumption.frame) + 11, 5, 22, 12);
                 badge.tag=101;
                 [_waitConsumption addSubview:badge];
             }
@@ -174,14 +248,14 @@
         if (orderTTL.waitRebate>0){//待返利
             if ([_waitRebate viewWithTag:102]) {
                 UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=RGBA(153, 50, 204, 1);
-                badge.font=[UIFont systemFontOfSize:8];
+                badge.backgroundColor=deafultColor;
+                badge.font=[UIFont systemFontOfSize:10];
                 badge.layer.masksToBounds=YES;
                 badge.layer.cornerRadius=6;
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitRebate.frame;
-                badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+                badge.frame=CGRectMake(CGRectGetMidX(_waitRebate.frame) + 11, 5, 22, 12);
                 badge.tag=102;
                 [_waitRebate addSubview:badge];
             }
@@ -192,14 +266,14 @@
         if(orderTTL.waitEvaluation>0){//待评价
             if(![_waitEvaluation viewWithTag:103]){
                 UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=RGBA(153, 50, 204, 1);
-                badge.font=[UIFont systemFontOfSize:8];
+                badge.backgroundColor=deafultColor;
+                badge.font=[UIFont systemFontOfSize:10];
                 badge.layer.masksToBounds=YES;
                 badge.layer.cornerRadius=6;
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitEvaluation.frame;
-                badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+                badge.frame=CGRectMake(CGRectGetMidX(_waitEvaluation.frame) + 11, 5, 22, 12);
                 badge.tag=103;
                 [_waitEvaluation addSubview:badge];
             }
@@ -210,14 +284,14 @@
         if (orderTTL.waitPayBack>0){//待退款
             if(![_waitPayBack viewWithTag:104]){
                 UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=RGBA(153, 50, 204, 1);
-                badge.font=[UIFont systemFontOfSize:8];
+                badge.backgroundColor=deafultColor;
+                badge.font=[UIFont systemFontOfSize:10];
                 badge.layer.masksToBounds=YES;
                 badge.layer.cornerRadius=6;
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitPayBack.frame;
-                badge.frame=CGRectMake(frame.size.width-20, 10, 12, 12);
+                badge.frame=CGRectMake(CGRectGetMidX(_waitPayBack.frame) + 11, 5, 22, 12);
                 badge.tag=104;
                 [_waitPayBack addSubview:badge];
             }
@@ -229,7 +303,7 @@
             if(![_btnMessage viewWithTag:105]){
                 UILabel *badge=[[UILabel alloc] init];
                 badge.backgroundColor=[UIColor redColor];
-                badge.font=[UIFont systemFontOfSize:8];
+                badge.font=[UIFont systemFontOfSize:10];
                 badge.layer.masksToBounds=YES;
                 badge.layer.cornerRadius=6;
                 badge.textColor=[UIColor whiteColor];

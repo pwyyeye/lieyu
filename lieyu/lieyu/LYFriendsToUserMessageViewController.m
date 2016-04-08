@@ -647,6 +647,10 @@
                 [likeCell.btn_more addTarget:self action:@selector(likeMoreClick:) forControlEvents:UIControlEventTouchUpInside];
                 likeCell.recentM = recentM;
                 if(recentM.likeList.count <= 7) likeCell.btn_more.hidden = YES;
+                else{
+                    likeCell.btn_more.hidden = NO;
+                    [likeCell.btn_more setTitle:recentM.likeNum forState:UIControlStateNormal];
+                }
                 for (int i = 0; i< likeCell.btnArray.count; i ++) {
                     UIButton *btn = likeCell.btnArray[i];
                     btn.tag = likeCell.btnArray.count * indexPath.section + i;

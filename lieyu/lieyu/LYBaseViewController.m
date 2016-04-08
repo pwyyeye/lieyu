@@ -147,11 +147,11 @@
     header.lastUpdatedTimeLabel.hidden = YES;
     header.stateLabel.hidden = YES;
     // 设置普通状态的动画图片
-    [header setImages:@[[UIImage imageNamed:@"更新"]] forState:MJRefreshStateIdle];
+    [header setImages:@[[UIImage imageNamed:@"loading1"]] forState:MJRefreshStateIdle];
     // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
     NSMutableArray *refreshArray = [NSMutableArray array];
-    for (int i = 1 ; i < 31; i ++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"更新%d",i]];
+    for (int i = 1 ; i < 10; i ++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"loading%d",i]];
         [refreshArray addObject:image];
     }
     NSArray *refreshingArray = [NSArray arrayWithArray:refreshArray];

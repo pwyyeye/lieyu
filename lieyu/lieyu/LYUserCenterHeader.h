@@ -29,7 +29,10 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *_tagConstrant;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *_xingzuoConstrant;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *btnChange_cons_width;
+@property (weak, nonatomic) IBOutlet UIButton *btnChange;
 
+@property (weak, nonatomic) IBOutlet UIButton *label_waitPay_badge;
 /**五个订单状态按钮*/
 
 @property (weak, nonatomic) IBOutlet UIButton *waitPay;
@@ -43,6 +46,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *waitPayBack;
 
 
+@property (weak, nonatomic) IBOutlet UIImageView *img_bg;
+@property (weak, nonatomic) IBOutlet UIImageView *img_icon;
+@property (weak, nonatomic) IBOutlet UILabel *label_name;
+@property (weak, nonatomic) IBOutlet UIImageView *img_sex;
+@property (weak, nonatomic) IBOutlet UILabel *label_constellation;
+@property (weak, nonatomic) IBOutlet UILabel *label_work;
 
 //设置
 - (IBAction)gotoSetting:(id)sender;

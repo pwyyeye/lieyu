@@ -156,13 +156,13 @@ static EmojisView *shareView = nil;
     [_mainWindow addSubview:imageContent];
 //    [_mainWindow addSubview:ImageView];
     ImageView.animationImages = array;
-    ImageView.animationDuration = emojiNumber * 0.05;
+    ImageView.animationDuration = emojiNumber * 0.1;
     ImageView.animationRepeatCount = 1;
     //    [imgView removeFromSuperview];
     [ImageView startAnimating];
     //    [self performSelector:@selector(removeImageView:) withObject:ImageView afterDelay:emojiNumber * 0.1];
     //    dispatch_queue_t *queue = dispatch_get_global_queue(@"global", 1);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(emojiNumber * 0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(emojiNumber * 0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.3 animations:^{
                 ImageView.alpha = 0 ;
