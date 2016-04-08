@@ -15,4 +15,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderTimeLal;
 @property (weak, nonatomic) IBOutlet UILabel *label_orderType;
 
+@property (weak, nonatomic) IBOutlet UIImageView *orderTypeView;
+@property (weak, nonatomic) IBOutlet UIImageView *userImgeView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *orderStuImageView;
+@property (weak, nonatomic) IBOutlet UILabel *detLal;
+
 @end

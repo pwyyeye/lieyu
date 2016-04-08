@@ -11,6 +11,7 @@
 #import "OrderHandleButton.h"
 #import "ShopDetailmodel.h"
 #import "OrderInfoModel.h"
+#import "OrderBottomView.h"
 #import "OrderBottomForLWView.h"
 #import "OrderBottomForCCView.h"
 #import "OrderBottomForXFView.h"
@@ -21,6 +22,7 @@
 #import <RongIMKit/RongIMKit.h>
 
 #import "LPOrdersHeaderCell.h"
+#import "LPOrdersBodyCell.h"
 @interface ZSOrderViewController (){
     int pageCount;
     int perCount;
@@ -75,6 +77,8 @@
     [self initMJRefeshFooterForGif:footer];
     
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"LPOrdersBodyCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersBodyCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LPOrdersHeaderCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersHeaderCell"];
     
     
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
@@ -448,12 +452,12 @@
                 OrderBottomView *orderBottomView= (OrderBottomView *)[nibView objectAtIndex:0];
                 orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
                 [orderBottomView.duimaBtn addTarget:self action:@selector(duimaAct:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
-                
-                [orderBottomView.dianhuaBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
+//                [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
+//                
+//                [orderBottomView.dianhuaBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
                 orderBottomView.duimaBtn.tag=section;
-                orderBottomView.siliaoBtn.tag=section;
-                orderBottomView.dianhuaBtn.tag=section;
+//                orderBottomView.siliaoBtn.tag=section;
+//                orderBottomView.dianhuaBtn.tag=section;
                 return orderBottomView;
             }
             
@@ -556,46 +560,48 @@
             OrderInfoModel *orderInfoModel=serchDaiXiaoFei[section];
             
 //            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
-            LPOrdersHeaderCell *orderHeadView= [_tableView dequeueReusableHeaderFooterViewWithIdentifier:@"]
+            LPOrdersHeaderCell *orderHeadView= [_tableView dequeueReusableCellWithIdentifier:@"LPOrdersHeaderCell" ];
             if (orderInfoModel.orderStatus==1) {
-                OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
-                orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
-                orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
-                orderHeadView.nameLal.text=orderInfoModel.username;
-                orderHeadView.userImgeView.layer.masksToBounds =YES;
-                orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-                NSString *str=orderInfoModel.avatar_img ;
-                [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
+//                OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+                orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+                orderHeadView.orderTimeLbl.text=orderInfoModel.createDate;
+                orderHeadView.placeLbl.text=orderInfoModel.username;
+//                orderHeadView.userImgeView.layer.masksToBounds =YES;
+//                orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
+//                NSString *str=orderInfoModel.avatar_img ;
+//                [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
+                orderHeadView.orderStatusLbl.text = @"待留卡";
                 //
-                if(orderInfoModel.ordertype==0){
-                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
-                    orderHeadView.detLal.text=orderInfoModel.reachtime;
-                }else if(orderInfoModel.ordertype==1){
-                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
-                    orderHeadView.detLal.text=orderInfoModel.reachtime;
-                }else{
-                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
-                }
-                [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"zuo"]];
+//                if(orderInfoModel.ordertype==0){
+//                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
+//                    orderHeadView.detLal.text=orderInfoModel.reachtime;
+//                }else if(orderInfoModel.ordertype==1){
+//                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
+//                    orderHeadView.detLal.text=orderInfoModel.reachtime;
+//                }else{
+//                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
+//                }
+//                [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"zuo"]];
             }else{
-                orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
-                orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
-                orderHeadView.nameLal.text=orderInfoModel.username;
-                orderHeadView.userImgeView.layer.masksToBounds =YES;
-                orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-                NSString *str=orderInfoModel.avatar_img ;
-                [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
+                orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+                orderHeadView.orderTimeLbl.text=orderInfoModel.createDate;
+                orderHeadView.placeLbl.text=orderInfoModel.username;
+//                orderHeadView.userImgeView.layer.masksToBounds =YES;
+//                orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
+//                NSString *str=orderInfoModel.avatar_img ;
+//                [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
                 //
-                if(orderInfoModel.ordertype==0){
-                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
-                    orderHeadView.detLal.text=orderInfoModel.reachtime;
-                }else if(orderInfoModel.ordertype==1){
-                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
-                    orderHeadView.detLal.text=orderInfoModel.reachtime;
-                }else{
-                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
-                }
-                [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"orderDai"]];
+                orderHeadView.orderStatusLbl.text = @"待消费";
+//                if(orderInfoModel.ordertype==0){
+//                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
+//                    orderHeadView.detLal.text=orderInfoModel.reachtime;
+//                }else if(orderInfoModel.ordertype==1){
+//                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
+//                    orderHeadView.detLal.text=orderInfoModel.reachtime;
+//                }else{
+//                    [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
+//                }
+//                [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"orderDai"]];
             }
             
 //            orderHeadView.detLal.text=orderInfoModel.paytime;
@@ -673,28 +679,28 @@
             OrderInfoModel *orderInfoModel=daiXiaoFei[section];
             
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
-            OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
-            orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
-            orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
-            orderHeadView.nameLal.text=orderInfoModel.username;
-            AppDelegate *app=(AppDelegate *)[UIApplication sharedApplication].delegate;
-            NSString *consumptionCode=[MyUtil decryptUseDES:orderInfoModel.consumptionCode withKey:app.desKey];
-            orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",consumptionCode];
-            orderHeadView.userImgeView.layer.masksToBounds =YES;
-            orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
-            NSString *str=orderInfoModel.avatar_img ;
-            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
-            //
-            if(orderInfoModel.ordertype==0){
-                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
-                orderHeadView.detLal.text=orderInfoModel.reachtime;
-            }else if(orderInfoModel.ordertype==1){
-                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
-                orderHeadView.detLal.text=orderInfoModel.reachtime;
-            }else{
-                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
-            }
-            [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"wan"]];
+            LPOrdersHeaderCell *orderHeadView= [_tableView dequeueReusableCellWithIdentifier:@"LPOrdersHeaderCell"];
+            orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+            orderHeadView.orderTimeLbl.text=orderInfoModel.createDate;
+            orderHeadView.placeLbl.text=orderInfoModel.username;
+//            AppDelegate *app=(AppDelegate *)[UIApplication sharedApplication].delegate;
+//            NSString *consumptionCode=[MyUtil decryptUseDES:orderInfoModel.consumptionCode withKey:app.desKey];
+//            orderHeadView.detLal.text=[NSString stringWithFormat:@"消费码:%@",consumptionCode];
+//            orderHeadView.userImgeView.layer.masksToBounds =YES;
+//            orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
+//            NSString *str=orderInfoModel.avatar_img ;
+//            [orderHeadView.userImgeView setImageWithURL:[NSURL URLWithString:str]];
+//            //
+//            if(orderInfoModel.ordertype==0){
+//                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"tao"]];
+//                orderHeadView.detLal.text=orderInfoModel.reachtime;
+//            }else if(orderInfoModel.ordertype==1){
+//                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"pin"]];
+//                orderHeadView.detLal.text=orderInfoModel.reachtime;
+//            }else{
+//                [orderHeadView.orderTypeView setImage:[UIImage imageNamed:@"dan"]];
+//            }
+//            [orderHeadView.orderStuImageView setImage:[UIImage imageNamed:@"wan"]];
 //            orderHeadView.nameLal.text=orderInfoModel.name;
 //            orderHeadView.detLal.text=orderInfoModel.paytime;
             //            orderHeadView.detLal.text=orderInfoModel.paytime;
@@ -706,13 +712,19 @@
         {
             OrderInfoModel *orderInfoModel=daiXiaoFei[section];
             
+            LPOrdersHeaderCell *orderHeadView= [_tableView dequeueReusableCellWithIdentifier:@"LPOrdersHeaderCell"];
+            orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+            orderHeadView.orderTimeLbl.text=orderInfoModel.createDate;
+            orderHeadView.placeLbl.text=orderInfoModel.username;
+            /*
+            
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
-            OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
-            orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
+            LPOrdersHeaderCell *orderHeadView=[_tableView dequeueReusableCellWithIdentifier:@"LPOrdersHeaderCell"];
+            orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
             AppDelegate *app=(AppDelegate *)[UIApplication sharedApplication].delegate;
             NSString *consumptionCode=[MyUtil decryptUseDES:orderInfoModel.consumptionCode withKey:app.desKey];
             orderHeadView.nameLal.text=[NSString stringWithFormat:@"消费码:%@",consumptionCode];
-            orderHeadView.nameLal.text=orderInfoModel.username;
+            orderHeadView.placeLbl.text=orderInfoModel.username;
             orderHeadView.orderTimeLal.text=orderInfoModel.createDate;
             orderHeadView.userImgeView.layer.masksToBounds =YES;
             orderHeadView.userImgeView.layer.cornerRadius =orderHeadView.userImgeView.width/2;
@@ -737,7 +749,7 @@
 //            orderHeadView.nameLal.text=orderInfoModel.name;
 //            orderHeadView.detLal.text=orderInfoModel.paytime;
             //            orderHeadView.detLal.text=orderInfoModel.paytime;
-            //    view.backgroundColor=[UIColor yellowColor];
+            //    view.backgroundColor=[UIColor yellowColor]; */
             return orderHeadView;
             break;
         }
@@ -747,8 +759,11 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    LPOrdersBodyCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"LPOrdersBodyCell" forIndexPath:indexPath];
     
-    static NSString *CellIdentifier = @"DetailCell";
+    
+    
+  /*  static NSString *CellIdentifier = @"DetailCell";
     
     DetailCell *cell = (DetailCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -757,7 +772,7 @@
         cell.backgroundColor=[UIColor whiteColor];
         
         
-    }
+    }*/
     OrderInfoModel *orderInfoModel;
     ShopDetailmodel *shopDetailmodel=[[ShopDetailmodel alloc]init];
     if(mMenuHriZontal.selectIndex==0){
@@ -807,25 +822,25 @@
         shopDetailmodel.count=[NSString stringWithFormat:@"X%@",goodsModel.quantity];
     }
     
-    cell.nameLal.text=shopDetailmodel.name;
-    cell.countLal.text=shopDetailmodel.count;
-    if(mMenuHriZontal.selectIndex==0){
-        cell.countLal.text=shopDetailmodel.count;
-    }else if(mMenuHriZontal.selectIndex==1){
-        cell.countLal.text=shopDetailmodel.count;
-    }
+    cell.orderNameLbl.text=shopDetailmodel.name;
+    cell.orderNumberLbl.text=shopDetailmodel.count;
+//    if(mMenuHriZontal.selectIndex==0){
+//        cell.countLal.text=shopDetailmodel.count;
+//    }else if(mMenuHriZontal.selectIndex==1){
+//        cell.countLal.text=shopDetailmodel.count;
+//    }
     UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 0.5)];
     lineLal.backgroundColor=RGB(199, 199, 199);
-    [cell addSubview:lineLal];
-    cell.zhekouLal.text=[NSString stringWithFormat:@"￥%@",shopDetailmodel.youfeiPrice];
+//    [cell addSubview:lineLal];
+    cell.orderPriceLbl.text=[NSString stringWithFormat:@"￥%@",shopDetailmodel.youfeiPrice];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",shopDetailmodel.money] attributes:attribtDic];
-    cell.moneylal.attributedText=attribtStr;
+//    cell.orderMarketPriceLbl.attributedText=attribtStr;
     NSString *str=shopDetailmodel.img ;
-    [cell.detImageView setImageWithURL:[NSURL URLWithString:str]];
+    [cell.orderImage setImageWithURL:[NSURL URLWithString:str]];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+   
     return cell;
     
 }
