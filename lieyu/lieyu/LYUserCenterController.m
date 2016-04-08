@@ -30,9 +30,10 @@
 #import "MyCodeViewController.h"
 #import "ZSMaintViewController.h"
 #import "LYMyOrderManageViewController.h"
+#import "CarInfoModel.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
-    
+    NSInteger num;
     LYUserCenterHeader *_headerView;
 }
 
@@ -138,7 +139,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }
     [self.view addSubview:_headerView];
     [self loadHeaderViewBadge];
-
+    [self getGoodsNum];
 }
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -166,6 +167,29 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark 获取购物车数据
+-(void)getGoodsNum{
+    __weak __typeof(self) weakSelf = self;
+    [[LYHomePageHttpTool shareInstance]getCarListWithParams:nil block:^(NSMutableArray *result) {
+        //        for (CarInfoModel *carInfoModel in goodsList) {
+        //            carInfoModel.isSel=true;
+        //            for (CarModel *carModel in carInfoModel.cartlist) {
+        //                carModel.isSel=true;
+        //            }
+        //        }
+        //        [self setSuperScript:goodsList.count];
+        num = 0 ;
+        for(int i = 0 ; i < result.count ; i ++){
+            //            num = num + ((CarInfoModel *)goodsList[i]).cartlist.count;
+            for (int j = 0 ; j < ((CarInfoModel *)result[i]).cartlist.count; j ++) {
+                CarModel *shoppingCar = ((CarModel *)((CarInfoModel *)result[i]).cartlist[j]);
+                num = num + [shoppingCar.quantity intValue];
+            }
+        }
+        [weakSelf.collectionView reloadData];
+    }];
+}
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -184,10 +208,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     // Configure the cell
     cell.icon.image=nil;
     [cell.icon setContentMode:UIViewContentModeScaleAspectFit];
-//    cell.icon.frame=CGRectMake(0, 15, 80, 30);
-//    cell.text.frame=CGRectMake(0, 70, 80, 20);
     
-//     NSLog(@"----pass-------%@---", NSStringFromCGRect(cell.icon.frame));
     cell.text.text=@"";
 //    if (indexPath.row<6) {
         NSDictionary *dic=_data[indexPath.row];
@@ -196,7 +217,19 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     if (indexPath.row == 4) {
         cell.labeltext_cons_center.constant = 20;
     }
-//    }
+    
+    if(indexPath.row == 1){
+        if(num){
+            cell.btn_count.hidden = NO;
+            [cell.btn_count setTitle:[NSString stringWithFormat:@"%ld",num] forState:UIControlStateNormal];
+        }else{
+                cell.btn_count.hidden = YES;
+        }
+        
+    }else{
+        cell.btn_count.hidden = YES;
+    }
+
     return cell;
 }
 
