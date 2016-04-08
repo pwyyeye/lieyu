@@ -80,9 +80,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Button"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7m-Vt-lKR">
+                                <rect key="frame" x="8" y="66.5" width="150" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="cOS-g4-pXs"/>
+                                    <constraint firstAttribute="height" constant="20" id="owY-Ry-3JF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <color key="textColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Px3-lR-5xV" firstAttribute="centerY" secondItem="k7m-Vt-lKR" secondAttribute="centerY" id="3Ta-sv-bNp"/>
                             <constraint firstItem="y9P-Hl-q7Y" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" constant="9" id="3cZ-H3-ZTz"/>
                             <constraint firstAttribute="trailing" secondItem="HTj-b1-5ls" secondAttribute="trailing" id="Jgr-Y0-aqT"/>
                             <constraint firstAttribute="trailing" secondItem="SuJ-7o-2aR" secondAttribute="trailing" constant="8" id="LiN-j6-Tsv"/>
@@ -95,6 +106,7 @@
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="top" secondItem="Px3-lR-5xV" secondAttribute="top" id="hyL-C1-lT2"/>
                             <constraint firstItem="HTj-b1-5ls" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" id="k03-KJ-1qu"/>
                             <constraint firstItem="SuJ-7o-2aR" firstAttribute="top" secondItem="HTj-b1-5ls" secondAttribute="bottom" constant="8" id="n69-HU-O0j"/>
+                            <constraint firstItem="k7m-Vt-lKR" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" constant="8" id="qgU-kT-E3a"/>
                             <constraint firstAttribute="trailing" secondItem="Vkv-7s-hDs" secondAttribute="trailing" constant="8" id="rQl-3i-fRX"/>
                             <constraint firstItem="jTT-uT-DKc" firstAttribute="top" secondItem="HTj-b1-5ls" secondAttribute="bottom" constant="9" id="swx-ys-ash"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="leading" secondItem="Px3-lR-5xV" secondAttribute="trailing" constant="10" id="u1d-TF-NFq"/>
