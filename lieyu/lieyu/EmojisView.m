@@ -138,6 +138,7 @@ static EmojisView *shareView = nil;
     NSString *string;
     UIImage *image;
     if(!imageContent){
+        [imageContent removeFromSuperview];
         imageContent = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 41, SCREEN_HEIGHT / 2 - 41, 82, 82)];
         [imageContent setBackgroundColor:[UIColor whiteColor]];
         imageContent.layer.cornerRadius = 41;
