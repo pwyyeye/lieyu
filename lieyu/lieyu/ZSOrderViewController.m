@@ -8,9 +8,7 @@
 
 #import "ZSOrderViewController.h"
 #import "OrderBottomView.h"
-#import "OrderHeadView.h"
 #import "OrderHandleButton.h"
-#import "DetailCell.h"
 #import "ShopDetailmodel.h"
 #import "OrderInfoModel.h"
 #import "OrderBottomForLWView.h"
@@ -21,6 +19,8 @@
 #import "IQKeyboardManager.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <RongIMKit/RongIMKit.h>
+
+#import "LPOrdersHeaderCell.h"
 @interface ZSOrderViewController (){
     int pageCount;
     int perCount;
@@ -555,8 +555,8 @@
         {
             OrderInfoModel *orderInfoModel=serchDaiXiaoFei[section];
             
-            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
-            OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
+//            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
+            LPOrdersHeaderCell *orderHeadView= [_tableView dequeueReusableHeaderFooterViewWithIdentifier:@"]
             if (orderInfoModel.orderStatus==1) {
                 OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
                 orderHeadView.orderNoLal.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
