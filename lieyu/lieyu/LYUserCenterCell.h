@@ -12,7 +12,9 @@
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
+@property (weak, nonatomic) IBOutlet UIButton *btn_count;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labeltext_cons_center;
 
 @property (weak, nonatomic) IBOutlet UILabel *text;
 

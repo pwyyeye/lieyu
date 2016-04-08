@@ -139,6 +139,7 @@
     //返回按钮
     _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(5, 10, 48, 48)];
     [_btnBack setImage:[UIImage imageNamed:@"return_white"] forState:UIControlStateNormal];
+    _btnBack.hidden = _btnBackHidden;
     [_btnBack addTarget:self action:@selector(backAct:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:_btnBack];
     self.tableView.tableHeaderView=view;

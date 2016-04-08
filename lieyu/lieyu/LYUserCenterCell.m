@@ -21,7 +21,7 @@
         [restLayer removeFromSuperlayer];
     }
     
-    CGFloat layerShdowWidth = SCREEN_WIDTH / 4.f;
+    CGFloat layerShdowWidth = SCREEN_WIDTH / 3.f;
     
     CALayer *layerShadowTop=[[CALayer alloc]init];
     layerShadowTop.frame=CGRectMake(0, 0, layerShdowWidth,0.5);
@@ -41,6 +41,10 @@
     self.backgroundColor=[UIColor whiteColor];
     
     _icon.contentMode=UIViewContentModeScaleAspectFit;
+    
+    _btn_count.layer.cornerRadius = CGRectGetHeight(_btn_count.frame)/2.f;
+    _btn_count.layer.masksToBounds = YES;
+    
     
 }
 

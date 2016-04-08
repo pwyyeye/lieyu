@@ -680,14 +680,13 @@
 
 #pragma mark － 刷新表
 - (void)reloadTableViewAndSetUpPropertyneedSetContentOffset:(BOOL)need{
-    __weak __typeof(self) weakSelf = self;
-    [UIView transitionWithView:_tableView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    
     
 //    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, ((NSArray *)_dataArray[_index]).count ) ];
 //   
 //        [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
-        [weakSelf.tableView reloadData];
-    } completion:nil];
+        [self.tableView reloadData];
+    
     // if(need)  [self.tableView setContentOffset:CGPointZero animated:YES];
     
     [self.tableView.mj_header endRefreshing];
@@ -2079,7 +2078,7 @@
             break;
         case 9:
         {
-            return 63;
+            return 36;
         }
             break;
             
