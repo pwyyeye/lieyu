@@ -25,9 +25,9 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="523-yF-XQZ">
-                        <rect key="frame" x="71" y="11" width="179" height="34"/>
+                        <rect key="frame" x="71" y="11" width="179" height="0.0"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="34" id="541-bz-wrr"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="34" id="541-bz-wrr"/>
                             <constraint firstAttribute="width" constant="200" id="XuW-2j-YDS"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>

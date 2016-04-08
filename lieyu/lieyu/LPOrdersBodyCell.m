@@ -21,11 +21,24 @@
 
 - (void)setModel:(OrderInfoModel *)model{
     _model = model;
+    NSDictionary *attributeDic = @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    //    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+//    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.product.marketprice] attributes:attribtDic];
     if (model.ordertype == 0) {//套餐订单
-        [_orderImage sd_setImageWithURL:[NSURL URLWithString:model.setMealInfo.setMealVO.linkUrl] placeholderImage:[UIImage imageNamed:@""]];
+        [_orderImage sd_setImageWithURL:[NSURL URLWithString:model.setMealInfo.setMealVO.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_orderNameLbl setText:model.setMealInfo.setMealVO.smname];
-        [_orderNumberLbl setText:model.allnum];
+        [_orderNumberLbl setText:[NSString stringWithFormat:@"X%@",model.allnum]];
         [_orderPriceLbl setText:[NSString stringWithFormat:@"¥%@",model.setMealInfo.setMealVO.price]];
+        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:model.setMealInfo.setMealVO.marketprice attributes:attributeDic];
+        [_orderMarketPriceLbl setAttributedText:attributeStr];
+    }else if (model.ordertype == 2){//吃喝专场
+        NSDictionary *dict = [model.goodslist objectAtIndex:self.tag];
+        [_orderImage sd_setImageWithURL:[NSURL URLWithString:[[dict objectForKey:@"productVO"] objectForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        [_orderNameLbl setText:[dict objectForKey:@"fullName"]];
+        [_orderNumberLbl setText:[NSString stringWithFormat:@"X%@",[dict objectForKey:@"quantity"]]];
+        [_orderPriceLbl setText:[NSString stringWithFormat:@"¥%@",[dict objectForKey:@"price"]]];
+        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:[[dict objectForKey:@"productVO"] objectForKey:@"marketprice"]];
+        [_orderPriceLbl setText:attributeStr];
     }
 }
 
