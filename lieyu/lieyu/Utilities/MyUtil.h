@@ -113,4 +113,6 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 
 +(void)gotoLogin;
 
++ (NSString *)getOrderStatus:(int)orderStatus;
+
 @end
