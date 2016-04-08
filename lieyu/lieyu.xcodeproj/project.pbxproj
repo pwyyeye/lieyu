@@ -767,6 +767,14 @@
 		38EE9D921CB4C0AA00201734 /* loading7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9D891CB4C0AA00201734 /* loading7@2x.png */; };
 		38EE9D931CB4C0AA00201734 /* loading8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9D8A1CB4C0AA00201734 /* loading8@2x.png */; };
 		38EE9D941CB4C0AA00201734 /* loading9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9D8B1CB4C0AA00201734 /* loading9@2x.png */; };
+		38EE9DDA1CB6482A00201734 /* LPMyOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE9DD91CB6482A00201734 /* LPMyOrdersViewController.m */; };
+		38EE9DDE1CB64CF100201734 /* LPOrderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE9DDD1CB64CF100201734 /* LPOrderButton.m */; };
+		38EE9DE21CB664BE00201734 /* LPOrdersHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE9DE01CB664BE00201734 /* LPOrdersHeaderCell.m */; };
+		38EE9DE31CB664BE00201734 /* LPOrdersHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9DE11CB664BE00201734 /* LPOrdersHeaderCell.xib */; };
+		38EE9DE71CB664EB00201734 /* LPOrdersBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE9DE51CB664EB00201734 /* LPOrdersBodyCell.m */; };
+		38EE9DE81CB664EB00201734 /* LPOrdersBodyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9DE61CB664EB00201734 /* LPOrdersBodyCell.xib */; };
+		38EE9DEC1CB6650700201734 /* LPOrdersFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EE9DEA1CB6650700201734 /* LPOrdersFooterCell.m */; };
+		38EE9DED1CB6650700201734 /* LPOrdersFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9DEB1CB6650700201734 /* LPOrdersFooterCell.xib */; };
 		38F0FE7F1C4692C30070092D /* biaobai_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE791C4692C30070092D /* biaobai_icon.png */; };
 		38F0FE801C4692C30070092D /* biaobai_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7A1C4692C30070092D /* biaobai_icon@2x.png */; };
 		38F0FE811C4692C30070092D /* biaobai_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7B1C4692C30070092D /* biaobai_icon@3x.png */; };
@@ -2778,6 +2786,19 @@
 		38EE9D891CB4C0AA00201734 /* loading7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading7@2x.png"; sourceTree = "<group>"; };
 		38EE9D8A1CB4C0AA00201734 /* loading8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading8@2x.png"; sourceTree = "<group>"; };
 		38EE9D8B1CB4C0AA00201734 /* loading9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loading9@2x.png"; sourceTree = "<group>"; };
+		38EE9DD81CB6482A00201734 /* LPMyOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPMyOrdersViewController.h; sourceTree = "<group>"; };
+		38EE9DD91CB6482A00201734 /* LPMyOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPMyOrdersViewController.m; sourceTree = "<group>"; };
+		38EE9DDC1CB64CF100201734 /* LPOrderButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPOrderButton.h; sourceTree = "<group>"; };
+		38EE9DDD1CB64CF100201734 /* LPOrderButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPOrderButton.m; sourceTree = "<group>"; };
+		38EE9DDF1CB664BE00201734 /* LPOrdersHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPOrdersHeaderCell.h; sourceTree = "<group>"; };
+		38EE9DE01CB664BE00201734 /* LPOrdersHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPOrdersHeaderCell.m; sourceTree = "<group>"; };
+		38EE9DE11CB664BE00201734 /* LPOrdersHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPOrdersHeaderCell.xib; sourceTree = "<group>"; };
+		38EE9DE41CB664EB00201734 /* LPOrdersBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPOrdersBodyCell.h; sourceTree = "<group>"; };
+		38EE9DE51CB664EB00201734 /* LPOrdersBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPOrdersBodyCell.m; sourceTree = "<group>"; };
+		38EE9DE61CB664EB00201734 /* LPOrdersBodyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPOrdersBodyCell.xib; sourceTree = "<group>"; };
+		38EE9DE91CB6650700201734 /* LPOrdersFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPOrdersFooterCell.h; sourceTree = "<group>"; };
+		38EE9DEA1CB6650700201734 /* LPOrdersFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPOrdersFooterCell.m; sourceTree = "<group>"; };
+		38EE9DEB1CB6650700201734 /* LPOrdersFooterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LPOrdersFooterCell.xib; sourceTree = "<group>"; };
 		38F0FE791C4692C30070092D /* biaobai_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biaobai_icon.png; sourceTree = "<group>"; };
 		38F0FE7A1C4692C30070092D /* biaobai_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaobai_icon@2x.png"; sourceTree = "<group>"; };
 		38F0FE7B1C4692C30070092D /* biaobai_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaobai_icon@3x.png"; sourceTree = "<group>"; };
@@ -5522,10 +5543,10 @@
 			children = (
 				387782181C8FEF3F0047088B /* QRCheckOrderHeader.h */,
 				387782191C8FEF3F0047088B /* QRCheckOrderHeader.m */,
+				3877821A1C8FEF3F0047088B /* QRCheckOrderHeader.xib */,
 				3877821D1C8FEF570047088B /* QRCheckOrderBody.h */,
 				3877821E1C8FEF570047088B /* QRCheckOrderBody.m */,
 				3877821F1C8FEF570047088B /* QRCheckOrderBody.xib */,
-				3877821A1C8FEF3F0047088B /* QRCheckOrderHeader.xib */,
 				387782261C8FF5300047088B /* QRCheckOrderFooter.h */,
 				387782271C8FF5300047088B /* QRCheckOrderFooter.m */,
 				387782281C8FF5300047088B /* QRCheckOrderFooter.xib */,
@@ -6154,6 +6175,34 @@
 				38EE91A41C3BE0A800361D07 /* Reachability.m */,
 			);
 			name = AppleAPI;
+			sourceTree = "<group>";
+		};
+		38EE9DD71CB6449300201734 /* 订单页面 */ = {
+			isa = PBXGroup;
+			children = (
+				38EE9DDB1CB64CD200201734 /* view */,
+				38EE9DD81CB6482A00201734 /* LPMyOrdersViewController.h */,
+				38EE9DD91CB6482A00201734 /* LPMyOrdersViewController.m */,
+			);
+			name = "订单页面";
+			sourceTree = "<group>";
+		};
+		38EE9DDB1CB64CD200201734 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				38EE9DDC1CB64CF100201734 /* LPOrderButton.h */,
+				38EE9DDD1CB64CF100201734 /* LPOrderButton.m */,
+				38EE9DDF1CB664BE00201734 /* LPOrdersHeaderCell.h */,
+				38EE9DE01CB664BE00201734 /* LPOrdersHeaderCell.m */,
+				38EE9DE11CB664BE00201734 /* LPOrdersHeaderCell.xib */,
+				38EE9DE41CB664EB00201734 /* LPOrdersBodyCell.h */,
+				38EE9DE51CB664EB00201734 /* LPOrdersBodyCell.m */,
+				38EE9DE61CB664EB00201734 /* LPOrdersBodyCell.xib */,
+				38EE9DE91CB6650700201734 /* LPOrdersFooterCell.h */,
+				38EE9DEA1CB6650700201734 /* LPOrdersFooterCell.m */,
+				38EE9DEB1CB6650700201734 /* LPOrdersFooterCell.xib */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		52D4F9851C57B2AB00691BEF /* 首页 */ = {
@@ -7395,6 +7444,7 @@
 		A2020D4B1BA6612C0090B92A /* 个人信息 */ = {
 			isa = PBXGroup;
 			children = (
+				38EE9DD71CB6449300201734 /* 订单页面 */,
 				15B8668B1BE0AFF7002E2BB6 /* 信息中心 */,
 				ADE103B21BDF285C00D9EC38 /* 设置 */,
 				1559DCFF1BDA24CB00F3FE9B /* 购物车 */,
@@ -9467,6 +9517,7 @@
 				38B11C231C97AE7300AD3EB8 /* find_conmunicate@3x.png in Resources */,
 				A2020D7D1BA67FA40090B92A /* Fill20179@3x.png in Resources */,
 				AD399E811C940D4D00028F23 /* logo2@2x.jpg in Resources */,
+				38EE9DE81CB664EB00201734 /* LPOrdersBodyCell.xib in Resources */,
 				38979A751CA40919002946F5 /* wow1.png in Resources */,
 				ADF88E631C102E4F00CF5DED /* huiseStar@2x.png in Resources */,
 				8553970A1C8D41C100289D18 /* 咬手鲨鱼牙.png in Resources */,
@@ -9632,6 +9683,7 @@
 				853C36201C7308D900F1703B /* yuding@3x.png in Resources */,
 				85F66EF51C5628F3005D1CD8 /* LYHotRecommandCell.xib in Resources */,
 				853CB74E1CAA24BE006FC768 /* ZSTiXianRecordViewController.xib in Resources */,
+				38EE9DED1CB6650700201734 /* LPOrdersFooterCell.xib in Resources */,
 				38979A791CA40919002946F5 /* wow13.png in Resources */,
 				38979ABE1CA40919002946F5 /* angry30.png in Resources */,
 				A20100C31BA90E4E009283D1 /* CustomerCell.xib in Resources */,
@@ -10041,6 +10093,7 @@
 				38979A7F1CA40919002946F5 /* wow19.png in Resources */,
 				38979A931CA40919002946F5 /* sad14.png in Resources */,
 				38979A311CA40919002946F5 /* dianzan16.png in Resources */,
+				38EE9DE31CB664BE00201734 /* LPOrdersHeaderCell.xib in Resources */,
 				380659A21C53522A003094C9 /* image_Selected@3x.png in Resources */,
 				15E184891BB5214F00681BB2 /* LYChooseJiuBaViewController.xib in Resources */,
 				A2020D601BA67E9E0090B92A /* disClosure.png in Resources */,
@@ -10411,6 +10464,7 @@
 				38B11C361C98FB6200AD3EB8 /* LPFriendBriefInfo.m in Sources */,
 				851806C81C2EB32900006804 /* LYPictiureView.m in Sources */,
 				15EFEF891BA9A80C004739A2 /* UIViewExt.m in Sources */,
+				38EE9DEC1CB6650700201734 /* LPOrdersFooterCell.m in Sources */,
 				A2FD576B1BAFE85900CFFF92 /* PinKeCell.m in Sources */,
 				3879F24A1C0D325D00B72629 /* BarInfoTableViewCell.m in Sources */,
 				ADC66CE41C1FBB9900E597D9 /* LYNavigationController.m in Sources */,
@@ -10444,6 +10498,7 @@
 				15E240771BB24F510090D240 /* MyCollectionViewController.m in Sources */,
 				38AA7CC51C315A0000D9BCE8 /* preview.m in Sources */,
 				AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */,
+				38EE9DDA1CB6482A00201734 /* LPMyOrdersViewController.m in Sources */,
 				3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */,
 				855397301C8DA01C00289D18 /* qrinput.c in Sources */,
 				85529C271C9047B5005D8F0D /* FindNewMessageList.m in Sources */,
@@ -10529,6 +10584,7 @@
 				853D4E2B1C87E73D003277E5 /* SettingTableViewCell.m in Sources */,
 				154D30DE1BEB972A00CDD251 /* ZSMyShopsManageViewController.m in Sources */,
 				D7A1D4341BC2CE0900BCE47C /* RecommendPackageModel.m in Sources */,
+				38EE9DE21CB664BE00201734 /* LPOrdersHeaderCell.m in Sources */,
 				151BB6D21BBB78E000E7A81C /* UzysAssetsPickerController.m in Sources */,
 				15F54A901BB030420020EB4C /* ChanPinListViewController.m in Sources */,
 				AD04A4941C61960200FAA8D3 /* LYAmusementViewController.m in Sources */,
@@ -10559,6 +10615,7 @@
 				A20100BD1BA901EA009283D1 /* ZSMyClientsViewController.m in Sources */,
 				15EB35781BD495ED00BA6161 /* CYInfoCell.m in Sources */,
 				85F625A61C0C4DB7002858C8 /* LYTaoCanListTableViewCell.m in Sources */,
+				38EE9DDE1CB64CF100201734 /* LPOrderButton.m in Sources */,
 				386AE39B1C5B61B70062105F /* TAAbstractDotView.m in Sources */,
 				8549B0471CAB6594002DC462 /* ZSBalance.m in Sources */,
 				AD078C8B1C34D17E00A056D1 /* LYZSApplicationViewController.m in Sources */,
@@ -10735,6 +10792,7 @@
 				ADE1039D1BDE49BC00D9EC38 /* openssl_wrapper.m in Sources */,
 				380659D71C5639D1003094C9 /* NumberView.m in Sources */,
 				85F672BC1C09D7F8001BEE5B /* LYCityChooseViewController.m in Sources */,
+				38EE9DE71CB664EB00201734 /* LPOrdersBodyCell.m in Sources */,
 				D794ED0C1BB7872A000DC568 /* PFRect.m in Sources */,
 				8504B92C1C701E2D008E5C6B /* LYHotBarsViewController.m in Sources */,
 				385664741C72B933000DCFA5 /* HDZTListCell.m in Sources */,
