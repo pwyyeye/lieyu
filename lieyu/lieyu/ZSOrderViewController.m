@@ -13,7 +13,6 @@
 #import "DetailCell.h"
 #import "ShopDetailmodel.h"
 #import "OrderInfoModel.h"
-#import "SerchHeadView.h"
 #import "OrderBottomForLWView.h"
 #import "OrderBottomForCCView.h"
 #import "OrderBottomForXFView.h"
@@ -142,11 +141,7 @@
         serchDaiXiaoFei=[daiXiaoFei mutableCopy];
         
         if (mMenuHriZontal.selectIndex==0) {
-            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"SerchHeadView" owner:nil options:nil];
-            SerchHeadView *serchHeadView= (SerchHeadView *)[nibView objectAtIndex:0];
-            [serchHeadView.serchText addTarget:self action:@selector(endEdit:) forControlEvents:UIControlEventEditingDidEndOnExit];
-            [serchHeadView.serchText addTarget:self action:@selector(serchTextValChange:) forControlEvents:UIControlEventEditingChanged];
-            _tableView.tableHeaderView=serchHeadView;
+           
                 
         }else{
             UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
