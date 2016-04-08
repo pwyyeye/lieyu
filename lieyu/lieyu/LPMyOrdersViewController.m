@@ -11,6 +11,10 @@
 #import "LYUserHttpTool.h"
 #import "OrderInfoModel.h"
 
+#import "LPOrdersHeaderCell.h"
+#import "LPOrdersBodyCell.h"
+#import "LPOrdersFooterCell.h"
+
 @interface LPMyOrdersViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIVisualEffectView *effectView;
@@ -54,6 +58,12 @@
     myTableView.delegate = self;
     [self changeTableViewAtIndex:_orderIndex];
     [self getData];
+}
+
+- (void)registerCells{
+    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersHeaderCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersHeaderCell"];
+    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersBodyCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersBodyCell"];
+    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersFooterCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersFooterCell"];
 }
 
 - (void)getData{
@@ -202,7 +212,7 @@
     pageCount = 1;
     NSDictionary *dic = @{@"p":[NSNumber numberWithInt:pageCount],
                           @"per":[NSNumber numberWithInt:perCount],
-                          @"orderStatus":@"7,8,9"};
+                          @"orderStatus":@"7,9"};
     nowDic = [[NSMutableDictionary alloc]initWithDictionary:dic];
     [self getOrderWithDic:dic];
 }
@@ -305,6 +315,9 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    OrderInfoModel *model = [dataList objectAtIndex:section];
+    LPOrdersHeaderCell *headerView = [myTableView dequeueReusableCellWithIdentifier:@"LPOrdersFooterCell"];
+    
     return nil;
 }
 

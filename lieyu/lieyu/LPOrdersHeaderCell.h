@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OrderInfoModel.h"
 
 @interface LPOrdersHeaderCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *placeLbl;
@@ -14,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderStatusLbl;
 @property (weak, nonatomic) IBOutlet UILabel *orderTimeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *shaperLbl;
+
+@property (nonatomic, strong) OrderInfoModel *model;
 
 @end

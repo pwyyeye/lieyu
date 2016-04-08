@@ -30,8 +30,14 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)setModel:(OrderInfoModel *)model{
+    _model = model;
+    self.placeLbl.text = model.barinfo.barname;
+    self.orderStatusLbl.text = [MyUtil getOrderStatus:model.orderStatus];
+    self.orderNumberLbl.text = [NSString stringWithFormat:@"%d",model.id];
+    self.orderTimeLbl.text = [NSString stringWithFormat:@"时间：%@",[model.createDate substringToIndex:model.createDate.length - 2]];
 }
 
 @end

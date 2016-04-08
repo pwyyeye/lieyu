@@ -17,8 +17,16 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)setModel:(OrderInfoModel *)model{
+    _model = model;
+    if (model.ordertype == 0) {//套餐订单
+        [_orderImage sd_setImageWithURL:[NSURL URLWithString:model.setMealInfo.setMealVO.linkUrl] placeholderImage:[UIImage imageNamed:@""]];
+        [_orderNameLbl setText:model.setMealInfo.setMealVO.smname];
+        [_orderNumberLbl setText:model.allnum];
+        [_orderPriceLbl setText:[NSString stringWithFormat:@"¥%@",model.setMealInfo.setMealVO.price]];
+    }
 }
 
 @end

@@ -799,6 +799,33 @@
     [nav pushViewController:login animated:YES];
 }
 
-
++(NSString *)getOrderStatus:(int)orderStatus{
+    switch (orderStatus) {
+        case 0:
+            return @"待付款";
+        case 1:
+            return @"待消费";
+        case 2:
+            return @"待消费";
+        case 3:
+            return @"待退款";
+        case 4:
+            return @"待退款";
+        case 5 :
+            return @"待退款";
+        case 6:
+            return @"删除";
+        case 7:
+            return @"待返利";
+        case 8:
+            return @"待评价";
+        case 9:
+            return @"已返利";
+        case 10 :
+            return @"已退款";
+        default:
+            return @"状态有误";
+    }
+}
 
 @end
