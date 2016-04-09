@@ -49,16 +49,20 @@
     [super viewDidLoad];
     titleArray = @[@"订单",@"待付款",@"待消费",@"待评价",@"待返利",@"待退款"];
     arrayButton = [NSMutableArray array];
-    [self initHeader];
-    
-    perCount = 10;
-    dataList = [NSMutableArray array];
-    
-    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT - 90) style:UITableViewStyleGrouped];
+    myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
+//    [myTableView setContentOffset:CGPointMake(0, 90)];
+    [myTableView setContentInset:UIEdgeInsetsMake(90, 0, 0, 0)];
     myTableView.dataSource = self;
     myTableView.delegate = self;
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
+    
+    [self initHeader];
+//    [self.view setBackgroundColor:[UIColor greenColor]];
+    perCount = 10;
+    dataList = [NSMutableArray array];
+    
+    
     
     [self changeTableViewAtIndex:_orderIndex];
     [self getData];
@@ -81,7 +85,7 @@
     [self initMJRefeshHeaderForGif:header];
     
     myTableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [weakSelf getOrderWithDicMore:nowDic];
+        [weakSelf loadMoreData];
     }];
     MJRefreshBackGifFooter *footer = (MJRefreshBackGifFooter *)myTableView.mj_footer;
     [self initMJRefeshFooterForGif:footer];
@@ -91,6 +95,7 @@
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     effectView = [[UIVisualEffectView alloc]initWithEffect:effect];
     [effectView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90)];
+    effectView.alpha = 5;
     effectView.layer.shadowColor = [RGBA(0, 0, 0, 1)CGColor];
     effectView.layer.shadowOffset = CGSizeMake(0, 0.5);
     effectView.layer.shadowOpacity = 0.3;
@@ -253,6 +258,12 @@
     
 }
 
+- (void)loadMoreData{
+    [nowDic removeObjectForKey:@"p"];
+    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+    [self getOrderWithDicMore:nowDic];
+}
+
 #pragma mark － 获取更多数据
 - (void)getOrderWithDicMore:(NSDictionary *)dic{
 //    __weak __typeof(self)weakSelf = self;
@@ -265,6 +276,7 @@
             [myTableView.mj_footer noticeNoMoreData];
         }
     }];
+    [myTableView.mj_footer endRefreshing];
 }
 
 - (void)addKongView{
@@ -318,26 +330,25 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LPOrdersBodyCell *bodyCell = [myTableView dequeueReusableCellWithIdentifier:@"LPOrdersBodyCell" forIndexPath:indexPath];
+    bodyCell.tag = indexPath.row;
     bodyCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    OrderInfoModel *model = [dataList objectAtIndex:indexPath.section];
+    bodyCell.model = model;
     return bodyCell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    OrderInfoModel *model = [dataList objectAtIndex:section];
-//    LPOrdersHeaderCell *headerView = [myTableView dequeueReusableCellWithIdentifier:@"LPOrdersHeaderCell"];
-//    
-//    return headerView;
-//    LPOrderHeaderCell *headerView = [myTableView dequeueReusableCellWithIdentifier:@"LPOrderHeaderCell"];
-//    return headerView;
-//    LPOrdersHeaderView *headerView = [[LPOrdersHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 59)];
+    OrderInfoModel *model = [dataList objectAtIndex:section];
     LPOrdersHeaderView *headerView = [[[NSBundle mainBundle]loadNibNamed:@"LPOrdersHeaderView" owner:nil options:nil]firstObject];
-    [headerView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 59)];
+    headerView.model = model;
+//    [headerView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 59)];
     return headerView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//    OrderInfoModel *model = [dataList objectAtIndex:section];
+    OrderInfoModel *model = [dataList objectAtIndex:section];
     LPOrdersFooterCell *footerCell = [myTableView dequeueReusableCellWithIdentifier:@"LPOrdersFooterCell"];
+    footerCell.model = model;
     return footerCell;
 }
 
