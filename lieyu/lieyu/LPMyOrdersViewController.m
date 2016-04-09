@@ -14,6 +14,7 @@
 #import "LPOrdersHeaderCell.h"
 #import "LPOrdersBodyCell.h"
 #import "LPOrdersFooterCell.h"
+#import "LPOrdersHeaderView.h"
 
 @interface LPMyOrdersViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -56,14 +57,19 @@
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT - 90) style:UITableViewStyleGrouped];
     myTableView.dataSource = self;
     myTableView.delegate = self;
+    myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:myTableView];
+    
     [self changeTableViewAtIndex:_orderIndex];
     [self getData];
+    [self registerCells];
 }
 
 - (void)registerCells{
-    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersHeaderCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersHeaderCell"];
-    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersBodyCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersBodyCell"];
-    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersFooterCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersFooterCell"];
+//    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersHeaderCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LPOrdersHeaderCell"];
+    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersBodyCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LPOrdersBodyCell"];
+    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersFooterCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LPOrdersFooterCell"];
+//    [myTableView registerNib:[UINib nibWithNibName:@"LPOrderHeaderCell" bundle:nil] forCellReuseIdentifier:@"LPOrderHeaderCell"];
 }
 
 - (void)getData{
@@ -311,18 +317,28 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    LPOrdersBodyCell *bodyCell = [myTableView dequeueReusableCellWithIdentifier:@"LPOrdersBodyCell" forIndexPath:indexPath];
+    bodyCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return bodyCell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    OrderInfoModel *model = [dataList objectAtIndex:section];
-    LPOrdersHeaderCell *headerView = [myTableView dequeueReusableCellWithIdentifier:@"LPOrdersFooterCell"];
-    
-    return nil;
+//    OrderInfoModel *model = [dataList objectAtIndex:section];
+//    LPOrdersHeaderCell *headerView = [myTableView dequeueReusableCellWithIdentifier:@"LPOrdersHeaderCell"];
+//    
+//    return headerView;
+//    LPOrderHeaderCell *headerView = [myTableView dequeueReusableCellWithIdentifier:@"LPOrderHeaderCell"];
+//    return headerView;
+//    LPOrdersHeaderView *headerView = [[LPOrdersHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 59)];
+    LPOrdersHeaderView *headerView = [[[NSBundle mainBundle]loadNibNamed:@"LPOrdersHeaderView" owner:nil options:nil]firstObject];
+    [headerView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 59)];
+    return headerView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return nil;
+//    OrderInfoModel *model = [dataList objectAtIndex:section];
+    LPOrdersFooterCell *footerCell = [myTableView dequeueReusableCellWithIdentifier:@"LPOrdersFooterCell"];
+    return footerCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -330,7 +346,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 56;
+    return 58;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

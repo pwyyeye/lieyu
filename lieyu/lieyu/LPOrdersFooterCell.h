@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LPOrdersFooterCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *backGround;
 @property (weak, nonatomic) IBOutlet UILabel *shaperLbl;
 @property (weak, nonatomic) IBOutlet UILabel *acturePriceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *profitStatusLbl;
