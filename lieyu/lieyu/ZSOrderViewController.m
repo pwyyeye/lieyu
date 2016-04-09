@@ -21,7 +21,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <RongIMKit/RongIMKit.h>
 
-#import "LPOrdersHeaderCell.h"
+#import "LPOrdersHeaderView.h"
 #import "LPOrdersBodyCell.h"
 #import "LPOrderButton.h"
 @interface ZSOrderViewController (){
@@ -139,8 +139,7 @@
     
     CGFloat btnWidth = 80;
     for (int i = 0 ; i < 3 ; i ++) {
-        LPOrderButton *button = [[LPOrderButton alloc]init];
-            button.frame = CGRectMake(SCREEN_WIDTH/2.f - btnWidth/2.f + btnWidth * (i - 1), 0, btnWidth, 26);
+        LPOrderButton *button = [[LPOrderButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - btnWidth/2.f + btnWidth * (i - 1), 0, btnWidth, 26)];
         [button.titleLabel setFont:[UIFont systemFontOfSize:12]];
         button.tag = i ;
         [button addTarget:self action:@selector(changeTableViewAtButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -492,16 +491,16 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 68;
+    return 59;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if(_orderIndex==1){
-        return 48;
+        return 83;
     }
     if(_orderIndex==2){
-        return 48;
+        return 32;
     }
-    return 84;
+    return 101;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
@@ -526,8 +525,19 @@
             orderBottomView.btn_not.hidden = NO;
             if (orderInfoModel.orderStatus==1) {
                 [orderBottomView.duimaBtn setTitle:@"立即留卡" forState:UIControlStateNormal];
+                orderBottomView.label_timeOrCountTitle.text = @"到店时间";
+                orderBottomView.timeOrCount.text = [NSString stringWithFormat:@"时间：%@",[MyUtil transformDateWithDateString:orderInfoModel.createDate]];
                 
             }else{
+                orderBottomView.label_timeOrCountTitle.text = @"商品数量";
+                
+//                NSInteger count = ((ShopDetailmodel *)orderInfoModel.goodslist.firstObject).count.integerValue;
+                __block NSInteger count = 0;
+              /*  [orderInfoModel.goodslist enumerateObjectsUsingBlock:^(ShopDetailmodel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    count += obj.count.integerValue;
+                }]; */
+                
+                orderBottomView.timeOrCount.text = [NSString stringWithFormat:@"共%ld件",count];
                 [orderBottomView.duimaBtn setTitle:@"立即对码" forState:UIControlStateNormal];
                 orderBottomView.btn_not.hidden = YES;
             }
@@ -583,6 +593,7 @@
             orderBottomView.jiesuanLal.text=[NSString stringWithFormat:@"￥%.2f",orderInfoModel.amountPay.doubleValue- orderInfoModel.rebateAmout.doubleValue];
             orderBottomView.yjLal.text=[NSString stringWithFormat:@"佣金:￥%@",orderInfoModel.commission];
             //    view.backgroundColor=[UIColor yellowColor];
+            
             return orderBottomView;
             break;
         }
@@ -592,6 +603,8 @@
             
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomForXFView" owner:nil options:nil];
             OrderBottomForXFView *orderBottomView= (OrderBottomForXFView *)[nibView objectAtIndex:0];
+            orderBottomView.label_yjTitle.hidden = YES;
+            orderBottomView.titleTwoLal.hidden = YES;
 //            if(orderInfoModel.orderStatus==5){
 //                orderBottomView.titleTwoLal.text=@"已违约（违约金）";
 //                orderBottomView.jiesuanLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.penalty];
@@ -629,10 +642,10 @@
         {
             OrderInfoModel *orderInfoModel=serchDaiXiaoFei[section];
             
-//            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
-            LPOrdersHeaderCell *orderHeadView= [_tableView dequeueReusableCellWithIdentifier:@"LPOrdersHeaderCell" ];
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LPOrdersHeaderView" owner:nil options:nil];
+            LPOrdersHeaderView *orderHeadView= (LPOrdersHeaderView *)[nibView objectAtIndex:0];
+            orderHeadView.namela
             if (orderInfoModel.orderStatus==1) {
-//                OrderHeadView *orderHeadView= (OrderHeadView *)[nibView objectAtIndex:0];
                 orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
                 orderHeadView.orderTimeLbl.text=orderInfoModel.createDate;
                 orderHeadView.placeLbl.text=orderInfoModel.username;
@@ -748,8 +761,9 @@
         {
             OrderInfoModel *orderInfoModel=daiXiaoFei[section];
             
-            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderHeadView" owner:nil options:nil];
-            LPOrdersHeaderCell *orderHeadView= [_tableView dequeueReusableCellWithIdentifier:@"LPOrdersHeaderCell"];
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LPOrdersHeaderView" owner:nil options:nil];
+            LPOrdersHeaderView *orderHeadView = (LPOrdersHeaderView *)[nibView objectAtIndex:0];
+            orderHeadView.orderStatusLbl.text = @"已消费";
             orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
             orderHeadView.orderTimeLbl.text=orderInfoModel.createDate;
             orderHeadView.placeLbl.text=orderInfoModel.username;
@@ -782,7 +796,8 @@
         {
             OrderInfoModel *orderInfoModel=daiXiaoFei[section];
             
-            LPOrdersHeaderCell *orderHeadView= [_tableView dequeueReusableCellWithIdentifier:@"LPOrdersHeaderCell"];
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LPOrdersHeaderView" owner:nil options:nil];
+            LPOrdersHeaderView *orderHeadView = (LPOrdersHeaderView *)[nibView objectAtIndex:0];
             orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
             orderHeadView.orderTimeLbl.text=orderInfoModel.createDate;
             orderHeadView.placeLbl.text=orderInfoModel.username;
@@ -905,7 +920,7 @@
     cell.orderPriceLbl.text=[NSString stringWithFormat:@"￥%@",shopDetailmodel.youfeiPrice];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",shopDetailmodel.money] attributes:attribtDic];
-//    cell.orderMarketPriceLbl.attributedText=attribtStr;
+    cell.orderMarketPriceLbl.attributedText=attribtStr;
     NSString *str=shopDetailmodel.img ;
     [cell.orderImage setImageWithURL:[NSURL URLWithString:str]];
 

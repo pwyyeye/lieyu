@@ -115,4 +115,7 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 
 + (NSString *)getOrderStatus:(int)orderStatus;
 
+//时间格式转化为16-04-01 22:22
++ (NSString *)transformDateWithDateString:(NSString *)dateString;
+
 @end

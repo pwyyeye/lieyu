@@ -75,13 +75,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //  @{@"title":@"专属经理",@"icon":@"userManager"},
       @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
       @{@"title":@"速核码",@"icon":@"userSuHeMa"},
-    @{@"title":@"扫一扫",@"icon":@"CheckQRCode"},
+    @{@"title":@"扫一扫",@"icon":@"userSaoYiSao"},
       @{@"title":@"设置",@"icon":@"userSetting"},
   @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
       ];
  
     
-    self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
+    self.collectionView.backgroundColor=[UIColor whiteColor];
 //    self.collectionView.scrollEnabled = YES;
 //    self.collectionView.bounces = NO;//遇到边框不反弹
     self.collectionView.showsVerticalScrollIndicator = NO;
@@ -110,6 +110,16 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
+    
+    if(shanghuban){
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
+        [app.navigationController pushViewController:maintViewController animated:NO];
+        maintViewController.btnBackHidden = YES;
+    }
+    
     [self loadHeaderView];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController setNavigationBarHidden:YES animated:NO];

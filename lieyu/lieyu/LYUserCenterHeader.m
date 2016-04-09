@@ -15,6 +15,7 @@
 #import "LYUserDetailController.h"
 #import "LYWithdrawTypeViewController.h"
 #import "ZSMaintViewController.h"
+#import "MainTabbarViewController.h"
 
 @implementation LYUserCenterHeader{
     UIVisualEffectView *_effctView ;
@@ -158,6 +159,10 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
     [app.navigationController pushViewController:maintViewController animated:NO];
+    maintViewController.btnBackHidden = YES;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"shanghuban"];
+//    MainTabbarViewController *tabVC = (MainTabbarViewController*)app.window.rootViewController.childViewControllers.firstObject;
+    
     maintViewController.btnBackHidden = YES;
     if(app.userModel.usertype.intValue==2){
         UIWindow *window = [UIApplication sharedApplication].delegate.window;

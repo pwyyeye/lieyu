@@ -14,5 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *jiesuanLal;
 @property (weak, nonatomic) IBOutlet UILabel *titleOneLal;
 @property (weak, nonatomic) IBOutlet UILabel *titleTwoLal;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UILabel *label_yjTitle;
 
 @end

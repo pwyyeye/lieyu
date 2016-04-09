@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgm-4s-Kdl">
-                    <rect key="frame" x="3" y="0.0" width="314" height="82"/>
+                    <rect key="frame" x="3" y="0.0" width="314" height="85"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="已付款：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWu-MK-7FS">
                             <rect key="frame" x="8" y="8" width="60" height="16"/>
@@ -49,7 +49,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际到账：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYe-bw-Y3d">
-                            <rect key="frame" x="8" y="58" width="60" height="16"/>
+                            <rect key="frame" x="8" y="61" width="60" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="tB6-jd-Zbe"/>
                             </constraints>
@@ -84,24 +84,38 @@
                         <constraint firstItem="jWu-MK-7FS" firstAttribute="leading" secondItem="xgm-4s-Kdl" secondAttribute="leading" constant="8" id="x02-uL-IIc"/>
                     </constraints>
                 </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shaperLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="i5F-6w-Nbu">
+                    <rect key="frame" x="11" y="0.0" width="298" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="g2L-Ni-SUg"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="xgm-4s-Kdl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4Su-e6-WGO"/>
+                <constraint firstItem="i5F-6w-Nbu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="11" id="Gid-az-Mg6"/>
                 <constraint firstItem="xgm-4s-Kdl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="3" id="Swr-hu-xDk"/>
-                <constraint firstAttribute="bottom" secondItem="xgm-4s-Kdl" secondAttribute="bottom" constant="3" id="dJH-MH-eTY"/>
+                <constraint firstAttribute="trailing" secondItem="i5F-6w-Nbu" secondAttribute="trailing" constant="11" id="bYF-fZ-IOh"/>
+                <constraint firstAttribute="bottom" secondItem="xgm-4s-Kdl" secondAttribute="bottom" id="dJH-MH-eTY"/>
                 <constraint firstAttribute="trailing" secondItem="xgm-4s-Kdl" secondAttribute="trailing" constant="3" id="dvQ-q5-jUa"/>
+                <constraint firstItem="i5F-6w-Nbu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eig-eH-vP7"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="contentView" destination="xgm-4s-Kdl" id="lFA-bI-e4I"/>
                 <outlet property="fukuanLal" destination="u0U-xg-m3G" id="yNK-Pb-ILY"/>
                 <outlet property="jiesuanLal" destination="3Cc-es-UbS" id="Awa-ce-fO4"/>
+                <outlet property="label_yjTitle" destination="qVu-BC-3oc" id="bmn-om-mX3"/>
                 <outlet property="titleOneLal" destination="jWu-MK-7FS" id="YTy-LN-LMt"/>
                 <outlet property="titleTwoLal" destination="KYe-bw-Y3d" id="Z5V-lB-NGz"/>
                 <outlet property="yjLal" destination="8p2-NR-XsQ" id="85t-5Q-eui"/>
             </connections>
-            <point key="canvasLocation" x="301" y="139.5"/>
+            <point key="canvasLocation" x="229" y="406.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="shaperLine.png" width="351" height="1"/>
+    </resources>
 </document>

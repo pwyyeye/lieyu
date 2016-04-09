@@ -14,20 +14,9 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    CAShapeLayer *shaperLayer = [CAShapeLayer layer];
-    shaperLayer.bounds = _shaperLbl.bounds;
-    [shaperLayer setPosition:_shaperLbl.center];
-    [shaperLayer setFillColor:[[UIColor clearColor] CGColor]];
-    [shaperLayer setStrokeColor:[RGBA(0, 0, 0, 0.2) CGColor]];
-    [shaperLayer setLineWidth:0.5];
-    [shaperLayer setLineJoin:kCALineJoinRound];
-    [shaperLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:1], nil]];
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 12, 0);
-    CGPathAddLineToPoint(path, NULL, SCREEN_WIDTH - 12, 0);
-    [shaperLayer setPath:path];
-    CGPathRelease(path);
-    [[_shaperLbl layer]addSublayer:shaperLayer];
+    [super drawRect:rect];
+    _btn_not.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    _btn_not.layer.borderWidth = 0.5f;
 }
 
 
