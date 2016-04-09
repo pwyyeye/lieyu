@@ -23,10 +23,15 @@
 
 #import "LPOrdersHeaderCell.h"
 #import "LPOrdersBodyCell.h"
+#import "LPOrderButton.h"
 @interface ZSOrderViewController (){
     int pageCount;
     int perCount;
     NSMutableDictionary *nowDic;
+    UIVisualEffectView *effectView;
+    UIScrollView *scrollView;
+    NSMutableArray *arrayButton;
+    NSArray *titleArray;
 }
 
 @end
@@ -34,13 +39,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
-
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    titleArray = @[@"待处理",@"已消费",@"退单"];
+    arrayButton = [[NSMutableArray alloc]init];
     
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
-    _tableView.separatorColor=[UIColor clearColor];
-    self.view.backgroundColor=RGB(237, 237, 237 );
+    _tableView.separatorColor=[UIColor redColor];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.view.backgroundColor=RGB(245, 245, 245 );
     daiXiaoFei=[[NSMutableArray alloc]init];
     serchDaiXiaoFei=[[NSMutableArray alloc]init];
     self.menuView.backgroundColor=[UIColor clearColor];
@@ -58,7 +65,9 @@
     perCount=10;
     
     
-    [self getMenuHrizontal];
+//    [self getMenuHrizontal];
+    [self initHeader];
+    [self changeTableViewAtIndex:_orderIndex];
     [self getDaiXiaoFei];
     
     __weak typeof(self) weakSelf = self;
@@ -98,6 +107,74 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+
+- (void)initHeader{
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    effectView = [[UIVisualEffectView alloc]initWithEffect:effect];
+    [effectView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90)];
+    effectView.layer.shadowColor = [RGBA(0, 0, 0, 1)CGColor];
+    effectView.layer.shadowOffset = CGSizeMake(0, 0.5);
+    effectView.layer.shadowOpacity = 0.3;
+    effectView.layer.shadowRadius = 1;
+    [self.view addSubview:effectView];
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 31, SCREEN_WIDTH - 200, 22)];
+    [label setFont:[UIFont systemFontOfSize:16]];
+    [label setText:@"订单管理"];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    [label setTextColor:[UIColor blackColor]];
+    [effectView addSubview:label];
+    
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 25, 60, 34)];
+    [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+    [effectView addSubview:button];
+    
+    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 26)];
+    [scrollView setContentSize:CGSizeMake(420, 36)];
+    [scrollView setShowsHorizontalScrollIndicator:NO];
+    [scrollView setShowsVerticalScrollIndicator:NO];
+    [scrollView setBackgroundColor:[UIColor clearColor]];
+    [effectView addSubview:scrollView];
+    
+    CGFloat btnWidth = 80;
+    for (int i = 0 ; i < 3 ; i ++) {
+        LPOrderButton *button = [[LPOrderButton alloc]init];
+            button.frame = CGRectMake(SCREEN_WIDTH/2.f - btnWidth/2.f + btnWidth * (i - 1), 0, btnWidth, 26);
+        [button.titleLabel setFont:[UIFont systemFontOfSize:12]];
+        button.tag = i ;
+        [button addTarget:self action:@selector(changeTableViewAtButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
+        [scrollView addSubview:button];
+        [arrayButton addObject:button];
+    }
+}
+
+- (void)changeTableViewAtButton:(LPOrderButton *)button{
+    _orderIndex = (int)button.tag;
+    [self changeTableViewAtIndex:_orderIndex];
+}
+- (void)changeTableViewAtIndex:(int)newTag{
+    for (LPOrderButton *btn in arrayButton) {
+        //        NSLog(@"%ld--%d",btn.tag,newTag);
+        if (btn.tag == newTag) {
+            btn.selected = YES;
+        }else{
+            btn.selected = NO;
+        }
+    }
+    switch (newTag) {
+        case 0:
+            [self getDaiXiaoFei];
+            break;
+        case 1:
+            [self getYiXiaoFei];
+            break;
+        case 2:
+            [self getTuiDan];
+            break;
+    }
+}
 
 #pragma mark 刷新
 -(void)refreshData{
@@ -144,7 +221,7 @@
         [daiXiaoFei addObjectsFromArray:result];
         serchDaiXiaoFei=[daiXiaoFei mutableCopy];
         
-        if (mMenuHriZontal.selectIndex==0) {
+        if (_orderIndex==0) {
            
                 
         }else{
@@ -303,7 +380,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (mMenuHriZontal.selectIndex) {
+    switch (_orderIndex) {
             
         case 0://待消费
         {
@@ -379,7 +456,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    switch (mMenuHriZontal.selectIndex) {
+    switch (_orderIndex) {
             
         case 0://待消费
         {
@@ -418,10 +495,10 @@
     return 68;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if(mMenuHriZontal.selectIndex==1){
+    if(_orderIndex==1){
         return 48;
     }
-    if(mMenuHriZontal.selectIndex==2){
+    if(_orderIndex==2){
         return 48;
     }
     return 84;
@@ -430,36 +507,31 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if(daiXiaoFei.count==0) return [[UIView alloc] initWithFrame:CGRectZero];
     
-    switch (mMenuHriZontal.selectIndex) {
+    switch (_orderIndex) {
             
         case 0://待消费
         {
            
             OrderInfoModel *orderInfoModel=serchDaiXiaoFei[section];
-            if (orderInfoModel.orderStatus==1) {
-                NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomForLWView" owner:nil options:nil];
-                OrderBottomForLWView *orderBottomView= (OrderBottomForLWView *)[nibView objectAtIndex:0];
-                orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
-                [orderBottomView.kazuoBtn addTarget:self action:@selector(kazuoAct:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
-                [orderBottomView.dianhuaBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
-                orderBottomView.kazuoBtn.tag=section;
-                orderBottomView.siliaoBtn.tag=section;
-                orderBottomView.dianhuaBtn.tag=section;
-                return orderBottomView;
+            NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomView" owner:nil options:nil];
+            OrderBottomView *orderBottomView= (OrderBottomView *)[nibView objectAtIndex:0];
+            orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
+            [orderBottomView.duimaBtn addTarget:self action:@selector(kazuoAct:) forControlEvents:UIControlEventTouchUpInside];
+            orderBottomView.duimaBtn.tag=section;
+            if (orderInfoModel.ordertype == 1) {
+                orderBottomView.label_zuju.text = [NSString stringWithFormat:@"%d人的组局",orderInfoModel.pinkerNum];
             }else{
-                NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomView" owner:nil options:nil];
-                OrderBottomView *orderBottomView= (OrderBottomView *)[nibView objectAtIndex:0];
-                orderBottomView.moneyLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.amountPay];
-                [orderBottomView.duimaBtn addTarget:self action:@selector(duimaAct:) forControlEvents:UIControlEventTouchUpInside];
-//                [orderBottomView.siliaoBtn addTarget:self action:@selector(siliaoAct:) forControlEvents:UIControlEventTouchUpInside];
-//                
-//                [orderBottomView.dianhuaBtn addTarget:self action:@selector(dianhuaAct:) forControlEvents:UIControlEventTouchUpInside];
-                orderBottomView.duimaBtn.tag=section;
-//                orderBottomView.siliaoBtn.tag=section;
-//                orderBottomView.dianhuaBtn.tag=section;
-                return orderBottomView;
+                orderBottomView.label_zuju.text = @"";
             }
+            orderBottomView.btn_not.hidden = NO;
+            if (orderInfoModel.orderStatus==1) {
+                [orderBottomView.duimaBtn setTitle:@"立即留卡" forState:UIControlStateNormal];
+                
+            }else{
+                [orderBottomView.duimaBtn setTitle:@"立即对码" forState:UIControlStateNormal];
+                orderBottomView.btn_not.hidden = YES;
+            }
+            return orderBottomView;
             
             //    view.backgroundColor=[UIColor yellowColor];
             
@@ -520,14 +592,12 @@
             
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"OrderBottomForXFView" owner:nil options:nil];
             OrderBottomForXFView *orderBottomView= (OrderBottomForXFView *)[nibView objectAtIndex:0];
-            orderBottomView.titleOneLal.text=@"实际退款";
-            orderBottomView.titleTwoLal.textColor=RGB(234, 79, 79);
-            if(orderInfoModel.orderStatus==5){
-                orderBottomView.titleTwoLal.text=@"已违约（违约金）";
-                orderBottomView.jiesuanLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.penalty];
-            }else{
-                orderBottomView.titleTwoLal.text=@"未违约";
-            }
+//            if(orderInfoModel.orderStatus==5){
+//                orderBottomView.titleTwoLal.text=@"已违约（违约金）";
+//                orderBottomView.jiesuanLal.text=[NSString stringWithFormat:@"￥%@",orderInfoModel.penalty];
+//            }else{
+//                orderBottomView.titleTwoLal.text=@"未违约";
+//            }
             orderBottomView.fukuanLal.text=[NSString stringWithFormat:@"￥%.2f",orderInfoModel.amountPay.doubleValue- orderInfoModel.penalty.doubleValue];
             
 //            if(orderInfoModel.isWeiYue){
@@ -553,7 +623,7 @@
 {
     if(daiXiaoFei.count==0) return [[UIView alloc] initWithFrame:CGRectZero];
     //ordertype:订单类别  （0-－套餐订单 ，1、拼客订单, 2-－吃喝订单  ）
-    switch (mMenuHriZontal.selectIndex) {
+    switch (_orderIndex) {
             
         case 0://待消费
         {
@@ -775,7 +845,7 @@
     }*/
     OrderInfoModel *orderInfoModel;
     ShopDetailmodel *shopDetailmodel=[[ShopDetailmodel alloc]init];
-    if(mMenuHriZontal.selectIndex==0){
+    if(_orderIndex==0){
         orderInfoModel=serchDaiXiaoFei[indexPath.section];
 
     }else{
@@ -802,7 +872,7 @@
         shopDetailmodel.img=setMealVOModel.linkUrl;
         shopDetailmodel.youfeiPrice=setMealVOModel.price;
         shopDetailmodel.money=setMealVOModel.marketprice;
-        if(mMenuHriZontal.selectIndex==1||mMenuHriZontal.selectIndex==2){
+        if(_orderIndex==1||_orderIndex==2){
 //            shopDetailmodel.count=[NSString stringWithFormat:@"拼客人数%@（%d人参与）",orderInfoModel.allnum,(int)orderInfoModel.pinkerList.count];
             shopDetailmodel.count=[NSString stringWithFormat:@"拼客人数%@",orderInfoModel.allnum];
         }else{
@@ -897,16 +967,6 @@
         mMenuHriZontal.delegate = self;
     }
     [self.view addSubview:mMenuHriZontal];
-}
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-}
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -1032,7 +1092,7 @@
 #pragma mark 私聊
 -(void)siliaoAct:(OrderHandleButton *)sender{
     OrderInfoModel *orderInfoModel;
-    if(mMenuHriZontal.selectIndex==0){
+    if(_orderIndex==0){
         orderInfoModel=serchDaiXiaoFei[sender.tag];
     }else{
         orderInfoModel=daiXiaoFei[sender.tag];
@@ -1071,7 +1131,7 @@
 #pragma mark 电话
 -(void)dianhuaAct:(OrderHandleButton *)sender{
     OrderInfoModel *orderInfoModel;
-    if(mMenuHriZontal.selectIndex==0){
+    if(_orderIndex==0){
         orderInfoModel=serchDaiXiaoFei[sender.tag];
     }else{
         orderInfoModel=daiXiaoFei[sender.tag];
@@ -1086,6 +1146,11 @@
 }
 #pragma mark 卡座
 -(void)kazuoAct:(OrderHandleButton *)sender{
+    OrderInfoModel *orderInfoModel=serchDaiXiaoFei[sender.tag];
+    if (orderInfoModel.orderStatus != 1) {
+        [self duimaAct:sender];
+        return;
+    }
     _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
     [_bgView setTag:99999];
     [_bgView setBackgroundColor:[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]];
@@ -1229,7 +1294,7 @@
     self.timeLal.text=[dateFormatter stringFromDate:[self.calendarLogic.selectedCalendarDay date]];
     nowDate=[self.calendarLogic.selectedCalendarDay date];
     [self SetViewDisappear:sender];
-    switch (mMenuHriZontal.selectIndex) {
+    switch (_orderIndex) {
             
         case 0://待消费
         {
