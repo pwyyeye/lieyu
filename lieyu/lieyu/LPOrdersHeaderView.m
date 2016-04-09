@@ -39,7 +39,7 @@
     self.placeLbl.text = model.barinfo.barname;
     self.orderStatusLbl.text = [MyUtil getOrderStatus:model.orderStatus];
     self.orderNumberLbl.text = [NSString stringWithFormat:@"%d",model.id];
-    self.orderTimeLbl.text = [NSString stringWithFormat:@"时间：%@",[model.createDate substringToIndex:model.createDate.length - 2]];
+    self.orderTimeLbl.text = [NSString stringWithFormat:@"时间：%@",[model.createDate substringToIndex:model.createDate.length - 3]];
 }
 
 @end

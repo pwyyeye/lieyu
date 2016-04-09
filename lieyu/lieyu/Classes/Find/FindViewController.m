@@ -344,15 +344,15 @@
 //            [self.navigationController pushViewController:loginVC animated:YES];
             
          if(indexPath.row == 0){
-            //统计发现页面的选择
-//            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"娱乐宝典"};
-//            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
-//            
-//            FindGameCenterViewController *findGameVC = [[FindGameCenterViewController alloc]init];
-//            [self.navigationController pushViewController:findGameVC animated:YES];
+//            统计发现页面的选择
+            NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"娱乐宝典"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
+            FindGameCenterViewController *findGameVC = [[FindGameCenterViewController alloc]init];
+            [self.navigationController pushViewController:findGameVC animated:YES];
              
-             LPMyOrdersViewController *myordersVC = [[LPMyOrdersViewController alloc]init];
-             [self.navigationController pushViewController:myordersVC animated:YES];
+//             LPMyOrdersViewController *myordersVC = [[LPMyOrdersViewController alloc]init];
+//             [self.navigationController pushViewController:myordersVC animated:YES];
         }
     }
 //    else{//进入酒吧小游戏

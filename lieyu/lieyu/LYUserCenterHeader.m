@@ -15,6 +15,7 @@
 #import "LYUserDetailController.h"
 #import "LYWithdrawTypeViewController.h"
 #import "ZSMaintViewController.h"
+#import "LPMyOrdersViewController.h"
 
 @implementation LYUserCenterHeader{
     UIVisualEffectView *_effctView ;
@@ -419,10 +420,13 @@
 }
 
 -(void)gotoMyOrderList:(NSInteger)orderType{
-    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-    myOrderManageViewController.title=@"我的订单";
-    myOrderManageViewController.orderType=orderType;
+    LPMyOrdersViewController *myOrderVC = [[LPMyOrdersViewController alloc]init];
+    myOrderVC.orderIndex = (int)orderType;
+//    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//    myOrderManageViewController.title=@"我的订单";
+//    myOrderManageViewController.orderType=orderType;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
+//    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
+    [app.navigationController pushViewController:myOrderVC animated:YES];
 }
 @end

@@ -88,6 +88,12 @@
                                     <constraint firstAttribute="height" constant="1" id="Qud-Kf-csO"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(返利于3个工作日内到账)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="090-iI-ILx">
+                                <rect key="frame" x="57" y="34" width="136.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -99,12 +105,15 @@
                             <constraint firstAttribute="trailing" secondItem="SuJ-7o-2aR" secondAttribute="trailing" constant="8" id="LiN-j6-Tsv"/>
                             <constraint firstAttribute="trailing" secondItem="UWE-Uk-qCV" secondAttribute="trailing" constant="3" id="Ok5-5R-8VA"/>
                             <constraint firstAttribute="trailing" secondItem="0IP-vp-n2I" secondAttribute="trailing" constant="8" id="PG6-DC-iRc"/>
+                            <constraint firstItem="090-iI-ILx" firstAttribute="top" secondItem="y9P-Hl-q7Y" secondAttribute="top" id="TLh-9X-hUm"/>
+                            <constraint firstItem="090-iI-ILx" firstAttribute="bottom" secondItem="y9P-Hl-q7Y" secondAttribute="bottom" id="Tgj-qY-tOG"/>
                             <constraint firstItem="UWE-Uk-qCV" firstAttribute="top" secondItem="2Z0-cG-sPH" secondAttribute="top" id="Vhd-tf-iBS"/>
                             <constraint firstItem="jTT-uT-DKc" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" constant="9" id="bSy-Lp-W1H"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="height" secondItem="Px3-lR-5xV" secondAttribute="height" id="cGl-fi-k8c"/>
                             <constraint firstItem="y9P-Hl-q7Y" firstAttribute="top" secondItem="jTT-uT-DKc" secondAttribute="bottom" constant="8" id="dQL-d3-kJM"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="top" secondItem="0IP-vp-n2I" secondAttribute="bottom" constant="12" id="dl3-9h-dOl"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="top" secondItem="Px3-lR-5xV" secondAttribute="top" id="hyL-C1-lT2"/>
+                            <constraint firstItem="090-iI-ILx" firstAttribute="leading" secondItem="y9P-Hl-q7Y" secondAttribute="leading" constant="48" id="iPI-1t-LDf"/>
                             <constraint firstItem="k7m-Vt-lKR" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" constant="8" id="qgU-kT-E3a"/>
                             <constraint firstAttribute="trailing" secondItem="Vkv-7s-hDs" secondAttribute="trailing" constant="8" id="rQl-3i-fRX"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="leading" secondItem="Px3-lR-5xV" secondAttribute="trailing" constant="10" id="u1d-TF-NFq"/>
@@ -125,6 +134,8 @@
                 <outlet property="acturePriceLbl" destination="SuJ-7o-2aR" id="MMt-Am-96S"/>
                 <outlet property="backGround" destination="2Z0-cG-sPH" id="ClB-5t-ZRn"/>
                 <outlet property="firstButton" destination="Px3-lR-5xV" id="mE6-4I-9b0"/>
+                <outlet property="introduceLbl" destination="k7m-Vt-lKR" id="NG4-MB-E2n"/>
+                <outlet property="oliverLabel" destination="090-iI-ILx" id="6dj-3G-4Bg"/>
                 <outlet property="profitLbl" destination="0IP-vp-n2I" id="CiW-TR-fsN"/>
                 <outlet property="profitStatusLbl" destination="y9P-Hl-q7Y" id="Shh-gf-ovO"/>
                 <outlet property="secondButton" destination="Vkv-7s-hDs" id="qTF-cT-fh5"/>

@@ -7,6 +7,7 @@
 //
 
 #import "LPOrdersBodyCell.h"
+#import "SetMealVOModel.h"
 
 @implementation LPOrdersBodyCell
 
@@ -22,8 +23,6 @@
 - (void)setModel:(OrderInfoModel *)model{
     _model = model;
     NSDictionary *attributeDic = @{NSStrikethroughStyleAttributeName:[NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    //    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-//    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.product.marketprice] attributes:attribtDic];
     if (model.ordertype == 0) {//套餐订单
         [_orderImage sd_setImageWithURL:[NSURL URLWithString:model.setMealInfo.setMealVO.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_orderNameLbl setText:model.setMealInfo.setMealVO.smname];
@@ -37,10 +36,16 @@
         [_orderNameLbl setText:[dict objectForKey:@"fullName"]];
         [_orderNumberLbl setText:[NSString stringWithFormat:@"X%@",[dict objectForKey:@"quantity"]]];
         [_orderPriceLbl setText:[NSString stringWithFormat:@"¥%@",[dict objectForKey:@"price"]]];
-        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:[[dict objectForKey:@"productVO"] objectForKey:@"marketprice"]];
-        [_orderPriceLbl setAttributedText:attributeStr];
-    }else{
-        
+        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"¥%@",[[dict objectForKey:@"productVO"] objectForKey:@"marketprice"]] attributes:attributeDic];
+        [_orderMarketPriceLbl setAttributedText:attributeStr];
+    }else if(model.ordertype == 1){
+        SetMealVOModel *setmealVOModel = model.pinkerinfo;
+        [_orderImage sd_setImageWithURL:[NSURL URLWithString:setmealVOModel.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        [_orderNameLbl setText:setmealVOModel.smname];
+        [_orderNumberLbl setText:[NSString stringWithFormat:@"%d",model.pinkerNum]];
+        [_orderPriceLbl setText:setmealVOModel.price];
+        NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:setmealVOModel.marketprice attributes:attributeDic];
+        [_orderMarketPriceLbl setAttributedText:attributeStr];
     }
 }
 

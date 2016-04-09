@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrderInfoModel.h"
 @interface LPOrdersFooterCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *backGround;
 @property (weak, nonatomic) IBOutlet UILabel *shaperLbl;
 @property (weak, nonatomic) IBOutlet UILabel *acturePriceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *profitStatusLbl;
 @property (weak, nonatomic) IBOutlet UILabel *profitLbl;
+@property (weak, nonatomic) IBOutlet UILabel *introduceLbl;
+@property (weak, nonatomic) IBOutlet UILabel *oliverLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *firstButton;
 @property (weak, nonatomic) IBOutlet UIButton *secondButton;
+
+@property (nonatomic, strong) OrderInfoModel *model;
 
 @end

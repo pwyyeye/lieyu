@@ -30,6 +30,7 @@
 #import "MyCodeViewController.h"
 #import "ZSMaintViewController.h"
 #import "LYMyOrderManageViewController.h"
+#import "LPMyOrdersViewController.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
     
@@ -207,11 +208,14 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         case 0:{
              NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"订单"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
-            LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-            myOrderManageViewController.title=@"我的订单";
-            myOrderManageViewController.orderType=LYOrderTypeDefault;
+            LPMyOrdersViewController *myOrderVC = [[LPMyOrdersViewController alloc]init];
+            myOrderVC.orderIndex = 0;
+            //    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            //    myOrderManageViewController.title=@"我的订单";
+            //    myOrderManageViewController.orderType=orderType;
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            [app.navigationController pushViewController:myOrderManageViewController animated:YES];
+            //    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
+            [app.navigationController pushViewController:myOrderVC animated:YES];
         }
             break;
             
