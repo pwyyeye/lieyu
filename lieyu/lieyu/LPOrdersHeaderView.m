@@ -1,21 +1,20 @@
 //
-//  LPOrdersHeaderCell.m
+//  LPOrdersHeaderView.m
 //  lieyu
 //
-//  Created by 王婷婷 on 16/4/7.
+//  Created by 王婷婷 on 16/4/8.
 //  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "LPOrdersHeaderCell.h"
-
-@implementation LPOrdersHeaderCell
-
-- (void)awakeFromNib {
+#import "LPOrdersHeaderView.h"
+#import <QuartzCore/QuartzCore.h>
+@implementation LPOrdersHeaderView
+- (void)awakeFromNib{
     [super awakeFromNib];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.bounds = self.shaperLbl.bounds;
     [shapeLayer setPosition:_shaperLbl.center];
-    [shapeLayer setFillColor:[[UIColor clearColor] CGColor]];
+    [shapeLayer setFillColor:[[UIColor redColor] CGColor]];
     [shapeLayer setStrokeColor:RGBA(0, 0, 0, 1).CGColor];
     [shapeLayer setLineWidth:2];
     [shapeLayer setLineJoin:kCALineJoinRound];
@@ -32,16 +31,8 @@
     layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 59);
     layer.path = bezierPath.CGPath;
     _backGround.layer.mask = layer;
-//
-//    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:_backGround.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerBottomLeft cornerRadii:CGSizeMake(2, 2)];
-//    CAShapeLayer *layer = [CAShapeLayer layer];
-//    layer.frame = _action_page.bounds;
-//    layer.path = path.CGPath;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-}
 
 - (void)setModel:(OrderInfoModel *)model{
     _model = model;

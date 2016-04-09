@@ -38,7 +38,9 @@
         [_orderNumberLbl setText:[NSString stringWithFormat:@"X%@",[dict objectForKey:@"quantity"]]];
         [_orderPriceLbl setText:[NSString stringWithFormat:@"¥%@",[dict objectForKey:@"price"]]];
         NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:[[dict objectForKey:@"productVO"] objectForKey:@"marketprice"]];
-        [_orderPriceLbl setText:attributeStr];
+        [_orderPriceLbl setAttributedText:attributeStr];
+    }else{
+        
     }
 }
 

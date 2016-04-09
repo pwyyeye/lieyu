@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,17 +16,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Z0-cG-sPH">
-                        <rect key="frame" x="3" y="0.0" width="314" height="101.5"/>
+                        <rect key="frame" x="3" y="0.0" width="314" height="102"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTj-b1-5ls">
-                                <rect key="frame" x="0.0" y="0.0" width="314" height="1"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="Qyq-Sc-iWx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际付款：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTT-uT-DKc">
                                 <rect key="frame" x="9" y="10" width="60" height="16"/>
                                 <constraints>
@@ -81,7 +73,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7m-Vt-lKR">
-                                <rect key="frame" x="8" y="66.5" width="150" height="20"/>
+                                <rect key="frame" x="8" y="67" width="150" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="cOS-g4-pXs"/>
                                     <constraint firstAttribute="height" constant="20" id="owY-Ry-3JF"/>
@@ -90,25 +82,31 @@
                                 <color key="textColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shaperLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="UWE-Uk-qCV">
+                                <rect key="frame" x="3" y="0.0" width="308" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Qud-Kf-csO"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Px3-lR-5xV" firstAttribute="centerY" secondItem="k7m-Vt-lKR" secondAttribute="centerY" id="3Ta-sv-bNp"/>
                             <constraint firstItem="y9P-Hl-q7Y" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" constant="9" id="3cZ-H3-ZTz"/>
-                            <constraint firstAttribute="trailing" secondItem="HTj-b1-5ls" secondAttribute="trailing" id="Jgr-Y0-aqT"/>
+                            <constraint firstItem="jTT-uT-DKc" firstAttribute="top" secondItem="2Z0-cG-sPH" secondAttribute="top" constant="10" id="Cne-ot-yth"/>
+                            <constraint firstItem="UWE-Uk-qCV" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" constant="3" id="IIh-dz-qc8"/>
+                            <constraint firstItem="jTT-uT-DKc" firstAttribute="firstBaseline" secondItem="SuJ-7o-2aR" secondAttribute="firstBaseline" id="IKA-G8-hhm"/>
                             <constraint firstAttribute="trailing" secondItem="SuJ-7o-2aR" secondAttribute="trailing" constant="8" id="LiN-j6-Tsv"/>
+                            <constraint firstAttribute="trailing" secondItem="UWE-Uk-qCV" secondAttribute="trailing" constant="3" id="Ok5-5R-8VA"/>
                             <constraint firstAttribute="trailing" secondItem="0IP-vp-n2I" secondAttribute="trailing" constant="8" id="PG6-DC-iRc"/>
-                            <constraint firstItem="HTj-b1-5ls" firstAttribute="top" secondItem="2Z0-cG-sPH" secondAttribute="top" id="WOy-eJ-PtH"/>
+                            <constraint firstItem="UWE-Uk-qCV" firstAttribute="top" secondItem="2Z0-cG-sPH" secondAttribute="top" id="Vhd-tf-iBS"/>
                             <constraint firstItem="jTT-uT-DKc" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" constant="9" id="bSy-Lp-W1H"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="height" secondItem="Px3-lR-5xV" secondAttribute="height" id="cGl-fi-k8c"/>
                             <constraint firstItem="y9P-Hl-q7Y" firstAttribute="top" secondItem="jTT-uT-DKc" secondAttribute="bottom" constant="8" id="dQL-d3-kJM"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="top" secondItem="0IP-vp-n2I" secondAttribute="bottom" constant="12" id="dl3-9h-dOl"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="top" secondItem="Px3-lR-5xV" secondAttribute="top" id="hyL-C1-lT2"/>
-                            <constraint firstItem="HTj-b1-5ls" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" id="k03-KJ-1qu"/>
-                            <constraint firstItem="SuJ-7o-2aR" firstAttribute="top" secondItem="HTj-b1-5ls" secondAttribute="bottom" constant="8" id="n69-HU-O0j"/>
                             <constraint firstItem="k7m-Vt-lKR" firstAttribute="leading" secondItem="2Z0-cG-sPH" secondAttribute="leading" constant="8" id="qgU-kT-E3a"/>
                             <constraint firstAttribute="trailing" secondItem="Vkv-7s-hDs" secondAttribute="trailing" constant="8" id="rQl-3i-fRX"/>
-                            <constraint firstItem="jTT-uT-DKc" firstAttribute="top" secondItem="HTj-b1-5ls" secondAttribute="bottom" constant="9" id="swx-ys-ash"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="leading" secondItem="Px3-lR-5xV" secondAttribute="trailing" constant="10" id="u1d-TF-NFq"/>
                             <constraint firstItem="Vkv-7s-hDs" firstAttribute="width" secondItem="Px3-lR-5xV" secondAttribute="width" id="vNO-CA-8MW"/>
                             <constraint firstItem="0IP-vp-n2I" firstAttribute="top" secondItem="SuJ-7o-2aR" secondAttribute="bottom" constant="8" id="xYz-06-geX"/>
@@ -125,12 +123,15 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <connections>
                 <outlet property="acturePriceLbl" destination="SuJ-7o-2aR" id="MMt-Am-96S"/>
+                <outlet property="backGround" destination="2Z0-cG-sPH" id="ClB-5t-ZRn"/>
                 <outlet property="firstButton" destination="Px3-lR-5xV" id="mE6-4I-9b0"/>
                 <outlet property="profitLbl" destination="0IP-vp-n2I" id="CiW-TR-fsN"/>
                 <outlet property="profitStatusLbl" destination="y9P-Hl-q7Y" id="Shh-gf-ovO"/>
                 <outlet property="secondButton" destination="Vkv-7s-hDs" id="qTF-cT-fh5"/>
-                <outlet property="shaperLbl" destination="HTj-b1-5ls" id="miZ-aT-gGs"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="shaperLine.png" width="351" height="1"/>
+    </resources>
 </document>

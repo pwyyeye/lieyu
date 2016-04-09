@@ -12,23 +12,29 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    CAShapeLayer *shaperLayer = [CAShapeLayer layer];
-    shaperLayer.bounds = _shaperLbl.bounds;
-    [shaperLayer setPosition:_shaperLbl.center];
-    [shaperLayer setFillColor:[[UIColor clearColor] CGColor]];
-    [shaperLayer setStrokeColor:[RGBA(0, 0, 0, 0.2) CGColor]];
-    [shaperLayer setLineWidth:0.5];
-    [shaperLayer setLineJoin:kCALineJoinRound];
-    [shaperLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:1], nil]];
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.bounds = self.shaperLbl.bounds;
+    [shapeLayer setPosition:_shaperLbl.center];
+    [shapeLayer setFillColor:[[UIColor clearColor] CGColor]];
+    [shapeLayer setStrokeColor:RGBA(205, 205, 205, 1).CGColor];
+    [shapeLayer setLineWidth:0.5];
+    [shapeLayer setLineJoin:kCALineJoinRound];
+    [shapeLayer setLineDashPattern:[NSArray arrayWithObjects:[NSNumber numberWithInt:3],[NSNumber numberWithInt:2], nil]];
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 12, 0);
+    CGPathMoveToPoint(path, NULL, 9, 0);
     CGPathAddLineToPoint(path, NULL, SCREEN_WIDTH - 21, 0);
-    [shaperLayer setPath:path];
+    [shapeLayer setPath:path];
     CGPathRelease(path);
-    [[_shaperLbl layer]addSublayer:shaperLayer];
+    [[_shaperLbl layer]addSublayer:shapeLayer];
     
     _firstButton.layer.cornerRadius = 14;
     _secondButton.layer.cornerRadius = 14;
+    
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 102) byRoundingCorners:UIRectCornerBottomRight | UIRectCornerBottomLeft cornerRadii:CGSizeMake(4, 4)];
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 102);
+    layer.path = bezierPath.CGPath;
+    _backGround.layer.mask = layer;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
