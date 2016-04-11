@@ -377,6 +377,17 @@
             app.userModel=userM;
             [app getImToken];
             [app getTTL];
+            //先删除别名，然后再注册新的－－－友盟 消息推送
+            if ([USER_DEFAULT objectForKey:@"userid"]) {
+                [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                    NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+                }];
+            }
+            [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",userM.userid] forKey:@"userid"];
+            
+            [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+            }];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }else{//去绑定手机好
@@ -454,6 +465,17 @@
             [app getTTL];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            //先删除别名，然后再注册新的－－－友盟 消息推送
+            if ([USER_DEFAULT objectForKey:@"userid"]) {
+                [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                    NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+                }];
+            }
+            [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",userM.userid] forKey:@"userid"];
+            
+            [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+            }];
         }else{//去绑定手机好
              [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
@@ -491,6 +513,18 @@
                         app.userModel=userM;
                         [app getImToken];
                         [app getTTL];
+                        //先删除别名，然后再注册新的－－－友盟 消息推送
+                        if ([USER_DEFAULT objectForKey:@"userid"]) {
+                            [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+                            }];
+                        }
+                        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",userM.userid] forKey:@"userid"];
+                        
+                        [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                            NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+                        }];
+                        
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                     }else{//去绑定手机好
