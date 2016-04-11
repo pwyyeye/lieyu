@@ -48,6 +48,18 @@
     [self.navigationController setNavigationBarHidden:NO];
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+    
+}
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
@@ -113,7 +125,7 @@
     JiuBaModel * model = [collectionList objectAtIndex:indexPath.section];
     controller.beerBarId = @(model.barid);
     [self.navigationController pushViewController:controller animated:YES];
-   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
 }
