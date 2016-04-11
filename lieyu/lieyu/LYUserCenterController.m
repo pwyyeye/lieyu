@@ -31,6 +31,7 @@
 #import "ZSMaintViewController.h"
 #import "LYMyOrderManageViewController.h"
 #import "CarInfoModel.h"
+#import "LPMyOrdersViewController.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
     NSInteger num;
@@ -239,7 +240,12 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }else{
         cell.btn_count.hidden = YES;
     }
-
+    
+    if (indexPath.row % 3 == 2) {
+        cell.layerShadowRight.hidden = YES;
+    }else{
+        cell.layerShadowRight.hidden = NO;
+    }
     return cell;
 }
 

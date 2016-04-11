@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderStatusLbl;
 @property (weak, nonatomic) IBOutlet UILabel *orderTimeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *shaperLbl;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (nonatomic, strong) OrderInfoModel *model;
 @end

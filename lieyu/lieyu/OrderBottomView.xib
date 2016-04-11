@@ -144,6 +144,7 @@
                 <outlet property="label_zuju" destination="hKA-ey-sQ1" id="bYk-JY-Ewd"/>
                 <outlet property="moneyLal" destination="dMM-Jt-dSh" id="P55-YW-m7B"/>
                 <outlet property="timeOrCount" destination="sxx-Pl-PwK" id="o5y-tX-dHC"/>
+                <outlet property="viewBG" destination="tZL-bO-JYq" id="3UX-hn-d4Q"/>
             </connections>
             <point key="canvasLocation" x="252" y="392"/>
         </view>

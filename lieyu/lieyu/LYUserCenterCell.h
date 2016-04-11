@@ -18,4 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *text;
 
+@property (nonatomic,strong) CALayer *layerShadowBottom;
+
+@property (nonatomic,strong) CALayer *layerShadowRight;
+
 @end
