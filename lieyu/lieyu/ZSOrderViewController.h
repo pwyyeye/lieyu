@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (nonatomic, strong) WQDraggableCalendarView *calendarView;
 @property (nonatomic, strong) WQCalendarLogic *calendarLogic;
+@property (nonatomic, assign) int orderIndex;
 
 - (IBAction)backAct:(UIButton *)sender;
 - (IBAction)timeChooseAct:(UIButton *)sender;

@@ -15,6 +15,7 @@
 #import "LYUserDetailController.h"
 #import "LYWithdrawTypeViewController.h"
 #import "ZSMaintViewController.h"
+#import "MainTabbarViewController.h"
 #import "LPMyOrdersViewController.h"
 
 @implementation LYUserCenterHeader{
@@ -160,6 +161,10 @@
     ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
     [app.navigationController pushViewController:maintViewController animated:NO];
     maintViewController.btnBackHidden = YES;
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"shanghuban"];
+//    MainTabbarViewController *tabVC = (MainTabbarViewController*)app.window.rootViewController.childViewControllers.firstObject;
+    
+    maintViewController.btnBackHidden = YES;
     if(app.userModel.usertype.intValue==2){
         UIWindow *window = [UIApplication sharedApplication].delegate.window;
         UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
@@ -168,10 +173,20 @@
         _effctView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         [window addSubview:_effctView];
         
-        UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+        CGFloat imgVWidth = 50;
+        
+        UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, imgVWidth, imgVWidth)];
         imgV.center = _effctView.center;
+        
         imgV.image = [UIImage imageNamed:@"loading1"];
         [_effctView addSubview:imgV];
+        
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame),SCREEN_WIDTH, imgVWidth)];
+        titleLabel.textColor = [UIColor blackColor];
+        titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.text = @"切换中....";
+        [_effctView addSubview:titleLabel];
         
         NSMutableArray *imgArray = [[NSMutableArray alloc]initWithCapacity:9];
         for (int i = 1; i < 10; i ++) {

@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "OrderHandleButton.h"
 @interface OrderBottomView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *shaperLbl;
 @property (weak, nonatomic) IBOutlet OrderHandleButton *duimaBtn;
-@property (weak, nonatomic) IBOutlet OrderHandleButton *siliaoBtn;
-@property (weak, nonatomic) IBOutlet OrderHandleButton *dianhuaBtn;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLal;
+@property (weak, nonatomic) IBOutlet UILabel *timeOrCount;
+@property (weak, nonatomic) IBOutlet UILabel *label_timeOrCountTitle;
+@property (weak, nonatomic) IBOutlet UILabel *label_zuju;
+@property (weak, nonatomic) IBOutlet OrderHandleButton *btn_not;
+@property (weak, nonatomic) IBOutlet UIView *viewBG;
 
 @end

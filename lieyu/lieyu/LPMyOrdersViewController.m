@@ -10,13 +10,19 @@
 #import "LPOrderButton.h"
 #import "LYUserHttpTool.h"
 #import "OrderInfoModel.h"
+#import "PinkInfoModel.h"
+#import "ChoosePayController.h"
+#import "LYEvaluationController.h"
+#import "PinkerShareController.h"
+#import "UMSocial.h"
 
 #import "LPOrdersHeaderCell.h"
 #import "LPOrdersBodyCell.h"
 #import "LPOrdersFooterCell.h"
 #import "LPOrdersHeaderView.h"
+#import "LYOrderDetailViewController.h"
 
-@interface LPMyOrdersViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LPMyOrdersViewController ()<UITableViewDelegate,UITableViewDataSource,LPOrdersFootDelegate>
 {
     UIVisualEffectView *effectView;
     UIScrollView *scrollView;
@@ -79,7 +85,8 @@
 - (void)getData{
     __weak LPMyOrdersViewController *weakSelf = self;
     myTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        [weakSelf getOrderWithDic:nowDic];
+//        [weakSelf getOrderWithDic:nowDic];
+        [weakSelf refreshData];
     }];
     MJRefreshGifHeader *header = (MJRefreshGifHeader *)myTableView.mj_header;
     [self initMJRefeshHeaderForGif:header];
@@ -115,7 +122,7 @@
     [effectView addSubview:button];
     
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 26)];
-    [scrollView setContentSize:CGSizeMake(420, 36)];
+    [scrollView setContentSize:CGSizeMake(420, 26)];
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setBackgroundColor:[UIColor clearColor]];
@@ -248,14 +255,21 @@
             pageCount ++;
             [myTableView.mj_footer endRefreshing];
             ///////////////////
-            [myTableView reloadData];
         }else{
             [weakSelf addKongView];
             [myTableView.mj_footer endRefreshingWithNoMoreData];
         }
+        [myTableView reloadData];
     }];
     [myTableView.mj_header endRefreshing];
     
+}
+
+- (void)refreshData{
+    pageCount = 1;
+    [nowDic removeObjectForKey:@"p"];
+    [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
+    [self getOrderWithDic:nowDic];
 }
 
 - (void)loadMoreData{
@@ -279,19 +293,21 @@
     [myTableView.mj_footer endRefreshing];
 }
 
+#pragma mark - 空数据界面
 - (void)addKongView{
-    [myTableView setHidden:YES];
-    if (!kongLabel) {
+//    [myTableView setHidden:YES];
+    if (![self.view viewWithTag:501]) {
         kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 50, 200, 20)];
         [kongLabel setBackgroundColor:[UIColor clearColor]];
-        [kongLabel setTextColor:RGBA(127, 127, 127, 1)];
+        [kongLabel setTextColor:RGBA(186, 40, 227, 1)];
         [kongLabel setTextAlignment:NSTextAlignmentCenter];
+        [kongLabel setText:@"暂无订单"];
         [kongLabel setFont:[UIFont systemFontOfSize:12]];
         kongLabel.tag = 501;
         [self.view addSubview:kongLabel];
     }
-    if (!kongButton) {
-        kongButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 60, SCREEN_HEIGHT / 2 - 30, 120, 35)];
+    if (![self.view viewWithTag:502]) {
+        kongButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 60, SCREEN_HEIGHT / 2 - 15, 120, 35)];
         [kongButton setBackgroundColor:RGBA(186, 40, 227, 1)];
         [kongButton setTitle:@"约约去" forState:UIControlStateNormal];
         [kongButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
@@ -348,8 +364,19 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     OrderInfoModel *model = [dataList objectAtIndex:section];
     LPOrdersFooterCell *footerCell = [myTableView dequeueReusableCellWithIdentifier:@"LPOrdersFooterCell"];
+    footerCell.delegate = self;
+    footerCell.tag = section;
     footerCell.model = model;
     return footerCell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    OrderInfoModel *orderInfoModel= dataList[indexPath.section];
+    LYOrderDetailViewController *orderDetailViewController=[[LYOrderDetailViewController alloc]init];
+    orderDetailViewController.title=@"订单详情";
+    orderDetailViewController.delegate=self;
+    orderDetailViewController.orderInfoModel=orderInfoModel;
+    [self.navigationController pushViewController:orderDetailViewController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -366,6 +393,163 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - 各按钮事件
+//删除自己的订单
+- (void)deleteOrder:(UIButton *)button{
+    OrderInfoModel *orderInfoModel = [dataList objectAtIndex:button.tag];
+    __weak __typeof(self)weakSelf = self;
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确定要删除订单吗？" cancelButtonTitle:@"取消" otherButtonTitles:@"" block:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            
+        }else if (buttonIndex == 1){
+            NSDictionary *dict = @{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+            [[LYUserHttpTool shareInstance]delMyOrder:dict complete:^(BOOL result) {
+                if (result) {
+                    [MyUtil showLikePlaceMessage:@"删除成功"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"" object:nil];
+                    if (orderInfoModel.ordertype == 1) {
+                        [[NSNotificationCenter defaultCenter]postNotificationName:@"" object:nil];
+                    }
+                    [weakSelf refreshData];
+                }
+            }];
+        }
+    }];
+    [alert show];
+}
+
+//支付
+- (void)payForOrder:(UIButton *)button{
+    OrderInfoModel *orderInfoModel = dataList[button.tag];
+    ChoosePayController *detailViewController = [[ChoosePayController alloc]init];
+    detailViewController.orderNo = orderInfoModel.sn;
+    detailViewController.payAmount = orderInfoModel.amountPay.doubleValue;
+    detailViewController.productName = orderInfoModel.fullname;
+    detailViewController.productDescription = @"暂无";
+    //如果是拼客，特殊处理
+    if (orderInfoModel.ordertype == 1) {
+        if (orderInfoModel.pinkerList.count > 0) {
+            for (NSDictionary *dic  in orderInfoModel.pinkerList) {
+                PinkInfoModel *pinkeInfoModel = [PinkInfoModel mj_objectWithKeyValues:dic];
+                if (pinkeInfoModel.inmember == self.userModel.userid) {
+                    detailViewController.orderNo = pinkeInfoModel.sn;
+                    detailViewController.payAmount = pinkeInfoModel.price.doubleValue;
+                    detailViewController.isPinker = YES;
+                    detailViewController.createDate = [MyUtil getFullDateFromString:pinkeInfoModel.createDate];
+                    if (pinkeInfoModel.inmember == orderInfoModel.userid) {
+                        detailViewController.isFaqi = YES;
+                    }else{
+                        detailViewController.isFaqi = NO;
+                    }
+                }
+            }
+        }
+    }
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.backBarButtonItem = left;
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+//查看详情
+- (void)checkForDetail:(UIButton *)button{
+    NSLog(@"checkForDetail");
+}
+
+//取消订单
+- (void)cancelOrder:(UIButton *)button{
+//    NSLog(@"cancelOrder");
+    OrderInfoModel *orderInfoModel= dataList[button.tag];
+    __weak __typeof(self)weakSelf = self;
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确定要取消订单吗" cancelButtonTitle:@"取消" otherButtonTitles:@"确认" block:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            
+        }else if (buttonIndex == 1){
+            NSDictionary *dic = @{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+            [[LYUserHttpTool shareInstance]cancelMyOrder:dic complete:^(BOOL result) {
+                if (result) {
+                    [MyUtil showLikePlaceMessage:@"取消订单成功"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"loadUserInfo" object:nil];
+                    [weakSelf refreshData];
+                }
+            }];
+        }
+    }];
+}
+
+//评价
+- (void)JudgeForOrder:(UIButton *)button{
+    OrderInfoModel *orderInfoModel = dataList[button.tag];
+    LYEvaluationController *eva = [[LYEvaluationController alloc]initWithNibName:@"LYEvaluationController" bundle:nil];
+    eva.orderInfoModel = orderInfoModel;
+    [self.navigationController pushViewController:eva animated:YES];
+}
+
+//立即组局
+- (void)shareZujuOrder:(UIButton *)button{
+//    NSLog(@"shareZujuOrder");
+    OrderInfoModel *orderInfoModel = dataList[button.tag];
+    __weak __typeof(self)weakSelf = self;
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"" message:@"" cancelButtonTitle:@"" otherButtonTitles:@"" block:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"订单详情",@"titleName":@"分享",@"value":@"分享到娱"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+            PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
+            zujuVC.orderid=orderInfoModel.id;
+            [weakSelf.navigationController pushViewController:zujuVC animated:YES];
+        }else if (buttonIndex == 1){
+            NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"订单详情",@"titleName":@"分享",@"value":@"分享到其他平台"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+            //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
+            NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩～",weakSelf.userModel.usernick,orderInfoModel.barinfo.barname];
+            [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+            [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
+            [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
+            @try {
+                [UMSocialSnsService presentSnsIconSheetView:weakSelf
+                                                     appKey:UmengAppkey
+                                                  shareText:ss
+                                                 shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfoModel.pinkerinfo.linkUrl]]]
+                                            shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
+                                                   delegate:nil];
+            }
+            @catch (NSException *exception) {
+                [MyUtil showCleanMessage:@"无法分享！"];
+            }
+            @finally {
+                
+            }
+        }
+    }];
+}
+
+//删除参与的订单
+- (void)deleteSelfOrder:(UIButton *)button{
+    OrderInfoModel *orderInfoModel = [dataList objectAtIndex:button.tag];
+    __weak __typeof(self)weakSelf = self;
+    NSArray *pinkerList = [PinkInfoModel mj_objectArrayWithKeyValuesArray:orderInfoModel.pinkerList];
+    int orderID = 0 ;
+    if (pinkerList.count > 0) {
+        for (PinkInfoModel *pinkInfoModel in pinkerList) {
+            if (pinkInfoModel.inmember == self.userModel.userid) {
+                orderID = pinkInfoModel.id;
+            }
+        }
+    }
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确定要确认删除吗？" cancelButtonTitle:@"取消" otherButtonTitles:@"确认" block:^(NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            
+        }else if (buttonIndex == 1){
+            NSDictionary *dic = @{@"id":[NSNumber numberWithInt:orderID]};
+            [[LYUserHttpTool shareInstance]delMyOrderByCanYu:dic complete:^(BOOL result) {
+                [MyUtil showLikePlaceMessage:@"删除成功"];
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"loadUserInfo" object:nil];
+                [weakSelf refreshData];
+            }];
+        }
+    }];
+    [alert show];
 }
 
 @end

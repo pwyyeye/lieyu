@@ -123,6 +123,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
                 <outlet property="backGround" destination="WhR-uZ-P4O" id="hYo-W4-eSX"/>
+                <outlet property="nameLabel" destination="yOa-qk-hX0" id="kw1-sw-FU7"/>
                 <outlet property="orderNumberLbl" destination="xbC-tN-dkl" id="dwV-FV-1r6"/>
                 <outlet property="orderStatusLbl" destination="6UG-i2-6cH" id="cdt-MA-7d8"/>
                 <outlet property="orderTimeLbl" destination="oZ3-eR-cn0" id="agv-d3-Apc"/>

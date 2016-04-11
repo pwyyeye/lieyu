@@ -30,10 +30,11 @@
 #import "MyCodeViewController.h"
 #import "ZSMaintViewController.h"
 #import "LYMyOrderManageViewController.h"
+#import "CarInfoModel.h"
 #import "LPMyOrdersViewController.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
-    
+    NSInteger num;
     LYUserCenterHeader *_headerView;
 }
 
@@ -75,13 +76,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //  @{@"title":@"专属经理",@"icon":@"userManager"},
       @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
       @{@"title":@"速核码",@"icon":@"userSuHeMa"},
-    @{@"title":@"扫一扫",@"icon":@"CheckQRCode"},
+    @{@"title":@"扫一扫",@"icon":@"userSaoYiSao"},
       @{@"title":@"设置",@"icon":@"userSetting"},
   @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
       ];
  
     
-    self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
+    self.collectionView.backgroundColor=[UIColor whiteColor];
 //    self.collectionView.scrollEnabled = YES;
 //    self.collectionView.bounces = NO;//遇到边框不反弹
     self.collectionView.showsVerticalScrollIndicator = NO;
@@ -110,6 +111,16 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
+    
+    if(shanghuban){
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
+        [app.navigationController pushViewController:maintViewController animated:NO];
+        maintViewController.btnBackHidden = YES;
+    }
+    
     [self loadHeaderView];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
@@ -139,7 +150,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }
     [self.view addSubview:_headerView];
     [self loadHeaderViewBadge];
-
+    [self getGoodsNum];
 }
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -167,6 +178,29 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark 获取购物车数据
+-(void)getGoodsNum{
+    __weak __typeof(self) weakSelf = self;
+    [[LYHomePageHttpTool shareInstance]getCarListWithParams:nil block:^(NSMutableArray *result) {
+        //        for (CarInfoModel *carInfoModel in goodsList) {
+        //            carInfoModel.isSel=true;
+        //            for (CarModel *carModel in carInfoModel.cartlist) {
+        //                carModel.isSel=true;
+        //            }
+        //        }
+        //        [self setSuperScript:goodsList.count];
+        num = 0 ;
+        for(int i = 0 ; i < result.count ; i ++){
+            //            num = num + ((CarInfoModel *)goodsList[i]).cartlist.count;
+            for (int j = 0 ; j < ((CarInfoModel *)result[i]).cartlist.count; j ++) {
+                CarModel *shoppingCar = ((CarModel *)((CarInfoModel *)result[i]).cartlist[j]);
+                num = num + [shoppingCar.quantity intValue];
+            }
+        }
+        [weakSelf.collectionView reloadData];
+    }];
+}
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -185,10 +219,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     // Configure the cell
     cell.icon.image=nil;
     [cell.icon setContentMode:UIViewContentModeScaleAspectFit];
-//    cell.icon.frame=CGRectMake(0, 15, 80, 30);
-//    cell.text.frame=CGRectMake(0, 70, 80, 20);
     
-//     NSLog(@"----pass-------%@---", NSStringFromCGRect(cell.icon.frame));
     cell.text.text=@"";
 //    if (indexPath.row<6) {
         NSDictionary *dic=_data[indexPath.row];
@@ -197,7 +228,24 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     if (indexPath.row == 4) {
         cell.labeltext_cons_center.constant = 20;
     }
-//    }
+    
+    if(indexPath.row == 1){
+        if(num){
+            cell.btn_count.hidden = NO;
+            [cell.btn_count setTitle:[NSString stringWithFormat:@"%ld",num] forState:UIControlStateNormal];
+        }else{
+                cell.btn_count.hidden = YES;
+        }
+        
+    }else{
+        cell.btn_count.hidden = YES;
+    }
+    
+    if (indexPath.row % 3 == 2) {
+        cell.layerShadowRight.hidden = YES;
+    }else{
+        cell.layerShadowRight.hidden = NO;
+    }
     return cell;
 }
 

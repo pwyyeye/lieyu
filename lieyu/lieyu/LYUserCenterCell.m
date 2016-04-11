@@ -28,14 +28,22 @@
     layerShadowTop.borderColor=[RGBA(0, 0, 0, 0.1) CGColor];
     layerShadowTop.borderWidth=0.5;
     
-    [self.layer addSublayer:layerShadowTop];
+//    [self.layer addSublayer:layerShadowTop];
     
-    CALayer *layerShadowRight=[[CALayer alloc]init];
-    layerShadowRight.frame=CGRectMake(layerShdowWidth-0.5, 0,0.5,layerShdowWidth);
-    layerShadowRight.borderColor=[RGBA(0, 0, 0, 0.1) CGColor];
-    layerShadowRight.borderWidth=0.5;
+    _layerShadowRight=[[CALayer alloc]init];
+    _layerShadowRight.frame=CGRectMake(layerShdowWidth-0.5, 0,0.5,layerShdowWidth);
+    _layerShadowRight.borderColor=[RGBA(0, 0, 0, 0.1) CGColor];
+    _layerShadowRight.borderWidth=0.5;
     
-    [self.layer addSublayer:layerShadowRight];
+    [self.layer addSublayer:_layerShadowRight];
+    
+    
+    _layerShadowBottom=[[CALayer alloc]init];
+    _layerShadowBottom.frame=CGRectMake(0, layerShdowWidth - 0.5,layerShdowWidth,0.5);
+    _layerShadowBottom.borderColor=[RGBA(0, 0, 0, 0.1) CGColor];
+    _layerShadowBottom.borderWidth=0.5;
+    
+    [self.layer addSublayer:_layerShadowBottom];
     [self bringSubviewToFront:self];
     
     self.backgroundColor=[UIColor whiteColor];
