@@ -189,7 +189,7 @@
         [_secondButton addTarget:self.delegate action:@selector(JudgeForOrder:) forControlEvents:UIControlEventTouchUpInside];
         if (model.ordertype == 1) {
             [_introduceLbl setFont:[UIFont systemFontOfSize:12]];
-            [_introduceLbl setText:[NSString stringWithFormat:@"%d人组局",model.pinkerCount]];
+            [_introduceLbl setText:[NSString stringWithFormat:@"%@人组局",model.allnum]];
         }else{
             _introduceLbl.hidden = YES;
         }
@@ -206,12 +206,13 @@
             [_secondButton setTitle:@"查看详情" forState:UIControlStateNormal];
             [_secondButton addTarget:self.delegate action:@selector(checkForDetail:) forControlEvents:UIControlEventTouchUpInside];
         }else{
+            _oliverLabel.hidden = YES;
             [_secondButton setTitle:@"删除订单" forState:UIControlStateNormal];
             [_secondButton addTarget:self.delegate action:@selector(deleteOrder:) forControlEvents:UIControlEventTouchUpInside];
         }
         if (model.ordertype == 1) {
             _introduceLbl.hidden = NO;
-            [_introduceLbl setText:[NSString stringWithFormat:@"%d人组局",model.pinkerCount]];
+            [_introduceLbl setText:[NSString stringWithFormat:@"%@人组局",model.allnum]];
             [_introduceLbl setFont:[UIFont systemFontOfSize:14]];
         }else{
             _introduceLbl.hidden = YES;
