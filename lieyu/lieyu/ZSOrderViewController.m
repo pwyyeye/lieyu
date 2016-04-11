@@ -135,6 +135,7 @@
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setBackgroundColor:[UIColor clearColor]];
+    scrollView.scrollsToTop = NO;
     [effectView addSubview:scrollView];
     
     CGFloat btnWidth = 80;
@@ -535,12 +536,8 @@
                 orderBottomView.label_timeOrCountTitle.text = @"商品数量";
                 
 //                NSInteger count = ((ShopDetailmodel *)orderInfoModel.goodslist.firstObject).count.integerValue;
-                __block NSInteger count = 0;
-              /*  [orderInfoModel.goodslist enumerateObjectsUsingBlock:^(ShopDetailmodel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    count += obj.count.integerValue;
-                }]; */
                 
-                orderBottomView.timeOrCount.text = [NSString stringWithFormat:@"共%ld件",count];
+                orderBottomView.timeOrCount.text = [NSString stringWithFormat:@"共%@件",orderInfoModel.allnum];
                 [orderBottomView.duimaBtn setTitle:@"立即对码" forState:UIControlStateNormal];
                 orderBottomView.btn_not.hidden = YES;
             }
