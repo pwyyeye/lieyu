@@ -29,4 +29,5 @@
 - (void)clickEmojiBtn:(UIButton *)btn;
 - (void)windowShowEmoji:(NSString *)emojiName And:(int)emojiNumber;
 - (void)hideEmojiEffectView;
+- (void)windowShowEmoji:(NSDictionary *)dict;
 @end

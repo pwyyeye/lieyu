@@ -27,6 +27,7 @@ static EmojisView *shareView = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             shareView = [[self alloc]init];
+            shareView.mainWindow = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
         });
     }
     return  shareView;
@@ -34,7 +35,7 @@ static EmojisView *shareView = nil;
 
 - (NSDictionary *)getEmojisView{
     if (!_emojiEffectView && !_emoji_sad && !_emoji_wow && !_emoji_zan && !_emoji_angry && !_emoji_happy && !_emoji_kawayi) {
-        _mainWindow = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
+//        _mainWindow = ((AppDelegate *)[UIApplication sharedApplication].delegate).window;
         
         
         UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -137,6 +138,7 @@ static EmojisView *shareView = nil;
     NSString *string;
     UIImage *image;
     if(!imageContent){
+        [imageContent removeFromSuperview];
         imageContent = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 41, SCREEN_HEIGHT / 2 - 41, 82, 82)];
         [imageContent setBackgroundColor:[UIColor whiteColor]];
         imageContent.layer.cornerRadius = 41;
@@ -167,13 +169,9 @@ static EmojisView *shareView = nil;
                 ImageView.alpha = 0 ;
                 imageContent.alpha = 0;
             }completion:^(BOOL finished) {
-//                for (UIView *view in _mainWindow.subviews) {
-//                    [view removeFromSuperview];
-//                }
                 [ImageView removeFromSuperview];
                 [imageContent removeFromSuperview];
                 imageContent = nil;
-                //        [NSThread currentThread]
             }];
         });
     });

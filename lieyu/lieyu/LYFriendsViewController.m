@@ -680,14 +680,13 @@
 
 #pragma mark － 刷新表
 - (void)reloadTableViewAndSetUpPropertyneedSetContentOffset:(BOOL)need{
-    __weak __typeof(self) weakSelf = self;
-    [UIView transitionWithView:_tableView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    
     
 //    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, ((NSArray *)_dataArray[_index]).count ) ];
 //   
 //        [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationTop];
-        [weakSelf.tableView reloadData];
-    } completion:nil];
+        [self.tableView reloadData];
+    
     // if(need)  [self.tableView setContentOffset:CGPointZero animated:YES];
     
     [self.tableView.mj_header endRefreshing];
@@ -1104,9 +1103,14 @@
     }else{
         likeStr = @"0";
     }
-    
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentModel.id,@"type":likeStr};
-    
+    if ([likeStr isEqualToString:@"1"]) {
+        if (!emojiEffectView) {
+            emojisView = [EmojisView shareInstanse];
+        }
+        [emojisView windowShowEmoji:@{@"emojiName":@"dianzan",
+                                      @"emojiNumber":@"24"}];
+    }
     __weak LYFriendsViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (![USER_DEFAULT objectForKey:@"firstUseFriendLike"]) {
@@ -1212,16 +1216,10 @@
 //        
 //    }
     isExidtEffectView = YES;
-    gestureViewTag = gesture.view.tag;
-//    [UIView animateWithDuration:3
-//                     animations:^{
-//        [self.view addSubview:emojiEffectView];
-//    }];
-//    self.tableView.userInteractionEnabled = !isExidtEffectView;
-//    self.tableView.scrollEnabled = YES;
+    gestureViewTag = (int)gesture.view.tag;
     if (!emojiEffectView) {
         emojisView = [EmojisView shareInstanse];
-        emojisView.delegate = self;
+//        emojisView.delegate = self;
         NSDictionary *dict = [emojisView getEmojisView];
         emojiEffectView = [dict objectForKey:@"emojiEffectView"];
         emoji_angry = [[dict objectForKey:@"emojiButtons"]objectAtIndex:0];
@@ -1231,6 +1229,7 @@
         emoji_happy = [[dict objectForKey:@"emojiButtons"]objectAtIndex:4];
         emoji_zan = [[dict objectForKey:@"emojiButtons"]objectAtIndex:5];
     }
+    emojisView.delegate = self;
     [[UIApplication sharedApplication].delegate.window addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:emojisView action:@selector(hideEmojiEffectView)]];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
         [emojiEffectView setFrame:CGRectMake(0, 0, 80, SCREEN_HEIGHT)];
@@ -2079,7 +2078,7 @@
             break;
         case 9:
         {
-            return 63;
+            return 36;
         }
             break;
             

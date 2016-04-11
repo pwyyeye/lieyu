@@ -375,6 +375,13 @@
     }else{
         likeStr = @"0";
     }
+    if ([likeStr isEqualToString:@"1"]) {
+        if (!emojiEffectView) {
+            emojisView = [EmojisView shareInstanse];
+        }
+        [emojisView windowShowEmoji:@{@"emojiName":@"dianzan",
+                                      @"emojiNumber":@"24"}];
+    }
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id,@"type":likeStr};
     __weak LYFriendsToUserMessageViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
@@ -411,7 +418,6 @@
     //    self.tableView.scrollEnabled = YES;
     if (!emojiEffectView) {
         emojisView = [EmojisView shareInstanse];
-        emojisView.delegate = self;
         NSDictionary *dict = [emojisView getEmojisView];
         emojiEffectView = [dict objectForKey:@"emojiEffectView"];
         emoji_angry = [[dict objectForKey:@"emojiButtons"]objectAtIndex:0];
@@ -421,6 +427,7 @@
         emoji_happy = [[dict objectForKey:@"emojiButtons"]objectAtIndex:4];
         emoji_zan = [[dict objectForKey:@"emojiButtons"]objectAtIndex:5];
     }
+    emojisView.delegate = self;
     [[UIApplication sharedApplication].delegate.window addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:emojisView action:@selector(hideEmojiEffectView)]];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
         [emojiEffectView setFrame:CGRectMake(0, 0, 80, SCREEN_HEIGHT)];
@@ -647,6 +654,10 @@
                 [likeCell.btn_more addTarget:self action:@selector(likeMoreClick:) forControlEvents:UIControlEventTouchUpInside];
                 likeCell.recentM = recentM;
                 if(recentM.likeList.count <= 7) likeCell.btn_more.hidden = YES;
+                else{
+                    likeCell.btn_more.hidden = NO;
+                    [likeCell.btn_more setTitle:recentM.likeNum forState:UIControlStateNormal];
+                }
                 for (int i = 0; i< likeCell.btnArray.count; i ++) {
                     UIButton *btn = likeCell.btnArray[i];
                     btn.tag = likeCell.btnArray.count * indexPath.section + i;

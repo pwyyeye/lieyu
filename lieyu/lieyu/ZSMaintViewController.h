@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) UIButton *btnBack;
+@property (nonatomic,unsafe_unretained) BOOL btnBackHidden;
 
 @end

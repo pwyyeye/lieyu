@@ -10,7 +10,6 @@
 #import "LYUserCenterHeader.h"
 #import "LYUserLoginViewController.h"
 #import "LYUserCenterCell.h"
-#import "LYUserCenterFooter.h"
 
 #import "TuiJianShangJiaViewController.h"//推荐商家
 #import "MyCollectionViewController.h"//我的收藏
@@ -29,9 +28,13 @@
 #import "LYHomePageHttpTool.h"
 #import "SaoYiSaoViewController.h"
 #import "MyCodeViewController.h"
+#import "ZSMaintViewController.h"
+#import "LYMyOrderManageViewController.h"
+#import "LPMyOrdersViewController.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
     
+    LYUserCenterHeader *_headerView;
 }
 
 @end
@@ -52,7 +55,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     self.edgesForExtendedLayout=UIRectEdgeNone;
     self.title=@"我";
     
-    // Uncomment the following line to preserve selection between presentations
+       // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
@@ -60,27 +63,40 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     // Do any additional setup after loading the view.
     
-    [self.collectionView registerClass:[LYUserCenterHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader"];
+//    [self.collectionView registerClass:[LYUserCenterHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader"];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"LYUserCenterFooter" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter"];
     //
 
     _data=@[
+      @{@"title":@"订单",@"icon":@"userShopOrder"},
   @{@"title":@"购物车",@"icon":@"userShopCart"},
   @{@"title":@"收藏",@"icon":@"userFav"},
 //  @{@"title":@"专属经理",@"icon":@"userManager"},
+      @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
+      @{@"title":@"速核码",@"icon":@"userSuHeMa"},
+    @{@"title":@"扫一扫",@"icon":@"CheckQRCode"},
+      @{@"title":@"设置",@"icon":@"userSetting"},
   @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
-  @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
-  @{@"title":@"扫一扫",@"icon":@"CheckQRCode"},
-  @{@"title":@"速核码",@"icon":@"QRCode"}];
+      ];
  
     
     self.collectionView.backgroundColor=RGBA(242, 242, 242, 1);
 //    self.collectionView.scrollEnabled = YES;
-    self.collectionView.bounces = NO;//遇到边框不反弹
+//    self.collectionView.bounces = NO;//遇到边框不反弹
+    self.collectionView.showsVerticalScrollIndicator = NO;
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
+}
+- (void)loadHeaderViewBadge{
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            if (![MyUtil isEmptyString:app.s_app_id]) {
+                [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
+                    _orderTTL=result;
+                    [_headerView loadBadge:_orderTTL];
+                }];
+            }
 }
 
 -(void)loadData{
@@ -94,11 +110,36 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    [self loadHeaderView];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.collectionView reloadData];
     
+}
+
+- (void)loadHeaderView{
+    [_headerView removeFromSuperview];
+    CGFloat height = 0.f;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if(app.userModel.usertype.intValue==2){
+        height = 299;
+    }else{
+        height = 239;
+    }
+    
+    self.collectionView.frame = CGRectMake(0, height, SCREEN_WIDTH, SCREEN_HEIGHT - height - 49);
+    _headerView = [[LYUserCenterHeader alloc]init];
+    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, height);
+    if(app.userModel.usertype.intValue==2){
+//        _headerView.btnChange_cons_width.constant = 60;
+        _headerView.btnChange.hidden = NO;
+    }else{
+//        _headerView.btnChange_cons_width.constant = 0;
+        _headerView.btnChange.hidden = YES;
+    }
+    [self.view addSubview:_headerView];
+    [self loadHeaderViewBadge];
+
 }
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -134,7 +175,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 8;
+    return _data.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -149,53 +190,36 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
 //     NSLog(@"----pass-------%@---", NSStringFromCGRect(cell.icon.frame));
     cell.text.text=@"";
-    if (indexPath.row<6) {
+//    if (indexPath.row<6) {
         NSDictionary *dic=_data[indexPath.row];
         cell.icon.image=[UIImage imageNamed:[dic objectForKey:@"icon"]];
         cell.text.text=[dic objectForKey:@"title"];
+    if (indexPath.row == 4) {
+        cell.labeltext_cons_center.constant = 20;
     }
+//    }
     return cell;
 }
 
 
 
-#pragma mark <UICollectionViewDelegate>
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
-
-
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
+        case 0:{
+             NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"订单"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            LPMyOrdersViewController *myOrderVC = [[LPMyOrdersViewController alloc]init];
+            myOrderVC.orderIndex = 0;
+            //    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            //    myOrderManageViewController.title=@"我的订单";
+            //    myOrderManageViewController.orderType=orderType;
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            //    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
+            [app.navigationController pushViewController:myOrderVC animated:YES];
+        }
+            break;
             
-        case 0://购物车
+        case 1://购物车
         {
             //统计我的页面的选择
             NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"购物车"};
@@ -209,7 +233,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         }
             
-        case 1:// 收藏
+        case 2:// 收藏
         {
             //统计我的页面的选择
             NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"收藏"};
@@ -237,7 +261,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //
 //        }
             
-        case 2:
+        case 7:
         {
             //统计我的页面的选择
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"我的主页面",@"titleName":@"分享"};
@@ -275,7 +299,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [conversationVC.navigationController setNavigationBarHidden:NO animated:YES];
             break;
         }
-        case 4:// 扫一扫
+        case 5:// 扫一扫
         {
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择扫一扫"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
@@ -286,10 +310,22 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         }
             break;
-        case 5:{//二维码
+        case 4:{//二维码
             MyCodeViewController *codeViewController = [[MyCodeViewController alloc]initWithNibName:@"MyCodeViewController" bundle:nil];
             [self.navigationController pushViewController:codeViewController animated:YES];
         }
+            break;
+        case 6:{
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"设置"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            Setting *setting =[[Setting alloc] init];
+            [app.navigationController pushViewController:setting animated:YES];
+        }
+            break;
+        case 8:{
+                   }
             break;
             
         default://推荐商户
@@ -299,9 +335,12 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             //            [self.navigationController pushViewController:tuiJianShangJiaViewController animated:YES];
             //
             //            break;
+//            MyCodeViewController *codeViewController = [[MyCodeViewController alloc]initWithNibName:@"MyCodeViewController" bundle:nil];
+//            [self.navigationController pushViewController:codeViewController animated:YES];
         }
     }
 }
+
 
 - (void)backForword{
     [IQKeyboardManager sharedManager].enable = YES;
@@ -312,14 +351,14 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((SCREEN_WIDTH)/4, (SCREEN_WIDTH)/4);
+    return CGSizeMake((SCREEN_WIDTH)/3, (SCREEN_WIDTH)/3);
 }
 
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     
-    return UIEdgeInsetsMake(8, 0, 8, 0);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
@@ -330,52 +369,53 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *headerView;
-    if (kind==UICollectionElementKindSectionHeader) {
-        headerView=[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader" forIndexPath:indexPath];
-        headerView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 240);
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        if (![MyUtil isEmptyString:app.s_app_id]) {
-            [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
-                _orderTTL=result;
-                LYUserCenterHeader *header=(LYUserCenterHeader *)headerView;
-                [header loadBadge:_orderTTL];
-            }];
-        }
-
-    }else if(kind==UICollectionElementKindSectionFooter){
-        //判断是否专属经理
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        if(app.userModel.usertype.intValue==2||YES){
-            headerView=[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter" forIndexPath:indexPath];
-        }
-        
-    }
-    
-    return headerView;
-}
--(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    //因为顶到电池栏 所以 height 小20像素
-        CGSize size = {SCREEN_WIDTH, 240};
-        return size;
-
-}
-
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    
-    //判断是否专属经理
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    if(app.userModel.usertype.intValue==2){
-        CGSize size = {SCREEN_WIDTH, 50};
-        return size;
-    }else{
-        CGSize size = {SCREEN_WIDTH, 0};
-        return size;
-    }
-    
-}
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+//    UICollectionReusableView *headerView;
+//    if (kind==UICollectionElementKindSectionHeader) {
+//        headerView=[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader" forIndexPath:indexPath];
+//        headerView.frame=CGRectMake(0, 0, SCREEN_WIDTH, 240);
+//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//        if (![MyUtil isEmptyString:app.s_app_id]) {
+//            [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
+//                _orderTTL=result;
+//                LYUserCenterHeader *header=(LYUserCenterHeader *)headerView;
+//                [header loadBadge:_orderTTL];
+//            }];
+//        }
+//
+//    }else if(kind==UICollectionElementKindSectionFooter){
+//        //判断是否专属经理
+//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//        if(app.userModel.usertype.intValue==2||YES){
+////            headerView=[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter" forIndexPath:indexPath];
+//            return nil;
+//        }
+//        
+//    }
+//    
+//    return headerView;
+//}
+//-(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+//{
+//    //因为顶到电池栏 所以 height 小20像素
+//        CGSize size = {SCREEN_WIDTH, 239};
+//        return size;
+//
+//}
+//
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+//    
+//    //判断是否专属经理
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    if(app.userModel.usertype.intValue==2){
+//        CGSize size = {SCREEN_WIDTH, 50};
+//        return size;
+//    }else{
+//        CGSize size = {SCREEN_WIDTH, 0};
+//        return size;
+//    }
+//    
+//}
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
 //    [self.navigationController setNavigationBarHidden:NO];
