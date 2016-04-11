@@ -828,4 +828,14 @@
     }
 }
 
++ (NSString *)transformDateWithDateString:(NSString *)dateString{
+    NSArray *strArrWithColon = [dateString componentsSeparatedByString:@":"];
+    if (strArrWithColon.count == 3) {
+        NSString *yearStr = [strArrWithColon.firstObject substringFromIndex:2];
+        NSString *dateStr = [NSString stringWithFormat:@"%@:%@",yearStr,strArrWithColon[1]];
+        return dateStr;
+    }
+    return dateString;
+}
+
 @end

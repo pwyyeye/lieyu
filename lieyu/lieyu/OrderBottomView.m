@@ -10,12 +10,23 @@
 
 @implementation OrderBottomView
 
-/*
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
+    [super drawRect:rect];
+    _btn_not.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    _btn_not.layer.borderWidth = 0.5f;
+    
+    CAShapeLayer *radiusLayer = [CAShapeLayer layer];
+    
+    UIBezierPath *bezierP = [UIBezierPath bezierPathWithRoundedRect:_viewBG.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(2, 2)];
+    
+    radiusLayer.path = bezierP.CGPath;
+    _viewBG.layer.mask = radiusLayer;
 }
-*/
+
+
+
 
 @end

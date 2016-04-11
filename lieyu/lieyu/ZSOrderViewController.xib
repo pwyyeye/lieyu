@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSOrderViewController">
             <connections>
-                <outlet property="menuView" destination="CjD-Q8-T3P" id="EFq-x4-bWZ"/>
                 <outlet property="tableView" destination="1ts-f7-5YV" id="Svb-zl-c9a"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -17,16 +16,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CjD-Q8-T3P">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="38" id="cD9-MZ-fFV"/>
-                    </constraints>
-                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="1ts-f7-5YV">
-                    <rect key="frame" x="0.0" y="38" width="320" height="530"/>
-                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="0.0" y="90" width="320" height="478"/>
+                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="LXH-oh-ZGL"/>
                         <outlet property="delegate" destination="-1" id="zCh-1o-E7s"/>
@@ -35,13 +27,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="CjD-Q8-T3P" secondAttribute="trailing" id="5E6-b9-P7g"/>
-                <constraint firstItem="1ts-f7-5YV" firstAttribute="top" secondItem="CjD-Q8-T3P" secondAttribute="bottom" id="6fL-JQ-NNX"/>
-                <constraint firstItem="CjD-Q8-T3P" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Cm7-1T-2Of"/>
                 <constraint firstAttribute="bottom" secondItem="1ts-f7-5YV" secondAttribute="bottom" id="DXQ-xY-SA6"/>
-                <constraint firstItem="CjD-Q8-T3P" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="FpD-H6-9nV"/>
                 <constraint firstItem="1ts-f7-5YV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gk7-jR-pVC"/>
                 <constraint firstAttribute="trailing" secondItem="1ts-f7-5YV" secondAttribute="trailing" id="KV4-HI-BP2"/>
+                <constraint firstItem="1ts-f7-5YV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="90" id="fqi-zy-Bcd"/>
             </constraints>
             <point key="canvasLocation" x="309" y="83"/>
         </view>
