@@ -21,6 +21,7 @@
 #import "LPOrdersFooterCell.h"
 #import "LPOrdersHeaderView.h"
 #import "LYOrderDetailViewController.h"
+#import "LPOrderDetailViewController.h"
 
 @interface LPMyOrdersViewController ()<UITableViewDelegate,UITableViewDataSource,LPOrdersFootDelegate>
 {
@@ -372,11 +373,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     OrderInfoModel *orderInfoModel= dataList[indexPath.section];
-    LYOrderDetailViewController *orderDetailViewController=[[LYOrderDetailViewController alloc]init];
-    orderDetailViewController.title=@"订单详情";
-    orderDetailViewController.delegate=self;
-    orderDetailViewController.orderInfoModel=orderInfoModel;
-    [self.navigationController pushViewController:orderDetailViewController animated:YES];
+    LPOrderDetailViewController *detailViewController = [[LPOrderDetailViewController alloc]init];
+    detailViewController.title = @"订单详情";
+    detailViewController.orderInfoModel = orderInfoModel;
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    
+//    LYOrderDetailViewController *orderDetailViewController=[[LYOrderDetailViewController alloc]init];
+//    orderDetailViewController.title=@"订单详情";
+//    orderDetailViewController.delegate=self;
+//    orderDetailViewController.orderInfoModel=orderInfoModel;
+//    [self.navigationController pushViewController:orderDetailViewController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -400,7 +406,7 @@
 - (void)deleteOrder:(UIButton *)button{
     OrderInfoModel *orderInfoModel = [dataList objectAtIndex:button.tag];
     __weak __typeof(self)weakSelf = self;
-    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确定要删除订单吗？" cancelButtonTitle:@"取消" otherButtonTitles:@"" block:^(NSInteger buttonIndex) {
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确定要删除订单吗？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             
         }else if (buttonIndex == 1){
@@ -408,9 +414,9 @@
             [[LYUserHttpTool shareInstance]delMyOrder:dict complete:^(BOOL result) {
                 if (result) {
                     [MyUtil showLikePlaceMessage:@"删除成功"];
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"" object:nil];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"loadUserInfo" object:nil];
                     if (orderInfoModel.ordertype == 1) {
-                        [[NSNotificationCenter defaultCenter]postNotificationName:@"" object:nil];
+                        [[NSNotificationCenter defaultCenter]postNotificationName:@"YunoticeToReload" object:nil];
                     }
                     [weakSelf refreshData];
                 }
@@ -447,14 +453,19 @@
             }
         }
     }
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
     self.navigationItem.backBarButtonItem = left;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 //查看详情
 - (void)checkForDetail:(UIButton *)button{
-    NSLog(@"checkForDetail");
+//    NSLog(@"checkForDetail");
+    OrderInfoModel *orderInfoModel= dataList[button.tag];
+    LPOrderDetailViewController *detailViewController = [[LPOrderDetailViewController alloc]init];
+    detailViewController.title = @"订单详情";
+    detailViewController.orderInfoModel = orderInfoModel;
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 //取消订单
@@ -476,6 +487,7 @@
             }];
         }
     }];
+    [alert show];
 }
 
 //评价
@@ -491,7 +503,7 @@
 //    NSLog(@"shareZujuOrder");
     OrderInfoModel *orderInfoModel = dataList[button.tag];
     __weak __typeof(self)weakSelf = self;
-    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"" message:@"" cancelButtonTitle:@"" otherButtonTitles:@"" block:^(NSInteger buttonIndex) {
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"选择分享平台" message:@"" cancelButtonTitle:@"分享到娱" otherButtonTitles:@"其他平台" block:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"订单详情",@"titleName":@"分享",@"value":@"分享到娱"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
@@ -521,7 +533,9 @@
                 
             }
         }
+        
     }];
+    [alert show];
 }
 
 //删除参与的订单

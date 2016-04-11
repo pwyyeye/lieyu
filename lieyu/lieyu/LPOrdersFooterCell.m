@@ -79,7 +79,11 @@
     }else{
         _oliverLabel.hidden = YES;
         _profitStatusLbl.text = @"可返利";
-        _profitLbl.text = [NSString stringWithFormat:@"¥%@",model.rebateAmout];
+        if (userModel.userid == model.userid) {
+            _profitLbl.text = [NSString stringWithFormat:@"¥%@",model.rebateAmout];
+        }else{
+            _profitLbl.text = @"¥0.00";
+        }
     }
     
     //最后一行按钮的排布

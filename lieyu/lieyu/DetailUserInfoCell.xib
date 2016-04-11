@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailUserInfoCell" id="KGk-i7-Jjw" customClass="DetailUserInfoCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03D-vK-7U3">
+                        <rect key="frame" x="3" y="0.0" width="314" height="60"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b4Z-bY-yMe">
+                        <rect key="frame" x="8" y="10" width="39.5" height="39.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="b4Z-bY-yMe" secondAttribute="height" multiplier="1:1" id="HYO-Uz-9XV"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dW6-ov-Frj">
+                        <rect key="frame" x="57" y="22" width="40" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="7y1-ME-fyJ"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="E4r-JU-JI3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZSw-ID-KfV">
+                        <rect key="frame" x="162" y="21" width="60" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="ZPa-sm-BWe"/>
+                            <constraint firstAttribute="height" constant="18" id="qSR-io-Rim"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="-15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="电话" image="detail_phone.png">
+                            <color key="titleColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zxv-Bl-fQH">
+                        <rect key="frame" x="248" y="21" width="60" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="ifk-zQ-KL6"/>
+                            <constraint firstAttribute="width" constant="60" id="n34-05-5ak"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="-15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="私聊" image="detail_message.png">
+                            <color key="titleColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="b4Z-bY-yMe" secondAttribute="bottom" constant="10" id="1hq-XV-NCK"/>
+                    <constraint firstItem="b4Z-bY-yMe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="8Ii-VN-3FL"/>
+                    <constraint firstItem="03D-vK-7U3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="9NP-z9-fHJ"/>
+                    <constraint firstItem="dW6-ov-Frj" firstAttribute="centerY" secondItem="03D-vK-7U3" secondAttribute="centerY" id="DYz-PD-xTT"/>
+                    <constraint firstItem="b4Z-bY-yMe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Fd5-vP-g9L"/>
+                    <constraint firstAttribute="trailing" secondItem="Zxv-Bl-fQH" secondAttribute="trailing" constant="12" id="HRg-Gs-Xu8"/>
+                    <constraint firstItem="Zxv-Bl-fQH" firstAttribute="leading" secondItem="ZSw-ID-KfV" secondAttribute="trailing" constant="26" id="Jn1-Wo-bbi"/>
+                    <constraint firstAttribute="trailing" secondItem="03D-vK-7U3" secondAttribute="trailing" constant="3" id="PAO-DF-SLj"/>
+                    <constraint firstItem="ZSw-ID-KfV" firstAttribute="centerY" secondItem="03D-vK-7U3" secondAttribute="centerY" id="abc-Nb-KZK"/>
+                    <constraint firstAttribute="bottom" secondItem="03D-vK-7U3" secondAttribute="bottom" id="fsb-Fp-HEn"/>
+                    <constraint firstItem="Zxv-Bl-fQH" firstAttribute="centerY" secondItem="03D-vK-7U3" secondAttribute="centerY" id="kOY-7h-Etg"/>
+                    <constraint firstItem="03D-vK-7U3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ueR-JI-cht"/>
+                    <constraint firstItem="dW6-ov-Frj" firstAttribute="leading" secondItem="b4Z-bY-yMe" secondAttribute="trailing" constant="10" id="xqQ-A6-gRm"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="messageBtn" destination="Zxv-Bl-fQH" id="HEc-Nf-mMJ"/>
+                <outlet property="phoneBtn" destination="ZSw-ID-KfV" id="Sdq-Uk-pqV"/>
+                <outlet property="userAvatarImg" destination="b4Z-bY-yMe" id="ho6-O6-r54"/>
+                <outlet property="userNameLbl" destination="dW6-ov-Frj" id="baz-m3-QSl"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="detail_message.png" width="18" height="18"/>
+        <image name="detail_phone.png" width="18" height="18"/>
+    </resources>
+</document>
