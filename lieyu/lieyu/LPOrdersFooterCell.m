@@ -44,9 +44,24 @@
 }
 
 - (void)setModel:(OrderInfoModel *)model{
+    _model = model;
+    _firstButton.tag = self.tag;
+    _secondButton.tag = self.tag;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     UserModel *userModel = app.userModel;
-    _acturePriceLbl.text = [NSString stringWithFormat:@"¥%@",model.amountPay];
+    //实际付款
+    if (model.ordertype == 1) {
+        if (model.pinkerList.count > 0) {
+            for (NSDictionary *dict in model.pinkerList) {
+                _acturePriceLbl.text = [NSString stringWithFormat:@"¥%@",[dict objectForKey:@"price"]];
+            }
+        }else{
+            _acturePriceLbl.text = [NSString stringWithFormat:@"¥%@",model.amountPay];
+        }
+    }else{
+        _acturePriceLbl.text = [NSString stringWithFormat:@"¥%@",model.amountPay];
+    }
+    //状态与对应金额
     if (model.orderStatus == 9) {
         _oliverLabel.hidden = YES;
         _profitStatusLbl.text = @"已返利";
@@ -66,38 +81,70 @@
         _profitStatusLbl.text = @"可返利";
         _profitLbl.text = [NSString stringWithFormat:@"¥%@",model.rebateAmout];
     }
+    
+    //最后一行按钮的排布
     if (model.orderStatus == 0) {
         //待付款
+        //灰色第一个按钮
         _firstButton.hidden = NO;
         _firstButton.layer.borderColor = [RGBA(128, 128, 128, 1) CGColor];
         _firstButton.layer.borderWidth = 0.5;
         [_firstButton setBackgroundColor:[UIColor whiteColor]];
         [_firstButton setTitleColor:RGBA(128, 128, 128, 1) forState:UIControlStateNormal];
+        //紫色第二个按钮
         _secondButton.hidden = NO;
         _secondButton.layer.borderWidth = 0 ;
         [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
         [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
         if (model.ordertype == 1) {
             _introduceLbl.hidden = NO;
             [_introduceLbl setFont:[UIFont systemFontOfSize:12]];
 //            [_introduceLbl setTextColor:RGBA(186, 40, 227, 1)];
-            [_introduceLbl setText:[NSString stringWithFormat:@"%d人组局",model.pinkerCount]];
+            [_introduceLbl setText:[NSString stringWithFormat:@"%@人组局",model.allnum]];
             if (userModel.userid == model.userid) {
                 [_secondButton setTitle:@"立即组局" forState:UIControlStateNormal];
-                [_firstButton setTitle:@"取消组局" forState:UIControlStateNormal];
+                [_secondButton addTarget:self.delegate action:@selector(shareZujuOrder:) forControlEvents:UIControlEventTouchUpInside];
+                int payCount = 0 ;
+                if (model.pinkerType == 2) {
+                    //免费发起
+                    if (model.pinkerList.count > 0 ) {
+                        for (NSDictionary *dic in model.pinkerList) {
+                            if ([dic objectForKey:@"inmember"] != [NSNumber numberWithInt:userModel.userid] && [dic objectForKey:@"inmember"] == [NSNumber numberWithInt:1]) {
+                                //不是发起人并且有人支付
+                                payCount ++;
+                            }
+                        }
+                    }
+                    if (payCount > 0) {
+                        [_firstButton setTitle:@"取消组局" forState:UIControlStateNormal];
+                        [_firstButton addTarget:self.delegate action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];
+                    }else if (payCount <= 0){
+                        [_firstButton setTitle:@"删除组局" forState:UIControlStateNormal];
+                        [_firstButton addTarget:self.delegate action:@selector(deleteOrder:) forControlEvents:UIControlEventTouchUpInside];
+                    }
+                }else{
+                    [_firstButton setTitle:@"取消组局" forState:UIControlStateNormal];
+                    [_firstButton addTarget:self.delegate action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];
+                }
             }else{
                 [_secondButton setTitle:@"立即支付" forState:UIControlStateNormal];
+                [_secondButton addTarget:self.delegate action:@selector(payForOrder:) forControlEvents:UIControlEventTouchUpInside];
                 [_firstButton setTitle:@"删除订单" forState:UIControlStateNormal];
+                [_firstButton addTarget:self.delegate action:@selector(deleteSelfOrder:) forControlEvents:UIControlEventTouchUpInside];
             }
         }else{
             [_secondButton setTitle:@"立即付款" forState:UIControlStateNormal];
+            [_secondButton addTarget:self.delegate action:@selector(payForOrder:) forControlEvents:UIControlEventTouchUpInside];
             [_firstButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [_firstButton addTarget:self.delegate action:@selector(deleteOrder:) forControlEvents:UIControlEventTouchUpInside];
             _introduceLbl.hidden = YES;
         }
     }else if (model.orderStatus == 1 || model.orderStatus == 2){
         //待消费
         _firstButton.hidden = YES;
         _secondButton.hidden = NO;
+        //灰色第二个按钮
         _secondButton.layer.borderColor = [RGBA(127, 127, 127, 1) CGColor];
         _secondButton.layer.borderWidth = 0.5;
         [_secondButton setTitleColor:RGBA(127, 127, 127, 1) forState:UIControlStateNormal];
@@ -112,21 +159,24 @@
             //拼客
             if(model.userid == userModel.userid){
                 //我发起
-                NSMutableAttributedString *attiString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@  %d人组局",introduce,model.pinkerCount]];
+                NSMutableAttributedString *attiString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@  %@人组局",introduce,model.allnum]];
                 [attiString addAttribute:NSStrikethroughStyleAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(consumptionCode.length + 6, attiString.length - consumptionCode.length - 6)];
                 [_introduceLbl setAttributedText:attiString];
                 [_secondButton setTitle:@"取消组局" forState:UIControlStateNormal];
+                [_secondButton addTarget:self.delegate action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];
             }else{
-                [_introduceLbl setText:[NSString stringWithFormat:@"%d人组局",model.pinkerCount]];
+                [_introduceLbl setText:[NSString stringWithFormat:@"%@人组局",model.allnum]];
                 [_introduceLbl setFont:[UIFont systemFontOfSize:12]];
                 _secondButton.layer.borderWidth = 0 ;
                 [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
                 [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [_secondButton setTitle:@"查看详情" forState:UIControlStateNormal];
+                [_secondButton addTarget:self.delegate action:@selector(checkForDetail:) forControlEvents:UIControlEventTouchUpInside];
             }
         }else{
             [_introduceLbl setText:introduce];
             [_secondButton setTitle:@"取消订单" forState:UIControlStateNormal];
+            [_secondButton addTarget:self.delegate action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];
         }
     }else if (model.orderStatus == 8){
         //待评价
@@ -136,6 +186,7 @@
         _secondButton.layer.borderWidth = 0 ;
         [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_secondButton setTitle:@"立即评价" forState:UIControlStateNormal];
+        [_secondButton addTarget:self.delegate action:@selector(JudgeForOrder:) forControlEvents:UIControlEventTouchUpInside];
         if (model.ordertype == 1) {
             [_introduceLbl setFont:[UIFont systemFontOfSize:12]];
             [_introduceLbl setText:[NSString stringWithFormat:@"%d人组局",model.pinkerCount]];
@@ -153,8 +204,10 @@
             //加上承诺label
             _oliverLabel.hidden = NO;
             [_secondButton setTitle:@"查看详情" forState:UIControlStateNormal];
+            [_secondButton addTarget:self.delegate action:@selector(checkForDetail:) forControlEvents:UIControlEventTouchUpInside];
         }else{
             [_secondButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [_secondButton addTarget:self.delegate action:@selector(deleteOrder:) forControlEvents:UIControlEventTouchUpInside];
         }
         if (model.ordertype == 1) {
             _introduceLbl.hidden = NO;
@@ -173,11 +226,13 @@
             _secondButton.layer.borderColor = [RGBA(127, 127, 127, 1) CGColor];
             [_secondButton setTitleColor:RGBA(127, 127, 127, 1) forState:UIControlStateNormal];
             [_secondButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [_secondButton addTarget:self.delegate action:@selector(deleteOrder:) forControlEvents:UIControlEventTouchUpInside];
         }else{
             _secondButton.layer.borderWidth = 0 ;
             [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
             [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [_secondButton setTitle:@"退款中" forState:UIControlStateNormal];
+            [_secondButton addTarget:self.delegate action:@selector(checkForDetail:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
 }

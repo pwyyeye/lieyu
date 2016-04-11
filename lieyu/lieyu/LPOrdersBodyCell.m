@@ -42,7 +42,7 @@
         SetMealVOModel *setmealVOModel = model.pinkerinfo;
         [_orderImage sd_setImageWithURL:[NSURL URLWithString:setmealVOModel.linkUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_orderNameLbl setText:setmealVOModel.smname];
-        [_orderNumberLbl setText:[NSString stringWithFormat:@"%d",model.pinkerNum]];
+        [_orderNumberLbl setText:[NSString stringWithFormat:@"X%d",model.pinkerNum]];
         [_orderPriceLbl setText:setmealVOModel.price];
         NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:setmealVOModel.marketprice attributes:attributeDic];
         [_orderMarketPriceLbl setAttributedText:attributeStr];
