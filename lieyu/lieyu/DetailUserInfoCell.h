@@ -16,8 +16,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UILabel *quantityLbl;
 
+@property (nonatomic, strong) NSString *avatar_img;
+@property (nonatomic, strong) NSString *imuserId;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *usernick;
+@property (nonatomic, strong) NSString *mobile;
+@property (nonatomic, assign) int userid;
+
 @property (nonatomic, strong)OrderInfoModel *orderInfoModel;
-@property (nonatomic, strong)UserModel *userModel;
 
 - (void)configureManagerCell:(OrderInfoModel *)model;
 - (void)configureFriendsCell:(OrderInfoModel *)model;
