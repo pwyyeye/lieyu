@@ -33,6 +33,7 @@
 
 #import "HuoDongViewController.h"
 #import "LPUserLoginViewController.h"
+#import "ZSMaintViewController.h"
 
 
 @interface AppDelegate ()
@@ -48,6 +49,8 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 #define _IPHONE80_ 80000
 
 @implementation AppDelegate
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self.window makeKeyAndVisible];
@@ -67,6 +70,21 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     _navigationController= (UINavigationController *)self.window.rootViewController;
 //    _navigationController.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
+    
+    if(shanghuban){
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        
+        ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
+        maintViewController.btnBackHidden = YES;
+        _navShangHu = [[UINavigationController alloc]initWithRootViewController:maintViewController];
+        app.window.rootViewController = _navShangHu;
+        
+        
+    }
+
     
 
 //    NSError *setCategoryErr=nil;
@@ -88,7 +106,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         view.view=_intro;
         self.window.rootViewController=view;
     }else{
-        [self animationWithApp];
+//        [self animationWithApp];
     }
 
     [self startLocation];

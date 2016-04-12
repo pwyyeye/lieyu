@@ -536,8 +536,10 @@
                 orderBottomView.label_timeOrCountTitle.text = @"商品数量";
                 
 //                NSInteger count = ((ShopDetailmodel *)orderInfoModel.goodslist.firstObject).count.integerValue;
-                
                 orderBottomView.timeOrCount.text = [NSString stringWithFormat:@"共%@件",orderInfoModel.allnum];
+                if (orderInfoModel.ordertype == 1) {//拼客
+                    orderBottomView.timeOrCount.text = [NSString stringWithFormat:@"共%d件",orderInfoModel.pinkerNum];
+                }
                 [orderBottomView.duimaBtn setTitle:@"立即对码" forState:UIControlStateNormal];
                 orderBottomView.btn_not.hidden = YES;
             }

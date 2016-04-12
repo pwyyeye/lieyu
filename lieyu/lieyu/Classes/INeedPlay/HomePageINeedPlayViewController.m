@@ -40,6 +40,7 @@
 #import "recommendedTopic.h"
 #import "ActionPage.h"
 #import "ActionDetailViewController.h"
+#import "ZSMaintViewController.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -386,6 +387,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+
      [self createNavButton];
 }
 

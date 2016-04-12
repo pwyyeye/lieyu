@@ -639,7 +639,7 @@
             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
             _tableHeaderImgView.tag = 1008611;
             if(_beerBarDetail.banners.count){
-            [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+            [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
             }
             [_headerCell addSubview:_tableHeaderImgView];
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;

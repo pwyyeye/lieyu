@@ -162,7 +162,8 @@
     [app.navigationController pushViewController:maintViewController animated:NO];
     maintViewController.btnBackHidden = YES;
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"shanghuban"];
-//    MainTabbarViewController *tabVC = (MainTabbarViewController*)app.window.rootViewController.childViewControllers.firstObject;
+    
+    
     
     maintViewController.btnBackHidden = YES;
     if(app.userModel.usertype.intValue==2){

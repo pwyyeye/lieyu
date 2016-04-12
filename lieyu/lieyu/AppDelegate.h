@@ -37,6 +37,8 @@
 @property(strong,nonatomic) NSString *citystr;
 @property(retain,nonatomic) CLLocation * userLocation;
 @property(strong,nonatomic) UINavigationController *navigationController;
+@property (nonatomic,strong) UINavigationController *navDefault;
+@property (nonatomic,strong) UINavigationController *navShangHu;
 
 @property(strong,nonatomic) OrderTTL *orderTTL;
 

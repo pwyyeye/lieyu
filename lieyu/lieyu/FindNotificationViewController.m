@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.title = @"消息通知";
     MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
     minUserNotification.typeName = @"系统通知";
