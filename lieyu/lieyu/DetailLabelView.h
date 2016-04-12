@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface DetailLabelView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *introduceLbl;
 @property (weak, nonatomic) IBOutlet UILabel *numberLbl;
+@property (weak, nonatomic) IBOutlet UIView *backGround;
 
-- (void)configureManager;
+- (void)configureManager:(BOOL)isManager;
 - (void)configureNumber:(int)number;
 @end

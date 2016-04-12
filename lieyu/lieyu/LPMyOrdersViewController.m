@@ -52,6 +52,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     titleArray = @[@"订单",@"待付款",@"待消费",@"待评价",@"待返利",@"待退款"];
@@ -260,6 +265,7 @@
             [weakSelf addKongView];
             [myTableView.mj_footer endRefreshingWithNoMoreData];
         }
+        myTableView.contentOffset = CGPointMake(0, -90);
         [myTableView reloadData];
     }];
     [myTableView.mj_header endRefreshing];

@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    _backGround.layer.cornerRadius = 4;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -24,7 +25,13 @@
 - (void)setOrderInfoModel:(OrderInfoModel *)orderInfoModel{
     _orderInfoModel = orderInfoModel;
     [_placeLbl setText:((JiuBaModel *)orderInfoModel.barinfo).address];
-    [_TimeLbl setText:[orderInfoModel.reachtime substringToIndex:orderInfoModel.reachtime.length - 3]];
+    if(orderInfoModel.ordertype == 2){
+//        _TimeLbl.hidden = YES;
+        [_TimeLbl setText:@"随时"];
+    }else{
+//        _TimeLbl.hidden = NO;
+        [_TimeLbl setText:[orderInfoModel.reachtime substringToIndex:orderInfoModel.reachtime.length - 3]];
+    }
 }
 
 @end

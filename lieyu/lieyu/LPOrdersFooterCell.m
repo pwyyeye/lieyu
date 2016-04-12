@@ -31,12 +31,16 @@
     _firstButton.layer.cornerRadius = 14;
     _secondButton.layer.cornerRadius = 14;
     _oliverLabel.hidden = YES;
+//    if (!_detail) {
     
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 102) byRoundingCorners:UIRectCornerBottomRight | UIRectCornerBottomLeft cornerRadii:CGSizeMake(4, 4)];
-    CAShapeLayer *layer = [CAShapeLayer layer];
-    layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 102);
-    layer.path = bezierPath.CGPath;
-    _backGround.layer.mask = layer;
+        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 102) byRoundingCorners:UIRectCornerBottomRight | UIRectCornerBottomLeft cornerRadii:CGSizeMake(4, 4)];
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 102);
+        layer.path = bezierPath.CGPath;
+        _backGround.layer.mask = layer;
+//    }else{
+    
+//    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -107,8 +111,22 @@
 //            [_introduceLbl setTextColor:RGBA(186, 40, 227, 1)];
             [_introduceLbl setText:[NSString stringWithFormat:@"%@人组局",model.allnum]];
             if (userModel.userid == model.userid) {
-                [_secondButton setTitle:@"立即组局" forState:UIControlStateNormal];
-                [_secondButton addTarget:self.delegate action:@selector(shareZujuOrder:) forControlEvents:UIControlEventTouchUpInside];
+                BOOL payed = NO;
+                for (NSDictionary *dic in model.pinkerList) {
+                    if ([[dic objectForKey:@"inmember"] intValue] == userModel.userid && [[dic objectForKey:@"paymentStatus"] intValue] == 1) {
+                        //我付过款了
+                        payed = YES;
+                    }
+                }
+                if (payed == YES) {
+                    [_secondButton setTitle:@"立即组局" forState:UIControlStateNormal];
+                    [_secondButton addTarget:self.delegate action:@selector(shareZujuOrder:) forControlEvents:UIControlEventTouchUpInside];
+                }else{
+                    [_secondButton setTitle:@"立即付款" forState:UIControlStateNormal];
+                    [_secondButton addTarget:self.delegate action:@selector(payForOrder:) forControlEvents:UIControlEventTouchUpInside];
+                }
+                
+                
                 int payCount = 0 ;
                 if (model.pinkerType == 2) {
                     //免费发起
@@ -239,6 +257,13 @@
             [_secondButton setTitle:@"退款中" forState:UIControlStateNormal];
             [_secondButton addTarget:self.delegate action:@selector(checkForDetail:) forControlEvents:UIControlEventTouchUpInside];
         }
+    }
+    if(_detail){
+        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 60) byRoundingCorners:UIRectCornerBottomRight | UIRectCornerBottomLeft cornerRadii:CGSizeMake(4, 4)];
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 60);
+        layer.path = bezierPath.CGPath;
+        _backGround.layer.mask = layer;
     }
 }
 

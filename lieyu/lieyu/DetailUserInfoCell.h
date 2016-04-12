@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
 @property (weak, nonatomic) IBOutlet UILabel *quantityLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *shaperLine;
+@property (weak, nonatomic) IBOutlet UIView *backGround;
 
 @property (nonatomic, strong) NSString *avatar_img;
 @property (nonatomic, strong) NSString *imuserId;

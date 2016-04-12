@@ -9,6 +9,7 @@
 #import "SingletonTenpay.h"
 #import "MJExtension.h"
 #import "LYMyOrderManageViewController.h"
+#import "LPMyOrdersViewController.h"
 #import "PinkerShareController.h"
 @implementation SingletonTenpay
 //获取支付单例
@@ -89,7 +90,8 @@
 
     UIViewController *detailViewController;
     
-    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+    detailViewController = [[LPMyOrdersViewController alloc]init];
     [delegate.navigationController pushViewController:detailViewController animated:YES];
 }
 @end

@@ -81,6 +81,7 @@
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="TimeLbl" destination="JLX-Yf-1Gl" id="uGD-Ah-4cf"/>
+                <outlet property="backGround" destination="ZbD-jr-MIw" id="Yxp-IF-G2p"/>
                 <outlet property="placeLbl" destination="thf-Vn-3sl" id="4ye-Kj-WXF"/>
             </connections>
             <point key="canvasLocation" x="370" y="232.5"/>

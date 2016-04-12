@@ -8,6 +8,12 @@
 
 #import "LYBaseViewController.h"
 #import "OrderInfoModel.h"
+@protocol LPOrderDetailDelegate<NSObject>
+
+- (void)refreshTableView;
+
+@end
+
 
 @interface LPOrderDetailViewController : LYBaseViewController
 
@@ -17,4 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *consumerCodeLbl;
 
 @property (nonatomic, strong) OrderInfoModel *orderInfoModel;
+
+@property (nonatomic, assign) id<LPOrderDetailDelegate> delegate;
 @end
