@@ -31,6 +31,10 @@
 @end
 
 @implementation LYOrderDetailViewController
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

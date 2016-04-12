@@ -109,7 +109,7 @@
     JiuBaModel * model = [collectionList objectAtIndex:indexPath.section];
     controller.beerBarId = @(model.barid);
     [self.navigationController pushViewController:controller animated:YES];
-   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+//   [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
 }
