@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrderInfoModel.h"
 @interface DetailPlaceTimeCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *placeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *TimeLbl;
+
+@property (nonatomic, strong) OrderInfoModel *orderInfoModel;
 
 @end

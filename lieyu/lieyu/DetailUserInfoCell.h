@@ -7,11 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "OrderInfoModel.h"
+#import "UserModel.h"
 @interface DetailUserInfoCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarImg;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLbl;
 @property (weak, nonatomic) IBOutlet UIButton *phoneBtn;
 @property (weak, nonatomic) IBOutlet UIButton *messageBtn;
+@property (weak, nonatomic) IBOutlet UILabel *quantityLbl;
+
+@property (nonatomic, strong)OrderInfoModel *orderInfoModel;
+@property (nonatomic, strong)UserModel *userModel;
+
+- (void)configureManagerCell:(OrderInfoModel *)model;
+- (void)configureFriendsCell:(OrderInfoModel *)model;
 
 @end

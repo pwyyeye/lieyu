@@ -7,7 +7,7 @@
 //
 
 #import "DetailPlaceTimeCell.h"
-
+#import "JiuBaModel.h"
 @implementation DetailPlaceTimeCell
 
 - (void)awakeFromNib {
@@ -19,6 +19,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setOrderInfoModel:(OrderInfoModel *)orderInfoModel{
+    _orderInfoModel = orderInfoModel;
+    [_placeLbl setText:((JiuBaModel *)orderInfoModel.barinfo).address];
+    [_TimeLbl setText:[orderInfoModel.reachtime substringToIndex:orderInfoModel.reachtime.length - 3]];
 }
 
 @end

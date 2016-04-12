@@ -19,6 +19,11 @@
 @end
 
 @implementation LPOrderDetailViewController
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,6 +31,7 @@
     self.myTableView.dataSource = self;
     self.myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self registerCells];
+    [self initBottomView];
 }
 
 - (void)registerCells{
@@ -105,12 +111,19 @@
         return cell;
     }else if (indexPath.section == 1){
         DetailPlaceTimeCell *cell = [_myTableView dequeueReusableCellWithIdentifier:@"DetailPlaceTimeCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.orderInfoModel = self.orderInfoModel;
         return cell;
     }else if (indexPath.section == 2){
         DetailUserInfoCell *cell = [_myTableView dequeueReusableCellWithIdentifier:@"DetailUserInfoCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell configureManagerCell:self.orderInfoModel];
         return cell;
     }else{
         DetailUserInfoCell *cell = [_myTableView dequeueReusableCellWithIdentifier:@"DetailUserInfoCell" forIndexPath:indexPath];
+        cell.tag = indexPath.row;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell configureFriendsCell:self.orderInfoModel];
         return cell;
     }
 }
@@ -151,7 +164,7 @@
     }else if (section == 3){
         return 26;
     }else{
-        return 0;
+        return 0.000001;
     }
 }
 
@@ -169,7 +182,7 @@
     if (section == 0) {
         return 60;
     }else{
-        return 0;
+        return 0.000001;
     }
 }
 

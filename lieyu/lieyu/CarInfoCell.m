@@ -53,8 +53,8 @@
     carModel=model;
     [_danPinImageView sd_setImageWithURL:[NSURL URLWithString:model.product.image] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _nameLal.text=model.product.fullname;
-    _delLal.text=[NSString stringWithFormat:@"×(%@)",model.product.unit];
-    _zhekouLal.text=model.product.price;
+    _delLal.text=[NSString stringWithFormat:@"(%@)",model.product.unit];
+    _zhekouLal.text=[NSString stringWithFormat:@"¥%@",model.product.price];
     _numLal.text=model.quantity;
     if([_numLal.text intValue] > 1){
         self.lessbtn.enabled = YES;
