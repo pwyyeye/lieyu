@@ -39,7 +39,7 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUi-ZE-Zm4">
-                        <rect key="frame" x="71" y="47" width="40" height="17"/>
+                        <rect key="frame" x="71" y="47" width="31" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="fgj-jL-dXs"/>
                             <constraint firstAttribute="height" constant="17" id="lnx-LX-f5r"/>
@@ -47,6 +47,11 @@
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333329999998" alpha="0.5" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fgj-jL-dXs"/>
+                            </mask>
+                        </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥999999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6v-Sg-AZW">
                         <rect key="frame" x="258" y="11" width="54" height="17"/>
