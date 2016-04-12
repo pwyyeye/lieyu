@@ -1088,6 +1088,8 @@
 		85539EBC1C3E06BA001031B6 /* ISEmojiList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85539EBB1C3E06BA001031B6 /* ISEmojiList.plist */; };
 		855536BF1C0A922200D296DA /* LYHomeSearcherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */; };
 		855536C01C0A922200D296DA /* LYHomeSearcherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */; };
+		855783CC1CBBC46F0044497B /* shopMyNotification@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 855783CA1CBBC46F0044497B /* shopMyNotification@3x.png */; };
+		855783CD1CBBC46F0044497B /* shopMyNotification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 855783CB1CBBC46F0044497B /* shopMyNotification@2x.png */; };
 		85589C311C167E49000E342E /* PayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 853E3A2A1C15B6050088CD86 /* PayButton.m */; };
 		85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
 		85589CB81C16D41D000E342E /* SingletonRegiste.m in Sources */ = {isa = PBXBuildFile; fileRef = 85589CB71C16D41D000E342E /* SingletonRegiste.m */; };
@@ -3238,6 +3240,8 @@
 		855536BC1C0A922200D296DA /* LYHomeSearcherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSearcherViewController.h; sourceTree = "<group>"; };
 		855536BD1C0A922200D296DA /* LYHomeSearcherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSearcherViewController.m; sourceTree = "<group>"; };
 		855536BE1C0A922200D296DA /* LYHomeSearcherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSearcherViewController.xib; sourceTree = "<group>"; };
+		855783CA1CBBC46F0044497B /* shopMyNotification@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopMyNotification@3x.png"; sourceTree = "<group>"; };
+		855783CB1CBBC46F0044497B /* shopMyNotification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopMyNotification@2x.png"; sourceTree = "<group>"; };
 		85589CB61C16D41D000E342E /* SingletonRegiste.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingletonRegiste.h; sourceTree = "<group>"; };
 		85589CB71C16D41D000E342E /* SingletonRegiste.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingletonRegiste.m; sourceTree = "<group>"; };
 		855941501C51C16E000AA20F /* libSocialQQ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialQQ.a; sourceTree = "<group>"; };
@@ -8434,6 +8438,8 @@
 		ADF88E551C102E2D00CF5DED /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				855783CA1CBBC46F0044497B /* shopMyNotification@3x.png */,
+				855783CB1CBBC46F0044497B /* shopMyNotification@2x.png */,
 				854405991CB8DF7A00EA5556 /* userFav@2x.png */,
 				8544059A1CB8DF7A00EA5556 /* userFav@3x.png */,
 				8544059B1CB8DF7A00EA5556 /* userHelp@2x.png */,
@@ -9339,6 +9345,7 @@
 				381A01DD1C14229F00592485 /* more_purper@2x.png in Resources */,
 				853C361B1C73082200F1703B /* HOT@2x.png in Resources */,
 				38E72B521C155FC7002EFBDD /* chiheDetailCollectionCell.xib in Resources */,
+				855783CC1CBBC46F0044497B /* shopMyNotification@3x.png in Resources */,
 				38E5D7BE1C128B7D004B49D2 /* Location@3x.png in Resources */,
 				AD399E9B1C940D4D00028F23 /* logo28@2x.jpg in Resources */,
 				AD399E851C940D4D00028F23 /* logo6@2x.jpg in Resources */,
@@ -9489,6 +9496,7 @@
 				ADE1C5D01C730E1C0011D4AB /* 更新27@2x.png in Resources */,
 				38979A711CA40919002946F5 /* kawayi7.png in Resources */,
 				38979A2A1CA40919002946F5 /* dianzan1.png in Resources */,
+				855783CD1CBBC46F0044497B /* shopMyNotification@2x.png in Resources */,
 				AD203BE21CB0C4F30014618A /* tb_1.gif in Resources */,
 				38979A821CA40919002946F5 /* wow21.png in Resources */,
 				3812C5521C57B76100F4DD6B /* backViewWithCorner@2x.png in Resources */,

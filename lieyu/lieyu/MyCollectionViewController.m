@@ -39,13 +39,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self getData];
-}
-
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -57,7 +52,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 96;
+    return 91;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -92,16 +87,17 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 14)];
-    view.backgroundColor=RGB(239, 239, 244);
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
+//    view.backgroundColor=RGB(239, 239, 244);
+    view.backgroundColor = [UIColor redColor];
     return view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 14;
+    return 0.0001;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 1;
+    return 0.0001;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     return [[UIView alloc]initWithFrame:CGRectZero];
