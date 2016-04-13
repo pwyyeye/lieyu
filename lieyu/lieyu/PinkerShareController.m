@@ -12,6 +12,7 @@
 #import "CustomerModel.h"
 #import "UIButton+WebCache.h"
 #import "LYMyOrderManageViewController.h"
+#import "LPMyOrdersViewController.h"
 @interface PinkerShareController ()
 
 @end
@@ -47,12 +48,17 @@
 -(void)BaseGoBack{
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:@"分享组局" titleName:@"取消分享"]];
     for (UIViewController *viewController in self.navigationController.viewControllers) {
-        if([viewController isKindOfClass:[LYMyOrderManageViewController class]]){
+//        if([viewController isKindOfClass:[LYMyOrderManageViewController class]]){
+//            [self.navigationController popToViewController:viewController animated:YES];
+//            return;
+//        }
+        if ([viewController isKindOfClass:[LPMyOrdersViewController class]]) {
             [self.navigationController popToViewController:viewController animated:YES];
             return;
         }
     }
-    LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//    LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+    LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 

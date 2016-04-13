@@ -41,7 +41,7 @@
         NSString *str = jiuBaM.banners.firstObject;
 //        NSLog(@"-->%@",str);
         if(![str isKindOfClass:[NSNull class]]){
-            [_imgView_bg sd_setImageWithURL:[NSURL URLWithString:jiuBaM.banners[0]] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+            [_imgView_bg sd_setImageWithURL:[NSURL URLWithString:jiuBaM.banners[0]] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
         }
     }
     

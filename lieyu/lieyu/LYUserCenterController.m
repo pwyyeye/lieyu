@@ -14,6 +14,7 @@
 #import "TuiJianShangJiaViewController.h"//推荐商家
 #import "MyCollectionViewController.h"//我的收藏
 #import "LYMyOrderManageViewController.h"//我的订单
+#import "LPMyOrdersViewController.h"
 #import "Setting.h"//设置
 #import "MyZSManageViewController.h"//我的专属经理
 #import "LYCarListViewController.h"//购物车
@@ -64,7 +65,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     // Do any additional setup after loading the view.
     
-//    [self.collectionView registerClass:[LYUserCenterHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader"];
+    [self.collectionView registerClass:[LYUserCenterHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader"];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"LYUserCenterFooter" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter"];
     //
@@ -83,8 +84,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
  
     
     self.collectionView.backgroundColor=[UIColor whiteColor];
-//    self.collectionView.scrollEnabled = YES;
-//    self.collectionView.bounces = NO;//遇到边框不反弹
+    self.collectionView.scrollEnabled = YES;
+    self.collectionView.bounces = YES;//遇到边框不反弹
     self.collectionView.showsVerticalScrollIndicator = NO;
     
     
@@ -111,17 +112,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
-    
-    if(shanghuban){
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
-        [app.navigationController pushViewController:maintViewController animated:NO];
-        maintViewController.btnBackHidden = YES;
-    }
-    
     [self loadHeaderView];
+    [self loadHeaderViewBadge];
+    [self getGoodsNum];
+    
+//    [self loadHeaderView];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self.collectionView reloadData];
@@ -443,13 +438,45 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //    
 //    return headerView;
 //}
-//-(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-//{
-//    //因为顶到电池栏 所以 height 小20像素
-//        CGSize size = {SCREEN_WIDTH, 239};
-//        return size;
-//
-//}
+
+/*
+-(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    //因为顶到电池栏 所以 height 小20像素
+    CGFloat height = 0.f;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if(app.userModel.usertype.intValue==2){
+        height = 299;
+    }else{
+        height = 239;
+    }
+    CGSize size = {SCREEN_WIDTH, height};
+        return size;
+
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    return CGSizeZero;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    CGFloat height = 0.f;
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if(app.userModel.usertype.intValue==2){
+        height = 299;
+    }else{
+        height = 239;
+    }
+//    if (kind==UICollectionElementKindSectionHeader) {
+    _headerView=[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"userCenterHeader" forIndexPath:indexPath];
+//        _headerView = [[LYUserCenterHeader alloc]init];
+        _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, height);
+        return _headerView;
+//    }else{
+//            return ;
+//        }
+} */
+
 //
 //-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
 //    

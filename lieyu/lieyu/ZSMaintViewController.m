@@ -22,13 +22,16 @@
 #import "ZSMyReceiveViewController.h"
 #import "ZSManageHttpTool.h"
 #import "ZSBalance.h"
+#import "FindNotificationViewController.h"
+#import "OrderTTL.h"
 
 @interface ZSMaintViewController ()<UITextFieldDelegate>{
     UIButton *_balanceButton;
     ZSBalance *_balance;
     UIVisualEffectView *_effctView;
+    OrderTTL *_orderTTL;
 }
-
+@property (nonatomic,strong) UINavigationController *navShangHu;
 @end
 
 @implementation ZSMaintViewController
@@ -46,11 +49,34 @@
 //    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
     [self getDataForShowList];
     
+    
+//   [ [NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToShanHu) name:@"loadUserInfo" object:nil];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app addObserver:self forKeyPath:@"s_app_id" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    [self getBalance];
+    [self getBadge];
+}
+
+- (void)getBalance{
+    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
+        _balance = balance;
+        [_balanceButton setTitle:[NSString stringWithFormat:@"%.2f",_balance.balances.floatValue] forState:UIControlStateNormal];
+        
+    }];
+}
+
+- (void)dealloc{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app removeObserver:self forKeyPath:@"s_app_id"];
 }
 
 #pragma mark 初始化数据
 -(void)getDataForShowList{
     [listArr removeAllObjects];
+    NSDictionary *myNotification = @{@"colorRGB":RGB(65, 154, 241),@"imageContent":@"shopMyNotification",@"title":@"消息通知",@"delInfo":@""};
     NSDictionary *myReceiveDic = @{@"colorRGB":RGB(254, 221, 87),@"imageContent":@"shopMyReceive",@"title":@"我的收入",@"delInfo":@""};
     NSDictionary *dic=@{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""};
     NSDictionary *dic1=@{@"colorRGB":RGB(136, 223, 121),@"imageContent":@"Fill20179",@"title":@"最近联系",@"delInfo":@"您有客户留言请及时查收"};
@@ -59,6 +85,7 @@
     NSDictionary *dic4=@{@"colorRGB":RGB(186, 40, 227),@"imageContent":@"Fill20176",@"title":@"速核码扫描",@"delInfo":@""};
 //    NSDictionary *dic4=@{@"colorRGB":RGB(84, 225, 255),@"imageContent":@"Fill2097",@"title":@"商铺管理",@"delInfo":@""};
     
+    [listArr addObject:myNotification];
     [listArr addObject:myReceiveDic];
     [listArr addObject:dic2];//订单管理
 //    [listArr addObject:dic4];//速核码扫描
@@ -161,10 +188,19 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
-        _balance = balance;
-        [_balanceButton setTitle:[NSString stringWithFormat:@"%.2f",_balance.balances.floatValue] forState:UIControlStateNormal];
-    }];
+    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (![MyUtil isEmptyString:app.s_app_id]) {
+        [self getBalance];
+        [self getBadge];
+    }
+    
+   
+    
+//    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
+//        _balance = balance;
+//        [_balanceButton setTitle:[NSString stringWithFormat:@"%.2f",_balance.balances.floatValue] forState:UIControlStateNormal];
+//    }];
     //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
 }
 
@@ -181,6 +217,20 @@
     UITextField *text = [self.view viewWithTag:123];
     text.text = @"";
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+#pragma mark - 角标
+- (void)getBadge{
+        [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
+            _orderTTL=result;
+            NSIndexPath *indexP = [NSIndexPath indexPathForRow:0 inSection:0];
+            ZSListCell *cell = [_tableView cellForRowAtIndexPath:indexP];
+            if (result.pushMessageNum > 0) {//有消息
+                cell.mesImageView.hidden = NO;
+            }else{//无新消息
+                cell.mesImageView.hidden = YES;
+            }
+        }];
 }
 
 #pragma mark - 扫一扫
@@ -267,20 +317,25 @@
     
     switch (indexPath.row) {
         case 0:{
+            FindNotificationViewController *findNotificationVC = [[FindNotificationViewController alloc]init];
+            [self.navigationController pushViewController:findNotificationVC animated:YES];
+        }
+            break;
+        case 1:{
             ZSMyReceiveViewController *zsMyReceiveVC = [[ZSMyReceiveViewController alloc]init];
             zsMyReceiveVC.balance = _balance;
             [self.navigationController pushViewController:zsMyReceiveVC animated:YES];
         }
             break;
             
-        case 2://卡座
+        case 3://卡座
         {
             ZSSeatControlView *seatControlView=[[ZSSeatControlView alloc]initWithNibName:@"ZSSeatControlView" bundle:nil];
             [self.navigationController pushViewController:seatControlView animated:YES];
             break;
         }
             
-        case 3:// 通知中心
+        case 4:// 通知中心
         {
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             chat.title=@"最近联系";
@@ -288,14 +343,14 @@
             break;
         }
             
-        case 1:// 订单管理
+        case 2:// 订单管理
         {
             ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
             [self.navigationController pushViewController:orderManageViewController animated:YES];
             break;
         }
             
-        case 4:// 我的客户
+        case 5:// 我的客户
         {
             ZSMyClientsViewController *myClientViewController=[[ZSMyClientsViewController alloc]initWithNibName:@"ZSMyClientsViewController" bundle:nil];
             
@@ -313,8 +368,13 @@
 //            [self.navigationController pushViewController:myShopManageViewController animated:YES];
             
             AppDelegate *app = [UIApplication sharedApplication].delegate;
-            [self.navigationController popViewControllerAnimated:NO];
-                [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
+            
+            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LYMain" bundle:[NSBundle mainBundle]];
+            NSLog(@"--->%@",[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"]);
+            UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
+            app.navigationController = nav;
+            app.window.rootViewController = nav;
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
             
                 if(app.userModel.usertype.intValue==2){
                     UIWindow *window = [UIApplication sharedApplication].delegate.window;

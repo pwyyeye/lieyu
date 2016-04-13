@@ -174,7 +174,7 @@
                         </variation>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HOT.png" translatesAutoresizingMaskIntoConstraints="NO" id="W5V-nF-6Hg">
-                        <rect key="frame" x="283" y="10" width="40" height="40"/>
+                        <rect key="frame" x="290" y="10" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="EWT-kJ-mTv"/>
                             <constraint firstAttribute="width" constant="40" id="wIJ-un-KgP"/>
@@ -234,12 +234,14 @@
                 <constraint firstAttribute="trailing" secondItem="SgJ-8v-c3X" secondAttribute="trailing" constant="13" id="uwp-xB-ZH1"/>
                 <constraint firstItem="p5D-Hp-sL6" firstAttribute="top" secondItem="81W-Pb-AU9" secondAttribute="bottom" constant="10" id="wYo-dp-fhA"/>
                 <constraint firstItem="KjI-Qe-wPo" firstAttribute="centerY" secondItem="81W-Pb-AU9" secondAttribute="centerY" id="yT9-gq-jQS"/>
-                <constraint firstAttribute="trailing" secondItem="W5V-nF-6Hg" secondAttribute="trailing" constant="13" id="zmX-HW-aaj"/>
+                <constraint firstAttribute="trailing" secondItem="W5V-nF-6Hg" secondAttribute="trailing" constant="6" id="zmX-HW-aaj"/>
             </constraints>
             <size key="customSize" width="336" height="195"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="DvJ-78-4uG"/>
+                    <exclude reference="Nej-Kz-QAi"/>
+                    <exclude reference="eRr-y8-S2R"/>
                     <exclude reference="75h-Hw-8fU"/>
                     <exclude reference="DJV-fh-pii"/>
                 </mask>

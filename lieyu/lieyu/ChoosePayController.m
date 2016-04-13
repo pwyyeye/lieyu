@@ -16,6 +16,7 @@
 #import "ZujuViewController.h"
 #import "LYwoYaoDinWeiMainViewController.h"
 #import "PTjoinInViewController.h"
+#import "LPMyOrdersViewController.h"
 @interface ChoosePayController ()
 {
     UITableViewCell *_payCell;
@@ -60,7 +61,8 @@
 
 - (void)createPayButton{
     _payBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 123, SCREEN_WIDTH - 20, 52)];
-    [_payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
+//    [_payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
+    [_payBtn setBackgroundColor:RGBA(186, 40, 227, 1)];
     _payBtn.layer.cornerRadius = 4;
     _payBtn.layer.masksToBounds = YES;
     [_payBtn setTitle:@"确认支付" forState:UIControlStateNormal];
@@ -158,10 +160,13 @@
     //
     //    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
+    NSLog(@"%@",self.navigationController.viewControllers);
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]||[controller isKindOfClass:[PTjoinInViewController class]]){
-            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
             [self.navigationController pushViewController:detailViewController animated:YES];
+//            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//            [self.navigationController pushViewController:detailViewController animated:YES];
             return;
         }
     }
@@ -378,8 +383,8 @@
             zujuVC.sn=_orderNo;
             [self.navigationController pushViewController:zujuVC animated:YES];
         }else{
-            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-            
+//            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
             UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
             self.navigationItem.leftBarButtonItem = left;
             
@@ -390,8 +395,8 @@
         UIViewController *detailViewController;
         
       
-            detailViewController  =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-
+//            detailViewController  =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+        detailViewController = [[LPMyOrdersViewController alloc]init];
         
         
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;

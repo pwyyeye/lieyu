@@ -15,12 +15,14 @@
 #import "LYEvaluationController.h"
 #import "PinkerShareController.h"
 #import "UMSocial.h"
+#import "FindNotificationNextDetailViewController.h"
 
 #import "LPOrdersHeaderCell.h"
 #import "LPOrdersBodyCell.h"
 #import "LPOrdersFooterCell.h"
 #import "LPOrdersHeaderView.h"
 #import "LYOrderDetailViewController.h"
+#import "MainTabbarViewController.h"
 
 @interface LPMyOrdersViewController ()<UITableViewDelegate,UITableViewDataSource,LPOrdersFootDelegate>
 {
@@ -44,10 +46,16 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -259,6 +267,7 @@
             [weakSelf addKongView];
             [myTableView.mj_footer endRefreshingWithNoMoreData];
         }
+        myTableView.contentOffset = CGPointMake(0, -90);
         [myTableView reloadData];
     }];
     [myTableView.mj_header endRefreshing];
@@ -270,6 +279,10 @@
     [nowDic removeObjectForKey:@"p"];
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
     [self getOrderWithDic:nowDic];
+}
+
+- (void)refreshTableView{
+    [self refreshData];
 }
 
 - (void)loadMoreData{
@@ -313,6 +326,7 @@
         [kongButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         kongButton.layer.cornerRadius = 4;
         kongButton.tag = 502;
+        [kongButton addTarget:self action:@selector(jumpToYue) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:kongButton];
     }
 }
@@ -327,7 +341,32 @@
     [myTableView setHidden:NO];
 }
 
+- (void)jumpToYue{
+//    NSLog(@"dsafds");
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpToFirstViewController" object:nil];
+    
+    MainTabbarViewController *tabBarVC = (MainTabbarViewController *)self.navigationController.viewControllers.firstObject;
+//    NSLog(@"--->%@",self.navigationController.viewControllers.firstObject);
+    tabBarVC.selectedIndex = 0;
+    [self.navigationController popToViewController:tabBarVC animated:YES];
+    
+}
+
 - (void)backForward{
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[ChoosePayController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+        if ([controller isKindOfClass:[PinkerShareController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+        if ([controller isKindOfClass:[FindNotificationNextDetailViewController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -372,11 +411,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     OrderInfoModel *orderInfoModel= dataList[indexPath.section];
-    LYOrderDetailViewController *orderDetailViewController=[[LYOrderDetailViewController alloc]init];
-    orderDetailViewController.title=@"订单详情";
-    orderDetailViewController.delegate=self;
-    orderDetailViewController.orderInfoModel=orderInfoModel;
-    [self.navigationController pushViewController:orderDetailViewController animated:YES];
+    LPOrderDetailViewController *detailViewController = [[LPOrderDetailViewController alloc]init];
+    detailViewController.title = @"订单详情";
+    detailViewController.orderInfoModel = orderInfoModel;
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    
+//    LYOrderDetailViewController *orderDetailViewController=[[LYOrderDetailViewController alloc]init];
+//    orderDetailViewController.title=@"订单详情";
+//    orderDetailViewController.delegate=self;
+//    orderDetailViewController.orderInfoModel=orderInfoModel;
+//    [self.navigationController pushViewController:orderDetailViewController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -400,7 +444,7 @@
 - (void)deleteOrder:(UIButton *)button{
     OrderInfoModel *orderInfoModel = [dataList objectAtIndex:button.tag];
     __weak __typeof(self)weakSelf = self;
-    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确定要删除订单吗？" cancelButtonTitle:@"取消" otherButtonTitles:@"" block:^(NSInteger buttonIndex) {
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确定要删除订单吗？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             
         }else if (buttonIndex == 1){
@@ -408,9 +452,9 @@
             [[LYUserHttpTool shareInstance]delMyOrder:dict complete:^(BOOL result) {
                 if (result) {
                     [MyUtil showLikePlaceMessage:@"删除成功"];
-                    [[NSNotificationCenter defaultCenter]postNotificationName:@"" object:nil];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"loadUserInfo" object:nil];
                     if (orderInfoModel.ordertype == 1) {
-                        [[NSNotificationCenter defaultCenter]postNotificationName:@"" object:nil];
+                        [[NSNotificationCenter defaultCenter]postNotificationName:@"YunoticeToReload" object:nil];
                     }
                     [weakSelf refreshData];
                 }
@@ -447,14 +491,19 @@
             }
         }
     }
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@""] style:UIBarButtonItemStylePlain target:self action:nil];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
     self.navigationItem.backBarButtonItem = left;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 //查看详情
 - (void)checkForDetail:(UIButton *)button{
-    NSLog(@"checkForDetail");
+//    NSLog(@"checkForDetail");
+    OrderInfoModel *orderInfoModel= dataList[button.tag];
+    LPOrderDetailViewController *detailViewController = [[LPOrderDetailViewController alloc]init];
+    detailViewController.title = @"订单详情";
+    detailViewController.orderInfoModel = orderInfoModel;
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 //取消订单
@@ -476,6 +525,7 @@
             }];
         }
     }];
+    [alert show];
 }
 
 //评价
@@ -491,7 +541,7 @@
 //    NSLog(@"shareZujuOrder");
     OrderInfoModel *orderInfoModel = dataList[button.tag];
     __weak __typeof(self)weakSelf = self;
-    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"" message:@"" cancelButtonTitle:@"" otherButtonTitles:@"" block:^(NSInteger buttonIndex) {
+    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"选择分享平台" message:@"" cancelButtonTitle:@"分享到娱" otherButtonTitles:@"其他平台" block:^(NSInteger buttonIndex) {
         if (buttonIndex == 0) {
             NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"订单详情",@"titleName":@"分享",@"value":@"分享到娱"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
@@ -521,7 +571,9 @@
                 
             }
         }
+        
     }];
+    [alert show];
 }
 
 //删除参与的订单

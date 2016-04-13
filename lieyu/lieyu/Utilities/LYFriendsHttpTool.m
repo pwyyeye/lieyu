@@ -35,7 +35,7 @@
 //        [app stopLoading];
     } failure:^(NSError *err) {
         [MyUtil showMessage:@"请求失败"];
-        compelte([NSMutableArray arrayWithCapacity:0]);
+        compelte([NSMutableArray arrayWithObject:@"0"]);
 //        [app stopLoading];
     }];
 }

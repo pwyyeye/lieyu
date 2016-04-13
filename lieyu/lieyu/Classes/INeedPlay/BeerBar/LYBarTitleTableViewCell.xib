@@ -49,7 +49,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="woP-bL-c3p">
                         <rect key="frame" x="240" y="10" width="80" height="32"/>
-                        <color key="backgroundColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="SOK-j9-mOV"/>
                             <constraint firstAttribute="width" constant="80" id="gfa-OK-bJu"/>

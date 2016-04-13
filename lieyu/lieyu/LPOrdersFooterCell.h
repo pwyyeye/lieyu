@@ -33,5 +33,6 @@
 @property (nonatomic, assign) id<LPOrdersFootDelegate> delegate;
 
 @property (nonatomic, strong) OrderInfoModel *model;
+@property (nonatomic, assign) BOOL detail;
 
 @end

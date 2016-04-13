@@ -27,6 +27,7 @@
 #import "LYYUHttpTool.h"
 #import "LYUserLoginViewController.h"
 #import "LYMyFriendDetailViewController.h"
+#import "LPMyOrdersViewController.h"
 
 @interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate,showImageInPreview>
 {
@@ -76,13 +77,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-    self.navigationController.navigationBarHidden=YES;
-}
-
--(void)viewWillLayoutSubviews{
-    [super  viewWillLayoutSubviews];
-    self.navigationController.navigationBarHidden=NO;
-    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -440,7 +435,8 @@
         __weak __typeof(self) weakSelf = self;
         [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:dic complete:^(NSString *result) {
             if(payamout == 0.0){
-                LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+                LPMyOrdersViewController *detailVC = [[LPMyOrdersViewController alloc]init];
+//                LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
                 [weakSelf.navigationController pushViewController:detailVC animated:YES];
             }else{
                 ChoosePayController *detailVC = [[ChoosePayController alloc]init];

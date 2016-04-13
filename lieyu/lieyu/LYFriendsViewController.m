@@ -606,6 +606,13 @@
     [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
         _index = 0;
         if(dataArray.count){
+            
+            NSString *str = dataArray.firstObject;
+            if (dataArray.count == 1 && [str isKindOfClass:[NSString class]]) {
+                _isFriendsPageUpLoad = NO;
+                [_tableView.mj_footer endRefreshing];
+            }else{
+            
                 if(_pageStartCountFriends == 0){
                     [_dataArray replaceObjectAtIndex:0 withObject:dataArray];
 //                    [weakSelf.tableView setContentOffset:CGPointZero animated:NO];
@@ -618,6 +625,7 @@
             _pageStartCountFriends ++;
             
             [weakSelf.tableView.mj_footer endRefreshing];
+            }
         }else{
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DetailLabelView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvU-0i-9FT">
+                    <rect key="frame" x="3" y="3" width="594" height="597"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择的VIP专属经理：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWh-t4-pb6">
+                            <rect key="frame" x="8" y="8" width="115" height="589"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15人参与" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4e-f8-rap">
+                            <rect key="frame" x="536.5" y="8" width="49.5" height="581"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="L4e-f8-rap" firstAttribute="top" secondItem="cvU-0i-9FT" secondAttribute="top" constant="8" id="8N1-gi-ku3"/>
+                        <constraint firstAttribute="trailing" secondItem="L4e-f8-rap" secondAttribute="trailing" constant="8" id="Ae9-EM-jlV"/>
+                        <constraint firstAttribute="bottom" secondItem="JWh-t4-pb6" secondAttribute="bottom" id="WDv-SL-iP5"/>
+                        <constraint firstItem="JWh-t4-pb6" firstAttribute="leading" secondItem="cvU-0i-9FT" secondAttribute="leading" constant="8" id="ZR3-WY-9Xh"/>
+                        <constraint firstAttribute="bottom" secondItem="L4e-f8-rap" secondAttribute="bottom" constant="8" id="flH-AS-hzp"/>
+                        <constraint firstItem="JWh-t4-pb6" firstAttribute="top" secondItem="cvU-0i-9FT" secondAttribute="top" constant="8" id="qX2-m8-XTx"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="cvU-0i-9FT" secondAttribute="trailing" constant="3" id="Ebu-ce-ocL"/>
+                <constraint firstItem="cvU-0i-9FT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="MBZ-tb-0nj"/>
+                <constraint firstItem="cvU-0i-9FT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="3" id="MW5-4c-x2z"/>
+                <constraint firstAttribute="bottom" secondItem="cvU-0i-9FT" secondAttribute="bottom" id="Tsw-ib-xIY"/>
+            </constraints>
+            <connections>
+                <outlet property="backGround" destination="cvU-0i-9FT" id="WCP-H6-Ns6"/>
+                <outlet property="introduceLbl" destination="JWh-t4-pb6" id="sRi-6S-hXU"/>
+                <outlet property="numberLbl" destination="L4e-f8-rap" id="u9c-Do-jzz"/>
+            </connections>
+        </view>
+    </objects>
+</document>
