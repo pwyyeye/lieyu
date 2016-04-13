@@ -61,7 +61,8 @@
 
 - (void)createPayButton{
     _payBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 123, SCREEN_WIDTH - 20, 52)];
-    [_payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
+//    [_payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
+    [_payBtn setBackgroundColor:RGBA(186, 40, 227, 1)];
     _payBtn.layer.cornerRadius = 4;
     _payBtn.layer.masksToBounds = YES;
     [_payBtn setTitle:@"确认支付" forState:UIControlStateNormal];
@@ -159,6 +160,7 @@
     //
     //    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
+    NSLog(@"%@",self.navigationController.viewControllers);
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]||[controller isKindOfClass:[PTjoinInViewController class]]){
             LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];

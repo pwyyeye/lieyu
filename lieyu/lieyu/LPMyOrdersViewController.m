@@ -15,13 +15,14 @@
 #import "LYEvaluationController.h"
 #import "PinkerShareController.h"
 #import "UMSocial.h"
+#import "FindNotificationNextDetailViewController.h"
 
 #import "LPOrdersHeaderCell.h"
 #import "LPOrdersBodyCell.h"
 #import "LPOrdersFooterCell.h"
 #import "LPOrdersHeaderView.h"
 #import "LYOrderDetailViewController.h"
-#import "LPOrderDetailViewController.h"
+#import "MainTabbarViewController.h"
 
 @interface LPMyOrdersViewController ()<UITableViewDelegate,UITableViewDataSource,LPOrdersFootDelegate>
 {
@@ -45,6 +46,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+//    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -279,6 +281,10 @@
     [self getOrderWithDic:nowDic];
 }
 
+- (void)refreshTableView{
+    [self refreshData];
+}
+
 - (void)loadMoreData{
     [nowDic removeObjectForKey:@"p"];
     [nowDic setObject:[NSNumber numberWithInt:pageCount] forKey:@"p"];
@@ -320,6 +326,7 @@
         [kongButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         kongButton.layer.cornerRadius = 4;
         kongButton.tag = 502;
+        [kongButton addTarget:self action:@selector(jumpToYue) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:kongButton];
     }
 }
@@ -334,7 +341,32 @@
     [myTableView setHidden:NO];
 }
 
+- (void)jumpToYue{
+//    NSLog(@"dsafds");
+//    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpToFirstViewController" object:nil];
+    
+    MainTabbarViewController *tabBarVC = (MainTabbarViewController *)self.navigationController.viewControllers.firstObject;
+//    NSLog(@"--->%@",self.navigationController.viewControllers.firstObject);
+    tabBarVC.selectedIndex = 0;
+    [self.navigationController popToViewController:tabBarVC animated:YES];
+    
+}
+
 - (void)backForward{
+    for (UIViewController *controller in self.navigationController.viewControllers) {
+        if ([controller isKindOfClass:[ChoosePayController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+        if ([controller isKindOfClass:[PinkerShareController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+        if ([controller isKindOfClass:[FindNotificationNextDetailViewController class]]) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            return;
+        }
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 

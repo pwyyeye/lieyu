@@ -114,6 +114,7 @@
                 [_firstButton setTitle:@"删除订单" forState:UIControlStateNormal];
                 [_firstButton addTarget:self action:@selector(deleteJoinedOrder:) forControlEvents:UIControlEventTouchUpInside];
                 [_secondButton setTitle:@"立即支付" forState:UIControlStateNormal];
+                [_secondButton addTarget:self action:@selector(payOrder:) forControlEvents:UIControlEventTouchUpInside];
             }
         }else{//不是组局
             [_firstButton setTitle:@"删除订单" forState:UIControlStateNormal];
@@ -502,6 +503,9 @@
 }
 
 - (void)backBtnClick{
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
