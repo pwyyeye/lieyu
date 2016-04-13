@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *imagesArray;
 @property (nonatomic, strong) NSMutableArray *collectionData;
 @property (nonatomic, strong) NSMutableArray *cellsArray;
-
+@property (nonatomic, strong) NSMutableArray *tagsArray;
 @property (nonatomic, strong) preview *subView;
 
 @end
@@ -37,6 +37,7 @@
     
     self.imagesArray = [[NSMutableArray alloc]init];
     self.cellsArray = [[NSMutableArray alloc]init];
+    self.tagsArray = [[NSMutableArray alloc]init];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:[NSString stringWithFormat:@"完成0/%d",self.imagesCount] style:UIBarButtonItemStylePlain target:self action:@selector(pickOK)];
     self.navigationItem.rightBarButtonItem = rightItem;
     rightItem.enabled = NO;
@@ -131,8 +132,18 @@
             //            [weakcell.imageTap setBackgroundImage:[self.collectionData objectAtIndex:indexPath.item % 10] forState:UIControlStateNormal];
         });
     });
+    
     cell.cellButton.tag = indexPath.item;
     cell.tag = indexPath.item;
+    NSString *tagString = [NSString stringWithFormat:@"%ld",cell.tag];
+    for (NSString *imCell in self.tagsArray) {
+        NSLog(@"%@---%@",imCell,tagString);
+        if ([imCell isEqualToString:tagString]) {
+            cell.cellButton.selected = YES;
+        }else{
+            cell.cellButton.selected = NO;
+        }
+    }
     [cell.cellButton addTarget:self action:@selector(pickImage:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
@@ -161,7 +172,8 @@
 - (void)pickOK{
     if(selectedPages > 0){
         for (int i = 0 ; i < self.cellsArray.count; i ++) {
-            int tag = (int)((MyCell *)[self.cellsArray objectAtIndex:i]).tag;
+//            int tag = (int)((MyCell *)[self.cellsArray objectAtIndex:i]).tag;
+            int tag = [[self.tagsArray objectAtIndex:i]intValue];
             [self.imagesArray addObject:[UIImage imageWithCGImage:[[((ALAsset *)[self.collectionData objectAtIndex:tag]) defaultRepresentation] fullScreenImage]]];
             //            [self.imagesArray addObject:[self.collectionData objectAtIndex:tag]];
         }
@@ -191,6 +203,10 @@
             if(button.tag == ((MyCell *)[self.cellsArray objectAtIndex:i]).tag){
                 [self.cellsArray removeObjectAtIndex:i];
             }
+            NSString *tagString = [NSString stringWithFormat:@"%ld",button.tag];
+            if ([tagString isEqualToString:[self.tagsArray objectAtIndex:i]]) {
+                [self.tagsArray removeObjectAtIndex:i];
+            }
         }
         return;
     }
@@ -200,7 +216,9 @@
         self.navigationItem.rightBarButtonItem.title = [NSString stringWithFormat:@"选择%d/%d",selectedPages,_imagesCount];
         self.navigationItem.rightBarButtonItem.tintColor = RGBA(0, 0, 0, 1);
         self.navigationItem.rightBarButtonItem.enabled = YES;
-        [self.cellsArray addObject:((MyCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0]])];
+        MyCell *cell = ((MyCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0]]);
+        [self.cellsArray addObject:cell];
+        [self.tagsArray addObject:[NSString stringWithFormat:@"%ld",cell.tag]];
     }
 }
 

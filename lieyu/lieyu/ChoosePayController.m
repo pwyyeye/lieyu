@@ -60,9 +60,10 @@
 }
 
 - (void)createPayButton{
-    _payBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 123, SCREEN_WIDTH - 20, 52)];
+    _payBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 123, SCREEN_WIDTH - 20, 44)];
 //    [_payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
-    [_payBtn setBackgroundColor:RGBA(186, 40, 227, 1)];
+    [_payBtn setBackgroundColor:[UIColor clearColor]];
+    [_payBtn setBackgroundImage:[UIImage imageNamed:@"LoginNew"] forState:UIControlStateNormal];
     _payBtn.layer.cornerRadius = 4;
     _payBtn.layer.masksToBounds = YES;
     [_payBtn setTitle:@"确认支付" forState:UIControlStateNormal];

@@ -317,12 +317,22 @@
     //            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
     //            [self.navigationController pushViewController:conversationVC animated:YES];
     
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-    //    [view addSubview:backButton];
-    [backButton addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+//    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
+//    [backButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+//    //    [view addSubview:backButton];
+//    [backButton addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+//    conversationVC.navigationItem.leftBarButtonItem = item;
+    
+    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [itemBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
     conversationVC.navigationItem.leftBarButtonItem = item;
+    
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backBtn"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick)];
+//    conversationVC.navigationItem.leftBarButtonItem = backItem;
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
@@ -493,12 +503,20 @@
     [IQKeyboardManager sharedManager].isAdd = YES;
     
 //    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
-    [backButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-//    [view addSubview:backButton];
-    [backButton addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+//    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
+//    [backButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+////    [view addSubview:backButton];
+//    [backButton addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+//    _conversationVC.navigationItem.leftBarButtonItem = item;
+    
+    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [itemBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
     _conversationVC.navigationItem.leftBarButtonItem = item;
+    
     [self.navigationController pushViewController:_conversationVC animated:YES];
 }
 
