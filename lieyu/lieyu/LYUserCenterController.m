@@ -14,6 +14,7 @@
 #import "TuiJianShangJiaViewController.h"//推荐商家
 #import "MyCollectionViewController.h"//我的收藏
 #import "LYMyOrderManageViewController.h"//我的订单
+#import "LPMyOrdersViewController.h"
 #import "Setting.h"//设置
 #import "MyZSManageViewController.h"//我的专属经理
 #import "LYCarListViewController.h"//购物车

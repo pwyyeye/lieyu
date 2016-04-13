@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     _quantityLbl.layer.cornerRadius = 6;
+    _userAvatarImg.layer.cornerRadius = _userAvatarImg.frame.size.width / 2 ;
+    _userAvatarImg.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,6 +24,16 @@
 }
 
 - (void)configureFriendsCell:(OrderInfoModel *)model{
+    if (model.pinkerList.count - self.tag > 1) {
+        _shaperLine.hidden = NO;
+    }else{
+        _shaperLine.hidden = YES;
+        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 60) byRoundingCorners:UIRectCornerBottomRight | UIRectCornerBottomLeft cornerRadii:CGSizeMake(4, 4)];
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 60);
+        layer.path = bezierPath.CGPath;
+        _backGround.layer.mask = layer;
+    }
     if (model.pinkerList.count > self.tag){
         NSDictionary *dict = [model.pinkerList objectAtIndex:self.tag];
         _avatar_img = [dict objectForKey:@"inmenberAvatar_img"];
@@ -46,6 +58,14 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     UserModel *myModel = app.userModel;
     _quantityLbl.hidden = YES;
+    _shaperLine.hidden = YES;
+    
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 60) byRoundingCorners:UIRectCornerBottomRight | UIRectCornerBottomLeft cornerRadii:CGSizeMake(4, 4)];
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 60);
+    layer.path = bezierPath.CGPath;
+    _backGround.layer.mask = layer;
+    
     if (model.ordertype == 1 && myModel.userid != model.userid) {//拼客的参与者
         _avatar_img = model.avatar_img;
         _imuserId = model.imuserid;
@@ -65,6 +85,10 @@
         _userid = model.checkuserid;
         [_userAvatarImg sd_setImageWithURL:[NSURL URLWithString:_avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_userNameLbl setText:_usernick?_usernick:(_username?_username:_mobile)];
+    }
+    if(model.orderStatus == 0){
+        _phoneBtn.hidden = YES;
+        _messageBtn.hidden = YES;
     }
 }
 

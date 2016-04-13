@@ -46,6 +46,7 @@
                 <constraint firstAttribute="bottom" secondItem="cvU-0i-9FT" secondAttribute="bottom" id="Tsw-ib-xIY"/>
             </constraints>
             <connections>
+                <outlet property="backGround" destination="cvU-0i-9FT" id="WCP-H6-Ns6"/>
                 <outlet property="introduceLbl" destination="JWh-t4-pb6" id="sRi-6S-hXU"/>
                 <outlet property="numberLbl" destination="L4e-f8-rap" id="u9c-Do-jzz"/>
             </connections>

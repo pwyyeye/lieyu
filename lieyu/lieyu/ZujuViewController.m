@@ -12,6 +12,7 @@
 #import "ZSDetailModel.h"
 #import "ChoosePayController.h"
 #import "LYMyOrderManageViewController.h"
+#import "LPMyOrdersViewController.h"
 #import "PinkerShareController.h"
 
 #import "TimeView.h"

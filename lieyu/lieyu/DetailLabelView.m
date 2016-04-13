@@ -9,10 +9,23 @@
 #import "DetailLabelView.h"
 
 @implementation DetailLabelView
+- (void)awakeFromNib{
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 26) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(4, 4)];
+    CAShapeLayer *layer = [CAShapeLayer layer];
+    layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 26);
+    layer.path = bezierPath.CGPath;
+    _backGround.layer.mask = layer;
+}
 
-- (void)configureManager{
-    [_introduceLbl setText:@"选择的VIP专属经理:"];
-    [_numberLbl setHidden:YES];
+
+- (void)configureManager:(BOOL)isManager{
+    if (isManager) {
+        [_introduceLbl setText:@"选择的VIP专属经理:"];
+        [_numberLbl setHidden:YES];
+    }else{
+        [_introduceLbl setText:@"邀请我的人:"];
+        [_numberLbl setHidden:YES];
+    }
 }
 
 - (void)configureNumber:(int)number{

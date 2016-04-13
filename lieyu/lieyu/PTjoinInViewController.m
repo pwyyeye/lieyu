@@ -15,6 +15,8 @@
 #import "ChoosePayController.h"
 #import "LYHomePageHttpTool.h"
 #import "LYMyOrderManageViewController.h"
+#import "LPMyOrdersViewController.h"
+
 @interface PTjoinInViewController ()
 
 @end
@@ -221,7 +223,8 @@
             if (pinKeModel.pinkerNeedPayAmount.doubleValue==0.0) {
                 UIViewController *detailViewController;
                 
-                detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//                detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+                detailViewController = [[LPMyOrdersViewController alloc]init];
     
                 [weakSelf.navigationController pushViewController:detailViewController animated:YES];
 

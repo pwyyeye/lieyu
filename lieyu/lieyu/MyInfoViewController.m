@@ -20,6 +20,7 @@
 #import "MyMessageListViewController.h"//我的消息列表
 #import "UserTagModel.h"
 #import "LYUserHttpTool.h"
+#import "LPMyOrdersViewController.h"
 @interface MyInfoViewController ()
 {
     NSString *userType;
@@ -232,7 +233,8 @@
                 
             case 1:// 订单
             {
-                LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+                LPMyOrdersViewController *myOrderManageViewController = [[LPMyOrdersViewController alloc]init];
+//                LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
                 myOrderManageViewController.title=@"我的订单";
                 [self.navigationController pushViewController:myOrderManageViewController animated:YES];
                 break;
@@ -294,7 +296,8 @@
                 
             case 1:// 订单
             {
-                LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+                LPMyOrdersViewController *myOrderManageViewController = [[LPMyOrdersViewController alloc]init];
+//                LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
                 myOrderManageViewController.title=@"我的订单";
                 [self.navigationController pushViewController:myOrderManageViewController animated:YES];
                 break;
@@ -352,7 +355,8 @@
                 
             case 0:// 订单
             {
-                LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+                LPMyOrdersViewController *myOrderManageViewController = [[LPMyOrdersViewController alloc]init];
+//                LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
                 myOrderManageViewController.title=@"我的订单";
                 [self.navigationController pushViewController:myOrderManageViewController animated:YES];
                 break;

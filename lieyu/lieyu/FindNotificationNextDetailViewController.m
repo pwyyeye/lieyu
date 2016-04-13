@@ -12,6 +12,7 @@
 #import "MainTabbarViewController.h"
 #import "LYFriendsMessageViewController.h"
 #import "ZSOrderViewController.h"
+#import "LPMyOrdersViewController.h"
 
 @interface FindNotificationNextDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *label_title;
@@ -22,6 +23,10 @@
 @end
 
 @implementation FindNotificationNextDetailViewController
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,9 +49,10 @@
     if ([_findNewList.type isEqualToString:@"1"]) {//订单1.普通用户，2.专属经理
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         if ([app.userModel.usertype isEqualToString:@"1"]) {
-            LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+//            LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            LPMyOrdersViewController *detailVC = [[LPMyOrdersViewController alloc]init];
             detailVC.title=@"我的订单";
-            detailVC.orderType=0;
+            detailVC.orderIndex=0;
             [self.navigationController pushViewController:detailVC animated:YES];
         }else{
             ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];

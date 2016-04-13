@@ -8,6 +8,8 @@
 
 #import "LYBaseViewController.h"
 
-@interface LPMyOrdersViewController : LYBaseViewController
+#import "LPOrderDetailViewController.h"
+
+@interface LPMyOrdersViewController : LYBaseViewController<LPOrderDetailDelegate>
 @property (nonatomic, assign) int orderIndex;
 @end

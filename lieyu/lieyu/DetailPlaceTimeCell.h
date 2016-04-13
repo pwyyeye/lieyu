@@ -11,6 +11,7 @@
 @interface DetailPlaceTimeCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *placeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *TimeLbl;
+@property (weak, nonatomic) IBOutlet UIView *backGround;
 
 @property (nonatomic, strong) OrderInfoModel *orderInfoModel;
 
