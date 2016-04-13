@@ -23,11 +23,13 @@
 #import "ZSManageHttpTool.h"
 #import "ZSBalance.h"
 #import "FindNotificationViewController.h"
+#import "OrderTTL.h"
 
 @interface ZSMaintViewController ()<UITextFieldDelegate>{
     UIButton *_balanceButton;
     ZSBalance *_balance;
     UIVisualEffectView *_effctView;
+    OrderTTL *_orderTTL;
 }
 @property (nonatomic,strong) UINavigationController *navShangHu;
 @end
@@ -55,6 +57,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     [self getBalance];
+    [self getBadge];
 }
 
 - (void)getBalance{
@@ -73,7 +76,7 @@
 #pragma mark 初始化数据
 -(void)getDataForShowList{
     [listArr removeAllObjects];
-    NSDictionary *myNotification = @{@"colorRGB":RGB(254, 221, 87),@"imageContent":@"shopMyNotification",@"title":@"消息通知",@"delInfo":@""};
+    NSDictionary *myNotification = @{@"colorRGB":RGB(65, 154, 241),@"imageContent":@"shopMyNotification",@"title":@"消息通知",@"delInfo":@""};
     NSDictionary *myReceiveDic = @{@"colorRGB":RGB(254, 221, 87),@"imageContent":@"shopMyReceive",@"title":@"我的收入",@"delInfo":@""};
     NSDictionary *dic=@{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""};
     NSDictionary *dic1=@{@"colorRGB":RGB(136, 223, 121),@"imageContent":@"Fill20179",@"title":@"最近联系",@"delInfo":@"您有客户留言请及时查收"};
@@ -189,7 +192,10 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (![MyUtil isEmptyString:app.s_app_id]) {
         [self getBalance];
+        [self getBadge];
     }
+    
+   
     
 //    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
 //        _balance = balance;
@@ -211,6 +217,20 @@
     UITextField *text = [self.view viewWithTag:123];
     text.text = @"";
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+#pragma mark - 角标
+- (void)getBadge{
+        [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
+            _orderTTL=result;
+            NSIndexPath *indexP = [NSIndexPath indexPathForRow:0 inSection:0];
+            ZSListCell *cell = [_tableView cellForRowAtIndexPath:indexP];
+            if (result.pushMessageNum > 0) {//有消息
+                cell.mesImageView.hidden = NO;
+            }else{//无新消息
+                cell.mesImageView.hidden = YES;
+            }
+        }];
 }
 
 #pragma mark - 扫一扫

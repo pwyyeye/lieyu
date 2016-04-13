@@ -391,7 +391,7 @@
     </objects>
     <resources>
         <image name="QRCodeHeaderbg.png" width="74" height="74"/>
-        <image name="transparentBG.png" width="375" height="239"/>
+        <image name="transparentBG.png" width="1125" height="717"/>
         <image name="waitConsumption" width="14" height="14"/>
         <image name="waitEvaluation" width="14" height="14"/>
         <image name="waitPay" width="14" height="14"/>
