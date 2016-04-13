@@ -112,7 +112,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    [self loadHeaderView];
     [self loadHeaderViewBadge];
     [self getGoodsNum];
     
@@ -438,6 +438,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //    
 //    return headerView;
 //}
+
+/*
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     //因为顶到电池栏 所以 height 小20像素
@@ -473,7 +475,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //    }else{
 //            return ;
 //        }
-}
+} */
 
 //
 //-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
