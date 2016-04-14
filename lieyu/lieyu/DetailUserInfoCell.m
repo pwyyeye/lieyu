@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     _quantityLbl.layer.cornerRadius = 6;
+    _quantityLbl.layer.masksToBounds = YES;
     _userAvatarImg.layer.cornerRadius = _userAvatarImg.frame.size.width / 2 ;
     _userAvatarImg.layer.masksToBounds = YES;
 }
@@ -49,7 +50,7 @@
             _quantityLbl.hidden = YES;
         }else{
             _quantityLbl.hidden = NO;
-            [_quantityLbl setText:[dict objectForKey:@"quantity"]];
+            [_quantityLbl setText:[[dict objectForKey:@"quantity"] stringValue]];
         }
     }
 }

@@ -344,8 +344,8 @@
         </view>
     </objects>
     <resources>
-        <image name="CustomBtn_Selected.png" width="21" height="21"/>
-        <image name="CustomBtn_unSelected.png" width="21" height="21"/>
+        <image name="CustomBtn_Selected.png" width="24" height="24"/>
+        <image name="CustomBtn_unSelected.png" width="24" height="24"/>
         <image name="advance.png" width="24" height="24"/>
     </resources>
 </document>
