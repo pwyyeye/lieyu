@@ -124,7 +124,7 @@
     }
     NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"CHDoOrderBottomView" owner:nil options:nil];
     CHDoOrderBottomView *bottomView= (CHDoOrderBottomView *)[nibView objectAtIndex:0];
-    bottomView.priceLal.text=carInfoModel.all_info.all_amount;
+    bottomView.priceLal.text=[NSString stringWithFormat:@"¥%@",carInfoModel.all_info.all_amount];
     
     return bottomView;
 }

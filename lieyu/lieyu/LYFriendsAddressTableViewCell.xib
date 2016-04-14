@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="55.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addressFriend.png" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
@@ -22,21 +22,21 @@
                             <constraint firstAttribute="height" constant="24" id="uHW-9L-Inf"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLc-dG-9ra">
-                        <rect key="frame" x="207" y="19" width="44" height="18"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLc-dG-9ra">
+                        <rect key="frame" x="207" y="6" width="44" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="18" id="SXG-I7-BIM"/>
+                            <constraint firstAttribute="height" constant="44" id="SXG-I7-BIM"/>
                             <constraint firstAttribute="width" constant="44" id="z5C-ZU-iMi"/>
                         </constraints>
-                        <state key="normal" backgroundImage="haoyou_biaobai.png"/>
+                        <state key="normal" image="haoyou_biaobai.png"/>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETK-xZ-gYL">
-                        <rect key="frame" x="266" y="19" width="44" height="18"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETK-xZ-gYL">
+                        <rect key="frame" x="266" y="6" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="TFM-8e-fes"/>
-                            <constraint firstAttribute="height" constant="18" id="zCd-Xf-9I5"/>
+                            <constraint firstAttribute="height" constant="44" id="zCd-Xf-9I5"/>
                         </constraints>
-                        <state key="normal" backgroundImage="haoyou_pinglun.png"/>
+                        <state key="normal" image="haoyou_pinglun.png"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFq-hw-xAl">
                         <rect key="frame" x="60" y="17" width="121" height="21"/>
@@ -90,7 +90,7 @@
                 <outlet property="imgView_location" destination="vZ1-l2-3kw" id="l2C-Ll-gRJ"/>
                 <outlet property="label_address" destination="DFq-hw-xAl" id="oyG-CH-XvP"/>
             </connections>
-            <point key="canvasLocation" x="247" y="271"/>
+            <point key="canvasLocation" x="375" y="272"/>
         </tableViewCell>
     </objects>
     <resources>

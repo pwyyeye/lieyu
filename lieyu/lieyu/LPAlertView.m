@@ -21,7 +21,7 @@
 - (instancetype)init{
     if(self = [super initWithFrame:[UIScreen mainScreen].bounds]){
         self.backgroundColor = [UIColor clearColor];
-        _backgroundView = [[UIView alloc]initWithFrame:self.frame];
+        _backgroundView = [[UIView alloc]initWithFrame:self.bounds];
         _backgroundView.backgroundColor = RGBA(0, 0, 0, 0.4);
         [self addSubview:_backgroundView];
     }
@@ -52,7 +52,7 @@
         va_end(args);
         
         self.backgroundColor = [UIColor clearColor];
-        _backgroundView = [[UIView alloc]initWithFrame:self.frame];
+        _backgroundView = [[UIView alloc]initWithFrame:self.bounds];
         _backgroundView.backgroundColor = RGBA(0, 0, 0, 0.4);
         [self addSubview:_backgroundView];
 //        if(!_contentView){
@@ -95,7 +95,7 @@
             button.layer.cornerRadius = 5.f;
             button.layer.masksToBounds = YES;
             button.backgroundColor = [UIColor whiteColor];
-            [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+            [button setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
             [button setTitle:buttonTitle forState:UIControlStateNormal];
             [button addTarget:self action:@selector(buttonWithPressed:) forControlEvents:UIControlEventTouchUpInside];
             [_buttonArray addObject:button];

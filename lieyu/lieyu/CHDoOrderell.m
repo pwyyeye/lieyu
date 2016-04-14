@@ -25,7 +25,7 @@
     [_goodImageView  setImageWithURL:[NSURL URLWithString:model.product.image] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _goodNameLbl.text=model.product.fullname;
     _numLbl.text=[NSString stringWithFormat:@"x%@(%@)",model.quantity,model.product.unit];
-    _priceLbl.text=model.product.price;
+    _priceLbl.text=[NSString stringWithFormat:@"¥%@",model.product.price];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",model.product.marketprice] attributes:attribtDic];
     _marketPriceLbl.attributedText=attribtStr;
