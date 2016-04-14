@@ -68,7 +68,7 @@
 //    [self getMenuHrizontal];
     [self initHeader];
     [self changeTableViewAtIndex:_orderIndex];
-    [self getDaiXiaoFei];
+//    [self getDaiXiaoFei];
     
     __weak typeof(self) weakSelf = self;
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{

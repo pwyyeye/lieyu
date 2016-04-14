@@ -64,11 +64,20 @@
     NSString *topicNameStr = nil;
     if(_recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",_recentM.topicTypeName];
     CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
+    NSMutableAttributedString *attributeStr = nil;
+    if(_recentM.topicTypeName.length){
+        
+        attributeStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@",topicNameStr,recentM.message]];
+    }else{
+        attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
+    }
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-    if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width;
+//    if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width;
     [paragraphStyle setLineSpacing:3];
-    [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
+    [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributeStr length])];
+    if(_recentM.topicTypeName.length){
+        [attributeStr addAttribute:NSForegroundColorAttributeName value:RGBA(186, 40, 227, 1) range:NSMakeRange(0, topicNameStr.length)];
+    }
     
     if(recentM.message != nil){
 //        [_label_content setText:recentM.message];

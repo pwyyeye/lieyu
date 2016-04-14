@@ -25,7 +25,7 @@
 @implementation FindNotificationNextDetailViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewDidLoad {
@@ -39,7 +39,6 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
     [_View_bg addGestureRecognizer:tapGes];
 }
-
 
 - (void)tapClick{
     if ([_findNewList.type isEqualToString:@"1"]) {//订单1.普通用户，2.专属经理
