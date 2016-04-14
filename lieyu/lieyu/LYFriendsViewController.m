@@ -2049,13 +2049,18 @@
             
             NSString *topicNameStr = nil;
             if(recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",recentM.topicTypeName];
-            CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-            NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
-            [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, recentM.message.length )];
+            NSMutableAttributedString *attributeStr = nil;
+            if(recentM.topicTypeName.length){
+                attributeStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@",topicNameStr,recentM.message]];
+            }else{
+                attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
+            }
+            
+            [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, attributeStr.length )];
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-            if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width+3;
+//            if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width+3;
             [paragraphStyle setLineSpacing:3];
-            [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
+            [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributeStr length])];
             size =  [attributeStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;
            // if(size.height >= 47) size.height = 47;
             if(![MyUtil isEmptyString:recentM.message]) {
