@@ -68,7 +68,7 @@
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
     if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width;
     [paragraphStyle setLineSpacing:3];
-    [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
+    [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributeStr length])];
     
     if(recentM.message != nil){
 //        [_label_content setText:recentM.message];

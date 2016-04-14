@@ -36,11 +36,6 @@
     [_View_bg addGestureRecognizer:tapGes];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
 - (void)tapClick{
     if ([_findNewList.type isEqualToString:@"1"]) {//订单1.普通用户，2.专属经理
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;

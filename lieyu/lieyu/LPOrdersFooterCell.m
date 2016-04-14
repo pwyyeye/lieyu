@@ -170,7 +170,7 @@
         _secondButton.layer.borderColor = [RGBA(127, 127, 127, 1) CGColor];
         _secondButton.layer.borderWidth = 0.5;
         [_secondButton setTitleColor:RGBA(127, 127, 127, 1) forState:UIControlStateNormal];
-        [_introduceLbl setFont:[UIFont fontWithName:@"STHeitiJ-Medium" size:14]];
+        [_introduceLbl setFont:[UIFont fontWithName:@"STHeitiJ-Medium" size:12]];
         NSString *introduce;
         NSString *consumptionCode;
         if (model.userid == userModel.userid) {
@@ -235,7 +235,7 @@
         if (model.ordertype == 1) {
             _introduceLbl.hidden = NO;
             [_introduceLbl setText:[NSString stringWithFormat:@"%@人组局",model.allnum]];
-            [_introduceLbl setFont:[UIFont systemFontOfSize:14]];
+            [_introduceLbl setFont:[UIFont systemFontOfSize:12]];
         }else{
             _introduceLbl.hidden = YES;
         }

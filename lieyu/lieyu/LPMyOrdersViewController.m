@@ -413,6 +413,7 @@
     OrderInfoModel *orderInfoModel= dataList[indexPath.section];
     LPOrderDetailViewController *detailViewController = [[LPOrderDetailViewController alloc]init];
     detailViewController.title = @"订单详情";
+    detailViewController.delegate = self;
     detailViewController.orderInfoModel = orderInfoModel;
     [self.navigationController pushViewController:detailViewController animated:YES];
     
@@ -502,6 +503,7 @@
     OrderInfoModel *orderInfoModel= dataList[button.tag];
     LPOrderDetailViewController *detailViewController = [[LPOrderDetailViewController alloc]init];
     detailViewController.title = @"订单详情";
+    detailViewController.delegate = self;
     detailViewController.orderInfoModel = orderInfoModel;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }

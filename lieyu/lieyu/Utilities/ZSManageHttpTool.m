@@ -40,9 +40,9 @@
         
         if ([code isEqualToString:@"1"]) {
             NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel mj_objectArrayWithKeyValuesArray:dataList]];
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
+//            dispatch_async(dispatch_get_main_queue(), ^(void) {
                 block(tempArr);
-            });
+//            });
 
         }else{
             [MyUtil showMessage:message];
