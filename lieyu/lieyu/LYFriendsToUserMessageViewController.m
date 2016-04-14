@@ -744,11 +744,14 @@
             if(recentM.topicTypeName.length) topicNameStr = [NSString stringWithFormat:@"#%@#",recentM.topicTypeName];
             CGSize topicSize = [topicNameStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:(NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
             NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc]initWithString:recentM.message];
+            if (topicNameStr.length) {
+                attributeStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@",topicNameStr,recentM.message]];
+            }
             [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, recentM.message.length )];
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-            if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width+3;
+//            if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width+3;
             [paragraphStyle setLineSpacing:3];
-            [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [recentM.message length])];
+            [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributeStr length])];
             size =  [attributeStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil].size;
             if(![MyUtil isEmptyString:recentM.message]) {
                 if(size.height >= 57 ) size.height = 57;

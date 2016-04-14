@@ -233,7 +233,7 @@
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitPay.frame;
-                badge.frame=CGRectMake(CGRectGetMidX(_waitPay.frame) + 11, 5, 22, 12);
+                badge.frame=CGRectMake(_waitPay.center.x + 11, 5, 22, 12);
                 badge.tag=100;
                 [_waitPay addSubview:badge];
             }
@@ -253,7 +253,7 @@
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitConsumption.frame;
-                badge.frame=CGRectMake(CGRectGetMidX(_waitConsumption.frame) + 11, 5, 22, 12);
+                badge.frame=CGRectMake(_waitConsumption.center.x + 11, 5, 22, 12);
                 badge.tag=101;
                 [_waitConsumption addSubview:badge];
             }
@@ -272,7 +272,7 @@
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitRebate.frame;
-                badge.frame=CGRectMake(CGRectGetMidX(_waitRebate.frame) + 11, 5, 22, 12);
+                badge.frame=CGRectMake(_waitRebate.center.x + 11, 5, 22, 12);
                 badge.tag=102;
                 [_waitRebate addSubview:badge];
             }
@@ -290,7 +290,7 @@
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitEvaluation.frame;
-                badge.frame=CGRectMake(CGRectGetMidX(_waitEvaluation.frame) + 11, 5, 22, 12);
+                badge.frame=CGRectMake(_waitEvaluation.center.x + 11, 5, 22, 12);
                 badge.tag=103;
                 [_waitEvaluation addSubview:badge];
             }
@@ -299,6 +299,7 @@
             [[_waitEvaluation viewWithTag:103] removeFromSuperview];
         }
         if (orderTTL.waitPayBack>0){//待退款
+            NSLog(@"--->%ld",orderTTL.waitPayBack);
             if(![_waitPayBack viewWithTag:104]){
                 UILabel *badge=[[UILabel alloc] init];
                 badge.backgroundColor=deafultColor;
@@ -308,7 +309,7 @@
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitPayBack.frame;
-                badge.frame=CGRectMake(CGRectGetMidX(_waitPayBack.frame) + 11, 5, 22, 12);
+                badge.frame=CGRectMake(_waitPay.center.x + 11, 5, 22, 12);
                 badge.tag=104;
                 [_waitPayBack addSubview:badge];
             }
