@@ -28,10 +28,10 @@
                         <constraint firstAttribute="height" constant="1" id="ITh-tz-DLb"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入十六位消费码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GGZ-PO-WNI">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入8位消费码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GGZ-PO-WNI">
                     <rect key="frame" x="15" y="100" width="290" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="VL9-H8-gVl"/>
