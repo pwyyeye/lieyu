@@ -747,7 +747,7 @@
             if (topicNameStr.length) {
                 attributeStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@",topicNameStr,recentM.message]];
             }
-            [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, recentM.message.length )];
+            [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, attributeStr.length )];
             NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
 //            if(topicNameStr.length) paragraphStyle.firstLineHeadIndent = topicSize.width+3;
             [paragraphStyle setLineSpacing:3];

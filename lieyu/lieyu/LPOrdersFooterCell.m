@@ -41,6 +41,7 @@
 //    }else{
     
 //    }
+//    [_introduceLbl setFont:[UIFont systemFontOfSize:12]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -57,7 +58,10 @@
     if (model.ordertype == 1) {
         if (model.pinkerList.count > 0) {
             for (NSDictionary *dict in model.pinkerList) {
-                _acturePriceLbl.text = [NSString stringWithFormat:@"¥%@",[dict objectForKey:@"price"]];
+//                if ([[dict objectForKey:@"inmember"] intValue] == userModel.userid && [[dict objectForKey:@"paymentStatus"] isEqualToString:@"1"]) {
+                if ([[dict objectForKey:@"inmember"]intValue] == userModel.userid) {
+                    _acturePriceLbl.text = [NSString stringWithFormat:@"¥%@",[dict objectForKey:@"price"]];
+                }
             }
         }else{
             _acturePriceLbl.text = [NSString stringWithFormat:@"¥%@",model.amountPay];
@@ -132,7 +136,12 @@
                     //免费发起
                     if (model.pinkerList.count > 0 ) {
                         for (NSDictionary *dic in model.pinkerList) {
-                            if ([dic objectForKey:@"inmember"] != [NSNumber numberWithInt:userModel.userid] && [dic objectForKey:@"inmember"] == [NSNumber numberWithInt:1]) {
+                            NSLog(@"[dic objectForKey:inmember:%@",[dic objectForKey:@"inmember"]);
+                            NSLog(@"[NSNumber numberWithInt:userModel.userid]:%@",[NSNumber numberWithInt:userModel.userid]);
+                            NSLog(@"[dic objectForKey:paymentStatus:%@",[dic objectForKey:@"paymentStatus"]);
+                            NSLog(@"[NSNumber numberWithInt:1]:%@",[NSNumber numberWithInt:1]);
+                            
+                            if ([[dic objectForKey:@"inmember"] intValue] != userModel.userid && [[dic objectForKey:@"paymentStatus"]intValue] == 1) {
                                 //不是发起人并且有人支付
                                 payCount ++;
                             }
@@ -146,8 +155,19 @@
                         [_firstButton addTarget:self.delegate action:@selector(deleteOrder:) forControlEvents:UIControlEventTouchUpInside];
                     }
                 }else{
-                    [_firstButton setTitle:@"取消组局" forState:UIControlStateNormal];
-                    [_firstButton addTarget:self.delegate action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];
+                    int payCount = 0 ;
+                    for (NSDictionary *dic in model.pinkerList) {
+                        if ([[dic objectForKey:@"paymentStatus"]intValue] == 1) {
+                            payCount ++;
+                        }
+                    }
+                    if (payCount >= 1) {
+                        [_firstButton setTitle:@"取消组局" forState:UIControlStateNormal];
+                        [_firstButton addTarget:self.delegate action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];
+                    }else{
+                        [_firstButton setTitle:@"删除组局" forState:UIControlStateNormal];
+                        [_firstButton addTarget:self.delegate action:@selector(deleteOrder:) forControlEvents:UIControlEventTouchUpInside];
+                    }
                 }
             }else{
                 [_secondButton setTitle:@"立即支付" forState:UIControlStateNormal];
@@ -170,7 +190,8 @@
         _secondButton.layer.borderColor = [RGBA(127, 127, 127, 1) CGColor];
         _secondButton.layer.borderWidth = 0.5;
         [_secondButton setTitleColor:RGBA(127, 127, 127, 1) forState:UIControlStateNormal];
-        [_introduceLbl setFont:[UIFont fontWithName:@"STHeitiJ-Medium" size:12]];
+//        [_introduceLbl setFont:[UIFont fontWithName:@"STHeitiJ-Medium" size:12]];
+        [_introduceLbl setFont:[UIFont systemFontOfSize:12 weight:UIFontWeightSemibold]];
         NSString *introduce;
         NSString *consumptionCode;
         if (model.userid == userModel.userid) {
@@ -181,9 +202,11 @@
             //拼客
             if(model.userid == userModel.userid){
                 //我发起
-                NSMutableAttributedString *attiString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@  %@人组局",introduce,model.allnum]];
-                [attiString addAttribute:NSStrikethroughStyleAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(consumptionCode.length + 6, attiString.length - consumptionCode.length - 6)];
-                [_introduceLbl setAttributedText:attiString];
+//                NSMutableAttributedString *attiString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@  %@人组局",introduce,model.allnum]];
+//                [attiString addAttribute:NSStrikethroughStyleAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(consumptionCode.length + 6, attiString.length - consumptionCode.length - 6)];
+//                [_introduceLbl setAttributedText:attiString];
+                NSString *allString = [NSString stringWithFormat:@"%@  %@人组局",introduce,model.allnum];
+                [_introduceLbl setText:allString];
                 [_secondButton setTitle:@"取消组局" forState:UIControlStateNormal];
                 [_secondButton addTarget:self.delegate action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];
             }else{
