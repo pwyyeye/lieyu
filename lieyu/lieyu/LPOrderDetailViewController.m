@@ -128,6 +128,7 @@
         _firstButton.hidden = YES;
         _secondButton.layer.borderColor = [RGBA(128, 128, 128, 1) CGColor];
         _secondButton.layer.borderWidth = 0.5;
+        [_secondButton setBackgroundColor:[UIColor whiteColor]];
         [_secondButton setTitleColor:RGBA(128, 128, 128, 1) forState:UIControlStateNormal];
         if(self.orderInfoModel.ordertype == 1){
             [_secondButton setTitle:@"取消组局" forState:UIControlStateNormal];
@@ -448,6 +449,7 @@
 
 - (void)judgeOrder:(UIButton *)button{
     LYEvaluationController *eva=[[LYEvaluationController alloc] initWithNibName:@"LYEvaluationController" bundle:nil];
+    eva.orderInfoModel = self.orderInfoModel;
     [self.navigationController pushViewController:eva animated:YES];
 }
 

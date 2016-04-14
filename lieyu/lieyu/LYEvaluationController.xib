@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYEvaluationController">
@@ -51,7 +51,7 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="菲比酒吧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ng-xf-rIC">
-                    <rect key="frame" x="72" y="14" width="150" height="21"/>
+                    <rect key="frame" x="72" y="14" width="238" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="eYX-Lf-wxh"/>
                     </constraints>
@@ -94,7 +94,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="某某专属经理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blR-dG-HEP">
-                    <rect key="frame" x="72" y="84" width="150" height="21"/>
+                    <rect key="frame" x="72" y="84" width="238" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="hRc-96-xBn"/>
                     </constraints>
@@ -147,20 +147,19 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHz-Kt-90y">
-                    <rect key="frame" x="0.0" y="396" width="320" height="172"/>
+                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="172" id="CxQ-c4-f0w"/>
+                        <constraint firstAttribute="height" constant="44" id="CxQ-c4-f0w"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGb-9q-K6m">
-                    <rect key="frame" x="12" y="508" width="300" height="40"/>
-                    <color key="backgroundColor" red="0.4039215686" green="0.043137254899999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="3" y="527" width="314" height="38"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="Ddu-v4-VoP"/>
+                        <constraint firstAttribute="height" constant="38" id="Ddu-v4-VoP"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="立即评价"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="立即评价" backgroundImage="LoginNew.png"/>
                     <connections>
                         <action selector="pingjia:" destination="-1" eventType="touchUpInside" id="Dec-RL-OP1"/>
                     </connections>
@@ -212,9 +211,9 @@
                 <constraint firstItem="aHz-Kt-90y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="M8Q-an-3x7"/>
                 <constraint firstItem="DO6-aX-FEP" firstAttribute="leading" secondItem="ET3-Yw-bAp" secondAttribute="trailing" constant="15" id="PYq-pp-dJi"/>
                 <constraint firstItem="V5v-j9-eRF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ppe-Ib-Jf6"/>
-                <constraint firstAttribute="bottom" secondItem="hGb-9q-K6m" secondAttribute="bottom" constant="20" id="QKD-Px-zFU"/>
+                <constraint firstAttribute="bottom" secondItem="hGb-9q-K6m" secondAttribute="bottom" constant="3" id="QKD-Px-zFU"/>
                 <constraint firstItem="blR-dG-HEP" firstAttribute="top" secondItem="SI7-sB-hH2" secondAttribute="bottom" constant="20" id="RS5-nR-S1r"/>
-                <constraint firstAttribute="trailing" secondItem="hGb-9q-K6m" secondAttribute="trailing" constant="8" id="UmJ-6w-qyp"/>
+                <constraint firstAttribute="trailing" secondItem="hGb-9q-K6m" secondAttribute="trailing" constant="3" id="UmJ-6w-qyp"/>
                 <constraint firstItem="4CL-Dy-mcW" firstAttribute="top" secondItem="qIl-Fi-bbs" secondAttribute="bottom" constant="8" id="VJH-OH-wCf"/>
                 <constraint firstItem="SI7-sB-hH2" firstAttribute="top" secondItem="2ng-xf-rIC" secondAttribute="bottom" constant="4" id="VQd-Sv-J4N"/>
                 <constraint firstItem="qIl-Fi-bbs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="af4-8T-TQY"/>
@@ -233,7 +232,7 @@
                 <constraint firstItem="qIl-Fi-bbs" firstAttribute="top" secondItem="fCN-pI-t54" secondAttribute="bottom" constant="8" id="vMQ-Wb-fpU"/>
                 <constraint firstAttribute="trailing" secondItem="V5v-j9-eRF" secondAttribute="trailing" id="vSG-7P-3T3"/>
                 <constraint firstItem="SI7-sB-hH2" firstAttribute="leading" secondItem="ZYT-YN-wYP" secondAttribute="trailing" constant="79" id="vgo-ms-YyD"/>
-                <constraint firstItem="hGb-9q-K6m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="w5M-9B-hil"/>
+                <constraint firstItem="hGb-9q-K6m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="3" id="w5M-9B-hil"/>
                 <constraint firstItem="KY3-Ej-6dQ" firstAttribute="leading" secondItem="ZYT-YN-wYP" secondAttribute="trailing" constant="8" id="zge-D0-KQ2"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -241,6 +240,7 @@
         </view>
     </objects>
     <resources>
+        <image name="LoginNew.png" width="301" height="37"/>
         <image name="hongseStar.png" width="21" height="21"/>
         <image name="huiseStar.png" width="21" height="21"/>
         <image name="pingjiaxiangji.png" width="54" height="54"/>
