@@ -261,7 +261,7 @@
     
     float newScale = [(UIScrollView*)gesture.view.superview zoomScale] * 1.5;
     CGRect zoomRect = [self zoomRectForScale:newScale  inView:(UIScrollView*)gesture.view.superview withCenter:[gesture locationInView:gesture.view]];
-    zoomRect = [self resizeImageSize:zoomRect];
+    zoomRect = [self resizeImageSize:zoomRect offset:((UIScrollView*)gesture.view.superview).contentOffset.y];
     UIView *view = gesture.view.superview;
     if ([view isKindOfClass:[UIScrollView class]]){
         UIScrollView *s = (UIScrollView *)view;
@@ -281,7 +281,7 @@
     return zoomRect;
 }
 
--(CGRect)resizeImageSize:(CGRect)rect{
+-(CGRect)resizeImageSize:(CGRect)rect offset:(CGFloat)offset{
     //    NSLog(@"x:%f y:%f width:%f height:%f ", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     CGRect newRect;
     
@@ -299,7 +299,7 @@
     }
     newOri.x = (SCREEN_WIDTH-newSize.width)/2.0;
     newOri.y = (SCREEN_HEIGHT-newSize.height)/2.0;
-    
+//    newOri.y = (SCREEN_HEIGHT-newSize.height)/2.0;
     newRect.size = newSize;
     newRect.origin = newOri;
     
