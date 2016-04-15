@@ -179,6 +179,11 @@
 //跳转到我的帐号界面
 - (void)pushMyReceived{
     ZSMyReceiveViewController *zsMyReceiveVC = [[ZSMyReceiveViewController alloc]init];
+    if(_balance == nil){
+        [MyUtil showCleanMessage:@"余额获取失败"];
+        [MyUtil gotoLogin];
+        return;
+    }
     zsMyReceiveVC.balance = _balance;
     [self.navigationController pushViewController:zsMyReceiveVC animated:YES];
 }
@@ -323,6 +328,11 @@
             break;
         case 1:{
             ZSMyReceiveViewController *zsMyReceiveVC = [[ZSMyReceiveViewController alloc]init];
+            if(_balance == nil){
+                [MyUtil showCleanMessage:@"余额获取失败"];
+                [MyUtil gotoLogin];
+                return;
+            }
             zsMyReceiveVC.balance = _balance;
             [self.navigationController pushViewController:zsMyReceiveVC animated:YES];
         }
