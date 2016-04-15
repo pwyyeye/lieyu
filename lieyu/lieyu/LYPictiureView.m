@@ -261,12 +261,11 @@
     
     float newScale = [(UIScrollView*)gesture.view.superview zoomScale] * 1.5;
     CGRect zoomRect = [self zoomRectForScale:newScale  inView:(UIScrollView*)gesture.view.superview withCenter:[gesture locationInView:gesture.view]];
-//    CGRect zoomRect = [self zoomRectForScale:newScale  inView:(UIScrollView*)gesture.view.superview withCenter:[gesture locationInView:self]];
+    zoomRect = [self resizeImageSize:zoomRect];
     UIView *view = gesture.view.superview;
     if ([view isKindOfClass:[UIScrollView class]]){
         UIScrollView *s = (UIScrollView *)view;
         [s zoomToRect:zoomRect animated:YES];
-        
     }
 }
 
