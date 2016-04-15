@@ -29,6 +29,7 @@
     UIButton *_weixinBtn;
     UIButton *_weiboBtn;
     TencentOAuth *_tencentOAuth;
+    UIVisualEffectView *_effctView;
 }
 
 @end
@@ -191,6 +192,56 @@
             }];
         }
         [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",result.userid] forKey:@"userid"];
+        if ([app.userModel.usertype isEqualToString:@"1"]) {
+            AppDelegate *app = [UIApplication sharedApplication].delegate;
+            
+            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LYMain" bundle:[NSBundle mainBundle]];
+            NSLog(@"--->%@",[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"]);
+            UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
+            app.navigationController = nav;
+            app.window.rootViewController = nav;
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
+            
+            if(app.userModel.usertype.intValue==2){
+                UIWindow *window = [UIApplication sharedApplication].delegate.window;
+                UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+                _effctView = [[UIVisualEffectView alloc]initWithEffect:effect];
+                //            effctView.frame = [UIScreen mainScreen].bounds;
+                _effctView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                [window addSubview:_effctView];
+                
+                CGFloat imgVWidth = 50;
+                
+                UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, imgVWidth, imgVWidth)];
+                imgV.center = _effctView.center;
+                imgV.image = [UIImage imageNamed:@"loading1"];
+                [_effctView addSubview:imgV];
+                
+                UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame),SCREEN_WIDTH, imgVWidth)];
+                titleLabel.textColor = [UIColor blackColor];
+                titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
+                titleLabel.textAlignment = NSTextAlignmentCenter;
+                titleLabel.text = @"切换中....";
+                [_effctView addSubview:titleLabel];
+                
+                NSMutableArray *imgArray = [[NSMutableArray alloc]initWithCapacity:9];
+                for (int i = 1; i < 10; i ++) {
+                    
+                    UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"loading%d@2x",i] ofType:@"png"]];
+                    [imgArray addObject:(__bridge UIImage *)img.CGImage];
+                }
+                
+                CAKeyframeAnimation *keyFrameA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+                keyFrameA.duration = imgArray.count * 0.1;
+                keyFrameA.delegate = self;
+                keyFrameA.values = imgArray;
+                keyFrameA.repeatCount = 1;
+                [imgV.layer addAnimation:keyFrameA forKey:nil];
+                
+                
+            }
+
+        }
         
         [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
             NSLog(@"----pass-addAlias%@---%@",responseObject,error);
@@ -209,6 +260,14 @@
     
     
     
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    [UIView animateWithDuration:0.2 animations:^{
+        _effctView.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        [_effctView removeFromSuperview];
+    }];
 }
 
 //从服务器获取用户是否收藏过酒吧
