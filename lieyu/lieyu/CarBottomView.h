@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CarBottomView : UIView
+@interface CarBottomView : UITableViewHeaderFooterView
 @property (weak, nonatomic) IBOutlet UILabel *priceLal;
 @property (weak, nonatomic) IBOutlet UIButton *jiesuanBtn;
 

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "CarModel.h"
+@protocol CarInfoCellDelegate<NSObject>
+- (void)carlistFooterPrice:(int)section;
+@end
+
 @interface CarInfoCell : UITableViewCell<LYTableViewCellLayout>{
     CarModel *carModel;
 }
@@ -24,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *lessbtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *chooseBtn;
+
+@property (nonatomic, assign) id<CarInfoCellDelegate> delegate;
 
 - (IBAction)changeNum:(UIButton *)sender;
 @end
