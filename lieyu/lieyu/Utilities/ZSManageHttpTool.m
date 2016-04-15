@@ -524,6 +524,7 @@
         NSString *errorcodeStr = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([errorcodeStr isEqualToString:@"1"]) {
             NSString *balanceStrEncry = response[@"data"][@"balances"];
+            NSLog(@"----pass-pass%@---",app.desKey);
             NSString *balanceStr = [MyUtil decryptUseDES:balanceStrEncry withKey:app.desKey];
             ZSBalance *balance = [ZSBalance mj_objectWithKeyValues:response[@"data"]];
             balance.balances = balanceStr;

@@ -1201,8 +1201,13 @@
 #pragma mark - 判断手机是否注册过
 + (void)getYZMForThirdthLoginWithPara:(NSDictionary *)paraDic compelte:(void(^)(NSString *))compelte{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YZM_THIRDLOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
-        NSString *flag = response[@"data"][@"result"];
-        compelte(flag);
+        NSString *errorcode=response[@"errorcode"];
+        if(errorcode.intValue==0){
+            [MyUtil showCleanMessage:@"超过短信发送上限！"];
+        }else{
+            NSString *flag = response[@"data"][@"result"];
+            compelte(flag);
+        }
     } failure:^(NSError *err) {
         
     }];

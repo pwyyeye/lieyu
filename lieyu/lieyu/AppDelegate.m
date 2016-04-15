@@ -66,6 +66,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [self loadHisData];
     [self setupDataStore];
 
+    if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"desKey"]]){
+        self.desKey=[USER_DEFAULT objectForKey:@"desKey"];
+    }
     
     _navigationController= (UINavigationController *)self.window.rootViewController;
 //    _navigationController.delegate = self;
@@ -81,7 +84,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
         maintViewController.btnBackHidden = YES;
         _navShangHu = [[UINavigationController alloc]initWithRootViewController:maintViewController];
         app.window.rootViewController = _navShangHu;
-        
         
     }
 
@@ -838,6 +840,7 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     __weak typeof(self) weakself=self;
     [[LYUserHttpTool shareInstance] getAppDesKey:nil complete:^(NSString *result) {
         weakself.desKey=result;
+        [USER_DEFAULT setObject:result forKey:@"desKey"];
     }];
     
 }

@@ -52,7 +52,7 @@
     
 //   [ [NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToShanHu) name:@"loadUserInfo" object:nil];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app addObserver:self forKeyPath:@"s_app_id" options:NSKeyValueObservingOptionNew context:nil];
+    [app addObserver:self forKeyPath:@"desKey" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
@@ -62,6 +62,7 @@
 
 - (void)getBalance{
     [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
+        
         _balance = balance;
         [_balanceButton setTitle:[NSString stringWithFormat:@"%.2f",_balance.balances.floatValue] forState:UIControlStateNormal];
         
@@ -70,7 +71,7 @@
 
 - (void)dealloc{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app removeObserver:self forKeyPath:@"s_app_id"];
+    [app removeObserver:self forKeyPath:@"desKey"];
 }
 
 #pragma mark 初始化数据
@@ -377,7 +378,7 @@
 //            ZSMyShopsManageViewController *myShopManageViewController=[[ZSMyShopsManageViewController alloc]initWithNibName:@"ZSMyShopsManageViewController" bundle:nil];
 //            [self.navigationController pushViewController:myShopManageViewController animated:YES];
             
-            AppDelegate *app = [UIApplication sharedApplication].delegate;
+            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
             
             UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LYMain" bundle:[NSBundle mainBundle]];
             NSLog(@"--->%@",[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"]);

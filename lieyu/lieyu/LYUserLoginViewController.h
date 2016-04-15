@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passWordTex;
 @property (weak, nonatomic) IBOutlet UITextField *userNameTex;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
-- (IBAction)otherAct:(UIButton *)sender;
+
 - (IBAction)exitEdit:(UITextField *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btn_getBack;
 

@@ -184,6 +184,7 @@ static LYRegistrationViewController *_registe;
             else plantType = @"weibo";
             if(plantType == nil) return;
             NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,plantType:[MyUtil encryptUseDES:_userM.openID]};
+            NSLog(@"----pass-pass%@---",_userM.openID);
             __block LYRegistrationViewController *weakSelf = self;
             [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
                 if (flag) {//绑定
@@ -196,6 +197,9 @@ static LYRegistrationViewController *_registe;
                         app.s_app_id=userModel.token;
                         app.userModel=userModel;
                         [app getImToken];
+                        if ([MyUtil isEmptyString:app.desKey] ) {
+                            [app getDESKey];
+                        }
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                         
