@@ -1495,6 +1495,7 @@
 		AD4EA8661C5476AF0056E560 /* launchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD4EA8641C5476AF0056E560 /* launchImage@2x.png */; };
 		AD4EA8671C5476AF0056E560 /* launchImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD4EA8651C5476AF0056E560 /* launchImage@3x.png */; };
 		AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */; };
+		AD67DB921CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */; };
 		AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD798A361BB99A1F006D08F5 /* libPods.a */; };
 		AD79E07F1C76EE5000C45B97 /* HuoDongLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E07E1C76EE5000C45B97 /* HuoDongLinkViewController.m */; };
 		AD79E0841C775DFC00C45B97 /* empyImage120.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0801C775DFC00C45B97 /* empyImage120.png */; };
@@ -1562,7 +1563,6 @@
 		ADC367521C633963006C2AE5 /* logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC367501C633963006C2AE5 /* logo@3x.png */; };
 		ADC66CE11C1EC38E00E597D9 /* LYMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC66CE01C1EC38E00E597D9 /* LYMain.storyboard */; };
 		ADC66CE41C1FBB9900E597D9 /* LYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC66CE31C1FBB9900E597D9 /* LYNavigationController.m */; };
-		ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */; };
 		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
 		ADD1B45D1C527EE200A5237C /* LYAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1B45C1C527EE200A5237C /* LYAccountManager.m */; };
 		ADD1B4651C528EE100A5237C /* qq_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B45F1C528EE100A5237C /* qq_s@2x.png */; };
@@ -3776,6 +3776,8 @@
 		AD4EA8641C5476AF0056E560 /* launchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchImage@2x.png"; sourceTree = "<group>"; };
 		AD4EA8651C5476AF0056E560 /* launchImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchImage@3x.png"; sourceTree = "<group>"; };
 		AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.6.a; sourceTree = "<group>"; };
+		AD67DB911CC0C6790005BCEE /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		AD798A361BB99A1F006D08F5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		AD79E07D1C76EE5000C45B97 /* HuoDongLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongLinkViewController.h; sourceTree = "<group>"; };
 		AD79E07E1C76EE5000C45B97 /* HuoDongLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongLinkViewController.m; sourceTree = "<group>"; };
@@ -3856,8 +3858,6 @@
 		ADC66CE01C1EC38E00E597D9 /* LYMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LYMain.storyboard; sourceTree = "<group>"; };
 		ADC66CE21C1FBB9900E597D9 /* LYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYNavigationController.h; sourceTree = "<group>"; };
 		ADC66CE31C1FBB9900E597D9 /* LYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYNavigationController.m; sourceTree = "<group>"; };
-		ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.0.a; sourceTree = "<group>"; };
-		ADCDF7A91BF19A890040E9E3 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		ADCDF7AE1BF1A84F0040E9E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		ADCDF7B01BF1A8530040E9E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ADD1B45B1C527EE200A5237C /* LYAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAccountManager.h; sourceTree = "<group>"; };
@@ -4223,6 +4223,7 @@
 				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
 				853D3AB31C34CED500B4FEAD /* AMapSearchKit.framework in Frameworks */,
 				ADE2AD771C23AE8E00B0A54B /* Security.framework in Frameworks */,
+				AD67DB921CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a in Frameworks */,
 				ADE2AD751C23AE6600B0A54B /* libsqlite3.tbd in Frameworks */,
 				ADE2AD731C23AE5500B0A54B /* libz.tbd in Frameworks */,
 				ADF8E1BC1C2141C700943E4D /* CoreData.framework in Frameworks */,
@@ -4240,7 +4241,6 @@
 				AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */,
 				ADE2AD701C23ADDE00B0A54B /* libmtasdk.a in Frameworks */,
 				15EB35571BD483F500BA6161 /* libSocialSina.a in Frameworks */,
-				ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */,
 				15EB35471BD4839D00BA6161 /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
 				15EB35661BD4840300BA6161 /* libWeiboSDK.a in Frameworks */,
 				15EB35651BD4840300BA6161 /* libSocialSinaSSO.a in Frameworks */,
@@ -8177,8 +8177,8 @@
 		ADCDF7A71BF19A890040E9E3 /* UMessage_Sdk_1.2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */,
-				ADCDF7A91BF19A890040E9E3 /* UMessage.h */,
+				AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */,
+				AD67DB911CC0C6790005BCEE /* UMessage.h */,
 			);
 			path = UMessage_Sdk_1.2.0;
 			sourceTree = "<group>";

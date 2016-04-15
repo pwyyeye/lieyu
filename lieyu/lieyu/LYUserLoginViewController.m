@@ -177,14 +177,18 @@
         
 
         //先删除别名，然后再注册新的－－－友盟 消息推送
-        if ([USER_DEFAULT objectForKey:@"userid"]) {
-            [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-            }];
-        }
+//        if ([USER_DEFAULT objectForKey:@"userid"]) {
+//            [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+//                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+//            }];
+//        }
+//        
+//        [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+//            NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+//        }];
         
-        [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-            NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+        [UMessage setAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+            NSLog(@"----pass-setAlias%@---%@",responseObject,error);
         }];
         
         [weakSelf getUserCollectJiuBaList];
@@ -262,9 +266,7 @@
                 if ([MyUtil isEmptyString:app.desKey] ) {
                     [app getDESKey];
                 }
-                if ([userM.usertype isEqualToString:@"2"] && [USER_DEFAULT boolForKey:@"shanghuban"]) {
-                    [weakSelf changeToManager];
-                }
+                
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -295,21 +297,7 @@
     }];
 }
 
--(void)changeToManager{
-    BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
-    
-    if(shanghuban){
-        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        
-        
-        ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
-        maintViewController.btnBackHidden = YES;
-        UINavigationController *_navShangHu = [[UINavigationController alloc]initWithRootViewController:maintViewController];
-        app.window.rootViewController = _navShangHu;
-        
-        
-    }
-}
+
 
 #pragma mark - 注册
 - (IBAction)zhuceAct:(UIButton *)sender {
@@ -473,15 +461,20 @@
             }
             
             //先删除别名，然后再注册新的－－－友盟 消息推送
-            if ([USER_DEFAULT objectForKey:@"userid"]) {
-                [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                    NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-                }];
-            }
+//            if ([USER_DEFAULT objectForKey:@"userid"]) {
+//                [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+//                    NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+//                }];
+//            }
             [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",userM.userid] forKey:@"userid"];
             
-            [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+//            [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+//                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+//            }];
+            
+            
+            [UMessage setAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                NSLog(@"----pass-setAlias%@---%@",responseObject,error);
             }];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
