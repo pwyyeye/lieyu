@@ -20,6 +20,7 @@
 #import "UMSocial.h"
 #import "LYRegistrationViewController.h"
 #import "IQKeyboardManager.h"
+#import "ZSMaintViewController.h"
 #define COLLECTKEY [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 
@@ -30,6 +31,7 @@
     UIButton *_weiboBtn;
     TencentOAuth *_tencentOAuth;
     UIVisualEffectView *_effctView;
+    __block UserModel *userModel;
 }
 
 @end
@@ -38,11 +40,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.automaticallyAdjustsScrollViewInsets=NO;
     self.navigationItem.title = @"登录";
     // Do any additional setup after loading the view from its nib.
     
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    
+    //设置返回按钮
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     button.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
     [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
@@ -58,10 +63,10 @@
         [self updateViewConstraints];
     }
 
-    
+    //设置微信，QQ，微博登陆按钮
     CGFloat _qqBtnWidth = 44;
     _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 30 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
-    NSLog(@"------>%f----%f",SCREEN_HEIGHT - 30 - _qqBtnWidth,self.view.frame.size.height);
+
     [_qqBtn setImage:[UIImage imageNamed:@"qq_s2"] forState:UIControlStateNormal];
 
     [self.view addSubview:_qqBtn];
@@ -86,64 +91,40 @@
     _btn_submit.layer.masksToBounds=YES;
     _btn_submit.layer.cornerRadius=3;
     
+    //初始化
+     userModel = [[UserModel alloc]init];
+    
 }
--(void)wait{
-//    [self.navigationController setNavigationBarHidden:YES];
-//    if (_step==2) {
-//        [_timer invalidate];
-//    }
-//    _step++;
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+    
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    [self.navigationController setNavigationBarHidden:NO];
+    
+}
+
+
 - (IBAction)goBackClick:(id)sender {
-    //    NSLog(@"-------pop:%@",self.popoverPresentationController);
-    //    NSLog(@"-------pop:%@",self.parentViewController);
-    //    NSLog(@"-------pop:%@",self.childViewControllers);
-    //    NSLog(@"-------pop:%@",self.navigationController.childViewControllers);
-    //    NSLog(@"-------pop:%d",self.navigationController.childViewControllers.count);
-    //    NSLog(@"-------pop:%@",self.navigationController.childViewControllers);
-    //
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[ChiHeViewController class]]) {
             [self.navigationController popToViewController:controller animated:YES];
             return;
         }
     }
-    
-    
     [self.navigationController popViewControllerAnimated:YES];
-    //    if([self.navigationController.childViewControllers objectAtIndex:1])
+//    if([self.navigationController.childViewControllers objectAtIndex:1])
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-
-}
-//-(void)viewDidAppear:(BOOL)animated{
-//    [super viewDidAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES];
-//}
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    //    if (self.navigationController.navigationBarHidden == NO) {
-            [self.navigationController setNavigationBarHidden:NO];
-    //    }
-    //
-    //self.userNameTex.layer.borderWidth = 0.5;
-    //  self.userNameTex.layer.borderColor = RGBA(255,255,255, 0.2).CGColor;
-    // self.userNameTex.layer.masksToBounds = YES;
-}
-
-//-(void)viewWillDisappear:(BOOL)animated{
-//    [super viewWillDisappear:animated];
-//     self.navigationController.navigationBarHidden = NO;
-//}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -170,8 +151,7 @@
         return;
     }
     NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":[MyUtil md5HexDigest:self.passWordTex.text] };
-    NSLog(@"----pass-[MyUtil md5HexDigest:self.passWordTex.text]=%@---",[MyUtil md5HexDigest:self.passWordTex.text]);
-    //    NSDictionary *dic=@{@"username":self.userNameTex.text,@"password":self.passWordTex.text};
+//    NSLog(@"----pass-[MyUtil md5HexDigest:self.passWordTex.text]=%@---",[MyUtil md5HexDigest:self.passWordTex.text]);
     __weak __typeof(self) weakSelf = self;
     [[LYUserHttpTool shareInstance] userLoginWithParams:dic block:^(UserModel *result) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -182,65 +162,25 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [USER_DEFAULT setObject:self.userNameTex.text forKey:@"username"];
         [USER_DEFAULT setObject:[MyUtil md5HexDigest:weakSelf.passWordTex.text] forKey:@"pass"];
-        //      [self dismissViewControllerAnimated:YES completion:^{
-        //
-        //      }];
-        //先删除别名，然后再注册新的－－－友盟 消息推送
-        if ([USER_DEFAULT objectForKey:@"userid"]) {
-            [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-            }];
-        }
         [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",result.userid] forKey:@"userid"];
         if ([app.userModel.usertype isEqualToString:@"1"]) {
-            AppDelegate *app = [UIApplication sharedApplication].delegate;
             
             UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LYMain" bundle:[NSBundle mainBundle]];
-            NSLog(@"--->%@",[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"]);
+
             UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
             app.navigationController = nav;
             app.window.rootViewController = nav;
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
             
-            if(app.userModel.usertype.intValue==2){
-                UIWindow *window = [UIApplication sharedApplication].delegate.window;
-                UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-                _effctView = [[UIVisualEffectView alloc]initWithEffect:effect];
-                //            effctView.frame = [UIScreen mainScreen].bounds;
-                _effctView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                [window addSubview:_effctView];
-                
-                CGFloat imgVWidth = 50;
-                
-                UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, imgVWidth, imgVWidth)];
-                imgV.center = _effctView.center;
-                imgV.image = [UIImage imageNamed:@"loading1"];
-                [_effctView addSubview:imgV];
-                
-                UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame),SCREEN_WIDTH, imgVWidth)];
-                titleLabel.textColor = [UIColor blackColor];
-                titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
-                titleLabel.textAlignment = NSTextAlignmentCenter;
-                titleLabel.text = @"切换中....";
-                [_effctView addSubview:titleLabel];
-                
-                NSMutableArray *imgArray = [[NSMutableArray alloc]initWithCapacity:9];
-                for (int i = 1; i < 10; i ++) {
-                    
-                    UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"loading%d@2x",i] ofType:@"png"]];
-                    [imgArray addObject:(__bridge UIImage *)img.CGImage];
-                }
-                
-                CAKeyframeAnimation *keyFrameA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-                keyFrameA.duration = imgArray.count * 0.1;
-                keyFrameA.delegate = self;
-                keyFrameA.values = imgArray;
-                keyFrameA.repeatCount = 1;
-                [imgV.layer addAnimation:keyFrameA forKey:nil];
-                
-                
-            }
+            
+        }
+        
 
+        //先删除别名，然后再注册新的－－－友盟 消息推送
+        if ([USER_DEFAULT objectForKey:@"userid"]) {
+            [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+            }];
         }
         
         [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
@@ -249,8 +189,7 @@
         
         [weakSelf getUserCollectJiuBaList];
         [weakSelf getUserZangJiuBaList];
-       
-//        [weakSelf.navigationController popViewControllerAnimated:YES ];
+        
         [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
@@ -275,7 +214,6 @@
     __weak AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NEEDGETLIKE"]) {
         [LYUserHttpTool getUserCollectionJiuBarListWithCompelet:^(NSArray *array) {
-            //  NSLog(@"------->%d",array.count);
             for (JiuBaModel *jiuBa in array) {
                 NSString *jiuBaId = [NSString stringWithFormat:@"%d",jiuBa.barid];
                 [[NSUserDefaults standardUserDefaults] setObject:jiuBaId forKey:[NSString stringWithFormat:@"%@%@sc",[NSString stringWithFormat:@"%d",app.userModel.userid],jiuBaId]];
@@ -304,7 +242,6 @@
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:message message:nil delegate:nil  cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alertView setBackgroundColor:[UIColor clearColor]];
-    
     //必须在这里调用show方法，否则indicator不在UIAlerView里面
     [alertView show];
     
@@ -324,6 +261,9 @@
                 [app getTTL];
                 if ([MyUtil isEmptyString:app.desKey] ) {
                     [app getDESKey];
+                }
+                if ([userM.usertype isEqualToString:@"2"] && [USER_DEFAULT boolForKey:@"shanghuban"]) {
+                    [weakSelf changeToManager];
                 }
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
@@ -351,21 +291,34 @@
         if ([MyUtil isEmptyString:app.desKey] ) {
             [app getDESKey];
         }
-        //        [self.navigationController popToRootViewControllerAnimated:YES ];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
     }];
 }
+
+-(void)changeToManager{
+    BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
+    
+    if(shanghuban){
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
+        
+        ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
+        maintViewController.btnBackHidden = YES;
+        UINavigationController *_navShangHu = [[UINavigationController alloc]initWithRootViewController:maintViewController];
+        app.window.rootViewController = _navShangHu;
+        
+        
+    }
+}
+
 #pragma mark - 注册
 - (IBAction)zhuceAct:(UIButton *)sender {
-    //    LYRegistrationViewController *registrationViewController=[[LYRegistrationViewController alloc]initWithNibName:@"LYRegistrationViewController" bundle:nil];
     LYRegistrationViewController *registrationViewController = [LYRegistrationViewController shareRegist];
     registrationViewController.title=@"注册";
     registrationViewController.delegate=self;
     [self.navigationController pushViewController:registrationViewController animated:YES];
 }
 
-- (IBAction)otherAct:(UIButton *)sender {
-}
 
 - (IBAction)exitEdit:(UITextField *)sender {
     [sender resignFirstResponder];
@@ -396,7 +349,6 @@
     NSArray *_permissions =  [NSArray arrayWithObjects:kOPEN_PERMISSION_GET_USER_INFO, @"get_simple_userinfo", @"add_t", nil];
     [_tencentOAuth authorize:_permissions inSafari:NO];
     
-    
 }
 
 - (void)tencentDidLogin{
@@ -418,47 +370,13 @@
 
 - (void)getUserInfoResponse:(APIResponse *)response{
     NSLog(@"----->%@",response);
-    __block LYUserLoginViewController *weakSelf = self;
     NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES: _tencentOAuth.openId]};
-    
-    UserModel *userModel = [[UserModel alloc]init];
+
     userModel.usernick = response.jsonResponse[@"nickname"];
     userModel.gender = [response.jsonResponse[@"gender"] isEqualToString:@"男"] ? @"1" : @"0";
     userModel.avatar_img=response.jsonResponse[@"figureurl_qq_2"];
-    
-     userModel.openID =  _tencentOAuth.openId;
-    
-    [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
-        if (sucess) {//登录成功
-            [[NSUserDefaults standardUserDefaults] setObject:_tencentOAuth.openId forKey:@"OPENIDSTR"];
-            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            app.s_app_id=userM.token;
-            app.userModel=userM;
-            [app getImToken];
-            [app getTTL];
-            //先删除别名，然后再注册新的－－－友盟 消息推送
-            if ([USER_DEFAULT objectForKey:@"userid"]) {
-                [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                    NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-                }];
-            }
-            [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",userM.userid] forKey:@"userid"];
-            
-            [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-            }];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-        }else{//去绑定手机好
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
-            LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
-           
-            registVC.userM = userModel;
-            
-            registVC.isTheThirdLogin = YES;
-            registVC.thirdLoginType = @"1";
-            [weakSelf.navigationController pushViewController:registVC animated:YES];
-        }}];
+    userModel.openID =  _tencentOAuth.openId;
+    [self login:paraDic WithType:@"1"];
 }
 
 #pragma mark - 微信登录
@@ -476,8 +394,7 @@
     NSString *accessTokenStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"weixinGetAccessToken"];
     NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];
     NSTimeInterval timeWeixin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"weixinDate"] timeIntervalSince1970];
-    NSLog(@"------------------>%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinCode"]);
-    NSLog(@"--->%f",timeNow - timeWeixin);
+
     __block LYUserLoginViewController *weakSelf = self;
     NSTimeInterval timeWeixin_re = [[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinReDate"] timeIntervalSince1970];
     
@@ -511,39 +428,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"weixinCode" object:nil];
 }
 
-- (void)weiXinLoginWith:(UserModel *)userModel{
-    __block LYUserLoginViewController *weakSelf = self;
+- (void)weiXinLoginWith:(UserModel *)userModel2{
+    userModel=userModel2;
     NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:userModel.openID]};
-    [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
-        if (sucess) {//登录成功
-             [[NSUserDefaults standardUserDefaults] setObject:userModel.openID forKey:@"OPENIDSTR"];
-            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            app.s_app_id=userM.token;
-            app.userModel=userM;
-            [app getImToken];
-            [app getTTL];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-            //先删除别名，然后再注册新的－－－友盟 消息推送
-            if ([USER_DEFAULT objectForKey:@"userid"]) {
-                [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                    NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-                }];
-            }
-            [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",userM.userid] forKey:@"userid"];
-            
-            [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-            }];
-        }else{//去绑定手机好
-             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
-            LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
-            registVC.userM = userModel;
-            registVC.isTheThirdLogin = YES;
-            registVC.thirdLoginType = @"2";
-            [weakSelf.navigationController pushViewController:registVC animated:YES];
-        }
-    }];
+    [self login:paraDic WithType:@"2"];
 }
 
 #pragma mark - 新浪微博登录
@@ -557,53 +445,64 @@
             NSLog(@"--->%@",snsAccount);
             NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
             if(![MyUtil isEmptyString:snsAccount.usid]){
-                UserModel *userModel = [[UserModel alloc]init];
                 userModel.usernick = snsAccount.userName;
                 userModel.avatar_img = snsAccount.iconURL;
                 userModel.openID = snsAccount.usid;
-                
                 NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:snsAccount.usid]};
-                __block LYUserLoginViewController *weakSelf = self;
-                [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
-                    if (sucess) {//登录成功
-                         [[NSUserDefaults standardUserDefaults] setObject:userModel.openID forKey:@"OPENIDSTR"];
-                        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-                        app.s_app_id=userM.token;
-                        app.userModel=userM;
-                        [app getImToken];
-                        [app getTTL];
-                        //先删除别名，然后再注册新的－－－友盟 消息推送
-                        if ([USER_DEFAULT objectForKey:@"userid"]) {
-                            [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-                            }];
-                        }
-                        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",userM.userid] forKey:@"userid"];
-                        
-                        [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                            NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-                        }];
-                        
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                    }else{//去绑定手机好
-                         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
-//                        [MyUtil showPlaceMessage:@"绑定手机号"];
-                        LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
-                        userModel.openID = snsAccount.usid;
-                        registVC.userM = userModel;
-                        registVC.isTheThirdLogin = YES;
-                        registVC.thirdLoginType = @"3";
-                        [weakSelf.navigationController pushViewController:registVC animated:YES];
-                        
-                    }
-                }];
-                
+               
+                [self login:paraDic WithType:@"3"];
                 
             }
         }});
-    
-    //    LYRegistrationViewController 
+}
+
+
+-(void)login:(NSDictionary*)param WithType:(NSString *)type{
+    __block LYUserLoginViewController *weakSelf = self;
+    [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:param compelte:^(NSInteger sucess,UserModel *userM) {
+        if (sucess) {//登录成功
+            [[NSUserDefaults standardUserDefaults] setObject:userModel.openID forKey:@"OPENIDSTR"];
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            app.s_app_id=userM.token;
+            app.userModel=userM;
+            [app getImToken];
+            [app getTTL];
+            
+            if ([MyUtil isEmptyString:app.desKey] ) {
+                [app getDESKey];
+            }
+            
+            //先删除别名，然后再注册新的－－－友盟 消息推送
+            if ([USER_DEFAULT objectForKey:@"userid"]) {
+                [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                    NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+                }];
+            }
+            [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",userM.userid] forKey:@"userid"];
+            
+            [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+            }];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }else{//去绑定手机好
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
+            LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
+            registVC.userM = userModel;
+            registVC.isTheThirdLogin = YES;
+            registVC.thirdLoginType = type;
+            [weakSelf.navigationController pushViewController:registVC animated:YES];
+            
+        }
+    }];
+
+}
+
+-(void)dealloc{
+    NSLog(@"----pass-pass%@---",@"test dealloc");
 }
 
 @end
