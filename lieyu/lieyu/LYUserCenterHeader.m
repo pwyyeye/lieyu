@@ -268,7 +268,7 @@
                 badge.backgroundColor=deafultColor;
                 badge.font=[UIFont systemFontOfSize:10];
                 badge.layer.masksToBounds=YES;
-                badge.layer.cornerRadius=6;
+                badge.layer.cornerRadius=6;  
                 badge.textColor=[UIColor whiteColor];
                 badge.textAlignment=NSTextAlignmentCenter;
                 CGRect frame=_waitRebate.frame;
