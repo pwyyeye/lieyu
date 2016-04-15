@@ -25,6 +25,7 @@
     NSLog(@"------>%@",userId);
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
     myFriendVC.imUserId = userId;
+    [self resignFirstResponder];
     [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 

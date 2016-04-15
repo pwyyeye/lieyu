@@ -223,7 +223,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     if (indexPath.row == 4) {
         cell.labeltext_cons_center.constant = 20;
     }
-    
     if(indexPath.row == 1){
         if(num){
             cell.btn_count.hidden = NO;
@@ -232,6 +231,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                 cell.btn_count.hidden = YES;
         }
         
+    }else if (indexPath.row == 0){
+        if (_headerView.badgeNum > 0) {
+            cell.btn_count.hidden = NO;
+            [cell.btn_count setTitle:[NSString stringWithFormat:@"%d",_headerView.badgeNum] forState:UIControlStateNormal];
+        }
     }else{
         cell.btn_count.hidden = YES;
     }
@@ -252,6 +256,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
              NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"订单"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             LPMyOrdersViewController *myOrderVC = [[LPMyOrdersViewController alloc]init];
+            myOrderVC.bagesArr = _headerView.badgesArray;
             myOrderVC.orderIndex = 0;
             //    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
             //    myOrderManageViewController.title=@"我的订单";
