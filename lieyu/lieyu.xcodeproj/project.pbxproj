@@ -663,7 +663,7 @@
 		38B5F4E41CBE10BE00AE1BF5 /* emojiTIpBottom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E01CBE10BE00AE1BF5 /* emojiTIpBottom@3x.png */; };
 		38B5F4E51CBE10BE00AE1BF5 /* emojiTIpTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E11CBE10BE00AE1BF5 /* emojiTIpTop@2x.png */; };
 		38B5F4E61CBE10BE00AE1BF5 /* emojiTIpTop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E21CBE10BE00AE1BF5 /* emojiTIpTop@3x.png */; };
-		38B5F4EA1CBF69B400AE1BF5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E91CBF69B400AE1BF5 /* coinPlay.png */; };
+		38B5F4EC1CC0EB2100AE1BF5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4EB1CC0EB2100AE1BF5 /* coinPlay.png */; };
 		38C98CD11C60782D0084E6BD /* YUGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCE1C60782D0084E6BD /* YUGroup.png */; };
 		38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */; };
 		38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CD01C60782D0084E6BD /* YUGroup@3x.png */; };
@@ -2690,7 +2690,7 @@
 		38B5F4E01CBE10BE00AE1BF5 /* emojiTIpBottom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpBottom@3x.png"; sourceTree = "<group>"; };
 		38B5F4E11CBE10BE00AE1BF5 /* emojiTIpTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@2x.png"; sourceTree = "<group>"; };
 		38B5F4E21CBE10BE00AE1BF5 /* emojiTIpTop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@3x.png"; sourceTree = "<group>"; };
-		38B5F4E91CBF69B400AE1BF5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
+		38B5F4EB1CC0EB2100AE1BF5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
 		38C98CCE1C60782D0084E6BD /* YUGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUGroup.png; sourceTree = "<group>"; };
 		38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@2x.png"; sourceTree = "<group>"; };
 		38C98CD01C60782D0084E6BD /* YUGroup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@3x.png"; sourceTree = "<group>"; };
@@ -7894,7 +7894,7 @@
 		AD203BA61CAEA9B00014618A /* 硬币 */ = {
 			isa = PBXGroup;
 			children = (
-				38B5F4E91CBF69B400AE1BF5 /* coinPlay.png */,
+				38B5F4EB1CC0EB2100AE1BF5 /* coinPlay.png */,
 				AD203BB91CAEAA8C0014618A /* CoinStart@1x.png */,
 				AD203BBA1CAEAA8C0014618A /* CoinStart@2x.png */,
 				AD203BBB1CAEAA8C0014618A /* CoinStart@3x.png */,
@@ -10001,7 +10001,7 @@
 				38979A351CA40919002946F5 /* dianzan2.png in Resources */,
 				3856647B1C72BF02000DCFA5 /* purper_price@3x.png in Resources */,
 				85F66E521C525E51005D1CD8 /* xitongtongzhi@3x.png in Resources */,
-				38B5F4EA1CBF69B400AE1BF5 /* coinPlay.png in Resources */,
+				38B5F4EC1CC0EB2100AE1BF5 /* coinPlay.png in Resources */,
 				38AA7CC61C315A0000D9BCE8 /* preview.xib in Resources */,
 				38979A521CA40919002946F5 /* happy23.png in Resources */,
 				AD399EA51C940D4D00028F23 /* logo38@2x.jpg in Resources */,
