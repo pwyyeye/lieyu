@@ -126,15 +126,17 @@
 
 - (void)show{
     UIWindow *window = [[UIApplication sharedApplication]keyWindow];
-    NSArray *windowViews = [window subviews];
-    if(windowViews && [windowViews count] > 0){
-        UIView *subview = [windowViews objectAtIndex:[windowViews count] - 1];
-        for (UIView *aSubview in subview.subviews) {
-            [aSubview.layer removeAllAnimations];
-        }
-        [subview addSubview:self];
-        [self showAlertAnimation];
-    }
+//    NSArray *windowViews = [window subviews];
+//    if(windowViews && [windowViews count] > 0){
+//        UIView *subview = [windowViews objectAtIndex:[windowViews count] - 1];
+//        for (UIView *aSubview in subview.subviews) {
+//            [aSubview.layer removeAllAnimations];
+//        }
+//        [subview addSubview:self];
+//        [self showAlertAnimation];
+//    }
+    [window addSubview:self];
+    [self showAlertAnimation];
 }
 
 - (void)hide{
