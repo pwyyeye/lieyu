@@ -18,6 +18,12 @@
         
         [self.titleLabel setFont:[UIFont systemFontOfSize:12]];
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        
+        _pointLabel = [[UILabel alloc]initWithFrame:CGRectMake(55, 6, 6, 6)];
+        [_pointLabel setBackgroundColor:RGBA(240, 55, 118, 1)];
+        _pointLabel.layer.cornerRadius = 3;
+        _pointLabel.layer.masksToBounds = YES;
+        [self addSubview:_pointLabel];
     }
     return self;
 }

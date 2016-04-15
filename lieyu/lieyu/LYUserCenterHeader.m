@@ -25,6 +25,8 @@
 - (void)awakeFromNib {
     // Initialization code
     [self loadData];
+    _badgesArray = [[NSMutableArray alloc]init];
+    [_badgesArray addObject:@"0"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
     self.btnMessage.hidden = YES;
     //设置背景色
@@ -221,124 +223,150 @@
 }
 //加载角标
 -(void)loadBadge:(OrderTTL *)orderTTL{
-    UIColor *deafultColor = RGBA(186, 40, 227, 1);
-    if (orderTTL) {
-        if (orderTTL.waitPay>0) {//待付款
-            if(![_waitPay viewWithTag:100]){
-                UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor = deafultColor;
-                badge.font=[UIFont systemFontOfSize:10];
-                badge.layer.masksToBounds=YES;
-                badge.layer.cornerRadius=6;
-                badge.textColor=[UIColor whiteColor];
-                badge.textAlignment=NSTextAlignmentCenter;
-                CGRect frame=_waitPay.frame;
-                badge.frame=CGRectMake(_waitPay.size.width/2.f + 11, 5, 22, 12);
-                badge.tag=100;
-                [_waitPay addSubview:badge];
-            }
-            ((UILabel *)[_waitPay viewWithTag:100]).text=[NSString stringWithFormat:@"%d",orderTTL.waitPay];
-            
-        }else{
-            [[_waitPay viewWithTag:100] removeFromSuperview];
-        
-        }
-        if(orderTTL.waitConsumption>0){//待消费
-            if (![_waitConsumption viewWithTag:101]) {
-                UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=deafultColor;
-                badge.font=[UIFont systemFontOfSize:10];
-                badge.layer.masksToBounds=YES;
-                badge.layer.cornerRadius=6;
-                badge.textColor=[UIColor whiteColor];
-                badge.textAlignment=NSTextAlignmentCenter;
-                CGRect frame=_waitConsumption.frame;
-                badge.frame=CGRectMake(_waitConsumption.size.width/2.f + 11, 5, 22, 12);
-                badge.tag=101;
-                [_waitConsumption addSubview:badge];
-            }
-            
-            ((UILabel *)[_waitConsumption viewWithTag:101]).text=[NSString stringWithFormat:@"%d",orderTTL.waitConsumption];
-        }else{
-            [[_waitConsumption viewWithTag:101] removeFromSuperview];
-        }
-        if (orderTTL.waitRebate>0){//待返利
-            if (![_waitRebate viewWithTag:102]) {
-                UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=deafultColor;
-                badge.font=[UIFont systemFontOfSize:10];
-                badge.layer.masksToBounds=YES;
-                badge.layer.cornerRadius=6;  
-                badge.textColor=[UIColor whiteColor];
-                badge.textAlignment=NSTextAlignmentCenter;
-                CGRect frame=_waitRebate.frame;
-                badge.frame=CGRectMake(_waitRebate.size.width/2.f + 11, 5, 22, 12);
-                badge.tag=102;
-                [_waitRebate addSubview:badge];
-            }
-            NSLog(@"--->%d",orderTTL.waitRebate);
-            ((UILabel *)[_waitRebate viewWithTag:102]).text=[NSString stringWithFormat:@"%d",orderTTL.waitRebate];
-        }else{
-            [[_waitRebate viewWithTag:102] removeFromSuperview];
-        }
-        if(orderTTL.waitEvaluation>0){//待评价
-            if(![_waitEvaluation viewWithTag:103]){
-                UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=deafultColor;
-                badge.font=[UIFont systemFontOfSize:10];
-                badge.layer.masksToBounds=YES;
-                badge.layer.cornerRadius=6;
-                badge.textColor=[UIColor whiteColor];
-                badge.textAlignment=NSTextAlignmentCenter;
-                CGRect frame=_waitEvaluation.frame;
-                badge.frame=CGRectMake(_waitEvaluation.size.width/2.f + 11, 5, 22, 12);
-                badge.tag=103;
-                [_waitEvaluation addSubview:badge];
-            }
-            ((UILabel *)[_waitEvaluation viewWithTag:103]).text=[NSString stringWithFormat:@"%d",orderTTL.waitEvaluation];
-        }else{
-            [[_waitEvaluation viewWithTag:103] removeFromSuperview];
-        }
-        if (orderTTL.waitPayBack>0){//待退款
-            NSLog(@"--->%ld",orderTTL.waitPayBack);
-            if(![_waitPayBack viewWithTag:104]){
-                UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=deafultColor;
-                badge.font=[UIFont systemFontOfSize:10];
-                badge.layer.masksToBounds=YES;
-                badge.layer.cornerRadius=6;
-                badge.textColor=[UIColor whiteColor];
-                badge.textAlignment=NSTextAlignmentCenter;
-                CGRect frame=_waitPayBack.frame;
-                badge.frame=CGRectMake(_waitPay.size.width/2.f + 11, 5, 22, 12);
-                badge.tag=104;
-                [_waitPayBack addSubview:badge];
-            }
-            ((UILabel *)[_waitPayBack viewWithTag:104]).text=[NSString stringWithFormat:@"%d",orderTTL.waitPayBack];
-        }else{
-            [[_waitPayBack viewWithTag:104] removeFromSuperview];
-        }
-        if (orderTTL.messageNum>0) {//消息中心
-            if(![_btnMessage viewWithTag:105]){
-                UILabel *badge=[[UILabel alloc] init];
-                badge.backgroundColor=[UIColor redColor];
-                badge.font=[UIFont systemFontOfSize:10];
-                badge.layer.masksToBounds=YES;
-                badge.layer.cornerRadius=6;
-                badge.textColor=[UIColor whiteColor];
-                badge.textAlignment=NSTextAlignmentCenter;
-                CGRect frame=_btnMessage.frame;
-                badge.frame=CGRectMake(frame.size.width-6, -3, 12, 12);
-                badge.tag=105;
-                [_btnMessage insertSubview:badge aboveSubview:_btnMessage.titleLabel];
-            }
-            ((UILabel *)[_btnMessage viewWithTag:105]).text=[NSString stringWithFormat:@"%d",orderTTL.messageNum];
-
-        }else{
-            [[_btnMessage viewWithTag:105] removeFromSuperview];
-        }
-            
+    _badgeNum = (int)(orderTTL.waitPay + orderTTL.waitRebate + orderTTL.waitPayBack + orderTTL.waitEvaluation + orderTTL.waitConsumption);
+    if (orderTTL.waitPay > 0) {
+        [_badgesArray addObject:@"1"];
+    }else{
+        [_badgesArray addObject:@"0"];
     }
+    if (orderTTL.waitConsumption > 0) {
+        [_badgesArray addObject:@"1"];
+    }else{
+        [_badgesArray addObject:@"0"];
+    }
+    if (orderTTL.waitEvaluation > 0) {
+        [_badgesArray addObject:@"1"];
+    }else{
+        [_badgesArray addObject:@"0"];
+    }
+    if (orderTTL.waitRebate > 0) {
+        [_badgesArray addObject:@"1"];
+    }else{
+        [_badgesArray addObject:@"0"];
+    }
+    if (orderTTL.waitPayBack > 0) {
+        [_badgesArray addObject:@"1"];
+    }else{
+        [_badgesArray addObject:@"0"];
+    }
+//    UIColor *deafultColor = RGBA(186, 40, 227, 1);
+//    if (orderTTL) {
+//        if (orderTTL.waitPay>0) {//待付款
+//            if(![_waitPay viewWithTag:100]){
+//                UILabel *badge=[[UILabel alloc] init];
+//                badge.backgroundColor = deafultColor;
+//                badge.font=[UIFont systemFontOfSize:10];
+//                badge.layer.masksToBounds=YES;
+//                badge.layer.cornerRadius=6;
+//                badge.textColor=[UIColor whiteColor];
+//                badge.textAlignment=NSTextAlignmentCenter;
+//                CGRect frame=_waitPay.frame;
+//                badge.frame=CGRectMake(_waitPay.size.width/2.f + 11, 5, 22, 12);
+//                badge.tag=100;
+//                [_waitPay addSubview:badge];
+//            }
+//            ((UILabel *)[_waitPay viewWithTag:100]).text=[NSString stringWithFormat:@"%d",orderTTL.waitPay];
+//            
+//        }else{
+//            [[_waitPay viewWithTag:100] removeFromSuperview];
+//        
+//        }
+//        if(orderTTL.waitConsumption>0){//待消费
+//            if (![_waitConsumption viewWithTag:101]) {
+//                UILabel *badge=[[UILabel alloc] init];
+//                badge.backgroundColor=deafultColor;
+//                badge.font=[UIFont systemFontOfSize:10];
+//                badge.layer.masksToBounds=YES;
+//                badge.layer.cornerRadius=6;
+//                badge.textColor=[UIColor whiteColor];
+//                badge.textAlignment=NSTextAlignmentCenter;
+//                CGRect frame=_waitConsumption.frame;
+//                badge.frame=CGRectMake(_waitConsumption.size.width/2.f + 11, 5, 22, 12);
+//                badge.tag=101;
+//                [_waitConsumption addSubview:badge];
+//            }
+//            
+//            ((UILabel *)[_waitConsumption viewWithTag:101]).text=[NSString stringWithFormat:@"%d",orderTTL.waitConsumption];
+//        }else{
+//            [[_waitConsumption viewWithTag:101] removeFromSuperview];
+//        }
+//        if (orderTTL.waitRebate>0){//待返利
+//            if (![_waitRebate viewWithTag:102]) {
+//                UILabel *badge=[[UILabel alloc] init];
+//                badge.backgroundColor=deafultColor;
+//                badge.font=[UIFont systemFontOfSize:10];
+//                badge.layer.masksToBounds=YES;
+//                badge.layer.cornerRadius=6;  
+//                badge.textColor=[UIColor whiteColor];
+//                badge.textAlignment=NSTextAlignmentCenter;
+//                CGRect frame=_waitRebate.frame;
+//                badge.frame=CGRectMake(_waitRebate.size.width/2.f + 11, 5, 22, 12);
+//                badge.tag=102;
+//                [_waitRebate addSubview:badge];
+//            }
+//            NSLog(@"--->%d",orderTTL.waitRebate);
+//            ((UILabel *)[_waitRebate viewWithTag:102]).text=[NSString stringWithFormat:@"%d",orderTTL.waitRebate];
+//        }else{
+//            [[_waitRebate viewWithTag:102] removeFromSuperview];
+//        }
+//        if(orderTTL.waitEvaluation>0){//待评价
+//            if(![_waitEvaluation viewWithTag:103]){
+//                UILabel *badge=[[UILabel alloc] init];
+//                badge.backgroundColor=deafultColor;
+//                badge.font=[UIFont systemFontOfSize:10];
+//                badge.layer.masksToBounds=YES;
+//                badge.layer.cornerRadius=6;
+//                badge.textColor=[UIColor whiteColor];
+//                badge.textAlignment=NSTextAlignmentCenter;
+//                CGRect frame=_waitEvaluation.frame;
+//                badge.frame=CGRectMake(_waitEvaluation.size.width/2.f + 11, 5, 22, 12);
+//                badge.tag=103;
+//                [_waitEvaluation addSubview:badge];
+//            }
+//            ((UILabel *)[_waitEvaluation viewWithTag:103]).text=[NSString stringWithFormat:@"%d",orderTTL.waitEvaluation];
+//        }else{
+//            [[_waitEvaluation viewWithTag:103] removeFromSuperview];
+//        }
+//        if (orderTTL.waitPayBack>0){//待退款
+//            NSLog(@"--->%ld",orderTTL.waitPayBack);
+//            if(![_waitPayBack viewWithTag:104]){
+//                UILabel *badge=[[UILabel alloc] init];
+//                badge.backgroundColor=deafultColor;
+//                badge.font=[UIFont systemFontOfSize:10];
+//                badge.layer.masksToBounds=YES;
+//                badge.layer.cornerRadius=6;
+//                badge.textColor=[UIColor whiteColor];
+//                badge.textAlignment=NSTextAlignmentCenter;
+//                CGRect frame=_waitPayBack.frame;
+//                badge.frame=CGRectMake(_waitPay.size.width/2.f + 11, 5, 22, 12);
+//                badge.tag=104;
+//                [_waitPayBack addSubview:badge];
+//            }
+//            ((UILabel *)[_waitPayBack viewWithTag:104]).text=[NSString stringWithFormat:@"%d",orderTTL.waitPayBack];
+//        }else{
+//            [[_waitPayBack viewWithTag:104] removeFromSuperview];
+//        }
+//        if (orderTTL.messageNum>0) {//消息中心
+//            if(![_btnMessage viewWithTag:105]){
+//                UILabel *badge=[[UILabel alloc] init];
+//                badge.backgroundColor=[UIColor redColor];
+//                badge.font=[UIFont systemFontOfSize:10];
+//                badge.layer.masksToBounds=YES;
+//                badge.layer.cornerRadius=6;
+//                badge.textColor=[UIColor whiteColor];
+//                badge.textAlignment=NSTextAlignmentCenter;
+//                CGRect frame=_btnMessage.frame;
+//                badge.frame=CGRectMake(frame.size.width-6, -3, 12, 12);
+//                badge.tag=105;
+//                [_btnMessage insertSubview:badge aboveSubview:_btnMessage.titleLabel];
+//            }
+//            ((UILabel *)[_btnMessage viewWithTag:105]).text=[NSString stringWithFormat:@"%d",orderTTL.messageNum];
+//
+//        }else{
+//            [[_btnMessage viewWithTag:105] removeFromSuperview];
+//        }
+    
+//    }
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -440,6 +468,7 @@
 -(void)gotoMyOrderList:(NSInteger)orderType{
     LPMyOrdersViewController *myOrderVC = [[LPMyOrdersViewController alloc]init];
     myOrderVC.orderIndex = (int)orderType;
+    myOrderVC.bagesArr = self.badgesArray;
 //    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
 //    myOrderManageViewController.title=@"我的订单";
 //    myOrderManageViewController.orderType=orderType;

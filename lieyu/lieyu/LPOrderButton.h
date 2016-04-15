@@ -10,5 +10,5 @@
 
 @interface LPOrderButton : UIButton
 @property (nonatomic, strong) UILabel *lineLabel;
-
+@property (nonatomic, strong) UILabel *pointLabel;
 @end
