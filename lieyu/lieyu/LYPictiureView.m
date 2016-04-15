@@ -88,7 +88,7 @@
             SDImageCache *cache = [SDImageCache sharedImageCache];
             UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] == nil ? [cache imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] : [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]];
             if (img == nil) {
-                img = [UIImage imageNamed:@" "];
+                img = [UIImage imageNamed:@"empyImage300"];
             }
            
             imageView.frame =  CGRectMake(0, (SCREEN_HEIGHT -SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
