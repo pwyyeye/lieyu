@@ -250,7 +250,7 @@
             }else{
                 height = scrollView.contentSize.height;
             }
-                     v.center = CGPointMake(scrollView.contentSize.width/2.0, height/2.0);
+                     v.center = CGPointMake(scrollView.contentSize.width/2.0, height/2.0); 
         }
     }
     }
