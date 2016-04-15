@@ -45,6 +45,7 @@
     _tableView.showsHorizontalScrollIndicator=NO;
     _tableView.showsVerticalScrollIndicator=NO;
     _tableView.separatorColor=[UIColor clearColor];
+    
     _tableView.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
     [self setuptitle];
     datalist=@[@{@"image":@"xitongtongzhi",@"title":@"系统通知"},
