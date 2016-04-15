@@ -1180,7 +1180,7 @@
     [[ZSManageHttpTool shareInstance] setMangerCancelWithParams:dic complete:^(BOOL result) {
         if(result){
             [weakSelf showMessage:@"取消订单成功！"];
-            [weakSelf getDaiLiuWei];
+            [weakSelf getDaiXiaoFei];
         }
     }];
 }
