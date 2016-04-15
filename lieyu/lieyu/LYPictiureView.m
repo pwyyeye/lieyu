@@ -88,11 +88,12 @@
             SDImageCache *cache = [SDImageCache sharedImageCache];
             UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] == nil ? [cache imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] : [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]];
             if (img == nil) {
-                img = [UIImage imageNamed:@"empyImage300"];
+                img = [UIImage imageNamed:@" "];
             }
            
             imageView.frame =  CGRectMake(0, (SCREEN_HEIGHT -SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
             
+            s.contentSize = CGSizeMake(0, imageView.frame.size.height);
 //            imageView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             s.center = CGPointMake(SCREEN_WIDTH *i + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             
@@ -129,8 +130,13 @@
                 img = [UIImage imageNamed:@"empyImage300"];
             }
             imgView.bounds = CGRectMake(0, 0, SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+            NSLog(@"-->%@",NSStringFromCGRect(imgView.bounds));
 //            imgView.bounds = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
             imgView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
+            if (imgView.bounds.size.height > SCREEN_HEIGHT) {
+                imgView.frame = CGRectMake(0, 0, SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+            }
+            
             self.backgroundColor = RGBA(255, 255, 255, 1);
         } completion:^(BOOL finished) {
             for (int i = 0 ; i< _imageViewArray.count ; i++) {
@@ -339,7 +345,13 @@
                 if (img == nil) {
                     img = [UIImage imageNamed:@"empyImage300"];
                 }
+//                imgView.frame = CGRectMake(0,(SCREEN_HEIGHT - SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+                
                 imgView.frame = CGRectMake(0,(SCREEN_HEIGHT - SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+                if (imgView.frame.size.height > SCREEN_HEIGHT) {
+                    imgView.bounds = CGRectMake(0,0 , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+                    scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, imgView.frame.size.height);
+                }
                 NSLog(@"----->%@",NSStringFromCGRect(imgView.frame));
                   NSLog(@"----->%@",NSStringFromCGRect(scrollView.frame));
             }

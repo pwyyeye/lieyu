@@ -38,7 +38,7 @@
 //    _typeArray = @[@"14",@"13",@"11",@"1"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"FindNotificationTableViewCell" bundle:nil] forCellReuseIdentifier:@"FindNotificationTableViewCell"];
-   
+    
 }
 
 - (void)getData{
@@ -124,7 +124,7 @@
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         MyMessageListViewController *messageListViewController=[[MyMessageListViewController alloc]initWithNibName:@"MyMessageListViewController" bundle:nil];
         messageListViewController.title=@"信息中心";
-        [app.navigationController pushViewController:messageListViewController animated:YES];
+        [self.navigationController pushViewController:messageListViewController animated:YES];
     }else{
         FindNotificationDetailViewController *notificationDetailVC = [[FindNotificationDetailViewController alloc]init];
        /* switch (indexPath.row) {
