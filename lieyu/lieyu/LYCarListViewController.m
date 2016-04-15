@@ -16,7 +16,7 @@
 #import "CarModel.h"
 #import "CHDoOrderViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-@interface LYCarListViewController ()
+@interface LYCarListViewController ()<CarInfoCellDelegate>
 {
     NSMutableArray *dataList;
     UILabel *warningLabel;
@@ -125,6 +125,22 @@
     return bottomView;
 }
 
+- (void)carlistFooterPrice:(int)section{
+//    CarBottomView *bottomView = [self.view viewWithTag:section];
+    CarBottomView *bottomView = (CarBottomView *)[self.tableView footerViewForSection:section];
+    CarInfoModel *carInfoModel=dataList[section];
+    double payAmount=0;
+//    self.tableView cellForRowAtIndexPath:<#(nonnull NSIndexPath *)#>
+    for (CarModel * carModel in carInfoModel.cartlist) {
+        if(carModel.isSel){
+            double price=carModel.product.price.doubleValue;
+            double num =carModel.quantity.doubleValue;
+            payAmount=payAmount+price*num;
+        }
+    }
+    bottomView.priceLal.text =[NSString stringWithFormat:@"￥%.2f",payAmount];
+}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     CarInfoModel *carInfoModel=dataList[section];
@@ -148,7 +164,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"*********cellForRowAtIndexPath%d*******",dataList.count);
+    NSLog(@"*********cellForRowAtIndexPath%ld*******",dataList.count);
     static NSString *CellIdentifier = @"CarInfoCell";
     
     CarInfoCell *cell = (CarInfoCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -158,7 +174,8 @@
     }
     CarInfoModel *carInfoModel=dataList[indexPath.section];
     CarModel *carModel=carInfoModel.cartlist[indexPath.row];
-    
+    cell.tag = indexPath.section;
+    cell.delegate = self;
     [cell configureCell:carModel];
     [cell.selBtn setSelected:carModel.isSel];
     [cell.selBtn addTarget:self action:@selector(rowSel:event:) forControlEvents:UIControlEventTouchUpInside];
@@ -256,6 +273,7 @@
 -(void)jiesuanAct:(UIButton *)sender{
     CarInfoModel *carInfoModel=dataList[sender.tag];
     NSMutableString *ss=[[NSMutableString alloc]init];
+    NSMutableString *nn=[[NSMutableString alloc]init];
     BOOL isChoose=false;
     
     //统计结算按钮的点击事件
@@ -266,9 +284,11 @@
         CarModel *modelTemp =carInfoModel.cartlist[i];
         if(modelTemp.isSel){
             [ss appendFormat:@"%d",modelTemp.id];
+            [nn appendString:modelTemp.quantity];
             isChoose=true;
             if(i!=carInfoModel.cartlist.count-1){
                 [ss appendString:@","];
+                [nn appendString:@","];
             }
         }
     }
@@ -276,11 +296,25 @@
         [MyUtil showMessage:@"请勾选要购买的物品"];
         return;
     }
-    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
-    CHDoOrderViewController *doOrderViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHDoOrderViewController"];
-    doOrderViewController.title=@"确认订单";
-    doOrderViewController.ids=ss;
-    [self.navigationController pushViewController:doOrderViewController animated:YES];
+    NSDictionary *dic=@{@"ids":ss,@"quantitys":nn};
+    [[LYHomePageHttpTool shareInstance]updataCarNumWithParams:dic complete:^(BOOL result) {
+        if (result) {
+            UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
+            CHDoOrderViewController *doOrderViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHDoOrderViewController"];
+            doOrderViewController.title=@"确认订单";
+            doOrderViewController.ids=ss;
+            [self.navigationController pushViewController:doOrderViewController animated:YES];
+        }else{
+            [MyUtil showLikePlaceMessage:@"确认失败"];
+        }
+    }];
+
+    
+//    UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
+//    CHDoOrderViewController *doOrderViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHDoOrderViewController"];
+//    doOrderViewController.title=@"确认订单";
+//    doOrderViewController.ids=ss;
+//    [self.navigationController pushViewController:doOrderViewController animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

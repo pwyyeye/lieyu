@@ -32,18 +32,23 @@
             _lessbtn.enabled = NO;
             [_lessbtn setBackgroundImage:[UIImage imageNamed:@"gray_less"] forState:UIControlStateNormal];
         }
+        carModel.quantity = [NSString stringWithFormat:@"%d",[carModel.quantity intValue] - 1];
+        _numLal.text = carModel.quantity;
     }else if(sender.tag == 2){
         count ++;
         if(_lessbtn.enabled == NO){
             _lessbtn.enabled = YES;
             [_lessbtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
         }
+        carModel.quantity = [NSString stringWithFormat:@"%d",[carModel.quantity intValue] + 1];
+        _numLal.text = carModel.quantity;
     }
-    NSDictionary *dic=@{@"ids":[NSString stringWithFormat:@"%d",carModel.id],@"quantitys":[NSString stringWithFormat:@"%d",count]};
-    [[LYHomePageHttpTool shareInstance]updataCarNumWithParams:dic complete:^(BOOL result) {
-        self.numLal.text=[NSString stringWithFormat:@"%d",count];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"carnumChange" object:nil];
-    }];
+    [self.delegate carlistFooterPrice:self.tag];
+//    NSDictionary *dic=@{@"ids":[NSString stringWithFormat:@"%d",carModel.id],@"quantitys":[NSString stringWithFormat:@"%d",count]};
+//    [[LYHomePageHttpTool shareInstance]updataCarNumWithParams:dic complete:^(BOOL result) {
+//        self.numLal.text=[NSString stringWithFormat:@"%d",count];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"carnumChange" object:nil];
+//    }];
     
 
 }
