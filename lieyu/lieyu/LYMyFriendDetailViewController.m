@@ -155,11 +155,18 @@
 }
 
 - (void)backForward:(UIButton *)sender{
+    NSLog(@"%@",self.navigationController.viewControllers);
     for (UIViewController *VC in self.navigationController.viewControllers) {
+        NSLog(@"%@",VC.superclass);
         if ([VC isKindOfClass:[SaoYiSaoViewController class]]) {
             [self.navigationController popToRootViewControllerAnimated:YES];
             return;
         }
+    }
+    UIViewController *VC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
+    if ([VC isKindOfClass:[LYFindConversationViewController class]]) {
+        [IQKeyboardManager sharedManager].enable = NO;
+        [IQKeyboardManager sharedManager].isAdd = YES;
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

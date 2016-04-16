@@ -498,16 +498,17 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         }
         [self getTTL];
         
-    }else if(dic.count>0){//否则认为是im推送
-//        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
-//        NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
-//        if (![MyUtil isEmptyString:count]) {
-//            [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue<99?count.intValue+1:99]  forKey:@"badgeValue"];
-//            [UIApplication sharedApplication].applicationIconBadgeNumber=count.intValue;
-//        }else{
-//            [USER_DEFAULT setObject:@"1" forKey:@"badgeValue"];
-//            [UIApplication sharedApplication].applicationIconBadgeNumber=1;
-//        }
+    }else if(dic.count>0){
+        NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
+        if (![MyUtil isEmptyString:count]) {
+            [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue<99?count.intValue+1:99]  forKey:@"badgeValue"];
+            [UIApplication sharedApplication].applicationIconBadgeNumber=count.intValue;
+        }else{
+            [USER_DEFAULT setObject:@"1" forKey:@"badgeValue"];
+            [UIApplication sharedApplication].applicationIconBadgeNumber=1;
+        }
+        
+    
     }
     
     

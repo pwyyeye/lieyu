@@ -663,7 +663,8 @@
 		38B5F4E41CBE10BE00AE1BF5 /* emojiTIpBottom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E01CBE10BE00AE1BF5 /* emojiTIpBottom@3x.png */; };
 		38B5F4E51CBE10BE00AE1BF5 /* emojiTIpTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E11CBE10BE00AE1BF5 /* emojiTIpTop@2x.png */; };
 		38B5F4E61CBE10BE00AE1BF5 /* emojiTIpTop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E21CBE10BE00AE1BF5 /* emojiTIpTop@3x.png */; };
-		38B5F4EA1CBF69B400AE1BF5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E91CBF69B400AE1BF5 /* coinPlay.png */; };
+		38B5F4EC1CC0EB2100AE1BF5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4EB1CC0EB2100AE1BF5 /* coinPlay.png */; };
+		38B5F4EE1CC0EEC100AE1BF5 /* coinBack5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4ED1CC0EEC100AE1BF5 /* coinBack5.jpg */; };
 		38C98CD11C60782D0084E6BD /* YUGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCE1C60782D0084E6BD /* YUGroup.png */; };
 		38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */; };
 		38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CD01C60782D0084E6BD /* YUGroup@3x.png */; };
@@ -1356,7 +1357,6 @@
 		AD203BB01CAEA9C70014618A /* CoinBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BA81CAEA9C70014618A /* CoinBack@2x.png */; };
 		AD203BB11CAEA9C70014618A /* CoinBack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BA91CAEA9C70014618A /* CoinBack@3x.png */; };
 		AD203BB21CAEA9C70014618A /* coinBack4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAA1CAEA9C70014618A /* coinBack4.jpg */; };
-		AD203BB31CAEA9C70014618A /* coinBack5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAB1CAEA9C70014618A /* coinBack5.jpg */; };
 		AD203BB41CAEA9C70014618A /* coinBackground@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAC1CAEA9C70014618A /* coinBackground@1x.png */; };
 		AD203BB51CAEA9C70014618A /* coinBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAD1CAEA9C70014618A /* coinBackground@2x.png */; };
 		AD203BB61CAEA9C70014618A /* coinBackground@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD203BAE1CAEA9C70014618A /* coinBackground@3x.png */; };
@@ -1493,6 +1493,7 @@
 		AD4EA8661C5476AF0056E560 /* launchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD4EA8641C5476AF0056E560 /* launchImage@2x.png */; };
 		AD4EA8671C5476AF0056E560 /* launchImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD4EA8651C5476AF0056E560 /* launchImage@3x.png */; };
 		AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */; };
+		AD67DB921CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */; };
 		AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD798A361BB99A1F006D08F5 /* libPods.a */; };
 		AD79E07F1C76EE5000C45B97 /* HuoDongLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E07E1C76EE5000C45B97 /* HuoDongLinkViewController.m */; };
 		AD79E0841C775DFC00C45B97 /* empyImage120.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0801C775DFC00C45B97 /* empyImage120.png */; };
@@ -1560,7 +1561,6 @@
 		ADC367521C633963006C2AE5 /* logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC367501C633963006C2AE5 /* logo@3x.png */; };
 		ADC66CE11C1EC38E00E597D9 /* LYMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADC66CE01C1EC38E00E597D9 /* LYMain.storyboard */; };
 		ADC66CE41C1FBB9900E597D9 /* LYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADC66CE31C1FBB9900E597D9 /* LYNavigationController.m */; };
-		ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */; };
 		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
 		ADD1B45D1C527EE200A5237C /* LYAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1B45C1C527EE200A5237C /* LYAccountManager.m */; };
 		ADD1B4651C528EE100A5237C /* qq_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B45F1C528EE100A5237C /* qq_s@2x.png */; };
@@ -2688,7 +2688,8 @@
 		38B5F4E01CBE10BE00AE1BF5 /* emojiTIpBottom@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpBottom@3x.png"; sourceTree = "<group>"; };
 		38B5F4E11CBE10BE00AE1BF5 /* emojiTIpTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@2x.png"; sourceTree = "<group>"; };
 		38B5F4E21CBE10BE00AE1BF5 /* emojiTIpTop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@3x.png"; sourceTree = "<group>"; };
-		38B5F4E91CBF69B400AE1BF5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
+		38B5F4EB1CC0EB2100AE1BF5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
+		38B5F4ED1CC0EEC100AE1BF5 /* coinBack5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack5.jpg; sourceTree = "<group>"; };
 		38C98CCE1C60782D0084E6BD /* YUGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUGroup.png; sourceTree = "<group>"; };
 		38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@2x.png"; sourceTree = "<group>"; };
 		38C98CD01C60782D0084E6BD /* YUGroup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@3x.png"; sourceTree = "<group>"; };
@@ -3630,7 +3631,6 @@
 		AD203BA81CAEA9C70014618A /* CoinBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@2x.png"; sourceTree = "<group>"; };
 		AD203BA91CAEA9C70014618A /* CoinBack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CoinBack@3x.png"; sourceTree = "<group>"; };
 		AD203BAA1CAEA9C70014618A /* coinBack4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack4.jpg; sourceTree = "<group>"; };
-		AD203BAB1CAEA9C70014618A /* coinBack5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack5.jpg; sourceTree = "<group>"; };
 		AD203BAC1CAEA9C70014618A /* coinBackground@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@1x.png"; sourceTree = "<group>"; };
 		AD203BAD1CAEA9C70014618A /* coinBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@2x.png"; sourceTree = "<group>"; };
 		AD203BAE1CAEA9C70014618A /* coinBackground@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coinBackground@3x.png"; sourceTree = "<group>"; };
@@ -3771,6 +3771,8 @@
 		AD4EA8641C5476AF0056E560 /* launchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchImage@2x.png"; sourceTree = "<group>"; };
 		AD4EA8651C5476AF0056E560 /* launchImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launchImage@3x.png"; sourceTree = "<group>"; };
 		AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.6.a; sourceTree = "<group>"; };
+		AD67DB911CC0C6790005BCEE /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		AD798A361BB99A1F006D08F5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		AD79E07D1C76EE5000C45B97 /* HuoDongLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongLinkViewController.h; sourceTree = "<group>"; };
 		AD79E07E1C76EE5000C45B97 /* HuoDongLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongLinkViewController.m; sourceTree = "<group>"; };
@@ -3851,8 +3853,6 @@
 		ADC66CE01C1EC38E00E597D9 /* LYMain.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LYMain.storyboard; sourceTree = "<group>"; };
 		ADC66CE21C1FBB9900E597D9 /* LYNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYNavigationController.h; sourceTree = "<group>"; };
 		ADC66CE31C1FBB9900E597D9 /* LYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYNavigationController.m; sourceTree = "<group>"; };
-		ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.0.a; sourceTree = "<group>"; };
-		ADCDF7A91BF19A890040E9E3 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		ADCDF7AE1BF1A84F0040E9E3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		ADCDF7B01BF1A8530040E9E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ADD1B45B1C527EE200A5237C /* LYAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAccountManager.h; sourceTree = "<group>"; };
@@ -4218,6 +4218,7 @@
 				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
 				853D3AB31C34CED500B4FEAD /* AMapSearchKit.framework in Frameworks */,
 				ADE2AD771C23AE8E00B0A54B /* Security.framework in Frameworks */,
+				AD67DB921CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a in Frameworks */,
 				ADE2AD751C23AE6600B0A54B /* libsqlite3.tbd in Frameworks */,
 				ADE2AD731C23AE5500B0A54B /* libz.tbd in Frameworks */,
 				ADF8E1BC1C2141C700943E4D /* CoreData.framework in Frameworks */,
@@ -4235,7 +4236,6 @@
 				AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */,
 				ADE2AD701C23ADDE00B0A54B /* libmtasdk.a in Frameworks */,
 				15EB35571BD483F500BA6161 /* libSocialSina.a in Frameworks */,
-				ADCDF7AA1BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a in Frameworks */,
 				15EB35471BD4839D00BA6161 /* libUMSocial_Sdk_4.2.3.a in Frameworks */,
 				15EB35661BD4840300BA6161 /* libWeiboSDK.a in Frameworks */,
 				15EB35651BD4840300BA6161 /* libSocialSinaSSO.a in Frameworks */,
@@ -7886,7 +7886,7 @@
 		AD203BA61CAEA9B00014618A /* 硬币 */ = {
 			isa = PBXGroup;
 			children = (
-				38B5F4E91CBF69B400AE1BF5 /* coinPlay.png */,
+				38B5F4EB1CC0EB2100AE1BF5 /* coinPlay.png */,
 				AD203BB91CAEAA8C0014618A /* CoinStart@1x.png */,
 				AD203BBA1CAEAA8C0014618A /* CoinStart@2x.png */,
 				AD203BBB1CAEAA8C0014618A /* CoinStart@3x.png */,
@@ -7894,7 +7894,7 @@
 				AD203BA81CAEA9C70014618A /* CoinBack@2x.png */,
 				AD203BA91CAEA9C70014618A /* CoinBack@3x.png */,
 				AD203BAA1CAEA9C70014618A /* coinBack4.jpg */,
-				AD203BAB1CAEA9C70014618A /* coinBack5.jpg */,
+				38B5F4ED1CC0EEC100AE1BF5 /* coinBack5.jpg */,
 				AD203BAC1CAEA9C70014618A /* coinBackground@1x.png */,
 				AD203BAD1CAEA9C70014618A /* coinBackground@2x.png */,
 				AD203BAE1CAEA9C70014618A /* coinBackground@3x.png */,
@@ -8169,8 +8169,8 @@
 		ADCDF7A71BF19A890040E9E3 /* UMessage_Sdk_1.2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				ADCDF7A81BF19A890040E9E3 /* libUMessage_Sdk_1.2.0.a */,
-				ADCDF7A91BF19A890040E9E3 /* UMessage.h */,
+				AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */,
+				AD67DB911CC0C6790005BCEE /* UMessage.h */,
 			);
 			path = UMessage_Sdk_1.2.0;
 			sourceTree = "<group>";
@@ -9501,6 +9501,7 @@
 				38979A631CA40919002946F5 /* kawayi16.png in Resources */,
 				AD399E8B1C940D4D00028F23 /* logo12@2x.jpg in Resources */,
 				15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */,
+				38B5F4EE1CC0EEC100AE1BF5 /* coinBack5.jpg in Resources */,
 				15E240C71BB3CAC20090D240 /* LYResetPasswordViewController.xib in Resources */,
 				15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */,
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,
@@ -9992,7 +9993,7 @@
 				38979A351CA40919002946F5 /* dianzan2.png in Resources */,
 				3856647B1C72BF02000DCFA5 /* purper_price@3x.png in Resources */,
 				85F66E521C525E51005D1CD8 /* xitongtongzhi@3x.png in Resources */,
-				38B5F4EA1CBF69B400AE1BF5 /* coinPlay.png in Resources */,
+				38B5F4EC1CC0EB2100AE1BF5 /* coinPlay.png in Resources */,
 				38AA7CC61C315A0000D9BCE8 /* preview.xib in Resources */,
 				38979A521CA40919002946F5 /* happy23.png in Resources */,
 				AD399EA51C940D4D00028F23 /* logo38@2x.jpg in Resources */,
@@ -10146,7 +10147,6 @@
 				853CB7551CAA253B006FC768 /* ZSTiXianRecordTableViewCell.xib in Resources */,
 				38EDEC651C5B9DE700694758 /* return_white@2x.png in Resources */,
 				ADE1C5CF1C730E1C0011D4AB /* 更新26@2x.png in Resources */,
-				AD203BB31CAEA9C70014618A /* coinBack5.jpg in Resources */,
 				38B5F4C01CBBC69900AE1BF5 /* CustomBtn_Selected@2x.png in Resources */,
 				38979A8E1CA40919002946F5 /* sad1.png in Resources */,
 				A2FD576C1BAFE85900CFFF92 /* PinKeCell.xib in Resources */,
@@ -11151,8 +11151,8 @@
 			baseConfigurationReference = 60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -11191,7 +11191,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c552cdd2-99ea-4a10-93b2-a785373e938f";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

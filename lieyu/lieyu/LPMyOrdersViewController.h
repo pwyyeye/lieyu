@@ -12,4 +12,5 @@
 
 @interface LPMyOrdersViewController : LYBaseViewController<LPOrderDetailDelegate>
 @property (nonatomic, assign) int orderIndex;
+@property (nonatomic, strong) NSMutableArray *bagesArr;
 @end

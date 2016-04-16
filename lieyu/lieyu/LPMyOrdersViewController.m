@@ -123,7 +123,7 @@
     [label setTextColor:[UIColor blackColor]];
     [effectView addSubview:label];
     
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 25, 60, 34)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-5, 25, 60, 34)];
     [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
     [effectView addSubview:button];
@@ -141,6 +141,11 @@
         button.tag = i ;
         [button addTarget:self action:@selector(changeTableViewAtButton:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
+        if ([[self.bagesArr objectAtIndex:i] isEqualToString:@"0"]) {
+            [button.pointLabel setHidden:YES];
+        }else{
+            [button.pointLabel setHidden:NO];
+        }
         [scrollView addSubview:button];
         [arrayButton addObject:button];
     }

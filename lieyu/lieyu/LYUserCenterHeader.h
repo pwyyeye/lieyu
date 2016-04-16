@@ -10,6 +10,9 @@
 #import "OrderTTL.h"
 @interface LYUserCenterHeader : UICollectionReusableView
 //顶部带背景view
+@property (nonatomic, assign) int badgeNum;
+@property (nonatomic, strong) NSMutableArray *badgesArray;
+
 @property (weak, nonatomic) IBOutlet UIView *headView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSetting;
 @property (weak, nonatomic) IBOutlet UIButton *btnMessage;
