@@ -91,6 +91,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
 }
+
 - (void)loadHeaderViewBadge{
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             if (![MyUtil isEmptyString:app.s_app_id]) {

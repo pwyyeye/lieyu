@@ -16,6 +16,7 @@
 #import "PinkerShareController.h"
 #import "UMSocial.h"
 #import "FindNotificationNextDetailViewController.h"
+#import "OrderTTL.h"
 
 #import "LPOrdersHeaderCell.h"
 #import "LPOrdersBodyCell.h"
@@ -39,6 +40,7 @@
     
     UILabel *kongLabel;
     UIButton *kongButton;
+    OrderTTL *_orderTTL;
 }
 @end
 
@@ -142,11 +144,13 @@
         button.tag = i ;
         [button addTarget:self action:@selector(changeTableViewAtButton:) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
-        if ([[self.bagesArr objectAtIndex:i] isEqualToString:@"0"]) {
-            [button.pointLabel setHidden:YES];
-        }else{
-            [button.pointLabel setHidden:NO];
-        }
+//        if (self.bagesArr.count == 6) {
+//            if ([[self.bagesArr objectAtIndex:i] isEqualToString:@"0"]) {
+//                [button.pointLabel setHidden:YES];
+//            }else{
+//                [button.pointLabel setHidden:NO];
+//            }
+//        }
         [scrollView addSubview:button];
         [arrayButton addObject:button];
     }
@@ -261,6 +265,15 @@
 - (void)getOrderWithDic:(NSDictionary *)dic{
     __weak __typeof(self)weakSelf = self;
     [[LYUserHttpTool shareInstance]getMyOrderListWithParams:dic block:^(NSMutableArray *result) {
+        
+        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        if (![MyUtil isEmptyString:app.s_app_id]) {
+            [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
+                _orderTTL=result;
+                [weakSelf loadBadge:_orderTTL];
+            }];
+        }
+        
         [dataList removeAllObjects];
         [dataList addObjectsFromArray:result];
         if (dataList.count > 0 ) {
@@ -276,6 +289,47 @@
         [myTableView reloadData];
     }];
     [myTableView.mj_header endRefreshing];
+    
+}
+
+- (void)loadBadge:(OrderTTL *)orderTTL{
+    _bagesArr = [[NSMutableArray alloc]init];
+    [_bagesArr addObject:@"0"];
+    if (orderTTL.waitPay > 0) {
+        [_bagesArr addObject:@"1"];
+    }else{
+        [_bagesArr addObject:@"0"];
+    }
+    if (orderTTL.waitConsumption > 0) {
+        [_bagesArr addObject:@"1"];
+    }else{
+        [_bagesArr addObject:@"0"];
+    }
+    if (orderTTL.waitEvaluation > 0) {
+        [_bagesArr addObject:@"1"];
+    }else{
+        [_bagesArr addObject:@"0"];
+    }
+    if (orderTTL.waitRebate > 0) {
+        [_bagesArr addObject:@"1"];
+    }else{
+        [_bagesArr addObject:@"0"];
+    }
+    if (orderTTL.waitPayBack > 0) {
+        [_bagesArr addObject:@"1"];
+    }else{
+        [_bagesArr addObject:@"0"];
+    }
+    for (int i = 0 ; i < 6; i ++) {
+        if (self.bagesArr.count == 6) {
+            if ([[self.bagesArr objectAtIndex:i] isEqualToString:@"0"]) {
+                [((LPOrderButton *)[arrayButton objectAtIndex:i]).pointLabel setHidden:YES];
+            }else{
+                [((LPOrderButton *)[arrayButton objectAtIndex:i]).pointLabel setHidden:NO];
+            }
+        }
+    }
+    
     
 }
 
