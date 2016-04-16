@@ -307,7 +307,7 @@
     RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
     conversationVC.targetId = cell.imuserId; // 接收者的 targetId，这里为举例。
-    conversationVC.userName =cell.username; // 接受者的 username，这里为举例。
+//    conversationVC.userName =cell.username; // 接受者的 username，这里为举例。
     conversationVC.title =cell.username; // 会话的 title。
     
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
@@ -499,7 +499,7 @@
     _conversationVC.conversationType = ConversationType_APPSERVICE;;
     _conversationVC.targetId = @"KEFU144946169476221";
     [_conversationVC.navigationController.navigationBar setHidden:NO];
-    _conversationVC.userName = @"猎娱客服";
+//    _conversationVC.userName = @"猎娱客服";
     _conversationVC.title = @"猎娱客服";
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
