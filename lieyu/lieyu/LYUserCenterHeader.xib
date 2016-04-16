@@ -146,230 +146,16 @@
                     </constraints>
                     <blurEffect style="light"/>
                 </visualEffectView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gf-wl-Y6x">
-                    <rect key="frame" x="0.0" y="251" width="320" height="60"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMQ-p7-byq">
-                            <rect key="frame" x="0.0" y="8" width="64" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="43" id="dBQ-rD-0Gu"/>
-                                <constraint firstAttribute="width" constant="64" id="dzP-WC-dkD"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="waitPay"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="dBQ-rD-0Gu"/>
-                                    <exclude reference="dzP-WC-dkD"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="gotoWaitPayOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="wY9-aL-jVO"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7O-TL-unf">
-                            <rect key="frame" x="64" y="8" width="64" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="43" id="Qzh-m0-BEY"/>
-                                <constraint firstAttribute="width" constant="64" id="Z0K-rz-wNW"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="waitConsumption"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="Qzh-m0-BEY"/>
-                                    <exclude reference="Z0K-rz-wNW"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="gotoWaitConsumptionOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="afV-Zs-g30"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w28-C4-2X7">
-                            <rect key="frame" x="0.0" y="30" width="64" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="ycW-4B-KNb"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
-                            <state key="normal" title="待付款">
-                                <color key="titleColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="gotoWaitPayOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="Lbk-kc-lTF"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aex-7G-TfG">
-                            <rect key="frame" x="64" y="30" width="64" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="T7w-zx-62B"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
-                            <state key="normal" title="待消费">
-                                <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="gotoWaitConsumptionOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="4SI-E2-Znr"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGJ-zK-Afi">
-                            <rect key="frame" x="128" y="30" width="64" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="WgZ-oF-D1b"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
-                            <state key="normal" title="待评价">
-                                <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="gotoWaitEvaluationOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="hoa-g6-SGc"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMg-XD-akU">
-                            <rect key="frame" x="192" y="30" width="64" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="gBy-2P-hZZ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
-                            <state key="normal" title="待返利">
-                                <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="gotoWaitRebateOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="dgg-eC-drh"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzB-jJ-rgW">
-                            <rect key="frame" x="256" y="30" width="64" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="PfZ-PZ-V8S"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="5"/>
-                            <state key="normal" title="待退款">
-                                <color key="titleColor" red="0.1176470588" green="0.1176470588" blue="0.1176470588" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="gotoWaitPayBackOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="6kg-Ii-bcO"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyr-Q8-jkr">
-                            <rect key="frame" x="256" y="8" width="64" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="43" id="Eg8-m3-u91"/>
-                                <constraint firstAttribute="width" constant="64" id="XU4-yQ-6HX"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="waitPayBack"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="Eg8-m3-u91"/>
-                                    <exclude reference="XU4-yQ-6HX"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="gotoWaitPayBackOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="3y2-1O-sqB"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cai-FL-cSj">
-                            <rect key="frame" x="192" y="8" width="64" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="64" id="Ctq-g4-L1w"/>
-                                <constraint firstAttribute="height" constant="43" id="Ukh-2W-jUp"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="waitEvaluation"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="Ctq-g4-L1w"/>
-                                    <exclude reference="Ukh-2W-jUp"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="gotoWaitRebateOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="ttQ-Xn-M7x"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YPc-20-z80">
-                            <rect key="frame" x="128" y="8" width="64" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="43" id="3I8-VE-xh8"/>
-                                <constraint firstAttribute="width" constant="64" id="frl-cA-Mro"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="waitRebate"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="3I8-VE-xh8"/>
-                                    <exclude reference="frl-cA-Mro"/>
-                                </mask>
-                            </variation>
-                            <connections>
-                                <action selector="gotoWaitEvaluationOrderList:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="wNh-I8-SVr"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstItem="I7O-TL-unf" firstAttribute="leading" secondItem="sMQ-p7-byq" secondAttribute="trailing" id="02U-eO-zKP"/>
-                        <constraint firstItem="Aex-7G-TfG" firstAttribute="top" secondItem="I7O-TL-unf" secondAttribute="bottom" id="0Bw-Us-OKD"/>
-                        <constraint firstItem="cai-FL-cSj" firstAttribute="leading" secondItem="YPc-20-z80" secondAttribute="trailing" id="5kK-e7-pog"/>
-                        <constraint firstItem="w28-C4-2X7" firstAttribute="leading" secondItem="8gf-wl-Y6x" secondAttribute="leading" id="Aha-Ii-2Nn"/>
-                        <constraint firstAttribute="bottom" secondItem="Aex-7G-TfG" secondAttribute="bottom" id="AsP-2n-JK2"/>
-                        <constraint firstAttribute="trailing" secondItem="Fyr-Q8-jkr" secondAttribute="trailing" id="At7-WG-sWd"/>
-                        <constraint firstItem="iMg-XD-akU" firstAttribute="leading" secondItem="oGJ-zK-Afi" secondAttribute="trailing" id="CEH-an-dOX"/>
-                        <constraint firstItem="YPc-20-z80" firstAttribute="width" secondItem="sMQ-p7-byq" secondAttribute="width" id="F6v-kT-aUJ"/>
-                        <constraint firstAttribute="bottom" secondItem="iMg-XD-akU" secondAttribute="bottom" id="GXQ-zX-Rph"/>
-                        <constraint firstItem="tzB-jJ-rgW" firstAttribute="width" secondItem="w28-C4-2X7" secondAttribute="width" id="Jlr-ux-oo0"/>
-                        <constraint firstAttribute="trailing" secondItem="tzB-jJ-rgW" secondAttribute="trailing" id="KQf-2Z-bhD"/>
-                        <constraint firstItem="tzB-jJ-rgW" firstAttribute="top" secondItem="Fyr-Q8-jkr" secondAttribute="bottom" id="MRm-Zl-sEz"/>
-                        <constraint firstItem="I7O-TL-unf" firstAttribute="width" secondItem="sMQ-p7-byq" secondAttribute="width" id="Mre-Tg-kD9"/>
-                        <constraint firstItem="YPc-20-z80" firstAttribute="leading" secondItem="I7O-TL-unf" secondAttribute="trailing" id="OGP-qr-yaL"/>
-                        <constraint firstItem="Fyr-Q8-jkr" firstAttribute="leading" secondItem="cai-FL-cSj" secondAttribute="trailing" id="OV8-BW-jqh"/>
-                        <constraint firstAttribute="bottom" secondItem="tzB-jJ-rgW" secondAttribute="bottom" id="Ph2-dj-8gf"/>
-                        <constraint firstItem="iMg-XD-akU" firstAttribute="top" secondItem="cai-FL-cSj" secondAttribute="bottom" id="QYg-Mk-D0i"/>
-                        <constraint firstItem="cai-FL-cSj" firstAttribute="height" secondItem="sMQ-p7-byq" secondAttribute="height" id="RxE-Zi-as7"/>
-                        <constraint firstItem="YPc-20-z80" firstAttribute="height" secondItem="sMQ-p7-byq" secondAttribute="height" id="UEV-DC-s9X"/>
-                        <constraint firstItem="w28-C4-2X7" firstAttribute="top" secondItem="sMQ-p7-byq" secondAttribute="bottom" id="UIT-QD-Tuk"/>
-                        <constraint firstAttribute="height" constant="60" id="WVA-SF-OHz"/>
-                        <constraint firstItem="iMg-XD-akU" firstAttribute="width" secondItem="w28-C4-2X7" secondAttribute="width" id="YDp-vC-OJn"/>
-                        <constraint firstItem="Aex-7G-TfG" firstAttribute="leading" secondItem="w28-C4-2X7" secondAttribute="trailing" id="ZJ3-Ek-5Lc"/>
-                        <constraint firstAttribute="bottom" secondItem="oGJ-zK-Afi" secondAttribute="bottom" id="aCM-zM-SO1"/>
-                        <constraint firstItem="oGJ-zK-Afi" firstAttribute="leading" secondItem="Aex-7G-TfG" secondAttribute="trailing" id="aXG-P8-eoh"/>
-                        <constraint firstItem="I7O-TL-unf" firstAttribute="height" secondItem="sMQ-p7-byq" secondAttribute="height" id="b9L-3t-1ZD"/>
-                        <constraint firstItem="oGJ-zK-Afi" firstAttribute="width" secondItem="w28-C4-2X7" secondAttribute="width" id="dAn-Cg-dT2"/>
-                        <constraint firstItem="Fyr-Q8-jkr" firstAttribute="width" secondItem="sMQ-p7-byq" secondAttribute="width" id="fI8-NL-r5o"/>
-                        <constraint firstItem="tzB-jJ-rgW" firstAttribute="leading" secondItem="iMg-XD-akU" secondAttribute="trailing" id="izT-My-8qO"/>
-                        <constraint firstItem="oGJ-zK-Afi" firstAttribute="top" secondItem="YPc-20-z80" secondAttribute="bottom" id="kIv-Um-gzV"/>
-                        <constraint firstAttribute="bottom" secondItem="w28-C4-2X7" secondAttribute="bottom" id="mzm-qx-T7B"/>
-                        <constraint firstItem="Aex-7G-TfG" firstAttribute="width" secondItem="w28-C4-2X7" secondAttribute="width" id="nKA-Ww-R0q"/>
-                        <constraint firstItem="cai-FL-cSj" firstAttribute="width" secondItem="sMQ-p7-byq" secondAttribute="width" id="s1V-Ih-9Vo"/>
-                        <constraint firstItem="Fyr-Q8-jkr" firstAttribute="height" secondItem="sMQ-p7-byq" secondAttribute="height" id="xOe-Xm-pgR"/>
-                        <constraint firstItem="sMQ-p7-byq" firstAttribute="leading" secondItem="8gf-wl-Y6x" secondAttribute="leading" id="yAu-gP-r9h"/>
-                    </constraints>
-                </view>
             </subviews>
             <constraints>
                 <constraint firstItem="wcF-YU-lBt" firstAttribute="leading" secondItem="WZ3-3e-bE2" secondAttribute="leading" id="B05-AS-yvU"/>
                 <constraint firstAttribute="trailing" secondItem="wcF-YU-lBt" secondAttribute="trailing" id="KNx-MV-d0n"/>
-                <constraint firstAttribute="trailing" secondItem="8gf-wl-Y6x" secondAttribute="trailing" id="O01-L2-3bk"/>
                 <constraint firstItem="wcF-YU-lBt" firstAttribute="top" secondItem="WZ3-3e-bE2" secondAttribute="top" id="Vd7-ll-kYs"/>
-                <constraint firstAttribute="bottom" secondItem="8gf-wl-Y6x" secondAttribute="bottom" id="aOu-8c-zMZ"/>
                 <constraint firstItem="wcF-YU-lBt" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="bg4-3R-3OI"/>
                 <constraint firstItem="wcF-YU-lBt" firstAttribute="trailing" secondItem="WZ3-3e-bE2" secondAttribute="trailing" id="kgi-Uc-qlR"/>
                 <constraint firstItem="wcF-YU-lBt" firstAttribute="bottom" secondItem="WZ3-3e-bE2" secondAttribute="bottom" id="nZ5-M0-Adc"/>
-                <constraint firstAttribute="bottom" secondItem="8gf-wl-Y6x" secondAttribute="bottom" id="nZW-8N-Iwx"/>
-                <constraint firstItem="8gf-wl-Y6x" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="o6J-wS-9e8"/>
-                <constraint firstItem="8gf-wl-Y6x" firstAttribute="top" secondItem="wcF-YU-lBt" secondAttribute="bottom" id="o99-xb-LYM"/>
                 <constraint firstItem="wcF-YU-lBt" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="wGr-1P-qrc"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="nZW-8N-Iwx"/>
-                    <exclude reference="o99-xb-LYM"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="_tagConstrant" destination="btE-5Y-VPf" id="9qm-aL-2ly"/>
                 <outlet property="btnChange" destination="hVq-RY-63Z" id="m2e-dL-uG3"/>
@@ -380,11 +166,6 @@
                 <outlet property="label_constellation" destination="Mnt-fS-OR9" id="snb-00-AlX"/>
                 <outlet property="label_name" destination="etj-sv-QLS" id="cf2-Mt-ooM"/>
                 <outlet property="label_work" destination="TWK-ei-VEH" id="EvX-1R-wQL"/>
-                <outlet property="waitConsumption" destination="I7O-TL-unf" id="ib2-Af-uWr"/>
-                <outlet property="waitEvaluation" destination="YPc-20-z80" id="ner-rN-XEa"/>
-                <outlet property="waitPay" destination="sMQ-p7-byq" id="bD8-1O-3t4"/>
-                <outlet property="waitPayBack" destination="Fyr-Q8-jkr" id="wRc-cc-qKy"/>
-                <outlet property="waitRebate" destination="cai-FL-cSj" id="2tE-Bd-TG2"/>
             </connections>
             <point key="canvasLocation" x="242" y="473.5"/>
         </collectionReusableView>
@@ -392,11 +173,6 @@
     <resources>
         <image name="QRCodeHeaderbg.png" width="74" height="74"/>
         <image name="transparentBG.png" width="1125" height="717"/>
-        <image name="waitConsumption" width="14" height="14"/>
-        <image name="waitEvaluation" width="14" height="14"/>
-        <image name="waitPay" width="14" height="14"/>
-        <image name="waitPayBack" width="14" height="14"/>
-        <image name="waitRebate" width="14" height="14"/>
         <image name="woman" width="16" height="16"/>
         <image name="商户箭头.png" width="15" height="9"/>
     </resources>

@@ -787,7 +787,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     [view removeFromSuperview];
                     view=nil;
                     
-                     SDCycleScrollView *cycleScrollView  = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+                     SDCycleScrollView *cycleScrollView  = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
                     cycleScrollView.tag=1999;
                     cycleScrollView.imageURLStringsGroup =bannerList;// self.bannerList;
                     cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
@@ -825,7 +825,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     imageV.layer.cornerRadius = 2;
                     imageV.layer.masksToBounds = YES;
                     imgV.tag = 10010;
-                        [imgV sd_setImageWithURL:[NSURL URLWithString: _recommendedTopic.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                        [imgV sd_setImageWithURL:[NSURL URLWithString: _recommendedTopic.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
                     [cell addSubview:imgV];
                     }
                     
@@ -834,7 +834,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                         imageV.layer.cornerRadius = 2;
                         imageV.layer.masksToBounds = YES;
                         imgV.tag = 10010;
-                        [imgV sd_setImageWithURL:[NSURL URLWithString: _recommendedTopic2.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                        [imgV sd_setImageWithURL:[NSURL URLWithString: _recommendedTopic2.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
                         [cell addSubview:imgV];
                     }
                     
@@ -869,7 +869,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             else if (_recommendedBar2&&_index==1) {
                 ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBar2;
             }else{
-                [((HomeBarCollectionViewCell *)cell).imgView_bg  setImage:[UIImage imageNamed:@"empyImage16_9"]];
+                [((HomeBarCollectionViewCell *)cell).imgView_bg  setImage:[UIImage imageNamed:@"empyImageBar16_9"]];
             }
         }else if(indexPath.item == 2){
             HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
@@ -893,7 +893,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
             HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
             if (indexPath.item - 4 >= hcell.jiubaArray.count) {
-                [homeCell.imgView_bg setImage:[UIImage imageNamed:@"empyImage16_9"]];
+                [homeCell.imgView_bg setImage:[UIImage imageNamed:@"empyImageBar16_9"]];
                 return;
             }
             JiuBaModel *jiubaM = hcell.jiubaArray[indexPath.item - 4];

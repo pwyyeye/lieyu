@@ -9,8 +9,10 @@
 #import "FindNotificationDetailViewController.h"
 #import "FindNotificatinDetailTableViewCell.h"
 #import "LYFindHttpTool.h"
-#import "FindNotificationNextDetailViewController.h"
 #import "FindNewMessageList.h"
+#import "LPMyOrdersViewController.h"
+#import "LYFriendsMessageViewController.h"
+#import "ZSOrderViewController.h"
 
 @interface FindNotificationDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSArray *_dataArray;
@@ -54,16 +56,46 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-     FindNewMessageList *findNewMessList = _dataArray[indexPath.row];
-    FindNotificationNextDetailViewController *findNextDetailVC = [[FindNotificationNextDetailViewController alloc]init];
-    findNextDetailVC.findNewList = findNewMessList;
-    [self.navigationController pushViewController:findNextDetailVC animated:YES];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//     FindNewMessageList *findNewMessList = _dataArray[indexPath.row];
+//    FindNotificationNextDetailViewController *findNextDetailVC = [[FindNotificationNextDetailViewController alloc]init];
+//    findNextDetailVC.findNewList = findNewMessList;
+//    [self.navigationController pushViewController:findNextDetailVC animated:YES];
+//}
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 73;
+//    return 73;
+    FindNewMessageList *findNewMessList = _dataArray[indexPath.row];
+    CGSize size = [findNewMessList.content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 71, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12 ]} context:nil].size;
+    if (size.height + 53 < 73) {
+        return 73;
+    }else{
+        if (size.height + 53 > 96 ) {
+            return 96;
+        }
+        return size.height + 53;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    FindNewMessageList *_findNewList = _dataArray[indexPath.row];
+    if ([_findNewList.type isEqualToString:@"1"]) {//订单1.普通用户，2.专属经理
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if ([app.userModel.usertype isEqualToString:@"1"]) {
+            //            LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            LPMyOrdersViewController *detailVC = [[LPMyOrdersViewController alloc]init];
+            detailVC.title=@"我的订单";
+            detailVC.orderIndex=0;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }else{
+            ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
+            [self.navigationController pushViewController:orderManageViewController animated:YES];
+        }
+    }else if([_findNewList.type isEqualToString:@"13"] ||[_findNewList.type isEqualToString:@"14"]) {
+        LYFriendsMessageViewController *messageVC = [[LYFriendsMessageViewController alloc]init];
+        [self.navigationController pushViewController:messageVC animated:YES];
+    }
 }
 
 

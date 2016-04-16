@@ -91,11 +91,14 @@
                 img = [UIImage imageNamed:@"empyImage300"];
             }
            
-            imageView.frame =  CGRectMake(0, (SCREEN_HEIGHT -SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+            CGFloat imgHeight = SCREEN_WIDTH * img.size.height/img.size.width;
+            imageView.frame =  CGRectMake(0, (SCREEN_HEIGHT -imgHeight)/2.f , SCREEN_WIDTH ,imgHeight);
             
-            s.contentSize = CGSizeMake(0, imageView.frame.size.height);
-//            imageView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
-            s.center = CGPointMake(SCREEN_WIDTH *i + SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
+            s.contentSize = CGSizeMake(0, imgHeight);
+            if (imageView.frame.size.height < SCREEN_HEIGHT) {
+                s.contentSize = CGSizeMake(0, SCREEN_HEIGHT);
+            }
+
             
             UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
             [tapGes setNumberOfTapsRequired:1];
@@ -117,7 +120,7 @@
         }
         UIImageView *imgView = _imageViewArray[index];
         CGRect rect = CGRectFromString(oldFrame[index]);
-        imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
+        imgView.frame = rect;
         
         [UIView animateWithDuration:.5 animations:^{
             imgView.alpha = 1;
@@ -131,7 +134,6 @@
             }
             imgView.bounds = CGRectMake(0, 0, SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
             NSLog(@"-->%@",NSStringFromCGRect(imgView.bounds));
-//            imgView.bounds = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
             imgView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
             if (imgView.bounds.size.height > SCREEN_HEIGHT) {
                 imgView.frame = CGRectMake(0, 0, SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
@@ -141,13 +143,18 @@
         } completion:^(BOOL finished) {
             for (int i = 0 ; i< _imageViewArray.count ; i++) {
                 UIImageView *imgView_ce = _imageViewArray[i];
+                UIScrollView *scrollV = _scrollViewArray[i];
                 SDImageCache *cache = [SDImageCache sharedImageCache];
                 if(_urlArray.count > _index){
                 UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] == nil ? [cache imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]] : [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[i] width:0 andHeight:0]];
                     if (img == nil) {
                         img = [UIImage imageNamed:@"empyImage300"];
                     }
-                imgView_ce.bounds = CGRectMake(0, 0, SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+                imgView_ce.frame = CGRectMake(0, (SCREEN_HEIGHT -SCREEN_WIDTH * img.size.height/img.size.width )/2.f, SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+                    if (imgView_ce.bounds.size.height > SCREEN_HEIGHT) {
+//                        scrollV.contentSize = CGSizeMake(SCREEN_WIDTH, imgView_ce.frame.size.height);
+                        imgView_ce.frame = CGRectMake(0, 0, SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+                    }
                 //                imgView_ce.contentMode = UIViewContentModeScaleAspectFit;
               //  imgView_ce.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
                 }
@@ -218,7 +225,12 @@
                         if (img == nil) {
                             img = [UIImage imageNamed:@"empyImage300"];
                         }
+//                        s.contentSize = CGSizeMake(0, image.frame.size.height);
                         image.frame = CGRectMake(0, (SCREEN_HEIGHT -SCREEN_WIDTH * img.size.height/img.size.width )/2.f, SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+                        image.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT / 2.f);
+                        if (image.frame.size.height > SCREEN_HEIGHT) {
+                            image.frame = CGRectMake(0, 0, SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+                        }
                         //                imgView_ce.contentMode = UIViewContentModeScaleAspectFit;
                         //  imgView_ce.bounds = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
                     }
@@ -229,17 +241,20 @@
 }
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale {
-//    if (_imageViewArray.count > _index || _scrollViewArray.count > _index) {
-//        UIImageView *imgView = [_imageViewArray objectAtIndex:_index];
-//        UIScrollView *scrollV = [_scrollViewArray objectAtIndex:_index];
+    if (_imageViewArray.count > _index || _scrollViewArray.count > _index) {
+        UIImageView *imgView = [_imageViewArray objectAtIndex:_index];
+        UIScrollView *scrollV = [_scrollViewArray objectAtIndex:_index];
 //        imgView.center = scrollV.center;
-//        
-//    }
+        if (imgView.frame.size.height <= SCREEN_HEIGHT) {
+            
+        }
+    }
 }
 
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView{
     NSLog(@"Did zoom!");
-    
+     UIImageView *imgView = [_imageViewArray objectAtIndex:_index];
+    UIScrollView *scrollV = [_scrollViewArray objectAtIndex:_index];
     if(scrollView.subviews.count){
     UIView *v = [scrollView.subviews objectAtIndex:0];
     if ([v isKindOfClass:[UIImageView class]]){
@@ -251,7 +266,12 @@
                 height = scrollView.contentSize.height;
             }
                      v.center = CGPointMake(scrollView.contentSize.width/2.0, height/2.0); 
+        }else{
+            if (imgView.frame.size.height <= SCREEN_HEIGHT) {
+                imgView.center = CGPointMake(scrollView.contentSize.width/2.0, SCREEN_HEIGHT/2.0);
+            }
         }
+        
     }
     }
 }
@@ -259,14 +279,21 @@
 #pragma mark -
 -(void)handleDoubleTap:(UIGestureRecognizer *)gesture{
     
-    float newScale = [(UIScrollView*)gesture.view.superview zoomScale] * 1.5;
-    CGRect zoomRect = [self zoomRectForScale:newScale  inView:(UIScrollView*)gesture.view.superview withCenter:[gesture locationInView:gesture.view]];
-    zoomRect = [self resizeImageSize:zoomRect offset:((UIScrollView*)gesture.view.superview).contentOffset.y];
-    UIView *view = gesture.view.superview;
-    if ([view isKindOfClass:[UIScrollView class]]){
-        UIScrollView *s = (UIScrollView *)view;
-        [s zoomToRect:zoomRect animated:YES];
+    float newScale = [(UIScrollView*)gesture.view.superview zoomScale];
+    if (newScale != 1) {
+        newScale = 1;
+        
+    }else{
+        newScale = 3;
     }
+//    CGRect zoomRect = [self zoomRectForScale:newScale  inView:(UIScrollView*)gesture.view.superview withCenter:[gesture locationInView:gesture.view]];
+//    zoomRect = [self resizeImageSize:zoomRect offset:((UIScrollView*)gesture.view.superview).contentOffset.y];
+    UIView *view = gesture.view.superview;
+//    if ([view isKindOfClass:[UIScrollView class]]){
+        UIScrollView *s = (UIScrollView *)view;
+//        [s zoomToRect:zoomRect animated:YES];
+        [s setZoomScale:newScale animated:YES];
+//    }
 }
 
 #pragma mark - Utility methods
@@ -299,7 +326,7 @@
     }
     newOri.x = (SCREEN_WIDTH-newSize.width)/2.0;
     newOri.y = (SCREEN_HEIGHT-newSize.height)/2.0;
-//    newOri.y = (SCREEN_HEIGHT-newSize.height)/2.0;
+    
     newRect.size = newSize;
     newRect.origin = newOri;
     
@@ -334,34 +361,36 @@
     }
     UIImageView *imgView = _imageViewArray[_index];
     UIScrollView *scrollView = _scrollViewArray[_index];
-    if (scrollView.contentSize.width > SCREEN_WIDTH) {
-        [UIView animateWithDuration:.5 animations:^{
-            scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
-//            imgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            if(_urlArray.count > _index){
-            SDImageCache *cache = [SDImageCache sharedImageCache];
-                UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]] == nil ? [cache imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]] : [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]];
-                if (img == nil) {
-                    img = [UIImage imageNamed:@"empyImage300"];
-                }
+//    if (scrollView.contentSize.width > SCREEN_WIDTH) {
+//        [UIView animateWithDuration:.5 animations:^{
+//            scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+////            imgView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+//            if(_urlArray.count > _index){
+//            SDImageCache *cache = [SDImageCache sharedImageCache];
+//                UIImage *img = [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]] == nil ? [cache imageFromMemoryCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]] : [cache imageFromDiskCacheForKey:[MyUtil getQiniuUrl:_urlArray[_index] width:0 andHeight:0]];
+//                if (img == nil) {
+//                    img = [UIImage imageNamed:@"empyImage300"];
+//                }
+////                imgView.frame = CGRectMake(0,(SCREEN_HEIGHT - SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+//                
 //                imgView.frame = CGRectMake(0,(SCREEN_HEIGHT - SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
-                
-                imgView.frame = CGRectMake(0,(SCREEN_HEIGHT - SCREEN_WIDTH * img.size.height/img.size.width)/2.f , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
-                if (imgView.frame.size.height > SCREEN_HEIGHT) {
-                    imgView.bounds = CGRectMake(0,0 , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
-                    scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, imgView.frame.size.height);
-                }
-                NSLog(@"----->%@",NSStringFromCGRect(imgView.frame));
-                  NSLog(@"----->%@",NSStringFromCGRect(scrollView.frame));
-            }
-        }];
-    }else{
+//                if (imgView.frame.size.height > SCREEN_HEIGHT) {
+//                    imgView.bounds = CGRectMake(0,0 , SCREEN_WIDTH ,SCREEN_WIDTH * img.size.height/img.size.width);
+//                    scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, imgView.frame.size.height);
+//                }
+//                NSLog(@"----->%@",NSStringFromCGRect(imgView.frame));
+//                  NSLog(@"----->%@",NSStringFromCGRect(scrollView.frame));
+//            }
+//        }];
+//    }else{
         [UIView animateWithDuration:.5 animations:^{
             if (_oldFrameArr.count <= _index) {
                 return ;
             }
+            scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
             CGRect rect = CGRectFromString(_oldFrameArr[_index]);
-            imgView.frame = CGRectMake(rect.origin.x , rect.origin.y, rect.size.width, rect.size.height);
+            imgView.frame = rect;
+            NSLog(@"--->%@",NSStringFromCGRect(imgView.frame));
 //            imgView.bounds = CGRectMake(0, 0, imgView.bounds.size.width * 1.5, imgView.bounds.size.height * 1.5);
 //            imgView.center = CGPointMake(SCREEN_WIDTH/2.f, SCREEN_HEIGHT/2.f);
 //            imgView.alpha = 0.f;
@@ -369,7 +398,7 @@
         } completion:^(BOOL finished) {
             [self removeFromSuperview];
         }];
-    }
+//    }
 }
 
 @end
