@@ -290,10 +290,12 @@
         app.userModel=result;
         [app getImToken];
         [app getTTL];
-        if ([MyUtil isEmptyString:app.desKey] ) {
+//        if ([MyUtil isEmptyString:app.desKey] ) {
             [app getDESKey];
-        }
+//        }
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+
     }];
 }
 

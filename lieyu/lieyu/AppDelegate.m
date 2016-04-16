@@ -66,9 +66,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     [self loadHisData];
     [self setupDataStore];
 
-    if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"desKey"]]){
-        self.desKey=[USER_DEFAULT objectForKey:@"desKey"];
-    }
+   
     
     _navigationController= (UINavigationController *)self.window.rootViewController;
 //    _navigationController.delegate = self;
@@ -79,14 +77,17 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     if(shanghuban){
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
-        
         ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
         maintViewController.btnBackHidden = YES;
         _navShangHu = [[UINavigationController alloc]initWithRootViewController:maintViewController];
         app.window.rootViewController = _navShangHu;
         
+        
+        
     }
-
+    if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"desKey"]]){
+        self.desKey=[USER_DEFAULT objectForKey:@"desKey"];
+    }
     
 
 //    NSError *setCategoryErr=nil;

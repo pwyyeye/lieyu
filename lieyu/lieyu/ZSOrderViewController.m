@@ -141,6 +141,7 @@
     CGFloat btnWidth = 80;
     for (int i = 0 ; i < 3 ; i ++) {
         LPOrderButton *button = [[LPOrderButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - btnWidth/2.f + btnWidth * (i - 1), 0, btnWidth, 26)];
+        button.pointLabel.hidden = YES;
         [button.titleLabel setFont:[UIFont systemFontOfSize:12]];
         button.tag = i ;
         [button addTarget:self action:@selector(changeTableViewAtButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -230,12 +231,15 @@
             _tableView.tableHeaderView=view1;
         }
 
+        LPOrderButton *btn = (LPOrderButton *)arrayButton.firstObject;
         if(daiXiaoFei.count>0){
 //            [weakSelf.tableView setHidden:NO];
             pageCount++;
             //            [weakSelf.tableView.mj_footer resetNoMoreData];
             [weakSelf.tableView.mj_footer endRefreshing];
+            btn.pointLabel.hidden = NO;
         }else{
+            btn.pointLabel.hidden = YES;
 //            [weakSelf.tableView setHidden:YES];
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
@@ -956,6 +960,7 @@
     NSArray *menuArrNew=@[@"待处理",@"已消费",@"退单"];
     NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:5];
     for (int i=0; i<=menuArrNew.count-1; i++) {
+        
         
         NSString *ss=menuArrNew[i];
         NSMutableDictionary *itemTemp =[[NSMutableDictionary alloc]init] ;
