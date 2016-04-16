@@ -10,8 +10,10 @@
 #import "BeerNewBarViewController.h"
 #import "ActionDetailViewController.h"
 #import "ActionPage.h"
+#import "ChiHeViewController.h"
+#import "ZujuViewController.h"
+#import "LYwoYaoDinWeiMainViewController.h"
 #define HOMEPAGE_MTA @"HOMEPAGE"
-
 @interface HuoDongLinkViewController ()
 
 @end
@@ -90,7 +92,29 @@
         ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
         actionDetailVC.actionID=str2;
         [self.navigationController pushViewController:actionDetailVC animated:YES];
+    }else if (![MyUtil isEmptyString:str1]&& [str1 isEqualToString:@"taocan"]){//套餐
+        NSString *str = [NSString stringWithFormat:@"活动html打开套餐ID%@",str2];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+        LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
+        woYaoDinWeiMainViewController.barid=str2.intValue;
+        [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];
+    }else if (![MyUtil isEmptyString:str1]&& [str1 isEqualToString:@"zuju"]){//组局
+        NSString *str = [NSString stringWithFormat:@"活动html打开组局ID%@",str2];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+        ZujuViewController *zujuVC = [[ZujuViewController alloc]initWithNibName:@"ZujuViewController" bundle:nil];
+        zujuVC.title = @"组局";
+        zujuVC.barid = str2.intValue;
+        [self.navigationController pushViewController:zujuVC animated:YES];
+    }else if (![MyUtil isEmptyString:str1]&& [str1 isEqualToString:@"chihe"]){//吃喝
+        NSString *str = [NSString stringWithFormat:@"活动html打开吃喝ID%@",str2];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+        ChiHeViewController *CHDetailVC = [[ChiHeViewController alloc]initWithNibName:@"ChiHeViewController" bundle:[NSBundle mainBundle]];
+        CHDetailVC.title=@"吃喝专场";
+        CHDetailVC.barid=str2.intValue;
+        CHDetailVC.barName=[NSString stringWithFormat:@"酒吧%@",str2];
+        [self.navigationController pushViewController:CHDetailVC animated:YES];
     }
+    
     
     
 }

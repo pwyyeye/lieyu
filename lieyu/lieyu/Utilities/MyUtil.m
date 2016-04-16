@@ -804,7 +804,7 @@
         case 0:
             return @"待付款";
         case 1:
-            return @"待消费";
+            return @"待留座";
         case 2:
             return @"待消费";
         case 3:
@@ -814,13 +814,13 @@
         case 5 :
             return @"待退款";
         case 6:
-            return @"删除";
+            return @"已删除";
         case 7:
             return @"待返利";
         case 8:
             return @"待评价";
         case 9:
-            return @"已返利";
+            return @"已完成";
         case 10 :
             return @"已退款";
         default:
