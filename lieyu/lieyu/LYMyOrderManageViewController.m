@@ -945,7 +945,7 @@
             RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
             conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
             conversationVC.targetId = orderInfoModel.checkUserImUserid; // 接收者的 targetId，这里为举例。
-            conversationVC.userName =orderInfoModel.checkUserName; // 接受者的 username，这里为举例。
+//            conversationVC.userName =orderInfoModel.checkUserName; // 接受者的 username，这里为举例。
             conversationVC.title =orderInfoModel.checkUserName; // 会话的 title。
             [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
             [IQKeyboardManager sharedManager].enable = NO;
@@ -967,7 +967,7 @@
             RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
             conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
             conversationVC.targetId = orderInfoModel.imuserid; // 接收者的 targetId，这里为举例。
-            conversationVC.userName =orderInfoModel.username; // 接受者的 username，这里为举例。
+//            conversationVC.userName =orderInfoModel.username; // 接受者的 username，这里为举例。
             conversationVC.title =orderInfoModel.username; // 会话的 title。
             [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
             [IQKeyboardManager sharedManager].enable = NO;
@@ -989,7 +989,7 @@
         RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
         conversationVC.targetId = orderInfoModel.checkUserImUserid; // 接收者的 targetId，这里为举例。
-        conversationVC.userName =orderInfoModel.checkUserName; // 接受者的 username，这里为举例。
+//        conversationVC.userName =orderInfoModel.checkUserName; // 接受者的 username，这里为举例。
         conversationVC.title =orderInfoModel.checkUserName; // 会话的 title。
         [IQKeyboardManager sharedManager].enable = NO;
         [IQKeyboardManager sharedManager].isAdd = YES;

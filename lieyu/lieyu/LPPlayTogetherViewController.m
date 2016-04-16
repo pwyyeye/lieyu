@@ -438,7 +438,7 @@
     RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
     conversationVC.conversationType = ConversationType_APPSERVICE;
     conversationVC.targetId = @"KEFU144946169476221";
-    conversationVC.userName = @"猎娱客服";
+//    conversationVC.userName = @"猎娱客服";
     conversationVC.title = @"猎娱客服";
     
     [IQKeyboardManager sharedManager].enable = NO;
