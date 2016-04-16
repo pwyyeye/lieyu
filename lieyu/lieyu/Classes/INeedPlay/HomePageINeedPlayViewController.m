@@ -41,7 +41,8 @@
 #import "ActionPage.h"
 #import "ActionDetailViewController.h"
 #import "ZSMaintViewController.h"
-
+#import "ChiHeViewController.h"
+#import "ZujuViewController.h"
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
 #define HOMEPAGE_TIMEEVENT_MTA @"HOMEPAGE_TIMEEVENT"
@@ -1099,6 +1100,21 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //        actionDetailVC.barActivity = aBarList;
         actionDetailVC.actionID=[linkid stringValue];
         [self.navigationController pushViewController:actionDetailVC animated:YES];
+    }else if (ad_type.intValue ==7){//单品
+        ChiHeViewController *CHDetailVC = [[ChiHeViewController alloc]initWithNibName:@"ChiHeViewController" bundle:[NSBundle mainBundle]];
+        CHDetailVC.title=@"吃喝专场";
+        CHDetailVC.barid=linkid.intValue;
+        CHDetailVC.barName=[dic objectForKey:@"title"]==nil?[NSString stringWithFormat:@"酒吧%@",linkid]:[dic objectForKey:@"title"];
+        [self.navigationController pushViewController:CHDetailVC animated:YES];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图吃喝专场ID%@",linkid];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+    }else if (ad_type.intValue ==8){//组局
+        ZujuViewController *zujuVC = [[ZujuViewController alloc]initWithNibName:@"ZujuViewController" bundle:nil];
+        zujuVC.title = @"组局";
+        zujuVC.barid = linkid.intValue;
+        [self.navigationController pushViewController:zujuVC animated:YES];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图组局ID%@",linkid];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }
     
 }

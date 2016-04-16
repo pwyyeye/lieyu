@@ -33,6 +33,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "LYUserHttpTool.h"
 #import "LYFriendsTopicViewController.h"
+#import "BeerNewBarViewController.h"
 
 
 #define LYFriendsNameCellID @"LYFriendsNameTableViewCell"
@@ -107,10 +108,10 @@
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
 }
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    self.navigationController.navigationBarHidden =NO;
-}
+//-(void)viewWillLayoutSubviews{
+//    [super viewWillLayoutSubviews];
+//    self.navigationController.navigationBarHidden =NO;
+//}
 
 - (void)setupAllProperty{
     _tableView.delegate = self;
@@ -884,8 +885,14 @@
         friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
         friendsTopicVC.topicName = friendRecentM.topicTypeName;
         friendsTopicVC.headerViewImgLink = [MyUtil getQiniuUrl:friendRecentM.topicTypeBgUrl width:0 andHeight:0];
-        if([friendRecentM.isBarTopicType isEqualToString:@"0"]) friendsTopicVC.isFriendsTopic = YES;
-        [self.navigationController pushViewController:friendsTopicVC animated:YES];
+        if([friendRecentM.isBarTopicType isEqualToString:@"0"]){
+            friendsTopicVC.isFriendsTopic = YES;
+            [self.navigationController pushViewController:friendsTopicVC animated:YES];
+        }else{
+            BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+            controller.beerBarId = [NSNumber numberWithInt:[friendRecentM.isBarTopicType intValue]];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
     }
 }
 #pragma mark － 跳转消息详情页面
