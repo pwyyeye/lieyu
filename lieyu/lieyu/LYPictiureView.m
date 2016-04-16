@@ -8,6 +8,7 @@
 
 #import "LYPictiureView.h"
 #import "FriendsPicAndVideoModel.h"
+#define animateTime 0.3
 
 @interface LYPictiureView ()<UIScrollViewDelegate,UIActionSheetDelegate>{
     NSInteger _index;//滑动到第几个图片
@@ -122,7 +123,7 @@
         CGRect rect = CGRectFromString(oldFrame[index]);
         imgView.frame = rect;
         
-        [UIView animateWithDuration:.5 animations:^{
+        [UIView animateWithDuration:animateTime animations:^{
             imgView.alpha = 1;
             SDImageCache *cache = [SDImageCache sharedImageCache];
             if (_urlArray.count <= _index) {
@@ -177,7 +178,7 @@
 }
 
 - (void)scroll_tapGes{
-    [UIView animateWithDuration:.5 animations:^{
+    [UIView animateWithDuration:animateTime animations:^{
         self.alpha = 0;
     }completion:^(BOOL finished) {
         [self removeFromSuperview];
@@ -383,7 +384,7 @@
 //            }
 //        }];
 //    }else{
-        [UIView animateWithDuration:.5 animations:^{
+        [UIView animateWithDuration:animateTime animations:^{
             if (_oldFrameArr.count <= _index) {
                 return ;
             }
