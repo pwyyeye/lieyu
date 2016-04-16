@@ -108,10 +108,10 @@
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
 }
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    self.navigationController.navigationBarHidden =NO;
-}
+//-(void)viewWillLayoutSubviews{
+//    [super viewWillLayoutSubviews];
+//    self.navigationController.navigationBarHidden =NO;
+//}
 
 - (void)setupAllProperty{
     _tableView.delegate = self;
