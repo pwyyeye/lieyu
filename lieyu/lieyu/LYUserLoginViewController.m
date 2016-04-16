@@ -454,6 +454,7 @@
             app.s_app_id=userM.token;
             app.userModel=userM;
             [app getImToken];
+            
             [app getTTL];
             
             if ([MyUtil isEmptyString:app.desKey] ) {
