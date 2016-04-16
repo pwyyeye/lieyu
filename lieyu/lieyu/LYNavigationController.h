@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LYNavigationController : UINavigationController<UINavigationControllerDelegate, UIGestureRecognizerDelegate>
-
-
 //是否可以滑动返回
 @property (nonatomic,assign) BOOL cj_canDragBack;
 @end
