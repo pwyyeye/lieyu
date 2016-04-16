@@ -25,7 +25,6 @@
  *    @param key  上传时指定的key，原样返回
  *    @param resp 上传成功会返回文件信息，失败为nil; 可以通过此值是否为nil 判断上传结果
  */
-
 typedef void (^QNUpCompletionHandler)(QNResponseInfo *info, NSString *key, NSDictionary *resp);
 
 /**
