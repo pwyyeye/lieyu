@@ -30,6 +30,17 @@
     
     _unreadMessageCount=0;
     
+    [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
+                                        @(ConversationType_DISCUSSION),
+                                        @(ConversationType_CHATROOM),
+                                        @(ConversationType_GROUP),
+                                        @(ConversationType_APPSERVICE),
+                                        @(ConversationType_SYSTEM),
+                                        @(ConversationType_CUSTOMERSERVICE)]];
+    //设置需要将哪些类型的会话在会话列表中聚合显示
+    [self setCollectionConversationType:@[@(ConversationType_DISCUSSION),
+                                          @(ConversationType_GROUP)]];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
  
     // Do any additional setup after loading the view.
