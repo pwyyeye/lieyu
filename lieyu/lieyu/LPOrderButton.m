@@ -23,6 +23,7 @@
         [_pointLabel setBackgroundColor:RGBA(240, 55, 118, 1)];
         _pointLabel.layer.cornerRadius = 3;
         _pointLabel.layer.masksToBounds = YES;
+        _pointLabel.hidden = YES;
         [self addSubview:_pointLabel];
     }
     return self;
