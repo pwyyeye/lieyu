@@ -125,13 +125,13 @@
     [label setTextColor:[UIColor blackColor]];
     [effectView addSubview:label];
     
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 25, 60, 34)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 25, 60, 34)];
     [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
     [effectView addSubview:button];
     
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 26)];
-    [scrollView setContentSize:CGSizeMake(420, 36)];
+//    [scrollView setContentSize:CGSizeMake(420, 36)];
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setBackgroundColor:[UIColor clearColor]];
@@ -141,6 +141,7 @@
     CGFloat btnWidth = 80;
     for (int i = 0 ; i < 3 ; i ++) {
         LPOrderButton *button = [[LPOrderButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - btnWidth/2.f + btnWidth * (i - 1), 0, btnWidth, 26)];
+        button.pointLabel.hidden = YES;
         [button.titleLabel setFont:[UIFont systemFontOfSize:12]];
         button.tag = i ;
         [button addTarget:self action:@selector(changeTableViewAtButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -222,7 +223,10 @@
         serchDaiXiaoFei=[daiXiaoFei mutableCopy];
         
         if (_orderIndex==0) {
-           
+            LPOrderButton *btn = (LPOrderButton *)arrayButton.firstObject;
+            if (result.count && pageCount == 1) {
+                btn.pointLabel.hidden = NO;
+            }
                 
         }else{
             UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
@@ -230,16 +234,24 @@
             _tableView.tableHeaderView=view1;
         }
 
+        
+        
         if(daiXiaoFei.count>0){
 //            [weakSelf.tableView setHidden:NO];
             pageCount++;
             //            [weakSelf.tableView.mj_footer resetNoMoreData];
             [weakSelf.tableView.mj_footer endRefreshing];
+            
         }else{
+            
 //            [weakSelf.tableView setHidden:YES];
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
 
+        [self removePlaceView];
+        if (!result.count && pageCount == 1) {
+            [self createPlaceView];
+        }
         
         [weakSelf.tableView reloadData];
         [weakSelf.tableView.mj_header endRefreshing];
@@ -277,6 +289,27 @@
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
     [self getOrderWithDic:dic];
     
+}
+
+- (void)createPlaceView{
+    UILabel *placeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, (SCREEN_HEIGHT - 40)/2.f, SCREEN_WIDTH, 40)];
+    placeLabel.tag = 800;
+    //    NSLog(@"--->%@",NSStringFromCGPoint(self.view.center));
+    placeLabel.text = @"暂无订单";
+    
+    placeLabel.textAlignment = NSTextAlignmentCenter;
+    //    [placeLabel  sizeToFit] ;
+    placeLabel.textColor = [UIColor darkGrayColor];
+    [self.view addSubview:placeLabel];
+    
+}
+
+- (void)removePlaceView{
+    UILabel *label = (UILabel *)[self.view viewWithTag:800];
+    if (label) {
+        [label removeFromSuperview];
+        label = nil;
+    }
 }
 #pragma mark 获取待留位数据
 -(void)getDaiLiuWei{
@@ -800,6 +833,7 @@
         }
         default://退单
         {
+            
             OrderInfoModel *orderInfoModel=daiXiaoFei[section];
             
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LPOrdersHeaderView" owner:nil options:nil];
@@ -869,9 +903,15 @@
     OrderInfoModel *orderInfoModel;
     ShopDetailmodel *shopDetailmodel=[[ShopDetailmodel alloc]init];
     if(_orderIndex==0){
+        if (serchDaiXiaoFei.count==0) {
+            return cell;
+        }
         orderInfoModel=serchDaiXiaoFei[indexPath.section];
 
     }else{
+        if (daiXiaoFei.count==0) {
+            return cell;
+        }
         orderInfoModel=daiXiaoFei[indexPath.section];
     }
     
@@ -922,9 +962,8 @@
 //    }else if(mMenuHriZontal.selectIndex==1){
 //        cell.countLal.text=shopDetailmodel.count;
 //    }
-    UILabel *lineLal=[[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 0.5)];
-    lineLal.backgroundColor=RGB(199, 199, 199);
-//    [cell addSubview:lineLal];
+    
+    
     cell.orderPriceLbl.text=[NSString stringWithFormat:@"￥%@",shopDetailmodel.youfeiPrice];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",shopDetailmodel.money] attributes:attribtDic];
@@ -956,6 +995,7 @@
     NSArray *menuArrNew=@[@"待处理",@"已消费",@"退单"];
     NSMutableArray *barArr=[[NSMutableArray alloc]initWithCapacity:5];
     for (int i=0; i<=menuArrNew.count-1; i++) {
+        
         
         NSString *ss=menuArrNew[i];
         NSMutableDictionary *itemTemp =[[NSMutableDictionary alloc]init] ;

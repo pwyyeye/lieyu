@@ -1075,8 +1075,6 @@
 		85529C271C9047B5005D8F0D /* FindNewMessageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 85529C261C9047B5005D8F0D /* FindNewMessageList.m */; };
 		85529C2A1C9058F7005D8F0D /* notificationSystem@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85529C281C9058F7005D8F0D /* notificationSystem@3x.png */; };
 		85529C2B1C9058F7005D8F0D /* notificationSystem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85529C291C9058F7005D8F0D /* notificationSystem@2x.png */; };
-		85529C2F1C90642C005D8F0D /* FindNotificationNextDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85529C2D1C90642C005D8F0D /* FindNotificationNextDetailViewController.m */; };
-		85529C301C90642C005D8F0D /* FindNotificationNextDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85529C2E1C90642C005D8F0D /* FindNotificationNextDetailViewController.xib */; };
 		855393F31C58F57F00575048 /* HomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 855393F21C58F57F00575048 /* HomePageModel.m */; };
 		855396FD1C8D310C00289D18 /* FindGameCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855396FB1C8D310C00289D18 /* FindGameCenterViewController.m */; };
 		855396FE1C8D310C00289D18 /* FindGameCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855396FC1C8D310C00289D18 /* FindGameCenterViewController.xib */; };
@@ -3225,9 +3223,6 @@
 		85529C261C9047B5005D8F0D /* FindNewMessageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNewMessageList.m; sourceTree = "<group>"; };
 		85529C281C9058F7005D8F0D /* notificationSystem@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationSystem@3x.png"; sourceTree = "<group>"; };
 		85529C291C9058F7005D8F0D /* notificationSystem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationSystem@2x.png"; sourceTree = "<group>"; };
-		85529C2C1C90642C005D8F0D /* FindNotificationNextDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindNotificationNextDetailViewController.h; sourceTree = "<group>"; };
-		85529C2D1C90642C005D8F0D /* FindNotificationNextDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindNotificationNextDetailViewController.m; sourceTree = "<group>"; };
-		85529C2E1C90642C005D8F0D /* FindNotificationNextDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FindNotificationNextDetailViewController.xib; sourceTree = "<group>"; };
 		855393F11C58F57F00575048 /* HomePageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageModel.h; sourceTree = "<group>"; };
 		855393F21C58F57F00575048 /* HomePageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageModel.m; sourceTree = "<group>"; };
 		855396FA1C8D310C00289D18 /* FindGameCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindGameCenterViewController.h; sourceTree = "<group>"; };
@@ -7019,9 +7014,6 @@
 				8551B5281C8EED020057F0E7 /* FindNotificationDetailViewController.h */,
 				8551B5291C8EED020057F0E7 /* FindNotificationDetailViewController.m */,
 				8551B52A1C8EED020057F0E7 /* FindNotificationDetailViewController.xib */,
-				85529C2C1C90642C005D8F0D /* FindNotificationNextDetailViewController.h */,
-				85529C2D1C90642C005D8F0D /* FindNotificationNextDetailViewController.m */,
-				85529C2E1C90642C005D8F0D /* FindNotificationNextDetailViewController.xib */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -9219,7 +9211,6 @@
 				ADAFCD2A1CA0E261008BF959 /* shark3.png in Resources */,
 				380385EA1C327C2B007C8DC0 /* imageUnselected@2x.png in Resources */,
 				ADE1C5C81C730E1C0011D4AB /* 更新19@2x.png in Resources */,
-				85529C301C90642C005D8F0D /* FindNotificationNextDetailViewController.xib in Resources */,
 				3812C5631C57B78800F4DD6B /* gray_less_circle@3x.png in Resources */,
 				38E5D7BD1C128B7D004B49D2 /* Location@2x.png in Resources */,
 				15EB3FDD1BAD472A00F07A29 /* ZSListCell.xib in Resources */,
@@ -10468,7 +10459,6 @@
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
 				380659D41C5639BB003094C9 /* TimeView.m in Sources */,
 				AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */,
-				85529C2F1C90642C005D8F0D /* FindNotificationNextDetailViewController.m in Sources */,
 				15EB350D1BD1F63F00BA6161 /* PTChooseNumCell.m in Sources */,
 				38EE9E191CBB895500201734 /* LPOrderDetailViewController.m in Sources */,
 				855192691C0B30E0007B9949 /* LYHotJiuBarViewController.m in Sources */,

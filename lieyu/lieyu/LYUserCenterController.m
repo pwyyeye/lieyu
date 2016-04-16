@@ -35,7 +35,7 @@
 #import "LPMyOrdersViewController.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
-    NSInteger num;
+    NSInteger num,orderNum;
     LYUserCenterHeader *_headerView;
 }
 
@@ -94,9 +94,14 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
 - (void)loadHeaderViewBadge{
             AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    __weak __typeof(self) weakSelf = self;
             if (![MyUtil isEmptyString:app.s_app_id]) {
                 [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
                     _orderTTL=result;
+                    orderNum = result.waitPay + result.waitRebate + result.waitPayBack + result.waitEvaluation + result.waitConsumption;
+                    NSIndexPath *indexP = [NSIndexPath indexPathForItem:0 inSection:0];
+                    [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
+//                    [weakSelf.collectionView reloadData];
                     [_headerView loadBadge:_orderTTL];
                 }];
             }
@@ -129,10 +134,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     CGFloat height = 0.f;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(app.userModel.usertype.intValue==2){
-        height = 299;
-    }else{
         height = 239;
+    }else{
+        height = 179;
     }
+    
     
     self.collectionView.frame = CGRectMake(0, height, SCREEN_WIDTH, SCREEN_HEIGHT - height - 49);
     _headerView = [[LYUserCenterHeader alloc]init];
@@ -145,7 +151,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         _headerView.btnChange.hidden = YES;
     }
     [self.view addSubview:_headerView];
-    [self loadHeaderViewBadge];
+//    [self loadHeaderViewBadge];
     [self getGoodsNum];
 }
 -(void) viewDidAppear:(BOOL)animated
@@ -241,6 +247,18 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         cell.btn_count.hidden = YES;
     }
     
+    if(indexPath.row == 0){
+        if(orderNum){
+            cell.btn_count.hidden = NO;
+            [cell.btn_count setTitle:[NSString stringWithFormat:@"%ld",orderNum] forState:UIControlStateNormal];
+        }else{
+            cell.btn_count.hidden = YES;
+        }
+        
+    }else{
+        cell.btn_count.hidden = YES;
+    }
+    
     if (indexPath.row % 3 == 2) {
         cell.layerShadowRight.hidden = YES;
     }else{
@@ -262,9 +280,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             //    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
             //    myOrderManageViewController.title=@"我的订单";
             //    myOrderManageViewController.orderType=orderType;
-            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             //    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
-            [app.navigationController pushViewController:myOrderVC animated:YES];
+            [self.navigationController pushViewController:myOrderVC animated:YES];
         }
             break;
             

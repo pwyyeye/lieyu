@@ -54,6 +54,32 @@
     }];
 
 }
+
+#pragma mark -获取专属经理订单列表
+-(void) getZSOrderList2WithParams:(NSDictionary*)params
+                           block:(void(^)(NSMutableArray* result)) block{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_ORDER_LIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel mj_objectArrayWithKeyValuesArray:dataList]];
+            //            dispatch_async(dispatch_get_main_queue(), ^(void) {
+            block(tempArr);
+            //            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        
+    } failure:^(NSError *err) {
+        //[MyUtil showCleanMessage:@"获取数据失败！"];
+        
+    }];
+    
+}
+
 #pragma mark -获取订单详细
 -(void) getZSOrderDetailWithParams:(NSDictionary*)params
                              block:(void(^)(OrderInfoModel* result)) block{

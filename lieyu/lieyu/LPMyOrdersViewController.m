@@ -15,8 +15,6 @@
 #import "LYEvaluationController.h"
 #import "PinkerShareController.h"
 #import "UMSocial.h"
-#import "FindNotificationNextDetailViewController.h"
-#import "OrderTTL.h"
 
 #import "LPOrdersHeaderCell.h"
 #import "LPOrdersBodyCell.h"
@@ -418,10 +416,6 @@
             return;
         }
         if ([controller isKindOfClass:[PinkerShareController class]]) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            return;
-        }
-        if ([controller isKindOfClass:[FindNotificationNextDetailViewController class]]) {
             [self.navigationController popToRootViewControllerAnimated:YES];
             return;
         }

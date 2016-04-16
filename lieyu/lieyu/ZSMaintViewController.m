@@ -51,14 +51,21 @@
     
     
 //   [ [NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToShanHu) name:@"loadUserInfo" object:nil];
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app addObserver:self forKeyPath:@"desKey" options:NSKeyValueObservingOptionNew context:nil];
+//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    [app addObserver:self forKeyPath:@"desKey" options:NSKeyValueObservingOptionNew context:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:@"loadUserInfo" object:nil];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+- (void)getData{
     [self getBalance];
     [self getBadge];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loadUserInfo" object:nil];
 }
+
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+//    [self getBalance];
+//    [self getBadge];
+//}
 
 - (void)getBalance{
     [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
@@ -237,6 +244,20 @@
                 cell.mesImageView.hidden = YES;
             }
         }];
+    
+    
+    int pageCount = 0,perCount = 20;
+        NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"1,2"};
+      [[ZSManageHttpTool shareInstance]getZSOrderList2WithParams:dic block:^(NSMutableArray *result) {
+              NSIndexPath *indexP = [NSIndexPath indexPathForRow:2 inSection:0];
+              ZSListCell *cell = [_tableView cellForRowAtIndexPath:indexP];
+              if (result.count > 0) {//有消息
+                  cell.mesImageView.hidden = NO;
+              }else{//无新消息
+                  cell.mesImageView.hidden = YES;
+              }
+
+      }];
 }
 
 #pragma mark - 扫一扫
