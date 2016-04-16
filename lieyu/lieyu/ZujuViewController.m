@@ -316,12 +316,12 @@
 }
 
 - (void)initTimeView{
-    if(self.startTime.length <= 0){
-        self.startTime = @"20:00";
-    }
-    if (self.endTime.length <= 0 ) {
-        self.endTime = @"24:00";
-    }
+//    if(self.startTime.length <= 0){
+//        self.startTime = @"20:00";
+//    }
+//    if (self.endTime.length <= 0 ) {
+//        self.endTime = @"24:00";
+//    }
     timeView.startTime = self.startTime;
     timeView.endTime = self.endTime;
     [timeView congigure];

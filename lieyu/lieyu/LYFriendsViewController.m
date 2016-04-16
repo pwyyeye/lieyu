@@ -41,6 +41,7 @@
 #import "TopicModel.h"
 #import "LYFriendsTopicViewController.h"
 #import "LYMyFriendDetailViewController.h"
+#import "BeerNewBarViewController.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
@@ -2195,15 +2196,26 @@
 #pragma mark - 点击动态中话题文字
 - (void)topicNameClick:(UIButton *)button{
     FriendsRecentModel *friendRecentM = _dataArray[_index][button.tag];
-    if (friendRecentM.topicTypeName.length && friendRecentM.topicTypeId.length) {
-        LYFriendsTopicViewController *friendsTopicVC = [[LYFriendsTopicViewController alloc]init];
-        friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
-//        friendsTopicVC.topicName = @"玩友评论";
-        friendsTopicVC.topicName = friendRecentM.topicTypeName;
-        NSString *imageUrl = [MyUtil getQiniuUrl:friendRecentM.topicTypeBgUrl width:0 andHeight:0];
-        friendsTopicVC.headerViewImgLink = imageUrl;
-        if([friendRecentM.isBarTopicType isEqualToString:@"0"]) friendsTopicVC.isFriendsTopic = YES;
-        [self.navigationController pushViewController:friendsTopicVC animated:YES];
+    if ([friendRecentM.isBarTopicType isEqualToString:@"0"]) {
+        if (friendRecentM.topicTypeName.length && friendRecentM.topicTypeId.length) {
+            LYFriendsTopicViewController *friendsTopicVC = [[LYFriendsTopicViewController alloc]init];
+            friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
+            //        friendsTopicVC.topicName = @"玩友评论";
+            friendsTopicVC.topicName = friendRecentM.topicTypeName;
+            NSString *imageUrl = [MyUtil getQiniuUrl:friendRecentM.topicTypeBgUrl width:0 andHeight:0];
+            friendsTopicVC.headerViewImgLink = imageUrl;
+            if([friendRecentM.isBarTopicType isEqualToString:@"0"]) friendsTopicVC.isFriendsTopic = YES;
+            [self.navigationController pushViewController:friendsTopicVC animated:YES];
+        }
+    }else if(friendRecentM.isBarTopicType.length <= 0){
+        return;
+    }else{
+        BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+        
+        
+        controller.beerBarId = [NSNumber numberWithInt:[friendRecentM.isBarTopicType intValue]];
+        [self.navigationController pushViewController:controller animated:YES];
+//        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"" titleName:jiuBaM.barname]];
     }
 }
 
