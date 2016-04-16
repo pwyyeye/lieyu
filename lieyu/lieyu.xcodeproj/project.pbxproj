@@ -4677,7 +4677,6 @@
 			isa = PBXGroup;
 			children = (
 				850918851C9829DA007981C0 /* 聊天界面 */,
-				38B11C281C98300500AD3EB8 /* 关注或粉丝 */,
 				15844BCA1BE1EF3300247FBC /* 加好友 */,
 				15844BBA1BE1C64100247FBC /* 搜索玩友 */,
 				15844BB01BE1B15600247FBC /* 玩友详情 */,
@@ -6367,6 +6366,7 @@
 		850918851C9829DA007981C0 /* 聊天界面 */ = {
 			isa = PBXGroup;
 			children = (
+				38B11C281C98300500AD3EB8 /* 关注或粉丝 */,
 				850918861C982D23007981C0 /* LYFindConversationViewController.h */,
 				850918871C982D23007981C0 /* LYFindConversationViewController.m */,
 			);
