@@ -352,7 +352,7 @@
     _conversationVC.conversationType = ConversationType_APPSERVICE;;
     _conversationVC.targetId = @"KEFU144946169476221";
     [_conversationVC.navigationController.navigationBar setHidden:NO];
-    _conversationVC.userName = @"猎娱客服";
+//    _conversationVC.userName = @"猎娱客服";
     _conversationVC.title = @"猎娱客服";
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;

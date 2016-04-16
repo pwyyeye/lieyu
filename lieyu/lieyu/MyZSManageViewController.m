@@ -289,7 +289,7 @@
         RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
         conversationVC.targetId = detailModel.imUserId; // 接收者的 targetId，这里为举例。
-        conversationVC.userName =detailModel.usernick; // 接受者的 username，这里为举例。
+//        conversationVC.userName =detailModel.usernick; // 接受者的 username，这里为举例。
         conversationVC.title = detailModel.usernick; // 会话的 title。
         
         conversationVC.navigationController.navigationBarHidden = NO;

@@ -62,7 +62,7 @@
     LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
     conversationVC.conversationType =model.conversationType;
     conversationVC.targetId = model.targetId;
-    conversationVC.userName =model.conversationTitle;
+//    conversationVC.userName =model.conversationTitle;
     conversationVC.title = model.conversationTitle;
     
     [IQKeyboardManager sharedManager].enable = NO;
