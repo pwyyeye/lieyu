@@ -263,9 +263,9 @@
                 app.userModel=userM;
                 [app getImToken];
                 [app getTTL];
-                if ([MyUtil isEmptyString:app.desKey] ) {
+//                if ([MyUtil isEmptyString:app.desKey] ) {
                     [app getDESKey];
-                }
+//                }
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
@@ -459,9 +459,9 @@
             
             [app getTTL];
             
-            if ([MyUtil isEmptyString:app.desKey] ) {
+//            if ([MyUtil isEmptyString:app.desKey] ) {
                 [app getDESKey];
-            }
+//            }
             
             //先删除别名，然后再注册新的－－－友盟 消息推送
 //            if ([USER_DEFAULT objectForKey:@"userid"]) {

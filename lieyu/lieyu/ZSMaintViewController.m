@@ -77,8 +77,7 @@
 }
 
 - (void)dealloc{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app removeObserver:self forKeyPath:@"desKey"];
+   NSLog(@"----pass-pass%@---",@"test");
 }
 
 #pragma mark 初始化数据
