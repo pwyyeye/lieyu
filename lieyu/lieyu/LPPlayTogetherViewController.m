@@ -145,6 +145,7 @@
 
 #pragma mark  回退按钮
 - (void)backForword{
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
     [self.navigationController popViewControllerAnimated:YES];
@@ -440,7 +441,7 @@
     conversationVC.targetId = @"KEFU144946169476221";
 //    conversationVC.userName = @"猎娱客服";
     conversationVC.title = @"猎娱客服";
-    
+    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     

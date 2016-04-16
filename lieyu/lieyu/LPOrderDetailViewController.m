@@ -501,6 +501,7 @@
     [_conversationVC.navigationController.navigationBar setHidden:NO];
 //    _conversationVC.userName = @"猎娱客服";
     _conversationVC.title = @"猎娱客服";
+    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     

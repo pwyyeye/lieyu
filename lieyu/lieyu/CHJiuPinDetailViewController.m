@@ -356,6 +356,7 @@
     _conversationVC.title = @"猎娱客服";
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
+    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
@@ -371,6 +372,7 @@
 - (void)backBtnClick{
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
