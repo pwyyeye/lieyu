@@ -101,7 +101,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                     NSIndexPath *indexP = [NSIndexPath indexPathForItem:0 inSection:0];
                     [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
 //                    [weakSelf.collectionView reloadData];
-//                    [_headerView loadBadge:_orderTTL];
+                    [_headerView loadBadge:_orderTTL];
                 }];
             }
 }
@@ -279,9 +279,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             //    LYMyOrderManageViewController *myOrderManageViewController=[[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
             //    myOrderManageViewController.title=@"我的订单";
             //    myOrderManageViewController.orderType=orderType;
-            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             //    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
-            [app.navigationController pushViewController:myOrderVC animated:YES];
+            [self.navigationController pushViewController:myOrderVC animated:YES];
         }
             break;
             
