@@ -248,7 +248,7 @@
     
     int pageCount = 0,perCount = 20;
         NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"1,2"};
-      [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
+      [[ZSManageHttpTool shareInstance]getZSOrderList2WithParams:dic block:^(NSMutableArray *result) {
               NSIndexPath *indexP = [NSIndexPath indexPathForRow:2 inSection:0];
               ZSListCell *cell = [_tableView cellForRowAtIndexPath:indexP];
               if (result.count > 0) {//有消息

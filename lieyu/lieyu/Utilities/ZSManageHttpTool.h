@@ -88,4 +88,7 @@
 
 //申请提现
 - (void)applicationWithdrawWithParams:(NSDictionary *)params complete:(void (^)(NSString *))complete;
+
+-(void) getZSOrderList2WithParams:(NSDictionary*)params
+                            block:(void(^)(NSMutableArray* result)) block;
 @end
