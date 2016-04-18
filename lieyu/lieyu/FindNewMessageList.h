@@ -17,4 +17,5 @@
 @property (nonatomic,copy) NSString *createDate;
 @property (nonatomic,copy) NSString *read;
 @property (nonatomic,copy) NSString *readDate;
+@property (nonatomic,copy) NSString *id;
 @end

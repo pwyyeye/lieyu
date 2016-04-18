@@ -13,6 +13,8 @@
 #import "LPMyOrdersViewController.h"
 #import "LYFriendsMessageViewController.h"
 #import "ZSOrderViewController.h"
+#import "LYFriendsMessageDetailViewController.h"
+#import "LYFriendsHttpTool.h"
 
 @interface FindNotificationDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSArray *_dataArray;
@@ -99,8 +101,18 @@
             [self.navigationController pushViewController:orderManageViewController animated:YES];
         }
     }else if([_findNewList.type isEqualToString:@"13"] ||[_findNewList.type isEqualToString:@"14"]) {
-        LYFriendsMessageViewController *messageVC = [[LYFriendsMessageViewController alloc]init];
-        [self.navigationController pushViewController:messageVC animated:YES];
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        NSString *useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+        NSDictionary *dic = @{@"userId":useridStr,@"messageId":_findNewList.id};
+        __weak __typeof(self) weakSelf = self;
+        [LYFriendsHttpTool friendsGetAMessageWithParams:dic compelte:^(FriendsRecentModel *friendRecentM) {
+            if (friendRecentM) {
+                LYFriendsMessageDetailViewController *friendMessageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+                friendMessageDetailVC.recentM = friendRecentM;
+                [weakSelf.navigationController pushViewController:friendMessageDetailVC animated:YES];
+            }
+        }];
+        
     }
 }
 
