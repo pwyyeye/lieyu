@@ -727,7 +727,7 @@
                 }
             }
             NSLog(@"------>%f",size.height);
-            return 67 + size.height ;
+            return 70 + size.height ;
             }
             break;
         case 1://图片
