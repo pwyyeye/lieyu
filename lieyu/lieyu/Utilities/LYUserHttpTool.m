@@ -1425,6 +1425,7 @@
         [MyUtil showMessage:[response valueForKey:@"message"]];
         [app stopLoading];
 //        }
+        complete();
     } failure:^(NSError *err) {
         [app stopLoading];
     }];
