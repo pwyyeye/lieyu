@@ -222,6 +222,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     LYUserCenterCell *cell = (LYUserCenterCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.btn_count.hidden = YES;
+    [cell.btn_count setTitle:@"" forState:UIControlStateNormal];
     cell.labeltext_cons_center.constant = 15;
     // Configure the cell
     cell.icon.image=nil;
