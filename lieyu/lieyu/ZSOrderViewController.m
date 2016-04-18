@@ -138,7 +138,7 @@
     scrollView.scrollsToTop = NO;
     [effectView addSubview:scrollView];
     
-    CGFloat btnWidth = 80;
+    CGFloat btnWidth = 70;
     for (int i = 0 ; i < 3 ; i ++) {
         LPOrderButton *button = [[LPOrderButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - btnWidth/2.f + btnWidth * (i - 1), 0, btnWidth, 26)];
         button.pointLabel.hidden = YES;
@@ -199,6 +199,7 @@
     [[ZSManageHttpTool shareInstance]getZSOrderListWithParams:dic block:^(NSMutableArray *result) {
         if(result.count>0){
             [daiXiaoFei addObjectsFromArray:result];
+            [serchDaiXiaoFei addObjectsFromArray:result];
             pageCount++;
             [weakSelf.tableView reloadData];
         }else{

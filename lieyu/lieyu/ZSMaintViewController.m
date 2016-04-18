@@ -150,7 +150,7 @@
     _balanceButton.titleLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
     [_balanceButton setBackgroundImage:[UIImage imageNamed:@"icon_balance"] forState:UIControlStateNormal];
 //    [balanceButton setTitle:@"9999.00" forState:UIControlStateNormal];
-    [_balanceButton setTitleEdgeInsets:UIEdgeInsetsMake(38, 0, 0, 0)];
+    [_balanceButton setTitleEdgeInsets:UIEdgeInsetsMake(45, 0, 0, 0)];
     [_balanceButton addTarget:self action:@selector(pushMyReceived) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:_balanceButton];
     
@@ -272,8 +272,13 @@
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         NSString *consuer = [MyUtil encryptUseDES:textField.text withKey:app.desKey];
         NSDictionary *dic = @{@"consumptionCode":consuer};
+        __weak __typeof(self) weakSelf = self;
         [LYUserHttpTool zsCheckConsumerIDWith:dic complete:^{
-            
+            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            if (![MyUtil isEmptyString:app.s_app_id]) {
+                [weakSelf getBalance];
+                [weakSelf getBadge];
+            }
         }];
         
         

@@ -274,13 +274,13 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
      UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
-    [imgV.layer removeAllAnimations];
+//    [imgV.layer removeAllAnimations];
 //    imgV.contentMode = UIViewContentModeScaleAspectFill;
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
         
-        [imgV.layer removeAllAnimations];
     }completion:^(BOOL finished) {
+        [imgV.layer removeAllAnimations];
         [imgV removeFromSuperview];
 
         self.window.userInteractionEnabled = YES;
