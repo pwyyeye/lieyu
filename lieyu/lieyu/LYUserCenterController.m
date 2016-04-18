@@ -201,7 +201,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         }
         NSLog(@"---->%ld",num);
 //        [weakSelf.collectionView reloadData];
-        [weakSelf loadData];
+//        [weakSelf loadData];
+        NSIndexPath *indexP = [NSIndexPath indexPathForItem:1 inSection:0];
+        [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
     }];
 }
 
