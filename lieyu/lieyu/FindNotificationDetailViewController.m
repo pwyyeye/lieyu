@@ -93,7 +93,7 @@
         if ([app.userModel.usertype isEqualToString:@"1"]) {
             //            LYMyOrderManageViewController *detailVC = [[LYMyOrderManageViewController alloc]initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
             LPMyOrdersViewController *detailVC = [[LPMyOrdersViewController alloc]init];
-            detailVC.title=@"我的订单";
+            detailVC.title=@"我的订单";  
             detailVC.orderIndex=0;
             [self.navigationController pushViewController:detailVC animated:YES];
         }else{
