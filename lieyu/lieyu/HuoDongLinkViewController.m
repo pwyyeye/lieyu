@@ -114,9 +114,7 @@
         CHDetailVC.barName=[NSString stringWithFormat:@"酒吧%@",str2];
         [self.navigationController pushViewController:CHDetailVC animated:YES];
     }
-    
-    
-    
+
 }
 
 
