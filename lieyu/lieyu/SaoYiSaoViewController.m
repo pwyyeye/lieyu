@@ -14,6 +14,7 @@
 @interface SaoYiSaoViewController ()<UIAlertViewDelegate>
 {
     NSDictionary *dict;
+    BOOL _isShangHu;
 }
 @property (strong, nonatomic) UIView *boxView;
 @property (nonatomic) BOOL isReading;
@@ -37,6 +38,8 @@
 //    _isReading = NO;
 //    [self scanQRCode];
     [self startReading];
+    
+    _isShangHu = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -155,7 +158,9 @@
                 dict = @{@"userid":userId,
                          @"currentTime":currentTime,
                          @"usertype":self.userModel.usertype};
-                 if ([self.userModel.usertype isEqualToString:@"2"]) {
+                
+//                 if ([self.userModel.usertype isEqualToString:@"2"]) {
+                     if (_isShangHu) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确认核单" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil]show];
                     });
@@ -163,7 +168,7 @@
                      __weak typeof(self) weakSelf=self;
                      [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
                          //                    [app stopLoading];
-                         if ([weakSelf.userModel.usertype isEqualToString:@"1"]) {
+//                         if ([weakSelf.userModel.usertype isEqualToString:@"1"]) {
                              if ([[result valueForKey:@"message"] isEqualToString:@"已经是好友！"]){
                                  //如果已经是好友了，进入玩友详情
                                  LYMyFriendDetailViewController *MyFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
@@ -175,7 +180,7 @@
                                  //                            [MyUtil showLikePlaceMessage:@"已发送好友申请！"];
                                  [MyUtil showMessage:@"已发送好友申请！"];
                              }
-                         }
+                      /*   }
                          else if ([weakSelf.userModel.usertype isEqualToString:@"2"]){
                              //商户扫码，进行核实订单
                              NSArray *tempArr = [result valueForKey:@"data"];
@@ -190,7 +195,7 @@
                                  checkorderVC.tempArr = tempArr;
                                  [weakSelf.navigationController pushViewController:checkorderVC animated:YES];
                              }
-                         }
+                         }*/
                      }];
                  }
                 /*
