@@ -55,7 +55,7 @@
             _dataArray = dataArray;
             [_tableView reloadData];
         }];
-    }];
+    }];  
 }
 
 
