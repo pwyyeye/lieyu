@@ -234,7 +234,8 @@
                 NSArray *tempArr = [result valueForKey:@"data"];
                 if (tempArr.count <= 1) {
                     //只有一个订单，扫码核单成功
-                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
                     //                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
                     [MyUtil showMessage:[result valueForKey:@"message"]];
                 }else{
