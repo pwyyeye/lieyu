@@ -664,7 +664,6 @@
 		38B5F4E51CBE10BE00AE1BF5 /* emojiTIpTop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E11CBE10BE00AE1BF5 /* emojiTIpTop@2x.png */; };
 		38B5F4E61CBE10BE00AE1BF5 /* emojiTIpTop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4E21CBE10BE00AE1BF5 /* emojiTIpTop@3x.png */; };
 		38B5F4EC1CC0EB2100AE1BF5 /* coinPlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4EB1CC0EB2100AE1BF5 /* coinPlay.png */; };
-		38B5F4EE1CC0EEC100AE1BF5 /* coinBack5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38B5F4ED1CC0EEC100AE1BF5 /* coinBack5.jpg */; };
 		38C98CD11C60782D0084E6BD /* YUGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCE1C60782D0084E6BD /* YUGroup.png */; };
 		38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */; };
 		38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C98CD01C60782D0084E6BD /* YUGroup@3x.png */; };
@@ -1550,6 +1549,7 @@
 		ADB164BE1C167095000BAD3C /* lieyuIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADB164BC1C167095000BAD3C /* lieyuIcon@3x.png */; };
 		ADB164D31C16BBBF000BAD3C /* LYUserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F5452D1C13FAF50013B92B /* LYUserDetailTableViewCell.xib */; };
 		ADB164D41C16BBF7000BAD3C /* MineBigBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 853E3A3B1C15D1440088CD86 /* MineBigBG.jpg */; };
+		ADB8283C1CC47E0400DD3B81 /* coinBack5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADB8283B1CC47E0400DD3B81 /* coinBack5.jpg */; };
 		ADC3673D1C62402F006C2AE5 /* addUserIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC3673B1C62402F006C2AE5 /* addUserIcon@2x.png */; };
 		ADC3673E1C62402F006C2AE5 /* addUserIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC3673C1C62402F006C2AE5 /* addUserIcon@3x.png */; };
 		ADC367411C624044006C2AE5 /* originator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADC3673F1C624044006C2AE5 /* originator@2x.png */; };
@@ -2689,7 +2689,6 @@
 		38B5F4E11CBE10BE00AE1BF5 /* emojiTIpTop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@2x.png"; sourceTree = "<group>"; };
 		38B5F4E21CBE10BE00AE1BF5 /* emojiTIpTop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojiTIpTop@3x.png"; sourceTree = "<group>"; };
 		38B5F4EB1CC0EB2100AE1BF5 /* coinPlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coinPlay.png; sourceTree = "<group>"; };
-		38B5F4ED1CC0EEC100AE1BF5 /* coinBack5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack5.jpg; sourceTree = "<group>"; };
 		38C98CCE1C60782D0084E6BD /* YUGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUGroup.png; sourceTree = "<group>"; };
 		38C98CCF1C60782D0084E6BD /* YUGroup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@2x.png"; sourceTree = "<group>"; };
 		38C98CD01C60782D0084E6BD /* YUGroup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUGroup@3x.png"; sourceTree = "<group>"; };
@@ -3841,6 +3840,7 @@
 		ADAFCD221CA0E261008BF959 /* start.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = start.html; sourceTree = "<group>"; };
 		ADB164BB1C167095000BAD3C /* lieyuIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@2x.png"; sourceTree = "<group>"; };
 		ADB164BC1C167095000BAD3C /* lieyuIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyuIcon@3x.png"; sourceTree = "<group>"; };
+		ADB8283B1CC47E0400DD3B81 /* coinBack5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coinBack5.jpg; sourceTree = "<group>"; };
 		ADC3673B1C62402F006C2AE5 /* addUserIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addUserIcon@2x.png"; sourceTree = "<group>"; };
 		ADC3673C1C62402F006C2AE5 /* addUserIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addUserIcon@3x.png"; sourceTree = "<group>"; };
 		ADC3673F1C624044006C2AE5 /* originator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "originator@2x.png"; sourceTree = "<group>"; };
@@ -7894,7 +7894,7 @@
 				AD203BA81CAEA9C70014618A /* CoinBack@2x.png */,
 				AD203BA91CAEA9C70014618A /* CoinBack@3x.png */,
 				AD203BAA1CAEA9C70014618A /* coinBack4.jpg */,
-				38B5F4ED1CC0EEC100AE1BF5 /* coinBack5.jpg */,
+				ADB8283B1CC47E0400DD3B81 /* coinBack5.jpg */,
 				AD203BAC1CAEA9C70014618A /* coinBackground@1x.png */,
 				AD203BAD1CAEA9C70014618A /* coinBackground@2x.png */,
 				AD203BAE1CAEA9C70014618A /* coinBackground@3x.png */,
@@ -9501,7 +9501,6 @@
 				38979A631CA40919002946F5 /* kawayi16.png in Resources */,
 				AD399E8B1C940D4D00028F23 /* logo12@2x.jpg in Resources */,
 				15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */,
-				38B5F4EE1CC0EEC100AE1BF5 /* coinBack5.jpg in Resources */,
 				15E240C71BB3CAC20090D240 /* LYResetPasswordViewController.xib in Resources */,
 				15E1846F1BB4DCF100681BB2 /* MyZSManageViewController.xib in Resources */,
 				A2FD57711BAFE91F00CFFF92 /* FBTaoCanView.xib in Resources */,
@@ -9873,6 +9872,7 @@
 				AD399E991C940D4D00028F23 /* logo26@2x.jpg in Resources */,
 				AD203BE71CB0C4F30014618A /* tb_bt2.png in Resources */,
 				855397041C8D31A000289D18 /* FindGameCenterCollectionViewCell.xib in Resources */,
+				ADB8283C1CC47E0400DD3B81 /* coinBack5.jpg in Resources */,
 				3812C5681C57B78800F4DD6B /* hot_triangle@3x.png in Resources */,
 				38D876491C1703B600E2F284 /* purper_fanli.png in Resources */,
 				AD399E8F1C940D4D00028F23 /* logo16@2x.jpg in Resources */,

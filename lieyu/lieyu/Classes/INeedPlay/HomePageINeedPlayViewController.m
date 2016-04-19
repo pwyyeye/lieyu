@@ -47,6 +47,12 @@
 #define HOMEPAGE_MTA @"HOMEPAGE"
 #define HOMEPAGE_TIMEEVENT_MTA @"HOMEPAGE_TIMEEVENT"
 
+#define COLLECTVIEWEDGETOP UIEdgeInsetsMake(91 - 40, 0, 49, 0)
+#define COLLECTVIEWEDGEDOWN UIEdgeInsetsMake(91, 0, 49, 0)
+
+#define MENUVIEWCENTERTOP 8
+#define MENUVIEWCENTERDOWN 45
+
 @interface HomePageINeedPlayViewController ()
 <EScrollerViewDelegate,SDCycleScrollViewDelegate,
 UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
@@ -92,7 +98,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 {
     [super viewDidLoad];
     
-    [self createNavButton];
     _currentPage_YD = 1;
     _currentPage_Bar = 1;
     _contentOffSet_Height_BAR = 1;
@@ -172,50 +177,47 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
             _lineView.center = CGPointMake(offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH + _btn_yedian.center.x, _lineView.center.y);
     }else{
+        _menuView.center = _menuView.center;
         if (!_isDragScrollToTop) return;
-        
         LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
         if (_index) {
-            if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_BAR > 90) {
-                [UIView animateWithDuration:0.3 animations:^{
-                    
-                    _menuView.center = CGPointMake(_menuView.center.x,45);
-                    _titleImageView.alpha = 1.0;
-                    _cityChooseBtn.alpha = 1.f;
-                    _searchBtn.alpha = 1.f;
-                }completion:nil];
-            }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_BAR > 90) {
+            if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_BAR > 35) {
+                [self showMenuView];
+            }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_BAR > 35) {
                 if(cell.collectViewInside.contentOffset.y < - 91) return;
-                [UIView animateWithDuration:0.3 animations:^{
-                    _menuView.center = CGPointMake( _menuView.center.x,8 );
-                    _titleImageView.alpha = 0.0;
-                    _cityChooseBtn.alpha = 0.f;
-                    _searchBtn.alpha = 0.f;
-                } completion:nil];
+                [self hideMenuView];
             }
         }else{
-                if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 90) {
-                    [UIView animateWithDuration:0.3 animations:^{
-                        _menuView.center = CGPointMake(_menuView.center.x,45);
-                        _titleImageView.alpha = 1.0;
-                        _cityChooseBtn.alpha = 1.f;
-                        _searchBtn.alpha = 1.f;
-                    }completion:^(BOOL finished) {
-//                        cell.collectViewInside.contentInset = UIEdgeInsetsMake(91, 0, 0, 0);
-                    }];
-                }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_YD > 90) {
+                if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 35) {
+                    [self showMenuView];
+                }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_YD > 35) {
                     if(cell.collectViewInside.contentOffset.y < - 91) return;
-                    [UIView animateWithDuration:0.3 animations:^{
-                        _menuView.center = CGPointMake( _menuView.center.x,8 );
-                        _titleImageView.alpha = 0.0;
-                        _cityChooseBtn.alpha = 0.f;
-                        _searchBtn.alpha = 0.f;
-                    } completion:^(BOOL finished) {
-//                            cell.collectViewInside.contentInset = UIEdgeInsetsMake(91 - 40, 0, 0, 0);
-                    }];
+                    [self hideMenuView];
                 }
         }
     }
+}
+
+- (void)showMenuView{
+    [UIView animateWithDuration:0.2 animations:^{
+        _menuView.center = CGPointMake(_menuView.center.x,45);
+        _titleImageView.alpha = 1.0;
+        _cityChooseBtn.alpha = 1.f;
+        _searchBtn.alpha = 1.f;
+    }completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)hideMenuView{
+    [UIView animateWithDuration:0.2 animations:^{
+        _menuView.center = CGPointMake( _menuView.center.x,8);
+        _titleImageView.alpha = 0.0;
+        _cityChooseBtn.alpha = 0.f;
+        _searchBtn.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -257,37 +259,27 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-    if (_menuView.center.y < 45) {
-        [UIView animateWithDuration:0.3 animations:^{
-            
-            [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
-        }];
-    }else{
-        [UIView animateWithDuration:0.3 animations:^{
-            [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
-        }];
-    }
+//    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+//    if (_menuView.center.y < 45) {
+//            [cell.collectViewInside setContentInset:COLLECTVIEWEDGETOP];
+//    }else{
+//            [cell.collectViewInside setContentInset:COLLECTVIEWEDGEDOWN];
+//    }
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
-    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-    if (_menuView.center.y < 45) {
-        [UIView animateWithDuration:0.3 animations:^{
-            
-            [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
-        }];
-    }else{
-        [UIView animateWithDuration:0.3 animations:^{
-            [cell.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
-        }];
-    }
+//    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+//    if (_menuView.center.y < 45) {
+//        [cell.collectViewInside setContentInset:COLLECTVIEWEDGETOP];
+//    }else{
+//        [cell.collectViewInside setContentInset:COLLECTVIEWEDGEDOWN];
+//    }
 
 }
 
 #pragma mark 创建导航的按钮(选择城市和搜索)
 - (void)createNavButton{
-    [self removeNavButtonAndImageView];
+    
     UIBlurEffect *effectExtraLight = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     _menuView = [[UIVisualEffectView alloc]initWithEffect:effectExtraLight];
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
@@ -343,7 +335,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         _btn_yedian.isHomePageMenuViewSelected = NO;
         _lineView.center = CGPointMake(_btn_bar.center.x, _lineView.center.y);
     }
+    [_menuView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    UIVisualEffectView *effectView = (UIVisualEffectView *)object;
+    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     
+    if (effectView.center.y == 8) {//上面
+        if(cell.collectViewInside.contentInset.top == 91) [cell.collectViewInside setContentInset:COLLECTVIEWEDGETOP];
+    }else if (effectView.center.y == 45){
+        if(cell.collectViewInside.contentInset.top == 91-40)  [cell.collectViewInside setContentInset:COLLECTVIEWEDGEDOWN];
+    }
 }
 
 #pragma mark －夜店action
@@ -404,6 +407,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 移除导航的按钮和图片
 - (void)removeNavButtonAndImageView{
+    [_menuView removeObserver:self forKeyPath:@"center"];
     [_titleImageView removeFromSuperview];
     [_searchBtn removeFromSuperview];
     [_cityChooseBtn removeFromSuperview];
@@ -646,9 +650,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     if (collectionView == _collectView) {
-        return UIEdgeInsetsMake(0,0,0,0);
+        return UIEdgeInsetsZero;
     }else{
-//        return UIEdgeInsetsMake(3, 3, 3, 3);
         return UIEdgeInsetsMake(3, 3, 3, 3);
     }
 }
@@ -909,10 +912,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         //WTT
         hcell.jiubaArray = _dataArray[indexPath.item];
         if (hcell.collectViewInside) {
-            if (_menuView.center.y < 45) {
-                [hcell.collectViewInside setContentInset:UIEdgeInsetsMake(91 - 40, 0, 49, 0)];
+            if (_menuView.center.y == 8) {
+                [hcell.collectViewInside setContentInset:COLLECTVIEWEDGETOP];
             }else{
-                [hcell.collectViewInside setContentInset:UIEdgeInsetsMake(91, 0, 49, 0)];
+                [hcell.collectViewInside setContentInset:COLLECTVIEWEDGEDOWN];
             }
         }
     }

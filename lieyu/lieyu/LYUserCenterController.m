@@ -119,14 +119,14 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self loadHeaderView];
-    [self loadHeaderViewBadge];
-    [self getGoodsNum];
+    
     
 //    [self loadHeaderView];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    [self.collectionView reloadData];
-    
+//    [self.collectionView reloadData];
+    [self loadHeaderViewBadge];
+    [self getGoodsNum];
 }
 
 - (void)loadHeaderView{
@@ -152,7 +152,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }
     [self.view addSubview:_headerView];
 //    [self loadHeaderViewBadge];
-    [self getGoodsNum];
+//    [self getGoodsNum];
 }
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -199,7 +199,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                 num = num + [shoppingCar.quantity intValue];
             }
         }
-        [weakSelf.collectionView reloadData];
+        NSLog(@"---->%ld",num);
+//        [weakSelf.collectionView reloadData];
+//        [weakSelf loadData];
+        NSIndexPath *indexP = [NSIndexPath indexPathForItem:1 inSection:0];
+        [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
     }];
 }
 
@@ -217,7 +221,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     LYUserCenterCell *cell = (LYUserCenterCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
+    cell.btn_count.hidden = YES;
+    [cell.btn_count setTitle:@"" forState:UIControlStateNormal];
+    cell.labeltext_cons_center.constant = 15;
     // Configure the cell
     cell.icon.image=nil;
     [cell.icon setContentMode:UIViewContentModeScaleAspectFit];
@@ -231,32 +237,18 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         cell.labeltext_cons_center.constant = 20;
     }
     if(indexPath.row == 1){
-        if(num){
-            cell.btn_count.hidden = NO;
+        if(num > 0){
             [cell.btn_count setTitle:[NSString stringWithFormat:@"%ld",num] forState:UIControlStateNormal];
-        }else{
-                cell.btn_count.hidden = YES;
-        }
-        
-    }else if (indexPath.row == 0){
-        if (_headerView.badgeNum > 0) {
             cell.btn_count.hidden = NO;
-            [cell.btn_count setTitle:[NSString stringWithFormat:@"%d",_headerView.badgeNum] forState:UIControlStateNormal];
         }
-    }else{
-        cell.btn_count.hidden = YES;
     }
     
     if(indexPath.row == 0){
         if(orderNum){
-            cell.btn_count.hidden = NO;
             [cell.btn_count setTitle:[NSString stringWithFormat:@"%ld",orderNum] forState:UIControlStateNormal];
-        }else{
-            cell.btn_count.hidden = YES;
+            cell.btn_count.hidden = NO;
         }
         
-    }else{
-        cell.btn_count.hidden = YES;
     }
     
     if (indexPath.row % 3 == 2) {

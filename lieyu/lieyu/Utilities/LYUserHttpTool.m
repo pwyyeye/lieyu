@@ -620,7 +620,7 @@
 -(void)getOrderTTL:(void (^)(OrderTTL* result))block{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_TTL baseURL:LY_SERVER params:nil success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+//        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         NSDictionary *data=response[@"data"];
         OrderTTL *ttl=[OrderTTL mj_objectWithKeyValues:data];
         if ([code isEqualToString:@"1"]) {
@@ -628,7 +628,7 @@
                 block(ttl);
             });
         }else{
-            [MyUtil showMessage:message];
+//            [MyUtil showMessage:message];
         }
         
         
@@ -1425,6 +1425,7 @@
         [MyUtil showMessage:[response valueForKey:@"message"]];
         [app stopLoading];
 //        }
+        complete();
     } failure:^(NSError *err) {
         [app stopLoading];
     }];
