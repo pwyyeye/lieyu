@@ -296,7 +296,7 @@
     pageCount=1;
     NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"1,2"};
     nowDic=[[NSMutableDictionary alloc]initWithDictionary:dic];
-    [self getOrderWithDic:dic];
+    [self getOrderWithDic:dic];  
     
 }
 
@@ -1330,7 +1330,7 @@
                     [[ZSManageHttpTool shareInstance] setManagerConfirmSeatWithParams:dic complete:^(BOOL result) {
                         if(result){
                             [weakSelf showMessage:@"留座成功！"];
-                            [weakSelf getDaiLiuWei];
+                            [weakSelf getDaiXiaoFei];
                         }
                     }];
                 }
