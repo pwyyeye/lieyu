@@ -24,6 +24,7 @@
 #import "ZSBalance.h"
 #import "FindNotificationViewController.h"
 #import "OrderTTL.h"
+#import "MainTabbarViewController.h"
 
 @interface ZSMaintViewController ()<UITextFieldDelegate>{
     UIButton *_balanceButton;
@@ -85,7 +86,7 @@
     [listArr removeAllObjects];
     NSDictionary *myNotification = @{@"colorRGB":RGB(65, 154, 241),@"imageContent":@"shopMyNotification",@"title":@"消息通知",@"delInfo":@""};
     NSDictionary *myReceiveDic = @{@"colorRGB":RGB(254, 221, 87),@"imageContent":@"shopMyReceive",@"title":@"我的收入",@"delInfo":@""};
-    NSDictionary *dic=@{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""};
+    NSDictionary *dic=@{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座设置",@"delInfo":@""};
     NSDictionary *dic1=@{@"colorRGB":RGB(136, 223, 121),@"imageContent":@"Fill20179",@"title":@"最近联系",@"delInfo":@"您有客户留言请及时查收"};
     NSDictionary *dic2=@{@"colorRGB":RGB(254, 147, 87),@"imageContent":@"Fill20219",@"title":@"订单管理",@"delInfo":@"您有订单要确认请及时确定"};
     NSDictionary *dic3=@{@"colorRGB":RGB(65, 241, 221),@"imageContent":@"Fill20176",@"title":@"我的客户",@"delInfo":@""};
@@ -408,6 +409,8 @@
             UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
             app.navigationController = nav;
             app.window.rootViewController = nav;
+            MainTabbarViewController *tabVC = (MainTabbarViewController *)nav.viewControllers.firstObject;
+            tabVC.selectedIndex = tabVC.viewControllers.count - 1;
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
             
                 if(app.userModel.usertype.intValue==2){
