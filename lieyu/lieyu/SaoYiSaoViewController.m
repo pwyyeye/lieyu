@@ -155,16 +155,20 @@
                     return;
                 }
                 
-                dict = @{@"userid":userId,
-                         @"currentTime":currentTime,
-                         @"usertype":self.userModel.usertype};
+                
                 
 //                 if ([self.userModel.usertype isEqualToString:@"2"]) {
                      if (_isShangHu) {
+                         dict = @{@"userid":userId,
+                                  @"currentTime":currentTime,
+                                  @"usertype":self.userModel.usertype};
                     dispatch_async(dispatch_get_main_queue(), ^{
                     [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确认核单" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil]show];
                     });
-                 }else{ 
+                 }else{
+                     dict = @{@"userid":userId,
+                              @"currentTime":currentTime,
+                              @"usertype":@"1"};
                      __weak typeof(self) weakSelf=self;
                      [LYUserHttpTool userScanQRCodeWithPara:dict complete:^(NSDictionary *result) {
                          //                    [app stopLoading];
@@ -234,7 +238,8 @@
                 NSArray *tempArr = [result valueForKey:@"data"];
                 if (tempArr.count <= 1) {
                     //只有一个订单，扫码核单成功
-                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
                     //                            [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
                     [MyUtil showMessage:[result valueForKey:@"message"]];
                 }else{
