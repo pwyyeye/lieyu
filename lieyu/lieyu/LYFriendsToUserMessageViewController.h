@@ -24,4 +24,6 @@
 - (void)topicNameClick:(UIButton *)button;
 #pragma mark － 跳转消息详情页面
 - (void)pushFriendsMessageDetailVCWithIndex:(NSInteger)index;
+#pragma mark - 动态头像点击
+- (void)messageHeaderImgClick:(UIButton *)button;
 @end
