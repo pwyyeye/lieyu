@@ -328,7 +328,7 @@
 //            conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 接受者的 username，这里为举例。
             conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
         }else{
-            conversationVC.targetId = [NSString stringWithFormat:@"%d",_result.userid];
+            conversationVC.targetId = [NSString stringWithFormat:@"%@",_result.imuserId];
 //            conversationVC.userName = _result.usernick;
             conversationVC.title = _result.usernick;
 //            conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
