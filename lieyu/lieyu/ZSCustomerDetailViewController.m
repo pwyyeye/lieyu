@@ -9,6 +9,7 @@
 #import "ZSCustomerDetailViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "IQKeyboardManager.h"
+#import "LYFindConversationViewController.h"
 @interface ZSCustomerDetailViewController ()
 
 @end
@@ -54,7 +55,7 @@
 */
 
 - (IBAction)liaotianAct:(UIButton *)sender {
-    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
     conversationVC.targetId = _customerModel.imuserid; // 接收者的 targetId，这里为举例。
 //    conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick?_customerModel.usernick:_customerModel.username; // 接受者的 username，这里为举例。
