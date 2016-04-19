@@ -432,6 +432,21 @@ CGFloat picWidth = 0;
     
 }
 
+#pragma mark - 动态头像点击
+- (void)messageHeaderImgClick:(UIButton *)button{
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+        FriendsRecentModel *friendRecentM = _dataArray[button.tag];
+        if ([userIdStr isEqualToString:friendRecentM.userId]) {
+            return;
+        }else{
+            LYFriendsToUserMessageViewController *friendToUserMessageVC = [[LYFriendsToUserMessageViewController alloc]init];
+            if([MyUtil isEmptyString:friendRecentM.userId]) return;
+            friendToUserMessageVC.friendsId = friendRecentM.userId;
+            [self.navigationController pushViewController:friendToUserMessageVC animated:YES];
+        }
+}
+
 - (void)removePlaceView{
     UILabel *label = (UILabel *)[self.view viewWithTag:800];
     if (label) {

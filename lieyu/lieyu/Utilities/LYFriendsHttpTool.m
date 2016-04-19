@@ -207,8 +207,11 @@
         if ([response[@"errorcode"] isEqual:@"1"]) {
           FriendsRecentModel *mod = [FriendsRecentModel initFromNSDictionary:response[@"data"]];
             compelte(mod);
+        }else{
+            compelte(nil);
         }
     }failure:^(NSError *err) {
+        compelte(nil);
         NSLog(@"----pass-friendsGetAMessageWithParams:%@---",err);
                 [app stopLoading];
     }];
