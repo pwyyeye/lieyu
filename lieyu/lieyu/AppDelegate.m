@@ -278,17 +278,15 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
      UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
-//    [imgV.layer removeAllAnimations];
-//    imgV.contentMode = UIViewContentModeScaleAspectFill;
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
-        
+         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     }completion:^(BOOL finished) {
         [imgV.layer removeAllAnimations];
         [imgV removeFromSuperview];
 
         self.window.userInteractionEnabled = YES;
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     }];
     
 }

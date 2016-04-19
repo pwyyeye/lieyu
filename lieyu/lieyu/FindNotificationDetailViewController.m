@@ -110,6 +110,8 @@
                 LYFriendsMessageDetailViewController *friendMessageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
                 friendMessageDetailVC.recentM = friendRecentM;
                 [weakSelf.navigationController pushViewController:friendMessageDetailVC animated:YES];
+            }else{
+                [MyUtil showCleanMessage:@"这条动态消失在异次元中~"];
             }
         }];
         

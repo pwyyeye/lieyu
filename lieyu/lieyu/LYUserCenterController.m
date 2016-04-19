@@ -99,6 +99,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                 [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
                     _orderTTL=result;
                     orderNum = result.waitPay + result.waitRebate + result.waitPayBack + result.waitEvaluation + result.waitConsumption;
+                    NSLog(@"-->%ld----%ld---%ld---%ld----%ld",result.waitPay,result.waitConsumption,result.waitEvaluation,result.waitRebate,result.waitPayBack);
                     NSIndexPath *indexP = [NSIndexPath indexPathForItem:0 inSection:0];
                     [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
 //                    [weakSelf.collectionView reloadData];
@@ -222,6 +223,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     LYUserCenterCell *cell = (LYUserCenterCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.btn_count.hidden = YES;
+    [cell.btn_count setTitle:@"" forState:UIControlStateNormal];
     cell.labeltext_cons_center.constant = 15;
     // Configure the cell
     cell.icon.image=nil;

@@ -140,6 +140,8 @@
         NSLog(@"%@---%@",imCell,tagString);
         if ([imCell isEqualToString:tagString]) {
             cell.cellButton.selected = YES;
+            [cell.cellButton addTarget:self action:@selector(pickImage:) forControlEvents:UIControlEventTouchUpInside];
+            return cell;
         }else{
             cell.cellButton.selected = NO;
         }

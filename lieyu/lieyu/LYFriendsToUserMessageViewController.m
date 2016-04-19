@@ -578,6 +578,9 @@
                 [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
             }
             [nameCell.btn_delete addTarget:self action:@selector(warningSheet:) forControlEvents:UIControlEventTouchUpInside];
+            //动态头像点击
+            nameCell.btn_headerImg.tag = indexPath.section;
+            [nameCell.btn_headerImg addTarget:self action:@selector(messageHeaderImgClick:) forControlEvents:UIControlEventTouchUpInside];
             return nameCell;
             
         }
@@ -875,6 +878,10 @@
         if([MyUtil isEmptyString:recentM.id]) return;
         [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
     }
+}
+
+#pragma mark - 动态头像点击
+- (void)messageHeaderImgClick:(UIButton *)button{
 }
 
 #pragma mark - 点击动态中话题文字

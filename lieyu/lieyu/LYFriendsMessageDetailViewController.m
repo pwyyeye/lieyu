@@ -81,6 +81,7 @@
 
 - (void)configureRightButton{
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
     [button setImage:[UIImage imageNamed:@"jubao_btn"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(warningSheet:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
@@ -727,7 +728,7 @@
                 }
             }
             NSLog(@"------>%f",size.height);
-            return 67 + size.height ;
+            return 70 + size.height ;
             }
             break;
         case 1://图片
