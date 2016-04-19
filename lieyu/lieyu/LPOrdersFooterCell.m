@@ -170,10 +170,22 @@
                     }
                 }
             }else{
-                [_secondButton setTitle:@"立即支付" forState:UIControlStateNormal];
-                [_secondButton addTarget:self.delegate action:@selector(payForOrder:) forControlEvents:UIControlEventTouchUpInside];
-                [_firstButton setTitle:@"删除订单" forState:UIControlStateNormal];
-                [_firstButton addTarget:self.delegate action:@selector(deleteSelfOrder:) forControlEvents:UIControlEventTouchUpInside];
+                BOOL isPayed = NO;
+                for (NSDictionary *dict in self.model.pinkerList) {
+                    if ([[dict objectForKey:@"inmember"]intValue] == userModel.userid) {
+                        isPayed = YES;
+                    }
+                }
+                if (isPayed) {
+                    _firstButton.hidden = YES;
+                    [_secondButton setTitle:@"查看详情" forState:UIControlStateNormal];
+                    [_secondButton addTarget:self.delegate action:@selector(checkForDetail:) forControlEvents:UIControlEventTouchUpInside];
+                }else{
+                    [_secondButton setTitle:@"立即支付" forState:UIControlStateNormal];
+                    [_secondButton addTarget:self.delegate action:@selector(payForOrder:) forControlEvents:UIControlEventTouchUpInside];
+                    [_firstButton setTitle:@"删除订单" forState:UIControlStateNormal];
+                    [_firstButton addTarget:self.delegate action:@selector(deleteSelfOrder:) forControlEvents:UIControlEventTouchUpInside];
+                }
             }
         }else{
             [_secondButton setTitle:@"立即付款" forState:UIControlStateNormal];

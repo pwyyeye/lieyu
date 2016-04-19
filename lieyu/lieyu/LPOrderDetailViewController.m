@@ -111,10 +111,22 @@
                     [_secondButton addTarget:self action:@selector(payOrder:) forControlEvents:UIControlEventTouchUpInside];
                 }
             }else{//我是参与者
-                [_firstButton setTitle:@"删除订单" forState:UIControlStateNormal];
-                [_firstButton addTarget:self action:@selector(deleteJoinedOrder:) forControlEvents:UIControlEventTouchUpInside];
-                [_secondButton setTitle:@"立即支付" forState:UIControlStateNormal];
-                [_secondButton addTarget:self action:@selector(payOrder:) forControlEvents:UIControlEventTouchUpInside];
+                BOOL isPayed = NO;
+                for (NSDictionary *dict in self.orderInfoModel.pinkerList) {
+                    if ([[dict objectForKey:@"inmember"]intValue] == self.userModel.userid && [[dict objectForKey:@"paymentStatus"] intValue] == 1) {
+                        isPayed = YES;
+                    }
+                }
+                if (isPayed == YES) {
+                    _firstButton.hidden = YES;
+                    [_secondButton setTitle:@"等待通知" forState:UIControlStateNormal];
+                }else{
+                    //未付款
+                    [_firstButton setTitle:@"退出组局" forState:UIControlStateNormal];
+                    [_firstButton addTarget:self action:@selector(deleteJoinedOrder:) forControlEvents:UIControlEventTouchUpInside];
+                    [_secondButton setTitle:@"立即支付" forState:UIControlStateNormal];
+                    [_secondButton addTarget:self action:@selector(payOrder:) forControlEvents:UIControlEventTouchUpInside];
+                }
             }
         }else{//不是组局
             [_firstButton setTitle:@"删除订单" forState:UIControlStateNormal];
@@ -163,6 +175,7 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - 表格中代理事件
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.orderInfoModel.ordertype == 1) {
         if (self.orderInfoModel.userid == self.userModel.userid) {
@@ -287,6 +300,7 @@
     }
 }
 
+#pragma mark - 列表中联系方式
 - (void)callUser:(UIButton *)button{
     int section = (int)button.tag / 10000;
     int row = (int)button.tag % 10000;
@@ -341,6 +355,7 @@
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
+#pragma mark - 底部按钮
 - (void)deleteOrder:(UIButton *)button{
     NSDictionary *dic=@{@"id":[NSNumber numberWithInt:_orderInfoModel.id]};
     AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"您确认要删除订单吗？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){

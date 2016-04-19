@@ -24,7 +24,7 @@
 #import "LPOrdersHeaderView.h"
 #import "LPOrdersBodyCell.h"
 #import "LPOrderButton.h"
-@interface ZSOrderViewController (){
+@interface ZSOrderViewController ()<UIAlertViewDelegate>{
     int pageCount;
     int perCount;
     NSMutableDictionary *nowDic;
@@ -32,6 +32,7 @@
     UIScrollView *scrollView;
     NSMutableArray *arrayButton;
     NSArray *titleArray;
+    NSInteger _kaZuoTag;
 }
 
 @end
@@ -224,10 +225,7 @@
         serchDaiXiaoFei=[daiXiaoFei mutableCopy];
         
         if (_orderIndex==0) {
-            LPOrderButton *btn = (LPOrderButton *)arrayButton.firstObject;
-            if (result.count && pageCount == 1) {
-                btn.pointLabel.hidden = NO;
-            }
+            
                 
         }else{
             UIView *view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.1)];
@@ -256,6 +254,15 @@
         
         [_tableView setContentOffset:CGPointZero];
         [weakSelf.tableView reloadData];
+        if (_orderIndex == 0) {
+            LPOrderButton *btn = (LPOrderButton *)arrayButton.firstObject;
+            if (serchDaiXiaoFei.count) {
+                    btn.pointLabel.hidden = NO;
+            }else{
+                    btn.pointLabel.hidden = YES;
+            }
+        }
+        
         [weakSelf.tableView.mj_header endRefreshing];
 
     }];
@@ -326,6 +333,14 @@
         view1.backgroundColor=[UIColor whiteColor];
         _tableView.tableHeaderView=view1;
         [weakSelf.tableView reloadData];
+        if (_orderIndex == 0) {
+            LPOrderButton *btn = (LPOrderButton *)arrayButton.firstObject;
+            if (serchDaiXiaoFei.count) {
+                btn.pointLabel.hidden = NO;
+            }else{
+                btn.pointLabel.hidden = YES;
+            }
+        }
     }];
     
 
@@ -1214,36 +1229,30 @@
 
 #pragma mark - 无卡坐
 - (void)unKazuoClick:(UIButton *)button{
-    OrderInfoModel *orderInfoModel=daiXiaoFei[button.tag];
-    __weak __typeof(self)weakSelf = self;
-    //取消订单
-    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
     
-    [[ZSManageHttpTool shareInstance] setMangerCancelWithParams:dic complete:^(BOOL result) {
-        if(result){
-            [weakSelf showMessage:@"取消订单成功！"];
-            [weakSelf getDaiXiaoFei];
-        }
-    }];
+    _kaZuoTag = button.tag;
+    
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"是否确认暂无卡座" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alertView.tag = 10085;
+    [alertView show];
+    
+    
 }
 
 #pragma mark 卡座
 -(void)kazuoAct:(OrderHandleButton *)sender{
     OrderInfoModel *orderInfoModel=serchDaiXiaoFei[sender.tag];
+    _kaZuoTag = sender.tag;
     if (orderInfoModel.orderStatus != 1) {
         [self duimaAct:sender];
         return;
     }else{
-        __weak __typeof(self)weakSelf = self;
-            //留座位
-            NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
-            
-            [[ZSManageHttpTool shareInstance] setManagerConfirmSeatWithParams:dic complete:^(BOOL result) {
-                if(result){
-                    [weakSelf showMessage:@"留座成功！"];
-                    [weakSelf getDaiLiuWei];
-                }
-            }];
+        
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"是否确认留卡" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 10086;
+        [alertView show];
+        
+       
         return;
     }
     _bgView = [[UIView alloc]initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,SCREEN_HEIGHT)];
@@ -1272,6 +1281,71 @@
     [_bgView insertSubview:button aboveSubview:_bgView];
     button.backgroundColor=[UIColor clearColor];
 }
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (alertView.tag) {
+        case 10085://wu
+        {
+            switch (buttonIndex) {
+                case 0:
+                    
+                    break;
+                case 1:{
+                    OrderInfoModel *orderInfoModel=serchDaiXiaoFei[_kaZuoTag];
+                    __weak __typeof(self)weakSelf = self;
+                    //取消订单
+                    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+                    
+                    [[ZSManageHttpTool shareInstance] setMangerCancelWithParams:dic complete:^(BOOL result) {
+                        if(result){
+                            [weakSelf showMessage:@"取消订单成功！"];
+                            [weakSelf getDaiXiaoFei];
+                        }
+                    }];
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+            break;
+            
+        case 10086:{
+            switch (buttonIndex) {
+                case 0://取消
+                    
+                    break;
+                case 1://确定
+                {
+                    
+                    OrderInfoModel *orderInfoModel=serchDaiXiaoFei[_kaZuoTag];
+                    __weak __typeof(self)weakSelf = self;
+                    //留座位
+                    NSDictionary *dic=@{@"id":[NSNumber numberWithInt:orderInfoModel.id]};
+                    
+                    [[ZSManageHttpTool shareInstance] setManagerConfirmSeatWithParams:dic complete:^(BOOL result) {
+                        if(result){
+                            [weakSelf showMessage:@"留座成功！"];
+                            [weakSelf getDaiLiuWei];
+                        }
+                    }];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+
+        }
+            
+        default:
+            break;
+    }
+    }
 
 - (IBAction)backAct:(UIButton *)sender {
     [self.navigationController popViewControllerAnimated:YES];

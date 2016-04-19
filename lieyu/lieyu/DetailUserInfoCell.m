@@ -76,6 +76,9 @@
         _userid = model.userid;
         [_userAvatarImg sd_setImageWithURL:[NSURL URLWithString:_avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_userNameLbl setText:_usernick?_usernick:(_username?_username:_mobile)];
+        
+        _phoneBtn.hidden = NO;
+        _messageBtn.hidden = NO;
     }else{
         //非拼客订单［都是自己订单］自己发起的拼客订单
         _avatar_img = model.checkUserAvatar_img;
@@ -86,11 +89,15 @@
         _userid = model.checkuserid;
         [_userAvatarImg sd_setImageWithURL:[NSURL URLWithString:_avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_userNameLbl setText:_usernick?_usernick:(_username?_username:_mobile)];
+        if(model.orderStatus == 0){
+            _phoneBtn.hidden = YES;
+            _messageBtn.hidden = YES;
+        }
     }
-    if(model.orderStatus == 0){
-        _phoneBtn.hidden = YES;
-        _messageBtn.hidden = YES;
-    }
+//    if(model.orderStatus == 0){
+//        _phoneBtn.hidden = YES;
+//        _messageBtn.hidden = YES;
+//    }
 }
 
 @end
