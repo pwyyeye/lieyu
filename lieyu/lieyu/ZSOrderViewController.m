@@ -1330,7 +1330,7 @@
                     [[ZSManageHttpTool shareInstance] setManagerConfirmSeatWithParams:dic complete:^(BOOL result) {
                         if(result){
                             [weakSelf showMessage:@"留座成功！"];
-                            [weakSelf getDaiLiuWei];
+                            [weakSelf getDaiXiaoFei];
                         }
                     }];
                 }
