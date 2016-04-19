@@ -33,7 +33,6 @@
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -48,19 +47,19 @@
         self.setBG.hidden = NO;
     }
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    [self.navigationController setNavigationBarHidden:NO];
-}
-
+//- (void)viewWillDisappear:(BOOL)animated{
+//    [super viewWillDisappear:animated];
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//    [self.navigationController setNavigationBarHidden:NO];
+//}
+//
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    [self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidLoad {
@@ -182,8 +181,7 @@
 }
 
 - (void)checkFriendAvatar{
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController setNavigationBarHidden:YES];
+    
     _subView = [[[NSBundle mainBundle]loadNibNamed:@"preview" owner:nil options:nil]firstObject];
     _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     _subView.button.hidden = YES;
@@ -211,8 +209,6 @@
 }
 
 - (void)hideSubView:(UIButton *)button{
-    self.navigationController.navigationBarHidden = NO;
-    [self.navigationController setNavigationBarHidden:NO];
     [_subView removeFromSuperview];
 }
 
@@ -352,6 +348,7 @@
         UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
         conversationVC.navigationItem.leftBarButtonItem = item;
         [self.navigationController pushViewController:conversationVC animated:YES];
+        [conversationVC.navigationController setNavigationBarHidden:NO animated:YES];
     }
 }
 
