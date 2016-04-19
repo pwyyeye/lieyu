@@ -75,7 +75,7 @@
                 if (result) {
                     [MyUtil showMessage:@"评价成功！"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-
+                    
                     [self.navigationController popViewControllerAnimated:YES];
                 }
             }];
