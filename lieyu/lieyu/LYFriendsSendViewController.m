@@ -369,7 +369,11 @@
             //内容中话题格式未错误
             NSLog(@"%@",[_TopicTitle substringWithRange:NSMakeRange(1, _TopicTitle.length - 2)]);
             if ([array[1] isEqualToString:[_TopicTitle substringWithRange:NSMakeRange(1, _TopicTitle.length - 2)]]) {
-                newContent = [self.content substringFromIndex:_TopicTitle.length + 1];
+                if (self.content.length > _TopicTitle.length + 2) {
+                    newContent = [self.content substringFromIndex:_TopicTitle.length + 1];
+                }else{
+                    newContent = @"";
+                }
             }else{
                 newContent = self.content;
                 _TopicID = @"";

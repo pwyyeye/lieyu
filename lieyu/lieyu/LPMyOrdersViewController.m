@@ -281,7 +281,7 @@
             ///////////////////
         }else{
             [weakSelf addKongView];
-            [myTableView.mj_footer endRefreshingWithNoMoreData];
+             [myTableView.mj_footer endRefreshingWithNoMoreData];
         }
         myTableView.contentOffset = CGPointMake(0, -90);
         [myTableView reloadData];
