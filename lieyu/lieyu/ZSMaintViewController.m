@@ -24,6 +24,7 @@
 #import "ZSBalance.h"
 #import "FindNotificationViewController.h"
 #import "OrderTTL.h"
+#import "MainTabbarViewController.h"
 
 @interface ZSMaintViewController ()<UITextFieldDelegate>{
     UIButton *_balanceButton;
@@ -408,6 +409,8 @@
             UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
             app.navigationController = nav;
             app.window.rootViewController = nav;
+            MainTabbarViewController *tabVC = (MainTabbarViewController *)nav.viewControllers.firstObject;
+            tabVC.selectedIndex = tabVC.viewControllers.count - 1;
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
             
                 if(app.userModel.usertype.intValue==2){

@@ -99,6 +99,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                 [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
                     _orderTTL=result;
                     orderNum = result.waitPay + result.waitRebate + result.waitPayBack + result.waitEvaluation + result.waitConsumption;
+                    NSLog(@"-->%ld----%ld---%ld---%ld----%ld",result.waitPay,result.waitConsumption,result.waitEvaluation,result.waitRebate,result.waitPayBack);
                     NSIndexPath *indexP = [NSIndexPath indexPathForItem:0 inSection:0];
                     [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
 //                    [weakSelf.collectionView reloadData];
