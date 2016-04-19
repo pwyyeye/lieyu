@@ -172,7 +172,7 @@
             }else{
                 BOOL isPayed = NO;
                 for (NSDictionary *dict in self.model.pinkerList) {
-                    if ([[dict objectForKey:@"inmember"]intValue] == userModel.userid) {
+                    if ([[dict objectForKey:@"inmember"]intValue] == userModel.userid && [[dict objectForKey:@"paymentStatus"]intValue] == 1) {
                         isPayed = YES;
                     }
                 }
@@ -183,7 +183,7 @@
                 }else{
                     [_secondButton setTitle:@"立即支付" forState:UIControlStateNormal];
                     [_secondButton addTarget:self.delegate action:@selector(payForOrder:) forControlEvents:UIControlEventTouchUpInside];
-                    [_firstButton setTitle:@"删除订单" forState:UIControlStateNormal];
+                    [_firstButton setTitle:@"退出组局" forState:UIControlStateNormal];
                     [_firstButton addTarget:self.delegate action:@selector(deleteSelfOrder:) forControlEvents:UIControlEventTouchUpInside];
                 }
             }
