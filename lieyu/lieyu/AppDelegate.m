@@ -34,7 +34,10 @@
 #import "HuoDongViewController.h"
 #import "LPUserLoginViewController.h"
 #import "ZSMaintViewController.h"
-
+#import "LYFriendsHttpTool.h"
+#import "LYFriendsMessageDetailViewController.h"
+#import "LPMyOrdersViewController.h"
+#import "ZSOrderViewController.h"
 
 @interface AppDelegate ()
 <
@@ -229,12 +232,13 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     //处理消息推送
     if (launchOptions.count>0) {
         NSDictionary * userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-        [self takeNotification:userInfo];
+        [self takeNotification:userInfo andApplicationStatus:application.applicationState];
     }
     
     //是否需要统计IM消息角标
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
-    
+    //是否需要打开跳转到通知指定页面
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nontifyJump) name:@"loadUserInfo" object:nil];
      return YES;
 }
 
@@ -482,22 +486,60 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
      d = uu04812144712755443811;
      p = 0;
      }*/
-    [self takeNotification:userInfo];
+    
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        NSLog(@"active");
+        //程序当前正处于前台
+    }
+    else if(application.applicationState == UIApplicationStateInactive)
+    {
+        NSLog(@"inactive");
+        //程序处于后台
+        
+    } else if(application.applicationState == UIApplicationStateBackground)
+    {
+        NSLog(@"background");
+        //程序处于后台
+        
+    }
+    [self takeNotification:userInfo andApplicationStatus:application.applicationState];
     
 }
 
 #pragma --mark 消息推送处理
--(void)takeNotification:(NSDictionary *)dic{
+-(void)takeNotification:(NSDictionary *)dic andApplicationStatus:(UIApplicationState) status{
    
+    [self getTTL];
     if ([dic objectForKey:@"aps"]&&[dic objectForKey:@"d"]) {
         [UMessage didReceiveRemoteNotification:dic];
-        if([dic objectForKey:@"activity"]){
-            HuoDongViewController *huodong =[[HuoDongViewController alloc] init];
-            NSString *linkid=[dic objectForKey:@"activity"];
-            huodong.linkid=linkid.integerValue;
-            [self.navigationController pushViewController:huodong animated:YES];
+        
+        if (status == UIApplicationStateBackground || status == UIApplicationStateInactive) {
+            if([dic objectForKey:@"activity"]){
+                HuoDongViewController *huodong =[[HuoDongViewController alloc] init];
+                NSString *linkid=[dic objectForKey:@"activity"];
+                huodong.linkid=linkid.integerValue;
+                [self.navigationController pushViewController:huodong animated:YES];
+            }
+            
+            
+            
+            if ([dic objectForKey:@"type"] == nil || [dic objectForKey:@"bzId"] ==nil ) {
+                return;
+            }
+            
+            if([[dic objectForKey:@"type"] isEqualToString:@"13"] ||[[dic objectForKey:@"type"] isEqualToString:@"14"]||
+               [[dic objectForKey:@"type"] isEqualToString:@"1"]) {
+                if(self.s_app_id!=nil){
+                    [self nontifyJump:dic];
+                }else{
+                    [USER_DEFAULT setObject:dic forKey:@"NOTIFYDIC"];
+                    
+                }
+                
+            }
         }
-        [self getTTL];
+        
         
     }else if(dic.count>0){
         NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
@@ -508,12 +550,12 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             [USER_DEFAULT setObject:@"1" forKey:@"badgeValue"];
             [UIApplication sharedApplication].applicationIconBadgeNumber=1;
         }
-        
-    
     }
     
     
 }
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -565,6 +607,48 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [self forcedUpdate];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
+#pragma mark - 跳转
+-(void)nontifyJump{
+    [self nontifyJump:nil];
+}
+-(void)nontifyJump:(NSDictionary *) dic{
+    if(dic==nil){
+        dic=[USER_DEFAULT objectForKey:@"NOTIFYDIC"];
+    }
+    if(dic==nil || [dic objectForKey:@"type"]==nil || [dic objectForKey:@"bzId"]==nil )return;
+    if([[dic objectForKey:@"type"] isEqualToString:@"13"] ||[[dic objectForKey:@"type"] isEqualToString:@"14"]) {
+        
+        NSDictionary *param = @{@"messageId":[dic objectForKey:@"bzId"],@"needLoading":@"0"};
+        __weak __typeof(self) weakSelf = self;
+        [LYFriendsHttpTool friendsGetAMessageWithParams:param compelte:^(FriendsRecentModel *friendRecentM) {
+            if (friendRecentM) {
+                LYFriendsMessageDetailViewController *friendMessageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+                friendMessageDetailVC.recentM = friendRecentM;
+                [weakSelf.navigationController pushViewController:friendMessageDetailVC animated:YES];
+            }
+        }];
+        
+    }else if([[dic objectForKey:@"type"] isEqualToString:@"1"]){
+        if ([self.userModel.usertype isEqualToString:@"1"]) {
+            LPMyOrdersViewController *detailVC = [[LPMyOrdersViewController alloc]init];
+            detailVC.title=@"我的订单";
+            detailVC.orderIndex=0;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }else{
+            ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
+            [self.navigationController pushViewController:orderManageViewController animated:YES];
+        }
+    }
+    if ([USER_DEFAULT objectForKey:@"NOTIFYDIC"]!=nil) {
+        [USER_DEFAULT removeObjectForKey:@"NOTIFYDIC"];
+        
+    }
+    
+}
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loadUserInfo" object:nil];
+}
+
 #pragma mark - 心跳获取7牛key
 -(void)doHeart{
     //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];

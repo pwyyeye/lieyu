@@ -18,4 +18,5 @@
 @property (nonatomic,copy) NSString *read;
 @property (nonatomic,copy) NSString *readDate;
 @property (nonatomic,copy) NSString *id;
+@property(strong,nonatomic) NSString *bzId;
 @end

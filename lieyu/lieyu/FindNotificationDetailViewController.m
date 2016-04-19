@@ -103,7 +103,7 @@
     }else if([_findNewList.type isEqualToString:@"13"] ||[_findNewList.type isEqualToString:@"14"]) {
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         NSString *useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-        NSDictionary *dic = @{@"userId":useridStr,@"messageId":_findNewList.id};
+        NSDictionary *dic = @{@"userId":useridStr,@"messageId":_findNewList.bzId};
         __weak __typeof(self) weakSelf = self;
         [LYFriendsHttpTool friendsGetAMessageWithParams:dic compelte:^(FriendsRecentModel *friendRecentM) {
             if (friendRecentM) {

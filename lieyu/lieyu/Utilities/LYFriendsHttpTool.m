@@ -200,7 +200,12 @@
 //根据动态id获取动态
 + (void)friendsGetAMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsRecentModel *))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app startLoading];
+    if ([params objectForKey:@"needLoading"]!=nil && [[params objectForKey:@"needLoading"] isEqualToString:@"0"]) {
+    
+    }else{
+        [app startLoading];
+    }
+    
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_GetAMessage baseURL:LY_SERVER params:params success:^(id response) {
         [app stopLoading];
 //        NSLog(@"------->%@",response);
