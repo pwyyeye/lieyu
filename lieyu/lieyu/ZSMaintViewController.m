@@ -208,8 +208,6 @@
         [self getBadge];
     }
     
-   
-    
 //    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
 //        _balance = balance;
 //        [_balanceButton setTitle:[NSString stringWithFormat:@"%.2f",_balance.balances.floatValue] forState:UIControlStateNormal];
