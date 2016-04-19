@@ -111,7 +111,7 @@
                 friendMessageDetailVC.recentM = friendRecentM;
                 [weakSelf.navigationController pushViewController:friendMessageDetailVC animated:YES];
             }else{
-                [MyUtil showCleanMessage:@"这条动态消失在异次元中~"];
+                [MyUtil showCleanMessage:@"这条动态已被删除"];
             }
         }];
         
