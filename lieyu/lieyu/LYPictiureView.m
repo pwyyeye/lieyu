@@ -35,6 +35,9 @@
 - (instancetype)initWithFrame:(CGRect)frame urlArray:(NSArray *)urlArray oldFrame:(NSArray *)oldFrame with:(NSInteger)index{
     self = [super initWithFrame:frame];
     if (self) {
+        
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+        
         _urlArray = urlArray;
         _scrollViewArray = [[NSMutableArray alloc]initWithCapacity:0];
         
@@ -384,6 +387,7 @@
 //            }
 //        }];
 //    }else{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
         [UIView animateWithDuration:animateTime animations:^{
             if (_oldFrameArr.count <= _index) {
                 return ;
@@ -398,6 +402,7 @@
             self.backgroundColor = RGBA(255, 255, 255, 0);
         } completion:^(BOOL finished) {
             [self removeFromSuperview];
+            
         }];
 //    }
 }
