@@ -131,8 +131,12 @@
         [_secondButton setBackgroundColor:[UIColor whiteColor]];
         [_secondButton setTitleColor:RGBA(128, 128, 128, 1) forState:UIControlStateNormal];
         if(self.orderInfoModel.ordertype == 1){
-            [_secondButton setTitle:@"取消组局" forState:UIControlStateNormal];
-            [_secondButton addTarget:self action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];
+            if (self.userModel.userid == self.orderInfoModel.userid) {
+                [_secondButton setTitle:@"取消组局" forState:UIControlStateNormal];
+                [_secondButton addTarget:self action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];
+            }else{
+                _secondButton.hidden = YES;
+            }
         }else{
             [_secondButton setTitle:@"取消订单" forState:UIControlStateNormal];
             [_secondButton addTarget:self action:@selector(cancelOrder:) forControlEvents:UIControlEventTouchUpInside];

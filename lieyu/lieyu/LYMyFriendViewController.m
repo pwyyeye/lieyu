@@ -20,12 +20,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];

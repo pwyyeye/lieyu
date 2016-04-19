@@ -20,6 +20,7 @@
 {
     NSMutableArray *dataList;
     UILabel *warningLabel;
+    BOOL isChanged;
 }
 @end
 
@@ -126,7 +127,9 @@
 }
 
 - (void)carlistFooterPrice:(int)section{
-//    CarBottomView *bottomView = [self.view viewWithTag:section];
+//    if (isChanged == NO) {
+        isChanged = YES;
+//    }
     CarBottomView *bottomView = (CarBottomView *)[self.tableView footerViewForSection:section];
     CarInfoModel *carInfoModel=dataList[section];
     double payAmount=0;
@@ -299,6 +302,7 @@
     NSDictionary *dic=@{@"ids":ss,@"quantitys":nn};
     [[LYHomePageHttpTool shareInstance]updataCarNumWithParams:dic complete:^(BOOL result) {
         if (result) {
+            isChanged = NO;
             UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
             CHDoOrderViewController *doOrderViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHDoOrderViewController"];
             doOrderViewController.title=@"确认订单";
@@ -319,6 +323,29 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 退出
+- (void)BaseGoBack{
+    if (isChanged) {
+        NSMutableString *goods = [[NSMutableString alloc]init];
+        NSMutableString *nums = [[NSMutableString alloc]init];
+        for (CarInfoModel *carInfoModel in dataList) {
+            for (int i = 0 ; i < carInfoModel.cartlist.count; i ++) {
+                CarModel *model = [carInfoModel.cartlist objectAtIndex:i];
+                [goods appendFormat:@"%d,",model.id];
+                [nums appendFormat:@"%@,",model.quantity];
+            }
+        }
+        goods = [NSMutableString stringWithString:[goods substringToIndex:goods.length - 1]];
+        nums = [NSMutableString stringWithString:[nums substringToIndex:nums.length - 1]];
+        
+        NSDictionary *dic=@{@"ids":goods,@"quantitys":nums};
+        [[LYHomePageHttpTool shareInstance]updataCarNumWithParams:dic complete:^(BOOL result) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"carnumChange" object:nil];
+        }];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)backToCHView{
