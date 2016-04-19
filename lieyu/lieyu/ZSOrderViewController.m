@@ -254,6 +254,7 @@
             [self createPlaceView];
         }
         
+        [_tableView setContentOffset:CGPointZero];
         [weakSelf.tableView reloadData];
         [weakSelf.tableView.mj_header endRefreshing];
 

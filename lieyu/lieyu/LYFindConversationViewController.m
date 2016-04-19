@@ -21,6 +21,11 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)didTapCellPortrait:(NSString *)userId{
     NSLog(@"------>%@",userId);
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
