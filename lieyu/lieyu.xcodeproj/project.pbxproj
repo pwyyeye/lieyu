@@ -11151,8 +11151,8 @@
 			baseConfigurationReference = 60DAE6EA90FC95670AB55FA5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wolf (ShangHai) Network Technology Co.,Ltd (HTBQ4BN66Y)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -11191,7 +11191,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c552cdd2-99ea-4a10-93b2-a785373e938f";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
