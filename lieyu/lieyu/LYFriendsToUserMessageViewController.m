@@ -53,11 +53,11 @@
     NSInteger _pageStartCount;//开始的数量
     NSInteger _pageCount;//每页数
     NSString *_likeStr;
-    UIView *_bigView;
+    
     NSInteger _commentBtnTag;
     NSInteger _section;//点击的section
-    LYFriendsCommentView *_commentView;
-    BOOL _isCommentToUser;
+    
+    
     NSInteger _indexRow;
     FriendsUserInfoModel *_userInfo;
     NSString *defaultComment;//未发送的评论
@@ -67,16 +67,7 @@
     LYMyFriendDetailViewController *_friendDetailVC ;
     ISEmojiView *_emojiView;
     
-    EmojisView *emojisView;
-    UIVisualEffectView *emojiEffectView;
-    BOOL isExidtEffectView;
-    UIButton *emoji_angry;
-    UIButton *emoji_sad;
-    UIButton *emoji_wow;
-    UIButton *emoji_kawayi;
-    UIButton *emoji_happy;
-    UIButton *emoji_zan;
-    NSInteger _deleteMessageTag;
+    
     
     int gestureViewTag;
 }
@@ -589,37 +580,11 @@
         {
             if([recentM.attachType isEqualToString:@"0"]){
             LYFriendsImgTableViewCell *imgCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsImgCellID forIndexPath:indexPath];
-            if (imgCell.btnArray.count) {
-                for (UIButton *btn in imgCell.btnArray) {
-                    [btn removeFromSuperview];
-                }
-            }
             imgCell.recentModel = recentM;
             if (imgCell.btnArray.count) {
                 for (int i = 0;i < imgCell.btnArray.count; i ++) {
                     UIButton *btn = imgCell.btnArray[i];
-                    switch (i) {
-                        case 0:
-                        {
-                            btn.tag = 4 * (indexPath.section + 1) - 3;
-                        }
-                            break;
-                        case 1:
-                        {
-                            btn.tag = 4 * (indexPath.section + 1) - 2;
-                        }
-                            break;
-                        case 2:
-                        {
-                            btn.tag = 4 * (indexPath.section + 1) - 1;
-                        }
-                            break;
-                        case 3:
-                        {
-                            btn.tag = 4 * (indexPath.section + 1);
-                        }
-                            break;
-                    }
+                    btn.tag = 4 * indexPath.section + i + 1;
                     [btn addTarget:self action:@selector(checkImageClick:) forControlEvents:UIControlEventTouchUpInside];
                 }
             }
@@ -713,22 +678,23 @@
                 commentCell.imageV_comment.hidden = YES;
             }
             commentCell.commentM = commentModel;
-            commentCell.btn_headerImg.tag = indexPath.section;
-            commentCell.btn_headerImg.indexTag = indexPath.row;
-            [commentCell.btn_headerImg addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
             
-            commentCell.btn_firstName.tag = indexPath.section;
-            commentCell.btn_firstName.indexTag = indexPath.row;
-            [commentCell.btn_firstName addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
+            
+            
+            [self addTargetForBtn:commentCell.btn_firstName tag:indexPath.section indexTag:indexPath.row];
+            [self addTargetForBtn:commentCell.btn_secondName tag:indexPath.section indexTag:indexPath.row];
             commentCell.btn_firstName.isFirst = YES;
             
-            commentCell.btn_secondName.tag = indexPath.section;
-            commentCell.btn_secondName.indexTag = indexPath.row;
-            [commentCell.btn_secondName addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
             return commentCell;
         }
             break;
     }
+}
+
+- (void)addTargetForBtn:(LYFriendsCommentButton *)button tag:(NSInteger)tag indexTag:(NSInteger)indexTag{
+    button.tag = tag;
+    button.indexTag = indexTag;
+    [button addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -833,13 +799,7 @@
             NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:str];
             [attributedStr addAttributes:attributes range:NSMakeRange(0, attributedStr.length)];
             CGSize size = [attributedStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-            //            [attributedStr siz]
-            //            CGFloat height;
-            //            if (size.height + 20 < 36) {
-            //                height = 36;
-            //            }else {
-            //                height = size.height + 8;
-            //            }
+      
             NSLog(@"--->%f",size.height);
             return size.height + 10;
 
@@ -964,42 +924,8 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    switch (indexPath.row) {
-//        case 0:
-//        {
-//            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
-//        }
-//            break;
-//        case 1:
-//        {
-//            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
-//        }
-//            break;
-        case 2:
-        {
-            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
-        }
-            break;
-        case 3:
-        {
-            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
-        }
-            break;
-        default:
-        {
-            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
-        }
-            break;
-    }
-}
-
-
 #pragma mark － 创建commentView
 - (void)createCommentView{
-   
-   //   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
-//    UIWindow *window = [UIApplication]
     _bigView = [[UIView alloc]init];
     _bigView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
@@ -1022,12 +948,6 @@
         FriendsCommentModel *commentM = recentM.commentList[_indexRow - 4];
         _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
     }
-    
-    [UIView animateWithDuration:.25 animations:^{
-      //  _commentView.frame = CGRectMake(0,  SCREEN_HEIGHT - 249 - 72 - 52, SCREEN_WIDTH, 49);
-    } completion:^(BOOL finished) {
-        
-    }];
     
     [_commentView.textField addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptionNew) context:nil];
 }

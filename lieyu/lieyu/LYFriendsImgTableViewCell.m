@@ -17,6 +17,13 @@
 }
 
 - (void)setRecentModel:(FriendsRecentModel *)recentModel{
+    if (self.btnArray.count) {
+        for (UIButton *btn in self.btnArray) {
+            [btn removeFromSuperview];
+        }
+    }
+    
+    
     _recentModel = recentModel;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     NSArray *array = recentModel.lyMomentsAttachList;

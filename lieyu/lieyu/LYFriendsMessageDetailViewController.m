@@ -235,11 +235,6 @@
     NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":_recentM.id,@"type":@"1",@"likeType":likeType};
     __weak LYFriendsMessageDetailViewController *weakSelf = self;
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
-        //        if([_likeStr isEqualToString:@"1"]){
-        //            _likeStr = @"0";
-        //        }else{
-        //            _likeStr = @"1";
-        //        }
         if (result) {//点赞成功
             if ([_recentM.liked isEqualToString:@"1"]) {
                 for (int i = 0; i< _recentM.likeList.count;i ++) {
@@ -551,13 +546,7 @@
             [nameCell.btn_topic addTarget:self action:@selector(topicNameClick) forControlEvents:UIControlEventTouchUpInside];
                 nameCell.btn_headerImg.tag = indexPath.section;
                 [nameCell.btn_headerImg addTarget:self action:@selector(pushUserMessagePage) forControlEvents:UIControlEventTouchUpInside];
-//            }else{
-//                [nameCell.btn_delete setTitle:@"删除" forState:UIControlStateNormal];
-//                [nameCell.btn_delete setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-//                [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
-//                nameCell.btn_delete.hidden = NO;
-//                nameCell.btn_delete.enabled = YES;
-//            }
+
             if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",_recentM.id]]){
                 nameCell.btn_delete.enabled = NO;
             }
@@ -577,28 +566,7 @@
                 if (imgCell.btnArray.count) {
                     for (int i = 0;i < imgCell.btnArray.count; i ++) {
                         UIButton *btn = imgCell.btnArray[i];
-                        switch (i) {
-                            case 0:
-                            {
-                                btn.tag = 4 * (indexPath.section + 1) - 3;
-                            }
-                                break;
-                            case 1:
-                            {
-                                btn.tag = 4 * (indexPath.section + 1) - 2;
-                            }
-                                break;
-                            case 2:
-                            {
-                                btn.tag = 4 * (indexPath.section + 1) - 1;
-                            }
-                                break;
-                            case 3:
-                            {
-                                btn.tag = 4 * (indexPath.section + 1);
-                            }
-                                break;
-                        }
+                        btn.tag = 4 * indexPath.section + i + 1;
                         [btn addTarget:self action:@selector(checkImageClick:) forControlEvents:UIControlEventTouchUpInside];
                     }
                 }
@@ -640,7 +608,6 @@
             likeCell.recentM = _recentM;
             for (int i = 0; i< likeCell.btnArray.count; i ++) {
                 UIButton *btn = likeCell.btnArray[i];
-                //                        btn.tag = likeCell.btnArray.count * indexPath.section  + i ;
                 btn.tag = i;
                 [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             }
@@ -651,18 +618,12 @@
         default:{
             FriendsCommentModel *commentModel = _dataArray[indexPath.row - _indexStart];
             LYFriendsCommentTableViewCell *commentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCommentsCellID forIndexPath:indexPath];
-            commentCell.btn_headerImg.tag = indexPath.row - _indexStart;
-            [commentCell.btn_headerImg addTarget:self action:@selector(puUserMessagePageClick:) forControlEvents:UIControlEventTouchUpInside];
+            
             commentCell.commentM = commentModel;
             
-            commentCell.btn_firstName.tag = indexPath.section;
-            commentCell.btn_firstName.indexTag = indexPath.row;
-            [commentCell.btn_firstName addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
             commentCell.btn_firstName.isFirst = YES;
-            
-            commentCell.btn_secondName.tag = indexPath.section;
-            commentCell.btn_secondName.indexTag = indexPath.row;
-            [commentCell.btn_secondName addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
+            [self addTargetForBtn:commentCell.btn_firstName tag:indexPath.section indexTag:indexPath.row];
+            [self addTargetForBtn:commentCell.btn_secondName tag:indexPath.section indexTag:indexPath.row];
             return commentCell;
             
         }
@@ -792,17 +753,17 @@
             NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:str];
             [attributedStr addAttributes:attributes range:NSMakeRange(0, attributedStr.length)];
             CGSize size = [attributedStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-//            CGFloat height;
-//            if (size.height < 30) {
-//                height = 30;
-//            }else {
-//                height = size.height;
-//            }
             return size.height + 10;
 
         }
             break;
         }
+}
+
+- (void)addTargetForBtn:(LYFriendsCommentButton *)button tag:(NSInteger)tag indexTag:(NSInteger)indexTag{
+    button.tag = tag;
+    button.indexTag = indexTag;
+    [button addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark － 评论点击头像跳转到指定用户界面
@@ -818,7 +779,6 @@
         idStr = commentModel.toUserId;
     }
     
-    
     if([idStr isEqualToString:_useridStr]) return;
     //    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
     //    friendsUserMegVC.friendsId = commentModel.userId;
@@ -827,29 +787,6 @@
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     myFriendVC.userID = idStr;
     [self.navigationController pushViewController:myFriendVC animated:YES];
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-   
-//    switch (indexPath.row) {
-//        case 0:
-//        {
-//            cell.separatorInset = UIEdgeInsetsMake(0, 1000, 0, 0);
-//        }
-//            break;
-//            
-//        default:
-//        {
-//            if (_recentM.likeNum.integerValue) {
-//                if(indexPath.row == 1){
-//                    cell.separatorInset = UIEdgeInsetsMake(0, 14, 0, 14);
-//                    return;
-//                }
-//            }
-//            cell.separatorInset = UIEdgeInsetsMake(0, 34, 0, 14);
-//        }
-//            break;
-//    }
 }
 
 #pragma mark - 点击动态中话题文字

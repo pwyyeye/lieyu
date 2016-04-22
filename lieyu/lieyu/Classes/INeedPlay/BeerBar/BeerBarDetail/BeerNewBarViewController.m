@@ -47,35 +47,35 @@
 @interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate>
 {
     NSManagedObjectContext *_context;
-    NSString *_userid;
-    UIWebView *_webView;
-    LYHeaderTableViewCell *_headerCell;
-    LYBarTitleTableViewCell *_barTitleCell;
+    NSString *_userid;//用户id
+    UIWebView *_webView;//加载酒吧html5载体
+    LYHeaderTableViewCell *_headerCell;//表的第一个cell图片
+    LYBarTitleTableViewCell *_barTitleCell;//标题cell
     NSInteger _timeCount;
     CGSize _size;
-    NSTimer *_timer;
+    NSTimer *_timer;//定时器 －－－－没用了
     CGFloat offSet;
-    EScrollerView *_scroller;
-    BOOL _userLiked;
-    UIVisualEffectView *effectView;
-    BOOL _userCollected;
+    EScrollerView *_scroller;//酒吧ad －－－ 没用了
+    BOOL _userLiked;//判断用户是否喜欢
+    UIVisualEffectView *effectView;//签到的背景 view
+    BOOL _userCollected;//用户是否收藏
     UIImageView *_tableHeaderImgView;
-    NSArray *_activityArray;
-    CGFloat _contentOffSetY;
-    UIButton *_signBtn;
+    NSArray *_activityArray;//活动数组
+    CGFloat _contentOffSetY;//
+    UIButton *_signBtn;//签到按钮
     __weak IBOutlet NSLayoutConstraint *bottomView_conHeight;
 }
 
 @property(nonatomic,strong)NSMutableArray *aryList;
-@property (weak, nonatomic) IBOutlet UIImageView *image_layer;
+@property (weak, nonatomic) IBOutlet UIImageView *image_layer;//导航layer
 @property (weak, nonatomic) IBOutlet UIImageView *image_header;
 @property(nonatomic,weak)IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *image_like;
 @property(nonatomic,weak)IBOutlet UIView *bottomBarView;
 @property (weak, nonatomic) IBOutlet UIButton *btn_like;
 @property(nonatomic,assign)CGFloat dyBarDetailH;
-@property(nonatomic,strong) BeerBarOrYzhDetailModel *beerBarDetail;
-@property (weak, nonatomic) IBOutlet UIVisualEffectView *bottomEffectView;
+@property(nonatomic,strong) BeerBarOrYzhDetailModel *beerBarDetail;//酒吧Model
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *bottomEffectView;//底部菜单
 
 
 @end
@@ -108,7 +108,7 @@
     self.view_bottom.layer.shadowOpacity = 0.8;
     self.view_bottom.layer.shadowRadius = 2;
     
-    [self loadBarDetail];                                                       //load data
+    [self loadBarDetail];                        //load data
   
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMyCollectedAndLikeBar) name:@"loadMyCollectedAndLikeBar" object:nil];
@@ -123,7 +123,7 @@
 
 }
 
-
+#pragma mark - 加载是否我已经收藏和喜欢了的酒吧
 - (void)loadMyCollectedAndLikeBar{
     [self loadMyBarInfo];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loadMyCollectedAndLikeBar" object:nil];
@@ -147,6 +147,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [_timer setFireDate:[NSDate distantPast]];
    
+    //签到的背景view
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 30, SCREEN_HEIGHT - 60, 60, 60)];
     effectView.layer.cornerRadius = effectView.frame.size.width/2.f;
@@ -154,6 +155,7 @@
     effectView.effect = effect;
     [self.view addSubview:effectView];
     
+    //签到的按钮
     _signBtn = [[UIButton alloc]initWithFrame:CGRectMake((effectView.frame.size.width - 60)/2.f,(effectView.frame.size.height - 60)/2.f , 60, 60)];
     [_signBtn addTarget:self action:@selector(signClick:) forControlEvents:UIControlEventTouchUpInside];
     [_signBtn setTitle:@"签到" forState:UIControlStateNormal];
@@ -167,6 +169,7 @@
     [self.view bringSubviewToFront:_bottomEffectView];
     [self.view bringSubviewToFront:_view_bottom];
     
+    //签到按钮的动画
     [UIView animateWithDuration:.4 animations:^{
         effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
     }completion:^(BOOL finished) {
@@ -198,6 +201,7 @@
     }
 }
 
+#pragma mark - 加载酒吧详情的数据
 - (void)loadBarDetail
 {
     
@@ -278,6 +282,7 @@
     }];
 }
 
+#pragma mark - 从本地获取数据
 - (NSArray *)getDataFromLocal{
      NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_JIUBADETAIL,_beerBarId.stringValue];
 //     NSPredicate *pre = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"lyCacheKey == '%@'",keyStr]];
@@ -294,6 +299,8 @@
 //    return array;
 }
 
+
+#pragma mark - 判断我是否收藏或者喜欢过该酒吧
 - (void)loadMyBarInfo{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (app.userModel.userid) {
@@ -339,7 +346,7 @@
    // if (scrollView.contentOffset.y > SCREEN_WIDTH/183*95 - self.image_layer.size.height) {
 //        self.image_layer.hidden = NO;
 //        self.image_layer.alpha = scrollView.contentOffset.y / 64.f;
-    
+    //根据偏移量改变导航view透明度
     if (scrollView.contentOffset.y >= SCREEN_WIDTH /16 * 9 - 64) {
         self.image_layer.alpha = 1;
         self.image_layer.layer.shadowRadius = 2;
@@ -423,6 +430,7 @@
 //        [UIView animateWithDuration:0.4 animations:^{
 //            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
 //        }];
+        //签到按钮下移
         if (scrollView.contentOffset.y <= 0.f) {
             [UIView animateWithDuration:0.2 animations:^{
                 effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
@@ -433,7 +441,7 @@
             }];
         }
     }else{
-        if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){
+        if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){//签到按钮弹出
             [UIView animateWithDuration:.4 animations:^{
                 effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
             }completion:^(BOOL finished) {
@@ -587,6 +595,7 @@
  }
  */
 
+#pragma mark - webview加载完的代理方法
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     //获取页面高度（像素）
     NSString * clientheight_str = [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
@@ -629,7 +638,7 @@
     switch (indexPath.section)
     {
         case 0:
-        {
+        {//第一个cell加载图片
             _headerCell = [tableView dequeueReusableCellWithIdentifier:@"LYHeaderTableViewCell" forIndexPath:indexPath];
             UIImageView *imgV = [_headerCell viewWithTag:1008611];
             if (imgV) {
@@ -646,7 +655,7 @@
             return _headerCell;
         }
             break;
-        case 1:
+        case 1://加载酒吧的标题
         {
             
             _barTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarTitleTableViewCell" forIndexPath:indexPath];
@@ -657,7 +666,7 @@
             
         }
             break;
-        case 3:
+        case 3://酒吧地址
         {
             LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
             [barPointCell.img_icon setImage:[UIImage imageNamed:@"beerBarPoint"]];
@@ -667,7 +676,7 @@
             return barPointCell;
         }
             break;
-        case 2:{
+        case 2:{//酒吧电话
             LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
             barPointCell.label_point.text = [NSString stringWithFormat:@"电话%@",self.beerBarDetail.telephone];
             [barPointCell.img_icon setImage:[UIImage imageNamed:@"beerBarTel"]];
@@ -676,7 +685,7 @@
             return barPointCell;
         }
             break;
-        case 4://iconlist
+        case 4://iconlist 签到的用户
         {
             LYBarIconTableViewCell *iconCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarIconTableViewCell" forIndexPath:indexPath];
             iconCell.iconArray = _beerBarDetail.signUsers;
@@ -692,7 +701,7 @@
         }
             break;
             
-            case 5://activity
+            case 5://activity 活动cell
         {
             LYBarScrollTableViewCell *scrollCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarScrollTableViewCell" forIndexPath:indexPath];
             //_activityArray = @[@"http://source.lie98.com/37680ChaletPlusLounge2.jpg"];
@@ -709,7 +718,7 @@
             return cell; */
         }
             break;
-        case 6:
+        case 6://webview 加载酒吧详情的代理
         {
             LYBarDescTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTableViewCell" forIndexPath:indexPath];
 //            barDescTitleCell con
@@ -823,9 +832,6 @@
 
 #pragma mark - 电话
 - (void)telephoneClick:(UIButton *)button{
-    
-    
-   
 //    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"拨打电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"%@",_beerBarDetail.telephone], nil];
 //    [sheet showInView:self.view];
 }
@@ -938,11 +944,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 3) {
+    if (indexPath.section == 3) {//进入地图
         //        _image_layer.userInteractionEnabled = NO;
         [self daohang];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"地图导航" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
-    }else if(indexPath.section == 2){
+    }else if(indexPath.section == 2){//打电话
         NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",_beerBarDetail.telephone]];
         
         if ( !_phoneCallWebView ) {
@@ -982,7 +988,6 @@
 
 
 #pragma mark-- 底部三个按钮方法
-
 - (IBAction)dianweiAct:(UIButton *)sender {
     LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
     woYaoDinWeiMainViewController.barid=_beerBarDetail.barid.intValue;
@@ -1032,8 +1037,7 @@
         [self.navigationController pushViewController:loginVC animated:YES];
     }else{
         NSDictionary *dic=@{@"barid":self.beerBarDetail.barid};
-        
-        
+  
         __weak BeerNewBarViewController *weakSelf = self;
         //判断用户是否已经收藏过
         if (_userCollected) {

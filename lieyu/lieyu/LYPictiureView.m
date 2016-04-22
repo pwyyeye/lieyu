@@ -35,9 +35,6 @@
 - (instancetype)initWithFrame:(CGRect)frame urlArray:(NSArray *)urlArray oldFrame:(NSArray *)oldFrame with:(NSInteger)index{
     self = [super initWithFrame:frame];
     if (self) {
-        
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-        
         _urlArray = urlArray;
         _scrollViewArray = [[NSMutableArray alloc]initWithCapacity:0];
         
@@ -145,6 +142,7 @@
             
             self.backgroundColor = RGBA(255, 255, 255, 1);
         } completion:^(BOOL finished) {
+             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
             for (int i = 0 ; i< _imageViewArray.count ; i++) {
                 UIImageView *imgView_ce = _imageViewArray[i];
                 UIScrollView *scrollV = _scrollViewArray[i];
