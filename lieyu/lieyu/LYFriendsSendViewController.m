@@ -101,11 +101,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"FriendSendViewDidLoad" object:nil];
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    
-}
-
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
@@ -116,25 +111,6 @@
 
 #pragma 设置话题
 - (void)addTopicLabel{
-//    if(!TopicLbl){
-//        TopicLbl = [[UILabel alloc]init];
-//        TopicLbl.textColor = RGBA(186, 40, 227, 1);
-//        TopicLbl.font = [UIFont systemFontOfSize:14];
-//    }
-//    TopicLbl.backgroundColor = [UIColor whiteColor];
-//    TopicLbl.text = self.TopicTitle;
-//    CGSize size = [TopicLbl.text sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:TopicLbl.font, NSFontAttributeName, nil]];
-//    [TopicLbl setFrame:CGRectMake(5, 8, size.width, size.height)];
-//    [self.textView addSubview:TopicLbl];
-//    
-//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init
-//                                               ];
-//    paragraphStyle.firstLineHeadIndent = size.width + 10;
-//    paragraphStyle.lineSpacing = 5;
-//    
-//    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
-//    self.textView.attributedText = [[NSAttributedString alloc]initWithString:@"说点这个时刻的感受吧!" attributes:attributes];
-//    self.textView.textColor = [UIColor lightGrayColor];
     NSDictionary *attribute = @{NSForegroundColorAttributeName:RGBA(186, 40, 227, 1),
                                 NSFontAttributeName:[UIFont systemFontOfSize:14]};
     NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ ",_TopicTitle]];
@@ -145,24 +121,17 @@
     isntFirstEdit = YES;
 }
 
-- (void)setPlaceHolder{
-    
-}
-
 //退出程序以后删除tmp文件中所有内容
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillExitFullscreenNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
-//    [self deleteFile:@""];
 }
 
 - (void)setupAllProperty{
-//    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"daohang_fabu"] style:UIBarButtonItemStylePlain target:self action:@selector(sendClick)];
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
     [button setTitle:@"发送" forState:UIControlStateNormal];
-//    button.titleLabel.font = [UIFont systemFontOfSize:14];
     [button setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
     [view addSubview:button];
     [button addTarget:self action:@selector(sendClick) forControlEvents:UIControlEventTouchUpInside];
@@ -171,8 +140,6 @@
 }
 
 #pragma mark - textView －delegate
-
-
 - (void)textViewDidChange:(UITextView *)textView{
     if(textView == self.textView){
         if(self.textView.text.length >= 800){
@@ -209,28 +176,6 @@
             }];
         }
     }else if ([text isEqualToString:@""] && range.location == _TopicTitle.length-1 && range.length == 1){//即将删除话题
-//        NSLog(@"DELETE");
-//        NSLog(@"%ld-----%ld",range.location,range.length);
-//        if (PrepareDelete == NO) {//初次删除
-//            TopicLbl.backgroundColor = RGBA(132, 207, 248, 0.7);
-//            PrepareDelete = YES;
-//        }else{
-//            [TopicLbl removeFromSuperview];
-//            PrepareDelete = NO;
-//            
-//            //设初值
-//            _TopicID = nil;
-//            _TopicTitle = nil;
-//            //将光标移至前方
-//            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-//            paragraphStyle.firstLineHeadIndent = 0;
-//            paragraphStyle.lineSpacing = 5;
-//            
-//            NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
-//            self.textView.attributedText = [[NSAttributedString alloc]initWithString:@"" attributes:attributes];
-//            self.textView.textColor = [UIColor lightGrayColor];
-//            isntFirstEdit = NO;
-//        }
         if (PrepareDelete == NO) {//初次删除
             NSDictionary *attribute = @{NSBackgroundColorAttributeName:RGBA(116, 200, 252, 0.8),
                                     NSForegroundColorAttributeName:RGBA(186, 40, 227, 1),
@@ -272,14 +217,9 @@
         _TopicID = @"";
         return NO; 
     }
-    
-    
     return YES;
 }
-//
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    
-//}
+
 - (void)oneFingerTapTextView{
     if (_TopicTitle.length && PrepareDelete == YES) {
         NSDictionary *attribute = @{NSForegroundColorAttributeName:RGBA(186, 40, 227, 1),
@@ -301,21 +241,8 @@
         self.textView.textColor = [UIColor blackColor];
         isntFirstEdit = YES;
     }
-//    if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
-//        if (self.TopicTitle.length) {
-//            if ([self.textView.text isEqualToString:self.TopicTitle]) {
-//                self.textView.text = @"";
-//            }
-//        }else{
-//            self.textView.text = @"";
-//        }
-////        [self.textView setKeyboardAppearance:UIKeyboardAppearanceAlert];
-//    }
     self.textView.font = [UIFont systemFontOfSize:14];
     [self.textView becomeFirstResponder];
-//    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-//    self.returnHandler = [[IQKeyboardReturnKeyHandler alloc]initWithViewController:self];
-//    self.returnHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView{
@@ -386,7 +313,6 @@
         newContent = self.content;
     }
 
-//    [app startLoading];
     //上传视频或者图片到七牛
     if(_isVedio){
         if([self.mediaUrl isEqualToString:@""]){
@@ -398,12 +324,6 @@
         
         [self.navigationController popToRootViewControllerAnimated:YES];
         if(self.delegate){
-            
-//            if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
-//                self.content = @"";
-//            }else{
-//                self.content = [[NSString alloc]initWithString:self.textView.text];
-//            }
             //地址返回
             NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
             [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:newContent andLocation:location andTopicID:_TopicID ? _TopicID : @"" andTopicName:_TopicTitle ? _TopicTitle : @""];
@@ -457,11 +377,6 @@
         }
         //点击发布按钮后将图片数组返回
         [self.navigationController popViewControllerAnimated:YES];
-//        if([self.textView.text isEqualToString:@"说点这个时刻的感受吧!"]){
-//            self.content = @"";
-//        }else{
-//            self.content = [[NSString alloc]initWithString:self.textView.text];
-//        }
         //地址返回
         NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
         [self.delegate sendImagesArray:self.fodderArray andContent:newContent andLocation:location andTopicID:_TopicID ? _TopicID : @"" andTopicName:_TopicTitle ? _TopicTitle : @""];

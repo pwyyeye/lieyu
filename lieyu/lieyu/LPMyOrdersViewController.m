@@ -293,31 +293,11 @@
 - (void)loadBadge:(OrderTTL *)orderTTL{
     _bagesArr = [[NSMutableArray alloc]init];
     [_bagesArr addObject:@"0"];
-    if (orderTTL.waitPay > 0) {
-        [_bagesArr addObject:@"1"];
-    }else{
-        [_bagesArr addObject:@"0"];
-    }
-    if (orderTTL.waitConsumption > 0) {
-        [_bagesArr addObject:@"1"];
-    }else{
-        [_bagesArr addObject:@"0"];
-    }
-    if (orderTTL.waitEvaluation > 0) {
-        [_bagesArr addObject:@"1"];
-    }else{
-        [_bagesArr addObject:@"0"];
-    }
-    if (orderTTL.waitRebate > 0) {
-        [_bagesArr addObject:@"1"];
-    }else{
-        [_bagesArr addObject:@"0"];
-    }
-    if (orderTTL.waitPayBack > 0) {
-        [_bagesArr addObject:@"1"];
-    }else{
-        [_bagesArr addObject:@"0"];
-    }
+    [_bagesArr addObject:orderTTL.waitPay > 0 ? @"1" : @"0"];
+    [_bagesArr addObject:orderTTL.waitConsumption > 0 ? @"1" : @"0"];
+    [_bagesArr addObject:orderTTL.waitEvaluation > 0 ? @"1" : @"0"];
+    [_bagesArr addObject:orderTTL.waitRebate > 0 ? @"1" : @"0"];
+    [_bagesArr addObject:orderTTL.waitPayBack > 0 ? @"1" : @"0"];
     for (int i = 0 ; i < 6; i ++) {
         if (self.bagesArr.count == 6) {
             if ([[self.bagesArr objectAtIndex:i] isEqualToString:@"0"]) {
@@ -327,8 +307,6 @@
             }
         }
     }
-    
-    
 }
 
 - (void)refreshData{
@@ -398,6 +376,7 @@
     [myTableView setHidden:NO];
 }
 
+#pragma mark - 约约去
 - (void)jumpToYue{
 //    NSLog(@"dsafds");
 //    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpToFirstViewController" object:nil];
