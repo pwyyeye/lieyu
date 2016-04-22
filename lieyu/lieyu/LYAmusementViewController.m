@@ -24,19 +24,19 @@
 #import "LYMyFriendDetailViewController.h"
 
 #define PAGESIZE 20
-
+//整体布局是一个scrollveiw 上放置多个 collectview
 @interface LYAmusementViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate,LYHotBarMenuDropViewDelegate>{
     UIScrollView *_scrollView;
     NSMutableArray *_collectviewArray,*_menuBtnArray,*_dataArray;
-    UIVisualEffectView *_menuView;
-    UILabel *_titelLabel;
-    UIView *_purpleLineView;
-    UILabel *_palceLabel;
+    UIVisualEffectView *_menuView;//导航view
+    UILabel *_titelLabel;//标题
+    UIView *_purpleLineView;//导航按钮下滑线
+    UILabel *_palceLabel;//无组局的提示
 //    NSInteger _currentPageHot,_currentPageDistance,_currentPagePrice,_currentPageTime;
         NSInteger _currentPageDistance,_currentPageTime;
-    NSInteger _index;
-    LYHotBarMenuDropView *_menuDropView;
-    UIButton *_sectionBtn;
+    NSInteger _index;//区分时间和附近
+    LYHotBarMenuDropView *_menuDropView;//区域下拉菜单
+    UIButton *_sectionBtn;//所有区域按钮
     NSString *_sectionTitle_distance,*_sectionTitle_time;//记录是否换过区
 }
 
@@ -70,6 +70,7 @@
     self.navigationController.navigationBarHidden = YES;
 }
 
+#pragma mark - 配置全局的属性
 - (void)setupAllProperty{
 //    _currentPageHot = 1;
     _currentPageDistance= 1;
@@ -82,7 +83,7 @@
     [self createUI];
 
 }
-
+#pragma mark - 布局整体界面
 - (void)createUI{
     
     _collectviewArray = [[NSMutableArray alloc]initWithCapacity:2];
@@ -110,7 +111,7 @@
     }
     [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH * _collectviewArray.count, 0)];
     _scrollView.scrollsToTop = NO;
-    [self installFreshEvent];
+    [self installFreshEvent];//配置表的刷新控件
     UICollectionView *tableView = _collectviewArray[0];
     [tableView.mj_header beginRefreshing];
     [self createMenuUI];
@@ -121,6 +122,7 @@
     [tableView.mj_header beginRefreshing];
 }
 
+#pragma mark- 创建菜单ui
 - (void)createMenuUI{
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     _menuView = [[UIVisualEffectView alloc]initWithEffect:effect];
@@ -135,7 +137,7 @@
     CGFloat offSet = 26;
     _menuBtnArray = [[NSMutableArray alloc]initWithCapacity:2];
     NSArray *btnTitleArray = @[@"热门",@"时间",@"附近",@"价格"];
-    for (int i = 0; i < 4; i ++) {
+    for (int i = 0; i < 4; i ++) {//导航的菜单按钮
         HotMenuButton *btn = [[HotMenuButton alloc]init];
         if (i == 0) {
             btn.frame = CGRectMake(offSet, 63,btnWidth, 26);
@@ -155,6 +157,7 @@
         }
     }
     
+    //导航标题
     _titelLabel = [[UILabel alloc]init];
     _titelLabel.frame = CGRectMake(0, 28, SCREEN_WIDTH, 30);
     _titelLabel.textAlignment = NSTextAlignmentCenter;
@@ -163,6 +166,7 @@
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     
+    //所有地区的按钮
     _sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 35, 88, 19)];
     [_sectionBtn addTarget:self action:@selector(sectionClick:) forControlEvents:UIControlEventTouchUpInside];
     [_sectionBtn setTitle:@"所有地区" forState:UIControlStateNormal];
@@ -174,6 +178,7 @@
     [_sectionBtn setImage:[UIImage imageNamed:@"downArrow"] forState:UIControlStateNormal];
     [_menuView addSubview:_sectionBtn];
     
+    //按钮底线
     _purpleLineView = [[UIView alloc]init];
     HotMenuButton *hotBtn = _menuBtnArray[0];
     CGFloat hotMenuBtnWidth = hotBtn.frame.size.width;
@@ -186,7 +191,7 @@
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (_scrollView == scrollView) {
+    if (_scrollView == scrollView) {//左右滑动 设置按钮底线的偏移
         CGFloat offX = scrollView.contentOffset.x;
         CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
         HotMenuButton *btn = _menuBtnArray[0];
@@ -199,7 +204,7 @@
         CGFloat offX = scrollView.contentOffset.x;
         _index = offX/SCREEN_WIDTH;
         for (UICollectionView *coll in _collectviewArray) {
-            coll.scrollsToTop = NO;
+            coll.scrollsToTop = NO;//注意：多个scrollview的视图在一个页面中，想要实现点击状态栏返回顶部的功能，只能有一个scrollview的scrollsToTop属性为yes其他为NO。否则无法实现返回顶部功能
         }
         UICollectionView *collevtV = _collectviewArray[_index];
         collevtV.scrollsToTop = YES;
@@ -228,6 +233,7 @@
         _menuDropView.alpha = 0;
         [UIView commitAnimations];
         [self performSelector:@selector(removeMenuView) withObject:self afterDelay:.8];
+        //所有地区按钮图标旋转动画
         [UIView animateWithDuration:.5 animations:^{
             
             button.imageView.transform = CGAffineTransformMakeRotation(0);
@@ -240,6 +246,7 @@
         button.imageView.transform = CGAffineTransformMakeRotation(M_PI);
     }];
     
+    //下拉菜单
     _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
     NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
@@ -248,6 +255,7 @@
     [self.view addSubview:_menuDropView];
     [self.view bringSubviewToFront:_menuView];
     
+    //下拉菜单动画
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
@@ -257,7 +265,7 @@
 }
 
 #pragma mark LYHotBarMenuDropViewDelegate
-- (void)lyHotBarMenuButton:(UIButton *)menuBtn withIndex:(NSInteger)index{
+- (void)lyHotBarMenuButton:(UIButton *)menuBtn withIndex:(NSInteger)index{//地区筛选的代理方法
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:.3];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
@@ -282,6 +290,7 @@
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
 }
 
+#pragma mark - 移除菜单视图
 - (void)removeMenuView{
     [_menuDropView removeFromSuperview];
     _menuDropView = nil;
@@ -304,7 +313,7 @@
     
 }
 
-
+#pragma mark - 获取数据的方法
 - (void)getDataForHotWith:(NSInteger)tag{
     NSString *p = nil;
     NSDictionary *dic = nil;
@@ -318,13 +327,13 @@
         address = _sectionBtn.currentTitle;
     }
     switch (tag) {
-        case 0:
+        case 0://按时间获取 reachtimedesc
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageDistance];
             dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"reachtimedesc"};
         }
             break;
-        case 1:
+        case 1://按距离获取 distanceasc
         {
             p = [NSString stringWithFormat:@"%ld",_currentPageTime];
             dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"distanceasc"};
@@ -383,7 +392,7 @@
             if(array.count > 0){
                 [tableView reloadData];
                 [_palceLabel removeFromSuperview];
-            }else{
+            }else{//没有组局的提示
                 [_palceLabel removeFromSuperview];
                 _palceLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, (SCREEN_HEIGHT - 139) / 2, SCREEN_WIDTH, 20)];
                 _palceLabel.text = @"对不起，该区域暂无组局";
@@ -406,6 +415,7 @@
     }];
 }
 
+#pragma mark - 配置表的刷新组件
 - (void)installFreshEvent
 {
     for (int i = 0; i < _collectviewArray.count; i ++) {
@@ -433,28 +443,8 @@
         [self initMJRefeshHeaderForGif:header];
         
         tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-            switch (i) {
-                case 0:
-                {
-                    [weakSelf getDataForHotWith:0];
-                }
-                    break;
-                case 1:
-                {
-                    [weakSelf getDataForHotWith:1];
-                }
-                    break;
-                case 2:
-                {
-                    [weakSelf getDataForHotWith:2];
-                }
-                    break;
-                case 3:
-                {
-                    [weakSelf getDataForHotWith:3];
-                }
-                    break;
-            }
+            [weakSelf getDataForHotWith:i];
+            
         }];
         MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)tableView.mj_footer;
         [self initMJRefeshFooterForGif:footer];
@@ -509,6 +499,7 @@
     return cell;
 }
 
+#pragma mark - 更多头像的跳转
 - (void)btnMoreClick:(UIButton *)button{
     HDDetailViewController *HDDetailVC = [[HDDetailViewController alloc]initWithNibName:@"HDDetailViewController" bundle:[NSBundle mainBundle]];
     YUOrderShareModel *orderM = _dataArray[_index][button.tag];
@@ -544,6 +535,7 @@
     [self.navigationController pushViewController:myFriendsDetailVC animated:YES];
 }
 
+#pragma mark - 拼客action
 - (void)pinkerClick:(UIButton *)button{
     NSInteger tag = button.tag /5;
     NSArray *array = _dataArray[_index];

@@ -91,6 +91,13 @@
         button.hidden = NO;
         [button sd_setBackgroundImageWithURL:[NSURL URLWithString:((FriendsLikeModel *)recentM.likeList[0]).icon] forState:UIControlStateNormal];
     } */
+    
+    
+    if(recentM.likeList.count < 7) self.btn_more.hidden = YES;
+    else {
+        self.btn_more.hidden = NO;
+        [self.btn_more setTitle:recentM.likeNum forState:UIControlStateNormal];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
