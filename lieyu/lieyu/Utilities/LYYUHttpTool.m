@@ -10,6 +10,7 @@
 #import "HTTPController.h"
 #import "LYYUUrl.h"
 #import "YUOrderInfo.h"
+#import "YUWishesModel.h"
 
 @implementation LYYUHttpTool
 
@@ -42,5 +43,58 @@
         [app stopLoading];
     }];
 }
+
+#pragma mark - 获取愿望列表
++ (void)YUGetWishesListWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_WISHES baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = response[@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *dataArray = [YUWishesModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
+            complete(dataArray);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
++ (void)YUFinishWishOrNotWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_FINISH baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            //成功
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        complete(NO);
+        [app stopLoading];
+    }];
+}
+
++ (void)YUDeleteWishWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_DELETE baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        complete(NO);
+        [app stopLoading];
+    }];
+}
+
+
 
 @end

@@ -93,7 +93,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nz-fQ-7yP">
                     <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="单点" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tin-Bb-P53">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单点" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tin-Bb-P53">
                             <rect key="frame" x="106" y="33" width="107" height="21"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -128,7 +128,7 @@
                                 <constraint firstAttribute="width" constant="31" id="z40-Eo-bPD"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_eatdrinkspecial" translatesAutoresizingMaskIntoConstraints="NO" id="1l6-iT-1e7">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_eatdrinkspecial" translatesAutoresizingMaskIntoConstraints="NO" id="1l6-iT-1e7">
                             <rect key="frame" x="144" y="4" width="31" height="31"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="31" id="CdA-h1-UVb"/>
@@ -157,7 +157,7 @@
                                 <action selector="zsliAct:" destination="-1" eventType="touchUpInside" id="Gg6-ws-LmN"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odr-SE-q5L">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Odr-SE-q5L">
                             <rect key="frame" x="106" y="0.0" width="107" height="49"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="49" id="iGl-Ox-jYf"/>

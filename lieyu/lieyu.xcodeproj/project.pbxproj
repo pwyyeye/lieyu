@@ -743,6 +743,14 @@
 		38EAA4EA1CC9F1BB0080A6D6 /* YUWishesLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA4E71CC9F1BB0080A6D6 /* YUWishesLabel.png */; };
 		38EAA4ED1CC9F4340080A6D6 /* YUWishesBalance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA4EB1CC9F4340080A6D6 /* YUWishesBalance@3x.png */; };
 		38EAA4EE1CC9F4340080A6D6 /* YUWishesBalance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA4EC1CC9F4340080A6D6 /* YUWishesBalance@2x.png */; };
+		38EAA5151CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5111CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png */; };
+		38EAA5161CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */; };
+		38EAA5171CCA07BB0080A6D6 /* YUWishesFinish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */; };
+		38EAA5181CCA07BB0080A6D6 /* YUWishesFinish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */; };
+		38EAA5201CCA0F220080A6D6 /* LYYuAllWishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA51F1CCA0F220080A6D6 /* LYYuAllWishesViewController.m */; };
+		38EAA5231CCA18790080A6D6 /* YUWishesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA5221CCA18790080A6D6 /* YUWishesModel.m */; };
+		38EAA5261CCB582E0080A6D6 /* YU_release@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5241CCB582E0080A6D6 /* YU_release@2x.png */; };
+		38EAA5271CCB582E0080A6D6 /* YU_release@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5251CCB582E0080A6D6 /* YU_release@3x.png */; };
 		38EDEC611C5B9CDC00694758 /* CHshop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC5F1C5B9CDC00694758 /* CHshop@2x.png */; };
 		38EDEC621C5B9CDC00694758 /* CHshop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC601C5B9CDC00694758 /* CHshop@3x.png */; };
 		38EDEC651C5B9DE700694758 /* return_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC631C5B9DE700694758 /* return_white@2x.png */; };
@@ -2789,6 +2797,16 @@
 		38EAA4E71CC9F1BB0080A6D6 /* YUWishesLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUWishesLabel.png; sourceTree = "<group>"; };
 		38EAA4EB1CC9F4340080A6D6 /* YUWishesBalance@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesBalance@3x.png"; sourceTree = "<group>"; };
 		38EAA4EC1CC9F4340080A6D6 /* YUWishesBalance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesBalance@2x.png"; sourceTree = "<group>"; };
+		38EAA5111CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesUnfinish@2x.png"; sourceTree = "<group>"; };
+		38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesUnfinish@3x.png"; sourceTree = "<group>"; };
+		38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesFinish@3x.png"; sourceTree = "<group>"; };
+		38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesFinish@2x.png"; sourceTree = "<group>"; };
+		38EAA51E1CCA0F220080A6D6 /* LYYuAllWishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYuAllWishesViewController.h; sourceTree = "<group>"; };
+		38EAA51F1CCA0F220080A6D6 /* LYYuAllWishesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYuAllWishesViewController.m; sourceTree = "<group>"; };
+		38EAA5211CCA18790080A6D6 /* YUWishesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUWishesModel.h; sourceTree = "<group>"; };
+		38EAA5221CCA18790080A6D6 /* YUWishesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUWishesModel.m; sourceTree = "<group>"; };
+		38EAA5241CCB582E0080A6D6 /* YU_release@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_release@2x.png"; sourceTree = "<group>"; };
+		38EAA5251CCB582E0080A6D6 /* YU_release@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_release@3x.png"; sourceTree = "<group>"; };
 		38EDEC5F1C5B9CDC00694758 /* CHshop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CHshop@2x.png"; sourceTree = "<group>"; };
 		38EDEC601C5B9CDC00694758 /* CHshop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CHshop@3x.png"; sourceTree = "<group>"; };
 		38EDEC631C5B9DE700694758 /* return_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "return_white@2x.png"; sourceTree = "<group>"; };
@@ -6195,11 +6213,17 @@
 		38EAA4E41CC9F1A30080A6D6 /* 娱2 */ = {
 			isa = PBXGroup;
 			children = (
+				38EAA5241CCB582E0080A6D6 /* YU_release@2x.png */,
+				38EAA5251CCB582E0080A6D6 /* YU_release@3x.png */,
 				38EAA4E51CC9F1BB0080A6D6 /* YUWishesLabel@3x.png */,
 				38EAA4E61CC9F1BB0080A6D6 /* YUWishesLabel@2x.png */,
 				38EAA4E71CC9F1BB0080A6D6 /* YUWishesLabel.png */,
 				38EAA4EB1CC9F4340080A6D6 /* YUWishesBalance@3x.png */,
 				38EAA4EC1CC9F4340080A6D6 /* YUWishesBalance@2x.png */,
+				38EAA5111CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png */,
+				38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */,
+				38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */,
+				38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */,
 			);
 			name = "娱2";
 			sourceTree = "<group>";
@@ -6239,8 +6263,6 @@
 			children = (
 				AD04A4921C61960200FAA8D3 /* LYAmusementViewController.h */,
 				AD04A4931C61960200FAA8D3 /* LYAmusementViewController.m */,
-				85FBBD6F1C604A3A0084E3F2 /* LYAmusementsViewController.h */,
-				85FBBD701C604A3A0084E3F2 /* LYAmusementsViewController.m */,
 			);
 			name = oldControllers;
 			sourceTree = "<group>";
@@ -6264,6 +6286,8 @@
 		38EAA4F21CC9F7A90080A6D6 /* newControllers */ = {
 			isa = PBXGroup;
 			children = (
+				38EAA51E1CCA0F220080A6D6 /* LYYuAllWishesViewController.h */,
+				38EAA51F1CCA0F220080A6D6 /* LYYuAllWishesViewController.m */,
 			);
 			name = newControllers;
 			sourceTree = "<group>";
@@ -7311,6 +7335,8 @@
 				8588C4581C5E519C0092259E /* YUPinkerListModel.m */,
 				8588C45A1C5E59200092259E /* YUPinkerinfo.h */,
 				8588C45B1C5E59200092259E /* YUPinkerinfo.m */,
+				38EAA5211CCA18790080A6D6 /* YUWishesModel.h */,
+				38EAA5221CCA18790080A6D6 /* YUWishesModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -9563,6 +9589,7 @@
 				85F66E3E1C524EEA005D1CD8 /* lianxiren@3x.png in Resources */,
 				38DBCD771C585A5F00A1E207 /* detail_collect_normal@3x.png in Resources */,
 				85FBBDC71C6073ED0084E3F2 /* 首页列表收藏@3x.png in Resources */,
+				38EAA5261CCB582E0080A6D6 /* YU_release@2x.png in Resources */,
 				ADC3674A1C6248FE006C2AE5 /* friendPresentBG.jpg in Resources */,
 				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
 				AD203BBE1CAEAA8D0014618A /* CoinStart@3x.png in Resources */,
@@ -9828,6 +9855,7 @@
 				AD399EA31C940D4D00028F23 /* logo36@2x.jpg in Resources */,
 				38979A411CA40919002946F5 /* dianzan9.png in Resources */,
 				ADC66CE11C1EC38E00E597D9 /* LYMain.storyboard in Resources */,
+				38EAA5151CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png in Resources */,
 				857AD6A51CA972920032E0C4 /* ZSTiXianTableViewCell.xib in Resources */,
 				3879D06A1C7B26B4000F5795 /* share_black@2x.png in Resources */,
 				AD399EA81C940D4D00028F23 /* logo41@2x.jpg in Resources */,
@@ -9850,6 +9878,7 @@
 				38DBCD861C59B04100A1E207 /* ZujuViewController.xib in Resources */,
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
 				8540387A1CAE0F2F0056C27E /* 指纹爱心@2x.png in Resources */,
+				38EAA5161CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png in Resources */,
 				38979A911CA40919002946F5 /* sad12.png in Resources */,
 				AD078C761C33CDE800A056D1 /* iphoneIcon@2x.png in Resources */,
 				ADD264891C93CD1A002894AC /* 3@2x.jpg in Resources */,
@@ -9971,6 +10000,7 @@
 				15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */,
 				38979A561CA40919002946F5 /* happy5.png in Resources */,
 				385664861C72DD53000DCFA5 /* ActionDetailViewController.xib in Resources */,
+				38EAA5271CCB582E0080A6D6 /* YU_release@3x.png in Resources */,
 				38EDED6D1C5E261D00694758 /* JoinedTableViewCell.xib in Resources */,
 				525CA0E81C5C67A3009ED9DA /* addressFriend@2x.png in Resources */,
 				ADF88E621C102E4F00CF5DED /* huiseStar.png in Resources */,
@@ -10019,6 +10049,7 @@
 				38979A9B1CA40919002946F5 /* sad21.png in Resources */,
 				15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */,
 				38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */,
+				38EAA5181CCA07BB0080A6D6 /* YUWishesFinish@2x.png in Resources */,
 				850099CE1C61EEE700DDE626 /* 日历yu@2x.png in Resources */,
 				ADAFCD281CA0E261008BF959 /* shark12.png in Resources */,
 				3812C5551C57B76100F4DD6B /* purper_less_circle@3x.png in Resources */,
@@ -10229,6 +10260,7 @@
 				ADD2648F1C93CD23002894AC /* 1@3x.jpg in Resources */,
 				854405AB1CB8DF7A00EA5556 /* userSaoYiSao@2x.png in Resources */,
 				AD399EBF1C940D4D00028F23 /* logo64@2x.jpg in Resources */,
+				38EAA5171CCA07BB0080A6D6 /* YUWishesFinish@3x.png in Resources */,
 				854038721CAE0F2F0056C27E /* 爱情扫扫碰@2x.png in Resources */,
 				AD203BDF1CB0C4F30014618A /* tb_face.jpg in Resources */,
 				A2FD57651BAFE6C000CFFF92 /* CheHeCell.xib in Resources */,
@@ -10528,6 +10560,7 @@
 				85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */,
 				380659DA1C5639DD003094C9 /* WaysView.m in Sources */,
 				385664851C72DD53000DCFA5 /* ActionDetailViewController.m in Sources */,
+				38EAA5201CCA0F220080A6D6 /* LYYuAllWishesViewController.m in Sources */,
 				8540385C1CAE0EDD0056C27E /* FingerMainViewController.m in Sources */,
 				38979B781CAF9B55002946F5 /* checkUnpassedViewController.m in Sources */,
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
@@ -10658,6 +10691,7 @@
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
 				15FD2AA11BD5EC8900D66920 /* TimeButton.m in Sources */,
+				38EAA5231CCA18790080A6D6 /* YUWishesModel.m in Sources */,
 				853C4CBE1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m in Sources */,
 				38EDED621C5E258C00694758 /* HeaderTableViewCell.m in Sources */,
 				15E240581BB101340090D240 /* ZSAddStocksViewController.m in Sources */,

@@ -12,4 +12,7 @@
 #define LY_YU_ORDERSHARE @"lyOrderShareAction.do?action=list"
 #define LY_YU_YUMODEL @"lyOrderShareAction.do?action=expand"
 
+#define LY_YU_WISHES @"lyRequireAction.do?action=list"
+#define LY_YU_FINISH @"lyRequireAction.do?action=update"
+#define LY_YU_DELETE @"lyRequireAction.do?action=delete"
 #endif /* LYYUUrl_h */
