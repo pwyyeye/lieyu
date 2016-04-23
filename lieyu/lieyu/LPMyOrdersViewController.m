@@ -61,6 +61,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     titleArray = @[@"订单",@"待付款",@"待消费",@"待评价",@"待返利",@"待退款"];
     arrayButton = [NSMutableArray array];
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
@@ -71,14 +72,16 @@
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
     
-    [self initHeader];
+    
 //    [self.view setBackgroundColor:[UIColor greenColor]];
     perCount = 10;
     dataList = [NSMutableArray array];
     
     
-    
+    [self initHeader];
+    //
     [self changeTableViewAtIndex:_orderIndex];
+    
     [self getData];
     [self registerCells];
 }
@@ -107,6 +110,7 @@
 }
 
 - (void)initHeader{
+    
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     effectView = [[UIVisualEffectView alloc]initWithEffect:effect];
     [effectView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90)];

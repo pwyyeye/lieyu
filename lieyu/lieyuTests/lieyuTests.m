@@ -45,8 +45,11 @@
 }
 
 - (void)testQiuniu{
-   NSString *url= [MyUtil getQiniuUrl:@"lieyu_ios_2015-10-30 01:16:39_LfouZxj2.jpg" width:80 andHeight:80];
-    NSLog(@"----pass-pass%@---",URL);
+//   NSString *url= [MyUtil getQiniuUrl:@"lieyu_ios_2015-10-30 01:16:39_LfouZxj2.jpg" width:80 andHeight:80];
+    NSString *encodeKey=[@"美女" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    
+    NSLog(@"----pass-pass%@---",encodeKey);
 }
 
 - (void)testXingzuo{
