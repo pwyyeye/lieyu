@@ -60,28 +60,28 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UIButton *_cityChooseBtn,*_searchBtn;
     UIButton *_titleImageView;
     CGFloat _scale;
-    NSInteger _index;
-    NSMutableArray *_dataArray,*_recommendedBarArray;
-    NSInteger _currentPage_YD,_currentPage_Bar;
-    HotMenuButton *_btn_yedian,*_btn_bar;
-    UIView *_lineView;
-    UIVisualEffectView *_navView,*_menuView;
-    NSArray *_fiterArray;
+    NSInteger _index;//区分夜店和酒吧
+    NSMutableArray *_dataArray,*_recommendedBarArray;//酒吧数组 推荐酒吧数组
+    NSInteger _currentPage_YD,_currentPage_Bar;//当前夜店的请求起始个数 当前酒吧的请求起始个数
+    HotMenuButton *_btn_yedian,*_btn_bar;//夜店按钮 酒吧按钮
+    UIView *_lineView;//夜店 酒吧按钮下滑线
+    UIVisualEffectView *_navView,*_menuView;//导航 菜单的背景view
+    NSArray *_fiterArray;//过滤数字
     
-    CGFloat _contentOffSet_Height_YD,_contentOffSet_Height_BAR,_contentOffSetWidth;
+    CGFloat _contentOffSet_Height_YD,_contentOffSet_Height_BAR,_contentOffSetWidth;//夜店表的偏移量 酒吧的表的偏移量
     UICollectionView *_collectView;
-    BOOL _isCollectView;
+    BOOL _isCollectView;//区分大的collectview 和 cell内部的collectview
     
-    JiuBaModel *_recommendedBar;
-    RecommendedTopic *_recommendedTopic;
-    NSMutableArray *_newbannerListArray;
+    JiuBaModel *_recommendedBar;//推荐酒吧的Model
+    RecommendedTopic *_recommendedTopic;//推荐话题  ？？？？
+    NSMutableArray *_newbannerListArray;//AD数组
     
     JiuBaModel *_recommendedBar2;
     RecommendedTopic *_recommendedTopic2;
     NSMutableArray *_newbannerListArray2;
 
-    BOOL _isGetDataFromNet_YD,_isGetDataFromNet_BAR;
-    BOOL _isDragScrollToTop;
+    BOOL _isGetDataFromNet_YD,_isGetDataFromNet_BAR;//判断是否从服务器获取夜店  酒吧的数据
+    BOOL _isDragScrollToTop;//是否拖拽至顶部
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -97,7 +97,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    //初始化
     _currentPage_YD = 1;
     _currentPage_Bar = 1;
     _contentOffSet_Height_BAR = 1;
@@ -122,8 +122,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _collectView.backgroundColor = [UIColor whiteColor];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     [self.view addSubview:_collectView];
-    
+    //本地加载数据
     [self getDataLocalAndReload];
+    //获取夜店数据
     [self getDataWith:0];
     
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -180,17 +181,17 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         _menuView.center = _menuView.center;
         if (!_isDragScrollToTop) return;
         LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-        if (_index) {
+        if (_index) {//酒吧下拉超过35菜单显示
             if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_BAR > 35) {
                 [self showMenuView];
-            }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_BAR > 35) {
+            }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_BAR > 35) {//酒吧上拉超过35菜单隐藏
                 if(cell.collectViewInside.contentOffset.y < - 91) return;
                 [self hideMenuView];
             }
         }else{
-                if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 35) {
+                if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 35) {//夜店下拉超过35菜单显示
                     [self showMenuView];
-                }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_YD > 35) {
+                }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_YD > 35) {//夜店下拉超过35菜单隐藏
                     if(cell.collectViewInside.contentOffset.y < - 91) return;
                     [self hideMenuView];
                 }
@@ -198,6 +199,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
 }
 
+//显示菜单
 - (void)showMenuView{
     [UIView animateWithDuration:0.2 animations:^{
         _menuView.center = CGPointMake(_menuView.center.x,45);
@@ -209,6 +211,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }];
 }
 
+//隐藏菜单
 - (void)hideMenuView{
     [UIView animateWithDuration:0.2 animations:^{
         _menuView.center = CGPointMake( _menuView.center.x,8);
@@ -224,7 +227,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _index = (NSInteger)_collectView.contentOffset.x/SCREEN_WIDTH;
     //LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (_dataArray.count) {
-        switch (_index) {
+        switch (_index) {//判断酒吧 夜店左右切换是否去服务器加载数据
             case 0:{
                 if (_isGetDataFromNet_YD) {
                     _isGetDataFromNet_YD = NO;
@@ -244,7 +247,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     
     if (scrollView == _collectView) {
-        if (_index) {
+        if (_index) {//酒吧按钮被选择
             _btn_bar.isHomePageMenuViewSelected = YES;
             _btn_yedian.isHomePageMenuViewSelected = NO;
             _lineView.center = CGPointMake(_btn_bar.center.x, _lineView.center.y);
@@ -290,6 +293,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
+    //城市搜索
     _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 6 + 20, 40, 30)];
     [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
@@ -305,11 +309,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_searchBtn];
     
+    //菜单logo
     CGFloat titleImgViewWidth = 40;
     _titleImageView = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - titleImgViewWidth)/2.f , 9.5 + 10, titleImgViewWidth, titleImgViewWidth)];
     [_titleImageView setBackgroundImage:[UIImage imageNamed:@"logo"] forState:UIControlStateNormal];
     [_menuView addSubview:_titleImageView];
     
+    //夜店按钮
     _btn_yedian = [[HotMenuButton alloc]init];
     _btn_yedian.titleLabel.font = [UIFont systemFontOfSize:12];
     _btn_yedian.isHomePageMenuViewSelected = YES;
@@ -318,12 +324,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_btn_yedian addTarget:self action:@selector(yedianClick) forControlEvents:UIControlEventTouchUpInside];
     _btn_yedian.frame = CGRectMake(SCREEN_WIDTH/2.f - 44 - 22, _menuView.frame.size.height - 16 - 4.5, 44, 16);
     
+    
+    //酒吧按钮
     _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f + 22, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
     [_btn_bar setTitle:@"酒吧" forState:UIControlStateNormal];
     _btn_bar.isHomePageMenuViewSelected = NO;
     [_btn_bar addTarget:self action:@selector(barClick) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_btn_bar];
     
+    //按钮下滑线
     _lineView = [[UIView alloc]init];
     _lineView.backgroundColor = RGBA(186, 40, 227, 1);
     [_menuView addSubview:_lineView];
@@ -338,6 +347,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
 }
 
+//kvo监听导航的上下改变cell内部collecview的contentInset
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     UIVisualEffectView *effectView = (UIVisualEffectView *)object;
     LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
@@ -407,7 +417,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 移除导航的按钮和图片
 - (void)removeNavButtonAndImageView{
-    [_menuView removeObserver:self forKeyPath:@"center"];
+    [_menuView removeObserver:self forKeyPath:@"center"];//移除kvo
     [_titleImageView removeFromSuperview];
     [_searchBtn removeFromSuperview];
     [_cityChooseBtn removeFromSuperview];
@@ -657,7 +667,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (collectionView == _collectView) {
+    if (collectionView == _collectView) {//为cell里的collectview注册单元格 以及增加上下拉刷新控件
       __weak LYHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeCollectionViewCell" forIndexPath:indexPath];
         cell.collectViewInside.dataSource = self;
         cell.collectViewInside.delegate = self;
@@ -814,7 +824,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                
             }
                 break;
-                case 3:
+                case 3://活动
                 {
                     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
                     UIView *view= [cell viewWithTag:1999];

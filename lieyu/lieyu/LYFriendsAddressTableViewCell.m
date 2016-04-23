@@ -21,6 +21,14 @@
     _label_address.text = recentM.location;
     if(_label_address.text.length == 0) _imgView_location.hidden = YES;
     else _imgView_location.hidden = NO;
+    
+    if([MyUtil isEmptyString:recentM.id]){
+        self.btn_comment.enabled = NO;
+        self.btn_like.enabled = NO;
+    }else {
+        self.btn_comment.enabled = YES;
+        self.btn_like.enabled = YES;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

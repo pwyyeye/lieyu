@@ -135,9 +135,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     CGFloat height = 0.f;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(app.userModel.usertype.intValue==2){
-        height = 239;
+        height = 299;
     }else{
-        height = 179;
+        height = 239;
     }
     
     
