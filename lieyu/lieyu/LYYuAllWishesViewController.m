@@ -12,6 +12,7 @@
 #import "YUWishesModel.h"
 #import "LYFriendsHttpTool.h"
 #import "IQKeyboardManager.h"
+#import "LYActivitySendViewController.h"
 
 @interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYYuWishesCellDelegate>
 {
@@ -30,6 +31,7 @@
     UILabel *_pointLabel;
     
     BOOL start0;//测试
+    BOOL isChanged;//改变状态
     
     UIVisualEffectView *effectView;
     UIButton *releaseButton;
@@ -45,6 +47,15 @@
     [self.navigationController.navigationBar addSubview:_myTitle];
     if (_type == 0) {
         [self.navigationController.navigationBar addSubview:_rightButton];
+        if (isChanged == YES) {
+            [self.tableView reloadData];
+            isChanged = NO;
+            if (unFinishedNumber > 0) {
+                _pointLabel.hidden = NO;
+            }else{
+                _pointLabel.hidden = YES;
+            }
+        }
     }
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
@@ -313,9 +324,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LYYuWishesListTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"LYYuWishesListTableViewCell" owner:nil options:nil]firstObject];
+    cell.delegate = self;
     cell.model = (YUWishesModel *)[_dataList objectAtIndex:indexPath.section];
     cell.avatarButton.tag = indexPath.section;
-    [cell.avatarButton addTarget:self action:@selector(avatarClick) forControlEvents:UIControlEventTouchUpInside];
+    [cell.avatarButton addTarget:self action:@selector(avatarClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.reportButton.tag = indexPath.section;
     [cell.reportButton addTarget:self action:@selector(reportWishes:) forControlEvents:UIControlEventTouchUpInside];
@@ -369,7 +381,8 @@
 
 #pragma mark - 发布
 - (void)releaseClick{
-    
+    LYActivitySendViewController *detailVC = [[LYActivitySendViewController alloc]initWithNibName:@"LYActivitySendViewController" bundle:nil];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - 举报
@@ -421,11 +434,16 @@
 }
 
 - (void)deleteUnFinishedNumber{
-    unFinishedNumber -- ;
-    if (unFinishedNumber > 0) {
-        _pointLabel.hidden = NO;
-    }else{
-        _pointLabel.hidden = YES;
+//    if (_type == 0) {
+        unFinishedNumber -- ;
+        if (unFinishedNumber > 0) {
+            _pointLabel.hidden = NO;
+        }else{
+            _pointLabel.hidden = YES;
+        }
+//    }
+    if(_type == 1){
+        isChanged = YES;
     }
 }
 
@@ -433,7 +451,7 @@
     YUWishesModel *model = [_dataList objectAtIndex:button.tag];
     RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-    conversationVC.targetId = [NSString stringWithFormat:@"%d",model.releaseUserid]; // 接收者的 targetId，这里为举例。
+    conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
     conversationVC.title = model.releaseUserName; // 会话的 title。
     
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
@@ -441,8 +459,13 @@
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     // 把单聊视图控制器添加到导航栈。
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-    conversationVC.navigationItem.leftBarButtonItem = left;
+    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
+    conversationVC.navigationItem.leftBarButtonItem = item;
+    
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 

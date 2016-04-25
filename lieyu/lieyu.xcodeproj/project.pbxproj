@@ -747,7 +747,6 @@
 		38EAA5161CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */; };
 		38EAA5171CCA07BB0080A6D6 /* YUWishesFinish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */; };
 		38EAA5181CCA07BB0080A6D6 /* YUWishesFinish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */; };
-		38EAA5201CCA0F220080A6D6 /* LYYuAllWishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA51F1CCA0F220080A6D6 /* LYYuAllWishesViewController.m */; };
 		38EAA5231CCA18790080A6D6 /* YUWishesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA5221CCA18790080A6D6 /* YUWishesModel.m */; };
 		38EAA5261CCB582E0080A6D6 /* YU_release@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5241CCB582E0080A6D6 /* YU_release@2x.png */; };
 		38EAA5271CCB582E0080A6D6 /* YU_release@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5251CCB582E0080A6D6 /* YU_release@3x.png */; };
@@ -755,6 +754,7 @@
 		38EAA52D1CCDB1D00080A6D6 /* YU_gaoding@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5291CCDB1D00080A6D6 /* YU_gaoding@2x.png */; };
 		38EAA52E1CCDB1D00080A6D6 /* YU_pujie@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA52A1CCDB1D00080A6D6 /* YU_pujie@3x.png */; };
 		38EAA52F1CCDB1D00080A6D6 /* YU_pujie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA52B1CCDB1D00080A6D6 /* YU_pujie@2x.png */; };
+		38EAA5311CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA5301CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m */; };
 		38EDEC611C5B9CDC00694758 /* CHshop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC5F1C5B9CDC00694758 /* CHshop@2x.png */; };
 		38EDEC621C5B9CDC00694758 /* CHshop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC601C5B9CDC00694758 /* CHshop@3x.png */; };
 		38EDEC651C5B9DE700694758 /* return_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC631C5B9DE700694758 /* return_white@2x.png */; };
@@ -2810,8 +2810,6 @@
 		38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesUnfinish@3x.png"; sourceTree = "<group>"; };
 		38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesFinish@3x.png"; sourceTree = "<group>"; };
 		38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesFinish@2x.png"; sourceTree = "<group>"; };
-		38EAA51E1CCA0F220080A6D6 /* LYYuAllWishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYuAllWishesViewController.h; sourceTree = "<group>"; };
-		38EAA51F1CCA0F220080A6D6 /* LYYuAllWishesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYuAllWishesViewController.m; sourceTree = "<group>"; };
 		38EAA5211CCA18790080A6D6 /* YUWishesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUWishesModel.h; sourceTree = "<group>"; };
 		38EAA5221CCA18790080A6D6 /* YUWishesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUWishesModel.m; sourceTree = "<group>"; };
 		38EAA5241CCB582E0080A6D6 /* YU_release@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_release@2x.png"; sourceTree = "<group>"; };
@@ -2820,6 +2818,8 @@
 		38EAA5291CCDB1D00080A6D6 /* YU_gaoding@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_gaoding@2x.png"; sourceTree = "<group>"; };
 		38EAA52A1CCDB1D00080A6D6 /* YU_pujie@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_pujie@3x.png"; sourceTree = "<group>"; };
 		38EAA52B1CCDB1D00080A6D6 /* YU_pujie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_pujie@2x.png"; sourceTree = "<group>"; };
+		38EAA5301CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYuAllWishesViewController.m; sourceTree = "<group>"; };
+		38EAA5321CCDB82E0080A6D6 /* LYYuAllWishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYuAllWishesViewController.h; sourceTree = "<group>"; };
 		38EDEC5F1C5B9CDC00694758 /* CHshop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CHshop@2x.png"; sourceTree = "<group>"; };
 		38EDEC601C5B9CDC00694758 /* CHshop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CHshop@3x.png"; sourceTree = "<group>"; };
 		38EDEC631C5B9DE700694758 /* return_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "return_white@2x.png"; sourceTree = "<group>"; };
@@ -6310,6 +6310,8 @@
 		38EAA4F21CC9F7A90080A6D6 /* newControllers */ = {
 			isa = PBXGroup;
 			children = (
+				38EAA5321CCDB82E0080A6D6 /* LYYuAllWishesViewController.h */,
+				38EAA5301CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m */,
 				855C88561CCB02A90055E8B0 /* LYActivitySendViewController.h */,
 				855C88571CCB02A90055E8B0 /* LYActivitySendViewController.m */,
 				855C88581CCB02A90055E8B0 /* LYActivitySendViewController.xib */,
@@ -10596,7 +10598,6 @@
 				85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */,
 				380659DA1C5639DD003094C9 /* WaysView.m in Sources */,
 				385664851C72DD53000DCFA5 /* ActionDetailViewController.m in Sources */,
-				38EAA5201CCA0F220080A6D6 /* LYYuAllWishesViewController.m in Sources */,
 				8540385C1CAE0EDD0056C27E /* FingerMainViewController.m in Sources */,
 				38979B781CAF9B55002946F5 /* checkUnpassedViewController.m in Sources */,
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
@@ -10879,6 +10880,7 @@
 				15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */,
 				ADF88E9F1C1197C400CF5DED /* MJRefreshComponent.m in Sources */,
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
+				38EAA5311CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m in Sources */,
 				854538641C2D5B430020AC2C /* FriendsRecentModel.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
 				15EB7C6C1BCF8BF700756153 /* LYHomePageHttpTool.m in Sources */,
