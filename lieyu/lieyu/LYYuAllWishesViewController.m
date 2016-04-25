@@ -333,7 +333,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.reportButton.tag = indexPath.section;
     [cell.reportButton addTarget:self action:@selector(reportWishes:) forControlEvents:UIControlEventTouchUpInside];
-    return cell;
+    return cell;  
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
