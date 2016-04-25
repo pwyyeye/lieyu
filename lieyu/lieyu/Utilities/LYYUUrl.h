@@ -10,8 +10,12 @@
 #define LYYUUrl_h
 
 #define LY_YU_ORDERSHARE @"lyOrderShareAction.do?action=list"
+
 #define LY_YU_YUMODEL @"lyOrderShareAction.do?action=expand"
 
+#define LY_YU_GETTAG @"lyRequireAction.do?action=importExcel" //获取所有需求标签
+
+#define LY_YU_SENDMYTHEME @"lyRequireAction.do?action=add" //发布个人需求
 #define LY_YU_WISHES @"lyRequireAction.do?action=list"
 #define LY_YU_FINISH @"lyRequireAction.do?action=update"
 #define LY_YU_DELETE @"lyRequireAction.do?action=delete"
