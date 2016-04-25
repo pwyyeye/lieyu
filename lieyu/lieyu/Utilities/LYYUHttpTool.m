@@ -108,6 +108,7 @@
             NSMutableArray *array = [BarActivityList mj_objectArrayWithKeyValuesArray:response[@"data"]];
             complete(array);
         }
+//        [app stopLoading];
     } failure:^(NSError *err) {
         [MyUtil showCleanMessage:@"获取标签错误！"];
     }];

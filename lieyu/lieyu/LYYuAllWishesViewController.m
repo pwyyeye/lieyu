@@ -7,14 +7,13 @@
 //
 
 #import "LYYuAllWishesViewController.h"
-#import "LYYuWishesListTableViewCell.h"
 #import "LYYUHttpTool.h"
 #import "YUWishesModel.h"
 #import "LYFriendsHttpTool.h"
 #import "IQKeyboardManager.h"
 #import "LYActivitySendViewController.h"
 
-@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYYuWishesCellDelegate>
+@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate>
 {
     int start;
     int limit;
@@ -34,6 +33,8 @@
     
     UIVisualEffectView *effectView;
     UIButton *releaseButton;
+    
+    LYYuAllWishesViewController *detailViewController;
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataList;
@@ -46,6 +47,15 @@
     [self.navigationController.navigationBar addSubview:_myTitle];
     if (_type == 0) {
         [self.navigationController.navigationBar addSubview:_rightButton];
+        if (detailViewController.isChanged == YES) {
+            [self refreshData];
+//            isChanged = NO;
+//            if (unFinishedNumber > 0) {
+//                _pointLabel.hidden = NO;
+//            }else{
+//                _pointLabel.hidden = YES;
+//            }
+        }
     }
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
@@ -199,8 +209,9 @@
 
 #pragma mark - 进入我的发布
 - (void)EnterMyWishes{
-    LYYuAllWishesViewController *detailViewController = [[LYYuAllWishesViewController alloc]init];
+    detailViewController = [[LYYuAllWishesViewController alloc]init];
     detailViewController.type = 1;
+    detailViewController.delegate = self;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
@@ -314,9 +325,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LYYuWishesListTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"LYYuWishesListTableViewCell" owner:nil options:nil]firstObject];
+    cell.delegate = self;
     cell.model = (YUWishesModel *)[_dataList objectAtIndex:indexPath.section];
     cell.avatarButton.tag = indexPath.section;
-    [cell.avatarButton addTarget:self action:@selector(avatarClick) forControlEvents:UIControlEventTouchUpInside];
+    [cell.avatarButton addTarget:self action:@selector(avatarClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.reportButton.tag = indexPath.section;
     [cell.reportButton addTarget:self action:@selector(reportWishes:) forControlEvents:UIControlEventTouchUpInside];
@@ -370,8 +382,8 @@
 
 #pragma mark - 发布
 - (void)releaseClick{
-    LYActivitySendViewController *activitySendVC = [[LYActivitySendViewController alloc]init];
-    [self.navigationController pushViewController:activitySendVC animated:YES];
+    LYActivitySendViewController *detailVC = [[LYActivitySendViewController alloc]initWithNibName:@"LYActivitySendViewController" bundle:nil];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 #pragma mark - 举报
@@ -414,7 +426,11 @@
             if (result == YES) {
 //                [MyUtil showPlaceMessage:@"删除成功！"];
                 [_dataList removeObjectAtIndex:deleteSection];
-                [_tableView reloadData];
+                if(_dataList.count > 0){
+                    [_tableView reloadData];
+                }else{
+                    [self initKongView];
+                }
             }else{
 //                [MyUtil showPlaceMessage:@"删除失败"];
             }
@@ -423,11 +439,16 @@
 }
 
 - (void)deleteUnFinishedNumber{
-    unFinishedNumber -- ;
-    if (unFinishedNumber > 0) {
-        _pointLabel.hidden = NO;
-    }else{
-        _pointLabel.hidden = YES;
+    if (_type == 0) {
+        unFinishedNumber -- ;
+        if (unFinishedNumber > 0) {
+            _pointLabel.hidden = NO;
+        }else{
+            _pointLabel.hidden = YES;
+        }
+    }else if (_type == 1){
+        _isChanged = YES;
+        [self.delegate deleteUnFinishedNumber];
     }
 }
 
@@ -435,7 +456,7 @@
     YUWishesModel *model = [_dataList objectAtIndex:button.tag];
     RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-    conversationVC.targetId = [NSString stringWithFormat:@"%d",model.releaseUserid]; // 接收者的 targetId，这里为举例。
+    conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
     conversationVC.title = model.releaseUserName; // 会话的 title。
     
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
@@ -443,8 +464,13 @@
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     // 把单聊视图控制器添加到导航栈。
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
-    conversationVC.navigationItem.leftBarButtonItem = left;
+    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
+    conversationVC.navigationItem.leftBarButtonItem = item;
+    
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
