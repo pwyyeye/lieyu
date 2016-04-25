@@ -185,22 +185,6 @@
             }];
         }
     }
-    //scrollView.contentOffset.y 下拉变大，上拉变小
-//    NSLog(@"%f",scrollView.contentOffset.y);
-//    int newScrollOffsetY = scrollView.contentOffset.y;
-//    if (newScrollOffsetY > _oldScrollOffectY) {
-//        [UIView animateWithDuration:0.4 animations:^{
-//            releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT, 60, 60);
-//        }];
-//    }else{
-//        [UIView animateWithDuration:0.4 animations:^{
-//            releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 123, 60, 60);
-//        } completion:^(BOOL finished) {
-//            [UIView animateWithDuration:0.2 animations:^{
-//                releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
-//            }];
-//        }];
-//    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
