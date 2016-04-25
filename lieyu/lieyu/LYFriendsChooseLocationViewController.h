@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LYBaseViewController.h"
+#import <AMapSearchKit/AMapSearchKit.h>
 
 @protocol PullLocationInfo <NSObject>
 
@@ -15,8 +16,13 @@
 
 @end
 
-@interface LYFriendsChooseLocationViewController : LYBaseViewController
+@interface LYFriendsChooseLocationViewController : LYBaseViewController{
+     NSMutableArray *poisArray;
+}
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) id<PullLocationInfo> delegate;
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end

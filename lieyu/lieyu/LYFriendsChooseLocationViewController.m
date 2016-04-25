@@ -7,14 +7,14 @@
 //
 
 #import "LYFriendsChooseLocationViewController.h"
-#import <AMapSearchKit/AMapSearchKit.h>
+
 @interface LYFriendsChooseLocationViewController ()<UITableViewDataSource,UITableViewDelegate,CLLocationManagerDelegate,AMapSearchDelegate>
 {
     CLLocationManager *_locationManager;
     CLGeocoder *_geocoder;
     AMapSearchAPI *_search;
     AMapPOIAroundSearchRequest *request;
-    NSMutableArray *poisArray;
+   
     int page;
     AppDelegate *app;
 }
