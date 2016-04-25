@@ -70,8 +70,8 @@
                                     <color key="titleColor" red="0.63529411759999999" green="0.0" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uW3-Gh-Cwz">
-                                <rect key="frame" x="218" y="201" width="86" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uW3-Gh-Cwz">
+                                <rect key="frame" x="304" y="201" width="0.0" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="EgJ-gQ-qPd"/>
                                     <constraint firstAttribute="width" id="flj-Fm-XHt"/>
@@ -176,17 +176,20 @@
                         <constraints>
                             <constraint firstItem="1up-GS-HBh" firstAttribute="top" secondItem="ram-iF-h17" secondAttribute="top" constant="8" id="0mO-JC-ZEi"/>
                             <constraint firstItem="P8w-lC-e7y" firstAttribute="centerX" secondItem="ram-iF-h17" secondAttribute="centerX" id="24s-eK-sBr"/>
+                            <constraint firstAttribute="bottom" secondItem="2nL-at-8NM" secondAttribute="bottom" constant="0.29999999999999999" id="2qa-OL-HrT"/>
                             <constraint firstAttribute="trailing" secondItem="2nL-at-8NM" secondAttribute="trailing" id="3Ge-qf-JWQ"/>
                             <constraint firstItem="QUs-Sj-Dwg" firstAttribute="top" secondItem="ram-iF-h17" secondAttribute="top" id="4jU-83-MrG"/>
                             <constraint firstItem="f7H-PB-apj" firstAttribute="top" secondItem="QUs-Sj-Dwg" secondAttribute="bottom" constant="23" id="77F-lF-E3d"/>
                             <constraint firstItem="wH6-Z7-Ker" firstAttribute="centerX" secondItem="ram-iF-h17" secondAttribute="centerX" id="8w6-ma-4Cp"/>
                             <constraint firstItem="iBP-Nb-fEn" firstAttribute="top" secondItem="KbC-OP-fPN" secondAttribute="bottom" constant="10" id="9Sv-bi-SiM"/>
                             <constraint firstItem="Scv-th-aoT" firstAttribute="leading" secondItem="LXG-nq-G5M" secondAttribute="trailing" constant="8" id="B2y-KN-sKT"/>
+                            <constraint firstAttribute="trailing" secondItem="2nL-at-8NM" secondAttribute="trailing" id="COV-iq-9N0"/>
                             <constraint firstAttribute="trailing" secondItem="f7H-PB-apj" secondAttribute="trailing" constant="31" id="CzP-8V-HS6"/>
                             <constraint firstAttribute="bottom" secondItem="uW3-Gh-Cwz" secondAttribute="bottom" constant="10" id="DvU-pI-pBm"/>
                             <constraint firstItem="wH6-Z7-Ker" firstAttribute="top" secondItem="ram-iF-h17" secondAttribute="top" constant="17" id="EaT-Hp-iWn"/>
                             <constraint firstAttribute="trailing" secondItem="QUs-Sj-Dwg" secondAttribute="trailing" id="FjF-dW-dS6"/>
                             <constraint firstItem="KbC-OP-fPN" firstAttribute="trailing" secondItem="wH6-Z7-Ker" secondAttribute="trailing" id="GX6-7r-9JX"/>
+                            <constraint firstAttribute="bottom" secondItem="2nL-at-8NM" secondAttribute="bottom" id="Hzg-rN-b90"/>
                             <constraint firstItem="2nL-at-8NM" firstAttribute="top" secondItem="gyW-J2-9LV" secondAttribute="bottom" constant="10" id="Ia3-2P-oH7"/>
                             <constraint firstItem="LXG-nq-G5M" firstAttribute="leading" secondItem="ram-iF-h17" secondAttribute="leading" constant="10" id="JCF-DP-FdX"/>
                             <constraint firstItem="KbC-OP-fPN" firstAttribute="top" secondItem="wH6-Z7-Ker" secondAttribute="top" id="KlK-We-kKt"/>
@@ -206,6 +209,7 @@
                             <constraint firstItem="iBP-Nb-fEn" firstAttribute="leading" secondItem="ram-iF-h17" secondAttribute="leading" constant="10" id="iyO-Fd-h5s"/>
                             <constraint firstItem="1up-GS-HBh" firstAttribute="leading" secondItem="ram-iF-h17" secondAttribute="leading" constant="10" id="n57-0J-YN2"/>
                             <constraint firstItem="uW3-Gh-Cwz" firstAttribute="top" secondItem="XFc-wr-d1l" secondAttribute="bottom" constant="10" id="oGg-7L-Eq5"/>
+                            <constraint firstAttribute="trailing" secondItem="2nL-at-8NM" secondAttribute="trailing" id="onG-5Y-LmC"/>
                             <constraint firstItem="f7H-PB-apj" firstAttribute="leading" secondItem="KbC-OP-fPN" secondAttribute="trailing" constant="16" id="phg-QG-BHx"/>
                             <constraint firstItem="gyW-J2-9LV" firstAttribute="top" secondItem="XFc-wr-d1l" secondAttribute="bottom" constant="10" id="tba-Z9-UgZ"/>
                             <constraint firstItem="XFc-wr-d1l" firstAttribute="top" secondItem="f7H-PB-apj" secondAttribute="bottom" id="teB-3N-La9"/>
@@ -221,6 +225,10 @@
                             <mask key="constraints">
                                 <exclude reference="9Sv-bi-SiM"/>
                                 <exclude reference="tba-Z9-UgZ"/>
+                                <exclude reference="2qa-OL-HrT"/>
+                                <exclude reference="3Ge-qf-JWQ"/>
+                                <exclude reference="onG-5Y-LmC"/>
+                                <exclude reference="wGv-wG-DHL"/>
                                 <exclude reference="DvU-pI-pBm"/>
                                 <exclude reference="gzz-Pf-XCw"/>
                                 <exclude reference="oGg-7L-Eq5"/>

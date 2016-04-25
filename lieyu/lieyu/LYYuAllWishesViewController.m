@@ -112,6 +112,7 @@
     _pointLabel.layer.masksToBounds = YES;
     [_pointLabel setBackgroundColor:[UIColor redColor]];
     [_rightButton addSubview:_pointLabel];
+    _pointLabel.hidden = YES;
 }
 
 - (void)initReleaseWishButton{
@@ -253,11 +254,11 @@
 //                unFinishedNumber ++;
 //            }
 //        }
-//        if (unFinishedNumber > 0) {
-//            _pointLabel.hidden = NO;
-//        }else{
-//            _pointLabel.hidden = YES;
-//        }
+        if (unFinishedNumber > 0) {
+            _pointLabel.hidden = NO;
+        }else{
+            _pointLabel.hidden = YES;
+        }
         [_dataList addObjectsFromArray:dataArray];
         if (dataArray.count <= 0) {
             if (_dataList.count <= 0) {
