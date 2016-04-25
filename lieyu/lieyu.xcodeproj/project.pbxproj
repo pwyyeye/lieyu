@@ -1112,6 +1112,11 @@
 		855941761C520D20000AA20F /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 855941721C520D20000AA20F /* libSocialQQ.a */; };
 		855941771C520D20000AA20F /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 855941731C520D20000AA20F /* TencentOpenAPI.framework */; };
 		855941781C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 855941741C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle */; };
+		855C88591CCB02A90055E8B0 /* LYActivitySendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855C88571CCB02A90055E8B0 /* LYActivitySendViewController.m */; };
+		855C885A1CCB02A90055E8B0 /* LYActivitySendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855C88581CCB02A90055E8B0 /* LYActivitySendViewController.xib */; };
+		855C889C1CCB22DD0055E8B0 /* LYActivitySendButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 855C889B1CCB22DD0055E8B0 /* LYActivitySendButton.m */; };
+		855C889F1CCB40A60055E8B0 /* yu_money_yugu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 855C889D1CCB40A60055E8B0 /* yu_money_yugu@3x.png */; };
+		855C88A01CCB40A60055E8B0 /* yu_money_yugu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 855C889E1CCB40A60055E8B0 /* yu_money_yugu@2x.png */; };
 		85653B671C508DF40012B718 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B661C508DF40012B718 /* CoreGraphics.framework */; };
 		85653B691C508E100012B718 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B681C508E100012B718 /* libstdc++.tbd */; };
 		8569A5941CC9F59E003D7954 /* LYFriendsMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8569A5921CC9F59E003D7954 /* LYFriendsMessageDetailViewController.m */; };
@@ -3281,6 +3286,13 @@
 		855941731C520D20000AA20F /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		855941741C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		855941751C520D20000AA20F /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		855C88561CCB02A90055E8B0 /* LYActivitySendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYActivitySendViewController.h; sourceTree = "<group>"; };
+		855C88571CCB02A90055E8B0 /* LYActivitySendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYActivitySendViewController.m; sourceTree = "<group>"; };
+		855C88581CCB02A90055E8B0 /* LYActivitySendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYActivitySendViewController.xib; sourceTree = "<group>"; };
+		855C889A1CCB22DD0055E8B0 /* LYActivitySendButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYActivitySendButton.h; sourceTree = "<group>"; };
+		855C889B1CCB22DD0055E8B0 /* LYActivitySendButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYActivitySendButton.m; sourceTree = "<group>"; };
+		855C889D1CCB40A60055E8B0 /* yu_money_yugu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yu_money_yugu@3x.png"; sourceTree = "<group>"; };
+		855C889E1CCB40A60055E8B0 /* yu_money_yugu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yu_money_yugu@2x.png"; sourceTree = "<group>"; };
 		85653B661C508DF40012B718 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		85653B681C508E100012B718 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		8569A5911CC9F59E003D7954 /* LYFriendsMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsMessageDetailViewController.h; sourceTree = "<group>"; };
@@ -6239,8 +6251,6 @@
 			children = (
 				AD04A4921C61960200FAA8D3 /* LYAmusementViewController.h */,
 				AD04A4931C61960200FAA8D3 /* LYAmusementViewController.m */,
-				85FBBD6F1C604A3A0084E3F2 /* LYAmusementsViewController.h */,
-				85FBBD701C604A3A0084E3F2 /* LYAmusementsViewController.m */,
 			);
 			name = oldControllers;
 			sourceTree = "<group>";
@@ -6264,6 +6274,9 @@
 		38EAA4F21CC9F7A90080A6D6 /* newControllers */ = {
 			isa = PBXGroup;
 			children = (
+				855C88561CCB02A90055E8B0 /* LYActivitySendViewController.h */,
+				855C88571CCB02A90055E8B0 /* LYActivitySendViewController.m */,
+				855C88581CCB02A90055E8B0 /* LYActivitySendViewController.xib */,
 			);
 			name = newControllers;
 			sourceTree = "<group>";
@@ -6439,6 +6452,8 @@
 		850099AF1C61EEE700DDE626 /* 娱 */ = {
 			isa = PBXGroup;
 			children = (
+				855C889D1CCB40A60055E8B0 /* yu_money_yugu@3x.png */,
+				855C889E1CCB40A60055E8B0 /* yu_money_yugu@2x.png */,
 				858B3A1F1C7A0351000C6589 /* priceBlackYUD@2x.png */,
 				858B3A201C7A0351000C6589 /* priceBlackYUD@3x.png */,
 				850099B01C61EEE700DDE626 /* downArrow@2x.png */,
@@ -7296,6 +7311,8 @@
 			children = (
 				38EAA4EF1CC9F7630080A6D6 /* oldCells */,
 				38EAA4D91CC9D7660080A6D6 /* newCells */,
+				855C889A1CCB22DD0055E8B0 /* LYActivitySendButton.h */,
+				855C889B1CCB22DD0055E8B0 /* LYActivitySendButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -9269,6 +9286,7 @@
 				52D4F9A31C57B2B700691BEF /* 返利@3x.png in Resources */,
 				38979A2D1CA40919002946F5 /* dianzan12.png in Resources */,
 				AD106B911C0AF044007F5FBA /* LYUserCenterHeader.xib in Resources */,
+				855C889F1CCB40A60055E8B0 /* yu_money_yugu@3x.png in Resources */,
 				850099C51C61EEE700DDE626 /* yuShadow@3x.png in Resources */,
 				AD44F9581C9D27730030F5C2 /* biaoqing_icon_keybo@3x.png in Resources */,
 				15844BBF1BE1C70600247FBC /* LYSearchFriendViewController.xib in Resources */,
@@ -10257,6 +10275,8 @@
 				38979A9A1CA40919002946F5 /* sad20.png in Resources */,
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
 				38979A3C1CA40919002946F5 /* dianzan4.png in Resources */,
+				855C88A01CCB40A60055E8B0 /* yu_money_yugu@2x.png in Resources */,
+				855C885A1CCB02A90055E8B0 /* LYActivitySendViewController.xib in Resources */,
 				3856647A1C72BF02000DCFA5 /* purper_price@2x.png in Resources */,
 				AD399EBC1C940D4D00028F23 /* logo61@2x.jpg in Resources */,
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
@@ -10617,6 +10637,7 @@
 				38DBCD851C59B04100A1E207 /* ZujuViewController.m in Sources */,
 				85F625A11C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
+				855C88591CCB02A90055E8B0 /* LYActivitySendViewController.m in Sources */,
 				8551B4ED1C8EB8370057F0E7 /* UserNotificationViewController.m in Sources */,
 				85514EE31C761B1600E24C78 /* SignButton.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
@@ -10799,6 +10820,7 @@
 				15EA6DBF1BBE479A00620C9E /* ProductCategoryModel.m in Sources */,
 				AD92AEA81BE22A79009F2A34 /* UserTagModel.m in Sources */,
 				AD106BB71C0DDEFF007F5FBA /* MJProperty.m in Sources */,
+				855C889C1CCB22DD0055E8B0 /* LYActivitySendButton.m in Sources */,
 				15013B031BBA33BF00061FAF /* UIImageView+WebCache.m in Sources */,
 				15EB35271BD379A500BA6161 /* LYtimeChooseTimeController.m in Sources */,
 				857AD69D1CA96A290032E0C4 /* ZSMyReceiveViewController.m in Sources */,
