@@ -7,14 +7,13 @@
 //
 
 #import "LYYuAllWishesViewController.h"
-#import "LYYuWishesListTableViewCell.h"
 #import "LYYUHttpTool.h"
 #import "YUWishesModel.h"
 #import "LYFriendsHttpTool.h"
 #import "IQKeyboardManager.h"
 #import "LYActivitySendViewController.h"
 
-@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYYuWishesCellDelegate>
+@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate>
 {
     int start;
     int limit;
@@ -31,10 +30,11 @@
     UILabel *_pointLabel;
     
     BOOL start0;//测试
-    BOOL isChanged;//改变状态
     
     UIVisualEffectView *effectView;
     UIButton *releaseButton;
+    
+    LYYuAllWishesViewController *detailViewController;
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataList;
@@ -47,14 +47,14 @@
     [self.navigationController.navigationBar addSubview:_myTitle];
     if (_type == 0) {
         [self.navigationController.navigationBar addSubview:_rightButton];
-        if (isChanged == YES) {
-            [self.tableView reloadData];
-            isChanged = NO;
-            if (unFinishedNumber > 0) {
-                _pointLabel.hidden = NO;
-            }else{
-                _pointLabel.hidden = YES;
-            }
+        if (detailViewController.isChanged == YES) {
+            [self refreshData];
+//            isChanged = NO;
+//            if (unFinishedNumber > 0) {
+//                _pointLabel.hidden = NO;
+//            }else{
+//                _pointLabel.hidden = YES;
+//            }
         }
     }
     [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -209,8 +209,9 @@
 
 #pragma mark - 进入我的发布
 - (void)EnterMyWishes{
-    LYYuAllWishesViewController *detailViewController = [[LYYuAllWishesViewController alloc]init];
+    detailViewController = [[LYYuAllWishesViewController alloc]init];
     detailViewController.type = 1;
+    detailViewController.delegate = self;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
@@ -425,7 +426,11 @@
             if (result == YES) {
 //                [MyUtil showPlaceMessage:@"删除成功！"];
                 [_dataList removeObjectAtIndex:deleteSection];
-                [_tableView reloadData];
+                if(_dataList.count > 0){
+                    [_tableView reloadData];
+                }else{
+                    [self initKongView];
+                }
             }else{
 //                [MyUtil showPlaceMessage:@"删除失败"];
             }
@@ -434,16 +439,16 @@
 }
 
 - (void)deleteUnFinishedNumber{
-//    if (_type == 0) {
+    if (_type == 0) {
         unFinishedNumber -- ;
         if (unFinishedNumber > 0) {
             _pointLabel.hidden = NO;
         }else{
             _pointLabel.hidden = YES;
         }
-//    }
-    if(_type == 1){
-        isChanged = YES;
+    }else if (_type == 1){
+        _isChanged = YES;
+        [self.delegate deleteUnFinishedNumber];
     }
 }
 
