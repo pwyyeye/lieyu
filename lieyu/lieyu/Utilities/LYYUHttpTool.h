@@ -19,4 +19,10 @@
 + (void)yuGetYUAllTagsWithParams:(NSDictionary *)params complete:(void(^)(NSMutableArray *yuTagsModelArr))complete;
 //发布个人需求
 + (void)yuSendMYThemeWithParams:(NSDictionary *)params complete:(void(^)(BOOL))complete;
+//获取所有愿望
++ (void)YUGetWishesListWithParams:(NSDictionary *)params complete:(void(^)(NSDictionary *result))complete;
+//点击判断实现OR未实现愿望
++ (void)YUFinishWishOrNotWithParams:(NSDictionary *)params complete:(void(^)(BOOL result))complete;
+//删除自己的愿望
++ (void)YUDeleteWishWithParams:(NSDictionary *)params complete:(void(^)(BOOL result))complete;
 @end
