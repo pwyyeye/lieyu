@@ -64,7 +64,7 @@
     [super viewDidLoad];
     
     _dataList = [[NSMutableArray alloc]init];
-    limit = 2;
+    limit = 10;
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
     if (_type == 0) {

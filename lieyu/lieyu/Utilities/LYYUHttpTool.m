@@ -51,9 +51,12 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_WISHES baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = response[@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
-            NSMutableDictionary *result = [response objectForKey:@"data"];
-            NSArray *dataArray = [YUWishesModel mj_objectArrayWithKeyValuesArray:[result objectForKey:@"items"]];
-            [result setObject:dataArray forKey:@"items"];
+            NSDictionary *result1 = [response objectForKey:@"data"];
+            NSArray *dataArray = [YUWishesModel mj_objectArrayWithKeyValuesArray:[result1 objectForKey:@"items"]];
+            NSDictionary *result = @{@"items":dataArray,
+                                     @"results":[result1 objectForKey:@"results"]};
+//            [result removeObjectForKey:@"items"];
+//            [result setObject:dataArray forKey:@"items"];
             complete(result);
         }
         [app stopLoading];
