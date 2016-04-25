@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSString *createDate;
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, assign) int id;
+@property (nonatomic, strong) NSString *imUserId;
 @property (nonatomic, strong) NSString *isReply;
 @property (nonatomic, strong) NSString *isfinished;
 @property (nonatomic, strong) NSString *isfinishedStr;

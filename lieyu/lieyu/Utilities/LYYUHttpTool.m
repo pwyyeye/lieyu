@@ -45,14 +45,16 @@
 }
 
 #pragma mark - 获取愿望列表
-+ (void)YUGetWishesListWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
++ (void)YUGetWishesListWithParams:(NSDictionary *)params complete:(void (^)(NSDictionary *))complete{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_WISHES baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = response[@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
-            NSArray *dataArray = [YUWishesModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
-            complete(dataArray);
+            NSMutableDictionary *result = [response objectForKey:@"data"];
+            NSArray *dataArray = [YUWishesModel mj_objectArrayWithKeyValuesArray:[result objectForKey:@"items"]];
+            [result setObject:dataArray forKey:@"items"];
+            complete(result);
         }
         [app stopLoading];
     } failure:^(NSError *err) {

@@ -239,6 +239,7 @@
             <connections>
                 <outlet property="addressImage" destination="LXG-nq-G5M" id="IqJ-8b-Jz5"/>
                 <outlet property="addressLabel" destination="Scv-th-aoT" id="KBn-OV-L2n"/>
+                <outlet property="avatarButton" destination="KbC-OP-fPN" id="cqF-SI-pBg"/>
                 <outlet property="avatarImage" destination="wH6-Z7-Ker" id="fwK-aA-mx2"/>
                 <outlet property="balanceButton" destination="gyW-J2-9LV" id="7jU-hL-dsJ"/>
                 <outlet property="bgView" destination="ram-iF-h17" id="4WK-WK-9mM"/>

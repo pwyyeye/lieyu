@@ -11,6 +11,7 @@
 #import "LYYUHttpTool.h"
 #import "YUWishesModel.h"
 #import "LYFriendsHttpTool.h"
+#import "IQKeyboardManager.h"
 
 @interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYYuWishesCellDelegate>
 {
@@ -63,7 +64,7 @@
     [super viewDidLoad];
     
     _dataList = [[NSMutableArray alloc]init];
-    limit = 3;
+    limit = 2;
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
     if (_type == 0) {
@@ -244,17 +245,19 @@
                            @"limit":[NSNumber numberWithInt:limit],
                            @"type":[NSNumber numberWithInt:_type + 1]};
     __weak __typeof(self)weakSelf = self;
-    [LYYUHttpTool YUGetWishesListWithParams:dict complete:^(NSArray *dataArray) {
-        for (YUWishesModel *model in dataArray) {
-            if ([model.isfinished isEqualToString:@"0"] && model.releaseUserid == self.userModel.userid) {
-                unFinishedNumber ++;
-            }
-        }
-        if (unFinishedNumber > 0) {
-            _pointLabel.hidden = NO;
-        }else{
-            _pointLabel.hidden = YES;
-        }
+    [LYYUHttpTool YUGetWishesListWithParams:dict complete:^(NSDictionary *result) {
+        NSArray *dataArray = [result objectForKey:@"items"];
+        unFinishedNumber = [[result objectForKey:@"results"]intValue];
+//        for (YUWishesModel *model in dataArray) {
+//            if ([model.isfinished isEqualToString:@"0"] && model.releaseUserid == self.userModel.userid) {
+//                unFinishedNumber ++;
+//            }
+//        }
+//        if (unFinishedNumber > 0) {
+//            _pointLabel.hidden = NO;
+//        }else{
+//            _pointLabel.hidden = YES;
+//        }
         [_dataList addObjectsFromArray:dataArray];
         if (dataArray.count <= 0) {
             if (_dataList.count <= 0) {
@@ -310,6 +313,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LYYuWishesListTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"LYYuWishesListTableViewCell" owner:nil options:nil]firstObject];
     cell.model = (YUWishesModel *)[_dataList objectAtIndex:indexPath.section];
+    cell.avatarButton.tag = indexPath.section;
+    [cell.avatarButton addTarget:self action:@selector(avatarClick) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.reportButton.tag = indexPath.section;
     [cell.reportButton addTarget:self action:@selector(reportWishes:) forControlEvents:UIControlEventTouchUpInside];
@@ -421,6 +426,29 @@
     }else{
         _pointLabel.hidden = YES;
     }
+}
+
+- (void)avatarClick:(UIButton *)button{
+    YUWishesModel *model = [_dataList objectAtIndex:button.tag];
+    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+    conversationVC.targetId = [NSString stringWithFormat:@"%d",model.releaseUserid]; // 接收者的 targetId，这里为举例。
+    conversationVC.title = model.releaseUserName; // 会话的 title。
+    
+    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+    
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
+    // 把单聊视图控制器添加到导航栈。
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(backForward)];
+    conversationVC.navigationItem.leftBarButtonItem = left;
+    [self.navigationController pushViewController:conversationVC animated:YES];
+}
+
+- (void)backForward{
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
