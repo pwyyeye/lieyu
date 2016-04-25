@@ -13,7 +13,7 @@
 #import "IQKeyboardManager.h"
 #import "LYActivitySendViewController.h"
 
-@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate>
+@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYActivitySendViewControllerDelegate>
 {
     int start;
     int limit;
@@ -244,6 +244,8 @@
 //        start = 0 ;
 //        start0 = NO;
 //    }
+    NSLog(@"--contentOffset:%@",NSStringFromCGPoint(self.tableView.contentOffset));
+//    [self.tableView setContentOffset:CGPointMake(0, 0) animated:YES];
     start = 0 ;
     [self getData];
 }
@@ -258,20 +260,19 @@
                            @"limit":[NSNumber numberWithInt:limit],
                            @"type":[NSNumber numberWithInt:_type + 1]};
     __weak __typeof(self)weakSelf = self;
+    
     [LYYUHttpTool YUGetWishesListWithParams:dict complete:^(NSDictionary *result) {
         NSArray *dataArray = [result objectForKey:@"items"];
         unFinishedNumber = [[result objectForKey:@"results"]intValue];
-//        for (YUWishesModel *model in dataArray) {
-//            if ([model.isfinished isEqualToString:@"0"] && model.releaseUserid == self.userModel.userid) {
-//                unFinishedNumber ++;
-//            }
-//        }
         if (unFinishedNumber > 0) {
             _pointLabel.hidden = NO;
         }else{
             _pointLabel.hidden = YES;
         }
         [_dataList addObjectsFromArray:dataArray];
+        if (_dataList.count == limit) {
+            [self.tableView setContentOffset:CGPointMake(0, -64) animated:NO];
+        }
         if (dataArray.count <= 0) {
             if (_dataList.count <= 0) {
                 //显示空界面
@@ -296,7 +297,7 @@
 }
 
 - (void)initKongView{
-    kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 10, SCREEN_WIDTH, 20)];
+    kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH, 20)];
     [kongLabel setBackgroundColor:[UIColor clearColor]];
     [kongLabel setTextColor:RGBA(186, 40, 227, 1)];
     [kongLabel setText:@"还未发布任何愿望哦～"];
@@ -383,6 +384,7 @@
 #pragma mark - 发布
 - (void)releaseClick{
     LYActivitySendViewController *activitySendVC = [[LYActivitySendViewController alloc]init];
+    activitySendVC.delegate = self;
     [self.navigationController pushViewController:activitySendVC animated:YES];
 }
 
@@ -426,9 +428,11 @@
             if (result == YES) {
 //                [MyUtil showPlaceMessage:@"删除成功！"];
                 [_dataList removeObjectAtIndex:deleteSection];
-                if(_dataList.count > 0){
-                    [_tableView reloadData];
-                }else{
+                self.isChanged = YES;
+//                self.delegate
+                
+                [_tableView reloadData];
+                if(_dataList.count <= 0){
                     [self initKongView];
                 }
             }else{
@@ -480,5 +484,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)activitySendViewControllerSendFinish{
+    if (_type == 0) {
+        [self refreshData];
+    }else if (_type == 1){
+        [self refreshData];
+        _isChanged = YES;
+    }
+}
 
 @end
