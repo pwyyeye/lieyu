@@ -11,8 +11,10 @@
 #import "LYFriendsChooseLocationViewController.h"
 #import "BarActivityList.h"
 #import "LYYUHttpTool.h"
+#import "LYYUChooseLocationViewController.h"
+#import <AMapSearchKit/AMapSearchKit.h>
 
-@interface LYActivitySendViewController ()<UITextViewDelegate,PullLocationInfo,UITextFieldDelegate>{
+@interface LYActivitySendViewController ()<UITextViewDelegate,PullLocationInfo,UITextFieldDelegate,CLLocationManagerDelegate,AMapSearchDelegate>{
     
     UIScrollView *_scrollView;
     NSMutableArray *_btnArray;
@@ -24,8 +26,19 @@
     NSArray *_titleArray;//主题数组
     BOOL _isBeyond;//字数超过50；
     BOOL _isScrollToBottom;//滑到底部
+    
+    AMapSearchAPI *_search;
+    NSMutableArray *poisArray;
+    AMapPOIAroundSearchRequest *request;
+    CLLocationManager *_locationManager;
+    int page;
+    AppDelegate *app;
+    CLGeocoder *_geocoder;
 }
 
+@property (nonatomic, assign) CLLocationCoordinate2D coord;//包括经纬度
+@property (nonatomic,unsafe_unretained) BOOL isDesOK;
+@property (nonatomic,unsafe_unretained) BOOL isMoneyOK;//判断描述和金额是否写过了。
 @end
 
 @implementation LYActivitySendViewController
@@ -36,7 +49,7 @@
     self.navigationItem.title = @"发布想玩";
     
     [self getDataForTheme];
-
+    [self getLocation];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -47,6 +60,8 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     if(_isScrollToBottom) [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];
+    
+    
 }
 
 #pragma mark - 获取主题
@@ -56,6 +71,72 @@
         [self createUI];
     }];
 }
+
+#pragma mark - 获取地址
+- (void)getLocation{
+    
+    
+    
+    poisArray = [[NSMutableArray alloc]init];
+    app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    // 配置用户key
+    [AMapSearchServices sharedServices].apiKey = @"1a62cee8b0fd0ae60c23fc8f83767d3a";
+    _locationManager = [[CLLocationManager alloc]init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    
+//    if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined){
+//        [_locationManager requestWhenInUseAuthorization];
+//        [self showMessage:@"定位服务当前尚未打开，请设置打开,否则无法签到!"];
+//    }else{
+//        _locationManager.delegate = self;
+//        
+//    }
+    [_locationManager startUpdatingLocation];
+}
+
+- (void)loadLocatoin:(CGFloat)latitude and:(CGFloat)longtitude{
+    //初始化检索对象
+    _search = [[AMapSearchAPI alloc]init];
+    _search.delegate = self;
+    //构造AmapPOIAroundSearchRequest对象，设置周边请求参数
+    request = [[AMapPOIAroundSearchRequest alloc]init];
+    request.location = [AMapGeoPoint locationWithLatitude:latitude longitude:longtitude];
+    request.types = @"010000|020000|030000|040000|050000|060000|070000|080000|090000|100000|110000|120000|130000|140000|150000|150000|160000|170000|180000|190000|200000";
+    request.sortrule = 0;
+    request.requireExtension = YES;
+    request.page = ++page;
+    //实现周边搜索
+    [_search AMapPOIAroundSearch:request];
+}
+
+//实现 POI 搜索对应的回调函数
+- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response{
+    if (response.pois.count == 0) {
+        //        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        return;
+    }
+    //通过AmapPOIAroundSearchRequest对象处理搜索结果
+    //    for(AMapPOI *p in response.pois){
+    //        NSLog(@"%@",p);
+    //    }
+    
+    
+    [poisArray addObjectsFromArray:response.pois];
+    
+    _addressStrLabel.text = [NSString stringWithFormat:@"%@",((AMapPOI *)poisArray[0]).city];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    //    for(CLLocation *location in locations){
+    CLLocation *location = [locations firstObject];
+    _geocoder = [[CLGeocoder alloc]init];
+    _coord = location.coordinate;
+    [self loadLocatoin:_coord.latitude and:_coord.longitude];
+    [_locationManager stopUpdatingLocation];
+}
+
 
 - (void)createUI{
     _btnArray = [[NSMutableArray alloc]init];
@@ -166,19 +247,27 @@
 
 #pragma mark - 选择地址action
 - (void)selectAddressClick{
+
+    
 //    if ([CLLocationManager locationServicesEnabled] &&
 //        ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized
 //         || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)) {
 //            //定位功能可用，开始定位
-//                    }
+//            LYFriendsChooseLocationViewController *chooseLocationVC = [[LYFriendsChooseLocationViewController alloc]init];
+//            chooseLocationVC.delegate = self;
+//            [self.navigationController pushViewController:chooseLocationVC animated:YES];
+//        }else{
+//            [MyUtil showCleanMessage:@"定位功能不可用，请开启"];
+//        }
     
-     if (![CLLocationManager locationServicesEnabled]){
-        [MyUtil showCleanMessage:@"定位功能不可用，请开启"];
-         return;
-    }
-    LYFriendsChooseLocationViewController *chooseLocationVC = [[LYFriendsChooseLocationViewController alloc]init];
-    chooseLocationVC.delegate = self;
-    [self.navigationController pushViewController:chooseLocationVC animated:YES];
+     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
+//         LYFriendsChooseLocationViewController *chooseLocationVC = [[LYFriendsChooseLocationViewController alloc]init];
+         LYYUChooseLocationViewController *chooseLocationVC = [[LYYUChooseLocationViewController alloc]init];
+         chooseLocationVC.delegate = self;
+         [self.navigationController pushViewController:chooseLocationVC animated:YES];
+     }else{
+         [MyUtil showCleanMessage:@"定位功能不可用，请开启"];
+     }
 }
 
 #pragma mark 选择地址delegate
@@ -216,6 +305,9 @@
     if (!textView.text.length) {
         textView.text = @"你想";
         textView.textColor = RGBA(144, 153, 167, 1);
+        self.isDesOK = NO;
+    }else{
+        self.isDesOK = YES;
     }
 }
 
@@ -229,8 +321,27 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (!textField.text.length) {
         textField.text = @"预估";
+        self.isMoneyOK = NO;
+    }else{
+        self.isMoneyOK = YES;
     }
 }
+
+#pragma mark - set方法
+- (void)setIsDesOK:(BOOL)isDesOK{
+    _isDesOK = isDesOK;
+    if(_addressStrLabel.text.length && _isMoneyOK && _isDesOK && !_isBeyond){
+        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];
+    }
+}
+
+- (void)setIsMoneyOK:(BOOL)isMoneyOK{
+    _isMoneyOK = isMoneyOK;
+    if(_addressStrLabel.text.length && _isMoneyOK && _isDesOK && !_isBeyond){
+        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];
+    }
+}
+
 
 #pragma mark - 发布action
 - (void)sendClick{
