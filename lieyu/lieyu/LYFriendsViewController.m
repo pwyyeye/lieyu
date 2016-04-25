@@ -1735,7 +1735,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     //    }
 }
 
-- (void)warningSheet:(UIButton *)button{  
+- (void)warningSheet:(UIButton *)button{
     if(!_index){
         NSArray *dataArr = _dataArray[_index];
         FriendsRecentModel *recentM = dataArr[button.tag];

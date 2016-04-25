@@ -747,7 +747,6 @@
 		38EAA5161CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */; };
 		38EAA5171CCA07BB0080A6D6 /* YUWishesFinish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */; };
 		38EAA5181CCA07BB0080A6D6 /* YUWishesFinish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */; };
-		38EAA5201CCA0F220080A6D6 /* LYYuAllWishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA51F1CCA0F220080A6D6 /* LYYuAllWishesViewController.m */; };
 		38EAA5231CCA18790080A6D6 /* YUWishesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA5221CCA18790080A6D6 /* YUWishesModel.m */; };
 		38EAA5261CCB582E0080A6D6 /* YU_release@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5241CCB582E0080A6D6 /* YU_release@2x.png */; };
 		38EAA5271CCB582E0080A6D6 /* YU_release@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5251CCB582E0080A6D6 /* YU_release@3x.png */; };
@@ -860,6 +859,7 @@
 		8504B9391C71C36B008E5C6B /* LYHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8504B9371C71C36B008E5C6B /* LYHomeCollectionViewCell.m */; };
 		8504B93A1C71C36B008E5C6B /* LYHomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */; };
 		850918881C982D23007981C0 /* LYFindConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850918871C982D23007981C0 /* LYFindConversationViewController.m */; };
+		850AC96C1CCDB428009F110C /* LYYuAllWishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850AC96B1CCDB428009F110C /* LYYuAllWishesViewController.m */; };
 		8512BCA81C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */; };
 		8512BCA91C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */; };
 		8512BCAA1C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */; };
@@ -2806,8 +2806,6 @@
 		38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesUnfinish@3x.png"; sourceTree = "<group>"; };
 		38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesFinish@3x.png"; sourceTree = "<group>"; };
 		38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesFinish@2x.png"; sourceTree = "<group>"; };
-		38EAA51E1CCA0F220080A6D6 /* LYYuAllWishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYuAllWishesViewController.h; sourceTree = "<group>"; };
-		38EAA51F1CCA0F220080A6D6 /* LYYuAllWishesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYuAllWishesViewController.m; sourceTree = "<group>"; };
 		38EAA5211CCA18790080A6D6 /* YUWishesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUWishesModel.h; sourceTree = "<group>"; };
 		38EAA5221CCA18790080A6D6 /* YUWishesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUWishesModel.m; sourceTree = "<group>"; };
 		38EAA5241CCB582E0080A6D6 /* YU_release@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_release@2x.png"; sourceTree = "<group>"; };
@@ -2949,6 +2947,8 @@
 		8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		850918861C982D23007981C0 /* LYFindConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFindConversationViewController.h; sourceTree = "<group>"; };
 		850918871C982D23007981C0 /* LYFindConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFindConversationViewController.m; sourceTree = "<group>"; };
+		850AC96A1CCDB428009F110C /* LYYuAllWishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYuAllWishesViewController.h; sourceTree = "<group>"; };
+		850AC96B1CCDB428009F110C /* LYYuAllWishesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYuAllWishesViewController.m; sourceTree = "<group>"; };
 		8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zhuyishixiang_normal.png; sourceTree = "<group>"; };
 		8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@2x.png"; sourceTree = "<group>"; };
 		8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@3x.png"; sourceTree = "<group>"; };
@@ -6298,6 +6298,8 @@
 		38EAA4F21CC9F7A90080A6D6 /* newControllers */ = {
 			isa = PBXGroup;
 			children = (
+				850AC96A1CCDB428009F110C /* LYYuAllWishesViewController.h */,
+				850AC96B1CCDB428009F110C /* LYYuAllWishesViewController.m */,
 				855C88561CCB02A90055E8B0 /* LYActivitySendViewController.h */,
 				855C88571CCB02A90055E8B0 /* LYActivitySendViewController.m */,
 				855C88581CCB02A90055E8B0 /* LYActivitySendViewController.xib */,
@@ -10580,7 +10582,6 @@
 				85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */,
 				380659DA1C5639DD003094C9 /* WaysView.m in Sources */,
 				385664851C72DD53000DCFA5 /* ActionDetailViewController.m in Sources */,
-				38EAA5201CCA0F220080A6D6 /* LYYuAllWishesViewController.m in Sources */,
 				8540385C1CAE0EDD0056C27E /* FingerMainViewController.m in Sources */,
 				38979B781CAF9B55002946F5 /* checkUnpassedViewController.m in Sources */,
 				15E240AA1BB38CA20090D240 /* OrderDetailSectionHeadView.m in Sources */,
@@ -10947,6 +10948,7 @@
 				D73652421BAEBF44002541CE /* KuCunModel.m in Sources */,
 				AD078C8D1C34D24C00A056D1 /* LYChooseJiuBaViewController.m in Sources */,
 				38B5F4B61CBB8F1000AE1BF5 /* DetailLabelView.m in Sources */,
+				850AC96C1CCDB428009F110C /* LYYuAllWishesViewController.m in Sources */,
 				15A4CF3E1BD7321C00C22C01 /* DWTaoCanXQViewController.m in Sources */,
 				386AE3A01C5B61B70062105F /* SDCycleScrollView.m in Sources */,
 				8551B51D1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.m in Sources */,

@@ -12,6 +12,7 @@
 #import "YUWishesModel.h"
 #import "LYFriendsHttpTool.h"
 #import "IQKeyboardManager.h"
+#import "LYActivitySendViewController.h"
 
 @interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYYuWishesCellDelegate>
 {
@@ -369,7 +370,8 @@
 
 #pragma mark - 发布
 - (void)releaseClick{
-    
+    LYActivitySendViewController *activitySendVC = [[LYActivitySendViewController alloc]init];
+    [self.navigationController pushViewController:activitySendVC animated:YES];
 }
 
 #pragma mark - 举报
