@@ -261,11 +261,16 @@
     __weak __typeof(self) weakSelf = self;
     [LYYUHttpTool yuSendMYThemeWithParams:dic complete:^(BOOL result) {
         if (result) {
-            [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+            if ([_delegate respondsToSelector:@selector(activitySendViewControllerSendFinish)]) {
+                [_delegate activitySendViewControllerSendFinish];
+            }
         }
     }];
     
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
