@@ -10,6 +10,7 @@
 #import "HTTPController.h"
 #import "LYYUUrl.h"
 #import "YUOrderInfo.h"
+#import "YUWishesModel.h"
 
 
 @implementation LYYUHttpTool
