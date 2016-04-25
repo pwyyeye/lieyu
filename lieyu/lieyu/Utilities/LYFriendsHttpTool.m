@@ -244,6 +244,8 @@
 
 #pragma mark - 根据话题ID获取玩友圈动态
 + (void)friendsGetFriendsTopicWithParams:(NSDictionary *)params complete:(void(^)(NSArray *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_TopicMessage baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCodeStr = response[@"errorcode"];
         if ([errorCodeStr isEqualToString:@"1"]) {
@@ -252,8 +254,10 @@
             NSArray *friendRecentArray = [FriendsRecentModel mj_objectArrayWithKeyValuesArray:dataArray];
             complete(friendRecentArray);
         }
+        [app stopLoading];
     } failure:^(NSError *err) {
         [MyUtil showLikePlaceMessage:@"获取失败，请检查网络"];
+        [app stopLoading];
     }];
 }
 
