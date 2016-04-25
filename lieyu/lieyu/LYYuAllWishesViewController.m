@@ -382,8 +382,8 @@
 
 #pragma mark - 发布
 - (void)releaseClick{
-    LYActivitySendViewController *detailVC = [[LYActivitySendViewController alloc]initWithNibName:@"LYActivitySendViewController" bundle:nil];
-    [self.navigationController pushViewController:detailVC animated:YES];
+    LYActivitySendViewController *activitySendVC = [[LYActivitySendViewController alloc]init];
+    [self.navigationController pushViewController:activitySendVC animated:YES];
 }
 
 #pragma mark - 举报
