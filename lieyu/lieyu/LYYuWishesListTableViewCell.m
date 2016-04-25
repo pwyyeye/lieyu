@@ -73,10 +73,12 @@
     }
     if ([model.isfinishedStr isEqualToString:@"搞定"]) {
         _isFinishImage.hidden = NO;
-        [_isFinishImage setBackgroundColor:[UIColor purpleColor]];
+//        [_isFinishImage setBackgroundColor:[UIColor purpleColor]];
+        [_isFinishImage setImage:[UIImage imageNamed:@"YU_gaoding"]];
     }else if ([model.isfinishedStr isEqualToString:@"扑街"]){
         _isFinishImage.hidden = NO;
-        [_isFinishImage setBackgroundColor:[UIColor grayColor]];
+//        [_isFinishImage setBackgroundColor:[UIColor grayColor]];
+        [_isFinishImage setImage:[UIImage imageNamed:@"YU_pujie"]];
     }else{
         _isFinishImage.hidden = YES;
     }
@@ -91,7 +93,7 @@
             _model.isfinished = @"1";
             _model.isfinishedStr = @"搞定";
             _isFinishImage.hidden = NO;
-            [_isFinishImage setBackgroundColor:[UIColor purpleColor]];
+            [_isFinishImage setImage:[UIImage imageNamed:@"YU_gaoding"]];
             _addressLabel.hidden = NO;
             _addressImage.hidden = NO;
             _finishButton.hidden = YES;
@@ -114,7 +116,8 @@
             _model.isfinished = @"2";
             _model.isfinishedStr = @"扑街";
             _isFinishImage.hidden = NO;
-            [_isFinishImage setBackgroundColor:[UIColor grayColor]];
+//            [_isFinishImage setBackgroundColor:[UIColor grayColor]];
+            [_isFinishImage setImage:[UIImage imageNamed:@"YU_pujie"]];
             _addressLabel.hidden = NO;
             _addressImage.hidden = NO;
             _finishButton.hidden = YES;
