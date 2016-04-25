@@ -8,7 +8,13 @@
 
 #import "LYBaseViewController.h"
 
+@protocol LYActivitySendViewControllerDelegate <NSObject>
+
+- (void)activitySendViewControllerSendFinish;
+
+@end
+
 @interface LYActivitySendViewController : LYBaseViewController
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btnArray;
-
+@property (nonatomic,unsafe_unretained) id<LYActivitySendViewControllerDelegate> delegate;
 @end
